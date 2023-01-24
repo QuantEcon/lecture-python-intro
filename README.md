@@ -32,5 +32,7 @@ Open individual issues and PRs for the ones we decide to add.
   23. Bi-matrix games.
   24. Shortest path lecture (existing)
   25. Pricing a European option and perhaps pricing and American option 
+  26. Baby version of LLN / CLT lecture --- less maths, more simulation, all in one dimension
+  27. Baby version of heavy tails lecture
 
 Get Tom's network intermediary paper.
