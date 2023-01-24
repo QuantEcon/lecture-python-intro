@@ -31,5 +31,6 @@ Open individual issues and PRs for the ones we decide to add.
   22. Baby version of cattle cycles model
   23. Bi-matrix games.
   24. Shortest path lecture (existing)
+  25. Pricing a European option and perhaps pricing and American option 
 
 Get Tom's network intermediary paper.
