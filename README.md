@@ -34,5 +34,6 @@ Open individual issues and PRs for the ones we decide to add.
   25. Pricing a European option and perhaps pricing and American option 
   26. Baby version of LLN / CLT lecture --- less maths, more simulation, all in one dimension
   27. Baby version of heavy tails lecture
+  30. Baby version of the linear algebra lecture, including eigenvalues --- less maths and more examples
 
 Get Tom's network intermediary paper.
