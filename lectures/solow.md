@@ -1,3 +1,14 @@
+---
+jupytext:
+  text_representation:
+    extension: .md
+    format_name: myst
+kernelspec:
+  display_name: Python 3
+  language: python
+  name: python3
+---
+
 # The Solow-Swan Growth Model
 
 We consider a model due
@@ -16,7 +27,7 @@ To keep things simple, we ignore population and productivity growth.
 
 We will use the following imports
 
-```{code-cell} ipython
+```{code-cell} python3
 import matplotlib.pyplot as plt
 plt.rcParams["figure.figsize"] = (11, 5)  #set default figure size
 import numpy as np
@@ -100,7 +111,7 @@ The function $g$ from \eqref{eq:solow} is then plotted, along with the 45
 degree line.  
 
 
-```{code-cell} ipython
+```{code-cell} python3
 A, s, alpha, delta = 2, 0.3, 0.3, 0.4
 x0 = 0.25
 num_arrows = 8
@@ -182,7 +193,7 @@ At this parameterization, $k^* \approx 1.78$.
 
 As expected, the time paths in the figure both converge to this value. 
 
-```{code-cell} ipython
+```{code-cell} python3
 A, s, alpha, delta = 2, 0.3, 0.3, 0.4
 x0 = np.array([.25, 1.25, 3.25])
 ts_length = 20
@@ -284,7 +295,7 @@ savings at low levels of capital combined with low rates of return at high
 levels of capital combine to yield global stability.
 
 
-```{code-cell} ipython
+```{code-cell} python3
 A, s, alpha, delta = 2, 0.3, 0.3, 0.4
 
 
@@ -412,7 +423,7 @@ Now the long run convergence obtained in in the deterministic case breaks
 down, since the system is hit with new shocks at each point in time.
 
 
-```{code-cell} ipython
+```{code-cell} python3
 sig = 0.2
 mu = np.log(2) - sig**2 / 2
 
