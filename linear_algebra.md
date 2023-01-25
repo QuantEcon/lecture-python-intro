@@ -21,9 +21,9 @@ kernelspec:
 
 ## Overview
 
-Many applied problems in economics and finance require the solution of a linear system of equations.
+Many problems in economics and finance require solving linear equations.
 
-In this lecture we discuss linear equations and when they have solutions.
+In this lecture we discuss linear equations and their solutions.
 
 We also discuss how to compute the solutions with matrix algebra.
 
@@ -36,11 +36,9 @@ of matrix algebra.
 We will use the following imports:
 
 
-Let's start with some imports:
-
 ```{code-cell} ipython
 import matplotlib.pyplot as plt
-plt.rcParams["figure.figsize"] = (11, 5)  #set default figure size
+plt.rcParams["figure.figsize"] = (11, 5)  # set default figure size
 import numpy as np
 from matplotlib import cm
 from mpl_toolkits.mplot3d import Axes3D
@@ -74,7 +72,7 @@ $$
 \end{aligned}
 $$
 
-(In both cases, demand decreases when the price of either good goes up.)
+(We are assuming demand decreases when the price of either good goes up.)
 
 Let's suppose that supply is given by 
 
@@ -88,7 +86,7 @@ $$
 
 Equilibrium holds when supply equals demand ($q_0^s = q_0^d$ and $q_1^s = q_1^d$).
 
-This yields the system
+This yields the linear system
 
 $$
 \begin{aligned}
@@ -110,18 +108,19 @@ $$
     q_0 = xxx and q_1 = yyy
 $$
 
+
+
 ### Using Matrix Algebra
 
 We can also solve this system numerically via matrix algebra.
 
-This involves some extra steps but the method is more widely applicable --- as we
+This involves some extra steps but the method is widely applicable --- as we
 will see when we include more goods.
 
-First we rewrite two_eq_demand as
+First we rewrite eq:two_eq_demand as
 
 $$
 :label: two_eq_demand_mat
-\begin{aligned}
     q^d = D p + h
     \quad \text{where} \quad
     q^d = 
@@ -141,16 +140,14 @@ $$
         100 \\
         50
     \end{pmatrix}
-\end{aligned}
 $$
 
-(Please check that $q^d = D p + h$ represents the same equations as two_eq_demand.)
+(Please check that $q^d = D p + h$ represents the same equations as eq:two_eq_demand.)
 
-We rewrite two_eq_supply as
+We rewrite eq:two_eq_supply as
 
 $$
 :label: two_eq_supply_mat
-\begin{aligned}
     q^s = C p 
     \quad \text{where} \quad
     q^s = 
@@ -164,22 +161,27 @@ $$
          10 & 5  \\
          5 & 10  
     \end{pmatrix}
-\end{aligned}
 $$
 
 Now equality of supply and demand can be expressed as $q^s = q^d$, or
 
 $$
-C p = D p + h
+    C p = D p + h
 $$
 
-Rearranging gives
+Matrix algebra is similar in many ways to ordinary algebra, with numbers
+
+In this case, we can rearrange the terms to get 
 
 $$
     (C - D) p = h
 $$
 
-We can solve for equilibrium prices using the inverse of $C - D$:
+If all of the terms were numbers, we could solve for prices as $p = h /
+(C-D)$.
+
+Matrix algebra allows us to do something similar: we can solve for equilibrium
+prices using the inverse of $C - D$:
 
 $$
     p = (C - D)^{-1} h
@@ -193,8 +195,10 @@ add code here.
 
 Notice that we get the same solutions as above.
 
-NOTE Use both inv and solve, check that they give the same result, mention
+NOTE Use inv first and then solve, check that they give the same result, mention
 that we discuss this again below.
+
+
 
 
 ### More Goods
@@ -230,7 +234,9 @@ $$
 
 The solution is
 
-$$ p = (D- C)^{-1}(e - h) $$
+$$ 
+    p = (D- C)^{-1}(e - h) 
+$$
 
 
 ### General Linear Systems
@@ -259,13 +265,12 @@ This is the case where we are most likely to find a well-defined solution.
 (The other cases are referred to as overdetermined and underdetermined systems
 of equations --- we defer discussion of these cases until later lectures.)
 
-NOTE add wiki links for overdetermined and underdetermined!
+NOTE add wiki links for overdetermined and underdetermined
 
-In matrix form, the system la_se becomes
+In matrix form, the system eq:la_se becomes
 
 $$
 :label: la_gf
-\begin{aligned}
     A x = b
     \quad \text{where} \quad
     A = 
@@ -281,10 +286,9 @@ $$
         \ldots
         b_n
     \end{pmatrix}
-\end{aligned}
 $$
 
-For example, n_eq_sys_la has this form with 
+For example, eq:n_eq_sys_la has this form with 
 
 $$ 
     A = D - C, 
@@ -295,15 +299,15 @@ $$
 $$
 
 
-When considering problems such as la_gf, we need to ask at least some of the following questions
+When considering problems such as eq:la_gf, we need to ask at least some of the following questions
 
 * Does a solution actually exist?
-* Are there in fact many solutions, and if so how should we interpret them?
-* If no solution exists, is there a best "approximate" solution?
 * If a solution exists, how should we compute it?
 
 
 We work up to answering these questions, starting by reviewing some basics.
+
+Readers familiar with these basic facts can skim them quickly.
 
 
 ## {index}`Vectors <single: Vectors>`
@@ -311,7 +315,7 @@ We work up to answering these questions, starting by reviewing some basics.
 ```{index} single: Linear Algebra; Vectors
 ```
 
-A *vector* of length $n$ is just a sequence (or array, or tuple) of $n$ numbers, which we write as $x = (x_1, \ldots, x_n)$.
+A **vector** of length $n$ is just a sequence (or array, or tuple) of $n$ numbers, which we write as $x = (x_1, \ldots, x_n)$.
 
 We can write these sequences either horizontally or vertically.
 
@@ -353,7 +357,7 @@ plt.show()
 
 The two most common operators for vectors are addition and scalar multiplication, which we now describe.
 
-As a matter of definition, when we add two vectors, we add them element-by-element
+When we add two vectors, we add them element-by-element
 
 $$
 x + y =
@@ -392,6 +396,7 @@ $$
 
 Scalar multiplication is illustrated in the next figure
 
+
 ```{code-cell} python3
 ---
 tags: [output_scroll]
@@ -427,20 +432,22 @@ for s in scalars:
 plt.show()
 ```
 
-In Python, a vector can be represented as a list or tuple, such as `x = (2, 4, 6)`, but is more commonly
-represented as a [NumPy array](https://python-programming.quantecon.org/numpy.html#numpy-arrays).
+In Python, a vector can be represented as a list or tuple, such as `x = [2, 4, 6]` or `x = (2, 4, 6)`.
+
+However, it is more common to represented vectors with [NumPy arrays](https://python-programming.quantecon.org/numpy.html#numpy-arrays).
 
 One advantage of NumPy arrays is that scalar multiplication and addition have very natural syntax
 
 ```{code-cell} python3
 x = np.ones(3)            # Vector of three ones
-y = np.array((2, 4, 6))   # Converts tuple (2, 4, 6) into array
-x + y
+y = np.array((2, 4, 6))   # Converts tuple (2, 4, 6) into a NumPy array
+x + y                     # Add (element-by-element)
 ```
 
 ```{code-cell} python3
-4 * x
+4 * x                     # Scalar multiply
 ```
+
 
 ### Inner Product and Norm
 
@@ -450,13 +457,13 @@ x + y
 ```{index} single: Vectors; Norm
 ```
 
-The *inner product* of vectors $x,y \in \mathbb R ^n$ is defined as
+The **inner product** of vectors $x,y \in \mathbb R ^n$ is defined as
 
 $$
 x' y := \sum_{i=1}^n x_i y_i
 $$
 
-The *norm* of a vector $x$ represents its "length" (i.e., its distance from the zero vector) and is defined as
+The **norm** of a vector $x$ represents its "length" (i.e., its distance from the zero vector) and is defined as
 
 $$
 \| x \| := \sqrt{x' x} := \left( \sum_{i=1}^n x_i^2 \right)^{1/2}
@@ -484,6 +491,11 @@ np.linalg.norm(x)      # Norm of x, take two
 
 ```{index} single: Matrix; Operations
 ```
+
+When we discussed linear price systems, we mentioned that matrix algebra is
+similar to algebra for numbers.
+
+Let's review some details.
 
 Just as was the case for vectors, we can add, subtract and scalar multiply
 matrices.
@@ -526,19 +538,21 @@ A + B =
 \end{pmatrix}
 $$
 
-In the latter case, the matrices must have the same shape in order for the definition to make sense.
+In the latter case, the matrices must have the same shape in order for the
+definition to make sense.
 
 We also have a convention for *multiplying* two matrices.
 
-The rule for matrix multiplication generalizes the idea of inner products discussed above
-and is designed to make multiplication play well with basic linear operations.
+The rule for matrix multiplication generalizes the idea of inner products
+discussed above.
 
 If $A$ and $B$ are two matrices, then their product $A B$ is formed by taking
 as its $i,j$-th element the inner product of the $i$-th row of $A$ and the
 $j$-th column of $B$.
 
-There are many tutorials to help you visualize this operation, such as [this one](http://www.mathsisfun.com/algebra/matrix-multiplying.html), or the discussion on the [Wikipedia
-page](https://en.wikipedia.org/wiki/Matrix_multiplication).
+There are many tutorials to help you visualize this operation, such as [this
+one](http://www.mathsisfun.com/algebra/matrix-multiplying.html), or the
+discussion on the [Wikipedia page](https://en.wikipedia.org/wiki/Matrix_multiplication).
 
 If $A$ is $n \times k$ and $B$ is $j \times m$, then to multiply $A$ and $B$
 we require $k = j$, and the resulting matrix $A B$ is $n \times m$.
@@ -570,14 +584,27 @@ A x =
 ```
 
 ```{note}
-$A B$ and $B A$ are not generally the same thing.
+Unlike number products, $A B$ and $B A$ are not generally the same thing.
 ```
 
-Another important special case is the identity matrix.
+Another important special case is the [identity matrix](https://en.wikipedia.org/wiki/Identity_matrix)
 
-You should check that if $A$ is $n \times k$ and $I$ is the $k \times k$ identity matrix, then $AI = A$.
+$$
+    I = 
+    \begin{pmatrix}
+        1 &  \cdots & 0 \\
+        \vdots & \vdots  & \vdots \\
+        0 &  \cdots & 1
+    \end{pmatrix}
+$$
 
-If $I$ is the $n \times n$ identity matrix, then $IA = A$.
+that has ones on the principle diagonal and zero elsewhere.
+
+It is a useful exercise to check the following:
+
+* If $A$ is $n \times k$ and $I$ is the $k \times k$ identity matrix, then $AI = A$.
+* If $I$ is the $n \times n$ identity matrix, then $IA = A$.
+
 
 
 ### Matrices in NumPy
@@ -585,7 +612,7 @@ If $I$ is the $n \times n$ identity matrix, then $IA = A$.
 ```{index} single: Matrix; Numpy
 ```
 
-NumPy arrays are also used as matrices, and have fast, efficient functions and methods for all the standard matrix operations [^fn_mdt].
+NumPy arrays are also used as matrices, and have fast, efficient functions and methods for all the standard matrix operations.
 
 You can create them manually from tuples of tuples (or lists of lists) as follows
 
@@ -629,9 +656,10 @@ A + B
 
 To multiply matrices we use the `@` symbol.
 
-In particular, `A @ B` is matrix multiplication, whereas `A * B` is element-by-element multiplication.
 
-See [here](https://python-programming.quantecon.org/numpy.html#matrix-multiplication) for more discussion.
+```{note}
+In particular, `A @ B` is matrix multiplication, whereas `A * B` is element-by-element multiplication.
+```
 
 
 ## Solving Systems of Equations
@@ -646,13 +674,13 @@ $$
     A x = b
 $$
 
-The problem we face is to determine a vector $x \in \mathbb R^n$ that solves
+The problem we face is to find a vector $x \in \mathbb R^n$ that solves
 {eq}`la_se2`, taking $b$ and $A$ as given.
 
 GIVE EXAMPLES WHERE 
 
 * no solutions exist
-* many solutions exist?
+* many solutions exist
 
 Can we impose conditions on $A$ in {eq}`la_se2` that rule out these problems?
 
@@ -673,7 +701,8 @@ inverted.
 In particular, if square matrix $A$ has a nonzero determinant, then it possesses an 
 *inverse matrix* $A^{-1}$, with the property that $A A^{-1} = A^{-1} A = I$.
 
-As a consequence, if we pre-multiply both sides of $Ax = b$ by $A^{-1}$, we get $x = A^{-1} b$.
+As a consequence, if we pre-multiply both sides of $Ax = b$ by $A^{-1}$, we
+get $x = A^{-1} b$.
 
 This is the solution that we're looking for.
 
@@ -683,13 +712,14 @@ This is the solution that we're looking for.
 
 ### Linear Equations with SciPy
 
-CHANGE ALL TO numpy.linalg!  Swap SciPy for NumPy
+NOTE: CHANGE ALL TO numpy.linalg
+      Swap SciPy for NumPy
 
 
 ```{index} single: Linear Algebra; SciPy
 ```
 
-Here's an illustration of how to solve linear equations with SciPy's `linalg` submodule.
+Let's review how to solve linear equations with SciPy's `linalg` submodule.
 
 All of these routines are Python front ends to time-tested and highly optimized FORTRAN code
 
@@ -718,20 +748,26 @@ Observe how we can solve for $x = A^{-1} y$ by either via `inv(A) @ y`, or using
 
 The latter method uses a different algorithm that is numerically more stable, and hence should almost always be preferred.
 
-To obtain the least-squares solution $\hat x = (A'A)^{-1}A'y$, use `scipy.linalg.lstsq(A, y)`.
-
-
-
 
 
 
 (la_eigen)=
-## {index}`Eigenvalues <single: Eigenvalues>` and {index}`Eigenvectors <single: Eigenvectors>`
+## Matrices as Transformations
+
+NOTE
+
+    Explain that matrices can be viewed as maps.
+    Focus on the n times n case.
+    Give some visualizations of transformations (rotating, stretching, etc.)
+    Explain that matrix multiplication is just composition of the maps.
+    Give some visualizations of iterating with a fixed map.
+
+
+
+(la_eigen)=
+## Eigenvectors 
 
 ```{index} single: Linear Algebra; Eigenvalues
-```
-
-```{index} single: Linear Algebra; Eigenvectors
 ```
 
 Let $A$ be an $n \times n$ square matrix.
