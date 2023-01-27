@@ -46,8 +46,13 @@ distributions of some population
 TODO 
 
 * plot the top income and wealth shares in the US over time
-* Shu is assigned to this task
 
+Use the file ./temp/gini_lorenz_us.ipynb but cut unnecessary.
+
+Replicate the relevant figures f:gini_lorenz_us_x in ch_income_wealth.tex of
+macro dynamics text --- ask JS.
+
+Explain carefully the pandas steps.
 
 
 ## The Lorenz Curve
@@ -154,10 +159,22 @@ The idea is that $G=0$ indicates complete equality, while $G=1$ indicates comple
 
 TODO 
 
-* plot the top income and wealth shares in the US over time
-* Shu is assigned to this task
+Plot the top income and wealth shares in the US over time
+
+Discuss with Shu
+
+Use the file ./temp/gini_lorenz_us.ipynb but cut unnecessary, use quantecon
+functions to compute gini coefficient
+
+Replicate the relevant figures f:gini_lorenz_us_x in ch_income_wealth.tex of
+macro dynamics text --- ask JS.
+
+Carefully discuss the pandas code.
+
 
 ## Exercises
+
+NOTE fix up ex 1 and add more exercises -- perhaps empirical
 
 Ex 1
 
