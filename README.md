@@ -1,5 +1,6 @@
 # lecture-python-intro
-An Undergraduate Lecture Series for the Foundations of Computational Economics
+
+An undergraduate lecture series for the foundations of computational economics
 
 ## Content Ideas 
 
