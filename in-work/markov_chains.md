@@ -10,6 +10,7 @@ tags: [hide-output]
 !pip install quantecon
 ```
 
+
 ## Overview
 
 Markov chains are a standard way to model sequences of random values with some
@@ -46,13 +47,10 @@ The following concepts are fundamental.
 ```{index} single: Finite Markov Chains; Stochastic Matrices
 ```
 
-Let's start with some fun and useful mathematics.
-
 Recall that a **probability mass function** over $n$ possible outcomes is a
 nonnegative $n$-vector $p$ that sums to one.
 
-For example, $p = (0.2, 0.2, 0.6)$ is a probability mass function over $3$
-outcomes.
+For example, $p = (0.2, 0.2, 0.6)$ is a probability mass function over $3$ outcomes.
 
 A **stochastic matrix** (or **Markov matrix**)  is an $n \times n$ square matrix $P$
 such that each row of $P$ is a probability mass function over $n$ outcomes.
@@ -64,7 +62,9 @@ In other words,
 
 If $P$ is a stochastic matrix, then so is the $k$-th power $P^k$ for all $k \in \mathbb N$.
 
-This is not too hard to check.
+(To create the $k$-th power of $P$, multiply $P$ with itself $k$ times.)
+
+The claim above is not too hard to check.
 
 For example, suppose that $P$ is stochastic and $P^k$ is stochastic for some
 integer $k$ and consider $P^{k+1} = P P^k$.
@@ -93,6 +93,138 @@ First we will give some examples and then we will define them more carefully.
 
 At that time, the connection between stochastic matrices and Markov chains
 will become clear.
+
+
+
+
+(mc_eg2)=
+### Example 2
+
+From  US unemployment data, Hamilton {cite}`Hamilton2005` estimated the following dynamics.
+
+
+```{figure} /_static/lecture_specific/finite_markov/hamilton_graph.png
+
+```
+
+Here there are three **states**
+
+* "ng" represents normal growth
+* "mr" represents mild recession
+* "sr" represents severe recession
+
+The arrows represent **transition probabilities** over one month.
+
+For example, the arrow from mild recession to normal growth has 0.145 next to it
+
+This tells us that there is a 14.5% probability of transitioning from mild recession to normal growth in one month.
+
+The arrow from normal growth back to normal growth tells us that there is a
+97% probability of transitioning from normal growth to normal growth.
+
+Note that these are *conditional* probabilties --- the probability of
+transitioning from one state to another (or the same one) conditional on the
+current state.
+
+To make the problem easier to work with numerically, let's convert states to
+numbers.
+
+In particular, we agree that
+
+* state 0 represents normal growth
+* state 1 represents mild recession
+* state 2 represents severe recession
+
+Now let $X_t$ hold the value of the state at time $t$.
+
+We can now write the statement "there is a 14.5% probability of transitioning from mild recession to normal growth in one month" as
+
+$$
+\mathbb P\{X_{t+1} = 0 \,|\, X_t = 1\} = 0.145
+$$
+
+
+We can collect all of these conditional probabilities into a matrix, as
+follows
+
+$$
+P =
+\left(
+  \begin{array}{ccc}
+     0.971 & 0.029 & 0 \\
+     0.145 & 0.778 & 0.077 \\
+     0 & 0.508 & 0.492
+  \end{array}
+\right)
+$$
+
+Now we have the following relationship
+
+$$
+    \mathbb P\{X_{t+1} = 0 \,|\, X_t = 1\} = P(1,0)
+$$
+
+where $P(1,0)$ is element $(1,0)$ of $P$.
+
+We see now that $P(1,0)$ is the probability of transitioning from state 0 to
+state 1 in one month.
+
+More generally, for any $i,j$ between 0 and 2, we have
+
+$$
+\begin{aligned}
+    P(i,j)
+    & = \mathbb P\{X_{t+1} = j \,|\, X_t = i\} 
+    \\
+    & = \text{probability of transitioning from state $i$ to state $j$ in one month}
+\end{aligned}
+$$
+
+
+
+In general, large values on the main diagonal indicate persistence in the process $\{ X_t \}$.
+
+
+
+
+(mc_eg1)=
+### Example 1
+
+Consider a worker who, at any given time $t$, is either unemployed (state 0) or employed (state 1).
+
+Suppose that, over a one month period,
+
+1. An unemployed worker finds a job with probability $\alpha \in (0, 1)$.
+1. An employed worker loses her job and becomes unemployed with probability $\beta \in (0, 1)$.
+
+In terms of a Markov model, we have
+
+* $S = \{ 0, 1\}$
+* $P(0, 1) = \alpha$ and $P(1, 0) = \beta$
+
+We can write out the transition probabilities in matrix form as
+
+```{math}
+:label: p_unempemp
+
+P
+= \left(
+\begin{array}{cc}
+    1 - \alpha & \alpha \\
+    \beta & 1 - \beta
+\end{array}
+  \right)
+```
+
+Once we have the values $\alpha$ and $\beta$, we can address a range of questions, such as
+
+* What is the average duration of unemployment?
+* Over the long-run, what fraction of time does a worker find herself unemployed?
+* Conditional on employment, what is the probability of becoming unemployed at least once over the next 12 months?
+
+We'll cover such applications below.
+
+
 
 
 
@@ -150,77 +282,6 @@ chain $\{X_t\}$ as follows:
 
 By construction, the resulting process satisfies {eq}`mpp`.
 
-(mc_eg1)=
-### Example 1
-
-Consider a worker who, at any given time $t$, is either unemployed (state 0) or employed (state 1).
-
-Suppose that, over a one month period,
-
-1. An unemployed worker finds a job with probability $\alpha \in (0, 1)$.
-1. An employed worker loses her job and becomes unemployed with probability $\beta \in (0, 1)$.
-
-In terms of a Markov model, we have
-
-* $S = \{ 0, 1\}$
-* $P(0, 1) = \alpha$ and $P(1, 0) = \beta$
-
-We can write out the transition probabilities in matrix form as
-
-```{math}
-:label: p_unempemp
-
-P
-= \left(
-\begin{array}{cc}
-    1 - \alpha & \alpha \\
-    \beta & 1 - \beta
-\end{array}
-  \right)
-```
-
-Once we have the values $\alpha$ and $\beta$, we can address a range of questions, such as
-
-* What is the average duration of unemployment?
-* Over the long-run, what fraction of time does a worker find herself unemployed?
-* Conditional on employment, what is the probability of becoming unemployed at least once over the next 12 months?
-
-We'll cover such applications below.
-
-(mc_eg2)=
-### Example 2
-
-From  US unemployment data, Hamilton {cite}`Hamilton2005` estimated the stochastic matrix
-
-$$
-P =
-\left(
-  \begin{array}{ccc}
-     0.971 & 0.029 & 0 \\
-     0.145 & 0.778 & 0.077 \\
-     0 & 0.508 & 0.492
-  \end{array}
-\right)
-$$
-
-where
-
-* the frequency is monthly
-* the first state represents "normal growth"
-* the second state represents "mild recession"
-* the third state represents "severe recession"
-
-For example, the matrix tells us that when the state is normal growth, the state will again be normal growth next month with probability 0.97.
-
-In general, large values on the main diagonal indicate persistence in the process $\{ X_t \}$.
-
-This Markov process can also be represented as a directed graph, with edges labeled by transition probabilities
-
-```{figure} /_static/lecture_specific/finite_markov/hamilton_graph.png
-
-```
-
-Here "ng" is normal growth, "mr" is mild recession, etc.
 
 ## Simulation
 
