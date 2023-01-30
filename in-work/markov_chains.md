@@ -872,20 +872,20 @@ Here
 
 You might like to try experimenting with different initial conditions.
 
-Although we omit the details, it can be proved that every aperiodic and
-irreducible Markov chain has the property that the distribution of $X_t$
-converges to the stationary distribution regardless of where we begin.
 
 
 
 
 (ergodicity)=
-## {index}`Ergodicity <single: Ergodicity>`
+## Ergodicity 
 
-```{index} single: Markov Chains; Ergodicity
-```
+Under irreducibility, yet another important result obtains: 
 
-Under irreducibility, yet another important result obtains: for all $x \in S$,
+
+TODO -- convert to environment
+
+Theorem:  If $P$ is irreducible and $\psi^*$ is the unique stationary
+distribition, then, for all $x \in S$,
 
 ```{math}
 :label: llnfmc0
@@ -896,15 +896,33 @@ Under irreducibility, yet another important result obtains: for all $x \in S$,
 
 Here
 
+* $\{X_t\}$ is a Markov chain with stochastic matrix $P$ and initial
+  distribition $\psi_0$
 * $\mathbf{1}\{X_t = x\} = 1$ if $X_t = x$ and zero otherwise
-* convergence is with probability one
-* the result does not depend on the marginal distribution  of $X_0$
 
-The result tells us that the fraction of time the chain spends at state $x$
+TODO -- in the next line, refer to the theorem by number.
+
+The result in theorem XXX is sometimes called **ergocidity**.
+
+The theorem tells us that the fraction of time the chain spends at state $x$
 converges to $\psi^*(x)$ as time goes to infinity.
 
 (new_interp_sd)=
-This gives us another way to interpret the stationary distribution --- provided that the convergence result in {eq}`llnfmc0` is valid.
+This gives us another way to interpret the stationary distribution (provided irreducibility holds).
+
+Importantly, the result is valid for any choice of $\psi_0$.
+
+Notice that the theorem is related to the law of large numbers.
+
+TODO -- link to our undergrad lln and clt lecture
+
+It tells us that, in some settings, the law of large numbers sometimes holds even when the
+sequence of random variables is not IID.
+
+
+
+TODO --- add the Hamilton2005 Markov chain as an example, similar to the one
+below.
 
 (mc_eg1-2)=
 ### Example
