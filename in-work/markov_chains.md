@@ -808,11 +808,25 @@ mc.stationary_distributions  # Show all stationary distributions
 
 ### Convergence to Stationarity
 
-Sometimes the distribution of $X_t$ converges to the stationary distribution
-regardless of where we begin.
+Sometimes the distribution $\psi_t = \psi_0 P^t$ of $X_t$ converges to the
+stationary distribution regardless of where we begin.
 
-This adds considerable authority to our interpretation of $\psi^*$ as a
-stochastic steady state.
+For example, we have the following result
+
+TODO -- convert to theorem environment
+
+Theorem: If there exists a an integer $m$ such that all entries of $P^m$ are
+strictly positive, then $P$ has only one stationary distribution $\psi^*$ and
+
+$$
+    \psi_0 P^t \to \psi
+    \quad \text{as } t \to \infty
+$$    
+
+(See, for example, {cite}`haggstrom2002finite`. Our assumptions imply that $P$
+is irreducible and [aperiodic](https://en.wikipedia.org/wiki/Aperiodic_graph).)
+
+TODO -- show that the $P$ below satisfies the conditions
 
 The convergence in the theorem is illustrated in the next figure
 
@@ -862,7 +876,6 @@ Although we omit the details, it can be proved that every aperiodic and
 irreducible Markov chain has the property that the distribution of $X_t$
 converges to the stationary distribution regardless of where we begin.
 
-See, for example, {cite}`haggstrom2002finite`.
 
 
 
