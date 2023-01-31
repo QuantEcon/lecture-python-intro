@@ -6,10 +6,11 @@ In recent years there has been rapid growth in a field called [network science](
 
 Network science studies links (or connections, or relationships) between groups of objects.
 
-One of the most important examples is the world wide web, where web pages are
-connected by hyperlinks.
+One important example is the world wide web, where web pages are connected by
+hyperlinks.
 
-Analysis of the human brain emphasizes the network of connections between nerve cells (called neurons).
+Another is the human brain: studies of brain function emphasize the network of
+connections between nerve cells (neurons).
 
 Artificial neural networks are based on this idea, using data to build intricate connections between simple processing units.
 
@@ -18,6 +19,14 @@ Biologists studying transmission of diseases like COVID-19 have to consider the 
 In operations research, network analysis is related to such fundamental problems as on minimum cost flow, traveling salesman, shortest path, and assignment.
 
 TODO add wiki links for above defs
+
+This lecture gives an introduction to economic and financial networks.
+
+(Some parts are drawn from the text https://networks.quantecon.org/ but the
+level of this lecture is less advanced.)
+
+
+## Economic and Financial Networks
 
 Within economics, important examples of networks include
 
@@ -29,14 +38,11 @@ Within economics, important examples of networks include
 
 For example, social networks affect trends in market sentiment and consumer decisions.  
 
-The structure of financial networks helps to determine relative fragility of the system
+The structure of financial networks helps to determine relative fragility of the financial system.
 
 The structure of production networks affects trade, innovation and the propagation of local shocks.
 
-This lecture gives an introduction to economic networks.
-
-(Some parts are drawn from the text https://networks.quantecon.org/ but the
-level of this lecture is less advanced.)
+Let's look at some examples in more depth.
 
 
 ### Example: Aircraft Exports
@@ -60,15 +66,27 @@ In the discussion below, we learn to quantify such ideas.
 
 ### Example: A Markov Chain
 
-TODO repeat the Hamilton example from the Markov chain lecture, plot the
-graph, explain how we can view it as a network. 
+Recall that, in our lecture on Markov chains (TODO add link to new Markov
+chain lecture markov_chains.md) we studied a dynamic model of business cycles
+where the states are
+
+* "ng" = "normal growth"
+* "mr" = "mild recession"
+* "sr" = "severe recession"
+
+TODO add the figure here
+
+This is an example of a network, where the set of nodes $V$ equals
+
+
 
 
 
 
 ## An Introduction to Graph Theory
 
-Network science is built on top of a major branch of mathematics called [graph theory](https://en.wikipedia.org/wiki/Graph_theory).
+Network science is built on top of a major branch of mathematics called [graph
+theory](https://en.wikipedia.org/wiki/Graph_theory).
 
 To understand and analyze networks, we need some understanding of graph theory.
 
