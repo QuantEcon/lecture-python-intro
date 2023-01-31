@@ -154,7 +154,11 @@ The following cell instantiates a solver and creates two variables specifying th
 ```{code-cell} ipython3
 # Instantiate a GLOP(Google Linear Optimization Package) solver
 solver = pywraplp.Solver.CreateSolver('GLOP')
+```
 
+Let's us create two variables $x_1$ and $x_2$ such that they can only have nonnegative values.
+
+```{code-cell} ipython3
 # Create the two variables and let them take on any non-negative value.
 x1 = solver.NumVar(0, solver.infinity(), 'x1')
 x2 = solver.NumVar(0, solver.infinity(), 'x2')
@@ -176,6 +180,8 @@ Let's specify the objective function. We use `solver.Maximize` method in the cas
 # Objective function: 3x_1 + 4x_2
 solver.Maximize(3 * x1 + 4 * x2)
 ```
+
+Once we solve the problem, we can check whether the solver was successful in solving the problem using it's status. If it's successful, then the status will be equal to `pywraplp.Solver.OPTIMAL`.
 
 ```{code-cell} ipython3
 # Solve the system.
@@ -281,7 +287,11 @@ The following cell instantiates a solver and creates two variables specifying th
 ```{code-cell} ipython3
 # Instantiate a GLOP(Google Linear Optimization Package) solver
 solver = pywraplp.Solver.CreateSolver('GLOP')
+```
 
+Let's us create five variables $x_1, x_2, x_3, x_4,$ and $x_5$ such that they can only have the values defined in the above constraints.
+
+```{code-cell} ipython3
 # Create the variables using the ranges available from constraints
 x1 = solver.NumVar(0, solver.infinity(), 'x1')
 x2 = solver.NumVar(-20_000, solver.infinity(), 'x2')
@@ -309,6 +319,8 @@ Let's specify the objective function.
 # Objective function: 1.30 * 3 * x_1 + 1.06 * x_4 + 1.30 * x_5
 solver.Maximize(1.30 * 3 * x1 + 1.06 * x4 + 1.30 * x5)
 ```
+
+Let's solve the problem and check the status using `pywraplp.Solver.OPTIMAL`.
 
 ```{code-cell} ipython3
 # Solve the system.
@@ -456,7 +468,11 @@ c_ex1 = np.array([3, 4])
 A_ex1 = np.array([[2, 5],
                   [4, 2]])
 b_ex1 = np.array([30,20])
+```
 
+Once we solve the problem, we can check whether the solver was successful in solving the problem using the boolean attribute `success`. If it's successful, then the `success` attribute is set to `True`.
+
+```{code-cell} ipython3
 # Solve the problem
 # we put a negative sign on the objective as linprog does minimization
 res_ex1 = linprog(-c_ex1, A_ub=A_ex1, b_ub=b_ex1, method='revised simplex')
@@ -543,7 +559,12 @@ bounds_ex2 = [(  0,    None),
               (-20000, None),
               (-20000, None),
               (  0,   50000)]
+```
 
+Let's solve the problem and check the status using `success` attribute.
+
+
+```{code-cell} ipython3
 # Solve the problem
 res_ex2 = linprog(-c_ex2, A_eq=A_ex2, b_eq=b_ex2,
                   bounds=bounds_ex2, method='revised simplex')
@@ -694,7 +715,10 @@ $$
 ```{code-cell} ipython3
 # Instantiate a GLOP(Google Linear Optimization Package) solver
 solver = pywraplp.Solver.CreateSolver('GLOP')
+```
+Let's us create two variables $x_1$ and $x_2$ such that they can only have nonnegative values.
 
+```{code-cell} ipython3
 # Create the two variables and let them take on any non-negative value.
 x = solver.NumVar(0, solver.infinity(), 'x')
 y = solver.NumVar(0, solver.infinity(), 'y')
