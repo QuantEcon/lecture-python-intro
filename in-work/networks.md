@@ -2,25 +2,20 @@
 
 ## Outline
 
-In recent years there has been rapid growth in a field called *network science*.  
+In recent years there has been rapid growth in a field called [network science](https://en.wikipedia.org/wiki/Network_science).
 
-Network science studies links (or relationships) between groups of objects.
+Network science studies links (or connections, or relationships) between groups of objects.
 
 One of the most important examples is the world wide web, where web pages are
 connected by hyperlinks.
 
-Analysis of the human brain emphasizes the network of connections between
-nerve cells (called neurons).
+Analysis of the human brain emphasizes the network of connections between nerve cells (called neurons).
 
-Artificial neural networks are based on this idea, using data to build
-intricate connections between simple processing units.
+Artificial neural networks are based on this idea, using data to build intricate connections between simple processing units.
 
-Biologists studying transmission of diseases like COVID-19 have to consider
-the connections and interactions between human hosts.
+Biologists studying transmission of diseases like COVID-19 have to consider the connections and interactions between human hosts.
 
-In operations research, network analysis is related to such fundamental
-problems as on minimum cost flow, traveling salesman, shortest path, and
-assignment.
+In operations research, network analysis is related to such fundamental problems as on minimum cost flow, traveling salesman, shortest path, and assignment.
 
 TODO add wiki links for above defs
 
@@ -32,87 +27,105 @@ Within economics, important examples of networks include
 * transport networks and 
 * social networks   
 
-For example, social networks affect trends in
-market sentiment and consumer decisions.  
+For example, social networks affect trends in market sentiment and consumer decisions.  
 
-The structure of financial networks helps to determine relative fragility of the
-system
+The structure of financial networks helps to determine relative fragility of the system
 
-The structure of production networks affects trade, innovation and the
-propagation of local shocks.
+The structure of production networks affects trade, innovation and the propagation of local shocks.
 
-TODO -- add figure f:commercial_aircraft_2019_1 from networks -- ask JS 
+This lecture gives an introduction to economic networks.
 
-Figure [TODO add numref] shows international trade in large
-commercial aircraft in 2019 based on International Trade Data SITC Revision 2.  
+(Some parts are drawn from the text https://networks.quantecon.org/ but the
+level of this lecture is less advanced.)
 
-The circles in the figure are called **nodes** or **vertices** -- in this case
-they represent countries.
+
+### Example: Aircraft Exports
+
+TODO -- add commercial aircraft network figure from https://networks.quantecon.org/ch_intro.html but hide the code
+
+Figure [TODO add numref] shows international trade in large commercial aircraft in 2019 based on International Trade Data SITC Revision 2.  
+
+The circles in the figure are called **nodes** or **vertices** -- in this case they represent countries.
 
 The arrows in the figure are called **edges** or **links**.
 
-Node size is proportional to total exports and edge width is proportional to
-exports to the target country.
+Node size is proportional to total exports and edge width is proportional to exports to the target country.
 
-The data is for trade in commercial aircraft weighing at least 15,000kg
-and was sourced from CID Dataverse.
+The data is for trade in commercial aircraft weighing at least 15,000kg and was sourced from CID Dataverse.
 
 The figure shows that the US, France and Germany are major export hubs.  
 
+In the discussion below, we learn to quantify such ideas.
 
-## Graph Theory
 
-Network analysis is built on top of a major branch of mathematics called
-graph theory.
+### Example: A Markov Chain
 
-Graph theory is often regarded as originating from work by the brilliant Swiss
-mathematician Leonhard Euler (1707--1783), including his famous paper on the
-``Seven Bridges of K\"onigsberg.''
+TODO repeat the Hamilton example from the Markov chain lecture, plot the
+graph, explain how we can view it as a network. 
 
-TODO -- add links for above sentence
 
-We now give a short introduction to graph theory.
 
-We focus on "directed" graphs, where connects are one way rather that
-symmetric
+
+## An Introduction to Graph Theory
+
+Network science is built on top of a major branch of mathematics called [graph theory](https://en.wikipedia.org/wiki/Graph_theory).
+
+To understand and analyze networks, we need some understanding of graph theory.
+
+While graph theory can be complicated, we will cover only the basic ideas.
+
+However, these ideas will already be enough for us to discuss interesting and
+important ideas on economic and financial networks.
+
+
+We focus on "directed" graphs, where connects are one way rather that symmetric
+
+E.g.,
 
 * bank $A$ lends money to bank $B$
-* firm $A$ supplies goods to firm $B$, etc.
+* firm $A$ supplies goods to firm $B$
 
 
-(This costs no generality, since undirected graphs, where relationships are
-symmetric two-way connections, can be studied by imposing symmetry --
-existence of a connection from $A$ to $B$ implies existence of a connection
-from $B$ to $A$).  
 
+### Key Definitions
 
-### Unweighted Graphs
-
-
-A \navy{directed graph}\index{Directed graph} or \navy{digraph}\index{Digraph}
-is a pair $\gG = (V, E)$, where
+A **directed graph** consists of 
 %
 \begin{itemize}
-    \item $V$ is a finite nonempty set and 
-    \item $E$ is a collection of ordered pairs $(u, v) \in V \times V$ called
-        \navy{edges}\index{Edges}.
+    \item a finite set $V$ and
+    \item a collection of pairs $(u, v)$ where $u$ and $v$ are elements of $V$
 \end{itemize}
 %
-Elements of $V$ are called  the \navy{vertices}\index{Vertices} or
-\navy{nodes}\index{Nodes} of $\gG$. Intuitively and visually, an edge $(u,v)$
-is understood as an arrow from vertex $u$ to vertex $v$.  
 
-Two graphs are given in
-Figures~\ref{f:rich_poor_no_label}--\ref{f:poverty_trap}.  Each graph has
-three vertices.  In these cases, the arrows (edges) could be thought of as
-representing positive possibility of transition over a given unit of time.  
+The elements of $V$ are called the \navy{vertices} or \navy{nodes} of the graph.
+
+In the aircraft export example above, the set $V$ is all countries included in the data set.
+
+The pairs $(u,v)$ are called the **edges** of the graph and the set of all edges will usually be denoted by $E$
+
+Intuitively and visually, an edge $(u,v)$ is understood as an arrow from vertex $u$ to vertex $v$.  
+
+(A neat way to represent an arrow is to record the location of the tail and
+head of the arrow, and that's exactly what an edge does.)
+
+In the aircraft export example above, $E$ is all the arrows in the figure,
+each indicating some positive amount of aircraft exports from one country to
+another.
+
+Let's look at more examples.
+
+Two graphs are given in Figures~\ref{f:rich_poor_no_label}--\ref{f:poverty_trap}.  Each graph has three vertices.  
+
+TODO -- convert these to use https://h1ros.github.io/posts/introduction-to-graphviz-in-jupyter-notebook/, discuss with JS
+
+In these cases, the arrows (edges) could be thought of as representing positive possibility of transition over a given unit of time.  
 
 
 \begin{figure}
    \begin{center}
        \scalebox{1.0}{\input{tikz/rich_poor_no_label.tex}}
    \end{center}
-   \caption{\label{f:rich_poor_no_label} A digraph of classes}
+   \caption{\label{f:rich_poor_no_label} A directed graph of classes}
 \end{figure}
 
 \begin{figure}
@@ -121,36 +134,25 @@ representing positive possibility of transition over a given unit of time.
    \caption{\label{f:poverty_trap} An alternative edge list}
 \end{figure}
 
-For a given edge $(u, v)$, the vertex $u$ is called the \navy{tail}\index{Tail
-of an edge} of the
-edge, while $v$ is called the \navy{head}\index{Head of an edge}.  Also,
-$u$ is called a \navy{direct predecessor}\index{Direct predecessor} of $v$ and $v$ is called a 
-\navy{direct successor}\index{Direct successor} of $u$.  For $v \in V$, we use the following notation:
+
+For a given edge $(u, v)$, $u$ is called a \navy{direct predecessor} of $v$
+and $v$ is called a \navy{direct successor} of $u$.  
+
+Also, the \navy{in-degree} and \navy{out-degree} of $v \in V$ are defined by
 %
 \begin{itemize}
-    \item $\iI(v) :=$  the set of all direct predecessors of $v$
-    \item $\oO(v) :=$  the set of all direct successors of $v$
-\end{itemize}
-%
-Also, the \navy{in-degree}\index{In-degree} and \navy{out-degree}\index{Out-degree} of $v \in V$ are defined by
-%
-\begin{itemize}
-    \item the $i_d(v) := |\iI(v)|$ and
-    \item the $o_d(v) := |\oO(v)|$ respectively.
+    \item the $i_d(v) = $ the number of direct predecessors of $v$ and
+    \item the $o_d(v) = $ the number of direct successors of $v$.
 \end{itemize}
 
-If $i_d(v)=0$ and $o_d(v) > 0$, then $v$ is called a \navy{source}\index{Source}.  If either
-$\oO(v)=\emptyset$ or $\oO(v)=\{v\}$, then 
-$v$ is called a \navy{sink}\index{Sink}.  For example, in Figure~\ref{f:poverty_trap},
-``poor'' is a sink with an in-degree of 3.
 
 
-\subsubsection{Digraphs in Networkx}\label{sss:nx}
+### Digraphs in Networkx
 
-Both Python and Julia provide valuable interfaces to numerical computing with
-graphs.  Of these libraries, the Python package Networkx is probably the most
-mature and fully developed.  It provides a convenient data structure for
-representing digraphs and implements many common routines for analyzing them.
+The Python package Networkx is a mature library that provides a convenient
+data structure for representing directed graphs and implements many common routines
+for analyzing them.
+
 To import it into Python we run
 
 \begin{minted}{python}
@@ -165,7 +167,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 \end{minted}
 
-As an example, let us create the digraph in Figure~\ref{f:poverty_trap}, which
+As an example, let us create the directed graph in Figure~\ref{f:poverty_trap}, which
 we denote henceforth by $\gG_p$.  To do so, we first create an empty
 \texttt{DiGraph} object:
 
@@ -193,7 +195,7 @@ for e in edge_list:
 \end{minted}
 
 Adding the edges automatically adds the nodes, so \texttt{G\_p} is now a
-correct representation of $\gG_p$.  For our small digraph we can verify this
+correct representation of $\gG_p$.  For our small directed graph we can verify this
 by plotting the graph via Networkx with the following code: 
 
 \begin{minted}{python}
@@ -205,12 +207,12 @@ plt.show()
 \end{minted}
 
 This code produces Figure~\ref{f:networkx_basics_1}, which matches the
-original digraph in Figure~\ref{f:poverty_trap}.
+original directed graph in Figure~\ref{f:poverty_trap}.
 
 \begin{figure}
    \centering
    \scalebox{0.6}{\includegraphics[trim = 10mm 10mm 0mm 10mm, clip]{figures/networkx_basics_1.pdf}}
-   \caption{\label{f:networkx_basics_1} Networkx digraph plot}
+   \caption{\label{f:networkx_basics_1} Networkx directed graph plot}
 \end{figure}
 
 \texttt{DiGraph} objects have methods that calculate in-degree and out-degree
@@ -223,130 +225,67 @@ G_p.in_degree('p')
 prints 3.
 
 
-\subsubsection{Communication}\label{sss:coms}
 
-Next we study communication and connectedness, which have important
-implications for production, financial, transportation and other networks, as
-well as for dynamic properties of Markov chains.  
 
-A \navy{directed walk}\index{Directed walk} from vertex $u$ to vertex $v$  of
-a digraph $\gG$ is a finite sequence of vertices, starting with $u$ and ending
-with $v$, such that any consecutive pair in the sequence is an edge of $\gG$.
-A \navy{directed path}\index{Directed path} from $u$ to $v$ is a directed walk
-from $u$ to $v$ such that all vertices in the path are distinct.  
-For example, in Figure~\ref{f:strong_connected_components}, $(3, 2, 3, 2, 1)$
-is a directed walk from $3$ to $1$ but not a directed path,
-while $(3, 2, 1)$ is both a directed path and a directed walk from $3$ to $1$.
 
-As is standard, the \navy{length}\index{Length (directed walk)} of a directed walk (or path) counts the
-number of edges rather than vertices.   For example, the directed path $(3, 2,
-1)$ from $3$ to $1$ in Figure~\ref{f:strong_connected_components} is said to have length 2.
+### Communication
 
-Vertex $v$ is called \navy{accessible}\index{Accessible} (or \navy{reachable}) from vertex $u$, and
-we write \navy{$u \to v$}, if either $u=v$ or there exists a directed path
-from $u$ to $v$.  A set $U \subset V$ is called
-\navy{absorbing}\index{Absorbing} for the directed graph $(V, E)$ if no
-element of $V \setminus U$ is accessible from $U$.
+Next we study communication and connectedness, which have important implications for economic networks.
 
-\begin{example}
-    Let $\gG = (V, E)$ be a digraph representing a production network, where
-    elements of $V$ are sectors and $(i, j) \in E$ means that $i$ supplies
-    products or services to
-    $j$.  Then sector $m$ is an upstream supplier of sector $\ell$ whenever $m
-    \to \ell$.
-\end{example}
+Vertex $v$ is called \navy{accessible} from vertex $u$ if either $u=v$ or
+there exists a sequence of edges that lead from $u$ to $v$.  
 
-\begin{figure}
-   \begin{center}
-       \input{tikz/strong_connected_components.tex}
-   \end{center}
-   \caption{\label{f:strong_connected_components} Strongly connected
-   components of a digraph (rectangles)}
-\end{figure}
+* in this case, we write $u \to v$
+
+(Visually, there is a sequence of arrows leading from $u$ to $v$.)
+
+For example, suppose we have a directed graph representing a production
+network, where 
+
+* elements of $V$ are industrial sectors and
+* existence of an edge $(i, j)$ means that $i$ supplies products or services to $j$.  
+
+Then sector $m$ is an upstream supplier of sector $\ell$ whenever $m \to \ell$.
+
+Two vertices $u$ and $v$ are said to \navy{communicate} if $u \to v$ and $v \to u$.
+
+A graph is called \navy{strongly connected} if any two nodes in $V$ are
+accessible from each other.
+
+TODO -- fix this
 
 \begin{example}
-    The vertex $\{ \text{poor} \}$ in the Markov digraph displayed in
-    Figure~\ref{f:poverty_trap} is absorbing, since  $\{ \text{middle, rich}
-    \}$ is not accessible from  $\{ \text{poor} \}$.
-\end{example}
-
-Two vertices $u$ and $v$ are said to \navy{communicate}\index{Communication
-(graphs)} if $u \to v$ and $v \to u$.
-
-\begin{Exercise}\label{ex:sceqrel}
-    Let $(V, E)$ be a directed graph and write $u \sim v$ if $u$ and $v$
-    communicate.  Show that $\sim$ is an equivalence relation (see  \S\ref{sss:eqclass}).
-\end{Exercise}
-
-Since communication is an equivalence relation, it induces a partition of $V$
-into a finite collection of equivalence classes.  Within each of these
-classes, all elements communicate.  These classes are called \navy{strongly
-connected components}.  The graph itself is called \navy{strongly
-connected}\index{Strongly connected} if there is only one such component; that
-is, $v$ is accessible from $u$ for any pair $(u, v) \in V \times V$.  This
-corresponds to the idea that any node can be reached from any other.  
-
-\begin{example}
-    Figure~\ref{f:strong_connected_components} shows a digraph with 
-    strongly connected components $\{1\}$ and $\{2, 3\}$.
-    The digraph is not strongly connected.
-\end{example}
-
-\begin{example}
-    In Figure~\ref{f:rich_poor_no_label}, the digraph is strongly connected.  In
+    In Figure~\ref{f:rich_poor_no_label}, the directed graph is strongly connected.  In
     contrast, in Figure~\ref{f:poverty_trap}, rich is not accessible from
     poor, so the graph is not strongly connected.  
 \end{example}
 
-Networkx can be used to test for communication and strong connectedness, as
-well as to compute strongly connected components.  For example, applied to the
-digraph in Figure~\ref{f:strong_connected_components}, the code
-%
-\begin{minted}{python}
-G = nx.DiGraph()
-G.add_edge(1, 1)
-G.add_edge(2, 1)
-G.add_edge(2, 3)
-G.add_edge(3, 2)
+Networkx can be used to test for strong connectedness.
 
-list(nx.strongly_connected_components(G)) 
-\end{minted}
-%
-prints \texttt{[\{1\}, \{2, 3\}]}.
+
+TODO give an example
 
 
 
-Early quantitative work on networks tended to focus on unweighted digraphs,
-where the existence or absence of an edge is treated as sufficient information
-(e.g., following or not following on social media, existence or absence of a
-road connecting two towns). However, for some networks, this binary measure is
-less significant than the size or strength of the connection.  
 
-As one illustration, consider
-Figure~\ref{f:financial_network_analysis_visualization}, which shows flows of
-funds (i.e., loans) between private banks, grouped by country of origin.  An
-arrow from Japan to the US, say, indicates aggregate claims held by Japanese
+
+## Weighted Graphs
+
+Figure~\ref{f:financial_network_analysis_visualization} shows flows of funds
+(i.e., loans) between private banks, grouped by country of origin.
+
+TODO --- Add this from https://networks.quantecon.org/ch_intro.html but hide the code
+
+An arrow from Japan to the US indicates aggregate claims held by Japanese
 banks on all US-registered banks, as collected by the Bank of International
-Settlements (BIS). The size of each node in the figure is increasing in the
-total foreign claims of all other nodes on this node. The widths of the arrows
-are proportional to the foreign claims they represent.\footnote{Data for the
-    figure was obtained from the BIS consolidated
-    banking statistics, for Q4 of 2019. Our calculations used the immediate
-    counterparty basis for financial claims of domestic and foreign banks,
-    which calculates the sum of cross-border claims and local claims of
-    foreign affiliates in both foreign and local currency. The foreign claim
-    of a node to itself is set to zero.}
-The country codes are given in Table~\ref{table:cfn}.
+Settlements (BIS). 
 
+The size of each node in the figure is increasing in the
+total foreign claims of all other nodes on this node. 
 
-\begin{figure}
-   \centering
-   \scalebox{0.9}{\includegraphics[trim = 20mm 20mm 0mm 20mm, clip]{
-   figures/financial_network_analysis_visualization.pdf}}
-   \caption{\label{f:financial_network_analysis_visualization} International
-   private credit flows by country}
-\end{figure}
+The widths of the arrows are proportional to the foreign claims they represent.
 
+TODO convert table to markdown
 
 \begin{table}
     \small
@@ -367,23 +306,22 @@ The country codes are given in Table~\ref{table:cfn}.
 
 
 In this network, an edge $(u, v)$ exists for almost every choice of $u$ and
-$v$ (i.e., almost every country in the network).\footnote{In fact arrows
-    representing foreign claims less than US\$10 million are cut from
-    Figure~\ref{f:financial_network_analysis_visualization}, so the network is
-even denser than it appears.}  Hence existence of an edge is not
-particularly informative.  To understand the network, we need to record not
-just the existence or absence of a credit flow, but also the size of the flow.
+$v$ (i.e., almost every country in the network).
+
+Hence existence of an edge is not particularly informative.  
+
+To understand the network, we need to record not just the existence or absence
+of a credit flow, but also the size of the flow.
+
 The correct data structure for recording this information is a ``weighted
-directed graph,'' or ``weighted digraph.'' In this section we define this
-object and investigate its properties.
+directed graph,'' or ``weighted digraph.'' 
 
 
-### Weighted Graphs
+### Definitions
 
-
-A \navy{weighted digraph}\index{Weighted digraph} $\gG$ is a triple $(V, E, w)$
+A \navy{weighted digraph} $\gG$ is a triple $(V, E, w)$
 such that $(V, E)$ is a digraph and $w$ is a function from $E$ to $(0,
-\infty)$, called the \navy{weight function}\index{weight function}.
+\infty)$, called the \navy{weight function}.
 
 \begin{remark}
     Weights are traditionally regarded as nonnegative. In this text we insist
@@ -430,9 +368,9 @@ $(V, E, w)$ is called strongly connected if $(V, E)$ is strongly connected. The
 weighted digraph in Figure~\ref{f:rich_poor} is strongly connected.
 
 
-\subsubsection{Adjacency Matrices of Weighted Digraphs}
+## Adjacency Matrices 
 
-The \navy{adjacency matrix}\index{Adjacency matrix} of a \emph{weighted}
+The \navy{adjacency matrix} of a \emph{weighted}
 digraph $(V, E, w)$ with vertices $\{v_1, \ldots, v_n\}$ is the matrix
 %
 \begin{equation*}
@@ -599,33 +537,6 @@ edges.
 
 ## Properties
 
-In this section, we examine some of the fundamental properties of and
-relationships among digraphs, weight functions and adjacency matrices.
-Throughout this section, the vertex set $V$ of any graph we examine will be
-set to $\natset{n}$.  This costs no loss of generality, since, in this
-text, the vertex set of a digraph is always finite and nonempty.
-
-Also, while we refer to weighted digraphs for their additional generality, the
-results below connecting adjacency matrices and digraphs are valid for
-unweighted digraphs.  Indeed, an unweighted digraph $\gG = (V, E)$ can be mapped
-to a weighted digraph by introducing a weight function that maps each element
-of $E$ to unity.  The resulting adjacency matrix agrees with our original
-definition for unweighted digraphs in \eqref{eq:digrapham}.
-
-As an additional convention, if $A$ is an adjacency matrix, and $A^k$ is the
-$k$-th power of $A$, then we write $a^k_{ij}$ for a typical element of $A^k$. 
-With this notation, we observe that, since
-$A^{(s+t)} = A^s A^t$, the rules of matrix multiplication imply
-%
-\begin{equation}\label{eq:accip}
-    a^{s+t}_{ij}
-    = \sum_{\ell=1}^n a^s_{i \ell} \, a^t_{\ell j}
-    \qquad (i, j \in \natset{n}, \;\; s,t \in \NN).
-\end{equation}
-%
-($A^0$ is the identity.) The next proposition explains the significance of the
-powers.
-
 
 \begin{proposition}\label{p:accesspos}
     Let $\gG$ be a weighted digraph with adjacency matrix $A$. For distinct
@@ -634,21 +545,11 @@ powers.
     \begin{equation*}
         a^k_{i j} > 0
         \; \iff \;
-        \text{ there exists a directed walk of length $k$ from $i$ to $j$}.
+        \text{ $j$ is accessible from $i$}.
     \end{equation*}
     %
 \end{proposition}
 
-\begin{proof}
-    ($\Leftarrow$ ).  The statement is true by definition when $k=1$.  Suppose
-    in addition that $\Leftarrow$ holds at $k-1$, and suppose
-    there exists a directed walk $(i, \ell, m, \ldots, n, j)$ of length $k$
-    from $i$ to $j$.  By the induction hypothesis we have $a^{k-1}_{i n} >
-    0$.  Moreover, $(n, j)$ is part of a directed walk, so $a_{n j} > 0$.  Applying
-    \eqref{eq:accip} now gives $a^k_{i j} > 0$.
-
-    ($\Rightarrow$).  Left as an exercise (just use the same logic).
-\end{proof}
 
 
 \begin{example}
@@ -695,86 +596,6 @@ In this context, the next result is fundamental.
     \caption{\label{f:io_reducible} Failure of strong connectivity}
    \end{center}
 \end{figure}
-
-We will find that the property of being primitive is valuable for analysis.
-(The Perron--Frobenius Theorem hints at this.)  What do we need to add to strong
-connectedness to obtain primitiveness?
-
-
-\begin{theorem}\label{t:scaperpr}
-    For a weighted digraph $\gG=(V, E, w)$, the following statements are equivalent:
-    %
-    \begin{enumerate}
-        \item $\gG$ is strongly connected and aperiodic. 
-        \item The adjacency matrix generated by $\gG$ is primitive.
-    \end{enumerate}
-    %
-\end{theorem}
-
-
-\begin{proof}[Proof of Theorem~\ref{t:scaperpr}]
-    Throughout the proof we set $V=\natset{n}$.
-    First we show that, if $\gG$ is aperiodic and strongly connected, then, for all $i,
-    j \in V$, there exists a $q \in \NN$ such that $a^k_{ij} > 0$
-    whenever $k \geq q$.  To this end, pick any $i,j$ in $V$.   Since $\gG$ is
-    strongly connected,
-    there exists an $s \in \NN$ such that $a^s_{ij} > 0$.  Since $\gG$ is
-    aperiodic, we can find an $m \in \NN$ such that $\ell \geq m$ implies
-    $a^\ell_{jj} > 0$.  Picking $\ell \geq m$ and applying~\eqref{eq:accip},
-    we have
-    %
-    \begin{equation*}
-        a^{s+\ell}_{ij}
-        = \sum_{r \in V} a^s_{i r} a^\ell_{r j}
-        \geq  a^s_{ij} a^\ell_{jj}
-        > 0.
-    \end{equation*}
-    %
-    Thus, with $t = s + m$, we have $a^k_{ij} > 0$ whenever $k \geq t$.
-
-    ((i) $\Rightarrow$ (ii)).  By the preceding argument, given any $i, j \in V$,
-    there exists an $s(i,j) \in \NN$ such that $a^m_{ij} > 0$ whenever $m
-    \geq s(i,j)$.  Setting $k := \max s(i, j)$ over all $(i,j)$ yields
-    $A^k \gg 0$.
-
-    ((ii) $\Rightarrow$ (i)). Suppose that $A$ is primitive.  Then, for some
-    $k \in \NN$, we have $A^k \gg 0$.  Strong connectedness of the digraph
-    follows directly from Proposition~\ref{p:accesspos}.  It remains to check
-    aperiodicity.
-
-    Aperiodicity will hold if we can establish that $a^{k+t}_{ii} > 0$ for all $t \geq 0$.
-    To show this, it suffices to show that $A^{k + t}  \gg 0$ for all $t \geq 0$.
-    Moreover, to prove the latter, we need only show that $A^{k + 1}  \gg 0$,
-    since the claim then follows from induction.
-
-    To see that $A^{k+1} \gg 0$, observe that, for any given
-    $i, j$, the relation \eqref{eq:accip} implies
-    %
-    \begin{equation*}
-        a^{k+1}_{ij}
-        = \sum_{\ell \in V} a_{i\ell} a^k_{\ell j}
-        \geq \bar a  \sum_{\ell \in V} a_{i \ell}.
-    \end{equation*}
-    %
-    where $\bar a := \min_{\ell \in V} a^k_{\ell j} > 0$.
-    The proof will be done if $\sum_{\ell \in V} a_{i \ell} > 0$.  But this
-    must be true, since otherwise vertex $i$ is a sink, which contradicts
-    strong connectedness.
-\end{proof}
-
-
-\begin{example}
-    In Exercise~\ref{ex:pwprop} we worked hard to show that $P_w$ is
-    irreducible if and only if $0 < \alpha, \beta \leq 1$, using the approach
-    of calculating and then examining the powers of $P_w$ (as shown in
-    \eqref{eq:pwpk}).  However, the result is trivial when we examine
-    the corresponding digraph in Figure~\ref{f:worker_switching} and use the
-    fact that irreducibility is equivalent to strong connectivity.
-    Similarly, the result in Exercise~\ref{ex:pwprop} that $P_w$ is
-    primitive if and only if $0 < \alpha, \beta \leq 1$ and $\min\{\alpha,
-    \beta \} < 1$ becomes much easier to establish if we examine the digraph and use
-    Theorem~\ref{t:scaperpr}.
-\end{example}
 
 
 
@@ -830,8 +651,7 @@ example, our terminology is consistent with \cite{benzi2015limiting}.)
 
 
 Search engine designers recognize that web pages can be important in two
-different ways.  Some pages have high \navy{hub centrality}\index{Hub
-centrality}, meaning that they \emph{link to} valuable sources of information
+different ways.  Some pages have high \navy{hub centrality}, meaning that they \emph{link to} valuable sources of information
 (e.g., news aggregation sites) .  Other pages have high \navy{authority
 centrality}, meaning that they contain valuable information, as indicated by
 the number and significance of \emph{incoming} links (e.g., websites of
@@ -864,9 +684,9 @@ them.
 Two of the most elementary measures of ``importance''
 of a vertex in a given digraph $\gG = (V, E)$ are its in-degree and
 out-degree. Both of these provide a centrality measure.  
-\navy{In-degree centrality}\index{In-degree centrality} $i(\gG)$ is defined as  
+\navy{In-degree centrality} $i(\gG)$ is defined as  
 the vector $(i_d(v))_{v \in V}$.
-\navy{Out-degree centrality}\index{out-degree centrality} $o(\gG)$ is defined
+\navy{Out-degree centrality} $o(\gG)$ is defined
 as $(o_d(v))_{v \in V}$.  If $\gG$ is expressed as a Networkx \texttt{DiGraph} called
 \texttt{G} (see, e.g., \S\ref{sss:nx}), then $i(\gG)$ can be calculated via
 %
@@ -966,7 +786,7 @@ measures we turn to has this recursive property.
 
 Let $\gG = (V, E, w)$ be a weighted digraph with adjacency matrix $A$.
 Recalling that $r(A)$ is the spectral radius of $A$, the \navy{hub-based eigenvector
-centrality}\index{Eigenvector centrality} of $\gG$ is
+centrality} of $\gG$ is
 defined as the $e \in \RR^n_+$ that solves
 %
 \begin{equation}\label{eq:eicen0}
@@ -1079,8 +899,7 @@ not far behind.  (The color scheme in
 Figure~\ref{f:financial_network_analysis_visualization} is also matched to 
 hub-based eigenvector centrality.)
 
-The \navy{authority-based eigenvector centrality}\index{Eigenvector
-centrality} of $\gG$ is defined as the $e \in \RR^n_+$ 
+The \navy{authority-based eigenvector centrality} of $\gG$ is defined as the $e \in \RR^n_+$ 
 solving
 %
 \begin{equation}\label{eq:eicena0}
@@ -1135,7 +954,7 @@ Considerations such as these encourage use of an alternative notion of
 centrality for networks called Katz centrality, originally due to
 \cite{katz1953new}, which is positive under weaker conditions and uniquely
 defined up to a tuning parameter.  Fixing $\beta$ in $(0, 1/r(A))$, the
-\navy{hub-based Katz centrality}\index{Katz centrality} of weighted digraph
+\navy{hub-based Katz centrality} of weighted digraph
 $\gG$ with adjacency matrix $A$, at parameter $\beta$, is defined as the
 vector $\kappa := \kappa(\beta, A) \in \RR^n_+$ that solves
 %
@@ -1199,7 +1018,7 @@ When $r(A)<1$, we use $\beta=1$ as the default for Katz centrality computations.
 \end{Exercise}
 
 
-Analogously, the \navy{authority-based Katz centrality}\index{Katz centrality}
+Analogously, the \navy{authority-based Katz centrality}
  of $\gG$ is defined as
 the $\kappa \in \RR^n_+$ that solves
 %
@@ -1329,7 +1148,7 @@ The weights identify some form of relationship between the agents, such as
 influence or friendship.
 
 \begin{Exercise}
-    A \navy{Nash equilibrium}\index{Nash equilibrium} for the quadratic network
+    A \navy{Nash equilibrium} for the quadratic network
     game is a vector $x^* \in \RR^n$ such that, for all $i \in \natset{n}$,
     the choice $x_i^*$ of agent $i$ maximizes~\eqref{eq:uing} taking $x_j^*$
     as given for all $j \not= i$.  Show that, whenever $r(A) < 1/\alpha$,
@@ -1357,5 +1176,16 @@ influence or friendship.
 The network game described in this section has many interesting applications,
 including social networks, crime networks and peer networks.  References are
 provided in \S\ref{s:cnni}.
+
+
+
+
+### Ex
+
+Here is a mathematical exercise for those who like proofs.
+
+Let $(V, E)$ be a directed graph and write $u \sim v$ if $u$ and $v$ communicate.  
+
+Show that $\sim$ is an [equivalence relation](https://en.wikipedia.org/wiki/Equivalence_relation) on $V$.
 
 
