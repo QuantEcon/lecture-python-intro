@@ -1,15 +1,25 @@
+---
+jupytext:
+  text_representation:
+    extension: .md
+    format_name: myst
+    format_version: 0.13
+    jupytext_version: 1.14.1
+kernelspec:
+  display_name: Python 3 (ipykernel)
+  language: python
+  name: python3
+---
 
 # Markov Chains 
 
 In addition to what's in Anaconda, this lecture will need the following libraries:
 
-```{code-cell} ipython
----
-tags: [hide-output]
----
+```{code-cell} ipython3
+:tags: [hide-output]
+
 !pip install quantecon
 ```
-
 
 ## Overview
 
@@ -34,7 +44,7 @@ In this introductory lecture, we will
 
 Let's start with some standard imports:
 
-```{code-cell} ipython
+```{code-cell} ipython3
 %matplotlib inline
 import matplotlib.pyplot as plt
 plt.rcParams["figure.figsize"] = (11, 5)  #set default figure size
@@ -330,7 +340,7 @@ to a cummulative distribution
 
 TODO -- explain this better, maybe print the cdf
 
-```{code-cell} python3
+```{code-cell} ipython3
 ψ = (0.3, 0.7)           # probabilities over {0, 1}
 cdf = np.cumsum(ψ)       # convert into cummulative distribution
 qe.random.draw(cdf, 5)   # generate 5 independent draws from ψ
@@ -344,7 +354,7 @@ We'll write our code as a function that accepts the following three arguments
 
 TODO is there a nicer way to write the code below?
 
-```{code-cell} python3
+```{code-cell} ipython3
 def mc_sample_path(P, ψ_0=None, sample_size=1_000):
 
     # set up
@@ -371,7 +381,7 @@ def mc_sample_path(P, ψ_0=None, sample_size=1_000):
 
 Let's see how it works using the small matrix
 
-```{code-cell} python3
+```{code-cell} ipython3
 P = [[0.4, 0.6],
      [0.2, 0.8]]
 ```
@@ -383,7 +393,7 @@ $X_0$ is drawn.
 
 The following code illustrates this
 
-```{code-cell} python3
+```{code-cell} ipython3
 X = mc_sample_path(P, ψ_0=[0.1, 0.9], sample_size=100_000)
 np.mean(X == 0)
 ```
@@ -399,7 +409,7 @@ always close to 0.25, at least for the `P` matrix above.
 
 Here's an illustration using the same $P$ as the preceding example
 
-```{code-cell} python3
+```{code-cell} ipython3
 from quantecon import MarkovChain
 
 mc = qe.MarkovChain(P)
@@ -409,15 +419,13 @@ np.mean(X == 0)
 
 The `simulate` routine is [JIT compiled](https://python-programming.quantecon.org/numba.html#numba-link) and much faster.
 
-```{code-cell} ipython
+```{code-cell} ipython3
 %time mc_sample_path(P, sample_size=1_000_000) # Our homemade code version
 ```
 
-```{code-cell} ipython
+```{code-cell} ipython3
 %time mc.simulate(ts_length=1_000_000) # qe code version
 ```
-
-
 
 #### Adding State Values and Initial Conditions
 
@@ -427,27 +435,24 @@ These state values can be integers, floats, or even strings.
 
 The following code illustrates
 
-```{code-cell} python3
+```{code-cell} ipython3
 mc = qe.MarkovChain(P, state_values=('unemployed', 'employed'))
 mc.simulate(ts_length=4, init='employed')
 ```
 
-```{code-cell} python3
+```{code-cell} ipython3
 mc.simulate(ts_length=4, init='unemployed')
 ```
 
-```{code-cell} python3
+```{code-cell} ipython3
 mc.simulate(ts_length=4)  # Start at randomly chosen initial state
 ```
 
 If we want to see indices rather than state values as outputs as  we can use
 
-```{code-cell} python3
+```{code-cell} ipython3
 mc.simulate_indices(ts_length=4)
 ```
-
-
-
 
 (mc_md)=
 ## Marginal Distributions 
@@ -669,7 +674,7 @@ reach any state from any other state.
 
 We can also test this using [QuantEcon.py](http://quantecon.org/quantecon-py)'s MarkovChain class
 
-```{code-cell} python3
+```{code-cell} ipython3
 P = [[0.9, 0.1, 0.0],
      [0.4, 0.4, 0.2],
      [0.1, 0.1, 0.8]]
@@ -692,7 +697,7 @@ accessible from poor.
 
 Let's confirm this
 
-```{code-cell} python3
+```{code-cell} ipython3
 P = [[1.0, 0.0, 0.0],
      [0.1, 0.8, 0.1],
      [0.0, 0.2, 0.8]]
@@ -703,8 +708,7 @@ mc.is_irreducible
 
 We can also determine the "communication classes"
 
-
-```{code-cell} python3
+```{code-cell} ipython3
 mc.communication_classes
 ```
 
@@ -725,7 +729,7 @@ unit of time via postmultiplication by $P$.
 
 Some distributions are invariant under this updating process --- for example,
 
-```{code-cell} python3
+```{code-cell} ipython3
 P = np.array([[0.4, 0.6],
               [0.2, 0.8]])
 ψ = (0.25, 0.75)
@@ -797,14 +801,13 @@ A stable algorithm for computing stationary distributions is implemented in [Qua
 
 Here's an example
 
-```{code-cell} python3
+```{code-cell} ipython3
 P = [[0.4, 0.6],
      [0.2, 0.8]]
 
 mc = qe.MarkovChain(P)
 mc.stationary_distributions  # Show all stationary distributions
 ```
-
 
 ### Convergence to Stationarity
 
@@ -830,7 +833,7 @@ TODO -- show that the $P$ below satisfies the conditions
 
 The convergence in the theorem is illustrated in the next figure
 
-```{code-cell} ipython
+```{code-cell} ipython3
 P = ((0.971, 0.029, 0.000),
      (0.145, 0.778, 0.077),
      (0.000, 0.508, 0.492))
@@ -1103,7 +1106,7 @@ conditions.
 
 As $m$ gets large, both series converge to zero.
 
-```{code-cell} python3
+```{code-cell} ipython3
 α = β = 0.1
 N = 10000
 p = β / (α + β)
