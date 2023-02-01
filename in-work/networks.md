@@ -14,19 +14,29 @@ connections between nerve cells (neurons).
 Artificial neural networks are based on this idea, using data to build
 intricate connections between simple processing units.
 
-Biologists studying transmission of diseases like COVID-19 have to consider
-the interactions between human hosts.
+Epidemiologists studying transmission of diseases like COVID-19 analyze
+interactions between groups of human hosts.
 
-In operations research, network analysis is related to such fundamental
-problems as on minimum cost flow, traveling salesman, shortest path, and
+In operations research, network analysis is used to study fundamental problems
+as on minimum cost flow, the traveling salesman, shortest paths, and
 assignment.
 
 TODO add wiki links for above defs
 
 This lecture gives an introduction to economic and financial networks.
 
-(Some parts are drawn from the text https://networks.quantecon.org/ but the
-level of this lecture is less advanced.)
+Some parts of this lecture are drawn from the text
+https://networks.quantecon.org/ but the level of this lecture is more
+introductory.
+
+We will need the following imports.
+
+TODO all minted blocks to ipython code blocks
+
+\begin{minted}{python}
+import numpy as np
+import matplotlib.pyplot as plt
+\end{minted}
 
 
 ## Economic and Financial Networks
@@ -39,13 +49,13 @@ Within economics, important examples of networks include
 * transport networks and 
 * social networks   
 
-For example, social networks affect trends in market sentiment and consumer decisions.  
+Social networks affect trends in market sentiment and consumer decisions.  
 
 The structure of financial networks helps to determine relative fragility of the financial system.
 
 The structure of production networks affects trade, innovation and the propagation of local shocks.
 
-Let's look at some examples in more depth.
+To better understand such networks, let's look at some examples in more depth.
 
 
 ### Example: Aircraft Exports
@@ -60,7 +70,7 @@ The arrows in the figure are called **edges** or **links**.
 
 Node size is proportional to total exports and edge width is proportional to exports to the target country.
 
-The data is for trade in commercial aircraft weighing at least 15,000kg and was sourced from CID Dataverse.
+(The data is for trade in commercial aircraft weighing at least 15,000kg and was sourced from CID Dataverse.)
 
 The figure shows that the US, France and Germany are major export hubs.  
 
@@ -77,7 +87,7 @@ where the states are
 * "mr" = "mild recession"
 * "sr" = "severe recession"
 
-TODO add the figure here
+TODO add the graphviz figure from that lecture here
 
 This is an example of a network, where the set of nodes $V$ equals the states:
 
@@ -93,50 +103,57 @@ The edges between the nodes show the one month transition probabilities.
 
 ## An Introduction to Graph Theory
 
-Network science is built on top of a major branch of mathematics called [graph
-theory](https://en.wikipedia.org/wiki/Graph_theory).
+Now we've looked at some examples, let's move on to theory.
 
-To understand and analyze networks, we need some understanding of graph theory.
+This theory will allow us to better organize our thoughts.
+
+The theoretical part of network science is constructed using a major branch of
+mathematics called [graph theory](https://en.wikipedia.org/wiki/Graph_theory).
 
 Graph theory can be complicated and we will cover only the basics.
 
 However, these concepts will already be enough for us to discuss interesting and
 important ideas on economic and financial networks.
 
-We focus on "directed" graphs, where connects are one way rather that symmetric
+We focus on "directed" graphs, where connections are, in general, asymmetric
+(arrows typically point one way, not both ways)
 
 E.g.,
 
 * bank $A$ lends money to bank $B$
 * firm $A$ supplies goods to firm $B$
+* individual $A$ "follows" of individual $B$ on a given social network
+
+("Undirected" graphs, where connections are symmetric, are actually a special
+case of directed graphs --- we just need to insist that each arrow pointing
+from $A$ to $B$ is paired with another arrow pointing from $B$ to $A$.)
 
 
 
 ### Key Definitions
 
-A **directed graph** consists of 
-%
-* a finite set $V$ and
-* a collection of pairs $(u, v)$ where $u$ and $v$ are elements of $V$
+A **directed graph** consists of two things:
+
+1. a finite set $V$ and
+1. a collection of pairs $(u, v)$ where $u$ and $v$ are elements of $V$.
 
 The elements of $V$ are called the **vertices** or **nodes** of the graph.
 
-In the aircraft export example above, the set $V$ is all countries included in the data set.
-
 The pairs $(u,v)$ are called the **edges** of the graph and the set of all edges will usually be denoted by $E$
 
-Intuitively and visually, an edge $(u,v)$ is understood as an arrow from vertex $u$ to vertex $v$.  
+Intuitively and visually, an edge $(u,v)$ is understood as an arrow from node $u$ to node $v$.  
 
 (A neat way to represent an arrow is to record the location of the tail and
 head of the arrow, and that's exactly what an edge does.)
 
-In the aircraft export example above, $E$ is all the arrows in the figure,
-each indicating some positive amount of aircraft exports from one country to
-another.
+In the aircraft export example above, 
+
+* $V$ is all countries included in the data set.
+* $E$ is all the arrows in the figure, each indicating some positive amount of aircraft exports from one country to another.
 
 Let's look at more examples.
 
-Two graphs are shown below, each with three vertices.  
+Two graphs are shown below, each with three nodes.  
 
 TODO -- convert these to use https://h1ros.github.io/posts/introduction-to-graphviz-in-jupyter-notebook/
 
@@ -167,10 +184,11 @@ digraph {
 } 
 
 
-For these graphs, the arrows (edges) could be thought of as representing positive possibility of transition over a given unit of time.  
+For these graphs, the arrows (edges) can be thought of as representing
+positive transition probabilities over a given unit of time.  
 
-In general, for a given edge $(u, v)$, the vertex $u$ is called a **direct predecessor** of $v$
-and $v$ is called a **direct successor** of $u$.  
+In general, if an edge $(u, v)$ exists, then the node $u$ is called a
+**direct predecessor** of $v$ and $v$ is called a **direct successor** of $u$.  
 
 Also,  for $v \in V$,
 
@@ -182,21 +200,13 @@ Also,  for $v \in V$,
 ### Digraphs in Networkx
 
 The Python package [Networkx](https://networkx.org/) provides a convenient
-data structure for representing directed graphs and implements many common routines
-for analyzing them.
+data structure for representing directed graphs and implements many common
+routines for analyzing them.
 
 To import it into Python we run
 
 \begin{minted}{python}
 import networkx as nx
-\end{minted}
-
-In all of the code snippets shown below, we assume readers have executed this
-import statement, as well as 
-
-\begin{minted}{python}
-import numpy as np
-import matplotlib.pyplot as plt
 \end{minted}
 
 As an example, let us create the directed graph in TODO poverty_trap.
@@ -208,6 +218,10 @@ G_p = nx.DiGraph()
 \end{minted}
 
 Next we populate it with nodes and edges.  
+
+
+TODO \texttt{a} to `a`
+TODO \texttt{G\_p} to `G_p`
 
 To do this we write down a list of
 all edges, with \texttt{poor} represented by \texttt{p} and so on:
@@ -241,12 +255,12 @@ nx.draw_spring(G_p, ax=ax, node_size=500, with_labels=True,
 plt.show()
 \end{minted}
 
-This code produces Figure TODO [fix ref], which matches the
-original directed graph in Figure [fix ref]
+This code produces Figure TODO [TODO numref], which matches the
+original directed graph in Figure [TODO numref]
 
 
 \texttt{DiGraph} objects have methods that calculate in-degree and out-degree
-of vertices.   
+of nodes.   
 
 For example,
 %
@@ -261,10 +275,11 @@ G_p.in_degree('p')
 
 ### Communication
 
-Next we study communication and connectedness, which have important implications for economic networks.
+Next we study communication and connectedness, which have important
+implications for economic networks.
 
-Vertex $v$ is called **accessible** from vertex $u$ if either $u=v$ or
-there exists a sequence of edges that lead from $u$ to $v$.  
+Node $v$ is called **accessible** from node $u$ if either $u=v$ or there
+exists a sequence of edges that lead from $u$ to $v$.  
 
 * in this case, we write $u \to v$
 
@@ -275,20 +290,17 @@ For example, suppose we have a directed graph representing a production network,
 * elements of $V$ are industrial sectors and
 * existence of an edge $(i, j)$ means that $i$ supplies products or services to $j$.  
 
-Then sector $m$ is an upstream supplier of sector $\ell$ whenever $m \to \ell$.
+Then $m \to \ell$ means that sector $m$ is an upstream supplier of sector $\ell$.
 
-Two vertices $u$ and $v$ are said to **communicate** if $u \to v$ and $v \to u$.
+Two nodes $u$ and $v$ are said to **communicate** if both $u \to v$ and $v \to u$.
 
-A graph is called **strongly connected** if any two nodes in $V$ are
-accessible from each other.
+A graph is called **strongly connected** if all nodes communicate.
 
 TODO -- fix this
 
-\begin{example}
-    In Figure~\ref{f:rich_poor_no_label}, the directed graph is strongly connected.  In
-    contrast, in Figure~\ref{f:poverty_trap}, rich is not accessible from
-    poor, so the graph is not strongly connected.  
-\end{example}
+In Figure [fix numref:rich_poor_no_label], the directed graph is strongly connected.  In
+contrast, in Figure [numref:poverty_trap], rich is not accessible from
+poor, so the graph is not strongly connected.  
 
 Networkx can be used to test for strong connectedness.
 
@@ -300,19 +312,20 @@ TODO give an example
 
 ## Weighted Graphs
 
-Figure~\ref{f:financial_network_analysis_visualization} shows flows of funds
-(i.e., loans) between private banks, grouped by country of origin.
+We now introduce weighted graphs, where weights (numbers) are attached to each
+edge.
 
-TODO --- Add this from https://networks.quantecon.org/ch_intro.html but hide the code
+To motivate the idea, consider Figure [numref
+financial_network_analysis_visualization], which  shows flows of funds (i.e.,
+loans) between private banks, grouped by country of origin.
 
-An arrow from Japan to the US indicates aggregate claims held by Japanese
-banks on all US-registered banks, as collected by the Bank of International
-Settlements (BIS). 
+TODO 
 
-The size of each node in the figure is increasing in the
-total foreign claims of all other nodes on this node. 
+- Add this from https://networks.quantecon.org/ch_intro.html but hide the code
+- fix numref above, use label financial_network_analysis_visualization
+- ask Shu for data if necessary
 
-The widths of the arrows are proportional to the foreign claims they represent.
+The country codes are given in Table [TODO numref]
 
 TODO convert table to markdown
 
@@ -333,11 +346,21 @@ TODO convert table to markdown
     \caption{\label{table:cfn} Codes for the 16-country financial network}
 \end{table}
 
+An arrow from Japan to the US indicates aggregate claims held by Japanese
+banks on all US-registered banks, as collected by the Bank of International
+Settlements (BIS). 
 
-In this network, an edge $(u, v)$ exists for almost every choice of $u$ and
-$v$ (i.e., almost every country in the network).
+The size of each node in the figure is increasing in the
+total foreign claims of all other nodes on this node. 
 
-Hence existence of an edge is not particularly informative.  
+The widths of the arrows are proportional to the foreign claims they represent.
+
+Notice that, in this network, an edge $(u, v)$ exists for almost every choice
+of $u$ and $v$ (i.e., almost every country in the network).
+
+(In fact there are even more small arrows, which we have dropped for clarity.)
+
+Hence existence of an edge from one node to another is not particularly informative.  
 
 To understand the network, we need to record not just the existence or absence
 of a credit flow, but also the size of the flow.
@@ -346,15 +369,19 @@ The correct data structure for recording this information is a ``weighted
 directed graph''
 
 
+
 ### Definitions
 
+A **weighted directed graph** is a directed graph to which we have added a
+**weight function** $w$ that assigns a positive number to each edge.
 
 
-A **weighted directed graph** is a directed graph with vertices $V$ and edges
-$E$ to which we have added a **weight function** $w$ that assigns a positive
-number to each edge.
+Figure [numref financial_network_analysis_visualization] above shows one
+weighted directed graph, where the weights are the size of fund flows.
 
-For example, Figure~\ref{f:rich_poor} shows a weighted directed graph, with arrows
+TODO fix numref and then graphviz figure below
+
+Figure~\ref{f:rich_poor} shows a weighted directed graph, with arrows
 representing edges of the induced directed graph.
 
 :label: rich_poor
@@ -380,7 +407,10 @@ We see that a rich household has a 10\% chance of becoming poor in one year.
 
 ## Adjacency Matrices 
 
-The **adjacency matrix** of a weighted directed graph $(V, E, w)$ with vertices $\{v_1, \ldots, v_n\}$ is the matrix
+Another way that we can represent weights, which turns out to be very
+convenient for numerical work, is via a matrix.
+
+The **adjacency matrix** of a weighted directed graph with nodes $\{v_1, \ldots, v_n\}$, edges $E$ and weight function $w$ is the matrix
 %
 \begin{equation*}
     A = (a_{ij})_{1 \leq i,j \leq n}
@@ -396,10 +426,10 @@ The **adjacency matrix** of a weighted directed graph $(V, E, w)$ with vertices 
 \end{equation*}
 %
 
-Once the vertices in $V$ are enumerated, the weight function and
+Once the nodes in $V$ are enumerated, the weight function and
 adjacency matrix provide essentially the same information.  
 
-We often work with the latter, since it facilitates computations.
+TODO fix numref
 
 For example, with $\{$poor, middle, rich$\}$ mapped to $(0, 1, 2)$, 
     the adjacency matrix corresponding to the weighted directed graph in
@@ -429,10 +459,12 @@ G = qe.DiGraph(A, weighted=True)
 One of the key points to remember about adjacency matrices is that taking the
 transpose ``reverses all the arrows'' in the associated directed graph.  
 
-For example,  the directed graph in Figure~\ref{f:network_liabfin} can be interpreted as a
-    stylized version of a financial network, with vertices as banks and edges
-    showing flow of funds, similar to
-    Figure~\ref{f:financial_network_analysis_visualization}.
+TODO fix numref below
+
+For example, the directed graph in Figure~\ref{f:network_liabfin} can be
+interpreted as a stylized version of a financial network, with nodes as banks
+and edges showing flow of funds, similar to
+Figure~\ref{f:financial_network_analysis_visualization}.
 
 We see that bank 2 extends a loan of size 200 to bank 3.
 
@@ -465,6 +497,8 @@ The transposition is
 \end{equation}
 %
 
+TODO fix numref below
+
 The corresponding network is visualized in Figure~\ref{f:network_liabfin_trans}.  
 
 This figure shows the network of liabilities after the loans have been granted.
@@ -472,7 +506,7 @@ This figure shows the network of liabilities after the loans have been granted.
 Both of these networks (original and transpose) are useful for analysis of
     financial markets.
 
-TODO convert tikz code below to graphviz? Or use some other solution? original figs are in networks text section 1.4.2
+TODO convert tikz code below to graphviz?  Original figs are in networks text section 1.4.2
 
 :label: network_liabfin
 
@@ -494,8 +528,9 @@ TODO convert tikz code below to graphviz? Or use some other solution? original f
   (5) edge [bend right=30, right] node {$150$} (1);
 \end{tikzpicture}
 
-:label: network_liabfin_trans
 
+
+:label: network_liabfin_trans
 
 \begin{tikzpicture}
   \node[circle, draw] (1) at (2.5, 3) {1};
@@ -519,13 +554,12 @@ TODO convert tikz code below to graphviz? Or use some other solution? original f
 In general, every nonnegative $n \times n$ matrix $A = (a_{ij})$ can be
 viewed as the adjacency matrix of a weighted directed graph.
 
-To build the graph we set $V = 0, \ldots, n-1$ and take the edge set $E$ to be
+To build the graph we set $V = 1, \ldots, n$ and take the edge set $E$ to be
 all $(i,j)$ such that $a_{ij} > 0$.
 
 For the weight function we set $w(i, j) = a_{ij}$  for all edges $(i,j)$.
 
 We call this graph the weighted directed graph induced by $A$.
-
 
 
 
@@ -539,11 +573,11 @@ The following result is useful in many applications:
 
 TODO -- theorem environment
 
-For distinct vertices $i, j$ in $V$ and any integer $k$, we have
+For distinct nodes $i, j$ in $V$ and any integer $k$, we have
 %
 \begin{equation*}
     a^k_{i j} > 0
-    \; \iff \;
+    \quad \text{if and only if} \quad
     \text{ $j$ is accessible from $i$}.
 \end{equation*}
 %
@@ -584,43 +618,40 @@ Examples include
 * determining the most important industrial sector in an economy.
 
 
-
 In what follows, a **centrality measure** associates to each weighted directed
 graph a vector $m$ where the $m_i$ is interpreted as the centrality (or rank)
-of vertex $v_i$.  
+of node $v_i$.  
 
 ### Degree Centrality
 
-Two elementary measures of ``importance'' of a vertex in a given directed
+Two elementary measures of "importance" of a node in a given directed
 graph are its in-degree and out-degree.
 
 Both of these provide a centrality measure.  
 
-In-degree centrality is a vector containing the in-degree of each vertice in
+In-degree centrality is a vector containing the in-degree of each node in
 the graph.
 
-In-degree centrality is a vector containing the in-degree of each vertice in
+In-degree centrality is a vector containing the in-degree of each node in
 the graph.
 
-If the graph is expressed as a Networkx \texttt{DiGraph} called \texttt{G}
-(see, e.g., \S\ref{sss:nx}), then the in-degree centrality vector can be
-calculated via
-%
+TODO build a graph G via Networkx and then compute the in-degree centrality vector via
+
 \begin{minted}{python}
 iG = [G.in_degree(v) for v in G.nodes()]    
 \end{minted}
 
-Unfortunately, while these measures of centrality are simple to calculate, they are
-not always informative.  
+Unfortunately, while in-degree and out-degree centrality are simple to
+calculate, they are not always informative.  
 
 For example, consider the task of a web search engine, which ranks pages
 by relevance whenever a user enters a search.
 
 Suppose web page A has twice as many inbound links as page B.  
 
-This might suggest that page A deserves a higher rank, due to its larger in-degree centrality
+In-degree centrality tells us that page A deserves a higher rank.
 
-But in fact page A might be less "important" than page B.
+But in fact page A might be less important than page B.
 
 To see why, suppose that the links to A are from pages that almost no traffic,
 while the links to B are from pages that receive very heavy traffic.
@@ -630,19 +661,27 @@ that page B contains more valuable (or entertaining) content.
 
 Thinking about this point suggests that importance might be *recursive*.
 
-What this means is that the importance of a given node depends on the
-importance of other nodes that link to it.  
+This means that the importance of a given node depends on the importance of
+other nodes that link to it.  
 
-The next centrality measure we turn to has this recursive property.
+As another example, we can imagine a production network where the importance of a
+given sector depends on the importance of the sectors that it supplies.
+
+This reverses the order of the previous example: now the importance of a given
+node depends on the importance of other nodes that *it links to*.  
+
+The next centrality measures we study have these recursive features.
 
 
 ### Eigenvector Centrality
 
 Suppose we have a weighted directed graph with adjacency matrix $A$.
 
-For simplicity we will suppose that the vertices $V$ of the graph are just the integers $1, \ldots, n$.
+For simplicity we will suppose that the nodes $V$ of the graph are just the
+integers $1, \ldots, n$.
 
-Let $r(A)$ denote the spectral radius of $A$.  [TODO link to Maanasee's lecture on eigenvalues]
+Let $r(A)$ denote the spectral radius of $A$.  [TODO link to Maanasee's
+lecture on eigenvalues]
 
 The **eigenvector centrality** of the graph is defined as the $n$-vector $e$ that solves
 
@@ -651,7 +690,12 @@ $$
     e = \frac{1}{r(A)} A e.
 $$
 
-To better understand this, we write out the full expression for some element $e_i$
+In other words, $e$ is the dominant eigenvector of $A$ (the eigenvector of the
+largest eigenvalue --- see the discussion of the Perron-Frobenius theorem in
+[TODO link to Maanasee's lecture on eigenvalues]
+
+To better understand [TODO eq:ev_central], we write out the full expression
+for some element $e_i$
 
 %
 \begin{equation}\label{eq:eicen}
@@ -659,25 +703,26 @@ To better understand this, we write out the full expression for some element $e_
 \end{equation}
 
 
-Note the recursive nature of the definition: the centrality obtained by vertex
-$i$ is proportional to a sum of the centrality of all vertices, weighted by
-the ``rates of flow'' from $i$ into these vertices.   
+Note the recursive nature of the definition: the centrality obtained by node
+$i$ is proportional to a sum of the centrality of all nodes, weighted by
+the ``rates of flow'' from $i$ into these nodes.   
 
-A vertex $i$ is highly ranked if (a) there are many edges leaving $i$, (b)
+A node $i$ is highly ranked if (a) there are many edges leaving $i$, (b)
 these edges have large weights, and (c) the edges point to other highly ranked
-vertices.
+nodes.
 
 Later, when we study demand shocks production networks, we will provide a more
 concrete interpretation of eigenvector centrality.  
 
 We will see that, in production networks, sectors with high eigenvector
-centrality are important suppliers.  
+centrality are important *suppliers*.  
 
-In particular, they are activated by a wide array of demand shocks once orders flow backwards through the network.
-
+In particular, they are activated by a wide array of demand shocks once orders
+flow backwards through the network.
 
 To compute eigenvector centrality we can use the following function.
 
+TOD code block
 
 import numpy as np
 from scipy.sparse import linalg
@@ -696,8 +741,8 @@ TODO
 - add simple example and compute eigenvector centrality.
 - revisit financial networks fig financial_network_analysis_visualization and discuss eigenvector centrality.
 
-Countries that are rated highly according to this rank tend to be important players in terms of supply
-of credit. 
+Countries that are rated highly according to this rank tend to be important
+players in terms of supply of credit. 
 
 Japan takes the highest rank according to this measure, although
 countries with large financial sectors such as Great Britain and France are
@@ -713,11 +758,9 @@ case $1/r(A)$ is not defined.
 For this and other reasons, some researchers prefer another measure of
 centrality for networks called Katz centrality. 
 
-Fixing $\beta$ in $(0, 1/r(A))$, the
-**Katz centrality** of a weighted directed graph 
-with adjacency matrix $A$ is defined as the
-vector $\kappa$ that solves
-%
+Fixing $\beta$ in $(0, 1/r(A))$, the **Katz centrality** of a weighted
+directed graph with adjacency matrix $A$ is defined as the vector $\kappa$
+that solves 
 
 $$
 :label: katz_central
@@ -739,7 +782,7 @@ where $\mathbf 1$ is a column vector of ones.
 
 The intuition behind this centrality measure is similar to that provided for
 eigenvector centrality: high centrality is conferred on $i$ when it is linked
-to by vertices that themselves have high centrality.  
+to by nodes that themselves have high centrality.  
 
 Provided that $0 < \beta < 1/r(A)$, Katz centrality is always finite and well-defined
 because then $r(\beta A) < 1$.
@@ -779,11 +822,18 @@ different terminology).
 The eigenvector centrality and Katz centrality measures we discussed above
 measure hub centrality.
 
+(Nodes have high centrality if they point to other nodes with high centrality.)
+
 If we care more about authority centrality, we can use the same definitions
 except that we take the transpose of the adjacency matrix.
 
-For example, the **authority-based eigenvector centrality** of a weighted directed graph with adjacency matrix $A$
-is the vector $e$ solving
+This works because taking the transpose reverses the direction of the arrows.
+
+(Now nodes will have high centrality if they receive links from other nodes
+with high centrality.)
+
+For example, the **authority-based eigenvector centrality** of a weighted
+directed graph with adjacency matrix $A$ is the vector $e$ solving
 
 \begin{equation}\label{eq:eicena0}
     e = \frac{1}{r(A)} A^\top e.
@@ -802,11 +852,12 @@ Element-by-element, this is
 
 We see $e_j$ will be high if many nodes with high authority rankings link to $j$.
 
+TODO fix numrefs below
+
 The middle right panel of Figure~\ref{f:financial_network_analysis_centrality}
 shows the authority-based eigenvector centrality ranking for the international
 credit network shown in
 Figure~\ref{f:financial_network_analysis_visualization}.  
-
 
 Highly ranked countries are those that attract large inflows of credit, or
 credit inflows from other major players.  
@@ -818,6 +869,9 @@ The US clearly dominates the rankings as a target of interbank credit.
 
 
 ## Further Reading
+
+We apply the ideas discussed in this lecture to [TODO link to our lecture on
+production networks].
 
 Textbooks on economic and social networks include \cite{jackson2010social},
 \cite{easley2010networks}, \cite{borgatti2018analyzing},
@@ -890,6 +944,10 @@ by \cite{newman2018networks}, \cite{menczer2020first} and
 
 
 ## Exercises
+
+TODO fix ex below, add ex environments, add one or two more exercises doing
+simple computational exercises with graphs --- computing centrality under
+different measures, graphing centrality with a bar graph, etc.
 
 
 ### Ex
