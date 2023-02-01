@@ -1,12 +1,11 @@
 ---
-jupyter:
- jupytext:
+jupytext:
   text_representation:
-   extension: .md
-   format_name: markdown
-   format_version: '1.3'
-   jupytext_version: 1.14.4
- kernelspec:
+    extension: .md
+    format_name: myst
+    format_version: 0.13
+    jupytext_version: 1.14.4
+kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
   name: python3
@@ -34,14 +33,13 @@ Some of these extensions are presented as exercises.
 
 We'll need the following imports:
 
-```python
+```{code-cell} ipython3
 import matplotlib.pyplot as plt
 import random
 import numpy as np
 import scipy.stats as st
 ```
 
-<!-- #region -->
 ## Relationships
 
 
@@ -78,9 +76,8 @@ $$
 $$
 
 We can generate a draw of $X$ with `scipy.stats` (imported as `st`) as follows:
-<!-- #endregion -->
 
-```python
+```{code-cell} ipython3
 p = 0.8
 X = st.bernoulli.rvs(p)
 print(X)
@@ -90,15 +87,15 @@ In this setting, the LLN tells us if we flip the coin many times, the fraction o
 
 Let's check this:
 
-```python
+```{code-cell} ipython3
 n = 1_000_000
 X_draws = st.bernoulli.rvs(p, size=n)
-print(X_draws.mean()) # count the number of 1's and divide by n
+print(X_draws.mean())  # count the number of 1's and divide by n
 ```
 
 If we change $p$ the claim still holds:
 
-```python
+```{code-cell} ipython3
 p = 0.3
 X_draws = st.bernoulli.rvs(p, size=n)
 print(X_draws.mean())
@@ -127,7 +124,8 @@ Thus, the LLN tells us that
 
 This is exactly what we illustrated in the code above.
 
-<!-- #region jp-MarkdownHeadingCollapsed=true tags=[] -->
++++ {"jp-MarkdownHeadingCollapsed": true, "tags": []}
+
 (lln_ksl)=
 ### Statement of the LLN
 
@@ -137,13 +135,13 @@ The traditional version of the law of large numbers concerns independent and ide
 
 Let $X_1, \ldots, X_n$ be independent and identically distributed random variables.
 
-These random variables can be continuous or discrete.
+This random variables can be continuous or discrete.
 
-For simplicity we will assume they are continuous, and we let $f$ denote their density function, so that, for any $i$ in $\{1, \ldots, n\}$
+For simplicity we will assume they are continuous and we let $f$ denote their density function, so that, for any $i$ in $\{1, \ldots, n\}$
 
 
 $$ 
-  \mathbb P\{a \leq X_i \leq b\} = \int_a^b f(x) dx
+    \mathbb P\{a \leq X_i \leq b\} = \int_a^b f(x) dx
 $$
 
 (For the discrete case, we need to replace densities with probability mass functions and integrals with sums.)
@@ -151,7 +149,7 @@ $$
 Let $\mu$ denote the common mean of this sample:
 
 $$
-  \mu := \mathbb E X = \int_{-\infty}^{\infty} x f(dx)
+    \mu := \mathbb E X = \int_{-\infty}^{\infty} x f(dx)
 $$
 
 In addition, let
@@ -181,9 +179,9 @@ Let's also imagine that we can generate infinite sequences so that the statement
 
 In this setting, {eq}`lln_as` should be interpreted as meaning that the probability of the computer producing a sequence where $\bar X_n \to \mu$ fails to occur
 is zero.
-<!-- #endregion -->
 
-<!-- #region tags=[] -->
++++ {"tags": []}
+
 ### Illustration
 
 ```{index} single: Law of Large Numbers; Illustration
@@ -216,38 +214,37 @@ Moreover, if we repeat the exercise with a larger value of $n$, we should see th
 This is, in essence, what the LLN is telling us.
 
 Let's run some simulations to visualize LLN
-<!-- #endregion -->
 
-```python
+```{code-cell} ipython3
 def generate_histogram(X_distribution, n, m):
-  fig, ax = plt.subplots(figsize=(10, 6))
+    fig, ax = plt.subplots(figsize=(10, 6))
 
-  def draw_means(X_distribution, n):
+    def draw_means(X_distribution, n):
 
-    # Step 3: Generate n draws: X_1, ..., X_n
-    X_samples = X_distribution.rvs(size=n)
+        # Step 3: Generate n draws: X_1, ..., X_n
+        X_samples = X_distribution.rvs(size=n)
 
-    # Step 4: Calculate the sample mean
-    return np.mean(X_samples)
-   
-  # Step 5: Loop m times
-  sample_means = [draw_means(X_distribution, n) for i in range(m)]
-  print(f'The mean of sample mean is {round(np.mean(sample_means),2)}')
-   
-  # Generate a histogram
-  ax.hist(sample_means, bins=30, alpha=0.5, density=True)
-  mu = X_distribution.mean()
-  if not np.isnan(mu):
-    ax.axvline(x=mu, ls="--", lw=3, label=fr"$\mu = {mu}$")
-     
-  ax.set_xlim(min(sample_means), max(sample_means))
-  ax.set_xlabel(r'$\bar x$')
-  ax.set_ylabel('Density')
-  ax.legend()
-  plt.show()
+        # Step 4: Calculate sample mean
+        return np.mean(X_samples)
+    
+    # Step 5: Loop m times
+    sample_means = [draw_means(X_distribution, n) for i in range(m)]
+    print(f'The mean of sample mean is {round(np.mean(sample_means),2)}')
+    
+    # Generate a histogram
+    ax.hist(sample_means, bins=30, alpha=0.5, density=True)
+    mu = X_distribution.mean()
+    if not np.isnan(mu):
+        ax.axvline(x=mu, ls="--", lw=3, label=fr"$\mu = {mu}$")
+        
+    ax.set_xlim(min(sample_means), max(sample_means))
+    ax.set_xlabel(r'$\bar x$')
+    ax.set_ylabel('Density')
+    ax.legend()
+    plt.show()
 ```
 
-```python
+```{code-cell} ipython3
 #Step 1: Pick some distribution to draw each $X_i$ from  
 #Step 2: Set $n$ to some large number
 generate_histogram(st.norm(loc=5, scale=2), n=50_000, m=1000)
@@ -257,40 +254,41 @@ We can see that the distribution of $\bar X$ is clustered around $\mathbb E X$ a
 
 We can increase values for `n` and `m` to see how the distribution changes by slightly changing the code to see the changes with an increasing $n$
 
-```python
+```{code-cell} ipython3
 def generate_multiple_hist(X_distribution, ns, m, log_scale=False):
-  _, ax = plt.subplots(figsize=(10, 6))
+    _, ax = plt.subplots(figsize=(10, 6))
 
-  def draw_means(X_distribution, n):
-    X_samples = X_distribution.rvs(size=n)
-    return np.mean(X_samples)
-   
-  for n in ns:
-    sample_means = [draw_means(X_distribution, n) for i in range(m)]
-    if log_scale:
-      plt.xscale('symlog')
-    ax.hist(sample_means, bins=60, alpha=0.4, density=True, label=fr'$n = {n}$')
-     
-  mu = X_distribution.mean()
-  if not np.isnan(mu):
-    ax.axvline(x=mu, ls="--", lw=3, label=fr"$\mu = {mu}$")
-   
-  ax.set_xlim(min(sample_means), max(sample_means)) 
-  ax.set_xlabel(r'$\bar x$')
-  ax.set_ylabel('Density')
-  ax.set(title=fr'$n = {n}, m = {m}$')
-  ax.legend()
-  plt.show()
+    def draw_means(X_distribution, n):
+        X_samples = X_distribution.rvs(size=n)
+        return np.mean(X_samples)
+    
+    for n in ns:
+        sample_means = [draw_means(X_distribution, n) for i in range(m)]
+        if log_scale:
+            plt.xscale('symlog')
+        ax.hist(sample_means, bins=60, alpha=0.4, density=True, label=fr'$n = {n}$')
+        
+    mu = X_distribution.mean()
+    if not np.isnan(mu):
+        ax.axvline(x=mu, ls="--", lw=3, label=fr"$\mu = {mu}$")
+    
+    ax.set_xlim(min(sample_means), max(sample_means)) 
+    ax.set_xlabel(r'$\bar x$')
+    ax.set_ylabel('Density')
+    ax.set(title=fr'$n = {n}, m = {m}$')
+    ax.legend()
+    plt.show()
 ```
 
-```python
+```{code-cell} ipython3
 generate_multiple_hist(st.norm(loc=5, scale=2), ns=[20_000, 50_000, 100_000], m=10_000)
 ```
 
-We see that from the histogram that it gradually converges to $\mu$.
+We see that the histogram gradually converge to $\mu$.
 
 You can imagine the result when extrapolating this trend for $n \to \infty$.
 
++++
 
 ## Breaking the LLN
 
@@ -300,57 +298,59 @@ As indicated by {eq}`lln_as`, LLN can break when $\mathbb E |X|$ is not finite o
 
 We can demonstrate this using a simple simulation using a [Cauchy distribution](https://en.wikipedia.org/wiki/Cauchy_distribution) for which it does not have a well-defined $\mu$.
 
++++
 
 We lost the convergence we have seen before with normal distribution 
 
-```python
+```{code-cell} ipython3
 fig, axes = plt.subplots(1, 2, figsize=(15, 6))
 
 def scattered_mean(distribution, burn_in, n, jump, ax, title, color, ylog=False):
-   
-  #Set a jump to reduce simulation complexity
-  sample_means = [np.mean(distribution.rvs(size=i)) 
-          for i in range(burn_in, n+1, jump)]
-   
-  ax.scatter(range(burn_in, n+1, jump), sample_means, s=10, c=color)
-   
-  #Change the y-axis to log scale if necessary
-  if ylog:
-    ax.set_yscale("symlog")
-  ax.set_title(title, size=10)
-  ax.set_xlabel(r"$n$", size=12)
-  ax.set_ylabel(r"$\bar x$", size=12)
-  yabs_max = max(ax.get_ylim(), key=abs)
-  ax.set_ylim(ymin=-yabs_max, ymax=yabs_max)
-  return ax
+    
+    #Set a jump to reduce simulation complexity
+    sample_means = [np.mean(distribution.rvs(size=i)) 
+                    for i in range(burn_in, n+1, jump)]
+    
+    ax.scatter(range(burn_in, n+1, jump), sample_means, s=10, c=color)
+    
+    #Change the y-axis to log scale if necessory
+    if ylog:
+        ax.set_yscale("symlog")
+    ax.set_title(title, size=10)
+    ax.set_xlabel(r"$n$", size=12)
+    ax.set_ylabel(r"$\bar x$", size=12)
+    yabs_max = max(ax.get_ylim(), key=abs)
+    ax.set_ylim(ymin=-yabs_max, ymax=yabs_max)
+    return ax
 
 scattered_mean(distribution=st.cauchy(), 
-             burn_in=1000, 
-             n=1_000_000, 
-             ax=axes[0],
-             jump=2000,
-             title="Cauchy Distribution",
-             color='#1f77b4',
-             ylog=True)
+                         burn_in=1000, 
+                         n=1_000_000, 
+                         ax=axes[0],
+                         jump=2000,
+                         title="Cauchy Distribution",
+                         color='#1f77b4',
+                         ylog=True)
 
 scattered_mean(distribution=st.norm(), 
-             burn_in=1000, 
-             n=1_000_000,
-             ax=axes[1],
-             jump=2000,
-             title="Normal Distribution",
-             color='#ff7f0e')
+                         burn_in=1000, 
+                         n=1_000_000,
+                         ax=axes[1],
+                         jump=2000,
+                         title="Normal Distribution",
+                         color='#ff7f0e')
 
 fig.suptitle('Sample Mean with Different Sample Size')
 plt.show()
 ```
 
-We can see that, unlike normal distribution, the Cauchy distribution does not have the convergence that LLN implies.
+We can see that unlike normal distribution, Cauchy distribution does not have a convergence that LLN implies.
 
 It is also not hard to conjecture that LLN can be broken when the IID assumption is violated.
 
++++
 
-Let's go through a very simple example where LLN fails with the IID violated:
+Let's go through a very simple example where LLN fails with IID violated:
 
 Assume
 
@@ -367,10 +367,10 @@ $$
 We can then see that 
 
 $$
-\bar X_n := \frac{1}{n} \sum_{t=1}^n X_i = X_1 \sim \mathcal{N}(0,1)
+\bar X_n := \frac{1}{n} \sum_{t=1}^n X_i  = X_1 \sim \mathcal{N}(0,1)
 $$
 
-Therefore, the distribution of the mean of X follows $\mathcal{N}(0,1)$.
+Therefore, the distribution of mean of X follows $\mathcal{N}(0,1)$.
 
 However,
 
@@ -384,6 +384,7 @@ which violates {eq}`exp`, and thus breaks LLN.
 Although in this case, the violation of IID breaks LLN, it is not always the case for correlated data (TODO: Link to MC Lecture)
 ```
 
++++
 
 ## CLT
 
@@ -423,7 +424,8 @@ The striking implication of the CLT is that for **any** distribution with
 finite second moment, the simple operation of adding independent
 copies **always** leads to a Gaussian curve.
 
-<!-- #region tags=[] -->
++++ {"tags": []}
+
 ### Simulation 1
 
 Since the CLT seems almost magical, running simulations that verify its implications is one good way to build intuition.
@@ -441,13 +443,12 @@ $F(x) = 1 - e^{- \lambda x}$.
 (Please experiment with other choices of $F$, but remember that, to conform with the conditions of the CLT, the distribution must have a finite second moment.)
 
 (sim_one)=
-<!-- #endregion -->
 
-```python
+```{code-cell} ipython3
 # Set parameters
-n = 250         # Choice of n
-k = 1_000_000        # Number of draws of Y_n
-distribution = st.expon(2) # Exponential distribution, λ = 1/2
+n = 250                  # Choice of n
+k = 1_000_000               # Number of draws of Y_n
+distribution = st.expon(2)  # Exponential distribution, λ = 1/2
 μ, σ = distribution.mean(), distribution.std()
 
 # Draw underlying RVs. Each row contains a draw of X_1,..,X_n
@@ -473,23 +474,27 @@ plt.show()
 
 The fit to the normal density is already tight and can be further improved by increasing `n`.
 
++++
 
 ## Exercises
 
++++
 
 ## Ex 1
 
++++
 
 Repeat the simulation in (TODO: Add a reference) with [beta distribution](https://en.wikipedia.org/wiki/Beta_distribution). 
 
++++
 
 Solution:
 
-```python
+```{code-cell} ipython3
 # Set parameters
-n = 250         # Choice of n
-k = 1_000_000        # Number of draws of Y_n
-distribution = st.beta(2,2) # Exponential distribution, λ = 1/2
+n = 250                  # Choice of n
+k = 1_000_000               # Number of draws of Y_n
+distribution = st.beta(2,2)  # Exponential distribution, λ = 1/2
 μ, σ = distribution.mean(), distribution.std()
 
 # Draw underlying RVs. Each row contains a draw of X_1,..,X_n
@@ -513,10 +518,11 @@ plt.show()
 
 ## Ex 2
 
++++
 
 Although NumPy doesn't give us a `bernoulli` function, we can generate a draw of $X$ using NumPy via
 
-```python
+```{code-cell} ipython3
 U = np.random.rand()
 X = 1 if U < p else 0
 print(X)
@@ -524,9 +530,11 @@ print(X)
 
 Explain why this provides a random variable $X$ with the right distribution.
 
++++
 
 Solution:
 
++++
 
 We can write $X$ as $X = \mathbf 1\{U < p\}$ where $\mathbf 1$ is the [indicator function](https://en.wikipedia.org/wiki/Indicator_function) (i.e., 1 if the statement is true and zero otherwise).
 
@@ -538,6 +546,7 @@ $$
 
 This means that $X = \mathbf 1\{U < p\}$ has the right distribution.
 
++++
 
 ```{solution-end}
 ```
