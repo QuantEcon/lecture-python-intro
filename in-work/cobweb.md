@@ -15,6 +15,8 @@ kernelspec:
 
 +++
 
+TODO: @jstac -- add more examples
+
 The cobweb model {cite}:`10.2307/1236509` is a model of prices and quantities in a given market --- let's say, a market for soy beans.
 
 The model dates back to the 1930s.
@@ -94,6 +96,8 @@ fig, ax = plt.subplots()
 
 ax.plot(p_grid, m.demand(p_grid), label="$D$")
 ax.plot(p_grid, m.supply(p_grid), label="S")
+ax.set_xlabel("price")
+#todo
 ax.legend()
 
 plt.show()
@@ -137,7 +141,6 @@ Combining the last two equations gives the dynamics for prices:
 
 The price dynamics depend on the parameter values and also on the function $f$ that tells us how producers form expectations.
 
-
 +++
 
 ## Naive Expectations
@@ -174,10 +177,11 @@ m = Market()
 
 Let's try to simulate the values of price using some initial value and plot a 45 degree curve to observe the dynamics.
 
+The following function *plot45* helps us to draw the 45 degree diagram.
+
 ```{code-cell} ipython3
----
-tags: [hide-input]
----
+:tags: [hide-input]
+
 def plot45(model, pmin, pmax, p0, num_arrows=5):
     """
     Function to plot a 45 degree plot
@@ -218,7 +222,7 @@ def plot45(model, pmin, pmax, p0, num_arrows=5):
     for i in range(num_arrows):
         if i == 0:
             ax.arrow(x, 0.0, 0.0, find_next_price(model, x),
-                     **arrow_args) # x, y, dx, dy
+                     **arrow_args)
         else:
             ax.arrow(x, x, 0.0, find_next_price(model, x) - x,
                      **arrow_args)
@@ -351,6 +355,12 @@ def ts_price_plot_adaptive(model, p0, ts_length=10, α=[1.0, 0.9, 0.75]):
 ts_price_plot_adaptive(m, 5, 30)
 ```
 
+We observe that if $\alpha=1$, the Adaptive Expectation is just Naive Expectation. Further decreasing the value of $\alpha$, shifts more weight to the previous spot prices and converges quickly.
+
+TODO: @jstac above
+
++++
+
 ## Exercises
 
 ```{exercise-start}
@@ -367,7 +377,6 @@ Use the default Market model and Naive expectation to plot the time series simul
 ```{solution-start} ex1
 :class: dropdown
 ```
-
 
 ```{code-cell} ipython3
 def ts_plot_supply(model, p0, ts_length=10):
@@ -417,11 +426,11 @@ That is,
 
 ```{math}
 :label: pe_adaptive
-p_t^e = w_1 p_{t-1} + w_2 p_{t-2}
+p_t^e = \alpha p_{t-1} + (1-\alpha) p_{t-2}
 ```
 
 
-Simulate and plot the price dynamics for $w_1=0.2, w_2=0.01, p_0=1,$ and $p_1=2.5$,
+Simulate and plot the price dynamics for $\alpha=\{0.1, 0.3, 0.5, 0.8\}, p_0=1$ and $p_1=2.5$,
 
 ```{exercise-end}
 ```
@@ -440,7 +449,7 @@ def find_next_price_blae(model, curr_price_exp):
 ```
 
 ```{code-cell} ipython3
-def ts_plot_price_blae(model, p0, p1, w1, w2, ts_length=15):
+def ts_plot_price_blae(model, p0, p1, alphas, ts_length=15):
     """
     Function to simulate and plot the time series of price
     using backward looking average expectations.
@@ -448,26 +457,26 @@ def ts_plot_price_blae(model, p0, p1, w1, w2, ts_length=15):
     fig, ax = plt.subplots()
     ax.set_xlabel(r'$t$', fontsize=12)
     ax.set_ylabel(r'$p_t$', fontsize=12)
-    p = np.empty(ts_length)
-    p[0] = p[0]
-    p[1] = p[1]
-    for t in range(2, ts_length):
-        pe = w1*p[i-1] + w2*p[i-2]
-        p[t] = -(model.supply(pe) - model.a) / model.b
-    ax.plot(np.arange(ts_length),
-            p,
-            'bo-',
-            alpha=0.6,
-            lw=2,
-            label=r'$p_t$')
-    ax.legend(loc='best', fontsize=10)
-    ax.set_xticks(np.arange(ts_length))
+    for a in alphas:
+        p = np.empty(ts_length)
+        p[0] = p[0]
+        p[1] = p[1]
+        for t in range(2, ts_length):
+            pe = a*p[i-1] + (1 - a)*p[i-2]
+            p[t] = -(model.supply(pe) - model.a) / model.b
+        ax.plot(np.arange(ts_length),
+                p,
+                'o-',
+                alpha=0.6,
+                label=r'$\alpha={}$'.format(a),
+                c=np.random.rand(3))
+        ax.legend(loc='best', fontsize=10)
     plt.show()
 ```
 
 ```{code-cell} ipython3
 m = Market()
-ts_plot_price_blae(m, 1, 2.5, 0.2, 0.01, 15)
+ts_plot_price_blae(m, 1, 2.5, [0.1, 0.3, 0.5, 0.8], 20)
 ```
 
 ```{solution-end}
