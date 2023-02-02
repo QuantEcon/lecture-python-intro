@@ -15,21 +15,43 @@ kernelspec:
 
 +++
 
-TODO: @jstac -- add more examples
 
-The cobweb model {cite}:`10.2307/1236509` is a model of prices and quantities in a given market --- let's say, a market for soy beans.
+The cobweb model {cite}:`10.2307/1236509` is a model of prices and quantities in a given market, and how they evolve over time.
 
-The model dates back to the 1930s.
+The model dates back to the 1930s and, while simple, it remains significant
+because it shows the fundamental importance of *expectations*.
 
-Although the model is quite old and rather simple, it helps build economic understanding because of its focus on expectations.
+To give some idea of how the model operates, and why expectations matter, imagine the following scenario.
 
-One aspect of the model is that soy beans cannot be produced instantaneously.
+There is a market for soy beans, say, where prices and traded quantities
+depend on the choices of buyers and sellers.
 
-Due to this "production lag", sellers need to forecast the prices they expect to hold when their soy beans are ready to take to the market.
+The buyers are represented by a demand curve --- they buy more at low prices
+and less at high prices.
 
-This informational friction can cause complicated dynamics.
+The sellers have a supply curve --- they wish to sell more at high prices and
+less at low prices.
 
-Here we investigate and simulate the basic model under different assumptions regarding the way that produces form expectations.
+However, the sellers (who are farmers) need time to grow their crops.
+
+Suppose now that the price is currently high.
+
+Seeing this high price, and perhaps expecting that the high price will remain
+for some time, the farmers plant many fields with soy beans.
+
+Next period the resulting high supply floods the market, causing the price to drop.
+
+Seeing this low price, the farmers now shift out of soy beans, restricting
+supply and causing the price to climb again.
+
+You can imagine how these dynamics could cause cycles in prices and quantities
+that persist over time.
+
+The cobweb model puts these ideas into equations so we can try to quantify
+them.
+
+In this lecture, we investigate and simulate the basic model under different
+assumptions regarding the way that produces form expectations.
 
 Our discussion and simulations draw on [high quality lectures](https://comp-econ.org/CEF_2013/downloads/Complex%20Econ%20Systems%20Lecture%20II.pdf) by [Cars Hommes](https://www.uva.nl/en/profile/h/o/c.h.hommes/c.h.hommes.html).
 
@@ -42,7 +64,7 @@ import matplotlib.pyplot as plt
 
 ## The Model
 
-Suppose demand for soy beans is given by
+We suppose that demand for soy beans is given by
 
 $$
     D(p_t) = a - b p_t
@@ -136,7 +158,7 @@ Combining the last two equations gives the dynamics for prices:
 
 ```{math}
 :label: price_t
-    p_t = - \frac{1}{b} [ S(f(p_{t-1}, p_{t-2}))) - a]
+    p_t = - \frac{1}{b} [ S(f(p_{t-1}, p_{t-2})) - a]
 ```
 
 The price dynamics depend on the parameter values and also on the function $f$ that tells us how producers form expectations.
@@ -151,18 +173,31 @@ In other words,
 
 $$ p_t^e = p_{t-1} $$
 
-Using {eq}`price_t`,
+Using {eq}`price_t`, we then have
 
 $$
-    p_t = - \frac{1}{b} [ S(p_{t-1})) - a]
+    p_t = - \frac{1}{b} [ S(p_{t-1}) - a]
 $$
+
+We can write this as 
+
+$$
+    p_t = f(p_{t-1})
+$$
+
+where $f$ is the function defined by
+
+```{math}
+:label: def_f
+    f(p) = - \frac{1}{b} [ S(p) - a]
+```
 
 +++
 
-Let's try to simulate the above model.
+Here we represent the function $f$
 
 ```{code-cell} ipython3
-def find_next_price(m, current_price):
+def f(m, current_price):
     """
     Function to find the next price given the current price
     and Market model
@@ -175,9 +210,9 @@ def find_next_price(m, current_price):
 m = Market()
 ```
 
-Let's try to simulate the values of price using some initial value and plot a 45 degree curve to observe the dynamics.
+Let's try to understand how prices will evolve using a 45 degree diagram.
 
-The following function *plot45* helps us to draw the 45 degree diagram.
+The function `plot45` defined below helps us draw the 45 degree diagram.
 
 ```{code-cell} ipython3
 :tags: [hide-input]
@@ -211,7 +246,7 @@ def plot45(model, pmin, pmax, p0, num_arrows=5):
             length_includes_head=True, lw=1,
             alpha=0.6, head_length=hl)
 
-    ax.plot(pgrid, find_next_price(model, pgrid), 'b-',
+    ax.plot(pgrid, f(model, pgrid), 'b-',
             lw=2, alpha=0.6, label='p')
     ax.plot(pgrid, pgrid, lw=1, alpha=0.7, label='45')
 
@@ -221,19 +256,19 @@ def plot45(model, pmin, pmax, p0, num_arrows=5):
 
     for i in range(num_arrows):
         if i == 0:
-            ax.arrow(x, 0.0, 0.0, find_next_price(model, x),
+            ax.arrow(x, 0.0, 0.0, f(model, x),
                      **arrow_args)
         else:
-            ax.arrow(x, x, 0.0, find_next_price(model, x) - x,
+            ax.arrow(x, x, 0.0, f(model, x) - x,
                      **arrow_args)
             ax.plot((x, x), (0, x), ls='dotted')
 
-        ax.arrow(x, find_next_price(model, x),
-                 find_next_price(model, x) - x, 0, **arrow_args)
+        ax.arrow(x, f(model, x),
+                 f(model, x) - x, 0, **arrow_args)
         xticks.append(x)
         xtick_labels.append(r'$p_{}$'.format(str(i)))
 
-        x = find_next_price(model, x)
+        x = f(model, x)
         xticks.append(x)
         xtick_labels.append(r'$p_{}$'.format(str(i+1)))
         ax.plot((x, x), (0, x), '->', alpha=0.5, color='orange')
@@ -256,18 +291,18 @@ def plot45(model, pmin, pmax, p0, num_arrows=5):
 plot45(m, 0, 9, 2, num_arrows=3)
 ```
 
-The plot shows the function $ p $ and the $45$ degree line.
+The plot shows the function $f$ defined in {eq}`def_f` and the $45$ degree line.
 
 Think of $ p_t $ as a value on the horizontal axis.
 
-To calculate $ p_{t+1} $, we can use the graph of $ p $ to see its
-value on the vertical axis.
+To calculate $ p_{t+1} $, we use the graph of $f$ to see its value on the vertical axis.
 
 Clearly,
 
-- If $ p $ lies above the 45 degree line at this point, then we have $ p_{t+1} > p_t $.
-- If $ p $ lies below the 45 degree line at this point, then we have $ p_{t+1} < p_t $.
-- If $ p $ hits the 45 degree line at this point, then we have $ p_{t+1} = p_t $, so $ p_t $ is a steady state.
+- If $ f $ lies above the 45 degree line at this point, then we have $ p_{t+1} > p_t $.
+- If $ f $ lies below the 45 degree line at this point, then we have $ p_{t+1} < p_t $.
+- If $ f $ hits the 45 degree line at this point, then we have $ p_{t+1} = p_t $, so $ p_t $ is a steady state.
+
 
 ```{code-cell} ipython3
 def ts_plot_price(model, p0, ts_length=10):
@@ -289,7 +324,7 @@ def ts_plot_price(model, p0, ts_length=10):
     p = np.empty(ts_length)
     p[0] = p0
     for t in range(1, ts_length):
-        p[t] = find_next_price(model, p[t-1])
+        p[t] = f(model, p[t-1])
     ax.plot(np.arange(ts_length),
             p,
             'bo-',
@@ -307,7 +342,9 @@ ts_plot_price(m, 2, 15)
 
 ## Adaptive Expectations
 
-Adaptive expectations refers to the case where producers form expectations for the next period price as a weighted average of their last guess and the current spot price.
+Adaptive expectations refers to the case where producers form expectations for
+the next period price as a weighted average of their last guess and the
+current spot price.
 
 That is,
 
@@ -316,7 +353,7 @@ That is,
 p_t^e = \alpha p_{t-1} + (1-\alpha) p^e_{t-1}
 ```
 
-Using {eq}`pe_adaptive`,
+Using {eq}`pe_adaptive`, we obtain the dynamics
 
 $$
     p_t = - \frac{1}{b} [ S(\alpha p_{t-1} + (1-\alpha) p^e_{t-1})) - a]
@@ -355,9 +392,13 @@ def ts_price_plot_adaptive(model, p0, ts_length=10, α=[1.0, 0.9, 0.75]):
 ts_price_plot_adaptive(m, 5, 30)
 ```
 
-We observe that if $\alpha=1$, the Adaptive Expectation is just Naive Expectation. Further decreasing the value of $\alpha$, shifts more weight to the previous spot prices and converges quickly.
+Note that if $\alpha=1$, then adaptive expectations are just naive expectation. 
 
-TODO: @jstac above
+Decreasing the value of $\alpha$ shifts more weight to the previous
+expectations, which stabilizes expected prices.
+
+This increased stability can be seen in the figures.
+
 
 +++
 
@@ -420,7 +461,9 @@ ts_plot_supply(m, 5, 15)
 
 #### Backward looking average expectations
 
-Backward looking average expectations refers to the case where producers form expectations for the next period price as a linear combination of their last guess and the second last guess.
+Backward looking average expectations refers to the case where producers form
+expectations for the next period price as a linear combination of their last
+guess and the second last guess.
 
 That is,
 
