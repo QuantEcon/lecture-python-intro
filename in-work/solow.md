@@ -4,7 +4,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.14.4
+    jupytext_version: 1.14.1
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
@@ -13,18 +13,12 @@ kernelspec:
 
 # The Solow-Swan Growth Model
 
-We consider a model due
+In this lecture we review a famous model due
 to [Robert Solow (1925--2014)](https://en.wikipedia.org/wiki/Robert_Solow) and [Trevor Swan (1918--1989)](https://en.wikipedia.org/wiki/Trevor_Swan).
 
-The Solow--Swan economy contains a collection of identical agents, each of
-whom saves the same fixed fraction of their current incomes.
+The model is used to study growth over the long run.
 
-Savings sustain or increase the stock of capital.
-
-Capital is combined with labor to produce
-output, which in turn is paid out to workers and owners of capital.
-
-To keep things simple, we ignore population and productivity growth.
+Although the model is simple, it contains some interesting lessons.
 
 
 We will use the following imports
@@ -36,6 +30,16 @@ import numpy as np
 ```
 
 ## The Model
+
+In a Solow--Swan economy, agents save a fixed fraction of their current
+incomes.
+
+Savings sustain or increase the stock of capital.
+
+Capital is combined with labor to produce output, which in turn is paid out to
+workers and owners of capital.
+
+To keep things simple, we ignore population and productivity growth.
 
 For each integer $t \geq 0$, output $Y_t$ in period $t$ is given by $Y_t =
 F(K_t, L_t)$, where $K_t$ is capital, $L_t$ is labor and $F$ is an aggregate
@@ -60,7 +64,7 @@ Production functions with this property include
 We assume a closed economy, so domestic investment equals aggregate domestic
 saving.
 
-The saving rate is a positive constant $s$, so that aggregate
+The saving rate is a constant $s$ satisfying $0 < s < 1$, so that aggregate
 investment and saving both equal  $s Y_t$.
 
 Capital depreciates: without replenishing through investment, one unit of capital today
@@ -104,7 +108,7 @@ degree diagram.
 To do so, we first
 need to specify the functional form for $f$ and assign values to the parameters.
 
-We choose the Cobb--Douglas specification $f(k) = A k^\alpha$. We set $A=2.0$,
+We choose the Cobb--Douglas specification $f(k) = A k^\alpha$ and set $A=2.0$,
 $\alpha=0.3$, $s=0.3$ and $\delta=0.4$.
 
 The function $g$ from {eq}`solow` is then plotted, along with the 45
@@ -133,7 +137,7 @@ Let's plot the 45 degree diagram of $g$
 def plot45(kstar=None):
     xgrid = np.linspace(xmin, xmax, 12000)
 
-    fig, ax = plt.subplots()
+    fig, ax = plt.subplots(figsize=(6, 6))
 
     ax.set_xlim(xmin, xmax)
 
@@ -206,8 +210,8 @@ kstar = ((s * A) / delta)**(1/(1 - alpha))
 plot45(kstar)
 ```
 
-Thus, we can
-say that $(k_t)$ converges to $k^*$, regardless of initial capital
+
+From our graphical analysis, it appears that $(k_t)$ converges to $k^*$, regardless of initial capital
 $k_0$.
 
 This is a form of global stability.
@@ -217,7 +221,6 @@ The next figure shows three time paths for capital, from
 three distinct initial conditions, under the parameterization listed above.
 
 At this parameterization, $k^* \approx 1.78$.
-
 
 +++
 
@@ -303,19 +306,13 @@ A **steady state** for {eq}`solowc` is a value $k^*$
 at which capital is unchanging, meaning $k'_t = 0$ or, equivalently,
 $s f(k^*) = \delta k^*$.
 
-As with the discrete time case, when
-$f(0)=0$ there is a trivial steady state at $k^*=0$.
-
-Hence we restrict the
-state space for capital to $(0, \infty)$.
-
-Let's also assume
+We assume
 $f(k) = Ak^\alpha$, so $k^*$ solves
 $s A k^\alpha = \delta k$.
 
 The solution is the same as the discrete time case---see {eq}`kstarss`.
 
-The dynamics of the Cobb--Douglas case are represented in
+The dynamics are represented in
 the next figure, maintaining the parameterization we used
 above.
 
@@ -329,13 +326,13 @@ levels of capital combine to yield global stability.
 
 +++
 
-Let's define the constants
+To see this in a figure, let's define the constants
 
 ```{code-cell} ipython3
 A, s, alpha, delta = 2, 0.3, 0.3, 0.4
 ```
 
-Let's define the function $g$ for growth in continuous time
+Next we define the function $g$ for growth in continuous time
 
 ```{code-cell} ipython3
 def g_con(A, s, alpha, delta, k):
@@ -413,7 +410,7 @@ $$
 $$
 
 (You can confirm that this function $x_t$ satisfies {eq}`xsolow` by
-differentiating it.)
+differentiating it with respect to $t$.)
 
 Converting back to $k_t$ yields
 
@@ -435,10 +432,6 @@ k^*$ as $t \to \infty$ independent of $k_0$.
 
 Thus, global stability holds.
 
-
-
-
-
 +++
 
 ## Exercises
@@ -448,16 +441,11 @@ Thus, global stability holds.
 ```
 ### Exercise 1
 
-Given the saving rate is a nonnegative constant $s$ and $0 \leq s \leq 1$, plot the curve of consumption model at **steady state**.
+plot per capita consumption $c$ at the steady state, as a function of the savings rate $s$, where $0 \leq s \leq 1$.
 
+Use the Cobb--Douglas specification $f(k) = A k^\alpha$.
 
-We choose the Cobb--Douglas specification $f(k) = A k^\alpha$.
-
-$$
-    C^*(s) = (1-s)f(k^*) = (1-s)A(k^*)^\alpha
-$$
-
-We set $A=2.0, \alpha=0.3,$ and $\delta=0.5$
+Set $A=2.0, \alpha=0.3,$ and $\delta=0.5$
 
 Also, find the approximate value of $s$ that maximizes the $C^*(s)$ and show it in the plot.
 
@@ -468,6 +456,15 @@ Also, find the approximate value of $s$ that maximizes the $C^*(s)$ and show it 
 :class: dropdown
 ```
 
++++
+
+Steady state consumption at savings rate $s$ is given by 
+
+
+$$
+    c^*(s) = (1-s)f(k^*) = (1-s)A(k^*)^\alpha
+$$
+
 ```{code-cell} ipython3
 A = 2.0
 alpha = 0.3
@@ -477,34 +474,34 @@ delta = 0.5
 ```{code-cell} ipython3
 s_grid = np.linspace(0, 1, 1000)
 k_star = ((s_grid * A) / delta)**(1/(1 - alpha))
-C_star = (1 - s_grid) * A * k_star ** alpha
+c_star = (1 - s_grid) * A * k_star ** alpha
 ```
 
-Let's find the value of $s$ that maximizes $C$.
+Let's find the value of $s$ that maximizes $c^*$.
 
 ```{code-cell} ipython3
-c_max_index = np.argmax(C_star)
+c_max_index = np.argmax(c_star)
 s_star_max = s_grid[c_max_index]
 
 x_s_max = np.array([s_star_max, s_star_max])
-y_s_max = np.array([0, C_star[c_max_index]])
+y_s_max = np.array([0, c_star[c_max_index]])
 
 fig, ax = plt.subplots()
 
-fps = (C_star[c_max_index],)
+fps = (c_star[c_max_index],)
 
 # Highlight the maximum point with a marker
-ax.plot((s_star_max, ), (C_star[c_max_index],), 'go', ms=8, alpha=0.6)
+ax.plot((s_star_max, ), (c_star[c_max_index],), 'go', ms=8, alpha=0.6)
 
 
 ax.annotate(r'$s^*$',
-         xy=(s_star_max, C_star[c_max_index]),
+         xy=(s_star_max, c_star[c_max_index]),
          xycoords='data',
          xytext=(20, -50),
          textcoords='offset points',
          fontsize=12,
          arrowprops=dict(arrowstyle="->"))
-ax.plot(s_grid, C_star, label=r'$C*(s)$')
+ax.plot(s_grid, c_star, label=r'$C*(s)$')
 ax.plot(x_s_max, y_s_max, alpha=0.5, ls='dotted')
 ax.set_xlabel(r'$s$')
 ax.set_ylabel(r'$C^*(s)$')
@@ -513,7 +510,7 @@ ax.legend()
 plt.show()
 ```
 
-The rate of savings(here $s^*$) which maximizes steady state level of the growth of consumption is called the [Golden Rule savings rate](https://en.wikipedia.org/wiki/Golden_Rule_savings_rate).
+Incidentally, the rate of savings which maximizes steady state level of per capita consumption is called the [Golden Rule savings rate](https://en.wikipedia.org/wiki/Golden_Rule_savings_rate).
 
 ```{solution-end}
 ```
@@ -546,9 +543,9 @@ Dynamics are now
     k_{t+1} = s A_{t+1} f(k_t) + (1 - \delta) k_t.
 ```
 
-where $f$ is Cobb--Douglas, $(A_t)$ is $ \textbf{iid} $ and lognormal.
+We suppose $f$ is Cobb--Douglas and $(A_t)$ is IID and lognormal.
 
-Now the long run convergence obtained in in the deterministic case breaks
+Now the long run convergence obtained in the deterministic case breaks
 down, since the system is hit with new shocks at each point in time.
 
 Consider $A=2.0, s=0.6, \alpha=0.3,$ and $\delta=0.5$
@@ -596,7 +593,7 @@ def ts_plot(x_values, ts_length):
     for x_init in x_values:
         ts[0] = x_init
         for t in range(1, ts_length):
-            ts[t] = G(s, alpha, delta, ts[t-1])
+            ts[t] = k_next(s, alpha, delta, ts[t-1])
         ax.plot(np.arange(ts_length), ts, '-o', ms=4,
                 alpha=0.6, label=r'$k_0=%g$' %x_init)
 
@@ -613,16 +610,11 @@ def ts_plot(x_values, ts_length):
 ts_plot(x0, 50)
 ```
 
-At the same time, if we look at the figure carefully,
-we observe that the influence of initial conditions seems to die out, and the
-two time series eventually fluctuate in  similar ranges.
 
-This hints at the fact that, for this model, stability is not lost after all.
-
-There is a higher-level notion of stability at work here, sometimes called
-stochastic stability.
-
-These notions are discussed in more advanced lectures on Markov processes.
 
 ```{solution-end}
+```
+
+```{code-cell} ipython3
+
 ```
