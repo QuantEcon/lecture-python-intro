@@ -1,19 +1,18 @@
 ---
-jupytext:
-  text_representation:
-    extension: .md
-    format_name: myst
-    format_version: 0.13
-    jupytext_version: 1.14.4
-kernelspec:
-  display_name: Python 3 (ipykernel)
-  language: python
-  name: python3
+jupyter:
+  jupytext:
+    text_representation:
+      extension: .md
+      format_name: markdown
+      format_version: '1.3'
+      jupytext_version: 1.14.1
+  kernelspec:
+    display_name: Python 3 (ipykernel)
+    language: python
+    name: python3
 ---
 
 # The Cobweb Model
-
-+++
 
 
 The cobweb model {cite}:`10.2307/1236509` is a model of prices and quantities in a given market, and how they evolve over time.
@@ -48,7 +47,7 @@ You can imagine how these dynamics could cause cycles in prices and quantities
 that persist over time.
 
 The cobweb model puts these ideas into equations so we can try to quantify
-them.
+them, and to study conditions underw which cycles persist (or disappear).
 
 In this lecture, we investigate and simulate the basic model under different
 assumptions regarding the way that produces form expectations.
@@ -57,7 +56,7 @@ Our discussion and simulations draw on [high quality lectures](https://comp-econ
 
 We will use the following imports:
 
-```{code-cell} ipython3
+```python
 import numpy as np
 import matplotlib.pyplot as plt
 ```
@@ -86,9 +85,9 @@ where $\lambda$ is a positive constant and $c, d \geq 0$.
 
 Let's make a plot of supply and demand for particular choices of the parameter values.
 
-We will store the parameters in a class and define the functions above as methods.
+First we store the parameters in a class and define the functions above as methods.
 
-```{code-cell} ipython3
+```python
 class Market:
 
     def __init__(self,
@@ -109,9 +108,9 @@ class Market:
         return np.tanh(λ * (p - c)) + d
 ```
 
-Here's the plot.
+Now let's plot.
 
-```{code-cell} ipython3
+```python
 p_grid = np.linspace(5, 8, 200)
 m = Market()
 fig, ax = plt.subplots()
@@ -139,7 +138,7 @@ $$
 
 Finally, to complete the model, we need to describe how price expectations are formed.
 
-For now, let's just assume that expected prices at time $t$ depend on past prices.
+We will assume that expected prices at time $t$ depend on past prices.
 
 In particular, we suppose that
 
@@ -161,15 +160,16 @@ Combining the last two equations gives the dynamics for prices:
     p_t = - \frac{1}{b} [ S(f(p_{t-1}, p_{t-2})) - a]
 ```
 
-The price dynamics depend on the parameter values and also on the function $f$ that tells us how producers form expectations.
+The price dynamics depend on the parameter values and also on the function $f$ that determines how producers form expectations.
 
-+++
 
 ## Naive Expectations
 
-Naive expectations refers to the case where producers expect the next period spot price to be whatever the price is in the current period.
+To go further in our analysis we need to specify the function $f$; that is, how expectations are formed.
 
-In other words,
+Let's start with naive expectations, which refers to the case where producers expect the next period spot price to be whatever the price is in the current period.
+
+In other words, 
 
 $$ p_t^e = p_{t-1} $$
 
@@ -182,41 +182,37 @@ $$
 We can write this as 
 
 $$
-    p_t = f(p_{t-1})
+    p_t = g(p_{t-1})
 $$
 
-where $f$ is the function defined by
+where $g$ is the function defined by
 
 ```{math}
-:label: def_f
-    f(p) = - \frac{1}{b} [ S(p) - a]
+:label: def_g
+    g(p) = - \frac{1}{b} [ S(p) - a]
 ```
 
-+++
 
-Here we represent the function $f$
+Here we represent the function $g$
 
-```{code-cell} ipython3
-def f(m, current_price):
+```python
+def g(model, current_price):
     """
     Function to find the next price given the current price
     and Market model
     """
-    next_price = - (m.supply(current_price) - m.a) / m.b
+    a, b = model.a, model.b
+    next_price = - (model.supply(current_price) - a) / b
     return next_price
 ```
 
-```{code-cell} ipython3
-m = Market()
-```
-
-Let's try to understand how prices will evolve using a 45 degree diagram.
+Let's try to understand how prices will evolve using a 45 degree diagram, which is a tool for studying one-dimensional dynamics.
 
 The function `plot45` defined below helps us draw the 45 degree diagram.
 
-```{code-cell} ipython3
-:tags: [hide-input]
+TODO hide code below.
 
+```python tags=["hide-input"]
 def plot45(model, pmin, pmax, p0, num_arrows=5):
     """
     Function to plot a 45 degree plot
@@ -246,7 +242,7 @@ def plot45(model, pmin, pmax, p0, num_arrows=5):
             length_includes_head=True, lw=1,
             alpha=0.6, head_length=hl)
 
-    ax.plot(pgrid, f(model, pgrid), 'b-',
+    ax.plot(pgrid, g(model, pgrid), 'b-',
             lw=2, alpha=0.6, label='p')
     ax.plot(pgrid, pgrid, lw=1, alpha=0.7, label='45')
 
@@ -256,19 +252,19 @@ def plot45(model, pmin, pmax, p0, num_arrows=5):
 
     for i in range(num_arrows):
         if i == 0:
-            ax.arrow(x, 0.0, 0.0, f(model, x),
+            ax.arrow(x, 0.0, 0.0, g(model, x),
                      **arrow_args)
         else:
-            ax.arrow(x, x, 0.0, f(model, x) - x,
+            ax.arrow(x, x, 0.0, g(model, x) - x,
                      **arrow_args)
             ax.plot((x, x), (0, x), ls='dotted')
 
-        ax.arrow(x, f(model, x),
-                 f(model, x) - x, 0, **arrow_args)
+        ax.arrow(x, g(model, x),
+                 g(model, x) - x, 0, **arrow_args)
         xticks.append(x)
         xtick_labels.append(r'$p_{}$'.format(str(i)))
 
-        x = f(model, x)
+        x = g(model, x)
         xticks.append(x)
         xtick_labels.append(r'$p_{}$'.format(str(i+1)))
         ax.plot((x, x), (0, x), '->', alpha=0.5, color='orange')
@@ -287,36 +283,46 @@ def plot45(model, pmin, pmax, p0, num_arrows=5):
     plt.show()
 ```
 
-```{code-cell} ipython3
+Now we can set up a market and plot the 45 degree diagram.
+
+```python
+m = Market()
+```
+
+```python
 plot45(m, 0, 9, 2, num_arrows=3)
 ```
 
-The plot shows the function $f$ defined in {eq}`def_f` and the $45$ degree line.
+The plot shows the function $g$ defined in {eq}`def_g` and the $45$ degree line.
 
 Think of $ p_t $ as a value on the horizontal axis.
 
-To calculate $ p_{t+1} $, we use the graph of $f$ to see its value on the vertical axis.
+Since $p_{t+1} = g(p_t)$, we use the graph of $g$ to see $p_{t+1}$ on the vertical axis.
 
 Clearly,
 
-- If $ f $ lies above the 45 degree line at this point, then we have $ p_{t+1} > p_t $.
-- If $ f $ lies below the 45 degree line at this point, then we have $ p_{t+1} < p_t $.
-- If $ f $ hits the 45 degree line at this point, then we have $ p_{t+1} = p_t $, so $ p_t $ is a steady state.
+- If $ g $ lies above the 45 degree line at $p_t$, then we have $ p_{t+1} > p_t $.
+- If $ g $ lies below the 45 degree line at $p_t$, then we have $ p_{t+1} < p_t $.
+- If $ g $ hits the 45 degree line at $p_t$, then we have $ p_{t+1} = p_t $, so $ p_t $ is a steady state.
 
+Consider the sequence of prices starting at $p_0$, as shown in the figure.
 
-```{code-cell} ipython3
-def ts_plot_price(model, p0, ts_length=10):
+We find $p_1$ on the vertical axis and then shift it to the horizontal axis using the 45 degree line (where values on the two axes are equal).
+
+Then from $p_1$ we obtain $p_2$ and continue.
+
+We can see the start of a cycle.
+
+To confirm this, let's plot a time series.
+
+```python
+def ts_plot_price(model,             # Market model
+                  p0,                # Initial price
+                  y_a=3, y_b= 12,    # Controls y-axis
+                  ts_length=10):     # Length of time series
     """
     Function to simulate and plot the time series of price.
 
-    Parameters
-    ==========
-
-    model: Market model
-
-    p0: Initial value of price
-
-    ts_length: Number of iterations
     """
     fig, ax = plt.subplots()
     ax.set_xlabel(r'$t$', fontsize=12)
@@ -324,7 +330,7 @@ def ts_plot_price(model, p0, ts_length=10):
     p = np.empty(ts_length)
     p[0] = p0
     for t in range(1, ts_length):
-        p[t] = f(model, p[t-1])
+        p[t] = g(model, p[t-1])
     ax.plot(np.arange(ts_length),
             p,
             'bo-',
@@ -332,17 +338,36 @@ def ts_plot_price(model, p0, ts_length=10):
             lw=2,
             label=r'$p_t$')
     ax.legend(loc='best', fontsize=10)
+    ax.set_ylim(y_a, y_b)
     ax.set_xticks(np.arange(ts_length))
     plt.show()
 ```
 
-```{code-cell} ipython3
-ts_plot_price(m, 2, 15)
+```python
+ts_plot_price(m, 4, ts_length=15)
+```
+
+We see that a cycle has formed and the cycle is persistent.
+
+(You can confirm this by plotting over a longer time horizon.)
+
+The cycle is "stable", in the sense that prices converge to it from most starting conditions.
+
+For example,
+
+```python tags=[]
+ts_plot_price(m, 10, ts_length=15)
 ```
 
 ## Adaptive Expectations
 
-Adaptive expectations refers to the case where producers form expectations for
+Naive expectations are quite simple and also important in driving the cycle that we found.
+
+What if expectations are formed in a different way?
+
+Next we consider adaptive expectations.
+
+This refers to the case where producers form expectations for
 the next period price as a weighted average of their last guess and the
 current spot price.
 
@@ -351,7 +376,20 @@ That is,
 ```{math}
 :label: pe_adaptive
 p_t^e = \alpha p_{t-1} + (1-\alpha) p^e_{t-1}
+\qquad (0 \leq \alpha \leq 1)
 ```
+
+Another way to write this is 
+
+```{math}
+:label: pe_adaptive_2
+p_t^e = p^e_{t-1} + \alpha (p_{t-1} - p_{t-1}^e)
+```
+
+This equation helps to show that expectations shift
+
+1. up when prices last period were above expectations
+1. down when prices last period were below expectations
 
 Using {eq}`pe_adaptive`, we obtain the dynamics
 
@@ -359,11 +397,10 @@ $$
     p_t = - \frac{1}{b} [ S(\alpha p_{t-1} + (1-\alpha) p^e_{t-1})) - a]
 $$
 
-+++
 
 Let's try to simulate the price and observe the dynamics using different values of $\alpha$.
 
-```{code-cell} ipython3
+```python
 def find_next_price_adaptive(model, curr_price_exp):
     """
     Function to find the next price given the current price expectation
@@ -372,7 +409,9 @@ def find_next_price_adaptive(model, curr_price_exp):
     return - (model.supply(curr_price_exp) - model.a) / model.b
 ```
 
-```{code-cell} ipython3
+The function below plots price dynamics under adaptive expectations for different values of $\alpha$.
+
+```python
 def ts_price_plot_adaptive(model, p0, ts_length=10, α=[1.0, 0.9, 0.75]):
     fig, axs = plt.subplots(1, len(α), figsize=(12, 5))
     for i_plot, a in enumerate(α):
@@ -388,8 +427,14 @@ def ts_price_plot_adaptive(model, p0, ts_length=10, α=[1.0, 0.9, 0.75]):
     plt.show()
 ```
 
-```{code-cell} ipython3
-ts_price_plot_adaptive(m, 5, 30)
+Let's call the function with prices starting at $p_0 = 5$.
+
+TODO does this fit well in the page, even in the pdf? If not should it be stacked vertically?
+
+TODO add $t$ as the horizontal label and "price" as the vertical axis label
+
+```python
+ts_price_plot_adaptive(m, 5, ts_length=30)
 ```
 
 Note that if $\alpha=1$, then adaptive expectations are just naive expectation. 
@@ -400,7 +445,7 @@ expectations, which stabilizes expected prices.
 This increased stability can be seen in the figures.
 
 
-+++
+TODO check / fix exercises
 
 ## Exercises
 
@@ -410,7 +455,9 @@ This increased stability can be seen in the figures.
 
 ### Exercise 1
 
-Use the default Market model and Naive expectation to plot the time series simulation of supply function.
+Using the default Market model and naive expectations, plot a time series simulation of supply (rather than the price).
+
+Show, in particular, that supply also cycles.
 
 ```{exercise-end}
 ```
@@ -419,7 +466,7 @@ Use the default Market model and Naive expectation to plot the time series simul
 :class: dropdown
 ```
 
-```{code-cell} ipython3
+```python
 def ts_plot_supply(model, p0, ts_length=10):
     """
     Function to simulate and plot the supply function
@@ -428,7 +475,9 @@ def ts_plot_supply(model, p0, ts_length=10):
     pe_last = p0
     s_values = np.empty(ts_length)
     for i in range(ts_length):
+        # store quantity
         s_values[i] = model.supply(pe_last)
+        # update price
         pe_last = - (s_values[i] - model.a) / model.b
 
 
@@ -445,11 +494,12 @@ def ts_plot_supply(model, p0, ts_length=10):
     plt.show()
 ```
 
-```{code-cell} ipython3
+```python
 m = Market()
 ts_plot_supply(m, 5, 15)
 ```
 
+<!-- #region -->
 ```{solution-end}
 ```
 
@@ -473,7 +523,7 @@ p_t^e = \alpha p_{t-1} + (1-\alpha) p_{t-2}
 ```
 
 
-Simulate and plot the price dynamics for $\alpha=\{0.1, 0.3, 0.5, 0.8\}, p_0=1$ and $p_1=2.5$,
+Simulate and plot the price dynamics for $\alpha \in \{0.1, 0.3, 0.5, 0.8\}$ where $p_0=1$ and $p_1=2.5$.
 
 ```{exercise-end}
 ```
@@ -481,8 +531,9 @@ Simulate and plot the price dynamics for $\alpha=\{0.1, 0.3, 0.5, 0.8\}, p_0=1$ 
 ```{solution-start} ex2
 :class: dropdown
 ```
+<!-- #endregion -->
 
-```{code-cell} ipython3
+```python
 def find_next_price_blae(model, curr_price_exp):
     """
     Function to find the next price given the current price expectation
@@ -491,7 +542,7 @@ def find_next_price_blae(model, curr_price_exp):
     return - (model.supply(curr_price_exp) - model.a) / model.b
 ```
 
-```{code-cell} ipython3
+```python
 def ts_plot_price_blae(model, p0, p1, alphas, ts_length=15):
     """
     Function to simulate and plot the time series of price
@@ -505,7 +556,7 @@ def ts_plot_price_blae(model, p0, p1, alphas, ts_length=15):
         p[0] = p[0]
         p[1] = p[1]
         for t in range(2, ts_length):
-            pe = a*p[i-1] + (1 - a)*p[i-2]
+            pe = a*p[t-1] + (1 - a)*p[t-2]
             p[t] = -(model.supply(pe) - model.a) / model.b
         ax.plot(np.arange(ts_length),
                 p,
@@ -517,7 +568,7 @@ def ts_plot_price_blae(model, p0, p1, alphas, ts_length=15):
     plt.show()
 ```
 
-```{code-cell} ipython3
+```python
 m = Market()
 ts_plot_price_blae(m, 1, 2.5, [0.1, 0.3, 0.5, 0.8], 20)
 ```
