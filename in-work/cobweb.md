@@ -97,7 +97,7 @@ fig, ax = plt.subplots()
 ax.plot(p_grid, m.demand(p_grid), label="$D$")
 ax.plot(p_grid, m.supply(p_grid), label="S")
 ax.set_xlabel("price")
-#todo
+ax.set_ylabel("quantity")
 ax.legend()
 
 plt.show()
