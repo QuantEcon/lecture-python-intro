@@ -96,7 +96,6 @@ Therefore $P^{k+1} 1 = P P^k 1 = P 1 = 1$
 
 The proof is done.
 
-+++
 
 ### Markov Chains 
 
@@ -107,7 +106,6 @@ First we will give some examples and then we will define them more carefully.
 At that time, the connection between stochastic matrices and Markov chains
 will become clear.
 
-+++
 
 (mc_eg2)=
 #### Example 1
@@ -261,14 +259,14 @@ Then we can address a range of questions, such as
 
 We'll cover such applications below.
 
-+++
+
 
 ### Defining Markov Chains
 
 So far we've given examples of Markov chains but now let's define them more
 carefully.
 
-+++
+
 
 To begin, let $S$ be a finite set with $n$ elements $\{x_1, \ldots, x_n\}$.
 
@@ -407,7 +405,6 @@ np.mean(X == 0)
 You can try changing the initial distribution to confirm that the output is
 always close to 0.25, at least for the `P` matrix above.
 
-+++
 
 ### Using QuantEcon's Routines
 
@@ -529,7 +526,6 @@ and, more generally,
 X_t \sim \psi_t \quad \implies \quad X_{t+m} \sim \psi_t P^m
 ```
 
-+++
 
 (finite_mc_mstp)=
 ### Multiple Step Transition Probabilities
@@ -553,7 +549,6 @@ $$
 \mathbb P \{X_{t+m} = y \,|\, X_t = x \} = P^m(x, y) = (x, y) \text{-th element of } P^m
 $$
 
-+++
 
 ### Example: Probability of Recession
 
@@ -580,7 +575,6 @@ $$
 \right)
 $$
 
-+++
 
 (mc_eg1-1)=
 ### Example 2: Cross-Sectional Distributions
@@ -620,11 +614,9 @@ each state.
 
 This is exactly the cross-sectional distribution.
 
-+++
 
 ## Irreducibility
 
-+++
 
 Irreducibility is a central concept of Markov chain theory.
 
@@ -748,11 +740,9 @@ For example, poverty is a life sentence in the second graph but not the first.
 
 We'll come back to this a bit later.
 
-+++
 
 ## Stationary Distributions
 
-+++
 
 As seen in {eq}`fin_mc_fr`, we can shift a marginal distribution forward one
 unit of time via postmultiplication by $P$.
@@ -775,11 +765,11 @@ From this equality, we immediately get $\psi^* = \psi^* P^t$ for all $t$.
 
 This tells us an important fact: If the distribution of $X_0$ is a stationary distribution, then $X_t$ will have this same distribution for all $t$.
 
-+++
+```{prf:theorem}
+:label: stationary
 
-TODO -- convert to theorem environment
-
-**Theorem.** Every stochastic matrix $P$ has at least one stationary distribution.
+Every stochastic matrix $P$ has at least one stationary distribution.
+```
 
 A proof of this theorem can be constructed from the Perron-Frobenius theorem,
 which we discuss in another lecture.
@@ -796,15 +786,16 @@ doesn't get stuck in some part of the state space.
 
 This gives some intuition for the following fundamental theorem.
 
-TODO -- convert to theorem environment
 
-(mc_conv_thm)=
-**Theorem.** If $P$ is irreducible, then $P$ has exactly one stationary
+```{prf:theorem}
+:label: mc_conv_thm
+
+If $P$ is irreducible, then $P$ has exactly one stationary
 distribution $\psi^*$.
+```
 
 For a proof, see, for example, theorem 5.2 of {cite}`haggstrom2002finite`.
 
-+++
 
 ### Example
 
@@ -825,7 +816,7 @@ This is, in some sense, a steady state probability of unemployment.
 
 Not surprisingly it tends to zero as $\beta \to 0$, and to one as $\alpha \to 0$.
 
-+++
+
 
 ### Calculating Stationary Distributions
 
@@ -846,11 +837,13 @@ mc.stationary_distributions  # Show all stationary distributions
 
 Under irreducibility, yet another important result obtains:
 
-+++
 
 TODO -- convert to environment
 
-Theorem:  If $P$ is irreducible and $\psi^*$ is the unique stationary
+````{prf:theorem}
+:label: stationary
+
+If $P$ is irreducible and $\psi^*$ is the unique stationary
 distribition, then, for all $x \in S$,
 
 ```{math}
@@ -865,6 +858,8 @@ Here
 * $\{X_t\}$ is a Markov chain with stochastic matrix $P$ and initial
   distribition $\psi_0$
 * $\mathbf{1}\{X_t = x\} = 1$ if $X_t = x$ and zero otherwise
+
+````
 
 TODO -- in the next line, refer to the theorem by number.
 
@@ -885,10 +880,6 @@ TODO -- link to our undergrad lln and clt lecture
 It tells us that, in some settings, the law of large numbers sometimes holds even when the
 sequence of random variables is not IID.
 
-+++
-
-TODO --- add the Hamilton2005 Markov chain as an example, similar to the one
-below.
 
 (mc_eg1-2)=
 ### Example 1
@@ -915,7 +906,6 @@ This is one aspect of the concept  of ergodicity.
 (ergo)=
 ### Example 2
 
-+++
 
 Another example is Hamilton {cite}`Hamilton2005` dynamics {ref}`discussed above <mc_eg2>`.
 
@@ -949,8 +939,6 @@ plt.show()
 ```
 
 ### Example 3
-
-+++
 
 Let's look at another example with two states: 0 and 1.
 
@@ -1016,7 +1004,6 @@ In fact, it converges faster given it is a more "predictable" dynamic
 
 We will come back to this very soon.
 
-+++
 
 ### Asymptopic Stationarity
 
@@ -1037,8 +1024,6 @@ $$
 
 (See, for example, {cite}`haggstrom2002finite`. Our assumptions imply that $P$
 is irreducible and [aperiodic](https://en.wikipedia.org/wiki/Aperiodic_graph).)
-
-TODO -- show that the $P$ below satisfies the conditions
 
 The convergence in the theorem is illustrated in the next figure
 
@@ -1134,7 +1119,6 @@ plt.show()
 
 ### Example 2
 
-+++
 
 However, in the case of our periodic chain, we find distributions is oscillating
 
@@ -1225,7 +1209,6 @@ $$
 
 Computing the unconditional expectation {eq}`mc_une` is easy.
 
-+++
 
 We just sum over the marginal  distribution  of $X_t$ to get
 
@@ -1258,7 +1241,7 @@ We already know that this is $P^k(x, \cdot)$, so
 
 The vector $P^k h$ stores the conditional expectation $\mathbb E [ h(X_{t + k})  \mid X_t = x]$ over all $x$.
 
-+++
+
 
 ### Expectations of Geometric Sums
 
@@ -1282,17 +1265,11 @@ $$
 
 TODO -- connect to the Neumann series lemma (Maanasee)
 
-+++
 
 TODO -- verify the link.
 
-+++
 
 ## Exercises
-
-### Exercise 1:
-
-+++
 
 TODO: Add this into bib file
 
@@ -1316,7 +1293,9 @@ TODO: Add this into bib file
 	file = {Full Text PDF:/Users/humphreyyang/Zotero/storage/P93BG5IZ/Benhabib et al. - 2019 - Wealth Distribution and Social Mobility in the US.pdf:application/pdf},
 }
 
-+++
+
+````{exercise} 
+:label: fm_ex1
 
 Benhabib el al. {cite}`benhabib_wealth_2019` estimated that the transition matrix for social mobility as the following
 
@@ -1352,9 +1331,11 @@ In this exercise,
 
 1. Use plots to show ergodicity and stationarity.
 
-+++
+````
 
-1.
+```{solution-start} 
+:class: dropdown
+```
 
 One simple way to show the stationary distribution is to take the power of the matrix to find the stationary distribution
 
@@ -1402,11 +1383,12 @@ plt.show()
 
 We can see that the time spent at each state quickly converge to the stationary distribution.
 
-+++
+```{solution-end}
+```
 
 
 ```{exercise} 
-:label: fm_ex1
+:label: fm_ex2
 
 According to the discussion {ref}`above <mc_eg1-2>`, if a worker's employment dynamics obey the stochastic matrix
 
@@ -1445,7 +1427,7 @@ $(0, 1)$.
 The result should be similar to the plot we plotted [here](ergo)
 ```
 
-```{solution-start} fm_ex1
+```{solution-start} fm_ex2
 :class: dropdown
 ```
 
@@ -1483,9 +1465,12 @@ for x0, col in ((0, 'blue'), (1, 'green')):
 
 ax.legend(loc='upper right')
 plt.show()
+
+```{solution-end}
 ```
 
-### Exercise 3:
+```{exercise} 
+:label: fm_ex3
 
 In `quantecon` library, reducibility is tested by checking whether the chain forms a [strongly connected component](https://networkx.org/documentation/stable/reference/algorithms/generated/networkx.algorithms.components.is_strongly_connected.html).
 
@@ -1497,7 +1482,7 @@ Assume A is an $n \times n$ $A$ is irreducible if and only if $\sum_{k=0}^{n-1}A
 
 Based on this claim, write a function to test reducibility.
 
-+++
+```
 
 TODO:
 
@@ -1518,6 +1503,10 @@ add to .bib
 	keywords = {Performance Analysis, Power Distribution, Radio Resource Management, Wireless Networks},
 	file = {Full Text:/Users/humphreyyang/Zotero/storage/6JG9FW3F/Zhao - 2012 - Power Distribution and Performance Analysis for Wi.pdf:application/pdf},
 }
+
+```{solution-start} fm_ex3
+:class: dropdown
+```
 
 ```{code-cell} ipython3
 def is_irreducible(P):
