@@ -256,28 +256,27 @@ We can vary values for `n` to see how the distribution changes
 
 ```{code-cell} ipython3
 def generate_multiple_hist(X_distribution, ns, m, log_scale=False):
-  _, ax = plt.subplots(figsize=(10, 6))
+    _, ax = plt.subplots(figsize=(10, 6))
 
-  def draw_means(X_distribution, n):
-    X_samples = X_distribution.rvs(size=n)
-    return np.mean(X_samples)
+    def draw_means(X_distribution, n):
+        X_samples = X_distribution.rvs(size=n)
+        return np.mean(X_samples)
    
-  for n in ns:
-    sample_means = [draw_means(X_distribution, n) for i in range(m)]
-    if log_scale:
-      plt.xscale('symlog')
-    ax.hist(sample_means, bins=60, alpha=0.4, density=True, label=fr'$n = {n}$')
-     
-  mu = X_distribution.mean()
-  if not np.isnan(mu):
-    ax.axvline(x=mu, ls="--", lw=3, label=fr"$\mu = {mu}$")
-   
-  ax.set_xlim(min(sample_means), max(sample_means)) 
-  ax.set_xlabel(r'$\bar x$')
-  ax.set_ylabel('Density')
-  ax.set(title=fr'$n = {n}, m = {m}$')
-  ax.legend()
-  plt.show()
+    for n in ns:
+        sample_means = [draw_means(X_distribution, n) for i in range(m)]
+        if log_scale:
+            plt.xscale('symlog')
+        ax.hist(sample_means, bins=40, alpha=0.4, density=True, label=fr'$n = {n}$')
+
+    mu = X_distribution.mean()
+    if not np.isnan(mu):
+        ax.axvline(x=mu, ls="--", lw=3, label=fr"$\mu = {mu}$")
+
+    ax.set_xlim(min(sample_means), max(sample_means)) 
+    ax.set_xlabel(r'$\bar x$')
+    ax.set_ylabel('Density')
+    ax.legend()
+    plt.show()
 ```
 
 ```{code-cell} ipython3
@@ -308,20 +307,20 @@ fig, axes = plt.subplots(1, 2, figsize=(15, 6))
 def scattered_mean(distribution, burn_in, n, jump, ax, title, color, ylog=False):
    
   #Set a jump to reduce simulation complexity
-  sample_means = [np.mean(distribution.rvs(size=i)) 
+    sample_means = [np.mean(distribution.rvs(size=i)) 
           for i in range(burn_in, n+1, jump)]
    
-  ax.scatter(range(burn_in, n+1, jump), sample_means, s=10, c=color)
+    ax.scatter(range(burn_in, n+1, jump), sample_means, s=10, c=color)
    
-  #Change the y-axis to log scale if necessory
-  if ylog:
-    ax.set_yscale("symlog")
-  ax.set_title(title, size=10)
-  ax.set_xlabel(r"$n$", size=12)
-  ax.set_ylabel(r"$\bar x$", size=12)
-  yabs_max = max(ax.get_ylim(), key=abs)
-  ax.set_ylim(ymin=-yabs_max, ymax=yabs_max)
-  return ax
+    #Change the y-axis to log scale if necessory
+    if ylog:
+        ax.set_yscale("symlog")
+    ax.set_title(title, size=10)
+    ax.set_xlabel(r"$n$", size=12)
+    ax.set_ylabel(r"$\bar x$", size=12)
+    yabs_max = max(ax.get_ylim(), key=abs)
+    ax.set_ylim(ymin=-yabs_max, ymax=yabs_max)
+    return ax
 
 scattered_mean(distribution=st.cauchy(), 
              burn_in=1000, 
@@ -340,7 +339,7 @@ scattered_mean(distribution=st.norm(),
              title="Normal Distribution",
              color='#ff7f0e')
 
-fig.suptitle('Sample Mean with Different Sample Size')
+fig.suptitle('Sample Mean with Different Sample Sizes')
 plt.show()
 ```
 
@@ -601,7 +600,7 @@ $$
 
 We find that expectation and variance are the same $t = 0, ..., n$.
 
-Given both $X_0$ and $\epsilon _{0}$ are normally distributed and independent from each other, the weighted sum of the two normally distributed random variables is also normally distributed.
+Given both $X_0$ and $\epsilon _{0}$ are normally distributed and independent from each other, the weighted sum is also normally distributed.
 
 This holds true for all $X_t$ and $\epsilon _{t}$ where $t = 0, ..., n$
 
@@ -627,9 +626,10 @@ x = np.ones(n)
 x[0] = st.norm.rvs(α/(1-β), α**2/(1-β**2))
 ϵ = st.norm.rvs(size=n+1)
 means = np.ones(n)
+means[0] = x[0]
 for t in range(n-1):
-  x[t+1] = α + β * x[t] + σ * ϵ[t+1]
-  means[t+1] = np.mean(x[:t+1])
+    x[t+1] = α + β * x[t] + σ * ϵ[t+1]
+    means[t+1] = np.mean(x[:t+1])
 
 
 ax.scatter(range(100, n), means[100:n], s=10, alpha=0.5)
