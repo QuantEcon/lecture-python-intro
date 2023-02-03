@@ -90,7 +90,7 @@ Let's check this:
 ```{code-cell} ipython3
 n = 1_000_000
 X_draws = st.bernoulli.rvs(p, size=n)
-print(X_draws.mean())  # count the number of 1's and divide by n
+print(X_draws.mean()) # count the number of 1's and divide by n
 ```
 
 If we change $p$ the claim still holds:
@@ -135,13 +135,13 @@ The traditional version of the law of large numbers concerns independent and ide
 
 Let $X_1, \ldots, X_n$ be independent and identically distributed random variables.
 
-This random variables can be continuous or discrete.
+These random variables can be continuous or discrete.
 
 For simplicity we will assume they are continuous and we let $f$ denote their density function, so that, for any $i$ in $\{1, \ldots, n\}$
 
 
 $$ 
-    \mathbb P\{a \leq X_i \leq b\} = \int_a^b f(x) dx
+  \mathbb P\{a \leq X_i \leq b\} = \int_a^b f(x) dx
 $$
 
 (For the discrete case, we need to replace densities with probability mass functions and integrals with sums.)
@@ -149,7 +149,7 @@ $$
 Let $\mu$ denote the common mean of this sample:
 
 $$
-    \mu := \mathbb E X = \int_{-\infty}^{\infty} x f(dx)
+  \mu := \mathbb E X = \int_{-\infty}^{\infty} x f(dx)
 $$
 
 In addition, let
@@ -217,31 +217,31 @@ Let's run some simulations to visualize LLN
 
 ```{code-cell} ipython3
 def generate_histogram(X_distribution, n, m):
-    fig, ax = plt.subplots(figsize=(10, 6))
+  fig, ax = plt.subplots(figsize=(10, 6))
 
-    def draw_means(X_distribution, n):
+  def draw_means(X_distribution, n):
 
-        # Step 3: Generate n draws: X_1, ..., X_n
-        X_samples = X_distribution.rvs(size=n)
+    # Step 3: Generate n draws: X_1, ..., X_n
+    X_samples = X_distribution.rvs(size=n)
 
-        # Step 4: Calculate sample mean
-        return np.mean(X_samples)
-    
-    # Step 5: Loop m times
-    sample_means = [draw_means(X_distribution, n) for i in range(m)]
-    print(f'The mean of sample mean is {round(np.mean(sample_means),2)}')
-    
-    # Generate a histogram
-    ax.hist(sample_means, bins=30, alpha=0.5, density=True)
-    mu = X_distribution.mean()
-    if not np.isnan(mu):
-        ax.axvline(x=mu, ls="--", lw=3, label=fr"$\mu = {mu}$")
-        
-    ax.set_xlim(min(sample_means), max(sample_means))
-    ax.set_xlabel(r'$\bar x$')
-    ax.set_ylabel('Density')
-    ax.legend()
-    plt.show()
+    # Step 4: Calculate the sample mean
+    return np.mean(X_samples)
+   
+  # Step 5: Loop m times
+  sample_means = [draw_means(X_distribution, n) for i in range(m)]
+  print(f'The mean of sample mean is {round(np.mean(sample_means),2)}')
+   
+  # Generate a histogram
+  ax.hist(sample_means, bins=30, alpha=0.5, density=True)
+  mu = X_distribution.mean()
+  if not np.isnan(mu):
+    ax.axvline(x=mu, ls="--", lw=3, label=fr"$\mu = {mu}$")
+     
+  ax.set_xlim(min(sample_means), max(sample_means))
+  ax.set_xlabel(r'$\bar x$')
+  ax.set_ylabel('Density')
+  ax.legend()
+  plt.show()
 ```
 
 ```{code-cell} ipython3
@@ -252,39 +252,39 @@ generate_histogram(st.norm(loc=5, scale=2), n=50_000, m=1000)
 
 We can see that the distribution of $\bar X$ is clustered around $\mathbb E X$ as expected.
 
-We can increase values for `n` and `m` to see how the distribution changes by slightly changing the code to see the changes with an increasing $n$
+We can vary values for `n` to see how the distribution changes
 
 ```{code-cell} ipython3
 def generate_multiple_hist(X_distribution, ns, m, log_scale=False):
-    _, ax = plt.subplots(figsize=(10, 6))
+  _, ax = plt.subplots(figsize=(10, 6))
 
-    def draw_means(X_distribution, n):
-        X_samples = X_distribution.rvs(size=n)
-        return np.mean(X_samples)
-    
-    for n in ns:
-        sample_means = [draw_means(X_distribution, n) for i in range(m)]
-        if log_scale:
-            plt.xscale('symlog')
-        ax.hist(sample_means, bins=60, alpha=0.4, density=True, label=fr'$n = {n}$')
-        
-    mu = X_distribution.mean()
-    if not np.isnan(mu):
-        ax.axvline(x=mu, ls="--", lw=3, label=fr"$\mu = {mu}$")
-    
-    ax.set_xlim(min(sample_means), max(sample_means)) 
-    ax.set_xlabel(r'$\bar x$')
-    ax.set_ylabel('Density')
-    ax.set(title=fr'$n = {n}, m = {m}$')
-    ax.legend()
-    plt.show()
+  def draw_means(X_distribution, n):
+    X_samples = X_distribution.rvs(size=n)
+    return np.mean(X_samples)
+   
+  for n in ns:
+    sample_means = [draw_means(X_distribution, n) for i in range(m)]
+    if log_scale:
+      plt.xscale('symlog')
+    ax.hist(sample_means, bins=60, alpha=0.4, density=True, label=fr'$n = {n}$')
+     
+  mu = X_distribution.mean()
+  if not np.isnan(mu):
+    ax.axvline(x=mu, ls="--", lw=3, label=fr"$\mu = {mu}$")
+   
+  ax.set_xlim(min(sample_means), max(sample_means)) 
+  ax.set_xlabel(r'$\bar x$')
+  ax.set_ylabel('Density')
+  ax.set(title=fr'$n = {n}, m = {m}$')
+  ax.legend()
+  plt.show()
 ```
 
 ```{code-cell} ipython3
 generate_multiple_hist(st.norm(loc=5, scale=2), ns=[20_000, 50_000, 100_000], m=10_000)
 ```
 
-We see that the histogram gradually converge to $\mu$.
+We see that the histogram gradually converges to $\mu$.
 
 You can imagine the result when extrapolating this trend for $n \to \infty$.
 
@@ -300,51 +300,51 @@ We can demonstrate this using a simple simulation using a [Cauchy distribution](
 
 +++
 
-We lost the convergence we have seen before with normal distribution 
+We lost the convergence we have seen before with normal distribution
 
 ```{code-cell} ipython3
 fig, axes = plt.subplots(1, 2, figsize=(15, 6))
 
 def scattered_mean(distribution, burn_in, n, jump, ax, title, color, ylog=False):
-    
-    #Set a jump to reduce simulation complexity
-    sample_means = [np.mean(distribution.rvs(size=i)) 
-                    for i in range(burn_in, n+1, jump)]
-    
-    ax.scatter(range(burn_in, n+1, jump), sample_means, s=10, c=color)
-    
-    #Change the y-axis to log scale if necessory
-    if ylog:
-        ax.set_yscale("symlog")
-    ax.set_title(title, size=10)
-    ax.set_xlabel(r"$n$", size=12)
-    ax.set_ylabel(r"$\bar x$", size=12)
-    yabs_max = max(ax.get_ylim(), key=abs)
-    ax.set_ylim(ymin=-yabs_max, ymax=yabs_max)
-    return ax
+   
+  #Set a jump to reduce simulation complexity
+  sample_means = [np.mean(distribution.rvs(size=i)) 
+          for i in range(burn_in, n+1, jump)]
+   
+  ax.scatter(range(burn_in, n+1, jump), sample_means, s=10, c=color)
+   
+  #Change the y-axis to log scale if necessory
+  if ylog:
+    ax.set_yscale("symlog")
+  ax.set_title(title, size=10)
+  ax.set_xlabel(r"$n$", size=12)
+  ax.set_ylabel(r"$\bar x$", size=12)
+  yabs_max = max(ax.get_ylim(), key=abs)
+  ax.set_ylim(ymin=-yabs_max, ymax=yabs_max)
+  return ax
 
 scattered_mean(distribution=st.cauchy(), 
-                         burn_in=1000, 
-                         n=1_000_000, 
-                         ax=axes[0],
-                         jump=2000,
-                         title="Cauchy Distribution",
-                         color='#1f77b4',
-                         ylog=True)
+             burn_in=1000, 
+             n=1_000_000, 
+             ax=axes[0],
+             jump=2000,
+             title="Cauchy Distribution",
+             color='#1f77b4',
+             ylog=True)
 
 scattered_mean(distribution=st.norm(), 
-                         burn_in=1000, 
-                         n=1_000_000,
-                         ax=axes[1],
-                         jump=2000,
-                         title="Normal Distribution",
-                         color='#ff7f0e')
+             burn_in=1000, 
+             n=1_000_000,
+             ax=axes[1],
+             jump=2000,
+             title="Normal Distribution",
+             color='#ff7f0e')
 
 fig.suptitle('Sample Mean with Different Sample Size')
 plt.show()
 ```
 
-We can see that unlike normal distribution, Cauchy distribution does not have a convergence that LLN implies.
+We can see that unlike normal distribution, Cauchy distribution does not have the convergence that LLN implies.
 
 It is also not hard to conjecture that LLN can be broken when the IID assumption is violated.
 
@@ -367,10 +367,10 @@ $$
 We can then see that 
 
 $$
-\bar X_n := \frac{1}{n} \sum_{t=1}^n X_i  = X_1 \sim \mathcal{N}(0,1)
+\bar X_n := \frac{1}{n} \sum_{t=1}^n X_i = X_1 \sim \mathcal{N}(0,1)
 $$
 
-Therefore, the distribution of mean of X follows $\mathcal{N}(0,1)$.
+Therefore, the distribution of the mean of X follows $\mathcal{N}(0,1)$.
 
 However,
 
@@ -381,7 +381,7 @@ $$
 which violates {eq}`exp`, and thus breaks LLN.
 
 ```{note}
-Although in this case, the violation of IID breaks LLN, it is not always the case for correlated data (TODO: Link to MC Lecture)
+Although in this case, the violation of IID breaks LLN, it is not always the case for correlated data (TODO: Link to Exercise)
 ```
 
 +++
@@ -446,9 +446,9 @@ $F(x) = 1 - e^{- \lambda x}$.
 
 ```{code-cell} ipython3
 # Set parameters
-n = 250                  # Choice of n
-k = 1_000_000               # Number of draws of Y_n
-distribution = st.expon(2)  # Exponential distribution, λ = 1/2
+n = 250         # Choice of n
+k = 1_000_000        # Number of draws of Y_n
+distribution = st.expon(2) # Exponential distribution, λ = 1/2
 μ, σ = distribution.mean(), distribution.std()
 
 # Draw underlying RVs. Each row contains a draw of X_1,..,X_n
@@ -484,7 +484,7 @@ The fit to the normal density is already tight and can be further improved by in
 
 +++
 
-Repeat the simulation in (TODO: Add a reference) with [beta distribution](https://en.wikipedia.org/wiki/Beta_distribution). 
+Repeat the simulation in (TODO: Add a reference to simulation one) with [beta distribution](https://en.wikipedia.org/wiki/Beta_distribution).
 
 +++
 
@@ -492,9 +492,9 @@ Solution:
 
 ```{code-cell} ipython3
 # Set parameters
-n = 250                  # Choice of n
-k = 1_000_000               # Number of draws of Y_n
-distribution = st.beta(2,2)  # Exponential distribution, λ = 1/2
+n = 250         # Choice of n
+k = 1_000_000        # Number of draws of Y_n
+distribution = st.beta(2,2) # Exponential distribution, λ = 1/2
 μ, σ = distribution.mean(), distribution.std()
 
 # Draw underlying RVs. Each row contains a draw of X_1,..,X_n
@@ -548,5 +548,104 @@ This means that $X = \mathbf 1\{U < p\}$ has the right distribution.
 
 +++
 
+## Ex 3
+
++++
+
+We mentioned above that it is possible for LLN to hold when IID is violated.
+
+Let's investigate this claim further.
+
+Assume we have a AR(1) process as below:
+$$
+X_{t+1} = \alpha + \beta X_t + \sigma \epsilon _{t+1}
+$$
+
+$$
+X_0 \sim \mathcal{N} \left(\frac{\alpha}{1-\beta}, \frac{\sigma^2}{1-\beta^2}\right)
+$$
+
+where $\epsilon_t \sim \mathcal{N}(0,1)$
+
+1. Prove this process violated the independence assumption but not the identically distributed assumption;
+2. Show LLN holds using simulations with $\alpha = 0.8$, $\beta = 0.2$.
+
++++
+
+Solution:
+
+1. 
+
+Given X_{t+1} is dependent on X_t, this process is not independent.
+
+To check whether it is identically distributed, we need to check whether the distribution in $T={0...n}$
+
+Let's verify the expectation and variance of this AR(1) process using pen and paper first.
+
+$$
+\begin{aligned}
+\mathbb E X_{t+1} &= \alpha + \beta \mathbb E X_t \\
+&= \alpha + \beta \frac{\alpha}{1-\beta} \\
+&= \frac{\alpha}{1-\beta}
+\end{aligned}
+$$ 
+
+
+$$
+\begin{aligned}
+Var(X_t+1) &= \beta^2 Var(X_{t}) + \sigma^2\\
+&= \frac{\beta^2\sigma^2}{1-\beta^2} + \sigma^2 \\
+&= \frac{\sigma^2}{1-\beta^2}
+\end{aligned}
+$$ 
+
+We find that expectation and variance are the same $t = 0, ..., n$.
+
+Given both $X_0$ and $\epsilon _{0}$ are normally distributed and independent from each other, the weighted sum of the two normally distributed random variables is also normally distributed.
+
+This holds true for all $X_t$ and $\epsilon _{t}$ where $t = 0, ..., n$
+
+Therefore, 
+
+$$
+X_t \sim \mathcal{N} \left(\frac{\alpha}{1-\beta}, \frac{\sigma^2}{1-\beta^2}\right) \quad t = 0, ..., n
+$$ 
+
+
+We can conclude this AR(1) process violates the independence assumption but is identically distributed.
+
+2.
+
+```{code-cell} ipython3
+σ = 10
+α = 0.8
+β = 0.2
+n = 100_000
+
+fig, ax = plt.subplots(figsize=(10, 6))
+x = np.ones(n)
+x[0] = st.norm.rvs(α/(1-β), α**2/(1-β**2))
+ϵ = st.norm.rvs(size=n+1)
+means = np.ones(n)
+for t in range(n-1):
+  x[t+1] = α + β * x[t] + σ * ϵ[t+1]
+  means[t+1] = np.mean(x[:t+1])
+
+
+ax.scatter(range(100, n), means[100:n], s=10, alpha=0.5)
+
+ax.set_xlabel(r"$n$", size=12)
+ax.set_ylabel(r"$\bar x$", size=12)
+yabs_max = max(ax.get_ylim(), key=abs)
+ax.axhline(y=α/(1-β), ls="--", lw=3, label=r"$\mu = \frac{\alpha}{1-\beta}$",color = 'black')
+
+plt.legend()
+plt.show()
+```
+
 ```{solution-end}
 ```
+
++++
+
+We see the convergence of $\bar x$ around $\mu$ even when the independence assumption is violated.
