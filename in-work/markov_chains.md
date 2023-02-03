@@ -151,7 +151,7 @@ The arrow from normal growth back to normal growth tells us that there is a
 97% probability of transitioning from normal growth to normal growth (staying
 in the same state).
 
-Note that these are *conditional* probabilties --- the probability of
+Note that these are *conditional* probabilities --- the probability of
 transitioning from one state to another (or staying at the same one) conditional on the
 current state.
 
@@ -254,7 +254,7 @@ Suppose we can estimate the values $\alpha$ and $\beta$.
 Then we can address a range of questions, such as
 
 * What is the average duration of unemployment?
-* Over the long-run, what fraction of time does a worker find herself unemployed?
+* Over the long-run, what fraction of the time does a worker find herself unemployed?
 * Conditional on employment, what is the probability of becoming unemployed at least once over the next 12 months?
 
 We'll cover such applications below.
@@ -283,7 +283,7 @@ This means that, for any date $t$ and any state $y \in S$,
 = \mathbb P \{ X_{t+1}  = y \,|\, X_t, X_{t-1}, \ldots \}
 ```
 
-In other words, knowing the current state is enough to know probabilities for future states.
+In other words, knowing the current state is enough to know probabilities for the future states.
 
 In particular, the dynamics of a Markov chain are fully determined by the set of values
 
@@ -342,13 +342,13 @@ To implement this simulation procedure, we need a method for generating draws fr
 For this task, we'll use `random.draw` from [QuantEcon](http://quantecon.org/quantecon-py).
 
 To use `random.draw`, we first need to convert the probability mass function
-to a cummulative distribution
+to a cumulative distribution
 
 TODO -- link to distributions lecture
 
 ```{code-cell} ipython3
 ψ = (0.3, 0.7)           # probabilities over {0, 1}
-cdf = np.cumsum(ψ)       # convert into cummulative distribution
+cdf = np.cumsum(ψ)       # convert into cumulative distribution
 qe.random.draw(cdf, 5)   # generate 5 independent draws from ψ
 ```
 
@@ -602,7 +602,7 @@ The answer is $\psi P^{10}$, where $P$ is the stochastic matrix in
 {eq}`p_unempemp`.
 
 This is because each worker's state evolves according to $P$, so
-$\psi P^{10}$ is a marginal distibution  for a single randomly selected
+$\psi P^{10}$ is a marginal distribution  for a single randomly selected
 worker.
 
 But when the sample is large, outcomes and probabilities are roughly equal (by an application of the Law
@@ -713,7 +713,7 @@ dot.edge("rich", "rich", label="0.8")
 dot
 ```
 
-This stochastic matrix is not irreducible, since, for example, rich is not
+This stochastic matrix is not irreducible since, for example, rich is not
 accessible from poor.
 
 Let's confirm this
@@ -794,7 +794,7 @@ If $P$ is irreducible, then $P$ has exactly one stationary
 distribution $\psi^*$.
 ```
 
-For a proof, see, for example, theorem 5.2 of {cite}`haggstrom2002finite`.
+For proof, see, for example, theorem 5.2 of {cite}`haggstrom2002finite`.
 
 
 ### Example
@@ -863,7 +863,7 @@ Here
 
 TODO -- in the next line, refer to the theorem by number.
 
-The result in theorem XXX is sometimes called **ergocidity**.
+The result in theorem XXX is sometimes called **ergodicity**.
 
 The theorem tells us that the fraction of time the chain spends at state $x$
 converges to $\psi^*(x)$ as time goes to infinity.
@@ -911,7 +911,7 @@ Another example is Hamilton {cite}`Hamilton2005` dynamics {ref}`discussed above 
 
 The diagram of the Markov chain shows that it is **irreducible**.
 
-Therefore, we can see the sample path averages for each states (the fraction of time spent in each state) converges to the stationary distribution regardless of the starting state 
+Therefore, we can see the sample path averages for each state (the fraction of time spent in each state) converges to the stationary distribution regardless of the starting state 
 
 ```{code-cell} ipython3
 P = np.array([[0.971, 0.029, 0.000],
@@ -974,7 +974,7 @@ This is formally called [periodicity](https://stats.libretexts.org/Bookshelves/P
 
 We will not go into the detail of periodicity.
 
-The takeaway for this example is that ergodicity holds in periodic cycle
+The takeaway from this example is that ergodicity holds in periodic chain
 
 ```{code-cell} ipython3
 P = np.array([[0, 1],
@@ -1005,7 +1005,7 @@ In fact, it converges faster given it is a more "predictable" dynamic
 We will come back to this very soon.
 
 
-### Asymptopic Stationarity
+### Asymptotic Stationarity
 
 Sometimes the distribution $\psi_t = \psi_0 P^t$ of $X_t$ converges to the
 stationary distribution regardless of where we begin.
@@ -1014,7 +1014,7 @@ For example, we have the following result
 
 TODO -- convert to theorem environment
 
-Theorem: If there exists a an integer $m$ such that all entries of $P^m$ are
+Theorem: If there exists an integer $m$ such that all entries of $P^m$ are
 strictly positive, then $P$ has only one stationary distribution $\psi^*$ and
 
 $$
@@ -1160,7 +1160,7 @@ for i in range(n_state):
 plt.show()
 ```
 
-This shows an important fact that asymptopic stationarity is about the distribution, but ergodicity is about the sample path.
+This shows an important fact that asymptopasymptotic stationarity is about the distribution, but ergodicity is about the sample path.
 
 The proportion of time spent in a state can converge to the stationary distribution with periodic chains.
 
@@ -1367,13 +1367,12 @@ np.linalg.matrix_power(P_B, 10)[-1]
 ```{code-cell} ipython3
 N = 1000
 mc = MarkovChain(P_B)
-n_state = P_B.shape[1]
 fig, ax = plt.subplots()
-ψ_star = mc.stationary_distributions[0]
-ax.grid()
 X = mc.simulate(N)
 
 for x0 in range(8):
+
+    # Calculate the average time for each worker
     X_bar = (X == x0).cumsum() / (1 + np.arange(N, dtype=float))
     ax.plot(X_bar, label=f'$X = {x0+1} $')
     
@@ -1381,7 +1380,7 @@ ax.legend()
 plt.show()
 ```
 
-We can see that the time spent at each state quickly converge to the stationary distribution.
+We can see that the time spent at each state quickly converges to the stationary distribution.
 
 ```{solution-end}
 ```
