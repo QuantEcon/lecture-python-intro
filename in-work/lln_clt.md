@@ -158,8 +158,8 @@ $$
 \bar X_n := \frac{1}{n} \sum_{i=1}^n X_i
 $$
 
-TODO -- use a theorem environment (```{prf:theorem}...```)
 
+````{prf:theorem}
 The law of large numbers (specifically, Kolmogorov's strong law) states that, if $\mathbb E |X|$ is finite, then
 
 ```{math}
@@ -167,6 +167,7 @@ The law of large numbers (specifically, Kolmogorov's strong law) states that, if
 
 \mathbb P \left\{ \bar X_n \to \mu \text{ as } n \to \infty \right\} = 1
 ```
+````
 
 ### Comments on the Theorem
 
@@ -287,7 +288,6 @@ We see that the histogram gradually converges to $\mu$.
 
 You can imagine the result when extrapolating this trend for $n \to \infty$.
 
-+++
 
 ## Breaking the LLN
 
@@ -297,7 +297,6 @@ As indicated by {eq}`lln_as`, LLN can break when $\mathbb E |X|$ is not finite o
 
 We can demonstrate this using a simple simulation using a [Cauchy distribution](https://en.wikipedia.org/wiki/Cauchy_distribution) for which it does not have a well-defined $\mu$.
 
-+++
 
 We lost the convergence we have seen before with normal distribution
 
@@ -347,7 +346,7 @@ We can see that unlike normal distribution, Cauchy distribution does not have th
 
 It is also not hard to conjecture that LLN can be broken when the IID assumption is violated.
 
-+++
+
 
 Let's go through a very simple example where LLN fails with IID violated:
 
@@ -383,7 +382,7 @@ which violates {eq}`exp`, and thus breaks LLN.
 Although in this case, the violation of IID breaks LLN, it is not always the case for correlated data (TODO: Link to Exercise)
 ```
 
-+++
+
 
 ## CLT
 
@@ -398,9 +397,10 @@ The central limit theorem is one of the most remarkable results in all of mathem
 
 In the IID setting, it tells us the following:
 
-TODO use a theorem environment (```{prf:theorem...```)
 
-(statement_clt)=
+````{prf:theorem}
+:label: statement_clt
+
 If the sequence $X_1, \ldots, X_n$ is IID, with common mean
 $\mu$ and common variance $\sigma^2 \in (0, \infty)$, then
 
@@ -411,6 +411,7 @@ $\mu$ and common variance $\sigma^2 \in (0, \infty)$, then
 \quad \text{as} \quad
 n \to \infty
 ```
+````
 
 Here $\stackrel { d } {\to} N(0, \sigma^2)$ indicates [convergence in distribution](https://en.wikipedia.org/wiki/Convergence_of_random_variables#Convergence_in_distribution) to a centered (i.e, zero mean) normal with standard deviation $\sigma$.
 
@@ -422,8 +423,6 @@ Here $\stackrel { d } {\to} N(0, \sigma^2)$ indicates [convergence in distributi
 The striking implication of the CLT is that for **any** distribution with
 finite second moment, the simple operation of adding independent
 copies **always** leads to a Gaussian curve.
-
-+++ {"tags": []}
 
 ### Simulation 1
 
@@ -473,21 +472,21 @@ plt.show()
 
 The fit to the normal density is already tight and can be further improved by increasing `n`.
 
-+++
 
 ## Exercises
 
-+++
 
-## Ex 1
 
-+++
+```{exercise} 
+:label: lln_ex1
 
 Repeat the simulation in (TODO: Add a reference to simulation one) with [beta distribution](https://en.wikipedia.org/wiki/Beta_distribution).
 
-+++
+```
 
-Solution:
+```{solution-start} 
+:class: dropdown
+```
 
 ```{code-cell} ipython3
 # Set parameters
@@ -515,9 +514,11 @@ ax.legend()
 plt.show()
 ```
 
-## Ex 2
+```{solution-end}
+```
 
-+++
+```{exercise} 
+:label: lln_ex2
 
 Although NumPy doesn't give us a `bernoulli` function, we can generate a draw of $X$ using NumPy via
 
@@ -529,11 +530,11 @@ print(X)
 
 Explain why this provides a random variable $X$ with the right distribution.
 
-+++
+```
 
-Solution:
-
-+++
+```{solution-start} lln_ex2
+:class: dropdown
+```
 
 We can write $X$ as $X = \mathbf 1\{U < p\}$ where $\mathbf 1$ is the [indicator function](https://en.wikipedia.org/wiki/Indicator_function) (i.e., 1 if the statement is true and zero otherwise).
 
@@ -545,11 +546,13 @@ $$
 
 This means that $X = \mathbf 1\{U < p\}$ has the right distribution.
 
-+++
+```{solution-end}
+```
 
-## Ex 3
 
-+++
+
+```{exercise} 
+:label: lln_ex3
 
 We mentioned above that it is possible for LLN to hold when IID is violated.
 
@@ -569,9 +572,11 @@ where $\epsilon_t \sim \mathcal{N}(0,1)$
 1. Prove this process violated the independence assumption but not the identically distributed assumption;
 2. Show LLN holds using simulations with $\alpha = 0.8$, $\beta = 0.2$.
 
-+++
+```
 
-Solution:
+```{solution-start} lln_ex3
+:class: dropdown
+```
 
 1. 
 
@@ -643,9 +648,8 @@ plt.legend()
 plt.show()
 ```
 
+We see the convergence of $\bar x$ around $\mu$ even when the independence assumption is violated.
+
+
 ```{solution-end}
 ```
-
-+++
-
-We see the convergence of $\bar x$ around $\mu$ even when the independence assumption is violated.
