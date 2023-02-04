@@ -1097,6 +1097,7 @@ mc = qe.MarkovChain(P)
 
 # Draw the plot
 fig, axes = plt.subplots(nrows=1, ncols=n_state)
+plt.subplots_adjust(wspace=0.35)
 x0s = np.ones((n, n_state))
 for i in range(n):
     draws = np.random.randint(1, 10_000_000, size=n_state)
@@ -1154,7 +1155,6 @@ for x0 in x0s:
         x = x @ P
         X[t] = x
     for i in range(n_state):
-        # Set a burnin period for 20 rounds to show the trend
         axes[i].plot(range(20, n), X[20:,i], alpha=0.3)
     
 for i in range(n_state):
@@ -1523,9 +1523,10 @@ add to .bib
 ```{code-cell} ipython3
 def is_irreducible(P):
     k = P.shape[0]
+    result = np.zeros((k, k))
     for i in range(k):
-        P += np.linalg.matrix_power(P, i)
-    return np.all(P > 0)
+        result += np.linalg.matrix_power(P, i)
+    return np.all(result > 0)
 ```
 
 ```{code-cell} ipython3
