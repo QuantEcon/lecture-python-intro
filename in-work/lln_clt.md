@@ -239,8 +239,8 @@ def generate_histogram(X_distribution, n, m):
     ax.axvline(x=mu, ls="--", lw=3, label=fr"$\mu = {mu}$")
      
   ax.set_xlim(min(sample_means), max(sample_means))
-  ax.set_xlabel(r'$\bar x$')
-  ax.set_ylabel('Density')
+  ax.set_xlabel(r'$\bar x$', size=12)
+  ax.set_ylabel('density', size=12)
   ax.legend()
   plt.show()
 ```
@@ -274,8 +274,8 @@ def generate_multiple_hist(X_distribution, ns, m, log_scale=False):
         ax.axvline(x=mu, ls="--", lw=3, label=fr"$\mu = {mu}$")
 
     ax.set_xlim(min(sample_means), max(sample_means)) 
-    ax.set_xlabel(r'$\bar x$')
-    ax.set_ylabel('Density')
+    ax.set_xlabel(r'$\bar x$', size=12)
+    ax.set_ylabel('density', size=12)
     ax.legend()
     plt.show()
 ```
@@ -463,6 +463,9 @@ ax.set_xlim(xmin, xmax)
 ax.hist(Y, bins=60, alpha=0.4, density=True)
 xgrid = np.linspace(xmin, xmax, 200)
 ax.plot(xgrid, st.norm.pdf(xgrid, scale=σ), 'k-', lw=2, label='$N(0, \sigma^2)$')
+ax.set_xlabel(r"$Y$", size=12)
+ax.set_ylabel(r"$density$", size=12)
+
 ax.legend()
 
 plt.show()
@@ -507,6 +510,8 @@ fig, ax = plt.subplots(figsize=(10, 6))
 xmin, xmax = -3 * σ, 3 * σ
 ax.set_xlim(xmin, xmax)
 ax.hist(Y, bins=60, alpha=0.4, density=True)
+ax.set_xlabel(r"$Y$", size=12)
+ax.set_ylabel(r"$density$", size=12)
 xgrid = np.linspace(xmin, xmax, 200)
 ax.plot(xgrid, st.norm.pdf(xgrid, scale=σ), 'k-', lw=2, label='$N(0, \sigma^2)$')
 ax.legend()
