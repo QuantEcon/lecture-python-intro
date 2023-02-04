@@ -31,8 +31,7 @@ For example,
 * inflation next year depends on inflation this year
 * unemployment next month depends on unemployment this month
 
-In fact Markov chains are one of the workhorse models of economics and
-finance.
+Markov chains are one of the workhorse models of economics and finance.
 
 The theory of Markov chains is beautiful and insightful, which is another
 excellent reason to study them.
@@ -45,12 +44,10 @@ In this introductory lecture, we will
 Let's start with some standard imports:
 
 ```{code-cell} ipython3
-%matplotlib inline
 import matplotlib.pyplot as plt
-plt.rcParams["figure.figsize"] = (11, 5)  #set default figure size
+plt.rcParams["figure.figsize"] = (11, 5)  # set default figure size
 import quantecon as qe
 import numpy as np
-from mpl_toolkits.mplot3d import Axes3D
 ```
 
 ## Definitions and Examples
@@ -79,20 +76,23 @@ If $P$ is a stochastic matrix, then so is the $k$-th power $P^k$ for all $k \in 
 
 (To create the $k$-th power of $P$, multiply $P$ with itself $k$ times.)
 
-The claim above is not too hard to check.
+The claim above is not hard to check.
 
-For example, suppose that $P$ is stochastic and $P^k$ is stochastic for some
-integer $k$ and consider $P^{k+1} = P P^k$.
+For example, suppose that $P$ is stochastic and, moreover, that $P^k$ is
+stochastic for some integer $k$.
 
-We claim that $P^{k+1}$ is also stochastic.
+We will prove that $P^{k+1} = P P^k$ is also stochastic.
+
+(We are doing proof by induction --- we assume the claim is true at $k$ and
+now prove it is true at $k+1$.)
 
 To see this, observe that, since $P^k$ is stochastic and the product of
 nonnegative matrices is nonnegative, $P^{k+1} = P P^k$ is nonnegative.
 
-Also, if $1$ is a column vector of ones, then, since $P^k$ is stochastic we
-have $P^k 1 = 1$.
+Also, if $\mathbf 1$ is a column vector of ones, then, since $P^k$ is stochastic we
+have $P^k \mathbf 1 = \mathbf 1$ (rows sum to one).
 
-Therefore $P^{k+1} 1 = P P^k 1 = P 1 = 1$
+Therefore $P^{k+1} \mathbf 1 = P P^k \mathbf 1 = P \mathbf 1 = \mathbf 1$
 
 The proof is done.
 
@@ -266,9 +266,7 @@ We'll cover such applications below.
 So far we've given examples of Markov chains but now let's define them more
 carefully.
 
-
-
-To begin, let $S$ be a finite set with $n$ elements $\{x_1, \ldots, x_n\}$.
+To begin, let $S$ be a finite set $\{x_1, \ldots, x_n\}$ with $n$ elements.
 
 The set $S$ is called the **state space** and $x_1, \ldots, x_n$ are the **state values**.
 
@@ -314,6 +312,9 @@ chain $\{X_t\}$ as follows:
 
 By construction, the resulting process satisfies {eq}`mpp`.
 
+
+
+
 ## Simulation
 
 ```{index} single: Markov Chains; Simulation
@@ -326,6 +327,8 @@ us.
 
 In these exercises, we'll take the state space to be $S = 0,\ldots, n-1$.
 
+(We start at $0$ because Python arrays are indexed from $0$.)
+
 +++
 
 ### Rolling Our Own
@@ -336,6 +339,8 @@ The Markov chain is then constructed as follows:
 
 1. At time $t=0$, draw a realization of  $X_0$  from $\psi$.
 1. At each subsequent time $t$, draw a realization of the new state $X_{t+1}$ from $P(X_t, \cdot)$.
+
+(That is, draw from row $X_t$ of $P$.)
 
 To implement this simulation procedure, we need a method for generating draws from a discrete distribution.
 
