@@ -9,10 +9,9 @@ kernelspec:
   name: python3
 ---
 
-# Python Programming for Economics and Finance
+# Computational Economics and Finance for Undergraduates
 
-This website presents a set of lectures on Python programming for economics and finance, designed and written by
-[Thomas J. Sargent](http://www.tomsargent.com/) and [John Stachurski](http://johnstachurski.net/). This is the first text in the series, which focuses on programming in Python.
+This website presents a set of lectures for undergraduates focusing on computational economics and finance, designed and written by [Thomas J. Sargent](http://www.tomsargent.com/) and [John Stachurski](http://johnstachurski.net/).x
 
 For an overview of the series, see [this page](https://quantecon.org/python-lectures/)
 
