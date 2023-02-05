@@ -24,12 +24,7 @@ The lecture is based around simulations that show the LLN and CLT in action.
 
 We also demonstrate how the LLN and CLT break down when the assumptions they are based on do not hold.
 
-In addition, we examine several useful extensions of the classical theorems, such as
-
-* The delta method, for smooth functions of random variables, and
-* the multivariate case.
-
-Some of these extensions are presented as exercises.
+This lecture will focus on the univariable case to provide the intuitions for proofs and the generalization to multivariate case [later](https://python.quantecon.org/lln_clt.html#the-multivariate-case).
 
 We'll need the following imports:
 
@@ -41,7 +36,6 @@ import scipy.stats as st
 ```
 
 ## Relationships
-
 
 The LLN gives conditions under which sample moments converge to population moments as sample size increases.
 
@@ -113,7 +107,7 @@ $$
 
 which, in this case, is the fraction of draws that equal one (the number of heads divided by $n$).
 
-Thus, the LLN tells us that
+Thus, the LLN tells us that for the Bernoulli trials above
 
 ```{math}
 :label: exp
@@ -122,9 +116,7 @@ Thus, the LLN tells us that
 \qquad (n \to \infty)
 ```
 
-This is exactly what we illustrated in the code above.
-
-+++ {"jp-MarkdownHeadingCollapsed": true, "tags": []}
+This is exactly what we illustrated in the code.
 
 (lln_ksl)=
 ### Statement of the LLN
@@ -284,7 +276,7 @@ def generate_multiple_hist(X_distribution, ns, m, log_scale=False):
 generate_multiple_hist(st.norm(loc=5, scale=2), ns=[20_000, 50_000, 100_000], m=10_000)
 ```
 
-We see that the histogram gradually converges to $\mu$.
+The histogram gradually converges to $\mu$ as the sample size n increases.
 
 You can imagine the result when extrapolating this trend for $n \to \infty$.
 
@@ -311,13 +303,13 @@ def scattered_mean(distribution, burn_in, n, jump, ax, title, color, ylog=False)
    
     ax.scatter(range(burn_in, n+1, jump), sample_means, s=10, c=color)
    
-    #Change the y-axis to log scale if necessory
+    #Change the y-axis to log scale if necessary
     if ylog:
         ax.set_yscale("symlog")
     ax.set_title(title, size=10)
     ax.set_xlabel(r"$n$", size=12)
     ax.set_ylabel(r"$\bar x$", size=12)
-    yabs_max = max(ax.get_ylim(), key=abs)
+    yabs_max = max(ax.get_ylim())
     ax.set_ylim(ymin=-yabs_max, ymax=yabs_max)
     return ax
 
@@ -342,47 +334,47 @@ fig.suptitle('Sample Mean with Different Sample Sizes')
 plt.show()
 ```
 
-We can see that unlike normal distribution, Cauchy distribution does not have the convergence that LLN implies.
+We find that unlike normal distribution, Cauchy distribution does not have the convergence that LLN implies.
 
-It is also not hard to conjecture that LLN can be broken when the IID assumption is violated.
-
-
+It is also not hard to conjecture that LLN can be broken when the independence assumption is violated.
 
 Let's go through a very simple example where LLN fails with IID violated:
 
 Assume
 
 $$
-X_1 \sim \mathcal{N}(0,1)
+X_0 \sim \mathcal{N}(0,1)
 $$
 
 In addition, assume
 
 $$
-X_t = X_{t-1} \quad \text{for} \quad t = 2, ..., n
+X_t = X_{t-1} \quad \text{for} \quad t = 1, ..., n
 $$
 
 We can then see that 
 
 $$
-\bar X_n := \frac{1}{n} \sum_{t=1}^n X_i = X_1 \sim \mathcal{N}(0,1)
+\bar X_n := \frac{1}{n} \sum_{t=1}^n X_i = X_0 \sim \mathcal{N}(0,1)
 $$
 
-Therefore, the distribution of the mean of X follows $\mathcal{N}(0,1)$.
+Therefore, the distribution of the mean of $X$ follows $\mathcal{N}(0,1)$.
 
 However,
 
 $$
-\mathbb E X_t = \mathbb E X_1 = 0
+\mathbb E X_t = \mathbb E X_0 = 0
 $$
 
-which violates {eq}`exp`, and thus breaks LLN.
+Since the distribution of $\bar X$ follows a standard normal distribution, but the expectation $\mathbb E X_t$ is a single number.
+
+This violates {eq}`exp`, and thus breaks LLN.
 
 ```{note}
-Although in this case, the violation of IID breaks LLN, it is not always the case for correlated data (TODO: Link to Exercise)
+Although in this case, the violation of IID breaks LLN, it is not always the case for correlated data. 
+
+We will show an example in the [exercise](lln_ex3).
 ```
-
-
 
 ## CLT
 
@@ -413,7 +405,7 @@ n \to \infty
 ```
 ````
 
-Here $\stackrel { d } {\to} N(0, \sigma^2)$ indicates [convergence in distribution](https://en.wikipedia.org/wiki/Convergence_of_random_variables#Convergence_in_distribution) to a centered (i.e, zero mean) normal with standard deviation $\sigma$.
+Here $\stackrel { d } {\to} N(0, \sigma^2)$ indicates [convergence in distribution](https://en.wikipedia.org/wiki/Convergence_of_random_variables#Convergence_in_distribution) to a centered (i.e., zero mean) normal with standard deviation $\sigma$.
 
 ### Intuition
 
@@ -421,7 +413,7 @@ Here $\stackrel { d } {\to} N(0, \sigma^2)$ indicates [convergence in distributi
 ```
 
 The striking implication of the CLT is that for **any** distribution with
-finite second moment, the simple operation of adding independent
+finite [second moment](https://en.wikipedia.org/wiki/Moment_(mathematics)), the simple operation of adding independent
 copies **always** leads to a Gaussian curve.
 
 ### Simulation 1
@@ -441,7 +433,6 @@ $F(x) = 1 - e^{- \lambda x}$.
 (Please experiment with other choices of $F$, but remember that, to conform with the conditions of the CLT, the distribution must have a finite second moment.)
 
 (sim_one)=
-
 ```{code-cell} ipython3
 # Set parameters
 n = 250         # Choice of n
@@ -483,8 +474,9 @@ The fit to the normal density is already tight and can be further improved by in
 ```{exercise} 
 :label: lln_ex1
 
-Repeat the simulation in (TODO: Add a reference to simulation one) with [beta distribution](https://en.wikipedia.org/wiki/Beta_distribution).
+Repeat the simulation in [simulation 1](sim_one) with [beta distribution](https://en.wikipedia.org/wiki/Beta_distribution).
 
+You can choose any $\alpha > 0$ and $\beta > 0$.
 ```
 
 ```{solution-start} 
@@ -495,7 +487,7 @@ Repeat the simulation in (TODO: Add a reference to simulation one) with [beta di
 # Set parameters
 n = 250         # Choice of n
 k = 1_000_000        # Number of draws of Y_n
-distribution = st.beta(2,2) # Exponential distribution, λ = 1/2
+distribution = st.beta(2,2) # We chose Beta(2, 2) as an example
 μ, σ = distribution.mean(), distribution.std()
 
 # Draw underlying RVs. Each row contains a draw of X_1,..,X_n
@@ -559,7 +551,7 @@ This means that $X = \mathbf 1\{U < p\}$ has the right distribution.
 ```{exercise} 
 :label: lln_ex3
 
-We mentioned above that it is possible for LLN to hold when IID is violated.
+We mentioned above that LLN can still hold sometimes when IID is violated.
 
 Let's investigate this claim further.
 
@@ -583,9 +575,9 @@ where $\epsilon_t \sim \mathcal{N}(0,1)$
 :class: dropdown
 ```
 
-1. 
+**Q1 Solution**
 
-Given X_{t+1} is dependent on X_t, this process is not independent.
+Given $X_{t+1}$ is dependent on the value of $X_t$, this process is not independent.
 
 To check whether it is identically distributed, we need to check whether the distribution in $T={0...n}$
 
@@ -623,7 +615,7 @@ $$
 
 We can conclude this AR(1) process violates the independence assumption but is identically distributed.
 
-2.
+**Q2 Solution**
 
 ```{code-cell} ipython3
 σ = 10
