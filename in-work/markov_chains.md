@@ -973,9 +973,9 @@ As you might notice, unlike other Markov chain we have seen before, it has a per
 
 This is formally called [periodicity](https://stats.libretexts.org/Bookshelves/Probability_Theory/Probability_Mathematical_Statistics_and_Stochastic_Processes_(Siegrist)/16:_Markov_Processes/16.05:_Periodicity_of_Discrete-Time_Chains#:~:text=A%20state%20in%20a%20discrete,limiting%20behavior%20of%20the%20chain.). 
 
-We will not go into the detail of periodicity.
+We will not go into the details of periodicity.
 
-The takeaway from this example is that ergodicity can hold in the case of periodic chain
+The takeaway from this example is that ergodicity can hold for periodic chains
 
 ```{code-cell} ipython3
 P = np.array([[0, 1],
@@ -1166,7 +1166,7 @@ for i in range(n_state):
 plt.show()
 ```
 
-This shows an important fact that asymptotic stationarity is about the distribution, but ergodicity is about the sample path.
+This example helps to emphasize the fact that asymptotic stationarity is about the distribution, while ergodicity is about the sample path.
 
 The proportion of time spent in a state can converge to the stationary distribution with periodic chains.
 
@@ -1331,7 +1331,7 @@ codes_B =  ( '1','2','3','4','5','6','7','8')
 
 In this exercise, 
 
-1. show this process is asymptotic stationary and calculate the stationary distribution using simulations.
+1. show this process is asymptotically stationary and calculate the stationary distribution using simulations.
 
 1. use simulation to show ergodicity.
 
@@ -1361,7 +1361,7 @@ codes_B =  ( '1','2','3','4','5','6','7','8')
 np.linalg.matrix_power(P_B, 10)
 ```
 
-We find rows transition matrix will converge to the stationary distribution 
+We find rows transition matrix converge to the stationary distribution 
 
 ```{code-cell} ipython3
 mc = qe.MarkovChain(P_B)
@@ -1484,15 +1484,15 @@ plt.show()
 ```{exercise} 
 :label: fm_ex3
 
-In `quantecon` library, reducibility is tested by checking whether the chain forms a [strongly connected component](https://networkx.org/documentation/stable/reference/algorithms/generated/networkx.algorithms.components.is_strongly_connected.html).
+In `quantecon` library, irreducibility is tested by checking whether the chain forms a [strongly connected component](https://networkx.org/documentation/stable/reference/algorithms/generated/networkx.algorithms.components.is_strongly_connected.html).
 
-However, another way to verify the irreducibility is by checking whether $A$ satisfies the following statement:
+However, another way to verify irreducibility is by checking whether $A$ satisfies the following statement:
 
 Assume A is an $n \times n$ $A$ is irreducible if and only if $\sum_{k=0}^{n-1}A^k$ is a positive matrix.
 
 (see more at \cite{zhao_power_2012} and [here](https://math.stackexchange.com/questions/3336616/how-to-prove-this-matrix-is-a-irreducible-matrix))
 
-Based on this claim, write a function to test reducibility.
+Based on this claim, write a function to test irreducibility.
 
 ```
 
@@ -1522,9 +1522,9 @@ add to .bib
 
 ```{code-cell} ipython3
 def is_irreducible(P):
-    k = P.shape[0]
-    result = np.zeros((k, k))
-    for i in range(k):
+    n = P.shape[0]
+    result = np.zeros((n, n))
+    for i in range(n):
         result += np.linalg.matrix_power(P, i)
     return np.all(result > 0)
 ```
