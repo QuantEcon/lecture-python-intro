@@ -50,7 +50,7 @@ that
 
 $$
     F(\lambda K, \lambda L) = \lambda F(K, L)
-    \quad \text{for all } \lambda \geq 0.
+    \quad \text{for all } \lambda \geq 0
 $$
 
 Production functions with this property include
@@ -72,7 +72,7 @@ becomes $1-\delta$ units tomorrow.
 Thus,
 
 $$
-    K_{t+1} = s F(K_t, L_t) + (1 - \delta) K_t.
+    K_{t+1} = s F(K_t, L_t) + (1 - \delta) K_t
 $$
 
 
@@ -83,7 +83,7 @@ Setting $k_t := K_t / L$ and using homogeneity of degree one now yields
 $$
     k_{t+1}
     = s \frac{F(K_t, L)}{L} + (1 - \delta) k_t
-    = s F(k_t, 1) + (1 - \delta) k_t.
+    = s F(k_t, 1) + (1 - \delta) k_t
 $$
 
 
@@ -92,7 +92,7 @@ With  $f(k) := F(k, 1)$, the final expression for capital dynamics is
 ```{math}
 :label: solow
     k_{t+1} = g(k_t)
-    \text{ where } g(k) := s f(k) + (1 - \delta) k.
+    \text{ where } g(k) := s f(k) + (1 - \delta) k
 ```
 
 Our aim is to learn about the evolution of $k_t$ over time,
@@ -113,7 +113,6 @@ $\alpha=0.3$, $s=0.3$ and $\delta=0.4$.
 The function $g$ from {eq}`solow` is then plotted, along with the 45
 degree line.
 
-+++
 
 Let's define the constants.
 
@@ -194,7 +193,7 @@ It solves $k = s Ak^{\alpha} + (1-\delta)k$ and hence is given by
 
 ```{math}
 :label: kstarss
-    k^* := \left( \frac{s A}{\delta} \right)^{1/(1 - \alpha)}.
+    k^* := \left( \frac{s A}{\delta} \right)^{1/(1 - \alpha)}
 ```
 If initial capital is below $k^*$, then capital increases over time.
 
@@ -280,7 +279,7 @@ A simple rearrangement gives the rate of change per unit of time:
 $$
     \Delta k_t = s f(k_t) - \delta k_t
     \quad \text{where} \quad
-    \Delta k_t := k_{t+1}  - k_t.
+    \Delta k_t := k_{t+1}  - k_t
 $$
 
 Taking the time step to zero gives the continuous time limit
@@ -289,7 +288,7 @@ Taking the time step to zero gives the continuous time limit
 :label: solowc
     k'_t = s f(k_t) - \delta k_t
     \qquad \text{with} \qquad
-    k'_t := \frac{d}{dt} k_t.
+    k'_t := \frac{d}{dt} k_t
 ```
 
 Our aim is to learn about the evolution of $k_t$ over time,
@@ -386,7 +385,7 @@ linear differential equation
 
 ```{math}
 :label: xsolow
-    x'_t = (1-\alpha) (sA - \delta x_t).
+    x'_t = (1-\alpha) (sA - \delta x_t)
 ```
 
 This equation has the exact solution
@@ -397,7 +396,7 @@ $$
         k_0^{1-\alpha} - \frac{sA}{\delta}
       \right)
       \mathrm{e}^{-\delta (1-\alpha) t} +
-    \frac{sA}{\delta}.
+    \frac{sA}{\delta}
 $$
 
 (You can confirm that this function $x_t$ satisfies {eq}`xsolow` by
@@ -415,7 +414,7 @@ Converting back to $k_t$ yields
       \right)
       \mathrm{e}^{-\delta (1-\alpha) t} +
     \frac{sA}{\delta}
-    \right]^{1/(1-\alpha)}.
+    \right]^{1/(1-\alpha)}
 ```
 
 Since $\delta > 0$ and $\alpha \in (0, 1)$, we see immediately that $k_t \to
@@ -442,7 +441,7 @@ Also, find the approximate value of $s$ that maximizes the $C^*(s)$ and show it 
 :class: dropdown
 ```
 
-Steady state consumption at savings rate $s$ is given by 
+Steady state consumption at savings rate $s$ is given by
 
 
 $$
@@ -520,7 +519,7 @@ Dynamics are now
 
 ```{math}
 :label: solowran
-    k_{t+1} = s A_{t+1} f(k_t) + (1 - \delta) k_t.
+    k_{t+1} = s A_{t+1} f(k_t) + (1 - \delta) k_t
 ```
 
 We suppose $f$ is Cobb--Douglas and $(A_t)$ is IID and lognormal.
