@@ -43,7 +43,7 @@ with careful definitions.
 
 In this lecture we discuss measures of inequality used in economic research.
 
-For each of these measures we will look both from simulated and real data.
+For each of these measures we will look at both simulated and real data.
 
 +++
 
@@ -168,7 +168,7 @@ for var in varlist:
         y = df[df['year'] == year][var].repeat(counts)
         y = np.asarray(y)
         
-        # shuffle the sequence, otherwise the lorenz curve will look like weird
+        # shuffle the sequence, otherwise the lorenz curve will look weird
         rd.shuffle(y)    
                
         # calculate and store Lorenz curve data
@@ -187,7 +187,7 @@ l_vals_nw, l_vals_ti, l_vals_li = L_vals
 
 +++
 
-Plot lorenz curves for net wealth, total income and labor income of US in 2016.
+Plot Lorenz curves for net wealth, total income and labor income of US in 2016.
 
 ```{code-cell} ipython3
 ---
@@ -291,7 +291,7 @@ plt.show()
 
 +++
 
-The following code compute the Gini coefficients for the
+The following code computes the Gini coefficients for the
 collection of lognormal distributions associated with the random variables
 $w_\sigma = \exp(\mu + \sigma Z)$, where $Z \sim N(0, 1)$ and $\sigma$ varies
 over a grid of $5$ between $0.2$ and $4$.
@@ -429,7 +429,7 @@ plt.show()
 
 Another popular measure of inequality is the top shares.
 
-Measuring specific shares are less complex than the Lorenz curve or the Gini coefficient.
+Measuring specific shares is less complex than the Lorenz curve or the Gini coefficient.
 
 As before, suppose that the sample $w_1, \ldots, w_n$ has been sorted from smallest to largest
 
