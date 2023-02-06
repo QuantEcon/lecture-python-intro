@@ -569,3 +569,6 @@ def ts_plot_price_blae(model, p0, p1, alphas, ts_length=15):
 m = Market()
 ts_plot_price_blae(m, 1, 2.5, [0.1, 0.3, 0.5, 0.8], 20)
 ```
+
+```{solution-end}
+```
