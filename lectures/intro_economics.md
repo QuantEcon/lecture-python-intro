@@ -9,20 +9,22 @@ kernelspec:
   name: python3
 ---
 
-# {index}`Introduction to Economics <single: Introduction to Economics>`
+# Introduction to Economics
+
+```{index} single: Introduction to Economics
+```
 
 ```{contents} Contents
 :depth: 2
 ```
 
-### World Bank Data - GDP Per Capita (Current US$)
+## World Bank Data - GDP Per Capita (Current US$)
 
 
 GDP per capita is gross domestic product divided by midyear population. GDP is the sum of gross value added by all resident producers in the economy plus any product taxes and minus any subsidies not included in the value of the products. It is calculated without making deductions for depreciation of fabricated assets or for depletion and degradation of natural resources. Data are in current U.S. dollars.
 
 ```{code-cell} ipython3
 import pandas as pd
-import pandas_datareader as pdr
 import os
 import matplotlib as mpl
 import matplotlib.pyplot as plt
@@ -33,7 +35,7 @@ import numpy as np
 wbi = pd.read_csv("datasets/GDP_per_capita_world_bank.csv")
 ```
 
-### Histogram comparison between 1960, 1990, 2020
+## Histogram comparison between 1960, 1990, 2020
 
 ```{code-cell} ipython3
 def get_log_hist(data, years):
@@ -50,7 +52,7 @@ wbiall = wbi.drop(['Country Name' , 'Indicator Name', 'Indicator Code'], axis=1)
 get_log_hist(wbiall, ['1960', '1990', '2020'])
 ```
 
-### Comparison of GDP between different Income Groups
+## Comparison of GDP between different Income Groups
 
 Countries taken into account
 
@@ -76,7 +78,7 @@ Countries taken into account
 - Afghanistan
 
 
-#### Plot for all countries
+### Plot for all countries
 
 ```{code-cell} ipython3
 # USA, Canada, Australia, Japan, China, Brazil, Fiji, Jamaica, India, Pakistan, Bangladesh, Vietnam, Congo, Uganda, Yemen, Afghanistan
@@ -98,7 +100,7 @@ wbi_country_filtered = filter_country_list_data(wbi, country_list)
 wbi_country_filtered.plot()
 ```
 
-#### Plot for Upper middle and lower middle income groups
+### Plot for Upper middle and lower middle income groups
 
 ```{code-cell} ipython3
 # China, Pakistan (Upper middle income and lower middle income)
@@ -107,7 +109,7 @@ wbi_filtered_umi_lmi = filter_country_list_data(wbi, country_list_umi_lmi)
 wbi_filtered_umi_lmi.plot()
 ```
 
-#### Plot for lower middle income
+### Plot for lower middle income
 
 ```{code-cell} ipython3
 # Vietnam, Pakistan (Lower middle income)
@@ -116,7 +118,7 @@ wbi_filtered_lmi = filter_country_list_data(wbi, country_list_lmi)
 wbi_filtered_lmi.plot()
 ```
 
-#### Plot for lower middle income and low income
+### Plot for lower middle income and low income
 
 ```{code-cell} ipython3
 # Pakistan, Congo (Lower middle income, low income)
