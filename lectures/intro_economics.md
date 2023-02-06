@@ -56,22 +56,25 @@ get_log_hist(wbiall, ['1960', '1990', '2020'])
 
 Countries taken into account
 
-#### High income
+**High income** 
 - USA
 - Canada
 - Australia
 - Japan
-#### Upper middle income
+
+**Upper middle income**
 - China
 - Brazil
 - Fiji
 - Jamaica
-#### Lower middle income
+
+**Lower middle income**
 - India
 - Pakistan
 - Bangladesh
 - Vietnam
-#### Low income
+
+**Low income**
 - Congo
 - Uganda
 - Yemen
