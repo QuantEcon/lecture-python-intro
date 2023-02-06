@@ -918,7 +918,7 @@ for i in range(n_state):
     axes[i].grid()
     axes[i].set_ylim(ψ_star[i]-0.2, ψ_star[i]+0.2)
     axes[i].axhline(ψ_star[i], linestyle='dashed', lw=2, color = 'black', 
-                    label = fr'$\psi(X={i})^*$')
+                    label = fr'$\psi^*(X={i})$')
     axes[i].set_xlabel('t')
     axes[i].set_ylabel(fr'average time spent at X={i}')
 
@@ -982,7 +982,7 @@ for i in range(n_state):
     axes[i].grid()
     axes[i].set_ylim(0.45, 0.55)
     axes[i].axhline(ψ_star[i], linestyle='dashed', lw=2, color = 'black', 
-                    label = fr'$\psi(X={i})^*$')
+                    label = fr'$\psi^*(X={i})$')
     axes[i].set_xlabel('t')
     axes[i].set_ylabel(fr'average time spent at X={i}')
 
@@ -1110,7 +1110,7 @@ for x0 in x0s:
     
 for i in range(n_state):
     axes[i].axhline(ψ_star[i], linestyle='dashed', lw=2, color = 'black', 
-                    label = fr'$\psi(X={i})^*$')
+                    label = fr'$\psi^*(X={i})$')
     axes[i].set_xlabel('t')
     axes[i].set_ylabel(fr'$\psi(X={i})$')
     axes[i].legend()
@@ -1149,7 +1149,7 @@ for x0 in x0s:
         axes[i].plot(range(20, n), X[20:,i], alpha=0.3)
     
 for i in range(n_state):
-    axes[i].axhline(ψ_star[i], linestyle='dashed', lw=2, color = 'black', label = fr'$\psi (X={i})^*$')
+    axes[i].axhline(ψ_star[i], linestyle='dashed', lw=2, color = 'black', label = fr'$\psi^* (X={i})$')
     axes[i].set_xlabel('t')
     axes[i].set_ylabel(fr'$\psi(X={i})$')
     axes[i].legend()
@@ -1350,7 +1350,7 @@ for x0 in range(8):
     X_bar = (X == x0).cumsum() / (1 + np.arange(N, dtype=float))
     ax.plot(X_bar - ψ_star[x0], label=f'$X = {x0+1} $')
     ax.set_xlabel('t')
-    ax.set_ylabel(fr'average time spent in a state - $\psi(X=x)^*$')
+    ax.set_ylabel(fr'average time spent in a state $- \psi^* (X=x)$')
 
 ax.legend()
 plt.show()
