@@ -3,14 +3,13 @@ jupytext:
   text_representation:
     extension: .md
     format_name: myst
-    format_version: 0.13
-    jupytext_version: 1.14.1
 kernelspec:
-  display_name: Python 3 (ipykernel)
+  display_name: Python 3
   language: python
   name: python3
 ---
 
+(solow)=
 # The Solow-Swan Growth Model
 
 In this lecture we review a famous model due
@@ -51,7 +50,7 @@ that
 
 $$
     F(\lambda K, \lambda L) = \lambda F(K, L)
-    \quad \text{for all } \lambda \geq 0.
+    \quad \text{for all } \lambda \geq 0
 $$
 
 Production functions with this property include
@@ -73,7 +72,7 @@ becomes $1-\delta$ units tomorrow.
 Thus,
 
 $$
-    K_{t+1} = s F(K_t, L_t) + (1 - \delta) K_t.
+    K_{t+1} = s F(K_t, L_t) + (1 - \delta) K_t
 $$
 
 
@@ -84,7 +83,7 @@ Setting $k_t := K_t / L$ and using homogeneity of degree one now yields
 $$
     k_{t+1}
     = s \frac{F(K_t, L)}{L} + (1 - \delta) k_t
-    = s F(k_t, 1) + (1 - \delta) k_t.
+    = s F(k_t, 1) + (1 - \delta) k_t
 $$
 
 
@@ -93,7 +92,7 @@ With  $f(k) := F(k, 1)$, the final expression for capital dynamics is
 ```{math}
 :label: solow
     k_{t+1} = g(k_t)
-    \text{ where } g(k) := s f(k) + (1 - \delta) k.
+    \text{ where } g(k) := s f(k) + (1 - \delta) k
 ```
 
 Our aim is to learn about the evolution of $k_t$ over time,
@@ -114,7 +113,6 @@ $\alpha=0.3$, $s=0.3$ and $\delta=0.4$.
 The function $g$ from {eq}`solow` is then plotted, along with the 45
 degree line.
 
-+++
 
 Let's define the constants.
 
@@ -195,13 +193,11 @@ It solves $k = s Ak^{\alpha} + (1-\delta)k$ and hence is given by
 
 ```{math}
 :label: kstarss
-    k^* := \left( \frac{s A}{\delta} \right)^{1/(1 - \alpha)}.
+    k^* := \left( \frac{s A}{\delta} \right)^{1/(1 - \alpha)}
 ```
 If initial capital is below $k^*$, then capital increases over time.
 
 If initial capital is above this level, then the reverse is true.
-
-+++
 
 Let's plot the 45 degree diagram to show the $k^*$ in the plot
 
@@ -221,8 +217,6 @@ The next figure shows three time paths for capital, from
 three distinct initial conditions, under the parameterization listed above.
 
 At this parameterization, $k^* \approx 1.78$.
-
-+++
 
 Let's define the constants and three distinct intital conditions
 
@@ -268,8 +262,6 @@ simulate_ts(x0, ts_length)
 
 As expected, the time paths in the figure both converge to this value.
 
-+++
-
 ## Growth in Continuous Time
 
 In this section we investigate a continuous time version of the Solow--Swan
@@ -287,7 +279,7 @@ A simple rearrangement gives the rate of change per unit of time:
 $$
     \Delta k_t = s f(k_t) - \delta k_t
     \quad \text{where} \quad
-    \Delta k_t := k_{t+1}  - k_t.
+    \Delta k_t := k_{t+1}  - k_t
 $$
 
 Taking the time step to zero gives the continuous time limit
@@ -296,7 +288,7 @@ Taking the time step to zero gives the continuous time limit
 :label: solowc
     k'_t = s f(k_t) - \delta k_t
     \qquad \text{with} \qquad
-    k'_t := \frac{d}{dt} k_t.
+    k'_t := \frac{d}{dt} k_t
 ```
 
 Our aim is to learn about the evolution of $k_t$ over time,
@@ -323,8 +315,6 @@ capital is increasing.
 When $g(k) < 0$, the opposite occurs.  Once again, high marginal returns to
 savings at low levels of capital combined with low rates of return at high
 levels of capital combine to yield global stability.
-
-+++
 
 To see this in a figure, let's define the constants
 
@@ -395,7 +385,7 @@ linear differential equation
 
 ```{math}
 :label: xsolow
-    x'_t = (1-\alpha) (sA - \delta x_t).
+    x'_t = (1-\alpha) (sA - \delta x_t)
 ```
 
 This equation has the exact solution
@@ -406,7 +396,7 @@ $$
         k_0^{1-\alpha} - \frac{sA}{\delta}
       \right)
       \mathrm{e}^{-\delta (1-\alpha) t} +
-    \frac{sA}{\delta}.
+    \frac{sA}{\delta}
 $$
 
 (You can confirm that this function $x_t$ satisfies {eq}`xsolow` by
@@ -424,7 +414,7 @@ Converting back to $k_t$ yields
       \right)
       \mathrm{e}^{-\delta (1-\alpha) t} +
     \frac{sA}{\delta}
-    \right]^{1/(1-\alpha)}.
+    \right]^{1/(1-\alpha)}
 ```
 
 Since $\delta > 0$ and $\alpha \in (0, 1)$, we see immediately that $k_t \to
@@ -432,16 +422,12 @@ k^*$ as $t \to \infty$ independent of $k_0$.
 
 Thus, global stability holds.
 
-+++
-
 ## Exercises
 
-```{exercise-start}
-:label: ex1
-```
-### Exercise 1
+```{exercise}
+:label: solow_ex1
 
-plot per capita consumption $c$ at the steady state, as a function of the savings rate $s$, where $0 \leq s \leq 1$.
+Plot per capita consumption $c$ at the steady state, as a function of the savings rate $s$, where $0 \leq s \leq 1$.
 
 Use the Cobb--Douglas specification $f(k) = A k^\alpha$.
 
@@ -449,16 +435,13 @@ Set $A=2.0, \alpha=0.3,$ and $\delta=0.5$
 
 Also, find the approximate value of $s$ that maximizes the $C^*(s)$ and show it in the plot.
 
-```{exercise-end}
 ```
 
-```{solution-start} ex1
+```{solution-start} solow_ex1
 :class: dropdown
 ```
 
-+++
-
-Steady state consumption at savings rate $s$ is given by 
+Steady state consumption at savings rate $s$ is given by
 
 
 $$
@@ -515,14 +498,10 @@ Incidentally, the rate of savings which maximizes steady state level of per capi
 ```{solution-end}
 ```
 
-+++
-
 ```{exercise-start}
-:label: ex2
+:label: solow_ex2
 ```
-### Exercise 2
-
-#### Stochastic Productivity
+**Stochastic Productivity**
 
 To bring the Solow--Swan model closer to data, we need to think about handling
 random fluctuations in aggregate quantities.
@@ -540,7 +519,7 @@ Dynamics are now
 
 ```{math}
 :label: solowran
-    k_{t+1} = s A_{t+1} f(k_t) + (1 - \delta) k_t.
+    k_{t+1} = s A_{t+1} f(k_t) + (1 - \delta) k_t
 ```
 
 We suppose $f$ is Cobb--Douglas and $(A_t)$ is IID and lognormal.
@@ -555,9 +534,7 @@ Generate and plot the time series $k_t$.
 ```{exercise-end}
 ```
 
-+++
-
-```{solution-start} ex2
+```{solution-start} solow_ex2
 :class: dropdown
 ```
 
@@ -613,8 +590,4 @@ ts_plot(x0, 50)
 
 
 ```{solution-end}
-```
-
-```{code-cell} ipython3
-
 ```
