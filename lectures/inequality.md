@@ -100,7 +100,7 @@ households own just over 40\% of total wealth.
 
 ```{code-cell} ipython3
 ---
-render:
+mystnb:
   figure:
     caption: Lorenz Curves For Simulated Data
     name: lorenz
@@ -191,7 +191,7 @@ Plot Lorenz curves for net wealth, total income and labor income of US in 2016.
 
 ```{code-cell} ipython3
 ---
-render:
+mystnb:
   figure:
     caption: "US Lorenz Curves \n"
     name: lorenz_us
@@ -256,7 +256,7 @@ The idea is that $G=0$ indicates complete equality, while $G=1$ indicates comple
 
 ```{code-cell} ipython3
 ---
-render:
+mystnb:
   figure:
     caption: "Shaded Lorenz Curves For Simulated \n"
     name: lorenz_gini
@@ -325,7 +325,7 @@ def plot_inequality_measures(x, y, legend, xlabel, ylabel, title):
 
 ```{code-cell} ipython3
 ---
-render:
+mystnb:
   figure:
     caption: "Lorenz Curves For Simulated \n"
     name: lorenz
@@ -395,7 +395,7 @@ ginis_li_new[5] = (ginis_li[4] + ginis_li[6]) / 2
 
 ```{code-cell} ipython3
 ---
-render:
+mystnb:
   figure:
     caption: "US Gini Coefficients \n"
     name: gini_us
