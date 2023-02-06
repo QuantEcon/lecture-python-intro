@@ -842,7 +842,7 @@ TODO -- convert to environment
 :label: stationary
 
 If $P$ is irreducible and $\psi^*$ is the unique stationary
-distribition, then, for all $x \in S$,
+distribution, then, for all $x \in S$,
 
 ```{math}
 :label: llnfmc0
@@ -969,7 +969,7 @@ dot.edge("1", "0", label="1.0", color='red')
 dot
 ```
 
-As you might notice, unlike other Markov chain we have seen before, it has a periodic cycle.
+As you might notice, unlike other Markov chains we have seen before, it has a periodic cycle.
 
 This is formally called [periodicity](https://stats.libretexts.org/Bookshelves/Probability_Theory/Probability_Mathematical_Statistics_and_Stochastic_Processes_(Siegrist)/16:_Markov_Processes/16.05:_Periodicity_of_Discrete-Time_Chains#:~:text=A%20state%20in%20a%20discrete,limiting%20behavior%20of%20the%20chain.). 
 
@@ -1361,7 +1361,7 @@ codes_B =  ( '1','2','3','4','5','6','7','8')
 np.linalg.matrix_power(P_B, 10)
 ```
 
-We find rows transition matrix converge to the stationary distribution 
+We find rows transition matrix converges to the stationary distribution 
 
 ```{code-cell} ipython3
 mc = qe.MarkovChain(P_B)
