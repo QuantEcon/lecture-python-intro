@@ -15,19 +15,22 @@ jobs:
           python-version: 3.9
           environment-file: environment.yml
           activate-environment: quantecon
-      - name: Install latex dependencies
+      - name: Graphics Support
         run: |
-          sudo apt-get -qq update
-          sudo apt-get install -y     \
-            texlive-latex-recommended \
-            texlive-latex-extra       \
-            texlive-fonts-recommended \
-            texlive-fonts-extra       \
-            texlive-xetex             \
-            latexmk                   \
-            xindy                     \
-            dvipng                    \
-            cm-super
+          sudo apt-get -qq update && sudo apt-get install -y graphviz
+      # - name: Install latex dependencies
+      #   run: |
+      #     sudo apt-get -qq update
+      #     sudo apt-get install -y     \
+      #       texlive-latex-recommended \
+      #       texlive-latex-extra       \
+      #       texlive-fonts-recommended \
+      #       texlive-fonts-extra       \
+      #       texlive-xetex             \
+      #       latexmk                   \
+      #       xindy                     \
+      #       dvipng                    \
+      #       cm-super
       - name: Display Conda Environment Versions
         shell: bash -l {0}
         run: conda list
@@ -62,11 +65,12 @@ jobs:
         run: |
           rm -r _build/.doctrees
           jb build lectures --path-output ./
-      - name: Save Build as Artifact
-        uses: actions/upload-artifact@v1
+      - name: Upload Execution Reports (HTML)
+        uses: actions/upload-artifact@v2
+        if: failure()
         with:
-          name: _build
-          path: _build
+          name: execution-reports
+          path: _build/html/reports
       - name: Preview Deploy to Netlify
         uses: nwtgck/actions-netlify@v1.1
         with:
