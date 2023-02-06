@@ -14,7 +14,7 @@ kernelspec:
 # Measuring Inequality
 
 ```{code-cell} ipython3
-:tags: [hide_input]
+:tags: [hide-output]
 !pip install --upgrade quantecon interpolation
 ```
 
