@@ -11,7 +11,7 @@ kernelspec:
   name: python3
 ---
 
-## LLN and CLT
+# LLN and CLT
 
 ## Overview
 
@@ -479,7 +479,7 @@ Repeat the simulation in [simulation 1](sim_one) with [beta distribution](https:
 You can choose any $\alpha > 0$ and $\beta > 0$.
 ```
 
-```{solution-start} 
+```{solution-start} lln_ex1
 :class: dropdown
 ```
 
@@ -526,7 +526,6 @@ print(X)
 ```
 
 Explain why this provides a random variable $X$ with the right distribution.
-
 ```
 
 ```{solution-start} lln_ex2
