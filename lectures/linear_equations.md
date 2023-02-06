@@ -1116,7 +1116,86 @@ Equilibrium holds when supply equals demand, i.e, $q_0^d = q_0^s$, $q_1^d = q_1^
 
 ```{exercise-end}
 ```
+```{solution-start} lin_eqs_ex1
+:class: dropdown
+```
 
+The generated system would be:
+
+$$
+\begin{aligned}
+    35p_0 - 5p_1 - 5p_2 = 100 \\
+    -5p_0 + 25p_1 - 10p_2 = 75 \\
+    -5p_0 - 5p_1 + 15p_2 = 55
+\end{aligned}
+$$
+
+In matrix form we will write this as:
+
+$$
+Ap = b
+\quad \text{where} \quad
+A =
+\begin{bmatrix}
+    35 & -5 & -5 \\
+    -5 & 25 & -10 \\
+    -5 & -5 & 15
+\end{bmatrix}
+, \quad p =
+\begin{bmatrix}
+    p_0 \\
+    p_1 \\
+    p_2
+\end{bmatrix}
+\quad \text{and} \quad
+b = 
+\begin{bmatrix}
+    100 \\
+    75 \\
+    55
+\end{bmatrix}
+$$
+
++++
+
+```{code-cell} ipython3
+import numpy as np
+from numpy.linalg import det
+
+A = np.array([[35, -5, -5],        #matrix A
+              [-5, 25, -10],
+              [-5, -5, 15]])
+
+b = np.array((100, 75, 55))        #column vector b
+b.shape = (3,1)
+
+det(A)    #check if A is nonsingular
+```
+
+```{code-cell} ipython3
+#using inverse
+from numpy.linalg import det
+
+A_inv = inv(A)
+
+p = A_inv @ b
+p
+```
+
+```{code-cell} ipython3
+#using numpy.linalg.solve
+from numpy.linalg import solve
+p = solve(A,b)
+p
+```
+
+The solution is given by:
+$$
+p_0 = 4.6925, \; p_1 = 7.0625 \;\; \text{and} \;\; p_2 = 7.675
+$$
+
+```{solution-end}
+```
 
 ```{exercise-start}
 :label: lin_eqs_ex2
@@ -1198,91 +1277,6 @@ We will thus try to find the best approximate solution for $x$.
 2. Find the least squares solution using `numpy.linalg.lstsq` and compare the results.
 
 ```{exercise-end}
-```
-
-
-
-## Solutions
-
-```{solution-start} lin_eqs_ex1
-:class: dropdown
-```
-
-The generated system would be:
-
-$$
-\begin{aligned}
-    35p_0 - 5p_1 - 5p_2 = 100 \\
-    -5p_0 + 25p_1 - 10p_2 = 75 \\
-    -5p_0 - 5p_1 + 15p_2 = 55
-\end{aligned}
-$$
-
-In matrix form we will write this as:
-
-$$
-Ap = b
-\quad \text{where} \quad
-A =
-\begin{bmatrix}
-    35 & -5 & -5 \\
-    -5 & 25 & -10 \\
-    -5 & -5 & 15
-\end{bmatrix}
-, \quad p =
-\begin{bmatrix}
-    p_0 \\
-    p_1 \\
-    p_2
-\end{bmatrix}
-\quad \text{and} \quad
-b = 
-\begin{bmatrix}
-    100 \\
-    75 \\
-    55
-\end{bmatrix}
-$$
-
-+++
-
-```{code-cell} ipython3
-import numpy as np
-from numpy.linalg import det
-
-A = np.array([[35, -5, -5],        #matrix A
-              [-5, 25, -10],
-              [-5, -5, 15]])
-
-b = np.array((100, 75, 55))        #column vector b
-b.shape = (3,1)
-
-det(A)    #check if A is nonsingular
-```
-
-```{code-cell} ipython3
-#using inverse
-from numpy.linalg import det
-
-A_inv = inv(A)
-
-p = A_inv @ b
-p
-```
-
-```{code-cell} ipython3
-#using numpy.linalg.solve
-from numpy.linalg import solve
-p = solve(A,b)
-p
-```
-
-The solution is given by:
-$$
-p_0 = 4.6925, \; p_1 = 7.0625 \;\; \text{and} \;\; p_2 = 7.675
-$$
-
-```{solution-end}
 ```
 
 ```{solution-start} lin_eqs_ex2
