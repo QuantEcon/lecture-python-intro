@@ -3,14 +3,13 @@ jupytext:
   text_representation:
     extension: .md
     format_name: myst
-    format_version: 0.13
-    jupytext_version: 1.14.4
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
   name: python3
 ---
 
+(cobweb)=
 # The Cobweb Model
 
 
@@ -451,9 +450,6 @@ TODO check / fix exercises
 ```{exercise-start}
 :label: ex1
 ```
-
-### Exercise 1
-
 Using the default Market model and naive expectations, plot a time series simulation of supply (rather than the price).
 
 Show, in particular, that supply also cycles.
@@ -504,10 +500,7 @@ ts_plot_supply(m, 5, 15)
 ```{exercise-start}
 :label: ex2
 ```
-
-### Exercise 2
-
-#### Backward looking average expectations
+**Backward looking average expectations**
 
 Backward looking average expectations refers to the case where producers form
 expectations for the next period price as a linear combination of their last
