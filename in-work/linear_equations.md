@@ -34,7 +34,7 @@ of matrix algebra.
 
 We will use the following imports:
 
-```python
+```{code-cell} ipython3
 import matplotlib.pyplot as plt
 plt.rcParams["figure.figsize"] = (11, 5)  # set default figure size
 import numpy as np
@@ -129,7 +129,7 @@ Traditionally, vectors are represented visually as arrows from the origin to the
 The following figure represents three vectors in this manner.
 <!-- #endregion -->
 
-```python
+```{code-cell} ipython3
 fig, ax = plt.subplots(figsize=(10, 8))
 # Set the axes through the origin
 for spine in ['left', 'bottom']:
@@ -209,7 +209,7 @@ $$
 
 We can visualise vector addition in $\mathbb{R}^2$ as follows.
 
-```python
+```{code-cell} ipython3
 fig, ax = plt.subplots(figsize=(10, 8))
 # Set the axes through the origin
 for spine in ['left', 'bottom']:
@@ -279,7 +279,7 @@ $$
 
 Scalar multiplication is illustrated in the next figure.
 
-```python
+```{code-cell} ipython3
 fig, ax = plt.subplots(figsize=(10, 8))
 # Set the axes through the origin
 for spine in ['left', 'bottom']:
@@ -316,13 +316,13 @@ However, it is more common to represent vectors with [NumPy arrays](https://pyth
 
 One advantage of NumPy arrays is that scalar multiplication and addition have very natural syntax.
 
-```python
+```{code-cell} ipython3
 x = np.ones(3)            # Vector of three ones
 y = np.array((2, 4, 6))   # Converts tuple (2, 4, 6) into a NumPy array
 x + y                     # Add (element-by-element)
 ```
 
-```python
+```{code-cell} ipython3
 4 * x                     # Scalar multiply
 ```
 
@@ -361,19 +361,19 @@ The expression $\| x - y\|$ can be thought of as the "distance" between $x$ and 
 
 The inner product and norm can be computed as follows
 
-```python
+```{code-cell} ipython3
 np.sum(x*y)      # Inner product of x and y
 ```
 
-```python
+```{code-cell} ipython3
 x @ y            # Inner product of x and y
 ```
 
-```python
+```{code-cell} ipython3
 np.sqrt(np.sum(x**2))  # Norm of x, take one
 ```
 
-```python
+```{code-cell} ipython3
 np.linalg.norm(x)      # Norm of x, take two
 ```
 
@@ -589,20 +589,20 @@ NumPy arrays are also used as matrices, and have fast, efficient functions and m
 You can create them manually from tuples of tuples (or lists of lists) as follows
 <!-- #endregion -->
 
-```python
+```{code-cell} ipython3
 A = ((1, 2),
      (3, 4))
 
 type(A)
 ```
 
-```python
+```{code-cell} ipython3
 A = np.array(A)
 
 type(A)
 ```
 
-```python
+```{code-cell} ipython3
 A.shape
 ```
 
@@ -617,13 +617,13 @@ ones, etc.) --- see [here](https://python-programming.quantecon.org/numpy.html#c
 
 Since operations are performed elementwise by default, scalar multiplication and addition have very natural syntax
 
-```python
+```{code-cell} ipython3
 A = np.identity(3)    # 3 x 3 identity matrix
 B = np.ones((3, 3))   # 3 x 3 matrix of ones
 2 * A
 ```
 
-```python
+```{code-cell} ipython3
 A + B
 ```
 
@@ -714,7 +714,7 @@ prices using the inverse of $C - D$:
 ```
 
 Before we implement the solution let us consider a more general setting to completely
-grasp the need for matrix algebra to solve a linear system of equation.
+grasp the need for matrix algebra to solve a linear system of equations.
 
 ### More Goods
 
@@ -852,7 +852,7 @@ It can be verified manually that this system has no possible solution.
 To illustrate why this situation arises let's plot the two lines.
 <!-- #endregion -->
 
-```python
+```{code-cell} ipython3
 fig, ax = plt.subplots(figsize=(5, 4))
 x = np.linspace(-10,10)
 plt.plot(x, (3-x)/3, label=f'$x + 3y = 3$')
@@ -989,45 +989,45 @@ We can now solve for equilibrium prices with NumPy's `linalg` submodule.
 All of these routines are Python front ends to time-tested and highly optimized FORTRAN code.
 <!-- #endregion -->
 
-```python
+```{code-cell} ipython3
 C = ((10, 5),      #matrix C
      (5, 10))
 ```
 
 Now we change this to a NumPy array.
 
-```python
+```{code-cell} ipython3
 C = np.array(C)
 ```
 
-```python
+```{code-cell} ipython3
 D = ((-10, -5),     #matrix D
      (-1, -10))
 D = np.array(D)
 ```
 
-```python
+```{code-cell} ipython3
 h = np.array((100, 50))   #vector h
 h.shape = 2,1             #transforming h to a column vector
 ```
 
-```python
+```{code-cell} ipython3
 from numpy.linalg import det, inv
 A = C - D
 det(A) # check that A is nonsingular (non-zero determinant), and hence invertible
 ```
 
-```python
+```{code-cell} ipython3
 A_inv = inv(A) # Compute the inverse
 A_inv
 ```
 
-```python
+```{code-cell} ipython3
 p = A_inv @ h # equilibrium prices
 p
 ```
 
-```python
+```{code-cell} ipython3
 q = C @ p # equilibrium quantities
 q
 ```
@@ -1036,13 +1036,13 @@ Notice that we get the same solutions as the pencil and paper case.
 
 We can also solve for $p$ using `solve(A, h)` as follows.
 
-```python
+```{code-cell} ipython3
 from numpy.linalg import solve
 p = solve(A, h) # equilibrium prices
 p
 ```
 
-```python
+```{code-cell} ipython3
 q = C @ p # equilibrium quantities
 q
 ```
@@ -1078,7 +1078,7 @@ NOTE Add exercises.
 
 Let's consider a market with 3 commodities - good 0, good 1 and good 2.
 
-The demand of each good depends on the price of the other two goods and is given by:
+The demand for each good depends on the price of the other two goods and is given by:
 
 $$
 \begin{aligned}
@@ -1237,7 +1237,7 @@ b =
 $$
 <!-- #endregion -->
 
-```python
+```{code-cell} ipython3
 import numpy as np
 from numpy.linalg import det
 
@@ -1251,7 +1251,7 @@ b.shape = (3,1)
 det(A)    #check if A is nonsingular
 ```
 
-```python
+```{code-cell} ipython3
 #using inverse
 from numpy.linalg import det
 
@@ -1261,14 +1261,14 @@ p = A_inv @ b
 p
 ```
 
-```python
+```{code-cell} ipython3
 #using numpy.linalg.solve
 from numpy.linalg import solve
 p = solve(A,b)
 p
 ```
 
-Th solution is given by:
+The solution is given by:
 $$
 p_0 = 4.6925, \; p_1 = 7.0625 \;\; \text{and} \;\; p_2 = 7.675
 $$
@@ -1280,12 +1280,12 @@ $$
 :class: dropdown
 ```
 
-```python
+```{code-cell} ipython3
 import numpy as np
 from numpy.linalg import inv
 ```
 
-```python
+```{code-cell} ipython3
 #using matrix algebra
 A = np.array([[1, -9],    #matrix A
               [1, -7],
@@ -1300,7 +1300,7 @@ x = inv(A_T @ A) @ A_T @ b
 x
 ```
 
-```python
+```{code-cell} ipython3
 #using numpy.linalg.lstsq
 x = np.linalg.lstsq(A, b, rcond = None)
 x
@@ -1310,7 +1310,7 @@ Here is a visualization of how the least squares method approximates the equatio
 
 We can also describe this as "fitting" a line between a set of points.
 
-```python
+```{code-cell} ipython3
 fig, ax = plt.subplots(figsize=(6, 6))
 p = np.array((1, 3, 8))
 q = np.array((9, 7 ,3))
