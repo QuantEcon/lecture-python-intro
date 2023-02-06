@@ -391,7 +391,7 @@ This equation helps to show that expectations shift
 Using {eq}`pe_adaptive`, we obtain the dynamics
 
 $$
-    p_t = - \frac{1}{b} [ S(\alpha p_{t-1} + (1-\alpha) p^e_{t-1})) - a]
+    p_t = - \frac{1}{b} [ S(\alpha p_{t-1} + (1-\alpha) p^e_{t-1}) - a]
 $$
 
 
@@ -509,7 +509,7 @@ guess and the second last guess.
 That is,
 
 ```{math}
-:label: pe_adaptive
+:label: pe_blae
 p_t^e = \alpha p_{t-1} + (1-\alpha) p_{t-2}
 ```
 
