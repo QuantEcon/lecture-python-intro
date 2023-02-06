@@ -7,9 +7,10 @@ jupytext:
     jupytext_version: 1.14.4
 kernelspec:
   display_name: Python 3 (ipykernel)
-  language: python
+  language: python3
   name: python3
 ---
+
 
 # LLN and CLT
 
@@ -172,8 +173,6 @@ Let's also imagine that we can generate infinite sequences so that the statement
 
 In this setting, {eq}`lln_as` should be interpreted as meaning that the probability of the computer producing a sequence where $\bar X_n \to \mu$ fails to occur
 is zero.
-
-+++ {"tags": []}
 
 ### Illustration
 
@@ -514,19 +513,19 @@ plt.show()
 ```{solution-end}
 ```
 
-```{exercise} 
+````{exercise} 
 :label: lln_ex2
 
 Although NumPy doesn't give us a `bernoulli` function, we can generate a draw of $X$ using NumPy via
 
-```{code-cell} ipython3
+```python3
 U = np.random.rand()
 X = 1 if U < p else 0
 print(X)
 ```
 
 Explain why this provides a random variable $X$ with the right distribution.
-```
+````
 
 ```{solution-start} lln_ex2
 :class: dropdown
