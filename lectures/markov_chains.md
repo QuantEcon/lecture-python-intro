@@ -835,9 +835,6 @@ mc.stationary_distributions  # Show all stationary distributions
 
 Under irreducibility, yet another important result obtains:
 
-
-TODO -- convert to environment
-
 ````{prf:theorem}
 :label: stationary
 
@@ -859,9 +856,7 @@ Here
 
 ````
 
-TODO -- in the next line, refer to the theorem by number.
-
-The result in theorem XXX is sometimes called **ergodicity**.
+The result in [theorem 4.3](llnfmc0) is sometimes called **ergodicity**.
 
 The theorem tells us that the fraction of time the chain spends at state $x$
 converges to $\psi^*(x)$ as time goes to infinity.
