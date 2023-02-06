@@ -1,58 +1,68 @@
+---
+jupytext:
+  text_representation:
+    extension: .md
+    format_name: myst
+    format_version: 0.13
+    jupytext_version: 1.14.4
+kernelspec:
+  display_name: Python 3 (ipykernel)
+  language: python
+  name: python3
+---
 
 # Markov Chains 
 
 In addition to what's in Anaconda, this lecture will need the following libraries:
 
-```{code-cell} ipython
----
-tags: [hide-output]
----
+```{code-cell} ipython3
+:tags: [hide-output]
+
 !pip install quantecon
 ```
 
 ## Overview
 
-Markov chains are a standard way to model sequences of random values with some
+Markov chains are a standard way to model time series with some
 dependence between observations.
+
+For example, 
+
+* inflation next year depends on inflation this year
+* unemployment next month depends on unemployment this month
 
 Markov chains are one of the workhorse models of economics and finance.
 
 The theory of Markov chains is beautiful and insightful, which is another
 excellent reason to study them.
 
-In this lecture, we will 
+In this introductory lecture, we will 
 
 * review some of the key ideas from the theory of Markov chains and
 * show how Markov chains appear in some economic applications.
 
 Let's start with some standard imports:
 
-```{code-cell} ipython
-%matplotlib inline
+```{code-cell} ipython3
 import matplotlib.pyplot as plt
-plt.rcParams["figure.figsize"] = (11, 5)  #set default figure size
+plt.rcParams["figure.figsize"] = (11, 5)  # set default figure size
 import quantecon as qe
 import numpy as np
-from mpl_toolkits.mplot3d import Axes3D
 ```
 
-## Definitions
+## Definitions and Examples
 
-The following concepts are fundamental.
+In this section we provide the basic definitions and some elementary examples.
+
++++
 
 (finite_dp_stoch_mat)=
-### {index}`Stochastic Matrices <single: Stochastic Matrices>`
-
-```{index} single: Finite Markov Chains; Stochastic Matrices
-```
-
-Let's start with some fun and useful mathematics.
+### Stochastic Matrices 
 
 Recall that a **probability mass function** over $n$ possible outcomes is a
 nonnegative $n$-vector $p$ that sums to one.
 
-For example, $p = (0.2, 0.2, 0.6)$ is a probability mass function over $3$
-outcomes.
+For example, $p = (0.2, 0.2, 0.6)$ is a probability mass function over $3$ outcomes.
 
 A **stochastic matrix** (or **Markov matrix**)  is an $n \times n$ square matrix $P$
 such that each row of $P$ is a probability mass function over $n$ outcomes.
@@ -64,28 +74,30 @@ In other words,
 
 If $P$ is a stochastic matrix, then so is the $k$-th power $P^k$ for all $k \in \mathbb N$.
 
-This is not too hard to check.
+(To create the $k$-th power of $P$, multiply $P$ with itself $k$ times.)
 
-For example, suppose that $P$ is stochastic and $P^k$ is stochastic for some
-integer $k$ and consider $P^{k+1} = P P^k$.
+The claim above is not hard to check.
 
-We claim that $P^{k+1}$ is also stochastic.
+For example, suppose that $P$ is stochastic and, moreover, that $P^k$ is
+stochastic for some integer $k$.
+
+We will prove that $P^{k+1} = P P^k$ is also stochastic.
+
+(We are doing proof by induction --- we assume the claim is true at $k$ and
+now prove it is true at $k+1$.)
 
 To see this, observe that, since $P^k$ is stochastic and the product of
 nonnegative matrices is nonnegative, $P^{k+1} = P P^k$ is nonnegative.
 
-Also, if $1$ is a column vector of ones, then, since $P^k$ is stochastic we
-have $P^k 1 = 1$.
+Also, if $\mathbf 1$ is a column vector of ones, then, since $P^k$ is stochastic we
+have $P^k \mathbf 1 = \mathbf 1$ (rows sum to one).
 
-Therefore $P^{k+1} 1 = P P^k 1 = P 1 = 1$
+Therefore $P^{k+1} \mathbf 1 = P P^k \mathbf 1 = P \mathbf 1 = \mathbf 1$
 
 The proof is done.
 
 
-### {index}`Markov Chains <single: Markov Chains>`
-
-```{index} single: Finite Markov Chains
-```
+### Markov Chains 
 
 Now we can introduce Markov chains.
 
@@ -95,16 +107,166 @@ At that time, the connection between stochastic matrices and Markov chains
 will become clear.
 
 
+(mc_eg2)=
+#### Example 1
+
+From  US unemployment data, Hamilton {cite}`Hamilton2005` estimated the following dynamics.
+
+```{code-cell} ipython3
+:tags: [hide-input]
+
+from graphviz import Digraph
+
+dot = Digraph(comment='Graph')
+dot.attr(rankdir='LR')
+dot.node("ng")
+dot.node("mr")
+dot.node("sr")
+
+dot.edge("ng", "ng", label="0.971")
+dot.edge("ng", "mr", label="0.029")
+dot.edge("mr", "ng", label="0.145")
+
+dot.edge("mr", "mr", label="0.778")
+dot.edge("mr", "sr", label="0.077")
+dot.edge("sr", "mr", label="0.508")
+    
+dot.edge("sr", "sr", label="0.492")
+dot
+```
+
+Here there are three **states**
+
+* "ng" represents normal growth
+* "mr" represents mild recession
+* "sr" represents severe recession
+
+The arrows represent **transition probabilities** over one month.
+
+For example, the arrow from mild recession to normal growth has 0.145 next to it.
+
+This tells us that, according to past data, there is a 14.5% probability of transitioning from mild recession to normal growth in one month.
+
+The arrow from normal growth back to normal growth tells us that there is a
+97% probability of transitioning from normal growth to normal growth (staying
+in the same state).
+
+Note that these are *conditional* probabilities --- the probability of
+transitioning from one state to another (or staying at the same one) conditional on the
+current state.
+
+To make the problem easier to work with numerically, let's convert states to
+numbers.
+
+In particular, we agree that
+
+* state 0 represents normal growth
+* state 1 represents mild recession
+* state 2 represents severe recession
+
+Now let $X_t$ record the value of the state at time $t$.
+
+We can now write the statement "there is a 14.5% probability of transitioning from mild recession to normal growth in one month" as
+
+$$
+    \mathbb P\{X_{t+1} = 0 \,|\, X_t = 1\} = 0.145
+$$
+
+We can collect all of these conditional probabilities into a matrix, as follows
+
+$$
+    P =
+    \left(
+      \begin{array}{ccc}
+         0.971 & 0.029 & 0 \\
+         0.145 & 0.778 & 0.077 \\
+         0 & 0.508 & 0.492
+      \end{array}
+    \right)
+$$
+
+Notice that $P$ is a stochastic matrix.
+
+Now we have the following relationship
+
+$$
+    \mathbb P\{X_{t+1} = 0 \,|\, X_t = 1\} = P(1,0)
+$$
+
+where $P(1,0)$ is element $(1,0)$ of $P$.
+
+We see now that $P(1,0)$ is the probability of transitioning from state 0 to
+state 1 in one month.
+
+More generally, for any $i,j$ between 0 and 2, we have
+
+$$
+\begin{aligned}
+    P(i,j)
+    & = \mathbb P\{X_{t+1} = j \,|\, X_t = i\} 
+    \\
+    & = \text{ probability of transitioning from state $i$ to state $j$ in one month}
+\end{aligned}
+$$
+
+(mc_eg1)=
+#### Example 2
+
+Consider a worker who, at any given time $t$, is either unemployed (state 0)
+or employed (state 1).
+
+Suppose that, over a one month period,
+
+1. the unemployed worker finds a job with probability $\alpha \in (0, 1)$.
+1. the employed worker loses her job and becomes unemployed with probability $\beta \in (0, 1)$.
+
+Given the above information, we can write out the transition probabilities in matrix form as
+
+```{math}
+:label: p_unempemp
+
+P
+= \left(
+\begin{array}{cc}
+    1 - \alpha & \alpha \\
+    \beta & 1 - \beta
+\end{array}
+  \right)
+```
+
+For example,
+
+$$
+\begin{aligned}
+    P(0,1) 
+        & = 
+        \text{ probability of transitioning from state $0$ to state $1$ in one month}
+        \\
+        & = 
+        \text{ probability finding a job next month}
+        \\
+        & = \alpha
+\end{aligned}
+$$
+
+Suppose we can estimate the values $\alpha$ and $\beta$.
+
+Then we can address a range of questions, such as
+
+* What is the average duration of unemployment?
+* Over the long-run, what fraction of the time does a worker find herself unemployed?
+* Conditional on employment, what is the probability of becoming unemployed at least once over the next 12 months?
+
+We'll cover such applications below.
 
 
 
+### Defining Markov Chains
 
+So far we've given examples of Markov chains but now let's define them more
+carefully.
 
-
-
-
-
-To begin, let $S$ be a finite set with $n$ elements $\{x_1, \ldots, x_n\}$.
+To begin, let $S$ be a finite set $\{x_1, \ldots, x_n\}$ with $n$ elements.
 
 The set $S$ is called the **state space** and $x_1, \ldots, x_n$ are the **state values**.
 
@@ -119,7 +281,7 @@ This means that, for any date $t$ and any state $y \in S$,
 = \mathbb P \{ X_{t+1}  = y \,|\, X_t, X_{t-1}, \ldots \}
 ```
 
-In other words, knowing the current state is enough to know probabilities for future states.
+In other words, knowing the current state is enough to know probabilities for the future states.
 
 In particular, the dynamics of a Markov chain are fully determined by the set of values
 
@@ -138,8 +300,8 @@ By construction,
 We can view $P$ as a stochastic matrix where
 
 $$
-P_{ij} = P(x_i, x_j)
-\qquad 1 \leq i, j \leq n
+    P_{ij} = P(x_i, x_j)
+    \qquad 1 \leq i, j \leq n
 $$
 
 Going the other way, if we take a stochastic matrix $P$, we can generate a Markov
@@ -150,77 +312,8 @@ chain $\{X_t\}$ as follows:
 
 By construction, the resulting process satisfies {eq}`mpp`.
 
-(mc_eg1)=
-### Example 1
 
-Consider a worker who, at any given time $t$, is either unemployed (state 0) or employed (state 1).
 
-Suppose that, over a one month period,
-
-1. An unemployed worker finds a job with probability $\alpha \in (0, 1)$.
-1. An employed worker loses her job and becomes unemployed with probability $\beta \in (0, 1)$.
-
-In terms of a Markov model, we have
-
-* $S = \{ 0, 1\}$
-* $P(0, 1) = \alpha$ and $P(1, 0) = \beta$
-
-We can write out the transition probabilities in matrix form as
-
-```{math}
-:label: p_unempemp
-
-P
-= \left(
-\begin{array}{cc}
-    1 - \alpha & \alpha \\
-    \beta & 1 - \beta
-\end{array}
-  \right)
-```
-
-Once we have the values $\alpha$ and $\beta$, we can address a range of questions, such as
-
-* What is the average duration of unemployment?
-* Over the long-run, what fraction of time does a worker find herself unemployed?
-* Conditional on employment, what is the probability of becoming unemployed at least once over the next 12 months?
-
-We'll cover such applications below.
-
-(mc_eg2)=
-### Example 2
-
-From  US unemployment data, Hamilton {cite}`Hamilton2005` estimated the stochastic matrix
-
-$$
-P =
-\left(
-  \begin{array}{ccc}
-     0.971 & 0.029 & 0 \\
-     0.145 & 0.778 & 0.077 \\
-     0 & 0.508 & 0.492
-  \end{array}
-\right)
-$$
-
-where
-
-* the frequency is monthly
-* the first state represents "normal growth"
-* the second state represents "mild recession"
-* the third state represents "severe recession"
-
-For example, the matrix tells us that when the state is normal growth, the state will again be normal growth next month with probability 0.97.
-
-In general, large values on the main diagonal indicate persistence in the process $\{ X_t \}$.
-
-This Markov process can also be represented as a directed graph, with edges labeled by transition probabilities
-
-```{figure} /_static/lecture_specific/finite_markov/hamilton_graph.png
-
-```
-
-Here "ng" is normal growth, "mr" is mild recession, etc.
 
 ## Simulation
 
@@ -229,32 +322,37 @@ Here "ng" is normal growth, "mr" is mild recession, etc.
 
 One natural way to answer questions about Markov chains is to simulate them.
 
-(To approximate the probability of event $E$, we can simulate many times and count the fraction of times that $E$ occurs).
-
-Nice functionality for simulating Markov chains exists in [QuantEcon.py](http://quantecon.org/quantecon-py).
-
-* Efficient, bundled with lots of other useful routines for handling Markov chains.
-
-However, it's also a good exercise to roll our own routines --- let's do that first and then come back to the methods in [QuantEcon.py](http://quantecon.org/quantecon-py).
+Let's start by doing this ourselves and then look at libraries that can help
+us.
 
 In these exercises, we'll take the state space to be $S = 0,\ldots, n-1$.
 
+(We start at $0$ because Python arrays are indexed from $0$.)
+
+
 ### Rolling Our Own
 
-To simulate a Markov chain, we need its stochastic matrix $P$ and a marginal probability distribution $\psi$  from which to  draw a realization of $X_0$.
+To simulate a Markov chain, we need its stochastic matrix $P$ and a probability mass function $\psi$ on $S$ from which to draw a realization of $X_0$.
 
-The Markov chain is then constructed as discussed above.  To repeat:
+The Markov chain is then constructed as follows:
 
 1. At time $t=0$, draw a realization of  $X_0$  from $\psi$.
 1. At each subsequent time $t$, draw a realization of the new state $X_{t+1}$ from $P(X_t, \cdot)$.
 
+(That is, draw from row $X_t$ of $P$.)
+
 To implement this simulation procedure, we need a method for generating draws from a discrete distribution.
 
-For this task, we'll use `random.draw` from [QuantEcon](http://quantecon.org/quantecon-py), which works as follows:
+For this task, we'll use `random.draw` from [QuantEcon](http://quantecon.org/quantecon-py).
 
-```{code-cell} python3
+To use `random.draw`, we first need to convert the probability mass function
+to a cumulative distribution
+
+TODO -- link to distributions lecture
+
+```{code-cell} ipython3
 ψ = (0.3, 0.7)           # probabilities over {0, 1}
-cdf = np.cumsum(ψ)       # convert into cummulative distribution
+cdf = np.cumsum(ψ)       # convert into cumulative distribution
 qe.random.draw(cdf, 5)   # generate 5 independent draws from ψ
 ```
 
@@ -264,7 +362,7 @@ We'll write our code as a function that accepts the following three arguments
 * An initial state `init`
 * A positive integer `sample_size` representing the length of the time series the function should return
 
-```{code-cell} python3
+```{code-cell} ipython3
 def mc_sample_path(P, ψ_0=None, sample_size=1_000):
 
     # set up
@@ -291,7 +389,7 @@ def mc_sample_path(P, ψ_0=None, sample_size=1_000):
 
 Let's see how it works using the small matrix
 
-```{code-cell} python3
+```{code-cell} ipython3
 P = [[0.4, 0.6],
      [0.2, 0.8]]
 ```
@@ -303,7 +401,7 @@ $X_0$ is drawn.
 
 The following code illustrates this
 
-```{code-cell} python3
+```{code-cell} ipython3
 X = mc_sample_path(P, ψ_0=[0.1, 0.9], sample_size=100_000)
 np.mean(X == 0)
 ```
@@ -311,13 +409,14 @@ np.mean(X == 0)
 You can try changing the initial distribution to confirm that the output is
 always close to 0.25, at least for the `P` matrix above.
 
+
 ### Using QuantEcon's Routines
 
-As discussed above, [QuantEcon.py](http://quantecon.org/quantecon-py) has routines for handling Markov chains, including simulation.
+[QuantEcon.py](http://quantecon.org/quantecon-py) has routines for handling Markov chains, including simulation.
 
-Here's an illustration using the same P as the preceding example
+Here's an illustration using the same $P$ as the preceding example
 
-```{code-cell} python3
+```{code-cell} ipython3
 from quantecon import MarkovChain
 
 mc = qe.MarkovChain(P)
@@ -325,13 +424,13 @@ X = mc.simulate(ts_length=1_000_000)
 np.mean(X == 0)
 ```
 
-The [QuantEcon.py](http://quantecon.org/quantecon-py) routine is [JIT compiled](https://python-programming.quantecon.org/numba.html#numba-link) and much faster.
+The `simulate` routine is [JIT compiled](https://python-programming.quantecon.org/numba.html#numba-link) and much faster.
 
-```{code-cell} ipython
+```{code-cell} ipython3
 %time mc_sample_path(P, sample_size=1_000_000) # Our homemade code version
 ```
 
-```{code-cell} ipython
+```{code-cell} ipython3
 %time mc.simulate(ts_length=1_000_000) # qe code version
 ```
 
@@ -343,30 +442,27 @@ These state values can be integers, floats, or even strings.
 
 The following code illustrates
 
-```{code-cell} python3
+```{code-cell} ipython3
 mc = qe.MarkovChain(P, state_values=('unemployed', 'employed'))
 mc.simulate(ts_length=4, init='employed')
 ```
 
-```{code-cell} python3
+```{code-cell} ipython3
 mc.simulate(ts_length=4, init='unemployed')
 ```
 
-```{code-cell} python3
+```{code-cell} ipython3
 mc.simulate(ts_length=4)  # Start at randomly chosen initial state
 ```
 
 If we want to see indices rather than state values as outputs as  we can use
 
-```{code-cell} python3
+```{code-cell} ipython3
 mc.simulate_indices(ts_length=4)
 ```
 
 (mc_md)=
-## {index}`Marginal Distributions <single: Marginal Distributions>`
-
-```{index} single: Markov Chains; Marginal Distributions
-```
+## Marginal Distributions 
 
 Suppose that
 
@@ -381,7 +477,7 @@ Our first aim is to find $\psi_{t + 1}$ given $\psi_t$ and $P$.
 
 To begin, pick any $y  \in S$.
 
-Using the [law of total probability](https://en.wikipedia.org/wiki/Law_of_total_probability), we can decompose the probability that $X_{t+1} = y$ as follows:
+Using the [law of total probability](https://en.wikipedia.org/wiki/Law_of_total_probability), we argue as follows:
 
 $$
 \mathbb P \{X_{t+1} = y \}
@@ -390,12 +486,12 @@ $$
 $$
 
 In words, to get the probability of being at $y$ tomorrow, we account for
-all  ways this can happen and sum their probabilities.
+all ways this can happen and sum their probabilities.
 
 Rewriting this statement in terms of  marginal and conditional probabilities gives
 
 $$
-\psi_{t+1}(y) = \sum_{x \in S} P(x,y) \psi_t(x)
+    \psi_{t+1}(y) = \sum_{x \in S} P(x,y) \psi_t(x)
 $$
 
 There are $n$ such equations, one for each $y \in S$.
@@ -434,6 +530,7 @@ and, more generally,
 X_t \sim \psi_t \quad \implies \quad X_{t+m} \sim \psi_t P^m
 ```
 
+
 (finite_mc_mstp)=
 ### Multiple Step Transition Probabilities
 
@@ -455,6 +552,7 @@ In particular
 $$
 \mathbb P \{X_{t+m} = y \,|\, X_t = x \} = P^m(x, y) = (x, y) \text{-th element of } P^m
 $$
+
 
 ### Example: Probability of Recession
 
@@ -481,19 +579,20 @@ $$
 \right)
 $$
 
+
 (mc_eg1-1)=
 ### Example 2: Cross-Sectional Distributions
 
-```{index} single: Markov Chains; Cross-Sectional Distributions
-```
-
 The marginal distributions we have been studying can be viewed either as
-probabilities or as cross-sectional frequencies that a Law of Large Numbers leads us to anticipate for  large samples.
+probabilities or as cross-sectional frequencies that a Law of Large Numbers
+leads us to anticipate for  large samples.
 
 To illustrate, recall our model of employment/unemployment dynamics for a given worker {ref}`discussed above <mc_eg1>`.
 
-Consider a large population of workers, each of whose lifetime experience is described by the specified dynamics, with each worker's
-outcomes being realizations of processes that are statistically independent of all other workers' processes.
+Consider a large population of workers, each of whose lifetime experience is
+described by the specified dynamics, with each worker's outcomes being
+realizations of processes that are statistically independent of all other
+workers' processes.
 
 Let $\psi$ be the current *cross-sectional* distribution over $\{ 0, 1 \}$.
 
@@ -507,7 +606,7 @@ The answer is $\psi P^{10}$, where $P$ is the stochastic matrix in
 {eq}`p_unempemp`.
 
 This is because each worker's state evolves according to $P$, so
-$\psi P^{10}$ is a marginal distibution  for a single randomly selected
+$\psi P^{10}$ is a marginal distribution  for a single randomly selected
 worker.
 
 But when the sample is large, outcomes and probabilities are roughly equal (by an application of the Law
@@ -519,18 +618,13 @@ each state.
 
 This is exactly the cross-sectional distribution.
 
-## {index}`Irreducibility and Aperiodicity <single: Irreducibility and Aperiodicity>`
 
-```{index} single: Markov Chains; Irreducibility, Aperiodicity
-```
+## Irreducibility
 
-Irreducibility and aperiodicity are central concepts of modern Markov chain theory.
 
-Let's see what they're about.
+Irreducibility is a central concept of Markov chain theory.
 
-### Irreducibility
-
-Let $P$ be a fixed stochastic matrix.
+To explain it, let's take $P$ to be a fixed stochastic matrix.
 
 Two states $x$ and $y$ are said to **communicate** with each other if
 there exist positive integers $j$ and $k$ such that
@@ -544,18 +638,34 @@ $$
 In view of our discussion {ref}`above <finite_mc_mstp>`, this means precisely
 that
 
-* state $x$ can eventually be reached  from state $y$, and
-* state $y$ can eventually  be reached from state $x$
+* state $x$ can eventually be reached from state $y$, and
+* state $y$ can eventually be reached from state $x$
 
-The stochastic matrix $P$ is called **irreducible** if all states
-communicate; that is, if $x$ and $y$ communicate for all
-$(x, y)$ in $S \times S$.
+The stochastic matrix $P$ is called **irreducible** if all states communicate;
+that is, if $x$ and $y$ communicate for all $(x, y)$ in $S \times S$.
 
-For example, consider the following transition probabilities for wealth of a fictitious set of
-households
+For example, consider the following transition probabilities for wealth of a
+fictitious set of households
 
-```{figure} /_static/lecture_specific/finite_markov/mc_irreducibility1.png
+```{code-cell} ipython3
+:tags: [hide-input]
 
+dot = Digraph(comment='Graph')
+dot.attr(rankdir='LR')
+dot.node("poor")
+dot.node("middle class")
+dot.node("rich")
+
+dot.edge("poor", "poor", label="0.9")
+dot.edge("poor", "middle class", label="0.1")
+dot.edge("middle class", "poor", label="0.4")
+dot.edge("middle class", "middle class", label="0.4")
+dot.edge("middle class", "rich", label="0.2")
+dot.edge("rich", "poor", label="0.1")
+dot.edge("rich", "middle class", label="0.1")
+dot.edge("rich", "rich", label="0.8")
+
+dot
 ```
 
 We can translate this into a stochastic matrix, putting zeros where
@@ -577,7 +687,7 @@ reach any state from any other state.
 
 We can also test this using [QuantEcon.py](http://quantecon.org/quantecon-py)'s MarkovChain class
 
-```{code-cell} python3
+```{code-cell} ipython3
 P = [[0.9, 0.1, 0.0],
      [0.4, 0.4, 0.2],
      [0.1, 0.1, 0.8]]
@@ -588,15 +698,31 @@ mc.is_irreducible
 
 Here's a more pessimistic scenario in which  poor people remain poor forever
 
-```{figure} /_static/lecture_specific/finite_markov/mc_irreducibility2.png
+```{code-cell} ipython3
+:tags: [hide-input]
 
+dot = Digraph(comment='Graph')
+dot.attr(rankdir='LR')
+dot.node("poor")
+dot.node("middle class")
+dot.node("rich")
+
+dot.edge("poor", "poor", label="1.0")
+dot.edge("middle class", "poor", label="0.1")
+dot.edge("middle class", "middle class", label="0.8")
+dot.edge("middle class", "rich", label="0.1")
+dot.edge("rich", "middle class", label="0.2")
+dot.edge("rich", "rich", label="0.8")
+
+dot
 ```
 
-This stochastic matrix is not irreducible, since, for example, rich is not accessible from poor.
+This stochastic matrix is not irreducible since, for example, rich is not
+accessible from poor.
 
 Let's confirm this
 
-```{code-cell} python3
+```{code-cell} ipython3
 P = [[1.0, 0.0, 0.0],
      [0.1, 0.8, 0.1],
      [0.0, 0.2, 0.8]]
@@ -605,82 +731,23 @@ mc = qe.MarkovChain(P, ('poor', 'middle', 'rich'))
 mc.is_irreducible
 ```
 
-We can also determine the "communication classes"
-
-```{code-cell} python3
-mc.communication_classes
-```
-
-It might be clear to you already that irreducibility is going to be important in terms of long run outcomes.
+It might be clear to you already that irreducibility is going to be important
+in terms of long run outcomes.
 
 For example, poverty is a life sentence in the second graph but not the first.
 
 We'll come back to this a bit later.
 
-### Aperiodicity
 
-Loosely speaking, a Markov chain is called **periodic** if it cycles in a predictable way, and **aperiodic** otherwise.
+## Stationary Distributions
 
-Here's a trivial example with three states
 
-```{figure} /_static/lecture_specific/finite_markov/mc_aperiodicity1.png
-
-```
-
-The chain cycles with period 3:
-
-```{code-cell} python3
-P = [[0, 1, 0],
-     [0, 0, 1],
-     [1, 0, 0]]
-
-mc = qe.MarkovChain(P)
-mc.period
-```
-
-More formally, the **period** of a state $x$ is the largest common divisor
-of a set of integers
-
-$$
-D(x) := \{j \geq 1 : P^j(x, x) > 0\}
-$$
-
-In the last example, $D(x) = \{3, 6, 9, \ldots\}$ for every state $x$, so the period is 3.
-
-A stochastic matrix is called **aperiodic** if the period of every state is 1, and **periodic** otherwise.
-
-For example, the stochastic matrix associated with the transition probabilities below is periodic because, for example, state $a$ has period 2
-
-```{figure} /_static/lecture_specific/finite_markov/mc_aperiodicity2.png
-
-```
-
-We can confirm that the stochastic matrix is periodic with the following code
-
-```{code-cell} python3
-P = [[0.0, 1.0, 0.0, 0.0],
-     [0.5, 0.0, 0.5, 0.0],
-     [0.0, 0.5, 0.0, 0.5],
-     [0.0, 0.0, 1.0, 0.0]]
-
-mc = qe.MarkovChain(P)
-mc.period
-```
-
-```{code-cell} python3
-mc.is_aperiodic
-```
-
-## {index}`Stationary Distributions <single: Stationary Distributions>`
-
-```{index} single: Markov Chains; Stationary Distributions
-```
-
-As seen in {eq}`fin_mc_fr`, we can shift a marginal distribution forward one unit of time via postmultiplication by $P$.
+As seen in {eq}`fin_mc_fr`, we can shift a marginal distribution forward one
+unit of time via postmultiplication by $P$.
 
 Some distributions are invariant under this updating process --- for example,
 
-```{code-cell} python3
+```{code-cell} ipython3
 P = np.array([[0.4, 0.6],
               [0.2, 0.8]])
 ψ = (0.25, 0.75)
@@ -692,113 +759,70 @@ Such distributions are called **stationary** or **invariant**.
 (mc_stat_dd)=
 Formally, a marginal distribution $\psi^*$ on $S$ is called **stationary** for $P$ if $\psi^* = \psi^* P$.
 
-(This is the same notion of stationarity that we learned about in the
-{doc}`lecture on AR(1) processes <ar1_processes>` applied to a different setting.)
-
 From this equality, we immediately get $\psi^* = \psi^* P^t$ for all $t$.
 
 This tells us an important fact: If the distribution of $X_0$ is a stationary distribution, then $X_t$ will have this same distribution for all $t$.
 
-Hence stationary distributions have a natural interpretation as **stochastic steady states** --- we'll discuss this more soon.
+```{prf:theorem}
+:label: stationary
 
-Mathematically, a stationary distribution is a fixed point of $P$ when $P$ is thought of as the map $\psi \mapsto \psi P$ from (row) vectors to (row) vectors.
+Every stochastic matrix $P$ has at least one stationary distribution.
+```
 
-**Theorem.** Every stochastic matrix $P$ has at least one stationary distribution.
+A proof of this theorem can be constructed from the Perron-Frobenius theorem,
+which we discuss in another lecture.
 
-(We are assuming here that the state space $S$ is finite; if not more assumptions are required)
+TODO -- to eigenvalue lecture
 
-For proof of this result, you can apply [Brouwer's fixed point theorem](https://en.wikipedia.org/wiki/Brouwer_fixed-point_theorem), or see [EDTC](https://johnstachurski.net/edtc.html), theorem 4.3.5.
-
-There can be many stationary distributions corresponding to a given stochastic matrix $P$.
+Note that there can be many stationary distributions corresponding to a given
+stochastic matrix $P$.
 
 * For example, if $P$ is the identity matrix, then all marginal distributions are stationary.
 
-To get uniqueness an invariant distribution, the transition matrix $P$ must have the property that no nontrivial subsets of
-the state space are **infinitely persistent**.
-
-A subset of the state space is infinitely persistent if other parts of the
-state space cannot be accessed from it.
-
-Thus, infinite persistence of a non-trivial subset is the opposite of irreducibility.
+To get uniqueness, we need the Markov chain to "mix around," so that the state
+doesn't get stuck in some part of the state space.
 
 This gives some intuition for the following fundamental theorem.
 
-(mc_conv_thm)=
-**Theorem.** If $P$ is both aperiodic and irreducible, then
 
-1. $P$ has exactly one stationary distribution $\psi^*$.
-1. For any initial marginal distribution $\psi_0$, we have $\| \psi_0 P^t - \psi^* \| \to 0$ as $t \to \infty$.
+```{prf:theorem}
+:label: mc_conv_thm
 
-For a proof, see, for example, theorem 5.2 of {cite}`haggstrom2002finite`.
+If $P$ is irreducible, then $P$ has exactly one stationary
+distribution $\psi^*$.
+```
 
-(Note that part 1 of the theorem only requires  irreducibility, whereas part 2
-requires both irreducibility and aperiodicity)
+For proof, see, for example, theorem 5.2 of {cite}`haggstrom2002finite`.
 
-A stochastic matrix that satisfies the conditions of the theorem is sometimes called **uniformly ergodic**.
-
-A sufficient condition for aperiodicity and irreducibility is that every element of $P$ is strictly positive.
-
-* Try to convince yourself of this.
 
 ### Example
 
 Recall our model of the employment/unemployment dynamics of a particular worker {ref}`discussed above <mc_eg1>`.
 
-Assuming $\alpha \in (0,1)$ and $\beta \in (0,1)$, the uniform ergodicity condition is satisfied.
+If $\alpha \in (0,1)$ and $\beta \in (0,1)$, then the irreducibility condition is satisfied.
 
-Let $\psi^* = (p, 1-p)$ be the stationary distribution, so that $p$ corresponds to unemployment (state 0).
+Let $\psi^* = (p, 1-p)$ be the stationary distribution, so that $p$
+corresponds to unemployment (state 0).
 
 Using $\psi^* = \psi^* P$ and a bit of algebra yields
 
 $$
-p = \frac{\beta}{\alpha + \beta}
+    p = \frac{\beta}{\alpha + \beta}
 $$
 
-This is, in some sense, a steady state probability of unemployment --- more about the  interpretation of this below.
+This is, in some sense, a steady state probability of unemployment.
 
 Not surprisingly it tends to zero as $\beta \to 0$, and to one as $\alpha \to 0$.
 
+
+
 ### Calculating Stationary Distributions
 
-```{index} single: Markov Chains; Calculating Stationary Distributions
-```
+A stable algorithm for computing stationary distributions is implemented in [QuantEcon.py](http://quantecon.org/quantecon-py).
 
-As discussed above, a particular Markov matrix $P$ can have many stationary distributions.
+Here's an example
 
-That is, there can be many row vectors $\psi$ such that $\psi = \psi P$.
-
-In fact if $P$ has two distinct stationary distributions $\psi_1,
-\psi_2$ then it has infinitely many, since in this case, as you can verify,  for any $\lambda \in [0, 1]$
-
-$$
-\psi_3 := \lambda \psi_1 + (1 - \lambda) \psi_2
-$$
-
-is a stationary distribution for $P$.
-
-If we restrict attention to the case in which only one stationary distribution exists, one way to  finding it is to solve the system 
-
-$$
-\psi (I_n - P) = 0
-$$ (eq:eqpsifixed)
-
-for $\psi$, where $I_n$ is the $n \times n$ identity.
-
-But the zero vector solves system {eq}`eq:eqpsifixed`,  so we must proceed cautiously. 
-
-We want to impose the restriction that $\psi$ is  a probability distribution.
-
-There are various ways to do this.
-
-One option is to regard solving system {eq}`eq:eqpsifixed`  as an eigenvector problem: a vector
-$\psi$ such that $\psi = \psi P$ is a left eigenvector associated
-with the unit eigenvalue $\lambda = 1$.
-
-A stable and sophisticated algorithm specialized for stochastic matrices is implemented in [QuantEcon.py](http://quantecon.org/quantecon-py).
-
-This is the one we recommend:
-
-```{code-cell} python3
+```{code-cell} ipython3
 P = [[0.4, 0.6],
      [0.2, 0.8]]
 
@@ -806,21 +830,216 @@ mc = qe.MarkovChain(P)
 mc.stationary_distributions  # Show all stationary distributions
 ```
 
-### Convergence to Stationarity
+(ergodicity)=
+## Ergodicity 
 
-```{index} single: Markov Chains; Convergence to Stationarity
+Under irreducibility, yet another important result obtains:
+
+
+TODO -- convert to environment
+
+````{prf:theorem}
+:label: stationary
+
+If $P$ is irreducible and $\psi^*$ is the unique stationary
+distribition, then, for all $x \in S$,
+
+```{math}
+:label: llnfmc0
+
+\frac{1}{m} \sum_{t = 1}^m \mathbf{1}\{X_t = x\}  \to \psi^*(x)
+    \quad \text{as } m \to \infty
 ```
 
-Part 2 of the Markov chain convergence theorem {ref}`stated above <mc_conv_thm>` tells us that the marginal distribution of $X_t$ converges to the stationary distribution regardless of where we begin.
+Here
 
-This adds considerable authority to our interpretation of $\psi^*$ as a stochastic steady state.
+* $\{X_t\}$ is a Markov chain with stochastic matrix $P$ and initial
+  distribition $\psi_0$
+* $\mathbf{1}\{X_t = x\} = 1$ if $X_t = x$ and zero otherwise
+
+````
+
+TODO -- in the next line, refer to the theorem by number.
+
+The result in theorem XXX is sometimes called **ergodicity**.
+
+The theorem tells us that the fraction of time the chain spends at state $x$
+converges to $\psi^*(x)$ as time goes to infinity.
+
+(new_interp_sd)=
+This gives us another way to interpret the stationary distribution (provided irreducibility holds).
+
+Importantly, the result is valid for any choice of $\psi_0$.
+
+Notice that the theorem is related to the law of large numbers.
+
+TODO -- link to our undergrad lln and clt lecture
+
+It tells us that, in some settings, the law of large numbers sometimes holds even when the
+sequence of random variables is not IID.
+
+
+(mc_eg1-2)=
+### Example 1
+
+Recall our cross-sectional interpretation of the employment/unemployment model {ref}`discussed above <mc_eg1-1>`.
+
+Assume that $\alpha \in (0,1)$ and $\beta \in (0,1)$, so that irreducibility holds.
+
+We saw that the stationary distribution is $(p, 1-p)$, where
+
+$$
+p = \frac{\beta}{\alpha + \beta}
+$$
+
+In the cross-sectional interpretation, this is the fraction of people unemployed.
+
+In view of our latest (ergodicity) result, it is also the fraction of time that a single worker can expect to spend unemployed.
+
+Thus, in the long-run, cross-sectional averages for a population and time-series averages for a given person coincide.
+
+This is one aspect of the concept  of ergodicity.
+
+
+(ergo)=
+### Example 2
+
+
+Another example is Hamilton {cite}`Hamilton2005` dynamics {ref}`discussed above <mc_eg2>`.
+
+The diagram of the Markov chain shows that it is **irreducible**.
+
+Therefore, we can see the sample path averages for each state (the fraction of time spent in each state) converges to the stationary distribution regardless of the starting state 
+
+```{code-cell} ipython3
+P = np.array([[0.971, 0.029, 0.000],
+              [0.145, 0.778, 0.077],
+              [0.000, 0.508, 0.492]])
+n = 10_000
+mc = MarkovChain(P)
+n_state = P.shape[1]
+fig, axes = plt.subplots(nrows=1, ncols=n_state)
+ψ_star = mc.stationary_distributions[0]
+plt.subplots_adjust(wspace=0.35)
+for i in range(n_state):
+    axes[i].grid()
+    axes[i].set_ylim(ψ_star[i]-0.2, ψ_star[i]+0.2)
+    axes[i].axhline(ψ_star[i], linestyle='dashed', lw=2, color = 'black', 
+                    label = fr'$\psi(X={i})^*$')
+    axes[i].set_xlabel('t')
+    axes[i].set_ylabel(fr'average time spent at X={i}')
+
+    # Compute the fraction of time spent, for each X=x
+    for x0, col in ((0, 'blue'), (1, 'green'), (2, 'red')):
+        # Generate time series that starts at different x0
+        X = mc.simulate(n, init=x0)
+        X_bar = (X == i).cumsum() / (1 + np.arange(n, dtype=float))
+        axes[i].plot(X_bar, color=col, label=f'$x_0 = \, {x0} $')
+    axes[i].legend()
+plt.show()
+```
+
+### Example 3
+
+Let's look at another example with two states: 0 and 1.
+
+
+$$
+P :=
+\left(
+  \begin{array}{cc}
+     0 & 1\\
+     1 & 0\\
+  \end{array}
+\right)
+$$
+
+
+The diagram of the Markov chain shows that it is **irreducible**
+
+```{code-cell} ipython3
+dot = Digraph(comment='Graph')
+dot.attr(rankdir='LR')
+dot.node("0")
+dot.node("1")
+
+dot.edge("0", "1", label="1.0", color='red')
+dot.edge("1", "0", label="1.0", color='red')
+
+dot
+```
+
+As you might notice, unlike other Markov chain we have seen before, it has a periodic cycle.
+
+This is formally called [periodicity](https://stats.libretexts.org/Bookshelves/Probability_Theory/Probability_Mathematical_Statistics_and_Stochastic_Processes_(Siegrist)/16:_Markov_Processes/16.05:_Periodicity_of_Discrete-Time_Chains#:~:text=A%20state%20in%20a%20discrete,limiting%20behavior%20of%20the%20chain.). 
+
+We will not go into the details of periodicity.
+
+The takeaway from this example is that ergodicity can hold for periodic chains
+
+```{code-cell} ipython3
+P = np.array([[0, 1],
+              [1, 0]])
+n = 10_000
+mc = MarkovChain(P)
+n_state = P.shape[1]
+fig, axes = plt.subplots(nrows=1, ncols=n_state)
+ψ_star = mc.stationary_distributions[0]
+for i in range(n_state):
+    axes[i].grid()
+    axes[i].set_ylim(0.45, 0.55)
+    axes[i].axhline(ψ_star[i], linestyle='dashed', lw=2, color = 'black', 
+                    label = fr'$\psi(X={i})^*$')
+    axes[i].set_xlabel('t')
+    axes[i].set_ylabel(fr'average time spent at X={i}')
+
+    # Compute the fraction of time spent, for each X=x
+    for x0 in range(n_state):
+        # Generate time series starting at different x_0
+        X = mc.simulate(n, init=x0)
+        X_bar = (X == i).cumsum() / (1 + np.arange(n, dtype=float))
+        axes[i].plot(X_bar, label=f'$x_0 = \, {x0} $')
+
+    axes[i].legend()
+plt.show()
+```
+
+In fact, it converges faster given it is a more "predictable" dynamic
+
+We will come back to this very soon.
+
+
+### Asymptotic Stationarity
+
+Sometimes the distribution $\psi_t = \psi_0 P^t$ of $X_t$ converges to the
+stationary distribution regardless of where we begin.
+
+For example, we have the following result
+
+TODO -- convert to theorem environment
+
+```{prf:theorem}
+:label: strict_stationary
+
+Theorem: If there exists an integer $m$ such that all entries of $P^m$ are
+strictly positive, then $P$ has only one stationary distribution $\psi^*$ and
+
+$$
+    \psi_0 P^t \to \psi
+    \quad \text{as } t \to \infty
+$$    
+
+
+(See, for example, {cite}`haggstrom2002finite`. Our assumptions imply that $P$
+is irreducible and [aperiodic](https://en.wikipedia.org/wiki/Aperiodic_graph).)
+```
 
 The convergence in the theorem is illustrated in the next figure
 
-```{code-cell} ipython
-P = ((0.971, 0.029, 0.000),
-     (0.145, 0.778, 0.077),
-     (0.000, 0.508, 0.492))
+```{code-cell} ipython3
+P = np.array([[0.971, 0.029, 0.000],
+              [0.145, 0.778, 0.077],
+              [0.000, 0.508, 0.492]])
 P = np.array(P)
 
 ψ = (0.0, 0.2, 0.8)        # Initial condition
@@ -859,54 +1078,99 @@ Here
 
 You might like to try experimenting with different initial conditions.
 
-(ergodicity)=
-## {index}`Ergodicity <single: Ergodicity>`
+### Example 1
 
-```{index} single: Markov Chains; Ergodicity
+We can simulate many initial distributions and check whether they converge to the stationary distribution.
+
+In the case of Hamilton's Markov chain, the distribution $\psi P^t$ converges to $\psi^*$ after a period of time
+
+```{code-cell} ipython3
+# Define the transition matrix
+P = np.array([[0.971, 0.029, 0.000],
+              [0.145, 0.778, 0.077],
+              [0.000, 0.508, 0.492]])
+# Define the number of iterations
+n = 50
+n_state = P.shape[0]
+mc = qe.MarkovChain(P)
+ψ_star = mc.stationary_distributions[0]
+
+# Draw the plot
+fig, axes = plt.subplots(nrows=1, ncols=n_state)
+plt.subplots_adjust(wspace=0.35)
+x0s = np.ones((n, n_state))
+for i in range(n):
+    draws = np.random.randint(1, 10_000_000, size=n_state)
+    
+    # Scale them so that they add up into 1
+    x0s[i,:] = np.array(draws/sum(draws))
+
+# Loop through many initial values
+for x0 in x0s:
+    x = x0
+    X = np.zeros((n,n_state))
+    
+    # Obtain and plot distributions at each state
+    for t in range(0, n):
+        x =  x @ P 
+        X[t] = x
+    for i in range(n_state):
+        axes[i].plot(range(0, n), X[:,i], alpha=0.3)
+    
+for i in range(n_state):
+    axes[i].axhline(ψ_star[i], linestyle='dashed', lw=2, color = 'black', 
+                    label = fr'$\psi(X={i})^*$')
+    axes[i].set_xlabel('t')
+    axes[i].set_ylabel(fr'$\psi(X={i})$')
+    axes[i].legend()
+
+plt.show()
 ```
 
-Under irreducibility, yet another important result obtains: for all $x \in S$,
+### Example 2
 
-```{math}
-:label: llnfmc0
 
-\frac{1}{m} \sum_{t = 1}^m \mathbf{1}\{X_t = x\}  \to \psi^*(x)
-    \quad \text{as } m \to \infty
+However, in the case of our periodic chain, we find the distribution is oscillating
+
+```{code-cell} ipython3
+import random
+
+P = np.array([[0, 1],
+              [1, 0]])
+n = 50
+n_state = P.shape[0]
+mc = qe.MarkovChain(P)
+ψ_star = mc.stationary_distributions[0]
+fig, axes = plt.subplots(nrows=1, ncols=n_state)
+x0s = np.ones((n, n_state))
+for i in range(n):
+    nums = np.random.randint(1, 10_000_000, size=n_state)
+    x0s[i,:] = np.array(nums/sum(nums))
+
+for x0 in x0s:
+    x = x0
+    X = np.zeros((n,n_state))
+    
+    for t in range(0, n):
+        x = x @ P
+        X[t] = x
+    for i in range(n_state):
+        axes[i].plot(range(20, n), X[20:,i], alpha=0.3)
+    
+for i in range(n_state):
+    axes[i].axhline(ψ_star[i], linestyle='dashed', lw=2, color = 'black', label = fr'$\psi (X={i})^*$')
+    axes[i].set_xlabel('t')
+    axes[i].set_ylabel(fr'$\psi(X={i})$')
+    axes[i].legend()
+
+plt.show()
 ```
 
-Here
+This example helps to emphasize the fact that asymptotic stationarity is about the distribution, while ergodicity is about the sample path.
 
-* $\mathbf{1}\{X_t = x\} = 1$ if $X_t = x$ and zero otherwise
-* convergence is with probability one
-* the result does not depend on the marginal distribution  of $X_0$
+The proportion of time spent in a state can converge to the stationary distribution with periodic chains.
 
-The result tells us that the fraction of time the chain spends at state $x$ converges to $\psi^*(x)$ as time goes to infinity.
-
-(new_interp_sd)=
-This gives us another way to interpret the stationary distribution --- provided that the convergence result in {eq}`llnfmc0` is valid.
-
-The convergence asserted in {eq}`llnfmc0` is a special case of a law of large numbers result for Markov chains --- see [EDTC](http://johnstachurski.net/edtc.html), section 4.3.4 for some additional information.
-
-(mc_eg1-2)=
-### Example
-
-Recall our cross-sectional interpretation of the employment/unemployment model {ref}`discussed above <mc_eg1-1>`.
-
-Assume that $\alpha \in (0,1)$ and $\beta \in (0,1)$, so that irreducibility and aperiodicity both hold.
-
-We saw that the stationary distribution is $(p, 1-p)$, where
-
-$$
-p = \frac{\beta}{\alpha + \beta}
-$$
-
-In the cross-sectional interpretation, this is the fraction of people unemployed.
-
-In view of our latest (ergodicity) result, it is also the fraction of time that a single worker can expect to spend unemployed.
-
-Thus, in the long-run, cross-sectional averages for a population and time-series averages for a given person coincide.
-
-This is one aspect of the concept  of ergodicity.
+However, the distribution at each state will not.
 
 (finite_mc_expec)=
 ## Computing Expectations
@@ -981,24 +1245,7 @@ We already know that this is $P^k(x, \cdot)$, so
 
 The vector $P^k h$ stores the conditional expectation $\mathbb E [ h(X_{t + k})  \mid X_t = x]$ over all $x$.
 
-### Iterated Expectations
 
-The **law of iterated expectations** states that
-
-$$
-\mathbb E \left[ \mathbb E [ h(X_{t + k})  \mid X_t = x] \right] = \mathbb E [  h(X_{t + k}) ] 
-$$
-
-where the outer $ \mathbb E$ on the left side is an unconditional distribution taken with respect to the marginal distribution  $\psi_t$ of $X_t$ 
-(again see equation {eq}`mdfmc2`).  
-
-To verify the law of iterated expectations, use  equation {eq}`mc_cce2` to substitute $ (P^k h)(x)$ for $E [ h(X_{t + k})  \mid X_t = x]$, write
-
-$$
-\mathbb E \left[ \mathbb E [ h(X_{t + k})  \mid X_t = x] \right] = \psi_t P^k h, 
-$$
-
-and note $\psi_t P^k h = \psi_{t+k} h = \mathbb E [  h(X_{t + k}) ] $.
 
 ### Expectations of Geometric Sums
 
@@ -1020,12 +1267,139 @@ $$
 (I - \beta P)^{-1}  = I + \beta P + \beta^2 P^2 + \cdots
 $$
 
-Premultiplication by $(I - \beta P)^{-1}$ amounts to "applying the **resolvent operator**".
+TODO -- connect to the Neumann series lemma (Maanasee)
+
+
+TODO -- verify the link.
+
 
 ## Exercises
 
+TODO: Add this into bib file
+
+@article{benhabib_wealth_2019,
+	title = {Wealth {Distribution} and {Social} {Mobility} in the {US}: {A} {Quantitative} {Approach}},
+	volume = {109},
+	issn = {0002-8282},
+	shorttitle = {Wealth {Distribution} and {Social} {Mobility} in the {US}},
+	url = {https://www.aeaweb.org/articles?id=10.1257/aer.20151684},
+	doi = {10.1257/aer.20151684},
+	abstract = {We quantitatively identify the factors that drive wealth dynamics in the United States and are consistent with its skewed cross-sectional distribution and with social mobility. We concentrate on three critical factors: (i) skewed earnings, (ii) differential saving rates across wealth levels, and (iii) stochastic idiosyncratic returns to wealth. All of these are fundamental for matching both distribution and mobility. The stochastic process for returns which best fits the cross-sectional distribution of wealth and social mobility in the United States shares several statistical properties with those of the returns to wealth uncovered by Fagereng et al. (2017) from tax records in Norway.},
+	language = {en},
+	number = {5},
+	urldate = {2023-02-03},
+	journal = {American Economic Review},
+	author = {Benhabib, Jess and Bisin, Alberto and Luo, Mi},
+	month = may,
+	year = {2019},
+	keywords = {Personal Income, Wealth, and Their Distributions, General Aggregative Models: Neoclassical, Macroeconomics: Consumption, Saving, Wealth, Aggregate Factor Income Distribution},
+	pages = {1623--1647},
+	file = {Full Text PDF:/Users/humphreyyang/Zotero/storage/P93BG5IZ/Benhabib et al. - 2019 - Wealth Distribution and Social Mobility in the US.pdf:application/pdf},
+}
+
+
 ```{exercise} 
 :label: fm_ex1
+
+Benhabib el al. {cite}`benhabib_wealth_2019` estimated that the transition matrix for social mobility as the following
+
+$$P_B:=\left(\begin{array}{cccccccc}0.222 & 0.222 & 0.215 & 0.187 & 0.081 & 0.038 & 0.029 & 0.006 \\ 0.221 & 0.22 & 0.215 & 0.188 & 0.082 & 0.039 & 0.029 & 0.006 \\ 0.207 & 0.209 & 0.21 & 0.194 & 0.09 & 0.046 & 0.036 & 0.008 \\ 0.198 & 0.201 & 0.207 & 0.198 & 0.095 & 0.052 & 0.04 & 0.009 \\ 0.175 & 0.178 & 0.197 & 0.207 & 0.11 & 0.067 & 0.054 & 0.012 \\ 0.182 & 0.184 & 0.2 & 0.205 & 0.106 & 0.062 & 0.05 & 0.011 \\ 0.123 & 0.125 & 0.166 & 0.216 & 0.141 & 0.114 & 0.094 & 0.021 \\ 0.084 & 0.084 & 0.142 & 0.228 & 0.17 & 0.143 & 0.121 & 0.028\end{array}\right)$$
+
+where each state 1 to 8 corresponds to a  percentile of wealth shares
+
+$$
+0-20 \%, 20-40 \%, 40-60 \%, 60-80 \%, 80-90 \%, 90-95 \%, 95-99 \%, 99-100 \%
+$$
+
+The matrix is recorded as `P_B` below
+
+```python
+P_B = [
+    [0.222, 0.222, 0.215, 0.187, 0.081, 0.038, 0.029, 0.006],
+    [0.221, 0.22,  0.215, 0.188, 0.082, 0.039, 0.029, 0.006],
+    [0.207, 0.209, 0.21,  0.194, 0.09,  0.046, 0.036, 0.008],
+    [0.198, 0.201, 0.207, 0.198, 0.095, 0.052, 0.04,  0.009],
+    [0.175, 0.178, 0.197, 0.207, 0.11,  0.067, 0.054, 0.012],
+    [0.182, 0.184, 0.2,   0.205, 0.106, 0.062, 0.05,  0.011],
+    [0.123, 0.125, 0.166, 0.216, 0.141, 0.114, 0.094, 0.021],
+    [0.084, 0.084, 0.142, 0.228, 0.17,  0.143, 0.121, 0.028]
+    ]
+
+P_B = np.array(P_B)
+codes_B =  ( '1','2','3','4','5','6','7','8')
+```
+
+In this exercise, 
+
+1. show this process is asymptotically stationary and calculate the stationary distribution using simulations.
+
+1. use simulation to show ergodicity.
+
+```
+
+```{solution-start} 
+:class: dropdown
+```
+
+One simple way is to take the power of the transition matrix to find the stationary distribution
+
+```{code-cell} ipython3
+P_B = [
+    [0.222, 0.222, 0.215, 0.187, 0.081, 0.038, 0.029, 0.006],
+    [0.221, 0.22,  0.215, 0.188, 0.082, 0.039, 0.029, 0.006],
+    [0.207, 0.209, 0.21,  0.194, 0.09,  0.046, 0.036, 0.008],
+    [0.198, 0.201, 0.207, 0.198, 0.095, 0.052, 0.04,  0.009],
+    [0.175, 0.178, 0.197, 0.207, 0.11,  0.067, 0.054, 0.012],
+    [0.182, 0.184, 0.2,   0.205, 0.106, 0.062, 0.05,  0.011],
+    [0.123, 0.125, 0.166, 0.216, 0.141, 0.114, 0.094, 0.021],
+    [0.084, 0.084, 0.142, 0.228, 0.17,  0.143, 0.121, 0.028]
+    ]
+
+P_B = np.array(P_B)
+codes_B =  ( '1','2','3','4','5','6','7','8')
+
+np.linalg.matrix_power(P_B, 10)
+```
+
+We find rows transition matrix converge to the stationary distribution 
+
+```{code-cell} ipython3
+mc = qe.MarkovChain(P_B)
+ψ_star = mc.stationary_distributions[0]
+ψ_star
+```
+
+2.
+
+```{code-cell} ipython3
+N = 1000
+mc = MarkovChain(P_B)
+fig, ax = plt.subplots(figsize=(9, 6))
+X = mc.simulate(N)
+# Center the plot at 0
+ax.set_ylim(-0.25, 0.25)
+ax.axhline(0, linestyle='dashed', lw=2, color = 'black', alpha=0.4)
+
+
+for x0 in range(8):
+    # Calculate the average time for each worker
+    X_bar = (X == x0).cumsum() / (1 + np.arange(N, dtype=float))
+    ax.plot(X_bar - ψ_star[x0], label=f'$X = {x0+1} $')
+    ax.set_xlabel('t')
+    ax.set_ylabel(fr'average time spent in a state - $\psi(X=x)^*$')
+
+ax.legend()
+plt.show()
+```
+
+We can see that the time spent at each state quickly converges to the stationary distribution.
+
+```{solution-end}
+```
+
+
+```{exercise} 
+:label: fm_ex2
 
 According to the discussion {ref}`above <mc_eg1-2>`, if a worker's employment dynamics obey the stochastic matrix
 
@@ -1060,10 +1434,11 @@ it is close to $p$.
 You will see that this statement is true regardless of the choice of initial
 condition or the values of $\alpha, \beta$, provided both lie in
 $(0, 1)$.
+
+The result should be similar to the plot we plotted [here](ergo)
 ```
 
-
-```{solution-start} fm_ex1
+```{solution-start} fm_ex2
 :class: dropdown
 ```
 
@@ -1074,7 +1449,7 @@ conditions.
 
 As $m$ gets large, both series converge to zero.
 
-```{code-cell} python3
+```{code-cell} ipython3
 α = β = 0.1
 N = 10000
 p = β / (α + β)
@@ -1106,290 +1481,68 @@ plt.show()
 ```{solution-end}
 ```
 
-```{exercise-start}
-:label: fm_ex2
+```{exercise} 
+:label: fm_ex3
+
+In `quantecon` library, irreducibility is tested by checking whether the chain forms a [strongly connected component](https://networkx.org/documentation/stable/reference/algorithms/generated/networkx.algorithms.components.is_strongly_connected.html).
+
+However, another way to verify irreducibility is by checking whether $A$ satisfies the following statement:
+
+Assume A is an $n \times n$ $A$ is irreducible if and only if $\sum_{k=0}^{n-1}A^k$ is a positive matrix.
+
+(see more at \cite{zhao_power_2012} and [here](https://math.stackexchange.com/questions/3336616/how-to-prove-this-matrix-is-a-irreducible-matrix))
+
+Based on this claim, write a function to test irreducibility.
+
 ```
 
-A topic of interest for economics and many other disciplines is *ranking*.
+TODO:
 
-Let's now consider one of the most practical and important ranking problems
---- the rank assigned to web pages by search engines.
+add to .bib
 
-(Although the problem is motivated from outside of economics, there is in fact a deep connection between search ranking systems and prices in certain competitive equilibria --- see {cite}`DLP2013`.)
+@book{zhao_power_2012,
+	address = {Boston, MA},
+	series = {{SpringerBriefs} in {Computer} {Science}},
+	title = {Power {Distribution} and {Performance} {Analysis} for {Wireless} {Communication} {Networks}},
+	isbn = {978-1-4614-3283-8 978-1-4614-3284-5},
+	url = {https://link.springer.com/10.1007/978-1-4614-3284-5},
+	language = {en},
+	urldate = {2023-02-03},
+	publisher = {Springer US},
+	author = {Zhao, Dongmei},
+	year = {2012},
+	doi = {10.1007/978-1-4614-3284-5},
+	keywords = {Performance Analysis, Power Distribution, Radio Resource Management, Wireless Networks},
+	file = {Full Text:/Users/humphreyyang/Zotero/storage/6JG9FW3F/Zhao - 2012 - Power Distribution and Performance Analysis for Wi.pdf:application/pdf},
+}
 
-To understand the issue, consider the set of results returned by a query to a web search engine.
-
-For the user, it is desirable to
-
-1. receive a large set of accurate matches
-1. have the matches returned in order, where the order corresponds to some measure of "importance"
-
-Ranking according to a measure of importance is the problem we now consider.
-
-The methodology developed to solve this problem by Google founders Larry Page and Sergey Brin
-is known as [PageRank](https://en.wikipedia.org/wiki/PageRank).
-
-To illustrate the idea, consider the following diagram
-
-```{figure} /_static/lecture_specific/finite_markov/web_graph.png
-```
-
-Imagine that this is a miniature version of the WWW, with
-
-* each node representing a web page
-* each arrow representing the existence of a link from one page to another
-
-Now let's think about which pages are likely to be important, in the sense of being valuable to a search engine user.
-
-One possible criterion for the importance of a page is the number of inbound links --- an indication of popularity.
-
-By this measure, `m` and `j` are the most important pages, with 5 inbound links each.
-
-However, what if the pages linking to `m`, say, are not themselves important?
-
-Thinking this way, it seems appropriate to weight the inbound nodes by relative importance.
-
-The PageRank algorithm does precisely this.
-
-A slightly simplified presentation that captures the basic idea is as follows.
-
-Letting $j$ be (the integer index of) a typical page and $r_j$ be its ranking, we set
-
-$$
-r_j = \sum_{i \in L_j} \frac{r_i}{\ell_i}
-$$
-
-where
-
-* $\ell_i$ is the total number of outbound links from $i$
-* $L_j$ is the set of all pages $i$ such that $i$ has a link to $j$
-
-This is a measure of the number of inbound links, weighted by their own ranking (and normalized by $1 / \ell_i$).
-
-There is, however, another interpretation, and it brings us back to Markov chains.
-
-Let $P$ be the matrix given by $P(i, j) = \mathbf 1\{i \to j\} / \ell_i$ where $\mathbf 1\{i \to j\} = 1$ if $i$ has a link to $j$ and zero otherwise.
-
-The matrix $P$ is a stochastic matrix provided that each page has at least one link.
-
-With this definition of $P$ we have
-
-$$
-r_j
-= \sum_{i \in L_j} \frac{r_i}{\ell_i}
-= \sum_{\text{all } i} \mathbf 1\{i \to j\} \frac{r_i}{\ell_i}
-= \sum_{\text{all } i} P(i, j) r_i
-$$
-
-Writing $r$ for the row vector of rankings, this becomes $r = r P$.
-
-Hence $r$ is the stationary distribution of the stochastic matrix $P$.
-
-Let's think of $P(i, j)$ as the probability of "moving" from page $i$ to page $j$.
-
-The value $P(i, j)$ has the interpretation
-
-* $P(i, j) = 1/k$ if $i$ has $k$ outbound links and $j$ is one of them
-* $P(i, j) = 0$ if $i$ has no direct link to $j$
-
-Thus, motion from page to page is that of a web surfer who moves from one page to another by randomly clicking on one of the links on that page.
-
-Here "random" means that each link is selected with equal probability.
-
-Since $r$ is the stationary distribution of $P$, assuming that the uniform ergodicity condition is valid, we {ref}`can interpret <new_interp_sd>` $r_j$ as the fraction of time that a (very persistent) random surfer spends at page $j$.
-
-Your exercise is to apply this ranking algorithm to the graph pictured above
-and return the list of pages ordered by rank.
-
-There is a total of 14 nodes (i.e., web pages), the first named `a` and the last named `n`.
-
-A typical line from the file has the form
-
-```{code-block} none
-d -> h;
-```
-
-This should be interpreted as meaning that there exists a link from `d` to `h`.
-
-The data for this graph is shown below, and read into a file called `web_graph_data.txt` when the cell is executed.
-
-```{code-cell} ipython
-%%file web_graph_data.txt
-a -> d;
-a -> f;
-b -> j;
-b -> k;
-b -> m;
-c -> c;
-c -> g;
-c -> j;
-c -> m;
-d -> f;
-d -> h;
-d -> k;
-e -> d;
-e -> h;
-e -> l;
-f -> a;
-f -> b;
-f -> j;
-f -> l;
-g -> b;
-g -> j;
-h -> d;
-h -> g;
-h -> l;
-h -> m;
-i -> g;
-i -> h;
-i -> n;
-j -> e;
-j -> i;
-j -> k;
-k -> n;
-l -> m;
-m -> g;
-n -> c;
-n -> j;
-n -> m;
-```
-
-To parse this file and extract the relevant information, you can use [regular expressions](https://docs.python.org/3/library/re.html).
-
-The following code snippet provides a hint as to how you can go about this
-
-```{code-cell} python3
-import re
-re.findall('\w', 'x +++ y ****** z')  # \w matches alphanumerics
-```
-
-```{code-cell} python3
-re.findall('\w', 'a ^^ b &&& $$ c')
-```
-
-When you solve for the ranking, you will find that the highest ranked node is in fact `g`, while the lowest is `a`.
-
-```{exercise-end}
-```
-
-
-```{solution-start} fm_ex2
+```{solution-start} fm_ex3
 :class: dropdown
 ```
 
-Here is one solution:
+```{code-cell} ipython3
+def is_irreducible(P):
+    n = P.shape[0]
+    result = np.zeros((n, n))
+    for i in range(n):
+        result += np.linalg.matrix_power(P, i)
+    return np.all(result > 0)
+```
 
-```{code-cell} python3
-"""
-Return list of pages, ordered by rank
-"""
-import re
-from operator import itemgetter
+```{code-cell} ipython3
+P1 = np.array([[0, 1],
+               [1, 0]])
+P2 = np.array([[1.0, 0.0, 0.0],
+               [0.1, 0.8, 0.1],
+               [0.0, 0.2, 0.8]])
+P3 = np.array([[0.971, 0.029, 0.000],
+               [0.145, 0.778, 0.077],
+               [0.000, 0.508, 0.492]])
 
-infile = 'web_graph_data.txt'
-alphabet = 'abcdefghijklmnopqrstuvwxyz'
-
-n = 14 # Total number of web pages (nodes)
-
-# Create a matrix Q indicating existence of links
-#  * Q[i, j] = 1 if there is a link from i to j
-#  * Q[i, j] = 0 otherwise
-Q = np.zeros((n, n), dtype=int)
-with open(infile) as f: 
-    edges = f.readlines()
-for edge in edges:
-    from_node, to_node = re.findall('\w', edge)
-    i, j = alphabet.index(from_node), alphabet.index(to_node)
-    Q[i, j] = 1
-# Create the corresponding Markov matrix P
-P = np.empty((n, n))
-for i in range(n):
-    P[i, :] = Q[i, :] / Q[i, :].sum()
-mc = MarkovChain(P)
-# Compute the stationary distribution r
-r = mc.stationary_distributions[0]
-ranked_pages = {alphabet[i] : r[i] for i in range(n)}
-# Print solution, sorted from highest to lowest rank
-print('Rankings\n ***')
-for name, rank in sorted(ranked_pages.items(), key=itemgetter(1), reverse=1):
-    print(f'{name}: {rank:.4}')
+for P in (P1, P2, P3):
+    result = lambda P: 'irreducible' if is_irreducible(P) else 'reducible'
+    print(f'{P}: {result(P)}')
 ```
 
 ```{solution-end}
 ```
-
-
-```{exercise}
-:label: fm_ex3
-
-In numerical work, it is sometimes convenient to replace a continuous model with a discrete one.
-
-In particular, Markov chains are routinely generated as discrete approximations to AR(1) processes of the form
-
-$$
-y_{t+1} = \rho y_t + u_{t+1}
-$$
-
-Here ${u_t}$ is assumed to be IID and $N(0, \sigma_u^2)$.
-
-The variance of the stationary probability distribution of $\{ y_t \}$ is
-
-$$
-\sigma_y^2 := \frac{\sigma_u^2}{1-\rho^2}
-$$
-
-Tauchen's method {cite}`Tauchen1986` is the most common method for approximating this continuous state process with a finite state Markov chain.
-
-A routine for this already exists in [QuantEcon.py](http://quantecon.org/quantecon-py) but let's write our own version as an exercise.
-
-As a first step, we choose
-
-* $n$, the number of states for the discrete approximation
-* $m$, an integer that parameterizes the width of the state space
-
-Next, we create a state space $\{x_0, \ldots, x_{n-1}\} \subset \mathbb R$
-and a stochastic $n \times n$ matrix $P$ such that
-
-* $x_0 = - m \, \sigma_y$
-* $x_{n-1} = m \, \sigma_y$
-* $x_{i+1} = x_i + s$ where $s = (x_{n-1} - x_0) / (n - 1)$
-
-Let $F$ be the cumulative distribution function of the normal distribution $N(0, \sigma_u^2)$.
-
-The values $P(x_i, x_j)$ are computed to approximate the AR(1) process --- omitting the derivation, the rules are as follows:
-
-1. If $j = 0$, then set
-   
-   $$
-   P(x_i, x_j) = P(x_i, x_0) = F(x_0-\rho x_i + s/2)
-   $$
-   
-1. If $j = n-1$, then set
-   
-   $$
-   P(x_i, x_j) = P(x_i, x_{n-1}) = 1 - F(x_{n-1} - \rho x_i - s/2)
-   $$
-   
-1. Otherwise, set
-   
-   $$
-   P(x_i, x_j) = F(x_j - \rho x_i + s/2) - F(x_j - \rho x_i - s/2)
-   $$
-   
-
-The exercise is to write a function `approx_markov(rho, sigma_u, m=3, n=7)` that returns
-$\{x_0, \ldots, x_{n-1}\} \subset \mathbb R$ and $n \times n$ matrix
-$P$ as described above.
-
-* Even better, write a function that returns an instance of [QuantEcon.py's](http://quantecon.org/quantecon-py) MarkovChain class.
-```
-
-```{solution} fm_ex3
-:class: dropdown
-
-A solution from the [QuantEcon.py](http://quantecon.org/quantecon-py) library
-can be found [here](https://github.com/QuantEcon/QuantEcon.py/blob/master/quantecon/markov/approximation.py).
-
-```
-
-[^pm]: Hint: First show that if $P$ and $Q$ are stochastic matrices then so is their product --- to check the row sums, try post multiplying by a column vector of ones.  Finally, argue that $P^n$ is a stochastic matrix using induction.

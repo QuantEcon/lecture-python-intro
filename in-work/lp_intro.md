@@ -4,26 +4,24 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.10.3
+    jupytext_version: 1.14.4
 kernelspec:
-  display_name: Python 3
+  display_name: Python 3 (ipykernel)
   language: python
   name: python3
 ---
 
-TODO --- created simplified undergraduate version
+In this lecture, we will need the following library. Install [ortools](https://developers.google.com/optimization) using `pip`.
 
-* shift all discussion of duality to the end and warn that it's harder, some
-  readers can skip
-* switch to Google OR tools and the main way to solve the examples
-    - then add another section on SciPy tools and show how to solve, compare
-
+```{code-cell} ipython3
+!pip install ortools
+```
 
 # Linear Programming
 
 ## Overview
 
-**Linear programming** problems either maximize or minimize 
+**Linear programming** problems either maximize or minimize
 a linear objective function subject to a set of  linear equality and/or inequality constraints.
 
 Linear programs come in pairs:
@@ -31,14 +29,14 @@ Linear programs come in pairs:
 * an original  **primal** problem, and
 
 * an associated **dual** problem.
- 
+
 If a primal problem involves **maximization**, the dual problem involves **minimization**.
 
 If a primal problem involves  **minimization**, the dual problem involves **maximization**.
 
 We provide a standard form of a linear program and methods to transform other forms of linear programming problems  into a standard form.
 
-We tell how to solve a linear programming problem using [SciPy](https://scipy.org/).
+We tell how to solve a linear programming problem using [SciPy](https://scipy.org/) and [Google OR-Tools](https://developers.google.com/optimization).
 
 We describe the important concept of complementary slackness and how it relates to the dual problem.
 
@@ -46,63 +44,22 @@ Let's start with some standard imports.
 
 ```{code-cell} ipython3
 import numpy as np
+from ortools.linear_solver import pywraplp
 from scipy.optimize import linprog
 import matplotlib.pyplot as plt
 from matplotlib.patches import Polygon
 %matplotlib inline
 ```
 
-## Objective Function and Constraints
+Let's start with some examples of linear programming problem.
 
-We want to minimize a **cost function** $c'x = \sum_{i=1}^n c_i x_i$ over  feasible values of $x = (x_1,x_2,\dots,x_n)'$.
++++
 
-Here 
-
-*  $c = (c_1,c_2,\dots,c_n)'$ is  a **unit cost vector**,  and 
-
-*  $x = (x_1,x_2,\dots,x_n)'$ is a vector of **decision variables**
-
-Decision variables are  restricted to satisfy a set of linear equality and/or inequality constraints.
-
-We describe the constraints with the following  collections of  $n$-dimensional vectors $a_i$ and scalars $b_i$  and associated sets indexing the equality and inequality constraints:
-
-* $a_i$ for $i \in M_i$, where $M_1,M_2,M_3$ are each  sets of indexes 
- 
-and a collection of  scalers 
-
-* $b_i$ for $i \in N_i$, where $N_1,N_2,N_3$  are each sets of indexes.
-
-A linear programming can be stated as {cite}`bertsimas_tsitsiklis1997`:
-
-$$
-\begin{aligned}
-\min_{x} \ & c' x \\
-\mbox{subject to } \ & a_i' x \ge b_i, & i \in M_1 \\
-& a_i' x \le b_i, & i \in M_2  \\
-& a_i' x = b_i, & i \in M_3  \\
-& x_j \ge 0, & j \in N_1 \\
-& x_j \le 0, & j \in N_2 \\
-& x_j\ \text{unrestricted}, & j \in N_3 \\
-\end{aligned}
-$$ (linprog)
-
-A vector $x$ that satisfies all of the constraints is called a **feasible solution**.
-
-A collection of all feasible solutions is called  a **feasible set**. 
-
-A feasible solution $x$ that minimizes the cost function  is called an **optimal solution**.
-
-The corresponding value of cost function $c'x$ is called the  **optimal value**. 
-
-If the feasible set is empty, we say that solving  the  linear programming problem is **infeasible**. 
-
-If, for any $K \in \mathbb R$, there exists a feasible solution $x$ such that $c'x < K$, we say that the problem is **unbounded** or equivalently that the optimal value is $-\infty$.
-
-## Example 1: Production Problem 
+## Example 1: Production Problem
 
 This example was created by {cite}`bertsimas_tsitsiklis1997`
 
-Suppose that a factory can produce two goods called Product $1$ and Product $2$. 
+Suppose that a factory can produce two goods called Product $1$ and Product $2$.
 
 To produce each product requires both material and labor.
 
@@ -118,10 +75,9 @@ Required per unit material and labor  inputs and  revenues  are shown in table b
 
 30 units of material and 20 units of labor available.
 
-A firm's problem is to construct a  production plan that uses its  30 units of materials and 20 unites of labor
-to maximize its revenue.
+A firm's problem is to construct a  production plan that uses its  30 units of materials and 20 units of labor to maximize its revenue.
 
-Let $x_i$ denote the quantity of Product $i$ that the firm produces. 
+Let $x_i$ denote the quantity of Product $i$ that the firm produces.
 
 This problem can be formulated as:
 
@@ -137,24 +93,27 @@ $$
 The following graph illustrates the firm's constraints and iso-revenue lines.
 
 ```{code-cell} ipython3
+---
+tags: [hide-input]
+---
 fig, ax = plt.subplots(figsize=(8, 6))
 ax.grid()
 
 # Draw constraint lines
 ax.hlines(0, -1, 17.5)
 ax.vlines(0, -1, 12)
-ax.plot(np.linspace(-1, 17.5, 100), 6-0.4*np.linspace(-1, 17.5, 100), color="c")
-ax.plot(np.linspace(-1, 5.5, 100), 10-2*np.linspace(-1, 5.5, 100), color="c")
+ax.plot(np.linspace(-1, 17.5, 100), 6-0.4*np.linspace(-1, 17.5, 100), color="r")
+ax.plot(np.linspace(-1, 5.5, 100), 10-2*np.linspace(-1, 5.5, 100), color="r")
 ax.text(1.5, 8, "$2x_1 + 5x_2 \leq 30$", size=12)
 ax.text(10, 2.5, "$4x_1 + 2x_2 \leq 20$", size=12)
 ax.text(-2, 2, "$x_2 \geq 0$", size=12)
 ax.text(2.5, -0.7, "$x_1 \geq 0$", size=12)
 
 # Draw the feasible region
-feasible_set = Polygon(np.array([[0, 0], 
-                                 [0, 6], 
-                                 [2.5, 5], 
-                                 [5, 0]]), 
+feasible_set = Polygon(np.array([[0, 0],
+                                 [0, 6],
+                                 [2.5, 5],
+                                 [5, 0]]),
                        color="cyan")
 ax.add_patch(feasible_set)
 
@@ -172,17 +131,72 @@ ax.text(2.7, 5.2, "Optimal Solution", size=12)
 plt.show()
 ```
 
-The blue region is the feasible set within which all constraints are satisfied. 
+The blue region is the feasible set within which all constraints are satisfied.
 
 Parallel orange lines are iso-revenue lines.
 
-The firm's objective is to find the  parallel orange lines to the upper boundary of the feasible set. 
+The firm's objective is to find the  parallel orange lines to the upper boundary of the feasible set.
 
-The intersection of the feasible set and the highest orange line delineates the optimal set. 
+The intersection of the feasible set and the highest orange line delineates the optimal set.
 
 In this example, the optimal set is the point $(2.5, 5)$.
 
-## Example 2: Investment Problem 
++++
+
+### Computation: Using OR-Tools
+
+Let's try to solve the same problem using the package *ortools.linear_solver*
+
++++
+
+The following cell instantiates a solver and creates two variables specifying the range of values that they can have.
+
+```{code-cell} ipython3
+# Instantiate a GLOP(Google Linear Optimization Package) solver
+solver = pywraplp.Solver.CreateSolver('GLOP')
+```
+
+Let's us create two variables $x_1$ and $x_2$ such that they can only have nonnegative values.
+
+```{code-cell} ipython3
+# Create the two variables and let them take on any non-negative value.
+x1 = solver.NumVar(0, solver.infinity(), 'x1')
+x2 = solver.NumVar(0, solver.infinity(), 'x2')
+```
+
+Add the constraints to the problem.
+
+```{code-cell} ipython3
+# Constraint 1: 2x_1 + 5x_2 <= 30.0
+solver.Add(2 * x1 + 5 * x2 <= 30.0)
+
+# Constraint 2: 4x_1 + 2x_2 <= 20.0
+solver.Add(4 * x1 + 2 * x2 <= 20.0)
+```
+
+Let's specify the objective function. We use `solver.Maximize` method in the case when we want to maximize the objective function and in the case of minimization we can use `solver.Minimize`.
+
+```{code-cell} ipython3
+# Objective function: 3x_1 + 4x_2
+solver.Maximize(3 * x1 + 4 * x2)
+```
+
+Once we solve the problem, we can check whether the solver was successful in solving the problem using it's status. If it's successful, then the status will be equal to `pywraplp.Solver.OPTIMAL`.
+
+```{code-cell} ipython3
+# Solve the system.
+status = solver.Solve()
+
+if status == pywraplp.Solver.OPTIMAL:
+    print('Objective value =', solver.Objective().Value())
+    x1_sol = round(x1.solution_value(), 2)
+    x2_sol = round(x2.solution_value(), 2)
+    print(f'(x1, x2): ({x1_sol}, {x2_sol})')
+else:
+    print('The problem does not have an optimal solution.')
+```
+
+## Example 2: Investment Problem
 
 We now consider a problem posed and solved by  {cite}`hu_guo2018`.
 
@@ -194,7 +208,7 @@ Three investment options are available:
 
 2. **Bank account:** the fund can deposit any amount  into a bank at the beginning of each year and receive its capital plus 6\% interest at the end of that year. In addition, the mutual fund is permitted to borrow no more than $20,000 at the beginning of each year and is asked to pay back the amount borrowed plus 6\% interest at the end of the year. The mutual fund can choose whether to deposit or borrow at the beginning of each year.
 
-3. **Corporate bond:** At the beginning of the second year, a  corporate bond becomes available. 
+3. **Corporate bond:** At the beginning of the second year, a  corporate bond becomes available.
 The fund can buy an amount
 that is no more than $ \$ $50,000 of this bond at the beginning of the second year and  at the end of the third year receive a payout of 130\% of the amount invested in the bond.
 
@@ -202,7 +216,7 @@ The mutual fund's objective is to maximize total payout that it owns at the end 
 
 We can formulate this  as a linear programming problem.
 
-Let  $x_1$ be the amount of put in the annuity, $x_2, x_3, x_4$ be  bank deposit balances at the beginning of the three years,  and $x_5$ be the amount invested  in the corporate bond. 
+Let  $x_1$ be the amount of put in the annuity, $x_2, x_3, x_4$ be  bank deposit balances at the beginning of the three years,  and $x_5$ be the amount invested  in the corporate bond.
 
 When $x_2, x_3, x_4$ are negative, it means that  the mutual fund has borrowed from  bank.
 
@@ -217,15 +231,15 @@ The table below shows the mutual fund's decision variables together with the tim
 The  mutual fund's decision making proceeds according to the following timing protocol:
 
 1. At the beginning of the first year, the mutual fund decides how much to invest in the annuity and
-   how much to deposit in the bank. This decision is subject to the constraint:  
+   how much to deposit in the bank. This decision is subject to the constraint:
 
    $$
    x_1 + x_2 = 100,000
-   $$ 
+   $$
 
 2. At the beginning of the second year, the mutual fund has a bank balance  of $1.06 x_2$.
    It must keep $x_1$ in the annuity. It can choose to put $x_5$ into the corporate bond,
-   and put $x_3$ in the bank. These decisions are restricted by 
+   and put $x_3$ in the bank. These decisions are restricted by
 
    $$
    x_1 + x_5 = 1.06 x_2 - x_3
@@ -262,14 +276,88 @@ $$
 \end{aligned}
 $$
 
++++
+
+### Computation: Using OR-Tools
+
+Let's try to solve the above problem using the package *ortools.linear_solver*.
+
+The following cell instantiates a solver and creates two variables specifying the range of values that they can have.
+
+```{code-cell} ipython3
+# Instantiate a GLOP(Google Linear Optimization Package) solver
+solver = pywraplp.Solver.CreateSolver('GLOP')
+```
+
+Let's us create five variables $x_1, x_2, x_3, x_4,$ and $x_5$ such that they can only have the values defined in the above constraints.
+
+```{code-cell} ipython3
+# Create the variables using the ranges available from constraints
+x1 = solver.NumVar(0, solver.infinity(), 'x1')
+x2 = solver.NumVar(-20_000, solver.infinity(), 'x2')
+x3 = solver.NumVar(-20_000, solver.infinity(), 'x3')
+x4 = solver.NumVar(-20_000, solver.infinity(), 'x4')
+x5 = solver.NumVar(0, 50_000, 'x5')
+```
+
+Add the constraints to the problem.
+
+```{code-cell} ipython3
+# Constraint 1: x_1 + x_2 = 100,000
+solver.Add(x1 + x2 == 100_000.0)
+
+# Constraint 2: x_1 - 1.06 * x_2 + x_3 + x_5 = 0
+solver.Add(x1 - 1.06 * x2 + x3 + x5 == 0.0)
+
+# Constraint 3: x_1 - 1.06 * x_3 + x_4 = 0
+solver.Add(x1 - 1.06 * x3 + x4 == 0.0)
+```
+
+Let's specify the objective function.
+
+```{code-cell} ipython3
+# Objective function: 1.30 * 3 * x_1 + 1.06 * x_4 + 1.30 * x_5
+solver.Maximize(1.30 * 3 * x1 + 1.06 * x4 + 1.30 * x5)
+```
+
+Let's solve the problem and check the status using `pywraplp.Solver.OPTIMAL`.
+
+```{code-cell} ipython3
+# Solve the system.
+status = solver.Solve()
+
+if status == pywraplp.Solver.OPTIMAL:
+    print('Objective value =', solver.Objective().Value())
+    x1_sol = round(x1.solution_value(), 3)
+    x2_sol = round(x2.solution_value(), 3)
+    x3_sol = round(x1.solution_value(), 3)
+    x4_sol = round(x2.solution_value(), 3)
+    x5_sol = round(x1.solution_value(), 3)
+    print(f'(x1, x2, x3, x4, x5): ({x1_sol}, {x2_sol}, {x3_sol}, {x4_sol}, {x5_sol})')
+else:
+    print('The problem does not have an optimal solution.')
+```
+
+OR-Tools tells us that  the best investment strategy is:
+
+1. At the beginning of the first year, the mutual fund should buy $ \$24,927.755$ of the annuity. Its bank account balance should be $ \$75,072.245$.
+
+2. At the beginning of the second year, the mutual fund should buy $ \$24,927.755$ of the corporate bond and keep invest in the annuity. Its bank balance should be $ \$24,927.755$.
+
+3. At the beginning of the third year, the bank balance should be $ \$75,072.245 $.
+
+4. At the end of the third year, the mutual fund will get payouts from the annuity and corporate bond and repay its loan from the bank. At the end  it will own $ \$141018.24 $, so that it's total net  rate of return over the three periods is $ 41.02\%$.
+
++++
+
 ## Standard Form
 
-For purposes of 
+For purposes of
 
 * unifying linear programs that are initially stated in superficially different forms, and
 
 * having a form that is convenient to put into black-box software packages,
- 
+
 it is useful to devote some effort to describe a **standard form**.
 
 Our standard form  is:
@@ -285,14 +373,14 @@ $$
 \end{aligned}
 $$
 
-Let 
+Let
 
-$$ 
+$$
 A = \begin{bmatrix}
-a_{11} & a_{12} & \dots & a_{1n} \\ 
-a_{21} & a_{22} & \dots & a_{2n} \\ 
-  &   & \vdots &   \\ 
-a_{m1} & a_{m2} & \dots & a_{mn} \\ 
+a_{11} & a_{12} & \dots & a_{1n} \\
+a_{21} & a_{22} & \dots & a_{2n} \\
+  &   & \vdots &   \\
+a_{m1} & a_{m2} & \dots & a_{mn} \\
 \end{bmatrix}, \quad
 b = \begin{bmatrix} b_1 \\ b_2 \\ \vdots \\ b_m \\ \end{bmatrix}, \quad
 c = \begin{bmatrix} c_1 \\ c_2 \\ \vdots \\ c_n \\ \end{bmatrix}, \quad
@@ -305,19 +393,19 @@ $$
 \begin{aligned}
 \min_{x} \ & c'x \\
 \mbox{subject to } \ & Ax = b\\
- & x >= 0\\
+ & x \geq 0\\
 \end{aligned}
 $$ (lpproblem)
 
-Here, $Ax = b$ means that  the $i$-th entry of $Ax$  equals the $i$-th entry of $b$ for every $i$. 
+Here, $Ax = b$ means that  the $i$-th entry of $Ax$  equals the $i$-th entry of $b$ for every $i$.
 
-Similarly, $x >= 0$ means that  $x_j$ is greater than $0$ for every $j$.
+Similarly, $x \geq 0$ means that  $x_j$ is greater than equal to $0$ for every $j$.
 
 ### Useful Transformations
 
 It is useful to know how to transform a problem that initially is not stated in the standard form into one that is.
 
-By deploying the following steps, any linear programming problem can be transformed into an  equivalent  standard form linear programming problem. 
+By deploying the following steps, any linear programming problem can be transformed into an  equivalent  standard form linear programming problem.
 
 1. **Objective Function:** If a problem is originally a constrained **maximization** problem, we can construct a new objective function that  is the additive inverse of the original objective function. The transformed problem is then a **minimization** problem.
 
@@ -350,6 +438,70 @@ $$
 & x_1, x_2, s_1, s_2 \ge 0 \\
 \end{aligned}
 $$
+
++++
+
+### Computation: Using SciPy
+
+The package *scipy.optimize* provides a function ***linprog*** to solve linear programming problems with a form below:
+
+$$
+\begin{aligned}
+\min_{x} \ & c' x  \\
+\mbox{subject to } \ & A_{ub}x \le b_{ub} \\
+ & A_{eq}x = b_{eq} \\
+ & l \le x \le u \\
+\end{aligned}
+$$
+
+```{note}
+By default $l = 0$ and $u = \text{None}$ unless explicitly specified with the argument 'bounds'.
+```
+
+Let's now try to solve the Problem 1 using SciPy.
+
+```{code-cell} ipython3
+# Construct parameters
+c_ex1 = np.array([3, 4])
+
+# Inequality constraints
+A_ex1 = np.array([[2, 5],
+                  [4, 2]])
+b_ex1 = np.array([30,20])
+```
+
+Once we solve the problem, we can check whether the solver was successful in solving the problem using the boolean attribute `success`. If it's successful, then the `success` attribute is set to `True`.
+
+```{code-cell} ipython3
+# Solve the problem
+# we put a negative sign on the objective as linprog does minimization
+res_ex1 = linprog(-c_ex1, A_ub=A_ex1, b_ub=b_ex1, method='revised simplex')
+
+if res_ex1.success:
+    # We use negative sign to get the optimal value (maximized value)
+    print('Optimal Value:', -res_ex1.fun)
+    print(f'(x1, x2): {res_ex1.x[0], res_ex1.x[1]}')
+else:
+    print('The problem does not have an optimal solution.')
+```
+
+The optimal plan tells the  factory to produce $2.5$ units of Product 1 and $5$ units of  Product 2; that  generates a maximizing value of  revenue of $27.5$.
+
+We are using the *linprog* function as a **black box**.
+
+Inside it, Python first  transforms the problem into  standard form.
+
+To do that, for each inequality constraint it generates one slack variable.
+
+Here the vector of slack variables is a two-dimensional NumPy array that  equals $b_{ub} - A_{ub}x$.
+
+See the [official documentation](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.linprog.html#scipy.optimize.linprog) for more details.
+
+```{note}
+This problem is to maximize the objective, so that we need to put a minus sign in front of parameter vector c.
+```
+
++++
 
 ### Example 2: Investment Problem
 
@@ -388,91 +540,6 @@ $$
 \end{aligned}
 $$
 
-## Computations
-
-The package *scipy.optimize* provides a function ***linprog*** to solve linear programming problems with a form below:
-
-$$
-\begin{aligned}
-\min_{x} \ & c' x  \\
-\mbox{subject to } \ & A_{ub}x \le b_{ub} \\
- & A_{eq}x = b_{eq} \\
- & l \le x \le u \\
-\end{aligned}
-$$
-
-```{note}
-By default $l = 0$ and $u = \text{None}$ unless explicitly specified with the argument 'bounds'.
-```
-
-Let's apply this great Python tool to solve our two example problems.
-
-### Example 1: Production Problem
-
-The problem is:
-
-$$
-\begin{aligned}
-\max_{x_1,x_2} \ & 3 x_1 + 4 x_2 \\
-\mbox{subject to } \ & 2 x_1 + 5 x_2 \le 30 \\
-& 4 x_1 + 2 x_2 \le 20 \\
-& x_1, x_2 \ge 0 \\
-\end{aligned}
-$$
-
-```{code-cell} ipython3
-# Construct parameters
-c_ex1 = np.array([3, 4])
-
-# Inequality constraints
-A_ex1 = np.array([[2, 5],
-                  [4, 2]])
-b_ex1 = np.array([30,20])
-
-# Solve the problem
-# we put a negative sign on the objective as linprog does minimization
-res_ex1 = linprog(-c_ex1, A_ub=A_ex1, b_ub=b_ex1, method='revised simplex')
-
-res_ex1
-```
-
-The optimal plan tells the  factory to produce 2.5 units of Product 1 and 5 units of  Product 2; that  generates a maximizing value of  revenue of 27.5.
-
-We are using the *linprog* function as a **black box**.  
-
-Inside it, Python first  transforms the problem into  standard form. 
-
-To do that, for each inequality constraint it generates one slack variable.
-
-Here the vector of slack variables is a two-dimensional NumPy array that  equals $b_{ub} - A_{ub}x$. 
-
-See the [official documentation](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.linprog.html#scipy.optimize.linprog) for more details.
-
-```{note}
-This problem is to maximize the objective, so that we need to put a minus sign in front of parameter vector c.
-```
-
-### Example 2: Investment Problem
-
-The problem is:
-
-$$
-\begin{aligned}
-\max_{x} \ & 1.30 \cdot 3x_1 + 1.06 x_4 + 1.30 x_5 \\
-\mbox{subject to } \ & x_1 + x_2 = 100,000\\
- & x_1 - 1.06 x_2 + x_3 + x_5 = 0\\
- & x_1 - 1.06 x_3 + x_4 = 0\\
- & x_2 \ge -20,000\\
- & x_3 \ge -20,000\\
- & x_4 \ge -20,000\\
- & x_5 \le 50,000\\
- & x_j \ge 0, \quad j = 1,5\\
- & x_j \ \text{unrestricted}, \quad j = 2,3,4\\
-\end{aligned}
-$$
-
-Let's solve this problem using *linprog*.
-
 ```{code-cell} ipython3
 # Construct parameters
 rate = 1.06
@@ -492,15 +559,30 @@ bounds_ex2 = [(  0,    None),
               (-20000, None),
               (-20000, None),
               (  0,   50000)]
+```
 
+Let's solve the problem and check the status using `success` attribute.
+
+
+```{code-cell} ipython3
 # Solve the problem
 res_ex2 = linprog(-c_ex2, A_eq=A_ex2, b_eq=b_ex2,
                   bounds=bounds_ex2, method='revised simplex')
 
-res_ex2
+if res_ex2.success:
+    # We use negative sign to get the optimal value (maximized value)
+    print('Optimal Value:', -res_ex2.fun)
+    x1_sol = round(res_ex2.x[0], 3)
+    x2_sol = round(res_ex2.x[1], 3)
+    x3_sol = round(res_ex2.x[2], 3)
+    x4_sol = round(res_ex2.x[3], 3)
+    x5_sol = round(res_ex2.x[4], 3)
+    print(f'(x1, x2, x3, x4, x5): {x1_sol, x2_sol, x3_sol, x4_sol, x5_sol}')
+else:
+    print('The problem does not have an optimal solution.')
 ```
 
-Python tells us that  the best investment strategy is:
+SciPy tells us that  the best investment strategy is:
 
 1. At the beginning of the first year, the mutual fund should buy $ \$24,927.75$ of the annuity. Its bank account balance should be $ \$75,072.25$.
 
@@ -508,311 +590,165 @@ Python tells us that  the best investment strategy is:
 
 3. At the beginning of the third year, the mutual fund should borrow $ \$20,000$ from the bank and invest in the annuity.
 
-4. At the end of the third year, the mutual fund will get payouts from the annuity and corporate bond and repay its loan from the bank. At the end  it will own $ \$ $141018.24, so that it's total net  rate of return over the three periods is 41.02\%.
+4. At the end of the third year, the mutual fund will get payouts from the annuity and corporate bond and repay its loan from the bank. At the end  it will own $ \$141018.24 $, so that it's total net  rate of return over the three periods is $ 41.02\% $.
 
-## Duality
-
-Associated with a  linear programming of form {eq}`linprog` with $m$ constraints and $n$ decision variables,
-there is an **dual** linear programming problem that takes the form (please see {cite}`bertsimas_tsitsiklis1997`)
-
-$$
-\begin{aligned}
-\max_{p} \ & b' p \\
-\mbox{subject to } \ & p_i \ge 0, & i \in M_1 \\
-& p_i \le 0, & i \in M_2  \\
-& p_i\ \text{unrestricted}, & i \in M_3  \\
-& A_j' p \le c_j, & j \in N_1 \\
-& A_j' p \ge c_j, & j \in N_2 \\
-& A_j' p = c_j, & j \in N_3 \\
-\end{aligned}
-$$
-
-Where $A_j$ is $j$-th column of the $m$ by $n$ matrix $A$.
++++
 
 ```{note}
-In what  follows, we shall  use $a_i'$ to denote the $i$-th row of $A$ and $A_j$ to denote the $j$-th column of $A$.
+You might notice the difference in the values of optimal solution using OR-Tools and SciPy but the optimal value is the same. It is because there can be many optimal solutions for the same problem.
 ```
 
-$$
-A = \begin{bmatrix}
-a_1' \\ 
-a_2' \\ 
-\ \\ 
-a_m' \\ 
-\end{bmatrix}.
-$$
++++
 
-To construct the  dual of linear programming problem {eq}`linprog`, we proceed as follows:
+## Exercises
 
-1. For every constraint $a_i' x \ge(\le or =) b_i$, $j = 1,2,...,m$, in the primal problem, we construct a corresponding dual variable $p_i$. $p_i$ is restricted to be positive if $a_i' x \ge b_i$ or negative if $a_i' x \le b_i$ or unrestricted if $a_i' x = b_i$. We construct the $m$-dimensional vector   $p$ with entries $p_i$.
-
-2. For every variable $x_j$, $j = 1,2,...,n$, we construct a corresponding dual constraint $A_j' p \ge(\le or =) c_j$. The constraint is $A_j' p \ge c_j$ if $x_j \le 0$, $A_j' p \le c_j$ if $x_j \ge 0$ or $A_j' p = c_j$ if $x_j $ is unrestricted.
-
-3. The dual problem is to **maximize**  objective function $b'p$.
-
-For a **maximization**  problem, we can first transform it to an equivalent minimization problem and then follow the above steps above to construct the  dual **minimization** problem. 
-
-We can easily verify that  **the dual of a dual problem is the  primal problem**.
-
-The following table summarizes relationships between objects in primal and dual problems. 
-
-|  Objective: Min  |  Objective: Max  |
-| :--------------: | :--------------: |
-|  m constraints   |   m variables    |
-| constraint $\ge$ | variable $\ge$ 0 |
-| constraint $\le$ | variable $\le$ 0 |
-|  constraint $=$  |  variable free   |
-|   n variables    |  n constraints   |
-| variable $\ge$ 0 | constraint $\le$ |
-| variable $\le$ 0 | constraint $\ge$ |
-|  variable free   |  constraint $=$  |
-
-As an example, the dual problem of the standard form {eq}`lpproblem` is:
-
-$$
-\begin{aligned}
-\max_{p} \ & b'p \\
-\mbox{subject to } \ & A'p \le c\\
-\end{aligned}
-$$
-
-As another example, consider a linear programming problem with form:
-
-$$
-\begin{aligned}
-\max_{x} \ & c'x \\
-\mbox{subject to } \ & A x \le b\\
-& x \ge 0\\
-\end{aligned}
-$$ (linprog2)
-
-Its dual problem is:
-
-$$
-\begin{aligned}
-\min_{p} \ & b'p \\
-\mbox{subject to } \ & A' p \ge c\\
-& p \ge 0\\
-\end{aligned}
-$$
-
-## Duality Theorems
-
-Primal and dual problems are linked by powerful **duality theorems** that have  **weak** and **strong** forms.
-
-The duality theorems provide the foundations of enlightening economic interpretations of linear programming problems. 
-
-**Weak duality:** For linear programming problem {eq}`linprog`, if $x$ and $p$ are feasible solutions to the primal and the dual problems, respectively, then
-
-$$ 
-b'p \le c'x 
-$$
-
-**Strong duality:** For linear programming problem {eq}`linprog`, if the primal problem has an optimal solution $x$, then the dual problem also has an optimal solution. Denote an optimal solution of the dual problem as $p$. Then
-
-$$ 
-b'p = c'x 
-$$
-
-According to strong duality, we can find the optimal value for the primal problem by solving the dual problem.
-
-But the dual problem tells us even more as we shall see next. 
-
-### Complementary Slackness
-
-Let $x$ and $p$ be feasible solutions to the primal problem {eq}`linprog` and its dual problem, respectively. 
-
-Then $x$ and $p$ are also  optimal solutions of the primal and dual problems if and only if:
-
-$$ 
-p_i (a_i' x - b_i) = 0, \quad \forall i, \\
-x_j (A_j' p - c_j) = 0, \quad \forall j.
-$$
-
-This means that $p_i = 0$ if $a_i' x - b_i \neq 0$ and $x_j = 0$ if $A_j' p - c_j \neq 0$.
-
-These are the celebrated **complementary slackness** conditions. 
-
-Let's interpret them.
-
-### Interpretations 
-
-Let's take a version of problem {eq}`linprog2` as a production problem and consider its associated dual problem.   
-
-A factory produce $n$ products with $m$ types of resources.
-
-Where  $i=1,2,\dots,m$ and $j=1,2,\dots,n$, let 
-
-* $x_j$ denote quantities of product $j$ to be produced
-
-* $a_{ij}$ denote required amount of resource $i$ to make one unit of product $j$,
-
-* $b_i$ denotes the  avaliable amount of resource $i$
-
-* $c_j$ denotes the revenue generated by producing one unit of product $j$. 
-
-
-**Dual variables:** By  strong duality, we have
-
-$$
-c_1 x_1 + c_2 x_2 + \dots + c_n x_n = b_1 p_1 + b_2 p_2 + \dots + b_m p_m.
-$$
-
-Evidently, a one unit change of $b_i$ results in $p_i$ units  change of revenue. 
-
-Thus, a dual variable can be interpreted as the **value** of one unit of resource $i$.
-
-This is why it is often called the  **shadow price** of resource $i$. 
-
-For feasible but not optimal primal and dual solutions $x$ and $p$, by weak duality, we have
-
-$$
-c_1 x_1 + c_2 x_2 + \dots + c_n x_n < b_1 p_1 + b_2 p_2 + \dots + b_m p_m.
-$$
-
-```{note}
-Here, the expression is opposite to the statement above since primal problem is a minimization problem.
+```{exercise-start}
+:label: ex1
 ```
 
-When a strict inequality holds, the solution is not optimal because  it doesn't fully utilize all valuable resources.
+### Exercise 1
+Implement a new extended solution for the Problem 1 where in the factory owner decides that number of units of Product 1 should not be less than the number of units of Product 2.
 
-Evidently, 
+```{exercise-end}
+```
 
-* if a shadow price $p_i$ is larger than the market price for Resource $i$, the factory should buy more Resource $i$ and expand its scale to generate more revenue; 
++++
 
-* if a shadow price $p_i$ is less than the market price for Resource $i$, the factory should sell its  Resource $i$.
+```{solution-start} ex1
+:class: dropdown
+```
 
-**Complementary slackness:** If there exists $i$ such that $a_i' x - b_i < 0$ for some $i$, then $p_i = 0$ by complementary slackness. $a_i' x - b_i < 0$ means that  to achieve its optimal production, the factory doesn't require as much  Resource $i$ as it has.
-It is reasonable that the shadow price of Resource $i$ is  0:  some of its resource $i$ is redundant.
-
-If there exists $j$ such that $A_j' p - c_j > 0$, then $x_j = 0$ by complementary slackness. $A_j' p - c_j > 0$ means that  the value of all resources used when producing one unit of product $j$ is greater than its cost.
-
-This means that  producing another product that  can more efficiently utilize these resources is a better choice than producing product $j$
-
-Since producing product $j$ is not optimal, $x_j$ should equal $0$.
-
-### Example 1: Production Problem
-
-This problem is one specific instance of the problem {eq}`linprog2`, whose economic meaning is interpreted above.
-
-Its dual problem is:
+So we can reformulate the problem as:
 
 $$
 \begin{aligned}
-\min_{x_1,x_2} \ & 30 p_1 + 20 p_2 \\
-\mbox{subject to } \ & 2 p_1 + 4 p_2 \ge 3 \\
-& 5 p_1 + 2 p_2 \ge 4 \\
-& p_1, p_2 \ge 0 \\
+\max_{x_1,x_2} \ & z = 3 x_1 + 4 x_2 \\
+\mbox{subject to } \ & 2 x_1 + 5 x_2 \le 30 \\
+& 4 x_1 + 2 x_2 \le 20 \\
+& x_1 \ge x_2 \\
+& x_1, x_2 \ge 0 \\
 \end{aligned}
 $$
 
-We solve this dual problem by using the  function *linprog*. 
-
-Since parameters used here are defined before when solving the primal problem, we won't define them here.
 
 ```{code-cell} ipython3
-# Solve the dual problem
-res_ex1_dual = linprog(b_ex1, A_ub=-A_ex1.T, b_ub=-c_ex1, method='revised simplex')
+# Instantiate a GLOP(Google Linear Optimization Package) solver
+solver = pywraplp.Solver.CreateSolver('GLOP')
 
-res_ex1_dual
+# Create the two variables and let them take on any non-negative value.
+x1 = solver.NumVar(0, solver.infinity(), 'x1')
+x2 = solver.NumVar(0, solver.infinity(), 'x2')
 ```
 
-The optimal value for the dual problem equals  27.5.
+```{code-cell} ipython3
+# Constraint 1: 2x_1 + 5x_2 <= 30.0
+solver.Add(2 * x1 + 5 * x2 <= 30.0)
 
-This equals the optimal value of  the primal problem, an illustration of  strong duality. 
+# Constraint 2: 4x_1 + 2x_2 <= 20.0
+solver.Add(4 * x1 + 2 * x2 <= 20.0)
 
-Shadow prices for materials and labor are 0.625 and 0.4375, respectively.
+# Constraint 3: x_1 >= x_2
+solver.Add(x1 >= x2)
+```
 
-### Example 2: Investment Problem
+```{code-cell} ipython3
+# Objective function: 3x_1 + 4x_2
+solver.Maximize(3 * x1 + 4 * x2)
+```
 
-The dual problem is:
+```{code-cell} ipython3
+# Solve the system.
+status = solver.Solve()
+
+if status == pywraplp.Solver.OPTIMAL:
+    print('Objective value =', solver.Objective().Value())
+    x1_sol = round(x1.solution_value(), 2)
+    x2_sol = round(x2.solution_value(), 2)
+    print(f'(x1, x2): ({x1_sol}, {x2_sol})')
+else:
+    print('The problem does not have an optimal solution.')
+```
+
+```{solution-end}
+```
+
+```{exercise-start}
+:label: ex2
+```
+### Exercise 2
+
+
+A carpenter manufactures $2$ products - $A$ and $B$.
+
+
+Product $A$ generates a profit of $23$ and product $B$ generates a profit of $10$.
+
+It takes $2$ hours for the carpenter to produce $A$ and $0.8$ hours to produce $B$.
+
+Moreover, he can't spend more than $25$ hours per week and the total number of units of $A$ and $B$ should not be greater than $20$.
+
+Find the number of units of $A$ and product $B$ that he should manufacture in order to maximise his profit.
+
+```{exercise-end}
+```
+
++++
+
+Solution:
+
+```{solution-start} ex1
+:class: dropdown
+```
+
+Let us assume the carpenter produces $x$ units of $A$ and $y$ units of $B$.
+
+So we can formulate the problem as:
 
 $$
 \begin{aligned}
-\min_{p} \ & 100,000 p_1 - 20,000 p_4 - 20,000 p_5 - 20,000 p_6 + 50,000 p_7 \\
-\mbox{subject to } \ & p_1 + p_2 + p_3 \ge 1.30 \cdot 3 \\
-& p_1 - 1.06 p_2 + p_4 = 0 \\
-& p_2 - 1.06 p_3 + p_5 = 0 \\
-& p_3 + p_6 = 1.06 \\
-& p_2 + p_7 \ge 1.30 \\
-& p_i \ \text{unrestricted}, \quad i = 1,2,3 \\
-& p_i \le 0, \quad i = 4,5,6 \\
-& p_7 \ge 0 \\
+\max_{x,y} \ & z = 23 x + 10 y \\
+\mbox{subject to } \ & x + y \le 20 \\
+& 2 x + 0.8 y \le 25 \\
 \end{aligned}
 $$
 
-We solve this dual problem by using the function *linprog*.
+```{code-cell} ipython3
+# Instantiate a GLOP(Google Linear Optimization Package) solver
+solver = pywraplp.Solver.CreateSolver('GLOP')
+```
+Let's us create two variables $x_1$ and $x_2$ such that they can only have nonnegative values.
 
 ```{code-cell} ipython3
-# Objective function parameters
-c_ex2_dual = np.array([100000, 0, 0, -20000, -20000, -20000, 50000])
-
-# Equality constraints
-A_eq_ex2_dual = np.array([[1, -1.06,     0,  1,  0,  0,  0],
-                          [0,     1, -1.06,  0,  1,  0,  0],
-                          [0,     0,     1,  0,  0,  1,  0]])
-b_eq_ex2_dual = np.array([0, 0, 1.06])
-
-# Inequality constraints
-A_ub_ex2_dual = - np.array([[1, 1, 1, 0, 0, 0, 0],
-                            [0, 1, 0, 0, 0, 0, 1]])
-b_ub_ex2_dual = - np.array([1.30*3, 1.30])
-
-# Bounds on decision variables
-bounds_ex2_dual = [(None, None),
-                   (None, None),
-                   (None, None),
-                   (None,    0),
-                   (None,    0),
-                   (None,    0),
-                   (   0, None)]
-
-# Solve the dual problem
-res_ex2_dual = linprog(c_ex2_dual, A_eq=A_eq_ex2_dual, b_eq=b_eq_ex2_dual, 
-                       A_ub=A_ub_ex2_dual, b_ub=b_ub_ex2_dual, bounds=bounds_ex2_dual,
-                       method='revised simplex')
-
-res_ex2_dual
+# Create the two variables and let them take on any non-negative value.
+x = solver.NumVar(0, solver.infinity(), 'x')
+y = solver.NumVar(0, solver.infinity(), 'y')
 ```
 
-The optimal value for the dual problem is 141018.24, which equals the value of the primal problem.
+```{code-cell} ipython3
+# Constraint 1: x + y <= 20.0
+solver.Add(x + y <= 20.0)
 
-Now, let's interpret the dual variables.
+# Constraint 2: 2x + 0.8y <= 25.0
+solver.Add(2 * x + 0.8 * y <= 25.0)
+```
 
-By strong duality and also our  numerical results, we have that  optimal value is:
+```{code-cell} ipython3
+# Objective function: 23x + 10y
+solver.Maximize(23 * x + 10 * y)
+```
 
-$$
-100,000 p_1 - 20,000 p_4 - 20,000 p_5 - 20,000 p_6 + 50,000 p_7.
-$$
+```{code-cell} ipython3
+# Solve the system.
+status = solver.Solve()
 
-We know if $b_i$ changes one dollor, then the optimal payoff in the end of the third year will change $p_i$ dollars. 
+if status == pywraplp.Solver.OPTIMAL:
+    print('Maximum Profit =', solver.Objective().Value())
+    x_sol = round(x.solution_value(), 3)
+    y_sol = round(y.solution_value(), 3)
+    print(f'(x, y): ({x_sol}, {y_sol})')
+else:
+    print('The problem does not have an optimal solution.')
+```
 
-For $i = 1$, this means if the initial capital changes by one dollar, then the optimal payoff in the end of the third year will change $p_1$ dollars. 
-
-Thus, $p_1$ is the potential value of one more unit of initial capital, or the shadow price for initial capital.
-
-We can also interpret $p_1$ as the prospective  value in the end of the third year coming from having  one more  dollar to invest at the beginning of the first year.
-
-If the mutual fund can raise money at a cost lower than $p_1 - 1$, then it should raise more money to increase its revenue.
-
-But if it bears a cost of funds higher than $p_1 - 1$, the mutual fund shouldn't do that. 
-
-For $i = 4, 5, 6$, this means that if the amount of capital that the fund is permitted to borrow from the bank changes by one dollar, the optimal pay out  at the end of the third year will change $p_i$ dollars.
-
-Thus, for $i = 4, 5, 6$, $|p_i|$ indicates the value of one dollar that the mutual fund can borrow from the bank at the beginning of the $i-3$-th year. 
-
-$|p_i|$ is the shadow price for the loan amount. (We use absolute value here since $p_i \le 0$.)
-
-If the interest rate is lower than $|p_i|$, then the mutual fund should borrow to increase its optimal payoff;  if the interest rate is higher, it is better to not do this.
-
-For $i = 7$, this means that if the amount of the corporate bond the mutual fund can buy changes one dollar, then the optimal payoff will change $p_7$ dollars at the end of the third year.  Again, $p_7$ is the shadow price for the amount of the corporate bond the mutual fund can buy.
-
-As for numerical results 
-
-1. $p_1 = 1.38$, which means one dollar of initial capital is worth $\$ 1.38$ at the end of the third year.
-
-2. $p_4 = p_5 = 0$, which means the loan amounts at the beginning of the first and second year are worth nothing. Recall that the optimal solution to the primal problem, $x_2, x_3 > 0$, which means at the beginning of the first and second year, the mutual fund has a postive bank account and borrows no capital from the bank. Thus, it is reasonable that the loan amounts at the beginning of the first and second year are valueless. This is what the  complementary slackness conditions mean in this setting.
-
-3. $p_6 = -0.16$, which means one dollar of the loan amount at the beginning of the third year is worth $\$ 0.16$. Since $|p_6|$ is higher than the interest rate 6\%, the mutual fund should borrow as much as possible at the beginning of the third year. Recall that  the optimal solution to the primal problem is  $x_4 = -20,000$ which means the mutual fund borrows money from the bank as much as it can.
-
-4. $p_7 = 0.0015$, which means one dollar of the amount of the corporate bond that the mutual fund can buy is worth $\$ 0.0015$.
+```{solution-end}
+```
