@@ -1,16 +1,24 @@
 ---
-jupyter:
-  jupytext:
-    text_representation:
-      extension: .md
-      format_name: markdown
-      format_version: '1.3'
-      jupytext_version: 1.14.4
-  kernelspec:
-    display_name: Python 3 (ipykernel)
-    language: python
-    name: python3
+jupytext:
+  text_representation:
+    extension: .md
+    format_name: myst
+kernelspec:
+  display_name: Python 3 (ipykernel)
+  language: python
+  name: python3
 ---
+
+# {index}`Introduction to Economics <single: Introduction to Economics>`
+
+```{contents} Contents
+:depth: 2
+```
+
+### World Bank Data - GDP Per Capita (Current US$)
+
+
+GDP per capita is gross domestic product divided by midyear population. GDP is the sum of gross value added by all resident producers in the economy plus any product taxes and minus any subsidies not included in the value of the products. It is calculated without making deductions for depreciation of fabricated assets or for depletion and degradation of natural resources. Data are in current U.S. dollars.
 
 ```{code-cell} ipython3
 import pandas as pd
@@ -20,11 +28,6 @@ import matplotlib as mpl
 import matplotlib.pyplot as plt
 import numpy as np
 ```
-
-## World Bank Data - GDP Per Capita (Current US$)
-
-
-GDP per capita is gross domestic product divided by midyear population. GDP is the sum of gross value added by all resident producers in the economy plus any product taxes and minus any subsidies not included in the value of the products. It is calculated without making deductions for depreciation of fabricated assets or for depletion and degradation of natural resources. Data are in current U.S. dollars.
 
 ```{code-cell} ipython3
 wbi = pd.read_csv("datasets/GDP_per_capita_world_bank.csv")
