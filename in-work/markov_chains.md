@@ -329,7 +329,6 @@ In these exercises, we'll take the state space to be $S = 0,\ldots, n-1$.
 
 (We start at $0$ because Python arrays are indexed from $0$.)
 
-+++
 
 ### Rolling Our Own
 
@@ -732,12 +731,6 @@ mc = qe.MarkovChain(P, ('poor', 'middle', 'rich'))
 mc.is_irreducible
 ```
 
-We can also determine the "communication classes"
-
-```{code-cell} ipython3
-mc.communication_classes
-```
-
 It might be clear to you already that irreducibility is going to be important
 in terms of long run outcomes.
 
@@ -922,23 +915,26 @@ Therefore, we can see the sample path averages for each state (the fraction of t
 P = np.array([[0.971, 0.029, 0.000],
               [0.145, 0.778, 0.077],
               [0.000, 0.508, 0.492]])
-N = 10_000
+n = 10_000
 mc = MarkovChain(P)
 n_state = P.shape[1]
 fig, axes = plt.subplots(nrows=1, ncols=n_state)
 ψ_star = mc.stationary_distributions[0]
+plt.subplots_adjust(wspace=0.35)
 for i in range(n_state):
     axes[i].grid()
-    axes[i].axhline(ψ_star[i], linestyle='dashed', lw=2, color = 'black', label = fr'$\psi_{i}^*$')
+    axes[i].set_ylim(ψ_star[i]-0.2, ψ_star[i]+0.2)
+    axes[i].axhline(ψ_star[i], linestyle='dashed', lw=2, color = 'black', 
+                    label = fr'$\psi(X={i})^*$')
+    axes[i].set_xlabel('t')
+    axes[i].set_ylabel(fr'average time spent at X={i}')
 
+    # Compute the fraction of time spent, for each X=x
     for x0, col in ((0, 'blue'), (1, 'green'), (2, 'red')):
-        
-        # Generate time series that starts at x0
-        X = mc.simulate(N, init=x0)
-        # Compute fraction of time spent, for each n
-        X_bar = (X == i).cumsum() / (1 + np.arange(N, dtype=float))
-        # Plot
-        axes[i].plot(X_bar, color=col, label=f'$X_0 = \, {x0} $')
+        # Generate time series that starts at different x0
+        X = mc.simulate(n, init=x0)
+        X_bar = (X == i).cumsum() / (1 + np.arange(n, dtype=float))
+        axes[i].plot(X_bar, color=col, label=f'$x_0 = \, {x0} $')
     axes[i].legend()
 plt.show()
 ```
@@ -977,29 +973,32 @@ As you might notice, unlike other Markov chain we have seen before, it has a per
 
 This is formally called [periodicity](https://stats.libretexts.org/Bookshelves/Probability_Theory/Probability_Mathematical_Statistics_and_Stochastic_Processes_(Siegrist)/16:_Markov_Processes/16.05:_Periodicity_of_Discrete-Time_Chains#:~:text=A%20state%20in%20a%20discrete,limiting%20behavior%20of%20the%20chain.). 
 
-We will not go into the detail of periodicity.
+We will not go into the details of periodicity.
 
-The takeaway from this example is that ergodicity holds in periodic chain
+The takeaway from this example is that ergodicity can hold for periodic chains
 
 ```{code-cell} ipython3
 P = np.array([[0, 1],
               [1, 0]])
-N = 1000
+n = 10_000
 mc = MarkovChain(P)
 n_state = P.shape[1]
 fig, axes = plt.subplots(nrows=1, ncols=n_state)
 ψ_star = mc.stationary_distributions[0]
 for i in range(n_state):
     axes[i].grid()
-    axes[i].axhline(ψ_star[i], linestyle='dashed', lw=2, color = 'black', label = fr'$\psi_{i}$')
+    axes[i].set_ylim(0.45, 0.55)
+    axes[i].axhline(ψ_star[i], linestyle='dashed', lw=2, color = 'black', 
+                    label = fr'$\psi(X={i})^*$')
+    axes[i].set_xlabel('t')
+    axes[i].set_ylabel(fr'average time spent at X={i}')
 
+    # Compute the fraction of time spent, for each X=x
     for x0 in range(n_state):
-        # Generate time series for worker that starts at x0
-        X = mc.simulate(N, init=x0)
-        # Compute fraction of time spent, for each n
-        X_bar = (X == i).cumsum() / (1 + np.arange(N, dtype=float))
-        # Plot
-        axes[i].plot(X_bar, label=f'$X_0 = \, {x0} $')
+        # Generate time series starting at different x_0
+        X = mc.simulate(n, init=x0)
+        X_bar = (X == i).cumsum() / (1 + np.arange(n, dtype=float))
+        axes[i].plot(X_bar, label=f'$x_0 = \, {x0} $')
 
     axes[i].legend()
 plt.show()
@@ -1019,6 +1018,9 @@ For example, we have the following result
 
 TODO -- convert to theorem environment
 
+```{prf:theorem}
+:label: strict_stationary
+
 Theorem: If there exists an integer $m$ such that all entries of $P^m$ are
 strictly positive, then $P$ has only one stationary distribution $\psi^*$ and
 
@@ -1027,8 +1029,10 @@ $$
     \quad \text{as } t \to \infty
 $$    
 
+
 (See, for example, {cite}`haggstrom2002finite`. Our assumptions imply that $P$
 is irreducible and [aperiodic](https://en.wikipedia.org/wiki/Aperiodic_graph).)
+```
 
 The convergence in the theorem is illustrated in the next figure
 
@@ -1078,45 +1082,46 @@ You might like to try experimenting with different initial conditions.
 
 We can simulate many initial distributions and check whether they converge to the stationary distribution.
 
-In the case of Hamilton Markov chain, the distribution $\psi P^t$ converges to $\psi^*$ after a period of time
+In the case of Hamilton's Markov chain, the distribution $\psi P^t$ converges to $\psi^*$ after a period of time
 
 ```{code-cell} ipython3
 # Define the transition matrix
 P = np.array([[0.971, 0.029, 0.000],
               [0.145, 0.778, 0.077],
               [0.000, 0.508, 0.492]])
-n = 25
+# Define the number of iterations
+n = 50
 n_state = P.shape[0]
 mc = qe.MarkovChain(P)
 ψ_star = mc.stationary_distributions[0]
 
 # Draw the plot
 fig, axes = plt.subplots(nrows=1, ncols=n_state)
+plt.subplots_adjust(wspace=0.35)
 x0s = np.ones((n, n_state))
 for i in range(n):
     draws = np.random.randint(1, 10_000_000, size=n_state)
     
     # Scale them so that they add up into 1
     x0s[i,:] = np.array(draws/sum(draws))
-    
-# Define the number of iterations
-n = 50
 
-# Loop through many 
+# Loop through many initial values
 for x0 in x0s:
     x = x0
     X = np.zeros((n,n_state))
     
     # Obtain and plot distributions at each state
-    for i in range(1, n):
+    for t in range(0, n):
         x =  x @ P 
-        X[i] = x
+        X[t] = x
     for i in range(n_state):
         axes[i].plot(range(0, n), X[:,i], alpha=0.3)
     
-np.mean(X == 0)
 for i in range(n_state):
-    axes[i].axhline(ψ_star[i], linestyle='dashed', lw=2, color = 'black', label = fr'$\psi(X={i})^*$')
+    axes[i].axhline(ψ_star[i], linestyle='dashed', lw=2, color = 'black', 
+                    label = fr'$\psi(X={i})^*$')
+    axes[i].set_xlabel('t')
+    axes[i].set_ylabel(fr'$\psi(X={i})$')
     axes[i].legend()
 
 plt.show()
@@ -1125,53 +1130,47 @@ plt.show()
 ### Example 2
 
 
-However, in the case of our periodic chain, we find distributions is oscillating
+However, in the case of our periodic chain, we find the distribution is oscillating
 
 ```{code-cell} ipython3
 import random
 
 P = np.array([[0, 1],
               [1, 0]])
-n = 25
+n = 50
 n_state = P.shape[0]
 mc = qe.MarkovChain(P)
 ψ_star = mc.stationary_distributions[0]
 fig, axes = plt.subplots(nrows=1, ncols=n_state)
 x0s = np.ones((n, n_state))
 for i in range(n):
-    # Define the initial state
     nums = np.random.randint(1, 10_000_000, size=n_state)
     x0s[i,:] = np.array(nums/sum(nums))
-# Define the number of iterations
-n = 50
 
 for x0 in x0s:
-    # Define the resulting state
     x = x0
-    # Define the sum of all resulting states
-    x_sum = np.zeros(n_state)
     X = np.zeros((n,n_state))
     
-    for i in range(1, n):
+    for t in range(0, n):
         x = x @ P
-        X[i] = x
+        X[t] = x
     for i in range(n_state):
         axes[i].plot(range(20, n), X[20:,i], alpha=0.3)
     
 for i in range(n_state):
     axes[i].axhline(ψ_star[i], linestyle='dashed', lw=2, color = 'black', label = fr'$\psi (X={i})^*$')
+    axes[i].set_xlabel('t')
+    axes[i].set_ylabel(fr'$\psi(X={i})$')
     axes[i].legend()
 
 plt.show()
 ```
 
-This shows an important fact that asymptopasymptotic stationarity is about the distribution, but ergodicity is about the sample path.
+This example helps to emphasize the fact that asymptotic stationarity is about the distribution, while ergodicity is about the sample path.
 
 The proportion of time spent in a state can converge to the stationary distribution with periodic chains.
 
 However, the distribution at each state will not.
-
-+++
 
 (finite_mc_expec)=
 ## Computing Expectations
@@ -1299,7 +1298,7 @@ TODO: Add this into bib file
 }
 
 
-````{exercise} 
+```{exercise} 
 :label: fm_ex1
 
 Benhabib el al. {cite}`benhabib_wealth_2019` estimated that the transition matrix for social mobility as the following
@@ -1332,17 +1331,17 @@ codes_B =  ( '1','2','3','4','5','6','7','8')
 
 In this exercise, 
 
-1. In this exercise, show this matrix is asymptopic stationary and calculate the stationary distribution using simulations.
+1. show this process is asymptotically stationary and calculate the stationary distribution using simulations.
 
-1. Use plots to show ergodicity and stationarity.
+1. use simulation to show ergodicity.
 
-````
+```
 
 ```{solution-start} 
 :class: dropdown
 ```
 
-One simple way to show the stationary distribution is to take the power of the matrix to find the stationary distribution
+One simple way is to take the power of the transition matrix to find the stationary distribution
 
 ```{code-cell} ipython3
 P_B = [
@@ -1359,10 +1358,13 @@ P_B = [
 P_B = np.array(P_B)
 codes_B =  ( '1','2','3','4','5','6','7','8')
 
-np.linalg.matrix_power(P_B, 10)[-1]
+np.linalg.matrix_power(P_B, 10)
 ```
 
+We find rows transition matrix converge to the stationary distribution 
+
 ```{code-cell} ipython3
+mc = qe.MarkovChain(P_B)
 ψ_star = mc.stationary_distributions[0]
 ψ_star
 ```
@@ -1372,15 +1374,20 @@ np.linalg.matrix_power(P_B, 10)[-1]
 ```{code-cell} ipython3
 N = 1000
 mc = MarkovChain(P_B)
-fig, ax = plt.subplots()
+fig, ax = plt.subplots(figsize=(9, 6))
 X = mc.simulate(N)
+# Center the plot at 0
+ax.set_ylim(-0.25, 0.25)
+ax.axhline(0, linestyle='dashed', lw=2, color = 'black', alpha=0.4)
+
 
 for x0 in range(8):
-
     # Calculate the average time for each worker
     X_bar = (X == x0).cumsum() / (1 + np.arange(N, dtype=float))
-    ax.plot(X_bar, label=f'$X = {x0+1} $')
-    
+    ax.plot(X_bar - ψ_star[x0], label=f'$X = {x0+1} $')
+    ax.set_xlabel('t')
+    ax.set_ylabel(fr'average time spent in a state - $\psi(X=x)^*$')
+
 ax.legend()
 plt.show()
 ```
@@ -1469,6 +1476,7 @@ for x0, col in ((0, 'blue'), (1, 'green')):
 
 ax.legend(loc='upper right')
 plt.show()
+```
 
 ```{solution-end}
 ```
@@ -1476,15 +1484,15 @@ plt.show()
 ```{exercise} 
 :label: fm_ex3
 
-In `quantecon` library, reducibility is tested by checking whether the chain forms a [strongly connected component](https://networkx.org/documentation/stable/reference/algorithms/generated/networkx.algorithms.components.is_strongly_connected.html).
+In `quantecon` library, irreducibility is tested by checking whether the chain forms a [strongly connected component](https://networkx.org/documentation/stable/reference/algorithms/generated/networkx.algorithms.components.is_strongly_connected.html).
 
-However, another way to verify the irreducibility by checking whether $A$ satisfy the following statement:
+However, another way to verify irreducibility is by checking whether $A$ satisfies the following statement:
 
 Assume A is an $n \times n$ $A$ is irreducible if and only if $\sum_{k=0}^{n-1}A^k$ is a positive matrix.
 
 (see more at \cite{zhao_power_2012} and [here](https://math.stackexchange.com/questions/3336616/how-to-prove-this-matrix-is-a-irreducible-matrix))
 
-Based on this claim, write a function to test reducibility.
+Based on this claim, write a function to test irreducibility.
 
 ```
 
@@ -1514,10 +1522,11 @@ add to .bib
 
 ```{code-cell} ipython3
 def is_irreducible(P):
-    k = P.shape[0]
-    for i in range(k):
-        P += np.linalg.matrix_power(P, i)
-    return np.all(P > 0)
+    n = P.shape[0]
+    result = np.zeros((n, n))
+    for i in range(n):
+        result += np.linalg.matrix_power(P, i)
+    return np.all(result > 0)
 ```
 
 ```{code-cell} ipython3
