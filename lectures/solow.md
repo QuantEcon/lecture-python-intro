@@ -3,14 +3,13 @@ jupytext:
   text_representation:
     extension: .md
     format_name: myst
-    format_version: 0.13
-    jupytext_version: 1.14.1
 kernelspec:
-  display_name: Python 3 (ipykernel)
+  display_name: Python 3
   language: python
   name: python3
 ---
 
+(solow)=
 # The Solow-Swan Growth Model
 
 In this lecture we review a famous model due
@@ -201,8 +200,6 @@ If initial capital is below $k^*$, then capital increases over time.
 
 If initial capital is above this level, then the reverse is true.
 
-+++
-
 Let's plot the 45 degree diagram to show the $k^*$ in the plot
 
 ```{code-cell} ipython3
@@ -221,8 +218,6 @@ The next figure shows three time paths for capital, from
 three distinct initial conditions, under the parameterization listed above.
 
 At this parameterization, $k^* \approx 1.78$.
-
-+++
 
 Let's define the constants and three distinct intital conditions
 
@@ -267,8 +262,6 @@ simulate_ts(x0, ts_length)
 ```
 
 As expected, the time paths in the figure both converge to this value.
-
-+++
 
 ## Growth in Continuous Time
 
@@ -323,8 +316,6 @@ capital is increasing.
 When $g(k) < 0$, the opposite occurs.  Once again, high marginal returns to
 savings at low levels of capital combined with low rates of return at high
 levels of capital combine to yield global stability.
-
-+++
 
 To see this in a figure, let's define the constants
 
@@ -432,16 +423,12 @@ k^*$ as $t \to \infty$ independent of $k_0$.
 
 Thus, global stability holds.
 
-+++
-
 ## Exercises
 
-```{exercise-start}
-:label: ex1
-```
-### Exercise 1
+```{exercise}
+:label: solow_ex1
 
-plot per capita consumption $c$ at the steady state, as a function of the savings rate $s$, where $0 \leq s \leq 1$.
+Plot per capita consumption $c$ at the steady state, as a function of the savings rate $s$, where $0 \leq s \leq 1$.
 
 Use the Cobb--Douglas specification $f(k) = A k^\alpha$.
 
@@ -449,14 +436,11 @@ Set $A=2.0, \alpha=0.3,$ and $\delta=0.5$
 
 Also, find the approximate value of $s$ that maximizes the $C^*(s)$ and show it in the plot.
 
-```{exercise-end}
 ```
 
-```{solution-start} ex1
+```{solution-start} solow_ex1
 :class: dropdown
 ```
-
-+++
 
 Steady state consumption at savings rate $s$ is given by 
 
@@ -515,14 +499,10 @@ Incidentally, the rate of savings which maximizes steady state level of per capi
 ```{solution-end}
 ```
 
-+++
-
 ```{exercise-start}
-:label: ex2
+:label: solow_ex2
 ```
-### Exercise 2
-
-#### Stochastic Productivity
+**Stochastic Productivity**
 
 To bring the Solow--Swan model closer to data, we need to think about handling
 random fluctuations in aggregate quantities.
@@ -555,9 +535,7 @@ Generate and plot the time series $k_t$.
 ```{exercise-end}
 ```
 
-+++
-
-```{solution-start} ex2
+```{solution-start} solow_ex2
 :class: dropdown
 ```
 
@@ -613,8 +591,4 @@ ts_plot(x0, 50)
 
 
 ```{solution-end}
-```
-
-```{code-cell} ipython3
-
 ```
