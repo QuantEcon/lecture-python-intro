@@ -842,7 +842,7 @@ TODO -- convert to environment
 :label: stationary
 
 If $P$ is irreducible and $\psi^*$ is the unique stationary
-distribition, then, for all $x \in S$,
+distribution, then, for all $x \in S$,
 
 ```{math}
 :label: llnfmc0
@@ -854,7 +854,7 @@ distribition, then, for all $x \in S$,
 Here
 
 * $\{X_t\}$ is a Markov chain with stochastic matrix $P$ and initial
-  distribition $\psi_0$
+  distribution $\psi_0$
 * $\mathbf{1}\{X_t = x\} = 1$ if $X_t = x$ and zero otherwise
 
 ````
@@ -969,7 +969,7 @@ dot.edge("1", "0", label="1.0", color='red')
 dot
 ```
 
-As you might notice, unlike other Markov chain we have seen before, it has a periodic cycle.
+As you might notice, unlike other Markov chains we have seen before, it has a periodic cycle.
 
 This is formally called [periodicity](https://stats.libretexts.org/Bookshelves/Probability_Theory/Probability_Mathematical_Statistics_and_Stochastic_Processes_(Siegrist)/16:_Markov_Processes/16.05:_Periodicity_of_Discrete-Time_Chains#:~:text=A%20state%20in%20a%20discrete,limiting%20behavior%20of%20the%20chain.). 
 
