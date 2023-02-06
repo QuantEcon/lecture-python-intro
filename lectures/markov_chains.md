@@ -764,7 +764,7 @@ From this equality, we immediately get $\psi^* = \psi^* P^t$ for all $t$.
 This tells us an important fact: If the distribution of $X_0$ is a stationary distribution, then $X_t$ will have this same distribution for all $t$.
 
 ```{prf:theorem}
-:label: stationary
+:label: unique_stat
 
 Every stochastic matrix $P$ has at least one stationary distribution.
 ```
@@ -1015,8 +1015,6 @@ Sometimes the distribution $\psi_t = \psi_0 P^t$ of $X_t$ converges to the
 stationary distribution regardless of where we begin.
 
 For example, we have the following result
-
-TODO -- convert to theorem environment
 
 ```{prf:theorem}
 :label: strict_stationary
@@ -1269,37 +1267,10 @@ $$
 
 TODO -- connect to the Neumann series lemma (Maanasee)
 
-
-TODO -- verify the link.
-
-
 ## Exercises
 
-TODO: Add this into bib file
-
-@article{benhabib_wealth_2019,
-	title = {Wealth {Distribution} and {Social} {Mobility} in the {US}: {A} {Quantitative} {Approach}},
-	volume = {109},
-	issn = {0002-8282},
-	shorttitle = {Wealth {Distribution} and {Social} {Mobility} in the {US}},
-	url = {https://www.aeaweb.org/articles?id=10.1257/aer.20151684},
-	doi = {10.1257/aer.20151684},
-	abstract = {We quantitatively identify the factors that drive wealth dynamics in the United States and are consistent with its skewed cross-sectional distribution and with social mobility. We concentrate on three critical factors: (i) skewed earnings, (ii) differential saving rates across wealth levels, and (iii) stochastic idiosyncratic returns to wealth. All of these are fundamental for matching both distribution and mobility. The stochastic process for returns which best fits the cross-sectional distribution of wealth and social mobility in the United States shares several statistical properties with those of the returns to wealth uncovered by Fagereng et al. (2017) from tax records in Norway.},
-	language = {en},
-	number = {5},
-	urldate = {2023-02-03},
-	journal = {American Economic Review},
-	author = {Benhabib, Jess and Bisin, Alberto and Luo, Mi},
-	month = may,
-	year = {2019},
-	keywords = {Personal Income, Wealth, and Their Distributions, General Aggregative Models: Neoclassical, Macroeconomics: Consumption, Saving, Wealth, Aggregate Factor Income Distribution},
-	pages = {1623--1647},
-	file = {Full Text PDF:/Users/humphreyyang/Zotero/storage/P93BG5IZ/Benhabib et al. - 2019 - Wealth Distribution and Social Mobility in the US.pdf:application/pdf},
-}
-
-
-```{exercise} 
-:label: fm_ex1
+````{exercise} 
+:label: mc_ex1
 
 Benhabib el al. {cite}`benhabib_wealth_2019` estimated that the transition matrix for social mobility as the following
 
@@ -1335,9 +1306,9 @@ In this exercise,
 
 1. use simulation to show ergodicity.
 
-```
+````
 
-```{solution-start} fm_ex1
+```{solution-start} mc_ex1
 :class: dropdown
 ```
 
@@ -1399,7 +1370,7 @@ We can see that the time spent at each state quickly converges to the stationary
 
 
 ```{exercise} 
-:label: fm_ex2
+:label: mc_ex2
 
 According to the discussion {ref}`above <mc_eg1-2>`, if a worker's employment dynamics obey the stochastic matrix
 
@@ -1438,7 +1409,7 @@ $(0, 1)$.
 The result should be similar to the plot we plotted [here](ergo)
 ```
 
-```{solution-start} fm_ex2
+```{solution-start} mc_ex2
 :class: dropdown
 ```
 
@@ -1482,7 +1453,7 @@ plt.show()
 ```
 
 ```{exercise} 
-:label: fm_ex3
+:label: mc_ex3
 
 In `quantecon` library, irreducibility is tested by checking whether the chain forms a [strongly connected component](https://networkx.org/documentation/stable/reference/algorithms/generated/networkx.algorithms.components.is_strongly_connected.html).
 
@@ -1496,27 +1467,7 @@ Based on this claim, write a function to test irreducibility.
 
 ```
 
-TODO:
-
-add to .bib
-
-@book{zhao_power_2012,
-	address = {Boston, MA},
-	series = {{SpringerBriefs} in {Computer} {Science}},
-	title = {Power {Distribution} and {Performance} {Analysis} for {Wireless} {Communication} {Networks}},
-	isbn = {978-1-4614-3283-8 978-1-4614-3284-5},
-	url = {https://link.springer.com/10.1007/978-1-4614-3284-5},
-	language = {en},
-	urldate = {2023-02-03},
-	publisher = {Springer US},
-	author = {Zhao, Dongmei},
-	year = {2012},
-	doi = {10.1007/978-1-4614-3284-5},
-	keywords = {Performance Analysis, Power Distribution, Radio Resource Management, Wireless Networks},
-	file = {Full Text:/Users/humphreyyang/Zotero/storage/6JG9FW3F/Zhao - 2012 - Power Distribution and Performance Analysis for Wi.pdf:application/pdf},
-}
-
-```{solution-start} fm_ex3
+```{solution-start} mc_ex3
 :class: dropdown
 ```
 
