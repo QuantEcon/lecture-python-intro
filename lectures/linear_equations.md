@@ -3,8 +3,10 @@ jupytext:
   text_representation:
     extension: .md
     format_name: myst
+    format_version: 0.13
+    jupytext_version: 1.14.4
 kernelspec:
-  display_name: Python 3
+  display_name: Python 3 (ipykernel)
   language: python
   name: python3
 ---
@@ -39,7 +41,8 @@ from matplotlib import cm
 from mpl_toolkits.mplot3d import Axes3D
 ```
 
-<!-- #region -->
++++
+
 ## A Two Good Example
 
 We discuss a simple two good example and solve it by
@@ -124,7 +127,8 @@ For example, $\mathbb R ^2$ is the plane and a vector in $\mathbb R^2$ is just a
 Traditionally, vectors are represented visually as arrows from the origin to the point.
 
 The following figure represents three vectors in this manner.
-<!-- #endregion -->
+
++++
 
 ```{code-cell} ipython3
 fig, ax = plt.subplots(figsize=(10, 8))
@@ -374,7 +378,8 @@ np.sqrt(np.sum(x**2))  # Norm of x, take one
 np.linalg.norm(x)      # Norm of x, take two
 ```
 
-<!-- #region -->
++++
+
 ## Matrix Operations
 
 ```{index} single: Matrix; Operations
@@ -584,7 +589,8 @@ It is a useful exercise to check the following:
 NumPy arrays are also used as matrices, and have fast, efficient functions and methods for all the standard matrix operations.
 
 You can create them manually from tuples of tuples (or lists of lists) as follows
-<!-- #endregion -->
+
++++
 
 ```{code-cell} ipython3
 A = ((1, 2),
@@ -624,7 +630,8 @@ B = np.ones((3, 3))   # 3 x 3 matrix of ones
 A + B
 ```
 
-<!-- #region -->
++++
+
 To multiply matrices we use the `@` symbol.
 
 
@@ -847,7 +854,8 @@ $$
 It can be verified manually that this system has no possible solution.
 
 To illustrate why this situation arises let's plot the two lines.
-<!-- #endregion -->
+
++++
 
 ```{code-cell} ipython3
 fig, ax = plt.subplots(figsize=(5, 4))
@@ -858,7 +866,8 @@ plt.legend()
 plt.show()
 ```
 
-<!-- #region -->
++++
+
 Clearly, these are parallel lines and hence we will never find a point $x \in \mathbb{R}^2$
 such that these lines intersect.
 
@@ -984,7 +993,8 @@ This equation is analogous to {eq}`la_se_inv` with $A = (C-D)^{-1}$, $b = h$, an
 We can now solve for equilibrium prices with NumPy's `linalg` submodule.
 
 All of these routines are Python front ends to time-tested and highly optimized FORTRAN code.
-<!-- #endregion -->
+
++++
 
 ```{code-cell} ipython3
 C = ((10, 5),      #matrix C
@@ -1044,7 +1054,8 @@ q = C @ p # equilibrium quantities
 q
 ```
 
-<!-- #region -->
++++
+
 Observe how we can solve for $x = A^{-1} y$ by either via `inv(A) @ y`, or using `solve(A, y)`.
 
 The latter method uses a different algorithm that is numerically more stable and hence should be the default option.
@@ -1232,7 +1243,8 @@ b =
     55
 \end{bmatrix}
 $$
-<!-- #endregion -->
+
++++
 
 ```{code-cell} ipython3
 import numpy as np
@@ -1324,10 +1336,3 @@ plt.show()
 
 ```{solution-end}
 ```
-
-<!-- #region tags=[] -->
-```{solution-end}
-```
-
-solution end
-<!-- #endregion -->
