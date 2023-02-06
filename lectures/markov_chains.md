@@ -54,8 +54,6 @@ import numpy as np
 
 In this section we provide the basic definitions and some elementary examples.
 
-+++
-
 (finite_dp_stoch_mat)=
 ### Stochastic Matrices 
 
