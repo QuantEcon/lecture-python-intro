@@ -14,6 +14,7 @@ kernelspec:
 # Measuring Inequality
 
 ```{code-cell} ipython3
+:tags: [hide_input]
 !pip install --upgrade quantecon interpolation
 ```
 
@@ -28,7 +29,7 @@ from interpolation import interp
 
 ## Overview
 
-Readers will have some intuitive understanding of the term ``inequality''.
+Readers will have some intuitive understanding of the term ``inequality``.
 
 Many economic policies, from taxation to the welfare state, are clearly
 aimed at addressing inequality.
@@ -103,7 +104,7 @@ households own just over 40\% of total wealth.
 mystnb:
   figure:
     caption: Lorenz Curves For Simulated Data
-    name: lorenz
+    name: lorenz_simulated
 ---
 n = 2000
 sample = np.exp(np.random.randn(n))
@@ -328,7 +329,7 @@ def plot_inequality_measures(x, y, legend, xlabel, ylabel, title):
 mystnb:
   figure:
     caption: "Lorenz Curves For Simulated \n"
-    name: lorenz
+    name: lorenz_simulated_shaded
   image:
     alt: gini
     classes: shadow bg-primary
@@ -539,7 +540,7 @@ generates more dispersion in the sample, and hence greater inequality.
 
 +++
 
-```{solution-start} parallel_ex1
+```{solution-start} inequality_ex1
 :class: dropdown
 ```
 
@@ -595,7 +596,7 @@ Plot the top shares generated from Lorenz curve and the top shares approximated 
 
 +++
 
-```{solution-start} parallel_ex2
+```{solution-start} inequality_ex2
 :class: dropdown
 ```
 
