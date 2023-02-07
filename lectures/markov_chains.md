@@ -914,13 +914,12 @@ fig, axes = plt.subplots(nrows=1, ncols=n_state)
 plt.subplots_adjust(wspace=0.35)
 for i in range(n_state):
     axes[i].grid()
-    axes[i].set_ylim(ψ_star[i]-0.2, ψ_star[i]+0.2)
     axes[i].axhline(ψ_star[i], linestyle='dashed', lw=2, color = 'black', 
-                    label = fr'$\psi^*(X={i})$')
+                    label = fr'$\psi^*({i})$')
     axes[i].set_xlabel('t')
-    axes[i].set_ylabel(fr'average time spent at X={i}')
+    axes[i].set_ylabel(fr'average time spent at {i}')
 
-    # Compute the fraction of time spent, for each X=x
+    # Compute the fraction of time spent, for each x
     for x0, col in ((0, 'blue'), (1, 'green'), (2, 'red')):
         # Generate time series that starts at different x0
         X = mc.simulate(n, init=x0)
@@ -980,11 +979,11 @@ for i in range(n_state):
     axes[i].grid()
     axes[i].set_ylim(0.45, 0.55)
     axes[i].axhline(ψ_star[i], linestyle='dashed', lw=2, color = 'black', 
-                    label = fr'$\psi^*(X={i})$')
+                    label = fr'$\psi^*({i})$')
     axes[i].set_xlabel('t')
-    axes[i].set_ylabel(fr'average time spent at X={i}')
+    axes[i].set_ylabel(fr'average time spent at {i}')
 
-    # Compute the fraction of time spent, for each X=x
+    # Compute the fraction of time spent, for each x
     for x0 in range(n_state):
         # Generate time series starting at different x_0
         X = mc.simulate(n, init=x0)
@@ -1108,9 +1107,9 @@ for x0 in x0s:
     
 for i in range(n_state):
     axes[i].axhline(ψ_star[i], linestyle='dashed', lw=2, color = 'black', 
-                    label = fr'$\psi^*(X={i})$')
+                    label = fr'$\psi^*({i})$')
     axes[i].set_xlabel('t')
-    axes[i].set_ylabel(fr'$\psi(X={i})$')
+    axes[i].set_ylabel(fr'$\psi({i})$')
     axes[i].legend()
 
 plt.show()
@@ -1147,9 +1146,9 @@ for x0 in x0s:
         axes[i].plot(range(20, n), X[20:,i], alpha=0.3)
     
 for i in range(n_state):
-    axes[i].axhline(ψ_star[i], linestyle='dashed', lw=2, color = 'black', label = fr'$\psi^* (X={i})$')
+    axes[i].axhline(ψ_star[i], linestyle='dashed', lw=2, color = 'black', label = fr'$\psi^* ({i})$')
     axes[i].set_xlabel('t')
-    axes[i].set_ylabel(fr'$\psi(X={i})$')
+    axes[i].set_ylabel(fr'$\psi({i})$')
     axes[i].legend()
 
 plt.show()
@@ -1348,7 +1347,7 @@ for x0 in range(8):
     X_bar = (X == x0).cumsum() / (1 + np.arange(N, dtype=float))
     ax.plot(X_bar - ψ_star[x0], label=f'$X = {x0+1} $')
     ax.set_xlabel('t')
-    ax.set_ylabel(fr'average time spent in a state $- \psi^* (X=x)$')
+    ax.set_ylabel(fr'average time spent in a state $- \psi^* (x)$')
 
 ax.legend()
 plt.show()
