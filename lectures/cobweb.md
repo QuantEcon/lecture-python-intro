@@ -44,6 +44,37 @@ supply and causing the price to climb again.
 You can imagine how these dynamics could cause cycles in prices and quantities
 that persist over time.
 
+This motivation is also taken from one of the earliest papers  that uses
+cobweb theorem to explain the prices of hog in the US. We will try to
+simulate and plot the graph that uses the rough data from the paper {cite}`hog_cycle`.
+
+We will use the following imports:
+
+```{code-cell} ipython3
+import numpy as np
+import matplotlib.pyplot as plt
+```
+
+We will use the following data for simulation:
+
+```{code-cell} ipython3
+:tags: [hide-input]
+hog_prices = [55, 57, 80, 70, 60, 65, 72, 65, 51, 49, 45, 80, 85,
+              78, 80, 68, 52, 65, 83, 78, 60, 62, 80, 87, 81, 70,
+              69, 65, 62, 85, 87, 65, 63, 75, 80, 62]
+years = np.arange(1924, 1960)
+```
+
+Let's plot the above data and observe the graph.
+
+```{code-cell} ipython3
+fig, ax = plt.subplots(figsize=(9, 4))
+ax.plot(years, hog_prices, '-o', ms=4)
+ax.set_xlabel('year')
+ax.set_ylabel('prices')
+plt.show()
+```
+
 The cobweb model puts these ideas into equations so we can try to quantify
 them, and to study conditions underw which cycles persist (or disappear).
 
@@ -52,12 +83,7 @@ assumptions regarding the way that produces form expectations.
 
 Our discussion and simulations draw on [high quality lectures](https://comp-econ.org/CEF_2013/downloads/Complex%20Econ%20Systems%20Lecture%20II.pdf) by [Cars Hommes](https://www.uva.nl/en/profile/h/o/c.h.hommes/c.h.hommes.html).
 
-We will use the following imports:
 
-```{code-cell} ipython3
-import numpy as np
-import matplotlib.pyplot as plt
-```
 
 ## The Model
 
