@@ -14,6 +14,9 @@ kernelspec:
 In this lecture, we will need the following library. Install [ortools](https://developers.google.com/optimization) using `pip`.
 
 ```{code-cell} ipython3
+---
+tags: [hide-output]
+---
 !pip install ortools
 ```
 
