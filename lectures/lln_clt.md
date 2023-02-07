@@ -140,7 +140,7 @@ $$
 Let $\mu$ denote the common mean of this sample:
 
 $$
-  \mu := \mathbb E X = \int_{-\infty}^{\infty} x f(dx)
+  \mu := \mathbb E X = \int_{-\infty}^{\infty} x f(x) dx
 $$
 
 In addition, let
@@ -228,7 +228,7 @@ def generate_histogram(X_distribution, n, m):
     ax.axvline(x=mu, ls="--", lw=3, label=fr"$\mu = {mu}$")
      
   ax.set_xlim(min(sample_means), max(sample_means))
-  ax.set_xlabel(r'$\bar x$', size=12)
+  ax.set_xlabel(r'$\bar x_n$', size=12)
   ax.set_ylabel('density', size=12)
   ax.legend()
   plt.show()
@@ -263,7 +263,7 @@ def generate_multiple_hist(X_distribution, ns, m, log_scale=False):
         ax.axvline(x=mu, ls="--", lw=3, label=fr"$\mu = {mu}$")
 
     ax.set_xlim(min(sample_means), max(sample_means)) 
-    ax.set_xlabel(r'$\bar x$', size=12)
+    ax.set_xlabel(r'$\bar x_n$', size=12)
     ax.set_ylabel('density', size=12)
     ax.legend()
     plt.show()
@@ -305,7 +305,7 @@ def scattered_mean(distribution, burn_in, n, jump, ax, title, color, ylog=False)
         ax.set_yscale("symlog")
     ax.set_title(title, size=10)
     ax.set_xlabel(r"$n$", size=12)
-    ax.set_ylabel(r"$\bar x$", size=12)
+    ax.set_ylabel(r"$\bar x_n$", size=12)
     yabs_max = max(ax.get_ylim())
     ax.set_ylim(ymin=-yabs_max, ymax=yabs_max)
     return ax
@@ -450,8 +450,9 @@ xmin, xmax = -3 * σ, 3 * σ
 ax.set_xlim(xmin, xmax)
 ax.hist(Y, bins=60, alpha=0.4, density=True)
 xgrid = np.linspace(xmin, xmax, 200)
-ax.plot(xgrid, st.norm.pdf(xgrid, scale=σ), 'k-', lw=2, label='$N(0, \sigma^2)$')
-ax.set_xlabel(r"$Y$", size=12)
+ax.plot(xgrid, st.norm.pdf(xgrid, scale=σ), 
+        'k-', lw=2, label='$N(0, \sigma^2)$')
+ax.set_xlabel(r"$Y_n$", size=12)
 ax.set_ylabel(r"$density$", size=12)
 
 ax.legend()
@@ -499,7 +500,7 @@ fig, ax = plt.subplots(figsize=(10, 6))
 xmin, xmax = -3 * σ, 3 * σ
 ax.set_xlim(xmin, xmax)
 ax.hist(Y, bins=60, alpha=0.4, density=True)
-ax.set_xlabel(r"$Y$", size=12)
+ax.set_xlabel(r"$Y_n$", size=12)
 ax.set_ylabel(r"$density$", size=12)
 xgrid = np.linspace(xmin, xmax, 200)
 ax.plot(xgrid, st.norm.pdf(xgrid, scale=σ), 'k-', lw=2, label='$N(0, \sigma^2)$')
@@ -590,7 +591,7 @@ $$
 
 $$
 \begin{aligned}
-Var(X_t+1) &= \beta^2 Var(X_{t}) + \sigma^2\\
+Var(X_{t+1}) &= \beta^2 Var(X_{t}) + \sigma^2\\
 &= \frac{\beta^2\sigma^2}{1-\beta^2} + \sigma^2 \\
 &= \frac{\sigma^2}{1-\beta^2}
 \end{aligned}
@@ -633,9 +634,11 @@ for t in range(n-1):
 ax.scatter(range(100, n), means[100:n], s=10, alpha=0.5)
 
 ax.set_xlabel(r"$n$", size=12)
-ax.set_ylabel(r"$\bar x$", size=12)
+ax.set_ylabel(r"$\bar x_n$", size=12)
 yabs_max = max(ax.get_ylim(), key=abs)
-ax.axhline(y=α/(1-β), ls="--", lw=3, label=r"$\mu = \frac{\alpha}{1-\beta}$",color = 'black')
+ax.axhline(y=α/(1-β), ls="--", lw=3, 
+           label=r"$\mu = \frac{\alpha}{1-\beta}$", 
+           color = 'black')
 
 plt.legend()
 plt.show()
