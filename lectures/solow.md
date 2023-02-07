@@ -63,7 +63,7 @@ Production functions with this property include
 We assume a closed economy, so domestic investment equals aggregate domestic
 saving.
 
-The saving rate is a constant $s$ satisfying $0 < s < 1$, so that aggregate
+The saving rate is a constant $s$ satisfying $0 \leq s \leq 1$, so that aggregate
 investment and saving both equal  $s Y_t$.
 
 Capital depreciates: without replenishing through investment, one unit of capital today
@@ -433,7 +433,7 @@ Use the Cobb--Douglas specification $f(k) = A k^\alpha$.
 
 Set $A=2.0, \alpha=0.3,$ and $\delta=0.5$
 
-Also, find the approximate value of $s$ that maximizes the $C^*(s)$ and show it in the plot.
+Also, find the approximate value of $s$ that maximizes the $c^*(s)$ and show it in the plot.
 
 ```
 
@@ -484,7 +484,7 @@ ax.annotate(r'$s^*$',
          textcoords='offset points',
          fontsize=12,
          arrowprops=dict(arrowstyle="->"))
-ax.plot(s_grid, c_star, label=r'$C*(s)$')
+ax.plot(s_grid, c_star, label=r'$c^*(s)$')
 ax.plot(x_s_max, y_s_max, alpha=0.5, ls='dotted')
 ax.set_xlabel(r'$s$')
 ax.set_ylabel(r'$C^*(s)$')
