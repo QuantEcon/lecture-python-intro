@@ -255,8 +255,6 @@ Then we can address a range of questions, such as
 
 We'll cover such applications below.
 
-
-
 ### Defining Markov Chains
 
 So far we've given examples of Markov chains but now let's define them more
@@ -307,9 +305,6 @@ chain $\{X_t\}$ as follows:
 * for each $t = 0, 1, \ldots$, draw $X_{t+1}$ from $P(X_t,\cdot)$
 
 By construction, the resulting process satisfies {eq}`mpp`.
-
-
-
 
 ## Simulation
 
@@ -864,10 +859,8 @@ Importantly, the result is valid for any choice of $\psi_0$.
 
 Notice that the theorem is related to the law of large numbers.
 
-TODO -- link to our undergrad lln and clt lecture
-
 It tells us that, in some settings, the law of large numbers sometimes holds even when the
-sequence of random variables is not IID.
+sequence of random variables is [not IID](iid_violation).
 
 
 (mc_eg1-2)=
@@ -919,7 +912,7 @@ for i in range(n_state):
     axes[i].set_xlabel('t')
     axes[i].set_ylabel(fr'average time spent at {i}')
 
-    # Compute the fraction of time spent, for each x
+    # Compute the fraction of time spent, starting from different x_0s
     for x0, col in ((0, 'blue'), (1, 'green'), (2, 'red')):
         # Generate time series that starts at different x0
         X = mc.simulate(n, init=x0)
@@ -948,6 +941,8 @@ $$
 The diagram of the Markov chain shows that it is **irreducible**
 
 ```{code-cell} ipython3
+:tags: [hide-input]
+
 dot = Digraph(comment='Graph')
 dot.attr(rankdir='LR')
 dot.node("0")
@@ -1077,6 +1072,7 @@ In the case of Hamilton's Markov chain, the distribution $\psi P^t$ converges to
 P = np.array([[0.971, 0.029, 0.000],
               [0.145, 0.778, 0.077],
               [0.000, 0.508, 0.492]])
+
 # Define the number of iterations
 n = 50
 n_state = P.shape[0]
@@ -1096,7 +1092,7 @@ for i in range(n):
 # Loop through many initial values
 for x0 in x0s:
     x = x0
-    X = np.zeros((n,n_state))
+    X = np.zeros((n, n_state))
     
     # Obtain and plot distributions at each state
     for t in range(0, n):
@@ -1294,7 +1290,7 @@ In this exercise,
 
 1. show this process is asymptotically stationary and calculate the stationary distribution using simulations.
 
-1. use simulation to show ergodicity.
+1. use simulations to demonstrate ergodicity of this process.
 
 ````
 
@@ -1322,7 +1318,7 @@ codes_B =  ( '1','2','3','4','5','6','7','8')
 np.linalg.matrix_power(P_B, 10)
 ```
 
-We find rows transition matrix converge to the stationary distribution 
+We find rows of transition matrix converge to the stationary distribution 
 
 ```{code-cell} ipython3
 mc = qe.MarkovChain(P_B)
@@ -1353,7 +1349,7 @@ ax.legend()
 plt.show()
 ```
 
-We can see that the time spent at each state quickly converges to the stationary distribution.
+Note that the average time spent at each state quickly converges to the stationary distribution.
 
 ```{solution-end}
 ```
@@ -1451,10 +1447,9 @@ However, another way to verify irreducibility is by checking whether $A$ satisfi
 
 Assume A is an $n \times n$ $A$ is irreducible if and only if $\sum_{k=0}^{n-1}A^k$ is a positive matrix.
 
-(see more at \cite{zhao_power_2012} and [here](https://math.stackexchange.com/questions/3336616/how-to-prove-this-matrix-is-a-irreducible-matrix))
+(see more: {cite}`zhao_power_2012` and [here](https://math.stackexchange.com/questions/3336616/how-to-prove-this-matrix-is-a-irreducible-matrix))
 
 Based on this claim, write a function to test irreducibility.
-
 ```
 
 ```{solution-start} mc_ex3
