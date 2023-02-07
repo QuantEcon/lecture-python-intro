@@ -13,7 +13,7 @@ kernelspec:
 # The Cobweb Model
 
 
-The cobweb model {cite}:`10.2307/1236509` is a model of prices and quantities in a given market, and how they evolve over time.
+The cobweb model {cite}`cobweb_model` is a model of prices and quantities in a given market, and how they evolve over time.
 
 The model dates back to the 1930s and, while simple, it remains significant
 because it shows the fundamental importance of *expectations*.
