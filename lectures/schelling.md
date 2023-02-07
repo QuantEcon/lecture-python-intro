@@ -3,8 +3,10 @@ jupytext:
   text_representation:
     extension: .md
     format_name: myst
+    format_version: 0.13
+    jupytext_version: 1.13.8
 kernelspec:
-  display_name: Python 3
+  display_name: Python 3 (ipykernel)
   language: python
   name: python3
 ---
@@ -58,7 +60,7 @@ awarded the 2005 Nobel Prize in Economic Sciences (joint with Robert Aumann).
 
 Let's start with some imports:
 
-```{code-cell} ipython
+```{code-cell} ipython3
 %matplotlib inline
 import matplotlib.pyplot as plt
 plt.rcParams["figure.figsize"] = (11, 5)  #set default figure size
@@ -86,6 +88,7 @@ Thus, the location of an agent is just a point $(x, y)$,  where $0 < x, y < 1$.
 * The set of all points $(x,y)$ satisfying $0 < x, y < 1$ is called the **unit square**
 * Below we denote the unit square by $S$
 
++++
 
 ### Preferences
 
@@ -104,7 +107,7 @@ An important point to note is that agents are **not** averse to living in mixed 
 
 They are perfectly happy if half of their neighbors are of the other color.
 
-
++++
 
 ### Behavior
 
@@ -136,14 +139,13 @@ We cycle continuously through the agents, each time allowing an unhappy agent to
 
 We continue to cycle until no one wishes to move.
 
++++
 
 ## Results
 
 Let's now implement and run this simulation.
 
-We use the following structure for our program.
-
-Agents are modeled as [objects](https://python-programming.quantecon.org/python_oop.html).
+In what follows, agents are modeled as [objects](https://python-programming.quantecon.org/python_oop.html).
 
 Here's an indication of they look
 
@@ -160,22 +162,7 @@ Here's an indication of they look
         * find a new location where happy
 ```
 
-And here's some pseudocode for the main loop
-
-```{code-block} none
-while agents are still moving
-    for agent in agents
-        give agent the opportunity to move
-```
-
-Use 250 agents of each type.
-
-
-Here's one solution that does the job we want.
-
-```{code-cell} python3
-seed(10)  # For reproducible random numbers
-
+```{code-cell} ipython3
 class Agent:
 
     def __init__(self, type):
@@ -194,17 +181,21 @@ class Agent:
     def happy(self, agents):
         "True if sufficient number of nearest neighbors are of the same type."
         distances = []
-        # distances is a list of pairs (d, agent), where d is distance from
+        
+        # Distances is a list of pairs (d, agent), where d is distance from
         # agent to self
         for agent in agents:
             if self != agent:
                 distance = self.get_distance(agent)
                 distances.append((distance, agent))
-        # == Sort from smallest to largest, according to distance == #
+                
+        # Sort from smallest to largest, according to distance
         distances.sort()
-        # == Extract the neighboring agents == #
+        
+        # Extract the neighboring agents
         neighbors = [agent for d, agent in distances[:num_neighbors]]
-        # == Count how many neighbors have the same type as self == #
+        
+        # Count how many neighbors have the same type as self
         num_same_type = sum(self.type == agent.type for agent in neighbors)
         return num_same_type >= require_same_type
 
@@ -212,7 +203,9 @@ class Agent:
         "If not happy, then randomly choose new locations until happy."
         while not self.happy(agents):
             self.draw_location()
+```
 
+```{code-cell} ipython3
 
 def plot_distribution(agents, cycle_num):
     "Plot the distribution of agents after cycle_num rounds of the loop."
@@ -228,67 +221,77 @@ def plot_distribution(agents, cycle_num):
             x_values_1.append(x)
             y_values_1.append(y)
     fig, ax = plt.subplots(figsize=(8, 8))
-    plot_args = {'markersize': 8, 'alpha': 0.6}
+    plot_args = {'markersize': 8, 'alpha': 0.7}
     ax.set_facecolor('azure')
     ax.plot(x_values_0, y_values_0, 'o', markerfacecolor='orange', **plot_args)
     ax.plot(x_values_1, y_values_1, 'o', markerfacecolor='green', **plot_args)
     ax.set_title(f'Cycle {cycle_num-1}')
     plt.show()
-
-# == Main == #
-
-num_of_type_0 = 250
-num_of_type_1 = 250
-num_neighbors = 10      # Number of agents regarded as neighbors
-require_same_type = 5   # Want at least this many neighbors to be same type
-
-# == Create a list of agents == #
-agents = [Agent(0) for i in range(num_of_type_0)]
-agents.extend(Agent(1) for i in range(num_of_type_1))
-
-
-count = 1
-# ==  Loop until none wishes to move == #
-while True:
-    print('Entering loop ', count)
-    plot_distribution(agents, count)
-    count += 1
-    no_one_moved = True
-    for agent in agents:
-        old_location = agent.location
-        agent.update(agents)
-        if agent.location != old_location:
-            no_one_moved = False
-    if no_one_moved:
-        break
-
-print('Converged, terminating.')
 ```
 
+And here's some pseudocode for the main loop
+
+```{code-block} none
+while agents are still moving
+    for agent in agents
+        give agent the opportunity to move
+```
+
+```{code-cell} ipython3
+def run_simulation(num_of_type_0=600,
+                   num_of_type_1=600,
+                   max_iter=100_000,       # Maximum number of iterations 
+                   num_neighbors=10,       # No. of agents viewed as neighbors
+                   require_same_type=5,    # Required to be happy (same type)
+                   set_seed=1234):         
+
+    # Set the seed for reproducibility
+    seed(set_seed)   
+    
+    # == Create a list of agents == #
+    agents = [Agent(0) for i in range(num_of_type_0)]
+    agents.extend(Agent(1) for i in range(num_of_type_1))
+
+    count = 1
+    
+    # Plot the initial distribution
+    plot_distribution(agents, count)
+    
+    # ==  Loop until none wishes to move == #
+    while True and count < max_iter:
+        print('Entering loop ', count)
+        count += 1
+        no_one_moved = True
+        for agent in agents:
+            old_location = agent.location
+            agent.update(agents)
+            if agent.location != old_location:
+                no_one_moved = False
+        if no_one_moved:
+            break
+            
+    # Plot final distribution
+    plot_distribution(agents, count)
+
+    if count < max_iter:
+        print(f'Converged after {count} iterations.')
+    else:
+        print('Hit iteration bound and terminated.')
+    
+
+```
 
 Let's have a look at the results we got when we coded and ran this model.
 
-As discussed above, agents are initially mixed randomly together.
-
-```{figure} /_static/lecture_specific/schelling/schelling_fig1.png
-
+```{code-cell} ipython3
+run_simulation()
 ```
+
+As discussed above, agents are initially mixed randomly together.
 
 But after several cycles, they become segregated into distinct regions.
 
-```{figure} /_static/lecture_specific/schelling/schelling_fig2.png
-
-```
-
-```{figure} /_static/lecture_specific/schelling/schelling_fig3.png
-
-```
-
-```{figure} /_static/lecture_specific/schelling/schelling_fig4.png
-
-```
-
-In this instance, the program terminated after 4 cycles through the set of
+In this instance, the program terminated after a small number of cycles through the set of
 agents, indicating that all agents had reached a state of happiness.
 
 What is striking about the pictures is how rapidly racial integration breaks down.
@@ -317,4 +320,8 @@ then increase the number of agents.
 solution here
 
 ```{solution-end}
+```
+
+```{code-cell} ipython3
+
 ```
