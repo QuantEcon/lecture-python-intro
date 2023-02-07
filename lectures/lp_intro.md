@@ -478,7 +478,7 @@ Once we solve the problem, we can check whether the solver was successful in sol
 ```{code-cell} ipython3
 # Solve the problem
 # we put a negative sign on the objective as linprog does minimization
-res_ex1 = linprog(-c_ex1, A_ub=A_ex1, b_ub=b_ex1, method='revised simplex')
+res_ex1 = linprog(-c_ex1, A_ub=A_ex1, b_ub=b_ex1)
 
 if res_ex1.success:
     # We use negative sign to get the optimal value (maximized value)
@@ -570,7 +570,7 @@ Let's solve the problem and check the status using `success` attribute.
 ```{code-cell} ipython3
 # Solve the problem
 res_ex2 = linprog(-c_ex2, A_eq=A_ex2, b_eq=b_ex2,
-                  bounds=bounds_ex2, method='revised simplex')
+                  bounds=bounds_ex2)
 
 if res_ex2.success:
     # We use negative sign to get the optimal value (maximized value)
@@ -692,7 +692,7 @@ Find the number of units of $A$ and product $B$ that he should manufacture in or
 ```
 
 
-```{solution-start} lp_intro_ex1
+```{solution-start} lp_intro_ex2
 :class: dropdown
 ```
 
