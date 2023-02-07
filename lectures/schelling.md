@@ -18,7 +18,7 @@ kernelspec:
 </div>
 ```
 
-# Schelling's Segregation Model
+# Racial Segregation 
 
 ```{index} single: Schelling Segregation Model
 ```
@@ -32,17 +32,29 @@ kernelspec:
 
 ## Outline
 
-In 1969, Thomas C. Schelling developed a simple but striking model of racial segregation {cite}`Schelling1969`.
+In 1969, Thomas C. Schelling developed a simple but striking model of racial
+segregation {cite}`Schelling1969`.
 
 His model studies the dynamics of racially mixed neighborhoods.
 
-Like much of Schelling's work, the model shows how local interactions can lead to surprising aggregate structure.
+Like much of Schelling's work, the model shows how local interactions can lead
+to surprising aggregate structure.
 
-In particular, it shows that relatively mild preference for neighbors of similar race can lead in aggregate to the collapse of mixed neighborhoods, and high levels of segregation.
+In particular, it shows that relatively mild preference for neighbors of
+similar race can lead in aggregate to the collapse of mixed neighborhoods, and
+high levels of segregation.
 
-In recognition of this and other research, Schelling was awarded the 2005 Nobel Prize in Economic Sciences (joint with Robert Aumann).
+In other words, extreme segregation outcomes arise even though people's
+preferences are not particularly extreme.
 
-In this lecture, we (in fact you) will build and run a version of Schelling's model.
+These extreme outcomes happen because of interactions between people that
+drive self-reinforcing dynamics in the model.
+
+These ideas will become clearer as the lecture unfolds.
+
+In recognition of his work on segregation and other research, Schelling was
+awarded the 2005 Nobel Prize in Economic Sciences (joint with Robert Aumann).
+
 
 Let's start with some imports:
 
@@ -56,35 +68,54 @@ from math import sqrt
 
 ## The Model
 
-We will cover a variation of Schelling's model that is easy to program and captures the main idea.
+In this lecture, we (in fact you) will build and run a version of Schelling's model.
 
 ### Set-Up
 
+We will cover a variation of Schelling's model that is different from the
+original but is easy to program and, at the same time, captures his main idea.
+
 Suppose we have two types of people: orange people and green people.
 
-For the purpose of this lecture, we will assume there are 250 of each type.
+Assume there are $n$ of each type.
 
 These agents all live on a single unit square.
 
-The location of an agent is just a point $(x, y)$,  where $0 < x, y < 1$.
+Thus, the location of an agent is just a point $(x, y)$,  where $0 < x, y < 1$.
+
+* The set of all points $(x,y)$ satisfying $0 < x, y < 1$ is called the **unit square**
+* Below we denote the unit square by $S$
+
 
 ### Preferences
 
-We will say that an agent is *happy* if half or more of her 10 nearest neighbors are of the same type.
-
-Here 'nearest' is in terms of [Euclidean distance](https://en.wikipedia.org/wiki/Euclidean_distance).
+We will say that an agent is *happy* if 5 or more of her 10 nearest neighbors are of the same type.
 
 An agent who is not happy is called *unhappy*.
 
-An important point here is that agents are not averse to living in mixed areas.
+For example,
 
-They are perfectly happy if half their neighbors are of the other color.
+*  if an agent is orange and 5 of her 10 nearest neighbors are orange, then she is happy.
+*  if an agent is green and 8 of her 10 nearest neighbors are orange, then she is unhappy.
+
+'Nearest' is in terms of [Euclidean distance](https://en.wikipedia.org/wiki/Euclidean_distance).
+
+An important point to note is that agents are **not** averse to living in mixed areas.
+
+They are perfectly happy if half of their neighbors are of the other color.
+
+
 
 ### Behavior
 
 Initially, agents are mixed together (integrated).
 
-In particular, the initial location of each agent is an independent draw from a bivariate uniform distribution on $S = (0, 1)^2$.
+In particular, we assume that the initial location of each agent is an
+independent draw from a bivariate uniform distribution on the unit square $S$.
+
+(First their $x$ coordinate is drawn from a uniform distribution on $(0,1)$
+and then, independently, their $y$ coordinate is drawn from the same
+distribution.)
 
 Now, cycling through the set of all agents, each agent is now given the chance to stay or move.
 
@@ -92,60 +123,29 @@ We assume that each agent will stay put if they are happy and move if unhappy.
 
 The algorithm for moving is as follows
 
+```{prf:algorithm} Jump Chain Algorithm
+:label: move_algo
+
 1. Draw a random location in $S$
 1. If happy at new location, move there
-1. Else, go to step 1
+1. Otherwise, go to step 1
 
-In this way, we cycle continuously through the agents, moving as required.
+```
+
+We cycle continuously through the agents, each time allowing an unhappy agent to move.
 
 We continue to cycle until no one wishes to move.
 
+
 ## Results
 
-Let's have a look at the results we got when we coded and ran this model.
+Let's now implement and run this simulation.
 
-As discussed above, agents are initially mixed randomly together.
+We use the following structure for our program.
 
-```{figure} /_static/lecture_specific/schelling/schelling_fig1.png
+Agents are modeled as [objects](https://python-programming.quantecon.org/python_oop.html).
 
-```
-
-But after several cycles, they become segregated into distinct regions.
-
-```{figure} /_static/lecture_specific/schelling/schelling_fig2.png
-
-```
-
-```{figure} /_static/lecture_specific/schelling/schelling_fig3.png
-
-```
-
-```{figure} /_static/lecture_specific/schelling/schelling_fig4.png
-
-```
-
-In this instance, the program terminated after 4 cycles through the set of
-agents, indicating that all agents had reached a state of happiness.
-
-What is striking about the pictures is how rapidly racial integration breaks down.
-
-This is despite the fact that people in the model don't actually mind living mixed with the other type.
-
-Even with these preferences, the outcome is a high degree of segregation.
-
-## Exercises
-
-```{exercise-start}
-:label: schelling_ex1
-```
-
-Implement and run this simulation for yourself.
-
-Consider the following structure for your program.
-
-Agents can be modeled as [objects](https://python-programming.quantecon.org/python_oop.html).
-
-Here's an indication of how they might look
+Here's an indication of they look
 
 ```{code-block} none
 * Data:
@@ -156,9 +156,7 @@ Here's an indication of how they might look
 * Methods:
 
     * determine whether happy or not given locations of other agents
-
     * If not happy, move
-
         * find a new location where happy
 ```
 
@@ -172,17 +170,8 @@ while agents are still moving
 
 Use 250 agents of each type.
 
-```{exercise-end}
-```
-
-```{solution-start} schelling_ex1
-:class: dropdown
-```
 
 Here's one solution that does the job we want.
-
-If you feel like a further exercise, you can probably speed up some of the computations and
-then increase the number of agents.
 
 ```{code-cell} python3
 seed(10)  # For reproducible random numbers
@@ -275,6 +264,57 @@ while True:
 
 print('Converged, terminating.')
 ```
+
+
+Let's have a look at the results we got when we coded and ran this model.
+
+As discussed above, agents are initially mixed randomly together.
+
+```{figure} /_static/lecture_specific/schelling/schelling_fig1.png
+
+```
+
+But after several cycles, they become segregated into distinct regions.
+
+```{figure} /_static/lecture_specific/schelling/schelling_fig2.png
+
+```
+
+```{figure} /_static/lecture_specific/schelling/schelling_fig3.png
+
+```
+
+```{figure} /_static/lecture_specific/schelling/schelling_fig4.png
+
+```
+
+In this instance, the program terminated after 4 cycles through the set of
+agents, indicating that all agents had reached a state of happiness.
+
+What is striking about the pictures is how rapidly racial integration breaks down.
+
+This is despite the fact that people in the model don't actually mind living mixed with the other type.
+
+Even with these preferences, the outcome is a high degree of segregation.
+
+
+
+## Exercises
+
+```{exercise-start}
+:label: schelling_ex1
+```
+
+If you feel like a further exercise, you can probably speed up some of the computations and
+then increase the number of agents.
+
+```{exercise-end}
+```
+
+```{solution-start} schelling_ex1
+:class: dropdown
+```
+solution here
 
 ```{solution-end}
 ```
