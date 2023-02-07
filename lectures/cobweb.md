@@ -3,14 +3,13 @@ jupytext:
   text_representation:
     extension: .md
     format_name: myst
-    format_version: 0.13
-    jupytext_version: 1.14.4
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
   name: python3
 ---
 
+(cobweb)=
 # The Cobweb Model
 
 
@@ -392,7 +391,7 @@ This equation helps to show that expectations shift
 Using {eq}`pe_adaptive`, we obtain the dynamics
 
 $$
-    p_t = - \frac{1}{b} [ S(\alpha p_{t-1} + (1-\alpha) p^e_{t-1})) - a]
+    p_t = - \frac{1}{b} [ S(\alpha p_{t-1} + (1-\alpha) p^e_{t-1}) - a]
 $$
 
 
@@ -449,11 +448,8 @@ TODO check / fix exercises
 ## Exercises
 
 ```{exercise-start}
-:label: ex1
+:label: cobweb_ex1
 ```
-
-### Exercise 1
-
 Using the default Market model and naive expectations, plot a time series simulation of supply (rather than the price).
 
 Show, in particular, that supply also cycles.
@@ -461,7 +457,7 @@ Show, in particular, that supply also cycles.
 ```{exercise-end}
 ```
 
-```{solution-start} ex1
+```{solution-start} cobweb_ex1
 :class: dropdown
 ```
 
@@ -502,12 +498,9 @@ ts_plot_supply(m, 5, 15)
 ```
 
 ```{exercise-start}
-:label: ex2
+:label: cobweb_ex2
 ```
-
-### Exercise 2
-
-#### Backward looking average expectations
+**Backward looking average expectations**
 
 Backward looking average expectations refers to the case where producers form
 expectations for the next period price as a linear combination of their last
@@ -516,7 +509,7 @@ guess and the second last guess.
 That is,
 
 ```{math}
-:label: pe_adaptive
+:label: pe_blae
 p_t^e = \alpha p_{t-1} + (1-\alpha) p_{t-2}
 ```
 
@@ -526,7 +519,7 @@ Simulate and plot the price dynamics for $\alpha \in \{0.1, 0.3, 0.5, 0.8\}$ whe
 ```{exercise-end}
 ```
 
-```{solution-start} ex2
+```{solution-start} cobweb_ex2
 :class: dropdown
 ```
 

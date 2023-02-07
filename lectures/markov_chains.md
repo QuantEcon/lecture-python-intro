@@ -3,10 +3,8 @@ jupytext:
   text_representation:
     extension: .md
     format_name: myst
-    format_version: 0.13
-    jupytext_version: 1.14.4
 kernelspec:
-  display_name: Python 3 (ipykernel)
+  display_name: Python 3
   language: python
   name: python3
 ---
@@ -53,8 +51,6 @@ import numpy as np
 ## Definitions and Examples
 
 In this section we provide the basic definitions and some elementary examples.
-
-+++
 
 (finite_dp_stoch_mat)=
 ### Stochastic Matrices 
@@ -764,7 +760,7 @@ From this equality, we immediately get $\psi^* = \psi^* P^t$ for all $t$.
 This tells us an important fact: If the distribution of $X_0$ is a stationary distribution, then $X_t$ will have this same distribution for all $t$.
 
 ```{prf:theorem}
-:label: stationary
+:label: unique_stat
 
 Every stochastic matrix $P$ has at least one stationary distribution.
 ```
@@ -835,14 +831,11 @@ mc.stationary_distributions  # Show all stationary distributions
 
 Under irreducibility, yet another important result obtains:
 
-
-TODO -- convert to environment
-
 ````{prf:theorem}
 :label: stationary
 
 If $P$ is irreducible and $\psi^*$ is the unique stationary
-distribition, then, for all $x \in S$,
+distribution, then, for all $x \in S$,
 
 ```{math}
 :label: llnfmc0
@@ -854,14 +847,12 @@ distribition, then, for all $x \in S$,
 Here
 
 * $\{X_t\}$ is a Markov chain with stochastic matrix $P$ and initial
-  distribition $\psi_0$
+  distribution $\psi_0$
 * $\mathbf{1}\{X_t = x\} = 1$ if $X_t = x$ and zero otherwise
 
 ````
 
-TODO -- in the next line, refer to the theorem by number.
-
-The result in theorem XXX is sometimes called **ergodicity**.
+The result in [theorem 4.3](llnfmc0) is sometimes called **ergodicity**.
 
 The theorem tells us that the fraction of time the chain spends at state $x$
 converges to $\psi^*(x)$ as time goes to infinity.
@@ -925,7 +916,7 @@ for i in range(n_state):
     axes[i].grid()
     axes[i].set_ylim(ψ_star[i]-0.2, ψ_star[i]+0.2)
     axes[i].axhline(ψ_star[i], linestyle='dashed', lw=2, color = 'black', 
-                    label = fr'$\psi(X={i})^*$')
+                    label = fr'$\psi^*(X={i})$')
     axes[i].set_xlabel('t')
     axes[i].set_ylabel(fr'average time spent at X={i}')
 
@@ -969,7 +960,7 @@ dot.edge("1", "0", label="1.0", color='red')
 dot
 ```
 
-As you might notice, unlike other Markov chain we have seen before, it has a periodic cycle.
+As you might notice, unlike other Markov chains we have seen before, it has a periodic cycle.
 
 This is formally called [periodicity](https://stats.libretexts.org/Bookshelves/Probability_Theory/Probability_Mathematical_Statistics_and_Stochastic_Processes_(Siegrist)/16:_Markov_Processes/16.05:_Periodicity_of_Discrete-Time_Chains#:~:text=A%20state%20in%20a%20discrete,limiting%20behavior%20of%20the%20chain.). 
 
@@ -989,7 +980,7 @@ for i in range(n_state):
     axes[i].grid()
     axes[i].set_ylim(0.45, 0.55)
     axes[i].axhline(ψ_star[i], linestyle='dashed', lw=2, color = 'black', 
-                    label = fr'$\psi(X={i})^*$')
+                    label = fr'$\psi^*(X={i})$')
     axes[i].set_xlabel('t')
     axes[i].set_ylabel(fr'average time spent at X={i}')
 
@@ -1015,8 +1006,6 @@ Sometimes the distribution $\psi_t = \psi_0 P^t$ of $X_t$ converges to the
 stationary distribution regardless of where we begin.
 
 For example, we have the following result
-
-TODO -- convert to theorem environment
 
 ```{prf:theorem}
 :label: strict_stationary
@@ -1119,7 +1108,7 @@ for x0 in x0s:
     
 for i in range(n_state):
     axes[i].axhline(ψ_star[i], linestyle='dashed', lw=2, color = 'black', 
-                    label = fr'$\psi(X={i})^*$')
+                    label = fr'$\psi^*(X={i})$')
     axes[i].set_xlabel('t')
     axes[i].set_ylabel(fr'$\psi(X={i})$')
     axes[i].legend()
@@ -1158,7 +1147,7 @@ for x0 in x0s:
         axes[i].plot(range(20, n), X[20:,i], alpha=0.3)
     
 for i in range(n_state):
-    axes[i].axhline(ψ_star[i], linestyle='dashed', lw=2, color = 'black', label = fr'$\psi (X={i})^*$')
+    axes[i].axhline(ψ_star[i], linestyle='dashed', lw=2, color = 'black', label = fr'$\psi^* (X={i})$')
     axes[i].set_xlabel('t')
     axes[i].set_ylabel(fr'$\psi(X={i})$')
     axes[i].legend()
@@ -1269,37 +1258,10 @@ $$
 
 TODO -- connect to the Neumann series lemma (Maanasee)
 
-
-TODO -- verify the link.
-
-
 ## Exercises
 
-TODO: Add this into bib file
-
-@article{benhabib_wealth_2019,
-	title = {Wealth {Distribution} and {Social} {Mobility} in the {US}: {A} {Quantitative} {Approach}},
-	volume = {109},
-	issn = {0002-8282},
-	shorttitle = {Wealth {Distribution} and {Social} {Mobility} in the {US}},
-	url = {https://www.aeaweb.org/articles?id=10.1257/aer.20151684},
-	doi = {10.1257/aer.20151684},
-	abstract = {We quantitatively identify the factors that drive wealth dynamics in the United States and are consistent with its skewed cross-sectional distribution and with social mobility. We concentrate on three critical factors: (i) skewed earnings, (ii) differential saving rates across wealth levels, and (iii) stochastic idiosyncratic returns to wealth. All of these are fundamental for matching both distribution and mobility. The stochastic process for returns which best fits the cross-sectional distribution of wealth and social mobility in the United States shares several statistical properties with those of the returns to wealth uncovered by Fagereng et al. (2017) from tax records in Norway.},
-	language = {en},
-	number = {5},
-	urldate = {2023-02-03},
-	journal = {American Economic Review},
-	author = {Benhabib, Jess and Bisin, Alberto and Luo, Mi},
-	month = may,
-	year = {2019},
-	keywords = {Personal Income, Wealth, and Their Distributions, General Aggregative Models: Neoclassical, Macroeconomics: Consumption, Saving, Wealth, Aggregate Factor Income Distribution},
-	pages = {1623--1647},
-	file = {Full Text PDF:/Users/humphreyyang/Zotero/storage/P93BG5IZ/Benhabib et al. - 2019 - Wealth Distribution and Social Mobility in the US.pdf:application/pdf},
-}
-
-
-```{exercise} 
-:label: fm_ex1
+````{exercise} 
+:label: mc_ex1
 
 Benhabib el al. {cite}`benhabib_wealth_2019` estimated that the transition matrix for social mobility as the following
 
@@ -1335,9 +1297,9 @@ In this exercise,
 
 1. use simulation to show ergodicity.
 
-```
+````
 
-```{solution-start} 
+```{solution-start} mc_ex1
 :class: dropdown
 ```
 
@@ -1386,7 +1348,7 @@ for x0 in range(8):
     X_bar = (X == x0).cumsum() / (1 + np.arange(N, dtype=float))
     ax.plot(X_bar - ψ_star[x0], label=f'$X = {x0+1} $')
     ax.set_xlabel('t')
-    ax.set_ylabel(fr'average time spent in a state - $\psi(X=x)^*$')
+    ax.set_ylabel(fr'average time spent in a state $- \psi^* (X=x)$')
 
 ax.legend()
 plt.show()
@@ -1399,7 +1361,7 @@ We can see that the time spent at each state quickly converges to the stationary
 
 
 ```{exercise} 
-:label: fm_ex2
+:label: mc_ex2
 
 According to the discussion {ref}`above <mc_eg1-2>`, if a worker's employment dynamics obey the stochastic matrix
 
@@ -1438,7 +1400,7 @@ $(0, 1)$.
 The result should be similar to the plot we plotted [here](ergo)
 ```
 
-```{solution-start} fm_ex2
+```{solution-start} mc_ex2
 :class: dropdown
 ```
 
@@ -1482,7 +1444,7 @@ plt.show()
 ```
 
 ```{exercise} 
-:label: fm_ex3
+:label: mc_ex3
 
 In `quantecon` library, irreducibility is tested by checking whether the chain forms a [strongly connected component](https://networkx.org/documentation/stable/reference/algorithms/generated/networkx.algorithms.components.is_strongly_connected.html).
 
@@ -1496,27 +1458,7 @@ Based on this claim, write a function to test irreducibility.
 
 ```
 
-TODO:
-
-add to .bib
-
-@book{zhao_power_2012,
-	address = {Boston, MA},
-	series = {{SpringerBriefs} in {Computer} {Science}},
-	title = {Power {Distribution} and {Performance} {Analysis} for {Wireless} {Communication} {Networks}},
-	isbn = {978-1-4614-3283-8 978-1-4614-3284-5},
-	url = {https://link.springer.com/10.1007/978-1-4614-3284-5},
-	language = {en},
-	urldate = {2023-02-03},
-	publisher = {Springer US},
-	author = {Zhao, Dongmei},
-	year = {2012},
-	doi = {10.1007/978-1-4614-3284-5},
-	keywords = {Performance Analysis, Power Distribution, Radio Resource Management, Wireless Networks},
-	file = {Full Text:/Users/humphreyyang/Zotero/storage/6JG9FW3F/Zhao - 2012 - Power Distribution and Performance Analysis for Wi.pdf:application/pdf},
-}
-
-```{solution-start} fm_ex3
+```{solution-start} mc_ex3
 :class: dropdown
 ```
 

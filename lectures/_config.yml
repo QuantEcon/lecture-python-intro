@@ -3,6 +3,20 @@ author: Thomas J. Sargent & John Stachurski
 logo: _static/qe-logo.png
 description: This website presents an undergraduate set of lectures computational economics, designed and written by Thomas J. Sargent and John Stachurski.
 
+parse:
+  myst_enable_extensions:  # default extensions to enable in the myst parser. See https://myst-parser.readthedocs.io/en/latest/using/syntax-optional.html
+    - amsmath
+    - colon_fence
+    - deflist
+    - dollarmath
+    - html_admonition
+    - html_image
+    - linkify
+    - replacements
+    - smartquotes
+    - substitution
+    - tasklist
+
 execute:
   execute_notebooks: "cache"
   timeout: 600 # 10 minutes
@@ -19,7 +33,7 @@ latex:
     targetname: quantecon-python-intro.tex
 
 sphinx:
-  extra_extensions: [sphinx_multitoc_numbering, sphinxext.rediraffe, sphinx_exercise, sphinx_togglebutton] # sphinx_tojupyter
+  extra_extensions: [sphinx_multitoc_numbering, sphinxext.rediraffe, sphinx_exercise, sphinx_togglebutton, sphinx_proof] # sphinx_tojupyter
   config:
     html_favicon: _static/lectures-favicon.ico
     html_theme: quantecon_book_theme
@@ -41,6 +55,6 @@ sphinx:
         binderhub_url             : https://mybinder.org  # The URL of the BinderHub (e.g., https://mybinder.org)
         colab_url                 : https://colab.research.google.com
         thebe                     : false  # Add a thebe button to pages (requires the repository to run on Binder)
-    mathjax_path: https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-svg.js
+    mathjax_path: https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
     rediraffe_redirects:
       index_toc.md: intro.md

@@ -1,15 +1,14 @@
 ---
-jupyter:
-  jupytext:
-    text_representation:
-      extension: .md
-      format_name: markdown
-      format_version: '1.3'
-      jupytext_version: 1.14.4
-  kernelspec:
-    display_name: Python 3 (ipykernel)
-    language: python
-    name: python3
+jupytext:
+  text_representation:
+    extension: .md
+    format_name: myst
+    format_version: 0.13
+    jupytext_version: 1.14.4
+kernelspec:
+  display_name: Python 3 (ipykernel)
+  language: python
+  name: python3
 ---
 
 # Linear Equations and Matrix Algebra
@@ -42,7 +41,8 @@ from matplotlib import cm
 from mpl_toolkits.mplot3d import Axes3D
 ```
 
-<!-- #region -->
++++
+
 ## A Two Good Example
 
 We discuss a simple two good example and solve it by
@@ -127,7 +127,8 @@ For example, $\mathbb R ^2$ is the plane and a vector in $\mathbb R^2$ is just a
 Traditionally, vectors are represented visually as arrows from the origin to the point.
 
 The following figure represents three vectors in this manner.
-<!-- #endregion -->
+
++++
 
 ```{code-cell} ipython3
 fig, ax = plt.subplots(figsize=(10, 8))
@@ -377,7 +378,8 @@ np.sqrt(np.sum(x**2))  # Norm of x, take one
 np.linalg.norm(x)      # Norm of x, take two
 ```
 
-<!-- #region -->
++++
+
 ## Matrix Operations
 
 ```{index} single: Matrix; Operations
@@ -587,7 +589,8 @@ It is a useful exercise to check the following:
 NumPy arrays are also used as matrices, and have fast, efficient functions and methods for all the standard matrix operations.
 
 You can create them manually from tuples of tuples (or lists of lists) as follows
-<!-- #endregion -->
+
++++
 
 ```{code-cell} ipython3
 A = ((1, 2),
@@ -627,7 +630,8 @@ B = np.ones((3, 3))   # 3 x 3 matrix of ones
 A + B
 ```
 
-<!-- #region -->
++++
+
 To multiply matrices we use the `@` symbol.
 
 
@@ -850,7 +854,8 @@ $$
 It can be verified manually that this system has no possible solution.
 
 To illustrate why this situation arises let's plot the two lines.
-<!-- #endregion -->
+
++++
 
 ```{code-cell} ipython3
 fig, ax = plt.subplots(figsize=(5, 4))
@@ -861,7 +866,8 @@ plt.legend()
 plt.show()
 ```
 
-<!-- #region -->
++++
+
 Clearly, these are parallel lines and hence we will never find a point $x \in \mathbb{R}^2$
 such that these lines intersect.
 
@@ -987,7 +993,8 @@ This equation is analogous to {eq}`la_se_inv` with $A = (C-D)^{-1}$, $b = h$, an
 We can now solve for equilibrium prices with NumPy's `linalg` submodule.
 
 All of these routines are Python front ends to time-tested and highly optimized FORTRAN code.
-<!-- #endregion -->
+
++++
 
 ```{code-cell} ipython3
 C = ((10, 5),      #matrix C
@@ -1047,7 +1054,8 @@ q = C @ p # equilibrium quantities
 q
 ```
 
-<!-- #region -->
++++
+
 Observe how we can solve for $x = A^{-1} y$ by either via `inv(A) @ y`, or using `solve(A, y)`.
 
 The latter method uses a different algorithm that is numerically more stable and hence should be the default option.
@@ -1108,7 +1116,86 @@ Equilibrium holds when supply equals demand, i.e, $q_0^d = q_0^s$, $q_1^d = q_1^
 
 ```{exercise-end}
 ```
+```{solution-start} lin_eqs_ex1
+:class: dropdown
+```
 
+The generated system would be:
+
+$$
+\begin{aligned}
+    35p_0 - 5p_1 - 5p_2 = 100 \\
+    -5p_0 + 25p_1 - 10p_2 = 75 \\
+    -5p_0 - 5p_1 + 15p_2 = 55
+\end{aligned}
+$$
+
+In matrix form we will write this as:
+
+$$
+Ap = b
+\quad \text{where} \quad
+A =
+\begin{bmatrix}
+    35 & -5 & -5 \\
+    -5 & 25 & -10 \\
+    -5 & -5 & 15
+\end{bmatrix}
+, \quad p =
+\begin{bmatrix}
+    p_0 \\
+    p_1 \\
+    p_2
+\end{bmatrix}
+\quad \text{and} \quad
+b = 
+\begin{bmatrix}
+    100 \\
+    75 \\
+    55
+\end{bmatrix}
+$$
+
++++
+
+```{code-cell} ipython3
+import numpy as np
+from numpy.linalg import det
+
+A = np.array([[35, -5, -5],        #matrix A
+              [-5, 25, -10],
+              [-5, -5, 15]])
+
+b = np.array((100, 75, 55))        #column vector b
+b.shape = (3,1)
+
+det(A)    #check if A is nonsingular
+```
+
+```{code-cell} ipython3
+#using inverse
+from numpy.linalg import det
+
+A_inv = inv(A)
+
+p = A_inv @ b
+p
+```
+
+```{code-cell} ipython3
+#using numpy.linalg.solve
+from numpy.linalg import solve
+p = solve(A,b)
+p
+```
+
+The solution is given by:
+$$
+p_0 = 4.6925, \; p_1 = 7.0625 \;\; \text{and} \;\; p_2 = 7.675
+$$
+
+```{solution-end}
+```
 
 ```{exercise-start}
 :label: lin_eqs_ex2
@@ -1192,90 +1279,6 @@ We will thus try to find the best approximate solution for $x$.
 ```{exercise-end}
 ```
 
-
-
-## Solutions
-
-```{solution-start} lin_eqs_ex1
-:class: dropdown
-```
-
-The generated system would be:
-
-$$
-\begin{aligned}
-    35p_0 - 5p_1 - 5p_2 = 100 \\
-    -5p_0 + 25p_1 - 10p_2 = 75 \\
-    -5p_0 - 5p_1 + 15p_2 = 55
-\end{aligned}
-$$
-
-In matrix form we will write this as:
-
-$$
-Ap = b
-\quad \text{where} \quad
-A =
-\begin{bmatrix}
-    35 & -5 & -5 \\
-    -5 & 25 & -10 \\
-    -5 & -5 & 15
-\end{bmatrix}
-, \quad p =
-\begin{bmatrix}
-    p_0 \\
-    p_1 \\
-    p_2
-\end{bmatrix}
-\quad \text{and} \quad
-b = 
-\begin{bmatrix}
-    100 \\
-    75 \\
-    55
-\end{bmatrix}
-$$
-<!-- #endregion -->
-
-```{code-cell} ipython3
-import numpy as np
-from numpy.linalg import det
-
-A = np.array([[35, -5, -5],        #matrix A
-              [-5, 25, -10],
-              [-5, -5, 15]])
-
-b = np.array((100, 75, 55))        #column vector b
-b.shape = (3,1)
-
-det(A)    #check if A is nonsingular
-```
-
-```{code-cell} ipython3
-#using inverse
-from numpy.linalg import det
-
-A_inv = inv(A)
-
-p = A_inv @ b
-p
-```
-
-```{code-cell} ipython3
-#using numpy.linalg.solve
-from numpy.linalg import solve
-p = solve(A,b)
-p
-```
-
-The solution is given by:
-$$
-p_0 = 4.6925, \; p_1 = 7.0625 \;\; \text{and} \;\; p_2 = 7.675
-$$
-
-```{solution-end}
-```
-
 ```{solution-start} lin_eqs_ex2
 :class: dropdown
 ```
@@ -1327,10 +1330,3 @@ plt.show()
 
 ```{solution-end}
 ```
-
-<!-- #region tags=[] -->
-```{solution-end}
-```
-
-solution end
-<!-- #endregion -->

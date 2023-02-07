@@ -9,7 +9,7 @@ kernelspec:
   name: python3
 ---
 
-# Introduction to Economics
+# Economic growth in the short and long run
 
 ```{index} single: Introduction to Economics
 ```
