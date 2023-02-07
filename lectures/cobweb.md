@@ -3,6 +3,8 @@ jupytext:
   text_representation:
     extension: .md
     format_name: myst
+    format_version: 0.13
+    jupytext_version: 1.14.1
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
@@ -13,9 +15,11 @@ kernelspec:
 # The Cobweb Model
 
 
-The cobweb model {cite}`cobweb_model` is a model of prices and quantities in a given market, and how they evolve over time.
+The cobweb model is a model of prices and quantities in a given market, and how they evolve over time.
 
-The model dates back to the 1930s and, while simple, it remains significant
+## Overview 
+
+The cobweb model dates back to the 1930s and, while simple, it remains significant
 because it shows the fundamental importance of *expectations*.
 
 To give some idea of how the model operates, and why expectations matter, imagine the following scenario.
@@ -44,37 +48,6 @@ supply and causing the price to climb again.
 You can imagine how these dynamics could cause cycles in prices and quantities
 that persist over time.
 
-This motivation is also taken from one of the earliest papers  that uses
-cobweb theorem to explain the prices of hog in the US. We will try to
-simulate and plot the graph that uses the rough data from the paper {cite}`hog_cycle`.
-
-We will use the following imports:
-
-```{code-cell} ipython3
-import numpy as np
-import matplotlib.pyplot as plt
-```
-
-We will use the following data for simulation:
-
-```{code-cell} ipython3
-:tags: [hide-input]
-hog_prices = [55, 57, 80, 70, 60, 65, 72, 65, 51, 49, 45, 80, 85,
-              78, 80, 68, 52, 65, 83, 78, 60, 62, 80, 87, 81, 70,
-              69, 65, 62, 85, 87, 65, 63, 75, 80, 62]
-years = np.arange(1924, 1960)
-```
-
-Let's plot the above data and observe the graph.
-
-```{code-cell} ipython3
-fig, ax = plt.subplots(figsize=(9, 4))
-ax.plot(years, hog_prices, '-o', ms=4)
-ax.set_xlabel('year')
-ax.set_ylabel('prices')
-plt.show()
-```
-
 The cobweb model puts these ideas into equations so we can try to quantify
 them, and to study conditions underw which cycles persist (or disappear).
 
@@ -84,8 +57,44 @@ assumptions regarding the way that produces form expectations.
 Our discussion and simulations draw on [high quality lectures](https://comp-econ.org/CEF_2013/downloads/Complex%20Econ%20Systems%20Lecture%20II.pdf) by [Cars Hommes](https://www.uva.nl/en/profile/h/o/c.h.hommes/c.h.hommes.html).
 
 
++++
+
+We will use the following imports.
+
+```{code-cell} ipython3
+import numpy as np
+import matplotlib.pyplot as plt
+```
+
+## History
+
+Early papers on the cobweb cycle include {cite}`cobweb_model` and {cite}`hog_cycle`.
+
+The paper {cite}`hog_cycle` uses the cobweb theorem to explain the prices of hog in the US over 1920--1950
+
+The next plot replicates part of Figure 2 from that paper, which plots the price of hogs at yearly frequency.
+
+Notice the cyclical price dynamics, which match the kind of cyclical soybean price dynamics discussed above.
+
+```{code-cell} ipython3
+hog_prices = [55, 57, 80, 70, 60, 65, 72, 65, 51, 49, 45, 80, 85,
+              78, 80, 68, 52, 65, 83, 78, 60, 62, 80, 87, 81, 70,
+              69, 65, 62, 85, 87, 65, 63, 75, 80, 62]
+years = np.arange(1924, 1960)
+fig, ax = plt.subplots()
+ax.plot(years, hog_prices, '-o', ms=4, label='hog price')
+ax.set_xlabel('year')
+ax.set_ylabel('dollars')
+ax.legend()
+ax.grid()
+plt.show()
+```
+
+
 
 ## The Model
+
+Let's return to our discussion of a hypothetical soy bean market, where price is determined by supply and demand.
 
 We suppose that demand for soy beans is given by
 
@@ -97,7 +106,7 @@ where $a, b$ are nonnegative constants and $p_t$ is the spot (i.e, current marke
 
 ($D(p_t)$ is the quantity demanded in some fixed unit, such as thousands of tons.)
 
-Supply of soy beans depends on *expected* prices at time $t$, which we denote $p^e_t$.
+Because the crop of soy beans for time $t$ is planted at $t-1$, supply of soy beans at time $t$ depends on *expected* prices at time $t$, which we denote $p^e_t$.
 
 We suppose that supply is nonlinear in expected prices, and takes the form
 
@@ -236,6 +245,7 @@ The function `plot45` defined below helps us draw the 45 degree diagram.
 
 ```{code-cell} ipython3
 :tags: [hide-input]
+
 def plot45(model, pmin, pmax, p0, num_arrows=5):
     """
     Function to plot a 45 degree plot
@@ -378,7 +388,7 @@ The cycle is "stable", in the sense that prices converge to it from most startin
 
 For example,
 
-```{code-cell} ipython3 tags=[]
+```{code-cell} ipython3
 ts_plot_price(m, 10, ts_length=15)
 ```
 
@@ -456,7 +466,6 @@ Let's call the function with prices starting at $p_0 = 5$.
 
 TODO does this fit well in the page, even in the pdf? If not should it be stacked vertically?
 
-
 ```{code-cell} ipython3
 ts_price_plot_adaptive(m, 5, ts_length=30)
 ```
@@ -476,7 +485,7 @@ TODO check / fix exercises
 ```{exercise-start}
 :label: cobweb_ex1
 ```
-Using the default Market model and naive expectations, plot a time series simulation of supply (rather than the price).
+Using the default `Market` class and naive expectations, plot a time series simulation of supply (rather than the price).
 
 Show, in particular, that supply also cycles.
 
@@ -508,10 +517,12 @@ def ts_plot_supply(model, p0, ts_length=10):
             'bo-',
             alpha=0.6,
             lw=2,
-            label=r'$S_t$')
+            label=r'supply')
 
     ax.legend(loc='best', fontsize=10)
     ax.set_xticks(np.arange(ts_length))
+    ax.set_xlabel("time")
+    ax.set_ylabel("quantity")
     plt.show()
 ```
 
@@ -564,13 +575,12 @@ def ts_plot_price_blae(model, p0, p1, alphas, ts_length=15):
     Function to simulate and plot the time series of price
     using backward looking average expectations.
     """
-    fig, ax = plt.subplots()
-    ax.set_xlabel(r'$t$', fontsize=12)
-    ax.set_ylabel(r'$p_t$', fontsize=12)
-    for a in alphas:
+    fig, axes = plt.subplots(len(alphas), 1, figsize=(8, 16))
+
+    for ax, a in zip(axes.flatten(), alphas):
         p = np.empty(ts_length)
-        p[0] = p[0]
-        p[1] = p[1]
+        p[0] = p0
+        p[1] = p1
         for t in range(2, ts_length):
             pe = a*p[t-1] + (1 - a)*p[t-2]
             p[t] = -(model.supply(pe) - model.a) / model.b
@@ -578,16 +588,25 @@ def ts_plot_price_blae(model, p0, p1, alphas, ts_length=15):
                 p,
                 'o-',
                 alpha=0.6,
-                label=r'$\alpha={}$'.format(a),
-                c=np.random.rand(3))
+                label=r'$\alpha={}$'.format(a))
         ax.legend(loc='best', fontsize=10)
+        ax.set_xlabel(r'$t$', fontsize=12)
+        ax.set_ylabel(r'$p_t$', fontsize=12)
     plt.show()
 ```
 
 ```{code-cell} ipython3
 m = Market()
-ts_plot_price_blae(m, 1, 2.5, [0.1, 0.3, 0.5, 0.8], 20)
+ts_plot_price_blae(m, 
+                   p0=5, 
+                   p1=6, 
+                   alphas=[0.1, 0.3, 0.5, 0.8], 
+                   ts_length=20)
 ```
 
 ```{solution-end}
+```
+
+```{code-cell} ipython3
+
 ```
