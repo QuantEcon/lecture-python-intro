@@ -1103,9 +1103,9 @@ for x0 in x0s:
     
 for i in range(n_state):
     axes[i].axhline(ψ_star[i], linestyle='dashed', lw=2, color = 'black', 
-                    label = fr'$\psi^*({i})$')
+                    label = fr'$\psi^*(i)$')
     axes[i].set_xlabel('t')
-    axes[i].set_ylabel(fr'$\psi({i})$')
+    axes[i].set_ylabel(fr'$\psi(i)$')
     axes[i].legend()
 
 plt.show()
@@ -1144,7 +1144,7 @@ for x0 in x0s:
 for i in range(n_state):
     axes[i].axhline(ψ_star[i], linestyle='dashed', lw=2, color = 'black', label = fr'$\psi^* ({i})$')
     axes[i].set_xlabel('t')
-    axes[i].set_ylabel(fr'$\psi({i})$')
+    axes[i].set_ylabel(fr'$\psi(i)$')
     axes[i].legend()
 
 plt.show()
@@ -1318,7 +1318,7 @@ codes_B =  ( '1','2','3','4','5','6','7','8')
 np.linalg.matrix_power(P_B, 10)
 ```
 
-We find rows of transition matrix converge to the stationary distribution 
+We find that rows of the transition matrix converge to the stationary distribution 
 
 ```{code-cell} ipython3
 mc = qe.MarkovChain(P_B)
@@ -1349,7 +1349,7 @@ ax.legend()
 plt.show()
 ```
 
-Note that the average time spent at each state quickly converges to the stationary distribution.
+Note that the fraction of time spent at each state quickly converges to the probability assigned to that state by the stationary distribution.
 
 ```{solution-end}
 ```
