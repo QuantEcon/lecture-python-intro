@@ -228,7 +228,7 @@ def generate_histogram(X_distribution, n, m):
     ax.axvline(x=mu, ls="--", lw=3, label=fr"$\mu = {mu}$")
      
   ax.set_xlim(min(sample_means), max(sample_means))
-  ax.set_xlabel(r'$\bar x_n$', size=12)
+  ax.set_xlabel(r'$\bar X_n$', size=12)
   ax.set_ylabel('density', size=12)
   ax.legend()
   plt.show()
@@ -263,14 +263,16 @@ def generate_multiple_hist(X_distribution, ns, m, log_scale=False):
         ax.axvline(x=mu, ls="--", lw=3, label=fr"$\mu = {mu}$")
 
     ax.set_xlim(min(sample_means), max(sample_means)) 
-    ax.set_xlabel(r'$\bar x_n$', size=12)
+    ax.set_xlabel(r'$\bar X_n$', size=12)
     ax.set_ylabel('density', size=12)
     ax.legend()
     plt.show()
 ```
 
 ```{code-cell} ipython3
-generate_multiple_hist(st.norm(loc=5, scale=2), ns=[20_000, 50_000, 100_000], m=10_000)
+generate_multiple_hist(st.norm(loc=5, scale=2), 
+                       ns=[20_000, 50_000, 100_000], 
+                       m=10_000)
 ```
 
 The histogram gradually converges to $\mu$ as the sample size n increases.
@@ -305,7 +307,7 @@ def scattered_mean(distribution, burn_in, n, jump, ax, title, color, ylog=False)
         ax.set_yscale("symlog")
     ax.set_title(title, size=10)
     ax.set_xlabel(r"$n$", size=12)
-    ax.set_ylabel(r"$\bar x_n$", size=12)
+    ax.set_ylabel(r"$\bar X_n$", size=12)
     yabs_max = max(ax.get_ylim())
     ax.set_ylim(ymin=-yabs_max, ymax=yabs_max)
     return ax
@@ -553,9 +555,12 @@ We mentioned above that LLN can still hold sometimes when IID is violated.
 Let's investigate this claim further.
 
 Assume we have a AR(1) process as below:
+
 $$
 X_{t+1} = \alpha + \beta X_t + \sigma \epsilon _{t+1}
 $$
+
+and
 
 $$
 X_0 \sim \mathcal{N} \left(\frac{\alpha}{1-\beta}, \frac{\sigma^2}{1-\beta^2}\right)
@@ -634,7 +639,7 @@ for t in range(n-1):
 ax.scatter(range(100, n), means[100:n], s=10, alpha=0.5)
 
 ax.set_xlabel(r"$n$", size=12)
-ax.set_ylabel(r"$\bar x_n$", size=12)
+ax.set_ylabel(r"$\bar X_n$", size=12)
 yabs_max = max(ax.get_ylim(), key=abs)
 ax.axhline(y=α/(1-β), ls="--", lw=3, 
            label=r"$\mu = \frac{\alpha}{1-\beta}$", 
