@@ -3,17 +3,20 @@ jupytext:
   text_representation:
     extension: .md
     format_name: myst
-    format_version: 0.13
-    jupytext_version: 1.14.4
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
   name: python3
 ---
 
+(lp_intro)=
+
 In this lecture, we will need the following library. Install [ortools](https://developers.google.com/optimization) using `pip`.
 
 ```{code-cell} ipython3
+---
+tags: [hide-output]
+---
 !pip install ortools
 ```
 
@@ -53,7 +56,7 @@ from matplotlib.patches import Polygon
 
 Let's start with some examples of linear programming problem.
 
-+++
+
 
 ## Example 1: Production Problem
 
@@ -141,13 +144,13 @@ The intersection of the feasible set and the highest orange line delineates the 
 
 In this example, the optimal set is the point $(2.5, 5)$.
 
-+++
+
 
 ### Computation: Using OR-Tools
 
 Let's try to solve the same problem using the package *ortools.linear_solver*
 
-+++
+
 
 The following cell instantiates a solver and creates two variables specifying the range of values that they can have.
 
@@ -276,7 +279,7 @@ $$
 \end{aligned}
 $$
 
-+++
+
 
 ### Computation: Using OR-Tools
 
@@ -348,7 +351,7 @@ OR-Tools tells us that  the best investment strategy is:
 
 4. At the end of the third year, the mutual fund will get payouts from the annuity and corporate bond and repay its loan from the bank. At the end  it will own $ \$141018.24 $, so that it's total net  rate of return over the three periods is $ 41.02\%$.
 
-+++
+
 
 ## Standard Form
 
@@ -439,7 +442,7 @@ $$
 \end{aligned}
 $$
 
-+++
+
 
 ### Computation: Using SciPy
 
@@ -475,7 +478,7 @@ Once we solve the problem, we can check whether the solver was successful in sol
 ```{code-cell} ipython3
 # Solve the problem
 # we put a negative sign on the objective as linprog does minimization
-res_ex1 = linprog(-c_ex1, A_ub=A_ex1, b_ub=b_ex1, method='revised simplex')
+res_ex1 = linprog(-c_ex1, A_ub=A_ex1, b_ub=b_ex1)
 
 if res_ex1.success:
     # We use negative sign to get the optimal value (maximized value)
@@ -501,7 +504,7 @@ See the [official documentation](https://docs.scipy.org/doc/scipy/reference/gene
 This problem is to maximize the objective, so that we need to put a minus sign in front of parameter vector c.
 ```
 
-+++
+
 
 ### Example 2: Investment Problem
 
@@ -567,7 +570,7 @@ Let's solve the problem and check the status using `success` attribute.
 ```{code-cell} ipython3
 # Solve the problem
 res_ex2 = linprog(-c_ex2, A_eq=A_ex2, b_eq=b_ex2,
-                  bounds=bounds_ex2, method='revised simplex')
+                  bounds=bounds_ex2)
 
 if res_ex2.success:
     # We use negative sign to get the optimal value (maximized value)
@@ -592,29 +595,27 @@ SciPy tells us that  the best investment strategy is:
 
 4. At the end of the third year, the mutual fund will get payouts from the annuity and corporate bond and repay its loan from the bank. At the end  it will own $ \$141018.24 $, so that it's total net  rate of return over the three periods is $ 41.02\% $.
 
-+++
+
 
 ```{note}
 You might notice the difference in the values of optimal solution using OR-Tools and SciPy but the optimal value is the same. It is because there can be many optimal solutions for the same problem.
 ```
 
-+++
+
 
 ## Exercises
 
 ```{exercise-start}
-:label: ex1
+:label: lp_intro_ex1
 ```
 
-### Exercise 1
 Implement a new extended solution for the Problem 1 where in the factory owner decides that number of units of Product 1 should not be less than the number of units of Product 2.
 
 ```{exercise-end}
 ```
 
-+++
 
-```{solution-start} ex1
+```{solution-start} lp_intro_ex1
 :class: dropdown
 ```
 
@@ -673,10 +674,8 @@ else:
 ```
 
 ```{exercise-start}
-:label: ex2
+:label: lp_intro_ex2
 ```
-### Exercise 2
-
 
 A carpenter manufactures $2$ products - $A$ and $B$.
 
@@ -692,11 +691,8 @@ Find the number of units of $A$ and product $B$ that he should manufacture in or
 ```{exercise-end}
 ```
 
-+++
 
-Solution:
-
-```{solution-start} ex1
+```{solution-start} lp_intro_ex2
 :class: dropdown
 ```
 

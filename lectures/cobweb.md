@@ -448,7 +448,7 @@ TODO check / fix exercises
 ## Exercises
 
 ```{exercise-start}
-:label: ex1
+:label: cobweb_ex1
 ```
 Using the default Market model and naive expectations, plot a time series simulation of supply (rather than the price).
 
@@ -457,7 +457,7 @@ Show, in particular, that supply also cycles.
 ```{exercise-end}
 ```
 
-```{solution-start} ex1
+```{solution-start} cobweb_ex1
 :class: dropdown
 ```
 
@@ -498,7 +498,7 @@ ts_plot_supply(m, 5, 15)
 ```
 
 ```{exercise-start}
-:label: ex2
+:label: cobweb_ex2
 ```
 **Backward looking average expectations**
 
@@ -519,7 +519,7 @@ Simulate and plot the price dynamics for $\alpha \in \{0.1, 0.3, 0.5, 0.8\}$ whe
 ```{exercise-end}
 ```
 
-```{solution-start} ex2
+```{solution-start} cobweb_ex2
 :class: dropdown
 ```
 
