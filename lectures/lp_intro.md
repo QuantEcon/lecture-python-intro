@@ -9,6 +9,8 @@ kernelspec:
   name: python3
 ---
 
+(lp_intro)=
+
 In this lecture, we will need the following library. Install [ortools](https://developers.google.com/optimization) using `pip`.
 
 ```{code-cell} ipython3
@@ -601,7 +603,7 @@ You might notice the difference in the values of optimal solution using OR-Tools
 ## Exercises
 
 ```{exercise-start}
-:label: ex1
+:label: lp_intro_ex1
 ```
 
 Implement a new extended solution for the Problem 1 where in the factory owner decides that number of units of Product 1 should not be less than the number of units of Product 2.
@@ -610,7 +612,7 @@ Implement a new extended solution for the Problem 1 where in the factory owner d
 ```
 
 
-```{solution-start} ex1
+```{solution-start} lp_intro_ex1
 :class: dropdown
 ```
 
@@ -669,7 +671,7 @@ else:
 ```
 
 ```{exercise-start}
-:label: ex2
+:label: lp_intro_ex2
 ```
 
 A carpenter manufactures $2$ products - $A$ and $B$.
@@ -687,10 +689,7 @@ Find the number of units of $A$ and product $B$ that he should manufacture in or
 ```
 
 
-
-Solution:
-
-```{solution-start} ex1
+```{solution-start} lp_intro_ex1
 :class: dropdown
 ```
 
