@@ -492,7 +492,7 @@ fps = (c_star_max,)
 ax.plot((s_star_max, ), (c_star_max,), 'go', ms=8, alpha=0.6)
 
 ax.annotate(r'$s^*$',
-         xy=(s_star_max, c_star[c_max_index]),
+         xy=(s_star_max, c_star_max),
          xycoords='data',
          xytext=(20, -50),
          textcoords='offset points',
