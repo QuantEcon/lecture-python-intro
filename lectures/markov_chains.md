@@ -9,7 +9,7 @@ kernelspec:
   name: python3
 ---
 
-# Markov Chains 
+# Markov Chains
 
 In addition to what's in Anaconda, this lecture will need the following libraries:
 
@@ -24,7 +24,7 @@ In addition to what's in Anaconda, this lecture will need the following librarie
 Markov chains are a standard way to model time series with some
 dependence between observations.
 
-For example, 
+For example,
 
 * inflation next year depends on inflation this year
 * unemployment next month depends on unemployment this month
@@ -34,7 +34,7 @@ Markov chains are one of the workhorse models of economics and finance.
 The theory of Markov chains is beautiful and insightful, which is another
 excellent reason to study them.
 
-In this introductory lecture, we will 
+In this introductory lecture, we will
 
 * review some of the key ideas from the theory of Markov chains and
 * show how Markov chains appear in some economic applications.
@@ -53,7 +53,7 @@ import numpy as np
 In this section we provide the basic definitions and some elementary examples.
 
 (finite_dp_stoch_mat)=
-### Stochastic Matrices 
+### Stochastic Matrices
 
 Recall that a **probability mass function** over $n$ possible outcomes is a
 nonnegative $n$-vector $p$ that sums to one.
@@ -93,7 +93,7 @@ Therefore $P^{k+1} \mathbf 1 = P P^k \mathbf 1 = P \mathbf 1 = \mathbf 1$
 The proof is done.
 
 
-### Markov Chains 
+### Markov Chains
 
 Now we can introduce Markov chains.
 
@@ -126,7 +126,7 @@ dot.edge("mr", "ng", label="0.145")
 dot.edge("mr", "mr", label="0.778")
 dot.edge("mr", "sr", label="0.077")
 dot.edge("sr", "mr", label="0.508")
-    
+
 dot.edge("sr", "sr", label="0.492")
 dot
 ```
@@ -199,7 +199,7 @@ More generally, for any $i,j$ between 0 and 2, we have
 $$
 \begin{aligned}
     P(i,j)
-    & = \mathbb P\{X_{t+1} = j \,|\, X_t = i\} 
+    & = \mathbb P\{X_{t+1} = j \,|\, X_t = i\}
     \\
     & = \text{ probability of transitioning from state $i$ to state $j$ in one month}
 \end{aligned}
@@ -234,11 +234,11 @@ For example,
 
 $$
 \begin{aligned}
-    P(0,1) 
-        & = 
+    P(0,1)
+        & =
         \text{ probability of transitioning from state $0$ to state $1$ in one month}
         \\
-        & = 
+        & =
         \text{ probability finding a job next month}
         \\
         & = \alpha
@@ -301,7 +301,7 @@ $$
 Going the other way, if we take a stochastic matrix $P$, we can generate a Markov
 chain $\{X_t\}$ as follows:
 
-* draw $X_0$ from a marginal distribution $\psi$ 
+* draw $X_0$ from a marginal distribution $\psi$
 * for each $t = 0, 1, \ldots$, draw $X_{t+1}$ from $P(X_t,\cdot)$
 
 By construction, the resulting process satisfies {eq}`mpp`.
@@ -453,7 +453,7 @@ mc.simulate_indices(ts_length=4)
 ```
 
 (mc_md)=
-## Marginal Distributions 
+## Marginal Distributions
 
 Suppose that
 
@@ -822,7 +822,7 @@ mc.stationary_distributions  # Show all stationary distributions
 ```
 
 (ergodicity)=
-## Ergodicity 
+## Ergodicity
 
 Under irreducibility, yet another important result obtains:
 
@@ -893,7 +893,7 @@ Another example is Hamilton {cite}`Hamilton2005` dynamics {ref}`discussed above 
 
 The diagram of the Markov chain shows that it is **irreducible**.
 
-Therefore, we can see the sample path averages for each state (the fraction of time spent in each state) converges to the stationary distribution regardless of the starting state 
+Therefore, we can see the sample path averages for each state (the fraction of time spent in each state) converges to the stationary distribution regardless of the starting state
 
 ```{code-cell} ipython3
 P = np.array([[0.971, 0.029, 0.000],
@@ -957,7 +957,7 @@ dot
 
 As you might notice, unlike other Markov chains we have seen before, it has a periodic cycle.
 
-This is formally called [periodicity](https://stats.libretexts.org/Bookshelves/Probability_Theory/Probability_Mathematical_Statistics_and_Stochastic_Processes_(Siegrist)/16:_Markov_Processes/16.05:_Periodicity_of_Discrete-Time_Chains#:~:text=A%20state%20in%20a%20discrete,limiting%20behavior%20of%20the%20chain.). 
+This is formally called [periodicity](https://www.randomservices.org/random/markov/Periodicity.html).
 
 We will not go into the details of periodicity.
 
@@ -1012,7 +1012,7 @@ strictly positive, then $P$ has only one stationary distribution $\psi^*$ and
 $$
     \psi_0 P^t \to \psi
     \quad \text{as } t \to \infty
-$$    
+$$
 
 
 (See, for example, {cite}`haggstrom2002finite`. Our assumptions imply that $P$
@@ -1087,7 +1087,7 @@ plt.subplots_adjust(wspace=0.35)
 x0s = np.ones((n, n_state))
 for i in range(n):
     draws = np.random.randint(1, 10_000_000, size=n_state)
-    
+
     # Scale them so that they add up into 1
     x0s[i,:] = np.array(draws/sum(draws))
 
@@ -1098,11 +1098,11 @@ for x0 in x0s:
     
     # Obtain and plot distributions at each state
     for t in range(0, n):
-        x =  x @ P 
+        x =  x @ P
         X[t] = x
     for i in range(n_state):
         axes[i].plot(range(0, n), X[:,i], alpha=0.3)
-    
+
 for i in range(n_state):
     axes[i].axhline(ψ_star[i], linestyle='dashed', lw=2, color = 'black', 
                     label = fr'$\psi^*({i})$')
@@ -1136,13 +1136,13 @@ for i in range(n):
 for x0 in x0s:
     x = x0
     X = np.zeros((n,n_state))
-    
+
     for t in range(0, n):
         x = x @ P
         X[t] = x
     for i in range(n_state):
         axes[i].plot(range(20, n), X[20:,i], alpha=0.3)
-    
+
 for i in range(n_state):
     axes[i].axhline(ψ_star[i], linestyle='dashed', lw=2, color = 'black', label = fr'$\psi^*({i})$')
     axes[i].set_xlabel('t')
@@ -1257,7 +1257,7 @@ TODO -- connect to the Neumann series lemma (Maanasee)
 
 ## Exercises
 
-````{exercise} 
+````{exercise}
 :label: mc_ex1
 
 Benhabib el al. {cite}`benhabib_wealth_2019` estimated that the transition matrix for social mobility as the following
@@ -1288,7 +1288,7 @@ P_B = np.array(P_B)
 codes_B =  ( '1','2','3','4','5','6','7','8')
 ```
 
-In this exercise, 
+In this exercise,
 
 1. show this process is asymptotically stationary and calculate the stationary distribution using simulations.
 
@@ -1357,7 +1357,7 @@ Note that the fraction of time spent at each state quickly converges to the prob
 ```
 
 
-```{exercise} 
+```{exercise}
 :label: mc_ex2
 
 According to the discussion {ref}`above <mc_eg1-2>`, if a worker's employment dynamics obey the stochastic matrix
@@ -1440,7 +1440,7 @@ plt.show()
 ```{solution-end}
 ```
 
-```{exercise} 
+```{exercise}
 :label: mc_ex3
 
 In `quantecon` library, irreducibility is tested by checking whether the chain forms a [strongly connected component](https://networkx.org/documentation/stable/reference/algorithms/generated/networkx.algorithms.components.is_strongly_connected.html).
