@@ -342,7 +342,7 @@ Let's go through a very simple example where LLN fails with IID violated:
 Assume
 
 $$
-X_0 \sim \mathcal{N}(0,1)
+X_0 \sim N(0,1)
 $$
 
 In addition, assume
@@ -354,10 +354,10 @@ $$
 We can then see that 
 
 $$
-\bar X_n := \frac{1}{n} \sum_{t=1}^n X_i = X_0 \sim \mathcal{N}(0,1)
+\bar X_n := \frac{1}{n} \sum_{t=1}^n X_i = X_0 \sim N(0,1)
 $$
 
-Therefore, the distribution of the mean of $X$ follows $\mathcal{N}(0,1)$.
+Therefore, the distribution of the mean of $X$ follows $N(0,1)$.
 
 However,
 
@@ -563,10 +563,10 @@ $$
 and
 
 $$
-X_0 \sim \mathcal{N} \left(\frac{\alpha}{1-\beta}, \frac{\sigma^2}{1-\beta^2}\right)
+X_0 \sim N \left(\frac{\alpha}{1-\beta}, \frac{\sigma^2}{1-\beta^2}\right)
 $$
 
-where $\epsilon_t \sim \mathcal{N}(0,1)$
+where $\epsilon_t \sim N(0,1)$
 
 1. Prove this process violated the independence assumption but not the identically distributed assumption;
 2. Show LLN holds using simulations with $\alpha = 0.8$, $\beta = 0.2$.
@@ -596,7 +596,7 @@ $$
 
 $$
 \begin{aligned}
-Var(X_{t+1}) &= \beta^2 Var(X_{t}) + \sigma^2\\
+\mathrm{Var}(X_{t+1}) &= \beta^2 \mathrm{Var}(X_{t}) + \sigma^2\\
 &= \frac{\beta^2\sigma^2}{1-\beta^2} + \sigma^2 \\
 &= \frac{\sigma^2}{1-\beta^2}
 \end{aligned}
@@ -611,7 +611,7 @@ This holds true for all $X_t$ and $\epsilon _{t}$ where $t = 0, ..., n$
 Therefore, 
 
 $$
-X_t \sim \mathcal{N} \left(\frac{\alpha}{1-\beta}, \frac{\sigma^2}{1-\beta^2}\right) \quad t = 0, ..., n
+X_t \sim N \left(\frac{\alpha}{1-\beta}, \frac{\sigma^2}{1-\beta^2}\right) \quad t = 0, ..., n
 $$ 
 
 
