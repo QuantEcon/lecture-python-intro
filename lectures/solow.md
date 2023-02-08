@@ -460,22 +460,36 @@ k_star = ((s_grid * A) / delta)**(1/(1 - alpha))
 c_star = (1 - s_grid) * A * k_star ** alpha
 ```
 
-Let's find the value of $s$ that maximizes $c^*$.
+Let's find the value of $s$ that maximizes $c^*$ using [scipy.optimize.minimize_scalar](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize_scalar.html#scipy.optimize.minimize_scalar).
+We will use $-c^*(s)$ since `minimize_scalar` finds the minimum value.
 
 ```{code-cell} ipython3
-c_max_index = np.argmax(c_star)
-s_star_max = s_grid[c_max_index]
+from scipy.optimize import minimize_scalar
+```
 
+```{code-cell} ipython3
+def calc_c_star(s):
+    k = ((s * A) / delta)**(1/(1 - alpha))
+    return - (1 - s) * A * k ** alpha
+```
+
+```{code-cell} ipython3
+return_values = minimize_scalar(calc_c_star, bounds=(0, 1))
+s_star_max = return_values.x
+c_star_max = -return_values.fun
+print(f"Function is maximized at s = {round(s_star_max, 4)}")
+```
+
+```{code-cell} ipython3
 x_s_max = np.array([s_star_max, s_star_max])
-y_s_max = np.array([0, c_star[c_max_index]])
+y_s_max = np.array([0, c_star_max])
 
 fig, ax = plt.subplots()
 
-fps = (c_star[c_max_index],)
+fps = (c_star_max,)
 
 # Highlight the maximum point with a marker
-ax.plot((s_star_max, ), (c_star[c_max_index],), 'go', ms=8, alpha=0.6)
-
+ax.plot((s_star_max, ), (c_star_max,), 'go', ms=8, alpha=0.6)
 
 ax.annotate(r'$s^*$',
          xy=(s_star_max, c_star[c_max_index]),
@@ -484,13 +498,33 @@ ax.annotate(r'$s^*$',
          textcoords='offset points',
          fontsize=12,
          arrowprops=dict(arrowstyle="->"))
-ax.plot(s_grid, c_star, label=r'$c^*(s)$')
+ax.plot(s_grid, c_star, label=r'$c*(s)$')
 ax.plot(x_s_max, y_s_max, alpha=0.5, ls='dotted')
 ax.set_xlabel(r'$s$')
-ax.set_ylabel(r'$C^*(s)$')
+ax.set_ylabel(r'$c^*(s)$')
 ax.legend()
 
 plt.show()
+```
+
+One can also try to solve this mathematically by differentiating $c^*(s)$ and solve for $\frac{d}{ds}c^*(s)=0$ using [sympy](https://www.sympy.org/en/index.html).
+
+```{code-cell} ipython3
+from sympy import solve, Symbol
+```
+
+```{code-cell} ipython3
+s_symbol = Symbol('s', real=True)
+k = ((s_symbol * A) / delta)**(1/(1 - alpha))
+c = (1 - s_symbol) * A * k ** alpha
+```
+
+Let's differentiate $c$ and solve using [sympy.solve](https://docs.sympy.org/latest/modules/solvers/solvers.html#sympy.solvers.solvers.solve)
+
+```{code-cell} ipython3
+# Solve using sympy
+s_star = solve(c.diff())[0]
+print(f"s_star = {s_star}")
 ```
 
 Incidentally, the rate of savings which maximizes steady state level of per capita consumption is called the [Golden Rule savings rate](https://en.wikipedia.org/wiki/Golden_Rule_savings_rate).
