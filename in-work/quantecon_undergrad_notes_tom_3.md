@@ -1,7 +1,7 @@
 ## Elements of  Supply and Demand
 
 
-This document describe a class of linear models that determine competitive equilibrium prices and quantities.  
+This document describes a class of linear models that determine competitive equilibrium prices and quantities.  
 
 Linear algebra and some multivariable calculus are the  tools deployed.
 
@@ -38,7 +38,7 @@ Then we'll offer a version with
 We'll offer versions of
 
 * pure exchange economies with fixed endowments of goods
-* economies in which goods can be produced a cost
+* economies in which goods can be produced at a cost
 
 ### Scalar setting 
 
@@ -134,7 +134,7 @@ $$ p ^\top (c -e ) = 0 \tag{2}$$
 
 ## Digression: Marshallian and Hicksian Demand Curves
 
-**Remark:** We'll use budget constraint (2) in situations in which a consumers's endowment vector $e$ is his **only** source of income. But sometimes we'll instead assume that the consumer has other sources of income (positive or negative) and write his budget constraint as
+**Remark:** We'll use budget constraint (2) in situations in which a consumer's endowment vector $e$ is his **only** source of income. But sometimes we'll instead assume that the consumer has other sources of income (positive or negative) and write his budget constraint as
 
 
 $$ p ^\top (c -e ) = W \tag{2'}$$
@@ -189,6 +189,7 @@ Substituting (3) into budget constraint (2) and solving for $\mu$ gives
 $$ \mu(p,e) = \frac{p^\top (\Pi^{-1} b - e)}{p^\top (\Pi^\top \Pi )^{-1} p}. \tag{4} $$
 
 Equation (4) tells how marginal utility of wealth depends on  the endowment vector  $e$ and the price vector  $p$. 
+Equation (4) tells how marginal utility of wealth depends on  the endowment vector  $e$ and the price vector  $p$. 
 
 **Remark:** Equation (4) is a consequence of imposing that $p (c - e) = 0$.  We could instead take $\mu$ as a parameter and use (3) and the budget constraint (2') to solve for $W.$ Which way we proceed determines whether we are constructing a **Marshallian** or **Hicksian** demand curve.  
 
@@ -202,7 +203,7 @@ Consider a single-consumer, multiple-goods economy without production.
 
 The only source of goods is the single consumer's endowment vector   $e$. 
 
-Competitive equilibium prices must be set to  induce the consumer to choose  $c=e$.
+Competitive equilibrium prices must be set to  induce the consumer to choose  $c=e$.
 
 This implies that the equilibrium price vector must satisfy
 
@@ -404,14 +405,14 @@ which implies the equilibrium quantity vector
 
 $$ c = (\Pi^\top \Pi + H )^{-1} ( \Pi^\top b - h) \tag{5} $$
 
-This equation is the counterpart of equilbrium quantity (1) for the scalar $n=1$ model with which we began.
+This equation is the counterpart of equilibrium quantity (1) for the scalar $n=1$ model with which we began.
 
 ### General $\mu\neq 1$ case
 
 Now let's extend the preceding analysis to a more 
 general case by allowing $\mu \neq 1$.
 
-Then the inverse depend curve is
+Then the inverse demand curve is
 
 $$ p = \mu^{-1} [\Pi^\top b - \Pi^\top \Pi c] $$
 
@@ -442,7 +443,7 @@ Thus, in the multiple case as for the single-good case,  a competitive equilibri
 
 (This is another version of the first welfare theorem.)
 
-We can read the competitive equilbrium price vector off the inverse demand curve or the inverse supply curve. 
+We can read the competitive equilibrium price vector off the inverse demand curve or the inverse supply curve. 
 
 
 
