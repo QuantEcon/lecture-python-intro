@@ -143,7 +143,7 @@ where $W$ is measured in "dollars" (or some other **numeraire**) and component $
 
 Whether the consumer's budget constraint is  (2) or (2') and whether we take $W$ as a free parameter or instead as an endogenous variable  to be solved for will  affect the consumer's marginal utility of wealth.
 
-How we set $\mu$  determines whether we are constucting  
+How we set $\mu$  determines whether we are constructing  
 
 * a **Marshallian** demand curve, when we use (2) and solve for $\mu$ using equation (4) below, or
 * a **Hicksian** demand curve, when we  treat $\mu$ as a fixed parameter and solve for $W$ from (2').
@@ -187,8 +187,7 @@ $$ c = \Pi^{-1} b - \Pi^{-1} (\Pi^\top)^{-1} \mu p \tag{3}  $$
 Substituting (3) into budget constraint (2) and solving for $\mu$ gives 
 
 $$ \mu(p,e) = \frac{p^\top (\Pi^{-1} b - e)}{p^\top (\Pi^\top \Pi )^{-1} p}. \tag{4} $$
-
-Equation (4) tells how marginal utility of wealth depends on  the endowment vector  $e$ and the price vector  $p$. 
+ 
 Equation (4) tells how marginal utility of wealth depends on  the endowment vector  $e$ and the price vector  $p$. 
 
 **Remark:** Equation (4) is a consequence of imposing that $p (c - e) = 0$.  We could instead take $\mu$ as a parameter and use (3) and the budget constraint (2') to solve for $W.$ Which way we proceed determines whether we are constructing a **Marshallian** or **Hicksian** demand curve.  
