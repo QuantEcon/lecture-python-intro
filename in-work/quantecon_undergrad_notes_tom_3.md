@@ -59,11 +59,10 @@ $$ \int_0^q (d_0 - d_1 x) dx - pq = d_0 q -.5 d_1 q^2 - pq $$
 
 **Producer surplus** equals $p q$ minus   the area under an inverse supply curve:
 
-+++
+
 
 $$ p q - \int_0^q (s_0 + s_1 x) dx  $$
 
-+++
 
 Intimately associated with a competitive equilibrium is the following:
 
@@ -79,7 +78,10 @@ $$ \textrm{Welf} = (d_0 - s_0) q - .5 (d_1 + s_1) q^2 $$
 
 The quantity that  maximizes  welfare criterion $\textrm{Welf}$ is 
 
-$$   q = \frac{ d_0 - s_0}{s_1 + d_1} \tag{1}$$
+$$   
+q = \frac{ d_0 - s_0}{s_1 + d_1}
+$$ (eq:old1)
+
 
 +++
 
@@ -89,9 +91,9 @@ A  competitive equilibrium quantity equates demand price to supply price:
 
 $$ p =  d_0 - d_1 q = s_0 + s_1 q ,   $$
 
-which implies (1).  
+which implies {eq}`eq:old1`.  
 
-The outcome that the quantity determined by equation (1) equates
+The outcome that the quantity determined by equation {eq}`eq:old1` equates
 supply to demand brings us the following important **key finding:** 
 
  *  a competitive equilibrium quantity maximizes our  welfare criterion
@@ -134,30 +136,36 @@ Let $\Pi$ be an $n\times n$ matrix, $c$ be $n \times 1$ vector of consumptions o
 
 A consumer faces $p$ as a price taker and chooses $c$ to maximize
 
-$$ -.5 (\Pi c -b) ^\top (\Pi c -b ) \tag{0} $$
+$$
+ -.5 (\Pi c -b) ^\top (\Pi c -b ) 
+$$ (eq:old0)
 
 subject to the budget constraint
 
-$$ p ^\top (c -e ) = 0 \tag{2}$$
+$$ 
+p ^\top (c -e ) = 0 
+$$ (eq:old2)
 
 +++
 
 ## Digression: Marshallian and Hicksian Demand Curves
 
-**Remark:** We'll use budget constraint (2) in situations in which a consumers's endowment vector $e$ is his **only** source of income. But sometimes we'll instead assume that the consumer has other sources of income (positive or negative) and write his budget constraint as
+**Remark:** We'll use budget constraint {eq}`eq:old2` in situations in which a consumers's endowment vector $e$ is his **only** source of income. But sometimes we'll instead assume that the consumer has other sources of income (positive or negative) and write his budget constraint as
 
 +++
 
-$$ p ^\top (c -e ) = W \tag{2'}$$
+$$ 
+p ^\top (c -e ) = W 
+$$ (eq:old2p)
 
 where $W$ is measured in "dollars" (or some other **numeraire**) and component $p_i$ of the price vector is measured in dollars per good $i$. 
 
-Whether the consumer's budget constraint is  (2) or (2') and whether we take $W$ as a free parameter or instead as an endogenous variable  to be solved for will  affect the consumer's marginal utility of wealth.
+Whether the consumer's budget constraint is  {eq}`eq:old2` or {eq}`eq:old2p` and whether we take $W$ as a free parameter or instead as an endogenous variable  to be solved for will  affect the consumer's marginal utility of wealth.
 
 How we set $\mu$  determines whether we are constucting  
 
-* a **Marshallian** demand curve, when we use (2) and solve for $\mu$ using equation (4) below, or
-* a **Hicksian** demand curve, when we  treat $\mu$ as a fixed parameter and solve for $W$ from (2').
+* a **Marshallian** demand curve, when we use {eq}`eq:old2` and solve for $\mu$ using equation {eq}`eq:old4` below, or
+* a **Hicksian** demand curve, when we  treat $\mu$ as a fixed parameter and solve for $W$ from {eq}`eq:old2p`.
 
 Marshallian and Hicksian demand curves describe different mental experiments:
 
@@ -176,7 +184,7 @@ We'll discuss these distinct demand curves more  below.
 
 ## Demand Curve as Constrained Utility Maximization
 
-For now, we assume that the budget constraint is (2). 
+For now, we assume that the budget constraint is {eq}`eq:old2`. 
 
 So we'll be deriving  a **Marshallian** demand curve.
 
@@ -194,15 +202,19 @@ $$ \frac{\partial L} {\partial c} = - \Pi^\top \Pi c + \Pi^\top b - \mu p = 0 $$
 
 so that, given $\mu$, the consumer chooses
 
-$$ c = \Pi^{-1} b - \Pi^{-1} (\Pi^\top)^{-1} \mu p \tag{3}  $$
+$$
+ c = \Pi^{-1} b - \Pi^{-1} (\Pi^\top)^{-1} \mu p
+$$ (eq:old3)
 
-Substituting (3) into budget constraint (2) and solving for $\mu$ gives 
+Substituting {eq}`eq:old3` into budget constraint {eq}`eq:old2` and solving for $\mu$ gives 
 
-$$ \mu(p,e) = \frac{p^\top (\Pi^{-1} b - e)}{p^\top (\Pi^\top \Pi )^{-1} p}. \tag{4} $$
+$$
+\mu(p,e) = \frac{p^\top (\Pi^{-1} b - e)}{p^\top (\Pi^\top \Pi )^{-1} p}.
+$$ (eq:old4)
 
-Equation (4) tells how marginal utility of wealth depends on  the endowment vector  $e$ and the price vector  $p$. 
+Equation {eq}`eq:old4` tells how marginal utility of wealth depends on  the endowment vector  $e$ and the price vector  $p$. 
 
-**Remark:** Equation (4) is a consequence of imposing that $p (c - e) = 0$.  We could instead take $\mu$ as a parameter and use (3) and the budget constraint (2') to solve for $W.$ Which way we proceed determines whether we are constructing a **Marshallian** or **Hicksian** demand curve.  
+**Remark:** Equation {eq}`eq:old4` is a consequence of imposing that $p (c - e) = 0$.  We could instead take $\mu$ as a parameter and use {eq}`eq:old3` and the budget constraint {eq}`eq:old2p` to solve for $W.$ Which way we proceed determines whether we are constructing a **Marshallian** or **Hicksian** demand curve.  
 
 +++
 
@@ -220,7 +232,7 @@ This implies that the equilibrium price vector must satisfy
 
 $$ p = \mu^{-1} (\Pi^\top b - \Pi^\top \Pi e)$$
 
-In the present case where we have imposed budget constraint in the form (2), we are free to normalize the price vector by setting the marginal utility of wealth $\mu =1$ (or any other value for that matter).
+In the present case where we have imposed budget constraint in the form {eq}`eq:old2`, we are free to normalize the price vector by setting the marginal utility of wealth $\mu =1$ (or any other value for that matter).
 
 This amounts to choosing a common  unit (or numeraire) in which prices of all goods are expressed.  
 
@@ -230,9 +242,9 @@ We'll set $\mu=1$.
 
 +++
 
-**Exercise:** Verify that $\mu=1$ satisfies formula (4). 
+**Exercise:** Verify that $\mu=1$ satisfies formula {eq}`eq:old4`. 
 
-**Exercise:** Verify that setting  $\mu=2$ also implies that formula (4) is satisfied. 
+**Exercise:** Verify that setting  $\mu=2$ also implies that formula {eq}`eq:old4` is satisfied. 
 
 +++
 
@@ -258,13 +270,17 @@ $$ e_1 + e_2 =  \Pi^{-1} (b_1 + b_2) - (\Pi^\top \Pi)^{-1} (\mu_1 + \mu_2) p $$
 
 which after a line or two of linear algebra implies that
 
-$$ (\mu_1 + \mu_2) p = \Pi^\top(b_1+ b_2) - (e_1 + e_2) \tag{6} $$
+$$
+ (\mu_1 + \mu_2) p = \Pi^\top(b_1+ b_2) - (e_1 + e_2) 
+$$ (eq:old6)
 
 We can normalize prices by setting $\mu_1 + \mu_2 =1$ and then deducing
 
 +++
 
-$$ \mu_i(p,e) = \frac{p^\top (\Pi^{-1} bi - e_i)}{p^\top (\Pi^\top \Pi )^{-1} p} \tag{7} $$
+$$ 
+\mu_i(p,e) = \frac{p^\top (\Pi^{-1} bi - e_i)}{p^\top (\Pi^\top \Pi )^{-1} p}
+$$ (eq:old7)
 
 for $\mu_i, i = 1,2$. 
 
@@ -302,7 +318,7 @@ $$ - .5 [(c_1 - b_1)^2 + \beta (c_2 - b_2)^2] $$
 
 where $\beta \in (0,1)$ is a discount factor, $c_1$ is consumption at time $1$ and $c_2$ is consumption at time 2.
 
-To capture this with our quadratic utility function (0),  set
+To capture this with our quadratic utility function {eq}`eq:old0`,  set
 
 $$ \Pi = \begin{bmatrix} 1 & 0 \cr 
          1 & \sqrt{\beta} \end{bmatrix}$$
@@ -423,9 +439,11 @@ $$ p = h + H c = \Pi^\top b - \Pi^\top \Pi c $$
 
 which implies the equilibrium quantity vector
 
-$$ c = (\Pi^\top \Pi + H )^{-1} ( \Pi^\top b - h) \tag{5} $$
+$$ 
+c = (\Pi^\top \Pi + H )^{-1} ( \Pi^\top b - h)
+$$ (eq:old5)
 
-This equation is the counterpart of equilbrium quantity (1) for the scalar $n=1$ model with which we began.
+This equation is the counterpart of equilbrium quantity {eq}`eq:old1` for the scalar $n=1$ model with which we began.
 
 ### General $\mu\neq 1$ case
 
@@ -439,7 +457,9 @@ $$ p = \mu^{-1} [\Pi^\top b - \Pi^\top \Pi c] $$
 Equating this to the inverse supply curve and solving
 for $c$ gives
 
-$$ c = [\Pi^\top \Pi + \mu H]^{-1} [ \Pi^\top b - \mu h] \tag{5'} $$
+$$ 
+c = [\Pi^\top \Pi + \mu H]^{-1} [ \Pi^\top b - \mu h]
+$$ (eq:old5p)
 
 ## Multi-good social welfare maximization problem
 
@@ -458,7 +478,7 @@ The first-order condition with respect to $c$ is
 
 $$ - \mu^{-1} \Pi^\top \Pi c + \mu^{-1}\Pi^\top b - h - .5 H c = 0 $$
 
-which implies (5'). 
+which implies {eq}`eq:old5p`. 
 
 Thus, in the multiple case as for the single-good case,  a competitive equilibrium quantity  solves a planning problem.
 
