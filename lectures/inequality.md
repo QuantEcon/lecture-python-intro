@@ -251,7 +251,7 @@ The Gini coefficient is defined for the sample above as
 The Gini coefficient is closely related to the Lorenz curve.
 
 In fact, it can be shown that its value is twice the area between the line of
-equality and the Lorenz curve (e.g., the shaded area in the following [Figure](lorenz_gini)).
+equality and the Lorenz curve (e.g., the shaded area in the following Figure below).
 
 The idea is that $G=0$ indicates complete equality, while $G=1$ indicates complete inequality.
 
