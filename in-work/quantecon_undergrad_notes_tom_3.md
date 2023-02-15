@@ -1,5 +1,7 @@
+
 ## Elements of  Supply and Demand
 
++++
 
 This document describe a class of linear models that determine competitive equilibrium prices and quantities.  
 
@@ -53,16 +55,19 @@ $$ p = s_0 + s_1 q , \quad s_0, s_1 > 0 $$
 
 **Consumer surplus** equals  area under an inverse demand curve minus $p q$:
 
-$$ \int_0^q (d_0 - d_1 x) dx = d_0 q -.5 d_1 q^2 - pq $$
+$$ \int_0^q (d_0 - d_1 x) dx - pq = d_0 q -.5 d_1 q^2 - pq $$
 
 **Producer surplus** equals $p q$ minus   the area under an inverse supply curve:
 
++++
 
 $$ p q - \int_0^q (s_0 + s_1 x) dx  $$
 
++++
 
 Intimately associated with a competitive equilibrium is the following:
 
++++
 
 **Welfare criterion** is consumer surplus plus producer surplus
 
@@ -76,9 +81,11 @@ The quantity that  maximizes  welfare criterion $\textrm{Welf}$ is
 
 $$   q = \frac{ d_0 - s_0}{s_1 + d_1} \tag{1}$$
 
++++
 
 A  competitive equilibrium quantity equates demand price to supply price:
 
++++
 
 $$ p =  d_0 - d_1 q = s_0 + s_1 q ,   $$
 
@@ -89,6 +96,7 @@ supply to demand brings us the following important **key finding:**
 
  *  a competitive equilibrium quantity maximizes our  welfare criterion
 
++++
 
 It also brings us a convenient **competitive equilibrium computation strategy:** 
 
@@ -101,6 +109,7 @@ We'll derive the **demand** curve from a **utility maximization problem**.
 
 We'll derive the **supply curve** from a **cost function**.
 
++++
 
 # Multiple goods 
 
@@ -131,11 +140,13 @@ subject to the budget constraint
 
 $$ p ^\top (c -e ) = 0 \tag{2}$$
 
++++
 
 ## Digression: Marshallian and Hicksian Demand Curves
 
 **Remark:** We'll use budget constraint (2) in situations in which a consumers's endowment vector $e$ is his **only** source of income. But sometimes we'll instead assume that the consumer has other sources of income (positive or negative) and write his budget constraint as
 
++++
 
 $$ p ^\top (c -e ) = W \tag{2'}$$
 
@@ -161,6 +172,7 @@ $p^\top e$ associated with the change in the price vector
 
 We'll discuss these distinct demand curves more  below.
 
++++
 
 ## Demand Curve as Constrained Utility Maximization
 
@@ -192,7 +204,7 @@ Equation (4) tells how marginal utility of wealth depends on  the endowment vect
 
 **Remark:** Equation (4) is a consequence of imposing that $p (c - e) = 0$.  We could instead take $\mu$ as a parameter and use (3) and the budget constraint (2') to solve for $W.$ Which way we proceed determines whether we are constructing a **Marshallian** or **Hicksian** demand curve.  
 
-
++++
 
 ## Endowment economy, I
 
@@ -216,12 +228,13 @@ This amounts to choosing a common  unit (or numeraire) in which prices of all go
 
 We'll set $\mu=1$.  
 
- 
++++
 
 **Exercise:** Verify that $\mu=1$ satisfies formula (4). 
 
 **Exercise:** Verify that setting  $\mu=2$ also implies that formula (4) is satisfied. 
 
++++
 
 **Endowment Economy, II**
 
@@ -245,15 +258,17 @@ $$ e_1 + e_2 =  \Pi^{-1} (b_1 + b_2) - (\Pi^\top \Pi)^{-1} (\mu_1 + \mu_2) p $$
 
 which after a line or two of linear algebra implies that
 
-$$ (\mu_1 + \mu_2) p = \Pi^\top(b_1+ b_2) (e_1 + e_2) \tag{6} $$
+$$ (\mu_1 + \mu_2) p = \Pi^\top(b_1+ b_2) - (e_1 + e_2) \tag{6} $$
 
 We can normalize prices by setting $\mu_1 + \mu_2 =1$ and then deducing
 
++++
 
 $$ \mu_i(p,e) = \frac{p^\top (\Pi^{-1} bi - e_i)}{p^\top (\Pi^\top \Pi )^{-1} p} \tag{7} $$
 
 for $\mu_i, i = 1,2$. 
 
++++
 
 **Exercise:** Show that, up to normalization by a positive scalar,  the same competitive equilibrium price vector that you computed in the preceding two-consumer economy would prevail in a single-consumer economy in which a single **representative consumer** has utility function  
 $$ -.5 (\Pi c -b) ^\top (\Pi c -b ) $$
@@ -268,7 +283,7 @@ $$e = e_1 + e_2 . $$
 
 ## Dynamics and Risk as Special Cases of Pure Exchange Economy
 
-
++++
 
 Special cases of our model can be created to represent
 
@@ -334,11 +349,13 @@ $$ \Pi = \begin{bmatrix} \lambda & 0 \cr
 
 $$ c = \begin{bmatrix} c_1 \cr c_2 \end{bmatrix}$$
 
++++
 
 $$ b = \begin{bmatrix} b_1 \cr b_2 \end{bmatrix}$$
 
 The endowment vector is
 
++++
 
 $$ e = \begin{bmatrix} e_1 \cr e_2 \end{bmatrix}$$
 
@@ -350,6 +367,7 @@ where $p_i$ is the price of one unit of consumption in state $i$.
 
 Before the random state of the world $i$ is realized, the consumer  sells his/her state-contingent endowment bundle and purchases a state-contingent consumption bundle. 
 
++++
 
 ## Possible Exercises
 
@@ -365,9 +383,11 @@ Plenty of fun exercises that could be executed with a single Python class.
 
 It would be easy to build another  example with two consumers who have different beliefs ($\lambda$'s)
 
++++
 
 # Economies with Endogenous Supplies of Goods
 
++++
 
 ## Supply
 
@@ -395,6 +415,7 @@ $$ p = h + H q $$
 
 As a special case, let's pin down a demand curve by setting the marginal utility of wealth  $\mu =1$.
 
++++
 
 Equate supply price to demand price
 
@@ -422,6 +443,7 @@ $$ c = [\Pi^\top \Pi + \mu H]^{-1} [ \Pi^\top b - \mu h] \tag{5'} $$
 
 ## Multi-good social welfare maximization problem
 
++++
 
 Our welfare or social planning  problem is to choose $c$ to maximize 
 $$-.5 \mu^{-1}(\Pi c -b) ^\top (\Pi c -b )$$  minus the area under the inverse supply curve, namely, 
@@ -442,10 +464,4 @@ Thus, in the multiple case as for the single-good case,  a competitive equilibri
 
 (This is another version of the first welfare theorem.)
 
-We can read the competitive equilbrium price vector off the inverse demand curve or the inverse supply curve. 
-
-
-
-
-
-
+We can read the competitive equilbrium price vector off the inverse demand curve or the inverse supply curve.
