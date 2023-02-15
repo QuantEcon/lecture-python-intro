@@ -316,7 +316,7 @@ Let's illustrate how.
 We want to represent the utility function
 
 $$
-- .5 [(c_1 - b_1)^2 + \beta (c_2 - b_2)^2]
+  -.5 [(c_1 - b_1)^2 + \beta (c_2 - b_2)^2]
 $$
 
 where $\beta \in (0,1)$ is a discount factor, $c_1$ is consumption at time $1$ and $c_2$ is consumption at time 2.
@@ -518,3 +518,4 @@ Thus, in the multiple case as for the single-good case,  a competitive equilibri
 (This is another version of the first welfare theorem.)
 
 We can read the competitive equilbrium price vector off the inverse demand curve or the inverse supply curve.
+
