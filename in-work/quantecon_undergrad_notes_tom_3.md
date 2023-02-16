@@ -65,7 +65,7 @@ $$
 **Producer surplus** equals $p q$ minus   the area under an inverse supply curve:
 
 $$
-p q - \int_0^q (s_0 + s_1 x) dx
+p q - \int_0^q (s_0 + s_1 x) dx = pq - s_0 q - .5 s_1 q^2
 $$
 
 Intimately associated with a competitive equilibrium is the following:
@@ -82,7 +82,9 @@ $$
 \textrm{Welf} = (d_0 - s_0) q - .5 (d_1 + s_1) q^2 
 $$
 
-The quantity that  maximizes  welfare criterion $\textrm{Welf}$ is 
+To compute the quantity that  maximizes  welfare criterion $\textrm{Welf}$, we differentiate $\textrm{Welf}$ with respect to   $q$ and set the derivative to zero.  
+
+Solving that equation for $q$ gives
 
 $$   
 q = \frac{ d_0 - s_0}{s_1 + d_1}
@@ -108,7 +110,7 @@ It also brings us a convenient **competitive equilibrium computation strategy:**
 Soon we'll derive generalizations of the above demand and supply 
 curves from other objects.
 
-We'll derive the **demand** curve from a **utility maximization problem**.
+We'll derive the **demand curve** from a problem that maximizes a **utility function** subject to a **budget constraint**.
 
 We'll derive the **supply curve** from a **cost function**.
 
@@ -135,9 +137,15 @@ $$
 
 ## From utility function to demand curve 
 
-Let $\Pi$ be an $n\times n$ matrix, $c$ be $n \times 1$ vector of consumptions of various goods, $b$ be $n \times 1$ vector of bliss points, $e$ an $n \times 1$ vector of endowments, and $p$ be an $n\times 1$ vector of prices
+Let
 
-A consumer faces $p$ as a price taker and chooses $c$ to maximize
+* $\Pi$ be an $n\times n$ matrix of XXXX,
+* $c$ be an $n \times 1$ vector of consumptions of various goods, 
+* $b$ be an $n \times 1$ vector of bliss points, 
+* $e$ be an $n \times 1$ vector of endowments, and 
+* $p$ be an $n\times 1$ vector of prices
+
+A consumer faces $p$ as a price taker and chooses $c$ to maximize the utility function 
 
 $$
 -.5 (\Pi c -b) ^\top (\Pi c -b ) 
@@ -212,7 +220,7 @@ $$ (eq:old4)
 
 Equation {eq}`eq:old4` tells how marginal utility of wealth depends on  the endowment vector  $e$ and the price vector  $p$. 
 
-**Remark:** Equation {eq}`eq:old4` is a consequence of imposing that $p (c - e) = 0$.  We could instead take $\mu$ as a parameter and use {eq}`eq:old3` and the budget constraint {eq}`eq:old2p` to solve for $W.$ Which way we proceed determines whether we are constructing a **Marshallian** or **Hicksian** demand curve.  
+**Remark:** Equation {eq}`eq:old4` is a consequence of imposing that $p^\top (c - e) = 0$.  We could instead take $\mu$ as a parameter and use {eq}`eq:old3` and the budget constraint {eq}`eq:old2p` to solve for $W.$ Which way we proceed determines whether we are constructing a **Marshallian** or **Hicksian** demand curve.  
 
 ## Endowment economy, I
 
@@ -277,7 +285,7 @@ $$ (eq:old6)
 We can normalize prices by setting $\mu_1 + \mu_2 =1$ and then deducing
 
 $$ 
-\mu_i(p,e) = \frac{p^\top (\Pi^{-1} bi - e_i)}{p^\top (\Pi^\top \Pi )^{-1} p}
+\mu_i(p,e) = \frac{p^\top (\Pi^{-1} b_i - e_i)}{p^\top (\Pi^\top \Pi )^{-1} p}
 $$ (eq:old7)
 
 for $\mu_i, i = 1,2$. 
@@ -325,7 +333,7 @@ To capture this with our quadratic utility function {eq}`eq:old0`,  set
 
 $$ 
 \Pi = \begin{bmatrix} 1 & 0 \cr 
-         1 & \sqrt{\beta} \end{bmatrix}
+         0 & \sqrt{\beta} \end{bmatrix}
 $$
 
 and
@@ -335,7 +343,7 @@ b = \begin{bmatrix} b_1 \cr \sqrt{\beta} b_2
 \end{bmatrix}
 $$
 
-The  budget constraint becomes
+The  budget constraint {eq}`eq:old2` becomes
 
 $$
 p_1 c_1 + p_2 c_2 = p_1 e_1 + p_2 e_2
@@ -375,8 +383,8 @@ where
 To capture these preferences we set
 
 $$ 
-\Pi = \begin{bmatrix} \lambda & 0 \cr
-                     0  & (1-\lambda) \end{bmatrix} 
+\Pi = \begin{bmatrix} \sqrt{\lambda} & 0 \cr
+                     0  & \sqrt{1-\lambda} \end{bmatrix} 
 $$
 
 $$ 
@@ -401,7 +409,11 @@ $$
 
 where $p_i$ is the price of one unit of consumption in state $i$. 
 
+The state commodities being traded are often called **Arrow securities**.
+
 Before the random state of the world $i$ is realized, the consumer  sells his/her state-contingent endowment bundle and purchases a state-contingent consumption bundle. 
+
+Trading such securities is a way economists often model **insurance**.
 
 ## Possible Exercises
 
@@ -519,3 +531,23 @@ Thus, in the multiple case as for the single-good case,  a competitive equilibri
 
 We can read the competitive equilbrium price vector off the inverse demand curve or the inverse supply curve.
 
+
+
+## To do
+
+Tom has multi consumer version of pure exchange economy
+
+Two types of represenative agent
+
+  * Gorman (everyone has some $\Pi$)
+     
+  * mongrel (heterogeneous $\Pi$)
+
+```python
+import numpy as np
+x =np.random.rand(100,1)
+```
+
+```python
+
+```
