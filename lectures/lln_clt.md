@@ -140,7 +140,7 @@ $$
 Let $\mu$ denote the common mean of this sample:
 
 $$
-  \mu := \mathbb E X = \int_{-\infty}^{\infty} x f(dx)
+  \mu := \mathbb E X = \int_{-\infty}^{\infty} x f(x) dx
 $$
 
 In addition, let
@@ -228,7 +228,7 @@ def generate_histogram(X_distribution, n, m):
     ax.axvline(x=mu, ls="--", lw=3, label=fr"$\mu = {mu}$")
      
   ax.set_xlim(min(sample_means), max(sample_means))
-  ax.set_xlabel(r'$\bar x$', size=12)
+  ax.set_xlabel(r'$\bar X_n$', size=12)
   ax.set_ylabel('density', size=12)
   ax.legend()
   plt.show()
@@ -263,14 +263,16 @@ def generate_multiple_hist(X_distribution, ns, m, log_scale=False):
         ax.axvline(x=mu, ls="--", lw=3, label=fr"$\mu = {mu}$")
 
     ax.set_xlim(min(sample_means), max(sample_means)) 
-    ax.set_xlabel(r'$\bar x$', size=12)
+    ax.set_xlabel(r'$\bar X_n$', size=12)
     ax.set_ylabel('density', size=12)
     ax.legend()
     plt.show()
 ```
 
 ```{code-cell} ipython3
-generate_multiple_hist(st.norm(loc=5, scale=2), ns=[20_000, 50_000, 100_000], m=10_000)
+generate_multiple_hist(st.norm(loc=5, scale=2), 
+                       ns=[20_000, 50_000, 100_000], 
+                       m=10_000)
 ```
 
 The histogram gradually converges to $\mu$ as the sample size n increases.
@@ -305,7 +307,7 @@ def scattered_mean(distribution, burn_in, n, jump, ax, title, color, ylog=False)
         ax.set_yscale("symlog")
     ax.set_title(title, size=10)
     ax.set_xlabel(r"$n$", size=12)
-    ax.set_ylabel(r"$\bar x$", size=12)
+    ax.set_ylabel(r"$\bar X_n$", size=12)
     yabs_max = max(ax.get_ylim())
     ax.set_ylim(ymin=-yabs_max, ymax=yabs_max)
     return ax
@@ -340,7 +342,7 @@ Let's go through a very simple example where LLN fails with IID violated:
 Assume
 
 $$
-X_0 \sim \mathcal{N}(0,1)
+X_0 \sim N(0,1)
 $$
 
 In addition, assume
@@ -352,10 +354,10 @@ $$
 We can then see that 
 
 $$
-\bar X_n := \frac{1}{n} \sum_{t=1}^n X_i = X_0 \sim \mathcal{N}(0,1)
+\bar X_n := \frac{1}{n} \sum_{t=1}^n X_i = X_0 \sim N(0,1)
 $$
 
-Therefore, the distribution of the mean of $X$ follows $\mathcal{N}(0,1)$.
+Therefore, the distribution of the mean of $X$ follows $N(0,1)$.
 
 However,
 
@@ -452,8 +454,9 @@ xmin, xmax = -3 * σ, 3 * σ
 ax.set_xlim(xmin, xmax)
 ax.hist(Y, bins=60, alpha=0.4, density=True)
 xgrid = np.linspace(xmin, xmax, 200)
-ax.plot(xgrid, st.norm.pdf(xgrid, scale=σ), 'k-', lw=2, label='$N(0, \sigma^2)$')
-ax.set_xlabel(r"$Y$", size=12)
+ax.plot(xgrid, st.norm.pdf(xgrid, scale=σ), 
+        'k-', lw=2, label='$N(0, \sigma^2)$')
+ax.set_xlabel(r"$Y_n$", size=12)
 ax.set_ylabel(r"$density$", size=12)
 
 ax.legend()
@@ -501,7 +504,7 @@ fig, ax = plt.subplots(figsize=(10, 6))
 xmin, xmax = -3 * σ, 3 * σ
 ax.set_xlim(xmin, xmax)
 ax.hist(Y, bins=60, alpha=0.4, density=True)
-ax.set_xlabel(r"$Y$", size=12)
+ax.set_xlabel(r"$Y_n$", size=12)
 ax.set_ylabel(r"$density$", size=12)
 xgrid = np.linspace(xmin, xmax, 200)
 ax.plot(xgrid, st.norm.pdf(xgrid, scale=σ), 'k-', lw=2, label='$N(0, \sigma^2)$')
@@ -554,15 +557,18 @@ We mentioned above that LLN can still hold sometimes when IID is violated.
 Let's investigate this claim further.
 
 Assume we have a AR(1) process as below:
+
 $$
 X_{t+1} = \alpha + \beta X_t + \sigma \epsilon _{t+1}
 $$
 
+and
+
 $$
-X_0 \sim \mathcal{N} \left(\frac{\alpha}{1-\beta}, \frac{\sigma^2}{1-\beta^2}\right)
+X_0 \sim N \left(\frac{\alpha}{1-\beta}, \frac{\sigma^2}{1-\beta^2}\right)
 $$
 
-where $\epsilon_t \sim \mathcal{N}(0,1)$
+where $\epsilon_t \sim N(0,1)$
 
 1. Prove this process violated the independence assumption but not the identically distributed assumption;
 2. Show LLN holds using simulations with $\alpha = 0.8$, $\beta = 0.2$.
@@ -592,7 +598,7 @@ $$
 
 $$
 \begin{aligned}
-Var(X_t+1) &= \beta^2 Var(X_{t}) + \sigma^2\\
+\mathrm{Var}(X_{t+1}) &= \beta^2 \mathrm{Var}(X_{t}) + \sigma^2\\
 &= \frac{\beta^2\sigma^2}{1-\beta^2} + \sigma^2 \\
 &= \frac{\sigma^2}{1-\beta^2}
 \end{aligned}
@@ -607,7 +613,7 @@ This holds true for all $X_t$ and $\epsilon _{t}$ where $t = 0, ..., n$
 Therefore, 
 
 $$
-X_t \sim \mathcal{N} \left(\frac{\alpha}{1-\beta}, \frac{\sigma^2}{1-\beta^2}\right) \quad t = 0, ..., n
+X_t \sim N \left(\frac{\alpha}{1-\beta}, \frac{\sigma^2}{1-\beta^2}\right) \quad t = 0, ..., n
 $$ 
 
 
@@ -635,9 +641,11 @@ for t in range(n-1):
 ax.scatter(range(100, n), means[100:n], s=10, alpha=0.5)
 
 ax.set_xlabel(r"$n$", size=12)
-ax.set_ylabel(r"$\bar x$", size=12)
+ax.set_ylabel(r"$\bar X_n$", size=12)
 yabs_max = max(ax.get_ylim(), key=abs)
-ax.axhline(y=α/(1-β), ls="--", lw=3, label=r"$\mu = \frac{\alpha}{1-\beta}$",color = 'black')
+ax.axhline(y=α/(1-β), ls="--", lw=3, 
+           label=r"$\mu = \frac{\alpha}{1-\beta}$", 
+           color = 'black')
 
 plt.legend()
 plt.show()
