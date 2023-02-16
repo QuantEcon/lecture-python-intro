@@ -368,6 +368,8 @@ Since the distribution of $\bar X$ follows a standard normal distribution, but t
 This violates {eq}`exp`, and thus breaks LLN.
 
 ```{note}
+:name: iid_violation
+
 Although in this case, the violation of IID breaks LLN, it is not always the case for correlated data. 
 
 We will show an example in the [exercise](lln_ex3).
