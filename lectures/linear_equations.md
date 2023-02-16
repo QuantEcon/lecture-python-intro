@@ -41,8 +41,6 @@ from matplotlib import cm
 from mpl_toolkits.mplot3d import Axes3D
 ```
 
-+++
-
 ## A Two Good Example
 
 We discuss a simple two good example and solve it by
@@ -128,8 +126,6 @@ Traditionally, vectors are represented visually as arrows from the origin to the
 
 The following figure represents three vectors in this manner.
 
-+++
-
 ```{code-cell} ipython3
 fig, ax = plt.subplots(figsize=(10, 8))
 # Set the axes through the origin
@@ -139,7 +135,7 @@ for spine in ['right', 'top']:
     ax.spines[spine].set_color('none')
 
 ax.set(xlim=(-5, 5), ylim=(-5, 5))
-ax.grid()
+
 vecs = ((2, 4), (-3, 3), (-4, -3.5))
 for v in vecs:
     ax.annotate('', xy=v, xytext=(0, 0),
@@ -378,8 +374,6 @@ np.sqrt(np.sum(x**2))  # Norm of x, take one
 np.linalg.norm(x)      # Norm of x, take two
 ```
 
-+++
-
 ## Matrix Operations
 
 ```{index} single: Matrix; Operations
@@ -590,8 +584,6 @@ NumPy arrays are also used as matrices, and have fast, efficient functions and m
 
 You can create them manually from tuples of tuples (or lists of lists) as follows
 
-+++
-
 ```{code-cell} ipython3
 A = ((1, 2),
      (3, 4))
@@ -629,8 +621,6 @@ B = np.ones((3, 3))   # 3 x 3 matrix of ones
 ```{code-cell} ipython3
 A + B
 ```
-
-+++
 
 To multiply matrices we use the `@` symbol.
 
@@ -855,8 +845,6 @@ It can be verified manually that this system has no possible solution.
 
 To illustrate why this situation arises let's plot the two lines.
 
-+++
-
 ```{code-cell} ipython3
 fig, ax = plt.subplots(figsize=(5, 4))
 x = np.linspace(-10,10)
@@ -866,7 +854,7 @@ plt.legend()
 plt.show()
 ```
 
-+++
++++ {"tags": []}
 
 Clearly, these are parallel lines and hence we will never find a point $x \in \mathbb{R}^2$
 such that these lines intersect.
@@ -894,12 +882,11 @@ We can rewrite this system in matrix form as
 
 It can be noted that the $2^{nd}$ row of matrix $A = (2, 6)$ is just a scalar multiple of the $1^{st}$ row of matrix $A = (1, 3)$.
 
-Matrix $A$ in this case is called **linearly dependent.**
+The rows of matrix $A$ in this case is called **linearly dependent.**
 
-Linear dependence arises when one row of a matrix can be expressed as a [linear combination](https://en.wikipedia.org/wiki/Linear_combination)
-of the other rows.
+A collection of vectors $A$ is called linearly dependent whenever a vector $v \in A$ can be expressed as a [linear combination](https://en.wikipedia.org/wiki/Linear_combination) of all the other vectors in $A$.
 
-A matrix that is **not** linearly dependent is called **linearly independent**.
+A collection of vectors that is **not** linearly dependent is called **linearly independent**.
 
 We will keep our discussion of linear dependence and independence limited but a more detailed and generalized
 explanation can be found [here](https://python.quantecon.org/linear_algebra.html#linear-independence).
@@ -919,7 +906,7 @@ Any vector $v = (x,y)$ such that $x = 2y - 4$ will solve the above system.
 
 Since we can find infinite such vectors this system has infinitely many solutions.
 
-Check whether the matrix
+Check whether the rows
 
 ```{math}
 :label: many_solns
@@ -930,7 +917,7 @@ Check whether the matrix
     \end{bmatrix}
 ```
 
-is linearly dependent or independent.
+are linearly dependent or independent.
 
 We can now impose conditions on $A$ in {eq}`la_se2` that rule out these problems.
 
@@ -954,9 +941,9 @@ $$
 If the determinant of $A$ is not zero, then we say that $A$ is
 *nonsingular*.
 
-A square matrix $A$ is nonsingular if and only if $A$ is linearly independent.
+A square matrix $A$ is nonsingular if and only if the rows and columns of $A$ are linearly independent.
 
-You can check yourself that the linearly dependent matrices in {eq}`no_soln` and {eq}`many_solns` are singular matrices
+You can check yourself that the in {eq}`no_soln` and {eq}`many_solns` with linearly dependent rows are singular matrices
 as well.
 
 This gives us a useful one-number summary of whether or not a square matrix can be
@@ -993,8 +980,6 @@ This equation is analogous to {eq}`la_se_inv` with $A = (C-D)^{-1}$, $b = h$, an
 We can now solve for equilibrium prices with NumPy's `linalg` submodule.
 
 All of these routines are Python front ends to time-tested and highly optimized FORTRAN code.
-
-+++
 
 ```{code-cell} ipython3
 C = ((10, 5),      #matrix C
@@ -1054,18 +1039,9 @@ q = C @ p # equilibrium quantities
 q
 ```
 
-+++
-
 Observe how we can solve for $x = A^{-1} y$ by either via `inv(A) @ y`, or using `solve(A, y)`.
 
 The latter method uses a different algorithm that is numerically more stable and hence should be the default option.
-
-NOTE Add more examples.  Perhaps Tom has suggestions.
-
-NOTE Perhaps discuss LU decompositions in a very simple way?
-
-
-
 
 
 ### Further Reading
@@ -1074,9 +1050,6 @@ The documentation of the `numpy.linalg` submodule can be found [here](https://nu
 
 More advanced topics in linear algebra can be found [here](https://python.quantecon.org/linear_algebra.html#id5).
 
-NOTE Add more references.
-
-NOTE Add exercises.
 
 ## Exercises
 
@@ -1156,8 +1129,6 @@ b =
 \end{bmatrix}
 $$
 
-+++
-
 ```{code-cell} ipython3
 import numpy as np
 from numpy.linalg import det
@@ -1221,11 +1192,11 @@ vectors $x \in \mathbb{R}^n$
 
 $$
 \begin{aligned}
-distance(A\hat{x} - b) & \leq distance(Ax - b) \\
-\|A\hat{x} - b\| & \leq \|Ax - b\| \\
-\|A\hat{x} - b\|^2 & \leq \|Ax - b\|^2 \\
-(A\hat{x}_1 - b_1)^2 + (A\hat{x}_2 - b_2)^2 + \cdots + (A\hat{x}_m - b_m)^2 & \leq
-(Ax_1 - b_1)^2 + (Ax_2 - b_2)^2 + \cdots + (Ax_m - b_m)^2
+    distance(A\hat{x} - b) & \leq distance(Ax - b) \\
+    \iff \|A\hat{x} - b\| & \leq \|Ax - b\| \\
+    \iff \|A\hat{x} - b\|^2 & \leq \|Ax - b\|^2 \\
+    \iff (A\hat{x}_1 - b_1)^2 + (A\hat{x}_2 - b_2)^2 + \cdots + (A\hat{x}_m - b_m)^2 & \leq
+    (Ax_1 - b_1)^2 + (Ax_2 - b_2)^2 + \cdots + (Ax_m - b_m)^2
 \end{aligned}
 $$
 
@@ -1237,8 +1208,8 @@ $\hat{x}$ is given by:
 
     \begin{aligned}
         {A^T} A \hat{x} &  = {A^T} b \\
-        \hat{x} & = (A^T A)^{-1} A^T b
-    \end{aligned}
+        \hat{x} =  (A^T & A)^{-1} A^T b
+    \end{aligned} 
 ```
 
 Consider the general equation of a linear demand curve of a good given by:
@@ -1329,4 +1300,8 @@ plt.show()
 ```
 
 ```{solution-end}
+```
+
+```{code-cell} ipython3
+
 ```
