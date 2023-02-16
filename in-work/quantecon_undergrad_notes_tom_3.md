@@ -139,11 +139,16 @@ $$
 
 Let
 
-* $\Pi$ be an $n\times n$ matrix of XXXX,
+* $\Pi$ be an $n\times n$ matrix,
 * $c$ be an $n \times 1$ vector of consumptions of various goods, 
 * $b$ be an $n \times 1$ vector of bliss points, 
 * $e$ be an $n \times 1$ vector of endowments, and 
 * $p$ be an $n\times 1$ vector of prices
+
+We assume that $\Pi$ has an inverse $\Pi^{-1}$ and that $\Pi^\top \Pi$ is a positive definite matrix.
+
+The matrix $\Pi$ describes a consumer's willingness to substitute one good for another, for each pair of
+good in the $n \times 1$ vector $c$.
 
 A consumer faces $p$ as a price taker and chooses $c$ to maximize the utility function 
 
@@ -156,6 +161,16 @@ subject to the budget constraint
 $$ 
 p ^\top (c -e ) = 0 
 $$ (eq:old2)
+
+We shall specify examples in which  $\Pi$ and $b$ are such that it typically happens that
+
+$$
+\Pi b > > c 
+$$ (eq:bversusc)
+
+so that utility function {eq}`eq:old2` tells us that the consumer has consumes of each good that he wants. 
+
+Condition {eq}`eq:bversusc` will ultimately  assure us that competitive equilibrium prices are all positive. 
 
 ## Digression: Marshallian and Hicksian Demand Curves
 
@@ -182,7 +197,7 @@ Marshallian and Hicksian demand curves describe different mental experiments:
 
 * For a Hicksian demand curve, hypothetical price vector  changes produce changes in   quantities determined that have only **substitution**  effects
     
-  * changes in the price vector leave the $p^e + W$ unaltered because we freeze $\mu$ and solve for $W$
+  * changes in the price vector leave the $p^\top e + W$ unaltered because we freeze $\mu$ and solve for $W$
   
 Sometimes a Hicksian demand curve is called a **compensated** demand curve in order to emphasize that, to disarm the income (or wealth) effect associated with a price change, the consumer's wealth $W$ is adjusted.
 
@@ -523,10 +538,12 @@ $$
 -.5 \mu^{-1}(\Pi c -b) ^\top (\Pi c -b ) -h c - .5 c^\top J c 
 $$
 
+In this formulation, $\mu$ is a parameter that describes how the planner weights interests of outside suppliers and our representative consumer.  
+
 The first-order condition with respect to $c$ is
 
 $$
-- \mu^{-1} \Pi^\top \Pi c + \mu^{-1}\Pi^\top b - h - .5 H c = 0 
+- \mu^{-1} \Pi^\top \Pi c + \mu^{-1}\Pi^\top b - h -  H c = 0 
 $$
 
 which implies {eq}`eq:old5p`. 
@@ -548,12 +565,3 @@ Two types of represenative agent
   * Gorman (everyone has some $\Pi$)
      
   * mongrel (heterogeneous $\Pi$)
-
-```python
-import numpy as np
-x =np.random.rand(100,1)
-```
-
-```python
-
-```
