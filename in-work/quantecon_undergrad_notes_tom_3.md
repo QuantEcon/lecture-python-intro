@@ -183,6 +183,8 @@ Marshallian and Hicksian demand curves describe different mental experiments:
 * For a Hicksian demand curve, hypothetical price vector  changes produce changes in   quantities determined that have only **substitution**  effects
     
   * changes in the price vector leave the $p^e + W$ unaltered because we freeze $\mu$ and solve for $W$
+  
+Sometimes a Hicksian demand curve is called a **compensated** demand curve in order to emphasize that, to disarm the income (or wealth) effect associated with a price change, the consumer's wealth $W$ is adjusted.
 
 We'll discuss these distinct demand curves more  below.
 
@@ -224,15 +226,15 @@ Equation {eq}`eq:old4` tells how marginal utility of wealth depends on  the endo
 
 ## Endowment economy, I
 
-We now study a pure-exchange or endowment economy.
+We now study a pure-exchange economy, or what is sometimes called an  endowment economy.
 
 Consider a single-consumer, multiple-goods economy without production.  
 
 The only source of goods is the single consumer's endowment vector   $e$. 
 
-Competitive equilibium prices must be set to  induce the consumer to choose  $c=e$.
+A competitive equilibium price vector  induces the consumer to choose  $c=e$.
 
-This implies that the equilibrium price vector must satisfy
+This implies that the equilibrium price vector satisfies
 
 $$ 
 p = \mu^{-1} (\Pi^\top b - \Pi^\top \Pi e)
@@ -246,9 +248,9 @@ This amounts to choosing a common  unit (or numeraire) in which prices of all go
 
 We'll set $\mu=1$.  
 
-**Exercise:** Verify that $\mu=1$ satisfies formula {eq}`eq:old4`. 
+**Exercise:** Verify that setting $\mu=1$ in {eq}`eq:old3` implies that   formula {eq}`eq:old4` is satisfied. 
 
-**Exercise:** Verify that setting  $\mu=2$ also implies that formula {eq}`eq:old4` is satisfied. 
+**Exercise:** Verify that setting  $\mu=2$ in {eq}`eq:old3` also implies that formula {eq}`eq:old4` is satisfied. 
 
 **Endowment Economy, II**
 
@@ -279,10 +281,10 @@ $$
 which after a line or two of linear algebra implies that
 
 $$
-(\mu_1 + \mu_2) p = \Pi^\top(b_1+ b_2) - (e_1 + e_2) 
+(\mu_1 + \mu_2) p = \Pi^\top(b_1+ b_2) - \Pi^\top \Pi (e_1 + e_2) 
 $$ (eq:old6)
 
-We can normalize prices by setting $\mu_1 + \mu_2 =1$ and then deducing
+We can normalize prices by setting $\mu_1 + \mu_2 =1$ and then solving
 
 $$ 
 \mu_i(p,e) = \frac{p^\top (\Pi^{-1} b_i - e_i)}{p^\top (\Pi^\top \Pi )^{-1} p}
@@ -334,6 +336,10 @@ To capture this with our quadratic utility function {eq}`eq:old0`,  set
 $$ 
 \Pi = \begin{bmatrix} 1 & 0 \cr 
          0 & \sqrt{\beta} \end{bmatrix}
+$$
+
+$$ 
+c = \begin{bmatrix} c_1 \cr c_2 \end{bmatrix}
 $$
 
 and
