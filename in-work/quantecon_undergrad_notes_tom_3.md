@@ -1,3 +1,4 @@
+<!-- #region -->
 
 ## Elements of  Supply and Demand
 
@@ -123,12 +124,17 @@ We study a setting with $n$ goods and $n$ corresponding prices.
 We  apply  formulas from linear algebra for
 
 * differentiating an inner product
+* differentiating a product of a matrix and a vector
 * differentiating a quadratic form
 
 Where $a$ is an $n \times 1$ vector, $A$ is an $n \times n$ matrix, and $x$ is an $n \times 1$ vector:
 
 $$ 
 \frac{\partial a^\top x }{\partial x} = a 
+$$
+
+$$
+\frac{\partial A x} {\partial x} = A
 $$
 
 $$ 
@@ -147,8 +153,17 @@ Let
 
 We assume that $\Pi$ has an inverse $\Pi^{-1}$ and that $\Pi^\top \Pi$ is a positive definite matrix.
 
+It follows that $\Pi^\top \Pi$ has an inverse.
+
+
 The matrix $\Pi$ describes a consumer's willingness to substitute one good for another, for each pair of
 good in the $n \times 1$ vector $c$.
+
+In particular, we shall see below that $(\Pi^T \Pi)^{-1}$ is a matrix of slopes of (compensated) demand curves for $c$ with respect to a vector of prices:
+
+$$
+{\partial c } {\partial p} = (\Pi^T \Pi)^{-1}
+$$
 
 A consumer faces $p$ as a price taker and chooses $c$ to maximize the utility function 
 
@@ -165,12 +180,12 @@ $$ (eq:old2)
 We shall specify examples in which  $\Pi$ and $b$ are such that it typically happens that
 
 $$
-\Pi b > > c 
+\Pi c < < b  
 $$ (eq:bversusc)
 
-so that utility function {eq}`eq:old2` tells us that the consumer has consumes of each good that he wants. 
+so that utility function {eq}`eq:old2` tells us that the consumer has much less  of each good than he wants. 
 
-Condition {eq}`eq:bversusc` will ultimately  assure us that competitive equilibrium prices are all positive. 
+Condition {eq}`eq:bversusc` will ultimately  assure us that competitive equilibrium prices  are all positive. 
 
 ## Digression: Marshallian and Hicksian Demand Curves
 
@@ -548,20 +563,115 @@ $$
 
 which implies {eq}`eq:old5p`. 
 
-Thus, in the multiple case as for the single-good case,  a competitive equilibrium quantity  solves a planning problem.
+Thus,  as for the single-good case, with  multiple goods   a competitive equilibrium quantity vector solves a planning problem.
 
 (This is another version of the first welfare theorem.)
 
 We can read the competitive equilbrium price vector off the inverse demand curve or the inverse supply curve.
 
+<!-- #endregion -->
 
+<!-- #region -->
+## Notes to Jiacheng for coding
 
-## To do
+Hi Jiacheng.  
 
-Tom has multi consumer version of pure exchange economy
+These are just some suggestions about how to begin writing code.  
 
-Two types of represenative agent
+I sketch some things that are "not even pseudo code".  Here goes.
 
-  * Gorman (everyone has some $\Pi$)
+I recommend that we start "general" and write a Python class that will do "everything".  
+
+Once we get that working with a bunch of fun examples, we can then "work backwards" and make some very simple "baby code" that starts with simple cases (e.g., a scalar case) and graduallly builds up to the class.
+
+The fun thing will be to make some revealing examples.
+
+I recommend making a Python class with the following attributes:
+
+ * **Preferences** in the form of 
+  
+     * an $n \times n$  positive definite matrix $\Pi$ 
+     * an $n \times 1$ vector of bliss points $b$
+
+ * **Endowments** in the form of 
      
-  * mongrel (heterogeneous $\Pi$)
+     * an $n \times 1$ vector $e$
+     * a scalar "wealth" $W$ with default value $0$
+     
+ * **Production Costs** $C(q) = h^\top q + .5 q^\top J q $ indexed by
+ 
+     * an $n \times 1$ nonnegative vector $h$
+     * an $n \times n$ positive definite matrix $J$
+
+Along the lines of your great suggestion (now incorporated in the main text in the previous cell)
+the class would do a test to make sure that $b  > > \Pi e $ and raise an exception if it is violated
+(at some threshold level we'd have to specify).
+
+ * **A Person** in the form of a pair that consists of 
+   
+    * **Preferences** and **Endowments**
+    
+ * **A Pure Exchange Economy** consists of 
+ 
+    * a collection of $m$ **persons**
+    
+       * $m=1$ for our single-agent economy
+       * $m=2$ for our illustrations of a pure exchange economy
+    
+    * an equilibrium price vector $p$ (normalized somehow) 
+    * an equilibrium allocation $c^1, c^2, \ldots, c^m$ -- a collection of $m$ vectors of dimension $n \times 1$
+    
+ * **A Production Economy** consists of 
+ 
+    * a single **person** that we'll interpret as a representative consumer
+    * a single set of **production costs**
+    * a multiplier $\mu$ that weights "consumers" versus "producers" in a planner's welfare function, as described above in the main text
+    * an $n \times 1$ vector $p$ of competitive equilibrium prices
+    * an $n \times 1$ vector $c$ of competitive equilibrium quantities
+    * **consumer surplus**
+    * **producer surplus**
+       
+ 
+    
+**Remark:** I don't know whether we want to be simple or fancy in terms of using class inheritance in creating a person or an economy.
+
+
+## Some experiments
+
+
+* Single agent with one good and  with production 
+
+  * specify a single **person** and a **cost curve** in a way that let's us replicate the simple
+    single-good supply demand example with which we started
+  * compute equilibrium $p$ and $c$ and consumer and producer surpluses
+  
+     *if possible draw graphs of both surpluses
+    
+  * do some experiments in which we shift $b$ and watch what happens to $p, c$.
+  
+* Single agent two-good economy **with** production
+
+  * do the counterparts of the above
+  * do some experiments with **diagonal** $\Pi$ and also with **non-diagonal** $\Pi$ matrices to study 
+  how cross-slopes affect responses of $p$ and $c$ to various shifts in $b$
+  
+* Two-person economy **without** production
+
+  * study how competive equilibrium $p, c^1, c^2$ responds to various combinations of different
+  
+     * $b^i$'s
+     * $e^i$'s 
+
+* The simple example in the text of a **dynamic economy**
+
+* The simple example in the text of an exchange economy with two **Arrow securities**
+
+ 
+     
+  
+
+<!-- #endregion -->
+
+```python
+
+```
