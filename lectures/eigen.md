@@ -4,7 +4,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.14.1
+    jupytext_version: 1.14.4
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
@@ -49,11 +49,7 @@ We will use the following imports:
 
 ```{code-cell} ipython3
 import matplotlib.pyplot as plt
-from math import sqrt
-#plt.rcParams["figure.figsize"] = (10, 5)  # set default figure size
 import numpy as np
-from matplotlib import cm
-from mpl_toolkits.mplot3d import Axes3D
 ```
 
 (la_eigen)=
@@ -69,8 +65,8 @@ numbers.
 Another way to think about a matrix is as a **map** (i.e., as a function) that
 transforms vectors into new vectors.
 
-To understand the second point of view, suppose we multiply a $n \times m$
-matrix $A$ with a $m \times 1$ column vector $x$ to obtain a $n \times 1$
+To understand the second point of view, suppose we multiply an $n \times m$
+matrix $A$ with an $m \times 1$ column vector $x$ to obtain an $n \times 1$
 column vector $y$:
 
 $$
@@ -126,7 +122,7 @@ $$
 transforms the vector $x = \begin{bmatrix} 1 \\ 3 \end{bmatrix}$ into the vector
 $y = \begin{bmatrix} 5 \\ 2 \end{bmatrix}$.
 
-Let's do the same thing in Python:
+Let's visualize this using Python:
 
 ```{code-cell} ipython3
 :tags: []
@@ -137,6 +133,8 @@ A = np.array([[2,  1],
 
 ```{code-cell} ipython3
 :tags: []
+
+from math import sqrt
 
 fig, ax = plt.subplots()
 # Set the axes through the origin
@@ -559,13 +557,13 @@ B = np.array([[1, 2],     # shear along x-axis
               [0, 1]])
 ```
 
-#### Rotate then Shear
+#### Shear then Rotate
 
 ```{code-cell} ipython3
 grid_composition_transform(A,B)        #transformation AB
 ```
 
-#### Shear then Rotate
+#### Rotate then Shear
 
 ```{code-cell} ipython3
 grid_composition_transform(B,A)         #transformation BA
@@ -589,10 +587,13 @@ $$
     AAv = A^2v, \ldots
 $$
 
-Let's first see examples of a sequence of iterates $(A^k x)_{k \geq 0}$ under
+Let's first see examples of a sequence of iterates $(A^k v)_{k \geq 0}$ under
 different maps $A$.
 
 ```{code-cell} ipython3
+from numpy.linalg import matrix_power
+from matplotlib import cm
+
 def plot_series(B, v, n):
     
     A = np.array([[1, -1],
@@ -765,9 +766,9 @@ plt.show()
 
 ### Complex Values
 
-So far our definition of eigenvalues and eigenvector seems straightforward.
+So far our definition of eigenvalues and eigenvectors seems straightforward.
 
-There is, however, one complication we haven't metioned yet:
+There is, however, one complication we haven't mentioned yet:
 
 When solving $Av = \lambda v$, 
 
@@ -893,11 +894,11 @@ $A$ is a nonnegative square matrix.
 
 If a matrix $A \geq 0$ then,
 
-1. the dominant eigenvalue of A, r(A), is real-valued and nonnegative. 
+1. the dominant eigenvalue of $A$, $r(A)$, is real-valued and nonnegative. 
 2. for any other eigenvalue (possibly complex) $\lambda$ of $A$, $|\lambda| \leq r(A)$.
 3. we can find a nonnegative and nonzero eigenvector $v$ such that $Av = r(A)v$.
 
-Moreover if A is also irreducible then,
+Moreover if $A$ is also irreducible then,
 
 4. the eigenvector $v$ associated with the eigenvalue $r(A)$ is strictly positive.
 5. there exists no other positive eigenvector $v$ (except scalar multiples of v) associated with $r(A)$.
@@ -996,7 +997,7 @@ print(r)
 
 The spectral radius $r(A)$ obtained is less than 1. 
 
-Thus, we can apply the Neumann Series lemma to find $(I-A)^{1}$.
+Thus, we can apply the Neumann Series lemma to find $(I-A)^{-1}$.
 
 ```{code-cell} ipython3
 I = np.identity(2)      #2 x 2 identity matrix
@@ -1014,15 +1015,15 @@ for i in range(50):
     A_sum += A_power
     A_power = A_power @ A
 ```
+
 Let's check equality between the sum and the inverse methods.
 
 ```{code-cell} ipython3
 np.allclose(A_sum, B_inverse)     
 ```
 
-Although we truncate the infite sum at $k = 50$, both methods give us the same
+Although we truncate the infinite sum at $k = 50$, both methods give us the same
 result which illustrates the result of the Neumann Series lemma.
-
 
 +++
 
@@ -1047,9 +1048,9 @@ The following table describes how output is distributed within the economy:
 
 The first row depicts how agriculture's total output $x_1$ is distributed 
 
-* $30\%$ is used as inputs within agriculture itself,
+* $0.3x_1$ is used as inputs within agriculture itself,
 * $0.2x_2$ is used as inputs by the industry sector to produce $x_2$ units
-* $0.2x_3$ is used as inputs by the service sector to produce $x_3$ units and 
+* $0.3x_3$ is used as inputs by the service sector to produce $x_3$ units and 
 * 4 units is the external demand by consumers.
 
 We can transform this into a system of linear equations for the 3 sectors as
@@ -1125,4 +1126,3 @@ print(x_star)
 
 ```{solution-end}
 ```
-

@@ -1,11 +1,10 @@
-
 ---
 jupytext:
   text_representation:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.14.1
+    jupytext_version: 1.14.4
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
@@ -14,6 +13,7 @@ kernelspec:
 
 # A Lake Model of Employment
 
+\
 The importance of the Perron-Frobenius theorem stems from the fact that
 firstly in the real world most matrices we encounter are nonnegative matrices.
 
