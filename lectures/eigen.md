@@ -52,7 +52,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 ```
 
-(la_eigen)=
+(matrices_as_transformation)=
 ## Matrices as Transformations
 
 Let's start by discussing an important concept concerning matrices.
@@ -367,8 +367,6 @@ grid_transform(A)
 
 More examples of common transition matrices can be found [here](https://en.wikipedia.org/wiki/Transformation_matrix#Examples_in_2_dimensions).
 
-+++ {"tags": []}
-
 ## Matrix Multiplication as Composition
 
 Since matrices act as functions that transform one vector to another, we can
@@ -571,8 +569,6 @@ grid_composition_transform(B,A)         #transformation BA
 
 It is quite evident that the transformation $AB$ is not the same as the transformation $BA$.
 
-+++
-
 ## Iterating on a Fixed Map
 
 In economics (and especially in dynamic modeling), we often are interested in
@@ -685,9 +681,7 @@ We thus observe that the sequence $(A^kv)_{k \geq 0}$ behaves differently depend
 
 We now discuss the property of A that determines this behaviour.
 
-+++
-
-(la_eigen)=
+(la_eigenvalues)=
 ## Eigenvalues 
 
 ```{index} single: Linear Algebra; Eigenvalues
@@ -702,7 +696,7 @@ Let $A$ be an $n \times n$ square matrix.
 If $\lambda$ is scalar and $v$ is a non-zero $n$-vector  such that
 
 $$
-    A v = \lambda v
+A v = \lambda v
 $$
 
 then we say that $\lambda$ is an *eigenvalue* of $A$, and $v$ is an *eigenvector*.
@@ -890,7 +884,8 @@ For a matrix $A$, the Perron-Frobenius theorem characterises certain
 properties of the dominant eigenvalue and its corresponding eigenvector when
 $A$ is a nonnegative square matrix.
 
-````{prf:theorem} Perron-Frobenius Theorem
+```{prf:theorem} Perron-Frobenius Theorem
+:label: perron-frobenius
 
 If a matrix $A \geq 0$ then,
 
@@ -903,16 +898,12 @@ Moreover if $A$ is also irreducible then,
 4. the eigenvector $v$ associated with the eigenvalue $r(A)$ is strictly positive.
 5. there exists no other positive eigenvector $v$ (except scalar multiples of v) associated with $r(A)$.
 
-````
-
-+++
+```
 
 (This is a relatively simple version of the theorem --- for more details see
 [here](https://en.wikipedia.org/wiki/Perron%E2%80%93Frobenius_theorem)).
 
 We will see applications of the theorem below.
-
-
 
 
 (la_neumann)=
@@ -966,7 +957,9 @@ The following is a fundamental result in functional analysis that generalises
 {eq}`gp_sum` to a multivariate case.
 
 
-````{prf:theorem} Neumann Series Lemma
+```{prf:theorem} Neumann Series Lemma
+:label: neumann_series_lemma
+
 Let $A$ be a square matrix and let $A^k$ be the $k$-th power of $A$.
 
 Let $r(A)$ be the dominant eigenvector or as it is commonly called the *spectral radius*, defined as $\max_i |\lambda_i|$, where 
@@ -979,9 +972,7 @@ Neumann's theorem states the following: If $r(A) < 1$, then $I - A$ is invertibl
 $$
 (I - A)^{-1} = \sum_{k=0}^{\infty} A^k
 $$
-````
-
-+++
+```
 
 We can see the Neumann series lemma in action in the following example.
 
@@ -1024,8 +1015,6 @@ np.allclose(A_sum, B_inverse)
 
 Although we truncate the infinite sum at $k = 50$, both methods give us the same
 result which illustrates the result of the Neumann Series lemma.
-
-+++
 
 ## Exercises
 
