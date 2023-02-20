@@ -9,15 +9,13 @@ kernelspec:
   name: python3
 ---
 
-# Ordinary Least Squares and Regression
+# Simple Linear Regression Model
 
 ```{code-cell} ipython3
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 ```
-
-## The Simple Regression Model
 
 The simple regression model estimates the relationship between two variables $X$ and $Y$
 
