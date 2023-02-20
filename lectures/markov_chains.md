@@ -867,7 +867,7 @@ Notice that the theorem is related to the law of large numbers.
 TODO -- link to our undergrad lln and clt lecture
 
 It tells us that, in some settings, the law of large numbers sometimes holds even when the
-sequence of random variables is not IID.
+sequence of random variables is [not IID](iid_violation).
 
 
 (mc_eg1-2)=
@@ -912,15 +912,15 @@ n_state = P.shape[1]
 fig, axes = plt.subplots(nrows=1, ncols=n_state)
 ψ_star = mc.stationary_distributions[0]
 plt.subplots_adjust(wspace=0.35)
+
 for i in range(n_state):
     axes[i].grid()
-    axes[i].set_ylim(ψ_star[i]-0.2, ψ_star[i]+0.2)
-    axes[i].axhline(ψ_star[i], linestyle='dashed', lw=2, color = 'black',
-                    label = fr'$\psi^*(X={i})$')
+    axes[i].axhline(ψ_star[i], linestyle='dashed', lw=2, color = 'black', 
+                    label = fr'$\psi^*({i})$')
     axes[i].set_xlabel('t')
-    axes[i].set_ylabel(fr'average time spent at X={i}')
+    axes[i].set_ylabel(f'fraction of time spent at {i}')
 
-    # Compute the fraction of time spent, for each X=x
+    # Compute the fraction of time spent, starting from different x_0s
     for x0, col in ((0, 'blue'), (1, 'green'), (2, 'red')):
         # Generate time series that starts at different x0
         X = mc.simulate(n, init=x0)
@@ -949,6 +949,8 @@ $$
 The diagram of the Markov chain shows that it is **irreducible**
 
 ```{code-cell} ipython3
+:tags: [hide-input]
+
 dot = Digraph(comment='Graph')
 dot.attr(rankdir='LR')
 dot.node("0")
@@ -976,15 +978,16 @@ mc = MarkovChain(P)
 n_state = P.shape[1]
 fig, axes = plt.subplots(nrows=1, ncols=n_state)
 ψ_star = mc.stationary_distributions[0]
+
 for i in range(n_state):
     axes[i].grid()
     axes[i].set_ylim(0.45, 0.55)
-    axes[i].axhline(ψ_star[i], linestyle='dashed', lw=2, color = 'black',
-                    label = fr'$\psi^*(X={i})$')
+    axes[i].axhline(ψ_star[i], linestyle='dashed', lw=2, color = 'black', 
+                    label = fr'$\psi^*({i})$')
     axes[i].set_xlabel('t')
-    axes[i].set_ylabel(fr'average time spent at X={i}')
+    axes[i].set_ylabel(f'fraction of time spent at {i}')
 
-    # Compute the fraction of time spent, for each X=x
+    # Compute the fraction of time spent, for each x
     for x0 in range(n_state):
         # Generate time series starting at different x_0
         X = mc.simulate(n, init=x0)
@@ -1078,6 +1081,7 @@ In the case of Hamilton's Markov chain, the distribution $\psi P^t$ converges to
 P = np.array([[0.971, 0.029, 0.000],
               [0.145, 0.778, 0.077],
               [0.000, 0.508, 0.492]])
+
 # Define the number of iterations
 n = 50
 n_state = P.shape[0]
@@ -1097,8 +1101,8 @@ for i in range(n):
 # Loop through many initial values
 for x0 in x0s:
     x = x0
-    X = np.zeros((n,n_state))
-
+    X = np.zeros((n, n_state))
+    
     # Obtain and plot distributions at each state
     for t in range(0, n):
         x =  x @ P
@@ -1107,10 +1111,10 @@ for x0 in x0s:
         axes[i].plot(range(0, n), X[:,i], alpha=0.3)
 
 for i in range(n_state):
-    axes[i].axhline(ψ_star[i], linestyle='dashed', lw=2, color = 'black',
-                    label = fr'$\psi^*(X={i})$')
+    axes[i].axhline(ψ_star[i], linestyle='dashed', lw=2, color = 'black', 
+                    label = fr'$\psi^*({i})$')
     axes[i].set_xlabel('t')
-    axes[i].set_ylabel(fr'$\psi(X={i})$')
+    axes[i].set_ylabel(fr'$\psi({i})$')
     axes[i].legend()
 
 plt.show()
@@ -1147,9 +1151,9 @@ for x0 in x0s:
         axes[i].plot(range(20, n), X[20:,i], alpha=0.3)
 
 for i in range(n_state):
-    axes[i].axhline(ψ_star[i], linestyle='dashed', lw=2, color = 'black', label = fr'$\psi^* (X={i})$')
+    axes[i].axhline(ψ_star[i], linestyle='dashed', lw=2, color = 'black', label = fr'$\psi^*({i})$')
     axes[i].set_xlabel('t')
-    axes[i].set_ylabel(fr'$\psi(X={i})$')
+    axes[i].set_ylabel(fr'$\psi({i})$')
     axes[i].legend()
 
 plt.show()
@@ -1295,7 +1299,7 @@ In this exercise,
 
 1. show this process is asymptotically stationary and calculate the stationary distribution using simulations.
 
-1. use simulation to show ergodicity.
+1. use simulations to demonstrate ergodicity of this process.
 
 ````
 
@@ -1323,7 +1327,7 @@ codes_B =  ( '1','2','3','4','5','6','7','8')
 np.linalg.matrix_power(P_B, 10)
 ```
 
-We find rows transition matrix converge to the stationary distribution
+We find that rows of the transition matrix converge to the stationary distribution 
 
 ```{code-cell} ipython3
 mc = qe.MarkovChain(P_B)
@@ -1344,17 +1348,17 @@ ax.axhline(0, linestyle='dashed', lw=2, color = 'black', alpha=0.4)
 
 
 for x0 in range(8):
-    # Calculate the average time for each worker
+    # Calculate the fraction of time for each worker
     X_bar = (X == x0).cumsum() / (1 + np.arange(N, dtype=float))
     ax.plot(X_bar - ψ_star[x0], label=f'$X = {x0+1} $')
     ax.set_xlabel('t')
-    ax.set_ylabel(fr'average time spent in a state $- \psi^* (X=x)$')
+    ax.set_ylabel(r'fraction of time spent in a state $- \psi^* (x)$')
 
 ax.legend()
 plt.show()
 ```
 
-We can see that the time spent at each state quickly converges to the stationary distribution.
+Note that the fraction of time spent at each state quickly converges to the probability assigned to that state by the stationary distribution.
 
 ```{solution-end}
 ```
@@ -1452,7 +1456,7 @@ However, another way to verify irreducibility is by checking whether $A$ satisfi
 
 Assume A is an $n \times n$ $A$ is irreducible if and only if $\sum_{k=0}^{n-1}A^k$ is a positive matrix.
 
-(see more at \cite{zhao_power_2012} and [here](https://math.stackexchange.com/questions/3336616/how-to-prove-this-matrix-is-a-irreducible-matrix))
+(see more: {cite}`zhao_power_2012` and [here](https://math.stackexchange.com/questions/3336616/how-to-prove-this-matrix-is-a-irreducible-matrix))
 
 Based on this claim, write a function to test irreducibility.
 
