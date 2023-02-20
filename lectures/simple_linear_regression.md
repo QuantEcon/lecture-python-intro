@@ -195,7 +195,7 @@ Both fractions resolve to the means $\bar{y_i}$ and $\bar{x_i}$
 
 $$
 \alpha = \bar{y_i} - \beta\bar{x_i}
-$$
+$$ (eq:optimal-alpha)
 
 Now let's take the partial derivative of the cost function $C$ with respect to $\beta$
 
@@ -243,7 +243,7 @@ and solving for B
 
 $$
 \beta = \frac{\sum_{i=1}^{N}(x_i y_i - \bar{y_i} x_i)}{\sum_{i=1}^{N}(x_i^2 - \bar{x_i} x_i)}
-$$
+$$ (eq:optimal-beta)
 
 +++
 
