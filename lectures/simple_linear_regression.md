@@ -68,8 +68,6 @@ ax = df.plot(
 
 as you can see the data suggests that more ice-cream is typically sold on hotter days. 
 
----
-
 To build a linear model of the data we need to choose values for $\alpha$ and $\beta$ that represents a line of "best" fit such that
 
 $$
@@ -154,7 +152,53 @@ $$
 
 that we would like to minimise.
 
-We can use calculus to find a solution by taking the partial derivative of the cost function $C$ with respect to $\alpha$ and $\beta$
+We can then make use of calculus to find a solution by taking the partial derivative of the cost function $C$ with respect to $\alpha$ and $\beta$
+
+## How does error change with respect to $\alpha$ and $\beta$
+
+Let us first look at how the total error changes with respect to $\beta$ (holding the intercept $\alpha$ constant)
+
+We know from [the next section](slr:optimal-values) the optimal values for $\alpha$ and $\beta$  are:
+
+```{code-cell} ipython3
+β_optimal = 64.38
+α_optimal = -14.72
+```
+
+We can then calculate the error for a range of $\beta$ values
+
+```{code-cell} ipython3
+errors = {}
+for β in np.arange(20,100,0.5):
+    errors[β] = abs((α_optimal + β * df['X']) - df['Y']).sum()
+```
+
+Ploting the error
+
+```{code-cell} ipython3
+ax = pd.Series(errors).plot(xlabel='β', ylabel='error')
+plt.axvline(β_optimal, color='r')
+```
+
+Now let us vary $\alpha$ (holding $\beta$ constant)
+
+```{code-cell} ipython3
+errors = {}
+for α in np.arange(-500,500,5):
+    errors[α] = abs((α + β_optimal * df['X']) - df['Y']).sum()
+```
+
+Ploting the error
+
+```{code-cell} ipython3
+ax = pd.Series(errors).plot(xlabel='α', ylabel='error')
+plt.axvline(α_optimal, color='r')
+```
+
+(slr:optimal-values)=
+## Calculating Optimal Values
+
+Now let us use calculus to compute the optimal values for $\alpha$ and $\beta$ to solve the ordinary least squares solution.
 
 First taking the partial derivative with respect to $\alpha$
 
@@ -247,51 +291,6 @@ $$
 \beta = \frac{\sum_{i=1}^{N}(x_i y_i - \bar{y_i} x_i)}{\sum_{i=1}^{N}(x_i^2 - \bar{x_i} x_i)}
 $$ (eq:optimal-beta)
 
-## How does error change with respect to $\alpha$ and $\beta$
-
-Let us first look at how the total error changes with respect to $\beta$ (holding the intercept $\alpha$ constant)
-
-We know from [the next section](slr:optimal-values) the optimal values for $\alpha$ and $\beta$  are:
-
-```{code-cell} ipython3
-β_optimal = 64.38
-α_optimal = -14.72
-```
-
-We can then calculate the error for a range of $\beta$ values
-
-```{code-cell} ipython3
-errors = {}
-for β in np.arange(20,100,0.5):
-    errors[β] = abs((α_optimal + β * df['X']) - df['Y']).sum()
-```
-
-Ploting the error
-
-```{code-cell} ipython3
-ax = pd.Series(errors).plot(xlabel='β', ylabel='error')
-plt.axvline(β_optimal, color='r')
-```
-
-Now let us vary $\alpha$ (holding $\beta$ constant)
-
-```{code-cell} ipython3
-errors = {}
-for α in np.arange(-500,500,5):
-    errors[α] = abs((α + β_optimal * df['X']) - df['Y']).sum()
-```
-
-Ploting the error
-
-```{code-cell} ipython3
-ax = pd.Series(errors).plot(xlabel='α', ylabel='error')
-plt.axvline(α_optimal, color='r')
-```
-
-(slr:optimal-values)=
-## Calculating Optimal Values
-
-We can use calculus to compute the optimal values for $\alpha$ and $\beta$ to solve the ordinary least squares solution.
 
 We can now use {eq}`eq:optimal-alpha` and {eq}`eq:optimal-beta` to calculate the optimal values for $\alpha$ and $\beta$
 
