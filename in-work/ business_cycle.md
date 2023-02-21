@@ -87,7 +87,7 @@ def plot_comparison(data, countries, title, ylabel, title_pos, ax, g_params, b_p
     ax.text(2008, ylim + ylim * title_pos, 'GFC\n(2008)', **t_params) 
     ax.text(2020, ylim + ylim * title_pos, 'Covid-19\n(2020)', **t_params) 
     ax.set_title(title, pad=40)
-    ax.set_ylabel('GDP Growth Rate (%)')
+    ax.set_ylabel(ylabel)
     ax.legend()
     return ax
 
@@ -151,8 +151,8 @@ fig, ax = plt.subplots()
 
 countries = ['United Kingdom', 'United States', 'Germany']
 title = 'United Kingdom, United States, and Germany \n Domestic credit to private sector by banks (% of GDP)'
-ylabel = '% of GDP)'
-ax = plot_comparison(unempl_rate, countries, title, '% of GDP', 0.05, ax, g_params, b_params, t_params)
+ylabel = '% of GDP'
+ax = plot_comparison(private_credit, countries, title, ylabel, 0.05, ax, g_params, b_params, t_params)
 ```
 
 ```{code-cell} ipython3
@@ -160,5 +160,5 @@ fig, ax = plt.subplots()
 
 countries = ['Brazil', 'China', 'Argentina']
 title = 'Brazil, China, Argentina \n Domestic credit to private sector by banks (% of GDP)'
-ax = plot_comparison(unempl_rate, countries, title, ylabel, 0.05, ax, g_params, b_params, t_params)
+ax = plot_comparison(private_credit, countries, title, ylabel, 0.05, ax, g_params, b_params, t_params)
 ```
