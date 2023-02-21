@@ -47,6 +47,10 @@ wb.series.info(q='unemployment')
 wb.series.info(q='credit')
 ```
 
+```{code-cell} ipython3
+wb.series.info(q='consumer')
+```
+
 ## GDP Growth Rate and Unemployment
 
 First we look at the GDP growth rate and unemployment rate.
@@ -161,4 +165,31 @@ fig, ax = plt.subplots()
 countries = ['Brazil', 'China', 'Argentina']
 title = 'Brazil, China, Argentina \n Domestic credit to private sector by banks (% of GDP)'
 ax = plot_comparison(private_credit, countries, title, ylabel, 0.05, ax, g_params, b_params, t_params)
+```
+
+```{code-cell} ipython3
+cpi = wb.data.DataFrame('FP.CPI.TOTL.ZG',['CHN', 'USA', 'DEU', 'BRA', 'ARG', 'GBR'], labels=True)
+cpi = cpi.set_index('Country')
+cpi.columns = cpi.columns.str.replace('YR', '').astype(int)
+```
+
+```{code-cell} ipython3
+cpi
+```
+
+```{code-cell} ipython3
+fig, ax = plt.subplots()
+
+countries = ['United Kingdom', 'United States', 'Germany']
+title = 'United Kingdom, United States, and Germany \n Domestic credit to private sector by banks (% of GDP)'
+ylabel = '% of GDP'
+ax = plot_comparison(cpi, countries, title, ylabel, 0.05, ax, g_params, b_params, t_params)
+```
+
+```{code-cell} ipython3
+fig, ax = plt.subplots()
+
+countries = ['Brazil', 'China', 'Argentina']
+title = 'Brazil, China, Argentina \n Domestic credit to private sector by banks (% of GDP)'
+ax = plot_comparison(cpi, countries, title, ylabel, 0.05, ax, g_params, b_params, t_params)
 ```
