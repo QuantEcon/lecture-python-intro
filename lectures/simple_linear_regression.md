@@ -177,7 +177,7 @@ Ploting the error
 
 ```{code-cell} ipython3
 ax = pd.Series(errors).plot(xlabel='β', ylabel='error')
-plt.axvline(β_optimal, color='r')
+plt.axvline(β_optimal, color='r');
 ```
 
 Now let us vary $\alpha$ (holding $\beta$ constant)
@@ -192,7 +192,7 @@ Ploting the error
 
 ```{code-cell} ipython3
 ax = pd.Series(errors).plot(xlabel='α', ylabel='error')
-plt.axvline(α_optimal, color='r')
+plt.axvline(α_optimal, color='r');
 ```
 
 (slr:optimal-values)=
@@ -330,7 +330,7 @@ df['error'] = df['Y_hat'] - df['Y']
 fig, ax = plt.subplots()
 df.plot(x='X',y='Y', kind='scatter', ax=ax)
 df.plot(x='X',y='Y_hat', kind='line', ax=ax, color='g')
-plt.vlines(df['X'], df['Y_hat'], df['Y'], color='r')
+plt.vlines(df['X'], df['Y_hat'], df['Y'], color='r');
 ```
 
 :::{admonition} Why use OLS?
@@ -416,7 +416,7 @@ Now we have a dataset containing life expectency and GDP per capita for a range 
 
 It is always a good idea to spend a bit of time understanding what data you actually have. 
 
-For example, you may want to explore this data using `.reshape` to see if data is consistently reported for all countries across years
+For example, you may want to explore this data to see if data is consistently reported for all countries across years
 
 Let's first look at the Life Expectency Data
 
