@@ -19,15 +19,15 @@ import pandas as pd
 import matplotlib.pyplot as plt
 ```
 
-The simple regression model estimates the relationship between two variables $X$ and $Y$
+The simple regression model estimates the relationship between two variables $x_i$ and $y_i$
 
 $$
 y_i = \alpha + \beta x_i + \epsilon_i, i = 1,2,...,N
 $$
 
-where $\epsilon_i$ represents the error in the estimates. 
+where $\epsilon_i$ represents the error between the line of best fit and the sample values for $y_i$ given $x_i$.
 
-We would like to choose values for $\alpha$ and $\beta$ to build a line of "best" fit for some data that is available for variables $x_i$ and $y_i$. 
+Our goal is to choose values for $\alpha$ and $\beta$ to build a line of "best" fit for some data that is available for variables $x_i$ and $y_i$. 
 
 Let us consider a simple dataset of 10 observations for variables $x_i$ and $y_i$:
 
@@ -44,7 +44,7 @@ Let us consider a simple dataset of 10 observations for variables $x_i$ and $y_i
 |9| 1800 | 27 |
 |10 | 250 | 2 |
 
-Let us think about $y_i$ as sales for an ice-cream cart, while $x_i$ is a variable the records the temperature in Celcius.
+Let us think about $y_i$ as sales for an ice-cream cart, while $x_i$ is a variable that records the day's temperature in Celcius.
 
 ```{code-cell} ipython3
 x = [32, 21, 24, 35, 10, 11, 22, 21, 27, 2]
@@ -71,7 +71,7 @@ as you can see the data suggests that more ice-cream is typically sold on hotter
 To build a linear model of the data we need to choose values for $\alpha$ and $\beta$ that represents a line of "best" fit such that
 
 $$
-\hat{y}_i = \hat{\alpha} + \hat{\beta} x_i
+\hat{y_i} = \hat{\alpha} + \hat{\beta} x_i
 $$
 
 Let's start with $\alpha = 5$ and $\beta = 10$
@@ -87,6 +87,8 @@ fig, ax = plt.subplots()
 df.plot(x='X',y='Y', kind='scatter', ax=ax)
 df.plot(x='X',y='Y_hat', kind='line', ax=ax)
 ```
+
+We can see that this model does a poor job of estimating the relationship.
 
 We can continue to guess and iterate towards a line of "best" fit by adjusting the parameters
 
@@ -112,7 +114,7 @@ df.plot(x='X',y='Y', kind='scatter', ax=ax)
 df.plot(x='X',y='Y_hat', kind='line', ax=ax, color='g')
 ```
 
-We need to think about formalising this process by thinking of this problem as an optimization problem. 
+However we need to think about formalising this guessing process by thinking of this problem as an optimization problem. 
 
 Let's consider the error $\epsilon_i$ and define the difference between the observed values $y_i$ and the estimated values $\hat{y}_i$ which we will call the residuals
 
@@ -135,7 +137,7 @@ df
 fig, ax = plt.subplots()
 df.plot(x='X',y='Y', kind='scatter', ax=ax)
 df.plot(x='X',y='Y_hat', kind='line', ax=ax, color='g')
-plt.vlines(df['X'], df['Y_hat'], df['Y'], color='r')
+plt.vlines(df['X'], df['Y_hat'], df['Y'], color='r');
 ```
 
 The Ordinary Least Squares (OLS) method, as the name suggests, chooses $\alpha$ and $\beta$ in such a way that **minimises** the Sum of the Squared Residuals (SSR). 
@@ -150,9 +152,7 @@ $$
 C = \sum_{i=1}^{N}{(y_i - \alpha - \beta x_i)^2}
 $$
 
-that we would like to minimise.
-
-We can then make use of calculus to find a solution by taking the partial derivative of the cost function $C$ with respect to $\alpha$ and $\beta$
+that we would like to minimise with parameters $\alpha$ and $\beta$.
 
 ## How does error change with respect to $\alpha$ and $\beta$
 
@@ -198,7 +198,7 @@ plt.axvline(α_optimal, color='r');
 (slr:optimal-values)=
 ## Calculating Optimal Values
 
-Now let us use calculus to compute the optimal values for $\alpha$ and $\beta$ to solve the ordinary least squares solution.
+Now let us use calculus to solve the optimization problem and compute the optimal values for $\alpha$ and $\beta$ to find the ordinary least squares solution.
 
 First taking the partial derivative with respect to $\alpha$
 
@@ -212,8 +212,7 @@ $$
 0 = \sum_{i=1}^{N}{-2(y_i - \alpha - \beta x_i)}
 $$
 
-we can remove the constant $-2$ from the summation and devide both sides by $-2$
-
+we can remove the constant $-2$ from the summation by dividing both sides by $-2$
 
 $$
 0 = \sum_{i=1}^{N}{(y_i - \alpha - \beta x_i)}
@@ -225,7 +224,7 @@ $$
 0 = \sum_{i=1}^{N}{y_i} - \sum_{i=1}^{N}{\alpha} - \beta \sum_{i=1}^{N}{x_i}
 $$
 
-The middle term is simple to sum from $i=1,...N$ by a constant $\alpha$
+The middle term is a straight forward sum from $i=1,...N$ by a constant $\alpha$
 
 $$
 0 = \sum_{i=1}^{N}{y_i} - N*\alpha - \beta \sum_{i=1}^{N}{x_i}
@@ -237,7 +236,7 @@ $$
 \alpha = \frac{\sum_{i=1}^{N}{y_i} - \beta \sum_{i=1}^{N}{x_i}}{N}
 $$
 
-Both fractions resolve to the means $\bar{y_i}$ and $\bar{x_i}$ 
+We observe that both fractions resolve to the means $\bar{y_i}$ and $\bar{x_i}$
 
 $$
 \alpha = \bar{y_i} - \beta\bar{x_i}
@@ -267,7 +266,7 @@ $$
 0 = \sum_{i=1}^{N}{(x_i y_i - \alpha x_i - \beta x_i^2)}
 $$
 
-now substituting $\alpha$
+now substituting for $\alpha$
 
 $$
 0 = \sum_{i=1}^{N}{(x_i y_i - (\bar{y_i} - \beta \bar{x_i}) x_i - \beta x_i^2)}
@@ -285,12 +284,11 @@ $$
 0 = \sum_{i=1}^{N}(x_i y_i - \bar{y_i} x_i) + \beta \sum_{i=1}^{N}(\bar{x_i} x_i - x_i^2)
 $$
 
-and solving for $\beta$
+and solving for $\beta$ yields
 
 $$
 \beta = \frac{\sum_{i=1}^{N}(x_i y_i - \bar{y_i} x_i)}{\sum_{i=1}^{N}(x_i^2 - \bar{x_i} x_i)}
 $$ (eq:optimal-beta)
-
 
 We can now use {eq}`eq:optimal-alpha` and {eq}`eq:optimal-beta` to calculate the optimal values for $\alpha$ and $\beta$
 
@@ -343,14 +341,13 @@ TODO
 :::{exercise}
 :label: slr-ex1
 
-Now that you know the equations to solve the simple linear regression model using OLS
-you can now run your own regressions to build a model between $y$ and $x$.
+Now that you know the equations that solve the simple linear regression model using OLS you can now run your own regressions to build a model between $y$ and $x$.
 
-Consider two economic variables GDP per capita and Life Expectancy.
+Let's consider two economic variables GDP per capita and Life Expectancy.
 
 1. What do you think their relationship would be?
 2. Gather some data [from our world in data](https://ourworldindata.org)
-3. Use `pandas` to import the `csv` formatted data and plot a few different countries of interest
+3. Use `pandas` to import the `csv` formated data and plot a few different countries of interest
 4. Use {eq}`eq:optimal-alpha` and {eq}`eq:optimal-beta` to compute optimal values for  $\alpha$ and $\beta$
 5. Plot the line of best fit found using OLS
 6. Interpret the coefficients and write a summary sentence of the relationship between GDP per capita and Life Expectancy
@@ -381,9 +378,9 @@ df
 
 You can see that the data downloaded from Our World in Data has provided a global set of countries with the GDP per capita and Life Expectancy Data.
 
-It is often a good idea to at first import a few lines of data from a csv to understand its structure so that you can then choose the columns that you want to read into your program.
+It is often a good idea to at first import a few lines of data from a csv to understand its structure so that you can then choose the columns that you want to read into your DataFrame.
 
-There are a bunch of columns we won't need to import such as `Continent`
+You can observe that there are a bunch of columns we won't need to import such as `Continent`
 
 So let's built a list of the columns we want to import
 
@@ -400,7 +397,7 @@ df.columns = ["cntry", "year", "life_expectency", "gdppc"]
 df
 ```
 
-We can see there are `NaN` values or missing data so let us go ahead and drop those
+We can see there are `NaN` values which represents missing data so let us go ahead and drop those
 
 ```{code-cell} ipython3
 df.dropna(inplace=True)
@@ -416,7 +413,7 @@ Now we have a dataset containing life expectency and GDP per capita for a range 
 
 It is always a good idea to spend a bit of time understanding what data you actually have. 
 
-For example, you may want to explore this data to see if data is consistently reported for all countries across years
+For example, you may want to explore this data to see if there is consistent reporting for all countries across years
 
 Let's first look at the Life Expectency Data
 
@@ -427,7 +424,7 @@ le_years
 
 As you can see there are a lot of countries where data is not available for the Year 1543!
 
-Which country does report this data
+Which country does report this data?
 
 ```{code-cell} ipython3
 le_years[~le_years[1543].isna()]
@@ -443,11 +440,11 @@ le_years.loc['GBR'].plot()
 
 In fact we can use pandas to quickly check how many countries are captured in each year
 
-So it is clear that if you are doing cross-sectional comparisons then more recent data will include a wider set of countries
-
 ```{code-cell} ipython3
 le_years.stack().unstack(level=0).count(axis=1).plot(xlabel="Year", ylabel="Number of countries");
 ```
+
+So it is clear that if you are doing cross-sectional comparisons then more recent data will include a wider set of countries
 
 Now let us consider the most recent year in the dataset 2018
 
@@ -462,9 +459,9 @@ df.plot(x='gdppc', y='life_expectency', kind='scatter',  xlabel="GDP per capita"
 This data shows a couple of interesting relationships.
 
 1. there are a number of countries with similar GDP per capita levels but a wide range in Life Expectency
-2. appears to be a positive relationship between GDP per capita and life expectency. Countries with higher GDP per capita tend to have higher life expectency outcomes
+2. there appears to be a positive relationship between GDP per capita and life expectency. Countries with higher GDP per capita tend to have higher life expectency outcomes
 
-Even though OLS is solving linear equations -- one option is to transform the variables, such as through a log transform, and then use OLS to estimate the relationships
+Even though OLS is solving linear equations -- one option we have is to transform the variables, such as through a log transform, and then use OLS to estimate the transformed variables
 
 :::{tip}
 ln -> ln == elasticities
@@ -476,7 +473,7 @@ By specifying `logx` you can plot the GDP per Capita data on a log scale
 df.plot(x='gdppc', y='life_expectency', kind='scatter',  xlabel="GDP per capita", ylabel="Life Expectency (Years)", logx=True);
 ```
 
-As you can see from this transformation -- a linear model fits the shape of the data more closely. 
+As you can see from this transformation -- a linear model fits the shape of the data more closely.
 
 ```{code-cell} ipython3
 df['log_gdppc'] = df['gdppc'].apply(np.log10)
