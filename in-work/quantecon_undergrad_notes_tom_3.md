@@ -435,6 +435,7 @@ $$
 
 <!-- #endregion -->
 
+<!-- #region -->
 $$ 
 b = \begin{bmatrix} \sqrt{\lambda}b_1 \cr \sqrt{1-\lambda}b_2 \end{bmatrix}
 $$
@@ -475,17 +476,24 @@ It would be easy to build another  example with two consumers who have different
 
 # Economies with Endogenous Supplies of Goods
 
-## Supply
+## Supply Curve of a Competitive Firm
 
-Start from a cost function 
+A competitive firm takes a price vector $p$ as given and chooses a quantity $q$
+to maximize 
+
+$$ 
+p^\top q  - C(q) 
+$$ (eq:compprofits)
+
+where $C(q)$ is a total cost function 
 
 $$ 
 C(q) = h ^\top q + .5 q^\top J q 
 $$
 
-where $J$ is a positive definite matrix.
+and  $J$ is a positive definite matrix.
 
-The $n\times 1$ vector of marginal costs is
+The $n\times 1$ vector of **marginal costs** is
 
 $$ 
 \frac{\partial C(q)}{\partial q} = h + H q 
@@ -497,11 +505,25 @@ $$
 H = .5 (J + J') 
 $$
 
-The inverse supply curve implied by marginal cost pricing is 
+The $n \times 1$ vector of marginal revenues for the price-taking firm is
+
+$$ 
+p 
+$$
+
+so **price equals marginal revenue** for our price-taking competitive firm.  
+
+The firm maximizes total profits by setting  **marginal revenue to marginal costs**.
+
+This leads to the following **inverse supply curve** for the competitive firm:  
+
 
 $$ 
 p = h + H q 
 $$
+
+
+
 
 ## Competitive equilibrium
 
@@ -532,7 +554,7 @@ Then the inverse demand curve is
 
 $$
 p = \mu^{-1} [\Pi^\top b - \Pi^\top \Pi c]
-$$
+$$ (eq:old5pa)
 
 Equating this to the inverse supply curve and solving
 for $c$ gives
@@ -540,6 +562,38 @@ for $c$ gives
 $$ 
 c = [\Pi^\top \Pi + \mu H]^{-1} [ \Pi^\top b - \mu h]
 $$ (eq:old5p)
+
+
+## Digression: A Monopolist Supplier
+
+Instead of being a price-taker, a monopolist sets prices to maximize profits subject to the inverse  demand curve
+{eq}`eq:old5pa`.  
+
+So the monopolist's total profits as a function of its  output $q$ is
+
+$$
+[\mu^{-1} \Pi^\top (b - \Pi q)]^\top  q - h^\top q - .5 q^\top J q 
+$$ (eq:monopprof)
+
+After finding  the 
+first-order necessary conditions for maximizing the above formula for monopoly profits with respect to $q$
+and solving them for $q$, we find that the monopolist sets
+
+$$ 
+q = (H + 2 \mu^{-1} \Pi^T \Pi)^{-1} (\mu^{-1} \Pi^\top b - h) 
+$$ (eq:qmonop) 
+
+We'll see that the monopolist sets a **lower output** $q$ than does either a
+
+ * planner who chooses $q$ to maximize social welfare
+ 
+ * a competitive equilibrium 
+
+
+**Remark:** We can make exercises asking readers to verify the monopolist's supply curve {eq}`eq:qmonop` and the 
+
+
+
 
 ## Multi-good social welfare maximization problem
 
@@ -577,7 +631,7 @@ Thus,  as for the single-good case, with  multiple goods   a competitive equilib
 
 We can read the competitive equilbrium price vector off the inverse demand curve or the inverse supply curve.
 
-
+<!-- #endregion -->
 
 ## Initial notes to Jiacheng for coding
 
