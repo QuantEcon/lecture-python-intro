@@ -51,6 +51,10 @@ wb.series.info(q='credit')
 wb.series.info(q='consumer')
 ```
 
+```{code-cell} ipython3
+wb.series.info(q='consumption')
+```
+
 ## GDP Growth Rate and Unemployment
 
 First we look at the GDP growth rate and unemployment rate.
@@ -58,7 +62,7 @@ First we look at the GDP growth rate and unemployment rate.
 Let's source our data from the World Bank and clean the data
 
 ```{code-cell} ipython3
-gdp_growth = wb.data.DataFrame('NY.GDP.MKTP.KD.ZG',['CHN', 'USA', 'DEU', 'BRA', 'ARG', 'GBR'], labels=True)
+gdp_growth = wb.data.DataFrame('NY.GDP.MKTP.KD.ZG',['CHN', 'USA', 'DEU', 'BRA', 'ARG', 'GBR', 'MEX', 'CHL', 'COL', 'SLV', 'HTI'], labels=True)
 gdp_growth = gdp_growth.set_index('Country')
 gdp_growth.columns = gdp_growth.columns.str.replace('YR', '').astype(int)
 ```
@@ -68,19 +72,18 @@ gdp_growth
 ```
 
 ```{code-cell} ipython3
-fig, ax = plt.subplots()
-plt.locator_params(axis='x', nbins=10)
 cycler = plt.cycler(linestyle=['-', '-.', '--'], color=['#377eb8', '#ff7f00', '#4daf4a'])
 plt.rc('axes', prop_cycle=cycler)
+```
+
+```{code-cell} ipython3
+fig, ax = plt.subplots()
 ax.set_xticks([i for i in range(1960, 2021, 10)], minor=False)
+plt.locator_params(axis='x', nbins=10)
 
 def plot_comparison(data, countries, title, ylabel, title_pos, ax, g_params, b_params, t_params):
     for country in countries:
         ax.plot(data.loc[country], label=country, **g_params)
-        # ax.plot(data.loc[country, 1990:1992], alpha=0.8)
-        # ax.plot(data.loc[country, 1973:1975], alpha=0.8)
-        # ax.plot(data.loc[country, 2007:2009], alpha=0.8)
-        # ax.plot(data.loc[country, 2019:2021], alpha=0.8)
     ax.axvspan(1973, 1975, **b_params)
     ax.axvspan(1990, 1992, **b_params)
     ax.axvspan(2007, 2009, **b_params)
@@ -110,11 +113,88 @@ fig, ax = plt.subplots()
 
 countries = ['Brazil', 'China', 'Argentina']
 title = 'Brazil, China, Argentina (GDP Growth Rate %)'
-ax = plot_comparison(gdp_growth, countries, title, ylabel, 0.1, ax, g_params, b_params, t_params)
+ax = plot_comparison(gdp_growth.loc[countries, 1962:], countries, title, ylabel, 0.1, ax, g_params, b_params, t_params)
 ```
 
 ```{code-cell} ipython3
-unempl_rate = wb.data.DataFrame('SL.UEM.TOTL.NE.ZS',['CHN', 'USA', 'DEU', 'BRA', 'ARG', 'GBR'], labels=True)
+def plot_comparison_NBER(data, countries, title, ylabel, title_pos, ax, g_params, b_params, t_params):
+    for country in countries:
+        ax.plot(data.loc[country], label=country, **g_params)
+    ax.axvspan(1969, 1970, **b_params)
+    ax.axvspan(1973, 1975, **b_params)
+    ax.axvspan(1980.25, 1980.75, **b_params)
+    ax.axvspan(1981, 1982, **b_params)
+    ax.axvspan(1990, 1991, **b_params)
+    ax.axvspan(2001.25, 2002, **b_params)
+    ax.axvspan(2007, 2009, **b_params)
+    ax.axvspan(2020, 2020, **b_params)
+    ylim = ax.get_ylim()[1]
+    ax.text(1974, ylim + ylim * title_pos, 'Oil Crisis\n(1974)', **t_params) 
+    ax.text(1991, ylim + ylim * title_pos, '1990s recession\n(1991)', **t_params) 
+    ax.text(2008, ylim + ylim * title_pos, 'GFC\n(2008)', **t_params) 
+    ax.text(2020, ylim + ylim * title_pos, 'Covid-19\n(2020)', **t_params) 
+    ax.set_title(title, pad=40)
+    ax.set_ylabel(ylabel)
+    ax.legend()
+    return ax
+
+fig, ax = plt.subplots()
+
+countries = ['United States']
+title = 'United States (GDP Growth Rate %)'
+ax = plot_comparison_NBER(gdp_growth.loc[countries, 1962:], countries, title, ylabel, 0.1, ax, g_params, b_params, t_params)
+```
+
+```{code-cell} ipython3
+fig, ax = plt.subplots()
+
+countries = ['Argentina']
+title = 'Argentina (GDP Growth Rate %)'
+ax = plot_comparison(gdp_growth.loc[countries, 1962:], countries, title, ylabel, 0.1, ax, g_params, b_params, t_params)
+```
+
+```{code-cell} ipython3
+fig, ax = plt.subplots()
+
+countries = ['Mexico']
+title = 'Mexico (GDP Growth Rate %)'
+ax = plot_comparison(gdp_growth.loc[countries, 1962:], countries, title, ylabel, 0.1, ax, g_params, b_params, t_params)
+```
+
+```{code-cell} ipython3
+fig, ax = plt.subplots()
+
+countries = ['Chile']
+title = 'Chile (GDP Growth Rate %)'
+ax = plot_comparison(gdp_growth.loc[countries, 1962:], countries, title, ylabel, 0.1, ax, g_params, b_params, t_params)
+```
+
+```{code-cell} ipython3
+fig, ax = plt.subplots()
+
+countries = ['Colombia']
+title = 'Colombia (GDP Growth Rate %)'
+ax = plot_comparison(gdp_growth.loc[countries, 1962:], countries, title, ylabel, 0.1, ax, g_params, b_params, t_params)
+```
+
+```{code-cell} ipython3
+fig, ax = plt.subplots()
+
+countries = ['El Salvador']
+title = 'El Salvador (GDP Growth Rate %)'
+ax = plot_comparison(gdp_growth.loc[countries, 1962:], countries, title, ylabel, 0.1, ax, g_params, b_params, t_params)
+```
+
+```{code-cell} ipython3
+fig, ax = plt.subplots()
+
+countries = ['Haiti']
+title = 'Haiti (GDP Growth Rate %)'
+ax = plot_comparison(gdp_growth.loc[countries, 1962:], countries, title, ylabel, 0.1, ax, g_params, b_params, t_params)
+```
+
+```{code-cell} ipython3
+unempl_rate = wb.data.DataFrame('SL.UEM.TOTL.NE.ZS',['CHN', 'USA', 'DEU', 'BRA', 'ARG', 'GBR', 'MEX', 'CHL', 'COL', 'SLV', 'HTI'], labels=True)
 unempl_rate = unempl_rate.set_index('Country')
 unempl_rate.columns = unempl_rate.columns.str.replace('YR', '').astype(int)
 ```
@@ -137,6 +217,38 @@ fig, ax = plt.subplots()
 
 countries = ['Brazil', 'China', 'Argentina']
 title = 'Brazil, China, Argentina (Unemployment Rate %)'
+ax = plot_comparison(unempl_rate, countries, title, ylabel, 0.04, ax, g_params, b_params, t_params)
+```
+
+```{code-cell} ipython3
+fig, ax = plt.subplots()
+
+countries = ['Brazil']
+title = 'Brazil (Unemployment Rate %)'
+ax = plot_comparison(unempl_rate, countries, title, ylabel, 0.04, ax, g_params, b_params, t_params)
+```
+
+```{code-cell} ipython3
+fig, ax = plt.subplots()
+
+countries = ['Chile']
+title = 'Chile (Unemployment Rate %)'
+ax = plot_comparison(unempl_rate, countries, title, ylabel, 0.04, ax, g_params, b_params, t_params)
+```
+
+```{code-cell} ipython3
+fig, ax = plt.subplots()
+
+countries = ['Colombia']
+title = 'Colombia (Unemployment Rate %)'
+ax = plot_comparison(unempl_rate, countries, title, ylabel, 0.04, ax, g_params, b_params, t_params)
+```
+
+```{code-cell} ipython3
+fig, ax = plt.subplots()
+
+countries = ['El Salvador']
+title = 'El Salvador (Unemployment Rate %)'
 ax = plot_comparison(unempl_rate, countries, title, ylabel, 0.04, ax, g_params, b_params, t_params)
 ```
 
@@ -168,6 +280,14 @@ ax = plot_comparison(private_credit, countries, title, ylabel, 0.05, ax, g_param
 ```
 
 ```{code-cell} ipython3
+fig, ax = plt.subplots()
+
+countries = ['United Kingdom', 'China']
+title = 'United Kingdom and China \n Domestic credit to private sector by banks (% of GDP)'
+ax = plot_comparison(private_credit, countries, title, ylabel, 0.05, ax, g_params, b_params, t_params)
+```
+
+```{code-cell} ipython3
 cpi = wb.data.DataFrame('FP.CPI.TOTL.ZG',['CHN', 'USA', 'DEU', 'BRA', 'ARG', 'GBR'], labels=True)
 cpi = cpi.set_index('Country')
 cpi.columns = cpi.columns.str.replace('YR', '').astype(int)
@@ -181,15 +301,15 @@ cpi
 fig, ax = plt.subplots()
 
 countries = ['United Kingdom', 'United States', 'Germany']
-title = 'United Kingdom, United States, and Germany \n Domestic credit to private sector by banks (% of GDP)'
-ylabel = '% of GDP'
+title = 'United Kingdom, United States, and Germany \n Inflation, consumer prices (annual %)'
+ylabel = 'annual %'
 ax = plot_comparison(cpi, countries, title, ylabel, 0.05, ax, g_params, b_params, t_params)
 ```
 
 ```{code-cell} ipython3
 fig, ax = plt.subplots()
 
-countries = ['Brazil', 'China', 'Argentina']
-title = 'Brazil, China, Argentina \n Domestic credit to private sector by banks (% of GDP)'
+countries = ['China', 'Argentina']
+title = 'China, Argentina \n Inflation, consumer prices (annual %)'
 ax = plot_comparison(cpi, countries, title, ylabel, 0.05, ax, g_params, b_params, t_params)
 ```
