@@ -4,7 +4,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.14.1
+    jupytext_version: 1.14.4
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
@@ -1067,8 +1067,22 @@ P @ P
 
 Let's pick an initial distribution $\psi$ and trace out the sequence of distributions $\psi P^t$.
 
+First, we write a function to simulate the sequence of distributions for `n` period
+
 ```{code-cell} ipython3
-ψ = (0.0, 0.2, 0.8)        # Initial condition
+def simulate_ψ(ψ_0, P, n):
+    ψs = np.empty((n, P.shape[0]))
+    ψ = ψ_0
+    for t in range(n):
+        ψs[t] = ψ
+        ψ = ψ @ P
+    return np.array(ψs)
+```
+
+Now we plot the sequence
+
+```{code-cell} ipython3
+ψ_0 = (0.0, 0.2, 0.8)        # Initial condition
 
 fig = plt.figure(figsize=(8, 6))
 ax = fig.add_subplot(111, projection='3d')
@@ -1078,14 +1092,9 @@ ax.set(xlim=(0, 1), ylim=(0, 1), zlim=(0, 1),
        yticks=(0.25, 0.5, 0.75),
        zticks=(0.25, 0.5, 0.75))
 
-x_vals, y_vals, z_vals = [], [], []
-for t in range(20):
-    x_vals.append(ψ[0])
-    y_vals.append(ψ[1])
-    z_vals.append(ψ[2])
-    ψ = ψ @ P
+ψs = simulate_ψ(ψ_0, P, 20)
 
-ax.scatter(x_vals, y_vals, z_vals, c='r', s=60)
+ax.scatter(ψs[:,0], ψs[:,1], ψs[:,2], c='r', s=60)
 ax.view_init(30, 210)
 
 mc = qe.MarkovChain(P)
@@ -1113,8 +1122,22 @@ We can show this in a slightly different way by focusing on the probability that
 
 The following figure shows the dynamics of  $(\psi P^t)(i)$ as $t$ gets large, for each state $i$.
 
-```{code-cell} ipython3
+First, we write a function to draw `n` initial values
 
+```{code-cell} ipython3
+def generate_initial_values(n, n_state):
+    ψ_0s = np.empty((n, P.shape[0]))
+    
+    for i in range(n):
+        draws = np.random.randint(1, 10_000_000, size=n_state)
+
+        # Scale them so that they add up into 1
+        ψ_0s[i,:] = np.array(draws/sum(draws))
+        
+    return ψ_0s
+```
+
+```{code-cell} ipython3
 # Define the number of iterations
 n = 50
 n_state = P.shape[0]
@@ -1124,34 +1147,27 @@ mc = qe.MarkovChain(P)
 # Draw the plot
 fig, axes = plt.subplots(nrows=1, ncols=n_state)
 plt.subplots_adjust(wspace=0.35)
-x0s = np.ones((n, n_state))
-for i in range(n):
-    draws = np.random.randint(1, 10_000_000, size=n_state)
 
-    # Scale them so that they add up into 1
-    x0s[i,:] = np.array(draws/sum(draws))
+ψ_0s = generate_initial_values(n, n_state)
 
-# Loop through many initial values
-for x0 in x0s:
-    x = x0
-    X = np.zeros((n, n_state))
+for ψ_0 in ψ_0s:
+    ψs = simulate_ψ(ψ_0, P, n)
     
     # Obtain and plot distributions at each state
-    for t in range(0, n):
-        x =  x @ P
-        X[t] = x
     for i in range(n_state):
-        axes[i].plot(range(0, n), X[:,i], alpha=0.3)
+        axes[i].plot(range(0, n), ψs[:,i], alpha=0.3)
 
 for i in range(n_state):
     axes[i].axhline(ψ_star[i], linestyle='dashed', lw=2, color = 'black', 
                     label = fr'$\psi^*({i})$')
     axes[i].set_xlabel('t')
-    axes[i].set_ylabel(fr'probability of state $i$')
+    axes[i].set_ylabel(fr'$\psi({i})$')
     axes[i].legend()
 
 plt.show()
 ```
+
+The convergence to $\psi^*$ holds for different initial values.
 
 +++ {"user_expressions": []}
 
@@ -1170,20 +1186,15 @@ n_state = P.shape[0]
 mc = qe.MarkovChain(P)
 ψ_star = mc.stationary_distributions[0]
 fig, axes = plt.subplots(nrows=1, ncols=n_state)
-x0s = np.ones((n, n_state))
-for i in range(n):
-    nums = np.random.randint(1, 10_000_000, size=n_state)
-    x0s[i,:] = np.array(nums/sum(nums))
 
-for x0 in x0s:
-    x = x0
-    X = np.zeros((n,n_state))
+ψ_0s = generate_initial_values(n, n_state)
 
-    for t in range(0, n):
-        x = x @ P
-        X[t] = x
+for ψ_0 in ψ_0s:
+    ψs = simulate_ψ(ψ_0, P, n)
+
+    # Obtain and plot distributions at each state
     for i in range(n_state):
-        axes[i].plot(range(20, n), X[20:,i], alpha=0.3)
+        axes[i].plot(range(0, n), ψs[:,i], alpha=0.3)
 
 for i in range(n_state):
     axes[i].axhline(ψ_star[i], linestyle='dashed', lw=2, color = 'black', label = fr'$\psi^*({i})$')
@@ -1200,7 +1211,7 @@ This example helps to emphasize the fact that asymptotic stationarity is about t
 
 The proportion of time spent in a state can converge to the stationary distribution with periodic chains.
 
-However, the distribution at each state will not.
+However, the distribution at each state does not.
 
 (finite_mc_expec)=
 ## Computing Expectations
