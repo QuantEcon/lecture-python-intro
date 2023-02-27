@@ -3,11 +3,15 @@ jupytext:
   text_representation:
     extension: .md
     format_name: myst
+    format_version: 0.13
+    jupytext_version: 1.14.4
 kernelspec:
-  display_name: Python 3
+  display_name: Python 3 (ipykernel)
   language: python
   name: python3
 ---
+
++++ {"user_expressions": []}
 
 # Markov Chains
 
@@ -19,10 +23,12 @@ In addition to what's in Anaconda, this lecture will need the following librarie
 !pip install quantecon
 ```
 
++++ {"user_expressions": []}
+
 ## Overview
 
-Markov chains are a standard way to model time series with some
-dependence between observations.
+Markov chains are a standard way to model time series with some dependence
+between observations.
 
 For example,
 
@@ -31,8 +37,8 @@ For example,
 
 Markov chains are one of the workhorse models of economics and finance.
 
-The theory of Markov chains is beautiful and insightful, which is another
-excellent reason to study them.
+The theory of Markov chains is beautiful and provides many insights into
+probability and dynamics.
 
 In this introductory lecture, we will
 
@@ -47,6 +53,8 @@ plt.rcParams["figure.figsize"] = (11, 5)  # set default figure size
 import quantecon as qe
 import numpy as np
 ```
+
++++ {"user_expressions": []}
 
 ## Definitions and Examples
 
@@ -70,27 +78,7 @@ In other words,
 
 If $P$ is a stochastic matrix, then so is the $k$-th power $P^k$ for all $k \in \mathbb N$.
 
-(To create the $k$-th power of $P$, multiply $P$ with itself $k$ times.)
-
-The claim above is not hard to check.
-
-For example, suppose that $P$ is stochastic and, moreover, that $P^k$ is
-stochastic for some integer $k$.
-
-We will prove that $P^{k+1} = P P^k$ is also stochastic.
-
-(We are doing proof by induction --- we assume the claim is true at $k$ and
-now prove it is true at $k+1$.)
-
-To see this, observe that, since $P^k$ is stochastic and the product of
-nonnegative matrices is nonnegative, $P^{k+1} = P P^k$ is nonnegative.
-
-Also, if $\mathbf 1$ is a column vector of ones, then, since $P^k$ is stochastic we
-have $P^k \mathbf 1 = \mathbf 1$ (rows sum to one).
-
-Therefore $P^{k+1} \mathbf 1 = P P^k \mathbf 1 = P \mathbf 1 = \mathbf 1$
-
-The proof is done.
+Checking this is {ref}`one of the exercises <mc_ex_pk>` below.
 
 
 ### Markov Chains
@@ -131,6 +119,8 @@ dot.edge("sr", "sr", label="0.492")
 dot
 ```
 
++++ {"user_expressions": []}
+
 Here there are three **states**
 
 * "ng" represents normal growth
@@ -160,9 +150,9 @@ In particular, we agree that
 * state 1 represents mild recession
 * state 2 represents severe recession
 
-Now let $X_t$ record the value of the state at time $t$.
+Let $X_t$ record the value of the state at time $t$.
 
-We can now write the statement "there is a 14.5% probability of transitioning from mild recession to normal growth in one month" as
+Now we can write the statement "there is a 14.5% probability of transitioning from mild recession to normal growth in one month" as
 
 $$
     \mathbb P\{X_{t+1} = 0 \,|\, X_t = 1\} = 0.145
@@ -186,24 +176,17 @@ Notice that $P$ is a stochastic matrix.
 Now we have the following relationship
 
 $$
-    \mathbb P\{X_{t+1} = 0 \,|\, X_t = 1\} = P(1,0)
-$$
-
-where $P(1,0)$ is element $(1,0)$ of $P$.
-
-We see now that $P(1,0)$ is the probability of transitioning from state 0 to
-state 1 in one month.
-
-More generally, for any $i,j$ between 0 and 2, we have
-
-$$
-\begin{aligned}
     P(i,j)
-    & = \mathbb P\{X_{t+1} = j \,|\, X_t = i\}
-    \\
-    & = \text{ probability of transitioning from state $i$ to state $j$ in one month}
-\end{aligned}
+    = \mathbb P\{X_{t+1} = j \,|\, X_t = i\}
 $$
+
+This holds for any $i,j$ between 0 and 2.
+
+In particular, $P(i,j)$ is the
+     probability of transitioning from state $i$ to state $j$ in one month.
+
+
+
 
 (mc_eg1)=
 #### Example 2
@@ -253,7 +236,7 @@ Then we can address a range of questions, such as
 * Over the long-run, what fraction of the time does a worker find herself unemployed?
 * Conditional on employment, what is the probability of becoming unemployed at least once over the next 12 months?
 
-We'll cover such applications below.
+We'll cover some of these applications below.
 
 
 
@@ -266,7 +249,10 @@ To begin, let $S$ be a finite set $\{x_1, \ldots, x_n\}$ with $n$ elements.
 
 The set $S$ is called the **state space** and $x_1, \ldots, x_n$ are the **state values**.
 
-A **Markov chain** $\{X_t\}$ on $S$ is a sequence of random variables on $S$ that have the **Markov property**.
+A **distribution** $\psi$ on $S$ is a probability mass function of length $n$, where $\psi(i)$ is the amount of probability allocated to state $x_i$.
+
+A **Markov chain** $\{X_t\}$ on $S$ is a sequence of random variables taking values in $S$ 
+that have the **Markov property**.
 
 This means that, for any date $t$ and any state $y \in S$,
 
@@ -303,7 +289,7 @@ $$
 Going the other way, if we take a stochastic matrix $P$, we can generate a Markov
 chain $\{X_t\}$ as follows:
 
-* draw $X_0$ from a marginal distribution $\psi$
+* draw $X_0$ from a distribution $\psi$ on $S$
 * for each $t = 0, 1, \ldots$, draw $X_{t+1}$ from $P(X_t,\cdot)$
 
 By construction, the resulting process satisfies {eq}`mpp`.
@@ -326,25 +312,27 @@ In these exercises, we'll take the state space to be $S = 0,\ldots, n-1$.
 (We start at $0$ because Python arrays are indexed from $0$.)
 
 
-### Rolling Our Own
+### Writing Our Own Simulation Code
 
-To simulate a Markov chain, we need its stochastic matrix $P$ and a probability mass function $\psi$ on $S$ from which to draw a realization of $X_0$.
+To simulate a Markov chain, we need 
+
+1. a stochastic matrix $P$ and 
+1. a probability mass function $\psi$ of length $n$ from which to draw a realization of $X_0$.
 
 The Markov chain is then constructed as follows:
 
-1. At time $t=0$, draw a realization of  $X_0$  from $\psi$.
+1. At time $t=0$, draw a realization of $X_0$ from the distribution $\psi$.
 1. At each subsequent time $t$, draw a realization of the new state $X_{t+1}$ from $P(X_t, \cdot)$.
 
 (That is, draw from row $X_t$ of $P$.)
 
-To implement this simulation procedure, we need a method for generating draws from a discrete distribution.
+To implement this simulation procedure, we need a method for generating draws
+from a discrete distribution.
 
 For this task, we'll use `random.draw` from [QuantEcon](http://quantecon.org/quantecon-py).
 
 To use `random.draw`, we first need to convert the probability mass function
 to a cumulative distribution
-
-TODO -- link to distributions lecture
 
 ```{code-cell} ipython3
 ψ = (0.3, 0.7)           # probabilities over {0, 1}
@@ -352,14 +340,16 @@ cdf = np.cumsum(ψ)       # convert into cumulative distribution
 qe.random.draw(cdf, 5)   # generate 5 independent draws from ψ
 ```
 
++++ {"user_expressions": []}
+
 We'll write our code as a function that accepts the following three arguments
 
 * A stochastic matrix `P`
-* An initial state `init`
+* An initial distribution `ψ`
 * A positive integer `sample_size` representing the length of the time series the function should return
 
 ```{code-cell} ipython3
-def mc_sample_path(P, ψ_0=None, sample_size=1_000):
+def mc_sample_path(P, ψ=None, sample_size=1_000):
 
     # set up
     P = np.asarray(P)
@@ -367,21 +357,23 @@ def mc_sample_path(P, ψ_0=None, sample_size=1_000):
 
     # Convert each row of P into a cdf
     n = len(P)
-    P_dist = [np.cumsum(P[i, :]) for i in range(n)]
+    P_dist = np.cumsum(P, axis=1)  # Convert rows into cdfs
 
     # draw initial state, defaulting to 0
-    if ψ_0 is not None:
-        X_0 = qe.random.draw(np.cumsum(ψ_0))
+    if ψ is not None:
+        X_0 = qe.random.draw(np.cumsum(ψ))
     else:
         X_0 = 0
 
     # simulate
     X[0] = X_0
     for t in range(sample_size - 1):
-        X[t+1] = qe.random.draw(P_dist[X[t]])
+        X[t+1] = qe.random.draw(P_dist[X[t], :])
 
     return X
 ```
+
++++ {"user_expressions": []}
 
 Let's see how it works using the small matrix
 
@@ -390,20 +382,35 @@ P = [[0.4, 0.6],
      [0.2, 0.8]]
 ```
 
-As we'll see later, for a long series drawn from `P`, the fraction of the sample that takes value 0 will be about 0.25.
++++ {"user_expressions": []}
 
-Moreover, this is true, regardless of the initial distribution from which
+Here's a short time series.
+
+```{code-cell} ipython3
+mc_sample_path(P, ψ=[1.0, 0.0], sample_size=10)
+```
+
++++ {"user_expressions": []}
+
+It can be shown that for a long series drawn from `P`, the fraction of the
+sample that takes value 0 will be about 0.25.
+
+(We will explain why {ref}`below <ergodicity>`.)
+
+Moreover, this is true regardless of the initial distribution from which
 $X_0$ is drawn.
 
 The following code illustrates this
 
 ```{code-cell} ipython3
-X = mc_sample_path(P, ψ_0=[0.1, 0.9], sample_size=100_000)
+X = mc_sample_path(P, ψ=[0.1, 0.9], sample_size=1_000_000)
 np.mean(X == 0)
 ```
 
++++ {"user_expressions": []}
+
 You can try changing the initial distribution to confirm that the output is
-always close to 0.25, at least for the `P` matrix above.
+always close to 0.25 (for the `P` matrix above).
 
 
 ### Using QuantEcon's Routines
@@ -420,7 +427,9 @@ X = mc.simulate(ts_length=1_000_000)
 np.mean(X == 0)
 ```
 
-The `simulate` routine is [JIT compiled](https://python-programming.quantecon.org/numba.html#numba-link) and much faster.
++++ {"user_expressions": []}
+
+The `simulate` routine is faster (because it is [JIT compiled](https://python-programming.quantecon.org/numba.html#numba-link)).
 
 ```{code-cell} ipython3
 %time mc_sample_path(P, sample_size=1_000_000) # Our homemade code version
@@ -429,6 +438,8 @@ The `simulate` routine is [JIT compiled](https://python-programming.quantecon.or
 ```{code-cell} ipython3
 %time mc.simulate(ts_length=1_000_000) # qe code version
 ```
+
++++ {"user_expressions": []}
 
 #### Adding State Values and Initial Conditions
 
@@ -451,29 +462,36 @@ mc.simulate(ts_length=4, init='unemployed')
 mc.simulate(ts_length=4)  # Start at randomly chosen initial state
 ```
 
++++ {"user_expressions": []}
+
 If we want to see indices rather than state values as outputs as  we can use
 
 ```{code-cell} ipython3
 mc.simulate_indices(ts_length=4)
 ```
 
++++ {"user_expressions": []}
+
 (mc_md)=
-## Marginal Distributions
+## Distributions over Time
 
 Suppose that
 
 1. $\{X_t\}$ is a Markov chain with stochastic matrix $P$
-1. the marginal distribution of $X_t$ is known to be $\psi_t$
+1. the distribution of $X_t$ is known to be $\psi_t$
 
-What then is the marginal distribution of $X_{t+1}$, or, more generally, of $X_{t+m}$?
+What then is the distribution of $X_{t+1}$, or, more generally, of $X_{t+m}$?
 
-To answer this, we let $\psi_t$ be the marginal distribution of $X_t$ for $t = 0, 1, 2, \ldots$.
+To answer this, we let $\psi_t$ be the distribution of $X_t$ for $t = 0, 1, 2, \ldots$.
 
 Our first aim is to find $\psi_{t + 1}$ given $\psi_t$ and $P$.
 
 To begin, pick any $y  \in S$.
 
-Using the [law of total probability](https://en.wikipedia.org/wiki/Law_of_total_probability), we argue as follows:
+To get the probability of being at $y$ tomorrow (at $t+1$), we account for
+all ways this can happen and sum their probabilities.
+
+This leads to
 
 $$
 \mathbb P \{X_{t+1} = y \}
@@ -481,8 +499,9 @@ $$
                \cdot \mathbb P \{ X_t = x \}
 $$
 
-In words, to get the probability of being at $y$ tomorrow, we account for
-all ways this can happen and sum their probabilities.
+
+
+(We are using the [law of total probability](https://en.wikipedia.org/wiki/Law_of_total_probability).)
 
 Rewriting this statement in terms of  marginal and conditional probabilities gives
 
@@ -500,9 +519,9 @@ If we think of $\psi_{t+1}$ and $\psi_t$ as *row vectors*, these $n$ equations a
 \psi_{t+1} = \psi_t P
 ```
 
-Thus, to move a marginal distribution forward one unit of time, we postmultiply by $P$.
+Thus, to move a distribution forward one unit of time, we postmultiply by $P$.
 
-By postmultiplying $m$ times, we move a marginal distribution forward $m$ steps into the future.
+By postmultiplying $m$ times, we move a distribution forward $m$ steps into the future.
 
 Hence, iterating on {eq}`fin_mc_fr`, the expression $\psi_{t+m} = \psi_t P^m$ is also valid --- here $P^m$ is the $m$-th power of $P$.
 
@@ -518,7 +537,9 @@ This is very important, so let's repeat it
 X_0 \sim \psi_0 \quad \implies \quad X_m \sim \psi_0 P^m
 ```
 
-and, more generally,
+The general rule is that post-multiplying a distribution by $P^m$ shifts it forward $m$ units of time.
+
+Hence the following is also valid.
 
 ```{math}
 :label: mdfmc2
@@ -526,6 +547,7 @@ and, more generally,
 X_t \sim \psi_t \quad \implies \quad X_{t+m} \sim \psi_t P^m
 ```
 
++++ {"user_expressions": []}
 
 (finite_mc_mstp)=
 ### Multiple Step Transition Probabilities
@@ -537,9 +559,9 @@ It turns out that the probability of transitioning from $x$ to $y$ in
 $m$ steps is $P^m(x,y)$, the $(x,y)$-th element of the
 $m$-th power of $P$.
 
-To see why, consider again {eq}`mdfmc2`, but now with a $\psi_t$ that puts all probability on state $x$ so that the transition probabilities are
+To see why, consider again {eq}`mdfmc2`, but now with a $\psi_t$ that puts all probability on state $x$.
 
-* 1 in the $x$-th position and zero elsewhere
+Then $\psi_t$ is a vector with $1$ in position $x$ and zero elsewhere.
 
 Inserting this into {eq}`mdfmc2`, we see that, conditional on $X_t = x$, the distribution of $X_{t+m}$ is the $x$-th row of $P^m$.
 
@@ -561,27 +583,21 @@ Suppose that the current state is unknown --- perhaps statistics are available o
 
 We guess that the probability that the economy is in state $x$ is $\psi(x)$.
 
-The probability of being in recession (either mild or severe) in 6 months time is given by the inner product
+The probability of being in recession (either mild or severe) in 6 months time is given by 
 
 $$
-\psi P^6
-\cdot
-\left(
-  \begin{array}{c}
-     0 \\
-     1 \\
-     1
-  \end{array}
-\right)
+(\psi P^6)(1) + (\psi P^6)(2)
 $$
 
++++ {"user_expressions": []}
 
 (mc_eg1-1)=
 ### Example 2: Cross-Sectional Distributions
 
-The marginal distributions we have been studying can be viewed either as
-probabilities or as cross-sectional frequencies that a Law of Large Numbers
-leads us to anticipate for  large samples.
+The distributions we have been studying can be viewed either 
+
+1. as probabilities or 
+1. as cross-sectional frequencies that a Law of Large Numbers leads us to anticipate for  large samples.
 
 To illustrate, recall our model of employment/unemployment dynamics for a given worker {ref}`discussed above <mc_eg1>`.
 
@@ -727,6 +743,8 @@ mc = qe.MarkovChain(P, ('poor', 'middle', 'rich'))
 mc.is_irreducible
 ```
 
++++ {"user_expressions": []}
+
 It might be clear to you already that irreducibility is going to be important
 in terms of long run outcomes.
 
@@ -734,11 +752,12 @@ For example, poverty is a life sentence in the second graph but not the first.
 
 We'll come back to this a bit later.
 
++++ {"user_expressions": []}
 
 ## Stationary Distributions
 
 
-As seen in {eq}`fin_mc_fr`, we can shift a marginal distribution forward one
+As seen in {eq}`fin_mc_fr`, we can shift a distribution forward one
 unit of time via postmultiplication by $P$.
 
 Some distributions are invariant under this updating process --- for example,
@@ -750,14 +769,24 @@ P = np.array([[0.4, 0.6],
 ψ @ P
 ```
 
++++ {"user_expressions": []}
+
+Notice that `ψ @ P` is the same as `ψ`
+
++++ {"user_expressions": []}
+
 Such distributions are called **stationary** or **invariant**.
 
 (mc_stat_dd)=
-Formally, a marginal distribution $\psi^*$ on $S$ is called **stationary** for $P$ if $\psi^* = \psi^* P$.
+Formally, a distribution $\psi^*$ on $S$ is called **stationary** for $P$ if $\psi P = \psi $.
 
-From this equality, we immediately get $\psi^* = \psi^* P^t$ for all $t$.
+Notice that, post-multiplying by $P$, we have $\psi P^2 = \psi P = \psi$.
+
+Continuing in the same way leads to $\psi = \psi P^t$ for all $t$.
 
 This tells us an important fact: If the distribution of $X_0$ is a stationary distribution, then $X_t$ will have this same distribution for all $t$.
+
+The following theorem is proved in Chapter 4 of {cite}`sargent2023economic` and numerous other sources.
 
 ```{prf:theorem}
 :label: unique_stat
@@ -765,15 +794,10 @@ This tells us an important fact: If the distribution of $X_0$ is a stationary di
 Every stochastic matrix $P$ has at least one stationary distribution.
 ```
 
-A proof of this theorem can be constructed from the Perron-Frobenius theorem,
-which we discuss in another lecture.
-
-TODO -- to eigenvalue lecture
-
 Note that there can be many stationary distributions corresponding to a given
 stochastic matrix $P$.
 
-* For example, if $P$ is the identity matrix, then all marginal distributions are stationary.
+* For example, if $P$ is the identity matrix, then all distributions on $S$ are stationary.
 
 To get uniqueness, we need the Markov chain to "mix around," so that the state
 doesn't get stuck in some part of the state space.
@@ -785,11 +809,13 @@ This gives some intuition for the following fundamental theorem.
 :label: mc_conv_thm
 
 If $P$ is irreducible, then $P$ has exactly one stationary
-distribution $\psi^*$.
+distribution.
 ```
 
-For proof, see, for example, theorem 5.2 of {cite}`haggstrom2002finite`.
+For proof, see Chapter 4 of {cite}`sargent2023economic` or
+Theorem 5.2 of {cite}`haggstrom2002finite`.
 
++++ {"user_expressions": []}
 
 ### Example
 
@@ -844,13 +870,13 @@ distribution, then, for all $x \in S$,
     \quad \text{as } m \to \infty
 ```
 
+````
+
 Here
 
 * $\{X_t\}$ is a Markov chain with stochastic matrix $P$ and initial
   distribution $\psi_0$
 * $\mathbf{1}\{X_t = x\} = 1$ if $X_t = x$ and zero otherwise
-
-````
 
 The result in [theorem 4.3](llnfmc0) is sometimes called **ergodicity**.
 
@@ -862,9 +888,7 @@ This gives us another way to interpret the stationary distribution (provided irr
 
 Importantly, the result is valid for any choice of $\psi_0$.
 
-Notice that the theorem is related to the law of large numbers.
-
-TODO -- link to our undergrad lln and clt lecture
+The theorem is related to {doc}`the law of large numbers <lln_clt>`.
 
 It tells us that, in some settings, the law of large numbers sometimes holds even when the
 sequence of random variables is [not IID](iid_violation).
@@ -962,13 +986,13 @@ dot.edge("1", "0", label="1.0", color='red')
 dot
 ```
 
-As you might notice, unlike other Markov chains we have seen before, it has a periodic cycle.
++++ {"user_expressions": []}
 
-This is formally called [periodicity](https://www.randomservices.org/random/markov/Periodicity.html).
+Unlike other Markov chains we have seen before, it has a periodic cycle --- the state cycles between the two states in a regular way.
 
-We will not go into the details of periodicity.
+This is called [periodicity](https://www.randomservices.org/random/markov/Periodicity.html).
 
-The takeaway from this example is that ergodicity can hold for periodic chains
+It is still irreducible, however, so ergodicity holds.
 
 ```{code-cell} ipython3
 P = np.array([[0, 1],
@@ -998,15 +1022,13 @@ for i in range(n_state):
 plt.show()
 ```
 
-In fact, it converges faster given it is a more "predictable" dynamic
-
-We will come back to this very soon.
-
++++ {"user_expressions": []}
 
 ### Asymptotic Stationarity
 
-Sometimes the distribution $\psi_t = \psi_0 P^t$ of $X_t$ converges to the
-stationary distribution regardless of where we begin.
+Consider an irreducible stochastic matrix with unique stationary distribution $\psi^*$.
+
+Sometimes the distribution $\psi_t = \psi_0 P^t$ of $X_t$ converges to $\psi^*$ regardless of $\psi_0$.
 
 For example, we have the following result
 
@@ -1014,7 +1036,7 @@ For example, we have the following result
 :label: strict_stationary
 
 Theorem: If there exists an integer $m$ such that all entries of $P^m$ are
-strictly positive, then $P$ has only one stationary distribution $\psi^*$ and
+strictly positive, then $P$ is irreducible, with unique stationary distribution $\psi^*$, and
 
 $$
     \psi_0 P^t \to \psi
@@ -1022,19 +1044,45 @@ $$
 $$
 
 
-(See, for example, {cite}`haggstrom2002finite`. Our assumptions imply that $P$
-is irreducible and [aperiodic](https://en.wikipedia.org/wiki/Aperiodic_graph).)
 ```
 
-The convergence in the theorem is illustrated in the next figure
+
+See, for example, {cite}`sargent2023economic` Chapter 4.
+
++++ {"user_expressions": []}
+
+#### Example: Hamilton's Chain
+
+Hamilton's chain satisfies the conditions of the theorem because $P^2$ is everywhere positive:
 
 ```{code-cell} ipython3
 P = np.array([[0.971, 0.029, 0.000],
               [0.145, 0.778, 0.077],
               [0.000, 0.508, 0.492]])
 P = np.array(P)
+P @ P
+```
 
-ψ = (0.0, 0.2, 0.8)        # Initial condition
++++ {"user_expressions": []}
+
+Let's pick an initial distribution $\psi$ and trace out the sequence of distributions $\psi P^t$.
+
+First, we write a function to iterate the sequence of distributions for `n` period
+
+```{code-cell} ipython3
+def iterate_ψ(ψ_0, P, n):
+    ψs = np.empty((n, P.shape[0]))
+    ψ = ψ_0
+    for t in range(n):
+        ψs[t] = ψ
+        ψ = ψ @ P
+    return np.array(ψs)
+```
+
+Now we plot the sequence
+
+```{code-cell} ipython3
+ψ_0 = (0.0, 0.2, 0.8)        # Initial condition
 
 fig = plt.figure(figsize=(8, 6))
 ax = fig.add_subplot(111, projection='3d')
@@ -1044,14 +1092,9 @@ ax.set(xlim=(0, 1), ylim=(0, 1), zlim=(0, 1),
        yticks=(0.25, 0.5, 0.75),
        zticks=(0.25, 0.5, 0.75))
 
-x_vals, y_vals, z_vals = [], [], []
-for t in range(20):
-    x_vals.append(ψ[0])
-    y_vals.append(ψ[1])
-    z_vals.append(ψ[2])
-    ψ = ψ @ P
+ψs = iterate_ψ(ψ_0, P, 20)
 
-ax.scatter(x_vals, y_vals, z_vals, c='r', s=60)
+ax.scatter(ψs[:,0], ψs[:,1], ψs[:,2], c='r', s=60)
 ax.view_init(30, 210)
 
 mc = qe.MarkovChain(P)
@@ -1060,6 +1103,8 @@ ax.scatter(ψ_star[0], ψ_star[1], ψ_star[2], c='k', s=60)
 
 plt.show()
 ```
+
++++ {"user_expressions": []}
 
 Here
 
@@ -1070,18 +1115,29 @@ Here
 
 You might like to try experimenting with different initial conditions.
 
-### Example 1
 
-We can simulate many initial distributions and check whether they converge to the stationary distribution.
+#### An Alternative Illustration
 
-In the case of Hamilton's Markov chain, the distribution $\psi P^t$ converges to $\psi^*$ after a period of time
+We can show this in a slightly different way by focusing on the probability that $\psi_t$ puts on each state.
+
+The following figure shows the dynamics of  $(\psi P^t)(i)$ as $t$ gets large, for each state $i$.
+
+First, we write a function to draw `n` initial values
 
 ```{code-cell} ipython3
-# Define the transition matrix
-P = np.array([[0.971, 0.029, 0.000],
-              [0.145, 0.778, 0.077],
-              [0.000, 0.508, 0.492]])
+def generate_initial_values(n, n_state):
+    ψ_0s = np.empty((n, P.shape[0]))
+    
+    for i in range(n):
+        draws = np.random.randint(1, 10_000_000, size=n_state)
 
+        # Scale them so that they add up into 1
+        ψ_0s[i,:] = np.array(draws/sum(draws))
+        
+    return ψ_0s
+```
+
+```{code-cell} ipython3
 # Define the number of iterations
 n = 50
 n_state = P.shape[0]
@@ -1091,24 +1147,15 @@ mc = qe.MarkovChain(P)
 # Draw the plot
 fig, axes = plt.subplots(nrows=1, ncols=n_state)
 plt.subplots_adjust(wspace=0.35)
-x0s = np.ones((n, n_state))
-for i in range(n):
-    draws = np.random.randint(1, 10_000_000, size=n_state)
 
-    # Scale them so that they add up into 1
-    x0s[i,:] = np.array(draws/sum(draws))
+ψ_0s = generate_initial_values(n, n_state)
 
-# Loop through many initial values
-for x0 in x0s:
-    x = x0
-    X = np.zeros((n, n_state))
+for ψ_0 in ψ_0s:
+    ψs = iterate_ψ(ψ_0, P, n)
     
     # Obtain and plot distributions at each state
-    for t in range(0, n):
-        x =  x @ P
-        X[t] = x
     for i in range(n_state):
-        axes[i].plot(range(0, n), X[:,i], alpha=0.3)
+        axes[i].plot(range(0, n), ψs[:,i], alpha=0.3)
 
 for i in range(n_state):
     axes[i].axhline(ψ_star[i], linestyle='dashed', lw=2, color = 'black', 
@@ -1120,14 +1167,16 @@ for i in range(n_state):
 plt.show()
 ```
 
-### Example 2
+The convergence to $\psi^*$ holds for different initial values.
+
++++ {"user_expressions": []}
+
+#### Example: Failure of Convergence
 
 
-However, in the case of our periodic chain, we find the distribution is oscillating
+In the case of our periodic chain, we find the distribution is oscillating
 
 ```{code-cell} ipython3
-import random
-
 P = np.array([[0, 1],
               [1, 0]])
 n = 50
@@ -1135,20 +1184,15 @@ n_state = P.shape[0]
 mc = qe.MarkovChain(P)
 ψ_star = mc.stationary_distributions[0]
 fig, axes = plt.subplots(nrows=1, ncols=n_state)
-x0s = np.ones((n, n_state))
-for i in range(n):
-    nums = np.random.randint(1, 10_000_000, size=n_state)
-    x0s[i,:] = np.array(nums/sum(nums))
 
-for x0 in x0s:
-    x = x0
-    X = np.zeros((n,n_state))
+ψ_0s = generate_initial_values(n, n_state)
 
-    for t in range(0, n):
-        x = x @ P
-        X[t] = x
+for ψ_0 in ψ_0s:
+    ψs = iterate_ψ(ψ_0, P, n)
+
+    # Obtain and plot distributions at each state
     for i in range(n_state):
-        axes[i].plot(range(20, n), X[20:,i], alpha=0.3)
+        axes[i].plot(range(0, n), ψs[:,i], alpha=0.3)
 
 for i in range(n_state):
     axes[i].axhline(ψ_star[i], linestyle='dashed', lw=2, color = 'black', label = fr'$\psi^*({i})$')
@@ -1159,11 +1203,13 @@ for i in range(n_state):
 plt.show()
 ```
 
++++ {"user_expressions": []}
+
 This example helps to emphasize the fact that asymptotic stationarity is about the distribution, while ergodicity is about the sample path.
 
 The proportion of time spent in a state can converge to the stationary distribution with periodic chains.
 
-However, the distribution at each state will not.
+However, the distribution at each state does not.
 
 (finite_mc_expec)=
 ## Computing Expectations
@@ -1248,19 +1294,20 @@ $\sum_t \beta^t h(X_t)$.
 In view of the preceding discussion, this is
 
 $$
-\mathbb{E} [
-        \sum_{j=0}^\infty \beta^j h(X_{t+j}) \mid X_t = x
-    \Bigr]
-= [(I - \beta P)^{-1} h](x)
+\mathbb{E} 
+    \left[
+        \sum_{j=0}^\infty \beta^j h(X_{t+j}) \mid X_t 
+        = x
+    \right]
+    = x + \beta (Ph)(x) + \beta^2 (P^2 h)(x) + \cdots
 $$
 
-where
+By the {doc}`Neumann series lemma <eigen>`, this sum can be calculated using 
 
 $$
-(I - \beta P)^{-1}  = I + \beta P + \beta^2 P^2 + \cdots
+    I + \beta P + \beta^2 P^2 + \cdots = (I - \beta P)^{-1}
 $$
 
-TODO -- connect to the Neumann series lemma (Maanasee)
 
 ## Exercises
 
@@ -1327,7 +1374,7 @@ codes_B =  ( '1','2','3','4','5','6','7','8')
 np.linalg.matrix_power(P_B, 10)
 ```
 
-We find that rows of the transition matrix converge to the stationary distribution 
+We find that rows of the transition matrix converge to the stationary distribution
 
 ```{code-cell} ipython3
 mc = qe.MarkovChain(P_B)
@@ -1489,6 +1536,36 @@ for P in (P1, P2, P3):
     result = lambda P: 'irreducible' if is_irreducible(P) else 'reducible'
     print(f'{P}: {result(P)}')
 ```
+
+```{solution-end}
+```
+
+```{exercise}
+:label: mc_ex_pk
+Prove the following: If $P$ is a stochastic matrix, then so is the $k$-th
+power $P^k$ for all $k \in \mathbb N$.
+```
+
+
+```{solution-start} mc_ex_pk
+```
+Suppose that $P$ is stochastic and, moreover, that $P^k$ is
+stochastic for some integer $k$.
+
+We will prove that $P^{k+1} = P P^k$ is also stochastic.
+
+(We are doing proof by induction --- we assume the claim is true at $k$ and
+now prove it is true at $k+1$.)
+
+To see this, observe that, since $P^k$ is stochastic and the product of
+nonnegative matrices is nonnegative, $P^{k+1} = P P^k$ is nonnegative.
+
+Also, if $\mathbf 1$ is a column vector of ones, then, since $P^k$ is stochastic we
+have $P^k \mathbf 1 = \mathbf 1$ (rows sum to one).
+
+Therefore $P^{k+1} \mathbf 1 = P P^k \mathbf 1 = P \mathbf 1 = \mathbf 1$
+
+The proof is done.
 
 ```{solution-end}
 ```
