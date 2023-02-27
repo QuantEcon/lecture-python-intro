@@ -1553,7 +1553,9 @@ power $P^k$ for all $k \in \mathbb N$.
 
 
 ```{solution-start} mc_ex_pk
+:class: dropdown
 ```
+
 Suppose that $P$ is stochastic and, moreover, that $P^k$ is
 stochastic for some integer $k$.
 
