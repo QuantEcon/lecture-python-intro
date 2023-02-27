@@ -1067,7 +1067,7 @@ P @ P
 
 Let's pick an initial distribution $\psi$ and trace out the sequence of distributions $\psi P^t$.
 
-First, we write a function to simulate the sequence of distributions for `n` period
+First, we write a function to iterate the sequence of distributions for `n` period
 
 ```{code-cell} ipython3
 def iterate_ψ(ψ_0, P, n):
