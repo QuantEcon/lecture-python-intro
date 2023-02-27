@@ -346,14 +346,14 @@ We'll write our code as a function that accepts the following three arguments
 
 * A stochastic matrix `P`
 * An initial distribution `ψ`
-* A positive integer `sample_size` representing the length of the time series the function should return
+* A positive integer `ts_length` representing the length of the time series the function should return
 
 ```{code-cell} ipython3
-def mc_sample_path(P, ψ=None, sample_size=1_000):
+def mc_sample_path(P, ψ=None, ts_length=1_000):
 
     # set up
     P = np.asarray(P)
-    X = np.empty(sample_size, dtype=int)
+    X = np.empty(ts_length, dtype=int)
 
     # Convert each row of P into a cdf
     n = len(P)
@@ -367,7 +367,7 @@ def mc_sample_path(P, ψ=None, sample_size=1_000):
 
     # simulate
     X[0] = X_0
-    for t in range(sample_size - 1):
+    for t in range(ts_length - 1):
         X[t+1] = qe.random.draw(P_dist[X[t], :])
 
     return X
@@ -387,7 +387,7 @@ P = [[0.4, 0.6],
 Here's a short time series.
 
 ```{code-cell} ipython3
-mc_sample_path(P, ψ=[1.0, 0.0], sample_size=10)
+mc_sample_path(P, ψ=[1.0, 0.0], ts_length=10)
 ```
 
 +++ {"user_expressions": []}
@@ -403,7 +403,7 @@ $X_0$ is drawn.
 The following code illustrates this
 
 ```{code-cell} ipython3
-X = mc_sample_path(P, ψ=[0.1, 0.9], sample_size=1_000_000)
+X = mc_sample_path(P, ψ=[0.1, 0.9], ts_length=1_000_000)
 np.mean(X == 0)
 ```
 
@@ -432,7 +432,7 @@ np.mean(X == 0)
 The `simulate` routine is faster (because it is [JIT compiled](https://python-programming.quantecon.org/numba.html#numba-link)).
 
 ```{code-cell} ipython3
-%time mc_sample_path(P, sample_size=1_000_000) # Our homemade code version
+%time mc_sample_path(P, ts_length=1_000_000) # Our homemade code version
 ```
 
 ```{code-cell} ipython3
@@ -930,14 +930,14 @@ Therefore, we can see the sample path averages for each state (the fraction of t
 P = np.array([[0.971, 0.029, 0.000],
               [0.145, 0.778, 0.077],
               [0.000, 0.508, 0.492]])
-n = 10_000
+ts_length = 10_000
 mc = MarkovChain(P)
-n_state = P.shape[1]
-fig, axes = plt.subplots(nrows=1, ncols=n_state)
+n = len(P)
+fig, axes = plt.subplots(nrows=1, ncols=n)
 ψ_star = mc.stationary_distributions[0]
 plt.subplots_adjust(wspace=0.35)
 
-for i in range(n_state):
+for i in range(n):
     axes[i].grid()
     axes[i].axhline(ψ_star[i], linestyle='dashed', lw=2, color = 'black', 
                     label = fr'$\psi^*({i})$')
@@ -947,8 +947,8 @@ for i in range(n_state):
     # Compute the fraction of time spent, starting from different x_0s
     for x0, col in ((0, 'blue'), (1, 'green'), (2, 'red')):
         # Generate time series that starts at different x0
-        X = mc.simulate(n, init=x0)
-        X_bar = (X == i).cumsum() / (1 + np.arange(n, dtype=float))
+        X = mc.simulate(ts_length, init=x0)
+        X_bar = (X == i).cumsum() / (1 + np.arange(ts_length, dtype=float))
         axes[i].plot(X_bar, color=col, label=f'$x_0 = \, {x0} $')
     axes[i].legend()
 plt.show()
@@ -997,13 +997,13 @@ It is still irreducible, however, so ergodicity holds.
 ```{code-cell} ipython3
 P = np.array([[0, 1],
               [1, 0]])
-n = 10_000
+ts_length = 10_000
 mc = MarkovChain(P)
-n_state = P.shape[1]
-fig, axes = plt.subplots(nrows=1, ncols=n_state)
+n = len(P)
+fig, axes = plt.subplots(nrows=1, ncols=n)
 ψ_star = mc.stationary_distributions[0]
 
-for i in range(n_state):
+for i in range(n):
     axes[i].grid()
     axes[i].set_ylim(0.45, 0.55)
     axes[i].axhline(ψ_star[i], linestyle='dashed', lw=2, color = 'black', 
@@ -1012,10 +1012,10 @@ for i in range(n_state):
     axes[i].set_ylabel(f'fraction of time spent at {i}')
 
     # Compute the fraction of time spent, for each x
-    for x0 in range(n_state):
+    for x0 in range(n):
         # Generate time series starting at different x_0
-        X = mc.simulate(n, init=x0)
-        X_bar = (X == i).cumsum() / (1 + np.arange(n, dtype=float))
+        X = mc.simulate(ts_length, init=x0)
+        X_bar = (X == i).cumsum() / (1 + np.arange(ts_length, dtype=float))
         axes[i].plot(X_bar, label=f'$x_0 = \, {x0} $')
 
     axes[i].legend()
@@ -1070,10 +1070,11 @@ Let's pick an initial distribution $\psi$ and trace out the sequence of distribu
 First, we write a function to iterate the sequence of distributions for `n` period
 
 ```{code-cell} ipython3
-def iterate_ψ(ψ_0, P, n):
-    ψs = np.empty((n, P.shape[0]))
+def iterate_ψ(ψ_0, P, ts_length):
+    n = len(P)
+    ψs = np.empty((ts_length, n))
     ψ = ψ_0
-    for t in range(n):
+    for t in range(ts_length):
         ψs[t] = ψ
         ψ = ψ @ P
     return np.array(ψs)
@@ -1125,39 +1126,40 @@ The following figure shows the dynamics of  $(\psi P^t)(i)$ as $t$ gets large, f
 First, we write a function to draw `n` initial values
 
 ```{code-cell} ipython3
-def generate_initial_values(n, n_state):
-    ψ_0s = np.empty((n, P.shape[0]))
+def generate_initial_values(ts_length, n):
+    n = len(P)
+    ψ_0s = np.empty((ts_length, n))
     
-    for i in range(n):
-        draws = np.random.randint(1, 10_000_000, size=n_state)
+    for t in range(ts_length):
+        draws = np.random.randint(1, 10_000_000, size=n)
 
         # Scale them so that they add up into 1
-        ψ_0s[i,:] = np.array(draws/sum(draws))
+        ψ_0s[t,:] = np.array(draws/sum(draws))
         
     return ψ_0s
 ```
 
 ```{code-cell} ipython3
 # Define the number of iterations
-n = 50
-n_state = P.shape[0]
+ts_length = 50
+n = len(P)
 mc = qe.MarkovChain(P)
 ψ_star = mc.stationary_distributions[0]
 
 # Draw the plot
-fig, axes = plt.subplots(nrows=1, ncols=n_state)
+fig, axes = plt.subplots(nrows=1, ncols=n)
 plt.subplots_adjust(wspace=0.35)
 
-ψ_0s = generate_initial_values(n, n_state)
+ψ_0s = generate_initial_values(ts_length, n)
 
 for ψ_0 in ψ_0s:
-    ψs = iterate_ψ(ψ_0, P, n)
+    ψs = iterate_ψ(ψ_0, P, ts_length)
     
     # Obtain and plot distributions at each state
-    for i in range(n_state):
-        axes[i].plot(range(0, n), ψs[:,i], alpha=0.3)
+    for i in range(n):
+        axes[i].plot(range(0, ts_length), ψs[:,i], alpha=0.3)
 
-for i in range(n_state):
+for i in range(n):
     axes[i].axhline(ψ_star[i], linestyle='dashed', lw=2, color = 'black', 
                     label = fr'$\psi^*({i})$')
     axes[i].set_xlabel('t')
@@ -1179,22 +1181,22 @@ In the case of our periodic chain, we find the distribution is oscillating
 ```{code-cell} ipython3
 P = np.array([[0, 1],
               [1, 0]])
-n = 50
-n_state = P.shape[0]
+ts_length = 50
+n = len(P)
 mc = qe.MarkovChain(P)
 ψ_star = mc.stationary_distributions[0]
-fig, axes = plt.subplots(nrows=1, ncols=n_state)
+fig, axes = plt.subplots(nrows=1, ncols=n)
 
-ψ_0s = generate_initial_values(n, n_state)
+ψ_0s = generate_initial_values(ts_length, n)
 
 for ψ_0 in ψ_0s:
-    ψs = iterate_ψ(ψ_0, P, n)
+    ψs = iterate_ψ(ψ_0, P, ts_length)
 
     # Obtain and plot distributions at each state
-    for i in range(n_state):
-        axes[i].plot(range(0, n), ψs[:,i], alpha=0.3)
+    for i in range(n):
+        axes[i].plot(range(20, ts_length), ψs[20:,i], alpha=0.3)
 
-for i in range(n_state):
+for i in range(n):
     axes[i].axhline(ψ_star[i], linestyle='dashed', lw=2, color = 'black', label = fr'$\psi^*({i})$')
     axes[i].set_xlabel('t')
     axes[i].set_ylabel(fr'$\psi({i})$')
@@ -1385,10 +1387,10 @@ mc = qe.MarkovChain(P_B)
 2.
 
 ```{code-cell} ipython3
-N = 1000
+ts_length = 1000
 mc = MarkovChain(P_B)
 fig, ax = plt.subplots(figsize=(9, 6))
-X = mc.simulate(N)
+X = mc.simulate(ts_length)
 # Center the plot at 0
 ax.set_ylim(-0.25, 0.25)
 ax.axhline(0, linestyle='dashed', lw=2, color = 'black', alpha=0.4)
@@ -1396,7 +1398,7 @@ ax.axhline(0, linestyle='dashed', lw=2, color = 'black', alpha=0.4)
 
 for x0 in range(8):
     # Calculate the fraction of time for each worker
-    X_bar = (X == x0).cumsum() / (1 + np.arange(N, dtype=float))
+    X_bar = (X == x0).cumsum() / (1 + np.arange(ts_length, dtype=float))
     ax.plot(X_bar - ψ_star[x0], label=f'$X = {x0+1} $')
     ax.set_xlabel('t')
     ax.set_ylabel(r'fraction of time spent in a state $- \psi^* (x)$')
@@ -1464,7 +1466,7 @@ As $m$ gets large, both series converge to zero.
 
 ```{code-cell} ipython3
 α = β = 0.1
-N = 10000
+ts_length = 10000
 p = β / (α + β)
 
 P = ((1 - α,       α),               # Careful: P and p are distinct
@@ -1474,15 +1476,15 @@ mc = MarkovChain(P)
 fig, ax = plt.subplots(figsize=(9, 6))
 ax.set_ylim(-0.25, 0.25)
 ax.grid()
-ax.hlines(0, 0, N, lw=2, alpha=0.6)   # Horizonal line at zero
+ax.hlines(0, 0, ts_length, lw=2, alpha=0.6)   # Horizonal line at zero
 
 for x0, col in ((0, 'blue'), (1, 'green')):
     # Generate time series for worker that starts at x0
-    X = mc.simulate(N, init=x0)
+    X = mc.simulate(ts_length, init=x0)
     # Compute fraction of time spent unemployed, for each n
-    X_bar = (X == 0).cumsum() / (1 + np.arange(N, dtype=float))
+    X_bar = (X == 0).cumsum() / (1 + np.arange(ts_length, dtype=float))
     # Plot
-    ax.fill_between(range(N), np.zeros(N), X_bar - p, color=col, alpha=0.1)
+    ax.fill_between(range(ts_length), np.zeros(ts_length), X_bar - p, color=col, alpha=0.1)
     ax.plot(X_bar - p, color=col, label=f'$X_0 = \, {x0} $')
     # Overlay in black--make lines clearer
     ax.plot(X_bar - p, 'k-', alpha=0.6)
@@ -1515,7 +1517,7 @@ Based on this claim, write a function to test irreducibility.
 
 ```{code-cell} ipython3
 def is_irreducible(P):
-    n = P.shape[0]
+    n = len(P)
     result = np.zeros((n, n))
     for i in range(n):
         result += np.linalg.matrix_power(P, i)
