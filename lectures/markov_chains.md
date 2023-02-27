@@ -1070,7 +1070,7 @@ Let's pick an initial distribution $\psi$ and trace out the sequence of distribu
 First, we write a function to simulate the sequence of distributions for `n` period
 
 ```{code-cell} ipython3
-def simulate_ψ(ψ_0, P, n):
+def iterate_ψ(ψ_0, P, n):
     ψs = np.empty((n, P.shape[0]))
     ψ = ψ_0
     for t in range(n):
@@ -1092,7 +1092,7 @@ ax.set(xlim=(0, 1), ylim=(0, 1), zlim=(0, 1),
        yticks=(0.25, 0.5, 0.75),
        zticks=(0.25, 0.5, 0.75))
 
-ψs = simulate_ψ(ψ_0, P, 20)
+ψs = iterate_ψ(ψ_0, P, 20)
 
 ax.scatter(ψs[:,0], ψs[:,1], ψs[:,2], c='r', s=60)
 ax.view_init(30, 210)
@@ -1151,7 +1151,7 @@ plt.subplots_adjust(wspace=0.35)
 ψ_0s = generate_initial_values(n, n_state)
 
 for ψ_0 in ψ_0s:
-    ψs = simulate_ψ(ψ_0, P, n)
+    ψs = iterate_ψ(ψ_0, P, n)
     
     # Obtain and plot distributions at each state
     for i in range(n_state):
@@ -1177,8 +1177,6 @@ The convergence to $\psi^*$ holds for different initial values.
 In the case of our periodic chain, we find the distribution is oscillating
 
 ```{code-cell} ipython3
-import random
-
 P = np.array([[0, 1],
               [1, 0]])
 n = 50
@@ -1190,7 +1188,7 @@ fig, axes = plt.subplots(nrows=1, ncols=n_state)
 ψ_0s = generate_initial_values(n, n_state)
 
 for ψ_0 in ψ_0s:
-    ψs = simulate_ψ(ψ_0, P, n)
+    ψs = iterate_ψ(ψ_0, P, n)
 
     # Obtain and plot distributions at each state
     for i in range(n_state):
