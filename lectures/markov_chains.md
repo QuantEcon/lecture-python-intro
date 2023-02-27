@@ -1141,7 +1141,7 @@ def generate_initial_values(num_distributions, n):
 
 ```{code-cell} ipython3
 # Define the number of iterations 
-# and number of initial distributions
+# and initial distributions
 ts_length = 50
 num_distributions = 25
 
