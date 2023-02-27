@@ -1126,22 +1126,25 @@ The following figure shows the dynamics of  $(\psi P^t)(i)$ as $t$ gets large, f
 First, we write a function to draw `n` initial values
 
 ```{code-cell} ipython3
-def generate_initial_values(ts_length, n):
+def generate_initial_values(num_distributions, n):
     n = len(P)
-    ψ_0s = np.empty((ts_length, n))
+    ψ_0s = np.empty((num_distributions, n))
     
-    for t in range(ts_length):
+    for i in range(num_distributions):
         draws = np.random.randint(1, 10_000_000, size=n)
 
         # Scale them so that they add up into 1
-        ψ_0s[t,:] = np.array(draws/sum(draws))
+        ψ_0s[i,:] = np.array(draws/sum(draws))
         
     return ψ_0s
 ```
 
 ```{code-cell} ipython3
-# Define the number of iterations
+# Define the number of iterations 
+# and number of initial distributions
 ts_length = 50
+num_distributions = 25
+
 n = len(P)
 mc = qe.MarkovChain(P)
 ψ_star = mc.stationary_distributions[0]
@@ -1150,8 +1153,7 @@ mc = qe.MarkovChain(P)
 fig, axes = plt.subplots(nrows=1, ncols=n)
 plt.subplots_adjust(wspace=0.35)
 
-ψ_0s = generate_initial_values(ts_length, n)
-
+ψ_0s = generate_initial_values(num_distributions, n)
 for ψ_0 in ψ_0s:
     ψs = iterate_ψ(ψ_0, P, ts_length)
     
@@ -1181,14 +1183,15 @@ In the case of our periodic chain, we find the distribution is oscillating
 ```{code-cell} ipython3
 P = np.array([[0, 1],
               [1, 0]])
+
 ts_length = 50
+num_distributions = 25
 n = len(P)
 mc = qe.MarkovChain(P)
 ψ_star = mc.stationary_distributions[0]
 fig, axes = plt.subplots(nrows=1, ncols=n)
 
-ψ_0s = generate_initial_values(ts_length, n)
-
+ψ_0s = generate_initial_values(num_distributions, n)
 for ψ_0 in ψ_0s:
     ψs = iterate_ψ(ψ_0, P, ts_length)
 
@@ -1550,9 +1553,7 @@ power $P^k$ for all $k \in \mathbb N$.
 
 
 ```{solution-start} mc_ex_pk
-:class: dropdown
 ```
-
 Suppose that $P$ is stochastic and, moreover, that $P^k$ is
 stochastic for some integer $k$.
 
