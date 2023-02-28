@@ -249,7 +249,7 @@ To begin, let $S$ be a finite set $\{x_1, \ldots, x_n\}$ with $n$ elements.
 
 The set $S$ is called the **state space** and $x_1, \ldots, x_n$ are the **state values**.
 
-A **distribution** $\psi_t$ on $S$ is a probability mass function of length $n$ at time $t$, where $\psi_t(i)$ is the amount of probability allocated to state $x_i$ at time $t$.
+A **distribution** $\psi$ on $S$ is a probability mass function of length $n$, where $\psi(i)$ is the amount of probability allocated to state $x_i$.
 
 A **Markov chain** $\{X_t\}$ on $S$ is a sequence of random variables taking values in $S$ 
 that have the **Markov property**.
