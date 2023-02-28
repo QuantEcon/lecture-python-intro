@@ -1072,12 +1072,12 @@ First, we write a function to iterate the sequence of distributions for `ts_leng
 ```{code-cell} ipython3
 def iterate_ψ(ψ_0, P, ts_length):
     n = len(P)
-    ψs = np.empty((ts_length, n))
+    ψ_t = np.empty((ts_length, n))
     ψ = ψ_0
     for t in range(ts_length):
-        ψs[t] = ψ
+        ψ_t[t] = ψ
         ψ = ψ @ P
-    return np.array(ψs)
+    return np.array(ψ_t)
 ```
 
 Now we plot the sequence
@@ -1093,9 +1093,9 @@ ax.set(xlim=(0, 1), ylim=(0, 1), zlim=(0, 1),
        yticks=(0.25, 0.5, 0.75),
        zticks=(0.25, 0.5, 0.75))
 
-ψs = iterate_ψ(ψ_0, P, 20)
+ψ_t = iterate_ψ(ψ_0, P, 20)
 
-ax.scatter(ψs[:,0], ψs[:,1], ψs[:,2], c='r', s=60)
+ax.scatter(ψ_t[:,0], ψ_t[:,1], ψ_t[:,2], c='r', s=60)
 ax.view_init(30, 210)
 
 mc = qe.MarkovChain(P)
