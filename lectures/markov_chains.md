@@ -249,7 +249,7 @@ To begin, let $S$ be a finite set $\{x_1, \ldots, x_n\}$ with $n$ elements.
 
 The set $S$ is called the **state space** and $x_1, \ldots, x_n$ are the **state values**.
 
-A **distribution** $\psi$ on $S$ is a probability mass function of length $n$, where $\psi(i)$ is the amount of probability allocated to state $x_i$.
+A **distribution** $\psi_t$ on $S$ is a probability mass function of length $n$ at time $t$, where $\psi_t(i)$ is the amount of probability allocated to state $x_i$ at time $t$.
 
 A **Markov chain** $\{X_t\}$ on $S$ is a sequence of random variables taking values in $S$ 
 that have the **Markov property**.
@@ -289,7 +289,7 @@ $$
 Going the other way, if we take a stochastic matrix $P$, we can generate a Markov
 chain $\{X_t\}$ as follows:
 
-* draw $X_0$ from a distribution $\psi$ on $S$
+* draw $X_0$ from a distribution $\psi_0$ on $S$
 * for each $t = 0, 1, \ldots$, draw $X_{t+1}$ from $P(X_t,\cdot)$
 
 By construction, the resulting process satisfies {eq}`mpp`.
@@ -317,11 +317,11 @@ In these exercises, we'll take the state space to be $S = 0,\ldots, n-1$.
 To simulate a Markov chain, we need 
 
 1. a stochastic matrix $P$ and 
-1. a probability mass function $\psi$ of length $n$ from which to draw a realization of $X_0$.
+1. a probability mass function $\psi_0$ of length $n$ from which to draw a initial realization of $X_0$.
 
 The Markov chain is then constructed as follows:
 
-1. At time $t=0$, draw a realization of $X_0$ from the distribution $\psi$.
+1. At time $t=0$, draw a realization of $X_0$ from the distribution $\psi_0$.
 1. At each subsequent time $t$, draw a realization of the new state $X_{t+1}$ from $P(X_t, \cdot)$.
 
 (That is, draw from row $X_t$ of $P$.)
@@ -335,8 +335,8 @@ To use `random.draw`, we first need to convert the probability mass function
 to a cumulative distribution
 
 ```{code-cell} ipython3
-ψ = (0.3, 0.7)           # probabilities over {0, 1}
-cdf = np.cumsum(ψ)       # convert into cumulative distribution
+ψ_0 = (0.3, 0.7)           # probabilities over {0, 1}
+cdf = np.cumsum(ψ_0)       # convert into cumulative distribution
 qe.random.draw(cdf, 5)   # generate 5 independent draws from ψ
 ```
 
@@ -345,11 +345,11 @@ qe.random.draw(cdf, 5)   # generate 5 independent draws from ψ
 We'll write our code as a function that accepts the following three arguments
 
 * A stochastic matrix `P`
-* An initial distribution `ψ`
+* An initial distribution `ψ_0`
 * A positive integer `ts_length` representing the length of the time series the function should return
 
 ```{code-cell} ipython3
-def mc_sample_path(P, ψ=None, ts_length=1_000):
+def mc_sample_path(P, ψ_0=None, ts_length=1_000):
 
     # set up
     P = np.asarray(P)
@@ -360,8 +360,8 @@ def mc_sample_path(P, ψ=None, ts_length=1_000):
     P_dist = np.cumsum(P, axis=1)  # Convert rows into cdfs
 
     # draw initial state, defaulting to 0
-    if ψ is not None:
-        X_0 = qe.random.draw(np.cumsum(ψ))
+    if ψ_0 is not None:
+        X_0 = qe.random.draw(np.cumsum(ψ_0))
     else:
         X_0 = 0
 
@@ -387,7 +387,7 @@ P = [[0.4, 0.6],
 Here's a short time series.
 
 ```{code-cell} ipython3
-mc_sample_path(P, ψ=[1.0, 0.0], ts_length=10)
+mc_sample_path(P, ψ_0=[1.0, 0.0], ts_length=10)
 ```
 
 +++ {"user_expressions": []}
@@ -403,7 +403,7 @@ $X_0$ is drawn.
 The following code illustrates this
 
 ```{code-cell} ipython3
-X = mc_sample_path(P, ψ=[0.1, 0.9], ts_length=1_000_000)
+X = mc_sample_path(P, ψ_0=[0.1, 0.9], ts_length=1_000_000)
 np.mean(X == 0)
 ```
 
@@ -475,7 +475,7 @@ mc.simulate_indices(ts_length=4)
 (mc_md)=
 ## Distributions over Time
 
-Suppose that
+We learnt that
 
 1. $\{X_t\}$ is a Markov chain with stochastic matrix $P$
 1. the distribution of $X_t$ is known to be $\psi_t$
@@ -581,12 +581,12 @@ Recall the stochastic matrix $P$ for recession and growth {ref}`considered above
 
 Suppose that the current state is unknown --- perhaps statistics are available only  at the *end* of the current month.
 
-We guess that the probability that the economy is in state $x$ is $\psi(x)$.
+We guess that the probability that the economy is in state $x$ is $\psi_t(x)$ at time t.
 
 The probability of being in recession (either mild or severe) in 6 months time is given by 
 
 $$
-(\psi P^6)(1) + (\psi P^6)(2)
+(\psi_t P^6)(1) + (\psi_t P^6)(2)
 $$
 
 +++ {"user_expressions": []}
@@ -606,26 +606,26 @@ described by the specified dynamics, with each worker's outcomes being
 realizations of processes that are statistically independent of all other
 workers' processes.
 
-Let $\psi$ be the current *cross-sectional* distribution over $\{ 0, 1 \}$.
+Let $\psi_t$ be the current *cross-sectional* distribution over $\{ 0, 1 \}$.
 
-The cross-sectional distribution records fractions of workers employed and unemployed at a given moment.
+The cross-sectional distribution records fractions of workers employed and unemployed at a given moment t.
 
-* For example, $\psi(0)$ is the unemployment rate.
+* For example, $\psi_t(0)$ is the unemployment rate.
 
 What will the cross-sectional distribution be in 10 periods hence?
 
-The answer is $\psi P^{10}$, where $P$ is the stochastic matrix in
+The answer is $\psi_t P^{10}$, where $P$ is the stochastic matrix in
 {eq}`p_unempemp`.
 
 This is because each worker's state evolves according to $P$, so
-$\psi P^{10}$ is a marginal distribution  for a single randomly selected
+$\psi_t P^{10}$ is a marginal distribution  for a single randomly selected
 worker.
 
 But when the sample is large, outcomes and probabilities are roughly equal (by an application of the Law
 of Large Numbers).
 
 So for a very large (tending to infinite) population,
-$\psi P^{10}$ also represents  fractions of workers in
+$\psi_t P^{10}$ also represents  fractions of workers in
 each state.
 
 This is exactly the cross-sectional distribution.
@@ -778,13 +778,13 @@ Notice that `ψ @ P` is the same as `ψ`
 Such distributions are called **stationary** or **invariant**.
 
 (mc_stat_dd)=
-Formally, a distribution $\psi^*$ on $S$ is called **stationary** for $P$ if $\psi P = \psi $.
+Formally, a distribution $\psi^*$ on $S$ is called **stationary** for $P$ if $\psi^* P = \psi^* $.
 
-Notice that, post-multiplying by $P$, we have $\psi P^2 = \psi P = \psi$.
+Notice that, post-multiplying by $P$, we have $\psi^* P^2 = \psi^* P = \psi^*$.
 
-Continuing in the same way leads to $\psi = \psi P^t$ for all $t$.
+Continuing in the same way leads to $\psi^* = \psi^* P^t$ for all $t$.
 
-This tells us an important fact: If the distribution of $X_0$ is a stationary distribution, then $X_t$ will have this same distribution for all $t$.
+This tells us an important fact: If the distribution of $\psi_0$ is a stationary distribution, then $\psi_t$ will have this same distribution for all $t$.
 
 The following theorem is proved in Chapter 4 of {cite}`sargent2023economic` and numerous other sources.
 
@@ -1065,9 +1065,9 @@ P @ P
 
 +++ {"user_expressions": []}
 
-Let's pick an initial distribution $\psi$ and trace out the sequence of distributions $\psi P^t$.
+Let's pick an initial distribution $\psi_0$ and trace out the sequence of distributions $\psi_0 P^t$ for $t = 0, 1, 2, \ldots$
 
-First, we write a function to iterate the sequence of distributions for `n` period
+First, we write a function to iterate the sequence of distributions for `ts_length` period
 
 ```{code-cell} ipython3
 def iterate_ψ(ψ_0, P, ts_length):
@@ -1105,13 +1105,13 @@ ax.scatter(ψ_star[0], ψ_star[1], ψ_star[2], c='k', s=60)
 plt.show()
 ```
 
-+++ {"user_expressions": []}
++++ {"user_expressions": [], "tags": []}
 
 Here
 
 * $P$ is the stochastic matrix for recession and growth {ref}`considered above <mc_eg2>`.
 * The highest red dot is an arbitrarily chosen initial marginal probability distribution  $\psi$, represented as a vector in $\mathbb R^3$.
-* The other red dots are the marginal distributions $\psi P^t$ for $t = 1, 2, \ldots$.
+* The other red dots are the marginal distributions $\psi_0 P^t$ for $t = 1, 2, \ldots$.
 * The black dot is $\psi^*$.
 
 You might like to try experimenting with different initial conditions.
@@ -1121,9 +1121,7 @@ You might like to try experimenting with different initial conditions.
 
 We can show this in a slightly different way by focusing on the probability that $\psi_t$ puts on each state.
 
-The following figure shows the dynamics of  $(\psi P^t)(i)$ as $t$ gets large, for each state $i$.
-
-First, we write a function to draw `n` initial values
+First, we write a function to draw initial distributions $ψ_0$s of size `num_distributions`
 
 ```{code-cell} ipython3
 def generate_initial_values(num_distributions, n):
@@ -1138,6 +1136,8 @@ def generate_initial_values(num_distributions, n):
         
     return ψ_0s
 ```
+
+The following figure shows the dynamics of  $(\psi_0 P^t)(i)$ as $t$ gets large, for each state $i$ with different initial distributions
 
 ```{code-cell} ipython3
 # Define the number of iterations 
@@ -1155,23 +1155,23 @@ plt.subplots_adjust(wspace=0.35)
 
 ψ_0s = generate_initial_values(num_distributions, n)
 for ψ_0 in ψ_0s:
-    ψs = iterate_ψ(ψ_0, P, ts_length)
+    ψ_t = iterate_ψ(ψ_0, P, ts_length)
     
     # Obtain and plot distributions at each state
     for i in range(n):
-        axes[i].plot(range(0, ts_length), ψs[:,i], alpha=0.3)
+        axes[i].plot(range(0, ts_length), ψ_t[:,i], alpha=0.3)
 
 for i in range(n):
     axes[i].axhline(ψ_star[i], linestyle='dashed', lw=2, color = 'black', 
                     label = fr'$\psi^*({i})$')
     axes[i].set_xlabel('t')
-    axes[i].set_ylabel(fr'$\psi({i})$')
+    axes[i].set_ylabel(fr'$\psi_t({i})$')
     axes[i].legend()
 
 plt.show()
 ```
 
-The convergence to $\psi^*$ holds for different initial values.
+The convergence to $\psi^*$ holds for different initial distributions.
 
 +++ {"user_expressions": []}
 
@@ -1184,8 +1184,8 @@ In the case of our periodic chain, we find the distribution is oscillating
 P = np.array([[0, 1],
               [1, 0]])
 
-ts_length = 50
-num_distributions = 25
+ts_length = 20
+num_distributions = 30
 n = len(P)
 mc = qe.MarkovChain(P)
 ψ_star = mc.stationary_distributions[0]
@@ -1193,16 +1193,16 @@ fig, axes = plt.subplots(nrows=1, ncols=n)
 
 ψ_0s = generate_initial_values(num_distributions, n)
 for ψ_0 in ψ_0s:
-    ψs = iterate_ψ(ψ_0, P, ts_length)
+    ψ_t = iterate_ψ(ψ_0, P, ts_length)
 
     # Obtain and plot distributions at each state
     for i in range(n):
-        axes[i].plot(range(20, ts_length), ψs[20:,i], alpha=0.3)
+        axes[i].plot(range(ts_length), ψ_t[:,i], alpha=0.3)
 
 for i in range(n):
     axes[i].axhline(ψ_star[i], linestyle='dashed', lw=2, color = 'black', label = fr'$\psi^*({i})$')
     axes[i].set_xlabel('t')
-    axes[i].set_ylabel(fr'$\psi({i})$')
+    axes[i].set_ylabel(fr'$\psi_t({i})$')
     axes[i].legend()
 
 plt.show()
