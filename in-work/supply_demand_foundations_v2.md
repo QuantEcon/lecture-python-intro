@@ -435,6 +435,7 @@ $$
 
 <!-- #endregion -->
 
+<!-- #region -->
 $$ 
 b = \begin{bmatrix} \sqrt{\lambda}b_1 \cr \sqrt{1-\lambda}b_2 \end{bmatrix}
 $$
@@ -475,17 +476,24 @@ It would be easy to build another  example with two consumers who have different
 
 # Economies with Endogenous Supplies of Goods
 
-## Supply
+## Supply Curve of a Competitive Firm
 
-Start from a cost function 
+A competitive firm takes a price vector $p$ as given and chooses a quantity $q$
+to maximize 
+
+$$ 
+p^\top q  - C(q) 
+$$ (eq:compprofits)
+
+where $C(q)$ is a total cost function 
 
 $$ 
 C(q) = h ^\top q + .5 q^\top J q 
 $$
 
-where $J$ is a positive definite matrix.
+and  $J$ is a positive definite matrix.
 
-The $n\times 1$ vector of marginal costs is
+The $n\times 1$ vector of **marginal costs** is
 
 $$ 
 \frac{\partial C(q)}{\partial q} = h + H q 
@@ -497,11 +505,25 @@ $$
 H = .5 (J + J') 
 $$
 
-The inverse supply curve implied by marginal cost pricing is 
+The $n \times 1$ vector of marginal revenues for the price-taking firm is
+
+$$ 
+p 
+$$
+
+so **price equals marginal revenue** for our price-taking competitive firm.  
+
+The firm maximizes total profits by setting  **marginal revenue to marginal costs**.
+
+This leads to the following **inverse supply curve** for the competitive firm:  
+
 
 $$ 
 p = h + H q 
 $$
+
+
+
 
 ## Competitive equilibrium
 
@@ -532,7 +554,7 @@ Then the inverse demand curve is
 
 $$
 p = \mu^{-1} [\Pi^\top b - \Pi^\top \Pi c]
-$$
+$$ (eq:old5pa)
 
 Equating this to the inverse supply curve and solving
 for $c$ gives
@@ -540,6 +562,38 @@ for $c$ gives
 $$ 
 c = [\Pi^\top \Pi + \mu H]^{-1} [ \Pi^\top b - \mu h]
 $$ (eq:old5p)
+
+
+## Digression: A Monopolist Supplier
+
+Instead of being a price-taker, a monopolist sets prices to maximize profits subject to the inverse  demand curve
+{eq}`eq:old5pa`.  
+
+So the monopolist's total profits as a function of its  output $q$ is
+
+$$
+[\mu^{-1} \Pi^\top (b - \Pi q)]^\top  q - h^\top q - .5 q^\top J q 
+$$ (eq:monopprof)
+
+After finding  the 
+first-order necessary conditions for maximizing the above formula for monopoly profits with respect to $q$
+and solving them for $q$, we find that the monopolist sets
+
+$$ 
+q = (H + 2 \mu^{-1} \Pi^T \Pi)^{-1} (\mu^{-1} \Pi^\top b - h) 
+$$ (eq:qmonop) 
+
+We'll see that the monopolist sets a **lower output** $q$ than does either a
+
+ * planner who chooses $q$ to maximize social welfare
+ 
+ * a competitive equilibrium 
+
+
+**Remark:** We can make exercises asking readers to verify the monopolist's supply curve {eq}`eq:qmonop` and the 
+
+
+
 
 ## Multi-good social welfare maximization problem
 
@@ -577,7 +631,7 @@ Thus,  as for the single-good case, with  multiple goods   a competitive equilib
 
 We can read the competitive equilbrium price vector off the inverse demand curve or the inverse supply curve.
 
-
+<!-- #endregion -->
 
 ## Initial notes to Jiacheng for coding
 
@@ -927,6 +981,7 @@ Then we compute the equilibrium  price vector using the inverse demand or supply
 
 
 ```python
+
 class Production_economy:
     def __init__(self, Pi, b, h, J, mu):
         """
@@ -961,6 +1016,24 @@ class Production_economy:
         
         return c, p
     
+    def equilibrium_with_monopoly(self):
+        """
+        Compute the equilibrium price and allocation when there is a monopolist supplier
+        """
+        Pi, b, h, mu, J = self.Pi, self.b, self.h, self.mu, self.J
+        H = .5*(J+J.T)
+        
+        # allocation
+        q = inv(mu*H + 2*Pi.T@Pi)@(Pi.T@b - mu*h)
+        
+        # price
+        p = 1/mu * (Pi.T@b - Pi.T@Pi@q)
+        
+        if any(Pi @ q - b >= 0):
+            raise Exception('invalid result: set bliss points further away')
+        
+        return q, p
+    
     def compute_surplus(self):
         """
         Compute consumer and producer surplus for single good case
@@ -984,7 +1057,7 @@ class Production_economy:
         return c_surplus, p_surplus
         
 
-def plot_PE_single_good(PE):
+def plot_competitive_equilibrium(PE):
     """
     Plot demand and supply curves, producer/consumer surpluses, and equilibrium for 
     a single good production economy
@@ -1013,11 +1086,14 @@ def plot_PE_single_good(PE):
     plt.figure(figsize=[7,5])
     plt.plot(xs, supply_curve, label='Supply', color='#020060')
     plt.plot(xs, demand_curve, label='Demand', color='#600001')
-    plt.fill_between(xs[xs<=c], supply_curve[xs<=c], ps[xs<=c], label='Producer surplus', color='#E6E6F5') 
+    
     plt.fill_between(xs[xs<=c], demand_curve[xs<=c], ps[xs<=c], label='Consumer surplus', color='#EED1CF')
+    plt.fill_between(xs[xs<=c], supply_curve[xs<=c], ps[xs<=c], label='Producer surplus', color='#E6E6F5') 
+    
     plt.vlines(c, 0, p, linestyle="dashed", color='black', alpha=0.7)
     plt.hlines(p, 0, c, linestyle="dashed", color='black', alpha=0.7)
     plt.scatter(c, p, zorder=10, label='Competitive equilibrium', color='#600001')
+    
     plt.legend(loc='upper right')
     plt.margins(x=0, y=0)
     plt.ylim(0)
@@ -1051,7 +1127,7 @@ print('Competitive equilibrium price:', p.item())
 print('Competitive equilibrium allocation:', c.item())
 
 # plot
-plot_PE_single_good(PE)
+plot_competitive_equilibrium(PE)
 ```
 
 ```python
@@ -1071,7 +1147,7 @@ print('Competitive equilibrium price:', p.item())
 print('Competitive equilibrium allocation:', c.item())
 
 # plot
-plot_PE_single_good(PE)
+plot_competitive_equilibrium(PE)
 ```
 
 ```python
@@ -1092,7 +1168,7 @@ print('Competitive equilibrium price:', p.item())
 print('Competitive equilibrium allocation:', c.item())
 
 # plot
-plot_PE_single_good(PE)
+plot_competitive_equilibrium(PE)
 ```
 
 This raises both the equilibrium price and quantity.
@@ -1154,4 +1230,120 @@ c, p = PE.competitive_equilibrium()
 
 print('Competitive equilibrium price:', p)
 print('Competitive equilibrium allocation:', c)
+```
+
+### A Monopolist Supplier
+
+Let us follow the above digression and consider a monopolist supplier in this economy. We add a method to the `production_economy` class we built above to compute the equilibrium price and allocation when there is a monopolist supplier. Since the supplier now has the price-setting power, 
+- we first compute the optimal quantity that solves the monopolist's profit maximization problem. 
+- Then we derive the required price level from the consumer's inverse supply curve.
+
+Next, we use a graph for the single good case to illustrate the difference between a competitive equilibrium and an equilibrium with a monopolist supplier. Recall that in a competitive equilibrium of the economy, the price-taking supplier equalizes the marginal revenue $p$ with the marginal cost $h + Hq$. This yields the inverse supply curve. In a monopolist economy, the marginal revenue of the firm is a function of the quantity it chooses:
+$$
+MR(q) = -2\mu^{-1}\Pi^{\top}\Pi q+\mu^{-1}\Pi^{\top}b,
+$$
+which the monopolist supplier equalizes with the marginal cost.
+
+Our plot illustrates the fact that the monopolist supplier's equilibrium output is lower than either the competitive equilibrium or the social optimal level. In a single good case, this equilibrium is associated with a higher price of the good.
+
+```python
+def plot_monopoly(PE):
+    """
+    Plot demand curve, marginal production cost and revenue, surpluses and the
+    equilibrium in a monopolist supplier economy with a single good
+
+    Args:
+        PE (class): A initialized production economy class
+    """
+    # get singleton value
+    J, h, Pi, b, mu = PE.J.item(), PE.h.item(), PE.Pi.item(), PE.b.item(), PE.mu
+    H = J
+    
+    # compute competitive equilibrium
+    c, p = PE.competitive_equilibrium()
+    q, pm = PE.equilibrium_with_monopoly()
+    c, p, q, pm = c.item(), p.item(), q.item(), pm.item()
+    
+    # compute 
+    
+    # inverse supply/demand curve
+    marg_cost = lambda x: h + H*x
+    marg_rev  = lambda x: -2*1/mu*Pi*Pi*x + 1/mu*Pi*b
+    demand_inv = lambda x: 1/mu*(Pi*b - Pi*Pi*x)
+    
+    xs = np.linspace(0, 2*c, 100)
+    pms = np.ones(100) * pm
+    marg_cost_curve = marg_cost(xs)
+    marg_rev_curve  = marg_rev(xs)
+    demand_curve    = demand_inv(xs)
+    
+    # plot
+    plt.figure(figsize=[7,5])
+    plt.plot(xs, marg_cost_curve, label='Marginal cost', color='#020060')
+    plt.plot(xs, marg_rev_curve, label='Marginal revenue', color='#E55B13')
+    plt.plot(xs, demand_curve, label='Demand', color='#600001')
+    
+    plt.fill_between(xs[xs<=q], demand_curve[xs<=q], pms[xs<=q], label='Consumer surplus', color='#EED1CF')
+    plt.fill_between(xs[xs<=q], marg_cost_curve[xs<=q], pms[xs<=q], label='Producer surplus', color='#E6E6F5') 
+    
+    plt.vlines(c, 0, p, linestyle="dashed", color='black', alpha=0.7)
+    plt.hlines(p, 0, c, linestyle="dashed", color='black', alpha=0.7)
+    plt.scatter(c, p, zorder=10, label='Competitive equilibrium', color='#600001')
+    
+    plt.vlines(q, 0, pm, linestyle="dashed", color='black', alpha=0.7)
+    plt.hlines(pm, 0, q, linestyle="dashed", color='black', alpha=0.7)
+    plt.scatter(q, pm, zorder=10, label='Equilibrium with monopoly', color='#E55B13')
+    
+    plt.legend(loc='upper right')
+    plt.margins(x=0, y=0)
+    plt.ylim(0)
+    plt.xlabel('Quantity')
+    plt.ylabel('Price')
+    plt.show()
+```
+
+#### A multiple good example
+
+```python
+Pi  = np.array([[1, 0],
+                [0, 1.2]])
+b   = np.array([10, 10])
+
+h   = np.array([0.5, 0.5])
+J   = np.array([[1, 0.5],
+                [0.5, 1]])
+mu = 1
+
+PE = Production_economy(Pi, b, h, J, mu)
+c, p = PE.competitive_equilibrium()
+q, pm = PE.equilibrium_with_monopoly()
+
+print('Competitive equilibrium price:', p)
+print('Competitive equilibrium allocation:', c)
+
+print('Equilibrium with monopolist supplier price:', pm)
+print('Equilibrium with monopolist supplier allocation:', q)
+```
+
+#### A single-good example
+
+```python
+Pi  = np.array([[1]])        # the matrix now is a singleton
+b   = np.array([10])
+h   = np.array([0.5])
+J   = np.array([[1]])
+mu = 1
+
+PE = Production_economy(Pi, b, h, J, mu)
+c, p = PE.competitive_equilibrium()
+q, pm = PE.equilibrium_with_monopoly()
+
+print('Competitive equilibrium price:', p.item())
+print('Competitive equilibrium allocation:', c.item())
+
+print('Equilibrium with monopolist supplier price:', pm.item())
+print('Equilibrium with monopolist supplier allocation:', q.item())
+
+# plot
+plot_monopoly(PE)
 ```
