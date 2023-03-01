@@ -24,26 +24,38 @@ kernelspec:
 
 Many problems in economics and finance require solving linear equations.
 
-In this lecture we discuss linear equations and their solutions.
+In this lecture we discuss linear equations and their applications.
 
-We also discuss how to compute the solutions with matrix algebra.
+To illustrate the importance of linear equations, we begin with a two good
+model of supply and demand.
 
-We assume that students are familiar with matrices and understand the basics
-of matrix algebra.
+The two good case is so simple that solutions can be calculated by hand.
+
+But often we need to consider markets containing many goods.
+
+In this case we face large systems of linear equations, with many equations
+and unknowns.
+
+To handle such systems we need two things:
+
+* matrix algebra (and the knowledge of how to use it) plus
+* computer code to apply matrix algebra to the problems of interest.
+
+This lecture covers these steps.
 
 We will use the following imports:
 
 ```{code-cell} ipython3
+import numpy as np
 import matplotlib.pyplot as plt
 plt.rcParams["figure.figsize"] = (11, 5)  # set default figure size
-import numpy as np
-from matplotlib import cm
-from mpl_toolkits.mplot3d import Axes3D
 ```
+
+
 
 ## A Two Good Example
 
-We discuss a simple two good example and solve it by
+In this section we discuss a simple two good example and solve it by
 
 1. pencil and paper
 2. matrix algebra
@@ -53,7 +65,10 @@ The second method is more general, as we will see.
 
 ### Pencil and Paper Methods
 
-Suppose that we have two goods, such as propane and ethanol.
+Suppose that we have two related goods, such as 
+
+* propane and ethanol 
+* rice and wheat, etc. 
 
 To keep things simple, we label them as good 0 and good 1.
 
@@ -67,7 +82,8 @@ The demand for each good depends on the price of both goods:
 \end{aligned}
 ```
 
-(We are assuming demand decreases when the price of either good goes up.)
+(We are assuming demand decreases when the price of either good goes up, but
+other cases are also possible.)
 
 Let's suppose that supply is given by 
 
@@ -104,8 +120,19 @@ $$
     q_0 = 50 \quad \text{and} \quad q_1 = 33.82
 $$
 
-We can also obtain a solution via matrix algebra but first let's discuss the basics of vectors and
-matrices, in both theory and computation.
+
+### Looking Forward
+
+Pencil and paper methods are easy in the two good case.
+
+But what if there are many goods?
+
+For such problems we need matrix algebra.
+
+Before solving problems with matrix algebra, let's first recall the
+basics of vectors and matrices, in both theory and computation.
+
+
 
 ## {index}`Vectors <single: Vectors>`
 
@@ -116,18 +143,24 @@ A **vector** of length $n$ is just a sequence (or array, or tuple) of $n$ number
 
 We can write these sequences either horizontally or vertically.
 
-But when we use matrix operations, our default assumption is that vectors are column vectors.
+But when we use matrix operations, our default assumption is that vectors are
+column vectors.
 
 The set of all $n$-vectors is denoted by $\mathbb R^n$.
 
-For example, $\mathbb R ^2$ is the plane and a vector in $\mathbb R^2$ is just a point in the plane.
+For example, 
 
-Traditionally, vectors are represented visually as arrows from the origin to the point.
+* $\mathbb R^2$ is the plane --- the set of pairs $(x_1, x_2)$
+* $\mathbb R^3$ is 3 dimensional space --- the set of vectors $(x_1, x_2, x_3)$
 
-The following figure represents three vectors in this manner.
+Often vectors are represented visually as arrows from the origin to the point.
+
+Here's a visualization.
 
 ```{code-cell} ipython3
-fig, ax = plt.subplots(figsize=(10, 8))
+:tags: [hide_input]
+
+fig, ax = plt.subplots()
 # Set the axes through the origin
 for spine in ['left', 'bottom']:
     ax.spines[spine].set_position('zero')
@@ -152,7 +185,10 @@ plt.show()
 ```{index} single: Vectors; Operations
 ```
 
-The two most common operators for vectors are addition and scalar multiplication, which we now describe.
+Sometimes we want to modify vectors.
+
+The two most common operators on vectors are addition and scalar
+multiplication, which we now describe.
 
 When we add two vectors, we add them element-by-element.
 
@@ -207,7 +243,9 @@ $$
 We can visualise vector addition in $\mathbb{R}^2$ as follows.
 
 ```{code-cell} ipython3
-fig, ax = plt.subplots(figsize=(10, 8))
+:tags: [hide_input]
+
+fig, ax = plt.subplots()
 # Set the axes through the origin
 for spine in ['left', 'bottom']:
     ax.spines[spine].set_position('zero')
@@ -277,7 +315,9 @@ $$
 Scalar multiplication is illustrated in the next figure.
 
 ```{code-cell} ipython3
-fig, ax = plt.subplots(figsize=(10, 8))
+:tags: [hide_input]
+
+fig, ax = plt.subplots()
 # Set the axes through the origin
 for spine in ['left', 'bottom']:
     ax.spines[spine].set_position('zero')
@@ -307,11 +347,14 @@ for s in scalars:
 plt.show()
 ```
 
-In Python, a vector can be represented as a list or tuple, such as `x = [2, 4, 6]` or `x = (2, 4, 6)`.
+In Python, a vector can be represented as a list or tuple, 
+such as `x = [2, 4, 6]` or `x = (2, 4, 6)`.
 
-However, it is more common to represent vectors with [NumPy arrays](https://python-programming.quantecon.org/numpy.html#numpy-arrays).
+However, it is more common to represent vectors with 
+[NumPy arrays](https://python-programming.quantecon.org/numpy.html#numpy-arrays).
 
-One advantage of NumPy arrays is that scalar multiplication and addition have very natural syntax.
+One advantage of NumPy arrays is that scalar multiplication and addition have
+very natural syntax.
 
 ```{code-cell} ipython3
 x = np.ones(3)            # Vector of three ones
@@ -331,7 +374,7 @@ x + y                     # Add (element-by-element)
 ```{index} single: Vectors; Norm
 ```
 
-The **inner product** of vectors $x,y \in \mathbb R ^n$ is defined as
+The **inner product** of vectors $x,y \in \mathbb R^n$ is defined as
 
 $$
 x' y = 
@@ -348,10 +391,11 @@ x' y =
 := \sum_{i=1}^n x_i y_i
 $$
 
-The **norm** of a vector $x$ represents its "length" (i.e., its distance from the zero vector) and is defined as
+The **norm** of a vector $x$ represents its "length" (i.e., its distance from
+the zero vector) and is defined as
 
 $$
-\| x \| := \sqrt{x' x} := \left( \sum_{i=1}^n x_i^2 \right)^{1/2}
+    \| x \| := \sqrt{x' x} := \left( \sum_{i=1}^n x_i^2 \right)^{1/2}
 $$
 
 The expression $\| x - y\|$ can be thought of as the "distance" between $x$ and $y$.
@@ -363,7 +407,7 @@ np.sum(x*y)      # Inner product of x and y
 ```
 
 ```{code-cell} ipython3
-x @ y            # Inner product of x and y
+x @ y            # Another way to compute the inner product 
 ```
 
 ```{code-cell} ipython3
@@ -374,23 +418,27 @@ np.sqrt(np.sum(x**2))  # Norm of x, take one
 np.linalg.norm(x)      # Norm of x, take two
 ```
 
+
+
 ## Matrix Operations
 
 ```{index} single: Matrix; Operations
 ```
 
-When we discussed linear price systems, we mentioned a solution using matrix algebra.
+When we discussed linear price systems, we mentioned using matrix algebra.
 
 Matrix algebra is similar to algebra for numbers.
 
 Let's review some details.
+
+### Addition and Scalar Multiplication
 
 Just as was the case for vectors, we can add, subtract and scalar multiply
 matrices.
 
 Scalar multiplication and addition are generalizations of the vector case:
 
-Here is an example of scalar multiplication,
+Here is an example of scalar multiplication
 
 $$
 3
@@ -465,6 +513,8 @@ $$
 In the latter case, the matrices must have the same shape in order for the
 definition to make sense.
 
+### Matrix Multiplication
+
 We also have a convention for *multiplying* two matrices.
 
 The rule for matrix multiplication generalizes the idea of inner products
@@ -477,7 +527,7 @@ $j$-th column of $B$.
 If $A$ is $n \times k$ and $B$ is $j \times m$, then to multiply $A$ and $B$
 we require $k = j$, and the resulting matrix $A B$ is $n \times m$.
 
-Let's start with an example of a $2 \times 2$ matrix multiplied by a $2 \times 1$ vector.
+Here's an example of a $2 \times 2$ matrix multiplied by a $2 \times 1$ vector.
 
 $$
 Ax =
@@ -496,7 +546,7 @@ Ax =
 \end{bmatrix}
 $$
 
-As perhaps the most important special case, consider multiplying $n \times k$
+As an important special case, consider multiplying $n \times k$
 matrix $A$ and $k \times 1$ column vector $x$.
 
 According to the preceding rule, this gives us an $n \times 1$ column vector.
@@ -511,14 +561,14 @@ A x =
     \color{red}{a_{i1}} & \color{red}{a_{i2}} & \color{red}{\cdots} & \color{red}{a_{i}k} \\
     \vdots & \vdots & & \vdots \\
     a_{n1} & a_{n2} & \cdots & a_{nk}
-\end{bmatrix}}_{\textcircled{n} \times k}
+\end{bmatrix}}_{n \times k}
 {\begin{bmatrix}
     \color{red}{x_{1}}  \\
     \color{red}{x_{2}}  \\
     \color{red}{\vdots} \\
     \color{red}{\vdots}  \\
     \color{red}{x_{k}}
-\end{bmatrix}}_{k \times \textcircled{1}} :=
+\end{bmatrix}}_{k \times 1} :=
 {\begin{bmatrix}
     a_{11} x_1 + a_{22} x_2 + \cdots + a_{1k} x_k \\
     \vdots \\
@@ -546,16 +596,17 @@ AB =
 \end{bmatrix}
 $$
 
-There are many tutorials to help you further visualize this operation, such as [this
-one](http://www.mathsisfun.com/algebra/matrix-multiplying.html), or the
-discussion on the [Wikipedia page](https://en.wikipedia.org/wiki/Matrix_multiplication).
+There are many tutorials to help you further visualize this operation, such as 
+
+* [this one](http://www.mathsisfun.com/algebra/matrix-multiplying.html), or 
+* the discussion on the [Wikipedia page](https://en.wikipedia.org/wiki/Matrix_multiplication).
 
 
 ```{note}
 Unlike number products, $A B$ and $B A$ are not generally the same thing.
 ```
 
-Another important special case is the [identity matrix](https://en.wikipedia.org/wiki/Identity_matrix)
+ONe important special case is the [identity matrix](https://en.wikipedia.org/wiki/Identity_matrix), which has ones on the principal diagonal and zero elsewhere:
 
 $$
     I = 
@@ -565,8 +616,6 @@ $$
         0 &  \cdots & 1
     \end{bmatrix}
 $$
-
-that has ones on the principal diagonal and zero elsewhere.
 
 It is a useful exercise to check the following:
 
@@ -631,7 +680,8 @@ In particular, `A @ B` is matrix multiplication, whereas `A * B` is element-by-e
 
 ### Two Good Model in Matrix Form
 
-We can now revisit the two good model and solve {eq}`two_equilibrium` numerically via matrix algebra.
+We can now revisit the two good model and solve {eq}`two_equilibrium`
+numerically via matrix algebra.
 
 This involves some extra steps but the method is widely applicable --- as we
 will see when we include more goods.
@@ -688,9 +738,7 @@ $$
     C p = D p + h
 $$
 
-Matrix algebra is similar in many ways to ordinary algebra, with numbers
-
-In this case, we can rearrange the terms to get 
+We can rearrange the terms to get 
 
 $$
     (C - D) p = h
@@ -707,8 +755,9 @@ prices using the inverse of $C - D$:
     p = (C - D)^{-1} h
 ```
 
-Before we implement the solution let us consider a more general setting to completely
-grasp the need for matrix algebra to solve a linear system of equations.
+Before we implement the solution let us consider a more general setting.
+
+
 
 ### More Goods
 
@@ -717,8 +766,10 @@ It is natural to think about demand systems with more goods.
 For example, even within energy commodities there are many different goods,
 including crude oil, gasoline, coal, natural gas, ethanol and uranium.
 
-Obviously pencil and paper solutions become very time consuming with large
-systems.
+The prices of these goods are related, so it makes sense to study them
+together.
+
+Pencil and paper solutions become very time consuming with large systems.
 
 But fortunately the matrix methods described above are essentially unchanged.
 
@@ -806,10 +857,13 @@ $$
 $$
 
 
-When considering problems such as {eq}`la_gf`, we need to ask at least some of the following questions
+When considering problems such as {eq}`la_gf`, we need to ask at least some of
+the following questions
 
 * Does a solution actually exist?
 * If a solution exists, how should we compute it?
+
+
 
 ## Solving Systems of Equations
 
@@ -846,7 +900,7 @@ It can be verified manually that this system has no possible solution.
 To illustrate why this situation arises let's plot the two lines.
 
 ```{code-cell} ipython3
-fig, ax = plt.subplots(figsize=(5, 4))
+fig, ax = plt.subplots()
 x = np.linspace(-10,10)
 plt.plot(x, (3-x)/3, label=f'$x + 3y = 3$')
 plt.plot(x, (-8-2*x)/6, label=f'$2x + 6y = -8$')
@@ -882,14 +936,19 @@ We can rewrite this system in matrix form as
 
 It can be noted that the $2^{nd}$ row of matrix $A = (2, 6)$ is just a scalar multiple of the $1^{st}$ row of matrix $A = (1, 3)$.
 
-The rows of matrix $A$ in this case is called **linearly dependent.**
+The rows of matrix $A$ in this case are called **linearly dependent.**
 
-A collection of vectors $A$ is called linearly dependent whenever a vector $v \in A$ can be expressed as a [linear combination](https://en.wikipedia.org/wiki/Linear_combination) of all the other vectors in $A$.
 
-A collection of vectors that is **not** linearly dependent is called **linearly independent**.
 
-We will keep our discussion of linear dependence and independence limited but a more detailed and generalized
-explanation can be found [here](https://python.quantecon.org/linear_algebra.html#linear-independence).
+```{note}
+Advanced readers can find a detailed explanation of linear dependence and
+independence [here](https://python.quantecon.org/linear_algebra.html#linear-independence).
+
+But these details are not needed in what follows.
+
+```
+
+
 
 ### Many Solutions
 
@@ -906,7 +965,7 @@ Any vector $v = (x,y)$ such that $x = 2y - 4$ will solve the above system.
 
 Since we can find infinite such vectors this system has infinitely many solutions.
 
-Check whether the rows
+This is because the rows of the corresponding matrix 
 
 ```{math}
 :label: many_solns
@@ -917,15 +976,15 @@ Check whether the rows
     \end{bmatrix}
 ```
 
-are linearly dependent or independent.
+are linearly dependent --- can you see why?
 
-We can now impose conditions on $A$ in {eq}`la_se2` that rule out these problems.
+We now impose conditions on $A$ in {eq}`la_se2` that rule out these problems.
+
 
 ### Nonsingular Matrices
 
-To every square matrix we can
-assign a unique number called the *determinant* of the matrix --- you can find
-the expression for it [here](https://en.wikipedia.org/wiki/Determinant).
+To every square matrix we can assign a unique number called the
+[determinant](https://en.wikipedia.org/wiki/Determinant).
 
 For $2 \times 2$ matrices, the determinant is given by,
 
@@ -938,28 +997,31 @@ $$
 {\color{red}{ad}} - {\color{blue}{bc}}
 $$
 
-If the determinant of $A$ is not zero, then we say that $A$ is
-*nonsingular*.
+If the determinant of $A$ is not zero, then we say that $A$ is *nonsingular*.
 
-A square matrix $A$ is nonsingular if and only if the rows and columns of $A$ are linearly independent.
+A square matrix $A$ is nonsingular if and only if the rows and columns of $A$
+are linearly independent.
 
-You can check yourself that the in {eq}`no_soln` and {eq}`many_solns` with linearly dependent rows are singular matrices
-as well.
+You can check yourself that the in {eq}`no_soln` and {eq}`many_solns` with
+linearly dependent rows are singular matrices as well.
 
-This gives us a useful one-number summary of whether or not a square matrix can be
-inverted.
+This gives us a useful one-number summary of whether or not a square matrix
+can be inverted.
 
-In particular, a square matrix $A$ has a nonzero determinant, if and only if it possesses an 
-*inverse matrix* $A^{-1}$, with the property that $A A^{-1} = A^{-1} A = I$.
+In particular, a square matrix $A$ has a nonzero determinant, if and only if
+it possesses an *inverse matrix* $A^{-1}$, with the property that $A A^{-1} =
+A^{-1} A = I$.
 
 As a consequence, if we pre-multiply both sides of $Ax = b$ by $A^{-1}$, we
 get
+
 ```{math}
 :label: la_se_inv
     x = A^{-1} b.
 ```
 
-This is the solution that we're looking for.
+This is the solution to $Ax = b$ --- the solution we are looking for.
+
 
 
 ### Linear Equations with NumPy
@@ -1043,12 +1105,6 @@ Observe how we can solve for $x = A^{-1} y$ by either via `inv(A) @ y`, or using
 
 The latter method uses a different algorithm that is numerically more stable and hence should be the default option.
 
-
-### Further Reading
-
-The documentation of the `numpy.linalg` submodule can be found [here](https://numpy.org/devdocs/reference/routines.linalg.html).
-
-More advanced topics in linear algebra can be found [here](https://python.quantecon.org/linear_algebra.html#id5).
 
 
 ## Exercises
@@ -1187,47 +1243,48 @@ Suppose we have an inconsistent system
 ```
 where $A$ is an $m \times n$ matrix and $b$ is an $m \times 1$ column vector.
 
-A **least squares solution** to {eq}`inconsistent` is an $n \times 1$ column vector $\hat{x}$ such that for all other
-vectors $x \in \mathbb{R}^n$
+A **least squares solution** to {eq}`inconsistent` is an $n \times 1$ column vector $\hat{x}$ such that, for all other vectors $x \in \mathbb{R}^n$, the distance from $A\hat{x}$ to $b$
+is less than the distance from $Ax$ to $b$.
+
+That is,
 
 $$
-\begin{aligned}
-    distance(A\hat{x} - b) & \leq distance(Ax - b) \\
-    \iff \|A\hat{x} - b\| & \leq \|Ax - b\| \\
-    \iff \|A\hat{x} - b\|^2 & \leq \|Ax - b\|^2 \\
-    \iff (A\hat{x}_1 - b_1)^2 + (A\hat{x}_2 - b_2)^2 + \cdots + (A\hat{x}_m - b_m)^2 & \leq
-    (Ax_1 - b_1)^2 + (Ax_2 - b_2)^2 + \cdots + (Ax_m - b_m)^2
-\end{aligned}
+    \|A\hat{x} - b\| \leq \|Ax - b\| 
 $$
 
-We will not detail how the following expression is obtained but for a system of equations $Ax = b$ the least squares solution
-$\hat{x}$ is given by:
+It can be shown that, for the system of equations $Ax = b$, the least squares
+solution $\hat{x}$ is 
 
 ```{math}
 :label: least_squares
-
-    \begin{aligned}
-        {A^T} A \hat{x} &  = {A^T} b \\
-        \hat{x} =  (A^T & A)^{-1} A^T b
-    \end{aligned} 
+    \hat{x} =  (A^T A)^{-1} A^T b
 ```
 
-Consider the general equation of a linear demand curve of a good given by:
+Now consider the general equation of a linear demand curve of a good given by:
+
 $$
-p = a - bq
+    p = a - bq
 $$
+
 where $p$ is the price of the good and $q$ is the quantity demanded.
 
-We have observed prices and quantities for a certain good and are trying to find the values for $a$ and $b$.
+Suppose we are trying to *estimate* the values of $a$ and $b$.
+
+We do this by repeatedly observing the price and quantity (for example, each
+month) and then choosing $a$ and $b$ to fit the relationship between $p$ and
+$q$.
 
 We have the following observations:
+
 | Price | Quantity Demanded |
 |:-----:|:-----------------:|
 |   1   |         9         |
 |   3   |         7         |
 |   8   |         3         |
 
-Since the demand curve should pass through all these points we have the following three equations:
+
+Requiring the demand curve $p = a - b q$ to pass through all these points leads to the
+following three equations:
 
 $$
 \begin{aligned}
@@ -1240,7 +1297,9 @@ $$
 Thus we obtain a system of equations $Ax = b$ where $A = \begin{bmatrix} 1 & -9 \\ 1 & -7 \\ 1 & -3 \end{bmatrix}$,
 $x = \begin{bmatrix} a \\ b \end{bmatrix}$ and $b = \begin{bmatrix} 1 \\ 3 \\ 8 \end{bmatrix}$.
 
-It can be easily verified this system has no solutions.
+It can be verified that this system has no solutions.
+
+(The problem is that we have three equations and only two unknowns.)
 
 We will thus try to find the best approximate solution for $x$.
 
@@ -1285,7 +1344,7 @@ Here is a visualization of how the least squares method approximates the equatio
 We can also describe this as "fitting" a line between a set of points.
 
 ```{code-cell} ipython3
-fig, ax = plt.subplots(figsize=(6, 6))
+fig, ax = plt.subplots()
 p = np.array((1, 3, 8))
 q = np.array((9, 7 ,3))
 
@@ -1302,6 +1361,11 @@ plt.show()
 ```{solution-end}
 ```
 
-```{code-cell} ipython3
 
-```
+### Further Reading
+
+The documentation of the `numpy.linalg` submodule can be found [here](https://numpy.org/devdocs/reference/routines.linalg.html).
+
+More advanced topics in linear algebra can be found [here](https://python.quantecon.org/linear_algebra.html#id5).
+
+
