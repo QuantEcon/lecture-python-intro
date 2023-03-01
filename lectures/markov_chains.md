@@ -1110,7 +1110,7 @@ plt.show()
 Here
 
 * $P$ is the stochastic matrix for recession and growth {ref}`considered above <mc_eg2>`.
-* The highest red dot is an arbitrarily chosen initial marginal probability distribution  $\psi$, represented as a vector in $\mathbb R^3$.
+* The highest red dot is an arbitrarily chosen initial marginal probability distribution  $\psi_0$, represented as a vector in $\mathbb R^3$.
 * The other red dots are the marginal distributions $\psi_0 P^t$ for $t = 1, 2, \ldots$.
 * The black dot is $\psi^*$.
 
@@ -1121,7 +1121,7 @@ You might like to try experimenting with different initial conditions.
 
 We can show this in a slightly different way by focusing on the probability that $\psi_t$ puts on each state.
 
-First, we write a function to draw initial distributions $ψ_0$s of size `num_distributions`
+First, we write a function to draw initial distributions $\psi_0$ of size `num_distributions`
 
 ```{code-cell} ipython3
 def generate_initial_values(num_distributions, n):
