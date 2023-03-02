@@ -342,7 +342,7 @@ def plot_trade(data, title, ylabel, title_pos, ax, g_params, b_params, t_params)
 
 
 fig, ax = plt.subplots()
-title = 'United States International Trade Volumn'
+title = 'United States (International Trade Volumn)'
 ylabel = 'US Dollars, Millions'
 plot_UStrade = plot_trade(trade_us[['Period', 'Twoway Trade']], title, ylabel, 0.05, ax, g_params, b_params, t_params)
 ```
@@ -352,7 +352,7 @@ fig, ax = plt.subplots()
 trade_cn = dots('CN','W00', 1960, 2020, freq='A')
 
 trade_cn['Period'] = trade_cn['Period'].astype('int')
-title = 'United States (International Trade Volumn)'
+title = 'China (International Trade Volumn)'
 ylabel = 'US Dollars, Millions'
 plot_trade_cn = plot_trade(trade_cn[['Period', 'Twoway Trade']], title, ylabel, 0.05, ax, g_params, b_params, t_params)
 ```
