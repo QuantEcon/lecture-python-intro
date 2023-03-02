@@ -9,7 +9,7 @@ kernelspec:
   name: python3
 ---
 
-# Economic growth in the short and long run
+# Long Run Growth
 
 ```{index} single: Introduction to Economics
 ```
@@ -18,9 +18,33 @@ kernelspec:
 :depth: 2
 ```
 
-## World Bank Data - GDP Per Capita (Current US$)
+## Overview
 
-GDP per capita is gross domestic product divided by midyear population. GDP is the sum of gross value added by all resident producers in the economy plus any product taxes and minus any subsidies not included in the value of the products. It is calculated without making deductions for depreciation of fabricated assets or for depletion and degradation of natural resources. Data are in current U.S. dollars.
+This lecture is about how different economies grow over the long run.
+
+As we will see, some countries have had very different growth experiences
+since the end of WWII.
+
+References:
+
+* https://www.imf.org/en/Publications/fandd/issues/Series/Back-to-Basics/gross-domestic-product-GDP
+* https://www.stlouisfed.org/open-vault/2019/march/what-is-gdp-why-important
+* https://wol.iza.org/articles/gross-domestic-product-are-other-measures-needed
+
+
+One drawback of focusing on GDP growth is that it makes no allowance for
+depletion and degradation of natural resources. 
+
+
+GDP per capita is gross domestic product divided by population. 
+
+GDP is the sum of gross value added by all resident producers in the economy
+plus any product taxes and minus any subsidies not included in the value of
+the products.
+
+We use World Bank data on GPD per capita in current U.S. dollars.
+
+We require the following imports.
 
 ```{code-cell} ipython3
 import pandas as pd
@@ -30,28 +54,13 @@ import matplotlib.pyplot as plt
 import numpy as np
 ```
 
+
+The following code reads in the data into a pandas data frame.
+
 ```{code-cell} ipython3
 wbi = pd.read_csv("datasets/GDP_per_capita_world_bank.csv")
 ```
 
-## Histogram comparison between 1960, 1990, 2020
-
-We compare histograms of the **log** of GDP per capita for the years 1960, 1990 and 2020 for around 170 countries. The years have been chosen to give sufficient time gap between the histograms. We see that the overall plot is shifting towards right, denoting the upward trend in GDP per capita worldwide. And also, the overall distribution is becoming more Gaussian. Which indicates that the economies have gotten more uniform over the years. Economic disparities are getting lesser possibly because of globalisation, technological advancements, better use of resources etc. 
-
-```{code-cell} ipython3
-def get_log_hist(data, years):
-    filtered_data = data.filter(items=['Country Code', years[0], years[1], years[2]])
-    log_gdp = filtered_data.iloc[:,1:].transform(lambda x: np.log(x))
-    max_log_gdp = log_gdp.max(numeric_only=True).max()
-    min_log_gdp = log_gdp.min(numeric_only=True).min()
-    log_gdp.hist(bins=16, range=[min_log_gdp, max_log_gdp])
-```
-
-```{code-cell} ipython3
-## All countries
-wbiall = wbi.drop(['Country Name' , 'Indicator Name', 'Indicator Code'], axis=1)
-get_log_hist(wbiall, ['1960', '1990', '2020'])
-```
 
 ## Comparison of GDP between different Income Groups
 
@@ -149,4 +158,25 @@ wbi_filtered_lmi = filter_country_list_data(wbi, country_list_lmi_li)
 ax = wbi_filtered_lmi.plot()
 ax.set_xlabel("year")
 ax.set_ylabel("GDP per capita (current US$) ")
+```
+
+
+
+## Histogram comparison between 1960, 1990, 2020
+
+We compare histograms of the **log** of GDP per capita for the years 1960, 1990 and 2020 for around 170 countries. The years have been chosen to give sufficient time gap between the histograms. We see that the overall plot is shifting towards right, denoting the upward trend in GDP per capita worldwide. And also, the overall distribution is becoming more Gaussian. Which indicates that the economies have gotten more uniform over the years. Economic disparities are getting lesser possibly because of globalisation, technological advancements, better use of resources etc. 
+
+```{code-cell} ipython3
+def get_log_hist(data, years):
+    filtered_data = data.filter(items=['Country Code', years[0], years[1], years[2]])
+    log_gdp = filtered_data.iloc[:,1:].transform(lambda x: np.log(x))
+    max_log_gdp = log_gdp.max(numeric_only=True).max()
+    min_log_gdp = log_gdp.min(numeric_only=True).min()
+    log_gdp.hist(bins=16, range=[min_log_gdp, max_log_gdp])
+```
+
+```{code-cell} ipython3
+## All countries
+wbiall = wbi.drop(['Country Name' , 'Indicator Name', 'Indicator Code'], axis=1)
+get_log_hist(wbiall, ['1960', '1990', '2020'])
 ```
