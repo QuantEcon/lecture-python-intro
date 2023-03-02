@@ -43,7 +43,7 @@ def get_log_hist(data, years):
     log_gdp = filtered_data.iloc[:,1:].transform(lambda x: np.log(x))
     max_log_gdp = log_gdp.max(numeric_only=True).max()
     min_log_gdp = log_gdp.min(numeric_only=True).min()
-    log_gdp.hist(bins=16, range=[min_log_gdp, max_log_gdp], log=True)
+    log_gdp.hist(bins=16, range=[min_log_gdp, max_log_gdp])
 ```
 
 ```{code-cell} ipython3
@@ -56,30 +56,30 @@ get_log_hist(wbiall, ['1960', '1990', '2020'])
 
 Countries taken into account
 
-**High income** 
-- USA
-- Canada
-- Australia
-- Japan
+```{list-table}
+:header-rows: 1
 
-**Upper middle income**
-- China
-- Brazil
-- Fiji
-- Jamaica
-
-**Lower middle income**
-- India
-- Pakistan
-- Bangladesh
-- Vietnam
-
-**Low income**
-- Congo
-- Uganda
-- Yemen
-- Afghanistan
-
+* - High Income
+  - Upper middle income
+  - Lower middle income
+  - Low income
+* - USA
+  - China
+  - India
+  - Congo
+* - Canada
+  - Brazil
+  - Pakistan
+  - Uganda
+* - Australia
+  - Fiji
+  - Bangladesh
+  - Yemen
+* - Japan
+  - Jamaica
+  - Vietnam
+  - Afghanistan
+```
 
 ### Plot for all countries
 
