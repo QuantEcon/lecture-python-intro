@@ -4,7 +4,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.14.1
+    jupytext_version: 1.14.4
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
@@ -47,7 +47,7 @@ Many economic policies, from taxation to the welfare state, are
 aimed at addressing inequality.
 
 
-### Measurment
+### Measurement
 
 One problem with these debates is that inequality is often poorly defined.
 
@@ -67,6 +67,7 @@ We will install the following libraries.
 
 ```{code-cell} ipython3
 :tags: [hide-output]
+
 !pip install --upgrade quantecon interpolation
 ```
 
@@ -80,9 +81,6 @@ import quantecon as qe
 import random as rd
 from interpolation import interp
 ```
-
-
-+++
 
 ## The Lorenz Curve
 
@@ -130,7 +128,7 @@ income, consumption, etc.
 
 ### Lorenz Curves of Simulated Data
 
-Let's look at some examples and try build understanding.
+Let's look at some examples and try to build understanding.
 
 In the next figure, we generate $n=2000$ draws from a lognormal
 distribution and treat these draws as our population.  
@@ -179,7 +177,6 @@ Next let's look at the real data, focusing on income and wealth in the US in
 
 The following code block imports a subset of the dataset ``SCF_plus``,
 which is derived from the [Survey of Consumer Finances](https://en.wikipedia.org/wiki/Survey_of_Consumer_Finances) (SCF).
-
 
 ```{code-cell} ipython3
 url = 'https://media.githubusercontent.com/media/QuantEcon/high_dim_data/main/SCF_plus/SCF_plus_mini.csv'
@@ -237,7 +234,6 @@ for var in varlist:
 f_vals_nw, f_vals_ti, f_vals_li = F_vals
 l_vals_nw, l_vals_ti, l_vals_li = L_vals
 ```
-+++
 
 Now we plot Lorenz curves for net wealth, total income and labor income in the
 US in 2016.
@@ -265,11 +261,12 @@ plt.title("Lorenz curves of US data in 2016")
 plt.show()
 ```
 
-All the income and wealth measures are pre-tax. 
+Here all the income and wealth measures are pre-tax.
+
+Total income is the sum of households' all income sources, including labor income but excluding capital gains.
 
 One key finding from this figure is that wealth inequality is significantly
 more extreme than income inequality.
-
 
 +++
 
@@ -343,8 +340,6 @@ plt.title("Shaded lorenz curve of simulated data")
 plt.show()
 ```
 
-+++
-
 ### Gini Coefficient Dynamics of Simulated Data
 
 Let's examine the Gini coefficient in some simulations.
@@ -364,7 +359,6 @@ This implies that the mean the distribution does not change with $\sigma$.
 
 (You can check this by looking up the expression for the mean of a lognormal
 distribution.)
-
 
 ```{code-cell} ipython3
 k = 5
@@ -464,8 +458,9 @@ ginis_nw, ginis_ti, ginis_li = Ginis
 Let's plot the Gini coefficients for net wealth, labor income and total income.
 
 ```{code-cell} ipython3
+# use an average to replace an outlier in labor income gini
 ginis_li_new = ginis_li
-ginis_li_new[5] = (ginis_li[4] + ginis_li[6]) / 2
+ginis_li_new[5] = (ginis_li[4] + ginis_li[6]) / 2    
 ```
 
 ```{code-cell} ipython3
@@ -484,21 +479,37 @@ ylabel = "gini coefficient"
 
 fig, ax = plt.subplots()
 
+ax.plot(years, ginis_nw, marker='o')
+
+ax.set_xlabel(xlabel, fontsize=12)
+ax.set_ylabel(ylabel, fontsize=12)
+
+
+plt.title("Gini coefficients of US net wealth data")     
+plt.show()
+```
+
+```{code-cell} ipython3
+xlabel = "year"
+ylabel = "gini coefficient"
+
+fig, ax = plt.subplots()
+
 ax.plot(years, ginis_li_new, marker='o', label="labor income")
-ax.plot(years, ginis_nw, marker='o', label="net wealth")
 ax.plot(years, ginis_ti, marker='o', label="total income")
 
 ax.set_xlabel(xlabel, fontsize=12)
 ax.set_ylabel(ylabel, fontsize=12)
 
 ax.legend(fontsize=12)
-plt.title("Gini coefficients of US data")     
+plt.title("Gini coefficients of US income data")     
 plt.show()
 ```
 
 We see that, by this measure, inequality in wealth and income has risen
 substantially since 1980.
 
+The wealth time series exhibits a strong U-shape.
 
 
 ## Top Shares
@@ -520,11 +531,11 @@ share is defined as
 
 $$
 T(p) = 1 - L (1-p) 
-    \approx \frac{\sum_{j\geq i} w_j}{ \sum_{j \leq n} w_j}, \quad i = [n (1-p)]
+    \approx \frac{\sum_{j\geq i} w_j}{ \sum_{j \leq n} w_j}, \quad i = \lfloor n (1-p)\rfloor
 $$(topshares)
 
-Here $[\cdot]$ is the greatest integer function, which rounds-off the real
-number inside the square bracket down to the integer less than the number.
+Here $\lfloor \cdot \rfloor$ is the floor function, which rounds any real
+number inside the square bracket down to the integer less than or equal to that number.
 
 +++
 
