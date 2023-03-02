@@ -100,7 +100,9 @@ def filter_country_list_data(dataframe, country_list):
 
 ```{code-cell} ipython3
 wbi_country_filtered = filter_country_list_data(wbi, country_list)
-wbi_country_filtered.plot()
+ax = wbi_country_filtered.plot()
+ax.set_xlabel("year")
+ax.set_ylabel("GDP per capita (current US$) ")
 ```
 
 ### Plot for Upper middle and lower middle income groups
@@ -109,7 +111,9 @@ wbi_country_filtered.plot()
 # China, Pakistan (Upper middle income and lower middle income)
 country_list_umi_lmi = ['CHN', 'PAK']
 wbi_filtered_umi_lmi = filter_country_list_data(wbi, country_list_umi_lmi)
-wbi_filtered_umi_lmi.plot()
+ax = wbi_filtered_umi_lmi.plot()
+ax.set_xlabel("year")
+ax.set_ylabel("GDP per capita (current US$) ")
 ```
 
 ### Plot for lower middle income
@@ -118,7 +122,9 @@ wbi_filtered_umi_lmi.plot()
 # Vietnam, Pakistan (Lower middle income)
 country_list_lmi = ['VNM', 'PAK']
 wbi_filtered_lmi = filter_country_list_data(wbi, country_list_lmi)
-wbi_filtered_lmi.plot()
+ax = wbi_filtered_lmi.plot()
+ax.set_xlabel("year")
+ax.set_ylabel("GDP per capita (current US$) ")
 ```
 
 ### Plot for lower middle income and low income
@@ -127,5 +133,7 @@ wbi_filtered_lmi.plot()
 # Pakistan, Congo (Lower middle income, low income)
 country_list_lmi_li = ['PAK', 'COD']
 wbi_filtered_lmi = filter_country_list_data(wbi, country_list_lmi_li)
-wbi_filtered_lmi.plot()
+ax = wbi_filtered_lmi.plot()
+ax.set_xlabel("year")
+ax.set_ylabel("GDP per capita (current US$) ")
 ```
