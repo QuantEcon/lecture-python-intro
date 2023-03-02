@@ -534,8 +534,8 @@ T(p) = 1 - L (1-p)
     \approx \frac{\sum_{j\geq i} w_j}{ \sum_{j \leq n} w_j}, \quad i = \lfloor n (1-p)\rfloor
 $$(topshares)
 
-Here $\lfloor \cdot \rfloor$ is the floor function, which rounds any real
-number inside the square bracket down to the integer less than or equal to that number.
+Here $\lfloor \cdot \rfloor$ is the floor function, which rounds any
+number down to the integer less than or equal to that number.
 
 +++
 
