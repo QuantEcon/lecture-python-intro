@@ -25,14 +25,14 @@ kernelspec:
 
 ## Overview
 
-In this lecture we give a quick introduction to discrete time dynamics in one
-dimension.
+In this lecture we give a quick introduction to discrete time dynamics in one dimension.
 
-In one-dimensional models, the state of the system is described by a single variable.
+* In one-dimensional models, the state of the system is described by a single variable.
+* The variable is a number (that is, a point in $\mathbb R$).
 
-Although most interesting dynamic models have two or more state variables, the
-one-dimensional setting is a good place to learn the foundations of dynamics and build
-intuition.
+While most quantitative models have two or more state variables, the
+one-dimensional setting is a good place to learn the foundations of dynamics
+and understand key concepts.
 
 Let's start with some standard imports:
 
@@ -47,51 +47,122 @@ import numpy as np
 
 This section sets out the objects of interest and the kinds of properties we study.
 
-### Difference Equations
+### Composition of Functions
 
-A **time homogeneous first order difference equation** is an equation of the
-form
+For this lecture you should know the following.
+
+If 
+
+* $g$ is a function from $A$ to $B$ and
+* $f$ is a function from $B$ to $C$, 
+
+then the **composition** $f \circ g$ of $f$ and $g$ is defined by
+
+$$ 
+    (f \circ g)(x) = f(g(x))
+$$
+
+For example, if 
+
+* $A=B=C=\mathbb R$, the set of real numbers, 
+* $g(x)=x^2$ and $f(x)=\sqrt{x}$, then $(f \circ g)(x) = \sqrt{x^2} = |x|$.
+
+If $f$ is a function from $A$ to itself, then $f^2$ is the composition of $f$
+with itself.
+
+For example, if $A = (0, \infty)$, the set of positive numbers, and $f(x) =
+\sqrt{x}$, then 
+
+$$
+    f^2(x) = \sqrt{\sqrt{x}} = x^{1/4}
+$$
+
+Similarly, if $n$ is an integer, then $f^n$ is $n$ compositions of $f$ with
+itself.
+
+In the example above, $f^n(x) = x^{1/(2^n)}$.
+
+
+
+### Dynamic Systems
+
+A **(discrete time) dynamic system** is a set $S$ and a function $g$ that sends
+set $S$ back into to itself.
+
+
+Examples of dynamic systems include
+
+*  $S = (0, 1)$ and $g(x) = \sqrt{x}$
+*  $S = (0, 1)$ and $g(x) = x^2$
+*  $S = \mathbb Z$ (the integers) and $g(x) = 2 x$
+
+
+On the other hand, if  $S = (-1, 1)$ and $g(x) = x+1$, then $S$ and $g$ do not
+form a dynamic system, since $g(1) = 2$.
+
+* $g$ does not always send points in $S$ back into $S$.
+
+
+
+### Dynamic Systems
+
+We care about dynamic systems because we can use them to study dynamics!
+
+Given a dynamic system consisting of set $S$ and function $g$, we can create
+a sequence $\{x_t\}$ of points in $S$ by setting
 
 ```{math}
 :label: sdsod
-
-x_{t+1} = g(x_t)
+    x_{t+1} = g(x_t)
+    \quad \text{ with } 
+    x_0 \text{ given}.
 ```
 
-where $g$ is a function from some subset $S$ of $\mathbb R$ to itself.
-
-Here $S$ is called the **state space** and $x$ is called the **state variable**.
-
-In the definition,
-
-* time homogeneity means that $g$ is the same at each time $t$
-* first order means dependence on only one lag (i.e., earlier states such as $x_{t-1}$ do not enter into {eq}`sdsod`).
-
-If $x_0 \in S$ is given, then {eq}`sdsod` recursively defines the sequence
+This means that we choose some number $x_0$ in $S$ and then take
 
 ```{math}
 :label: sdstraj
-
-x_0, \quad
-x_1 = g(x_0), \quad
-x_2 = g(x_1) = g(g(x_0)), \quad \text{etc.}
+    x_0, \quad
+    x_1 = g(x_0), \quad
+    x_2 = g(x_1) = g(g(x_0)), \quad \text{etc.}
 ```
 
-This sequence is called the **trajectory** of $x_0$ under $g$.
+This sequence $\{x_t\}$ is called the **trajectory** of $x_0$ under $g$.
 
-If we define $g^n$ to be $n$ compositions of $g$ with itself, then we can write the trajectory more simply as $x_t = g^t(x_0)$ for $t \geq 0$.
+In this setting, $S$ is called the **state space** and $x_t$ is called the
+**state variable**.
+
+Recalling that $g^n$ is the $n$ compositions of $g$ with itself, 
+we can write the trajectory more simply as 
+
+$$
+    x_t = g^t(x_0) \quad \text{ for } t \geq 0.
+$$
+
+In all of what follows, we are going to assume that $S$ is a subset of
+$\mathbb R$, the real numbers.
+
+Equation {eq}`sdsod` is sometimes called a **first order difference equation**
+
+* first order means dependence on only one lag (i.e., earlier states such as $x_{t-1}$ do not enter into {eq}`sdsod`).
+
+
 
 ### Example: A Linear Model
 
-One simple example is the **linear difference equation**
+One simple example of a dynamic system is when $S=\mathbb R$ and $g(x)=ax +
+b$, where $a, b$ are fixed constants.
+
+This leads to the **linear difference equation**
 
 $$
-x_{t+1} = a x_t + b, \qquad S = \mathbb R
+    x_{t+1} = a x_t + b 
+    \quad \text{ with } 
+    x_0 \text{ given}.
 $$
 
-where $a, b$ are fixed constants.
 
-In this case, given $x_0$, the trajectory {eq}`sdstraj` is
+The trajectory of $x_0$ is 
 
 ```{math}
 :label: sdslinmodpath
@@ -101,15 +172,13 @@ a x_0 + b, \quad
 a^2 x_0 + a b + b, \quad \text{etc.}
 ```
 
-Continuing in this way, and using our knowledge of {doc}`geometric series <geom_series>`, we find that, for any $t \geq 0$,
+Continuing in this way, and using our knowledge of {doc}`geometric series
+<geom_series>`, we find that, for any $t \geq 0$,
 
 ```{math}
 :label: sdslinmod
-
-x_t = a^t x_0 + b \frac{1 - a^t}{1 - a}
+    x_t = a^t x_0 + b \frac{1 - a^t}{1 - a}
 ```
-
-This is about all we need to know about the linear model.
 
 We have an exact expression for $x_t$ for all $t$ and hence a full
 understanding of the dynamics.
@@ -127,10 +196,13 @@ regardless of $x_0$
 This is an example of what is called global stability, a topic we return to
 below.
 
+
+
+
 ### Example: A Nonlinear Model
 
-In the linear example above, we obtained an exact analytical expression for $x_t$
-in terms of arbitrary $t$ and $x_0$.
+In the linear example above, we obtained an exact analytical expression for
+$x_t$ in terms of arbitrary $t$ and $x_0$.
 
 This made analysis of dynamics very easy.
 
@@ -152,9 +224,19 @@ the algebra gets messy quickly.
 
 Analyzing the dynamics of this model requires a different method (see below).
 
-### Stability
 
-A **steady state** of the difference equation $x_{t+1} = g(x_t)$ is a
+
+
+
+
+## Stability
+
+Consider a fixed dynamic system consisting of set $S \subset \mathbb R$ and
+$g$ mapping $S$ to $S$.
+
+### Steady States
+
+A **steady state** of this system is a
 point $x^*$ in $S$ such that $x^* = g(x^*)$.
 
 In other words, $x^*$ is a **fixed point** of the function $g$ in
@@ -169,7 +251,11 @@ definition to check that
 * if $a = 1$ and $b \not= 0$, then the linear model has no steady
   state in $\mathbb R$.
 
-A steady state $x^*$ of $x_{t+1} = g(x_t)$ is called
+
+
+### Global Stability
+
+A steady state $x^*$ of the dynamic system is called
 **globally stable** if, for all $x_0 \in S$,
 
 $$
@@ -184,7 +270,10 @@ For example, in the linear model $x_{t+1} = a x_t + b$ with $a
 
 This follows directly from {eq}`sdslinmod`.
 
-A steady state $x^*$ of $x_{t+1} = g(x_t)$ is called
+
+### Local Stability
+
+A steady state $x^*$ of the dynamic system is called
 **locally stable** if there exists an $\epsilon > 0$ such that
 
 $$
@@ -196,6 +285,12 @@ $$
 Obviously every globally stable steady state is also locally stable.
 
 We will see examples below where the converse is not true.
+
+
+
+
+
+
 
 ## Graphical Analysis
 
@@ -215,9 +310,12 @@ We begin with some plotting code that you can ignore at first reading.
 The function of the code is to produce 45 degree diagrams and time series
 plots.
 
+
+
 ```{code-cell} ipython
 ---
-tags: [output_scroll]
+tags: [hide-input,
+       output_scroll]
 ---
 def subplots(fs):
     "Custom subplots with axes throught the origin"
