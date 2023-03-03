@@ -218,7 +218,7 @@ Sometimes a Hicksian demand curve is called a **compensated** demand curve in or
 
 We'll discuss these distinct demand curves more  below.
 
-## Demand Curve as Constrained Utility Maximization
+## Demand Curve Implied  by Constrained Utility Maximization
 
 For now, we assume that the budget constraint is {eq}`eq:old2`. 
 
@@ -454,7 +454,7 @@ $$
 
 where $p_i$ is the price of one unit of consumption in state $i$. 
 
-The state commodities being traded are often called **Arrow securities**.
+The state-contingent commodities being traded are often called **Arrow securities**.
 
 Before the random state of the world $i$ is realized, the consumer  sells his/her state-contingent endowment bundle and purchases a state-contingent consumption bundle. 
 
@@ -583,14 +583,14 @@ $$
 q = (H + 2 \mu^{-1} \Pi^T \Pi)^{-1} (\mu^{-1} \Pi^\top b - h) 
 $$ (eq:qmonop) 
 
-We'll see that the monopolist sets a **lower output** $q$ than does either a
+We'll eventually see that a monopolist sets a **lower output** $q$ than does either a
 
  * planner who chooses $q$ to maximize social welfare
  
  * a competitive equilibrium 
 
 
-**Remark:** We can make exercises asking readers to verify the monopolist's supply curve {eq}`eq:qmonop` and the 
+**Remark:** We can make exercises asking readers to verify the monopolist's supply curve {eq}`eq:qmonop`. 
 
 
 
@@ -629,21 +629,26 @@ Thus,  as for the single-good case, with  multiple goods   a competitive equilib
 
 (This is another version of the first welfare theorem.)
 
-We can read the competitive equilbrium price vector off the inverse demand curve or the inverse supply curve.
+We can read a competitive equilbrium price vector from either 
+
+  * the inverse demand curve, or 
+  
+  * the inverse supply curve
 
 <!-- #endregion -->
 
-## Initial notes to Jiacheng for coding
+<!-- #region -->
+## Notes about coding strategy
 
-Hi Jiacheng.  
+ 
 
-These are just some suggestions about how to begin writing code.  
+Here are some suggestions about how to  write our code.  
 
-I sketch some things that are "not even pseudo code".  Here goes.
+I sketch some ideas that are "not even pseudo code". 
 
 I recommend that we start "general" and write a Python class that will do "everything".  
 
-Once we get that working with a bunch of fun examples, we can then "work backwards" and make some very simple "baby code" that starts with simple cases (e.g., a scalar case) and graduallly builds up to the class.
+Once we get that working with a bunch of fun examples, we can then "work backwards" and make some very simple "baby code" that starts with a simple cases (e.g., a scalar case) and graduallly adds functions that we'll ultimately assemble as methods that appear in our class.
 
 The fun thing will be to make some revealing examples.
 
@@ -664,8 +669,7 @@ I recommend making a Python class with the following attributes:
      * an $n \times 1$ nonnegative vector $h$
      * an $n \times n$ positive definite matrix $J$
 
-Along the lines of your great suggestion (now incorporated in the main text in the previous cell)
-the class would do a test to make sure that $b  > > \Pi e $ and raise an exception if it is violated
+The class will include  a test to make sure that $b  > > \Pi e $ and raise an exception if it is violated
 (at some threshold level we'd have to specify).
 
  * **A Person** in the form of a pair that consists of 
@@ -695,7 +699,7 @@ the class would do a test to make sure that $b  > > \Pi e $ and raise an excepti
  
     
 **Remark:** I don't know whether we want to be simple or fancy in terms of using class inheritance in creating a person or an economy.
-
+<!-- #endregion -->
 
 ## Codes and Computation - Written by Jiacheng
 
@@ -975,7 +979,7 @@ print('Competitive equilibrium allocation:', c_s)
 
 ### Production Economy
 
-To compute a competitive equilibrium for a production economy where demand curve is pinned down by the marginal utility of wealth $\mu$, we first solve for the allocation using equation.
+To compute a competitive equilibrium for a production economy where demand curve is pinned down by the marginal utility of wealth $\mu$, we first compute an allocation by solving a planning problem.
 
 Then we compute the equilibrium  price vector using the inverse demand or supply curve.
 
@@ -1234,17 +1238,34 @@ print('Competitive equilibrium allocation:', c)
 
 ### A Monopolist Supplier
 
-Let us follow the above digression and consider a monopolist supplier in this economy. We add a method to the `production_economy` class we built above to compute the equilibrium price and allocation when there is a monopolist supplier. Since the supplier now has the price-setting power, 
-- we first compute the optimal quantity that solves the monopolist's profit maximization problem. 
-- Then we derive the required price level from the consumer's inverse supply curve.
+Let's  consider a monopolist supplier.
 
-Next, we use a graph for the single good case to illustrate the difference between a competitive equilibrium and an equilibrium with a monopolist supplier. Recall that in a competitive equilibrium of the economy, the price-taking supplier equalizes the marginal revenue $p$ with the marginal cost $h + Hq$. This yields the inverse supply curve. In a monopolist economy, the marginal revenue of the firm is a function of the quantity it chooses:
+We add a method to the `production_economy` class we built above to compute the equilibrium price and allocation when there is a monopolist supplier. 
+
+Since the supplier now has the price-setting power
+
+- we first compute the optimal quantity that solves the monopolist's profit maximization problem. 
+- Then we back out  an equilibrium  price from the consumer's inverse demand curve.
+
+Next, we use a graph for the single good case to illustrate the difference between a competitive equilibrium and an equilibrium with a monopolist supplier.
+
+Recall that in a competitive equilibrium of the economy, the price-taking supplier equates the marginal revenue $p$ with the marginal cost $h + Hq$. 
+
+This yields the monopolist's inverse supply curve.
+
+A monopolist's marginal revenue is not constant but instead  is a non-trivial function of the quantity it sets.
+
+The monopolist's marginal revenue is 
+
 $$
 MR(q) = -2\mu^{-1}\Pi^{\top}\Pi q+\mu^{-1}\Pi^{\top}b,
 $$
-which the monopolist supplier equalizes with the marginal cost.
 
-Our plot illustrates the fact that the monopolist supplier's equilibrium output is lower than either the competitive equilibrium or the social optimal level. In a single good case, this equilibrium is associated with a higher price of the good.
+which the monopolist equates to its  marginal cost.
+
+Our plot indicates that the monopolist supplier's equilibrium output is lower than either the competitive equilibrium or the social optimal level.
+
+In a single good case, this equilibrium is associated with a higher price of the good.
 
 ```python
 def plot_monopoly(PE):
