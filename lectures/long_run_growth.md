@@ -3,16 +3,17 @@ jupytext:
   text_representation:
     extension: .md
     format_name: myst
+    format_version: 0.13
+    jupytext_version: 1.14.1
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
   name: python3
 ---
 
-# Long Run Growth
++++ {"user_expressions": []}
 
-```{index} single: Introduction to Economics
-```
+# Long Run Growth
 
 ```{contents} Contents
 :depth: 2
@@ -20,31 +21,13 @@ kernelspec:
 
 ## Overview
 
-This lecture is about how different economies grow over the long run.
+This lecture looks at different growth trajectories across countries over the long term. 
 
-As we will see, some countries have had very different growth experiences
-since the end of WWII.
+While some countries have experienced long term rapid growth across that last hundred years, others have not. 
 
-References:
-
-* https://www.imf.org/en/Publications/fandd/issues/Series/Back-to-Basics/gross-domestic-product-GDP
-* https://www.stlouisfed.org/open-vault/2019/march/what-is-gdp-why-important
-* https://wol.iza.org/articles/gross-domestic-product-are-other-measures-needed
-
-
-One drawback of focusing on GDP growth is that it makes no allowance for
-depletion and degradation of natural resources. 
-
-
-GDP per capita is gross domestic product divided by population. 
-
-GDP is the sum of gross value added by all resident producers in the economy
-plus any product taxes and minus any subsidies not included in the value of
-the products.
-
-We use World Bank data on GPD per capita in current U.S. dollars.
-
-We require the following imports.
+```{admonition} TODO
+write an introduction
+```
 
 ```{code-cell} ipython3
 import pandas as pd
@@ -54,6 +37,126 @@ import matplotlib.pyplot as plt
 import numpy as np
 ```
 
+```{code-cell} ipython3
+data = pd.read_excel("datasets/mpd2020.xlsx", sheet_name='Full data')
+data.set_index(['countrycode', 'year'], inplace=True)
+```
+
+```{code-cell} ipython3
+gdppc = data['gdppc'].unstack('countrycode')
+```
+
+```{code-cell} ipython3
+gdppc
+```
+
+```{code-cell} ipython3
+fig = plt.figure(dpi=110)
+gdppc['GBR'].interpolate().plot(ax = fig.gca())
+```
+
+```{code-cell} ipython3
+fig = plt.figure(dpi=110)
+gdppc['GBR'].plot(ax = fig.gca())
+```
+
+```{code-cell} ipython3
+fig = plt.figure(dpi=110)
+gdppc[['USA', 'GBR', 'CHN']].plot(ax = fig.gca())
+```
+
+```{code-cell} ipython3
+fig = plt.figure(dpi=110)
+gdppc[['AUS', 'ARG']].plot(ax = fig.gca())
+```
+
+```{code-cell} ipython3
+fig = plt.figure(dpi=110)
+gdppc[['AUS', 'NZL']].plot(ax = fig.gca())
+```
+
+```{code-cell} ipython3
+fig = plt.figure(dpi=110)
+gdppc[['CHN']].plot(ax = fig.gca())
+```
+
+```{code-cell} ipython3
+gdppc[['CHN']]
+```
+
+```{code-cell} ipython3
+fig = plt.figure(dpi=110)
+gdppc[['CHN', 'GBR']].interpolate().plot(ax = fig.gca())
+```
+
+```{code-cell} ipython3
+fig = plt.figure(dpi=110)
+gdppc[['CHN', 'GBR']][0:500].interpolate().plot(ax=fig.gca())
+```
+
++++ {"user_expressions": []}
+
+## Regional Analysis
+
+```{code-cell} ipython3
+data = pd.read_excel("datasets/mpd2020.xlsx", sheet_name='Regional data', header=(0,1,2), index_col=0)
+data.columns = data.columns.droplevel(level=2)
+```
+
+```{code-cell} ipython3
+regionalgdppc = data['gdppc_2011'].copy()
+regionalgdppc.index = pd.to_datetime(regionalgdppc.index, format='%Y')
+```
+
+```{code-cell} ipython3
+regionalgdppc.interpolate(method='time', inplace=True)
+```
+
+```{code-cell} ipython3
+worldgdppc = regionalgdppc['World GDP pc']
+```
+
+```{code-cell} ipython3
+fig = plt.figure(dpi=110)
+ax = worldgdppc.plot(
+    ax = fig.gca(),
+    title='World GDP per capita',
+    xlabel='Year',
+    ylabel='2011 US$',
+)
+```
+
+```{code-cell} ipython3
+fig = plt.figure(dpi=110)
+regionalgdppc[['Western Offshoots', 'Sub-Sahara Africa']].plot(ax = fig.gca())
+```
+
+```{code-cell} ipython3
+fig = plt.figure(dpi=200)
+line_styles = ['-', '--', ':', '-.', '.', 'o']  # TODO: Improve this
+ax = regionalgdppc.plot(ax = fig.gca(), style=line_styles)
+plt.legend(loc='center left', bbox_to_anchor=(1.0, 0.5))
+```
+
+```{code-cell} ipython3
+
+```
+
+```{code-cell} ipython3
+
+```
+
+```{code-cell} ipython3
+
+```
+
+```{code-cell} ipython3
+
+```
+
+```{code-cell} ipython3
+
+```
 
 The following code reads in the data into a pandas data frame.
 
@@ -61,6 +164,7 @@ The following code reads in the data into a pandas data frame.
 wbi = pd.read_csv("datasets/GDP_per_capita_world_bank.csv")
 ```
 
++++ {"user_expressions": []}
 
 ## Comparison of GDP between different Income Groups
 
@@ -117,11 +221,13 @@ ax.set_xlabel("year")
 ax.set_ylabel("GDP per capita (current US$) ")
 ```
 
++++ {"user_expressions": []}
+
 ### Plot for Upper middle and lower middle income groups
 
 Now, we compare the time-series graphs of GDP per capita for  upper middle and lower middle income group countries, taking one country from each group. China and Pakistan was chosen as they are from the same region. 
 On analysing the graph, the difference is quite striking from 90s onwards. But also expected, as during that time China opened up for trade and labour. 
-It can be concluded that, further inspection reveals the economies are vastly different in the present time, unlike what the previous graph was suggesting. 
+It can be concluded that, further inspection reveals the economies are vastly different in the present time, unlike what the previous graph was suggesting.
 
 ```{code-cell} ipython3
 # China, Pakistan (Upper middle income and lower middle income)
@@ -131,6 +237,8 @@ ax = wbi_filtered_umi_lmi.plot()
 ax.set_xlabel("year")
 ax.set_ylabel("GDP per capita (current US$) ")
 ```
+
++++ {"user_expressions": []}
 
 ### Plot for lower middle income
 
@@ -146,6 +254,8 @@ ax.set_xlabel("year")
 ax.set_ylabel("GDP per capita (current US$) ")
 ```
 
++++ {"user_expressions": []}
+
 ### Plot for lower middle income and low income
 
 Finally, we compare time-series graphs of GDP per capita between a lower middle income country and a low income country. Again, keeping Pakistan fixed in our set as a lower middle income country, we choose Democratic Republic of Congo as our second country from a low income group. Congo is chosen for no particular reason apart from its unstable political atmoshpere and a dwindling economy. 
@@ -160,11 +270,11 @@ ax.set_xlabel("year")
 ax.set_ylabel("GDP per capita (current US$) ")
 ```
 
-
++++ {"user_expressions": []}
 
 ## Histogram comparison between 1960, 1990, 2020
 
-We compare histograms of the **log** of GDP per capita for the years 1960, 1990 and 2020 for around 170 countries. The years have been chosen to give sufficient time gap between the histograms. We see that the overall plot is shifting towards right, denoting the upward trend in GDP per capita worldwide. And also, the overall distribution is becoming more Gaussian. Which indicates that the economies have gotten more uniform over the years. Economic disparities are getting lesser possibly because of globalisation, technological advancements, better use of resources etc. 
+We compare histograms of the **log** of GDP per capita for the years 1960, 1990 and 2020 for around 170 countries. The years have been chosen to give sufficient time gap between the histograms. We see that the overall plot is shifting towards right, denoting the upward trend in GDP per capita worldwide. And also, the overall distribution is becoming more Gaussian. Which indicates that the economies have gotten more uniform over the years. Economic disparities are getting lesser possibly because of globalisation, technological advancements, better use of resources etc.
 
 ```{code-cell} ipython3
 def get_log_hist(data, years):
@@ -179,4 +289,8 @@ def get_log_hist(data, years):
 ## All countries
 wbiall = wbi.drop(['Country Name' , 'Indicator Name', 'Indicator Code'], axis=1)
 get_log_hist(wbiall, ['1960', '1990', '2020'])
+```
+
+```{code-cell} ipython3
+
 ```
