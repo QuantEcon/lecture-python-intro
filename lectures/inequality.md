@@ -506,6 +506,8 @@ plt.title("Gini coefficients of US income data")
 plt.show()
 ```
 
+**TEST ===>** Here is a {ref}`gini_us` and a {numref}`gini_us`
+
 We see that, by this measure, inequality in wealth and income has risen
 substantially since 1980.
 
