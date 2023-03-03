@@ -227,7 +227,7 @@ ax.set_ylabel("GDP per capita (current US$) ")
 
 Now, we compare the time-series graphs of GDP per capita for  upper middle and lower middle income group countries, taking one country from each group. China and Pakistan was chosen as they are from the same region. 
 On analysing the graph, the difference is quite striking from 90s onwards. But also expected, as during that time China opened up for trade and labour. 
-It can be concluded that, further inspection reveals the economies are vastly different in the present time, unlike what the previous graph was suggesting.
+It can be concluded that, further inspection reveals the economies are vastly different in the present time, unlike what the previous graph was suggesting. 
 
 ```{code-cell} ipython3
 # China, Pakistan (Upper middle income and lower middle income)
@@ -237,8 +237,6 @@ ax = wbi_filtered_umi_lmi.plot()
 ax.set_xlabel("year")
 ax.set_ylabel("GDP per capita (current US$) ")
 ```
-
-+++ {"user_expressions": []}
 
 ### Plot for lower middle income
 
@@ -253,8 +251,6 @@ ax = wbi_filtered_lmi.plot()
 ax.set_xlabel("year")
 ax.set_ylabel("GDP per capita (current US$) ")
 ```
-
-+++ {"user_expressions": []}
 
 ### Plot for lower middle income and low income
 
@@ -274,7 +270,7 @@ ax.set_ylabel("GDP per capita (current US$) ")
 
 ## Histogram comparison between 1960, 1990, 2020
 
-We compare histograms of the **log** of GDP per capita for the years 1960, 1990 and 2020 for around 170 countries. The years have been chosen to give sufficient time gap between the histograms. We see that the overall plot is shifting towards right, denoting the upward trend in GDP per capita worldwide. And also, the overall distribution is becoming more Gaussian. Which indicates that the economies have gotten more uniform over the years. Economic disparities are getting lesser possibly because of globalisation, technological advancements, better use of resources etc.
+We compare histograms of the **log** of GDP per capita for the years 1960, 1990 and 2020 for around 170 countries. The years have been chosen to give sufficient time gap between the histograms. We see that the overall plot is shifting towards right, denoting the upward trend in GDP per capita worldwide. And also, the overall distribution is becoming more Gaussian. Which indicates that the economies have gotten more uniform over the years. Economic disparities are getting lesser possibly because of globalisation, technological advancements, better use of resources etc. 
 
 ```{code-cell} ipython3
 def get_log_hist(data, years):
