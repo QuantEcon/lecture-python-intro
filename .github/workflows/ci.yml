@@ -63,7 +63,7 @@ jobs:
       - name: Build HTML
         shell: bash -l {0}
         run: |
-          rm -r _build/.doctrees
+          # rm -r _build/.doctrees
           jb build lectures --path-output ./ -W --keep-going
       - name: Upload Execution Reports (HTML)
         uses: actions/upload-artifact@v2
