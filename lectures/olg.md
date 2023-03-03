@@ -157,3 +157,16 @@ $k_{t+1} = k_t = k^*$, i.e,
 :label: k_star
     k^* = \frac{s(f(k^*)-k^*f'(k^*), f'(k^*))}{1+n}
 ```
+
+
+## Exercises
+
+```{exercise}
+:label: olg_ex1
+
+Consider the utility function to be quasilinear $u(c)=c + c^{\alpha}$.
+
+Now we don't have an analytical solution. 
+
+Try to compute the time path capital $\{k_t\}$.
+```
