@@ -1,3 +1,4 @@
+
 # Networks
 
 ## Outline
@@ -31,13 +32,12 @@ introductory.
 
 We will need the following imports.
 
-TODO all minted blocks to ipython code blocks
-
-\begin{minted}{python}
+```{code-cell} ipython3
 import numpy as np
+import networkx as nx
 import matplotlib.pyplot as plt
-\end{minted}
-
+import pandas as pd
+```
 
 ## Economic and Financial Networks
 
@@ -57,12 +57,71 @@ The structure of production networks affects trade, innovation and the propagati
 
 To better understand such networks, let's look at some examples in more depth.
 
++++
 
 ### Example: Aircraft Exports
 
 TODO -- add commercial aircraft network figure from https://networks.quantecon.org/ch_intro.html but hide the code
 
 Figure [TODO add numref] shows international trade in large commercial aircraft in 2019 based on International Trade Data SITC Revision 2.  
+
+```{code-cell} ipython3
+import matplotlib.cm as cm
+import quantecon as qe
+import quantecon_book_networks
+import quantecon_book_networks.input_output as qbn_io
+import quantecon_book_networks.data as qbn_data
+ch1_data = qbn_data.introduction()
+export_figures = False
+
+DG = ch1_data['aircraft_network_2019']
+pos = ch1_data['aircraft_network_2019_pos']
+
+centrality = nx.eigenvector_centrality(DG)
+node_total_exports = qbn_io.node_total_exports(DG)
+edge_weights = qbn_io.edge_weights(DG)
+
+node_pos_dict = pos
+
+node_sizes = qbn_io.normalise_weights(node_total_exports,10000)
+edge_widths = qbn_io.normalise_weights(edge_weights,10)
+
+node_colors = qbn_io.colorise_weights(list(centrality.values()),color_palette=cm.viridis)
+node_to_color = dict(zip(DG.nodes,node_colors))
+edge_colors = []
+for src,_ in DG.edges:
+    edge_colors.append(node_to_color[src])
+    
+fig, ax = plt.subplots(figsize=(10, 10))
+ax.axis('off')
+
+nx.draw_networkx_nodes(DG, 
+                        node_pos_dict, 
+                        node_color=node_colors, 
+                        node_size=node_sizes, 
+                        linewidths=2, 
+                        alpha=0.6, 
+                        ax=ax)
+
+nx.draw_networkx_labels(DG, 
+                        node_pos_dict,  
+                        ax=ax)
+
+nx.draw_networkx_edges(DG, 
+                        node_pos_dict, 
+                        edge_color=edge_colors, 
+                        width=edge_widths, 
+                        arrows=True, 
+                        arrowsize=20,  
+                        ax=ax, 
+                        arrowstyle='->', 
+                        node_size=node_sizes, 
+                        connectionstyle='arc3,rad=0.15')
+
+if export_figures:
+    plt.savefig("figures/commercial_aircraft_2019_1.pdf")
+plt.show()
+```
 
 The circles in the figure are called **nodes** or **vertices** -- in this case they represent countries.
 
@@ -76,6 +135,7 @@ The figure shows that the US, France and Germany are major export hubs.
 
 In the discussion below, we learn to quantify such ideas.
 
++++
 
 ### Example: A Markov Chain
 
@@ -89,6 +149,27 @@ where the states are
 
 TODO add the graphviz figure from that lecture here
 
+```{code-cell} ipython3
+from graphviz import Digraph
+
+dot = Digraph(comment='Graph')
+dot.attr(rankdir='LR')
+dot.node("ng")
+dot.node("mr")
+dot.node("sr")
+
+dot.edge("ng", "ng", label="0.971")
+dot.edge("ng", "mr", label="0.029")
+dot.edge("mr", "ng", label="0.145")
+
+dot.edge("mr", "mr", label="0.778")
+dot.edge("mr", "sr", label="0.077")
+dot.edge("sr", "mr", label="0.508")
+
+dot.edge("sr", "sr", label="0.492")
+dot
+```
+
 This is an example of a network, where the set of nodes $V$ equals the states:
 
 $$
@@ -97,9 +178,7 @@ $$
 
 The edges between the nodes show the one month transition probabilities.
 
-
-
-
++++
 
 ## An Introduction to Graph Theory
 
@@ -128,8 +207,9 @@ E.g.,
 case of directed graphs --- we just need to insist that each arrow pointing
 from $A$ to $B$ is paired with another arrow pointing from $B$ to $A$.)
 
++++
 
-
+(key-definitions)=
 ### Key Definitions
 
 A **directed graph** consists of two things:
@@ -153,36 +233,46 @@ In the aircraft export example above,
 
 Let's look at more examples.
 
-Two graphs are shown below, each with three nodes.  
+Two graphs are shown below, each with three nodes.
 
-TODO -- convert these to use https://h1ros.github.io/posts/introduction-to-graphviz-in-jupyter-notebook/
+```{code-cell} ipython3
+graph1 = Digraph(comment='Graph',engine = "neato")
+graph1.attr(rankdir='LR')
+graph1.node("poor", pos = '0,0!')
+graph1.node("middle class", pos = '2,1!')
+graph1.node("rich", pos = '4,0!')
 
-:label: rich_poor_no_label
-digraph { 
-    rankdir=LR;
-    "poor" -> "poor" ;
-    "poor" -> "middle class" ;
-    "middle class" -> "poor" ;
-    "middle class" -> "middle class" ;
-    "middle class" -> "rich" ;
-    "rich" -> "poor" ;
-    "rich" -> "middle class" ;
-    "rich" -> "rich" ;
-} 
+graph1.edge("poor", "poor")
+graph1.edge("poor", "middle class")
+graph1.edge("middle class", "poor")
+graph1.edge("middle class", "middle class")
+graph1.edge("middle class", "rich")
+graph1.edge("rich", "poor")
+graph1.edge("rich", "middle class")
+graph1.edge("rich", "rich")
 
+graph1
+```
 
-:label: poverty_trap
-digraph { 
-    rankdir=LR;
-    "poor" -> "poor" ;
-    "middle class" -> "poor" ;
-    "middle class" -> "middle class" ;
-    "middle class" -> "rich" ;
-    "rich" -> "poor" ;
-    "rich" -> "middle class" ;
-    "rich" -> "rich" ;
-} 
+We now construct a graph with the same nodes but different edges.
 
+```{code-cell} ipython3
+graph2 = Digraph(comment='Graph',engine="neato")
+graph2.attr(rankdir='LR')
+graph2.node("poor", pos = '0,0!')
+graph2.node("middle class", pos = '2,1!')
+graph2.node("rich", pos = '4,0!')
+
+graph2.edge("poor", "poor")
+graph2.edge("middle class", "poor")
+graph2.edge("middle class", "middle class")
+graph2.edge("middle class", "rich")
+graph2.edge("rich", "poor")
+graph2.edge("rich", "middle class")
+graph2.edge("rich", "rich")
+
+graph2
+```
 
 For these graphs, the arrows (edges) can be thought of as representing
 positive transition probabilities over a given unit of time.  
@@ -195,7 +285,7 @@ Also,  for $v \in V$,
 * the **in-degree** is $i_d(v) = $ the number of direct predecessors of $v$ and
 * the **out-degree** is $o_d(v) = $ the number of direct successors of $v$.
 
-
++++
 
 ### Digraphs in Networkx
 
@@ -205,73 +295,68 @@ routines for analyzing them.
 
 To import it into Python we run
 
-\begin{minted}{python}
+```{code-cell} ipython3
 import networkx as nx
-\end{minted}
+```
 
-As an example, let us create the directed graph in TODO poverty_trap.
+As an example, let us create the second directed graph in [**Key Definitions**](key-definitions).
 
 To do so, we first create an empty `DiGraph` object:
 
-\begin{minted}{python}
-G_p = nx.DiGraph()    
-\end{minted}
+```{code-cell} ipython3
+G_p = nx.DiGraph()
+```
 
-Next we populate it with nodes and edges.  
-
-
-TODO \texttt{a} to `a`
-TODO \texttt{G\_p} to `G_p`
+Next we populate it with nodes and edges.
 
 To do this we write down a list of
-all edges, with \texttt{poor} represented by \texttt{p} and so on:
+all edges, with *poor* represented by *p* and so on:
 
-\begin{minted}{python}
-edge_list = [
-    ('p', 'p'),
-    ('m', 'p'), ('m', 'm'), ('m', 'r'),
-    ('r', 'p'), ('r', 'm'), ('r', 'r')
-]
-\end{minted}
+```{code-cell} ipython3
+edge_list = [('p', 'p'),
+             ('m', 'p'), ('m', 'm'), ('m', 'r'),
+             ('r', 'p'), ('r', 'm'), ('r', 'r')]
+```
 
-Finally, we add the edges to our \texttt{DiGraph} object:
+Finally, we add the edges to our `DiGraph` object:
 
-\begin{minted}{python}
+```{code-cell} ipython3
 for e in edge_list:
     u, v = e
     G_p.add_edge(u, v)
-\end{minted}
+```
 
-Adding the edges automatically adds the nodes, so \texttt{G\_p} is now a
+Alternatively we can use the following command.
+
+```{code-cell} ipython3
+G_p.add_edges_from(edge_list)
+```
+
+Adding the edges automatically adds the nodes, so `G_p` is now a
 correct representation of our graph.
 
 We can verify this by plotting the graph via Networkx with the following code: 
 
-\begin{minted}{python}
+```{code-cell} ipython3
 fig, ax = plt.subplots()
 nx.draw_spring(G_p, ax=ax, node_size=500, with_labels=True, 
                  font_weight='bold', arrows=True, alpha=0.8,
                  connectionstyle='arc3,rad=0.25', arrowsize=20)
 plt.show()
-\end{minted}
+```
 
-This code produces Figure TODO [TODO numref], which matches the
-original directed graph in Figure [TODO numref]
+The figure obtained above matches the
+original directed graph in {ref}`key-definitions`.
 
 
-\texttt{DiGraph} objects have methods that calculate in-degree and out-degree
+`DiGraph` objects have methods that calculate in-degree and out-degree
 of nodes.   
 
 For example,
-%
-\begin{minted}{python}
+
+```{code-cell} ipython3
 G_p.in_degree('p')
-\end{minted}
-%
-
-
-
-
+```
 
 ### Communication
 
@@ -296,55 +381,122 @@ Two nodes $u$ and $v$ are said to **communicate** if both $u \to v$ and $v \to u
 
 A graph is called **strongly connected** if all nodes communicate.
 
-TODO -- fix this
+In the section {ref}`key-definitions`, the first directed graph is strongly connected
+however the in the second graph rich is not accessible from poor, thus it is not strongly connected.
 
-In Figure [fix numref:rich_poor_no_label], the directed graph is strongly connected.  In
-contrast, in Figure [numref:poverty_trap], rich is not accessible from
-poor, so the graph is not strongly connected.  
+We can verify this using Networkx.
 
-Networkx can be used to test for strong connectedness.
+```{code-cell} ipython3
+fig, ax = plt.subplots(figsize = (5,5))
+G1 = nx.DiGraph()
 
-TODO give an example
+G1.add_edges_from([('p', 'p'),('p','m'),('p','r'),
+             ('m', 'p'), ('m', 'm'), ('m', 'r'),
+             ('r', 'p'), ('r', 'm'), ('r', 'r')])
+                      
+nx.draw(G1, with_labels = True)
+```
 
+```{code-cell} ipython3
+nx.is_strongly_connected(G1)    #checking if above graph is strongly connected
+```
 
+```{code-cell} ipython3
+fig, ax = plt.subplots(figsize = (5,5))
+G2 = nx.DiGraph()
 
+G2.add_edges_from([('p', 'p'),
+             ('m', 'p'), ('m', 'm'), ('m', 'r'),
+             ('r', 'p'), ('r', 'm'), ('r', 'r')])
+                      
+nx.draw(G2, with_labels = True) 
+```
 
+```{code-cell} ipython3
+nx.is_strongly_connected(G2)    #checking if above graph is strongly connected
+```
 
 ## Weighted Graphs
 
 We now introduce weighted graphs, where weights (numbers) are attached to each
 edge.
 
-To motivate the idea, consider Figure [numref
-financial_network_analysis_visualization], which  shows flows of funds (i.e.,
++++
+
+(pvt_credit_flows)=
+### International Private Credit Flows by Country
+
+To motivate the idea, consider the following figure which shows flows of funds (i.e.,
 loans) between private banks, grouped by country of origin.
 
+```{code-cell} ipython3
+Z = ch1_data["adjacency_matrix_2019"]["Z"]
+Z_visual= ch1_data["adjacency_matrix_2019"]["Z_visual"]
+countries = ch1_data["adjacency_matrix_2019"]["countries"]
+
+G = qbn_io.adjacency_matrix_to_graph(Z_visual, countries, tol=0.03)
+
+centrality = qbn_io.eigenvector_centrality(Z_visual, authority=False)
+node_total_exports = qbn_io.node_total_exports(G)
+edge_weights = qbn_io.edge_weights(G)
+
+node_pos_dict = nx.circular_layout(G)
+
+node_sizes = qbn_io.normalise_weights(node_total_exports,3000)
+edge_widths = qbn_io.normalise_weights(edge_weights,10)
+
+
+node_colors = qbn_io.colorise_weights(centrality)
+node_to_color = dict(zip(G.nodes,node_colors))
+edge_colors = []
+for src,_ in G.edges:
+    edge_colors.append(node_to_color[src])
+    
+fig, ax = plt.subplots(figsize=(8, 10))
+ax.axis('off')
+
+nx.draw_networkx_nodes(G, 
+                        node_pos_dict, 
+                        node_color=node_colors, 
+                        node_size=node_sizes,  
+                        edgecolors='grey', 
+                        linewidths=2, 
+                        alpha=0.4, 
+                        ax=ax)
+
+nx.draw_networkx_labels(G, 
+                        node_pos_dict,  
+                        font_size=12,
+                        ax=ax)
+
+nx.draw_networkx_edges(G, 
+                        node_pos_dict, 
+                        edge_color=edge_colors, 
+                        width=edge_widths, 
+                        arrows=True, 
+                        arrowsize=20,  
+                        alpha=0.8,
+                        ax=ax, 
+                        arrowstyle='->', 
+                        node_size=node_sizes, 
+                        connectionstyle='arc3,rad=0.15')
+
+if export_figures:
+    plt.savefig("figures/financial_network_analysis_visualization.pdf")
+plt.show()
+```
+
 TODO 
-
-- Add this from https://networks.quantecon.org/ch_intro.html but hide the code
 - fix numref above, use label financial_network_analysis_visualization
-- ask Shu for data if necessary
 
-The country codes are given in Table [TODO numref]
+The country codes are given in the following table.
 
-TODO convert table to markdown
-
-\begin{table}
-    \small
-    \centering
-    %\fontsize{9.5pt}{10.25pt}\selectfont
-    \addtolength{\tabcolsep}{-2pt}
-    \centering
-    \begin{tabular}{ll|ll|ll|ll}
-        \hline 
-        AU  & Australia  & DE  & Germany & CL  & Chile & ES & Spain \\
-        PT  &  Portugal & FR & France & TR  & Turkey & GB & United Kingdom \\
-        US  & United States & IE & Ireland & AT  & Austria & IT & Italy \\
-        BE  & Belgium & JP & Japan & SW & Switzerland & SE & Sweden \\
-        \hline
-    \end{tabular}
-    \caption{\label{table:cfn} Codes for the 16-country financial network}
-\end{table}
+|Code|    Country    |Code| Country |Code|   Country   |Code|     Country    |
+|:--:|:--------------|:--:|:-------:|:--:|:-----------:|:--:|:--------------:|
+| AU |   Australia   | DE | Germany | CL |    Chile    | ES |     Spain      |
+| PT |   Portugal    | FR |  France | TR |   Turkey    | GB | United Kingdom |
+| US | United States | IE | Ireland | AT |   Austria   | IT |     Italy      |
+| BE |   Belgium     | JP |  Japan  | SW | Switzerland | SE |    Sweden      |
 
 An arrow from Japan to the US indicates aggregate claims held by Japanese
 banks on all US-registered banks, as collected by the Bank of International
@@ -368,34 +520,40 @@ of a credit flow, but also the size of the flow.
 The correct data structure for recording this information is a ``weighted
 directed graph''
 
++++
 
-
+(definitions)=
 ### Definitions
 
 A **weighted directed graph** is a directed graph to which we have added a
 **weight function** $w$ that assigns a positive number to each edge.
 
-
-Figure [numref financial_network_analysis_visualization] above shows one
-weighted directed graph, where the weights are the size of fund flows.
+The figure above shows one weighted directed graph, where the weights are the size of fund flows.
 
 TODO fix numref and then graphviz figure below
 
-Figure~\ref{f:rich_poor} shows a weighted directed graph, with arrows
+The following figure shows a weighted directed graph, with arrows
 representing edges of the induced directed graph.
 
-:label: rich_poor
-digraph { 
-    rankdir=LR;
-    "poor" -> "poor" [label = "0.9"];
-    "poor" -> "middle class" [label = "0.1"];
-    "middle class" -> "poor" [label = "0.4"];
-    "middle class" -> "middle class" [label = "0.4"];
-    "middle class" -> "rich" [label = "0.2"];
-    "rich" -> "poor" [label = "0.1"];
-    "rich" -> "middle class" [label = "0.1"];
-    "rich" -> "rich" [label = "0.8"];
-} 
+```{code-cell} ipython3
+graph3 = Digraph(comment='Graph')
+
+graph3.attr(rankdir='LR')
+graph3.node("poor")
+graph3.node("middle class")
+graph3.node("rich")
+
+graph3.edge("poor", "poor", label = '0.9')
+graph3.edge("poor", "middle class", label = '0.1')
+graph3.edge("middle class", "poor", label = '0.4')
+graph3.edge("middle class", "middle class", label = '0.4')
+graph3.edge("middle class", "rich", label = '0.2')
+graph3.edge("rich", "poor", label = '0.1')
+graph3.edge("rich", "middle class", label = '0.1')
+graph3.edge("rich", "rich", label = '0.8')
+
+graph3
+```
 
 The numbers next to the edges are the weights.  
 
@@ -404,6 +562,7 @@ probabilities for a household over, say, one year.
 
 We see that a rich household has a 10\% chance of becoming poor in one year.  
 
++++
 
 ## Adjacency Matrices 
 
@@ -411,7 +570,8 @@ Another way that we can represent weights, which turns out to be very
 convenient for numerical work, is via a matrix.
 
 The **adjacency matrix** of a weighted directed graph with nodes $\{v_1, \ldots, v_n\}$, edges $E$ and weight function $w$ is the matrix
-%
+
+$$
 \begin{equation*}
     A = (a_{ij})_{1 \leq i,j \leq n}
     \quad \text{with} \quad
@@ -424,132 +584,168 @@ The **adjacency matrix** of a weighted directed graph with nodes $\{v_1, \ldots,
     \end{cases}
     %
 \end{equation*}
-%
+$$
 
 Once the nodes in $V$ are enumerated, the weight function and
 adjacency matrix provide essentially the same information.  
 
-TODO fix numref
+For example, with $\{$poor, middle, rich$\}$ mapped to $\{1, 2, 3\}$ respectively,
+the adjacency matrix corresponding to the weighted directed graph in {ref}`definitions` is
 
-For example, with $\{$poor, middle, rich$\}$ mapped to $(0, 1, 2)$, 
-    the adjacency matrix corresponding to the weighted directed graph in
-    Figure~\ref{f:rich_poor} is
-    %
-    \begin{equation}\label{eq:fnegwa0}
-        A = 
-        \begin{pmatrix}
-            0.9 & 0.1 & 0 \\
-            0.4 & 0.4 & 0.2 \\
-            0.1 & 0.1 & 0.8
-        \end{pmatrix}.
-    \end{equation}
+$$
+\begin{pmatrix}
+    0.9 & 0.1 & 0 \\
+    0.4 & 0.4 & 0.2 \\
+    0.1 & 0.1 & 0.8
+\end{pmatrix}.
+$$
 
-In QuantEcon's \texttt{DiGraph} implementation, weights are recorded via the
-keyword \texttt{weighted}:
+In QuantEcon's `DiGraph` implementation, weights are recorded via the
+keyword `weighted`:
 
-\begin{minted}{python}
+```{code-cell} ipython3
 A = ((0.9, 0.1, 0.0),
      (0.4, 0.4, 0.2),
      (0.1, 0.1, 0.8))
 A = np.array(A)
-G = qe.DiGraph(A, weighted=True)    
-\end{minted}
-
+G = qe.DiGraph(A, weighted=True)    #store weights
+```
 
 One of the key points to remember about adjacency matrices is that taking the
-transpose ``reverses all the arrows'' in the associated directed graph.  
+transpose _reverses all the arrows_ in the associated directed graph.  
 
 TODO fix numref below
 
-For example, the directed graph in Figure~\ref{f:network_liabfin} can be
+For example, the following directed graph can be
 interpreted as a stylized version of a financial network, with nodes as banks
-and edges showing flow of funds, similar to
-Figure~\ref{f:financial_network_analysis_visualization}.
+and edges showing flow of funds, similar to the weighted digraph in {ref}`pvt_credit_flows`.
+
+```{code-cell} ipython3
+G4 = nx.DiGraph()
+
+G4.add_edges_from([('1','2'),
+                   ('2','1'),('2','3'),
+                   ('3','4'),
+                   ('4','2'),('4','5'),
+                   ('5','1'),('5','3'),('5','4')])
+pos = nx.circular_layout(G4)
+
+edge_labels={('1','2'): '100',
+             ('2','1'): '50', ('2','3'): '200',
+             ('3','4'): '100',
+             ('4','2'): '500', ('4','5'): '50',
+             ('5','1'): '150',('5','3'): '250', ('5','4'): '300'}
+
+nx.draw_networkx(G4, pos, node_color = 'none',node_size = 500)
+nx.draw_networkx_edge_labels(G4, pos, edge_labels=edge_labels)
+nx.draw_networkx_nodes(G4, pos, linewidths= 0.5, edgecolors = 'black', node_color = 'none',node_size = 500)
+
+plt.show()
+```
+
+```{code-cell} ipython3
+graph4 = Digraph(engine = "neato")
+                 
+graph4.attr(rankdir='LR')
+graph4.node('1', pos = '2,3!')
+graph4.node('2', pos = '4,2!')
+graph4.node('3', pos = '4,0!')
+graph4.node('4', pos = '0,0!')
+graph4.node('5', pos = '0,2!')              
+                 
+graph4.edge('1','2', label = '100')
+graph4.edge('2','1', label = '50')
+graph4.edge('2','3', label = '200')
+graph4.edge('3','4', label = '100')
+graph4.edge('4','2', label = '500')
+graph4.edge('4','5', label = '50')
+graph4.edge('5','1', label = '150')                 
+graph4.edge('5','3', label = '250')
+graph4.edge('5','4', label = '300')
+                 
+graph4
+```
 
 We see that bank 2 extends a loan of size 200 to bank 3.
 
 The corresponding adjacency matrix is
-%
-\begin{equation}\label{eq:fnegwa}
-    A = 
-    \begin{pmatrix}
-        0 & 100 & 0 & 0 & 0 \\
-        50 & 0 & 200 & 0 & 0 \\
-        0 & 0 & 0 & 100 & 0 \\
-        0 & 500 & 0 & 0 & 50 \\
-        150 & 0 & 250 & 300 & 0 
-    \end{pmatrix}.
-\end{equation}
-%
 
-The transposition is
-%
-\begin{equation}\label{eq:fnegwat}
-    A^\top = 
-    \begin{pmatrix}
-        0   & 50  & 0   & 0   & 150 \\
-        100 & 0   & 0   & 500 & 0 \\
-        0   & 200 & 0   & 0   & 250 \\
-        0   & 0   & 100 & 0   & 300 \\
-        0   & 0   & 0   & 50  & 0 
-    \end{pmatrix}.
-\vspace{0.3em}
-\end{equation}
-%
+$$
+A =
+\begin{pmatrix}
+    0 & 100 & 0 & 0 & 0 \\
+    50 & 0 & 200 & 0 & 0 \\
+    0 & 0 & 0 & 100 & 0 \\
+    0 & 500 & 0 & 0 & 50 \\
+    150 & 0 & 250 & 300 & 0 
+\end{pmatrix}.
+$$
+
+The transpose is
+
+$$
+A^\top = 
+\begin{pmatrix}
+    0   & 50  & 0   & 0   & 150 \\
+    100 & 0   & 0   & 500 & 0 \\
+    0   & 200 & 0   & 0   & 250 \\
+    0   & 0   & 100 & 0   & 300 \\
+    0   & 0   & 0   & 50  & 0 
+\end{pmatrix}.
+$$
 
 TODO fix numref below
 
-The corresponding network is visualized in Figure~\ref{f:network_liabfin_trans}.  
+The corresponding network is visualized in the following figure which shows the network of liabilities after the loans have been granted.  
 
-This figure shows the network of liabilities after the loans have been granted.
-
-Both of these networks (original and transpose) are useful for analysis of
-    financial markets.
+Both of these networks (original and transpose) are useful for analysis of financial markets.
 
 TODO convert tikz code below to graphviz?  Original figs are in networks text section 1.4.2
 
-:label: network_liabfin
+```{code-cell} ipython3
+G5 = nx.DiGraph()
 
-\begin{tikzpicture}
-  \node[circle, draw] (1) at (2.5, 3) {1};
-  \node[circle, draw] (2) at (-1, 2) {2};
-  \node[circle, draw] (3) at (-2, -0.5) {3};
-  \node[circle, draw] (4) at (1.5, -1) {4};
-  \node[circle, draw] (5) at (3.5, 0) {5};
-  \draw[->, thick, black]
-  (1) edge [bend left=20, below] node {$100$} (2)
-  (2) edge [bend left=20, above] node {$50$} (1)
-  (2) edge [bend right=20, left] node {$200$} (3)
-  (3) edge [bend right=20, below] node {$100$} (4)
-  (4) edge [bend right=20, right] node {$500$} (2)
-  (5) edge [bend right=20, below left] node {$250$} (3)
-  (5) edge [bend left=30, below] node {$300$} (4)
-  (4) edge [bend left=30, below] node {$50$} (5)
-  (5) edge [bend right=30, right] node {$150$} (1);
-\end{tikzpicture}
+G5.add_edges_from([('1','2'),('1','5'),
+                   ('2','1'),('2','4'),
+                   ('3','2'),('3','5'),
+                   ('4','3'),('4','5'),
+                   ('5','4')])
 
+edge_labels={('1','2'): '50', ('1','5'): '150',
+             ('2','1'): '100', ('2','4'): '500',
+             ('3','2'): '200', ('3','5'): '250',
+             ('4','3'): '100', ('4','5'): '300',
+             ('5','4'): '50'}
 
+nx.draw_networkx(G5, pos, node_color = 'none',node_size = 500)
+nx.draw_networkx_edge_labels(G5, pos, edge_labels=edge_labels)
+nx.draw_networkx_nodes(G5, pos, linewidths= 0.5, edgecolors = 'black', node_color = 'none',node_size = 500)
 
-:label: network_liabfin_trans
+plt.show()
+```
 
-\begin{tikzpicture}
-  \node[circle, draw] (1) at (2.5, 3) {1};
-  \node[circle, draw] (2) at (-1, 2) {2};
-  \node[circle, draw] (3) at (-2, -0.5) {3};
-  \node[circle, draw] (4) at (1.5, -1) {4};
-  \node[circle, draw] (5) at (3.5, 0) {5};
-  \draw[<-, thick, black]
-  (1) edge [bend left=20, below] node {$100$} (2)
-  (2) edge [bend left=20, above] node {$50$} (1)
-  (2) edge [bend right=20, left] node {$200$} (3)
-  (3) edge [bend right=20, below] node {$100$} (4)
-  (4) edge [bend right=20, right] node {$500$} (2)
-  (5) edge [bend right=20, below left] node {$250$} (3)
-  (5) edge [bend left=30, below] node {$300$} (4)
-  (4) edge [bend left=30, below] node {$50$} (5)
-  (5) edge [bend right=30, right] node {$150$} (1);
-\end{tikzpicture}
-
+```{code-cell} ipython3
+graph5 = Digraph(engine = "neato")
+                 
+graph5.attr(rankdir='LR')
+graph5.node('1', pos = '2,3!')
+graph5.node('2', pos = '4,2!')
+graph5.node('3', pos = '4,0!')
+graph5.node('4', pos = '0,0!')
+graph5.node('5', pos = '0,2!')              
+                 
+graph5.edge('1','2', label = '50')
+graph5.edge('1','5', label = '150')
+graph5.edge('2','1', label = '100')
+graph5.edge('2','4', label = '500')
+graph5.edge('3','2', label = '200')
+graph5.edge('3','5', label = '250')
+graph5.edge('4','3', label = '100')
+graph5.edge('4','5', label = '300')
+graph5.edge('5','4', label = '50')               
+                 
+graph5
+```
 
 In general, every nonnegative $n \times n$ matrix $A = (a_{ij})$ can be
 viewed as the adjacency matrix of a weighted directed graph.
@@ -561,7 +757,7 @@ For the weight function we set $w(i, j) = a_{ij}$  for all edges $(i,j)$.
 
 We call this graph the weighted directed graph induced by $A$.
 
-
++++
 
 ## Properties
 
@@ -571,39 +767,86 @@ Let $a^k_{ij}$ be element $i,j$ of $A^k$, the $k$-th power of $A$.
 
 The following result is useful in many applications:
 
-TODO -- theorem environment
+````{prf:theorem} graph_theory_property1
 
 For distinct nodes $i, j$ in $V$ and any integer $k$, we have
-%
+
+$$
 \begin{equation*}
     a^k_{i j} > 0
     \quad \text{if and only if} \quad
     \text{ $j$ is accessible from $i$}.
 \end{equation*}
-%
+$$
+
+````
+
++++
 
 The above result is obvious when $k=1$ and a proof of the general case can be
 found in \cite{sargent2022economic}.
 
 Now recall from [TODO add link to Maanasee's eigenvalues lecture] that a
-nonnegative matrix is called irreducible if [give def].
+nonnegative matrix $A$ is called irreducible if for each $(i,j)$ there is an integer $k \geq 0$ such that $a^{k}_{ij} > 0$.
 
-From the proceeding theorem it is not too difficult (see
+From the preceding theorem it is not too difficult (see
 \cite{sargent2022economic} for details) to get the next result.
 
-TODO thm environment
+````{prf:theorem} graph_theory_property1
 
-For a weighted directed graph.  The following statements are equivalent:
+For a weighted directed graph the following statements are equivalent:
    
 1. The directed graph is strongly connected. 
-1. The adjacency matrix of the graph is irreducible.
+2. The adjacency matrix of the graph is irreducible.
  
-        
+````
 
-TODO add a simple example where we can see the theorem is working
+```{code-cell} ipython3
+G6 = nx.DiGraph()
 
+G6.add_edges_from([('1','2'),('1','3'),
+                   ('2','1'),
+                   ('3','1'),('3','2')])
+pos = nx.shell_layout(G6)
 
+edge_labels={('1','2'): '0.7', ('1','3'): '0.3',
+             ('2','1'): '1',
+             ('3','1'): '0.4', ('3','2'): '0.6'}
 
+nx.draw_networkx(G6, pos, node_color = 'none',node_size = 500)
+nx.draw_networkx_edge_labels(G5, pos, edge_labels=edge_labels)
+nx.draw_networkx_nodes(G6, pos, linewidths= 0.5, edgecolors = 'black', node_color = 'none',node_size = 500)
+
+plt.show()
+```
+
+```{code-cell} ipython3
+graph6 = Digraph()
+                 
+graph6.attr(rankdir='LR')
+graph6.node('1')
+graph6.node('2')
+graph6.node('3')           
+                 
+graph6.edge('1','2', label = '0.7')
+graph6.edge('1','3', label = '0.3')
+graph6.edge('2','1', label = '1')
+graph6.edge('3','1', label = '0.4')
+graph6.edge('3','2', label = '0.6')             
+                 
+graph6
+```
+
+```{code-cell} ipython3
+A = np.array([[0,0.7,0.3],
+              [1,0,0],
+              [0.4,0.6,0]])
+print(np.linalg.matrix_power(A,2))
+```
+
+```{code-cell} ipython3
+nx.is_strongly_connected(G6)
+```
 
 ## Network Centrality
 
@@ -616,7 +859,6 @@ Examples include
 * determining the most important bank in a financial network (which one a
   central bank should rescue if there is a financial crisis)
 * determining the most important industrial sector in an economy.
-
 
 In what follows, a **centrality measure** associates to each weighted directed
 graph a vector $m$ where the $m_i$ is interpreted as the centrality (or rank)
@@ -632,14 +874,77 @@ Both of these provide a centrality measure.
 In-degree centrality is a vector containing the in-degree of each node in
 the graph.
 
-In-degree centrality is a vector containing the in-degree of each node in
-the graph.
+```{code-cell} ipython3
+G7 = nx.DiGraph()
 
-TODO build a graph G via Networkx and then compute the in-degree centrality vector via
+G7.add_nodes_from(['1','2','3','4','5','6','7'])
 
-\begin{minted}{python}
-iG = [G.in_degree(v) for v in G.nodes()]    
-\end{minted}
+G7.add_edges_from([('1','2'),('1','6'),
+                   ('2','1'),('2','4'),
+                   ('3','2'),
+                   ('4','2'),
+                   ('5','3'),('5','4'),
+                   ('6','1'),
+                   ('7','4'),('7','6')])
+pos = nx.planar_layout(G7)
+
+nx.draw_networkx(G7, pos, node_color = 'none',node_size = 500)
+nx.draw_networkx_nodes(G7, pos, linewidths= 0.5, edgecolors = 'black', node_color = 'none',node_size = 500)
+
+plt.show()
+```
+
+```{code-cell} ipython3
+iG7 = [G7.in_degree(v) for v in G7.nodes()]   #computing in-degree centrality
+
+iG7
+```
+
+```{code-cell} ipython3
+D = qbn_io.build_unweighted_matrix(Z)
+indegree = D.sum(axis=0)
+```
+
+```{code-cell} ipython3
+def centrality_plot_data(countries, centrality_measures):
+    df = pd.DataFrame({'code': countries,
+                       'centrality':centrality_measures, 
+                       'color': qbn_io.colorise_weights(centrality_measures).tolist()
+                       })
+    return df.sort_values('centrality')
+```
+
+```{code-cell} ipython3
+centrality_measures = [outdegree, indegree, 
+                       ecentral_hub, ecentral_authority, 
+                       kcentral_hub, kcentral_authority]
+
+ylabels = ['out degree', 'in degree',
+           'eigenvector hub','eigenvector authority', 
+           'katz hub', 'katz authority']
+
+ylims = [(0, 20), (0, 20), 
+         None, None,   
+         None, None]
+```
+
+```{code-cell} ipython3
+import matplotlib.patches as mpatches
+
+fig, axes = plt.subplots()
+#axes = axes.flatten()
+
+df = centrality_plot_data(countries, indegree)
+      
+ax.bar('code', 'centrality', data=df, color=df["color"], alpha=0.6)
+    
+patch = mpatches.Patch(color=None, label='in degree', visible=False)
+ax.legend(handles=[patch], fontsize=12, loc="upper left", handlelength=0, frameon=False)
+    
+ax.set_ylim((0,20))
+
+plt.show()
+```
 
 Unfortunately, while in-degree and out-degree centrality are simple to
 calculate, they are not always informative.  
@@ -672,6 +977,7 @@ node depends on the importance of other nodes that *it links to*.
 
 The next centrality measures we study have these recursive features.
 
++++
 
 ### Eigenvector Centrality
 
@@ -685,10 +991,10 @@ lecture on eigenvalues]
 
 The **eigenvector centrality** of the graph is defined as the $n$-vector $e$ that solves
 
-$$
+```{math}
 :label: ev_central
     e = \frac{1}{r(A)} A e.
-$$
+```
 
 In other words, $e$ is the dominant eigenvector of $A$ (the eigenvector of the
 largest eigenvalue --- see the discussion of the Perron-Frobenius theorem in
@@ -702,6 +1008,7 @@ for some element $e_i$
     e_i = \frac{1}{r(A)} \sum_{1 \leq j \leq n} a_{ij} e_j
 \end{equation}
 
++++
 
 Note the recursive nature of the definition: the centrality obtained by node
 $i$ is proportional to a sum of the centrality of all nodes, weighted by
@@ -722,8 +1029,7 @@ flow backwards through the network.
 
 To compute eigenvector centrality we can use the following function.
 
-TOD code block
-
+```{code-cell} ipython3
 import numpy as np
 from scipy.sparse import linalg
 
@@ -734,7 +1040,7 @@ def eigenvector_centrality(A, m=40):
     r, vec_r = linalg.eigs(A, k=1, which='LR')
     e = vec_r.flatten().real
     return e / np.sum(e)  # normalize e
-
+```
 
 TODO 
 
@@ -748,7 +1054,7 @@ Japan takes the highest rank according to this measure, although
 countries with large financial sectors such as Great Britain and France are
 not far behind.  
 
-
++++
 
 ### Katz Centrality
 
@@ -777,6 +1083,7 @@ $$
     \kappa = \mathbf 1 + \beta A \kappa
 $$
 
++++
 
 where $\mathbf 1$ is a column vector of ones.
 
@@ -793,6 +1100,7 @@ $$
     \kappa = (I - \beta A)^{-1} \mathbf 1
 $$
 
++++
 
 This follows from the Neumann series theorem [TODO link to Maanasee's lecture].
 
@@ -802,7 +1110,7 @@ When $r(A)<1$, we use $\beta=1$ as the default for Katz centrality computations.
 
 
 
-
++++
 
 ### Authorities vs Hubs
 
@@ -866,7 +1174,7 @@ The US clearly dominates the rankings as a target of interbank credit.
 
 
 
-
++++
 
 ## Further Reading
 
@@ -884,6 +1192,7 @@ Textbooks on economic and social networks include \cite{jackson2010social},
   year={2022}
 }
 
++++
 
 @book{borgatti2018analyzing,
   title={Analyzing social networks},
@@ -914,12 +1223,13 @@ Textbooks on economic and social networks include \cite{jackson2010social},
   publisher={MIT Press}
 }
 
-
++++
 
 Within the realm of network science, the texts
 by \cite{newman2018networks}, \cite{menczer2020first} and
 \cite{coscia2021atlas} are excellent.
 
++++
 
 @book{newman2018networks,
   title={Networks},
@@ -942,6 +1252,7 @@ by \cite{newman2018networks}, \cite{menczer2020first} and
   year={2021}
 }
 
++++
 
 ## Exercises
 
@@ -949,6 +1260,7 @@ TODO fix ex below, add ex environments, add one or two more exercises doing
 simple computational exercises with graphs --- computing centrality under
 different measures, graphing centrality with a bar graph, etc.
 
++++
 
 ### Ex
 
@@ -957,5 +1269,3 @@ Here is a mathematical exercise for those who like proofs.
 Let $(V, E)$ be a directed graph and write $u \sim v$ if $u$ and $v$ communicate.  
 
 Show that $\sim$ is an [equivalence relation](https://en.wikipedia.org/wiki/Equivalence_relation) on $V$.
-
-
