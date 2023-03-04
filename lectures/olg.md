@@ -4,14 +4,14 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.14.1
+    jupytext_version: 1.14.4
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
   name: python3
 ---
 
-+++ {"tags": []}
+
 
 # The Overlapping Generations Model
 
@@ -47,6 +47,17 @@ The OLG model takes up this challenge.
 We will present a simple version of the OLG model that clarifies the decision
 problem of households and studies the implications for long run growth.
 
+Let's start with some imports.
+
+```{code-cell} ipython3
+import numpy as np
+from scipy import optimize
+from collections import namedtuple
+import matplotlib.pyplot as plt
+plt.rcParams["figure.figsize"] = (11, 5)  #set default figure size
+```
+
+
 
 ## The Model
 
@@ -63,8 +74,10 @@ aversion (CRRA) form,
 
 ```{math}
 :label: eq_crra
-    U_t = u(c^1_t) + \beta u(c^2_{t+1}) 
+
+    U_t = u(c^1_t) + \beta u(c^2_{t+1})
 ```
+
 
 Here
 
@@ -75,13 +88,13 @@ Here
 
 ### Production
 
-For each integer $t \geq 0$, output $Y_t$ in period $t$ is given by 
+For each integer $t \geq 0$, output $Y_t$ in period $t$ is given by
 
 $$
     Y_t = F(K_t, L_t) = K_t^{\alpha} L_t^{1-\alpha}
 $$
 
-Here $K_t$ is capital, $L_t$ is labor, $F$ is   $\alpha$ is the output elasticity of capital in the Cobb-Douglas production function.
+Here $K_t$ is capital, $L_t$ is labor, $F$ is **Cobb-Douglas production function**, and  $\alpha$ is the output elasticity of capital in $F$.
 
 Without population growth, $L_t$ equals some constant $L$.
 
@@ -89,17 +102,19 @@ Without population growth, $L_t$ equals some constant $L$.
 
 Setting $k_t := K_t / L_t$, $f(k)=F(K, 1)$ and using homogeneity of degree one now yields:
 
-$$
+```{math}
+:label: R_func
     1 + r_t = R_t = f'(k_t) = \alpha k^{\alpha-1}_t
-$$
+```
 
-Here the gross rate of return to saving $1 + r_t$ is equal to the rental rate of capital $R_t$.
+Here, the gross rate of return to saving $1 + r_t$ is equal to the rental rate of capital $R_t$.
 
 The wage rate is given by
 
-$$
+```{math}
+:label: w_func
     w_t = f(k_t) - k_t f'(k_t) = (1-\alpha) k^{\alpha}_t
-$$
+```
 
 
 
@@ -117,10 +132,16 @@ $$
 $$
 
 The second constraint incorporates notion that individuals only spend
-money on their own end of life consumption.
+money on their own end of life consumption. Also, Since $u(.)$ is strictly increasing, both constraints will hold as equalities.
 
-Substituting $s_t$ we get from the first constraint into the second constraint we get $c^2_{t+1}$ in terms of $c^1_t$. 
 
+Substituting $s_t$ we get from the first constraint into the second constraint we get $c^2_{t+1}$ in terms of $c^1_t$, i.e.,
+
+$$
+    c^2_{t+1} = R_{t+1}(w_t - c^1_t)
+$$
+Thus first-order condition for a maximum can be written in the
+familiar form of the consumption Euler equation.
 Plugging $c^2_{t+1}$ into the objective function and taking derivative with respect to $c^1_t$ yield the Euler equation,
 
 $$
@@ -153,8 +174,8 @@ $$
 Setting $k_t := K_t / L_t$, where $L_{t+1} = (1 + n) L_t,$ and using homogeneity of degree one now yields:
 
 ```{math}
-:label: k_dyms
-    k_t = \frac{s(w_t, R_{t+1})}{1 + n} = \frac{w_t}{(1+n) \left [ 1 + \beta^{-1/\gamma} R_{t+1}^{(\gamma-1)/\gamma} \right ]}
+:label: k_dyms_crra
+    k_{t+1} = \frac{s(w_t, R_{t+1})}{1 + n} = \frac{w_t}{(1+n) \left [ 1 + \beta^{-1/\gamma} R_{t+1}^{(\gamma-1)/\gamma} \right ]}
 ```
 
 
@@ -167,16 +188,105 @@ $k_{t+1} = k_t = k^*$, i.e,
     k^* = \frac{s(f(k^*)-k^*f'(k^*), f'(k^*))}{1+n} = \frac{(1-\alpha)(k^*)^{\alpha}}{(1+n) \left [ 1 + \beta^{-1/\gamma} (\alpha (k^*)^{\alpha-1})^{(\gamma-1)/\gamma} \right ]}
 ```
 
++++
+
+Let us define a functions that takes some parameters and returns the OLG model.
+
+```{code-cell} ipython3
+Model = namedtuple('Model', ['α', 'β', 'γ', 'n'])
+```
+
+```{code-cell} ipython3
+def create_olg_model(α=0.3, β=0.9, γ=0.1, n=0.02):
+    return Model(α=α, β=β, γ=γ, n=n)
+```
+
+## A Graphical Perspective
+
+To understand the dynamics of the sequence $(k_t)_{t \ge 0}$ we use a 45 degree diagram.
+
+Using {eq}`k_dyms_crra`, and substituting from {eq}`R_func` and {eq}`w_func` we have
+
+$$
+    k_{t+1} = \frac{w_t}{(1+n) \left [ 1 + \beta^{-1/\gamma} R_{t+1}^{(\gamma-1)/\gamma} \right ]} = \frac{(1-\alpha) k^{\alpha}_t}{(1+n) \left [ 1 + \beta^{-1/\gamma} (\alpha k^{\alpha-1}_{t+1})^{(\gamma-1)/\gamma} \right ]}
+$$
+
+From the above equation, we see that in order to find $k_{t+1}$ we need some root-finding algorithm that solves for $k_{t+1}$ given that we have $k_{t}$.
+
+So for that we will use [scipy.optimize.newton](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.newton.html#scipy.optimize.newton).
+
+```{code-cell} ipython3
+def solve_for_k(x, model, k_t):
+    z = (1 - model.α) * k_t / (1 + model.n)
+    z /= (1 + model.β**(-1/model.γ) * (model.α * x**(model.α - 1))**(1-1/model.γ))
+    return x - z
+```
+
+Let's define function *k_next* that finds the value $k_{t+1}$.
+
+```{code-cell} ipython3
+def k_next(model, k):
+    return optimize.newton(solve_for_k, k, args=(model, k))
+```
+
+```{code-cell} ipython3
+def plot45(kstar=None):
+    kmin, kmax = 2, 4
+    m = 500
+    olg = create_olg_model()
+    k_grid = np.linspace(kmin, kmax, m)
+    k_grid_next = np.empty_like(k_grid)
+
+    for i in range(m):
+        k_grid_next[i] = k_next(olg, k_grid[i])
+
+    fig, ax = plt.subplots(figsize=(6, 6))
+
+    ymin, ymax = np.min(k_grid_next), np.max(k_grid_next)
+
+    lb = r'$k_{t+1} = g(k_t)$'
+    ax.plot(k_grid, k_grid_next,  lw=2, alpha=0.6, label=lb)
+    ax.plot(k_grid, k_grid, 'k-', lw=1, alpha=0.7, label='45')
+
+    if kstar:
+        fps = (kstar,)
+
+        ax.plot(fps, fps, 'go', ms=10, alpha=0.6)
+
+        ax.annotate(r'$k^*$',
+                 xy=(kstar, kstar),
+                 xycoords='data',
+                 xytext=(-40, -60),
+                 textcoords='offset points',
+                 fontsize=14,
+                 arrowprops=dict(arrowstyle="->"))
+
+    ax.legend(loc='upper left', frameon=False, fontsize=12)
+
+    ax.set_xlabel('$k_t$', fontsize=12)
+    ax.set_ylabel('$k_{t+1}$', fontsize=12)
+
+    plt.show()
+```
+
+```{code-cell} ipython3
+plot45()
+```
+
+
 
 ## Exercises
 
 ```{exercise}
 :label: olg_ex1
 
-Replace the utility function $u(c)$ in equation {ref}`eq_crra`  with a quasilinear form $u(c)=c + c^{\alpha}$.
+Replace the utility function $u(c)$ in equation {eq}`eq_crra`  with a quasilinear form $u(c)=c + c^{\alpha}$.
 
-Now we don't have an analytical solution. 
+Now we don't have an analytical solution.
 
 Try to compute the time path capital $\{k_t\}$ in this case.
 ```
 
+```{code-cell} ipython3
+
+```
