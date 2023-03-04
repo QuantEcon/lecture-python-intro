@@ -228,7 +228,7 @@ Let's define a function `k_next` that finds the value of $k_{t+1}$.
 
 ```{code-cell} ipython3
 def k_next(model, k):
-    return optimize.newton(solve_for_k_2, k, args=(model, k))
+    return optimize.newton(solve_for_k, k, args=(model, k))
 ```
 
 ```{code-cell} ipython3
