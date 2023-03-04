@@ -190,7 +190,7 @@ $k_{t+1} = k_t = k^*$, i.e,
 
 +++
 
-Let us define a functions that takes some parameters and returns the OLG model.
+Let us define a function that takes some parameters and returns the OLG model.
 
 ```{code-cell} ipython3
 Model = namedtuple('Model', ['α', 'β', 'γ', 'n'])
@@ -217,23 +217,24 @@ So for that we will use [scipy.optimize.newton](https://docs.scipy.org/doc/scipy
 
 ```{code-cell} ipython3
 def solve_for_k(x, model, k_t):
-    z = (1 - model.α) * k_t / (1 + model.n)
-    z /= (1 + model.β**(-1/model.γ) * (model.α * x**(model.α - 1))**(1-1/model.γ))
-    return x - z
+    z = (1 - model.α) * k_t**model.α
+    R1 = model.α ** (1-1/model.γ)
+    R2 = x**((model.α * model.γ - model.α + 1) / model.γ)
+    p = (1 + model.n) * (x + model.β**(-1/model.γ) * R1 * R2)
+    return p - z
 ```
 
-Let's define function *k_next* that finds the value $k_{t+1}$.
+Let's define a function `k_next` that finds the value of $k_{t+1}$.
 
 ```{code-cell} ipython3
 def k_next(model, k):
-    return optimize.newton(solve_for_k, k, args=(model, k))
+    return optimize.newton(solve_for_k_2, k, args=(model, k))
 ```
 
 ```{code-cell} ipython3
-def plot45(kstar=None):
-    kmin, kmax = 2, 4
-    m = 500
-    olg = create_olg_model()
+def plot45(olg, kstar=None):
+    kmin, kmax = 0, 0.3
+    m = 1000
     k_grid = np.linspace(kmin, kmax, m)
     k_grid_next = np.empty_like(k_grid)
 
@@ -244,8 +245,7 @@ def plot45(kstar=None):
 
     ymin, ymax = np.min(k_grid_next), np.max(k_grid_next)
 
-    lb = r'$k_{t+1} = g(k_t)$'
-    ax.plot(k_grid, k_grid_next,  lw=2, alpha=0.6, label=lb)
+    ax.plot(k_grid, k_grid_next,  lw=2, alpha=0.6)
     ax.plot(k_grid, k_grid, 'k-', lw=1, alpha=0.7, label='45')
 
     if kstar:
@@ -270,7 +270,29 @@ def plot45(kstar=None):
 ```
 
 ```{code-cell} ipython3
-plot45()
+olg = create_olg_model()
+plot45(olg)
+```
+
+Let's find the value of $k^*$.
+
+By observing the above graph, we can see that the value of $k^*$ roughly falls between $(0.15, 0.2)$. Using this information, we will again use [scipy.optimize.newton](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.newton.html#scipy.optimize.newton).
+
+```{code-cell} ipython3
+def solve_for_k_star(x, model):
+    z = (1 - model.α) * x**model.α
+    R1 = model.α ** (1-1/model.γ)
+    R2 = x**((model.α * model.γ - model.α + 1) / model.γ)
+    p = (1 + model.n) * (x + model.β**(-1/model.γ) * R1 * R2)
+    return p - z
+```
+
+```{code-cell} ipython3
+k_star = optimize.newton(solve_for_k_star, 0.2, args=(olg,))
+```
+
+```{code-cell} ipython3
+plot45(olg, k_star)
 ```
 
 
