@@ -68,6 +68,8 @@ wb.series.info(q='GDP growth')
 We can always learn more about the data by checking the metadata of the series
 
 ```{code-cell} ipython3
+:tags: [hide-output]
+
 wb.series.metadata.get('NY.GDP.MKTP.KD.ZG')
 ```
 
@@ -93,12 +95,122 @@ gdp_growth
 Now we write a function to generate plots
 
 ```{code-cell} ipython3
+def plot_comparison(data, country, title, ylabel, title_pos, ax, g_params, b_params, t_params):
+    
+    ax.plot(data.loc[country], label=country, **g_params)
+    
+    # Highlight Recessions
+    ax.axvspan(1973, 1975, **b_params)
+    ax.axvspan(1990, 1992, **b_params)
+    ax.axvspan(2007, 2009, **b_params)
+    ax.axvspan(2019, 2021, **b_params)
+    ax.set_ylim([-15, 15])
+    ylim = ax.get_ylim()[1]
+    ax.text(1974, ylim + ylim * title_pos, 'Oil Crisis\n(1974)', **t_params) 
+    ax.text(1991, ylim + ylim * title_pos, '1990s recession\n(1991)', **t_params) 
+    ax.text(2008, ylim + ylim * title_pos, 'GFC\n(2008)', **t_params) 
+    ax.text(2020, ylim + ylim * title_pos, 'Covid-19\n(2020)', **t_params) 
+    ax.set_title(title, pad=40)
+    ax.set_ylabel(ylabel)
+    ax.legend()
+    return ax
+
+# Define graphical parameters 
+g_params = {'alpha': 0.7}
+b_params = {'color':'grey', 'alpha': 0.2}
+t_params = {'color':'grey', 'fontsize': 9, 'va':'center', 'ha':'center'}
+```
+
+Let's start with individual coutries.
+
+We start with plotting the GDP growth rate for Unitied States
+
+```{code-cell} ipython3
 fig, ax = plt.subplots()
 
 # Draw x-axis
-ax.set_xticks([i for i in range(1960, 2021, 10)], minor=False)
 plt.locator_params(axis='x', nbins=10)
+ax.set_xticks([i for i in range(1960, 2021, 10)], minor=False)
 
+country = 'United States'
+title = 'United States (Real GDP Growth Rate %)'
+ylabel = 'GDP Growth Rate (%)'
+title_height = 0.1
+ax = plot_comparison(gdp_growth, country, title, ylabel, 0.1, ax, g_params, b_params, t_params)
+```
+
+We find that there is a cyclical pattern across time, and volatile drops and rises during recessions
+
+Let's look at a few more countries across the world
+
++++
+
+Britain has a relative similar pattern compared to the US.
+
+However it has a more signicant drop in the GDP growth during the global economic recessions.
+
+```{code-cell} ipython3
+fig, ax = plt.subplots()
+
+# Draw x-axis
+plt.locator_params(axis='x', nbins=10)
+ax.set_xticks([i for i in range(1960, 2021, 10)], minor=False)
+
+country = 'United Kingdom'
+title = ' United Kingdom (Real GDP Growth Rate %)'
+ylabel = 'GDP Growth Rate (%)'
+title_height = 0.1
+ax = plot_comparison(gdp_growth, country, title, ylabel, 0.1, ax, g_params, b_params, t_params)
+```
+
+Japan and Greece both had a history of rapid growth in the 1960s, but a slowed economic expension in the past decade.
+
+We can see the 
+
+```{code-cell} ipython3
+fig, ax = plt.subplots()
+
+
+country = 'Japan'
+title = 'Japan (Real GDP Growth Rate %)'
+ylabel = 'GDP Growth Rate (%)'
+title_height = 0.1
+ax = plot_comparison(gdp_growth, country, title, ylabel, 0.1, ax, g_params, b_params, t_params)
+```
+
+```{code-cell} ipython3
+fig, ax = plt.subplots()
+
+country = 'Greece'
+title = ' Greece (Real GDP Growth Rate %)'
+ylabel = 'GDP Growth Rate (%)'
+title_height = 0.1
+ax = plot_comparison(gdp_growth, country, title, ylabel, 0.1, ax, g_params, b_params, t_params)
+```
+
+```{code-cell} ipython3
+fig, ax = plt.subplots()
+
+country = 'Argentina'
+title = 'Argentina (Real GDP Growth Rate %)'
+ylabel = 'GDP Growth Rate (%)'
+title_height = 0.1
+ax = plot_comparison(gdp_growth, country, title, ylabel, 0.1, ax, g_params, b_params, t_params)
+```
+
+We find similar cyclical patterns across different countries.
+
+Countries such as Argentina has a more volatile cycle compared to other economies. 
+
+Some economie
+
++++
+
+## Unemployment
+
+## Synchronization
+
+```{code-cell} ipython3
 def plot_comparison(data, countries, title, ylabel, title_pos, ax, g_params, b_params, t_params):
     # Allow the function to go through more than one series
     for country in countries:
@@ -124,21 +236,6 @@ g_params = {'alpha': 0.7}
 b_params = {'color':'grey', 'alpha': 0.2}
 t_params = {'color':'grey', 'fontsize': 9, 'va':'center', 'ha':'center'}
 ```
-
-Let's start with individual coutries
-
-```{code-cell} ipython3
-country = 'United States'
-title = ' United States (Real GDP Growth Rate %)'
-ylabel = 'GDP Growth Rate (%)'
-title_height = 0.1
-ax = plot_comparison(gdp_growth, countries, title, ylabel, 0.1, ax, g_params, b_params, t_params)
-```
-
-## Unemployment
-
-## Synchronization
-
 
 ```{code-cell} ipython3
 fig, ax = plt.subplots()
