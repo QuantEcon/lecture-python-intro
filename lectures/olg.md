@@ -12,7 +12,6 @@ kernelspec:
 ---
 
 
-
 # The Overlapping Generations Model
 
 In this lecture we study the overlapping generations (OLG) model.
@@ -56,7 +55,6 @@ from collections import namedtuple
 import matplotlib.pyplot as plt
 plt.rcParams["figure.figsize"] = (11, 5)  #set default figure size
 ```
-
 
 
 ## The Model
@@ -213,6 +211,9 @@ $$
 
 From the above equation, we see that in order to find $k_{t+1}$ we need some root-finding algorithm that solves for $k_{t+1}$ given that we have $k_{t}$.
 
+And suppose, $k_{t+1} = g(k_t)$
+
+
 So for that we will use [scipy.optimize.newton](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.newton.html#scipy.optimize.newton).
 
 ```{code-cell} ipython3
@@ -231,6 +232,8 @@ def k_next(model, k):
     return optimize.newton(solve_for_k, k, args=(model, k))
 ```
 
+Let's plot the 45 degree diagram of $k$
+
 ```{code-cell} ipython3
 def plot45(olg, kstar=None):
     kmin, kmax = 0, 0.3
@@ -245,7 +248,7 @@ def plot45(olg, kstar=None):
 
     ymin, ymax = np.min(k_grid_next), np.max(k_grid_next)
 
-    ax.plot(k_grid, k_grid_next,  lw=2, alpha=0.6)
+    ax.plot(k_grid, k_grid_next,  lw=2, alpha=0.6, label='$g$')
     ax.plot(k_grid, k_grid, 'k-', lw=1, alpha=0.7, label='45')
 
     if kstar:
@@ -256,13 +259,12 @@ def plot45(olg, kstar=None):
         ax.annotate(r'$k^*$',
                  xy=(kstar, kstar),
                  xycoords='data',
-                 xytext=(-40, -60),
+                 xytext=(0, -60),
                  textcoords='offset points',
                  fontsize=14,
                  arrowprops=dict(arrowstyle="->"))
 
     ax.legend(loc='upper left', frameon=False, fontsize=12)
-
     ax.set_xlabel('$k_t$', fontsize=12)
     ax.set_ylabel('$k_{t+1}$', fontsize=12)
 
@@ -274,9 +276,25 @@ olg = create_olg_model()
 plot45(olg)
 ```
 
+Suppose, at some $k_t$, the value $g(k_t)$ lies strictly above the 45 degree line.
+
+Then we have $k_{t+1} = g(k_t) > k_t$ and capital per worker rises.
+
+If $g(k_t) < k_t$ then capital per worker falls.
+
+If $g(k_t) = k_t$, then we are at a **steady state** and $k_t$ remains constant.
+
+(A steady state of the model is a [fixed point](https://en.wikipedia.org/wiki/Fixed_point_(mathematics)) of the mapping $g$.)
+
+From the shape of the function $g$ in the figure, we see that
+there is a unique steady state in $(0, \infty)$.
+
++++
+
 Let's find the value of $k^*$.
 
-By observing the above graph, we can see that the value of $k^*$ roughly falls between $(0.15, 0.2)$. Using this information, we will again use [scipy.optimize.newton](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.newton.html#scipy.optimize.newton).
+By observing the above graph, we can see that the value of $k^*$ roughly falls between $(0.15, 0.2)$.
+Using this information, we will again use [scipy.optimize.newton](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.newton.html#scipy.optimize.newton).
 
 ```{code-cell} ipython3
 def solve_for_k_star(x, model):
@@ -289,12 +307,59 @@ def solve_for_k_star(x, model):
 
 ```{code-cell} ipython3
 k_star = optimize.newton(solve_for_k_star, 0.2, args=(olg,))
+print(f"k_star = {k_star}")
 ```
 
 ```{code-cell} ipython3
 plot45(olg, k_star)
 ```
 
+From our graphical analysis, it appears that $(k_t)$ converges to $k^*$, regardless of initial capital
+$k_0$.
+
+This is a form of global stability.
+
+
+The next figure shows three time paths for capital, from
+three distinct initial conditions, under the parameterization listed above.
+
+At this parameterization, $k^* \approx 0.161$.
+
+Let's define the constants and three distinct intital conditions
+
+```{code-cell} ipython3
+ts_length = 10
+x0 = np.array([0.001, 0.5, 1.8, 3.5])
+```
+
+```{code-cell} ipython3
+def simulate_ts(olg, x0_values, ts_length):
+
+    k_star = optimize.newton(solve_for_k_star, 0.2, args=(olg,))
+    fig, ax = plt.subplots()
+
+    ts = np.zeros(ts_length)
+
+    # simulate and plot time series
+    for x_init in x0_values:
+        ts[0] = x_init
+        for t in range(1, ts_length):
+            ts[t] = k_next(olg, ts[t-1])
+        ax.plot(np.arange(ts_length), ts, '-o', ms=4, alpha=0.6,
+                label=r'$k_0=%g$' %x_init)
+    ax.plot(np.arange(ts_length), np.full(ts_length,k_star),
+            alpha=0.6, color='red', label=r'$k_*$')
+    ax.legend(fontsize=10)
+
+    ax.set_xlabel(r'$t$', fontsize=14)
+    ax.set_ylabel(r'$k_t$', fontsize=14)
+
+    plt.show()
+```
+
+```{code-cell} ipython3
+simulate_ts(olg, x0, ts_length)
+```
 
 
 ## Exercises

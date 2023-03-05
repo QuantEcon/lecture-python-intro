@@ -247,7 +247,7 @@ def simulate_ts(x0_values, ts_length):
         ax.plot(np.arange(ts_length), ts, '-o', ms=4, alpha=0.6,
                 label=r'$k_0=%g$' %x_init)
     ax.plot(np.arange(ts_length), np.full(ts_length,k_star),
-            alpha=0.6, color='red', label=r'$k_*$')
+            alpha=0.6, color='red', label=r'$k^*$')
     ax.legend(fontsize=10)
 
     ax.set_xlabel(r'$t$', fontsize=14)
