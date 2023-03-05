@@ -19,9 +19,9 @@ This lecture is about illustrateing business cycles in different countries and p
 
 The business cycle refers to the fluctuations in economic activity over time. These fluctuations can be observed in the form of expansions, contractions, recessions, and recoveries in the economy.
 
-In this lecture, we will see expensions and contractions of economies from 1960s to the recent pandemic using [World Bank API](https://documents.worldbank.org/en/publication/documents-reports/api).
+In this lecture, we will see expensions and contractions of economies from 1960s to the recent pandemic using [World Bank API](https://documents.worldbank.org/en/publication/documents-reports/api), [IMF API](http://www.bd-econ.com/imfapi1.html), and [FRED](https://fred.stlouisfed.org/) data.
 
-In addition to what's in Anaconda, this lecture will need the following libraries to get World bank data
+In addition to what's in Anaconda, this lecture will need the following libraries to get World Bank and IMF data
 
 ```{code-cell} ipython3
 :tags: [hide-output]
@@ -41,11 +41,19 @@ import wbgapi as wb
 from imfpy.retrievals import dots
 ```
 
+```{code-cell} ipython3
+# Set Graphical Parameters
+cycler = plt.cycler(linestyle=['-', '-.', '--'], color=['#377eb8', '#ff7f00', '#4daf4a'])
+plt.rc('axes', prop_cycle=cycler)
+```
+
 ## Data Acquaisition
 
-We will use `wbgapi` and `imfpy` to retrieve data from the World Bank and IMF API throughout this lecture.
+We will use `wbgapi`, `imfpy`, and Pandas `datareader` to retrieve data throughout this lecture.
 
-So let's explore how to query data  together.
+This help us speed up the quary since we do not need to handle the raw JSON files.
+
+So let's explore how to query data together.
 
 We can use `wb.series.info` with parameter `q` to query available data from the World Bank (`imfpy. searches.database_codes()` in `imfpy`)
 
@@ -57,60 +65,23 @@ Let's retrive GDP growth data together
 wb.series.info(q='GDP growth')
 ```
 
-In a similar fashion, we can also retrieve data that covers different aspects of economic activities.
-
-We can cover indicators of 
-
-- labour market
+We can always learn more about the data by checking the metadata of the series
 
 ```{code-cell} ipython3
-:tags: [hide-output]
-
-wb.series.info(q='unemployment')
+wb.series.metadata.get('NY.GDP.MKTP.KD.ZG')
 ```
 
-- credit level
+We can now dive into the data we have.
 
-```{code-cell} ipython3
-:tags: [hide-output]
 
-wb.series.info(q='credit')
-```
-
-- consumer price index
-
-```{code-cell} ipython3
-:tags: [hide-output]
-
-wb.series.info(q='consumer')
-```
-
-- consumption level
-
-```{code-cell} ipython3
-:tags: [hide-output]
-
-wb.series.info(q='consumption')
-```
-
-```{code-cell} ipython3
-wb.series.info(q='capital account') # TODO: Check if it is to be plotted
-```
-
-- international trade volumn
-
-+++
-
-These indicators will give us an overview of variations in economic activities across time.
-
-## GDP Growth Rate and Unemployment
+## GDP Growth Rate
 
 First we look at the GDP growth rate and unemployment rate.
 
 Let's source our data from the World Bank and clean the data
 
 ```{code-cell} ipython3
-gdp_growth = wb.data.DataFrame('NY.GDP.MKTP.KD.ZG',['CHN', 'USA', 'DEU', 'BRA', 'ARG', 'GBR', 'MEX', 'CHL', 'COL', 'SLV', 'HTI'], labels=True)
+gdp_growth = wb.data.DataFrame('NY.GDP.MKTP.KD.ZG',['USA', 'ARG', 'GBR', 'GRC', 'JPN'], labels=True)
 gdp_growth = gdp_growth.set_index('Country')
 gdp_growth.columns = gdp_growth.columns.str.replace('YR', '').astype(int)
 ```
@@ -119,19 +90,21 @@ gdp_growth.columns = gdp_growth.columns.str.replace('YR', '').astype(int)
 gdp_growth
 ```
 
-```{code-cell} ipython3
-cycler = plt.cycler(linestyle=['-', '-.', '--'], color=['#377eb8', '#ff7f00', '#4daf4a'])
-plt.rc('axes', prop_cycle=cycler)
-```
+Now we write a function to generate plots
 
 ```{code-cell} ipython3
 fig, ax = plt.subplots()
+
+# Draw x-axis
 ax.set_xticks([i for i in range(1960, 2021, 10)], minor=False)
 plt.locator_params(axis='x', nbins=10)
 
 def plot_comparison(data, countries, title, ylabel, title_pos, ax, g_params, b_params, t_params):
+    # Allow the function to go through more than one series
     for country in countries:
         ax.plot(data.loc[country], label=country, **g_params)
+    
+    # Highlight Recessions
     ax.axvspan(1973, 1975, **b_params)
     ax.axvspan(1990, 1992, **b_params)
     ax.axvspan(2007, 2009, **b_params)
@@ -146,15 +119,26 @@ def plot_comparison(data, countries, title, ylabel, title_pos, ax, g_params, b_p
     ax.legend()
     return ax
 
+# Define graphical parameters 
 g_params = {'alpha': 0.7}
 b_params = {'color':'grey', 'alpha': 0.2}
 t_params = {'color':'grey', 'fontsize': 9, 'va':'center', 'ha':'center'}
-countries = ['United Kingdom', 'United States', 'Germany']
-title = 'United Kingdom, United States, and Germany (GDP Growth Rate %)'
+```
+
+Let's start with individual coutries
+
+```{code-cell} ipython3
+country = 'United States'
+title = ' United States (Real GDP Growth Rate %)'
 ylabel = 'GDP Growth Rate (%)'
 title_height = 0.1
 ax = plot_comparison(gdp_growth, countries, title, ylabel, 0.1, ax, g_params, b_params, t_params)
 ```
+
+## Unemployment
+
+## Synchronization
+
 
 ```{code-cell} ipython3
 fig, ax = plt.subplots()
