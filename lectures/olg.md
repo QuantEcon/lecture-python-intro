@@ -11,6 +11,7 @@ kernelspec:
   name: python3
 ---
 
++++ {"tags": []}
 
 # The Overlapping Generations Model
 
@@ -56,6 +57,7 @@ import matplotlib.pyplot as plt
 plt.rcParams["figure.figsize"] = (11, 5)  #set default figure size
 ```
 
++++ {"tags": []}
 
 ## The Model
 
@@ -73,7 +75,7 @@ aversion (CRRA) form,
 ```{math}
 :label: eq_crra
 
-    U_t = u(c^1_t) + \beta u(c^2_{t+1})
+    U_t = u(c^1_t) + \beta u(c^2_{t+1}) 
 ```
 
 
@@ -86,7 +88,7 @@ Here
 
 ### Production
 
-For each integer $t \geq 0$, output $Y_t$ in period $t$ is given by
+For each integer $t \geq 0$, output $Y_t$ in period $t$ is given by 
 
 $$
     Y_t = F(K_t, L_t) = K_t^{\alpha} L_t^{1-\alpha}
@@ -121,23 +123,25 @@ The wage rate is given by
 Savings by an individual of generation $t$, $s_t$, is determined as a
 solution to:
 
-$$
+```{math}
+:label: max_sav_olg
     \begin{aligned}
     \max_{c^1_t, c^2_{t+1}, s_t} \ & u(c^1_t) + \beta u(c^2_{t+1}) \\
     \mbox{subject to } \ & c^1_t + s_t \le w_t \\
                          & c^2_{t+1} \le R_{t+1}s_t\\
     \end{aligned}
-$$
+```
 
 The second constraint incorporates notion that individuals only spend
 money on their own end of life consumption. Also, Since $u(.)$ is strictly increasing, both constraints will hold as equalities.
 
 
-Substituting $s_t$ we get from the first constraint into the second constraint we get $c^2_{t+1}$ in terms of $c^1_t$, i.e.,
+Substituting $s_t$ we get from the first constraint into the second constraint we get $c^2_{t+1}$ in terms of $c^1_t$, i.e., 
 
-$$
+```{math}
+:label: c_2_olg
     c^2_{t+1} = R_{t+1}(w_t - c^1_t)
-$$
+```
 Thus first-order condition for a maximum can be written in the
 familiar form of the consumption Euler equation.
 Plugging $c^2_{t+1}$ into the objective function and taking derivative with respect to $c^1_t$ yield the Euler equation,
@@ -240,7 +244,7 @@ def plot45(olg, kstar=None):
     m = 1000
     k_grid = np.linspace(kmin, kmax, m)
     k_grid_next = np.empty_like(k_grid)
-
+    
     for i in range(m):
         k_grid_next[i] = k_next(olg, k_grid[i])
 
@@ -293,8 +297,7 @@ there is a unique steady state in $(0, \infty)$.
 
 Let's find the value of $k^*$.
 
-By observing the above graph, we can see that the value of $k^*$ roughly falls between $(0.15, 0.2)$.
-Using this information, we will again use [scipy.optimize.newton](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.newton.html#scipy.optimize.newton).
+By observing the above graph, we can see that the value of $k^*$ roughly falls between $(0.15, 0.2)$. Using this information, we will again use [scipy.optimize.newton](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.newton.html#scipy.optimize.newton).
 
 ```{code-cell} ipython3
 def solve_for_k_star(x, model):
@@ -329,14 +332,14 @@ Let's define the constants and three distinct intital conditions
 
 ```{code-cell} ipython3
 ts_length = 10
-x0 = np.array([0.001, 0.5, 1.8, 3.5])
+x0 = np.array([0.001, 1.2, 2.6])
 ```
 
 ```{code-cell} ipython3
 def simulate_ts(olg, x0_values, ts_length):
 
     k_star = optimize.newton(solve_for_k_star, 0.2, args=(olg,))
-    fig, ax = plt.subplots()
+    fig, ax = plt.subplots(figsize=(10, 5))
 
     ts = np.zeros(ts_length)
 
@@ -348,7 +351,7 @@ def simulate_ts(olg, x0_values, ts_length):
         ax.plot(np.arange(ts_length), ts, '-o', ms=4, alpha=0.6,
                 label=r'$k_0=%g$' %x_init)
     ax.plot(np.arange(ts_length), np.full(ts_length,k_star),
-            alpha=0.6, color='red', label=r'$k_*$')
+            alpha=0.6, color='red', label=r'$k^*$')
     ax.legend(fontsize=10)
 
     ax.set_xlabel(r'$t$', fontsize=14)
@@ -361,17 +364,109 @@ def simulate_ts(olg, x0_values, ts_length):
 simulate_ts(olg, x0, ts_length)
 ```
 
++++ {"tags": []}
 
 ## Exercises
 
 ```{exercise}
 :label: olg_ex1
 
-Replace the utility function $u(c)$ in equation {eq}`eq_crra`  with a quasilinear form $u(c)=c + c^{\alpha}$.
+Replace the utility function $u(c)$ in equation {eq}`eq_crra`  with a quasilinear form $u(c)=c + c^{\theta}$.
 
-Now we don't have an analytical solution.
+Now we don't have an analytical solution. 
 
 Try to compute the time path capital $\{k_t\}$ in this case.
+```
+
++++
+
+From {eq}`max_sav_olg`, the first-order condition for a maximum can be written in the
+familiar form of the consumption Euler equation given by
+
+$$
+    u'(c^1_t) = \beta R_{t+1} u'(c^2_{t+1})
+$$
+
+Using {eq}`c_2_olg`, we have
+
+$$
+    u'(c^1_t) = \beta R_{t+1} u'(R_{t+1}(w_t - c^1_t))
+$$
+
+Substituting using {eq}`R_func`, and {eq}`w_func`
+
+$$
+    u'(c^1_t) = \beta \alpha k^{\alpha-1}_{t+1} u'(\alpha k^{\alpha-1}_{t+1}((1 - \alpha)k^{\alpha}_t - c^1_t))
+$$
+
+Since $u$ is quasilinear, in order to solve for $c^1_t$, we will need to use [scipy.optimize.newton](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.newton.html#scipy.optimize.newton).
+
+From {eq}`k_dyms_crra`,
+
+$$
+    k_{t+1} = \frac{s(w_t, R_{t+1})}{1 + n} = \frac{w_t - c^1_t}{1+n}
+$$
+
++++
+
+Let's define the functions to solve the above system.
+
+```{code-cell} ipython3
+def u_prime(c, θ):
+    return 1 + θ * c ** (θ - 1)
+
+def solve_for_c(x, θ, model, k_t, k_t_1):
+    l = u_prime(x, θ)
+    R = model.α * k_t_1**(model.α-1)
+    r = model.β * R
+    y = R * ((1 - model.α) * k_t**model.α - x)
+    r = r * u_prime(y, θ)
+    return l - r
+```
+
+```{code-cell} ipython3
+def solve_for_k(x, θ, model, k_t):
+    c = optimize.newton(solve_for_c, k_t, args=(θ, model, k_t, x))
+    num = (1 - model.α) * k_t**model.α - c
+    den = (1 + model.n)
+    return x - num/den
+
+def k_next(model, θ, k_t):
+    return optimize.newton(solve_for_k, k_t, args=(θ, model, k_t), maxiter=200)
+```
+
+```{code-cell} ipython3
+ts_length = 10
+θ = 1.5
+x0 = np.array([1.2, 2.6])
+```
+
+```{code-cell} ipython3
+def simulate_ts(olg, θ, x0_values, ts_length):
+
+    fig, ax = plt.subplots(figsize=(10, 5))
+
+    ts = np.zeros(ts_length)
+
+    # simulate and plot time series
+    for x_init in x0_values:
+        ts[0] = x_init
+        for t in range(1, ts_length):
+            ts[t] = k_next(olg, θ, ts[t-1])
+        ax.plot(np.arange(ts_length), ts, '-o', ms=4, alpha=0.6,
+                label=r'$k_0=%g$' %x_init)
+    ax.plot(np.arange(ts_length), np.full(ts_length,k_star),
+            alpha=0.6, color='red', label=r'$k^*$')
+    ax.legend(fontsize=10)
+
+    ax.set_xlabel(r'$t$', fontsize=14)
+    ax.set_ylabel(r'$k_t$', fontsize=14)
+
+    plt.show()
+```
+
+```{code-cell} ipython3
+simulate_ts(olg, θ, x0, ts_length)
 ```
 
 ```{code-cell} ipython3
