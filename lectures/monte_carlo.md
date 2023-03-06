@@ -111,19 +111,20 @@ So far we have no need for a computer.
 
 But now suppose that we study the distribution of $S$ more carefully.
 
-We decide that the share price depends on three variables, $X_1$, $X_2, and $X_3$ (for example, sales, inflation, etc.).
+We decide that the share price depends on three variables, $X_1$, $X_2$, and
+$X_3$ (e.g., sales, inflation, and interest rates).
 
-In particular, our study tells us that
+In particular, our study suggests that
 
 $$
     S = (X_1 + X_2 + X_3)^p
 $$
 
-Here
+where
 
-* $p$ is a positive number, which is known to us,
+* $p$ is a positive number, which is known to us  (i.e., has been estimated),
 * $X_i \sim LN(\mu_i, \sigma_i)$ for $i=1,2,3$,
-* the values $\mu_i, \sigma_i$ are also known (i.e., have all been estimated), and
+* the values $\mu_i, \sigma_i$ are also known, and
 * the random variables $X_1$, $X_2$ and $X_3$ are independent.
 
 How should we compute the mean of $S$?
@@ -534,10 +535,9 @@ plt.show()
 Now that our model is more complicated, we cannot easily determine the
 distribution of $S_n$.
 
-So to compute the price $P_0$ of the option, we use Monte Carlo
+So to compute the price $P$ of the option, we use Monte Carlo.
 
-
-WE average over realizations $S_n^1, \ldots, S_n^M$ of $S_n$ and appealing to
+We average over realizations $S_n^1, \ldots, S_n^M$ of $S_n$ and appealing to
 the law of large numbers:
 
 $$ 
@@ -582,7 +582,7 @@ compute_call_price()
 
 
 
-## ExerciseS
+## Exercises
 
 ```{exercise}
 :label: monte_carlo_ex1
@@ -613,7 +613,7 @@ def compute_call_price(β=β,
     s = np.full(M, np.log(S0))
     h = np.full(M, h0)
     for t in range(n):
-        Z = np.random.randn((2, M))
+        Z = np.random.randn(2, M)
         s = s + μ + np.exp(h) * Z[0, :]
         h = ρ * h + ν * Z[1, :]
     expectation = np.mean(np.maximum(np.exp(s) - K, 0))
