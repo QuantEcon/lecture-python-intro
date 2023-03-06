@@ -4,7 +4,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.14.4
+    jupytext_version: 1.14.5
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
@@ -28,6 +28,7 @@ In addition to what's in Anaconda, this lecture will need the following librarie
 
 !pip install wbgapi
 !pip install imfpy
+!pip install pandas-datareader
 ```
 
 We use the following imports
@@ -37,8 +38,10 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
 import scipy.stats as st
+import datetime
 import wbgapi as wb
 from imfpy.retrievals import dots
+import pandas_datareader.data as web
 ```
 
 ```{code-cell} ipython3
@@ -63,6 +66,10 @@ Let's retrive GDP growth data together
 
 ```{code-cell} ipython3
 wb.series.info(q='GDP growth')
+```
+
+```{code-cell} ipython3
+wb.series.info(q='income share')
 ```
 
 We can always learn more about the data by checking the metadata of the series
@@ -110,6 +117,7 @@ def plot_comparison(data, country, title, ylabel, title_pos, ax, g_params, b_par
     ax.text(1991, ylim + ylim * title_pos, '1990s recession\n(1991)', **t_params) 
     ax.text(2008, ylim + ylim * title_pos, 'GFC\n(2008)', **t_params) 
     ax.text(2020, ylim + ylim * title_pos, 'Covid-19\n(2020)', **t_params) 
+    plt.axhline(y=0, color='black', linestyle='--')
     ax.set_title(title, pad=40)
     ax.set_ylabel(ylabel)
     ax.legend()
@@ -133,7 +141,7 @@ plt.locator_params(axis='x', nbins=10)
 ax.set_xticks([i for i in range(1960, 2021, 10)], minor=False)
 
 country = 'United States'
-title = 'United States (Real GDP Growth Rate %)'
+title = 'United States (GDP Growth Rate %)'
 ylabel = 'GDP Growth Rate (%)'
 title_height = 0.1
 ax = plot_comparison(gdp_growth, country, title, ylabel, 0.1, ax, g_params, b_params, t_params)
@@ -157,7 +165,7 @@ plt.locator_params(axis='x', nbins=10)
 ax.set_xticks([i for i in range(1960, 2021, 10)], minor=False)
 
 country = 'United Kingdom'
-title = ' United Kingdom (Real GDP Growth Rate %)'
+title = ' United Kingdom (GDP Growth Rate %)'
 ylabel = 'GDP Growth Rate (%)'
 title_height = 0.1
 ax = plot_comparison(gdp_growth, country, title, ylabel, 0.1, ax, g_params, b_params, t_params)
@@ -165,14 +173,14 @@ ax = plot_comparison(gdp_growth, country, title, ylabel, 0.1, ax, g_params, b_pa
 
 Japan and Greece both had a history of rapid growth in the 1960s, but a slowed economic expension in the past decade.
 
-We can see the 
+We can see there is a general downward trend in additonal to fluctuations in the growth rate
 
 ```{code-cell} ipython3
 fig, ax = plt.subplots()
 
 
 country = 'Japan'
-title = 'Japan (Real GDP Growth Rate %)'
+title = 'Japan (GDP Growth Rate %)'
 ylabel = 'GDP Growth Rate (%)'
 title_height = 0.1
 ax = plot_comparison(gdp_growth, country, title, ylabel, 0.1, ax, g_params, b_params, t_params)
@@ -182,17 +190,19 @@ ax = plot_comparison(gdp_growth, country, title, ylabel, 0.1, ax, g_params, b_pa
 fig, ax = plt.subplots()
 
 country = 'Greece'
-title = ' Greece (Real GDP Growth Rate %)'
+title = ' Greece (GDP Growth Rate %)'
 ylabel = 'GDP Growth Rate (%)'
 title_height = 0.1
 ax = plot_comparison(gdp_growth, country, title, ylabel, 0.1, ax, g_params, b_params, t_params)
 ```
 
+Some countries have more volitile cycles.
+
 ```{code-cell} ipython3
 fig, ax = plt.subplots()
 
 country = 'Argentina'
-title = 'Argentina (Real GDP Growth Rate %)'
+title = 'Argentina (GDP Growth Rate %)'
 ylabel = 'GDP Growth Rate (%)'
 title_height = 0.1
 ax = plot_comparison(gdp_growth, country, title, ylabel, 0.1, ax, g_params, b_params, t_params)
@@ -202,11 +212,96 @@ We find similar cyclical patterns across different countries.
 
 Countries such as Argentina has a more volatile cycle compared to other economies. 
 
-Some economie
+One interesting insight is that the GDP growth of Argentina did not fall in the two recessions in 1970s and 1990s when most of developed economy is affected.
+
+We will come back to this point later.
 
 +++
 
 ## Unemployment
+
+Another important indicator of business cycles is the unemployment rate.
+
+When there is a recession, it is more likely to have more working population.
+
+We will show this using a long-run unemployment rate from FRED from [1929-1942](https://fred.stlouisfed.org/series/M0892AUSM156SNBR) and [1948-1011](https://fred.stlouisfed.org/series/UNRATE) with the unemployment rate between 1942-1948 estimated by [The Census Bureau](https://www.census.gov/library/publications/1975/compendia/hist_stats_colonial-1970.html).
+
+```{code-cell} ipython3
+start_date = datetime.datetime(1929, 1, 1)
+end_date = datetime.datetime(1942, 6, 1)
+
+unrate_history = web.DataReader("M0892AUSM156SNBR", "fred", start_date,end_date)
+unrate_history.rename(columns={'M0892AUSM156SNBR': 'UNRATE'}, inplace=True)
+```
+
+```{code-cell} ipython3
+import datetime
+
+start_date = datetime.datetime(1948, 1, 1)
+end_date = datetime.datetime(2022, 12, 31)
+
+unrate = web.DataReader("UNRATE", "fred", start_date, end_date)
+```
+
+For years between 1942-1948, we use data from
+
+```{code-cell} ipython3
+years = [datetime.datetime(year, 6, 1) for year in range(1942,1948)]
+unrate_interim = [4.7, 1.9, 1.2, 1.9, 3.9, 3.9]
+
+interim_data = {'DATE': years, 'UNRATE': unrate_interim}
+interim_data = pd.DataFrame(interim_data)
+interim_data.set_index('DATE', inplace=True)
+```
+
+```{code-cell} ipython3
+start_date = datetime.datetime(1929, 1, 1)
+end_date = datetime.datetime(2022, 12, 31)
+
+nber = web.DataReader("USREC", "fred", start_date, end_date)
+```
+
+```{code-cell} ipython3
+fig, ax = plt.subplots()
+
+ax.plot(unrate_history, **g_params, color='#377eb8', linestyle='-')
+ax.plot(interim_data, **g_params, color='black', linestyle="--", label='interim estimates')
+ax.plot(unrate, **g_params, color='#377eb8', linestyle="-")
+
+# Draw gray boxes according to NBER recession indicators
+ax.fill_between(nber.index, 0, 1, where=nber['USREC']==1, color='grey', edgecolor="none",
+                alpha=0.3, transform=ax.get_xaxis_transform(), 
+                label='NBER Recession Indicators')
+ax.set_ylim([0, ax.get_ylim()[1]])
+ax.legend(loc='upper center', bbox_to_anchor=(0.5, 1.05),
+          ncol=3, fancybox=True, shadow=True)
+ax.set_ylabel('Unemployment Rate (%)')
+
+# Suppress Output
+ax = ax.set_title('Long-run Unemployment Rate, 1929-2022\n with Recession Records (United States)', pad=20)
+```
+
+In the plot we see the expensions and contraction of the labour market has been highly correlated with recessions.
+
+However, there is a delay in the improvement of labor market after recession, which is clearly visible for the Great Recession before the war started, and recessions from 1980s.
+
+It also shows us how special the labor market condition during the pandemic is. 
+
+The labour market recovers at an unprecedent rate.
+
+```{code-cell} ipython3
+income_share = wb.data.DataFrame('SI.DST.10TH.10', ['USA'], labels=True)
+income_share = income_share.set_index('Country')
+income_share.columns = income_share.columns.str.replace('YR', '').astype(int)
+income_share.T.plot()
+```
+
+```{code-cell} ipython3
+income_share = wb.data.DataFrame('SI.DST.FRST.10', ['USA'], labels=True)
+income_share = income_share.set_index('Country')
+income_share.columns = income_share.columns.str.replace('YR', '').astype(int)
+income_share.T.plot()
+```
 
 ## Synchronization
 
@@ -248,9 +343,9 @@ ax = plot_comparison(gdp_growth.loc[countries, 1962:], countries, title, ylabel,
 ```{code-cell} ipython3
 fig, ax = plt.subplots()
 
-countries = ['Argentina']
+countries = ['United States']
 title = 'Argentina (GDP Growth Rate %)'
-ax = plot_comparison(gdp_growth.loc[countries, 1962:], countries, title, ylabel, 0.1, ax, g_params, b_params, t_params)
+ax = plot_comparison(income_share.loc[countries], countries, title, ylabel, 0.1, ax, g_params, b_params, t_params)
 ```
 
 ```{code-cell} ipython3
