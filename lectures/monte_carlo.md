@@ -584,14 +584,20 @@ compute_call_price()
 
 ## ExerciseS
 
+```{exercise}
+:label: monte_carlo_ex1
+
 We would like to increase $M$ in the code above to make the calculation more
 accurate.
 
 But this is problematic because Python loops are slow.
 
 Your task is to write a faster version of this code using NumPy.
+```
 
-
+```{solution-start} monte_carlo_ex1
+:class: dropdown
+```
 
 ```{code-cell} ipython3
 def compute_call_price(β=β,
@@ -627,4 +633,7 @@ Now let's try with larger $M$ to get a more accurate calculation.
 ```{code-cell} ipython3
 %%time 
 compute_call_price(M=10_000_000)
+```
+
+```{solution-end}
 ```
