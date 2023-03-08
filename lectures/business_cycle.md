@@ -46,7 +46,7 @@ import pandas_datareader.data as web
 
 ```{code-cell} ipython3
 # Set Graphical Parameters
-cycler = plt.cycler(linestyle=['-', '-.', '--'], color=['#377eb8', '#ff7f00', '#4daf4a'])
+cycler = plt.cycler(linestyle=['-', '-.', '--', ':'], color=['#377eb8', '#ff7f00', '#4daf4a', '#ff334f'])
 plt.rc('axes', prop_cycle=cycler)
 ```
 
@@ -289,24 +289,18 @@ It also shows us how special the labor market condition during the pandemic is.
 
 The labour market recovers at an unprecedent rate.
 
-```{code-cell} ipython3
-income_share = wb.data.DataFrame('SI.DST.10TH.10', ['USA'], labels=True)
-income_share = income_share.set_index('Country')
-income_share.columns = income_share.columns.str.replace('YR', '').astype(int)
-income_share.T.plot()
-```
-
-```{code-cell} ipython3
-income_share = wb.data.DataFrame('SI.DST.FRST.10', ['USA'], labels=True)
-income_share = income_share.set_index('Country')
-income_share.columns = income_share.columns.str.replace('YR', '').astype(int)
-income_share.T.plot()
-```
++++
 
 ## Synchronization
 
+In our previous dicussion, we find that developed economies have a more synchronized period of recessions.
+
+Let's examine this trend further.
+
+With slight modification, we can draw a plot that includes many countries
+
 ```{code-cell} ipython3
-def plot_comparison(data, countries, title, ylabel, title_pos, ax, g_params, b_params, t_params):
+def plot_comparison_multi(data, countries, title, ylabel, title_pos, y_lim, ax, g_params, b_params, t_params):
     # Allow the function to go through more than one series
     for country in countries:
         ax.plot(data.loc[country], label=country, **g_params)
@@ -316,6 +310,8 @@ def plot_comparison(data, countries, title, ylabel, title_pos, ax, g_params, b_p
     ax.axvspan(1990, 1992, **b_params)
     ax.axvspan(2007, 2009, **b_params)
     ax.axvspan(2019, 2021, **b_params)
+    if y_lim != None:
+        ax.set_ylim([-y_lim, y_lim])
     ylim = ax.get_ylim()[1]
     ax.text(1974, ylim + ylim * title_pos, 'Oil Crisis\n(1974)', **t_params) 
     ax.text(1991, ylim + ylim * title_pos, '1990s recession\n(1991)', **t_params) 
@@ -333,63 +329,32 @@ t_params = {'color':'grey', 'fontsize': 9, 'va':'center', 'ha':'center'}
 ```
 
 ```{code-cell} ipython3
-fig, ax = plt.subplots()
-
-countries = ['Brazil', 'China', 'Argentina']
-title = 'Brazil, China, Argentina (GDP Growth Rate %)'
-ax = plot_comparison(gdp_growth.loc[countries, 1962:], countries, title, ylabel, 0.1, ax, g_params, b_params, t_params)
+gdp_growth = wb.data.DataFrame('NY.GDP.MKTP.KD.ZG',['CHN', 'USA', 'DEU', 'BRA', 'ARG', 'GBR', 'JPN', 'MEX'], labels=True)
+gdp_growth = gdp_growth.set_index('Country')
+gdp_growth.columns = gdp_growth.columns.str.replace('YR', '').astype(int)
 ```
 
 ```{code-cell} ipython3
 fig, ax = plt.subplots()
-
-countries = ['United States']
-title = 'Argentina (GDP Growth Rate %)'
-ax = plot_comparison(income_share.loc[countries], countries, title, ylabel, 0.1, ax, g_params, b_params, t_params)
+countries = ['United Kingdom', 'United States', 'Germany', 'Japan']
+title = 'United Kingdom, United States, Germany, and Japan (GDP Growth Rate %)'
+ylabel = 'GDP Growth Rate (%)'
+title_height = 0.1
+ax = plot_comparison_multi(gdp_growth.loc[countries, 1962:], countries, title, ylabel, 0.1, 20, ax, g_params, b_params, t_params)
 ```
 
 ```{code-cell} ipython3
 fig, ax = plt.subplots()
-
-countries = ['Mexico']
-title = 'Mexico (GDP Growth Rate %)'
-ax = plot_comparison(gdp_growth.loc[countries, 1962:], countries, title, ylabel, 0.1, ax, g_params, b_params, t_params)
+countries = ['Brazil', 'China', 'Argentina', 'Mexico']
+title = 'Brazil, China, Argentina, and Mexico (GDP Growth Rate %)'
+ax = plot_comparison_multi(gdp_growth.loc[countries, 1962:], countries, title, ylabel, 0.1, 20, ax, g_params, b_params, t_params)
 ```
 
-```{code-cell} ipython3
-fig, ax = plt.subplots()
+By comparing the trend of GDP growth rates between developed and developing economies, we find the business cycles are more and more synchronized in from 21st-century recessions.
 
-countries = ['Chile']
-title = 'Chile (GDP Growth Rate %)'
-ax = plot_comparison(gdp_growth.loc[countries, 1962:], countries, title, ylabel, 0.1, ax, g_params, b_params, t_params)
-```
 
 ```{code-cell} ipython3
-fig, ax = plt.subplots()
-
-countries = ['Colombia']
-title = 'Colombia (GDP Growth Rate %)'
-ax = plot_comparison(gdp_growth.loc[countries, 1962:], countries, title, ylabel, 0.1, ax, g_params, b_params, t_params)
-```
-
-```{code-cell} ipython3
-fig, ax = plt.subplots()
-
-countries = ['El Salvador']
-title = 'El Salvador (GDP Growth Rate %)'
-ax = plot_comparison(gdp_growth.loc[countries, 1962:], countries, title, ylabel, 0.1, ax, g_params, b_params, t_params)
-```
-
-```{code-cell} ipython3
-fig, ax = plt.subplots()
-
-countries = ['Haiti']
-title = 'Haiti (GDP Growth Rate %)'
-ax = plot_comparison(gdp_growth.loc[countries, 1962:], countries, title, ylabel, 0.1, ax, g_params, b_params, t_params)
-```
-
-```{code-cell} ipython3
-unempl_rate = wb.data.DataFrame('SL.UEM.TOTL.NE.ZS',['CHN', 'USA', 'DEU', 'BRA', 'ARG', 'GBR', 'MEX', 'CHL', 'COL', 'SLV', 'HTI'], labels=True)
+unempl_rate = wb.data.DataFrame('SL.UEM.TOTL.NE.ZS',['CHN', 'USA', 'DEU', 'BRA', 'ARG', 'GBR', 'JPN'], labels=True)
 unempl_rate = unempl_rate.set_index('Country')
 unempl_rate.columns = unempl_rate.columns.str.replace('YR', '').astype(int)
 ```
@@ -397,50 +362,14 @@ unempl_rate.columns = unempl_rate.columns.str.replace('YR', '').astype(int)
 ```{code-cell} ipython3
 fig, ax = plt.subplots()
 
-countries = ['United Kingdom', 'United States', 'Germany']
+countries = ['United Kingdom', 'United States', 'Germany', 'Japan']
 title = 'United Kingdom, United States, and Germany (Unemployment Rate %)'
 ylabel = 'Unemployment Rate (National Estimate) (%)'
-ax = plot_comparison(unempl_rate, countries, title, ylabel, 0.03, ax, g_params, b_params, t_params)
+ax = plot_comparison_multi(unempl_rate, countries, title, ylabel, 0.05, None, ax, g_params, b_params, t_params)
 ```
 
 ```{code-cell} ipython3
-fig, ax = plt.subplots()
 
-countries = ['Brazil', 'China', 'Argentina']
-title = 'Brazil, China, Argentina (Unemployment Rate %)'
-ax = plot_comparison(unempl_rate, countries, title, ylabel, 0.04, ax, g_params, b_params, t_params)
-```
-
-```{code-cell} ipython3
-fig, ax = plt.subplots()
-
-countries = ['Brazil']
-title = 'Brazil (Unemployment Rate %)'
-ax = plot_comparison(unempl_rate, countries, title, ylabel, 0.04, ax, g_params, b_params, t_params)
-```
-
-```{code-cell} ipython3
-fig, ax = plt.subplots()
-
-countries = ['Chile']
-title = 'Chile (Unemployment Rate %)'
-ax = plot_comparison(unempl_rate, countries, title, ylabel, 0.04, ax, g_params, b_params, t_params)
-```
-
-```{code-cell} ipython3
-fig, ax = plt.subplots()
-
-countries = ['Colombia']
-title = 'Colombia (Unemployment Rate %)'
-ax = plot_comparison(unempl_rate, countries, title, ylabel, 0.04, ax, g_params, b_params, t_params)
-```
-
-```{code-cell} ipython3
-fig, ax = plt.subplots()
-
-countries = ['El Salvador']
-title = 'El Salvador (Unemployment Rate %)'
-ax = plot_comparison(unempl_rate, countries, title, ylabel, 0.04, ax, g_params, b_params, t_params)
 ```
 
 ## Credit Level
@@ -496,8 +425,9 @@ ax = plot_comparison(cpi, countries, title, ylabel, 0.05, ax, g_params, b_params
 ## International Trade
 
 ```{code-cell} ipython3
-trade_us = dots('US','W00', 1960, 2020, freq='A')
+trade_us = dots('200','W00', 1960, 2020, freq='A')
 trade_us['Period'] = trade_us['Period'].astype('int')
+trade_us
 ```
 
 ```{code-cell} ipython3
