@@ -4,7 +4,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.14.5
+    jupytext_version: 1.14.4
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
@@ -41,6 +41,7 @@ import scipy.stats as st
 import datetime
 import wbgapi as wb
 from imfpy.retrievals import dots
+from imfpy import searches
 import pandas_datareader.data as web
 ```
 
@@ -247,14 +248,16 @@ For years between 1942-1948, we use data from
 
 ```{code-cell} ipython3
 years = [datetime.datetime(year, 6, 1) for year in range(1942,1948)]
-unrate_interim = [4.7, 1.9, 1.2, 1.9, 3.9, 3.9]
+unrate_census = [4.7, 1.9, 1.2, 1.9, 3.9, 3.9]
 
-interim_data = {'DATE': years, 'UNRATE': unrate_interim}
-interim_data = pd.DataFrame(interim_data)
-interim_data.set_index('DATE', inplace=True)
+unrate_census = {'DATE': years, 'UNRATE': unrate_census}
+unrate_census = pd.DataFrame(unrate_census)
+unrate_census.set_index('DATE', inplace=True)
 ```
 
 ```{code-cell} ipython3
+:tags: []
+
 start_date = datetime.datetime(1929, 1, 1)
 end_date = datetime.datetime(2022, 12, 31)
 
@@ -262,11 +265,13 @@ nber = web.DataReader("USREC", "fred", start_date, end_date)
 ```
 
 ```{code-cell} ipython3
+:tags: []
+
 fig, ax = plt.subplots()
 
-ax.plot(unrate_history, **g_params, color='#377eb8', linestyle='-')
-ax.plot(interim_data, **g_params, color='black', linestyle="--", label='interim estimates')
-ax.plot(unrate, **g_params, color='#377eb8', linestyle="-")
+ax.plot(unrate_history, **g_params, color='#377eb8', linestyle='-', linewidth=2)
+ax.plot(unrate_census, **g_params, color='black', linestyle="--", label='Census Estimates', linewidth=2)
+ax.plot(unrate, **g_params, color='#377eb8', linestyle="-", linewidth=2)
 
 # Draw gray boxes according to NBER recession indicators
 ax.fill_between(nber.index, 0, 1, where=nber['USREC']==1, color='grey', edgecolor="none",
@@ -350,11 +355,14 @@ title = 'Brazil, China, Argentina, and Mexico (GDP Growth Rate %)'
 ax = plot_comparison_multi(gdp_growth.loc[countries, 1962:], countries, title, ylabel, 0.1, 20, ax, g_params, b_params, t_params)
 ```
 
-By comparing the trend of GDP growth rates between developed and developing economies, we find the business cycles are more and more synchronized in from 21st-century recessions.
+By comparing the trend of GDP growth rates between developed and developing economies, we find the business cycles are more and more synchronized in 21st-century recessions.
 
+Although we have seen synchronization in GDP growth as a general trend, we also need to acknowledge the experience of individual countries during the recession is very different.
+
+Here we use unemployment rate as an example
 
 ```{code-cell} ipython3
-unempl_rate = wb.data.DataFrame('SL.UEM.TOTL.NE.ZS',['CHN', 'USA', 'DEU', 'BRA', 'ARG', 'GBR', 'JPN'], labels=True)
+unempl_rate = wb.data.DataFrame('SL.UEM.TOTL.NE.ZS',['CHN', 'USA', 'DEU', 'FRA', 'BRA', 'ARG', 'GBR', 'JPN'], labels=True)
 unempl_rate = unempl_rate.set_index('Country')
 unempl_rate.columns = unempl_rate.columns.str.replace('YR', '').astype(int)
 ```
@@ -362,20 +370,67 @@ unempl_rate.columns = unempl_rate.columns.str.replace('YR', '').astype(int)
 ```{code-cell} ipython3
 fig, ax = plt.subplots()
 
-countries = ['United Kingdom', 'United States', 'Germany', 'Japan']
+countries = ['United Kingdom', 'United States', 'Germany', 'France']
 title = 'United Kingdom, United States, and Germany (Unemployment Rate %)'
 ylabel = 'Unemployment Rate (National Estimate) (%)'
 ax = plot_comparison_multi(unempl_rate, countries, title, ylabel, 0.05, None, ax, g_params, b_params, t_params)
 ```
 
-```{code-cell} ipython3
+Labor market in German was resilient to the GFC from 2007 to 2008, which is mostly linked to [its labor market policy and various socio-economic factors](http://ilo.org/wcmsp5/groups/public/---dgreports/---inst/documents/publication/wcms_449926.pdf).
 
+The recovery from the crisis is another aspect.
+
+France, as a country with strong labor union, has prolonged labour market recovery compared to the US and UK.
+
++++
+
+## Leading Indicators and Correlated Factors for Business Cycles
+
+Understanding leading indicators and correlated factors help policy maker to better understand the causes and results of business cycles.
+
+We will discuss potential leading indicators and correlated factors from consumption, production, and credit level.
+
+### Consumption
+
++++
+
+One widely cited indicator for consumer confidence is [Consumer Sentiment Index](https://fred.stlouisfed.org/series/UMCSENT) published by University of Michigan.
+
+We find the consumer sentiment maintains at a high level during the expension period, but there are significant drops before the recession officially hits.
+
+We can also find that 2022 is 
+
+```{code-cell} ipython3
+years = [datetime.datetime(year, 6, 1) for year in range(1942,1948)]
+unrate_census = [4.7, 1.9, 1.2, 1.9, 3.9, 3.9]
+
+unrate_census = {'DATE': years, 'UNRATE': unrate_census}
+unrate_census = pd.DataFrame(unrate_census)
+unrate_census.set_index('DATE', inplace=True)
+
+start_date = datetime.datetime(1978, 1, 1)
+end_date = datetime.datetime(2022, 12, 31)
+
+nber = web.DataReader("USREC", "fred", start_date, end_date)
+consumer_confidence = web.DataReader("UMCSENT", "fred", start_date, end_date)
+
+
+fig, ax = plt.subplots()
+ax.plot(consumer_confidence, **g_params, color='#377eb8', linestyle='-', linewidth=2)
+ax.fill_between(nber.index, 0, 1, where=nber['USREC']==1, color='grey', edgecolor="none",
+                alpha=0.3, transform=ax.get_xaxis_transform(), 
+                label='NBER Recession Indicators')
+ax.set_ylim([0, ax.get_ylim()[1]])
+ax.legend(loc='upper center', bbox_to_anchor=(0.5, 1.05),
+          ncol=3, fancybox=True, shadow=True)
+ax.set_ylabel('Consumer Sentiment Index')
+
+# Suppress Output
+ax = ax.set_title('University of Michigan: Consumer Sentiment Index 1978-2022\n (United States)', pad=20)
 ```
 
-## Credit Level
-
 ```{code-cell} ipython3
-private_credit = wb.data.DataFrame('FD.AST.PRVT.GD.ZS',['CHN', 'USA', 'DEU', 'BRA', 'ARG', 'GBR'], labels=True)
+private_credit = wb.data.DataFrame('UMCSENT',['USA'], labels=True)
 private_credit = private_credit.set_index('Country')
 private_credit.columns = private_credit.columns.str.replace('YR', '').astype(int)
 ```
@@ -425,7 +480,11 @@ ax = plot_comparison(cpi, countries, title, ylabel, 0.05, ax, g_params, b_params
 ## International Trade
 
 ```{code-cell} ipython3
-trade_us = dots('200','W00', 1960, 2020, freq='A')
+searches.country_search("united")
+```
+
+```{code-cell} ipython3
+trade_us = dots('US','W00', 1960, 2020, freq='A')
 trade_us['Period'] = trade_us['Period'].astype('int')
 trade_us
 ```
@@ -461,16 +520,6 @@ trade_cn['Period'] = trade_cn['Period'].astype('int')
 title = 'China (International Trade Volumn)'
 ylabel = 'US Dollars, Millions'
 plot_trade_cn = plot_trade(trade_cn[['Period', 'Twoway Trade']], title, ylabel, 0.05, ax, g_params, b_params, t_params)
-```
-
-```{code-cell} ipython3
-fig, ax = plt.subplots()
-trade_mx = dots('MX','W00', 1960, 2020, freq='A')
-
-trade_mx['Period'] = trade_mx['Period'].astype('int')
-title = 'Mexico (International Trade Volumn)'
-ylabel = 'US Dollars, Millions'
-plot_trade_mx = plot_trade(trade_mx[['Period', 'Twoway Trade']], title, ylabel, 0.05, ax, g_params, b_params, t_params)
 ```
 
 ```{code-cell} ipython3
