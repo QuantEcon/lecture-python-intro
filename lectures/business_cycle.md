@@ -19,15 +19,14 @@ This lecture is about illustrateing business cycles in different countries and p
 
 The business cycle refers to the fluctuations in economic activity over time. These fluctuations can be observed in the form of expansions, contractions, recessions, and recoveries in the economy.
 
-In this lecture, we will see expensions and contractions of economies from 1960s to the recent pandemic using [World Bank API](https://documents.worldbank.org/en/publication/documents-reports/api), [IMF API](http://www.bd-econ.com/imfapi1.html), and [FRED](https://fred.stlouisfed.org/) data.
+In this lecture, we will see expensions and contractions of economies from 1960s to the recent pandemic using [World Bank API](https://documents.worldbank.org/en/publication/documents-reports/api), and [FRED](https://fred.stlouisfed.org/) data.
 
-In addition to what's in Anaconda, this lecture will need the following libraries to get World Bank and IMF data
+In addition to what's in Anaconda, this lecture will need the following libraries to get World Bank and FRED
 
 ```{code-cell} ipython3
 :tags: [hide-output]
 
 !pip install wbgapi
-!pip install imfpy
 !pip install pandas-datareader
 ```
 
@@ -40,8 +39,6 @@ import numpy as np
 import scipy.stats as st
 import datetime
 import wbgapi as wb
-from imfpy.retrievals import dots
-from imfpy import searches
 import pandas_datareader.data as web
 ```
 
@@ -53,13 +50,13 @@ plt.rc('axes', prop_cycle=cycler)
 
 ## Data Acquaisition
 
-We will use `wbgapi`, `imfpy`, and Pandas `datareader` to retrieve data throughout this lecture.
+We will use `wbgapi`, and Pandas `datareader` to retrieve data throughout this lecture.
 
 This help us speed up the quary since we do not need to handle the raw JSON files.
 
 So let's explore how to query data together.
 
-We can use `wb.series.info` with parameter `q` to query available data from the World Bank (`imfpy. searches.database_codes()` in `imfpy`)
+We can use `wb.series.info` with parameter `q` to query available data from the World Bank.
 
 For example, GDP growth is a key indicator to show the expension and contraction of level of economic activities.
 
@@ -103,7 +100,7 @@ gdp_growth
 Now we write a function to generate plots
 
 ```{code-cell} ipython3
-def plot_comparison(data, country, title, ylabel, title_pos, ax, g_params, b_params, t_params):
+def plot_comparison(data, country, title, ylabel, title_pos, ax, g_params, b_params, t_params, ylim=15, baseline=True):
     
     ax.plot(data.loc[country], label=country, **g_params)
     
@@ -112,13 +109,15 @@ def plot_comparison(data, country, title, ylabel, title_pos, ax, g_params, b_par
     ax.axvspan(1990, 1992, **b_params)
     ax.axvspan(2007, 2009, **b_params)
     ax.axvspan(2019, 2021, **b_params)
-    ax.set_ylim([-15, 15])
+    if ylim != None:
+        ax.set_ylim([-ylim, ylim])
     ylim = ax.get_ylim()[1]
     ax.text(1974, ylim + ylim * title_pos, 'Oil Crisis\n(1974)', **t_params) 
     ax.text(1991, ylim + ylim * title_pos, '1990s recession\n(1991)', **t_params) 
     ax.text(2008, ylim + ylim * title_pos, 'GFC\n(2008)', **t_params) 
     ax.text(2020, ylim + ylim * title_pos, 'Covid-19\n(2020)', **t_params) 
-    plt.axhline(y=0, color='black', linestyle='--')
+    if baseline:
+        plt.axhline(y=0, color='black', linestyle='--')
     ax.set_title(title, pad=40)
     ax.set_ylabel(ylabel)
     ax.legend()
@@ -396,138 +395,102 @@ We will discuss potential leading indicators and correlated factors from consump
 
 One widely cited indicator for consumer confidence is [Consumer Sentiment Index](https://fred.stlouisfed.org/series/UMCSENT) published by University of Michigan.
 
-We find the consumer sentiment maintains at a high level during the expension period, but there are significant drops before the recession officially hits.
+We find the consumer sentiment maintains at a high level during the expension period, but there are significant drops before the recession hits.
 
-We can also find that 2022 is 
+There is also a clear negative correlation between consumer sentiment and [core consumer price index](https://fred.stlouisfed.org/series/CPILFESL).
+
+This trend is more significant in period of [stagflation](https://en.wikipedia.org/wiki/Stagflation).
+
+When the price of consumer commodities in the market is higher, the consumer confidence diminishes.
+
+We will have a detailed look into inflation in the following lecture (TODO: Link to inflation lecture) 
 
 ```{code-cell} ipython3
-years = [datetime.datetime(year, 6, 1) for year in range(1942,1948)]
-unrate_census = [4.7, 1.9, 1.2, 1.9, 3.9, 3.9]
-
-unrate_census = {'DATE': years, 'UNRATE': unrate_census}
-unrate_census = pd.DataFrame(unrate_census)
-unrate_census.set_index('DATE', inplace=True)
-
 start_date = datetime.datetime(1978, 1, 1)
 end_date = datetime.datetime(2022, 12, 31)
+
+start_date_graph = datetime.datetime(1977, 1, 1)
+end_date_graph = datetime.datetime(2023, 12, 31)
+
 
 nber = web.DataReader("USREC", "fred", start_date, end_date)
 consumer_confidence = web.DataReader("UMCSENT", "fred", start_date, end_date)
 
-
 fig, ax = plt.subplots()
-ax.plot(consumer_confidence, **g_params, color='#377eb8', linestyle='-', linewidth=2)
+ax.plot(consumer_confidence, **g_params, color='#377eb8', linestyle='-', linewidth=2, label='Consumer Price Index')
 ax.fill_between(nber.index, 0, 1, where=nber['USREC']==1, color='grey', edgecolor="none",
                 alpha=0.3, transform=ax.get_xaxis_transform(), 
                 label='NBER Recession Indicators')
 ax.set_ylim([0, ax.get_ylim()[1]])
-ax.legend(loc='upper center', bbox_to_anchor=(0.5, 1.05),
-          ncol=3, fancybox=True, shadow=True)
 ax.set_ylabel('Consumer Sentiment Index')
 
+ax_t=ax.twinx()
+
+inflation = web.DataReader("CPILFESL", "fred", start_date, end_date).pct_change(12) * 100
+
+ax_t.plot(2020, 0, **g_params, linestyle='-', linewidth=2, label='Consumer Price Index')
+ax_t.plot(inflation, **g_params, color='#ff7f00', linestyle='--', linewidth=2, label='CPI YoY Change (%)')
+ax_t.fill_between(nber.index, 0, 1, where=nber['USREC']==1, color='grey', edgecolor="none",
+                alpha=0.3, transform=ax.get_xaxis_transform(), label='NBER Recession Indicators')
+ax_t.set_ylim([0, ax_t.get_ylim()[1]])
+ax_t.set_xlim([start_date_graph, end_date_graph])
+ax_t.legend(loc='upper center', bbox_to_anchor=(0.5, 1.1),
+          ncol=3)
+ax_t.set_ylabel('Consumer Price Index (% Change)',)
+
 # Suppress Output
-ax = ax.set_title('University of Michigan: Consumer Sentiment Index 1978-2022\n (United States)', pad=20)
+ax = ax.set_title('University of Michigan Consumer Sentiment Index,\n and Year-over-year Consumer Price Index Change, 1978-2022 (United States)', pad=40)
 ```
 
+### Production
+
+Consumer confidence often affects the consumption pattern of consumers.
+
+This is often manifest on the production side.
+
+We find that the real output of the industry is also highly correlated with recessions in the economy. 
+
+However, instead of being a leading factor, the peak of the contraction in the production delays compared to consumer confidence and inflation
+
 ```{code-cell} ipython3
-private_credit = wb.data.DataFrame('UMCSENT',['USA'], labels=True)
+start_date = datetime.datetime(1919, 1, 1)
+end_date = datetime.datetime(2022, 12, 31)
+
+nber = web.DataReader("USREC", "fred", start_date, end_date)
+consumer_confidence = web.DataReader("INDPRO", "fred", start_date, end_date).pct_change(12) * 100
+
+fig, ax = plt.subplots()
+ax.plot(consumer_confidence, **g_params, color='#377eb8', linestyle='-', linewidth=2, label='Consumer Price Index')
+ax.fill_between(nber.index, 0, 1, where=nber['USREC']==1, color='grey', edgecolor="none",
+                alpha=0.3, transform=ax.get_xaxis_transform(), 
+                label='NBER Recession Indicators')
+ax.set_ylim([ax.get_ylim()[0], ax.get_ylim()[1]])
+ax.set_ylabel('YoY Real Ouput Change (%)')
+ax = ax.set_title('Year-over-year Industrial Production: Total Index, 1919-2022 (United States)', pad=20)
+```
+
+### Credit Level
+
+Credit contraction usually happends with recessions as lenders become more cautious and borrowers become more hesitant to take on additional debt. 
+
+This can be due to several factors such as a decrease in overall economic activity, rising unemployment, and gloomy expections for the future.
+
+One example is domestic credit to private sector by banks in the UK.
+
+Note that the credit level expends rapidly in the period of economic expension, and stagnate or decreased after recessions
+
+```{code-cell} ipython3
+private_credit = wb.data.DataFrame('FS.AST.PRVT.GD.ZS',['GBR'], labels=True)
 private_credit = private_credit.set_index('Country')
 private_credit.columns = private_credit.columns.str.replace('YR', '').astype(int)
+private_credit
 ```
 
 ```{code-cell} ipython3
 fig, ax = plt.subplots()
 
-countries = ['United Kingdom', 'United States', 'Germany']
-title = 'United Kingdom, United States, and Germany \n Domestic credit to private sector by banks (% of GDP)'
+countries = 'United Kingdom'
+title = 'Domestic Credit to Private Sector by Banks, United Kingdom (% of GDP)'
 ylabel = '% of GDP'
-ax = plot_comparison(private_credit, countries, title, ylabel, 0.05, ax, g_params, b_params, t_params)
-```
-
-```{code-cell} ipython3
-fig, ax = plt.subplots()
-
-countries = ['Brazil', 'China', 'Argentina']
-title = 'Brazil, China, Argentina \n Domestic credit to private sector by banks (% of GDP)'
-ax = plot_comparison(private_credit, countries, title, ylabel, 0.05, ax, g_params, b_params, t_params)
-```
-
-```{code-cell} ipython3
-fig, ax = plt.subplots()
-
-countries = ['United Kingdom', 'China']
-title = 'United Kingdom and China \n Domestic credit to private sector by banks (% of GDP)'
-ax = plot_comparison(private_credit, countries, title, ylabel, 0.05, ax, g_params, b_params, t_params)
-```
-
-## Inflation
-
-```{code-cell} ipython3
-cpi = wb.data.DataFrame('FP.CPI.TOTL.ZG',['CHN', 'USA', 'DEU', 'BRA', 'ARG', 'GBR'], labels=True)
-cpi = cpi.set_index('Country')
-cpi.columns = cpi.columns.str.replace('YR', '').astype(int)
-```
-
-```{code-cell} ipython3
-fig, ax = plt.subplots()
-
-countries = ['United Kingdom', 'United States', 'Germany']
-title = 'United Kingdom, United States, and Germany \n Inflation, consumer prices (annual %)'
-ylabel = 'annual %'
-ax = plot_comparison(cpi, countries, title, ylabel, 0.05, ax, g_params, b_params, t_params)
-```
-
-## International Trade
-
-```{code-cell} ipython3
-searches.country_search("united")
-```
-
-```{code-cell} ipython3
-trade_us = dots('US','W00', 1960, 2020, freq='A')
-trade_us['Period'] = trade_us['Period'].astype('int')
-trade_us
-```
-
-```{code-cell} ipython3
-def plot_trade(data, title, ylabel, title_pos, ax, g_params, b_params, t_params):
-    ax.plot(data['Period'], data['Twoway Trade'], **g_params)
-    ax.axvspan(1973, 1975, **b_params)
-    ax.axvspan(1990, 1992, **b_params)
-    ax.axvspan(2007, 2009, **b_params)
-    ax.axvspan(2019, 2021, **b_params)
-    ylim = ax.get_ylim()[1]
-    ax.text(1974, ylim + ylim * title_pos, 'Oil Crisis\n(1974)', **t_params) 
-    ax.text(1991, ylim + ylim * title_pos, '1990s recession\n(1991)', **t_params) 
-    ax.text(2008, ylim + ylim * title_pos, 'GFC\n(2008)', **t_params) 
-    ax.text(2020, ylim + ylim * title_pos, 'Covid-19\n(2020)', **t_params) 
-    ax.set_title(title, pad=40)
-    ax.set_ylabel(ylabel)
-    return ax
-
-
-fig, ax = plt.subplots()
-title = 'United States (International Trade Volumn)'
-ylabel = 'US Dollars, Millions'
-plot_UStrade = plot_trade(trade_us[['Period', 'Twoway Trade']], title, ylabel, 0.05, ax, g_params, b_params, t_params)
-```
-
-```{code-cell} ipython3
-fig, ax = plt.subplots()
-trade_cn = dots('CN','W00', 1960, 2020, freq='A')
-
-trade_cn['Period'] = trade_cn['Period'].astype('int')
-title = 'China (International Trade Volumn)'
-ylabel = 'US Dollars, Millions'
-plot_trade_cn = plot_trade(trade_cn[['Period', 'Twoway Trade']], title, ylabel, 0.05, ax, g_params, b_params, t_params)
-```
-
-```{code-cell} ipython3
-fig, ax = plt.subplots()
-trade_ar = dots('AR','W00', 1960, 2020, freq='A')
-
-trade_ar['Period'] = trade_ar['Period'].astype('int')
-title = 'Argentina (International Trade Volumn)'
-ylabel = 'US Dollars, Millions'
-plot_trade_ar = plot_trade(trade_ar[['Period', 'Twoway Trade']], title, ylabel, 0.05, ax, g_params, b_params, t_params)
+ax = plot_comparison(private_credit, countries, title, ylabel, 0.05, ax, g_params, b_params, t_params, ylim=None, baseline=False)
 ```
