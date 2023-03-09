@@ -294,6 +294,7 @@ The labor market recovers at an unprecedented rate to the tightest point in the 
 
 +++
 
+(synchronization)=
 ## Synchronization
 
 In our previous discussion, we find that developed economies have a more synchronized period of recessions, 
