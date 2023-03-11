@@ -375,7 +375,19 @@ Moreover, the long run uneumploment and employment are a steady fraction of $n_t
 
 The latter implies that $\bar{u}$ amd $\bar{e}$ are long run unemployment rate and employment rate, respectively.
 
-In detail, we have the unemployment rates and employment rates: $x_t / n_t = A^t n_0 / n_t \approx \bar{x}$.
+In detail, we have the unemployment rates and employment rates: $x_t / n_t = A^t n_0 / n_t \approx \bar{x}$ as $t \to \infty$.
+
+In other words, if we define matrix $\hat{A} := A / (1+g)$, then the dynamics of rates follow
+
+$$\frac{x_{t+1}}{n_{t+1}} = \frac{x_{t+1}}{(1+g) n_{t}} = \frac{A x_t}{(1+g)n_t} = \hat{A} \frac{x_t}{n_t}.$$
+
+Observe that the column sums of $\hat{A}$ are all one so that $r(\hat{A})=1$.
+
+One can check that $\bar{x}$ is also the right eigen vector of $\hat{A}$ corresponding to $r(\hat{A})$ that $\bar{x} = \hat{A} \bar{x}$.
+
+Moreover, $\hat{A}^t r_0 \to \bar{x}$ as $t \to \infty$ for any $r_0 = x_0 / n_0$, since Perron-Frobenius theorem implies
+
+$$\hat{A}^t r_0 = (1+g)^{-t} A^t r_0 = r(A)^{-t} A^t r_0 \to \begin{pmatrix} \bar{u} & \bar{u} \\ \bar{e} & \bar{e} \end{pmatrix} r_0 = \begin{pmatrix} \bar{u} \\  \bar{e} \end{pmatrix}. $$
 
 This is illustrated below.
 
