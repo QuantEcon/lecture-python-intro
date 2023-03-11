@@ -2,52 +2,58 @@
 
 ## Elements of  Supply and Demand
 
-This document describe a class of linear models that determine competitive equilibrium prices and quantities.  
+This lecture is about some  linear models of equilibrium prices and quantities, one of the main topics
+of elementary microeconomics.  
+  
 
-Linear algebra and some multivariable calculus are the  tools deployed.
+The main tools that we deploy are linear algebra, multivariable calculus, and Python. 
 
-Versions of the two classic welfare theorems prevail.
 
-* **first welfare theorem:** for a  given a distribution of wealth among consumers,  a competitive  equilibrium  allocation of goods solves a particular social planning problem.
 
-* **second welfare theorem:** An allocation of goods among consumers that solves a social planning problem can be supported by a compeitive equilibrium provided that wealth is appropriately  distributed among consumers.   
+Our approach is first to offer a  scalar version with one good and one price.
 
-Key infrastructure concepts  are
-
-* inverse demand curves
-* marginal utility of wealth or   money
-* inverse supply curves
-* consumer surplus
-* producer surplus
-* welfare maximization
-* competitive equilibrium
-* homogeneity of degree zero of 
-    * demand functions
-    * supply function
-* dynamics as a special case
-* risk as a special case
-
-Our approach is first to offer a 
-
-* scalar version with one good and one price
-
-Then we'll offer a version with  
+Then we'll offer a more general  version with  
 
 * $n$ goods
-* $n$ prices or relative prices
+* $n$  relative prices
+
+We offer several interpretations of the $n$ goods that will allow us eventually to model settings with
+dynamics (i.e., the passage of time) and risk (i.e., the dependence of outcomes on random events).
 
 We'll offer versions of
 
 * pure exchange economies with fixed endowments of goods
 * economies in which goods can be produced a cost
 
+
+We shall eventually describe two classic welfare theorems:
+
+* **first welfare theorem:** for a  given a distribution of wealth among consumers,  a competitive  equilibrium  allocation of goods solves a  social planning problem.
+
+* **second welfare theorem:** An allocation of goods to consumers that solves a social planning problem can be supported by a compeitive equilibrium with an appropriate initial distribution of  wealth.   
+
+Key infrastructure concepts that we'll encounter in this lecture are
+
+* inverse demand curves
+* marginal utilities of wealth 
+* inverse supply curves
+* consumer surplus
+* producer surplus
+* social welfare as a sum of consumer and producer surpluses
+* competitive equilibrium
+* homogeneity of degree zero of 
+    * demand functions
+    * supply function
+* dynamics as a special case of  statics
+* risk as a special case of statics
+
 ### Scalar setting 
 
-We study a market for a single good.
+We study a market for a single good in which buyers and sellers exchange a  quantity $q$ for a price $p$.
 
-The quantity is $q$ and price is $p$, both scalars.
+quantity $q$ and price  $p$ are  both scalars.
 
-Inverse demand and supply curves are:
+We assume that inverse demand and supply curves for the good are:
 
 $$ 
 p = d_0 - d_1 q, \quad d_0, d_1 > 0 
@@ -57,24 +63,26 @@ $$
 p = s_0 + s_1 q , \quad s_0, s_1 > 0 
 $$
 
-**Consumer surplus** equals  area under an inverse demand curve minus $p q$:
+We call them inverse demand and supply curves because price is on the left side of the equation rather than on the right side as it would be in a direct demand or supply function.
+
+
+
+We define **consumer surplus** as the  area under an inverse demand curve minus $p q$:
 
 $$ 
 \int_0^q (d_0 - d_1 x) dx - pq = d_0 q -.5 d_1 q^2 - pq 
 $$
 
-**Producer surplus** equals $p q$ minus   the area under an inverse supply curve:
+We define **producer surplus** as $p q$ minus   the area under an inverse supply curve:
 
 $$
 p q - \int_0^q (s_0 + s_1 x) dx = pq - s_0 q - .5 s_1 q^2
 $$
 
-Intimately associated with a competitive equilibrium is the following:
-
-**Welfare criterion** is consumer surplus plus producer surplus
+Sometimes economists measure social welfare by a **welfare criterion** that equals  consumer surplus plus producer surplus
 
 $$ 
-\int_0^q (d_0 - d_1 x) dx - \int_0^q (s_0 + s_1 x) dx  
+\int_0^q (d_0 - d_1 x) dx - \int_0^q (s_0 + s_1 x) dx  \equiv \textrm{Welf} 
 $$
 
 or 
@@ -83,37 +91,56 @@ $$
 \textrm{Welf} = (d_0 - s_0) q - .5 (d_1 + s_1) q^2 
 $$
 
-To compute the quantity that  maximizes  welfare criterion $\textrm{Welf}$, we differentiate $\textrm{Welf}$ with respect to   $q$ and set the derivative to zero.  
+To compute a quantity that  maximizes  welfare criterion $\textrm{Welf}$, we differentiate $\textrm{Welf}$ with respect to   $q$ and then set the derivative to zero.
 
-Solving that equation for $q$ gives
+We get
+
+$$
+\frac{d \textrm{Welf}}{d q} = d_0 - s_0 - (d_1 + s_1) q  = 0 
+$$
+
+which implies
 
 $$   
 q = \frac{ d_0 - s_0}{s_1 + d_1}
 $$ (eq:old1)
 
-A  competitive equilibrium quantity equates demand price to supply price:
+Let's remember the quantity $q$ given by equation {eq}`eq:old`} that a social planner would choose
+to maximize consumer plus producer surplus.
+
+We'll compare it to the quantity that emerges in a competitive  equilibrium equilibrium that equates 
+supply to demand.  
+
+Instead of equating quantities supplied and demanded, we'll can accomplish the same thing by equating demand price to supply price:
 
 $$ 
 p =  d_0 - d_1 q = s_0 + s_1 q ,   
 $$
 
-which implies {eq}`eq:old1`.  
+
+It we solve the equation defined by the second equality in the above line for $q$, we obtain the
+competitive equilibrium quantity; it equals the same $q$ given by equation  {eq}`eq:old1`.  
 
 The outcome that the quantity determined by equation {eq}`eq:old1` equates
-supply to demand brings us the following important **key finding:** 
+supply to demand brings us a **key finding:** 
 
 *  a competitive equilibrium quantity maximizes our  welfare criterion
 
-It also brings us a convenient **competitive equilibrium computation strategy:** 
+It also brings  a useful  **competitive equilibrium computation strategy:** 
 
 * after solving the welfare problem for an optimal  quantity, we can read a competive equilibrium price from  either supply price or demand price at the  competitive equilibrium quantity
 
 Soon we'll derive generalizations of the above demand and supply 
 curves from other objects.
 
-We'll derive the **demand curve** from a problem that maximizes a **utility function** subject to a **budget constraint**.
+Our generalizations will extend the preceding analysis of a market for a single good to the analysis 
+of $n$ simulataneous markets in $n$ goods.  
 
-We'll derive the **supply curve** from a **cost function**.
+In addition
+
+ * we'll derive  **demand curves** from a consumer problem that maximizes a **utility function** subject to a **budget constraint**.
+
+ * we'll derive  **supply curves** from the problem of a producer who is price taker and maximizes his profits minus total costs that are described by a  **cost function**.
 
 # Multiple goods 
 
@@ -121,11 +148,11 @@ We study a setting with $n$ goods and $n$ corresponding prices.
 
 ## Formulas from linear algebra
 
-We  apply  formulas from linear algebra for
+We  shall apply  formulas from linear algebra that
 
-* differentiating an inner product
-* differentiating a product of a matrix and a vector
-* differentiating a quadratic form
+* differentiate an inner product with respect to each vector
+* differentiate a product of a matrix and a vector with respect to the vector
+* differentiate a quadratic form in a vector with respect to the vector
 
 Where $a$ is an $n \times 1$ vector, $A$ is an $n \times n$ matrix, and $x$ is an $n \times 1$ vector:
 
@@ -153,16 +180,15 @@ Let
 
 We assume that $\Pi$ has an inverse $\Pi^{-1}$ and that $\Pi^\top \Pi$ is a positive definite matrix.
 
-It follows that $\Pi^\top \Pi$ has an inverse.
+  * it follows that $\Pi^\top \Pi$ has an inverse.
 
 
-The matrix $\Pi$ describes a consumer's willingness to substitute one good for another, for each pair of
-good in the $n \times 1$ vector $c$.
+The matrix $\Pi$ describes a consumer's willingness to substitute one good for every other good.
 
-In particular, we shall see below that $(\Pi^T \Pi)^{-1}$ is a matrix of slopes of (compensated) demand curves for $c$ with respect to a vector of prices:
+We shall see below that $(\Pi^T \Pi)^{-1}$ is a matrix of slopes of (compensated) demand curves for $c$ with respect to a vector of prices:
 
 $$
-{\partial c } {\partial p} = (\Pi^T \Pi)^{-1}
+\frac{\partial c } {\partial p} = (\Pi^T \Pi)^{-1}
 $$
 
 A consumer faces $p$ as a price taker and chooses $c$ to maximize the utility function 
@@ -185,44 +211,13 @@ $$ (eq:bversusc)
 
 so that utility function {eq}`eq:old2` tells us that the consumer has much less  of each good than he wants. 
 
-Condition {eq}`eq:bversusc` will ultimately  assure us that competitive equilibrium prices  are all positive. 
-
-## Digression: Marshallian and Hicksian Demand Curves
-
-**Remark:** We'll use budget constraint {eq}`eq:old2` in situations in which a consumers's endowment vector $e$ is his **only** source of income. But sometimes we'll instead assume that the consumer has other sources of income (positive or negative) and write his budget constraint as
-
-$$ 
-p ^\top (c -e ) = W 
-$$ (eq:old2p)
-
-where $W$ is measured in "dollars" (or some other **numeraire**) and component $p_i$ of the price vector is measured in dollars per good $i$. 
-
-Whether the consumer's budget constraint is  {eq}`eq:old2` or {eq}`eq:old2p` and whether we take $W$ as a free parameter or instead as an endogenous variable  to be solved for will  affect the consumer's marginal utility of wealth.
-
-How we set $\mu$  determines whether we are constucting  
-
-* a **Marshallian** demand curve, when we use {eq}`eq:old2` and solve for $\mu$ using equation {eq}`eq:old4` below, or
-* a **Hicksian** demand curve, when we  treat $\mu$ as a fixed parameter and solve for $W$ from {eq}`eq:old2p`.
-
-Marshallian and Hicksian demand curves describe different mental experiments:
-
-* For a Marshallian demand curve, hypothetical price vector  changes produce changes in   quantities determined that have  both **substitution** and **income** effects
-  
-  * income effects are consequences of  changes in $p^\top e$ associated with the change in the price vector
-
-* For a Hicksian demand curve, hypothetical price vector  changes produce changes in   quantities determined that have only **substitution**  effects
-    
-  * changes in the price vector leave the $p^\top e + W$ unaltered because we freeze $\mu$ and solve for $W$
-  
-Sometimes a Hicksian demand curve is called a **compensated** demand curve in order to emphasize that, to disarm the income (or wealth) effect associated with a price change, the consumer's wealth $W$ is adjusted.
-
-We'll discuss these distinct demand curves more  below.
+Condition {eq}`eq:bversusc` will ultimately  assure us that competitive equilibrium prices  are  positive. 
 
 ## Demand Curve Implied  by Constrained Utility Maximization
 
 For now, we assume that the budget constraint is {eq}`eq:old2`. 
 
-So we'll be deriving  a **Marshallian** demand curve.
+So we'll be deriving what is known as  a **Marshallian** demand curve.
 
 Form a Lagrangian
 
@@ -254,6 +249,10 @@ Equation {eq}`eq:old4` tells how marginal utility of wealth depends on  the endo
 
 **Remark:** Equation {eq}`eq:old4` is a consequence of imposing that $p^\top (c - e) = 0$.  We could instead take $\mu$ as a parameter and use {eq}`eq:old3` and the budget constraint {eq}`eq:old2p` to solve for $W.$ Which way we proceed determines whether we are constructing a **Marshallian** or **Hicksian** demand curve.  
 
+
+
+
+
 ## Endowment economy, I
 
 We now study a pure-exchange economy, or what is sometimes called an  endowment economy.
@@ -281,6 +280,39 @@ We'll set $\mu=1$.
 **Exercise:** Verify that setting $\mu=1$ in {eq}`eq:old3` implies that   formula {eq}`eq:old4` is satisfied. 
 
 **Exercise:** Verify that setting  $\mu=2$ in {eq}`eq:old3` also implies that formula {eq}`eq:old4` is satisfied. 
+
+## Digression: Marshallian and Hicksian Demand Curves
+
+**Remark:** Sometimes we'll use budget constraint {eq}`eq:old2` in situations in which a consumers's endowment vector $e$ is his **only** source of income. Other times we'll instead assume that the consumer has another source of income (positive or negative) and write his budget constraint as
+
+$$ 
+p ^\top (c -e ) = W 
+$$ (eq:old2p)
+
+where $W$ is measured in "dollars" (or some other **numeraire**) and component $p_i$ of the price vector is measured in dollars per unit of good $i$. 
+
+Whether the consumer's budget constraint is  {eq}`eq:old2` or {eq}`eq:old2p` and whether we take $W$ as a free parameter or instead as an endogenous variable   will  affect the consumer's marginal utility of wealth.
+
+Consequently, how we set $\mu$  determines whether we are constucting  
+
+* a **Marshallian** demand curve, as when we use {eq}`eq:old2` and solve for $\mu$ using equation {eq}`eq:old4` below, or
+* a **Hicksian** demand curve, as when we  treat $\mu$ as a fixed parameter and solve for $W$ from {eq}`eq:old2p`.
+
+Marshallian and Hicksian demand curves contemplate different mental experiments:
+
+* For a Marshallian demand curve, hypothetical changes in a price vector  have  both **substitution** and **income** effects
+  
+  * income effects are consequences of  changes in $p^\top e$ associated with the change in the price vector
+
+* For a Hicksian demand curve, hypothetical price vector  changes  have only **substitution**  effects
+    
+  * changes in the price vector leave the $p^\top e + W$ unaltered because we freeze $\mu$ and solve for $W$
+  
+Sometimes a Hicksian demand curve is called a **compensated** demand curve in order to emphasize that, to disarm the income (or wealth) effect associated with a price change, the consumer's wealth $W$ is adjusted.
+
+We'll discuss these distinct demand curves more  below.
+
+
 
 ## Endowment Economy, II
 
@@ -758,7 +790,7 @@ where
 $$ \mu = \sum_i\mu_{i}=\frac{0 + p^{\top}\left(\Pi^{-1}b-e\right)}{p^{\top}(\Pi^{\top}\Pi)^{-1}p}.
 $$
 
-Now, consider the representative economy specified above. 
+Now consider the representative consumer economy specified above. 
 
 Denote the marginal utility of wealth of the representative consumer by $\tilde{\mu}$.
 
