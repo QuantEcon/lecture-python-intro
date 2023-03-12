@@ -105,7 +105,7 @@ $$
 q = \frac{ d_0 - s_0}{s_1 + d_1}
 $$ (eq:old1)
 
-Let's remember the quantity $q$ given by equation {eq}`eq:old`} that a social planner would choose
+Let's remember the quantity $q$ given by equation {eq}`eq:old` that a social planner would choose
 to maximize consumer plus producer surplus.
 
 We'll compare it to the quantity that emerges in a competitive  equilibrium equilibrium that equates 
@@ -374,18 +374,18 @@ $$
 
 ## Dynamics and Risk as Special Cases of Pure Exchange Economy
 
-Special cases of our model can be created to represent
+Special cases of our $n$-good pure exchange  model can be created to represent
 
 * dynamics 
   - by putting different dates on different commodities
 * risk
-  - by making commodities contingent on states whose realizations are described by a **known probability distribution**
+  - by interpreting delivery  of goods as being contingent on states of the world whose realizations are described by a **known probability distribution**
 
 Let's illustrate how.
 
 ### Dynamics
 
-We want to represent the utility function
+Suppose that we want to represent a utility function
 
 $$
   -.5 [(c_1 - b_1)^2 + \beta (c_2 - b_2)^2]
@@ -427,17 +427,19 @@ Consequently, $(1+r) = R \equiv \frac{p_1}{p_2}$ is the  **gross interest rate**
 
 ### Risk and state-contingent claims 
 
-We study a **static** environment,  meaning that there is only one period.
+We study risk in the context of a **static** environment,  meaning that there is only one period.
 
-There is **risk**.
+By **risk** we mean that an outcome is not known in advance, but that it is governed by a known probability distribution.  
 
-There are two states of nature, $1$ and $2$.
+As an example, our consumer confronts **risk** meaning in particular that
 
-The probability that state $1$ occurs is $\lambda$.
+  * there are two states of nature, $1$ and $2$.
 
-The probability that state $2$ occurs is $(1-\lambda)$.
+ * the consumer knows that  probability that state $1$ occurs is $\lambda$.
 
-The consumer's **expected utility** is
+ * the consumer knows that the probability that state $2$ occurs is $(1-\lambda)$.
+
+Before the outcome is realized, the the consumer's **expected utility** is
 
 $$
 -.5 [\lambda (c_1 - b_1)^2 + (1-\lambda)(c_2 - b_2)^2]
@@ -472,13 +474,13 @@ $$
 b = \begin{bmatrix} \sqrt{\lambda}b_1 \cr \sqrt{1-\lambda}b_2 \end{bmatrix}
 $$
 
-The endowment vector is
+A consumer's  endowment vector is
 
 $$ 
 e = \begin{bmatrix} e_1 \cr e_2 \end{bmatrix}
 $$
 
-The price vector is
+A price vector is
 
 $$
 p = \begin{bmatrix} p_1 \cr p_2 \end{bmatrix}
@@ -486,15 +488,15 @@ $$
 
 where $p_i$ is the price of one unit of consumption in state $i$. 
 
-The state-contingent commodities being traded are often called **Arrow securities**.
+The state-contingent goods being traded are often called **Arrow securities**.
 
 Before the random state of the world $i$ is realized, the consumer  sells his/her state-contingent endowment bundle and purchases a state-contingent consumption bundle. 
 
-Trading such securities is a way economists often model **insurance**.
+Trading such state-contingent goods  is one  way economists often model **insurance**.
 
-## Possible Exercises
+## Exercises we can do
 
-To illustrate consequences of demand and supply shifts, we have lots of parameters to shift in the above models
+To illustrate consequences of demand and supply shifts, we have lots of parameters to shift
 
 * distribution of endowments $e_1, e_2$
 * bliss point vectors $b_1, b_2$
@@ -502,30 +504,34 @@ To illustrate consequences of demand and supply shifts, we have lots of paramete
 
 We can study how these things affect equilibrium prices and allocations. 
 
-Plenty of fun exercises that could be executed with a single Python class.
-
-It would be easy to build another  example with two consumers who have different beliefs ($\lambda$'s)
-
 # Economies with Endogenous Supplies of Goods
+
+Up to now we have described a pure exchange economy in which endowments of good are exogenous, meaning that they are taken as given from outside the model. 
 
 ## Supply Curve of a Competitive Firm
 
-A competitive firm takes a price vector $p$ as given and chooses a quantity $q$
-to maximize 
+A competitive firm that can produce goods  takes a price vector $p$ as given and chooses a quantity $q$
+to maximize total revenue minus total costs.
 
-$$ 
-p^\top q  - C(q) 
-$$ (eq:compprofits)
-
-where $C(q)$ is a total cost function 
+The firm's total  revenue equals $p^\top q$ and its total cost equals $C(q)$  where $C(q)$ is a total cost function 
 
 $$ 
 C(q) = h ^\top q + .5 q^\top J q 
 $$
 
+
 and  $J$ is a positive definite matrix.
 
-The $n\times 1$ vector of **marginal costs** is
+
+So the firm's profits are 
+
+$$ 
+p^\top q  - C(q) 
+$$ (eq:compprofits)
+
+
+
+An $n\times 1$ vector of **marginal costs** is
 
 $$ 
 \frac{\partial C(q)}{\partial q} = h + H q 
@@ -537,13 +543,10 @@ $$
 H = .5 (J + J') 
 $$
 
-The $n \times 1$ vector of marginal revenues for the price-taking firm is
+An $n \times 1$ vector of marginal revenues for the price-taking firm is $\frac{\partial p^\top q}
+{\partial q} = p $.
 
-$$ 
-p 
-$$
-
-so **price equals marginal revenue** for our price-taking competitive firm.  
+So **price equals marginal revenue** for our price-taking competitive firm.  
 
 The firm maximizes total profits by setting  **marginal revenue to marginal costs**.
 
@@ -563,10 +566,10 @@ $$
 
 As a special case, let's pin down a demand curve by setting the marginal utility of wealth  $\mu =1$.
 
-Equate supply price to demand price
+Equating  supply price to demand price we get
 
 $$
-p = h + H c = \Pi^\top b - \Pi^\top \Pi c
+p = h + H c = \Pi^\top b - \Pi^\top \Pi c ,
 $$
 
 which implies the equilibrium quantity vector
@@ -596,9 +599,16 @@ c = [\Pi^\top \Pi + \mu H]^{-1} [ \Pi^\top b - \mu h]
 $$ (eq:old5p)
 
 
-## Digression: A Monopolist Supplier
+## Digression: A  Supplier who is a monopolist
 
-Instead of being a price-taker, a monopolist sets prices to maximize profits subject to the inverse  demand curve
+A competitive firm is a **price-taker** who regards the price and therefore its marginal revenue as being beyond its control.
+
+A monopolist knows that it has no competition and can influence the price and its marginal revenue by
+setting quantity.
+
+A monopolist takes a **demand curve** and not the **price** as beyond its control. 
+
+Thus, instead of being a price-taker, a monopolist sets prices to maximize profits subject to the inverse  demand curve
 {eq}`eq:old5pa`.  
 
 So the monopolist's total profits as a function of its  output $q$ is
@@ -607,29 +617,29 @@ $$
 [\mu^{-1} \Pi^\top (b - \Pi q)]^\top  q - h^\top q - .5 q^\top J q 
 $$ (eq:monopprof)
 
-After finding  the 
-first-order necessary conditions for maximizing the above formula for monopoly profits with respect to $q$
+After finding  
+first-order necessary conditions for maximizing monopoly profits with respect to $q$
 and solving them for $q$, we find that the monopolist sets
 
 $$ 
 q = (H + 2 \mu^{-1} \Pi^T \Pi)^{-1} (\mu^{-1} \Pi^\top b - h) 
 $$ (eq:qmonop) 
 
-We'll eventually see that a monopolist sets a **lower output** $q$ than does either a
+We'll soon  see that a monopolist sets a **lower output** $q$ than does either a
 
  * planner who chooses $q$ to maximize social welfare
  
  * a competitive equilibrium 
 
 
-**Remark:** We can make exercises asking readers to verify the monopolist's supply curve {eq}`eq:qmonop`. 
+**Exercise:** Please  verify the monopolist's supply curve {eq}`eq:qmonop`. 
 
 
 
 
-## Multi-good social welfare maximization problem
+## Multi-good  welfare maximization problem
 
-Our welfare or social planning  problem is to choose $c$ to maximize
+Our welfare maximization problem -- also sometimes called a  social planning  problem  -- is to choose $c$ to maximize
 
 $$
 -.5 \mu^{-1}(\Pi c -b) ^\top (\Pi c -b )
@@ -661,7 +671,7 @@ Thus,  as for the single-good case, with  multiple goods   a competitive equilib
 
 (This is another version of the first welfare theorem.)
 
-We can read a competitive equilbrium price vector from either 
+We can deduce a competitive equilbrium price vector from either 
 
   * the inverse demand curve, or 
   
@@ -670,21 +680,10 @@ We can read a competitive equilbrium price vector from either
 <!-- #endregion -->
 
 <!-- #region -->
-## Notes about coding strategy
+## Designing some Python code
 
- 
 
-Here are some suggestions about how to  write our code.  
-
-I sketch some ideas that are "not even pseudo code". 
-
-I recommend that we start "general" and write a Python class that will do "everything".  
-
-Once we get that working with a bunch of fun examples, we can then "work backwards" and make some very simple "baby code" that starts with a simple cases (e.g., a scalar case) and graduallly adds functions that we'll ultimately assemble as methods that appear in our class.
-
-The fun thing will be to make some revealing examples.
-
-I recommend making a Python class with the following attributes:
+Below we shall construct a Python class with the following attributes:
 
  * **Preferences** in the form of 
   
@@ -696,7 +695,7 @@ I recommend making a Python class with the following attributes:
      * an $n \times 1$ vector $e$
      * a scalar "wealth" $W$ with default value $0$
      
- * **Production Costs** $C(q) = h^\top q + .5 q^\top J q $ indexed by
+ * **Production Costs**  pinned down  by
  
      * an $n \times 1$ nonnegative vector $h$
      * an $n \times n$ positive definite matrix $J$
@@ -708,7 +707,7 @@ The class will include  a test to make sure that $b  > > \Pi e $ and raise an ex
    
     * **Preferences** and **Endowments**
     
- * **A Pure Exchange Economy** consists of 
+ * **A Pure Exchange Economy** will  consist of 
  
     * a collection of $m$ **persons**
     
@@ -718,7 +717,7 @@ The class will include  a test to make sure that $b  > > \Pi e $ and raise an ex
     * an equilibrium price vector $p$ (normalized somehow) 
     * an equilibrium allocation $c^1, c^2, \ldots, c^m$ -- a collection of $m$ vectors of dimension $n \times 1$
     
- * **A Production Economy** consists of 
+ * **A Production Economy** will consist of 
  
     * a single **person** that we'll interpret as a representative consumer
     * a single set of **production costs**
@@ -728,12 +727,8 @@ The class will include  a test to make sure that $b  > > \Pi e $ and raise an ex
     * **consumer surplus**
     * **producer surplus**
        
- 
-    
-**Remark:** I don't know whether we want to be simple or fancy in terms of using class inheritance in creating a person or an economy.
+Now let's proceed to code.
 <!-- #endregion -->
-
-## Codes and Computation - Written by Jiacheng
 
 ```python
 # import some packages
@@ -766,11 +761,18 @@ $$ c_{i}=\Pi^{-1}b_{i}-(\Pi^{\top}\Pi)^{-1}\mu_{i}p. $$
 
 
 
-## Some verification exercises
+## Deducing a represenative consumer
+
+In the class of multiple consumer economies that we are studying here, it turns out that there
+exists a single **representative consumer** whose preferences and endowments can be deduced from lists of preferences and endowments for the separate individual consumers.
 
 Consider a multiple consumer economy with initial distribution of wealth $W_i$ satisfying $\sum_i W_{i}=0$ 
 
-(We allow an initial  redistribution of wealth).
+We allow an initial  redistribution of wealth.
+
+We have the following objects
+
+
 - The demand curve:
 $$ c_{i}=\Pi^{-1}b_{i}-(\Pi^{\top}\Pi)^{-1}\mu_{i}p $$
 
@@ -780,7 +782,9 @@ $$ \mu_{i}=\frac{-W_{i}+p^{\top}\left(\Pi^{-1}b_{i}-e_{i}\right)}{p^{\top}(\Pi^{
 - Market clearing:
 $$ \sum c_{i}=\sum e_{i}$$
 
-Denote aggregate consumption $\sum_i c_{i}=c$ and $\sum_i \mu_i = \mu$. The market clearing condition implies
+Denote aggregate consumption $\sum_i c_{i}=c$ and $\sum_i \mu_i = \mu$. 
+
+Market  clearing requires
 
 $$ \Pi^{-1}\left(\sum_{i}b_{i}\right)-(\Pi^{\top}\Pi)^{-1}p\left(\sum_{i}\mu_{i}\right)=\sum_{i}e_{i}$$
 which, after a few steps, leads to
@@ -794,7 +798,8 @@ Now consider the representative consumer economy specified above.
 
 Denote the marginal utility of wealth of the representative consumer by $\tilde{\mu}$.
 
-- The demand function:
+The demand function is 
+
 $$c=\Pi^{-1}b-(\Pi^{\top}\Pi)^{-1}\tilde{\mu} p.$$
 
 Substituting this into the budget constraint gives
@@ -803,7 +808,7 @@ $$\tilde{\mu}=\frac{p^{\top}\left(\Pi^{-1}b-e\right)}{p^{\top}(\Pi^{\top}\Pi)^{-
 In an equilibrium $c=e$, so 
 $$p=\tilde{\mu}^{-1}(\Pi^{\top}b-\Pi^{\top}\Pi e).$$
 
-We verified that the price vector in this representative consumer economy is the same as that in an economy with multiple consumers up to choice of a numeraire in which to express absolute prices.
+Thus, we have  verified that,  up to choice of a numeraire in which to express absolute prices,  the price vector in our representative consumer economy is the same as that in an underlying  economy with multiple consumers.
 <!-- #endregion -->
 
 ```python
@@ -928,7 +933,7 @@ print('Competitive equilibrium price vector:', p)
 print('Competitive equilibrium allocation:', c_s)
 ```
 
-Construct an autarky equilibrium.
+Now let's construct an autarky (i.e, no-trade) equilibrium.
 
 ```python
 bs = [np.array([4, 6]),   # first consumer's bliss points
@@ -945,7 +950,7 @@ print('Competitive equilibrium price vector:', p)
 print('Competitive equilibrium allocation:', c_s)
 ```
 
-Let redistribution occur before trade.
+Now let's  redistribute endowments  before trade.
 
 ```python
 bs = [np.array([5, 5]),   # first consumer's bliss points
@@ -962,7 +967,9 @@ print('Competitive equilibrium price vector:', p)
 print('Competitive equilibrium allocation:', c_s)
 ```
 
-#### Example: a **dynamic economy**
+#### A **dynamic economy**
+
+Now let's use the tricks described above to study a dynamic economy, one with two periods.
 
 
 ```python
@@ -983,9 +990,9 @@ print('Competitive equilibrium allocation:', c_s)
 
 ```
 
-#### Example: an exchange economy with **Arrow securities**
+#### Example:  **Arrow securities**
 
-In our setup, we can interpret $\lambda$ as risk-associated preference and $c_1, c_2$ as "Arrow securities" that are state-contingent claims to consumption goods. 
+We use the tricks described above to interpret  $c_1, c_2$ as "Arrow securities" that are state-contingent claims to consumption goods. 
 
 
 
@@ -1141,6 +1148,10 @@ def plot_competitive_equilibrium(PE):
 
 #### Example: single agent with one good and  with production 
 
+Now let's construct an example of a production economy with one good.
+
+To do this we
+
   * specify a single **person** and a **cost curve** in a way that let's us replicate the simple
     single-good supply demand example with which we started
   * compute equilibrium $p$ and $c$ and consumer and producer surpluses
@@ -1210,11 +1221,10 @@ plot_competitive_equilibrium(PE)
 This raises both the equilibrium price and quantity.
 
 
-Example: single agent two-good economy **with** production
+#### Example: single agent two-good economy **with** production
 
-  * do the counterparts of the above
-  * do some experiments with **diagonal** $\Pi$ and also with **non-diagonal** $\Pi$ matrices to study 
-  how cross-slopes affect responses of $p$ and $c$ to various shifts in $b$
+  * we'll do some experiments like those above
+  * we can do experiments with a  **diagonal** $\Pi$ and also with a **non-diagonal** $\Pi$ matrices to study  how cross-slopes affect responses of $p$ and $c$ to various shifts in $b$
   
 
 ```python
@@ -1268,11 +1278,11 @@ print('Competitive equilibrium price:', p)
 print('Competitive equilibrium allocation:', c)
 ```
 
-### A Monopolist Supplier
+### A Monopolist 
 
-Let's  consider a monopolist supplier.
+Let's  consider a monopolist  supplier.
 
-We add a method to the `production_economy` class we built above to compute the equilibrium price and allocation when there is a monopolist supplier. 
+We have included a method in  our `production_economy` class to compute an equilibrium price and allocation when the supplier is  a monopolist. 
 
 Since the supplier now has the price-setting power
 
@@ -1281,9 +1291,9 @@ Since the supplier now has the price-setting power
 
 Next, we use a graph for the single good case to illustrate the difference between a competitive equilibrium and an equilibrium with a monopolist supplier.
 
-Recall that in a competitive equilibrium of the economy, the price-taking supplier equates the marginal revenue $p$ with the marginal cost $h + Hq$. 
+Recall that in a competitive equilibrium, a price-taking supplier equates  marginal revenue $p$ to marginal cost $h + Hq$. 
 
-This yields the monopolist's inverse supply curve.
+This yields a competitive producer's  inverse supply curve.
 
 A monopolist's marginal revenue is not constant but instead  is a non-trivial function of the quantity it sets.
 
@@ -1295,7 +1305,7 @@ $$
 
 which the monopolist equates to its  marginal cost.
 
-Our plot indicates that the monopolist supplier's equilibrium output is lower than either the competitive equilibrium or the social optimal level.
+The plot indicates that the monopolist's sets output  lower than either the competitive equilibrium quantity.
 
 In a single good case, this equilibrium is associated with a higher price of the good.
 
@@ -1356,6 +1366,8 @@ def plot_monopoly(PE):
 ```
 
 #### A multiple good example
+
+Let's study compare competitive equilibrium and monopoly outcomes in a multiple goods economy.
 
 ```python
 Pi  = np.array([[1, 0],
