@@ -426,6 +426,30 @@ plt.tight_layout()
 plt.show()
 ```
 
+To provide more intuition for convergence, we further explain the convergence below without the Perron-Frobenius theorem.
+
+Let $\hat{A} = P D P^{-1}$ be diagonalizable, where $P = [v_1, v_2]$ consists of eigenvectors $v_1, v_2$ of $\hat{A}$, and $D = diag(\gamma_1, \gamma_2)$ where $\gamma_1, \gamma_2$ are eigenvalues of $\hat{A}$.
+
+Similar to the transition matrix $A$ in lake model, we also assume $\gamma_1 = r(\hat{A})=1$ and $|\gamma_2| < \gamma_1$, so that the spectral radius is a dominated eigenvalue.
+
+The rate motion follows $r_{t+1} = \hat{A} r_t$, where $r_0$ is a probability vector: $\sum_j r_{0,j}=1$.
+
+Consider $z_t = P^{-1} r_t $.
+
+Then, we have $z_{t+1} = P^{-1} r_{t+1} = P^{-1} \hat{A} r_t = P^{-1} \hat{A} P z_t = D z_t$.
+
+Hence, we obtain $z_t = D^t z_0$, and for some $z_0 = (c_1, c_2)^\top$ we have
+
+$$r_t = P z_t = \begin{pmatrix} v_1 & v_2 \end{pmatrix} \begin{pmatrix} \gamma_1^t & 0 \\ 0 & \gamma_2^t \end{pmatrix} \begin{pmatrix} c_1 \\ c_2 \end{pmatrix} = c_1 \gamma_1^t v_1 + c_2 \gamma_2^t v_2. $$
+
+Since $|\gamma_2| < |\gamma_1|=1$, the second term in the right hand side converges to zero.
+
+Therefore, the convergence follows $r_t \to c_1 v_1$.
+
+Since the column sums of $\hat{A}$ are one and $r_0$ is a probability vector, $r_t$ must be a probability vector.
+
+In this case, $c_1 v_1$ must be a normalized eigenvector, so $c_1 v_1 = \bar{x}$ and then $r_t \to \bar{x}$.
+
 ## Exercise
 
 +++
