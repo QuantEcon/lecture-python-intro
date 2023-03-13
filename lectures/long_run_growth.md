@@ -148,8 +148,8 @@ ax.set_ylabel("GDP per capita (current US$) ")
 
 ### Plot for lower middle income and low income
 
-Finally, we compare time-series graphs of GDP per capita between a lower middle income country and a low income country. Again, keeping Pakistan fixed in our set as a lower middle income country, we choose Democratic Republic of Congo as our second country from a low income group. Congo is chosen for no particular reason apart from its unstable political atmoshpere and a dwindling economy. 
-On comapring we see quite a bit of difference between these countries. With Pakistan's GDP per capita being almost four times as much. Further strengthning our assumption that countries from different income groups can be quite different.
+Finally, we compare time-series graphs of GDP per capita between a lower middle income country and a low income country. Again, keeping Pakistan fixed in our set as a lower middle income country, we choose Democratic Republic of Congo as our second country from a low income group. Congo is chosen for no particular reason apart from its unstable political atmosphere and a dwindling economy. 
+On comparing we see quite a bit of difference between these countries. With Pakistan's GDP per capita being almost four times as much. Further strengthening our assumption that countries from different income groups can be quite different.
 
 ```{code-cell} ipython3
 # Pakistan, Congo (Lower middle income, low income)

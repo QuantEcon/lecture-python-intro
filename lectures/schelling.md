@@ -260,7 +260,7 @@ def plot_distribution(agents, cycle_num):
 And here's some pseudocode for the main loop, where we cycle through the
 agents until no one wishes to move.
 
-The psueudo code is
+The pseudocode is
 
 ```{code-block} none
 plot the distribution

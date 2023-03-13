@@ -15,11 +15,11 @@ kernelspec:
 
 ## Overview
 
-This lecture is about illustrateing business cycles in different countries and period.
+This lecture is about illustrating business cycles in different countries and period.
 
 The business cycle refers to the fluctuations in economic activity over time. These fluctuations can be observed in the form of expansions, contractions, recessions, and recoveries in the economy.
 
-In this lecture, we will see expensions and contractions of economies from 1960s to the recent pandemic using [World Bank API](https://documents.worldbank.org/en/publication/documents-reports/api).
+In this lecture, we will see expansions and contractions of economies from 1960s to the recent pandemic using [World Bank API](https://documents.worldbank.org/en/publication/documents-reports/api).
 
 In addition to what's in Anaconda, this lecture will need the following libraries to get World bank data
 
@@ -49,7 +49,7 @@ So let's explore how to query data  together.
 
 We can use `wb.series.info` with parameter `q` to query available data from the World Bank (`imfpy. searches.database_codes()` in `imfpy`)
 
-For example, GDP growth is a key indicator to show the expension and contraction of level of economic activities.
+For example, GDP growth is a key indicator to show the expansion and contraction of level of economic activities.
 
 Let's retrive GDP growth data together
 
@@ -97,7 +97,7 @@ wb.series.info(q='consumption')
 wb.series.info(q='capital account') # TODO: Check if it is to be plotted
 ```
 
-- international trade volumn
+- international trade volume
 
 +++
 
@@ -342,7 +342,7 @@ def plot_trade(data, title, ylabel, title_pos, ax, g_params, b_params, t_params)
 
 
 fig, ax = plt.subplots()
-title = 'United States (International Trade Volumn)'
+title = 'United States (International Trade Volume)'
 ylabel = 'US Dollars, Millions'
 plot_UStrade = plot_trade(trade_us[['Period', 'Twoway Trade']], title, ylabel, 0.05, ax, g_params, b_params, t_params)
 ```
@@ -352,7 +352,7 @@ fig, ax = plt.subplots()
 trade_cn = dots('CN','W00', 1960, 2020, freq='A')
 
 trade_cn['Period'] = trade_cn['Period'].astype('int')
-title = 'China (International Trade Volumn)'
+title = 'China (International Trade Volume)'
 ylabel = 'US Dollars, Millions'
 plot_trade_cn = plot_trade(trade_cn[['Period', 'Twoway Trade']], title, ylabel, 0.05, ax, g_params, b_params, t_params)
 ```
@@ -362,7 +362,7 @@ fig, ax = plt.subplots()
 trade_mx = dots('MX','W00', 1960, 2020, freq='A')
 
 trade_mx['Period'] = trade_mx['Period'].astype('int')
-title = 'Mexico (International Trade Volumn)'
+title = 'Mexico (International Trade Volume)'
 ylabel = 'US Dollars, Millions'
 plot_trade_mx = plot_trade(trade_mx[['Period', 'Twoway Trade']], title, ylabel, 0.05, ax, g_params, b_params, t_params)
 ```
@@ -372,7 +372,7 @@ fig, ax = plt.subplots()
 trade_ar = dots('AR','W00', 1960, 2020, freq='A')
 
 trade_ar['Period'] = trade_ar['Period'].astype('int')
-title = 'Argentina (International Trade Volumn)'
+title = 'Argentina (International Trade Volume)'
 ylabel = 'US Dollars, Millions'
 plot_trade_ar = plot_trade(trade_ar[['Period', 'Twoway Trade']], title, ylabel, 0.05, ax, g_params, b_params, t_params)
 ```

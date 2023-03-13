@@ -30,7 +30,7 @@ We shall eventually describe two classic welfare theorems:
 
 * **first welfare theorem:** for a  given a distribution of wealth among consumers,  a competitive  equilibrium  allocation of goods solves a  social planning problem.
 
-* **second welfare theorem:** An allocation of goods to consumers that solves a social planning problem can be supported by a compeitive equilibrium with an appropriate initial distribution of  wealth.   
+* **second welfare theorem:** An allocation of goods to consumers that solves a social planning problem can be supported by a competitive equilibrium with an appropriate initial distribution of  wealth.   
 
 Key infrastructure concepts that we'll encounter in this lecture are
 
@@ -128,13 +128,13 @@ supply to demand brings us a **key finding:**
 
 It also brings  a useful  **competitive equilibrium computation strategy:** 
 
-* after solving the welfare problem for an optimal  quantity, we can read a competive equilibrium price from  either supply price or demand price at the  competitive equilibrium quantity
+* after solving the welfare problem for an optimal  quantity, we can read a competitive equilibrium price from  either supply price or demand price at the  competitive equilibrium quantity
 
 Soon we'll derive generalizations of the above demand and supply 
 curves from other objects.
 
 Our generalizations will extend the preceding analysis of a market for a single good to the analysis 
-of $n$ simulataneous markets in $n$ goods.  
+of $n$ simultaneous markets in $n$ goods.  
 
 In addition
 
@@ -261,7 +261,7 @@ Consider a single-consumer, multiple-goods economy without production.
 
 The only source of goods is the single consumer's endowment vector   $e$. 
 
-A competitive equilibium price vector  induces the consumer to choose  $c=e$.
+A competitive equilibrium price vector  induces the consumer to choose  $c=e$.
 
 This implies that the equilibrium price vector satisfies
 
@@ -293,7 +293,7 @@ where $W$ is measured in "dollars" (or some other **numeraire**) and component $
 
 Whether the consumer's budget constraint is  {eq}`eq:old2` or {eq}`eq:old2p` and whether we take $W$ as a free parameter or instead as an endogenous variable   will  affect the consumer's marginal utility of wealth.
 
-Consequently, how we set $\mu$  determines whether we are constucting  
+Consequently, how we set $\mu$  determines whether we are constructing  
 
 * a **Marshallian** demand curve, as when we use {eq}`eq:old2` and solve for $\mu$ using equation {eq}`eq:old4` below, or
 * a **Hicksian** demand curve, as when we  treat $\mu$ as a fixed parameter and solve for $W$ from {eq}`eq:old2p`.
@@ -578,7 +578,7 @@ $$
 c = (\Pi^\top \Pi + H )^{-1} ( \Pi^\top b - h)
 $$ (eq:old5)
 
-This equation is the counterpart of equilbrium quantity {eq}`eq:old1` for the scalar $n=1$ model with which we began.
+This equation is the counterpart of equilibrium quantity {eq}`eq:old1` for the scalar $n=1$ model with which we began.
 
 ### General $\mu\neq 1$ case
 
@@ -671,7 +671,7 @@ Thus,  as for the single-good case, with  multiple goods   a competitive equilib
 
 (This is another version of the first welfare theorem.)
 
-We can deduce a competitive equilbrium price vector from either 
+We can deduce a competitive equilibrium price vector from either 
 
   * the inverse demand curve, or 
   
@@ -761,7 +761,7 @@ $$ c_{i}=\Pi^{-1}b_{i}-(\Pi^{\top}\Pi)^{-1}\mu_{i}p. $$
 
 
 
-## Deducing a represenative consumer
+## Deducing a representative consumer
 
 In the class of multiple consumer economies that we are studying here, it turns out that there
 exists a single **representative consumer** whose preferences and endowments can be deduced from lists of preferences and endowments for the separate individual consumers.
