@@ -196,7 +196,7 @@ Note that Greece has another significant drop in GDP growth around 2010-2011 at 
 
 We find similar cyclical patterns across different countries, and major recessions mostly overlap among them.
 
-Countries such as Argentina have more volatile cycles compared to the economies above. 
+Countries such as Argentina have more volatile cycles compared to the economies above.
 
 ```{code-cell} ipython3
 fig, ax = plt.subplots()
@@ -373,7 +373,7 @@ unempl_rate.columns = unempl_rate.columns.str.replace('YR', '').astype(int)
 ```{code-cell} ipython3
 fig, ax = plt.subplots()
 
-countries = ['United Kingdom', 'United States', 'Germany', 'France']
+countries = ['United Kingdom', 'United States', 'Japan', 'France']
 title = 'United Kingdom, United States, and Germany (Unemployment Rate %)'
 ylabel = 'Unemployment Rate (National Estimate) (%)'
 _ = plot_comparison_multi(unempl_rate, countries, title, ylabel, 0.05, None, ax, g_params, b_params, t_params)
@@ -439,7 +439,7 @@ inflation = web.DataReader("CPILFESL", "fred", start_date, end_date).pct_change(
 
 # Add CPI on the legend without drawing the line again
 ax_t.plot(2020, 0, **g_params, linestyle='-', 
-          linewidth=2, label='Consumer Price Index')
+          linewidth=2, label='Consumer Sentiment Index')
 ax_t.plot(inflation, **g_params, color='#ff7f00', linestyle='--', 
           linewidth=2, label='CPI YoY Change (%)')
 ax_t.fill_between(nber.index, 0, 1, where=nber['USREC']==1, 
