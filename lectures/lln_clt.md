@@ -1,4 +1,4 @@
----
+s---
 jupytext:
   text_representation:
     extension: .md
@@ -358,7 +358,7 @@ This means that the distribution of $\bar X_n$ does not eventually concentrate o
 
 Hence the LLN does not hold.
 
-The LLN fails to hold here because the assumpton $\mathbb E|X| = \infty$ is violated by the Cauchy distribution.
+The LLN fails to hold here because the assumption $\mathbb E|X| = \infty$ is violated by the Cauchy distribution.
 
 +++
 
@@ -650,7 +650,7 @@ $$
 $$ 
 
 Finally, since both $X_t$ and $\epsilon_0$ are normally distributed and
-independent from each other, any linear combinary of these two variables is
+independent from each other, any linear combination of these two variables is
 also normally distributed.
 
 We have now shown that
