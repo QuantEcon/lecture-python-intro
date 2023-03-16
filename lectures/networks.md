@@ -1408,19 +1408,21 @@ Show that $\sim$ is an [equivalence relation](https://en.wikipedia.org/wiki/Equi
 :class: dropdown
 ```
 
-### Reflexivity
+**Reflexivity:**
+
 Trivially, $u = v \Rightarrow u \rightarrow v$.
 
 Thus, $u \sim u$.
 
-### Symmetry
+**Symmetry:**
 Suppose, $u \sim v$
 
 $\Rightarrow u \rightarrow v$ and $v \rightarrow u$.
 
 By definition, this implies $v \sim u$.
 
-### Transitivity
+**Transitivity:**
+
 Suppose, $u \sim v$ and $v \sim w$
 
 This implies, $u \rightarrow v$ and $v \rightarrow u$ and also $v \rightarrow w$ and $w \rightarrow v$.
