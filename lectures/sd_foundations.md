@@ -29,7 +29,7 @@ We shall eventually describe two classic welfare theorems:
 
 * **first welfare theorem:** for a  given a distribution of wealth among consumers,  a competitive  equilibrium  allocation of goods solves a  social planning problem.
 
-* **second welfare theorem:** An allocation of goods to consumers that solves a social planning problem can be supported by a compeitive equilibrium with an appropriate initial distribution of  wealth.   
+* **second welfare theorem:** An allocation of goods to consumers that solves a social planning problem can be supported by a competitive equilibrium with an appropriate initial distribution of  wealth.   
 
 Key infrastructure concepts that we'll encounter in this lecture are
 
@@ -126,7 +126,7 @@ supply to demand brings us a **key finding:**
 
 It also brings  a useful  **competitive equilibrium computation strategy:** 
 
-* after solving the welfare problem for an optimal  quantity, we can read a competive equilibrium price from  either supply price or demand price at the  competitive equilibrium quantity
+* after solving the welfare problem for an optimal  quantity, we can read a competitive equilibrium price from  either supply price or demand price at the  competitive equilibrium quantity
 
 Soon we'll derive generalizations of the above demand and supply 
 curves from other objects.
