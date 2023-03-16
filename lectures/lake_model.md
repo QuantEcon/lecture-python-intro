@@ -40,10 +40,29 @@ The "flows" between the two lakes are as follows:
 3. employed workers separate from their jobs at rate $\alpha$.
 4. unemployed workers find jobs at rate $\lambda$.
 
-```{figure} /_static/lecture_specific/lake_model/transition.png
----
-scale: 60%
+The below graph illustrates the lake model.
 
+```{code-cell}ipython3
+from graphviz import Digraph
+# Create Digraph object
+G = Digraph()
+G.attr(rankdir='LR')
+
+# Add nodes
+G.attr('node', shape='circle')
+G.node('1', 'New netrants', color='blue')
+G.node('2', 'Unemployed')
+G.node('3', 'Employed')
+
+# Add edges
+G.edge('1', '2', label='b')
+G.edge('2', '3', label='λ(1-d)')
+G.edge('3', '2', label='α(1-d)')
+G.edge('2', '2', label='(1-λ)(1-d)')
+G.edge('3', '3', label='(1-α)(1-d)')
+
+# Show graphviz
+G
 ```
 
 Let $e_t$ and $u_t$ be the number of employed and unemployed workers at time $t$ respectively.
@@ -323,11 +342,11 @@ def plot_time_paths(lm, x0=None, T=1000, ax=None):
             plt.show()
 ```
 
-````{code-cell} ipython3
+```{code-cell} ipython3
 lm = LakeModel(α=0.01, λ=0.1, d=0.02, b=0.025)
 x0 = ((5.0, 0.1), (0.1, 4.0), (2.0, 1.0))
 plot_time_paths(lm, x0=x0)
-```{code-cell}
+```
 
 If $\bar{x}$ is an eigenvector corresponding to the eigenvalue $r(A)$ then all the vectors in the set
 $D := \{ x \in \mathbb{R}^2 : x = \alpha \bar{x} \; \text{for some} \; \alpha >0 \}$ are also eigenvectors corresponding
@@ -352,7 +371,7 @@ This is visualised below.
 ```{code-cell} ipython3
 lm = LakeModel(α=0.01, λ=0.1, d=0.025, b=0.02)
 plot_time_paths(lm, x0=x0)
-````
+```
 
 Thus, while the sequence of iterates still move towards the dominant eigenvector $\bar{x}$ however in this case
 they converge to the origin.
@@ -471,7 +490,7 @@ Assume that $\alpha$ increases to $0.04$.
 
 The below graph illustrates that the line $D$ shifts downward, which indicates that the fraction of unemployment rises as the separation rate increases.
 
-````{code-cell} ipython3
+```{code-cell} ipython3
 fig, ax = plt.subplots(figsize=(10, 8))
 
 lm = LakeModel(α=0.01, λ=0.1, d=0.02, b=0.025)
@@ -485,7 +504,4 @@ ax.plot([0, s * lm.ū], [0, s * lm.ē], "r--", lw=1, label='set $D$, α=0.04')
 
 ax.legend(loc='best')
 plt.show()
-```{code-cell}
-
-
-````
+```
