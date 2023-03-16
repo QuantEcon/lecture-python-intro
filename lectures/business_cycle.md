@@ -86,7 +86,8 @@ First we look at the GDP growth rate and unemployment rate.
 Let's source our data from the World Bank and clean the data
 
 ```{code-cell} ipython3
-gdp_growth = wb.data.DataFrame('NY.GDP.MKTP.KD.ZG',['USA', 'ARG', 'GBR', 'GRC', 'JPN'], labels=True)
+gdp_growth = wb.data.DataFrame('NY.GDP.MKTP.KD.ZG',
+            ['USA', 'ARG', 'GBR', 'GRC', 'JPN'], labels=True)
 gdp_growth = gdp_growth.set_index('Country')
 gdp_growth.columns = gdp_growth.columns.str.replace('YR', '').astype(int)
 ```
@@ -95,10 +96,12 @@ gdp_growth.columns = gdp_growth.columns.str.replace('YR', '').astype(int)
 gdp_growth
 ```
 
-Now we write a function to generate plots
+Now we write a function to generate plots for individual countries
 
 ```{code-cell} ipython3
-def plot_comparison(data, country, title, ylabel, title_pos, ax, g_params, b_params, t_params, ylim=15, baseline=True):
+def plot_comparison(data, country, title, 
+                    ylabel, title_pos, ax, g_params,
+                     b_params, t_params, ylim=15):
     
     ax.plot(data.loc[country], label=country, **g_params)
     
@@ -114,8 +117,7 @@ def plot_comparison(data, country, title, ylabel, title_pos, ax, g_params, b_par
     ax.text(1991, ylim + ylim * title_pos, '1990s recession\n(1991)', **t_params) 
     ax.text(2008, ylim + ylim * title_pos, 'GFC\n(2008)', **t_params) 
     ax.text(2020, ylim + ylim * title_pos, 'Covid-19\n(2020)', **t_params) 
-    if baseline:
-        plt.axhline(y=0, color='black', linestyle='--')
+    ax.hlines(y=0, color='black', linestyle='--')
     ax.set_title(title, pad=40)
     ax.set_ylabel(ylabel)
     ax.legend()
@@ -139,8 +141,9 @@ ax.set_xticks([i for i in range(1960, 2021, 10)], minor=False)
 country = 'United States'
 title = 'United States (GDP Growth Rate %)'
 ylabel = 'GDP Growth Rate (%)'
-title_height = 0.1
-_ = plot_comparison(gdp_growth, country, title, ylabel, 0.1, ax, g_params, b_params, t_params)
+_ = plot_comparison(gdp_growth, country, 
+                    title, ylabel, 0.1, ax, 
+                    g_params, b_params, t_params)
 ```
 
 We find that there is a cyclical pattern across time, and the economy shrinks during recessions.
@@ -164,7 +167,9 @@ country = 'United Kingdom'
 title = ' United Kingdom (GDP Growth Rate %)'
 ylabel = 'GDP Growth Rate (%)'
 title_height = 0.1
-_ = plot_comparison(gdp_growth, country, title, ylabel, 0.1, ax, g_params, b_params, t_params)
+_ = plot_comparison(gdp_growth, country, title, 
+                    ylabel, 0.1, ax, g_params, 
+                    b_params, t_params)
 ```
 
 Japan and Greece both had a history of rapid growth in the 1960s, but a slowed economic expansion in the past decade.
@@ -177,9 +182,9 @@ fig, ax = plt.subplots()
 
 country = 'Japan'
 title = 'Japan (GDP Growth Rate %)'
-ylabel = 'GDP Growth Rate (%)'
-title_height = 0.1
-_ = plot_comparison(gdp_growth, country, title, ylabel, 0.1, ax, g_params, b_params, t_params)
+_ = plot_comparison(gdp_growth, country, title, 
+                    ylabel, 0.1, ax, g_params, 
+                    b_params, t_params)
 ```
 
 ```{code-cell} ipython3
@@ -187,9 +192,9 @@ fig, ax = plt.subplots()
 
 country = 'Greece'
 title = ' Greece (GDP Growth Rate %)'
-ylabel = 'GDP Growth Rate (%)'
-title_height = 0.1
-_ = plot_comparison(gdp_growth, country, title, ylabel, 0.1, ax, g_params, b_params, t_params)
+_ = plot_comparison(gdp_growth, country, title, 
+                    ylabel, 0.1, ax, g_params, 
+                    b_params, t_params)
 ```
 
 Note that Greece has another significant drop in GDP growth around 2010-2011 at the peak of the Greek debt crisis.
@@ -203,9 +208,9 @@ fig, ax = plt.subplots()
 
 country = 'Argentina'
 title = 'Argentina (GDP Growth Rate %)'
-ylabel = 'GDP Growth Rate (%)'
-title_height = 0.1
-_ = plot_comparison(gdp_growth, country, title, ylabel, 0.1, ax, g_params, b_params, t_params)
+_ = plot_comparison(gdp_growth, country, title, 
+                    ylabel, 0.1, ax, 
+                    g_params, b_params, t_params)
 ```
 
 One interesting insight is that the GDP growth of Argentina did not fall in the two recessions in the 1970s and 1990s when most of the developed economy is affected.
@@ -226,17 +231,15 @@ We show this using a long-run unemployment rate from FRED from [1929-1942](https
 start_date = datetime.datetime(1929, 1, 1)
 end_date = datetime.datetime(1942, 6, 1)
 
-unrate_history = web.DataReader("M0892AUSM156SNBR", "fred", start_date,end_date)
+unrate_history = web.DataReader('M0892AUSM156SNBR', 'fred', start_date,end_date)
 unrate_history.rename(columns={'M0892AUSM156SNBR': 'UNRATE'}, inplace=True)
 ```
 
 ```{code-cell} ipython3
-import datetime
-
 start_date = datetime.datetime(1948, 1, 1)
 end_date = datetime.datetime(2022, 12, 31)
 
-unrate = web.DataReader("UNRATE", "fred", start_date, end_date)
+unrate = web.DataReader('UNRATE', 'fred', start_date, end_date)
 ```
 
 ```{code-cell} ipython3
@@ -256,7 +259,7 @@ unrate_census.set_index('DATE', inplace=True)
 start_date = datetime.datetime(1929, 1, 1)
 end_date = datetime.datetime(2022, 12, 31)
 
-nber = web.DataReader("USREC", "fred", start_date, end_date)
+nber = web.DataReader('USREC', 'fred', start_date, end_date)
 ```
 
 ```{code-cell} ipython3
@@ -265,21 +268,20 @@ nber = web.DataReader("USREC", "fred", start_date, end_date)
 fig, ax = plt.subplots()
 
 ax.plot(unrate_history, **g_params, color='#377eb8', linestyle='-', linewidth=2)
-ax.plot(unrate_census, **g_params, color='black', linestyle="--", label='Census Estimates', linewidth=2)
-ax.plot(unrate, **g_params, color='#377eb8', linestyle="-", linewidth=2)
+ax.plot(unrate_census, **g_params, color='black', linestyle='--', label='Census Estimates', linewidth=2)
+ax.plot(unrate, **g_params, color='#377eb8', linestyle='-', linewidth=2)
 
 # Draw gray boxes according to NBER recession indicators
 ax.fill_between(nber.index, 0, 1, where=nber['USREC']==1, 
-                color='grey', edgecolor="none",
+                color='grey', edgecolor='none',
                 alpha=0.3, transform=ax.get_xaxis_transform(), 
                 label='NBER Recession Indicators')
 ax.set_ylim([0, ax.get_ylim()[1]])
-ax.legend(loc='upper center', bbox_to_anchor=(0.5, 1.05),
+ax.legend(loc='upper center', bbox_to_anchor=(0.5, 1.1),
           ncol=3, fancybox=True, shadow=True)
 ax.set_ylabel('Unemployment Rate (%)')
 
-# Suppress Output
-_ = ax.set_title('Long-run Unemployment Rate, 1929-2022\n with Recession Records (United States)', pad=20)
+_ = ax.set_title('Long-run Unemployment Rate, 1929-2022\n with Recession Indicators (United States)', pad=40)
 ```
 
 In the plot, we see the expansions and contractions of the labor market have been highly correlated with recessions.
@@ -305,7 +307,10 @@ Let's examine this trend further.
 With slight modification, we can use our previous function to draw a plot that includes many countries
 
 ```{code-cell} ipython3
-def plot_comparison_multi(data, countries, title, ylabel, title_pos, y_lim, ax, g_params, b_params, t_params):
+def plot_comparison_multi(data, countries, title, 
+                        ylabel, title_pos, y_lim, ax, 
+                        g_params, b_params, t_params):
+
     # Allow the function to go through more than one series
     for country in countries:
         ax.plot(data.loc[country], label=country, **g_params)
@@ -335,7 +340,8 @@ t_params = {'color':'grey', 'fontsize': 9, 'va':'center', 'ha':'center'}
 
 ```{code-cell} ipython3
 # Obtain GDP growth rate for a list of countries
-gdp_growth = wb.data.DataFrame('NY.GDP.MKTP.KD.ZG',['CHN', 'USA', 'DEU', 'BRA', 'ARG', 'GBR', 'JPN', 'MEX'], labels=True)
+gdp_growth = wb.data.DataFrame('NY.GDP.MKTP.KD.ZG',
+            ['CHN', 'USA', 'DEU', 'BRA', 'ARG', 'GBR', 'JPN', 'MEX'], labels=True)
 gdp_growth = gdp_growth.set_index('Country')
 gdp_growth.columns = gdp_growth.columns.str.replace('YR', '').astype(int)
 ```
@@ -365,7 +371,8 @@ Emerging and less developed economies often experience more volatile change thro
 Here we use the unemployment rate as another example
 
 ```{code-cell} ipython3
-unempl_rate = wb.data.DataFrame('SL.UEM.TOTL.NE.ZS',['CHN', 'USA', 'DEU', 'FRA', 'BRA', 'ARG', 'GBR', 'JPN'], labels=True)
+unempl_rate = wb.data.DataFrame('SL.UEM.TOTL.NE.ZS',
+    ['CHN', 'USA', 'DEU', 'FRA', 'BRA', 'ARG', 'GBR', 'JPN'], labels=True)
 unempl_rate = unempl_rate.set_index('Country')
 unempl_rate.columns = unempl_rate.columns.str.replace('YR', '').astype(int)
 ```
@@ -374,7 +381,7 @@ unempl_rate.columns = unempl_rate.columns.str.replace('YR', '').astype(int)
 fig, ax = plt.subplots()
 
 countries = ['United Kingdom', 'United States', 'Japan', 'France']
-title = 'United Kingdom, United States, and Germany (Unemployment Rate %)'
+title = 'United Kingdom, United States, Japan, and France (Unemployment Rate %)'
 ylabel = 'Unemployment Rate (National Estimate) (%)'
 _ = plot_comparison_multi(unempl_rate, countries, title, ylabel, 0.05, None, ax, g_params, b_params, t_params)
 ```
@@ -421,21 +428,23 @@ end_date = datetime.datetime(2022, 12, 31)
 start_date_graph = datetime.datetime(1977, 1, 1)
 end_date_graph = datetime.datetime(2023, 12, 31)
 
-
-nber = web.DataReader("USREC", "fred", start_date, end_date)
-consumer_confidence = web.DataReader("UMCSENT", "fred", start_date, end_date)
+nber = web.DataReader('USREC', 'fred', start_date, end_date)
+consumer_confidence = web.DataReader('UMCSENT', 'fred', start_date, end_date)
 
 fig, ax = plt.subplots()
-ax.plot(consumer_confidence, **g_params, color='#377eb8', linestyle='-', linewidth=2, label='Consumer Price Index')
-ax.fill_between(nber.index, 0, 1, where=nber['USREC']==1, color='grey', edgecolor="none",
-                alpha=0.3, transform=ax.get_xaxis_transform(), 
-                label='NBER Recession Indicators')
+ax.plot(consumer_confidence, **g_params, 
+        color='#377eb8', linestyle='-', 
+        linewidth=2, label='Consumer Price Index')
+ax.fill_between(nber.index, 0, 1, 
+            where=nber['USREC']==1, color='grey', edgecolor='none',
+            alpha=0.3, transform=ax.get_xaxis_transform(), 
+            label='NBER Recession Indicators')
 ax.set_ylim([0, ax.get_ylim()[1]])
 ax.set_ylabel('Consumer Sentiment Index')
 
 # Plot CPI on another y-axis
 ax_t=ax.twinx()
-inflation = web.DataReader("CPILFESL", "fred", start_date, end_date).pct_change(12) * 100
+inflation = web.DataReader('CPILFESL', 'fred', start_date, end_date).pct_change(12) * 100
 
 # Add CPI on the legend without drawing the line again
 ax_t.plot(2020, 0, **g_params, linestyle='-', 
@@ -443,8 +452,9 @@ ax_t.plot(2020, 0, **g_params, linestyle='-',
 ax_t.plot(inflation, **g_params, color='#ff7f00', linestyle='--', 
           linewidth=2, label='CPI YoY Change (%)')
 ax_t.fill_between(nber.index, 0, 1, where=nber['USREC']==1, 
-                  color='grey', edgecolor="none",
-                  alpha=0.3, transform=ax.get_xaxis_transform(), label='NBER Recession Indicators')
+                  color='grey', edgecolor='none',
+                  alpha=0.3, transform=ax.get_xaxis_transform(), 
+                  label='NBER Recession Indicators')
 ax_t.set_ylim([0, ax_t.get_ylim()[1]])
 ax_t.set_xlim([start_date_graph, end_date_graph])
 ax_t.legend(loc='upper center', bbox_to_anchor=(0.5, 1.1),
@@ -452,7 +462,8 @@ ax_t.legend(loc='upper center', bbox_to_anchor=(0.5, 1.1),
 ax_t.set_ylabel('Consumer Price Index (% Change)',)
 
 # Suppress the text output
-_ = ax.set_title('University of Michigan Consumer Sentiment Index,\n and Year-over-year Consumer Price Index Change, 1978-2022 (United States)', pad=40)
+_ = ax.set_title('University of Michigan Consumer Sentiment Index,\n and \
+Year-over-year Consumer Price Index Change, 1978-2022 (United States)', pad=40)
 ```
 
 ### Production
@@ -469,12 +480,12 @@ However, instead of being a leading factor, the peak of the contraction in the p
 start_date = datetime.datetime(1919, 1, 1)
 end_date = datetime.datetime(2022, 12, 31)
 
-nber = web.DataReader("USREC", "fred", start_date, end_date)
-consumer_confidence = web.DataReader("INDPRO", "fred", start_date, end_date).pct_change(12) * 100
+nber = web.DataReader('USREC', 'fred', start_date, end_date)
+consumer_confidence = web.DataReader('INDPRO', 'fred', start_date, end_date).pct_change(12) * 100
 
 fig, ax = plt.subplots()
 ax.plot(consumer_confidence, **g_params, color='#377eb8', linestyle='-', linewidth=2, label='Consumer Price Index')
-ax.fill_between(nber.index, 0, 1, where=nber['USREC']==1, color='grey', edgecolor="none",
+ax.fill_between(nber.index, 0, 1, where=nber['USREC']==1, color='grey', edgecolor='none',
                 alpha=0.3, transform=ax.get_xaxis_transform(), 
                 label='NBER Recession Indicators')
 ax.set_ylim([ax.get_ylim()[0], ax.get_ylim()[1]])
