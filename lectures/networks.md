@@ -56,12 +56,12 @@ import quantecon as qe
 Within economics, important examples of networks include
 
 * financial networks
-* production networks 
+* production networks
 * trade networks
-* transport networks and 
-* social networks   
+* transport networks and
+* social networks
 
-Social networks affect trends in market sentiment and consumer decisions.  
+Social networks affect trends in market sentiment and consumer decisions.
 
 The structure of financial networks helps to determine relative fragility of the financial system.
 
@@ -75,7 +75,7 @@ To better understand such networks, let's look at some examples in more depth.
 
 TODO hide the code
 
-The following figure shows international trade in large commercial aircraft in 2019 based on International Trade Data SITC Revision 2.  
+The following figure shows international trade in large commercial aircraft in 2019 based on International Trade Data SITC Revision 2.
 
 ```{code-cell} ipython3
 ---
@@ -114,31 +114,31 @@ node_to_color = dict(zip(DG.nodes,node_colors))
 edge_colors = []
 for src,_ in DG.edges:
     edge_colors.append(node_to_color[src])
-    
+
 fig, ax = plt.subplots(figsize=(10, 10))
 ax.axis('off')
 
-nx.draw_networkx_nodes(DG, 
-                        node_pos_dict, 
-                        node_color=node_colors, 
-                        node_size=node_sizes, 
-                        linewidths=2, 
-                        alpha=0.6, 
+nx.draw_networkx_nodes(DG,
+                        node_pos_dict,
+                        node_color=node_colors,
+                        node_size=node_sizes,
+                        linewidths=2,
+                        alpha=0.6,
                         ax=ax)
 
-nx.draw_networkx_labels(DG, 
-                        node_pos_dict,  
+nx.draw_networkx_labels(DG,
+                        node_pos_dict,
                         ax=ax)
 
-nx.draw_networkx_edges(DG, 
-                        node_pos_dict, 
-                        edge_color=edge_colors, 
-                        width=edge_widths, 
-                        arrows=True, 
-                        arrowsize=20,  
-                        ax=ax, 
-                        arrowstyle='->', 
-                        node_size=node_sizes, 
+nx.draw_networkx_edges(DG,
+                        node_pos_dict,
+                        edge_color=edge_colors,
+                        width=edge_widths,
+                        arrows=True,
+                        arrowsize=20,
+                        ax=ax,
+                        arrowstyle='->',
+                        node_size=node_sizes,
                         connectionstyle='arc3,rad=0.15')
 
 plt.show()
@@ -152,7 +152,7 @@ Node size is proportional to total exports and edge width is proportional to exp
 
 (The data is for trade in commercial aircraft weighing at least 15,000kg and was sourced from CID Dataverse.)
 
-The figure shows that the US, France and Germany are major export hubs.  
+The figure shows that the US, France and Germany are major export hubs.
 
 In the discussion below, we learn to quantify such ideas.
 
@@ -242,12 +242,12 @@ The elements of $V$ are called the **vertices** or **nodes** of the graph.
 
 The pairs $(u,v)$ are called the **edges** of the graph and the set of all edges will usually be denoted by $E$
 
-Intuitively and visually, an edge $(u,v)$ is understood as an arrow from node $u$ to node $v$.  
+Intuitively and visually, an edge $(u,v)$ is understood as an arrow from node $u$ to node $v$.
 
 (A neat way to represent an arrow is to record the location of the tail and
 head of the arrow, and that's exactly what an edge does.)
 
-In the aircraft export example shown in {numref}`aircraft_network` 
+In the aircraft export example shown in {numref}`aircraft_network`
 
 * $V$ is all countries included in the data set.
 * $E$ is all the arrows in the figure, each indicating some positive amount of aircraft exports from one country to another.
@@ -318,10 +318,10 @@ graph2
 ```
 
 For these graphs, the arrows (edges) can be thought of as representing
-positive transition probabilities over a given unit of time.  
+positive transition probabilities over a given unit of time.
 
 In general, if an edge $(u, v)$ exists, then the node $u$ is called a
-**direct predecessor** of $v$ and $v$ is called a **direct successor** of $u$.  
+**direct predecessor** of $v$ and $v$ is called a **direct successor** of $u$.
 
 Also,  for $v \in V$,
 
@@ -378,21 +378,21 @@ G_p.add_edges_from(edge_list)
 Adding the edges automatically adds the nodes, so `G_p` is now a
 correct representation of our graph.
 
-We can verify this by plotting the graph via Networkx with the following code: 
+We can verify this by plotting the graph via Networkx with the following code:
 
 ```{code-cell} ipython3
 fig, ax = plt.subplots()
-nx.draw_spring(G_p, ax=ax, node_size=500, with_labels=True, 
+nx.draw_spring(G_p, ax=ax, node_size=500, with_labels=True,
                  font_weight='bold', arrows=True, alpha=0.8,
                  connectionstyle='arc3,rad=0.25', arrowsize=20)
 plt.show()
 ```
 
-The figure obtained above matches the original directed graph in {numref}`poverty_trap`.
+The figure obtained above matches the original directed graph in {numref}`poverty_trap_2`.
 
 
 `DiGraph` objects have methods that calculate in-degree and out-degree
-of nodes.   
+of nodes.
 
 For example,
 
@@ -406,16 +406,16 @@ Next we study communication and connectedness, which have important
 implications for economic networks.
 
 Node $v$ is called **accessible** from node $u$ if either $u=v$ or there
-exists a sequence of edges that lead from $u$ to $v$.  
+exists a sequence of edges that lead from $u$ to $v$.
 
 * in this case, we write $u \to v$
 
 (Visually, there is a sequence of arrows leading from $u$ to $v$.)
 
-For example, suppose we have a directed graph representing a production network, where 
+For example, suppose we have a directed graph representing a production network, where
 
 * elements of $V$ are industrial sectors and
-* existence of an edge $(i, j)$ means that $i$ supplies products or services to $j$.  
+* existence of an edge $(i, j)$ means that $i$ supplies products or services to $j$.
 
 Then $m \to \ell$ means that sector $m$ is an upstream supplier of sector $\ell$.
 
@@ -435,7 +435,7 @@ G1 = nx.DiGraph()
 G1.add_edges_from([('p', 'p'),('p','m'),('p','r'),
              ('m', 'p'), ('m', 'm'), ('m', 'r'),
              ('r', 'p'), ('r', 'm'), ('r', 'r')])
-                      
+
 nx.draw(G1, with_labels = True)
 ```
 
@@ -450,8 +450,8 @@ G2 = nx.DiGraph()
 G2.add_edges_from([('p', 'p'),
              ('m', 'p'), ('m', 'm'), ('m', 'r'),
              ('r', 'p'), ('r', 'm'), ('r', 'r')])
-                      
-nx.draw(G2, with_labels = True) 
+
+nx.draw(G2, with_labels = True)
 ```
 
 ```{code-cell} ipython3
@@ -504,34 +504,34 @@ node_to_color = dict(zip(G.nodes,node_colors))
 edge_colors = []
 for src,_ in G.edges:
     edge_colors.append(node_to_color[src])
-    
+
 fig, ax = plt.subplots(figsize=(8, 10))
 ax.axis('off')
 
-nx.draw_networkx_nodes(G, 
-                        node_pos_dict, 
-                        node_color=node_colors, 
-                        node_size=node_sizes,  
-                        edgecolors='grey', 
-                        linewidths=2, 
-                        alpha=0.4, 
+nx.draw_networkx_nodes(G,
+                        node_pos_dict,
+                        node_color=node_colors,
+                        node_size=node_sizes,
+                        edgecolors='grey',
+                        linewidths=2,
+                        alpha=0.4,
                         ax=ax)
 
-nx.draw_networkx_labels(G, 
-                        node_pos_dict,  
+nx.draw_networkx_labels(G,
+                        node_pos_dict,
                         font_size=12,
                         ax=ax)
 
-nx.draw_networkx_edges(G, 
-                        node_pos_dict, 
-                        edge_color=edge_colors, 
-                        width=edge_widths, 
-                        arrows=True, 
-                        arrowsize=20,  
+nx.draw_networkx_edges(G,
+                        node_pos_dict,
+                        edge_color=edge_colors,
+                        width=edge_widths,
+                        arrows=True,
+                        arrowsize=20,
                         alpha=0.8,
-                        ax=ax, 
-                        arrowstyle='->', 
-                        node_size=node_sizes, 
+                        ax=ax,
+                        arrowstyle='->',
+                        node_size=node_sizes,
                         connectionstyle='arc3,rad=0.15')
 
 plt.show()
@@ -548,10 +548,10 @@ The country codes are given in the following table.
 
 An arrow from Japan to the US indicates aggregate claims held by Japanese
 banks on all US-registered banks, as collected by the Bank of International
-Settlements (BIS). 
+Settlements (BIS).
 
 The size of each node in the figure is increasing in the
-total foreign claims of all other nodes on this node. 
+total foreign claims of all other nodes on this node.
 
 The widths of the arrows are proportional to the foreign claims they represent.
 
@@ -560,7 +560,7 @@ of $u$ and $v$ (i.e., almost every country in the network).
 
 (In fact there are even more small arrows, which we have dropped for clarity.)
 
-Hence existence of an edge from one node to another is not particularly informative.  
+Hence existence of an edge from one node to another is not particularly informative.
 
 To understand the network, we need to record not just the existence or absence
 of a credit flow, but also the size of the flow.
@@ -612,16 +612,16 @@ graph3.edge("rich", "rich", label = '0.8')
 graph3
 ```
 
-The numbers next to the edges are the weights.  
+The numbers next to the edges are the weights.
 
 In this case, you can think of the numbers on the arrows as transition
-probabilities for a household over, say, one year.  
+probabilities for a household over, say, one year.
 
-We see that a rich household has a 10\% chance of becoming poor in one year.  
+We see that a rich household has a 10\% chance of becoming poor in one year.
 
 +++
 
-## Adjacency Matrices 
+## Adjacency Matrices
 
 Another way that we can represent weights, which turns out to be very
 convenient for numerical work, is via a matrix.
@@ -644,7 +644,7 @@ $$
 $$
 
 Once the nodes in $V$ are enumerated, the weight function and
-adjacency matrix provide essentially the same information.  
+adjacency matrix provide essentially the same information.
 
 For example, with $\{$poor, middle, rich$\}$ mapped to $\{1, 2, 3\}$ respectively,
 the adjacency matrix corresponding to the weighted directed graph in {numref}`poverty_trap_weighted` is
@@ -669,7 +669,7 @@ G = qe.DiGraph(A, weighted=True)    #store weights
 ```
 
 One of the key points to remember about adjacency matrices is that taking the
-transpose _reverses all the arrows_ in the associated directed graph.  
+transpose _reverses all the arrows_ in the associated directed graph.
 
 
 For example, the following directed graph can be
@@ -701,24 +701,24 @@ plt.show()
 
 ```{code-cell} ipython3
 graph4 = Digraph(engine = "neato")
-                 
+
 graph4.attr(rankdir='LR')
 graph4.node('1', pos = '1,0!')
 graph4.node('2', pos = '3,0!')
 graph4.node('3', pos = '4,2!')
 graph4.node('4', pos = '2,3!')
-graph4.node('5', pos = '0,2!')              
-                 
+graph4.node('5', pos = '0,2!')
+
 graph4.edge('1','2', label = '100')
 graph4.edge('2','1', label = '50')
 graph4.edge('2','3', label = '200')
 graph4.edge('3','4', label = '\t100')
 graph4.edge('4','2', label = '500')
 graph4.edge('4','5', label = '\n50\t')
-graph4.edge('5','1', label = '150')                 
+graph4.edge('5','1', label = '150')
 graph4.edge('5','3', label = '250')
 graph4.edge('5','4', label = '300')
-                 
+
 graph4
 ```
 
@@ -733,24 +733,24 @@ A =
     50 & 0 & 200 & 0 & 0 \\
     0 & 0 & 0 & 100 & 0 \\
     0 & 500 & 0 & 0 & 50 \\
-    150 & 0 & 250 & 300 & 0 
+    150 & 0 & 250 & 300 & 0
 \end{pmatrix}.
 $$
 
 The transpose is
 
 $$
-A^\top = 
+A^\top =
 \begin{pmatrix}
     0   & 50  & 0   & 0   & 150 \\
     100 & 0   & 0   & 500 & 0 \\
     0   & 200 & 0   & 0   & 250 \\
     0   & 0   & 100 & 0   & 300 \\
-    0   & 0   & 0   & 50  & 0 
+    0   & 0   & 0   & 50  & 0
 \end{pmatrix}.
 $$
 
-The corresponding network is visualized in the following figure which shows the network of liabilities after the loans have been granted.  
+The corresponding network is visualized in the following figure which shows the network of liabilities after the loans have been granted.
 
 Both of these networks (original and transpose) are useful for analysis of financial markets.
 
@@ -778,14 +778,14 @@ plt.show()
 
 ```{code-cell} ipython3
 graph5 = Digraph(engine = "neato")
-                 
+
 graph5.attr(rankdir='LR')
 graph5.node('1', pos = '1,0!')
 graph5.node('2', pos = '3,0!')
 graph5.node('3', pos = '4,2!')
 graph5.node('4', pos = '2,3!')
-graph5.node('5', pos = '0,2!')            
-                 
+graph5.node('5', pos = '0,2!')
+
 graph5.edge('1','2', label = '50')
 graph5.edge('1','5', label = '150')
 graph5.edge('2','1', label = '100')
@@ -794,8 +794,8 @@ graph5.edge('3','2', label = '200')
 graph5.edge('3','5', label = '250')
 graph5.edge('4','3', label = '\t100')
 graph5.edge('4','5', label = '\n300\t')
-graph5.edge('5','4', label = '50')               
-                 
+graph5.edge('5','4', label = '50')
+
 graph5
 ```
 
@@ -849,10 +849,10 @@ From the preceding theorem it is not too difficult (see
 :label: graph_theory_property2
 
 For a weighted directed graph the following statements are equivalent:
-   
-1. The directed graph is strongly connected. 
+
+1. The directed graph is strongly connected.
 2. The adjacency matrix of the graph is irreducible.
- 
+
 ````
 
 +++
@@ -863,18 +863,18 @@ Consider the following weighted directed graph.
 
 ```{code-cell} ipython3
 graph6 = Digraph()
-                 
+
 graph6.attr(rankdir='LR')
 graph6.node('1')
 graph6.node('2')
-graph6.node('3')           
-                 
+graph6.node('3')
+
 graph6.edge('1','2', label = '0.7')
 graph6.edge('1','3', label = '0.3')
 graph6.edge('2','1', label = '1')
 graph6.edge('3','1', label = '0.4')
-graph6.edge('3','2', label = '0.6')             
-                 
+graph6.edge('3','2', label = '0.6')
+
 graph6
 ```
 
@@ -917,25 +917,25 @@ nx.is_strongly_connected(G6)      #check connectedness of graph
 ## Network Centrality
 
 When studying networks of all varieties, a recurring topic is the relative
-"centrality" or "importance" of different nodes. 
+"centrality" or "importance" of different nodes.
 
 Examples include
 
-* ranking of web pages by search engines  
+* ranking of web pages by search engines
 * determining the most important bank in a financial network (which one a
   central bank should rescue if there is a financial crisis)
 * determining the most important industrial sector in an economy.
 
 In what follows, a **centrality measure** associates to each weighted directed
 graph a vector $m$ where the $m_i$ is interpreted as the centrality (or rank)
-of node $v_i$.  
+of node $v_i$.
 
 ### Degree Centrality
 
 Two elementary measures of "importance" of a node in a given directed
 graph are its in-degree and out-degree.
 
-Both of these provide a centrality measure.  
+Both of these provide a centrality measure.
 
 In-degree centrality is a vector containing the in-degree of each node in
 the graph.
@@ -983,22 +983,22 @@ indegree = D.sum(axis=0)
 ```{code-cell} ipython3
 def centrality_plot_data(countries, centrality_measures):
     df = pd.DataFrame({'code': countries,
-                       'centrality':centrality_measures, 
+                       'centrality':centrality_measures,
                        'color': qbn_io.colorise_weights(centrality_measures).tolist()
                        })
     return df.sort_values('centrality')
 ```
 
-centrality_measures = [outdegree, indegree, 
-                       ecentral_hub, ecentral_authority, 
+centrality_measures = [outdegree, indegree,
+                       ecentral_hub, ecentral_authority,
                        kcentral_hub, kcentral_authority]
 
 ylabels = ['out degree', 'in degree',
-           'eigenvector hub','eigenvector authority', 
+           'eigenvector hub','eigenvector authority',
            'katz hub', 'katz authority']
 
-ylims = [(0, 20), (0, 20), 
-         None, None,   
+ylims = [(0, 20), (0, 20),
+         None, None,
          None, None]
 
 ```{code-cell} ipython3
@@ -1008,12 +1008,12 @@ fig, ax = plt.subplots()
 #axes = axes.flatten()
 
 df = centrality_plot_data(countries, indegree)
-      
+
 ax.bar('code', 'centrality', data=df, color=df["color"], alpha=0.6)
-    
+
 patch = mpatches.Patch(color=None, label='in degree', visible=False)
 ax.legend(handles=[patch], fontsize=12, loc="upper left", handlelength=0, frameon=False)
-    
+
 ax.set_ylim((0,20))
 
 plt.show()
@@ -1030,7 +1030,7 @@ This can be seen in the above graph as well.
 Another example is the task of a web search engine, which ranks pages
 by relevance whenever a user enters a search.
 
-Suppose web page A has twice as many inbound links as page B.  
+Suppose web page A has twice as many inbound links as page B.
 
 In-degree centrality tells us that page A deserves a higher rank.
 
@@ -1040,18 +1040,18 @@ To see why, suppose that the links to A are from pages that receive almost no tr
 while the links to B are from pages that receive very heavy traffic.
 
 In this case, page B probably receives more visitors, which in turn suggests
-that page B contains more valuable (or entertaining) content. 
+that page B contains more valuable (or entertaining) content.
 
 Thinking about this point suggests that importance might be *recursive*.
 
 This means that the importance of a given node depends on the importance of
-other nodes that link to it.  
+other nodes that link to it.
 
 As another example, we can imagine a production network where the importance of a
 given sector depends on the importance of the sectors that it supplies.
 
 This reverses the order of the previous example: now the importance of a given
-node depends on the importance of other nodes that *it links to*.  
+node depends on the importance of other nodes that *it links to*.
 
 The next centrality measures we study have these recursive features.
 
@@ -1094,18 +1094,18 @@ for some element $e_i$
 
 Note the recursive nature of the definition: the centrality obtained by node
 $i$ is proportional to a sum of the centrality of all nodes, weighted by
-the *rates of flow* from $i$ into these nodes.   
+the *rates of flow* from $i$ into these nodes.
 
 A node $i$ is highly ranked if
 1. there are many edges leaving $i$,
-2. these edges have large weights, and 
+2. these edges have large weights, and
 3. the edges point to other highly ranked nodes.
 
 Later, when we study demand shocks  in production networks, we will provide a more
-concrete interpretation of eigenvector centrality.  
+concrete interpretation of eigenvector centrality.
 
 We will see that, in production networks, sectors with high eigenvector
-centrality are important *suppliers*.  
+centrality are important *suppliers*.
 
 In particular, they are activated by a wide array of demand shocks once orders
 flow backwards through the network.
@@ -1115,9 +1115,9 @@ To compute eigenvector centrality we can use the following function.
 ```{code-cell} ipython3
 def eigenvector_centrality(A, k=40, authority=False):
     """
-    Computes the dominant eigenvector of A. Assumes A is 
-    primitive and uses the power method.  
-    
+    Computes the dominant eigenvector of A. Assumes A is
+    primitive and uses the power method.
+
     """
     A_temp = A.T if authority else A
     n = len(A_temp)
@@ -1154,9 +1154,9 @@ fig, ax = plt.subplots()
 #axes = axes.flatten()
 
 df = centrality_plot_data(countries, eig_central)
-      
+
 ax.bar('code', 'centrality', data=df, color=df["color"], alpha=0.6)
-    
+
 patch = mpatches.Patch(color=None, label='eigenvector centrality', visible=False)
 ax.legend(handles=[patch], fontsize=12, loc="upper left", handlelength=0, frameon=False)
 
@@ -1164,7 +1164,7 @@ plt.show()
 ```
 
 Countries that are rated highly according to this rank tend to be important
-players in terms of supply of credit. 
+players in terms of supply of credit.
 
 Japan takes the highest rank according to this measure, although
 countries with large financial sectors such as Great Britain and France are
@@ -1185,11 +1185,11 @@ One problem with eigenvector centrality is that $r(A)$ might be zero, in which
 case $1/r(A)$ is not defined.
 
 For this and other reasons, some researchers prefer another measure of
-centrality for networks called Katz centrality. 
+centrality for networks called Katz centrality.
 
 Fixing $\beta$ in $(0, 1/r(A))$, the **Katz centrality** of a weighted
 directed graph with adjacency matrix $A$ is defined as the vector $\kappa$
-that solves 
+that solves
 
 ```{math}
 :label: katz_central
@@ -1199,7 +1199,7 @@ that solves
 
 Here $\beta$ is a parameter that we can choose.
 
-In vector form we can write 
+In vector form we can write
 
 ```{math}
 :label: katz_central_vec
@@ -1210,7 +1210,7 @@ where $\mathbf 1$ is a column vector of ones.
 
 The intuition behind this centrality measure is similar to that provided for
 eigenvector centrality: high centrality is conferred on $i$ when it is linked
-to by nodes that themselves have high centrality.  
+to by nodes that themselves have high centrality.
 
 Provided that $0 < \beta < 1/r(A)$, Katz centrality is always finite and well-defined
 because then $r(\beta A) < 1$.
@@ -1227,7 +1227,7 @@ This follows from the Neumann series theorem [TODO link to Maanasee's lecture].
 
 The parameter $\beta$ is used to ensure that $\kappa$ is finite
 
-When $r(A)<1$, we use $\beta=1$ as the default for Katz centrality computations.  
+When $r(A)<1$, we use $\beta=1$ as the default for Katz centrality computations.
 
 
 
@@ -1236,17 +1236,17 @@ When $r(A)<1$, we use $\beta=1$ as the default for Katz centrality computations.
 ### Authorities vs Hubs
 
 Search engine designers recognize that web pages can be important in two
-different ways.  
+different ways.
 
 Some pages have high **hub centrality**, meaning that they link to valuable
-sources of information (e.g., news aggregation sites).  
+sources of information (e.g., news aggregation sites).
 
 Other pages have high **authority centrality**, meaning that they contain
 valuable information, as indicated by the number and significance of incoming
-links (e.g., websites of respected news organizations).  
+links (e.g., websites of respected news organizations).
 
 Similar ideas can and have been applied to economic networks (often using
-different terminology).  
+different terminology).
 
 The eigenvector centrality and Katz centrality measures we discussed above
 measure hub centrality.
@@ -1284,7 +1284,7 @@ Element-by-element, this is given by
 We see $e_j$ will be high if many nodes with high authority rankings link to $j$.
 
 The following figurenshows the authority-based eigenvector centrality ranking for the international
-credit network shown in *add numref*.  
+credit network shown in *add numref*.
 
 ```{code-cell} ipython3
 ecentral_authority = eigenvector_centrality(Z, authority=True)
@@ -1295,9 +1295,9 @@ fig, ax = plt.subplots()
 #axes = axes.flatten()
 
 df = centrality_plot_data(countries, ecentral_authority)
-      
+
 ax.bar('code', 'centrality', data=df, color=df["color"], alpha=0.6)
-    
+
 patch = mpatches.Patch(color=None, label='eigenvector authority', visible=False)
 ax.legend(handles=[patch], fontsize=12, loc="upper left", handlelength=0, frameon=False)
 
@@ -1305,9 +1305,9 @@ plt.show()
 ```
 
 Highly ranked countries are those that attract large inflows of credit, or
-credit inflows from other major players.  
+credit inflows from other major players.
 
-In this case the US clearly dominates the rankings as a target of interbank credit.  
+In this case the US clearly dominates the rankings as a target of interbank credit.
 
 +++
 
@@ -1397,7 +1397,7 @@ by \cite{newman2018networks}, \cite{menczer2020first} and
 
 Here is a mathematical exercise for those who like proofs.
 
-Let $(V, E)$ be a directed graph and write $u \sim v$ if $u$ and $v$ communicate.  
+Let $(V, E)$ be a directed graph and write $u \sim v$ if $u$ and $v$ communicate.
 
 Show that $\sim$ is an [equivalence relation](https://en.wikipedia.org/wiki/Equivalence_relation) on $V$.
 
@@ -1456,7 +1456,7 @@ $$
 
 3. Use the functions defined above to compute in-degree centrality, out-degree centrality and eigenvector centrality
    of G.
-   
+
 ```{exercise-end}
 ```
 
