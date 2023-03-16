@@ -79,6 +79,7 @@ The following figure shows international trade in large commercial aircraft in 2
 
 ```{code-cell} ipython3
 ---
+tags: ["hide_input"]
 mystnb:
   figure:
     caption: "Commercial Aircraft Network \n"
@@ -88,7 +89,6 @@ mystnb:
     classes: shadow bg-primary
     width: 200px
 ---
-:tags: [hide_input]
 
 import matplotlib.cm as cm
 import quantecon_book_networks
@@ -171,7 +171,7 @@ where the states are
 Let's examine the following figure.
 
 ```{code-cell} ipython3
-:tags: [hide_input]
+:tags: ["hide_input"]
 from graphviz import Digraph
 
 dot = Digraph(comment='Graph')
@@ -473,6 +473,7 @@ loans) between private banks, grouped by country of origin.
 
 ```{code-cell} ipython3
 ---
+tags: ["hide_cell"]
 mystnb:
   figure:
     caption: "International Credit Network \n"
@@ -482,7 +483,6 @@ mystnb:
     classes: shadow bg-primary
     width: 200px
 ---
-:tags: [hide_cell]
 
 Z = ch1_data["adjacency_matrix_2019"]["Z"]
 Z_visual= ch1_data["adjacency_matrix_2019"]["Z_visual"]
@@ -583,6 +583,7 @@ representing edges of the induced directed graph.
 
 ```{code-cell} ipython3
 ---
+tags: ["hide_input"]
 mystnb:
   figure:
     caption: "Weighted Poverty Trap \n"
@@ -592,7 +593,6 @@ mystnb:
     classes: shadow bg-primary
     width: 200px
 ---
-:tags: [hide_input]
 
 graph3 = Digraph(comment='Graph')
 
@@ -896,7 +896,7 @@ A = np.array([[0,0.7,0.3],    #adjacency matrix A
 ```
 
 ```{code-cell} ipython3
-:tags: [hide_cell]
+:tags: ["hide_cell"]
 def is_irreducible(P):
     n = len(P)
     result = np.zeros((n, n))
