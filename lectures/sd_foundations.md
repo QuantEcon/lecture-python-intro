@@ -1,5 +1,5 @@
 <!-- #region -->
-## Elements of  Supply and Demand
+# Elements of  Supply and Demand
 
 This lecture is about some  linear models of equilibrium prices and quantities, one of the main topics
 of elementary microeconomics.
@@ -46,7 +46,7 @@ Key infrastructure concepts that we'll encounter in this lecture are
 * dynamics as a special case of  statics
 * risk as a special case of statics
 
-### Scalar setting
+## Scalar setting
 
 We study a market for a single good in which buyers and sellers exchange a  quantity $q$ for a price $p$.
 
@@ -141,11 +141,11 @@ In addition
  * we'll derive  **supply curves** from the problem of a producer who is price taker and maximizes his profits minus total costs that are described by a  **cost function**.
 <!-- #endregion -->
 
-# Multiple goods
+## Multiple goods
 
 We study a setting with $n$ goods and $n$ corresponding prices.
 
-## Formulas from linear algebra
+### Formulas from linear algebra
 
 We  shall apply  formulas from linear algebra that
 
@@ -211,7 +211,7 @@ so that utility function {eq}`eq:old2` tells us that the consumer has much less 
 
 Condition {eq}`eq:bversusc` will ultimately  assure us that competitive equilibrium prices  are  positive.
 
-## Demand Curve Implied  by Constrained Utility Maximization
+### Demand Curve Implied  by Constrained Utility Maximization
 
 For now, we assume that the budget constraint is {eq}`eq:old2`.
 
@@ -868,7 +868,7 @@ class Exchange_economy:
         return p, c_s, mu_s
 ```
 
-#### Example: Two-person economy **without** production
+### Example: Two-person economy **without** production
   * Study how competitive equilibrium $p, c^1, c^2$ respond to  different
 
      * $b^i$'s
@@ -961,7 +961,7 @@ print('Competitive equilibrium price vector:', p)
 print('Competitive equilibrium allocation:', c_s)
 ```
 
-#### A **dynamic economy**
+### A **dynamic economy**
 
 Now let's use the tricks described above to study a dynamic economy, one with two periods.
 
@@ -984,7 +984,7 @@ print('Competitive equilibrium allocation:', c_s)
 
 ```
 
-#### Example:  **Arrow securities**
+### Example:  **Arrow securities**
 
 We use the tricks described above to interpret  $c_1, c_2$ as "Arrow securities" that are state-contingent claims to consumption goods.
 
