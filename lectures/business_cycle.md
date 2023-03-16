@@ -69,7 +69,16 @@ wb.series.info(q='GDP growth')
 
 After retrieving the series ID, it can be used to obtain the data.
 
-We can always learn more about the data by checking the metadata of the series
+```{code-cell} ipython3
+:tags: [hide-output]
+
+# Use the series ID retrived before
+gdp_growth = wb.data.DataFrame('NY.GDP.MKTP.KD.ZG',
+            ['USA', 'ARG', 'GBR', 'GRC', 'JPN'], labels=True)
+gdp_growth
+```
+
+We can also learn more about the data by checking the metadata of the series
 
 ```{code-cell} ipython3
 :tags: [hide-output]
@@ -103,7 +112,7 @@ Now we write a function to generate plots for individual countries
 ```{code-cell} ipython3
 def plot_comparison(data, country, title, 
                     ylabel, title_pos, ax, g_params,
-                     b_params, t_params, ylim=15):
+                     b_params, t_params, ylim=15, baseline=0):
     
     ax.plot(data.loc[country], label=country, **g_params)
     
@@ -114,16 +123,18 @@ def plot_comparison(data, country, title,
     ax.axvspan(2019, 2021, **b_params)
     if ylim != None:
         ax.set_ylim([-ylim, ylim])
-    ylim = ax.get_ylim()[1]
-    ax.text(1974, ylim + ylim * title_pos, 
+    else:
+        ylim = ax.get_ylim()[1]
+    ax.text(1974, ylim + ylim * title_pos,
             'Oil Crisis\n(1974)', **t_params) 
-    ax.text(1991, ylim + ylim * title_pos, 
+    ax.text(1991, ylim + ylim * title_pos,
             '1990s recession\n(1991)', **t_params) 
-    ax.text(2008, ylim + ylim * title_pos, '
+    ax.text(2008, ylim + ylim * title_pos,
             'GFC\n(2008)', **t_params) 
-    ax.text(2020, ylim + ylim * title_pos, 
-            'Covid-19\n(2020)', **t_params) 
-    ax.hlines(y=0, color='black', linestyle='--')
+    ax.text(2020, ylim + ylim * title_pos,
+            'Covid-19\n(2020)', **t_params)
+    if baseline != None:
+        ax.axhline(y=baseline, color='black', linestyle='--')
     ax.set_title(title, pad=40)
     ax.set_ylabel(ylabel)
     ax.legend()
@@ -140,10 +151,6 @@ Let's start with the United States
 
 ```{code-cell} ipython3
 fig, ax = plt.subplots()
-
-# Draw customized x-axis
-plt.locator_params(axis='x', nbins=10)
-ax.set_xticks([i for i in range(1960, 2021, 10)], minor=False)
 
 country = 'United States'
 title = 'United States (GDP Growth Rate %)'
@@ -166,10 +173,6 @@ However, it has a more significant drop in GDP growth during global economic rec
 ```{code-cell} ipython3
 fig, ax = plt.subplots()
 
-# Draw x-axis
-plt.locator_params(axis='x', nbins=10)
-ax.set_xticks([i for i in range(1960, 2021, 10)], minor=False)
-
 country = 'United Kingdom'
 title = ' United Kingdom (GDP Growth Rate %)'
 ylabel = 'GDP Growth Rate (%)'
@@ -185,7 +188,6 @@ We can see there is a downward trend in addition to fluctuations in the growth r
 
 ```{code-cell} ipython3
 fig, ax = plt.subplots()
-
 
 country = 'Japan'
 title = 'Japan (GDP Growth Rate %)'
@@ -289,7 +291,7 @@ ax.legend(loc='upper center', bbox_to_anchor=(0.5, 1.1),
           ncol=3, fancybox=True, shadow=True)
 ax.set_ylabel('Unemployment Rate (%)')
 
-_ = ax.set_title('Long-run Unemployment Rate, 1929-2022\n with Recession Indicators (United States)', pad=40)
+_ = ax.set_title('Long-run Unemployment Rate, 1929-2022\n with Recession Indicators (United States)', pad=30)
 ```
 
 In the plot, we see the expansions and contractions of the labor market have been highly correlated with recessions.
@@ -317,7 +319,7 @@ With slight modification, we can use our previous function to draw a plot that i
 ```{code-cell} ipython3
 def plot_comparison_multi(data, countries, title, 
                         ylabel, title_pos, y_lim, ax, 
-                        g_params, b_params, t_params):
+                        g_params, b_params, t_params, baseline=0):
 
     # Allow the function to go through more than one series
     for country in countries:
@@ -339,6 +341,10 @@ def plot_comparison_multi(data, countries, title,
             'GFC\n(2008)', **t_params) 
     ax.text(2020, ylim + ylim * title_pos, 
             'Covid-19\n(2020)', **t_params) 
+    if baseline != None:
+        ax.hlines(y=baseline, xmin=ax.get_xlim()[0], 
+                  xmax=ax.get_xlim()[1], color='black', 
+                  linestyle='--')
     ax.set_title(title, pad=40)
     ax.set_ylabel(ylabel)
     ax.legend()
@@ -381,11 +387,11 @@ However, emerging and less developed economies often experience more volatile ch
 
 Although we have seen synchronization in GDP growth as a general trend, we also need to acknowledge the experience of individual countries during the recession is often very different.
 
-Here we use the unemployment rate as another example
+Here we use the unemployment rate and the recovery of labor market condition as another example
 
 ```{code-cell} ipython3
 unempl_rate = wb.data.DataFrame('SL.UEM.TOTL.NE.ZS',
-    ['CHN', 'USA', 'DEU', 'FRA', 'BRA', 'ARG', 'GBR', 'JPN'], labels=True)
+    ['USA', 'FRA', 'GBR', 'JPN'], labels=True)
 unempl_rate = unempl_rate.set_index('Country')
 unempl_rate.columns = unempl_rate.columns.str.replace('YR', '').astype(int)
 ```
@@ -396,14 +402,14 @@ fig, ax = plt.subplots()
 countries = ['United Kingdom', 'United States', 'Japan', 'France']
 title = 'United Kingdom, United States, Japan, and France (Unemployment Rate %)'
 ylabel = 'Unemployment Rate (National Estimate) (%)'
-_ = plot_comparison_multi(unempl_rate, countries, title, ylabel, 0.05, None, ax, g_params, b_params, t_params)
+_ = plot_comparison_multi(unempl_rate, countries, title, 
+                          ylabel, 0.05, None, ax, g_params, 
+                          b_params, t_params, baseline=None)
 ```
 
-The labor market in German was resilient to the GFC from 2007 to 2008, which is mostly linked to [its labor market policy and various socioeconomic factors]( http://ilo.org/wcmsp5/groups/public/---dgreports/---inst/documents/publication/wcms_449926.pdf).
-
-The recovery from the crisis is another aspect.
-
 France, with its strong labor unions, has prolonged labor market recovery compared to the US and UK.
+
+However, Japan has a history of very low and stable unemployment rate due to a constellation of social, demographic and cultural factors
 
 +++
 
@@ -456,7 +462,7 @@ ax.set_ylim([0, ax.get_ylim()[1]])
 ax.set_ylabel('Consumer Sentiment Index')
 
 # Plot CPI on another y-axis
-ax_t=ax.twinx()
+ax_t = ax.twinx()
 inflation = web.DataReader('CPILFESL', 'fred', 
                 start_date, end_date).pct_change(12) * 100
 
@@ -472,12 +478,12 @@ ax_t.fill_between(nber.index, 0, 1, where=nber['USREC']==1,
 ax_t.set_ylim([0, ax_t.get_ylim()[1]])
 ax_t.set_xlim([start_date_graph, end_date_graph])
 ax_t.legend(loc='upper center', bbox_to_anchor=(0.5, 1.1),
-            ncol=3)
+            ncol=3, fontsize=9)
 ax_t.set_ylabel('Consumer Price Index (% Change)',)
 
 # Suppress the text output
 _ = ax.set_title('University of Michigan Consumer Sentiment Index,\n and \
-Year-over-year Consumer Price Index Change, 1978-2022 (United States)', pad=40)
+Year-over-year Consumer Price Index Change, 1978-2022 (United States)', pad=30)
 ```
 
 ### Production
@@ -504,8 +510,8 @@ ax.fill_between(nber.index, 0, 1, where=nber['USREC']==1, color='grey', edgecolo
                 label='NBER Recession Indicators')
 ax.set_ylim([ax.get_ylim()[0], ax.get_ylim()[1]])
 ax.set_ylabel('YoY Real Ouput Change (%)')
-ax = ax.set_title('Year-over-year Industrial Production:\
-         Total Index, 1919-2022 (United States)', pad=20)
+ax = ax.set_title('Year-over-year Industrial Production: \
+Total Index, 1919-2022 (United States)', pad=20)
 ```
 
 ### Credit Level
@@ -530,6 +536,8 @@ fig, ax = plt.subplots()
 
 countries = 'United Kingdom'
 title = 'Domestic Credit to Private Sector by Banks, United Kingdom (% of GDP)'
-ylabel = '% of GDP'
-ax = plot_comparison(private_credit, countries, title, ylabel, 0.05, ax, g_params, b_params, t_params, ylim=None)
+ylabel = 'Credit Level (% of GDP)'
+ax = plot_comparison(private_credit, countries, title, 
+                     ylabel, 0.05, ax, g_params, b_params, 
+                     t_params, ylim=None, baseline=None)
 ```
