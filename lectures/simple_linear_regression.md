@@ -44,7 +44,7 @@ Let us consider a simple dataset of 10 observations for variables $x_i$ and $y_i
 |9| 1800 | 27 |
 |10 | 250 | 2 |
 
-Let us think about $y_i$ as sales for an ice-cream cart, while $x_i$ is a variable that records the day's temperature in Celcius.
+Let us think about $y_i$ as sales for an ice-cream cart, while $x_i$ is a variable that records the day's temperature in Celsius.
 
 ```{code-cell} ipython3
 x = [32, 21, 24, 35, 10, 11, 22, 21, 27, 2]
@@ -54,7 +54,7 @@ df.columns = ['X', 'Y']
 df
 ```
 
-We can use a scatter plot of the data to see the relationship between $y_i$ (ice-cream sales in dollars (\$\'s)) and $x_i$ (degrees celcius).
+We can use a scatter plot of the data to see the relationship between $y_i$ (ice-cream sales in dollars (\$\'s)) and $x_i$ (degrees Celsius).
 
 ```{code-cell} ipython3
 ax = df.plot(
@@ -407,9 +407,9 @@ df.dropna(inplace=True)
 df
 ```
 
-We have now droped the number of rows in our DataFrame from 62156 to 12445 removing a lot of empty data relationships.
+We have now dropped the number of rows in our DataFrame from 62156 to 12445 removing a lot of empty data relationships.
 
-Now we have a dataset containing life expectency and GDP per capita for a range of years.
+Now we have a dataset containing life expectancy and GDP per capita for a range of years.
 
 It is always a good idea to spend a bit of time understanding what data you actually have. 
 
@@ -458,8 +458,8 @@ df.plot(x='gdppc', y='life_expectency', kind='scatter',  xlabel="GDP per capita"
 
 This data shows a couple of interesting relationships.
 
-1. there are a number of countries with similar GDP per capita levels but a wide range in Life Expectency
-2. there appears to be a positive relationship between GDP per capita and life expectency. Countries with higher GDP per capita tend to have higher life expectency outcomes
+1. there are a number of countries with similar GDP per capita levels but a wide range in Life Expectancy
+2. there appears to be a positive relationship between GDP per capita and life expectancy. Countries with higher GDP per capita tend to have higher life expectency outcomes
 
 Even though OLS is solving linear equations -- one option we have is to transform the variables, such as through a log transform, and then use OLS to estimate the transformed variables
 
@@ -470,7 +470,7 @@ ln -> ln == elasticities
 By specifying `logx` you can plot the GDP per Capita data on a log scale
 
 ```{code-cell} ipython3
-df.plot(x='gdppc', y='life_expectency', kind='scatter',  xlabel="GDP per capita", ylabel="Life Expectency (Years)", logx=True);
+df.plot(x='gdppc', y='life_expectency', kind='scatter',  xlabel="GDP per capita", ylabel="Life Expectancy (Years)", logx=True);
 ```
 
 As you can see from this transformation -- a linear model fits the shape of the data more closely.
@@ -488,7 +488,7 @@ df
 ```{code-cell} ipython3
 data = df[['log_gdppc', 'life_expectency']].copy()  # Get Data from DataFrame
 
-# Calcuate the sample means
+# Calculate the sample means
 x_bar = data['log_gdppc'].mean()
 y_bar = data['life_expectency'].mean()
 ```
