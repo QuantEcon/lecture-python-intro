@@ -19,9 +19,9 @@ This lecture is about illustrating business cycles in different countries and pe
 
 The business cycle refers to the fluctuations in economic activity over time. These fluctuations can be observed in the form of expansions, contractions, recessions, and recoveries in the economy.
 
-In this lecture, we will see the expansions and contractions of economies from the 1960s to the recent pandemic using [World Bank API](https://documents.worldbank.org/en/publication/documents-reports/api), and [FRED](https://fred.stlouisfed.org/) data.
+In this lecture, we will look into series of economic indicators to visualize the expansions and contractions of economies from the 1960s to the recent pandemic using [World Bank](https://documents.worldbank.org/en/publication/documents-reports/api), and [FRED](https://fred.stlouisfed.org/) data.
 
-In addition to what’s in Anaconda, this lecture will need the following libraries to get World Bank and FRED data
+In addition to what is in Anaconda, this lecture will require the following libraries to obtain World Bank and FRED data.
 
 ```{code-cell} ipython3
 :tags: [hide-output]
@@ -50,11 +50,12 @@ plt.rc('axes', prop_cycle=cycler)
 
 ## Data Acquisition
 
-We will use `wbgapi`, and Pandas `datareader` to retrieve data throughout this lecture.
+We will use `wbgapi`, and `pandas_datareader` to retrieve data throughout this lecture.
 
-They help us speed up the query since we do not need to handle the raw JSON files.
+They help us speed up the query since we do not need to handle the tedious
+raw results from the API.
 
-So let's explore how to query data together.
+So let's explore how to query data first.
 
 We can use `wb.series.info` with parameter `q` to query available data from the World Bank.
 
@@ -66,7 +67,7 @@ Let's retrieve the ID for GDP growth data together
 wb.series.info(q='GDP growth')
 ```
 
-After retrieving the ID, it can be used to obtain the data in the following sections.
+After retrieving the series ID, it can be used to obtain the data.
 
 We can always learn more about the data by checking the metadata of the series
 
@@ -76,7 +77,7 @@ We can always learn more about the data by checking the metadata of the series
 wb.series.metadata.get('NY.GDP.MKTP.KD.ZG')
 ```
 
-We can now dive into the data we have.
+Let's dive into the data with the tools we have.
 
 
 ## GDP Growth Rate
@@ -86,6 +87,7 @@ First we look at the GDP growth rate and unemployment rate.
 Let's source our data from the World Bank and clean the data
 
 ```{code-cell} ipython3
+# Use the series ID retrived before
 gdp_growth = wb.data.DataFrame('NY.GDP.MKTP.KD.ZG',
             ['USA', 'ARG', 'GBR', 'GRC', 'JPN'], labels=True)
 gdp_growth = gdp_growth.set_index('Country')
@@ -113,10 +115,14 @@ def plot_comparison(data, country, title,
     if ylim != None:
         ax.set_ylim([-ylim, ylim])
     ylim = ax.get_ylim()[1]
-    ax.text(1974, ylim + ylim * title_pos, 'Oil Crisis\n(1974)', **t_params) 
-    ax.text(1991, ylim + ylim * title_pos, '1990s recession\n(1991)', **t_params) 
-    ax.text(2008, ylim + ylim * title_pos, 'GFC\n(2008)', **t_params) 
-    ax.text(2020, ylim + ylim * title_pos, 'Covid-19\n(2020)', **t_params) 
+    ax.text(1974, ylim + ylim * title_pos, 
+            'Oil Crisis\n(1974)', **t_params) 
+    ax.text(1991, ylim + ylim * title_pos, 
+            '1990s recession\n(1991)', **t_params) 
+    ax.text(2008, ylim + ylim * title_pos, '
+            'GFC\n(2008)', **t_params) 
+    ax.text(2020, ylim + ylim * title_pos, 
+            'Covid-19\n(2020)', **t_params) 
     ax.hlines(y=0, color='black', linestyle='--')
     ax.set_title(title, pad=40)
     ax.set_ylabel(ylabel)
@@ -126,7 +132,8 @@ def plot_comparison(data, country, title,
 # Define graphical parameters 
 g_params = {'alpha': 0.7}
 b_params = {'color':'grey', 'alpha': 0.2}
-t_params = {'color':'grey', 'fontsize': 9, 'va':'center', 'ha':'center'}
+t_params = {'color':'grey', 'fontsize': 9, 
+            'va':'center', 'ha':'center'}
 ```
 
 Let's start with the United States
@@ -134,7 +141,7 @@ Let's start with the United States
 ```{code-cell} ipython3
 fig, ax = plt.subplots()
 
-# Draw x-axis
+# Draw customized x-axis
 plt.locator_params(axis='x', nbins=10)
 ax.set_xticks([i for i in range(1960, 2021, 10)], minor=False)
 
@@ -152,7 +159,7 @@ Let's look at a few more countries across the world
 
 +++
 
-Britain has a relatively similar pattern compared to the US.
+Britain has a similar pattern compared to the US.
 
 However, it has a more significant drop in GDP growth during global economic recessions.
 
@@ -174,7 +181,7 @@ _ = plot_comparison(gdp_growth, country, title,
 
 Japan and Greece both had a history of rapid growth in the 1960s, but a slowed economic expansion in the past decade.
 
-We can see there is a general downward trend in addition to fluctuations in the growth rate
+We can see there is a downward trend in addition to fluctuations in the growth rate
 
 ```{code-cell} ipython3
 fig, ax = plt.subplots()
@@ -197,11 +204,11 @@ _ = plot_comparison(gdp_growth, country, title,
                     b_params, t_params)
 ```
 
-Note that Greece has another significant drop in GDP growth around 2010-2011 at the peak of the Greek debt crisis.
+Note that Greece had another significant drop in GDP growth around 2010-2011 at the peak of the Greek debt crisis.
 
-We find similar cyclical patterns across different countries, and major recessions mostly overlap among them.
+From series above, we find similar cyclical patterns across different countries, and major recessions mostly overlap among them.
 
-Countries such as Argentina have more volatile cycles compared to the economies above.
+However, countries such as Argentina have more volatile cycles compared to the economies above.
 
 ```{code-cell} ipython3
 fig, ax = plt.subplots()
@@ -213,7 +220,7 @@ _ = plot_comparison(gdp_growth, country, title,
                     g_params, b_params, t_params)
 ```
 
-One interesting insight is that the GDP growth of Argentina did not fall in the two recessions in the 1970s and 1990s when most of the developed economy is affected.
+One interesting insight is that the GDP growth of Argentina did not fall during the two recessions in the 1970s and 1990s when most of the developed economies were affected.
 
 We will come back to this [later](synchronization).
 
@@ -243,7 +250,8 @@ unrate = web.DataReader('UNRATE', 'fred', start_date, end_date)
 ```
 
 ```{code-cell} ipython3
-# We use the census bureau's estimate for the unemployment rate between 1942 and 1948
+# We use the census bureau's estimate for the unemployment rate 
+# between 1942 and 1948
 years = [datetime.datetime(year, 6, 1) for year in range(1942,1948)]
 unrate_census = [4.7, 1.9, 1.2, 1.9, 3.9, 3.9]
 
@@ -323,10 +331,14 @@ def plot_comparison_multi(data, countries, title,
     if y_lim != None:
         ax.set_ylim([-y_lim, y_lim])
     ylim = ax.get_ylim()[1]
-    ax.text(1974, ylim + ylim * title_pos, 'Oil Crisis\n(1974)', **t_params) 
-    ax.text(1991, ylim + ylim * title_pos, '1990s recession\n(1991)', **t_params) 
-    ax.text(2008, ylim + ylim * title_pos, 'GFC\n(2008)', **t_params) 
-    ax.text(2020, ylim + ylim * title_pos, 'Covid-19\n(2020)', **t_params) 
+    ax.text(1974, ylim + ylim * title_pos, 
+            'Oil Crisis\n(1974)', **t_params) 
+    ax.text(1991, ylim + ylim * title_pos, 
+            '1990s recession\n(1991)', **t_params) 
+    ax.text(2008, ylim + ylim * title_pos, 
+            'GFC\n(2008)', **t_params) 
+    ax.text(2020, ylim + ylim * title_pos, 
+            'Covid-19\n(2020)', **t_params) 
     ax.set_title(title, pad=40)
     ax.set_ylabel(ylabel)
     ax.legend()
@@ -335,7 +347,8 @@ def plot_comparison_multi(data, countries, title,
 # Define graphical parameters 
 g_params = {'alpha': 0.7}
 b_params = {'color':'grey', 'alpha': 0.2}
-t_params = {'color':'grey', 'fontsize': 9, 'va':'center', 'ha':'center'}
+t_params = {'color':'grey', 'fontsize': 9, 
+            'va':'center', 'ha':'center'}
 ```
 
 ```{code-cell} ipython3
@@ -364,9 +377,9 @@ _ = plot_comparison_multi(gdp_growth.loc[countries, 1962:], countries, title, yl
 
 By comparing the trend of GDP growth rates between developed and developing economies, we find that business cycles are more and more synchronized in 21st-century recessions.
 
-Although we have seen synchronization in GDP growth as a general trend, we also need to acknowledge the experience of individual countries during the recession is very different.
+However, emerging and less developed economies often experience more volatile changes throughout the economic cycles.
 
-Emerging and less developed economies often experience more volatile change throughout the economic cycles.
+Although we have seen synchronization in GDP growth as a general trend, we also need to acknowledge the experience of individual countries during the recession is often very different.
 
 Here we use the unemployment rate as another example
 
@@ -390,7 +403,7 @@ The labor market in German was resilient to the GFC from 2007 to 2008, which is 
 
 The recovery from the crisis is another aspect.
 
-France, as a country with strong labor unions, has prolonged labor market recovery compared to the US and UK.
+France, with its strong labor unions, has prolonged labor market recovery compared to the US and UK.
 
 +++
 
@@ -444,7 +457,8 @@ ax.set_ylabel('Consumer Sentiment Index')
 
 # Plot CPI on another y-axis
 ax_t=ax.twinx()
-inflation = web.DataReader('CPILFESL', 'fred', start_date, end_date).pct_change(12) * 100
+inflation = web.DataReader('CPILFESL', 'fred', 
+                start_date, end_date).pct_change(12) * 100
 
 # Add CPI on the legend without drawing the line again
 ax_t.plot(2020, 0, **g_params, linestyle='-', 
@@ -490,7 +504,8 @@ ax.fill_between(nber.index, 0, 1, where=nber['USREC']==1, color='grey', edgecolo
                 label='NBER Recession Indicators')
 ax.set_ylim([ax.get_ylim()[0], ax.get_ylim()[1]])
 ax.set_ylabel('YoY Real Ouput Change (%)')
-ax = ax.set_title('Year-over-year Industrial Production: Total Index, 1919-2022 (United States)', pad=20)
+ax = ax.set_title('Year-over-year Industrial Production:\
+         Total Index, 1919-2022 (United States)', pad=20)
 ```
 
 ### Credit Level
@@ -501,7 +516,7 @@ This can be due to several factors such as a decrease in overall economic activi
 
 One example is domestic credit to the private sector by banks in the UK.
 
-Note that the credit level expands rapidly in the period of economic expansion, and stagnates or decreased after recessions
+Note that the credit level expands rapidly in the period of economic expansion, and stagnates or even contracts after recessions
 
 ```{code-cell} ipython3
 private_credit = wb.data.DataFrame('FS.AST.PRVT.GD.ZS',['GBR'], labels=True)
@@ -516,5 +531,5 @@ fig, ax = plt.subplots()
 countries = 'United Kingdom'
 title = 'Domestic Credit to Private Sector by Banks, United Kingdom (% of GDP)'
 ylabel = '% of GDP'
-ax = plot_comparison(private_credit, countries, title, ylabel, 0.05, ax, g_params, b_params, t_params, ylim=None, baseline=False)
+ax = plot_comparison(private_credit, countries, title, ylabel, 0.05, ax, g_params, b_params, t_params, ylim=None)
 ```
