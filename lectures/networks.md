@@ -388,8 +388,7 @@ nx.draw_spring(G_p, ax=ax, node_size=500, with_labels=True,
 plt.show()
 ```
 
-The figure obtained above matches the
-original directed graph in {numref}`poverty_trap`.
+The figure obtained above matches the original directed graph in {numref}`poverty_trap`.
 
 
 `DiGraph` objects have methods that calculate in-degree and out-degree
@@ -820,7 +819,8 @@ Let $a^k_{ij}$ be element $i,j$ of $A^k$, the $k$-th power of $A$.
 
 The following result is useful in many applications:
 
-````{prf:theorem} graph_theory_property1
+````{prf:theorem}
+:label: graph_theory_property1
 
 For distinct nodes $i, j$ in $V$ and any integer $k$, we have
 
@@ -845,7 +845,8 @@ nonnegative matrix $A$ is called irreducible if for each $(i,j)$ there is an int
 From the preceding theorem it is not too difficult (see
 \cite{sargent2022economic} for details) to get the next result.
 
-````{prf:theorem} graph_theory_property2
+````{prf:theorem}
+:label: graph_theory_property2
 
 For a weighted directed graph the following statements are equivalent:
    
@@ -1567,8 +1568,4 @@ is_accessible(G,3,6)
 ```
 
 ```{solution-end}
-```
-
-```{code-cell} ipython3
-
 ```
