@@ -1,5 +1,4 @@
 <!-- #region -->
-
 ## Elements of  Supply and Demand
 
 This lecture is about some  linear models of equilibrium prices and quantities, one of the main topics
@@ -140,6 +139,7 @@ In addition
  * we'll derive  **demand curves** from a consumer problem that maximizes a **utility function** subject to a **budget constraint**.
 
  * we'll derive  **supply curves** from the problem of a producer who is price taker and maximizes his profits minus total costs that are described by a  **cost function**.
+<!-- #endregion -->
 
 # Multiple goods 
 
@@ -171,41 +171,40 @@ $$
 
 Let
 
-* $\Pi$ be an $n\times n$ matrix,
+* $\Pi$ be an $m \times n$ matrix,
 * $c$ be an $n \times 1$ vector of consumptions of various goods, 
-* $b$ be an $n \times 1$ vector of bliss points, 
+* $b$ be an $m \times 1$ vector of bliss points, 
 * $e$ be an $n \times 1$ vector of endowments, and 
-* $p$ be an $n\times 1$ vector of prices
+* $p$ be an $n \times 1$ vector of prices
 
-We assume that $\Pi$ has an inverse $\Pi^{-1}$ and that $\Pi^\top \Pi$ is a positive definite matrix.
+We assume that $\Pi$ has linearly independent columns, which implies that $\Pi^\top \Pi$ is a positive definite matrix.
 
-  * it follows that $\Pi^\top \Pi$ has an inverse.
-
+* it follows that $\Pi^\top \Pi$ has an inverse.
 
 The matrix $\Pi$ describes a consumer's willingness to substitute one good for every other good.
 
 We shall see below that $(\Pi^T \Pi)^{-1}$ is a matrix of slopes of (compensated) demand curves for $c$ with respect to a vector of prices:
 
 $$
-\frac{\partial c } {\partial p} = (\Pi^T \Pi)^{-1}
+    \frac{\partial c } {\partial p} = (\Pi^T \Pi)^{-1}
 $$
 
 A consumer faces $p$ as a price taker and chooses $c$ to maximize the utility function 
 
 $$
--.5 (\Pi c -b) ^\top (\Pi c -b ) 
+    -.5 (\Pi c -b) ^\top (\Pi c -b ) 
 $$ (eq:old0)
 
 subject to the budget constraint
 
 $$ 
-p ^\top (c -e ) = 0 
+    p^\top (c -e ) = 0 
 $$ (eq:old2)
 
 We shall specify examples in which  $\Pi$ and $b$ are such that it typically happens that
 
 $$
-\Pi c < < b  
+    \Pi c < < b  
 $$ (eq:bversusc)
 
 so that utility function {eq}`eq:old2` tells us that the consumer has much less  of each good than he wants. 
@@ -229,27 +228,25 @@ The consumer chooses $c$ to maximize $L$ and $\mu$ to minimize it.
 First-order conditions for $c$ are
 
 $$ 
-\frac{\partial L} {\partial c} = - \Pi^\top \Pi c + \Pi^\top b - \mu p = 0 
+    \frac{\partial L} {\partial c} 
+    = - \Pi^\top \Pi c + \Pi^\top b - \mu p = 0 
 $$
 
 so that, given $\mu$, the consumer chooses
 
 $$
-c = \Pi^{-1} b - \Pi^{-1} (\Pi^\top)^{-1} \mu p
+    c = (\Pi^\top \Pi )^{-1}(\Pi^\top b -  \mu p )
 $$ (eq:old3)
 
 Substituting {eq}`eq:old3` into budget constraint {eq}`eq:old2` and solving for $\mu$ gives 
 
 $$
-\mu(p,e) = \frac{p^\top (\Pi^{-1} b - e)}{p^\top (\Pi^\top \Pi )^{-1} p}.
+    \mu(p,e) = \frac{p^\top ( \Pi^\top \Pi )^{-1} \Pi^\top b - p^\top e}{p^\top (\Pi^\top \Pi )^{-1} p}.
 $$ (eq:old4)
 
 Equation {eq}`eq:old4` tells how marginal utility of wealth depends on  the endowment vector  $e$ and the price vector  $p$. 
 
 **Remark:** Equation {eq}`eq:old4` is a consequence of imposing that $p^\top (c - e) = 0$.  We could instead take $\mu$ as a parameter and use {eq}`eq:old3` and the budget constraint {eq}`eq:old2p` to solve for $W.$ Which way we proceed determines whether we are constructing a **Marshallian** or **Hicksian** demand curve.  
-
-
-
 
 
 ## Endowment economy, I
@@ -279,6 +276,7 @@ We'll set $\mu=1$.
 **Exercise:** Verify that setting $\mu=1$ in {eq}`eq:old3` implies that   formula {eq}`eq:old4` is satisfied. 
 
 **Exercise:** Verify that setting  $\mu=2$ in {eq}`eq:old3` also implies that formula {eq}`eq:old4` is satisfied. 
+
 
 ## Digression: Marshallian and Hicksian Demand Curves
 
@@ -312,7 +310,6 @@ Sometimes a Hicksian demand curve is called a **compensated** demand curve in or
 We'll discuss these distinct demand curves more  below.
 
 
-
 ## Endowment Economy, II
 
 Let's study a **pure exchange** economy without production. 
@@ -330,13 +327,14 @@ $$
 Assume the demand curves   
 
 $$
-c_i = \Pi^{-1}b_i - (\Pi^\top \Pi)^{-1} \mu_i p 
+    c_i = (\Pi^\top \Pi )^{-1}(\Pi^\top b_i -  \mu_i p )
 $$
 
 Competitive equilibrium  then requires that
 
 $$ 
-e_1 + e_2 =  \Pi^{-1} (b_1 + b_2) - (\Pi^\top \Pi)^{-1} (\mu_1 + \mu_2) p 
+e_1 + e_2 =  
+    (\Pi^\top \Pi)^{-1}(\Pi^\top (b_1 + b_2) - (\mu_1 + \mu_2) p )
 $$
 
 which after a line or two of linear algebra implies that
@@ -370,6 +368,7 @@ and
 $$
 e = e_1 + e_2 . 
 $$
+
 
 ## Dynamics and Risk as Special Cases of Pure Exchange Economy
 
@@ -463,10 +462,6 @@ $$
 $$ 
 b = \begin{bmatrix} b_1 \cr b_2 \end{bmatrix}
 $$
-
-
-
-<!-- #endregion -->
 
 <!-- #region -->
 $$ 
