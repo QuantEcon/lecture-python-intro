@@ -13,6 +13,11 @@ kernelspec:
 
 # Networks
 
+```{code-cell} python
+:tags: ["hide-output"]
+pip install quantecon-book-networks
+```
+
 ## Outline
 
 In recent years there has been rapid growth in a field called [network science](https://en.wikipedia.org/wiki/Network_science).
