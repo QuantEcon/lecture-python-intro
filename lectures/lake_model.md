@@ -4,7 +4,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.14.4
+    jupytext_version: 1.14.5
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
@@ -40,10 +40,13 @@ The "flows" between the two lakes are as follows:
 3. employed workers separate from their jobs at rate $\alpha$.
 4. unemployed workers find jobs at rate $\lambda$.
 
+```{code-cell} ipython3
+from graphviz import Digraph
+```
+
 The below graph illustrates the lake model.
 
-```{code-cell}ipython3
-from graphviz import Digraph
+```{code-cell} ipython3
 # Create Digraph object
 G = Digraph()
 G.attr(rankdir='LR')
@@ -115,8 +118,6 @@ Do long run outcomes depend on the initial values $(u_0, e_o)$?
 Let us first plot the time series of unemployment $u_t$, employment $e_t$, and labor force $n_t$.
 
 We will use the following imports.
-
-+++
 
 ```{code-cell} ipython3
 import numpy as np
@@ -216,7 +217,11 @@ Not surprisingly, we observe that labor force $n_t$ increases at a constant rate
 This fact conincides with the intuition that the inflow and outflow of labor market system is determined by constant exit rate and enter rate of labor market.
 
 In detail, let $\mathbb{1}=[1, 1]^\top$ be a vector of ones.
-Observe that $$n_{t+1} = u_{t+1} + e_{t+1} =  \mathbb{1}^\top x_t = \mathbb{1}^\top A x_t = (1 + b - d) (u_t + e_t)  = (1 + b - d) n_t.$$
+Observe that
+
+$$
+    n_{t+1} = u_{t+1} + e_{t+1} =  \mathbb{1}^\top x_t = \mathbb{1}^\top A x_t = (1 + b - d) (u_t + e_t)  = (1 + b - d) n_t
+$$
 
 Moreover, the times series of unemployment and employment seems to grow at some constant rate in the long run.
 
@@ -228,15 +233,21 @@ Since $A$ is a nonnegative and irreducible matrix, we can use the Perron-Frobeni
 
 - The spectral radius $r(A)$ is an eigenvalue of $A$, where
 
-$$r(A) := \max\{|\lambda|: \lambda \text{ is an eigenvalue of } A \} $$
+$$
+    r(A) := \max\{|\lambda|: \lambda \text{ is an eigenvalue of } A \}
+$$
 
 - there exist unique and everywhere positive right eigenvector $\phi$ (column vector) and left eigenvector $\psi$ (row vector):
 
-  $$A \phi = r(A) \phi, \quad  \psi A = r(A) \psi$$
+$$
+    A \phi = r(A) \phi, \quad  \psi A = r(A) \psi
+$$
 
 - if further $A$ is positive, then with $<\psi, \phi> = \psi \phi=1$ we have
 
-$$r(A)^{-t} A^t \to \phi \psi . $$
+$$
+    r(A)^{-t} A^t \to \phi \psi
+$$
 
 The last statement implies that the magnitude of $A^t$ is identical to the magnitude of $r(A)^t$ in the long run, where $r(A)$ can be considered as the dominated eigenvalue in this lecture.
 
@@ -258,7 +269,8 @@ We can thus find a unique positive vector $\bar{x} = \begin{bmatrix} \bar{u} \\ 
 such that $A\bar{x} = r(A)\bar{x}$ and $\begin{bmatrix} 1 & 1 \end{bmatrix} \bar{x} = 1$:
 
 ```{math}
-:label: steady_x -->
+:label: steady_x
+
 \begin{aligned}
     \bar{u} & = \frac{b + \alpha (1-d)}{b + (\alpha+\lambda)(1-d)} \\
     \bar{e} & = \frac{\lambda(1-d)}{b + (\alpha+\lambda)(1-d)}
@@ -471,7 +483,7 @@ In this case, $c_1 v_1$ must be a normalized eigenvector, so $c_1 v_1 = \bar{x}$
 
 ## Exercise
 
-+++
+
 
 :label: lake_model_ex1
 
