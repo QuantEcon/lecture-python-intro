@@ -31,7 +31,7 @@ We let
  * $x_{ij} $ be the quantity of good $i$ allocated to be  an input to producing good $j$ for $i=1, \ldots n$, $j = 1, \ldots n$
  * $x_{0j}$ be the quantity of labor allocated  to produce one unit of good $j$.
  * $a_{ij}$ be the number of units of good $i$ required to produce one unit of good $j$, $i=0, \ldots, n, j= 1, \ldots n$. 
- * $w >0$ be the exogenous wage of labor, denominated in dollars per unit of labor
+ * $w >0$ be an exogenous wage of labor, denominated in dollars per unit of labor
  * $p$ be an $n \times 1$ vector of prices of produced goods $i = 1, \ldots , n$. 
  
 
@@ -182,13 +182,7 @@ $$
 
 where $^*$'s denote optimal choices for the primal and dual problems.
 
-
-
-
-
-
 +++
-
 
 ## Exercise
 
@@ -217,6 +211,30 @@ $$
 $$
 X = 50
 $$
+
+{cite}`DoSSo`, chapter 9, describe how they infer the input-output coefficients in $a$ and $a0$ from the following hypothetical underlying "data" on agricultural and  manufacturing industries:
+
+$$
+X = \begin{bmatrix} 25 & 175 \cr
+         40 &   20 \end{bmatrix}
+$$
+
+$$
+C = \begin{bmatrix} 50 \cr 60 \end{bmatrix}
+$$ 
+
+and
+
+$$
+L = \begin{bmatrix} 10 & 40 \end{bmatrix} 
+$$
+
+where $L$ is a vector of labor services used in each industry.
+
+
+
+
+
 
 
 ```{code-cell} ipython3
