@@ -11,6 +11,8 @@ kernelspec:
   name: python3
 ---
 
+
+
 # Monte Carlo and Option Pricing
 
 ## Overview
@@ -46,7 +48,7 @@ import matplotlib.pyplot as plt
 from numpy.random import randn
 ```
 
-+++ {"user_expressions": []}
+
 
 ## An Introduction to Monte Carlo
 
@@ -150,7 +152,7 @@ p = 0.5
 σ_1, σ_2, σ_3 = 0.1, 0.05, 0.2
 ```
 
-+++ {"user_expressions": []}
+
 
 #### A Routine using Loops in Python
 
@@ -174,6 +176,8 @@ for i in range(n):
 S / n
 ```
 
+
+
 We can also construct a function that contains these operations:
 
 ```{code-cell} ipython3
@@ -187,13 +191,15 @@ def compute_mean(n=1_000_000):
     return (S / n)
 ```
 
-+++ {"user_expressions": []}
+
 
 Now let's call it.
 
 ```{code-cell} ipython3
 compute_mean()
 ```
+
+
 
 ### A Vectorized Routine
 
@@ -218,7 +224,7 @@ def compute_mean_vectorized(n=1_000_000):
 compute_mean_vectorized()
 ```
 
-+++ {"user_expressions": []}
+
 
 Notice that this routine is much faster.
 
@@ -230,7 +236,7 @@ We can increase $n$ to get more accuracy and still have reasonable speed:
 compute_mean_vectorized(n=10_000_000)
 ```
 
-+++ {"user_expressions": []}
+
 
 ## Pricing a European Call Option under Risk Neutrality
 
@@ -277,7 +283,7 @@ $$
     \mathbb E G = \frac{1}{2} \times 10^6 + \frac{1}{2} \times 0 = 5 \times 10^5
 $$
 
-+++ {"user_expressions": []}
+
 
 ### A Comment on Risk
 
@@ -299,7 +305,7 @@ these promises.
 Nonetheless, the risk-neutral price is an important benchmark, which economists
 and financial market participants try to calculate every day.
 
-+++ {"user_expressions": []}
+
 
 ### Discounting
 
@@ -329,7 +335,7 @@ $$
       = \beta^n 5 \times 10^5
 $$
 
-+++ {"user_expressions": []}
+
 
 ### European Call Options
 
@@ -381,7 +387,7 @@ n = 10
 β = 0.95
 ```
 
-+++ {"user_expressions": []}
+
 
 We set the simulation size to
 
@@ -389,7 +395,7 @@ We set the simulation size to
 M = 10_000_000
 ```
 
-+++ {"user_expressions": []}
+
 
 Here is our code
 
@@ -400,7 +406,7 @@ P = β**n * np.mean(return_draws)
 print(f"The Monte Carlo option price is approximately {P:3f}")
 ```
 
-+++ {"user_expressions": []}
+
 
 ## Pricing Via a Dynamic Model
 
@@ -472,7 +478,7 @@ $$
 
 Here $\{\eta_t\}$ is also IID and standard normal.
 
-+++ {"user_expressions": []}
+
 
 ### Default Parameters
 
@@ -486,7 +492,7 @@ S0 = 10
 h0 = 0
 ```
 
-+++ {"user_expressions": []}
+
 
 (Here `S0` is $S_0$ and `h0` is $h_0$.)
 
@@ -498,7 +504,7 @@ n = 10
 β = 0.95
 ```
 
-+++ {"user_expressions": []}
+
 
 ### Visualizations
 
@@ -521,7 +527,7 @@ def simulate_asset_price_path(μ=μ, S0=S0, h0=h0, n=n, ρ=ρ, ν=ν):
     return np.exp(s)
 ```
 
-+++ {"user_expressions": []}
+
 
 Here we plot the paths and the log of the paths.
 
@@ -540,7 +546,7 @@ fig.tight_layout()
 plt.show()
 ```
 
-+++ {"user_expressions": []}
+
 
 ### Computing the Price
 
@@ -591,7 +597,7 @@ def compute_call_price(β=β,
 compute_call_price()
 ```
 
-+++ {"user_expressions": []}
+
 
 ## Exercises
 
@@ -637,6 +643,8 @@ def compute_call_price(β=β,
 compute_call_price()
 ```
 
+
+
 Notice that this version is faster than the one using a Python loop.
 
 Now let's try with larger $M$ to get a more accurate calculation.
@@ -646,13 +654,20 @@ Now let's try with larger $M$ to get a more accurate calculation.
 compute_call_price(M=10_000_000)
 ```
 
+
+
 ```{solution-end}
 ```
 
 ```{exercise}
 :label: monte_carlo_ex2
 
-Consider that a European call option may be written on an underlying with spot price of \$100 and a knockout barrier of \$120. This option behaves in every way like a vanilla European call, except if the spot price ever moves above \$120, the option "knocks out" and the contract is null and void. Note that the option does not reactivate if the spot price falls below \$120 again.
+Consider that a European call option may be written on an underlying with spot price of \$100 and a knockout barrier of \$120.
+
+This option behaves in every way like a vanilla European call, except if the spot price ever moves above \$120, the option "knocks out" and the contract is null and void.
+
+Note that the option does not reactivate if the spot price falls below \$120 again.
+
 Use the dynamics defined in {eq}`s_mc_dyms` to price the European call option.
 ```
 
@@ -688,16 +703,17 @@ def compute_call_price_with_barrier(β=β,
     for m in range(M):
         s = np.log(S0)
         h = h0
+        is_null = False
         # Simulate forward in time
         for t in range(n):
-            s_next = s + μ + np.exp(h) * randn()
+            s = s + μ + np.exp(h) * randn()
             h = ρ * h + ν * randn()
-            # Contract is closed as S_n > barrier price
-            if np.exp(s_next) > bp:
-                break
-            s = s_next
-        # And add the value max{S_n - K, 0} to current_sum
-        current_sum += np.maximum(np.exp(s) - K, 0)
+            if np.exp(s) > bp:
+                is_null = True
+
+        if not is_null:
+            # And add the value max{S_n - K, 0} to current_sum
+            current_sum += np.maximum(np.exp(s) - K, 0)
 
     return β**n * current_sum / M
 ```
