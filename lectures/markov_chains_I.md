@@ -53,6 +53,9 @@ plt.rcParams["figure.figsize"] = (11, 5)  # set default figure size
 import quantecon as qe
 import numpy as np
 from graphviz import Digraph
+import networkx as nx
+from matplotlib import cm
+import matplotlib as mpl
 ```
 
 +++ {"user_expressions": []}
@@ -394,7 +397,7 @@ mc_sample_path(P, ψ_0=[1.0, 0.0], ts_length=10)
 It can be shown that for a long series drawn from `P`, the fraction of the
 sample that takes value 0 will be about 0.25.
 
-(We will explain why {ref}`below <ergodicity>`.)
+(We will explain why {ref}`later <ergodicity>`.)
 
 Moreover, this is true regardless of the initial distribution from which
 $X_0$ is drawn.
@@ -629,7 +632,397 @@ each state.
 
 This is exactly the cross-sectional distribution.
 
+(stationary)=
+## Stationary Distributions
+
+
+As seen in {eq}`fin_mc_fr`, we can shift a distribution forward one
+unit of time via postmultiplication by $P$.
+
+Some distributions are invariant under this updating process --- for example,
+
 ```{code-cell} ipython3
+P = np.array([[0.4, 0.6],
+              [0.2, 0.8]])
+ψ = (0.25, 0.75)
+ψ @ P
+```
+
++++ {"user_expressions": []}
+
+Notice that `ψ @ P` is the same as `ψ`
+
++++ {"user_expressions": []}
+
+Such distributions are called **stationary** or **invariant**.
+
+(mc_stat_dd)=
+Formally, a distribution $\psi^*$ on $S$ is called **stationary** for $P$ if $\psi^* P = \psi^* $.
+
+Notice that, post-multiplying by $P$, we have $\psi^* P^2 = \psi^* P = \psi^*$.
+
+Continuing in the same way leads to $\psi^* = \psi^* P^t$ for all $t$.
+
+This tells us an important fact: If the distribution of $\psi_0$ is a stationary distribution, then $\psi_t$ will have this same distribution for all $t$.
+
+The following theorem is proved in Chapter 4 of {cite}`sargent2023economic` and numerous other sources.
+
+```{prf:theorem}
+:label: unique_stat
+
+Every stochastic matrix $P$ has at least one stationary distribution.
+```
+
+Note that there can be many stationary distributions corresponding to a given
+stochastic matrix $P$.
+
+* For example, if $P$ is the identity matrix, then all distributions on $S$ are stationary.
+
+To get uniqueness, we need the Markov chain to "mix around," so that the state
+doesn't get stuck in some part of the state space.
+
+This gives some intuition for the following theorem.
+
+
+```{prf:theorem}
+:label: mc_conv_thm
+
+If $P$ is everywhere positive, then $P$ has exactly one stationary
+distribution.
+```
+
+We will come back to this when we introduce irreducibility in the next lecture
+
++++ {"user_expressions": []}
+
+### Example
+
+Recall our model of the employment/unemployment dynamics of a particular worker {ref}`discussed above <mc_eg1>`.
+
+If $\alpha \in (0,1)$ and $\beta \in (0,1)$, then the transition matrix is everywhere positive.
+
+Let $\psi^* = (p, 1-p)$ be the stationary distribution, so that $p$
+corresponds to unemployment (state 0).
+
+Using $\psi^* = \psi^* P$ and a bit of algebra yields
+
+$$
+    p = \frac{\beta}{\alpha + \beta}
+$$
+
+This is, in some sense, a steady state probability of unemployment.
+
+Not surprisingly it tends to zero as $\beta \to 0$, and to one as $\alpha \to 0$.
+
+### Calculating Stationary Distributions
+
+A stable algorithm for computing stationary distributions is implemented in [QuantEcon.py](http://quantecon.org/quantecon-py).
+
+Here's an example
+
+```{code-cell} ipython3
+P = [[0.4, 0.6],
+     [0.2, 0.8]]
+
+mc = qe.MarkovChain(P)
+mc.stationary_distributions  # Show all stationary distributions
+```
+
+### Asymptotic Stationarity
+
+Consider a everywhere positive stochastic matrix with unique stationary distribution $\psi^*$.
+
+Sometimes the distribution $\psi_t = \psi_0 P^t$ of $X_t$ converges to $\psi^*$ regardless of $\psi_0$.
+
+For example, we have the following result
+
+```{prf:theorem}
+:label: strict_stationary
+
+Theorem: If there exists an integer $m$ such that all entries of $P^m$ are
+strictly positive, with unique stationary distribution $\psi^*$, and
+
+$$
+    \psi_0 P^t \to \psi
+    \quad \text{as } t \to \infty
+$$
+```
+
+
+See, for example, {cite}`sargent2023economic` Chapter 4.
+
++++ {"user_expressions": []}
+
+#### Example: Hamilton's Chain
+
+Hamilton's chain satisfies the conditions of the theorem because $P^2$ is everywhere positive:
+
+```{code-cell} ipython3
+P = np.array([[0.971, 0.029, 0.000],
+              [0.145, 0.778, 0.077],
+              [0.000, 0.508, 0.492]])
+P = np.array(P)
+P @ P
+```
+
++++ {"user_expressions": []}
+
+Let's pick an initial distribution $\psi_0$ and trace out the sequence of distributions $\psi_0 P^t$ for $t = 0, 1, 2, \ldots$
+
+First, we write a function to iterate the sequence of distributions for `ts_length` period
+
+```{code-cell} ipython3
+def iterate_ψ(ψ_0, P, ts_length):
+    n = len(P)
+    ψ_t = np.empty((ts_length, n))
+    ψ = ψ_0
+    for t in range(ts_length):
+        ψ_t[t] = ψ
+        ψ = ψ @ P
+    return np.array(ψ_t)
+```
+
+Now we plot the sequence
+
+```{code-cell} ipython3
+ψ_0 = (0.0, 0.2, 0.8)        # Initial condition
+
+fig = plt.figure(figsize=(8, 6))
+ax = fig.add_subplot(111, projection='3d')
+
+ax.set(xlim=(0, 1), ylim=(0, 1), zlim=(0, 1),
+       xticks=(0.25, 0.5, 0.75),
+       yticks=(0.25, 0.5, 0.75),
+       zticks=(0.25, 0.5, 0.75))
+
+ψ_t = iterate_ψ(ψ_0, P, 20)
+
+ax.scatter(ψ_t[:,0], ψ_t[:,1], ψ_t[:,2], c='r', s=60)
+ax.view_init(30, 210)
+
+mc = qe.MarkovChain(P)
+ψ_star = mc.stationary_distributions[0]
+ax.scatter(ψ_star[0], ψ_star[1], ψ_star[2], c='k', s=60)
+
+plt.show()
+```
+
++++ {"user_expressions": [], "tags": []}
+
+Here
+
+* $P$ is the stochastic matrix for recession and growth {ref}`considered above <mc_eg2>`.
+* The highest red dot is an arbitrarily chosen initial marginal probability distribution  $\psi_0$, represented as a vector in $\mathbb R^3$.
+* The other red dots are the marginal distributions $\psi_0 P^t$ for $t = 1, 2, \ldots$.
+* The black dot is $\psi^*$.
+
+You might like to try experimenting with different initial conditions.
+
+
+#### An Alternative Illustration
+
+We can show this in a slightly different way by focusing on the probability that $\psi_t$ puts on each state.
+
+First, we write a function to draw initial distributions $\psi_0$ of size `num_distributions`
+
+```{code-cell} ipython3
+def generate_initial_values(num_distributions, n):
+
+    n = len(P)
+    ψ_0s = np.empty((num_distributions, n))
+    
+    for i in range(num_distributions):
+        draws = np.random.randint(1, 10_000_000, size=n)
+
+        # Scale them so that they add up into 1
+        ψ_0s[i,:] = np.array(draws/sum(draws))
+        
+    return ψ_0s
+```
+
+We then write a function to plot the dynamics of  $(\psi_0 P^t)(i)$ as $t$ gets large, for each state $i$ with different initial distributions
+
+```{code-cell} ipython3
+def plot_distribution(P, ts_length, num_distributions):
+
+    # Get parameters of transition matrix
+    n = len(P)
+    mc = qe.MarkovChain(P)
+    ψ_star = mc.stationary_distributions[0]
+
+    ## Draw the plot
+    fig, axes = plt.subplots(nrows=1, ncols=n)
+    plt.subplots_adjust(wspace=0.35)
+
+    ψ_0s = generate_initial_values(num_distributions, n)
+
+    # Get the path for each starting value
+    for ψ_0 in ψ_0s:
+        ψ_t = iterate_ψ(ψ_0, P, ts_length)
+        
+        # Obtain and plot distributions at each state
+        for i in range(n):
+            axes[i].plot(range(0, ts_length), ψ_t[:,i], alpha=0.3)
+
+    # Add labels
+    for i in range(n):
+        axes[i].axhline(ψ_star[i], linestyle='dashed', lw=2, color = 'black', 
+                        label = fr'$\psi^*({i})$')
+        axes[i].set_xlabel('t')
+        axes[i].set_ylabel(fr'$\psi_t({i})$')
+        axes[i].legend()
+
+    plt.show()
+```
+
+The following figure shows
+
+```{code-cell} ipython3
+# Define the number of iterations 
+# and initial distributions
+ts_length = 50
+num_distributions = 25
+
+P = np.array([[0.971, 0.029, 0.000],
+              [0.145, 0.778, 0.077],
+              [0.000, 0.508, 0.492]])
+
+plot_distribution(P, ts_length, num_distributions)
+```
+
+
+The convergence to $\psi^*$ holds for different initial distributions.
+
++++ {"user_expressions": []}
+
+#### Example: Failure of Convergence
+
+
+In the case of our periodic chain, we find the distribution is oscillating
+
+```{code-cell} ipython3
+P = np.array([[0, 1],
+              [1, 0]])
+
+ts_length = 20
+num_distributions = 30
+
+plot_distribution(P, ts_length, num_distributions)
+```
+
++++ {"user_expressions": []}
+
+(finite_mc_expec)=
+## Computing Expectations
+
+```{index} single: Markov Chains; Forecasting Future Values
+```
+
+We sometimes want to  compute mathematical  expectations of functions of $X_t$ of the form
+
+```{math}
+:label: mc_une
+
+\mathbb E [ h(X_t) ]
+```
+
+and conditional expectations such as
+
+```{math}
+:label: mc_cce
+
+\mathbb E [ h(X_{t + k})  \mid X_t = x]
+```
+
+where
+
+* $\{X_t\}$ is a Markov chain generated by $n \times n$ stochastic matrix $P$
+* $h$ is a given function, which, in terms of matrix
+  algebra, we'll think of as the column vector
+
+$$
+h
+= \left(
+\begin{array}{c}
+    h(x_1) \\
+    \vdots \\
+    h(x_n)
+\end{array}
+  \right)
+$$
+
+Computing the unconditional expectation {eq}`mc_une` is easy.
+
+
+We just sum over the marginal  distribution  of $X_t$ to get
+
+$$
+\mathbb E [ h(X_t) ]
+= \sum_{x \in S} (\psi P^t)(x) h(x)
+$$
+
+Here $\psi$ is the distribution of $X_0$.
+
+Since $\psi$ and hence $\psi P^t$ are row vectors, we can also
+write this as
+
+$$
+\mathbb E [ h(X_t) ]
+=  \psi P^t h
+$$
+
+For the conditional expectation {eq}`mc_cce`, we need to sum over
+the conditional distribution of $X_{t + k}$ given $X_t = x$.
+
+We already know that this is $P^k(x, \cdot)$, so
+
+```{math}
+:label: mc_cce2
+
+\mathbb E [ h(X_{t + k})  \mid X_t = x]
+= (P^k h)(x)
+```
+
+### Expectations of Geometric Sums
+
+Sometimes we want to compute the mathematical expectation of a geometric sum, such as
+$\sum_t \beta^t h(X_t)$.
+
+In view of the preceding discussion, this is
+
+$$
+\mathbb{E} 
+    \left[
+        \sum_{j=0}^\infty \beta^j h(X_{t+j}) \mid X_t 
+        = x
+    \right]
+    = x + \beta (Ph)(x) + \beta^2 (P^2 h)(x) + \cdots
+$$
+
+By the {doc}`Neumann series lemma <eigen>`, this sum can be calculated using 
+
+$$
+    I + \beta P + \beta^2 P^2 + \cdots = (I - \beta P)^{-1}
+$$
+
+The vector $P^k h$ stores the conditional expectation $\mathbb E [ h(X_{t + k})  \mid X_t = x]$ over all $x$.
+
+
+```{exercise}
+:label: mc1_ex_1
+```
+
+Imam, P., & Temple, J. R. {cite}`imam2023political` used a three-state transition matrix to describe the transition of three states of a regime: growth, stagnation, and collapse
+
+```{code-cell} ipython3
+P = [[0.68, 0.12, 0.20],
+     [0.50, 0.24, 0.26],
+     [0.36, 0.18, 0.46]]
+```
+
+```{code-cell} ipython3
+:tags: [hide-output]
+
 dot = Digraph(comment='Graph')
 dot.attr(rankdir='LR')
 dot.node("Growth")
@@ -651,6 +1044,74 @@ dot.edge("Collapse", "Growth", label="0.36")
 dot
 ```
 
+In this exercise,
+
+1. show this process is asymptotically stationary
+1. calculate the stationary distribution using simulations
+1. visualize the dynamics of  $(\psi_0 P^t)(i)$ where $t \in 0, ..., 25$ and compare the convergent path with the previous transition matrix
+
+Compare your solution to the paper.
+```
+
+```{solution-start} mc1_ex_1
+:class: dropdown
+```
+
+1. 
+
+Since the matrix is everywhere positive, there is a unique stationary distribution.
+
+
+2. 
+
+One simple way to calculate the stationary distribution is to take the power of the transition matrix as we have shown before
+
+```{code-cell} ipython3
+P = [[0.68, 0.12, 0.20],
+     [0.50, 0.24, 0.26],
+     [0.36, 0.18, 0.46]]
+P_power = np.linalg.matrix_power(P, 20)
+P_power
+```
+
+Note that rows of the transition matrix converge to the stationary distribution.
+
+```{code-cell} ipython3
+ψ_star_p = P_power[0]
+ψ_star_p
+```
+
+```{code-cell} ipython3
+mc = qe.MarkovChain(P)
+ψ_star = mc.stationary_distributions[0]
+ψ_star
+```
+
+3.
+
+```{code-cell} ipython3
+ts_length = 25
+num_distributions = 25
+plot_distribution(P, ts_length, num_distributions)
+```
+
+```
+
+
+$$
+P :=
+\left(
+  \begin{array}{cccccc}
+0.72 & 0.11 & 0.11 & 0.05 & 0.00 & 0.01 \\
+0.53 & 0.26 & 0.08 & 0.06 & 0.00 & 0.02 \\
+0.42 & 0.21 & 0.25 & 0.06 & 0.00 & 0.06 \\
+0.05 & 0.00 & 0.00 & 0.63 & 0.10 & 0.22 \\
+0.03 & 0.03 & 0.00 & 0.42 & 0.21 & 0.31 \\
+0.05 & 0.01 & 0.01 & 0.26 & 0.14 & 0.53
+  \end{array}
+\right)
+$$
+
 ```{code-cell} ipython3
 nodes = ['DG', 'DS', 'DC', 'AG', 'AS', 'AC']
 trans_matrix = [[0.72, 0.11, 0.11, 0.05, 0.00, 0.01],
@@ -662,10 +1123,6 @@ trans_matrix = [[0.72, 0.11, 0.11, 0.05, 0.00, 0.01],
 ```
 
 ```{code-cell} ipython3
-import networkx as nx
-from matplotlib import cm
-import matplotlib as mpl
-
 G = nx.MultiDiGraph()
 edge_ls = []
 label_dict = {}
@@ -683,38 +1140,7 @@ nx.draw_networkx_labels(G, pos)
 
 arc_rad = 0.2
 curved_edges = [edge for edge in G.edges() if (edge[1], edge[0]) in G.edges()]
-edges = nx.draw_networkx_edges(G, pos, ax=ax, connectionstyle=f'arc3, rad = {arc_rad}', edge_cmap=cm.Greys, width=2,
-    edge_color=[G[nodes[0]][nodes[1]][0]['weight'] for nodes in G.edges])
-
-pc = mpl.collections.PatchCollection(edges, cmap=cm.Greys)
-
-ax = plt.gca()
-ax.set_axis_off()
-plt.colorbar(pc, ax=ax)
-plt.show()
-```
-
-```{code-cell} ipython3
-import networkx as nx
-
-G = nx.MultiDiGraph()
-edge_ls = []
-label_dict = {}
-
-for start_idx, node_start in enumerate(nodes):
-    for end_idx, node_end in enumerate(nodes):
-        value = trans_matrix[start_idx][end_idx]
-        if value != 0:
-            G.add_edge(node_start,node_end, weight=value, len=100)
-            
-pos = nx.spring_layout(G, seed=10)
-fig, ax = plt.subplots()
-nx.draw_networkx_nodes(G, pos, node_size=600, edgecolors='black', node_color='white')
-nx.draw_networkx_labels(G, pos)
-
-arc_rad = 0.2
-curved_edges = [edge for edge in G.edges() if (edge[1], edge[0]) in G.edges()]
-nx.draw_networkx_edges(G, pos, ax=ax, connectionstyle=f'arc3, rad = {arc_rad}', edge_cmap=cm.Blues, width=2,
+edges = nx.draw_networkx_edges(G, pos, ax=ax, connectionstyle=f'arc3, rad = {arc_rad}', edge_cmap=cm.Blues, width=2,
     edge_color=[G[nodes[0]][nodes[1]][0]['weight'] for nodes in G.edges])
 
 pc = mpl.collections.PatchCollection(edges, cmap=cm.Blues)
@@ -723,4 +1149,36 @@ ax = plt.gca()
 ax.set_axis_off()
 plt.colorbar(pc, ax=ax)
 plt.show()
+```
+
+```{exercise}
+:label: mc1_ex_3
+Prove the following: If $P$ is a stochastic matrix, then so is the $k$-th
+power $P^k$ for all $k \in \mathbb N$.
+```
+
+
+```{solution-start} mc1_ex_3
+:class: dropdown
+```
+
+Suppose that $P$ is stochastic and, moreover, that $P^k$ is
+stochastic for some integer $k$.
+
+We will prove that $P^{k+1} = P P^k$ is also stochastic.
+
+(We are doing proof by induction --- we assume the claim is true at $k$ and
+now prove it is true at $k+1$.)
+
+To see this, observe that, since $P^k$ is stochastic and the product of
+nonnegative matrices is nonnegative, $P^{k+1} = P P^k$ is nonnegative.
+
+Also, if $\mathbf 1$ is a column vector of ones, then, since $P^k$ is stochastic we
+have $P^k \mathbf 1 = \mathbf 1$ (rows sum to one).
+
+Therefore $P^{k+1} \mathbf 1 = P P^k \mathbf 1 = P \mathbf 1 = \mathbf 1$
+
+The proof is done.
+
+```{solution-end}
 ```
