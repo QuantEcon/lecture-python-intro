@@ -13,7 +13,7 @@ kernelspec:
 
 +++ {"user_expressions": []}
 
-# Markov Chains
+# Markov Chains II
 
 In addition to what's in Anaconda, this lecture will need the following libraries:
 
