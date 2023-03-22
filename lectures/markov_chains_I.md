@@ -56,6 +56,7 @@ from graphviz import Digraph
 import networkx as nx
 from matplotlib import cm
 import matplotlib as mpl
+from itertools import cycle
 ```
 
 +++ {"user_expressions": []}
@@ -82,7 +83,7 @@ In other words,
 
 If $P$ is a stochastic matrix, then so is the $k$-th power $P^k$ for all $k \in \mathbb N$.
 
-Checking this is {ref}`one of the exercises <mc_ex_pk>` below.
+Checking this is {ref}`one of the exercises <mc1_ex_3>` below.
 
 
 ### Markov Chains
@@ -240,7 +241,71 @@ Then we can address a range of questions, such as
 
 We'll cover some of these applications below.
 
+(mc_eg3)=
+#### Example 3
 
+Imam and Temple {cite}`imampolitical` categorize political institutions into three types: democracy (D), autocracy (A), and an intermediate state called anocracy (N). 
+
+Each institution can have two potential development regimes: collapse (C) and growth (G). This results in six possible states: DG, DC, NG, NC, AG, and AC. 
+
+The lower probability of transitioning from NC to itself indicates that collapses in anocracies quickly evolve into changes in the political institution. 
+
+Democracies tend to have longer-lasting growth regimes compared to autocracies as indicated by the lower probability of transitioning from growth to growth in autocracies.
+
+We can also find a higher probability from collapse to growth in democratic regimes
+
+$$
+P :=
+\left(
+  \begin{array}{cccccc}
+0.86 & 0.11 & 0.03 & 0.00 & 0.00 & 0.00 \\
+0.52 & 0.33 & 0.13 & 0.02 & 0.00 & 0.00 \\
+0.12 & 0.03 & 0.70 & 0.11 & 0.03 & 0.01 \\
+0.13 & 0.02 & 0.35 & 0.36 & 0.10 & 0.04 \\
+0.00 & 0.00 & 0.09 & 0.11 & 0.55 & 0.25 \\
+0.00 & 0.00 & 0.09 & 0.15 & 0.26 & 0.50
+  \end{array}
+\right)
+$$
+
+```{code-cell} ipython3
+nodes = ['DG', 'DC', 'NG', 'NC', 'AG', 'AC']
+trans_matrix = [[0.86, 0.11, 0.03, 0.00, 0.00, 0.00],
+                [0.52, 0.33, 0.13, 0.02, 0.00, 0.00],
+                [0.12, 0.03, 0.70, 0.11, 0.03, 0.01],
+                [0.13, 0.02, 0.35, 0.36, 0.10, 0.04],
+                [0.00, 0.00, 0.09, 0.11, 0.55, 0.25],
+                [0.00, 0.00, 0.09, 0.15, 0.26, 0.50]]
+```
+
+```{code-cell} ipython3
+G = nx.MultiDiGraph()
+edge_ls = []
+label_dict = {}
+
+for start_idx, node_start in enumerate(nodes):
+    for end_idx, node_end in enumerate(nodes):
+        value = trans_matrix[start_idx][end_idx]
+        if value != 0:
+            G.add_edge(node_start,node_end, weight=value, len=100)
+            
+pos = nx.spring_layout(G, seed=10)
+fig, ax = plt.subplots()
+nx.draw_networkx_nodes(G, pos, node_size=600, edgecolors='black', node_color='white')
+nx.draw_networkx_labels(G, pos)
+
+arc_rad = 0.2
+curved_edges = [edge for edge in G.edges()]
+edges = nx.draw_networkx_edges(G, pos, ax=ax, connectionstyle=f'arc3, rad = {arc_rad}', edge_cmap=cm.Blues, width=2,
+    edge_color=[G[nodes[0]][nodes[1]][0]['weight'] for nodes in G.edges])
+
+pc = mpl.collections.PatchCollection(edges, cmap=cm.Blues)
+
+ax = plt.gca()
+ax.set_axis_off()
+plt.colorbar(pc, ax=ax)
+plt.show()
+```
 
 ### Defining Markov Chains
 
@@ -826,8 +891,7 @@ We can show this in a slightly different way by focusing on the probability that
 First, we write a function to draw initial distributions $\psi_0$ of size `num_distributions`
 
 ```{code-cell} ipython3
-def generate_initial_values(num_distributions, n):
-
+def generate_initial_values(num_distributions):
     n = len(P)
     ψ_0s = np.empty((num_distributions, n))
     
@@ -854,7 +918,7 @@ def plot_distribution(P, ts_length, num_distributions):
     fig, axes = plt.subplots(nrows=1, ncols=n)
     plt.subplots_adjust(wspace=0.35)
 
-    ψ_0s = generate_initial_values(num_distributions, n)
+    ψ_0s = generate_initial_values(num_distributions)
 
     # Get the path for each starting value
     for ψ_0 in ψ_0s:
@@ -889,7 +953,6 @@ P = np.array([[0.971, 0.029, 0.000],
 
 plot_distribution(P, ts_length, num_distributions)
 ```
-
 
 The convergence to $\psi^*$ holds for different initial distributions.
 
@@ -1010,15 +1073,37 @@ The vector $P^k h$ stores the conditional expectation $\mathbb E [ h(X_{t + k}) 
 
 ```{exercise}
 :label: mc1_ex_1
+
+Imam and Temple {cite}`imampolitical` used a three-state transition matrix to describe the transition of three states of a regime: growth, stagnation, and collapse
+
+$$
+P :=
+\left(
+  \begin{array}{ccc}
+    0.68 & 0.12 & 0.20 \\
+    0.50 & 0.24 & 0.26 \\
+    0.36 & 0.18 & 0.46
+  \end{array}
+\right)
+$$
+
+where rows, from top to down, correspondes to growth, stagnation and collapse.
+
+In this exercise,
+
+1. visualize the transition matrix and show this process is asymptotically stationary
+1. calculate the stationary distribution using simulations
+1. visualize the dynamics of  $(\psi_0 P^t)(i)$ where $t \in 0, ..., 25$ and compare the convergent path with the previous transition matrix
+
+Compare your solution to the paper.
 ```
 
-Imam, P., & Temple, J. R. {cite}`imam2023political` used a three-state transition matrix to describe the transition of three states of a regime: growth, stagnation, and collapse
-
-```{code-cell} ipython3
-P = [[0.68, 0.12, 0.20],
-     [0.50, 0.24, 0.26],
-     [0.36, 0.18, 0.46]]
+```{solution-start} mc1_ex_1
+:class: dropdown
 ```
+
+1. 
+
 
 ```{code-cell} ipython3
 :tags: [hide-output]
@@ -1044,23 +1129,7 @@ dot.edge("Collapse", "Growth", label="0.36")
 dot
 ```
 
-In this exercise,
-
-1. show this process is asymptotically stationary
-1. calculate the stationary distribution using simulations
-1. visualize the dynamics of  $(\psi_0 P^t)(i)$ where $t \in 0, ..., 25$ and compare the convergent path with the previous transition matrix
-
-Compare your solution to the paper.
-```
-
-```{solution-start} mc1_ex_1
-:class: dropdown
-```
-
-1. 
-
 Since the matrix is everywhere positive, there is a unique stationary distribution.
-
 
 2. 
 
@@ -1090,65 +1159,95 @@ mc = qe.MarkovChain(P)
 3.
 
 ```{code-cell} ipython3
-ts_length = 25
+ts_length = 10
 num_distributions = 25
 plot_distribution(P, ts_length, num_distributions)
 ```
 
+```{solution-end}
 ```
 
+````{exercise}
+:label: mc1_ex_2
 
-$$
-P :=
-\left(
-  \begin{array}{cccccc}
-0.72 & 0.11 & 0.11 & 0.05 & 0.00 & 0.01 \\
-0.53 & 0.26 & 0.08 & 0.06 & 0.00 & 0.02 \\
-0.42 & 0.21 & 0.25 & 0.06 & 0.00 & 0.06 \\
-0.05 & 0.00 & 0.00 & 0.63 & 0.10 & 0.22 \\
-0.03 & 0.03 & 0.00 & 0.42 & 0.21 & 0.31 \\
-0.05 & 0.01 & 0.01 & 0.26 & 0.14 & 0.53
-  \end{array}
-\right)
-$$
+We discussed the six-state transition matrix estimated by Imam & Temple {cite}`imam2023political` [before](mc_eg3).
 
-```{code-cell} ipython3
-nodes = ['DG', 'DS', 'DC', 'AG', 'AS', 'AC']
-trans_matrix = [[0.72, 0.11, 0.11, 0.05, 0.00, 0.01],
-                [0.53, 0.26, 0.08, 0.06, 0.00, 0.02],
-                [0.42, 0.21, 0.25, 0.06, 0.00, 0.06],
-                [0.05, 0.00, 0.00, 0.63, 0.10, 0.22],
-                [0.03, 0.03, 0.00, 0.42, 0.21, 0.31],
-                [0.05, 0.01, 0.01, 0.26, 0.14, 0.53]]
+```python
+nodes = ['DG', 'DC', 'NG', 'NC', 'AG', 'AC']
+P = [[0.86, 0.11, 0.03, 0.00, 0.00, 0.00],
+     [0.52, 0.33, 0.13, 0.02, 0.00, 0.00],
+     [0.12, 0.03, 0.70, 0.11, 0.03, 0.01],
+     [0.13, 0.02, 0.35, 0.36, 0.10, 0.04],
+     [0.00, 0.00, 0.09, 0.11, 0.55, 0.25],
+     [0.00, 0.00, 0.09, 0.15, 0.26, 0.50]]
 ```
 
+In this exercise,
+
+1. show this process is asymptotically stationary without simulation
+1. simulate and visualize the dynamics starting with a uniform distribution across states (each state will have a probability of 1/6)
+1. change the initial distribution to P(DG) = 1, while all other states have a probability of 0
+````
+
+```{solution-start} mc1_ex_2
+:class: dropdown
+```
+
+1. 
+
+Although $P$ is not every positive, $P^m$ when $m=3$ is everywhere positive. 
+
 ```{code-cell} ipython3
-G = nx.MultiDiGraph()
-edge_ls = []
-label_dict = {}
+P = np.array([[0.86, 0.11, 0.03, 0.00, 0.00, 0.00],
+              [0.52, 0.33, 0.13, 0.02, 0.00, 0.00],
+              [0.12, 0.03, 0.70, 0.11, 0.03, 0.01],
+              [0.13, 0.02, 0.35, 0.36, 0.10, 0.04],
+              [0.00, 0.00, 0.09, 0.11, 0.55, 0.25],
+              [0.00, 0.00, 0.09, 0.15, 0.26, 0.50]])
 
-for start_idx, node_start in enumerate(nodes):
-    for end_idx, node_end in enumerate(nodes):
-        value = trans_matrix[start_idx][end_idx]
-        if value != 0:
-            G.add_edge(node_start,node_end, weight=value, len=100)
-            
-pos = nx.spring_layout(G, seed=10)
-fig, ax = plt.subplots()
-nx.draw_networkx_nodes(G, pos, node_size=600, edgecolors='black', node_color='white')
-nx.draw_networkx_labels(G, pos)
+np.linalg.matrix_power(P,3)
+```
 
-arc_rad = 0.2
-curved_edges = [edge for edge in G.edges() if (edge[1], edge[0]) in G.edges()]
-edges = nx.draw_networkx_edges(G, pos, ax=ax, connectionstyle=f'arc3, rad = {arc_rad}', edge_cmap=cm.Blues, width=2,
-    edge_color=[G[nodes[0]][nodes[1]][0]['weight'] for nodes in G.edges])
+So it satisfies the requirement.
 
-pc = mpl.collections.PatchCollection(edges, cmap=cm.Blues)
+2.
 
-ax = plt.gca()
-ax.set_axis_off()
-plt.colorbar(pc, ax=ax)
+We can see the distribution $\psi$ converges to the stationary distribution quickly regardless of the initial distributions
+
+```{code-cell} ipython3
+ts_length = 30
+num_distributions = 20
+nodes = ['DG', 'DC', 'NG', 'NC', 'AG', 'AC']
+P = [[0.86, 0.11, 0.03, 0.00, 0.00, 0.00],
+     [0.52, 0.33, 0.13, 0.02, 0.00, 0.00],
+     [0.12, 0.03, 0.70, 0.11, 0.03, 0.01],
+     [0.13, 0.02, 0.35, 0.36, 0.10, 0.04],
+     [0.00, 0.00, 0.09, 0.11, 0.55, 0.25],
+     [0.00, 0.00, 0.09, 0.15, 0.26, 0.50]]
+
+# Get parameters of transition matrix
+n = len(P)
+mc = qe.MarkovChain(P)
+ψ_star = mc.stationary_distributions[0]
+ψ_0 = np.array([[1/6 for i in range(6)],
+                [0 if i != 0 else 1 for i in range(6)]])
+## Draw the plot
+fig, axes = plt.subplots(ncols=2)
+plt.subplots_adjust(wspace=0.35)
+for idx in range(2):
+    ψ_t = iterate_ψ(ψ_0[idx], P, ts_length)
+    for i in range(n):
+        axes[idx].plot(ψ_t[:, i] - ψ_star[i], alpha=0.5, label=fr'$\psi_t({i+1})$')
+        axes[idx].set_ylim([-0.3, 0.3])
+        axes[idx].set_xlabel('t')
+        axes[idx].set_ylabel(fr'$\psi_t$')
+        axes[idx].legend()
+        axes[idx].axhline(0, linestyle='dashed', lw=1, color = 'black')
+
 plt.show()
+```
+
+```{solution-end}
 ```
 
 ```{exercise}

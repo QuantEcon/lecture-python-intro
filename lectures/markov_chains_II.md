@@ -185,7 +185,7 @@ We discussed uniqueness of the stationary in the {ref}`previous lecture <station
 
 In fact irreducibility is enough for the uniqueness of the stationary distribution to hold if the distribution exists.
 
-We can revise the [theorem](strict_stationary) into the following fundamental theorem:
+We can revise the {ref}`theorem<strict_stationary>` into the following fundamental theorem:
 
 ```{prf:theorem}
 :label: mc_conv_thm
