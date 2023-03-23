@@ -175,8 +175,8 @@ Let's look at a few more countries to get a basis for comparison.
 
 +++
 
-Britain has a similar pattern to the US, with a slow decline in the growth
-rate and significant fluctuations.
+The United Kingdom (UK) has a similar pattern to the US, with a slow decline
+in the growth rate and significant fluctuations.
 
 Notice the very large dip during the Covid-19 pandemic.
 
@@ -473,8 +473,7 @@ There is also a clear negative correlation between consumer sentiment and [core 
 
 This trend is more significant in the period of [stagflation](https://en.wikipedia.org/wiki/Stagflation).
 
-When the price of consumer commodities in the market is higher, consumer
-confidence diminishes.
+When the price of consumer commodities rises, consumer confidence diminishes.
 
 ```{code-cell} ipython3
 start_date = datetime.datetime(1978, 1, 1)
