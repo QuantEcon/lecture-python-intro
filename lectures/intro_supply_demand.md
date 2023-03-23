@@ -1,6 +1,15 @@
-# Introduction to Supply and Demand
+---
+jupytext:
+  text_representation:
+    extension: .md
+    format_name: myst
+kernelspec:
+  display_name: Python 3 (ipykernel)
+  language: python
+  name: python3
+---
 
-+++
+# Introduction to Supply and Demand
 
 ## Outline
 
@@ -98,8 +107,6 @@ Let's remember the quantity $q$ given by equation {eq}`eq:old1` that a social pl
 We'll compare it to the quantity that emerges in a competitive  equilibrium
 equilibrium that equates supply to demand.
 
-+++
-
 ### Competitive Equilibrium
 
 Instead of equating quantities supplied and demanded, we'll can accomplish the same thing by equating demand price to supply price:
@@ -136,11 +143,7 @@ In addition
 
  * we'll derive  **supply curves** from the problem of a producer who is price taker and maximizes his profits minus total costs that are described by a  **cost function**.
 
-+++
-
 ## Code
-
-+++
 
 ```{code-cell} ipython3
 class SingleGoodMarket:
