@@ -49,7 +49,7 @@ You can imagine how these dynamics could cause cycles in prices and quantities
 that persist over time.
 
 The cobweb model puts these ideas into equations so we can try to quantify
-them, and to study conditions underw which cycles persist (or disappear).
+them, and to study conditions under which cycles persist (or disappear).
 
 In this lecture, we investigate and simulate the basic model under different
 assumptions regarding the way that produces form expectations.
