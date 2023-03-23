@@ -27,23 +27,19 @@ In addition to what's in Anaconda, this lecture will need the following librarie
 
 ## Overview
 
-Markov chains are a standard way to model time series with some dependence
-between observations.
+This lecture continues the journey in Markov chain.
 
-For example,
+Specifically, we will introduce irreducibility and ergodicity, and how they connect to stionarity.
 
-* inflation next year depends on inflation this year
-* unemployment next month depends on unemployment this month
+Irreducibility is a concept that describes the ability of a Markov chain to move between any two states in the system.
 
-Markov chains are one of the workhorse models of economics and finance.
+Ergodicity is a sample path property that describes the behavior of the system over long periods of time. 
 
-The theory of Markov chains is beautiful and provides many insights into
-probability and dynamics.
+The concepts of irreducibility and ergodicity are closely related to the idea of stationarity. 
 
-In this introductory lecture, we will
+An irreducible Markov chain guarantees the existence of a unique stationary distribution, while an ergodic Markov chain ensures that the system eventually reaches its stationary distribution, regardless of its initial state. 
 
-* review some of the key ideas from the theory of Markov chains and
-* show how Markov chains appear in some economic applications.
+Together, these concepts provide a foundation for understanding the long-term behavior of Markov chains.
 
 Let's start with some standard imports:
 
@@ -344,7 +340,7 @@ It is still irreducible, however, so ergodicity holds.
 P = np.array([[0, 1],
               [1, 0]])
 ts_length = 10_000
-mc = MarkovChain(P)
+mc = qe.MarkovChain(P)
 n = len(P)
 fig, axes = plt.subplots(nrows=1, ncols=n)
 ψ_star = mc.stationary_distributions[0]
@@ -406,7 +402,7 @@ $$
 
 Benhabib el al. {cite}`benhabib_wealth_2019` estimated that the transition matrix for social mobility as the following
 
-$$P_B:=\left(\begin{array}{cccccccc}0.222 & 0.222 & 0.215 & 0.187 & 0.081 & 0.038 & 0.029 & 0.006 \\ 0.221 & 0.22 & 0.215 & 0.188 & 0.082 & 0.039 & 0.029 & 0.006 \\ 0.207 & 0.209 & 0.21 & 0.194 & 0.09 & 0.046 & 0.036 & 0.008 \\ 0.198 & 0.201 & 0.207 & 0.198 & 0.095 & 0.052 & 0.04 & 0.009 \\ 0.175 & 0.178 & 0.197 & 0.207 & 0.11 & 0.067 & 0.054 & 0.012 \\ 0.182 & 0.184 & 0.2 & 0.205 & 0.106 & 0.062 & 0.05 & 0.011 \\ 0.123 & 0.125 & 0.166 & 0.216 & 0.141 & 0.114 & 0.094 & 0.021 \\ 0.084 & 0.084 & 0.142 & 0.228 & 0.17 & 0.143 & 0.121 & 0.028\end{array}\right)$$
+$$P:=\left(\begin{array}{cccccccc}0.222 & 0.222 & 0.215 & 0.187 & 0.081 & 0.038 & 0.029 & 0.006 \\ 0.221 & 0.22 & 0.215 & 0.188 & 0.082 & 0.039 & 0.029 & 0.006 \\ 0.207 & 0.209 & 0.21 & 0.194 & 0.09 & 0.046 & 0.036 & 0.008 \\ 0.198 & 0.201 & 0.207 & 0.198 & 0.095 & 0.052 & 0.04 & 0.009 \\ 0.175 & 0.178 & 0.197 & 0.207 & 0.11 & 0.067 & 0.054 & 0.012 \\ 0.182 & 0.184 & 0.2 & 0.205 & 0.106 & 0.062 & 0.05 & 0.011 \\ 0.123 & 0.125 & 0.166 & 0.216 & 0.141 & 0.114 & 0.094 & 0.021 \\ 0.084 & 0.084 & 0.142 & 0.228 & 0.17 & 0.143 & 0.121 & 0.028\end{array}\right)$$
 
 where each state 1 to 8 corresponds to a  percentile of wealth shares
 
@@ -414,10 +410,10 @@ $$
 0-20 \%, 20-40 \%, 40-60 \%, 60-80 \%, 80-90 \%, 90-95 \%, 95-99 \%, 99-100 \%
 $$
 
-The matrix is recorded as `P_B` below
+The matrix is recorded as `P` below
 
 ```python
-P_B = [
+P = [
     [0.222, 0.222, 0.215, 0.187, 0.081, 0.038, 0.029, 0.006],
     [0.221, 0.22,  0.215, 0.188, 0.082, 0.039, 0.029, 0.006],
     [0.207, 0.209, 0.21,  0.194, 0.09,  0.046, 0.036, 0.008],
@@ -428,7 +424,7 @@ P_B = [
     [0.084, 0.084, 0.142, 0.228, 0.17,  0.143, 0.121, 0.028]
     ]
 
-P_B = np.array(P_B)
+P = np.array(P)
 codes_B = ('1','2','3','4','5','6','7','8')
 ```
 
@@ -462,7 +458,7 @@ P = [
 P = np.array(P)
 codes_B = ('1','2','3','4','5','6','7','8')
 
-np.linalg.matrix_power(P_B, 10)
+np.linalg.matrix_power(P, 10)
 ```
 
 We find again that rows of the transition matrix converge to the stationary distribution
@@ -477,7 +473,7 @@ mc = qe.MarkovChain(P)
 
 ```{code-cell} ipython3
 ts_length = 1000
-mc = MarkovChain(P)
+mc = qe.MarkovChain(P)
 fig, ax = plt.subplots(figsize=(9, 6))
 X = mc.simulate(ts_length)
 # Center the plot at 0
@@ -560,7 +556,7 @@ p = β / (α + β)
 
 P = ((1 - α,       α),               # Careful: P and p are distinct
      (    β,   1 - β))
-mc = MarkovChain(P)
+mc = qe.MarkovChain(P)
 
 fig, ax = plt.subplots(figsize=(9, 6))
 ax.set_ylim(-0.25, 0.25)

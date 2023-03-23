@@ -487,8 +487,6 @@ always close to 0.25 (for the `P` matrix above).
 Here's an illustration using the same $P$ as the preceding example
 
 ```{code-cell} ipython3
-from quantecon import MarkovChain
-
 mc = qe.MarkovChain(P)
 X = mc.simulate(ts_length=1_000_000)
 np.mean(X == 0)
@@ -750,7 +748,7 @@ This gives some intuition for the following theorem.
 
 
 ```{prf:theorem}
-:label: mc_conv_thm
+:label: mc_po_conv_thm
 
 If $P$ is everywhere positive, then $P$ has exactly one stationary
 distribution.
@@ -801,9 +799,8 @@ Sometimes the distribution $\psi_t = \psi_0 P^t$ of $X_t$ converges to $\psi^*$ 
 
 For example, we have the following result
 
+(strict_stationary)=
 ```{prf:theorem}
-:label: strict_stationary
-
 Theorem: If there exists an integer $m$ such that all entries of $P^m$ are
 strictly positive, with unique stationary distribution $\psi^*$, and
 
@@ -1170,7 +1167,7 @@ plot_distribution(P, ts_length, num_distributions)
 ````{exercise}
 :label: mc1_ex_2
 
-We discussed the six-state transition matrix estimated by Imam & Temple {cite}`imam2023political` [before](mc_eg3).
+We discussed the six-state transition matrix estimated by Imam & Temple {cite}`imampolitical` [before](mc_eg3).
 
 ```python
 nodes = ['DG', 'DC', 'NG', 'NC', 'AG', 'AC']
