@@ -11,9 +11,13 @@ kernelspec:
   name: python3
 ---
 
-+++ {"user_expressions": []}
-
 # Long Run Growth
+
+```{admonition} Lecture IN-WORK
+:class: warning
+
+This lecture is still **under construction**
+```
 
 ```{contents} Contents
 :depth: 2
