@@ -247,7 +247,7 @@ mystnb:
   image:
     alt: lorenz_real
     classes: shadow bg-primary
-    width: 200px
+    width: 75%
 ---
 fig, ax = plt.subplots()
 
@@ -316,7 +316,7 @@ mystnb:
   image:
     alt: lorenz_gini
     classes: shadow bg-primary
-    width: 200px
+    width: 75%
 ---
 fig, ax = plt.subplots()
 
@@ -396,7 +396,7 @@ mystnb:
   image:
     alt: gini
     classes: shadow bg-primary
-    width: 200px
+    width: 75%
 ---
 plot_inequality_measures(range(k), 
                          ginis, 
@@ -472,7 +472,7 @@ mystnb:
   image:
     alt: gini_us
     classes: shadow bg-primary
-    width: 200px
+    width: 75%
 ---
 xlabel = "year"
 ylabel = "gini coefficient"
