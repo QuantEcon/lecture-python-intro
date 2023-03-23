@@ -30,7 +30,7 @@ Key infrastructure concepts that we'll encounter in this lecture are
 
 We will use the following imports.
 
-```python
+```{code-cell} ipython3
 import numpy as np
 import matplotlib.pyplot as plt
 ```
@@ -142,7 +142,7 @@ In addition
 
 +++
 
-```python
+```{code-cell} ipython3
 class SingleGoodMarket:
 
     def __init__(self, 
@@ -168,7 +168,7 @@ class SingleGoodMarket:
         return self.s_0 + self.s_1 * q
 ```
 
-```python
+```{code-cell} ipython3
 def plot_supply_demand(market):
 
     # Unpack
@@ -210,14 +210,11 @@ def plot_supply_demand(market):
     plt.show()
 ```
 
-```python
+```{code-cell} ipython3
 market = SingleGoodMarket()
 ```
 
-```python
+```{code-cell} ipython3
 plot_supply_demand(market)
 ```
 
-```python
-
-```
