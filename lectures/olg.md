@@ -55,7 +55,7 @@ import matplotlib.pyplot as plt
 plt.rcParams["figure.figsize"] = (11, 5)  #set default figure size
 ```
 
-## 1 Environment
+## Environment
 
 TODO add timing and basic ideas of OLG
 
@@ -72,9 +72,9 @@ First let's consider the household side.
 
 TODO label and recall math equations using correct internal reference
 
-## 2 Supply of capital
+## Supply of capital
 
-### 2.1 Consumer's problem
+### Consumer's problem
 
 Suppose that the utility functions for individuals born at time $t$ take the following form
 
@@ -160,7 +160,7 @@ Here $K^S(w_t, R_{t+1})$ means the invariant function relationship between aggre
 
 +++
 
-### 2.2 Special case: log preference
+### Special case: log preference
 
 Unless we specify let's assume $u(c) = \log c$. 
 
@@ -183,9 +183,9 @@ $$
 
 +++
 
-## 3 Demand for capital
+## Demand for capital
 
-### 3.1 Firm's problem
+### Firm's problem
 
 For each integer $t \geq 0$, output $Y_t$ in period $t$ is given by 
 
@@ -202,7 +202,7 @@ Demand for labor $L$ and capital $K_t$ is determined by the profit maximization 
 \max_{K_t, L} \{ K^{\alpha}_t L^{1-\alpha} - R_t K_t - L w_t   \}
 ```
 
-### 3.2 Demand for capital
+### Demand for capital
 
 The first-order conditions for a maximum can be obtained by taking derivative of the objective function with respect to capital and labor respectively and setting to $0$
 $$
@@ -221,7 +221,7 @@ $$
 
 +++
 
-## 4 Equilibrium
+## Equilibrium
 
 The equality of aggregate demand (12) and aggregate supply (16) for capital yields the equalibrium. 
 
@@ -308,7 +308,7 @@ ax.legend()
 plt.show()
 ```
 
-## 6 Dynamics and steady state
+## Dynamics and steady state
 
 Setting $k_t := K_t / L$.
 
@@ -404,7 +404,7 @@ def k_star(model):
 plot_45(m, k_update, kstar=k_star(m))
 ```
 
-## 6 Another special case: CRRA preference
+## Another special case: CRRA preference
 
 +++
 
@@ -574,7 +574,7 @@ def simulate_ts(m, x0_values, ts_length):
 simulate_ts(m_crra, x0, ts_length)
 ```
 
-## 7 Exercises
+## Exercises
 
 +++
 
