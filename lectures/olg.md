@@ -159,7 +159,7 @@ In our closed economy, the net saving this period will be equal to the supply ne
 ```{math}
 :label: aggregate_supply_capital_1_olg
     K_{t+1} = K^S(w_t, R_{t+1}) =  S_t = L s_t = L s(w_t, R_{t+1}) 
-```{math}
+```
 
 Here $K^S(w_t, R_{t+1})$ means the invariant function relationship between aggregate capital supply $K_{t+1}$ and wage $w_t$ and return rate $R_{t+1}$.
 
@@ -437,7 +437,7 @@ plot_45(m, k_update, kstar=k_star(m))
 
 +++
 
-If we assume that the model is the same except that $u(c) = \frac{ c^{1- \gamma}-1}{1-\gamma}$, where $\gamma >0$.
+If we assume that the model is the same except that $u(c) = \frac{ c^{1- \gamma}-1}{1-\gamma}$, where $\gamma >0, \gamma\neq 1$.
 
 ```{code-cell} ipython3
 def crra(c, γ=2):
