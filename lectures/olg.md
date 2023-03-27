@@ -650,9 +650,9 @@ To solve for $s_t$ we need to turn to the newton's method.
 #### step 2
 
 With Equations [](wage_2) and [](interest_rate_2) and the result from step 1, we can calculate the law of motion for per capita capital 
-$$
+```{math}
 k_{t+1} = s(w_t, R_{t+1})
-$$
+```
 
 We will find again that we cannot analytically solve for $k_{t+1}$ given $k_t$ from this equation. 
 
