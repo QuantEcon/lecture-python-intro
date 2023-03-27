@@ -114,7 +114,7 @@ import matplotlib.pyplot as plt
 ```{code-cell} ipython3
 class LakeModel:
     """
-    Solves the lake model and computes dynamics of unemployment stocks and
+    Solves the lake model and computes dynamics of the unemployment stocks and
     rates.
 
     Parameters:
@@ -214,20 +214,21 @@ $$
     n_{t+1} = u_{t+1} + e_{t+1} =  \mathbb{1}^\top x_t = \mathbb{1}^\top A x_t = (1 + b - d) (u_t + e_t)  = (1 + b - d) n_t.
 $$
 
-Hence, the growth rate of $n_t$ is fixed at $1 + b - a$.
+Hence, the growth rate of $n_t$ is fixed at $1 + b - d$.
 
 Moreover, the times series of unemployment and employment seems to grow at some stable rates in the long run.
 
 Since by intuition if we consider unemployment pool and employment pool as a closed system, the growth should be similar the labor force.
 
-We next ask whether the growth rates of $e_t$ and $u_t$ in the long run also dominated by $1+b-d$ as labor force.
+We next ask whether the long run growth rates of $e_t$ and $u_t$
+also dominated by $1+b-d$ as labor force.
 
 The answer will be clearer if we appeal to Perron-Frobenius theorem.
 
 The importance of the Perron-Frobenius theorem stems from the fact that
 firstly in the real world most matrices we encounter are nonnegative matrices.
 
-Secondly, a lot of important models are simply linear iterative models that
+Secondly, many important models are simply linear iterative models that
 begin with an initial condition $x_0$ and then evolve recursively by the rule
 $x_{t+1} = Ax_t$ or in short $x_t = A^tx_0$.
 
@@ -428,9 +429,9 @@ The latter implies that $\bar{u}$ and $\bar{e}$ are long-run unemployment rate a
 
 In detail, we have the unemployment rates and employment rates: $x_t / n_t = A^t n_0 / n_t \to \bar{x}$ as $t \to \infty$.
 
-To illustate the dynamics of rates, let $\hat{A} := A / (1+g)$ be the transition matrix of $r_t := x_t/ n_t$.
+To illustate the dynamics of the rates, let $\hat{A} := A / (1+g)$ be the transition matrix of $r_t := x_t/ n_t$.
 
-The dynamics of rates follow
+The dynamics of the rates follow
 
 $$
 r_{t+1} = \frac{x_{t+1}}{n_{t+1}} = \frac{x_{t+1}}{(1+g) n_{t}} = \frac{A x_t}{(1+g)n_t} = \hat{A} \frac{x_t}{n_t}
@@ -489,7 +490,7 @@ and $D = diag(\gamma_1, \gamma_2)$.
 
 Let $\gamma_1 = r(\hat{A})=1$ and $|\gamma_2| < \gamma_1$, so that the spectral radius is a dominant eigenvalue.
 
-The dynamics of rates follows $r_{t+1} = \hat{A} r_t$, where $r_0$ is a probability vector: $\sum_j r_{0,j}=1$.
+The dynamics of the rates follows $r_{t+1} = \hat{A} r_t$, where $r_0$ is a probability vector: $\sum_j r_{0,j}=1$.
 
 Consider $z_t = P^{-1} r_t $.
 
