@@ -70,12 +70,11 @@ First let's consider the household side.
 
 +++
 
-
 ## Supply of capital
 
 ### Consumer's problem
 
-Suppose that the utility functions for individuals born at time $t$ take the following form
+Suppose that utility for individuals born at time $t$ take the form
 
 ```{math}
 :label: eq_crra
@@ -105,10 +104,10 @@ where
 - $w_t$ is the wage rate at time
 - $R_{t+1}$ is time $t+1$ rental rate of capital.
 
-The second constraint incorporates notion that individuals only spend
-money on their own end of life consumption. Also, Since $u(\cdot)$ is strictly increasing, both constraints will hold as equalities.
+The second constraint incorporates the notion that individuals only spend
+money on their own end of life consumption. Also, Since $u$ is strictly increasing, both constraints will hold as equalities.
 
-Substituting $s_t$ we get from the first constraint into the second constraint we get $c^2_{t+1}$ in terms of $c^1_t$, i.e., 
+Substituting $s_t$ from the first constraint into the second we get $c^2_{t+1}$ in terms of $c^1_t$, i.e., 
 
 ```{math}
 :label: c_2_olg
@@ -136,7 +135,7 @@ With it the Euler equation (4) becomes
 
 +++
 
-From this we can solve for savings analytically or numerically
+From this we can solve for savings analytically or, if necessary, numerically
 ```{math}
 :label: saving_1_olg
     s_t = s(w_t, R_{t+1})
@@ -146,7 +145,7 @@ From this we can solve for savings analytically or numerically
 
 Let $L_t$ be the time $t$ labor.
 
-Furthermore let's also assume a constant population size, i.e., $L_{t+1}=L_t=L$ for all $t$.
+Furthermore let's assume a constant population size, i.e., $L_{t+1}=L_t=L$ for all $t$.
 
 Total savings in the economy will be equal to
 ```{math}
@@ -154,22 +153,22 @@ Total savings in the economy will be equal to
     S_t = s_t L
 ```
 
-In our closed economy, the net saving this period will be equal to the supply next period, i.e., 
+In our closed economy, net saving this period will be equal to supply next period, i.e., 
 
 ```{math}
 :label: aggregate_supply_capital_1_olg
     K_{t+1} = K^S(w_t, R_{t+1}) =  S_t = L s_t = L s(w_t, R_{t+1}) 
 ```
 
-Here $K^S(w_t, R_{t+1})$ means the invariant function relationship between aggregate capital supply $K_{t+1}$ and wage $w_t$ and return rate $R_{t+1}$.
+Here $K^S$ is a time-invariant function mapping wage $w_t$ and capital return rate $R_{t+1}$ to aggregate capital supply $K_{t+1}$.
 
 +++
 
 ### Special case: log preference
 
-Unless we specify let's assume $u(c) = \log c$. 
+Assume $u(c) = \log c$. 
 
-Now the Euler equation is simplified to
+The Euler equation simplifies to
 ```{math}
 :label: saving_log_1_olg
     s_t= \beta (w_t - s_t) 
@@ -183,7 +182,7 @@ Solving for saving,
 
 +++
 
-And hence aggregate supply of capital
+And hence
 ```{math}
 :label: aggregate_supply_capital_log_olg
     K_{t+1} = K^s(R_{t+1}) = Ls_t = L \frac{\beta}{1+\beta} w_t
@@ -204,7 +203,6 @@ For each integer $t \geq 0$, output $Y_t$ in period $t$ is given by
 
 Here $K_t$ is capital, $L_t$ is labor, and  $\alpha$ is the output elasticity of capital in the **Cobb-Douglas production function**.
 
-Without population growth, $L_t$ equals some constant $L$.
 
 Demand for labor $L$ and capital $K_t$ is determined by the profit maximization problem
 ```{math}
@@ -214,7 +212,7 @@ Demand for labor $L$ and capital $K_t$ is determined by the profit maximization 
 
 ### Demand for capital
 
-The first-order conditions for a maximum can be obtained by taking derivative of the objective function with respect to capital and labor respectively and setting to $0$:
+The first-order conditions for a maximum can be obtained by taking the derivative of the objective function with respect to capital and labor respectively and setting it to zero:
 
 ```{math}
 :label: wage
@@ -228,7 +226,7 @@ and
     \alpha (K_t / L)^{\alpha - 1} = R_t
 ```
 
-Rearranging Equation [](interest_rate) gives the aggregate demand for capital
+Rearranging [](interest_rate) gives the aggregate demand for capital
 
 ```{math}
 :label: aggregate_demand_capital_olg
@@ -248,7 +246,7 @@ Specifically we have
     K^s(R_{t+1}) = K^d(R_{t+1})
 ```
 
-or equivalently 
+or, equivalently, 
 
 ```{math}
 :label: equilibrium_2
@@ -266,7 +264,7 @@ Then we can solve for the equilibrium price
 
 +++
 
-Plugging it into either aggregate demand or supply function gives equilibrium quantity
+Plugging it into either the demand or the supply function gives the equilibrium quantity
 ```{math}
 :label: equilibrium_quantity
     K^*_{t+1} = \frac{\beta }{1+\beta} (1-\alpha)(K_t / L)^{\alpha} L
@@ -293,7 +291,7 @@ def create_olg_model(α=0.3, β=0.9, u=u, L=10.0):
 ```{code-cell} ipython3
 def equilibrium(model, K_prev):
     α, β, L = model.α, model.β, model.L
-    R = α * ( β * (1-α) * (K_prev / L)**α / (1+β))**(-1)
+    R = α * ( β * (1-α) * (K_prev / L)**α / (1+β))**(α-1)
     K = β / (1+β) * (1-α) * (K_prev / L)**α * L
     return R, K
 ```
@@ -312,29 +310,54 @@ def aggregate_capital_supply(R, model, K_prev):
 ```
 
 ```{code-cell} ipython3
+def plot_ad_as(demand, supply, m, K_prev, E_star=None):
+    
+    R_vals = np.linspace(0.3, 1)
+    
+    fig, ax = plt.subplots()
+
+    ax.plot(R_vals, demand(R_vals, m, K_prev), label="aggregate demand")
+    ax.plot(R_vals, supply(R_vals, m, K_prev), label="aggregate supply")
+
+    if E_star:
+        R_star, K_star = E_star
+
+        ax.plot(R_star, K_star, 'go', ms=10, alpha=0.6)
+
+        ax.annotate(r'Equilibrium',
+                 xy=(R_star, K_star),
+                 xycoords='data',
+                 xytext=(0, -60),
+                 textcoords='offset points',
+                 fontsize=14,
+                 arrowprops=dict(arrowstyle="->"))
+
+    ax.set_xlabel("$R_{t+1}$")
+    ax.set_ylabel("$K_{t+1}$")
+    ax.legend()
+    plt.show()
+```
+
+```{code-cell} ipython3
 m = create_olg_model()
-R_vals = np.linspace(0.3, 1)
 K_prev = 50
 ```
 
 ```{code-cell} ipython3
-equilibrium(m, K_prev)
+E_star = equilibrium(m, K_prev)
 ```
 
 ```{code-cell} ipython3
-fig, ax = plt.subplots()
+R_star, K_star = E_star
+```
 
-ax.plot(R_vals, aggregate_capital_demand(R_vals, m, K_prev), label="aggregate demand")
-ax.plot(R_vals, aggregate_capital_supply(R_vals, m, K_prev), label="aggregate supply")
-ax.set_xlabel("$R_{t+1}$")
-ax.set_ylabel("$K_{t+1}$")
-ax.legend()
-plt.show()
+```{code-cell} ipython3
+plot_ad_as(aggregate_capital_demand, aggregate_capital_supply, m, K_prev=50, E_star=E_star)
 ```
 
 ## Dynamics and steady state
 
-Setting $k_t := K_t / L$.
+Let $k_t := K_t / L$.
 
 
 Aggregate supply of capital [](aggregate_supply_capital_log_olg) becomes
@@ -343,7 +366,7 @@ Aggregate supply of capital [](aggregate_supply_capital_log_olg) becomes
     k_{t+1} = k^s(R_{t+1}) = \frac{\beta}{1+\beta} w_t
 ```
 
-Equation [](wage) becomes
+[](wage) becomes
 ```{math}
 :label: wage_2
     (1-\alpha)(k_t)^{\alpha} = w_t
@@ -359,9 +382,9 @@ Combining [](supply_capital_log_olg) and [](wage_2) yields the law of motion for
 
 +++
 
-A steady state can be solved analytically.
+A steady state can be solved analytically in this case.
 
-That is, $k_{t+1} = k_t = k^*$,
+That is, $k_{t+1} = k_t = k^*$, where
 ```{math}
 :label: steady_state_1
     k^* = \frac{\beta (1-\alpha) (k^*)^{\alpha}}{(1+\beta)}
@@ -369,7 +392,7 @@ That is, $k_{t+1} = k_t = k^*$,
 
 +++
 
-We can solve for
+We can solve this equation to obtain
 ```{math}
 :label: steady_state_2
     k^* = \left (\frac{\beta (1-\alpha)}{1+\beta} \right )^{1/(1-\alpha)}
@@ -437,10 +460,10 @@ plot_45(m, k_update, kstar=k_star(m))
 
 +++
 
-If we assume that the model is the same except that $u(c) = \frac{ c^{1- \gamma}-1}{1-\gamma}$, where $\gamma >0, \gamma\neq 1$.
+Let's now assume that the model is the same except that $u(c) = \frac{ c^{1- \gamma}-1}{1-\gamma}$, where $\gamma >0, \gamma\neq 1$.
 
 ```{code-cell} ipython3
-def crra(c, γ=2):
+def crra(c, γ=0.5):
     return c**(1 - γ) / (1 - γ)
 ```
 
@@ -448,7 +471,11 @@ def crra(c, γ=2):
 m_crra = create_olg_model(u=crra)
 ```
 
-For households now the euler equation becomes
+### New aggregate supply
+
++++
+
+For households, the Euler equation becomes
 ```{math}
 :label: euler_crra
     (w_t - s_t)^{-\gamma} = \beta R^{1-\gamma}_{t+1}  (s_t)^{-\gamma}
@@ -465,7 +492,71 @@ Solving for savings, we have
 
 +++
 
-Setting $k_t := K_t / L$ and using Equation [](saving_crra).
+With the CRRA utility, the aggregate supply of capital [](aggregate_supply_capital_1_olg) becomes
+```{math}
+:label: aggregate_supply_capital_crra_olg
+    K_{t+1} = K^S(w_t, R_{t+1}) =  S_t = L s_t = L s(w_t, R_{t+1}) = L w_t \left [ 1 + \beta^{-1/\gamma} R_{t+1}^{(\gamma-1)/\gamma} \right ]^{-1}
+```
+
++++
+
+### Equilibrium
+
+The equality of aggregate demand [](aggregate_demand_capital_olg) and new aggregate supply [](aggregate_supply_capital_crra_olg) for capital yields the equalibrium. 
+
+Specifically we have
+
+```{math}
+:label: equilibrium_crra_1
+    K^S(R_{t+1}) = K^d(R_{t+1})
+```
+
+or equivalently 
+
+```{math}
+:label: equilibrium_crra_2
+    L w_t \left [ 1 + \beta^{-1/\gamma} R_{t+1}^{(\gamma-1)/\gamma} \right ]^{-1} = L\left (\frac{R_{t+1}}{\alpha} \right )^{1/(\alpha - 1)}
+```
+
+Combining with [](wage) yields
+```{math}
+:label: equilibrium_crra
+    L (1-\alpha)(K_t / L)^{\alpha} \left [ 1 + \beta^{-1/\gamma} R_{t+1}^{(\gamma-1)/\gamma} \right ]^{-1} = L\left (\frac{R_{t+1}}{\alpha} \right )^{1/(\alpha - 1)}
+```
+
++++
+
+Here we cannot solve for the equilibrium price and quantity analytically.
+
+Exercise 1 asks you to solve [](equilibrium_crra) to obtain the equilibrium quantity $R_{t+1}$ and the equilibrium price numerically, and verify it using the plot below.
+
+Below we just show a plot of the equilibrium. 
+
+```{code-cell} ipython3
+def aggregate_supply_capital_crra(R, model, K_prev):
+    α, β, γ, L = model.α, model.β, model.u.__defaults__[0], model.L
+    return L**(1-α) * (1-α) * K_prev**α / ( 1 + β**(-1/γ) * R**((γ-1)/γ) )
+```
+
+```{code-cell} ipython3
+plot_ad_as(aggregate_capital_demand, aggregate_supply_capital_crra, m_crra, K_prev=50, E_star=None)  # John this is to be fixed.
+```
+
+TODO add a discussion or plot about how the slope of aggregate supply for capital varies according to the utility parameter $\gamma$.
+
+TODO When $\gamma <1$ the supply curve is downward sloping. When $\gamma >1$ the supply curve is upward sloping.
+
++++
+
+
+
++++
+
+### Dynamics and steady state
+
++++
+
+Setting $k_t := K_t / L$ and using [](saving_crra).
 
 
 Aggregate supply of capital [](aggregate_supply_capital_1_olg) becomes
@@ -474,9 +565,7 @@ Aggregate supply of capital [](aggregate_supply_capital_1_olg) becomes
     k_{t+1} = k^s(R_{t+1}) = \left [ 1 + \beta^{-1/\gamma} R_{t+1}^{(\gamma-1)/\gamma} \right ]^{-1} w_t
 ```
 
-+++
-
-Equation [](interest_rate) becomes
+[](interest_rate) becomes
 ```{math}
 :label: interest_rate_2
     \alpha k^{\alpha - 1}_t = R_t
@@ -484,7 +573,7 @@ Equation [](interest_rate) becomes
 
 +++
 
-Combing with equations [](wage_2) and [](supply_capital_crra_olg) gives
+Combing with [](wage_2) and [](supply_capital_crra_olg) gives
 ```{math}
 :label: law_of_motion_capital_crra
     k_{t+1} = \left [ 1 + \beta^{-1/\gamma} (\alpha k^{\alpha - 1}_{t+1})^{(\gamma-1)/\gamma} \right ]^{-1} (1-\alpha)(k_t)^{\alpha} 
@@ -533,7 +622,7 @@ plot_45(m_crra, k_next, kstar=None)
 
 Unlike the log preference case now a steady state cannot be solved analytically.
 
-To see this recall that, a steady state can be obtained by setting equation [](law_of_motion_capital_crra) to $k_{t+1} = k_t = k^*$, i.e.,
+To see this recall that, a steady state can be obtained by setting [](law_of_motion_capital_crra) to $k_{t+1} = k_t = k^*$, i.e.,
 ```{math}
 :label: steady_state_crra
     k^* = \frac{(1-\alpha)(k^*)^{\alpha}}{  1 + \beta^{-1/\gamma} (\alpha (k^*)^{\alpha-1})^{(\gamma-1)/\gamma}}
@@ -611,14 +700,30 @@ simulate_ts(m_crra, x0, ts_length)
 
 ## Exercises
 
-+++
-
 TODO Add exercise-solution environment
+
++++
 
 ### Exercise 1
 
+To solve the equilibrium of the CRRA case numerically using [](equilibrium_crra).
 
-Let's keep the model the same except for replacing the utility function $u(c)$ in equation {eq}`eq_crra`  with a quasilinear form $u(c)=c + c^{\theta}$.
+Plot the equilibrium quantity and equilibrium price in the equilibrium plot with the CRRA utility (TODO label and refer the plot generated by the code).
+
++++
+
+### Solution to exercise 1
+
+To solve the equation we need to turn to Newton's method.
+
+```{code-cell} ipython3
+# Hi Smit please fill in the trial answers here
+```
+
+### Exercise 2
+
+
+Let's keep the model the same except for replacing the utility function $u(c)$ in {eq}`eq_crra`  with a quasilinear form $u(c)=c + c^{\theta}$.
 
 Like what we did in the crra case we don't have an analytical solution. 
 
@@ -626,40 +731,35 @@ Try to compute the time path capital $\{k_t\}$ in this case.
 
 +++
 
-### Solution to exercise 1
+### Solution to exercise 2
 
 To get the time path capital $\{k_t\}$ first we need to solve the household's utility maximization problem for the optimal consumption and optimal saving.
 
-#### step 1
-
-With the quasilinear preference the euler equation becomes
+With the quasilinear preference the Euler equation becomes
 
 ```{math}
 :label: euler_quasilinear
     1 + \theta (w_t - s_t)^{\theta-1} = \beta R_{t+1} + \beta R^{\theta}_{t+1} \theta s_t^{\theta - 1}
 ```
 
-Obviously $s_t$ cannot be solved by pencil and paper. 
+Let $k_t := K_t / L$.
 
-To solve for $s_t$ we need to turn to the newton's method.
-
-```{code-cell} ipython3
-# Hi Smit please fill in the trial answers here
-```
-
-#### step 2
-
-With Equations [](wage_2) and [](interest_rate_2) and the result from step 1, we can calculate the law of motion for per capita capital 
+Since [](aggregate_supply_capital_log_olg), [](wage_2) and [](interest_rate_2) the Euler equation becomes
 ```{math}
-k_{t+1} = s(w_t, R_{t+1})
+:label:
+    1 + \theta ((1-\alpha)k^{\alpha}_t - k_{t+1})^{\theta-1} = \beta \alpha k^{\alpha - 1}_t + \beta (\alpha k^{\alpha - 1}_t)^{\theta} \theta k_{t+1}^{\theta - 1}
 ```
 
-We will find again that we cannot analytically solve for $k_{t+1}$ given $k_t$ from this equation. 
+Obviously $k_{t+1}$ cannot be solved by pencil and paper. 
 
-Therefore we need to turn to newton's method again.
+To solve for $k_{t+1}$ we need to turn to the newton's method.
 
 ```{code-cell} ipython3
 # Hi Smit please fill in the trial answers here
+```
+
+```{code-cell} ipython3
+
 ```
 
 ```{code-cell} ipython3
