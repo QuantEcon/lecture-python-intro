@@ -13,7 +13,7 @@ kernelspec:
 
 +++ {"user_expressions": []}
 
-# Markov Chains I
+# Markov Chains: Basic Concepts and Stationarity
 
 In addition to what's in Anaconda, this lecture will need the following libraries:
 
@@ -270,12 +270,12 @@ $$
 
 ```{code-cell} ipython3
 nodes = ['DG', 'DC', 'NG', 'NC', 'AG', 'AC']
-trans_matrix = [[0.86, 0.11, 0.03, 0.00, 0.00, 0.00],
-                [0.52, 0.33, 0.13, 0.02, 0.00, 0.00],
-                [0.12, 0.03, 0.70, 0.11, 0.03, 0.01],
-                [0.13, 0.02, 0.35, 0.36, 0.10, 0.04],
-                [0.00, 0.00, 0.09, 0.11, 0.55, 0.25],
-                [0.00, 0.00, 0.09, 0.15, 0.26, 0.50]]
+P = [[0.86, 0.11, 0.03, 0.00, 0.00, 0.00],
+     [0.52, 0.33, 0.13, 0.02, 0.00, 0.00],
+     [0.12, 0.03, 0.70, 0.11, 0.03, 0.01],
+     [0.13, 0.02, 0.35, 0.36, 0.10, 0.04],
+     [0.00, 0.00, 0.09, 0.11, 0.55, 0.25],
+     [0.00, 0.00, 0.09, 0.15, 0.26, 0.50]]
 ```
 
 ```{code-cell} ipython3
@@ -285,7 +285,7 @@ label_dict = {}
 
 for start_idx, node_start in enumerate(nodes):
     for end_idx, node_end in enumerate(nodes):
-        value = trans_matrix[start_idx][end_idx]
+        value = P[start_idx][end_idx]
         if value != 0:
             G.add_edge(node_start,node_end, weight=value, len=100)
             
@@ -815,6 +815,7 @@ See, for example, {cite}`sargent2023economic` Chapter 4.
 
 +++ {"user_expressions": []}
 
+(hamilton)=
 #### Example: Hamilton's Chain
 
 Hamilton's chain satisfies the conditions of the theorem because $P^2$ is everywhere positive:
@@ -823,7 +824,6 @@ Hamilton's chain satisfies the conditions of the theorem because $P^2$ is everyw
 P = np.array([[0.971, 0.029, 0.000],
               [0.145, 0.778, 0.077],
               [0.000, 0.508, 0.492]])
-P = np.array(P)
 P @ P
 ```
 
@@ -1099,8 +1099,7 @@ Compare your solution to the paper.
 :class: dropdown
 ```
 
-1. 
-
+1.
 
 ```{code-cell} ipython3
 :tags: [hide-output]
@@ -1155,11 +1154,42 @@ mc = qe.MarkovChain(P)
 
 3.
 
+We find the distribution $\psi$ converges to the stationary distribution more quickly compared to the {ref}`hamilton's chain <hamilton>`.
+
 ```{code-cell} ipython3
 ts_length = 10
 num_distributions = 25
 plot_distribution(P, ts_length, num_distributions)
 ```
+
+In fact, the rate of convergence is governed by {ref}`eigenvalues<eigen>` {cite}`sargent2023economic`.
+
+```{code-cell} ipython3
+P_eigenvals = np.linalg.eigvals(P)
+P_eigenvals
+```
+
+```{code-cell} ipython3
+P_hamilton = np.array([[0.971, 0.029, 0.000],
+                       [0.145, 0.778, 0.077],
+                       [0.000, 0.508, 0.492]])
+
+hamilton_eigenvals = np.linalg.eigvals(P_hamilton)
+hamilton_eigenvals
+```
+
+More specifically, it is governed by the spectral gap, the difference between the largest and the second largest eigenvalue.
+
+```{code-cell} ipython3
+sp_gap_P = P_eigenvals[0] - np.diff(P_eigenvals)[0]
+sp_gap_hamilton = hamilton_eigenvals[0] - np.diff(hamilton_eigenvals)[0]
+
+sp_gap_P > sp_gap_hamilton
+```
+
+We will come back to this in 
+
+TODO: add a reference to eigen II
 
 ```{solution-end}
 ```
@@ -1192,7 +1222,7 @@ In this exercise,
 
 1. 
 
-Although $P$ is not every positive, $P^m$ when $m=3$ is everywhere positive. 
+Although $P$ is not every positive, $P^m$ when $m=3$ is everywhere positive.
 
 ```{code-cell} ipython3
 P = np.array([[0.86, 0.11, 0.03, 0.00, 0.00, 0.00],
@@ -1209,18 +1239,12 @@ So it satisfies the requirement.
 
 2.
 
-We can see the distribution $\psi$ converges to the stationary distribution quickly regardless of the initial distributions
+We find the distribution $\psi$ converges to the stationary distribution quickly regardless of the initial distributions
 
 ```{code-cell} ipython3
 ts_length = 30
 num_distributions = 20
 nodes = ['DG', 'DC', 'NG', 'NC', 'AG', 'AC']
-P = [[0.86, 0.11, 0.03, 0.00, 0.00, 0.00],
-     [0.52, 0.33, 0.13, 0.02, 0.00, 0.00],
-     [0.12, 0.03, 0.70, 0.11, 0.03, 0.01],
-     [0.13, 0.02, 0.35, 0.36, 0.10, 0.04],
-     [0.00, 0.00, 0.09, 0.11, 0.55, 0.25],
-     [0.00, 0.00, 0.09, 0.15, 0.26, 0.50]]
 
 # Get parameters of transition matrix
 n = len(P)

@@ -13,7 +13,7 @@ kernelspec:
 
 +++ {"user_expressions": []}
 
-# Markov Chains II
+# Markov Chains: Irreducibility and Ergodicity
 
 In addition to what's in Anaconda, this lecture will need the following libraries:
 
@@ -262,7 +262,7 @@ This is one aspect of the concept  of ergodicity.
 ### Example 2
 
 
-Another example is Hamilton {cite}`Hamilton2005` dynamics {ref}`discussed above <mc_eg2>`.
+Another example is Hamilton {cite}`Hamilton2005` dynamics {ref}`discussed before <mc_eg2>`.
 
 The diagram of the Markov chain shows that it is **irreducible**.
 
@@ -297,6 +297,61 @@ plt.show()
 ```
 
 ### Example 3
+
+Let's look at one more example with six states {ref}`discussed before <mc_eg3>`.
+
+
+$$
+$$
+P :=
+\left(
+  \begin{array}{cccccc}
+0.86 & 0.11 & 0.03 & 0.00 & 0.00 & 0.00 \\
+0.52 & 0.33 & 0.13 & 0.02 & 0.00 & 0.00 \\
+0.12 & 0.03 & 0.70 & 0.11 & 0.03 & 0.01 \\
+0.13 & 0.02 & 0.35 & 0.36 & 0.10 & 0.04 \\
+0.00 & 0.00 & 0.09 & 0.11 & 0.55 & 0.25 \\
+0.00 & 0.00 & 0.09 & 0.15 & 0.26 & 0.50
+  \end{array}
+\right)
+$$
+$$
+
+
+The graph for the chain shows states are densely connected indicating that it is **irreducible**.
+
+Similar to previous examples, the sample path averages for each state converges to the stationary distribution
+
+```{code-cell} ipython3
+P = [[0.86, 0.11, 0.03, 0.00, 0.00, 0.00],
+     [0.52, 0.33, 0.13, 0.02, 0.00, 0.00],
+     [0.12, 0.03, 0.70, 0.11, 0.03, 0.01],
+     [0.13, 0.02, 0.35, 0.36, 0.10, 0.04],
+     [0.00, 0.00, 0.09, 0.11, 0.55, 0.25],
+     [0.00, 0.00, 0.09, 0.15, 0.26, 0.50]]
+
+ts_length = 10_000
+mc = qe.MarkovChain(P)
+ψ_star = mc.stationary_distributions[0]
+fig, ax = plt.subplots(figsize=(9, 6))
+X = mc.simulate(ts_length)
+# Center the plot at 0
+ax.set_ylim(-0.25, 0.25)
+ax.axhline(0, linestyle='dashed', lw=2, color = 'black', alpha=0.4)
+
+
+for x0 in range(6):
+    # Calculate the fraction of time for each state
+    X_bar = (X == x0).cumsum() / (1 + np.arange(ts_length, dtype=float))
+    ax.plot(X_bar - ψ_star[x0], label=f'$X = {x0+1} $')
+    ax.set_xlabel('t')
+    ax.set_ylabel(r'fraction of time spent in a state $- \psi^* (x)$')
+
+ax.legend()
+plt.show()
+```
+
+### Example 4
 
 Let's look at another example with two states: 0 and 1.
 
@@ -444,16 +499,14 @@ In this exercise,
 Use the technique we learnt before, we can take the power of the transition matrix
 
 ```{code-cell} ipython3
-P = [
-    [0.222, 0.222, 0.215, 0.187, 0.081, 0.038, 0.029, 0.006],
-    [0.221, 0.22,  0.215, 0.188, 0.082, 0.039, 0.029, 0.006],
-    [0.207, 0.209, 0.21,  0.194, 0.09,  0.046, 0.036, 0.008],
-    [0.198, 0.201, 0.207, 0.198, 0.095, 0.052, 0.04,  0.009],
-    [0.175, 0.178, 0.197, 0.207, 0.11,  0.067, 0.054, 0.012],
-    [0.182, 0.184, 0.2,   0.205, 0.106, 0.062, 0.05,  0.011],
-    [0.123, 0.125, 0.166, 0.216, 0.141, 0.114, 0.094, 0.021],
-    [0.084, 0.084, 0.142, 0.228, 0.17,  0.143, 0.121, 0.028]
-    ]
+P = [[0.222, 0.222, 0.215, 0.187, 0.081, 0.038, 0.029, 0.006],
+     [0.221, 0.22,  0.215, 0.188, 0.082, 0.039, 0.029, 0.006],
+     [0.207, 0.209, 0.21,  0.194, 0.09,  0.046, 0.036, 0.008],
+     [0.198, 0.201, 0.207, 0.198, 0.095, 0.052, 0.04,  0.009],
+     [0.175, 0.178, 0.197, 0.207, 0.11,  0.067, 0.054, 0.012],
+     [0.182, 0.184, 0.2,   0.205, 0.106, 0.062, 0.05,  0.011],
+     [0.123, 0.125, 0.166, 0.216, 0.141, 0.114, 0.094, 0.021],
+     [0.084, 0.084, 0.142, 0.228, 0.17,  0.143, 0.121, 0.028]]
 
 P = np.array(P)
 codes_B = ('1','2','3','4','5','6','7','8')
@@ -476,10 +529,8 @@ ts_length = 1000
 mc = qe.MarkovChain(P)
 fig, ax = plt.subplots(figsize=(9, 6))
 X = mc.simulate(ts_length)
-# Center the plot at 0
 ax.set_ylim(-0.25, 0.25)
 ax.axhline(0, linestyle='dashed', lw=2, color = 'black', alpha=0.4)
-
 
 for x0 in range(8):
     # Calculate the fraction of time for each worker
