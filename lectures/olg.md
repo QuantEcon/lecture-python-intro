@@ -746,7 +746,13 @@ Plot the equilibrium quantity and equilibrium price in the equilibrium plot with
 :class: dropdown
 ```
 
-To solve the equation we need to turn to Newton's method. `find_Rstar` is used to find $R^*_{t+1}$ by finding the zero of equation [](equilibrium_crra) using the helper function `find_Rstar_newton` for a given value of $K_t$. Similary, `find_Kstar` finds the equilibrium quantity $K^*_{t+1}$ using the value of $R^*_{t+1}$.
+To solve the equation we need to turn to Newton's method.
+
+The function `find_Rstar` is used to find $R^*_{t+1}$ by finding
+the zero of equation [](equilibrium_crra) using the helper
+function `find_Rstar_newton` for a given value of $K_t$.
+
+Similary, `find_Kstar` finds the equilibrium quantity $K^*_{t+1}$ using the value of $R^*_{t+1}$.
 
 ```{code-cell} ipython3
 def find_Rstar_newton(x, K_prev, model):
@@ -764,6 +770,8 @@ def find_Rstar(K_prev, model):
 def find_Kstar(R_star, model):
     return model.L * (R_star / model.α)**(1/(model.α-1))
 ```
+
+The following function plots the equilibrium quantity and equilibrium price.
 
 ```{code-cell} ipython3
 def plot_ks_rs(K_t_vals, model):
@@ -820,6 +828,7 @@ With the quasilinear preference the Euler equation becomes
 Let $k_t := K_t / L$.
 
 Since [](aggregate_supply_capital_log_olg), [](wage_2) and [](interest_rate_2) the Euler equation becomes
+
 ```{math}
 :label: euler_quasilinear1
     1 + \theta ((1-\alpha)k^{\alpha}_t - k_{t+1})^{\theta-1} = \beta \alpha k^{\alpha - 1}_t + \beta (\alpha k^{\alpha - 1}_t)^{\theta} \theta k_{t+1}^{\theta - 1}
@@ -836,6 +845,11 @@ def u_quasilinear(c, θ=4):
     return c + c**θ
 ```
 
+
+The function `find_k_next` is used to find $k_{t+1}$ by finding
+the root of equation [](euler_quasilinear1) using the helper
+function `solve_for_k_t1` for a given value of $k_t$.
+
 ```{code-cell} ipython3
 def solve_for_k_t1(x, k_t, model):
     α, β, L, θ = model.α, model.β, model.L, model.u.__defaults__[0]
@@ -849,6 +863,8 @@ def solve_for_k_t1(x, k_t, model):
 def find_k_next(k_t, model):
     return optimize.newton(solve_for_k_t1, k_t, args=(k_t, model))
 ```
+
+Let's simulate and plot the time path capital $\{k_t\}$.
 
 ```{code-cell} ipython3
 def simulate_ts(k0_values, model, ts_length=10):
