@@ -12,7 +12,6 @@ kernelspec:
 ---
 
 
-
 # The Overlapping Generations Model
 
 In this lecture we study the overlapping generations (OLG) model.
@@ -53,10 +52,10 @@ Let's start with some imports.
 import numpy as np
 from scipy import optimize
 from collections import namedtuple
+from functools import partial
 import matplotlib.pyplot as plt
 plt.rcParams["figure.figsize"] = (11, 5)  #set default figure size
 ```
-
 
 
 ## Environment
@@ -275,10 +274,11 @@ Plugging it into either the demand or the supply function gives the equilibrium 
 ```
 
 ```{code-cell} ipython3
-Model = namedtuple('Model', ['α',  # output elasticity of capital in the Cobb-Douglas production function
-                             'β',  # discount factor
-                             'u',  # parameter which defines the flow utility
-                             'L']  # population size
+Model = namedtuple('Model', ['α',        # output elasticity of capital in the Cobb-Douglas production function
+                             'β',        # discount factor
+                             'u',        # parameter which defines the flow utility
+                             'L',        # population size
+                             'u_params'] # other params used to define u
                    )
 ```
 
@@ -288,8 +288,8 @@ def u(c):
 ```
 
 ```{code-cell} ipython3
-def create_olg_model(α=0.3, β=0.9, u=u, L=10.0):
-    return Model(α=α, β=β, u=u, L=L)
+def create_olg_model(α=0.3, β=0.9, u=u, L=10.0, u_params=dict()):
+    return Model(α=α, β=β, u=u, L=L, u_params=u_params)
 ```
 
 ```{code-cell} ipython3
@@ -360,7 +360,6 @@ plot_ad_as(aggregate_capital_demand, aggregate_capital_supply, m, K_prev=50, E_s
 ```
 
 
-
 Let's observe the dynamics of the equilibrium price $R^*_{t+1}$.
 
 ```{code-cell} ipython3
@@ -375,7 +374,6 @@ ax.set_ylabel("$R^*_{t+1}$")
 ax.set_xlabel("$K_{t}$")
 plt.show()
 ```
-
 
 
 ## Dynamics and steady state
@@ -479,7 +477,6 @@ plot_45(m, k_update, kstar=k_star(m))
 ```
 
 
-
 ## Another special case: CRRA preference
 
 
@@ -492,10 +489,8 @@ def crra(c, γ=0.5):
 ```
 
 ```{code-cell} ipython3
-m_crra = create_olg_model(u=crra)
+m_crra = create_olg_model(u=crra, u_params={'γ': 0.5})
 ```
-
-
 
 ### New aggregate supply
 
@@ -560,7 +555,7 @@ Below we just show a plot of the equilibrium.
 
 ```{code-cell} ipython3
 def aggregate_supply_capital_crra(R, model, K_prev):
-    α, β, γ, L = model.α, model.β, model.u.__defaults__[0], model.L
+    α, β, γ, L = model.α, model.β, model.u_params['γ'], model.L
     return L**(1-α) * (1-α) * K_prev**α / ( 1 + β**(-1/γ) * R**((γ-1)/γ) )
 ```
 
@@ -569,12 +564,33 @@ plot_ad_as(aggregate_capital_demand, aggregate_supply_capital_crra, m_crra, K_pr
 ```
 
 
+Let's plot the aggregate supply with different values of utility parameter $\gamma$ and observe it's behaviour.
 
-TODO add a discussion or plot about how the slope of aggregate supply for capital varies according to the utility parameter $\gamma$.
+```{code-cell} ipython3
+γ_vals = [0.1, 0.5, 1.5, 2.0]
+K_prev = 50
 
-TODO When $\gamma <1$ the supply curve is downward sloping. When $\gamma >1$ the supply curve is upward sloping.
+
+fig, ax = plt.subplots()
+R_vals = np.linspace(0.3, 1)
+
+for γ in γ_vals:
+    m = create_olg_model(u=partial(crra, γ=γ), u_params={'γ': γ})
+    ax.plot(R_vals, aggregate_supply_capital_crra(R_vals, m, K_prev),
+            label=r"$\gamma=$" + str(γ))
+
+ax.set_xlabel("$R_{t+1}$")
+ax.set_title("Aggregate Supply")
+ax.legend()
+plt.show()
+```
 
 
+When $\gamma <1$ the supply curve is downward sloping. When $\gamma > 1$ the supply curve is upward sloping.
+
+TODO: Do we need to add some explanation?
+
++++
 
 ### Dynamics and steady state
 
@@ -625,14 +641,13 @@ First let define $f(\cdot)$.
 
 ```{code-cell} ipython3
 def f(k_prime, k, model):
-    α, β, γ = model.α, model.β, model.u.__defaults__[0]
+    α, β, γ = model.α, model.β, model.u_params['γ']
     z = (1 - α) * k**α
     R1 = α ** (1-1/γ)
     R2 = k_prime**((α * γ - α + 1) / γ)
     p = k_prime + k_prime * β**(-1/γ) * R1 * R2
     return p - z
 ```
-
 
 
 Let's define a function `k_next` that finds the value of $k_{t+1}$.
@@ -645,7 +660,6 @@ def k_next(k_prime, model):
 ```{code-cell} ipython3
 plot_45(m_crra, k_next, kstar=None)
 ```
-
 
 
 Unlike the log preference case now a steady state cannot be solved analytically.
@@ -668,7 +682,7 @@ Suppose that
 
 ```{code-cell} ipython3
 def g(k_star, model):
-    α, β, γ = model.α, model.β, model.u.__defaults__[0]
+    α, β, γ = model.α, model.β, model.u_params['γ']
     z = (1 - α) * k_star**α
     R1 = α ** (1-1/γ)
     R2 = k_star**((α * γ - α + 1) / γ)
@@ -686,11 +700,10 @@ plot_45(m_crra, k_next, k_star)
 ```
 
 
-
 The next figure shows three time paths for capital, from
 three distinct initial conditions, under the parameterization listed above.
 
-At this parameterization, $k^* \approx 0.161$.
+At this parameterization, $k^* \approx 0.314$.
 
 Let's define the constants and three distinct intital conditions
 
@@ -714,7 +727,7 @@ def simulate_ts(m, x0_values, ts_length):
             ts[t] = k_next(ts[t-1], m)
         ax.plot(np.arange(ts_length), ts, '-o', ms=4, alpha=0.6,
                 label=r'$k_0=%g$' %x_init)
-    ax.plot(np.arange(ts_length), np.full(ts_length,k_star),
+    ax.plot(np.arange(ts_length), np.full(ts_length, k_star),
             alpha=0.6, color='red', label=r'$k^*$')
     ax.legend(fontsize=10)
 
@@ -727,7 +740,6 @@ def simulate_ts(m, x0_values, ts_length):
 ```{code-cell} ipython3
 simulate_ts(m_crra, x0, ts_length)
 ```
-
 
 
 ## Exercises
@@ -756,7 +768,7 @@ Similary, `find_Kstar` finds the equilibrium quantity $K^*_{t+1}$ using the valu
 
 ```{code-cell} ipython3
 def find_Rstar_newton(x, K_prev, model):
-    α, β, γ, L = model.α, model.β, model.u.__defaults__[0], model.L
+    α, β, γ, L = model.α, model.β, model.u_params['γ'], model.L
     lhs = L * (1-α) * (K_prev / L)**α
     lhs /= (1 + β**(-1/γ) * x**((γ-1)/γ))
     rhs = L * (x / α)**(1/(α-1))
@@ -770,6 +782,7 @@ def find_Rstar(K_prev, model):
 def find_Kstar(R_star, model):
     return model.L * (R_star / model.α)**(1/(model.α-1))
 ```
+
 
 The following function plots the equilibrium quantity and equilibrium price.
 
@@ -788,16 +801,27 @@ def plot_ks_rs(K_t_vals, model):
     ax.plot(K_t_vals, R_star, label="equilibrium price")
     ax.plot(K_t_vals, K_star, label="equilibrium quantity")
 
-    ax.set_xlabel("$K^{t}$")
+    ax.set_xlabel("$K_{t}$")
     ax.legend()
     plt.show()
 ```
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: "Equilibrium price and quantity\n"
+    name: equi_ps_q_crra
+  image:
+    alt: equi_ps_q_crra
+    classes: shadow bg-primary
+    width: 200px
+---
 K_t_vals = np.linspace(0.1, 50, 50)
-m_crra = create_olg_model(u=crra)
+m_crra = create_olg_model(u=crra, u_params={'γ': 0.5})
 plot_ks_rs(K_t_vals, m_crra)
 ```
+
 
 ```{solution-end}
 ```
@@ -848,11 +872,11 @@ def u_quasilinear(c, θ=4):
 
 The function `find_k_next` is used to find $k_{t+1}$ by finding
 the root of equation [](euler_quasilinear1) using the helper
-function `solve_for_k_t1` for a given value of $k_t$.
+function `solve_for_k_next` for a given value of $k_t$.
 
 ```{code-cell} ipython3
-def solve_for_k_t1(x, k_t, model):
-    α, β, L, θ = model.α, model.β, model.L, model.u.__defaults__[0]
+def solve_for_k_next(x, k_t, model):
+    α, β, L, θ = model.α, model.β, model.L, model.u_params['θ']
     l = 1 + θ * ((1 - α) * k_t**α - x)**(θ - 1)
     r = β * α * k_t**(α - 1)
     r += β * (α * k_t**(α - 1))**θ * θ * x**(θ - 1)
@@ -861,14 +885,30 @@ def solve_for_k_t1(x, k_t, model):
 
 ```{code-cell} ipython3
 def find_k_next(k_t, model):
-    return optimize.newton(solve_for_k_t1, k_t, args=(k_t, model))
+    return optimize.newton(solve_for_k_next, k_t, args=(k_t, model))
 ```
+
+```{code-cell} ipython3
+def solve_for_k_star_q(x, model):
+    α, β, L, θ = model.α, model.β, model.L, model.u_params['θ']
+    l = 1 + θ * ((1 - α) * x**α - x)**(θ - 1)
+    r = β * α * x**(α - 1)
+    r += β * (α * x**(α - 1))**θ * θ * x**(θ - 1)
+    return l - r
+
+def find_k_star_q(model):
+    return optimize.newton(solve_for_k_star_q, 0.3, args=(model,))
+
+```
+
 
 Let's simulate and plot the time path capital $\{k_t\}$.
 
 ```{code-cell} ipython3
 def simulate_ts(k0_values, model, ts_length=10):
+    k_star = find_k_star_q(model)
 
+    print("k_star:", k_star)
     fig, ax = plt.subplots(figsize=(10, 5))
 
     ts = np.zeros(ts_length)
@@ -880,6 +920,8 @@ def simulate_ts(k0_values, model, ts_length=10):
             ts[t] = find_k_next(ts[t-1], model)
         ax.plot(np.arange(ts_length), ts, '-o', ms=4, alpha=0.6,
                 label=r'$k_0=%g$' %x_init)
+    ax.plot(np.arange(ts_length), np.full(ts_length, k_star),
+            alpha=0.6, linestyle='dashed', color='black', label=r'$k^*$')
     ax.legend(fontsize=10)
 
     ax.set_xlabel(r'$t$', fontsize=14)
@@ -890,7 +932,7 @@ def simulate_ts(k0_values, model, ts_length=10):
 
 ```{code-cell} ipython3
 k0_values = [0.2, 10, 50, 100]
-m_quasilinear = create_olg_model(u=u_quasilinear)
+m_quasilinear = create_olg_model(u=u_quasilinear, u_params={'θ': 4})
 simulate_ts(k0_values, m_quasilinear)
 ```
 
