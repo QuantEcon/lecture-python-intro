@@ -4,7 +4,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.14.1
+    jupytext_version: 1.14.5
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
@@ -12,14 +12,15 @@ kernelspec:
 ---
 
 
-# Monte Carlo and Option Pricing 
+
+# Monte Carlo and Option Pricing
 
 ## Overview
 
-Simple probability calculations can be done either 
+Simple probability calculations can be done either
 
-* with pencil and paper, or 
-* by looking up facts about well known probability distributions, or 
+* with pencil and paper, or
+* by looking up facts about well known probability distributions, or
 * in our heads.
 
 For example, we can easily work out
@@ -34,9 +35,9 @@ Complex calculations concerning probabilities and expectations occur in many
 economic and financial problems.
 
 Perhaps the most important tool for handling complicated probability
-calculations is [Monte Carlo methods](https://en.wikipedia.org/wiki/Monte_Carlo_method). 
+calculations is [Monte Carlo methods](https://en.wikipedia.org/wiki/Monte_Carlo_method).
 
-In this lecture we introduce Monte Carlo methods for computing expectations, 
+In this lecture we introduce Monte Carlo methods for computing expectations,
 with some applications in finance.
 
 We will use the following imports.
@@ -44,7 +45,6 @@ We will use the following imports.
 ```{code-cell} ipython3
 import numpy as np
 import matplotlib.pyplot as plt
-import numba
 from numpy.random import randn
 ```
 
@@ -59,7 +59,7 @@ expectations.
 
 Suppose that we are considering buying a share in some company.
 
-Our plan is either to 
+Our plan is either to
 
 1. buy the share now, hold it for one year and then sell it, or
 2. do something else with our money.
@@ -92,14 +92,14 @@ Any good reference on statistics (such as
 us that the mean and variance are
 
 $$
-    \mathbb E S 
+    \mathbb E S
         = \exp \left(\mu + \frac{\sigma^2}{2} \right)
 $$
 
-and 
+and
 
-$$ 
-    \mathop{\mathrm{Var}} S 
+$$
+    \mathop{\mathrm{Var}} S
     = [\exp(\sigma^2) - 1] \exp(2\mu + \sigma^2)
 $$
 
@@ -152,6 +152,8 @@ p = 0.5
 σ_1, σ_2, σ_3 = 0.1, 0.05, 0.2
 ```
 
+
+
 #### A Routine using Loops in Python
 
 
@@ -174,6 +176,8 @@ for i in range(n):
 S / n
 ```
 
+
+
 We can also construct a function that contains these operations:
 
 ```{code-cell} ipython3
@@ -184,14 +188,17 @@ def compute_mean(n=1_000_000):
         X_2 = np.exp(μ_2 + σ_2 * randn())
         X_3 = np.exp(μ_3 + σ_3 * randn())
         S += (X_1 + X_2 + X_3)**p
-    return(S / n)
+    return (S / n)
 ```
+
+
 
 Now let's call it.
 
 ```{code-cell} ipython3
 compute_mean()
 ```
+
 
 
 ### A Vectorized Routine
@@ -202,15 +209,13 @@ But the code above runs quite slowly.
 
 To make it faster, let's implement a vectorized routine using NumPy.
 
-
 ```{code-cell} ipython3
-
 def compute_mean_vectorized(n=1_000_000):
     X_1 = np.exp(μ_1 + σ_1 * randn(n))
     X_2 = np.exp(μ_2 + σ_2 * randn(n))
     X_3 = np.exp(μ_3 + σ_3 * randn(n))
     S = (X_1 + X_2 + X_3)**p
-    return(S.mean())
+    return S.mean()
 ```
 
 ```{code-cell} ipython3
@@ -218,6 +223,8 @@ def compute_mean_vectorized(n=1_000_000):
 
 compute_mean_vectorized()
 ```
+
+
 
 Notice that this routine is much faster.
 
@@ -228,6 +235,7 @@ We can increase $n$ to get more accuracy and still have reasonable speed:
 
 compute_mean_vectorized(n=10_000_000)
 ```
+
 
 
 ## Pricing a European Call Option under Risk Neutrality
@@ -252,7 +260,7 @@ For example, suppose someone promises to pay you
 - 1,000,000 dollars if "heads" is the outcome of a fair coin flip
 - 0 dollars if "tails" is the outcome
 
-Let's denote the payoff as $G$, so that 
+Let's denote the payoff as $G$, so that
 
 $$
     \mathbb P\left\{G = 10^6 \right\} = \mathbb P\{G = 0\} = \frac{1}{2}
@@ -275,7 +283,6 @@ $$
     \mathbb E G = \frac{1}{2} \times 10^6 + \frac{1}{2} \times 0 = 5 \times 10^5
 $$
 
-+++
 
 
 ### A Comment on Risk
@@ -298,7 +305,7 @@ these promises.
 Nonetheless, the risk-neutral price is an important benchmark, which economists
 and financial market participants try to calculate every day.
 
-+++
+
 
 ### Discounting
 
@@ -313,7 +320,7 @@ interest rate $r > 0$ and receive $ (1 + r)^n x $ in $n$ periods.
 Hence future payments need to be discounted when we consider their present
 value.
 
-We will implement discounting by 
+We will implement discounting by
 
 * multiplying a payment in one period by $\beta < 1$
 * multiplying a payment in $n$ periods by $\beta^n$, etc.
@@ -324,11 +331,10 @@ promise described above.
 Thus, if $G$ is realized in $n$ periods, then the risk-neutral price is
 
 $$
-    P = \beta^n \mathbb E G 
+    P = \beta^n \mathbb E G
       = \beta^n 5 \times 10^5
 $$
 
-+++
 
 
 ### European Call Options
@@ -352,7 +358,7 @@ If $S_n \leq K$, then the owner will not exercise the option and the payoff is z
 
 Thus, the payoff is $\max\{ S_n - K, 0 \}$.
 
-Under the assumption of risk neutrality,  the price of the option is 
+Under the assumption of risk neutrality,  the price of the option is
 the expected discounted payoff:
 
 $$ P = \beta^n \mathbb E \max\{ S_n - K, 0 \} $$
@@ -365,8 +371,8 @@ Suppose we know that $S_n \sim LN(\mu, \sigma)$ and $\mu$ and $\sigma$ are known
 
 If $S_n^1, \ldots, S_n^M$ are independent draws from this lognormal distribution then, by the law of large numbers,
 
-$$ 
-    \mathbb E \max\{ S_n - K, 0 \} 
+$$
+    \mathbb E \max\{ S_n - K, 0 \}
     \approx
     \frac{1}{M} \sum_{m=1}^M \max \{S_n^m - K, 0 \}
 $$
@@ -381,19 +387,25 @@ n = 10
 β = 0.95
 ```
 
+
+
 We set the simulation size to
 
 ```{code-cell} ipython3
 M = 10_000_000
 ```
+
+
+
 Here is our code
 
 ```{code-cell} ipython3
 S = np.exp(μ + σ * np.random.randn(M))
 return_draws = np.maximum(S - K, 0)
-P = β**n * np.mean(return_draws) 
+P = β**n * np.mean(return_draws)
 print(f"The Monte Carlo option price is approximately {P:3f}")
 ```
+
 
 
 ## Pricing Via a Dynamic Model
@@ -412,17 +424,21 @@ One simple model for $\{S_t\}$ is
 
 $$ \ln \frac{S_{t+1}}{S_t} = \mu + \sigma \xi_{t+1} $$
 
-where 
+where
 
 * $S_0$ is normally distributed and
-* $\{ \xi_t \}$ is IID and standard normal.  
+* $\{ \xi_t \}$ is IID and standard normal.
 
 
 Under the stated assumptions, $S_n$ is lognormally distributed.
 
 To see why, observe that, with $s_t := \ln S_t$, the price dynamics become
 
-$$ s_{t+1} = s_t + \mu + \sigma \xi_{t+1} $$
+```{math}
+:label: s_mc_dyms
+
+s_{t+1} = s_t + \mu + \sigma \xi_{t+1}
+```
 
 Since $s_0$ is normal and $\xi_1$ is normal and IID, we see that $s_1$ is
 normally distributed.
@@ -452,17 +468,17 @@ This leads us to study the improved version:
 
 $$ \ln \frac{S_{t+1}}{S_t} = \mu + \sigma_t \xi_{t+1} $$
 
-where 
+where
 
-$$ 
-    \sigma_t = \exp(h_t), 
+$$
+    \sigma_t = \exp(h_t),
     \quad
         h_{t+1} = \rho h_t + \nu \eta_{t+1}
 $$
 
 Here $\{\eta_t\}$ is also IID and standard normal.
 
-+++
+
 
 ### Default Parameters
 
@@ -476,17 +492,18 @@ S0 = 10
 h0 = 0
 ```
 
+
+
 (Here `S0` is $S_0$ and `h0` is $h_0$.)
 
 For the option we use the following defaults.
 
 ```{code-cell} ipython3
-:tags: []
-
 K = 100
 n = 10
 β = 0.95
 ```
+
 
 
 ### Visualizations
@@ -498,8 +515,6 @@ $$ s_{t+1} = s_t + \mu + \exp(h_t) \xi_{t+1} $$
 Here is a function to simulate a path using this equation:
 
 ```{code-cell} ipython3
-from numpy.random import randn
-
 def simulate_asset_price_path(μ=μ, S0=S0, h0=h0, n=n, ρ=ρ, ν=ν):
     s = np.empty(n+1)
     s[0] = np.log(S0)
@@ -508,9 +523,11 @@ def simulate_asset_price_path(μ=μ, S0=S0, h0=h0, n=n, ρ=ρ, ν=ν):
     for t in range(n):
         s[t+1] = s[t] + μ + np.exp(h) * randn()
         h = ρ * h + ν * randn()
-        
+
     return np.exp(s)
 ```
+
+
 
 Here we plot the paths and the log of the paths.
 
@@ -524,10 +541,11 @@ for ax, transform, title in zip(axes, transforms, titles):
         path = simulate_asset_price_path()
         ax.plot(transform(path))
     ax.set_title(title)
-    
+
 fig.tight_layout()
 plt.show()
 ```
+
 
 
 ### Computing the Price
@@ -540,12 +558,12 @@ So to compute the price $P$ of the option, we use Monte Carlo.
 We average over realizations $S_n^1, \ldots, S_n^M$ of $S_n$ and appealing to
 the law of large numbers:
 
-$$ 
-    \mathbb E \max\{ S_n - K, 0 \} 
+$$
+    \mathbb E \max\{ S_n - K, 0 \}
     \approx
     \frac{1}{M} \sum_{m=1}^M \max \{S_n^m - K, 0 \}
 $$
-    
+
 
 Here's a version using Python loops.
 
@@ -570,15 +588,14 @@ def compute_call_price(β=β,
             h = ρ * h + ν * randn()
         # And add the value max{S_n - K, 0} to current_sum
         current_sum += np.maximum(np.exp(s) - K, 0)
-        
+
     return β**n * current_sum / M
 ```
 
 ```{code-cell} ipython3
-%%time 
+%%time
 compute_call_price()
 ```
-
 
 
 
@@ -617,22 +634,131 @@ def compute_call_price(β=β,
         s = s + μ + np.exp(h) * Z[0, :]
         h = ρ * h + ν * Z[1, :]
     expectation = np.mean(np.maximum(np.exp(s) - K, 0))
-        
+
     return β**n * expectation
 ```
 
 ```{code-cell} ipython3
-%%time 
+%%time
 compute_call_price()
 ```
+
+
 
 Notice that this version is faster than the one using a Python loop.
 
 Now let's try with larger $M$ to get a more accurate calculation.
 
 ```{code-cell} ipython3
-%%time 
+%%time
 compute_call_price(M=10_000_000)
+```
+
+
+
+```{solution-end}
+```
+
+```{exercise}
+:label: monte_carlo_ex2
+
+Consider that a European call option may be written on an underlying with spot price of \$100 and a knockout barrier of \$120.
+
+This option behaves in every way like a vanilla European call, except if the spot price ever moves above \$120, the option "knocks out" and the contract is null and void.
+
+Note that the option does not reactivate if the spot price falls below \$120 again.
+
+Use the dynamics defined in {eq}`s_mc_dyms` to price the European call option.
+```
+
+```{solution-start} monte_carlo_ex2
+:class: dropdown
+```
+
+```{code-cell} ipython3
+μ  = 0.0001
+ρ  = 0.1
+ν  = 0.001
+S0 = 10
+h0 = 0
+K = 100
+n = 10
+β = 0.95
+bp = 120
+```
+
+```{code-cell} ipython3
+def compute_call_price_with_barrier(β=β,
+                                    μ=μ,
+                                    S0=S0,
+                                    h0=h0,
+                                    K=K,
+                                    n=n,
+                                    ρ=ρ,
+                                    ν=ν,
+                                    bp=bp,
+                                    M=50_000):
+    current_sum = 0.0
+    # For each sample path
+    for m in range(M):
+        s = np.log(S0)
+        h = h0
+        payoff = 0
+        option_is_null = False
+        # Simulate forward in time
+        for t in range(n):
+            s = s + μ + np.exp(h) * randn()
+            h = ρ * h + ν * randn()
+            if np.exp(s) > bp:
+                payoff = 0
+                option_is_null = True
+                break
+
+        if not option_is_null:
+            payoff = np.maximum(np.exp(s) - K, 0)
+        # And add the payoff to current_sum
+        current_sum += payoff
+
+    return β**n * current_sum / M
+```
+
+```{code-cell} ipython3
+%time compute_call_price_with_barrier()
+```
+
+
+
+Let's look at the vectorized version which is faster than using Python loops.
+
+```{code-cell} ipython3
+def compute_call_price_with_barrier_vector(β=β,
+                                           μ=μ,
+                                           S0=S0,
+                                           h0=h0,
+                                           K=K,
+                                           n=n,
+                                           ρ=ρ,
+                                           ν=ν,
+                                           bp=bp,
+                                           M=50_000):
+    s = np.full(M, np.log(S0))
+    h = np.full(M, h0)
+    option_is_null = np.full(M, False)
+    for t in range(n):
+        Z = np.random.randn(2, M)
+        s = s + μ + np.exp(h) * Z[0, :]
+        h = ρ * h + ν * Z[1, :]
+        # Mark all the options null where S_n > barrier price
+        option_is_null = np.where(np.exp(s) > bp, True, option_is_null)
+
+    # mark payoff as 0 in the indices where options are null
+    payoff = np.where(option_is_null, 0, np.maximum(np.exp(s) - K, 0))
+    expectation = np.mean(payoff)
+    return β**n * expectation
+```
+
+```{code-cell} ipython3
+%time compute_call_price_with_barrier_vector()
 ```
 
 ```{solution-end}

@@ -64,7 +64,7 @@ jobs:
         shell: bash -l {0}
         run: |
           rm -r _build/.doctrees
-          jb build lectures --path-output ./ -W --keep-going
+          jb build lectures --path-output ./ -nW --keep-going
       - name: Upload Execution Reports (HTML)
         uses: actions/upload-artifact@v2
         if: failure()
