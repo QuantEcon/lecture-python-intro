@@ -854,7 +854,7 @@ is nonnegative, i.e., $a_{ij} \geq 0$ for every $i,j$.
 
 We denote this as $A \geq 0$.
 
-
+(irreducible)=
 ### Irreducible Matrices
 
 Let $A$ be a square nonnegative matrix and let $A^k$ be the $k^{th}$ power of A.

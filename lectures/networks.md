@@ -169,8 +169,7 @@ In the discussion below, we learn to quantify such ideas.
 
 ### Example: A Markov Chain
 
-Recall that, in our lecture on Markov chains (TODO add link to new Markov
-chain lecture markov_chains.md) we studied a dynamic model of business cycles
+Recall that, in our lecture on {ref}`Markov chains <mc_eg2>` we studied a dynamic model of business cycles
 where the states are
 
 * "ng" = "normal growth"
@@ -846,7 +845,7 @@ $$
 The above result is obvious when $k=1$ and a proof of the general case can be
 found in \cite{sargent2022economic}.
 
-Now recall from [TODO add link to Maanasee's eigenvalues lecture] that a
+Now recall from {ref}`the eigenvalues lecture <irreducible>` that a
 nonnegative matrix $A$ is called irreducible if for each $(i,j)$ there is an integer $k \geq 0$ such that $a^{k}_{ij} > 0$.
 
 From the preceding theorem it is not too difficult (see
@@ -1073,8 +1072,7 @@ Suppose we have a weighted directed graph with adjacency matrix $A$.
 For simplicity we will suppose that the nodes $V$ of the graph are just the
 integers $1, \ldots, n$.
 
-Let $r(A)$ denote the spectral radius of $A$.  [TODO link to Maanasee's
-lecture on eigenvalues]
+Let $r(A)$ denote the {ref}`spectral radius<neumann_series_lemma>` of $A$.
 
 The **eigenvector centrality** of the graph is defined as the $n$-vector $e$ that solves
 
@@ -1087,7 +1085,7 @@ The **eigenvector centrality** of the graph is defined as the $n$-vector $e$ tha
 
 In other words, $e$ is the dominant eigenvector of $A$ (the eigenvector of the
 largest eigenvalue --- see the discussion of the Perron-Frobenius theorem in
-[TODO link to Maanasee's lecture on eigenvalues]
+{ref}`the eigenvalue lecture <frobenius>`
 
 To better understand {eq}`ev_central`, we write out the full expression
 for some element $e_i$
@@ -1231,7 +1229,7 @@ $$
 $$
 
 
-This follows from the Neumann series theorem [TODO link to Maanasee's lecture].
+This follows from the {ref}`Neumann series theorem<neumann_series_lemma>`.
 
 The parameter $\beta$ is used to ensure that $\kappa$ is finite
 
