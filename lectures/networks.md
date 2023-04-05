@@ -308,7 +308,7 @@ graph2 = graphviz.Digraph(comment='Graph',engine="neato")
 graph2.attr(rankdir='LR')
 graph2.node("poor", pos='0,0!')
 graph2.node("middle class", pos='2,1!')
-graph2.node("rich", po ='4,0!')
+graph2.node("rich", pos='4,0!')
 
 graph2.edge("poor", "poor")
 graph2.edge("middle class", "poor")
@@ -385,8 +385,8 @@ We can verify this by plotting the graph via Networkx with the following code:
 ```{code-cell} ipython3
 fig, ax = plt.subplots()
 nx.draw_spring(G_p, ax=ax, node_size=500, with_labels=True,
-                 font_weight='bold', arrows=True, alpha=0.8,
-                 connectionstyle='arc3,rad=0.25', arrowsize=20)
+               font_weight='bold', arrows=True, alpha=0.8,
+               connectionstyle='arc3,rad=0.25', arrowsize=20)
 plt.show()
 ```
 
