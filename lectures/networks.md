@@ -4,7 +4,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.14.1
+    jupytext_version: 1.14.5
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
@@ -13,10 +13,12 @@ kernelspec:
 
 # Networks
 
-```{code-cell} python
-:tags: ["hide-output"]
+```{code-cell} ipython3
+:tags: [hide-output]
+
 pip install quantecon-book-networks pandas-datareader
 ```
+
 
 ## Outline
 
@@ -54,7 +56,17 @@ import networkx as nx
 import matplotlib.pyplot as plt
 import pandas as pd
 import quantecon as qe
+
+import graphviz
+
+import matplotlib.cm as cm
+import quantecon_book_networks
+import quantecon_book_networks.input_output as qbn_io
+import quantecon_book_networks.data as qbn_data
+
+import matplotlib.patches as mpatches
 ```
+
 
 ## Economic and Financial Networks
 
@@ -74,7 +86,6 @@ The structure of production networks affects trade, innovation and the propagati
 
 To better understand such networks, let's look at some examples in more depth.
 
-+++
 
 ### Example: Aircraft Exports
 
@@ -82,7 +93,6 @@ The following figure shows international trade in large commercial aircraft in 2
 
 ```{code-cell} ipython3
 ---
-tags: ["hide-input"]
 mystnb:
   figure:
     caption: "Commercial Aircraft Network \n"
@@ -91,12 +101,8 @@ mystnb:
     alt: aircraft_network
     classes: shadow bg-primary
     width: 200px
+tags: [hide-input]
 ---
-
-import matplotlib.cm as cm
-import quantecon_book_networks
-import quantecon_book_networks.input_output as qbn_io
-import quantecon_book_networks.data as qbn_data
 ch1_data = qbn_data.introduction()
 export_figures = False
 
@@ -147,6 +153,7 @@ nx.draw_networkx_edges(DG,
 plt.show()
 ```
 
+
 The circles in the figure are called **nodes** or **vertices** -- in this case they represent countries.
 
 The arrows in the figure are called **edges** or **links**.
@@ -159,7 +166,6 @@ The figure shows that the US, France and Germany are major export hubs.
 
 In the discussion below, we learn to quantify such ideas.
 
-+++
 
 ### Example: A Markov Chain
 
@@ -174,10 +180,9 @@ where the states are
 Let's examine the following figure.
 
 ```{code-cell} ipython3
-:tags: ["hide-input"]
-from graphviz import Digraph
+:tags: [hide-input]
 
-dot = Digraph(comment='Graph')
+dot = graphviz.Digraph(comment='Graph')
 dot.attr(rankdir='LR')
 
 dot.node("ng")
@@ -195,6 +200,7 @@ dot.edge("sr", "sr", label="0.492")
 dot
 ```
 
+
 This is an example of a network, where the set of nodes $V$ equals the states:
 
 $$
@@ -203,7 +209,6 @@ $$
 
 The edges between the nodes show the one month transition probabilities.
 
-+++
 
 ## An Introduction to Graph Theory
 
@@ -232,7 +237,6 @@ E.g.,
 case of directed graphs --- we just need to insist that each arrow pointing
 from $A$ to $B$ is paired with another arrow pointing from $B$ to $A$.)
 
-+++
 
 ### Key Definitions
 
@@ -270,8 +274,7 @@ mystnb:
     classes: shadow bg-primary
     width: 200px
 ---
-
-graph1 = Digraph(comment='Graph',engine = "neato")
+graph1 = graphviz.Digraph(comment='Graph',engine = "neato")
 graph1.attr(rankdir='LR')
 graph1.node("poor", pos = '0,0!')
 graph1.node("middle class", pos = '2,1!')
@@ -302,8 +305,7 @@ mystnb:
     classes: shadow bg-primary
     width: 200px
 ---
-
-graph2 = Digraph(comment='Graph',engine="neato")
+graph2 = graphviz.Digraph(comment='Graph',engine="neato")
 graph2.attr(rankdir='LR')
 graph2.node("poor", pos = '0,0!')
 graph2.node("middle class", pos = '2,1!')
@@ -331,7 +333,6 @@ Also,  for $v \in V$,
 * the **in-degree** is $i_d(v) = $ the number of direct predecessors of $v$ and
 * the **out-degree** is $o_d(v) = $ the number of direct successors of $v$.
 
-+++
 
 ### Digraphs in Networkx
 
@@ -339,11 +340,6 @@ The Python package [Networkx](https://networkx.org/) provides a convenient
 data structure for representing directed graphs and implements many common
 routines for analyzing them.
 
-To import it into Python we run
-
-```{code-cell} ipython3
-import networkx as nx
-```
 
 As an example, let us recreate {numref}`poverty_trap_2` using Networkx.
 
@@ -352,6 +348,7 @@ To do so, we first create an empty `DiGraph` object:
 ```{code-cell} ipython3
 G_p = nx.DiGraph()
 ```
+
 
 Next we populate it with nodes and edges.
 
@@ -364,6 +361,7 @@ edge_list = [('p', 'p'),
              ('r', 'p'), ('r', 'm'), ('r', 'r')]
 ```
 
+
 Finally, we add the edges to our `DiGraph` object:
 
 ```{code-cell} ipython3
@@ -372,11 +370,13 @@ for e in edge_list:
     G_p.add_edge(u, v)
 ```
 
-Alternatively we can use the following command.
+
+Alternatively, we can use the method `add_edges_from`.
 
 ```{code-cell} ipython3
 G_p.add_edges_from(edge_list)
 ```
+
 
 Adding the edges automatically adds the nodes, so `G_p` is now a
 correct representation of our graph.
@@ -391,6 +391,7 @@ nx.draw_spring(G_p, ax=ax, node_size=500, with_labels=True,
 plt.show()
 ```
 
+
 The figure obtained above matches the original directed graph in {numref}`poverty_trap_2`.
 
 
@@ -402,6 +403,7 @@ For example,
 ```{code-cell} ipython3
 G_p.in_degree('p')
 ```
+
 
 ### Communication
 
@@ -461,12 +463,12 @@ nx.draw(G2, with_labels = True)
 nx.is_strongly_connected(G2)    #checking if above graph is strongly connected
 ```
 
+
 ## Weighted Graphs
 
 We now introduce weighted graphs, where weights (numbers) are attached to each
 edge.
 
-+++
 
 ### International Private Credit Flows by Country
 
@@ -475,7 +477,6 @@ loans) between private banks, grouped by country of origin.
 
 ```{code-cell} ipython3
 ---
-tags: ["hide-input"]
 mystnb:
   figure:
     caption: "International Credit Network \n"
@@ -484,8 +485,8 @@ mystnb:
     alt: financial_network
     classes: shadow bg-primary
     width: 200px
+tags: [hide-input]
 ---
-
 Z = ch1_data["adjacency_matrix_2019"]["Z"]
 Z_visual= ch1_data["adjacency_matrix_2019"]["Z_visual"]
 countries = ch1_data["adjacency_matrix_2019"]["countries"]
@@ -540,6 +541,7 @@ nx.draw_networkx_edges(G,
 plt.show()
 ```
 
+
 The country codes are given in the following table.
 
 |Code|    Country    |Code| Country |Code|   Country   |Code|     Country    |
@@ -568,8 +570,8 @@ Hence existence of an edge from one node to another is not particularly informat
 To understand the network, we need to record not just the existence or absence
 of a credit flow, but also the size of the flow.
 
-The correct data structure for recording this information is a ``weighted
-directed graph''
+The correct data structure for recording this information is a "weighted
+directed graph".
 
 +++
 
@@ -585,7 +587,6 @@ representing edges of the induced directed graph.
 
 ```{code-cell} ipython3
 ---
-tags: ["hide-input"]
 mystnb:
   figure:
     caption: "Weighted Poverty Trap \n"
@@ -594,9 +595,9 @@ mystnb:
     alt: poverty_trap_weighted
     classes: shadow bg-primary
     width: 200px
+tags: [hide-input]
 ---
-
-graph3 = Digraph(comment='Graph')
+graph3 = graphviz.Digraph(comment='Graph')
 
 graph3.attr(rankdir='LR')
 graph3.node("poor")
@@ -615,6 +616,7 @@ graph3.edge("rich", "rich", label = '0.8')
 graph3
 ```
 
+
 The numbers next to the edges are the weights.
 
 In this case, you can think of the numbers on the arrows as transition
@@ -622,7 +624,6 @@ probabilities for a household over, say, one year.
 
 We see that a rich household has a 10\% chance of becoming poor in one year.
 
-+++
 
 ## Adjacency Matrices
 
@@ -668,7 +669,7 @@ A = ((0.9, 0.1, 0.0),
      (0.4, 0.4, 0.2),
      (0.1, 0.1, 0.8))
 A = np.array(A)
-G = qe.DiGraph(A, weighted=True)    #store weights
+G = qe.DiGraph(A, weighted=True)    # store weights
 ```
 
 One of the key points to remember about adjacency matrices is that taking the
@@ -697,13 +698,14 @@ edge_labels={('1','2'): '100',
 
 nx.draw_networkx(G4, pos, node_color = 'none',node_size = 500)
 nx.draw_networkx_edge_labels(G4, pos, edge_labels=edge_labels)
-nx.draw_networkx_nodes(G4, pos, linewidths= 0.5, edgecolors = 'black', node_color = 'none',node_size = 500)
+nx.draw_networkx_nodes(G4, pos, linewidths= 0.5, edgecolors = 'black',
+                       node_color = 'none',node_size = 500)
 
 plt.show()
 ```
 
 ```{code-cell} ipython3
-graph4 = Digraph(engine = "neato")
+graph4 = graphviz.Digraph(engine = "neato")
 
 graph4.attr(rankdir='LR')
 graph4.node('1', pos = '1,0!')
@@ -724,6 +726,7 @@ graph4.edge('5','4', label = '300')
 
 graph4
 ```
+
 
 We see that bank 2 extends a loan of size 200 to bank 3.
 
@@ -774,13 +777,14 @@ edge_labels={('1','2'): '50', ('1','5'): '150',
 
 nx.draw_networkx(G5, pos, node_color = 'none',node_size = 500)
 nx.draw_networkx_edge_labels(G5, pos, edge_labels=edge_labels)
-nx.draw_networkx_nodes(G5, pos, linewidths= 0.5, edgecolors = 'black', node_color = 'none',node_size = 500)
+nx.draw_networkx_nodes(G5, pos, linewidths= 0.5, edgecolors = 'black',
+                       node_color = 'none',node_size = 500)
 
 plt.show()
 ```
 
 ```{code-cell} ipython3
-graph5 = Digraph(engine = "neato")
+graph5 = graphviz.Digraph(engine = "neato")
 
 graph5.attr(rankdir='LR')
 graph5.node('1', pos = '1,0!')
@@ -802,6 +806,7 @@ graph5.edge('5','4', label = '50')
 graph5
 ```
 
+
 In general, every nonnegative $n \times n$ matrix $A = (a_{ij})$ can be
 viewed as the adjacency matrix of a weighted directed graph.
 
@@ -812,7 +817,6 @@ For the weight function we set $w(i, j) = a_{ij}$  for all edges $(i,j)$.
 
 We call this graph the weighted directed graph induced by $A$.
 
-+++
 
 ## Properties
 
@@ -865,7 +869,7 @@ We illustrate the above theorem with a simple example.
 Consider the following weighted directed graph.
 
 ```{code-cell} ipython3
-graph6 = Digraph()
+graph6 = graphviz.Digraph()
 
 graph6.attr(rankdir='LR')
 graph6.node('1')
@@ -881,6 +885,7 @@ graph6.edge('3','2', label = '0.6')
 graph6
 ```
 
+
 We first create the above network as a Networkx `DiGraph` object.
 
 ```{code-cell} ipython3
@@ -891,16 +896,18 @@ G6.add_edges_from([('1','2'),('1','3'),
                    ('3','1'),('3','2')])
 ```
 
+
 Then we construct the associated adjacency matrix A.
 
 ```{code-cell} ipython3
-A = np.array([[0,0.7,0.3],    #adjacency matrix A
+A = np.array([[0,0.7,0.3],    # adjacency matrix A
               [1,0,0],
               [0.4,0.6,0]])
 ```
 
 ```{code-cell} ipython3
-:tags: ["hide-input"]
+:tags: [hide-input]
+
 def is_irreducible(P):
     n = len(P)
     result = np.zeros((n, n))
@@ -910,12 +917,13 @@ def is_irreducible(P):
 ```
 
 ```{code-cell} ipython3
-is_irreducible(A)      #check irreducibility of A
+is_irreducible(A)      # check irreducibility of A
 ```
 
 ```{code-cell} ipython3
-nx.is_strongly_connected(G6)      #check connectedness of graph
+nx.is_strongly_connected(G6)      # check connectedness of graph
 ```
+
 
 ## Network Centrality
 
@@ -949,7 +957,7 @@ Consider the following simple example.
 ---
 mystnb:
   figure:
-    caption: "Sample Graph"
+    caption: Sample Graph
     name: sample_gph_1
   image:
     alt: sample_gph_1
@@ -969,20 +977,23 @@ G7.add_edges_from([('1','2'),('1','6'),
                    ('7','4'),('7','6')])
 pos = nx.planar_layout(G7)
 
-nx.draw_networkx(G7, pos, node_color = 'none',node_size = 500)
-nx.draw_networkx_nodes(G7, pos, linewidths= 0.5, edgecolors = 'black', node_color = 'none',node_size = 500)
+nx.draw_networkx(G7, pos, node_color='none', node_size=500)
+nx.draw_networkx_nodes(G7, pos, linewidths=0.5, edgecolors='black',
+                       node_color='none',node_size=500)
 
 plt.show()
 ```
 
+
 The following code displays the in-degree centrality of all nodes.
 
 ```{code-cell} ipython3
-iG7 = [G7.in_degree(v) for v in G7.nodes()]   #computing in-degree centrality
+iG7 = [G7.in_degree(v) for v in G7.nodes()]   # computing in-degree centrality
 
-for i,d in enumerate(iG7):
-    print(i+1,d)
+for i, d in enumerate(iG7):
+    print(i+1, d)
 ```
+
 
 Consider the international credit network displayed in {numref}`financial_network`.
 
@@ -1002,23 +1013,8 @@ def centrality_plot_data(countries, centrality_measures):
     return df.sort_values('centrality')
 ```
 
-centrality_measures = [outdegree, indegree,
-                       ecentral_hub, ecentral_authority,
-                       kcentral_hub, kcentral_authority]
-
-ylabels = ['out degree', 'in degree',
-           'eigenvector hub','eigenvector authority',
-           'katz hub', 'katz authority']
-
-ylims = [(0, 20), (0, 20),
-         None, None,
-         None, None]
-
 ```{code-cell} ipython3
-import matplotlib.patches as mpatches
-
 fig, ax = plt.subplots()
-#axes = axes.flatten()
 
 df = centrality_plot_data(countries, indegree)
 
@@ -1031,6 +1027,7 @@ ax.set_ylim((0,20))
 
 plt.show()
 ```
+
 
 Unfortunately, while in-degree and out-degree centrality are simple to
 calculate, they are not always informative.
@@ -1068,7 +1065,6 @@ node depends on the importance of other nodes that *it links to*.
 
 The next centrality measures we study have these recursive features.
 
-+++
 
 ### Eigenvector Centrality
 
@@ -1103,7 +1099,6 @@ for some element $e_i$
 \end{aligned}
 ```
 
-+++
 
 Note the recursive nature of the definition: the centrality obtained by node
 $i$ is proportional to a sum of the centrality of all nodes, weighted by
@@ -1139,6 +1134,7 @@ def eigenvector_centrality(A, k=40, authority=False):
     return e / np.sum(e)
 ```
 
+
 Let us compute eigenvector centrality for the graph generated in {numref}`sample_gph_1`.
 
 ```{code-cell} ipython3
@@ -1153,6 +1149,7 @@ for i in range(n):
     print(i+1,e[i])
 ```
 
+
 While nodes $2$ and $4$ had the highest in-degree centrality we can see that nodes $1$ and $2$ have the
 highest eigenvector centrality.
 
@@ -1164,7 +1161,6 @@ eig_central = eigenvector_centrality(Z)
 
 ```{code-cell} ipython3
 fig, ax = plt.subplots()
-#axes = axes.flatten()
 
 df = centrality_plot_data(countries, eig_central)
 
@@ -1175,6 +1171,7 @@ ax.legend(handles=[patch], fontsize=12, loc="upper left", handlelength=0, frameo
 
 plt.show()
 ```
+
 
 Countries that are rated highly according to this rank tend to be important
 players in terms of supply of credit.
@@ -1190,7 +1187,6 @@ A variant of eigenvector centrality is at the core of Google’s PageRank algori
 
 The main principle is that links from important nodes (as measured by degree centrality) are worth more than links from unimportant nodes.
 
-+++
 
 ### Katz Centrality
 
@@ -1234,7 +1230,6 @@ $$
     \kappa = (I - \beta A)^{-1} \mathbf{1}
 $$
 
-+++
 
 This follows from the Neumann series theorem [TODO link to Maanasee's lecture].
 
@@ -1242,9 +1237,6 @@ The parameter $\beta$ is used to ensure that $\kappa$ is finite
 
 When $r(A)<1$, we use $\beta=1$ as the default for Katz centrality computations.
 
-
-
-+++
 
 ### Authorities vs Hubs
 
@@ -1305,7 +1297,6 @@ ecentral_authority = eigenvector_centrality(Z, authority=True)
 
 ```{code-cell} ipython3
 fig, ax = plt.subplots()
-#axes = axes.flatten()
 
 df = centrality_plot_data(countries, ecentral_authority)
 
@@ -1317,12 +1308,12 @@ ax.legend(handles=[patch], fontsize=12, loc="upper left", handlelength=0, frameo
 plt.show()
 ```
 
+
 Highly ranked countries are those that attract large inflows of credit, or
 credit inflows from other major players.
 
 In this case the US clearly dominates the rankings as a target of interbank credit.
 
-+++
 
 ## Further Reading
 
@@ -1332,13 +1323,11 @@ Textbooks on economic and social networks include {cite}`jackson2010social`,
 {cite}`easley2010networks`, {cite}`borgatti2018analyzing`,
 {cite}`sargent2022economic` and {cite}`goyal2023networks`.
 
-+++
 
 Within the realm of network science, the texts
 by {cite}`newman2018networks`, {cite}`menczer2020first` and
 {cite}`coscia2021atlas` are excellent.
 
-+++
 
 ## Exercises
 
@@ -1416,12 +1405,13 @@ $$
 ```
 
 ```{code-cell} ipython3
-#first lets plot the given graph
+# First, let's plot the given graph
+
 G = nx.DiGraph()
 
-G.add_nodes_from((0,1,2,3,4,5,6,7))  #adding nodes
+G.add_nodes_from(np.arange(8))  # adding nodes
 
-G.add_edges_from([(0,1),(0,3),       #adding edges
+G.add_edges_from([(0,1),(0,3),       # adding edges
                   (1,0),
                   (2,4),
                   (3,2),(3,4),(3,7),
@@ -1430,7 +1420,7 @@ G.add_edges_from([(0,1),(0,3),       #adding edges
                   (6,3),(6,5),
                   (7,0)])
 
-nx.draw_circular(G, node_color = 'gray',node_size = 500, with_labels = True)
+nx.draw_circular(G, node_color='gray', node_size=500, with_labels=True)
 
 plt.show()
 ```
@@ -1442,19 +1432,20 @@ A
 ```
 
 ```{code-cell} ipython3
-oG = [G.out_degree(v) for v in G.nodes()]   #computing in-degree centrality
+oG = [G.out_degree(v) for v in G.nodes()]   # computing in-degree centrality
 
-for i,d in enumerate(oG):
-    print(i,d)
+for i, d in enumerate(oG):
+    print(i, d)
 ```
 
 ```{code-cell} ipython3
-e = eigenvector_centrality(A)   #computing eigenvector centrality
+e = eigenvector_centrality(A)   # computing eigenvector centrality
 n = len(e)
 
 for i in range(n):
-    print(i+1,e[i])
+    print(i+1, e[i])
 ```
+
 
 ```{solution-end}
 ```
@@ -1500,9 +1491,9 @@ def is_accessible(G,i,j):
 ```{code-cell} ipython3
 G = nx.DiGraph()
 
-G.add_nodes_from((0,1,2,3,4,5,6,7))  #adding nodes
+G.add_nodes_from(np.arange(8))  # adding nodes
 
-G.add_edges_from([(0,1),(0,3),       #adding edges
+G.add_edges_from([(0,1),(0,3),       # adding edges
                   (1,0),
                   (2,4),
                   (3,2),(3,4),(3,7),
@@ -1513,11 +1504,11 @@ G.add_edges_from([(0,1),(0,3),       #adding edges
 ```
 
 ```{code-cell} ipython3
-is_accessible(G,2,1)
+is_accessible(G, 2, 1)
 ```
 
 ```{code-cell} ipython3
-is_accessible(G,3,6)
+is_accessible(G, 3, 6)
 ```
 
 ```{solution-end}
