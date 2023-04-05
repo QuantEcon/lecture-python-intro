@@ -1072,7 +1072,7 @@ Suppose we have a weighted directed graph with adjacency matrix $A$.
 For simplicity we will suppose that the nodes $V$ of the graph are just the
 integers $1, \ldots, n$.
 
-Let $r(A)$ denote the {ref}`spectral radius<neumann_series_lemma>` of $A$.
+Let $r(A)$ denote the {ref}`spectral radius<la_neumann>` of $A$.
 
 The **eigenvector centrality** of the graph is defined as the $n$-vector $e$ that solves
 
@@ -1085,7 +1085,7 @@ The **eigenvector centrality** of the graph is defined as the $n$-vector $e$ tha
 
 In other words, $e$ is the dominant eigenvector of $A$ (the eigenvector of the
 largest eigenvalue --- see the discussion of the Perron-Frobenius theorem in
-{ref}`the eigenvalue lecture <frobenius>`
+{ref}`the eigenvalue lecture <perron-frobe>`
 
 To better understand {eq}`ev_central`, we write out the full expression
 for some element $e_i$
@@ -1229,7 +1229,7 @@ $$
 $$
 
 
-This follows from the {ref}`Neumann series theorem<neumann_series_lemma>`.
+This follows from the {ref}`Neumann series theorem<la_neumann>`.
 
 The parameter $\beta$ is used to ensure that $\kappa$ is finite
 

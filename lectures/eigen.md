@@ -874,7 +874,7 @@ Here are some examples to illustrate this further.
 3. $A = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}$ is reducible since $A^k = A$ for all $k \geq 0$ and thus
    $a^{k}_{12},a^{k}_{21} = 0$ for all $k \geq 0$.
 
-
+(perron-frobe)=
 ### The Perron-Frobenius Theorem
 
 For a nonnegative matrix $A$ the behaviour of $A^k$ as $k \to \infty$ is controlled by the eigenvalue with the largest
