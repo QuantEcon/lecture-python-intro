@@ -946,6 +946,16 @@ the graph.
 Consider the following simple example.
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: "Sample Graph"
+    name: sample_gph_1
+  image:
+    alt: sample_gph_1
+    classes: shadow bg-primary
+    width: 200px
+---
 G7 = nx.DiGraph()
 
 G7.add_nodes_from(['1','2','3','4','5','6','7'])
@@ -1025,7 +1035,7 @@ plt.show()
 Unfortunately, while in-degree and out-degree centrality are simple to
 calculate, they are not always informative.
 
-In *add numref*, an edge exists between almost every node,
+In {numref}`financial_network`, an edge exists between almost every node,
 so the in- or out-degree based centrality ranking fails to effectively separate the countries.
 
 This can be seen in the above graph as well.
@@ -1129,10 +1139,10 @@ def eigenvector_centrality(A, k=40, authority=False):
     return e / np.sum(e)
 ```
 
-Let us compute eigenvector centrality for the graph generated in *add numref*.
+Let us compute eigenvector centrality for the graph generated in {numref}`sample_gph_1`.
 
 ```{code-cell} ipython3
-A = nx.to_numpy_array(G7)         #compute adjacency matrix of graph
+A = nx.to_numpy_array(G7)         # compute adjacency matrix of graph
 ```
 
 ```{code-cell} ipython3
@@ -1146,7 +1156,7 @@ for i in range(n):
 While nodes $2$ and $4$ had the highest in-degree centrality we can see that nodes $1$ and $2$ have the
 highest eigenvector centrality.
 
-Let's once again revisit the international credit network in *add numref*.
+Let's once again revisit the international credit network in {numref}`financial_network`.
 
 ```{code-cell} ipython3
 eig_central = eigenvector_centrality(Z)
@@ -1287,7 +1297,7 @@ Element-by-element, this is given by
 We see $e_j$ will be high if many nodes with high authority rankings link to $j$.
 
 The following figurenshows the authority-based eigenvector centrality ranking for the international
-credit network shown in *add numref*.
+credit network shown in {numref}`financial_network`.
 
 ```{code-cell} ipython3
 ecentral_authority = eigenvector_centrality(Z, authority=True)
