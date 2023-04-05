@@ -78,13 +78,11 @@ To better understand such networks, let's look at some examples in more depth.
 
 ### Example: Aircraft Exports
 
-TODO hide the code
-
 The following figure shows international trade in large commercial aircraft in 2019 based on International Trade Data SITC Revision 2.
 
 ```{code-cell} ipython3
 ---
-tags: ["hide_input"]
+tags: ["hide-input"]
 mystnb:
   figure:
     caption: "Commercial Aircraft Network \n"
@@ -176,7 +174,7 @@ where the states are
 Let's examine the following figure.
 
 ```{code-cell} ipython3
-:tags: ["hide_input"]
+:tags: ["hide-input"]
 from graphviz import Digraph
 
 dot = Digraph(comment='Graph')
@@ -477,7 +475,7 @@ loans) between private banks, grouped by country of origin.
 
 ```{code-cell} ipython3
 ---
-tags: ["hide_cell"]
+tags: ["hide-input"]
 mystnb:
   figure:
     caption: "International Credit Network \n"
@@ -587,7 +585,7 @@ representing edges of the induced directed graph.
 
 ```{code-cell} ipython3
 ---
-tags: ["hide_input"]
+tags: ["hide-input"]
 mystnb:
   figure:
     caption: "Weighted Poverty Trap \n"
@@ -902,7 +900,7 @@ A = np.array([[0,0.7,0.3],    #adjacency matrix A
 ```
 
 ```{code-cell} ipython3
-:tags: ["hide_cell"]
+:tags: ["hide-input"]
 def is_irreducible(P):
     n = len(P)
     result = np.zeros((n, n))
@@ -1318,79 +1316,17 @@ In this case the US clearly dominates the rankings as a target of interbank cred
 
 ## Further Reading
 
-We apply the ideas discussed in this lecture to [TODO link to our lecture on
-production networks].
+We apply the ideas discussed in this lecture to:
 
-Textbooks on economic and social networks include \cite{jackson2010social},
-\cite{easley2010networks}, \cite{borgatti2018analyzing},
-\cite{sargent2022economic}, and \cite{goyal2023networks}.
-
-@article{sargent2022economic,
-  title={Economic Networks: Theory and Computation},
-  author={Sargent, Thomas J and Stachurski, John},
-  journal={arXiv preprint arXiv:2203.11972},
-  year={2022}
-}
-
-+++
-
-@book{borgatti2018analyzing,
-  title={Analyzing social networks},
-  author={Borgatti, Stephen P and Everett, Martin G and Johnson, Jeffrey C},
-  year={2018},
-  publisher={Sage}
-}
-
-@book{jackson2010social,
-  title={Social and economic networks},
-  author={Jackson, Matthew O},
-  year={2010},
-  publisher={Princeton university press}
-}
-
-@book{easley2010networks,
-  title={Networks, crowds, and markets},
-  author={Easley, David and Kleinberg, Jon and others},
-  volume={8},
-  year={2010},
-  publisher={Cambridge university press Cambridge}
-}
-
-@book{goyal2023networks,
-  title={Networks: An economics approach},
-  author={Goyal, Sanjeev},
-  year={2023},
-  publisher={MIT Press}
-}
+Textbooks on economic and social networks include {cite}`jackson2010social`,
+{cite}`easley2010networks`, {cite}`borgatti2018analyzing`,
+{cite}`sargent2022economic` and {cite}`goyal2023networks`.
 
 +++
 
 Within the realm of network science, the texts
-by \cite{newman2018networks}, \cite{menczer2020first} and
-\cite{coscia2021atlas} are excellent.
-
-+++
-
-@book{newman2018networks,
-  title={Networks},
-  author={Newman, Mark},
-  year={2018},
-  publisher={Oxford university press}
-}
-
-@book{menczer2020first,
-  title={A first course in network science},
-  author={Menczer, Filippo and Fortunato, Santo and Davis, Clayton A},
-  year={2020},
-  publisher={Cambridge University Press}
-}
-
-@article{coscia2021atlas,
-  title={The atlas for the aspiring network scientist},
-  author={Coscia, Michele},
-  journal={arXiv preprint arXiv:2101.00863},
-  year={2021}
-}
+by {cite}`newman2018networks`, {cite}`menczer2020first` and
+{cite}`coscia2021atlas` are excellent.
 
 +++
 
