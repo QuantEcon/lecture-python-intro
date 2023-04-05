@@ -956,7 +956,7 @@ What guarantees the existence of a unique vector $x^{*}$ that satisfies
 The following is a fundamental result in functional analysis that generalises
 {eq}`gp_sum` to a multivariate case.
 
-
+(neumann_series_lemma)=
 ```{prf:theorem} Neumann Series Lemma
 :label: neumann_series_lemma
 

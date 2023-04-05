@@ -128,27 +128,27 @@ fig, ax = plt.subplots(figsize=(10, 10))
 ax.axis('off')
 
 nx.draw_networkx_nodes(DG,
-                        node_pos_dict,
-                        node_color=node_colors,
-                        node_size=node_sizes,
-                        linewidths=2,
-                        alpha=0.6,
-                        ax=ax)
+                       node_pos_dict,
+                       node_color=node_colors,
+                       node_size=node_sizes,
+                       linewidths=2,
+                       alpha=0.6,
+                       ax=ax)
 
 nx.draw_networkx_labels(DG,
                         node_pos_dict,
                         ax=ax)
 
 nx.draw_networkx_edges(DG,
-                        node_pos_dict,
-                        edge_color=edge_colors,
-                        width=edge_widths,
-                        arrows=True,
-                        arrowsize=20,
-                        ax=ax,
-                        arrowstyle='->',
-                        node_size=node_sizes,
-                        connectionstyle='arc3,rad=0.15')
+                       node_pos_dict,
+                       edge_color=edge_colors,
+                       width=edge_widths,
+                       arrows=True,
+                       arrowsize=20,
+                       ax=ax,
+                       arrowstyle='->',
+                       node_size=node_sizes,
+                       connectionstyle='arc3,rad=0.15')
 
 plt.show()
 ```
@@ -275,9 +275,9 @@ mystnb:
 ---
 graph1 = graphviz.Digraph(comment='Graph',engine = "neato")
 graph1.attr(rankdir='LR')
-graph1.node("poor", pos = '0,0!')
-graph1.node("middle class", pos = '2,1!')
-graph1.node("rich", pos = '4,0!')
+graph1.node("poor", pos='0,0!')
+graph1.node("middle class", pos='2,1!')
+graph1.node("rich", pos='4,0!')
 
 graph1.edge("poor", "poor")
 graph1.edge("poor", "middle class")
@@ -306,9 +306,9 @@ mystnb:
 ---
 graph2 = graphviz.Digraph(comment='Graph',engine="neato")
 graph2.attr(rankdir='LR')
-graph2.node("poor", pos = '0,0!')
-graph2.node("middle class", pos = '2,1!')
-graph2.node("rich", pos = '4,0!')
+graph2.node("poor", pos='0,0!')
+graph2.node("middle class", pos='2,1!')
+graph2.node("rich", po ='4,0!')
 
 graph2.edge("poor", "poor")
 graph2.edge("middle class", "poor")
@@ -512,13 +512,13 @@ fig, ax = plt.subplots(figsize=(8, 10))
 ax.axis('off')
 
 nx.draw_networkx_nodes(G,
-                        node_pos_dict,
-                        node_color=node_colors,
-                        node_size=node_sizes,
-                        edgecolors='grey',
-                        linewidths=2,
-                        alpha=0.4,
-                        ax=ax)
+                       node_pos_dict,
+                       node_color=node_colors,
+                       node_size=node_sizes,
+                       edgecolors='grey',
+                       linewidths=2,
+                       alpha=0.4,
+                       ax=ax)
 
 nx.draw_networkx_labels(G,
                         node_pos_dict,
@@ -526,16 +526,16 @@ nx.draw_networkx_labels(G,
                         ax=ax)
 
 nx.draw_networkx_edges(G,
-                        node_pos_dict,
-                        edge_color=edge_colors,
-                        width=edge_widths,
-                        arrows=True,
-                        arrowsize=20,
-                        alpha=0.8,
-                        ax=ax,
-                        arrowstyle='->',
-                        node_size=node_sizes,
-                        connectionstyle='arc3,rad=0.15')
+                       node_pos_dict,
+                       edge_color=edge_colors,
+                       width=edge_widths,
+                       arrows=True,
+                       arrowsize=20,
+                       alpha=0.8,
+                       ax=ax,
+                       arrowstyle='->',
+                       node_size=node_sizes,
+                       connectionstyle='arc3,rad=0.15')
 
 plt.show()
 ```
@@ -603,14 +603,14 @@ graph3.node("poor")
 graph3.node("middle class")
 graph3.node("rich")
 
-graph3.edge("poor", "poor", label = '0.9')
-graph3.edge("poor", "middle class", label = '0.1')
-graph3.edge("middle class", "poor", label = '0.4')
-graph3.edge("middle class", "middle class", label = '0.4')
-graph3.edge("middle class", "rich", label = '0.2')
-graph3.edge("rich", "poor", label = '0.1')
-graph3.edge("rich", "middle class", label = '0.1')
-graph3.edge("rich", "rich", label = '0.8')
+graph3.edge("poor", "poor", label='0.9')
+graph3.edge("poor", "middle class", label='0.1')
+graph3.edge("middle class", "poor", label='0.4')
+graph3.edge("middle class", "middle class", label='0.4')
+graph3.edge("middle class", "rich", label='0.2')
+graph3.edge("rich", "poor", label='0.1')
+graph3.edge("rich", "middle class", label='0.1')
+graph3.edge("rich", "rich", label='0.8')
 
 graph3
 ```
@@ -707,21 +707,21 @@ plt.show()
 graph4 = graphviz.Digraph(engine = "neato")
 
 graph4.attr(rankdir='LR')
-graph4.node('1', pos = '1,0!')
-graph4.node('2', pos = '3,0!')
-graph4.node('3', pos = '4,2!')
-graph4.node('4', pos = '2,3!')
-graph4.node('5', pos = '0,2!')
+graph4.node('1', pos='1,0!')
+graph4.node('2', pos='3,0!')
+graph4.node('3', pos='4,2!')
+graph4.node('4', pos='2,3!')
+graph4.node('5', pos='0,2!')
 
-graph4.edge('1','2', label = '100')
-graph4.edge('2','1', label = '50')
-graph4.edge('2','3', label = '200')
-graph4.edge('3','4', label = '\t100')
-graph4.edge('4','2', label = '500')
-graph4.edge('4','5', label = '\n50\t')
-graph4.edge('5','1', label = '150')
-graph4.edge('5','3', label = '250')
-graph4.edge('5','4', label = '300')
+graph4.edge('1','2', label='100')
+graph4.edge('2','1', label='50')
+graph4.edge('2','3', label='200')
+graph4.edge('3','4', label='\t100')
+graph4.edge('4','2', label='500')
+graph4.edge('4','5', label='\n50\t')
+graph4.edge('5','1', label='150')
+graph4.edge('5','3', label='250')
+graph4.edge('5','4', label='300')
 
 graph4
 ```
@@ -786,21 +786,21 @@ plt.show()
 graph5 = graphviz.Digraph(engine = "neato")
 
 graph5.attr(rankdir='LR')
-graph5.node('1', pos = '1,0!')
-graph5.node('2', pos = '3,0!')
-graph5.node('3', pos = '4,2!')
-graph5.node('4', pos = '2,3!')
-graph5.node('5', pos = '0,2!')
+graph5.node('1', pos='1,0!')
+graph5.node('2', pos='3,0!')
+graph5.node('3', pos='4,2!')
+graph5.node('4', pos='2,3!')
+graph5.node('5', pos='0,2!')
 
-graph5.edge('1','2', label = '50')
-graph5.edge('1','5', label = '150')
-graph5.edge('2','1', label = '100')
-graph5.edge('2','4', label = '500')
-graph5.edge('3','2', label = '200')
-graph5.edge('3','5', label = '250')
-graph5.edge('4','3', label = '\t100')
-graph5.edge('4','5', label = '\n300\t')
-graph5.edge('5','4', label = '50')
+graph5.edge('1', '2', label='50')
+graph5.edge('1', '5', label='150')
+graph5.edge('2', '1', label='100')
+graph5.edge('2', '4', label='500')
+graph5.edge('3', '2', label='200')
+graph5.edge('3', '5', label='250')
+graph5.edge('4', '3', label='\t100')
+graph5.edge('4', '5', label='\n300\t')
+graph5.edge('5', '4', label='50')
 
 graph5
 ```
@@ -845,8 +845,8 @@ $$
 The above result is obvious when $k=1$ and a proof of the general case can be
 found in \cite{sargent2022economic}.
 
-Now recall from {ref}`the eigenvalues lecture <irreducible>` that a
-nonnegative matrix $A$ is called irreducible if for each $(i,j)$ there is an integer $k \geq 0$ such that $a^{k}_{ij} > 0$.
+Now recall from the eigenvalues lecture that a
+nonnegative matrix $A$ is called {ref}`irreducible<irreducible>` if for each $(i,j)$ there is an integer $k \geq 0$ such that $a^{k}_{ij} > 0$.
 
 From the preceding theorem it is not too difficult (see
 \cite{sargent2022economic} for details) to get the next result.
@@ -875,11 +875,11 @@ graph6.node('1')
 graph6.node('2')
 graph6.node('3')
 
-graph6.edge('1','2', label = '0.7')
-graph6.edge('1','3', label = '0.3')
-graph6.edge('2','1', label = '1')
-graph6.edge('3','1', label = '0.4')
-graph6.edge('3','2', label = '0.6')
+graph6.edge('1', '2', label='0.7')
+graph6.edge('1', '3', label='0.3')
+graph6.edge('2', '1', label='1')
+graph6.edge('3', '1', label='0.4')
+graph6.edge('3', '2', label='0.6')
 
 graph6
 ```
@@ -1072,7 +1072,7 @@ Suppose we have a weighted directed graph with adjacency matrix $A$.
 For simplicity we will suppose that the nodes $V$ of the graph are just the
 integers $1, \ldots, n$.
 
-Let $r(A)$ denote the {ref}`spectral radius<la_neumann>` of $A$.
+Let $r(A)$ denote the {ref}`spectral radius<neumann_series_lemma>` of $A$.
 
 The **eigenvector centrality** of the graph is defined as the $n$-vector $e$ that solves
 
@@ -1084,8 +1084,7 @@ The **eigenvector centrality** of the graph is defined as the $n$-vector $e$ tha
 ```
 
 In other words, $e$ is the dominant eigenvector of $A$ (the eigenvector of the
-largest eigenvalue --- see the discussion of the Perron-Frobenius theorem in
-{ref}`the eigenvalue lecture <perron-frobe>`
+largest eigenvalue --- see the discussion of the {ref}`Perron-Frobenius theorem<perron-frobe>` in the eigenvalue lecture.
 
 To better understand {eq}`ev_central`, we write out the full expression
 for some element $e_i$
@@ -1229,7 +1228,7 @@ $$
 $$
 
 
-This follows from the {ref}`Neumann series theorem<la_neumann>`.
+This follows from the {ref}`Neumann series theorem<neumann_series_lemma>`.
 
 The parameter $\beta$ is used to ensure that $\kappa$ is finite
 
