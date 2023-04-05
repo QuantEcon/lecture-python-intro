@@ -44,6 +44,10 @@ We denote this as $A \geq 0$.
 
 ### Irreducible Matrices
 
+We have (informally) introduced irreducible matrices in the Markov chain lecture (TODO: link to Markov chain lecture).
+
+Here we will introduce this concept formally.
+
 Let $A$ be a square nonnegative matrix and let $A^k$ be the $k^{th}$ power of A.
 
 Let $a^{k}_{ij}$ be element $(i,j)$ of $A^k$.
@@ -60,6 +64,8 @@ Here are some examples to illustrate this further.
 
 3. $A = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}$ is reducible since $A^k = A$ for all $k \geq 0$ and thus
    $a^{k}_{12},a^{k}_{21} = 0$ for all $k \geq 0$.
+
+4. We have seen examples of irreducible matrices where each state has a positive probability to be reached.
 
 
 ### The Perron-Frobenius Theorem
@@ -89,6 +95,13 @@ Moreover if $A$ is also irreducible then,
 
 (This is a relatively simple version of the theorem --- for more details see
 [here](https://en.wikipedia.org/wiki/Perron%E2%80%93Frobenius_theorem)).
+
+In fact, we have already seen Perron-Frobenius theorem in action before in the exercise (TODO: link to Markov chain exercise)
+
+In the exercise, we stated that the convegence rate is determined by the spectral gap, the difference between the largest and the second largest eigenvalue.
+
+This can be proved using Perron-Frobenius theorem.
+
 
 We will see applications of the theorem below.
 
@@ -179,7 +192,7 @@ Thus, we can apply the Neumann Series lemma to find $(I-A)^{-1}$.
 
 ```{code-cell} ipython3
 I = np.identity(2)      #2 x 2 identity matrix
-B = I-A
+B = I - A
 ```
 
 ```{code-cell} ipython3

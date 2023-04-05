@@ -11,6 +11,7 @@ kernelspec:
   name: python3
 ---
 
+(eigen)=
 # Eigenvalues and Eigenvectors 
 
 ```{index} single: Eigenvalues and Eigenvectors
