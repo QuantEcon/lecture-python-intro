@@ -1197,7 +1197,7 @@ that solves
 ```{math}
 :label: katz_central
     \kappa_i =  \beta \sum_{1 \leq j 1} a_{ij} \kappa_j + 1
-    \qquad  \text{for all} i \in \{0, \ldots, n-1}.
+    \qquad  \text{for all } i \in \{0, \ldots, n-1\}.
 ```
 
 Here $\beta$ is a parameter that we can choose.
