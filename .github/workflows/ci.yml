@@ -12,7 +12,7 @@ jobs:
           auto-update-conda: true
           auto-activate-base: true
           miniconda-version: 'latest'
-          python-version: 3.9
+          python-version: "3.10"
           environment-file: environment.yml
           activate-environment: quantecon
       - name: Graphics Support
@@ -64,7 +64,7 @@ jobs:
         shell: bash -l {0}
         run: |
           rm -r _build/.doctrees
-          jb build lectures --path-output ./ -W --keep-going
+          jb build lectures --path-output ./ -nW --keep-going
       - name: Upload Execution Reports (HTML)
         uses: actions/upload-artifact@v2
         if: failure()
