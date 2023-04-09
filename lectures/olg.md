@@ -4,12 +4,13 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.14.4
+    jupytext_version: 1.14.5
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
   name: python3
 ---
+
 
 # The Overlapping Generations Model
 
@@ -55,6 +56,7 @@ from functools import partial
 import matplotlib.pyplot as plt
 plt.rcParams["figure.figsize"] = (11, 5)  #set default figure size
 ```
+
 
 ## Environment
 
@@ -357,6 +359,7 @@ R_star, K_star = E_star
 plot_ad_as(aggregate_capital_demand, aggregate_capital_supply, m, K_prev=50, E_star=E_star)
 ```
 
+
 Let's observe the dynamics of the equilibrium price $R^*_{t+1}$.
 
 ```{code-cell} ipython3
@@ -371,6 +374,7 @@ ax.set_ylabel("$R^*_{t+1}$")
 ax.set_xlabel("$K_{t}$")
 plt.show()
 ```
+
 
 ## Dynamics and steady state
 
@@ -472,6 +476,7 @@ def k_star(model):
 plot_45(m, k_update, kstar=k_star(m))
 ```
 
+
 ## Another special case: CRRA preference
 
 
@@ -486,6 +491,7 @@ def crra(c, γ=0.5):
 ```{code-cell} ipython3
 m_crra = create_olg_model(u=crra, u_params={'γ': 0.5})
 ```
+
 
 ### New aggregate supply
 
@@ -558,6 +564,7 @@ def aggregate_supply_capital_crra(R, model, K_prev):
 plot_ad_as(aggregate_capital_demand, aggregate_supply_capital_crra, m_crra, K_prev=50, E_star=None)  # John this is to be fixed.
 ```
 
+
 Let's plot the aggregate supply with different values of utility parameter $\gamma$ and observe it's behaviour.
 
 ```{code-cell} ipython3
@@ -579,11 +586,11 @@ ax.legend()
 plt.show()
 ```
 
+
 When $\gamma <1$ the supply curve is downward sloping. When $\gamma > 1$ the supply curve is upward sloping.
 
 TODO: Do we need to add some explanation?
 
-+++
 
 ### Dynamics and steady state
 
@@ -642,6 +649,7 @@ def f(k_prime, k, model):
     return p - z
 ```
 
+
 Let's define a function `k_next` that finds the value of $k_{t+1}$.
 
 ```{code-cell} ipython3
@@ -652,6 +660,7 @@ def k_next(k_prime, model):
 ```{code-cell} ipython3
 plot_45(m_crra, k_next, kstar=None)
 ```
+
 
 Unlike the log preference case now a steady state cannot be solved analytically.
 
@@ -689,6 +698,7 @@ print(f"k_star = {k_star}")
 ```{code-cell} ipython3
 plot_45(m_crra, k_next, k_star)
 ```
+
 
 The next figure shows three time paths for capital, from
 three distinct initial conditions, under the parameterization listed above.
@@ -731,6 +741,7 @@ def simulate_ts(m, x0_values, ts_length):
 simulate_ts(m_crra, x0, ts_length)
 ```
 
+
 ## Exercises
 
 
@@ -772,6 +783,7 @@ def find_Kstar(R_star, model):
     return model.L * (R_star / model.α)**(1/(model.α-1))
 ```
 
+
 The following function plots the equilibrium quantity and equilibrium price.
 
 ```{code-cell} ipython3
@@ -811,6 +823,7 @@ K_t_vals = np.linspace(0.1, 50, 50)
 m_crra = create_olg_model(u=crra, u_params={'γ': 0.5})
 plot_ks_rs(K_t_vals, m_crra)
 ```
+
 
 ```{solution-end}
 ```
@@ -858,6 +871,7 @@ def u_quasilinear(c, θ=6):
     return c + c**θ
 ```
 
+
 The function `find_k_next` is used to find $k_{t+1}$ by finding
 the root of equation [](euler_quasilinear1) using the helper
 function `solve_for_k_next` for a given value of $k_t$.
@@ -885,13 +899,14 @@ def solve_for_k_star_q(x, model):
     return l - r
 
 def find_k_star_q(model):
-    return optimize.newton(solve_for_k_star_q, 0.3, args=(model,))
+    return optimize.newton(solve_for_k_star_q, 0.2, args=(model,))
 ```
+
 
 Let's simulate and plot the time path capital $\{k_t\}$.
 
 ```{code-cell} ipython3
-def simulate_ts(k0_values, model, ts_length=10):
+def simulate_ts(k0_values, model, ts_length=6):
     k_star = find_k_star_q(model)
 
     print("k_star:", k_star)
@@ -922,10 +937,5 @@ m_quasilinear = create_olg_model(u=u_quasilinear, u_params={'θ': 6})
 simulate_ts(k0_values, m_quasilinear)
 ```
 
-```{code-cell} ipython3
-
-```
-
-```{code-cell} ipython3
-
+```{solution-end}
 ```
