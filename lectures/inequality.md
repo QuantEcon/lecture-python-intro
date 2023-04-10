@@ -507,7 +507,7 @@ ax.legend(fontsize=12)
 plt.show()
 ```
 
-**TEST ===>** Here is a {ref}`gini_us` and a {numref}`gini_us`
+**TEST ===>** Here is a {ref}`gini_income_us` and a {numref}`gini_income_us`
 
 We see that, by this measure, inequality in wealth and income has risen
 substantially since 1980.
