@@ -145,7 +145,7 @@ households own just over 40\% of total wealth.
 ---
 mystnb:
   figure:
-    caption: Lorenz Curves For Simulated Data
+    caption: Lorenz curve of simulated data
     name: lorenz_simulated
 ---
 n = 2000
@@ -164,8 +164,6 @@ ax.hlines([0.43], [0], [0.8], alpha=0.5, colors='k', ls='--')
 
 ax.set_ylim((0, 1))
 ax.set_xlim((0, 1))
-
-plt.title("Lorenz curve of simulated data")     # TODO shift to the render
 
 plt.show()
 ```
@@ -242,10 +240,10 @@ US in 2016.
 ---
 mystnb:
   figure:
-    caption: "US Lorenz Curves \n"
+    caption: "2016 US Lorenz curves"
     name: lorenz_us
   image:
-    alt: lorenz_real
+    alt: lorenz_us
     classes: shadow bg-primary
     width: 75%
 ---
@@ -256,8 +254,7 @@ ax.plot(f_vals_ti[-1], l_vals_ti[-1], label=f'total income')
 ax.plot(f_vals_li[-1], l_vals_li[-1], label=f'labor income')
 ax.plot(f_vals_nw[-1], f_vals_nw[-1], label=f'equality')
 
-ax.legend(fontsize=12)
-plt.title("Lorenz curves of US data in 2016")     
+ax.legend(fontsize=12)   
 plt.show()
 ```
 
@@ -311,7 +308,7 @@ The idea is that $G=0$ indicates complete equality, while $G=1$ indicates comple
 ---
 mystnb:
   figure:
-    caption: "Shaded Lorenz curves (simulated data) \n"
+    caption: "Shaded lorenz curve of simulated data"
     name: lorenz_gini
   image:
     alt: lorenz_gini
@@ -335,8 +332,7 @@ ax.set_ylim((0, 1))
 ax.set_xlim((0, 1))
 
 ax.text(0.04, 0.5, r'$G = 2 \times$ shaded area', fontsize=12)
-
-plt.title("Shaded lorenz curve of simulated data")    
+  
 plt.show()
 ```
 
@@ -374,7 +370,7 @@ for σ in σ_vals:
 ```
 
 ```{code-cell} ipython3
-def plot_inequality_measures(x, y, legend, xlabel, ylabel, title):
+def plot_inequality_measures(x, y, legend, xlabel, ylabel):
     
     fig, ax = plt.subplots()
     ax.plot(x, y, marker='o', label=legend)
@@ -383,7 +379,6 @@ def plot_inequality_measures(x, y, legend, xlabel, ylabel, title):
     ax.set_ylabel(ylabel, fontsize=12)
 
     ax.legend(fontsize=12)
-    plt.title(title)      # TODO shift it to the render
     plt.show()
 ```
 
@@ -391,10 +386,10 @@ def plot_inequality_measures(x, y, legend, xlabel, ylabel, title):
 ---
 mystnb:
   figure:
-    caption: "Lorenz curves (simulated data) \n"
-    name: lorenz_simulated_shaded
+    caption: "Gini coefficients of simulated data"
+    name: gini_simulated
   image:
-    alt: gini
+    alt: gini_simulated
     classes: shadow bg-primary
     width: 75%
 ---
@@ -402,8 +397,7 @@ plot_inequality_measures(range(k),
                          ginis, 
                          'simulated', 
                          '$\sigma$', 
-                         'gini coefficients', 
-                         'Gini coefficients of simulated data')
+                         'gini coefficients')
 ```
 
 The plots show that inequality rises with $\sigma$, according to the Gini
@@ -467,10 +461,10 @@ ginis_li_new[5] = (ginis_li[4] + ginis_li[6]) / 2
 ---
 mystnb:
   figure:
-    caption: "US Gini Coefficients \n"
-    name: gini_us
+    caption: "Gini coefficients of US net wealth"
+    name: gini_wealth_us
   image:
-    alt: gini_us
+    alt: gini_wealth_us
     classes: shadow bg-primary
     width: 75%
 ---
@@ -483,13 +477,21 @@ ax.plot(years, ginis_nw, marker='o')
 
 ax.set_xlabel(xlabel, fontsize=12)
 ax.set_ylabel(ylabel, fontsize=12)
-
-
-plt.title("Gini coefficients of US net wealth data")     
+    
 plt.show()
 ```
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: "Gini coefficients of US income"
+    name: gini_income_us
+  image:
+    alt: gini_income_us
+    classes: shadow bg-primary
+    width: 75%
+---
 xlabel = "year"
 ylabel = "gini coefficient"
 
@@ -501,8 +503,7 @@ ax.plot(years, ginis_ti, marker='o', label="total income")
 ax.set_xlabel(xlabel, fontsize=12)
 ax.set_ylabel(ylabel, fontsize=12)
 
-ax.legend(fontsize=12)
-plt.title("Gini coefficients of US income data")     
+ax.legend(fontsize=12)     
 plt.show()
 ```
 
@@ -590,6 +591,16 @@ df_topshares = df5[['year', 'topshare_n_wealth', 'topshare_t_income', 'topshare_
 Then let's plot the top shares.
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: "US top shares"
+    name: top_shares_us
+  image:
+    alt: top_shares_us
+    classes: shadow bg-primary
+    width: 75%
+---
 xlabel = "year"
 ylabel = "top $10\%$ share"
 
@@ -603,7 +614,6 @@ ax.set_xlabel(xlabel, fontsize=12)
 ax.set_ylabel(ylabel, fontsize=12)
 
 ax.legend(fontsize=12)
-plt.title("Top shares of US data")     # TODO shift to the render
 plt.show()
 ```
 
@@ -662,12 +672,21 @@ for σ in σ_vals:
 ```
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: "Top shares of simulated data"
+    name: top_shares_simulated
+  image:
+    alt: top_shares_simulated
+    classes: shadow bg-primary
+    width: 75%
+---
 plot_inequality_measures(range(len(topshares)), 
                          topshares, 
                          "simulated data", 
                          "year", 
-                         "top $10\%$ share", 
-                         "Top $10\%$ share of simulated data") 
+                         "top $10\%$ share") 
 ```
 
 ```{solution-end}
@@ -708,6 +727,16 @@ for f_val, l_val in zip(f_vals_nw, l_vals_nw):
 ```
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: "US top shares: approximation vs Lorenz"
+    name: top_shares_us_al
+  image:
+    alt: top_shares_us_al
+    classes: shadow bg-primary
+    width: 75%
+---
 xlabel = "year"
 ylabel = "top $10\%$ share"
 
@@ -720,7 +749,6 @@ ax.set_xlabel(xlabel, fontsize=12)
 ax.set_ylabel(ylabel, fontsize=12)
 
 ax.legend(fontsize=12)
-plt.title("Top $10\%$ share of net wealth: approximation vs lorenz")
 plt.show()
 ```
 
