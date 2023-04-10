@@ -36,11 +36,22 @@ between nonnegativity and eigenvalues.
 
 ## Nonnegative Matrices
 
+Let $a^{k}_{ij}$ be element $(i,j)$ of $A^k$.
+
 An $n \times m$ matrix $A$ is called **nonnegative** if every element of $A$
 is nonnegative, i.e., $a_{ij} \geq 0$ for every $i,j$.
 
 We denote this as $A \geq 0$.
 
+### Primitive Matrices
+
+Let $A$ be a square nonnegative matrix and let $A^k$ be the $k^{th}$ power of A.
+
+A matrix is consisdered **primitive** if there exists a $k \in \mathbb{N}$ such that $A^k$ is everywhere positive.
+
+It means that $A$ is called primitive if there is an integer $k \geq 0$ such that $a^{k}_{ij} > 0$ for *all* $(i,j)$.
+
+This concept is closely related to irreducible matrices.
 
 ### Irreducible Matrices
 
@@ -48,11 +59,9 @@ We have (informally) introduced irreducible matrices in the Markov chain lecture
 
 Here we will introduce this concept formally.
 
-Let $A$ be a square nonnegative matrix and let $A^k$ be the $k^{th}$ power of A.
+$A$ is called **irreducible** if for *each* $(i,j)$ there is an integer $k \geq 0$ such that $a^{k}_{ij} > 0$.
 
-Let $a^{k}_{ij}$ be element $(i,j)$ of $A^k$.
-
-$A$ is called **irreducible** if for each $(i,j)$ there is an integer $k \geq 0$ such that $a^{k}_{ij} > 0$.
+We can see that if a matrix is primitive, then it implies the matrix is irreducible.
 
 A matrix $A$ that is not irreducible is called reducible.
 
@@ -65,7 +74,8 @@ Here are some examples to illustrate this further.
 3. $A = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}$ is reducible since $A^k = A$ for all $k \geq 0$ and thus
    $a^{k}_{12},a^{k}_{21} = 0$ for all $k \geq 0$.
 
-4. We have seen examples of irreducible matrices where each state has a positive probability to be reached.
+### Left and Right Eigenvectors
+
 
 
 ### The Perron-Frobenius Theorem
