@@ -11,7 +11,7 @@ kernelspec:
   name: python3
 ---
 
-# Eigenvalues and Eigenvectors of Nonnegative matrices
+# Theorems of Nonnegative Matrices and Eigenvalues
 
 ```{index} single: Eigenvalues and Eigenvectors
 ```
@@ -20,11 +20,19 @@ kernelspec:
 :depth: 2
 ```
 
+In this lecture we will begin with the basic properties of nonnegative matrices.
+
+Then we will explore the Perron-Frobenius Theorem and the Neumann Series Lemma, and connect them to applications in Markov chains and networks. 
+
+We will use the following imports:
+
 ```{code-cell} ipython3
 import matplotlib.pyplot as plt
 import numpy as np
 from numpy.linalg import eig
 ```
+
+## Nonnegative Matrices
 
 Often, in economics, the matrix that we are dealing with is nonnegative.
 
@@ -33,25 +41,12 @@ Nonnegative matrices have several special and useful properties.
 In this section we discuss some of them --- in particular, the connection
 between nonnegativity and eigenvalues.
 
-
-## Nonnegative Matrices
-
 Let $a^{k}_{ij}$ be element $(i,j)$ of $A^k$.
 
 An $n \times m$ matrix $A$ is called **nonnegative** if every element of $A$
 is nonnegative, i.e., $a_{ij} \geq 0$ for every $i,j$.
 
 We denote this as $A \geq 0$.
-
-### Primitive Matrices
-
-Let $A$ be a square nonnegative matrix and let $A^k$ be the $k^{th}$ power of A.
-
-A matrix is consisdered **primitive** if there exists a $k \in \mathbb{N}$ such that $A^k$ is everywhere positive.
-
-It means that $A$ is called primitive if there is an integer $k \geq 0$ such that $a^{k}_{ij} > 0$ for *all* $(i,j)$.
-
-This concept is closely related to irreducible matrices.
 
 ### Irreducible Matrices
 
@@ -60,8 +55,6 @@ We have (informally) introduced irreducible matrices in the Markov chain lecture
 Here we will introduce this concept formally.
 
 $A$ is called **irreducible** if for *each* $(i,j)$ there is an integer $k \geq 0$ such that $a^{k}_{ij} > 0$.
-
-We can see that if a matrix is primitive, then it implies the matrix is irreducible.
 
 A matrix $A$ that is not irreducible is called reducible.
 
@@ -74,9 +67,68 @@ Here are some examples to illustrate this further.
 3. $A = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}$ is reducible since $A^k = A$ for all $k \geq 0$ and thus
    $a^{k}_{12},a^{k}_{21} = 0$ for all $k \geq 0$.
 
-### Left and Right Eigenvectors
+### Primitive Matrices
 
+Let $A$ be a square nonnegative matrix and let $A^k$ be the $k^{th}$ power of $A$.
 
+A matrix is consisdered **primitive** if there exists a $k \in \mathbb{N}$ such that $A^k$ is everywhere positive.
+
+It means that $A$ is called primitive if there is an integer $k \geq 0$ such that $a^{k}_{ij} > 0$ for *all* $(i,j)$.
+
+We can see that if a matrix is primitive, then it implies the matrix is irreducible.
+
+This is becuase if there exists an $A^k$ such that $a^{k}_{ij} > 0$ for all $(i,j)$, then it guarantees the same property for ${k+1}^th, {k+2}^th ... {k+n}^th$ iterations.
+
+In other words, a primitive matrix is both irreducible and aperiodical as aperiodicity requires the a state to be visited with a guarantee of returning to itself after certain amount of iterations.
+
+### Left Eigenvectors
+
+We have previously discussed right (ordinary) eigenvectors $Av = \lambda v$.
+
+Here we introduce left eigenvectors.
+
+Left eigenvectors will play important roles in what follows, including that of stochastic steady states for dynamic models under a Markov assumption.
+
+We will talk more about this later, but for now, let's define left eigenvectors.
+
+A vector $\varepsilon$ is called a left eigenvector of $A$ if $\varepsilon$ is an eigenvector of $A^T$.
+
+In other words, if $\varepsilon$ is a left eigenvector of matrix A, then $A^T \varepsilon = \lambda \varepsilon$, where $\lambda$ is the eigenvalue associated with the left eigenvector $v$.
+
+This hints on how to compute left eigenvectors
+
+```{code-cell} ipython3
+# Define a sample matrix
+A = np.array([[3, 2], 
+              [1, 4]])
+
+# Compute right eigenvectors and eigenvalues
+right_eigenvalues, right_eigenvectors = np.linalg.eig(A)
+
+# Compute left eigenvectors and eigenvalues
+left_eigenvalues, left_eigenvectors = np.linalg.eig(A.T)
+
+# Transpose left eigenvectors for comparison (because they are returned as column vectors)
+left_eigenvectors = left_eigenvectors.T
+
+print("Matrix A:")
+print(A)
+print("\nRight Eigenvalues:")
+print(right_eigenvalues)
+print("\nRight Eigenvectors:")
+print(right_eigenvectors)
+print("\nLeft Eigenvalues:")
+print(left_eigenvalues)
+print("\nLeft Eigenvectors:")
+print(left_eigenvectors)
+left_eigenvectors @ right_eigenvectors
+```
+
+Note that the eigenvalues for both left and right eigenvectors are the same, but the eigenvectors themselves are different.
+
+We can then take transpose to obtain $A^T \varepsilon = \lambda \varepsilon$ and obtain $\varepsilon^T A= \lambda \varepsilon^T$.
+
+This is a more common expression and where the name left eigenvectors originates.
 
 ### The Perron-Frobenius Theorem
 
@@ -101,10 +153,17 @@ Moreover if $A$ is also irreducible then,
 4. the eigenvector $v$ associated with the eigenvalue $r(A)$ is strictly positive.
 5. there exists no other positive eigenvector $v$ (except scalar multiples of v) associated with $r(A)$.
 
+If $A$ is primitive then,
+6. the inequality $|\lambda| \leq r(A)$ is strict for all eigenvalues 𝜆 of 𝐴 distinct from 𝑟(𝐴), and
+7. with $e$ and $\varepsilon$ normalized so that the inner product of $\varepsilon$ and  $e = 1$, we have
+$ r(A)^{-m} A^m$ converges to $\varepsilon^{\top}$ when $m \rightarrow \infty$
 ```
 
 (This is a relatively simple version of the theorem --- for more details see
 [here](https://en.wikipedia.org/wiki/Perron%E2%80%93Frobenius_theorem)).
+
+Let's build our intuition for the theorem using a simple example.
+
 
 In fact, we have already seen Perron-Frobenius theorem in action before in the exercise (TODO: link to Markov chain exercise)
 
