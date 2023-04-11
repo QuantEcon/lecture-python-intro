@@ -30,6 +30,7 @@ We will use the following imports:
 import matplotlib.pyplot as plt
 import numpy as np
 from numpy.linalg import eig
+import graphviz as gv
 ```
 
 ## Nonnegative Matrices
@@ -48,6 +49,7 @@ is nonnegative, i.e., $a_{ij} \geq 0$ for every $i,j$.
 
 We denote this as $A \geq 0$.
 
+(irreducible)=
 ### Irreducible Matrices
 
 We have (informally) introduced irreducible matrices in the Markov chain lecture (TODO: link to Markov chain lecture).
@@ -121,7 +123,6 @@ print("\nLeft Eigenvalues:")
 print(left_eigenvalues)
 print("\nLeft Eigenvectors:")
 print(left_eigenvectors)
-left_eigenvectors @ right_eigenvectors
 ```
 
 Note that the eigenvalues for both left and right eigenvectors are the same, but the eigenvectors themselves are different.
@@ -130,6 +131,7 @@ We can then take transpose to obtain $A^T \varepsilon = \lambda \varepsilon$ and
 
 This is a more common expression and where the name left eigenvectors originates.
 
+(perron-frobe)=
 ### The Perron-Frobenius Theorem
 
 For a nonnegative matrix $A$ the behaviour of $A^k$ as $k \to \infty$ is controlled by the eigenvalue with the largest
@@ -154,6 +156,7 @@ Moreover if $A$ is also irreducible then,
 5. there exists no other positive eigenvector $v$ (except scalar multiples of v) associated with $r(A)$.
 
 If $A$ is primitive then,
+
 6. the inequality $|\lambda| \leq r(A)$ is strict for all eigenvalues 𝜆 of 𝐴 distinct from 𝑟(𝐴), and
 7. with $e$ and $\varepsilon$ normalized so that the inner product of $\varepsilon$ and  $e = 1$, we have
 $ r(A)^{-m} A^m$ converges to $\varepsilon^{\top}$ when $m \rightarrow \infty$
@@ -162,8 +165,17 @@ $ r(A)^{-m} A^m$ converges to $\varepsilon^{\top}$ when $m \rightarrow \infty$
 (This is a relatively simple version of the theorem --- for more details see
 [here](https://en.wikipedia.org/wiki/Perron%E2%80%93Frobenius_theorem)).
 
-Let's build our intuition for the theorem using a simple example.
+Let's build our intuition for the theorem using a simple example we have seen [before](mc_eg1).
 
+```{math}
+P
+= \left(
+\begin{array}{cc}
+    1 - \alpha & \alpha \\
+    \beta & 1 - \beta
+\end{array}
+  \right)
+```
 
 In fact, we have already seen Perron-Frobenius theorem in action before in the exercise (TODO: link to Markov chain exercise)
 
@@ -225,7 +237,7 @@ What guarantees the existence of a unique vector $x^{*}$ that satisfies
 The following is a fundamental result in functional analysis that generalises
 {eq}`gp_sum` to a multivariate case.
 
-
+(neumann_series_lemma)=
 ```{prf:theorem} Neumann Series Lemma
 :label: neumann_series_lemma
 

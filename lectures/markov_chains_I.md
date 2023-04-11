@@ -1060,7 +1060,7 @@ $$
     = x + \beta (Ph)(x) + \beta^2 (P^2 h)(x) + \cdots
 $$
 
-By the {doc}`Neumann series lemma <eigen>`, this sum can be calculated using 
+By the {ref}`Neumann series lemma <la_neumann>`, this sum can be calculated using 
 
 $$
     I + \beta P + \beta^2 P^2 + \cdots = (I - \beta P)^{-1}
