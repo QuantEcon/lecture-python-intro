@@ -1085,7 +1085,7 @@ P :=
 \right)
 $$
 
-where rows, from top to down, correspondes to growth, stagnation and collapse.
+where rows, from top to down, correspond to growth, stagnation, and collapse.
 
 In this exercise,
 

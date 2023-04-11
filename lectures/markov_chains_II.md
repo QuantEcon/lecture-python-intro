@@ -30,7 +30,7 @@ In addition to what's in Anaconda, this lecture will need the following librarie
 
 This lecture continues the journey in Markov chain.
 
-Specifically, we will introduce irreducibility and ergodicity, and how they connect to stionarity.
+Specifically, we will introduce irreducibility and ergodicity, and how they connect to stationarity.
 
 Irreducibility is a concept that describes the ability of a Markov chain to move between any two states in the system.
 

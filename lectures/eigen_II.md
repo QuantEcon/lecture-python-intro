@@ -73,15 +73,15 @@ Here are some examples to illustrate this further.
 
 Let $A$ be a square nonnegative matrix and let $A^k$ be the $k^{th}$ power of $A$.
 
-A matrix is consisdered **primitive** if there exists a $k \in \mathbb{N}$ such that $A^k$ is everywhere positive.
+A matrix is considered **primitive** if there exists a $k \in \mathbb{N}$ such that $A^k$ is everywhere positive.
 
 It means that $A$ is called primitive if there is an integer $k \geq 0$ such that $a^{k}_{ij} > 0$ for *all* $(i,j)$.
 
 We can see that if a matrix is primitive, then it implies the matrix is irreducible.
 
-This is becuase if there exists an $A^k$ such that $a^{k}_{ij} > 0$ for all $(i,j)$, then it guarantees the same property for ${k+1}^th, {k+2}^th ... {k+n}^th$ iterations.
+This is because if there exists an $A^k$ such that $a^{k}_{ij} > 0$ for all $(i,j)$, then it guarantees the same property for ${k+1}^th, {k+2}^th ... {k+n}^th$ iterations.
 
-In other words, a primitive matrix is both irreducible and aperiodical as aperiodicity requires the a state to be visited with a guarantee of returning to itself after certain amount of iterations.
+In other words, a primitive matrix is both irreducible and aperiodical as aperiodicity requires a state to be visited with a guarantee of returning to itself after a certain amount of iterations.
 
 ### Left Eigenvectors
 
@@ -97,7 +97,7 @@ A vector $\varepsilon$ is called a left eigenvector of $A$ if $\varepsilon$ is a
 
 In other words, if $\varepsilon$ is a left eigenvector of matrix A, then $A^T \varepsilon = \lambda \varepsilon$, where $\lambda$ is the eigenvalue associated with the left eigenvector $v$.
 
-This hints on how to compute left eigenvectors
+This hints at how to compute left eigenvectors
 
 ```{code-cell} ipython3
 # Define a sample matrix
@@ -134,10 +134,10 @@ This is a more common expression and where the name left eigenvectors originates
 (perron-frobe)=
 ### The Perron-Frobenius Theorem
 
-For a nonnegative matrix $A$ the behaviour of $A^k$ as $k \to \infty$ is controlled by the eigenvalue with the largest
+For a nonnegative matrix $A$ the behavior of $A^k$ as $k \to \infty$ is controlled by the eigenvalue with the largest
 absolute value, often called the **dominant eigenvalue**.
 
-For a matrix $A$, the Perron-Frobenius theorem characterises certain
+For a matrix $A$, the Perron-Frobenius theorem characterizes certain
 properties of the dominant eigenvalue and its corresponding eigenvector when
 $A$ is a nonnegative square matrix.
 
@@ -214,7 +214,7 @@ Using matrix algebra we can conclude that the solution to this system of equatio
 What guarantees the existence of a unique vector $x^{*}$ that satisfies
 {eq}`neumann_eqn` ?
 
-The following is a fundamental result in functional analysis that generalises
+The following is a fundamental result in functional analysis that generalizes
 {eq}`gp_sum` to a multivariate case.
 
 (neumann_series_lemma)=

@@ -190,7 +190,7 @@ One way to understand this transformation is that $A$
 
 Let's examine some standard transformations we can perform with matrices.
 
-Below we visualise transformations by thinking of vectors as points
+Below we visualize transformations by thinking of vectors as points
 instead of arrows.
 
 We consider how a given matrix transforms 
@@ -511,7 +511,7 @@ Let $A$ be the $90^{\circ}$ clockwise rotation matrix given by
 $\begin{bmatrix} 0 & 1 \\ -1 & 0 \end{bmatrix}$ and let $B$ be a shear matrix
 along the x-axis given by $\begin{bmatrix} 1 & 2 \\ 0 & 1 \end{bmatrix}$.
 
-We will visualise how a grid of points changes when we apply the
+We will visualize how a grid of points changes when we apply the
 transformation $AB$ and then compare it with the transformation $BA$.
 
 ```{code-cell} ipython3
@@ -685,7 +685,7 @@ In this case, repeatedly multiplying a vector by $A$ makes the vector "spiral ou
 
 We thus observe that the sequence $(A^kv)_{k \geq 0}$ behaves differently depending on the map $A$ itself.
 
-We now discuss the property of A that determines this behaviour.
+We now discuss the property of A that determines this behavior.
 
 (la_eigenvalues)=
 ## Eigenvalues 
@@ -846,7 +846,7 @@ This is discussed further later.
 ```{exercise}
 :label: eig1_ex1
 
-Power iteration is a method for finding the largest absolute eigenvalue of a diagnalizable matrix.
+Power iteration is a method for finding the largest absolute eigenvalue of a diagonalizable matrix.
 
 The method starts with a random vector $b_0$ and repeatedly applies the matrix $A$ to it
 
@@ -1087,17 +1087,17 @@ for i, example in enumerate(examples):
 plt.show()
 ```
 
-The vector fields explains why we observed the trajectories of the vector $v$ multiplied by $A$ iteratively before.
+The vector fields explain why we observed the trajectories of the vector $v$ multiplied by $A$ iteratively before.
 
 The pattern demonstrated here is because we have complex eigenvalues and eigenvectors.
 
 It is important to acknowledge that there is a complex plane.
 
-If we add the complex axis for the plot, the plot will be more complicated.
+If we add the complex axis to the plot, the plot will be more complicated.
 
 Here we used the real part of the eigenvalues and eigenvectors.
 
-We can try to plot the complex plane for one of the matrix using `Arrow3D` class retrieved from [stackoverflow](https://stackoverflow.com/questions/22867620/putting-arrowheads-on-vectors-in-matplotlibs-3d-plot).
+We can try to plot the complex plane for one of the matrices using `Arrow3D` class retrieved from [stackoverflow](https://stackoverflow.com/questions/22867620/putting-arrowheads-on-vectors-in-matplotlibs-3d-plot).
 
 ```{code-cell} ipython3
 class Arrow3D(FancyArrowPatch):
