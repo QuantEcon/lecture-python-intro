@@ -100,7 +100,7 @@ mystnb:
   image:
     alt: aircraft_network
     classes: shadow bg-primary
-    width: 200px
+    width: 500px
 tags: [hide-input]
 ---
 ch1_data = qbn_data.introduction()
@@ -201,7 +201,7 @@ dot
 
 
 This is an example of a network, where the set of nodes $V$ equals the states:
-
+<!-- TODO -->
 $$
     V = \{ \text{"ng", "mr", "sr"} \}
 $$
@@ -210,14 +210,14 @@ The edges between the nodes show the one month transition probabilities.
 
 
 ## An Introduction to Graph Theory
-
+<!-- TODO -->
 Now we've looked at some examples, let's move on to theory.
 
 This theory will allow us to better organize our thoughts.
 
 The theoretical part of network science is constructed using a major branch of
 mathematics called [graph theory](https://en.wikipedia.org/wiki/Graph_theory).
-
+<!-- TODO -->
 Graph theory can be complicated and we will cover only the basics.
 
 However, these concepts will already be enough for us to discuss interesting and
@@ -227,12 +227,12 @@ We focus on "directed" graphs, where connections are, in general, asymmetric
 (arrows typically point one way, not both ways).
 
 E.g.,
-
+<!-- TODO -->
 * bank $A$ lends money to bank $B$
 * firm $A$ supplies goods to firm $B$
 * individual $A$ "follows" of individual $B$ on a given social network
 
-("Undirected" graphs, where connections are symmetric, are actually a special
+("Undirected" graphs, where connections are symmetric, are a special
 case of directed graphs --- we just need to insist that each arrow pointing
 from $A$ to $B$ is paired with another arrow pointing from $B$ to $A$.)
 
@@ -271,7 +271,7 @@ mystnb:
   image:
     alt: poverty_trap_1
     classes: shadow bg-primary
-    width: 200px
+    width: 500px
 ---
 graph1 = graphviz.Digraph(comment='Graph',engine = "neato")
 graph1.attr(rankdir='LR')
@@ -302,7 +302,7 @@ mystnb:
   image:
     alt: poverty_trap_2
     classes: shadow bg-primary
-    width: 200px
+    width: 500px
 ---
 graph2 = graphviz.Digraph(comment='Graph',engine="neato")
 graph2.attr(rankdir='LR')
@@ -339,7 +339,7 @@ The Python package [Networkx](https://networkx.org/) provides a convenient
 data structure for representing directed graphs and implements many common
 routines for analyzing them.
 
-
+<!-- TODO -->
 As an example, let us recreate {numref}`poverty_trap_2` using Networkx.
 
 To do so, we first create an empty `DiGraph` object:
@@ -349,7 +349,7 @@ G_p = nx.DiGraph()
 ```
 
 
-Next we populate it with nodes and edges.
+Next, we populate it with nodes and edges.
 
 To do this we write down a list of
 all edges, with *poor* represented by *p* and so on:
@@ -406,7 +406,7 @@ G_p.in_degree('p')
 
 ### Communication
 
-Next we study communication and connectedness, which have important
+Next, we study communication and connectedness, which have important
 implications for economic networks.
 
 Node $v$ is called **accessible** from node $u$ if either $u=v$ or there
@@ -427,7 +427,7 @@ Two nodes $u$ and $v$ are said to **communicate** if both $u \to v$ and $v \to u
 
 A graph is called **strongly connected** if all nodes communicate.
 
-For example {numref}`poverty_trap_1` is strongly connected
+For example, {numref}`poverty_trap_1` is strongly connected
 however in {numref}`poverty_trap_2` rich is not accessible from poor, thus it is not strongly connected.
 
 We can verify this by first constructing the graphs using Networkx and then using `nx.is_strongly_connected`.
@@ -483,7 +483,7 @@ mystnb:
   image:
     alt: financial_network
     classes: shadow bg-primary
-    width: 200px
+    width: 500px
 tags: [hide-input]
 ---
 Z = ch1_data["adjacency_matrix_2019"]["Z"]
@@ -541,7 +541,7 @@ plt.show()
 ```
 
 
-The country codes are given in the following table.
+The country codes are given in the following table
 
 |Code|    Country    |Code| Country |Code|   Country   |Code|     Country    |
 |:--:|:--------------|:--:|:-------:|:--:|:-----------:|:--:|:--------------:|
@@ -562,9 +562,9 @@ The widths of the arrows are proportional to the foreign claims they represent.
 Notice that, in this network, an edge $(u, v)$ exists for almost every choice
 of $u$ and $v$ (i.e., almost every country in the network).
 
-(In fact there are even more small arrows, which we have dropped for clarity.)
+(In fact, there are even more small arrows, which we have dropped for clarity.)
 
-Hence existence of an edge from one node to another is not particularly informative.
+Hence the existence of an edge from one node to another is not particularly informative.
 
 To understand the network, we need to record not just the existence or absence
 of a credit flow, but also the size of the flow.
@@ -593,7 +593,7 @@ mystnb:
   image:
     alt: poverty_trap_weighted
     classes: shadow bg-primary
-    width: 200px
+    width: 500px
 tags: [hide-input]
 ---
 graph3 = graphviz.Digraph(comment='Graph')
@@ -677,7 +677,7 @@ transpose _reverses all the arrows_ in the associated directed graph.
 
 For example, the following directed graph can be
 interpreted as a stylized version of a financial network, with nodes as banks
-and edges showing flow of funds.
+and edges showing the flow of funds.
 
 ```{code-cell} ipython3
 G4 = nx.DiGraph()
@@ -757,7 +757,7 @@ $$
 
 The corresponding network is visualized in the following figure which shows the network of liabilities after the loans have been granted.
 
-Both of these networks (original and transpose) are useful for analysis of financial markets.
+Both of these networks (original and transpose) are useful for analyzing financial markets.
 
 ```{code-cell} ipython3
 G5 = nx.DiGraph()
@@ -843,13 +843,13 @@ $$
 +++
 
 The above result is obvious when $k=1$ and a proof of the general case can be
-found in \cite{sargent2022economic}.
+found in {cite}`sargent2022economic`.
 
 Now recall from the eigenvalues lecture that a
 nonnegative matrix $A$ is called {ref}`irreducible<irreducible>` if for each $(i,j)$ there is an integer $k \geq 0$ such that $a^{k}_{ij} > 0$.
 
-From the preceding theorem it is not too difficult (see
-\cite{sargent2022economic} for details) to get the next result.
+From the preceding theorem, it is not too difficult (see
+{cite}`sargent2022economic` for details) to get the next result.
 
 ````{prf:theorem}
 :label: graph_theory_property2
@@ -961,7 +961,7 @@ mystnb:
   image:
     alt: sample_gph_1
     classes: shadow bg-primary
-    width: 200px
+    width: 500px
 ---
 G7 = nx.DiGraph()
 
@@ -1043,7 +1043,7 @@ Suppose web page A has twice as many inbound links as page B.
 
 In-degree centrality tells us that page A deserves a higher rank.
 
-But in fact page A might be less important than page B.
+But in fact, page A might be less important than page B.
 
 To see why, suppose that the links to A are from pages that receive almost no traffic,
 while the links to B are from pages that receive very heavy traffic.
@@ -1062,15 +1062,15 @@ given sector depends on the importance of the sectors that it supplies.
 This reverses the order of the previous example: now the importance of a given
 node depends on the importance of other nodes that *it links to*.
 
-The next centrality measures we study have these recursive features.
+The next centrality measures will have these recursive features.
 
 
 ### Eigenvector Centrality
 
 Suppose we have a weighted directed graph with adjacency matrix $A$.
 
-For simplicity we will suppose that the nodes $V$ of the graph are just the
-integers $1, \ldots, n$.
+For simplicity, we will suppose that the nodes $V$ of the graph are just the
+integers $1, \cdots, n$.
 
 Let $r(A)$ denote the {ref}`spectral radius<neumann_series_lemma>` of $A$.
 
@@ -1106,7 +1106,7 @@ A node $i$ is highly ranked if
 2. these edges have large weights, and
 3. the edges point to other highly ranked nodes.
 
-Later, when we study demand shocks  in production networks, we will provide a more
+Later, when we study demand shocks  in production networks, there will be a more
 concrete interpretation of eigenvector centrality.
 
 We will see that, in production networks, sectors with high eigenvector
@@ -1132,7 +1132,7 @@ def eigenvector_centrality(A, k=40, authority=False):
 ```
 
 
-Let us compute eigenvector centrality for the graph generated in {numref}`sample_gph_1`.
+Let's compute eigenvector centrality for the graph generated in {numref}`sample_gph_1`.
 
 ```{code-cell} ipython3
 A = nx.to_numpy_array(G7)         # compute adjacency matrix of graph
@@ -1147,10 +1147,10 @@ for i in range(n):
 ```
 
 
-While nodes $2$ and $4$ had the highest in-degree centrality we can see that nodes $1$ and $2$ have the
+While nodes $2$ and $4$ had the highest in-degree centrality, we can see that nodes $1$ and $2$ have the
 highest eigenvector centrality.
 
-Let's once again revisit the international credit network in {numref}`financial_network`.
+Let's revisit the international credit network in {numref}`financial_network`.
 
 ```{code-cell} ipython3
 eig_central = eigenvector_centrality(Z)
@@ -1177,10 +1177,9 @@ Japan takes the highest rank according to this measure, although
 countries with large financial sectors such as Great Britain and France are
 not far behind.
 
-The advantage of eigenvector centrality is that it measures a node’s importance while giving consideration
-to the importance of its neighbors.
+The advantage of eigenvector centrality is that it measures a node’s importance while considering the importance of its neighbours.
 
-A variant of eigenvector centrality is at the core of Google’s PageRank algorithm, which they use to rank web pages.
+A variant of eigenvector centrality is at the core of Google’s PageRank algorithm, which is used to rank web pages.
 
 The main principle is that links from important nodes (as measured by degree centrality) are worth more than links from unimportant nodes.
 
