@@ -106,12 +106,12 @@ where $a, b$ are nonnegative constants and $p_t$ is the spot (i.e, current marke
 
 ($D(p_t)$ is the quantity demanded in some fixed unit, such as thousands of tons.)
 
-Because the crop of soy beans for time $t$ is planted at $t-1$, supply of soy beans at time $t$ depends on *expected* prices at time $t$, which we denote $p^e_t$.
+Because the crop of soy beans for time $t$ is planted at $t-1$, supply of soy beans at time $t$ depends on *expected* prices at time $t$, which we denote $p^e_{t-1}$.
 
 We suppose that supply is nonlinear in expected prices, and takes the form
 
 $$
-    S(p^e_t) = \tanh(\lambda(p^e_t - c)) + d
+    S(p^e_{t-1}) = \tanh(\lambda(p^e_{t-1} - c)) + d
 $$
 
 where $\lambda$ is a positive constant and $c, d \geq 0$.
@@ -160,13 +160,13 @@ plt.show()
 Market equilibrium requires that supply equals demand, or
 
 $$
-    a - b p_t = S(p^e_t)
+    a - b p_t = S(p^e_{t-1})
 $$
 
 Rewriting in terms of $p_t$ gives
 
 $$
-    p_t = - \frac{1}{b} [S(p^e_t) - a]
+    p_t = - \frac{1}{b} [S(p^e_{t-1}) - a]
 $$
 
 Finally, to complete the model, we need to describe how price expectations are formed.
@@ -276,7 +276,7 @@ def plot45(model, pmin, pmax, p0, num_arrows=5):
             alpha=0.6, head_length=hl)
 
     ax.plot(pgrid, g(model, pgrid), 'b-',
-            lw=2, alpha=0.6, label='p')
+            lw=2, alpha=0.6, label='g')
     ax.plot(pgrid, pgrid, lw=1, alpha=0.7, label='45')
 
     x = p0
@@ -610,3 +610,4 @@ ts_plot_price_blae(m,
 ```{code-cell} ipython3
 
 ```
+
