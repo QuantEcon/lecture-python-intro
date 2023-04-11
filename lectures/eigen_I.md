@@ -11,6 +11,7 @@ kernelspec:
   name: python3
 ---
 
+(eigen)=
 # Eigenvalues and Eigenvectors 
 
 ```{index} single: Eigenvalues and Eigenvectors
@@ -50,6 +51,12 @@ We will use the following imports:
 ```{code-cell} ipython3
 import matplotlib.pyplot as plt
 import numpy as np
+from numpy.linalg import matrix_power
+from matplotlib import cm
+from matplotlib.lines import Line2D
+from mpl_toolkits.mplot3d import Axes3D
+from matplotlib.patches import FancyArrowPatch
+from mpl_toolkits.mplot3d import proj3d
 ```
 
 (matrices_as_transformation)=
@@ -183,7 +190,7 @@ One way to understand this transformation is that $A$
 
 Let's examine some standard transformations we can perform with matrices.
 
-Below we visualise transformations by thinking of vectors as points
+Below we visualize transformations by thinking of vectors as points
 instead of arrows.
 
 We consider how a given matrix transforms 
@@ -504,7 +511,7 @@ Let $A$ be the $90^{\circ}$ clockwise rotation matrix given by
 $\begin{bmatrix} 0 & 1 \\ -1 & 0 \end{bmatrix}$ and let $B$ be a shear matrix
 along the x-axis given by $\begin{bmatrix} 1 & 2 \\ 0 & 1 \end{bmatrix}$.
 
-We will visualise how a grid of points changes when we apply the
+We will visualize how a grid of points changes when we apply the
 transformation $AB$ and then compare it with the transformation $BA$.
 
 ```{code-cell} ipython3
@@ -586,10 +593,9 @@ $$
 Let's first see examples of a sequence of iterates $(A^k v)_{k \geq 0}$ under
 different maps $A$.
 
-```{code-cell} ipython3
-from numpy.linalg import matrix_power
-from matplotlib import cm
+(plot_series)=
 
+```{code-cell} ipython3
 def plot_series(B, v, n):
     
     A = np.array([[1, -1],
@@ -637,7 +643,7 @@ def plot_series(B, v, n):
 B = np.array([[sqrt(3) + 1, -2],
               [1, sqrt(3) - 1]])
 B = (1/(2*sqrt(2))) * B
-v = (-3,-3)
+v = (-3, -3)
 n = 12
 
 plot_series(B, v, n)
@@ -651,7 +657,7 @@ In this case, repeatedly multiplying a vector by $A$ makes the vector "spiral in
 B = np.array([[sqrt(3) + 1, -2],
               [1, sqrt(3) - 1]])
 B = (1/2) * B
-v = (2.5,0)
+v = (2.5, 0)
 n = 12
 
 plot_series(B, v, n)
@@ -666,7 +672,7 @@ an ellipse".
 B = np.array([[sqrt(3) + 1, -2],
               [1, sqrt(3) - 1]])
 B = (1/sqrt(2)) * B
-v = (-1,-0.25)
+v = (-1, -0.25)
 n = 6
 
 plot_series(B, v, n)
@@ -679,7 +685,7 @@ In this case, repeatedly multiplying a vector by $A$ makes the vector "spiral ou
 
 We thus observe that the sequence $(A^kv)_{k \geq 0}$ behaves differently depending on the map $A$ itself.
 
-We now discuss the property of A that determines this behaviour.
+We now discuss the property of A that determines this behavior.
 
 (la_eigenvalues)=
 ## Eigenvalues 
@@ -833,284 +839,312 @@ to one.
 
 The eigenvectors and eigenvalues of a map $A$ determine how a vector $v$ is transformed when we repeatedly multiply by $A$.
 
-This is discussed further below.
-
-
-
-## Nonnegative Matrices 
-
-Often, in economics, the matrix that we are dealing with is nonnegative.
-
-Nonnegative matrices have several special and useful properties.
-
-In this section we discuss some of them --- in particular, the connection
-between nonnegativity and eigenvalues.
-
-
-### Nonnegative Matrices
-
-An $n \times m$ matrix $A$ is called **nonnegative** if every element of $A$
-is nonnegative, i.e., $a_{ij} \geq 0$ for every $i,j$.
-
-We denote this as $A \geq 0$.
-
-(irreducible)=
-### Irreducible Matrices
-
-Let $A$ be a square nonnegative matrix and let $A^k$ be the $k^{th}$ power of A.
-
-Let $a^{k}_{ij}$ be element $(i,j)$ of $A^k$.
-
-$A$ is called **irreducible** if for each $(i,j)$ there is an integer $k \geq 0$ such that $a^{k}_{ij} > 0$.
-
-A matrix $A$ that is not irreducible is called reducible.
-
-Here are some examples to illustrate this further.
-
-1. $A = \begin{bmatrix} 0.5 & 0.1 \\ 0.2 & 0.2 \end{bmatrix}$ is irreducible since $a_{ij}>0$ for all $(i,j)$.
-
-2. $A = \begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix}$ is irreducible since $a_{12},a_{21} >0$ and $a^{2}_{11},a^{2}_{22} >0$.
-
-3. $A = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}$ is reducible since $A^k = A$ for all $k \geq 0$ and thus
-   $a^{k}_{12},a^{k}_{21} = 0$ for all $k \geq 0$.
-
-(perron-frobe)=
-### The Perron-Frobenius Theorem
-
-For a nonnegative matrix $A$ the behaviour of $A^k$ as $k \to \infty$ is controlled by the eigenvalue with the largest
-absolute value, often called the **dominant eigenvalue**.
-
-For a matrix $A$, the Perron-Frobenius theorem characterises certain
-properties of the dominant eigenvalue and its corresponding eigenvector when
-$A$ is a nonnegative square matrix.
-
-```{prf:theorem} Perron-Frobenius Theorem
-:label: perron-frobenius
-
-If a matrix $A \geq 0$ then,
-
-1. the dominant eigenvalue of $A$, $r(A)$, is real-valued and nonnegative. 
-2. for any other eigenvalue (possibly complex) $\lambda$ of $A$, $|\lambda| \leq r(A)$.
-3. we can find a nonnegative and nonzero eigenvector $v$ such that $Av = r(A)v$.
-
-Moreover if $A$ is also irreducible then,
-
-4. the eigenvector $v$ associated with the eigenvalue $r(A)$ is strictly positive.
-5. there exists no other positive eigenvector $v$ (except scalar multiples of v) associated with $r(A)$.
-
-```
-
-(This is a relatively simple version of the theorem --- for more details see
-[here](https://en.wikipedia.org/wiki/Perron%E2%80%93Frobenius_theorem)).
-
-We will see applications of the theorem below.
-
-
-(la_neumann)=
-## The Neumann Series Lemma 
-
-```{index} single: Neumann's Lemma
-```
-
-In this section we present a famous result about series of matrices that has
-many applications in economics.
-
-### Scalar Series
-
-Here's a fundamental result about series that you surely know:
-
-If $a$ is a number and $|a| < 1$, then 
-
-```{math}
-:label: gp_sum
-    
-    \sum_{k=0}^{\infty} a^k =\frac{1}{1-a} = (1 - a)^{-1} 
-
-```
-
-For a one-dimensional linear equation $x = ax + b$ where x is unknown we can thus conclude that the solution $x^{*}$ is given by:
-
-$$
-    x^{*} = \frac{b}{1-a} = \sum_{k=0}^{\infty} a^k b
-$$
-
-### Matrix Series
-
-A generalization of this idea exists in the matrix setting.
-
-Consider the system of equations $x = Ax + b$ where $A$ is an $n \times n$
-square matrix and $x$ and $b$ are both column vectors in $\mathbb{R}^n$.
-
-Using matrix algebra we can conclude that the solution to this system of equations will be given by:
-
-```{math}
-:label: neumann_eqn
-    
-    x^{*} = (I-A)^{-1}b
-
-```
-
-What guarantees the existence of a unique vector $x^{*}$ that satisfies
-{eq}`neumann_eqn` ?
-
-The following is a fundamental result in functional analysis that generalises
-{eq}`gp_sum` to a multivariate case.
-
-(neumann_series_lemma)=
-```{prf:theorem} Neumann Series Lemma
-:label: neumann_series_lemma
-
-Let $A$ be a square matrix and let $A^k$ be the $k$-th power of $A$.
-
-Let $r(A)$ be the dominant eigenvector or as it is commonly called the *spectral radius*, defined as $\max_i |\lambda_i|$, where 
-
-* $\{\lambda_i\}_i$ is the set of eigenvalues of $A$ and
-* $|\lambda_i|$ is the modulus of the complex number $\lambda_i$
-
-Neumann's theorem states the following: If $r(A) < 1$, then $I - A$ is invertible, and
-
-$$
-(I - A)^{-1} = \sum_{k=0}^{\infty} A^k
-$$
-```
-
-We can see the Neumann series lemma in action in the following example.
-
-```{code-cell} ipython3
-A = np.array([[0.4, 0.1],
-              [0.7, 0.2]])
-
-evals, evecs = eig(A)   # finding eigenvalues and eigenvectors
-
-r = max(abs(λ) for λ in evals)    # compute spectral radius
-print(r)
-```
-
-The spectral radius $r(A)$ obtained is less than 1. 
-
-Thus, we can apply the Neumann Series lemma to find $(I-A)^{-1}$.
-
-```{code-cell} ipython3
-I = np.identity(2)      #2 x 2 identity matrix
-B = I-A
-```
-
-```{code-cell} ipython3
-B_inverse = np.linalg.inv(B)     #direct inverse method
-```
-
-```{code-cell} ipython3
-A_sum = np.zeros((2,2))        #power series sum of A
-A_power = I
-for i in range(50):
-    A_sum += A_power
-    A_power = A_power @ A
-```
-
-Let's check equality between the sum and the inverse methods.
-
-```{code-cell} ipython3
-np.allclose(A_sum, B_inverse)     
-```
-
-Although we truncate the infinite sum at $k = 50$, both methods give us the same
-result which illustrates the result of the Neumann Series lemma.
+This is discussed further later.
 
 ## Exercises
 
-```{exercise-start} Leontief's Input-Output Model
-:label: eig_ex1
-```
-[Wassily Leontief](https://en.wikipedia.org/wiki/Wassily_Leontief) developed a model of an economy with $n$ sectors producing $n$ different commodities representing the interdependencies of different sectors of an economy.
+```{exercise}
+:label: eig1_ex1
 
-Under this model some of the output is consumed internally by the industries and the rest is consumed by external consumers.
+Power iteration is a method for finding the largest absolute eigenvalue of a diagonalizable matrix.
 
-We define a simple model with 3 sectors - agriculture, industry, and service.
-
-The following table describes how output is distributed within the economy:
-
-|             | Total output | Agriculture | Industry | Service | Consumer |
-|:-----------:|:------------:|:-----------:|:--------:|:-------:|:--------:|
-| Agriculture |     $x_1$    |   0.3$x_1$  | 0.2$x_2$ |0.3$x_3$ |     4    |
-|   Industry  |     $x_2$    |   0.2$x_1$  | 0.4$x_2$ |0.3$x_3$ |     5    |
-|   Service   |     $x_3$    |   0.2$x_1$  | 0.5$x_2$ |0.1$x_3$ |    12    |
-
-The first row depicts how agriculture's total output $x_1$ is distributed 
-
-* $0.3x_1$ is used as inputs within agriculture itself,
-* $0.2x_2$ is used as inputs by the industry sector to produce $x_2$ units
-* $0.3x_3$ is used as inputs by the service sector to produce $x_3$ units and 
-* 4 units is the external demand by consumers.
-
-We can transform this into a system of linear equations for the 3 sectors as
-given below:
+The method starts with a random vector $b_0$ and repeatedly applies the matrix $A$ to it
 
 $$
-    x_1 = 0.3x_1 + 0.2x_2 + 0.3x_3 + 4 \\
-    x_2 = 0.2x_1 + 0.4x_2 + 0.3x_3 + 5 \\
-    x_3 = 0.2x_1 + 0.5x_2 + 0.1x_3 + 12
+b_{k+1}=\frac{A b_k}{\left\|A b_k\right\|}
 $$
 
-This can be transformed into the matrix equation $x = Ax + d$ where
+A thorough discussion of the method can be found [here](https://pythonnumericalmethods.berkeley.edu/notebooks/chapter15.02-The-Power-Method.html).
 
-$$
-x =
-\begin{bmatrix}
-    x_1 \\
-    x_2 \\
-    x_3
-\end{bmatrix}
-, \; A =
-\begin{bmatrix}
-    0.3 & 0.2 & 0.3 \\
-    0.2 & 0.4 & 0.3 \\
-    0.2 & 0.5 & 0.1
-\end{bmatrix}
-\; \text{and} \;
-d =
-\begin{bmatrix}
-    4 \\
-    5 \\
-    12
-\end{bmatrix}
-$$
+In this exercise, implement the power iteration method and use it to find the largest eigenvalue of the matrix.
 
-The solution $x^{*}$ is given by the equation $x^{*} = (I-A)^{-1} d$
-
-1. Since $A$ is a nonnegative irreducible matrix, find the Perron-Frobenius eigenvalue of $A$.
-
-2. Use the Neumann Series lemma to find the solution $x^{*}$ if it exists.
-
-```{exercise-end}
+Visualize your results by plotting the eigenvalue as a function of the number of iterations.
 ```
 
-```{solution-start} eig_ex1
+```{solution-start} eig1_ex1
+:class: dropdown
+```
+
+Here is one solution.
+
+We start by looking into the distance between the eigenvector approximation and the true eigenvector.
+
+```{code-cell} ipython3
+# Define a matrix A
+A = np.array([[1, 0, 3], 
+              [0, 2, 0], 
+              [3, 0, 1]])
+
+# Define a number of iterations
+num_iters = 20
+
+# Define a random starting vector b
+b = np.random.rand(A.shape[1])
+
+# Initialize a list to store the eigenvector approximations
+norm_ls = []
+res = []
+
+# Power iteration loop
+for i in range(num_iters):
+    # Multiply b by A
+    b = A @ b
+    # Normalize b
+    b = b / np.linalg.norm(b)
+    # Append b to the list of eigenvector approximations
+    res.append(b)
+    norm = np.linalg.norm(np.array(b) - np.linalg.eig(A)[1][:, 0])
+    norm_ls.append(norm)
+    
+# Plot the eigenvector approximations for each iteration
+plt.figure(figsize=(10, 6))
+plt.xlabel('Iterations')
+plt.ylabel('L2 Norm')
+plt.title('Distance between the Approximation and the True Eigenvector')
+_ = plt.plot(norm_ls)
+```
+
+Then we can look at the trajectory of the eigenvector approximation
+
+```{code-cell} ipython3
+# Get the eigenvectors of matrix A
+eigenvector = np.linalg.eig(A)[1][:, 0]
+
+# Set up the figure and axis for 3D plot
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')
+
+# Plot the eigenvectors
+ax.scatter(eigenvector[0], eigenvector[1], eigenvector[2], color='r', s = 80)
+
+# Plot the approximated eigenvectors (b) at each iteration
+for i, vec in enumerate(res):
+    ax.scatter(vec[0], vec[1], vec[2], color='b', alpha=(i + 1) / (num_iters+1), s = 80)
+
+ax.set_xlabel('X')
+ax.set_ylabel('Y')
+ax.set_zlabel('Z')
+ax.set_title('Power Iteration and Eigenvector Approximations')
+points = [plt.Line2D([0], [0], linestyle='none', c=i, marker='o') for i in ['r', 'b']]
+ax.legend(points, ['Actual eigenvectors', 'Approximated eigenvectors (b)'], numpoints=1)
+ax.set_box_aspect(aspect=None, zoom=0.8)
+
+# Show the plot
+plt.show()
+```
+
+```{solution-end}
+```
+
+```{exercise}
+:label: eig1_ex2
+
+We have discussed the trajectory of the vector $v$ after being transformed by $A$.
+
+Consider the matrix $A = \begin{bmatrix} 1 & 2 \\ 1 & 1 \end{bmatrix}$ and the vector $v = \begin{bmatrix} 2 \\ -2 \end{bmatrix}$.
+
+Try to compute the trajectory of $v$ after being transformed by $A$ for $n=6$ iterations and plot the result.
+
+```
+
+
+```{solution-start} eig1_ex2
 :class: dropdown
 ```
 
 ```{code-cell} ipython3
-A = np.array([[0.3, 0.2, 0.3],
-              [0.2, 0.4, 0.3],
-              [0.2, 0.5, 0.1]])
+A = np.array([[1, 2], 
+              [1, 1]])
+v = (0.4, -0.4)
+n = 11
 
-evals, evecs = eig(A)
+# Compute right eigenvectors and eigenvalues
+eigenvalues, eigenvectors = np.linalg.eig(A)
 
-r = max(abs(λ) for λ in evals)   #dominant eigenvalue/spectral radius
-print(r)
+print(f"eigenvalues:\n {eigenvalues}")
+print(f"eigenvectors:\n {eigenvectors}")
+
+plot_series(A, v, n)
 ```
 
-Since we have $r(A) < 1$ we can thus find the solution using the Neumann Series lemma.
+We find the trajectory of the vector $v$ after being transformed by $A$ for $n=6$ iterations and plot the result seems to converge to the eigenvector of $A$ with the largest eigenvalue.
+
+Let's use a vector field to visualize the transformation brought by A.
 
 ```{code-cell} ipython3
-I = np.identity(3)
-B = I - A
+# Create a grid of points (vector field)
+x, y = np.meshgrid(np.linspace(-5, 5, 15), np.linspace(-5, 5, 20))
 
-d = np.array([4, 5, 12])
-d.shape = (3,1)
+# Apply the matrix A to each point in the vector field
+vec_field = np.stack([x, y])
+u, v = np.tensordot(A, vec_field, axes=1)
 
-B_inv = np.linalg.inv(B)
-x_star = B_inv @ d
-print(x_star)
+
+# Plot the transformed vector field
+c = plt.streamplot(x, y, u - x, v - y, density=1, linewidth=None, color='#A23BEC')
+c.lines.set_alpha(0.5)
+c.arrows.set_alpha(0.5)
+
+# Plot the eigenvectors as long blue and green arrows
+origin = np.zeros((2, len(eigenvectors)))
+parameters = {'color':['b', 'g'], 'angles':'xy', 
+                'scale_units':'xy', 'scale':0.1, 'width':0.01}
+plt.quiver(*origin, eigenvectors[0], eigenvectors[1], **parameters)
+plt.quiver(*origin, - eigenvectors[0], - eigenvectors[1], **parameters)
+
+colors = ['b', 'g']
+lines = [Line2D([0], [0], color=c, linewidth=3) for c in colors]
+labels = ["2.4 eigenspace", "0.4 eigenspace"]
+plt.legend(lines, labels,loc='center left', bbox_to_anchor=(1, 0.5))
+
+plt.title("Convergence/Divergence towards Eigenvectors")
+plt.xlabel("x-axis")
+plt.ylabel("y-axis")
+plt.grid()
+plt.gca().set_aspect('equal', adjustable='box')
+plt.show()
+```
+
+Note that the vector field converges to the eigenvector of $A$ with the largest eigenvalue and diverges from the eigenvector of $A$ with the smallest eigenvalue.
+
+In fact, the eigenvectors are also the directions in which the matrix $A$ stretches or shrinks the space.
+
+Specifically, the eigenvector with the largest eigenvalue is the direction in which the matrix $A$ stretches the space the most.
+
+We will see more intriguing examples of eigenvectors in the following exercise.
+
+```{solution-end}
+```
+
+```{exercise}
+:label: eig1_ex3
+
+{ref}`Previously <plot_series>`, we demonstrated the trajectory of the vector $v$ after being transformed by $A$ for three different matrices.
+
+Use the visualization in the previous exercise to explain why the trajectory of the vector $v$ after being transformed by $A$ for the three different matrices.
+
+```
+
+
+```{solution-start} eig1_ex3
+:class: dropdown
+```
+
+Here is one solution
+
+```{code-cell} ipython3
+figure, ax = plt.subplots(1,3, figsize = (15,5))
+A = np.array([[sqrt(3) + 1, -2],
+              [1, sqrt(3) - 1]])
+A = (1/(2*sqrt(2))) * A
+
+B = np.array([[sqrt(3) + 1, -2],
+              [1, sqrt(3) - 1]])
+B = (1/2) * B
+
+C = np.array([[sqrt(3) + 1, -2],
+              [1, sqrt(3) - 1]])
+C = (1/sqrt(2)) * C
+
+examples = [A, B, C]
+
+for i, example in enumerate(examples):
+    M = example
+
+    # Compute right eigenvectors and eigenvalues
+    eigenvalues, eigenvectors = np.linalg.eig(M)
+    print(f'Example {i+1}:\n')
+    print(f'eigenvalues:\n {eigenvalues}')
+    print(f'eigenvectors:\n {eigenvectors}\n')
+
+    eigenvalues_real = eigenvalues.real
+    eigenvectors_real = eigenvectors.real
+
+    # Create a grid of points (vector field)
+    x, y = np.meshgrid(np.linspace(-20, 20, 15), np.linspace(-20, 20, 20))
+
+    # Apply the matrix A to each point in the vector field
+    vec_field = np.stack([x, y])
+    u, v = np.tensordot(M, vec_field, axes=1)
+
+    # Plot the transformed vector field
+    c = ax[i].streamplot(x, y, u - x, v - y, density=1, linewidth=None, color='#A23BEC')
+    c.lines.set_alpha(0.5)
+    c.arrows.set_alpha(0.5)
+
+    # Plot the eigenvectors as long blue and green arrows
+    parameters = {'color':['b', 'g'], 'angles':'xy', 
+                'scale_units':'xy', 'scale':1, 'width':0.01, 'alpha':0.5}
+    origin = np.zeros((2, len(eigenvectors)))
+    ax[i].quiver(*origin, eigenvectors_real[0], eigenvectors_real[1], **parameters)
+    ax[i].quiver(*origin, - eigenvectors_real[0], - eigenvectors_real[1], **parameters)
+
+    ax[i].set_xlabel("x-axis")
+    ax[i].set_ylabel("y-axis")
+    ax[i].grid()
+    ax[i].set_aspect('equal', adjustable='box')
+
+plt.show()
+```
+
+The vector fields explain why we observed the trajectories of the vector $v$ multiplied by $A$ iteratively before.
+
+The pattern demonstrated here is because we have complex eigenvalues and eigenvectors.
+
+It is important to acknowledge that there is a complex plane.
+
+If we add the complex axis to the plot, the plot will be more complicated.
+
+Here we used the real part of the eigenvalues and eigenvectors.
+
+We can try to plot the complex plane for one of the matrices using `Arrow3D` class retrieved from [stackoverflow](https://stackoverflow.com/questions/22867620/putting-arrowheads-on-vectors-in-matplotlibs-3d-plot).
+
+```{code-cell} ipython3
+class Arrow3D(FancyArrowPatch):
+    def __init__(self, xs, ys, zs, *args, **kwargs):
+        super().__init__((0,0), (0,0), *args, **kwargs)
+        self._verts3d = xs, ys, zs
+
+    def do_3d_projection(self, renderer=None):
+        xs3d, ys3d, zs3d = self._verts3d
+        xs, ys, zs = proj3d.proj_transform(xs3d, ys3d, zs3d, self.axes.M)
+        self.set_positions((0.1*xs[0],0.1*ys[0]),(0.1*xs[1],0.1*ys[1]))
+
+        return np.min(zs)
+
+eigenvalues, eigenvectors = np.linalg.eig(A)
+
+# Create meshgrid for vector field
+x, y = np.meshgrid(np.linspace(-2, 2, 15), np.linspace(-2, 2, 15))
+
+# Calculate vector field (real and imaginary parts)
+u_real = A[0][0] * x + A[0][1] * y
+v_real = A[1][0] * x + A[1][1] * y
+u_imag = np.zeros_like(x)
+v_imag = np.zeros_like(y)
+
+# Create 3D figure
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')
+vlength = np.linalg.norm(eigenvectors)
+ax.quiver(x, y, u_imag, u_real-x, v_real-y, v_imag-u_imag, colors = 'b', alpha=0.3, length = .2, arrow_length_ratio = 0.01)
+
+arrow_prop_dict = dict(mutation_scale=5, arrowstyle='-|>', shrinkA=0, shrinkB=0)
+
+# Plot 3D eigenvectors
+for c, i in zip(['b', 'g'], [0, 1]):
+    a = Arrow3D([0, eigenvectors[0][i].real], [0, eigenvectors[1][i].real], 
+            [0, eigenvectors[1][i].imag], color=c, **arrow_prop_dict)
+    ax.add_artist(a)
+
+# Set axis labels and title
+ax.set_xlabel('X')
+ax.set_ylabel('Y')
+ax.set_zlabel('Im')
+ax.set_box_aspect(aspect=None, zoom=0.8)
+
+plt.draw()
+plt.show()
 ```
 
 ```{solution-end}
