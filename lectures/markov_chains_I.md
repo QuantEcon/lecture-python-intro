@@ -13,7 +13,7 @@ kernelspec:
 
 +++ {"user_expressions": []}
 
-# Markov Chains
+# Markov Chains: Basic Concepts and Stationarity
 
 In addition to what's in Anaconda, this lecture will need the following libraries:
 
@@ -21,6 +21,7 @@ In addition to what's in Anaconda, this lecture will need the following librarie
 :tags: [hide-output]
 
 !pip install quantecon
+!pip install graphviz
 ```
 
 +++ {"user_expressions": []}
@@ -52,6 +53,11 @@ import matplotlib.pyplot as plt
 plt.rcParams["figure.figsize"] = (11, 5)  # set default figure size
 import quantecon as qe
 import numpy as np
+from graphviz import Digraph
+import networkx as nx
+from matplotlib import cm
+import matplotlib as mpl
+from itertools import cycle
 ```
 
 +++ {"user_expressions": []}
@@ -78,7 +84,7 @@ In other words,
 
 If $P$ is a stochastic matrix, then so is the $k$-th power $P^k$ for all $k \in \mathbb N$.
 
-Checking this is {ref}`one of the exercises <mc_ex_pk>` below.
+Checking this is {ref}`one of the exercises <mc1_ex_3>` below.
 
 
 ### Markov Chains
@@ -98,8 +104,6 @@ From  US unemployment data, Hamilton {cite}`Hamilton2005` estimated the followin
 
 ```{code-cell} ipython3
 :tags: [hide-input]
-
-from graphviz import Digraph
 
 dot = Digraph(comment='Graph')
 dot.attr(rankdir='LR')
@@ -238,7 +242,71 @@ Then we can address a range of questions, such as
 
 We'll cover some of these applications below.
 
+(mc_eg3)=
+#### Example 3
 
+Imam and Temple {cite}`imampolitical` categorize political institutions into three types: democracy (D), autocracy (A), and an intermediate state called anocracy (N). 
+
+Each institution can have two potential development regimes: collapse (C) and growth (G). This results in six possible states: DG, DC, NG, NC, AG, and AC. 
+
+The lower probability of transitioning from NC to itself indicates that collapses in anocracies quickly evolve into changes in the political institution. 
+
+Democracies tend to have longer-lasting growth regimes compared to autocracies as indicated by the lower probability of transitioning from growth to growth in autocracies.
+
+We can also find a higher probability from collapse to growth in democratic regimes
+
+$$
+P :=
+\left(
+  \begin{array}{cccccc}
+0.86 & 0.11 & 0.03 & 0.00 & 0.00 & 0.00 \\
+0.52 & 0.33 & 0.13 & 0.02 & 0.00 & 0.00 \\
+0.12 & 0.03 & 0.70 & 0.11 & 0.03 & 0.01 \\
+0.13 & 0.02 & 0.35 & 0.36 & 0.10 & 0.04 \\
+0.00 & 0.00 & 0.09 & 0.11 & 0.55 & 0.25 \\
+0.00 & 0.00 & 0.09 & 0.15 & 0.26 & 0.50
+  \end{array}
+\right)
+$$
+
+```{code-cell} ipython3
+nodes = ['DG', 'DC', 'NG', 'NC', 'AG', 'AC']
+P = [[0.86, 0.11, 0.03, 0.00, 0.00, 0.00],
+     [0.52, 0.33, 0.13, 0.02, 0.00, 0.00],
+     [0.12, 0.03, 0.70, 0.11, 0.03, 0.01],
+     [0.13, 0.02, 0.35, 0.36, 0.10, 0.04],
+     [0.00, 0.00, 0.09, 0.11, 0.55, 0.25],
+     [0.00, 0.00, 0.09, 0.15, 0.26, 0.50]]
+```
+
+```{code-cell} ipython3
+G = nx.MultiDiGraph()
+edge_ls = []
+label_dict = {}
+
+for start_idx, node_start in enumerate(nodes):
+    for end_idx, node_end in enumerate(nodes):
+        value = P[start_idx][end_idx]
+        if value != 0:
+            G.add_edge(node_start,node_end, weight=value, len=100)
+            
+pos = nx.spring_layout(G, seed=10)
+fig, ax = plt.subplots()
+nx.draw_networkx_nodes(G, pos, node_size=600, edgecolors='black', node_color='white')
+nx.draw_networkx_labels(G, pos)
+
+arc_rad = 0.2
+curved_edges = [edge for edge in G.edges()]
+edges = nx.draw_networkx_edges(G, pos, ax=ax, connectionstyle=f'arc3, rad = {arc_rad}', edge_cmap=cm.Blues, width=2,
+    edge_color=[G[nodes[0]][nodes[1]][0]['weight'] for nodes in G.edges])
+
+pc = mpl.collections.PatchCollection(edges, cmap=cm.Blues)
+
+ax = plt.gca()
+ax.set_axis_off()
+plt.colorbar(pc, ax=ax)
+plt.show()
+```
 
 ### Defining Markov Chains
 
@@ -395,7 +463,7 @@ mc_sample_path(P, ψ_0=[1.0, 0.0], ts_length=10)
 It can be shown that for a long series drawn from `P`, the fraction of the
 sample that takes value 0 will be about 0.25.
 
-(We will explain why {ref}`below <ergodicity>`.)
+(We will explain why {ref}`later <ergodicity>`.)
 
 Moreover, this is true regardless of the initial distribution from which
 $X_0$ is drawn.
@@ -420,8 +488,6 @@ always close to 0.25 (for the `P` matrix above).
 Here's an illustration using the same $P$ as the preceding example
 
 ```{code-cell} ipython3
-from quantecon import MarkovChain
-
 mc = qe.MarkovChain(P)
 X = mc.simulate(ts_length=1_000_000)
 np.mean(X == 0)
@@ -630,130 +696,7 @@ each state.
 
 This is exactly the cross-sectional distribution.
 
-
-## Irreducibility
-
-
-Irreducibility is a central concept of Markov chain theory.
-
-To explain it, let's take $P$ to be a fixed stochastic matrix.
-
-Two states $x$ and $y$ are said to **communicate** with each other if
-there exist positive integers $j$ and $k$ such that
-
-$$
-P^j(x, y) > 0
-\quad \text{and} \quad
-P^k(y, x) > 0
-$$
-
-In view of our discussion {ref}`above <finite_mc_mstp>`, this means precisely
-that
-
-* state $x$ can eventually be reached from state $y$, and
-* state $y$ can eventually be reached from state $x$
-
-The stochastic matrix $P$ is called **irreducible** if all states communicate;
-that is, if $x$ and $y$ communicate for all $(x, y)$ in $S \times S$.
-
-For example, consider the following transition probabilities for wealth of a
-fictitious set of households
-
-```{code-cell} ipython3
-:tags: [hide-input]
-
-dot = Digraph(comment='Graph')
-dot.attr(rankdir='LR')
-dot.node("poor")
-dot.node("middle class")
-dot.node("rich")
-
-dot.edge("poor", "poor", label="0.9")
-dot.edge("poor", "middle class", label="0.1")
-dot.edge("middle class", "poor", label="0.4")
-dot.edge("middle class", "middle class", label="0.4")
-dot.edge("middle class", "rich", label="0.2")
-dot.edge("rich", "poor", label="0.1")
-dot.edge("rich", "middle class", label="0.1")
-dot.edge("rich", "rich", label="0.8")
-
-dot
-```
-
-We can translate this into a stochastic matrix, putting zeros where
-there's no edge between nodes
-
-$$
-P :=
-\left(
-  \begin{array}{ccc}
-     0.9 & 0.1 & 0 \\
-     0.4 & 0.4 & 0.2 \\
-     0.1 & 0.1 & 0.8
-  \end{array}
-\right)
-$$
-
-It's clear from the graph that this stochastic matrix is irreducible: we can  eventually
-reach any state from any other state.
-
-We can also test this using [QuantEcon.py](http://quantecon.org/quantecon-py)'s MarkovChain class
-
-```{code-cell} ipython3
-P = [[0.9, 0.1, 0.0],
-     [0.4, 0.4, 0.2],
-     [0.1, 0.1, 0.8]]
-
-mc = qe.MarkovChain(P, ('poor', 'middle', 'rich'))
-mc.is_irreducible
-```
-
-Here's a more pessimistic scenario in which  poor people remain poor forever
-
-```{code-cell} ipython3
-:tags: [hide-input]
-
-dot = Digraph(comment='Graph')
-dot.attr(rankdir='LR')
-dot.node("poor")
-dot.node("middle class")
-dot.node("rich")
-
-dot.edge("poor", "poor", label="1.0")
-dot.edge("middle class", "poor", label="0.1")
-dot.edge("middle class", "middle class", label="0.8")
-dot.edge("middle class", "rich", label="0.1")
-dot.edge("rich", "middle class", label="0.2")
-dot.edge("rich", "rich", label="0.8")
-
-dot
-```
-
-This stochastic matrix is not irreducible since, for example, rich is not
-accessible from poor.
-
-Let's confirm this
-
-```{code-cell} ipython3
-P = [[1.0, 0.0, 0.0],
-     [0.1, 0.8, 0.1],
-     [0.0, 0.2, 0.8]]
-
-mc = qe.MarkovChain(P, ('poor', 'middle', 'rich'))
-mc.is_irreducible
-```
-
-+++ {"user_expressions": []}
-
-It might be clear to you already that irreducibility is going to be important
-in terms of long run outcomes.
-
-For example, poverty is a life sentence in the second graph but not the first.
-
-We'll come back to this a bit later.
-
-+++ {"user_expressions": []}
-
+(stationary)=
 ## Stationary Distributions
 
 
@@ -802,18 +745,17 @@ stochastic matrix $P$.
 To get uniqueness, we need the Markov chain to "mix around," so that the state
 doesn't get stuck in some part of the state space.
 
-This gives some intuition for the following fundamental theorem.
+This gives some intuition for the following theorem.
 
 
 ```{prf:theorem}
-:label: mc_conv_thm
+:label: mc_po_conv_thm
 
-If $P$ is irreducible, then $P$ has exactly one stationary
+If $P$ is everywhere positive, then $P$ has exactly one stationary
 distribution.
 ```
 
-For proof, see Chapter 4 of {cite}`sargent2023economic` or
-Theorem 5.2 of {cite}`haggstrom2002finite`.
+We will come back to this when we introduce irreducibility in the next lecture
 
 +++ {"user_expressions": []}
 
@@ -821,7 +763,7 @@ Theorem 5.2 of {cite}`haggstrom2002finite`.
 
 Recall our model of the employment/unemployment dynamics of a particular worker {ref}`discussed above <mc_eg1>`.
 
-If $\alpha \in (0,1)$ and $\beta \in (0,1)$, then the irreducibility condition is satisfied.
+If $\alpha \in (0,1)$ and $\beta \in (0,1)$, then the transition matrix is everywhere positive.
 
 Let $\psi^* = (p, 1-p)$ be the stationary distribution, so that $p$
 corresponds to unemployment (state 0).
@@ -835,8 +777,6 @@ $$
 This is, in some sense, a steady state probability of unemployment.
 
 Not surprisingly it tends to zero as $\beta \to 0$, and to one as $\alpha \to 0$.
-
-
 
 ### Calculating Stationary Distributions
 
@@ -852,198 +792,23 @@ mc = qe.MarkovChain(P)
 mc.stationary_distributions  # Show all stationary distributions
 ```
 
-(ergodicity)=
-## Ergodicity
-
-Under irreducibility, yet another important result obtains:
-
-````{prf:theorem}
-:label: stationary
-
-If $P$ is irreducible and $\psi^*$ is the unique stationary
-distribution, then, for all $x \in S$,
-
-```{math}
-:label: llnfmc0
-
-\frac{1}{m} \sum_{t = 1}^m \mathbf{1}\{X_t = x\}  \to \psi^*(x)
-    \quad \text{as } m \to \infty
-```
-
-````
-
-Here
-
-* $\{X_t\}$ is a Markov chain with stochastic matrix $P$ and initial
-  distribution $\psi_0$
-* $\mathbf{1}\{X_t = x\} = 1$ if $X_t = x$ and zero otherwise
-
-The result in [theorem 4.3](llnfmc0) is sometimes called **ergodicity**.
-
-The theorem tells us that the fraction of time the chain spends at state $x$
-converges to $\psi^*(x)$ as time goes to infinity.
-
-(new_interp_sd)=
-This gives us another way to interpret the stationary distribution (provided irreducibility holds).
-
-Importantly, the result is valid for any choice of $\psi_0$.
-
-The theorem is related to {doc}`the law of large numbers <lln_clt>`.
-
-It tells us that, in some settings, the law of large numbers sometimes holds even when the
-sequence of random variables is [not IID](iid_violation).
-
-
-(mc_eg1-2)=
-### Example 1
-
-Recall our cross-sectional interpretation of the employment/unemployment model {ref}`discussed above <mc_eg1-1>`.
-
-Assume that $\alpha \in (0,1)$ and $\beta \in (0,1)$, so that irreducibility holds.
-
-We saw that the stationary distribution is $(p, 1-p)$, where
-
-$$
-p = \frac{\beta}{\alpha + \beta}
-$$
-
-In the cross-sectional interpretation, this is the fraction of people unemployed.
-
-In view of our latest (ergodicity) result, it is also the fraction of time that a single worker can expect to spend unemployed.
-
-Thus, in the long-run, cross-sectional averages for a population and time-series averages for a given person coincide.
-
-This is one aspect of the concept  of ergodicity.
-
-
-(ergo)=
-### Example 2
-
-
-Another example is Hamilton {cite}`Hamilton2005` dynamics {ref}`discussed above <mc_eg2>`.
-
-The diagram of the Markov chain shows that it is **irreducible**.
-
-Therefore, we can see the sample path averages for each state (the fraction of time spent in each state) converges to the stationary distribution regardless of the starting state
-
-```{code-cell} ipython3
-P = np.array([[0.971, 0.029, 0.000],
-              [0.145, 0.778, 0.077],
-              [0.000, 0.508, 0.492]])
-ts_length = 10_000
-mc = MarkovChain(P)
-n = len(P)
-fig, axes = plt.subplots(nrows=1, ncols=n)
-ψ_star = mc.stationary_distributions[0]
-plt.subplots_adjust(wspace=0.35)
-
-for i in range(n):
-    axes[i].grid()
-    axes[i].axhline(ψ_star[i], linestyle='dashed', lw=2, color = 'black', 
-                    label = fr'$\psi^*({i})$')
-    axes[i].set_xlabel('t')
-    axes[i].set_ylabel(f'fraction of time spent at {i}')
-
-    # Compute the fraction of time spent, starting from different x_0s
-    for x0, col in ((0, 'blue'), (1, 'green'), (2, 'red')):
-        # Generate time series that starts at different x0
-        X = mc.simulate(ts_length, init=x0)
-        X_bar = (X == i).cumsum() / (1 + np.arange(ts_length, dtype=float))
-        axes[i].plot(X_bar, color=col, label=f'$x_0 = \, {x0} $')
-    axes[i].legend()
-plt.show()
-```
-
-### Example 3
-
-Let's look at another example with two states: 0 and 1.
-
-
-$$
-P :=
-\left(
-  \begin{array}{cc}
-     0 & 1\\
-     1 & 0\\
-  \end{array}
-\right)
-$$
-
-
-The diagram of the Markov chain shows that it is **irreducible**
-
-```{code-cell} ipython3
-:tags: [hide-input]
-
-dot = Digraph(comment='Graph')
-dot.attr(rankdir='LR')
-dot.node("0")
-dot.node("1")
-
-dot.edge("0", "1", label="1.0", color='red')
-dot.edge("1", "0", label="1.0", color='red')
-
-dot
-```
-
-+++ {"user_expressions": []}
-
-Unlike other Markov chains we have seen before, it has a periodic cycle --- the state cycles between the two states in a regular way.
-
-This is called [periodicity](https://www.randomservices.org/random/markov/Periodicity.html).
-
-It is still irreducible, however, so ergodicity holds.
-
-```{code-cell} ipython3
-P = np.array([[0, 1],
-              [1, 0]])
-ts_length = 10_000
-mc = MarkovChain(P)
-n = len(P)
-fig, axes = plt.subplots(nrows=1, ncols=n)
-ψ_star = mc.stationary_distributions[0]
-
-for i in range(n):
-    axes[i].grid()
-    axes[i].set_ylim(0.45, 0.55)
-    axes[i].axhline(ψ_star[i], linestyle='dashed', lw=2, color = 'black', 
-                    label = fr'$\psi^*({i})$')
-    axes[i].set_xlabel('t')
-    axes[i].set_ylabel(f'fraction of time spent at {i}')
-
-    # Compute the fraction of time spent, for each x
-    for x0 in range(n):
-        # Generate time series starting at different x_0
-        X = mc.simulate(ts_length, init=x0)
-        X_bar = (X == i).cumsum() / (1 + np.arange(ts_length, dtype=float))
-        axes[i].plot(X_bar, label=f'$x_0 = \, {x0} $')
-
-    axes[i].legend()
-plt.show()
-```
-
-+++ {"user_expressions": []}
-
 ### Asymptotic Stationarity
 
-Consider an irreducible stochastic matrix with unique stationary distribution $\psi^*$.
+Consider a everywhere positive stochastic matrix with unique stationary distribution $\psi^*$.
 
 Sometimes the distribution $\psi_t = \psi_0 P^t$ of $X_t$ converges to $\psi^*$ regardless of $\psi_0$.
 
 For example, we have the following result
 
+(strict_stationary)=
 ```{prf:theorem}
-:label: strict_stationary
-
 Theorem: If there exists an integer $m$ such that all entries of $P^m$ are
-strictly positive, then $P$ is irreducible, with unique stationary distribution $\psi^*$, and
+strictly positive, with unique stationary distribution $\psi^*$, and
 
 $$
     \psi_0 P^t \to \psi
     \quad \text{as } t \to \infty
 $$
-
-
 ```
 
 
@@ -1051,6 +816,7 @@ See, for example, {cite}`sargent2023economic` Chapter 4.
 
 +++ {"user_expressions": []}
 
+(hamilton)=
 #### Example: Hamilton's Chain
 
 Hamilton's chain satisfies the conditions of the theorem because $P^2$ is everywhere positive:
@@ -1059,7 +825,6 @@ Hamilton's chain satisfies the conditions of the theorem because $P^2$ is everyw
 P = np.array([[0.971, 0.029, 0.000],
               [0.145, 0.778, 0.077],
               [0.000, 0.508, 0.492]])
-P = np.array(P)
 P @ P
 ```
 
@@ -1124,7 +889,7 @@ We can show this in a slightly different way by focusing on the probability that
 First, we write a function to draw initial distributions $\psi_0$ of size `num_distributions`
 
 ```{code-cell} ipython3
-def generate_initial_values(num_distributions, n):
+def generate_initial_values(num_distributions):
     n = len(P)
     ψ_0s = np.empty((num_distributions, n))
     
@@ -1137,7 +902,42 @@ def generate_initial_values(num_distributions, n):
     return ψ_0s
 ```
 
-The following figure shows the dynamics of  $(\psi_0 P^t)(i)$ as $t$ gets large, for each state $i$ with different initial distributions
+We then write a function to plot the dynamics of  $(\psi_0 P^t)(i)$ as $t$ gets large, for each state $i$ with different initial distributions
+
+```{code-cell} ipython3
+def plot_distribution(P, ts_length, num_distributions):
+
+    # Get parameters of transition matrix
+    n = len(P)
+    mc = qe.MarkovChain(P)
+    ψ_star = mc.stationary_distributions[0]
+
+    ## Draw the plot
+    fig, axes = plt.subplots(nrows=1, ncols=n)
+    plt.subplots_adjust(wspace=0.35)
+
+    ψ_0s = generate_initial_values(num_distributions)
+
+    # Get the path for each starting value
+    for ψ_0 in ψ_0s:
+        ψ_t = iterate_ψ(ψ_0, P, ts_length)
+        
+        # Obtain and plot distributions at each state
+        for i in range(n):
+            axes[i].plot(range(0, ts_length), ψ_t[:,i], alpha=0.3)
+
+    # Add labels
+    for i in range(n):
+        axes[i].axhline(ψ_star[i], linestyle='dashed', lw=2, color = 'black', 
+                        label = fr'$\psi^*({i})$')
+        axes[i].set_xlabel('t')
+        axes[i].set_ylabel(fr'$\psi_t({i})$')
+        axes[i].legend()
+
+    plt.show()
+```
+
+The following figure shows
 
 ```{code-cell} ipython3
 # Define the number of iterations 
@@ -1145,30 +945,11 @@ The following figure shows the dynamics of  $(\psi_0 P^t)(i)$ as $t$ gets large,
 ts_length = 50
 num_distributions = 25
 
-n = len(P)
-mc = qe.MarkovChain(P)
-ψ_star = mc.stationary_distributions[0]
+P = np.array([[0.971, 0.029, 0.000],
+              [0.145, 0.778, 0.077],
+              [0.000, 0.508, 0.492]])
 
-# Draw the plot
-fig, axes = plt.subplots(nrows=1, ncols=n)
-plt.subplots_adjust(wspace=0.35)
-
-ψ_0s = generate_initial_values(num_distributions, n)
-for ψ_0 in ψ_0s:
-    ψ_t = iterate_ψ(ψ_0, P, ts_length)
-    
-    # Obtain and plot distributions at each state
-    for i in range(n):
-        axes[i].plot(range(0, ts_length), ψ_t[:,i], alpha=0.3)
-
-for i in range(n):
-    axes[i].axhline(ψ_star[i], linestyle='dashed', lw=2, color = 'black', 
-                    label = fr'$\psi^*({i})$')
-    axes[i].set_xlabel('t')
-    axes[i].set_ylabel(fr'$\psi_t({i})$')
-    axes[i].legend()
-
-plt.show()
+plot_distribution(P, ts_length, num_distributions)
 ```
 
 The convergence to $\psi^*$ holds for different initial distributions.
@@ -1186,35 +967,11 @@ P = np.array([[0, 1],
 
 ts_length = 20
 num_distributions = 30
-n = len(P)
-mc = qe.MarkovChain(P)
-ψ_star = mc.stationary_distributions[0]
-fig, axes = plt.subplots(nrows=1, ncols=n)
 
-ψ_0s = generate_initial_values(num_distributions, n)
-for ψ_0 in ψ_0s:
-    ψ_t = iterate_ψ(ψ_0, P, ts_length)
-
-    # Obtain and plot distributions at each state
-    for i in range(n):
-        axes[i].plot(range(ts_length), ψ_t[:,i], alpha=0.3)
-
-for i in range(n):
-    axes[i].axhline(ψ_star[i], linestyle='dashed', lw=2, color = 'black', label = fr'$\psi^*({i})$')
-    axes[i].set_xlabel('t')
-    axes[i].set_ylabel(fr'$\psi_t({i})$')
-    axes[i].legend()
-
-plt.show()
+plot_distribution(P, ts_length, num_distributions)
 ```
 
 +++ {"user_expressions": []}
-
-This example helps to emphasize the fact that asymptotic stationarity is about the distribution, while ergodicity is about the sample path.
-
-The proportion of time spent in a state can converge to the stationary distribution with periodic chains.
-
-However, the distribution at each state does not.
 
 (finite_mc_expec)=
 ## Computing Expectations
@@ -1287,10 +1044,6 @@ We already know that this is $P^k(x, \cdot)$, so
 = (P^k h)(x)
 ```
 
-The vector $P^k h$ stores the conditional expectation $\mathbb E [ h(X_{t + k})  \mid X_t = x]$ over all $x$.
-
-
-
 ### Expectations of Geometric Sums
 
 Sometimes we want to compute the mathematical expectation of a geometric sum, such as
@@ -1307,252 +1060,226 @@ $$
     = x + \beta (Ph)(x) + \beta^2 (P^2 h)(x) + \cdots
 $$
 
-By the {doc}`Neumann series lemma <eigen>`, this sum can be calculated using 
+By the {ref}`Neumann series lemma <la_neumann>`, this sum can be calculated using 
 
 $$
     I + \beta P + \beta^2 P^2 + \cdots = (I - \beta P)^{-1}
 $$
 
+The vector $P^k h$ stores the conditional expectation $\mathbb E [ h(X_{t + k})  \mid X_t = x]$ over all $x$.
 
-## Exercises
 
-````{exercise}
-:label: mc_ex1
+```{exercise}
+:label: mc1_ex_1
 
-Benhabib el al. {cite}`benhabib_wealth_2019` estimated that the transition matrix for social mobility as the following
-
-$$P_B:=\left(\begin{array}{cccccccc}0.222 & 0.222 & 0.215 & 0.187 & 0.081 & 0.038 & 0.029 & 0.006 \\ 0.221 & 0.22 & 0.215 & 0.188 & 0.082 & 0.039 & 0.029 & 0.006 \\ 0.207 & 0.209 & 0.21 & 0.194 & 0.09 & 0.046 & 0.036 & 0.008 \\ 0.198 & 0.201 & 0.207 & 0.198 & 0.095 & 0.052 & 0.04 & 0.009 \\ 0.175 & 0.178 & 0.197 & 0.207 & 0.11 & 0.067 & 0.054 & 0.012 \\ 0.182 & 0.184 & 0.2 & 0.205 & 0.106 & 0.062 & 0.05 & 0.011 \\ 0.123 & 0.125 & 0.166 & 0.216 & 0.141 & 0.114 & 0.094 & 0.021 \\ 0.084 & 0.084 & 0.142 & 0.228 & 0.17 & 0.143 & 0.121 & 0.028\end{array}\right)$$
-
-where each state 1 to 8 corresponds to a  percentile of wealth shares
+Imam and Temple {cite}`imampolitical` used a three-state transition matrix to describe the transition of three states of a regime: growth, stagnation, and collapse
 
 $$
-0-20 \%, 20-40 \%, 40-60 \%, 60-80 \%, 80-90 \%, 90-95 \%, 95-99 \%, 99-100 \%
+P :=
+\left(
+  \begin{array}{ccc}
+    0.68 & 0.12 & 0.20 \\
+    0.50 & 0.24 & 0.26 \\
+    0.36 & 0.18 & 0.46
+  \end{array}
+\right)
 $$
 
-The matrix is recorded as `P_B` below
-
-```python
-P_B = [
-    [0.222, 0.222, 0.215, 0.187, 0.081, 0.038, 0.029, 0.006],
-    [0.221, 0.22,  0.215, 0.188, 0.082, 0.039, 0.029, 0.006],
-    [0.207, 0.209, 0.21,  0.194, 0.09,  0.046, 0.036, 0.008],
-    [0.198, 0.201, 0.207, 0.198, 0.095, 0.052, 0.04,  0.009],
-    [0.175, 0.178, 0.197, 0.207, 0.11,  0.067, 0.054, 0.012],
-    [0.182, 0.184, 0.2,   0.205, 0.106, 0.062, 0.05,  0.011],
-    [0.123, 0.125, 0.166, 0.216, 0.141, 0.114, 0.094, 0.021],
-    [0.084, 0.084, 0.142, 0.228, 0.17,  0.143, 0.121, 0.028]
-    ]
-
-P_B = np.array(P_B)
-codes_B =  ( '1','2','3','4','5','6','7','8')
-```
+where rows, from top to down, correspond to growth, stagnation, and collapse.
 
 In this exercise,
 
-1. show this process is asymptotically stationary and calculate the stationary distribution using simulations.
+1. visualize the transition matrix and show this process is asymptotically stationary
+1. calculate the stationary distribution using simulations
+1. visualize the dynamics of  $(\psi_0 P^t)(i)$ where $t \in 0, ..., 25$ and compare the convergent path with the previous transition matrix
 
-1. use simulations to demonstrate ergodicity of this process.
+Compare your solution to the paper.
+```
 
-````
-
-```{solution-start} mc_ex1
+```{solution-start} mc1_ex_1
 :class: dropdown
 ```
 
-One simple way is to take the power of the transition matrix to find the stationary distribution
+1.
 
 ```{code-cell} ipython3
-P_B = [
-    [0.222, 0.222, 0.215, 0.187, 0.081, 0.038, 0.029, 0.006],
-    [0.221, 0.22,  0.215, 0.188, 0.082, 0.039, 0.029, 0.006],
-    [0.207, 0.209, 0.21,  0.194, 0.09,  0.046, 0.036, 0.008],
-    [0.198, 0.201, 0.207, 0.198, 0.095, 0.052, 0.04,  0.009],
-    [0.175, 0.178, 0.197, 0.207, 0.11,  0.067, 0.054, 0.012],
-    [0.182, 0.184, 0.2,   0.205, 0.106, 0.062, 0.05,  0.011],
-    [0.123, 0.125, 0.166, 0.216, 0.141, 0.114, 0.094, 0.021],
-    [0.084, 0.084, 0.142, 0.228, 0.17,  0.143, 0.121, 0.028]
-    ]
+:tags: [hide-output]
 
-P_B = np.array(P_B)
-codes_B =  ( '1','2','3','4','5','6','7','8')
+dot = Digraph(comment='Graph')
+dot.attr(rankdir='LR')
+dot.node("Growth")
+dot.node("Stagnation")
+dot.node("Collapse")
 
-np.linalg.matrix_power(P_B, 10)
+dot.edge("Growth", "Growth", label="0.68")
+dot.edge("Growth", "Stagnation", label="0.12")
+dot.edge("Growth", "Collapse", label="0.20")
+
+dot.edge("Stagnation", "Stagnation", label="0.24")
+dot.edge("Stagnation", "Growth", label="0.50")
+dot.edge("Stagnation", "Collapse", label="0.26")
+
+dot.edge("Collapse", "Collapse", label="0.46")
+dot.edge("Collapse", "Stagnation", label="0.18")
+dot.edge("Collapse", "Growth", label="0.36")
+
+dot
 ```
 
-We find that rows of the transition matrix converge to the stationary distribution
+Since the matrix is everywhere positive, there is a unique stationary distribution.
+
+2. 
+
+One simple way to calculate the stationary distribution is to take the power of the transition matrix as we have shown before
 
 ```{code-cell} ipython3
-mc = qe.MarkovChain(P_B)
+P = [[0.68, 0.12, 0.20],
+     [0.50, 0.24, 0.26],
+     [0.36, 0.18, 0.46]]
+P_power = np.linalg.matrix_power(P, 20)
+P_power
+```
+
+Note that rows of the transition matrix converge to the stationary distribution.
+
+```{code-cell} ipython3
+ψ_star_p = P_power[0]
+ψ_star_p
+```
+
+```{code-cell} ipython3
+mc = qe.MarkovChain(P)
 ψ_star = mc.stationary_distributions[0]
 ψ_star
 ```
 
+3.
+
+We find the distribution $\psi$ converges to the stationary distribution more quickly compared to the {ref}`hamilton's chain <hamilton>`.
+
+```{code-cell} ipython3
+ts_length = 10
+num_distributions = 25
+plot_distribution(P, ts_length, num_distributions)
+```
+
+In fact, the rate of convergence is governed by {ref}`eigenvalues<eigen>` {cite}`sargent2023economic`.
+
+```{code-cell} ipython3
+P_eigenvals = np.linalg.eigvals(P)
+P_eigenvals
+```
+
+```{code-cell} ipython3
+P_hamilton = np.array([[0.971, 0.029, 0.000],
+                       [0.145, 0.778, 0.077],
+                       [0.000, 0.508, 0.492]])
+
+hamilton_eigenvals = np.linalg.eigvals(P_hamilton)
+hamilton_eigenvals
+```
+
+More specifically, it is governed by the spectral gap, the difference between the largest and the second largest eigenvalue.
+
+```{code-cell} ipython3
+sp_gap_P = P_eigenvals[0] - np.diff(P_eigenvals)[0]
+sp_gap_hamilton = hamilton_eigenvals[0] - np.diff(hamilton_eigenvals)[0]
+
+sp_gap_P > sp_gap_hamilton
+```
+
+We will come back to this in 
+
+TODO: add a reference to eigen II
+
+```{solution-end}
+```
+
+````{exercise}
+:label: mc1_ex_2
+
+We discussed the six-state transition matrix estimated by Imam & Temple {cite}`imampolitical` [before](mc_eg3).
+
+```python
+nodes = ['DG', 'DC', 'NG', 'NC', 'AG', 'AC']
+P = [[0.86, 0.11, 0.03, 0.00, 0.00, 0.00],
+     [0.52, 0.33, 0.13, 0.02, 0.00, 0.00],
+     [0.12, 0.03, 0.70, 0.11, 0.03, 0.01],
+     [0.13, 0.02, 0.35, 0.36, 0.10, 0.04],
+     [0.00, 0.00, 0.09, 0.11, 0.55, 0.25],
+     [0.00, 0.00, 0.09, 0.15, 0.26, 0.50]]
+```
+
+In this exercise,
+
+1. show this process is asymptotically stationary without simulation
+1. simulate and visualize the dynamics starting with a uniform distribution across states (each state will have a probability of 1/6)
+1. change the initial distribution to P(DG) = 1, while all other states have a probability of 0
+````
+
+```{solution-start} mc1_ex_2
+:class: dropdown
+```
+
+1. 
+
+Although $P$ is not every positive, $P^m$ when $m=3$ is everywhere positive.
+
+```{code-cell} ipython3
+P = np.array([[0.86, 0.11, 0.03, 0.00, 0.00, 0.00],
+              [0.52, 0.33, 0.13, 0.02, 0.00, 0.00],
+              [0.12, 0.03, 0.70, 0.11, 0.03, 0.01],
+              [0.13, 0.02, 0.35, 0.36, 0.10, 0.04],
+              [0.00, 0.00, 0.09, 0.11, 0.55, 0.25],
+              [0.00, 0.00, 0.09, 0.15, 0.26, 0.50]])
+
+np.linalg.matrix_power(P,3)
+```
+
+So it satisfies the requirement.
+
 2.
 
-```{code-cell} ipython3
-ts_length = 1000
-mc = MarkovChain(P_B)
-fig, ax = plt.subplots(figsize=(9, 6))
-X = mc.simulate(ts_length)
-# Center the plot at 0
-ax.set_ylim(-0.25, 0.25)
-ax.axhline(0, linestyle='dashed', lw=2, color = 'black', alpha=0.4)
-
-
-for x0 in range(8):
-    # Calculate the fraction of time for each worker
-    X_bar = (X == x0).cumsum() / (1 + np.arange(ts_length, dtype=float))
-    ax.plot(X_bar - ψ_star[x0], label=f'$X = {x0+1} $')
-    ax.set_xlabel('t')
-    ax.set_ylabel(r'fraction of time spent in a state $- \psi^* (x)$')
-
-ax.legend()
-plt.show()
-```
-
-Note that the fraction of time spent at each state quickly converges to the probability assigned to that state by the stationary distribution.
-
-```{solution-end}
-```
-
-
-```{exercise}
-:label: mc_ex2
-
-According to the discussion {ref}`above <mc_eg1-2>`, if a worker's employment dynamics obey the stochastic matrix
-
-$$
-P
-= \left(
-\begin{array}{cc}
-    1 - \alpha & \alpha \\
-    \beta & 1 - \beta
-\end{array}
-  \right)
-$$
-
-with $\alpha \in (0,1)$ and $\beta \in (0,1)$, then, in the long-run, the fraction
-of time spent unemployed will be
-
-$$
-p := \frac{\beta}{\alpha + \beta}
-$$
-
-In other words, if $\{X_t\}$ represents the Markov chain for
-employment, then $\bar X_m \to p$ as $m \to \infty$, where
-
-$$
-\bar X_m := \frac{1}{m} \sum_{t = 1}^m \mathbf{1}\{X_t = 0\}
-$$
-
-This exercise asks you to illustrate convergence by computing
-$\bar X_m$ for large $m$ and checking that
-it is close to $p$.
-
-You will see that this statement is true regardless of the choice of initial
-condition or the values of $\alpha, \beta$, provided both lie in
-$(0, 1)$.
-
-The result should be similar to the plot we plotted [here](ergo)
-```
-
-```{solution-start} mc_ex2
-:class: dropdown
-```
-
-We will address this exercise graphically.
-
-The plots show the time series of $\bar X_m - p$ for two initial
-conditions.
-
-As $m$ gets large, both series converge to zero.
+We find the distribution $\psi$ converges to the stationary distribution quickly regardless of the initial distributions
 
 ```{code-cell} ipython3
-α = β = 0.1
-ts_length = 10000
-p = β / (α + β)
+ts_length = 30
+num_distributions = 20
+nodes = ['DG', 'DC', 'NG', 'NC', 'AG', 'AC']
 
-P = ((1 - α,       α),               # Careful: P and p are distinct
-     (    β,   1 - β))
-mc = MarkovChain(P)
-
-fig, ax = plt.subplots(figsize=(9, 6))
-ax.set_ylim(-0.25, 0.25)
-ax.grid()
-ax.hlines(0, 0, ts_length, lw=2, alpha=0.6)   # Horizonal line at zero
-
-for x0, col in ((0, 'blue'), (1, 'green')):
-    # Generate time series for worker that starts at x0
-    X = mc.simulate(ts_length, init=x0)
-    # Compute fraction of time spent unemployed, for each n
-    X_bar = (X == 0).cumsum() / (1 + np.arange(ts_length, dtype=float))
-    # Plot
-    ax.fill_between(range(ts_length), np.zeros(ts_length), X_bar - p, color=col, alpha=0.1)
-    ax.plot(X_bar - p, color=col, label=f'$X_0 = \, {x0} $')
-    # Overlay in black--make lines clearer
-    ax.plot(X_bar - p, 'k-', alpha=0.6)
-
-ax.legend(loc='upper right')
-plt.show()
-```
-
-```{solution-end}
-```
-
-```{exercise}
-:label: mc_ex3
-
-In `quantecon` library, irreducibility is tested by checking whether the chain forms a [strongly connected component](https://networkx.org/documentation/stable/reference/algorithms/generated/networkx.algorithms.components.is_strongly_connected.html).
-
-However, another way to verify irreducibility is by checking whether $A$ satisfies the following statement:
-
-Assume A is an $n \times n$ $A$ is irreducible if and only if $\sum_{k=0}^{n-1}A^k$ is a positive matrix.
-
-(see more: {cite}`zhao_power_2012` and [here](https://math.stackexchange.com/questions/3336616/how-to-prove-this-matrix-is-a-irreducible-matrix))
-
-Based on this claim, write a function to test irreducibility.
-
-```
-
-```{solution-start} mc_ex3
-:class: dropdown
-```
-
-```{code-cell} ipython3
-def is_irreducible(P):
-    n = len(P)
-    result = np.zeros((n, n))
+# Get parameters of transition matrix
+n = len(P)
+mc = qe.MarkovChain(P)
+ψ_star = mc.stationary_distributions[0]
+ψ_0 = np.array([[1/6 for i in range(6)],
+                [0 if i != 0 else 1 for i in range(6)]])
+## Draw the plot
+fig, axes = plt.subplots(ncols=2)
+plt.subplots_adjust(wspace=0.35)
+for idx in range(2):
+    ψ_t = iterate_ψ(ψ_0[idx], P, ts_length)
     for i in range(n):
-        result += np.linalg.matrix_power(P, i)
-    return np.all(result > 0)
-```
+        axes[idx].plot(ψ_t[:, i] - ψ_star[i], alpha=0.5, label=fr'$\psi_t({i+1})$')
+        axes[idx].set_ylim([-0.3, 0.3])
+        axes[idx].set_xlabel('t')
+        axes[idx].set_ylabel(fr'$\psi_t$')
+        axes[idx].legend()
+        axes[idx].axhline(0, linestyle='dashed', lw=1, color = 'black')
 
-```{code-cell} ipython3
-P1 = np.array([[0, 1],
-               [1, 0]])
-P2 = np.array([[1.0, 0.0, 0.0],
-               [0.1, 0.8, 0.1],
-               [0.0, 0.2, 0.8]])
-P3 = np.array([[0.971, 0.029, 0.000],
-               [0.145, 0.778, 0.077],
-               [0.000, 0.508, 0.492]])
-
-for P in (P1, P2, P3):
-    result = lambda P: 'irreducible' if is_irreducible(P) else 'reducible'
-    print(f'{P}: {result(P)}')
+plt.show()
 ```
 
 ```{solution-end}
 ```
 
 ```{exercise}
-:label: mc_ex_pk
+:label: mc1_ex_3
 Prove the following: If $P$ is a stochastic matrix, then so is the $k$-th
 power $P^k$ for all $k \in \mathbb N$.
 ```
 
 
-```{solution-start} mc_ex_pk
+```{solution-start} mc1_ex_3
 :class: dropdown
 ```
 
