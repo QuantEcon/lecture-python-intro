@@ -842,6 +842,7 @@ The eigenvectors and eigenvalues of a map $A$ determine how a vector $v$ is tran
 
 This is discussed further later.
 
+## Exercises
 
 ```{exercise}
 :label: eig1_ex1
@@ -865,6 +866,10 @@ Visualize your results by plotting the eigenvalue as a function of the number of
 :class: dropdown
 ```
 
+Here is one solution.
+
+We start by looking into the distance between the eigenvector approximation and the true eigenvector.
+
 ```{code-cell} ipython3
 # Define a matrix A
 A = np.array([[1, 0, 3], 
@@ -878,6 +883,7 @@ num_iters = 20
 b = np.random.rand(A.shape[1])
 
 # Initialize a list to store the eigenvector approximations
+norm_ls = []
 res = []
 
 # Power iteration loop
@@ -887,53 +893,29 @@ for i in range(num_iters):
     # Normalize b
     b = b / np.linalg.norm(b)
     # Append b to the list of eigenvector approximations
-    dis = np.linalg.norm(np.array(b) - np.linalg.eig(A)[1][:, 0])
-    res.append(dis)
+    res.append(b)
+    norm = np.linalg.norm(np.array(b) - np.linalg.eig(A)[1][:, 0])
+    norm_ls.append(norm)
     
 # Plot the eigenvector approximations for each iteration
 plt.figure(figsize=(10, 6))
 plt.xlabel('Iterations')
 plt.ylabel('L2 Norm')
-plt.title('Power Iteration and Eigenvector Approximations')
-_ = plt.plot(res)
+plt.title('Distance between the Approximation and the True Eigenvector')
+_ = plt.plot(norm_ls)
 ```
 
+Then we can look at the trajectory of the eigenvector approximation
+
 ```{code-cell} ipython3
-import numpy as np
-import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d import Axes3D
-
-# Define a matrix A
-A = np.array([[1, 0, 3], 
-              [0, 2, 0], 
-              [3, 0, 1]])
-
-# Define a number of iterations
-num_iters = 20
-
-# Define a random starting vector b
-b = np.array([0.5, 1, 0.5])
-
-# Initialize a list to store the eigenvector approximations
-res = [b]
-
-# Power iteration loop
-for i in range(num_iters):
-    # Multiply b by A
-    b = A @ b
-    # Normalize b
-    b = b / np.linalg.norm(b)
-    # Append b to the list of eigenvector approximations
-    res.append(b)
-
-# Get the actual eigenvectors of matrix A
+# Get the eigenvectors of matrix A
 eigenvector = np.linalg.eig(A)[1][:, 0]
+
 # Set up the figure and axis for 3D plot
 fig = plt.figure()
 ax = fig.add_subplot(111, projection='3d')
 
-# Plot the actual eigenvectors
-
+# Plot the eigenvectors
 ax.scatter(eigenvector[0], eigenvector[1], eigenvector[2], color='r', s = 80)
 
 # Plot the approximated eigenvectors (b) at each iteration
@@ -943,7 +925,7 @@ for i, vec in enumerate(res):
 ax.set_xlabel('X')
 ax.set_ylabel('Y')
 ax.set_zlabel('Z')
-ax.set_title('Power iteration eigenvector approximations')
+ax.set_title('Power Iteration and Eigenvector Approximations')
 points = [plt.Line2D([0], [0], linestyle='none', c=i, marker='o') for i in ['r', 'b']]
 ax.legend(points, ['Actual eigenvectors', 'Approximated eigenvectors (b)'], numpoints=1)
 ax.set_box_aspect(aspect=None, zoom=0.8)
@@ -1006,8 +988,10 @@ c.arrows.set_alpha(0.5)
 
 # Plot the eigenvectors as long blue and green arrows
 origin = np.zeros((2, len(eigenvectors)))
-plt.quiver(*origin, eigenvectors[0], eigenvectors[1], color=['b', 'g'], angles='xy', scale_units='xy', scale=0.1, width=0.01)
-plt.quiver(*origin, - eigenvectors[0], - eigenvectors[1], color=['b', 'g'], angles='xy', scale_units='xy', scale=0.1, width=0.01)
+parameters = {'color':['b', 'g'], 'angles':'xy', 
+                'scale_units':'xy', 'scale':0.1, 'width':0.01}
+plt.quiver(*origin, eigenvectors[0], eigenvectors[1], **parameters)
+plt.quiver(*origin, - eigenvectors[0], - eigenvectors[1], **parameters)
 
 colors = ['b', 'g']
 lines = [Line2D([0], [0], color=c, linewidth=3) for c in colors]
@@ -1094,7 +1078,8 @@ for i, example in enumerate(examples):
     c.arrows.set_alpha(0.5)
 
     # Plot the eigenvectors as long blue and green arrows
-    parameters = {'color':['b', 'g'], 'angles':'xy', 'scale_units':'xy', 'scale':1, 'width':0.01, 'alpha':0.5}
+    parameters = {'color':['b', 'g'], 'angles':'xy', 
+                'scale_units':'xy', 'scale':1, 'width':0.01, 'alpha':0.5}
     origin = np.zeros((2, len(eigenvectors)))
     ax[i].quiver(*origin, eigenvectors_real[0], eigenvectors_real[1], **parameters)
     ax[i].quiver(*origin, - eigenvectors_real[0], - eigenvectors_real[1], **parameters)
@@ -1106,6 +1091,8 @@ for i, example in enumerate(examples):
 
 plt.show()
 ```
+
+The vector fields explains why we observed the trajectories of the vector $v$ multiplied by $A$ iteratively before.
 
 The pattern demonstrated here is because we have complex eigenvalues and eigenvectors.
 
@@ -1129,18 +1116,11 @@ class Arrow3D(FancyArrowPatch):
         self.set_positions((0.1*xs[0],0.1*ys[0]),(0.1*xs[1],0.1*ys[1]))
 
         return np.min(zs)
-        
 
-# Define matrix A with complex eigenvalues
-A = np.array([[sqrt(3) + 1, -2],
-              [1, sqrt(3) - 1]])
-A = (1/(2*sqrt(2))) * A
-
-# Find eigenvalues and eigenvectors
 eigenvalues, eigenvectors = np.linalg.eig(A)
 
 # Create meshgrid for vector field
-x, y = np.meshgrid(np.linspace(-2, 2, 10), np.linspace(-2, 2, 10))
+x, y = np.meshgrid(np.linspace(-2, 2, 15), np.linspace(-2, 2, 15))
 
 # Calculate vector field (real and imaginary parts)
 u_real = A[0][0] * x + A[0][1] * y
@@ -1154,7 +1134,7 @@ ax = fig.add_subplot(111, projection='3d')
 vlength = np.linalg.norm(eigenvectors)
 ax.quiver(x, y, u_imag, u_real-x, v_real-y, v_imag-u_imag, colors = 'b', alpha=0.3, length = .2, arrow_length_ratio = 0.01)
 
-arrow_prop_dict = dict(mutation_scale=2, arrowstyle='-|>', shrinkA=0, shrinkB=0)
+arrow_prop_dict = dict(mutation_scale=5, arrowstyle='-|>', shrinkA=0, shrinkB=0)
 
 # Plot 3D eigenvectors
 for c, i in zip(['b', 'g'], [0, 1]):

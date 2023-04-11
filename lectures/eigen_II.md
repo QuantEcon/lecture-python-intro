@@ -153,11 +153,11 @@ If a matrix $A \geq 0$ then,
 Moreover if $A$ is also irreducible then,
 
 4. the eigenvector $v$ associated with the eigenvalue $r(A)$ is strictly positive.
-5. there exists no other positive eigenvector $v$ (except scalar multiples of v) associated with $r(A)$.
+5. there exists no other positive eigenvector $v$ (except scalar multiples of $v$) associated with $r(A)$.
 
 If $A$ is primitive then,
 
-6. the inequality $|\lambda| \leq r(A)$ is strict for all eigenvalues 𝜆 of 𝐴 distinct from 𝑟(𝐴), and
+6. the inequality $|\lambda| \leq r(A)$ is strict for all eigenvalues $\lambda$ of $A$ distinct from $r(A)$, and
 7. with $e$ and $\varepsilon$ normalized so that the inner product of $\varepsilon$ and  $e = 1$, we have
 $ r(A)^{-m} A^m$ converges to $\varepsilon^{\top}$ when $m \rightarrow \infty$
 ```
@@ -165,27 +165,7 @@ $ r(A)^{-m} A^m$ converges to $\varepsilon^{\top}$ when $m \rightarrow \infty$
 (This is a relatively simple version of the theorem --- for more details see
 [here](https://en.wikipedia.org/wiki/Perron%E2%80%93Frobenius_theorem)).
 
-Let's build our intuition for the theorem using a simple example we have seen [before](mc_eg1).
-
-```{math}
-P
-= \left(
-\begin{array}{cc}
-    1 - \alpha & \alpha \\
-    \beta & 1 - \beta
-\end{array}
-  \right)
-```
-
-In fact, we have already seen Perron-Frobenius theorem in action before in the exercise (TODO: link to Markov chain exercise)
-
-In the exercise, we stated that the convegence rate is determined by the spectral gap, the difference between the largest and the second largest eigenvalue.
-
-This can be proved using Perron-Frobenius theorem.
-
-
 We will see applications of the theorem below.
-
 
 (la_neumann)=
 ## The Neumann Series Lemma 
