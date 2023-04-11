@@ -201,23 +201,23 @@ dot
 
 
 This is an example of a network, where the set of nodes $V$ equals the states:
-<!-- TODO -->
+
 $$
-    V = \{ \text{"ng", "mr", "sr"} \}
+    V = \{ \text{``ng", ``mr", ``sr"} \}
 $$
 
 The edges between the nodes show the one month transition probabilities.
 
 
 ## An Introduction to Graph Theory
-<!-- TODO -->
+
 Now we've looked at some examples, let's move on to theory.
 
 This theory will allow us to better organize our thoughts.
 
 The theoretical part of network science is constructed using a major branch of
 mathematics called [graph theory](https://en.wikipedia.org/wiki/Graph_theory).
-<!-- TODO -->
+
 Graph theory can be complicated and we will cover only the basics.
 
 However, these concepts will already be enough for us to discuss interesting and
@@ -227,10 +227,10 @@ We focus on "directed" graphs, where connections are, in general, asymmetric
 (arrows typically point one way, not both ways).
 
 E.g.,
-<!-- TODO -->
+
 * bank $A$ lends money to bank $B$
 * firm $A$ supplies goods to firm $B$
-* individual $A$ "follows" of individual $B$ on a given social network
+* individual $A$ "follows" individual $B$ on a given social network
 
 ("Undirected" graphs, where connections are symmetric, are a special
 case of directed graphs --- we just need to insist that each arrow pointing
@@ -339,7 +339,6 @@ The Python package [Networkx](https://networkx.org/) provides a convenient
 data structure for representing directed graphs and implements many common
 routines for analyzing them.
 
-<!-- TODO -->
 As an example, let us recreate {numref}`poverty_trap_2` using Networkx.
 
 To do so, we first create an empty `DiGraph` object:
