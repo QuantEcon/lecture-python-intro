@@ -51,6 +51,8 @@ We will use the following imports:
 ```{code-cell} ipython3
 import matplotlib.pyplot as plt
 import numpy as np
+from numpy.linalg import matrix_power
+from matplotlib import cm
 from matplotlib.lines import Line2D
 from mpl_toolkits.mplot3d import Axes3D
 from matplotlib.patches import FancyArrowPatch
@@ -594,9 +596,6 @@ different maps $A$.
 (plot_series)=
 
 ```{code-cell} ipython3
-from numpy.linalg import matrix_power
-from matplotlib import cm
-
 def plot_series(B, v, n):
     
     A = np.array([[1, -1],
@@ -1034,10 +1033,6 @@ Use the visualization in the previous exercise to explain why the trajectory of 
 Here is one solution
 
 ```{code-cell} ipython3
-import numpy as np
-import matplotlib.pyplot as plt
-from matplotlib.lines import Line2D
-
 figure, ax = plt.subplots(1,3, figsize = (15,5))
 A = np.array([[sqrt(3) + 1, -2],
               [1, sqrt(3) - 1]])
