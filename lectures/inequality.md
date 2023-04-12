@@ -4,7 +4,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.14.1
+    jupytext_version: 1.14.5
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
@@ -145,7 +145,7 @@ households own just over 40\% of total wealth.
 ---
 mystnb:
   figure:
-    caption: Lorenz curve of simulated data
+    caption: "Lorenz curve of simulated data"
     name: lorenz_simulated
 ---
 n = 2000
@@ -551,7 +551,7 @@ The following code uses the data from dataframe ``df_income_wealth`` to generate
 
 # transfer the survey weights from absolute into relative values
 df1 = df_income_wealth
-df2 = df1.groupby('year').sum().reset_index()       # group
+df2 = df1.groupby('year').sum(numeric_only=True).reset_index()       # group
 df3 = df2[['year', 'weights']]                    
 df3.columns = 'year', 'r_weights'                          
 df4 = pd.merge(df3, df1, how="left", on=["year"])   
@@ -570,9 +570,9 @@ df7 = df4[df4['ti_groups'] == 'Top 10%']
 
 # calculate the sum of weighted top 10% by net wealth, total income and labor income.
 
-df5 = df4.groupby('year').sum().reset_index()  
-df8 = df6.groupby('year').sum().reset_index()
-df9 = df7.groupby('year').sum().reset_index()
+df5 = df4.groupby('year').sum(numeric_only=True).reset_index()  
+df8 = df6.groupby('year').sum(numeric_only=True).reset_index()
+df9 = df7.groupby('year').sum(numeric_only=True).reset_index()
 
 df5['weighted_n_wealth_top10'] = df8['weighted_n_wealth']
 df5['weighted_t_income_top10'] = df9['weighted_t_income']
