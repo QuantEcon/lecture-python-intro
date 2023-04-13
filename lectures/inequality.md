@@ -308,7 +308,7 @@ The idea is that $G=0$ indicates complete equality, while $G=1$ indicates comple
 ---
 mystnb:
   figure:
-    caption: "Shaded lorenz curve of simulated data"
+    caption: "Shaded Lorenz curve of simulated data"
     name: lorenz_gini
   image:
     alt: lorenz_gini
@@ -506,8 +506,6 @@ ax.set_ylabel(ylabel, fontsize=12)
 ax.legend(fontsize=12)     
 plt.show()
 ```
-
-**TEST ===>** Here is a {ref}`gini_income_us` and a {numref}`gini_income_us`
 
 We see that, by this measure, inequality in wealth and income has risen
 substantially since 1980.
