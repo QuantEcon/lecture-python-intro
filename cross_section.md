@@ -3,12 +3,13 @@ jupytext:
   text_representation:
     extension: .md
     format_name: myst
+    format_version: 0.13
+    jupytext_version: 1.14.5
 kernelspec:
-  display_name: Python 3
+  display_name: Python 3 (ipykernel)
   language: python
   name: python3
 ---
-
 
 # Heavy-Tailed Distributions
 
@@ -18,24 +19,30 @@ kernelspec:
 
 In addition to what's in Anaconda, this lecture will need the following libraries:
 
-```{code-cell} ipython
----
-tags: [hide-output]
----
+```{code-cell} ipython3
+:tags: [hide-output]
+
 !pip install quantecon
 !pip install --upgrade yfinance
+!pip install pandas_datareader
 ```
+
 We run the following code to prepare for the lecture:
 
-```{code-cell} ipython
+```{code-cell} ipython3
 %matplotlib inline
 import matplotlib.pyplot as plt
 plt.rcParams["figure.figsize"] = (11, 5)  #set default figure size
 import numpy as np
 import quantecon as qe
-from scipy.stats import norm
 import yfinance as yf
 import pandas as pd
+import pandas_datareader.data as web
+import statsmodels.api as sm
+
+from interpolation import interp
+from pandas_datareader import wb
+from scipy.stats import norm, cauchy
 from pandas.plotting import register_matplotlib_converters
 register_matplotlib_converters()
 ```
@@ -70,7 +77,7 @@ quickly.
 We can see this when we plot the density and show a histogram of observations,
 as with the following code (which assumes $\mu=0$ and $\sigma=1$).
 
-```{code-cell} ipython
+```{code-cell} ipython3
 fig, ax = plt.subplots()
 X = norm.rvs(size=1_000_000)
 ax.hist(X, bins=40, alpha=0.4, label='histogram', density=True)
@@ -87,13 +94,13 @@ Notice how
 
 We can see the last point more clearly by executing
 
-```{code-cell} ipython
+```{code-cell} ipython3
 X.min(), X.max()
 ```
 
 Here's another view of draws from the same distribution:
 
-```{code-cell} python3
+```{code-cell} ipython3
 n = 2000
 fig, ax = plt.subplots()
 data = norm.rvs(size=n)
@@ -153,7 +160,7 @@ This equates to daily returns if we set dividends aside.
 
 The code below produces the desired plot using Yahoo financial data via the `yfinance` library.
 
-```{code-cell} python3
+```{code-cell} ipython3
 s = yf.download('AMZN', '2015-1-1', '2022-7-1')['Adj Close']
 r = s.pct_change()
 
@@ -173,7 +180,7 @@ Several of observations are quite extreme.
 
 We get a similar picture if we look at other assets, such as Bitcoin
 
-```{code-cell} python3
+```{code-cell} ipython3
 s = yf.download('BTC-USD', '2015-1-1', '2022-7-1')['Adj Close']
 r = s.pct_change()
 
@@ -190,8 +197,7 @@ plt.show()
 The histogram also looks different to the histogram of the normal
 distribution:
 
-
-```{code-cell} python3
+```{code-cell} ipython3
 fig, ax = plt.subplots()
 ax.hist(r, bins=60, alpha=0.4, label='bitcoin returns', density=True)
 ax.set_xlabel('returns', fontsize=12)
@@ -292,6 +298,167 @@ TODO
 
 TODO Review exercises below --- are they all too hard for undergrads or should
 we keep some of them.
+
+```{code-cell} ipython3
+def extract_wb(varlist=['NY.GDP.MKTP.CD'], c='all', s=1900, e=2021):
+    df = wb.download(indicator=varlist, country=c, start=s, end=e).stack().unstack(0).reset_index()
+    df = df.drop(['level_1'], axis=1).set_index(['year']).transpose()
+    return df
+```
+
+```{code-cell} ipython3
+def empirical_ccdf(data, 
+                   ax, 
+                   aw=None,   # weights
+                   label=None,
+                   xlabel=None,
+                   add_reg_line=False, 
+                   title=None):
+    """
+    Take data vector and return prob values for plotting.
+    Upgraded empirical_ccdf
+    """
+    y_vals = np.empty_like(data, dtype='float64')
+    p_vals = np.empty_like(data, dtype='float64')
+    n = len(data)
+    if aw is None:
+        for i, d in enumerate(data):
+            # record fraction of sample above d
+            y_vals[i] = np.sum(data >= d) / n
+            p_vals[i] = np.sum(data == d) / n
+    else:
+        fw = np.empty_like(aw, dtype='float64')
+        for i, a in enumerate(aw):
+            fw[i] = a / np.sum(aw)
+        pdf = lambda x: interp(data, fw, x)
+        data = np.sort(data)
+        j = 0
+        for i, d in enumerate(data):
+            j += pdf(d)
+            y_vals[i] = 1- j
+
+    x, y = np.log(data), np.log(y_vals)
+    
+    results = sm.OLS(y, sm.add_constant(x)).fit()
+    b, a = results.params
+    
+    kwargs = [('alpha', 0.3)]
+    if label:
+        kwargs.append(('label', label))
+    kwargs = dict(kwargs)
+
+    ax.scatter(x, y, **kwargs)
+    if add_reg_line:
+        ax.plot(x, x * a + b, 'k-', alpha=0.6, label=f"slope = ${a: 1.2f}$")
+    if not xlabel:
+        xlabel='log value'
+    ax.set_xlabel(xlabel, fontsize=12)
+    ax.set_ylabel("log prob.", fontsize=12)
+        
+    if label:
+        ax.legend(loc='lower left', fontsize=12)
+        
+    if title:
+        ax.set_title(title)
+        
+    return np.log(data), y_vals, p_vals
+```
+
+### GDP
+
+```{code-cell} ipython3
+df_gdp1 = extract_wb(varlist=['NY.GDP.MKTP.CD']) # gdp for all countries from 1960 to 2022
+df_gdp2 = extract_wb(varlist=['NY.GDP.PCAP.CD']) # gdp per capita for all countries from 1960 to 2022
+```
+
+```{code-cell} ipython3
+fig, axes = plt.subplots(1, 2, figsize=(8.8, 3.6))
+
+empirical_ccdf(np.asarray(df_gdp1['2021'].dropna()), axes[0], add_reg_line=False, label='GDP')
+empirical_ccdf(np.asarray(df_gdp2['2021'].dropna()), axes[1], add_reg_line=False, label='GDP per capita')
+
+plt.show()
+```
+
+### Firm size
+
+```{code-cell} ipython3
+df_fs = pd.read_csv('https://media.githubusercontent.com/media/QuantEcon/high_dim_data/update_csdata/cross_section/forbes-global2000.csv')
+df_fs = df_fs[['Country', 'Sales', 'Profits', 'Assets', 'Market Value']]
+```
+
+```{code-cell} ipython3
+fig, ax = plt.subplots(figsize=(6.4, 3.5))
+
+label="firm size (market value)"
+
+d = df_fs.sort_values('Market Value', ascending=False)
+
+empirical_ccdf(np.asarray(d['Market Value'])[0:500], ax, label=label, add_reg_line=True)
+
+plt.show()
+```
+
+### City size
+
+```{code-cell} ipython3
+df_cs_us = pd.read_csv('https://raw.githubusercontent.com/QuantEcon/high_dim_data/update_csdata/cross_section/cities_us.txt', delimiter="\t", header=None)
+df_cs_us = df_cs_us[[0, 3]]
+df_cs_us.columns = 'rank', 'pop'
+x = np.asarray(df_cs_us['pop'])
+citysize = []
+for i in x:
+    i = i.replace(",", "")
+    citysize.append(int(i))
+df_cs_us['pop'] = citysize
+```
+
+```{code-cell} ipython3
+df_cs_br = pd.read_csv('https://media.githubusercontent.com/media/QuantEcon/high_dim_data/update_csdata/cross_section/cities_brazil.csv', delimiter=",", header=None)
+df_cs_br.columns = df_cs_br.iloc[0]
+df_cs_br = df_cs_br[1:401]
+df_cs_br = df_cs_br.astype({"pop2023": float})
+```
+
+```{code-cell} ipython3
+fig, axes = plt.subplots(1, 2, figsize=(8.8, 3.6))
+
+
+empirical_ccdf(np.asarray(df_cs_us['pop']), axes[0], label="US", add_reg_line=True)
+empirical_ccdf(np.asarray(df_cs_br['pop2023']), axes[1], label="Brazil", add_reg_line=True)
+
+plt.show()
+```
+
+### Wealth
+
+```{code-cell} ipython3
+df_w = pd.read_csv('https://media.githubusercontent.com/media/QuantEcon/high_dim_data/update_csdata/cross_section/forbes-billionaires.csv')
+df_w = df_w[['country', 'realTimeWorth', 'realTimeRank']].dropna()
+df_w = df_w.astype({'realTimeRank': int})
+df_w = df_w.sort_values('realTimeRank', ascending=True).copy()
+```
+
+```{code-cell} ipython3
+countries = ['United States', 'Japan', 'India', 'Italy']  
+N = len(countries)
+
+fig, axs = plt.subplots(2, 2, figsize=(8, 6))
+axs = axs.flatten()
+
+for i, c in enumerate(countries):
+    df_w_c = df_w[df_w['country'] == c].reset_index()
+    z = np.asarray(df_w_c['realTimeWorth'])
+    # print('number of the global richest 2000 from '+ c, len(z))
+    if len(z) <= 500:    # cut-off number: top 500
+        z = z[0:500]
+
+    empirical_ccdf(z[0:500], axs[i], label=c, xlabel='log wealth', add_reg_line=True)
+    
+fig.tight_layout()
+
+plt.show()
+```
 
 
 ## Exercises
@@ -394,7 +561,7 @@ firm dynamics in later lectures.)
 :class: dropdown
 ```
 
-```{code-cell} python3
+```{code-cell} ipython3
 n = 120
 np.random.seed(11)
 
