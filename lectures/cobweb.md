@@ -177,7 +177,7 @@ In particular, we suppose that
 
 ```{math}
 :label: p_et
-    p^e_t = f(p_{t-1}, p_{t-2})
+    p^e_{t-1} = f(p_{t-1}, p_{t-2})
 ```
 
 where $f$ is some function.
@@ -204,7 +204,7 @@ Let's start with naive expectations, which refers to the case where producers ex
 
 In other words,
 
-$$ p_t^e = p_{t-1} $$
+$$ p_{t-1}^e = p_{t-1} $$
 
 Using {eq}`price_t`, we then have
 
@@ -408,7 +408,7 @@ That is,
 
 ```{math}
 :label: pe_adaptive
-p_t^e = \alpha p_{t-1} + (1-\alpha) p^e_{t-1}
+p_{t-1}^e = \alpha p_{t-1} + (1-\alpha) p^e_{t-2}
 \qquad (0 \leq \alpha \leq 1)
 ```
 
@@ -416,7 +416,7 @@ Another way to write this is
 
 ```{math}
 :label: pe_adaptive_2
-p_t^e = p^e_{t-1} + \alpha (p_{t-1} - p_{t-1}^e)
+p_{t-1}^e = p^e_{t-2} + \alpha (p_{t-1} - p_{t-2}^e)
 ```
 
 This equation helps to show that expectations shift
@@ -427,7 +427,7 @@ This equation helps to show that expectations shift
 Using {eq}`pe_adaptive`, we obtain the dynamics
 
 $$
-    p_t = - \frac{1}{b} [ S(\alpha p_{t-1} + (1-\alpha) p^e_{t-1}) - a]
+    p_t = - \frac{1}{b} [ S(\alpha p_{t-1} + (1-\alpha) p^e_{t-2}) - a]
 $$
 
 
@@ -547,7 +547,7 @@ That is,
 
 ```{math}
 :label: pe_blae
-p_t^e = \alpha p_{t-1} + (1-\alpha) p_{t-2}
+p_{t-1}^e = \alpha p_{t-1} + (1-\alpha) p_{t-2}
 ```
 
 
