@@ -551,7 +551,7 @@ recessions in the economy.
 However, it is not a leading indicator, as the peak of contraction in production delays compared to consumer confidence and inflation.
 
 ```{code-cell} ipython3
-start_date = datetime.datetime(1980, 1, 1)
+start_date = datetime.datetime(1919, 1, 1)
 end_date = datetime.datetime(2022, 12, 31)
 
 nber = web.DataReader('USREC', 'fred', start_date, end_date)
