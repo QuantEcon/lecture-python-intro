@@ -4,12 +4,14 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.14.4
+    jupytext_version: 1.14.5
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
   name: python3
 ---
+
++++ {"user_expressions": []}
 
 # Business Cycles
 
@@ -20,7 +22,7 @@ are fluctuations in economic activity over time.
 
 These fluctuations can be observed in the form of expansions (booms), contractions (recessions), and recoveries.
 
-In this lecture, we will look into a series of economic indicators to visualize the expansions and contractions of economies from the 1960s to the recent pandemic using [World Bank](https://documents.worldbank.org/en/publication/documents-reports/api) and [FRED](https://fred.stlouisfed.org/) data.
+We will look into a series of economic indicators to visualize the expansions and contractions of economies from the 1960s to the recent pandemic using [World Bank](https://documents.worldbank.org/en/publication/documents-reports/api) and [FRED](https://fred.stlouisfed.org/) data.
 
 In addition to those installed by Anaconda, this lecture requires
 libraries to obtain World Bank and FRED data:
@@ -46,17 +48,20 @@ import pandas_datareader.data as web
 
 ```{code-cell} ipython3
 :tags: [hide-input]
+
 # Set Graphical Parameters
 cycler = plt.cycler(linestyle=['-', '-.', '--', ':'], color=['#377eb8', '#ff7f00', '#4daf4a', '#ff334f'])
 plt.rc('axes', prop_cycle=cycler)
 ```
 
++++ {"user_expressions": []}
+
 ## Data Acquisition
 
-We will use `wbgapi`, and `pandas_datareader` to retrieve data throughout this
+We will use `wbgapi` and `pandas_datareader` to retrieve data throughout this
 lecture.
 
-So let's explore how to query data first.
+Let's explore how to query data first.
 
 We can use `wb.series.info` with the argument `q` to query available data from
 the [World Bank](https://www.worldbank.org/en/home).
@@ -67,7 +72,9 @@ For example, let's retrieve the ID to query GDP growth data.
 wb.series.info(q='GDP growth')
 ```
 
-After retrieving the series ID, we use it to obtain the data.
++++ {"user_expressions": []}
+
+Now we use this series ID to obtain the data.
 
 ```{code-cell} ipython3
 :tags: [hide-output]
@@ -77,13 +84,17 @@ gdp_growth = wb.data.DataFrame('NY.GDP.MKTP.KD.ZG',
 gdp_growth
 ```
 
-We can learn more about the data by checking the metadata of the series
++++ {"user_expressions": []}
+
+We can learn more about the data by checking the series metadata.
 
 ```{code-cell} ipython3
 :tags: [hide-output]
 
 wb.series.metadata.get('NY.GDP.MKTP.KD.ZG')
 ```
+
++++ {"user_expressions": []}
 
 Let's dive into the data with the tools we have.
 
@@ -92,9 +103,9 @@ Let's dive into the data with the tools we have.
 
 ## GDP Growth Rate
 
-First we look at the GDP growth rate 
+First we look at the GDP growth rate. 
 
-Let's source our data from the World Bank and clean the data
+Let's source our data from the World Bank and clean it.
 
 ```{code-cell} ipython3
 # Use the series ID retrived before
@@ -111,10 +122,13 @@ percentages.
 gdp_growth
 ```
 
++++ {"user_expressions": []}
+
 The cell below contains a function to generate plots for individual countries.
 
 ```{code-cell} ipython3
 :tags: [hide-input]
+
 def plot_comparison(data, country, title, 
                     ylabel, title_pos, ax, g_params,
                      b_params, t_params, ylim=15, baseline=0):
@@ -152,7 +166,9 @@ t_params = {'color':'grey', 'fontsize': 9,
             'va':'center', 'ha':'center'}
 ```
 
-Now we can show some time series.
++++ {"user_expressions": []}
+
+Now we can plot the data as a time series.
 
 Let's start with the United States.
 
@@ -167,6 +183,8 @@ _ = plot_comparison(gdp_growth, country,
                     g_params, b_params, t_params)
 ```
 
++++ {"user_expressions": []}
+
 GDP growth is positive on average and trending slightly downward over time.
 
 We also see fluctuations over GDP growth over time, some of which are quite large.
@@ -180,17 +198,18 @@ in the growth rate and significant fluctuations.
 
 Notice the very large dip during the Covid-19 pandemic.
 
-
 ```{code-cell} ipython3
 fig, ax = plt.subplots()
 
 country = 'United Kingdom'
 title = ' United Kingdom (GDP Growth Rate %)'
 title_height = 0.1
-_ = plot_comparison(gdp_growth, country, title, 
+_ = plot_comparison(gdp_growth, country, title,
                     ylabel, 0.1, ax, g_params, 
                     b_params, t_params)
 ```
+
++++ {"user_expressions": []}
 
 Now let's consider Japan, which experienced rapid growth in the 1960s and
 1970s, followed by slowed expansion in the past two decades.
@@ -220,7 +239,6 @@ _ = plot_comparison(gdp_growth, country, title,
                     b_params, t_params)
 ```
 
-
 Greece had a significant drop in GDP growth around 2010-2011, during the peak
 of the Greek debt crisis.
 
@@ -236,15 +254,15 @@ _ = plot_comparison(gdp_growth, country, title,
                     g_params, b_params, t_params)
 ```
 
++++ {"user_expressions": []}
 
 The figure shows that Argentina has experienced more volatile cycles than
 the economies mentioned above.
 
 At the same time, growth of Argentina did not fall during the two developed
-economy recessions in the 1970s and 1990s. 
+economy recessions in the 1970s and 1990s.
 
-
-+++
++++ {"user_expressions": []}
 
 ## Unemployment
 
@@ -282,8 +300,6 @@ unrate_census.set_index('DATE', inplace=True)
 ```
 
 ```{code-cell} ipython3
-:tags: []
-
 # Obtain the NBER-defined recession periods
 start_date = datetime.datetime(1929, 1, 1)
 end_date = datetime.datetime(2022, 12, 31)
@@ -292,8 +308,6 @@ nber = web.DataReader('USREC', 'fred', start_date, end_date)
 ```
 
 ```{code-cell} ipython3
-:tags: []
-
 fig, ax = plt.subplots()
 
 ax.plot(unrate_history, **g_params, color='#377eb8', linestyle='-', linewidth=2)
@@ -313,6 +327,8 @@ ax.set_ylabel('Unemployment Rate (%)')
 _ = ax.set_title('Long-run Unemployment Rate, 1929-2022\n with Recession Indicators (United States)', pad=30)
 ```
 
++++ {"user_expressions": []}
+
 In the plot, we can see that the expansions and contractions of the labor
 market have been highly correlated with recessions. 
 
@@ -328,13 +344,13 @@ post-pandemic recovery.
 The labor market has recovered at an unprecedented rate, leading to the
 tightest point in the past decades after the shock in 2020-2021.
 
-+++
++++ {"user_expressions": []}
 
 (synchronization)=
 ## Synchronization
 
 In our previous discussion, we found that developed economies have had
-relatively synchronized period of recessions. 
+relatively synchronized periods of recession. 
 
 At the same time, this synchronization does not appear in Argentina until the 2000s. 
 
@@ -408,18 +424,18 @@ title = 'Brazil, China, Argentina, and Mexico (GDP Growth Rate %)'
 _ = plot_comparison_multi(gdp_growth.loc[countries, 1962:], countries, title, ylabel, 0.1, 20, ax, g_params, b_params, t_params)
 ```
 
-By comparing the trend of GDP growth rates between developed and developing
-economies, we find that business cycles are becoming more and more
-synchronized in 21st-century recessions.
++++ {"user_expressions": []}
+
+On comparison of GDP growth rates between developed and developing
+economies, we find that business cycles are becoming more synchronized in 21st-century recessions.
 
 However, emerging and less developed economies often experience more volatile
 changes throughout the economic cycles. 
 
-Although we have seen synchronization in GDP growth as a general trend, we
-also need to acknowledge that the experience of individual countries during
-the recession is often very different. 
+Although we see synchronization in GDP growth as a general trend, the experience of individual countries during
+the recession often differs. 
 
-Here we use the unemployment rate and the recovery of labor market condition
+We use unemployment rate and the recovery of labor market conditions
 as another example.
 
 ```{code-cell} ipython3
@@ -446,28 +462,27 @@ compared to the US and UK.
 However, Japan has a history of very low and stable unemployment rates due to
 a constellation of social, demographic, and cultural factors.
 
-+++
++++ {"user_expressions": []}
 
 ## Leading Indicators and Correlated Factors for Business Cycles
 
-Understanding leading indicators and correlated factors helps policymakers to
-better understand and reflect on the causes and results of business cycles. 
+Examining leading indicators and correlated factors helps policymakers to
+understand the causes and results of business cycles. 
 
 We will discuss potential leading indicators and correlated factors from three
 perspectives: consumption, production, and credit level.
 
 ### Consumption
 
-+++
++++ {"user_expressions": []}
 
-Consumption is dependent on how confident consumers are toward their
+Consumption depends on consumers' confidence towards their
 income and the overall performance of the economy in the future. 
 
 One widely cited indicator for consumer confidence is the [Consumer Sentiment Index](https://fred.stlouisfed.org/series/UMCSENT) published by the University
 of Michigan.
 
-We find that consumer sentiment maintains a high level during the expansion
-period, but there are significant drops before the recession hits.
+We find that consumer sentiment remains high during periods of expansion, but there are significant drops before recession hits.
 
 There is also a clear negative correlation between consumer sentiment and [core consumer price index](https://fred.stlouisfed.org/series/CPILFESL).
 
@@ -522,18 +537,18 @@ _ = ax.set_title('University of Michigan Consumer Sentiment Index,\n and \
 Year-over-year Consumer Price Index Change, 1978-2022 (United States)', pad=30)
 ```
 
++++ {"user_expressions": []}
 
 ### Production
 
-Consumer confidence often influences the consumption pattern of consumers.
+Consumers' confidence often influences their consumption pattern.
 
 This often manifests on the production side.
 
-We find that the real output of the industry is also highly correlated with
+We find that real industrial output is highly correlated with
 recessions in the economy. 
 
-However, instead of being a leading factor, the peak of the contraction in the
-production delays compared to consumer confidence and inflation
+However, it is not a leading indicator, as the peak of contraction in production delays compared to consumer confidence and inflation.
 
 ```{code-cell} ipython3
 start_date = datetime.datetime(1919, 1, 1)
@@ -552,6 +567,8 @@ ax.set_ylabel('YoY Real Ouput Change (%)')
 ax = ax.set_title('Year-over-year Industrial Production: \
 Total Index, 1919-2022 (United States)', pad=20)
 ```
+
++++ {"user_expressions": []}
 
 ### Credit Level
 
@@ -581,5 +598,11 @@ ax = plot_comparison(private_credit, countries, title,
                      t_params, ylim=None, baseline=None)
 ```
 
-Note that the credit level expands rapidly in the period of economic expansion
++++ {"user_expressions": []}
+
+Note that the credit rises in periods of economic expansion
 and stagnates or even contracts after recessions.
+
+```{code-cell} ipython3
+
+```
