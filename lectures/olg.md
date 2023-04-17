@@ -58,20 +58,37 @@ plt.rcParams["figure.figsize"] = (11, 5)  #set default figure size
 
 ## Environment
 
-TODO add timing and basic ideas of OLG
+We assume that time is discrete, so that $t=0, 1, \ldots$,
 
-We assume that
+An individual born at time $t$ lives for two periods: $t$ and $t + 1$.
 
-- time is discrete, so that $t=0, 1, \ldots$,
-- individuals born at time $t$ live for two periods: $t$ and $t + 1$,
-- capital depreciates fully after one period (TODO to be checked)
+We call an agent
+
+- "young" during the first period of their lives and
+- "old" during the second period of their lives
+
+Young agents work, supplying labor and earning labor income.
 
 
-First let's consider the household side.
+They also decide how much to save.
 
+Their savings and the prevailing rate of interest determine their second
+period income.
+
+Old agents do not work, so all income is financial.
+
+The wage and interest rates are determined in equilibrium by supply and
+demand.
+
+To make the algebra slightly easier, we are going to assume a constant
+population size.
+
+We normalize the constant population size in each period to 1.
 
 
 ## Supply of capital
+
+First let's consider the household side.
 
 ### Consumer's problem
 
@@ -84,98 +101,91 @@ Suppose that utility for individuals born at time $t$ take the form
 ```
 
 Here
-- $u: \mathbb R_+ \to \mathbb R$ is the flow utility function satisfying some properties
+
+- $u: \mathbb R_+ \to \mathbb R$ is the flow utility function, which is
+  strictly increasing
 - $\beta \in (0, 1)$ is the discount factor
 - $c^1_t$ is time $t$ consumption of the individual born at time $t$
 - $c^2_{t+1}$ is time $t+1$ consumption of the same individual (born at time $t$)
 
-Savings by an individual of generation $t$, $s_t$, is determined as a
-solution to:
+Their savings behavior is determined by the optimization problem
+
 
 ```{math}
 :label: max_sav_olg
-    \begin{aligned}
-    \max_{c^1_t, c^2_{t+1}, s_t} \ & \left \{ u(c^1_t) + \beta u(c^2_{t+1}) \right \} \\
-    \mbox{subject to } \ & c^1_t + s_t \le w_t \\
-                         & c^2_{t+1} \le R_{t+1}s_t\\
-    \end{aligned}
+    \max_{c^1_t, c^2_{t+1}} 
+    \,  \left \{ u(c^1_t) + \beta u(c^2_{t+1}) \right \} 
 ```
 
-where
-- $w_t$ is the wage rate at time
-- $R_{t+1}$ is time $t+1$ rental rate of capital.
+subject to
 
-The second constraint incorporates the notion that individuals only spend
-money on their own end of life consumption. Also, Since $u$ is strictly increasing, both constraints will hold as equalities.
+$$
+     c^1_t + s_t \le w_t 
+     \quad \text{and} \quad
+     c^2_{t+1}   \le R_{t+1} s_t
+$$
 
-Substituting $s_t$ from the first constraint into the second we get $c^2_{t+1}$ in terms of $c^1_t$, i.e.,
+Here
+
+- $s_t$ is savings by an individual born at time $t$ 
+- $w_t$ is the wage rate at time $t$
+- $R_{t+1}$ is the interest rate on savings invested at time $t$, paid at time $t+1$
+
+Since $u$ is strictly increasing, both of these constraints will hold as equalities.
+
+
+Substituting $s_t$ from the first constraint into the second we get
 
 ```{math}
 :label: c_2_olg
     c^2_{t+1} = R_{t+1}(w_t - c^1_t)
 ```
-Thus first-order condition for a maximum can be written in the
-familiar form of the consumption Euler equation by plugging $c^2_{t+1}$ into the objective function and taking derivative with respect to $c^1_t$
+Thus first-order condition for a maximum can be obtained
+by plugging $c^2_{t+1}$ into the objective function, taking the derivative
+with respect to $c^1_t$, and setting it to zero.
+
+This leads to
 
 ```{math}
 :label: euler_1_olg
     u'(c^1_t) = \beta R_{t+1}  u'( R_{t+1} (w_t - c^1_t))
 ```
 
-From the first constraint we get
-```{math}
-:label: c_1_olg
-    c^1_{t} = w_t - s_t
-```
+This restriction is called the **Euler equation**
 
-With it the Euler equation (4) becomes
+From the first constraint we get $c^1_{t} = w_t - s_t$,
+so the Euler equation can also be expressed as
+
 ```{math}
 :label: euler_2_olg
     u'(w_t - s_t) = \beta R_{t+1}  u'( R_{t+1} s_t)
 ```
 
+This implies that savings can be written as a fixed function of $w_t$ and
+$R_{t+1}$.
 
+We write this as
 
-From this we can solve for savings analytically or, if necessary, numerically
 ```{math}
 :label: saving_1_olg
     s_t = s(w_t, R_{t+1})
 ```
 
+Since the population size is normalized to 1, this is also total savings in
+the economy at time $t$.
 
 
-Let $L_t$ be the time $t$ labor.
+### Example: log preferences
 
-Furthermore let's assume a constant population size, i.e., $L_{t+1}=L_t=L$ for all $t$.
+In the special case $u(c) = \log c$, the Euler equation simplifies to
 
-Total savings in the economy will be equal to
-```{math}
-:label: total_savings_1_olg
-    S_t = s_t L
-```
-
-In our closed economy, net saving this period will be equal to supply next period, i.e.,
-
-```{math}
-:label: aggregate_supply_capital_1_olg
-    K_{t+1} = K^S(w_t, R_{t+1}) =  S_t = L s_t = L s(w_t, R_{t+1})
-```
-
-Here $K^S$ is a time-invariant function mapping wage $w_t$ and capital return rate $R_{t+1}$ to aggregate capital supply $K_{t+1}$.
-
-
-
-### Special case: log preference
-
-Assume $u(c) = \log c$.
-
-The Euler equation simplifies to
 ```{math}
 :label: saving_log_1_olg
     s_t= \beta (w_t - s_t)
 ```
 
-Solving for saving,
+Solving for saving, we get
+
 ```{math}
 :label: saving_log_2_olg
     s_t = s(w_t, R_{t+1}) = \frac{\beta}{1+\beta} w_t
@@ -183,15 +193,11 @@ Solving for saving,
 
 
 
-And hence
-```{math}
-:label: aggregate_supply_capital_log_olg
-    K_{t+1} = K^s(R_{t+1}) = Ls_t = L \frac{\beta}{1+\beta} w_t
-```
-
-
 
 ## Demand for capital
+
+Now let's pin down the demand for capital.
+
 
 ### Firm's problem
 
@@ -205,7 +211,9 @@ For each integer $t \geq 0$, output $Y_t$ in period $t$ is given by
 Here $K_t$ is capital, $L_t$ is labor, and  $\alpha$ is the output elasticity of capital in the **Cobb-Douglas production function**.
 
 
-Demand for labor $L$ and capital $K_t$ is determined by the profit maximization problem
+Demand for labor $L$ and capital $K_t$ is determined by the profit
+maximization problem
+
 ```{math}
 :label: opt_profit_olg
     \max_{K_t, L} \{ K^{\alpha}_t L^{1-\alpha} - R_t K_t - L w_t   \}
@@ -213,7 +221,9 @@ Demand for labor $L$ and capital $K_t$ is determined by the profit maximization 
 
 ### Demand for capital
 
-The first-order conditions for a maximum can be obtained by taking the derivative of the objective function with respect to capital and labor respectively and setting it to zero:
+The first-order conditions for a maximum can be obtained by taking the
+derivative of the objective function with respect to capital and labor
+respectively and setting it to zero:
 
 ```{math}
 :label: wage
@@ -237,6 +247,24 @@ Rearranging [](interest_rate) gives the aggregate demand for capital
 
 
 ## Equilibrium
+
+In our closed economy, net saving this period will be equal to supply next period, i.e.,
+
+```{math}
+:label: aggregate_supply_capital_1_olg
+    K_{t+1} = K^S(w_t, R_{t+1}) =  S_t = L s_t = L s(w_t, R_{t+1})
+```
+
+Here $K^S$ is a time-invariant function mapping wage $w_t$ and capital return rate $R_{t+1}$ to aggregate capital supply $K_{t+1}$.
+
+
+And hence
+```{math}
+:label: aggregate_supply_capital_log_olg
+    K_{t+1} = K^s(R_{t+1}) = Ls_t = L \frac{\beta}{1+\beta} w_t
+```
+
+
 
 The equality of aggregate demand [](aggregate_demand_capital_olg) and aggregate supply [](aggregate_supply_capital_log_olg) for capital yields the equalibrium.
 
