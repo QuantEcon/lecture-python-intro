@@ -439,7 +439,7 @@ G1.add_edges_from([('p', 'p'),('p','m'),('p','r'),
              ('m', 'p'), ('m', 'm'), ('m', 'r'),
              ('r', 'p'), ('r', 'm'), ('r', 'r')])
 
-nx.draw(G1, with_labels = True)
+nx.draw_networkx(G1, with_labels = True)
 ```
 
 ```{code-cell} ipython3
@@ -454,7 +454,7 @@ G2.add_edges_from([('p', 'p'),
              ('m', 'p'), ('m', 'm'), ('m', 'r'),
              ('r', 'p'), ('r', 'm'), ('r', 'r')])
 
-nx.draw(G2, with_labels = True)
+nx.draw_networkx(G2, with_labels = True)
 ```
 
 ```{code-cell} ipython3
@@ -1415,7 +1415,7 @@ G.add_edges_from([(0,1),(0,3),       # adding edges
                   (6,3),(6,5),
                   (7,0)])
 
-nx.draw_circular(G, node_color='gray', node_size=500, with_labels=True)
+nx.draw_networkx(G, pos=nx.circular_layout(G), node_color='gray', node_size=500, with_labels=True)
 
 plt.show()
 ```
