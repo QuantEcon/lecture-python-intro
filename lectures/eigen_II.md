@@ -20,6 +20,22 @@ kernelspec:
 :depth: 2
 ```
 
+In addition to what's in Anaconda, this lecture will need the following libraries:
+
+```{code-cell} ipython
+---
+tags: [hide-output]
+---
+!pip install graphviz
+```
+
+```{admonition} graphviz
+:class: warning
+If you are running this lecture locally it requires [graphviz](https://www.graphviz.org)
+to be installed on your computer. Installation instructions for graphviz can be found
+[here](https://www.graphviz.org/download/) 
+```
+
 In this lecture we will begin with the basic properties of nonnegative matrices.
 
 Then we will explore the Perron-Frobenius Theorem and the Neumann Series Lemma, and connect them to applications in Markov chains and networks. 

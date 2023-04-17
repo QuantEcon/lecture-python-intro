@@ -13,7 +13,22 @@ kernelspec:
 
 # A Lake Model of Employment
 
-\
+In addition to what's in Anaconda, this lecture will need the following libraries:
+
+```{code-cell} ipython
+---
+tags: [hide-output]
+---
+!pip install graphviz
+```
+
+```{admonition} graphviz
+:class: warning
+If you are running this lecture locally it requires [graphviz](https://www.graphviz.org)
+to be installed on your computer. Installation instructions for graphviz can be found
+[here](https://www.graphviz.org/download/) 
+```
+
 This lecture studies a model of employment and unemployment flows in a large
 population.
 
