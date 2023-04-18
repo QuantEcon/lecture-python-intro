@@ -266,18 +266,16 @@ const thebe_selector_output = ".output, .cell_output"
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: quantecon in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (0.6.0)
 Requirement already satisfied: scipy&gt;=1.5.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from quantecon) (1.10.0)
+Requirement already satisfied: numba in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from quantecon) (0.56.4)
+Requirement already satisfied: sympy in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from quantecon) (1.11.1)
 Requirement already satisfied: numpy&gt;=1.17.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from quantecon) (1.23.5)
 Requirement already satisfied: requests in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from quantecon) (2.28.1)
-Requirement already satisfied: sympy in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from quantecon) (1.11.1)
-Requirement already satisfied: numba in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from quantecon) (0.56.4)
 Requirement already satisfied: setuptools in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from numba-&gt;quantecon) (65.6.3)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: llvmlite&lt;0.40,&gt;=0.39.0dev0 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from numba-&gt;quantecon) (0.39.1)
-Requirement already satisfied: idna&lt;4,&gt;=2.5 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests-&gt;quantecon) (3.4)
-Requirement already satisfied: charset-normalizer&lt;3,&gt;=2 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests-&gt;quantecon) (2.0.4)
-Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests-&gt;quantecon) (2022.12.7)
+Requirement already satisfied: llvmlite&lt;0.40,&gt;=0.39.0dev0 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from numba-&gt;quantecon) (0.39.1)
 Requirement already satisfied: urllib3&lt;1.27,&gt;=1.21.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests-&gt;quantecon) (1.26.14)
+Requirement already satisfied: charset-normalizer&lt;3,&gt;=2 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests-&gt;quantecon) (2.0.4)
+Requirement already satisfied: idna&lt;4,&gt;=2.5 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests-&gt;quantecon) (3.4)
+Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests-&gt;quantecon) (2022.12.7)
 Requirement already satisfied: mpmath&gt;=0.19 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages/mpmath-1.2.1-py3.10.egg (from sympy-&gt;quantecon) (1.2.1)
 </pre></div>
 </div>
@@ -519,7 +517,7 @@ will become clear.</p>
 <span class="ne">ExecutableNotFound</span>: failed to execute PosixPath(&#39;dot&#39;), make sure the Graphviz executables are on your systems&#39; PATH
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;graphviz.graphs.Digraph at 0x7efd2d41a440&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;graphviz.graphs.Digraph at 0x7fd98cb17f40&gt;
 </pre></div>
 </div>
 </div>
@@ -816,7 +814,7 @@ to a cumulative distribution</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 0, 1, 1, 1, 0, 1, 1, 1, 0])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 1, 1, 1, 1, 0, 1, 0, 0, 0])
 </pre></div>
 </div>
 </div>
@@ -835,7 +833,7 @@ sample that takes value 0 will be about 0.25.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.250382
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.249398
 </pre></div>
 </div>
 </div>
@@ -856,7 +854,7 @@ always close to 0.25 (for the <code class="docutils literal notranslate"><span c
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.25004
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.250238
 </pre></div>
 </div>
 </div>
@@ -869,11 +867,11 @@ always close to 0.25 (for the <code class="docutils literal notranslate"><span c
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 935 ms, sys: 289 µs, total: 935 ms
-Wall time: 935 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 1.02 s, sys: 0 ns, total: 1.02 s
+Wall time: 1.02 s
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 0, 0, ..., 1, 0, 1])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 0, 1, ..., 0, 0, 0])
 </pre></div>
 </div>
 </div>
@@ -885,11 +883,11 @@ Wall time: 935 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 14.3 ms, sys: 8.02 ms, total: 22.3 ms
-Wall time: 22.2 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 22.1 ms, sys: 0 ns, total: 22.1 ms
+Wall time: 21.9 ms
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1, 1, 1, ..., 0, 0, 1])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1, 1, 0, ..., 1, 1, 0])
 </pre></div>
 </div>
 </div>
@@ -907,7 +905,7 @@ Wall time: 22.2 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;employed&#39;, &#39;employed&#39;, &#39;employed&#39;, &#39;unemployed&#39;], dtype=&#39;&lt;U10&#39;)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;employed&#39;, &#39;employed&#39;, &#39;unemployed&#39;, &#39;employed&#39;], dtype=&#39;&lt;U10&#39;)
 </pre></div>
 </div>
 </div>
@@ -931,7 +929,7 @@ Wall time: 22.2 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;employed&#39;, &#39;employed&#39;, &#39;employed&#39;, &#39;employed&#39;], dtype=&#39;&lt;U10&#39;)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;unemployed&#39;, &#39;employed&#39;, &#39;employed&#39;, &#39;employed&#39;], dtype=&#39;&lt;U10&#39;)
 </pre></div>
 </div>
 </div>
@@ -1302,7 +1300,7 @@ strictly positive, with unique stationary distribution <span class="math notrans
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/acf8cfe3d651bbdedb2402e32ba960f3539db393423a20aa4d625d3fb08eb96a.png" src="_images/acf8cfe3d651bbdedb2402e32ba960f3539db393423a20aa4d625d3fb08eb96a.png" />
+<img alt="_images/14068a0c96ad70e873e909327951323795ee93430deb026fbb3acbaac8c43500.png" src="_images/14068a0c96ad70e873e909327951323795ee93430deb026fbb3acbaac8c43500.png" />
 </div>
 </div>
 <p>The convergence to <span class="math notranslate nohighlight">\(\psi^*\)</span> holds for different initial distributions.</p>
@@ -1323,7 +1321,7 @@ strictly positive, with unique stationary distribution <span class="math notrans
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/f76153c7001d8ad7e7317f0adbdb3d3086c918fa9dc8b55c8c061271826d6f76.png" src="_images/f76153c7001d8ad7e7317f0adbdb3d3086c918fa9dc8b55c8c061271826d6f76.png" />
+<img alt="_images/0556088f80f57e20d7876143024f6426168639bf07f1fa1c194eec1b815f28ae.png" src="_images/0556088f80f57e20d7876143024f6426168639bf07f1fa1c194eec1b815f28ae.png" />
 </div>
 </div>
 </section>
@@ -1595,7 +1593,7 @@ P :=
 <span class="ne">ExecutableNotFound</span>: failed to execute PosixPath(&#39;dot&#39;), make sure the Graphviz executables are on your systems&#39; PATH
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;graphviz.graphs.Digraph at 0x7efd286a8c70&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;graphviz.graphs.Digraph at 0x7fd983f8f4f0&gt;
 </pre></div>
 </div>
 </div>
@@ -1665,7 +1663,7 @@ P :=
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/0572c9404a72504ad04087877b6f8d7f3d5cd8a850165ba5cdd507d941d4d397.png" src="_images/0572c9404a72504ad04087877b6f8d7f3d5cd8a850165ba5cdd507d941d4d397.png" />
+<img alt="_images/be3ec3737895488f2a541f1b6bc0fa5f27ec10856e029c015537de11fa4aff10.png" src="_images/be3ec3737895488f2a541f1b6bc0fa5f27ec10856e029c015537de11fa4aff10.png" />
 </div>
 </div>
 <p>In fact, the rate of convergence is governed by <a class="reference internal" href="eigen_I.html#eigen"><span class="std std-ref">eigenvalues</span></a> <span id="id6">[<a class="reference internal" href="zreferences.html#id3" title="Thomas J Sargent and John Stachurski. Economic networks: theory and computation. arXiv preprint arXiv:2203.11972, 2023.">SS23</a>]</span>.</p>
