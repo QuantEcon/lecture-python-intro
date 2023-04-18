@@ -151,17 +151,15 @@ Thus first-order condition for a maximum can be obtained
 by plugging $c^2_{t+1}$ into the objective function, taking the derivative
 with respect to $c^1_t$, and setting it to zero.
 
-This leads to
+This leads to the **Euler equation** of the OLG model, which is
 
 ```{math}
 :label: euler_1_olg
     u'(c^1_t) = \beta R_{t+1}  u'( R_{t+1} (w_t - c^1_t))
 ```
 
-This restriction is called the **Euler equation**
-
-From the first constraint we get $c^1_{t} = w_t - s_t$,
-so the Euler equation can also be expressed as
+From the first constraint we get $c^1_{t} = w_t - s_t$, so the Euler equation
+can also be expressed as
 
 ```{math}
 :label: euler_2_olg
@@ -189,11 +187,7 @@ Thus, [](saving_1_olg) states the quantity of savings given prices.
 ### Example: log preferences
 
 In the special case $u(c) = \log c$, the Euler equation simplifies to
-
-```{math}
-:label: saving_log_1_olg
-    s_t= \beta (w_t - s_t)
-```
+    $s_t= \beta (w_t - s_t)$.
 
 Solving for saving, we get
 
@@ -262,7 +256,6 @@ and
 ```
 
 
-
 ### Demand 
 
 Using our assumption $\ell_1 = 1$ allows us to write 
@@ -285,9 +278,15 @@ Rearranging [](interest_rate_2) gives the aggregate demand for capital
 ```{math}
 :label: aggregate_demand_capital_olg
     k^d (R_{t+1}) 
-    := \left (\frac{R_{t+1}}{\alpha} \right )^{1/(\alpha - 1)}
+    := \left (\frac{\alpha}{R_{t+1}} \right )^{1/(1-\alpha)}
 ```
 
+In Python code this is
+
+```{code-cell} ipython3
+def capital_demand(R, α):
+    return (α/R)**(1/(1-α)) 
+```
 
 
 ## Equilibrium
@@ -340,6 +339,14 @@ Solving for the equilibrium interest rate gives
     \right )^{\alpha - 1}
 ```
 
+In Python we can compute this via
+
+```{code-cell} ipython3
+def equilibrium_R_log_utility(α, β, k_prev):
+    R = α * ( β * (1-α) * k_prev**α / (1+β))**(α-1)
+    return R
+```
+
 Plugging into either the demand or the supply function gives the equilibrium quantity
 
 ```{math}
@@ -347,149 +354,72 @@ Plugging into either the demand or the supply function gives the equilibrium qua
     k_{t+1} = \frac{\beta }{1+\beta} (1-\alpha)k_t^{\alpha} 
 ```
 
-```{code-cell} ipython3
-Model = namedtuple('Model', ['α',        # output elasticity of capital in the Cobb-Douglas production function
-                             'β',        # discount factor
-                             'u',        # parameter which defines the flow utility
-                             'L',        # population size
-                             'u_params'] # other params used to define u
-                   )
-```
+In Python this is
+
 
 ```{code-cell} ipython3
-def u(c):
-    return np.log(c)
+def capital_supply_log_utility(R, α, β, k_prev):
+    return (β / (1+β)) * (1-α) * k_prev**α 
 ```
 
-```{code-cell} ipython3
-def create_olg_model(α=0.3, β=0.9, u=u, L=10.0, u_params=dict()):
-    return Model(α=α, β=β, u=u, L=L, u_params=u_params)
-```
+
+
+Here is a plot of the demand and supply curves for capital, along with the
+equilibrium values.
+
 
 ```{code-cell} ipython3
-def equilibrium(model, K_prev):
-    α, β, L = model.α, model.β, model.L
-    R = α * ( β * (1-α) * (K_prev / L)**α / (1+β))**(α-1)
-    K = β / (1+β) * (1-α) * (K_prev / L)**α * L
-    return R, K
-```
-
-```{code-cell} ipython3
-def aggregate_capital_demand(R, model, K_prev):
-    α, L = model.α, model.L
-    return (R/α)**(1/(α-1)) * L
-```
-
-```{code-cell} ipython3
-def aggregate_capital_supply(R, model, K_prev):
-    α, β, L = model.α, model.β, model.L
-    λ = np.ones_like(R)
-    return λ * β / (1+β) * (1-α) * (K_prev / L)**α * L
-```
-
-```{code-cell} ipython3
-def plot_ad_as(demand, supply, m, K_prev, E_star=None):
+def plot_ad_as(α, β, k_prev):
 
     R_vals = np.linspace(0.3, 1)
 
     fig, ax = plt.subplots()
 
-    ax.plot(R_vals, demand(R_vals, m, K_prev), label="aggregate demand")
-    ax.plot(R_vals, supply(R_vals, m, K_prev), label="aggregate supply")
+    ax.plot(R_vals, capital_demand(R_vals, α), 
+        label="aggregate demand")
+    ax.plot(R_vals, capital_supply_log_utility(R_vals, α, β, k_prev), 
+        label="aggregate supply")
 
-    if E_star:
-        R_star, K_star = E_star
+    R_e = equilibrium_R_log_utility
+    k_e = capital_supply_log_utility(R_e, α, β, k_prev)
 
-        ax.plot(R_star, K_star, 'go', ms=10, alpha=0.6)
+    ax.plot(R_e, k_e, 'go', ms=10, alpha=0.6)
 
-        ax.annotate(r'Equilibrium',
-                 xy=(R_star, K_star),
-                 xycoords='data',
-                 xytext=(0, -60),
-                 textcoords='offset points',
-                 fontsize=14,
-                 arrowprops=dict(arrowstyle="->"))
+    ax.annotate(r'Equilibrium',
+             xy=(R_e, k_e),
+             xycoords='data',
+             xytext=(0, -60),
+             textcoords='offset points',
+             fontsize=14,
+             arrowprops=dict(arrowstyle="->"))
 
     ax.set_xlabel("$R_{t+1}$")
-    ax.set_ylabel("$K_{t+1}$")
+    ax.set_ylabel("$k_{t+1}$")
     ax.legend()
     plt.show()
 ```
 
-```{code-cell} ipython3
-m = create_olg_model()
-K_prev = 50
-```
 
-```{code-cell} ipython3
-E_star = equilibrium(m, K_prev)
-```
 
-```{code-cell} ipython3
-R_star, K_star = E_star
-```
 
-```{code-cell} ipython3
-plot_ad_as(aggregate_capital_demand, aggregate_capital_supply, m, K_prev=50, E_star=E_star)
-```
-
-Let's observe the dynamics of the equilibrium price $R^*_{t+1}$.
-
-```{code-cell} ipython3
-K_t_vals = np.linspace(10, 500, 10_000)
-R_t1_vals = m.α * (m.β * (1-m.α) * (K_t_vals / m.L)**m.α / (1+m.β))**(m.α-1)
-```
-
-```{code-cell} ipython3
-fig, ax = plt.subplots()
-ax.plot(K_t_vals, R_t1_vals)
-ax.set_ylabel("$R^*_{t+1}$")
-ax.set_xlabel("$K_{t}$")
-plt.show()
-```
 
 ## Dynamics and steady state
 
-Let $k_t := K_t / L$.
+The discussion above shows how equilibrium $k_{t+1}$ is obtained given $k_t$.
+
+If we keep repeating this process we get a sequence for capital stock.
 
 
-Aggregate supply of capital becomes
-```{math}
-:label: supply_capital_log_olg
-    k_{t+1} = k^s(R_{t+1}) = \frac{\beta}{1+\beta} w_t
-```
+### Dynamics with log utility
 
-[](wage) becomes
-```{math}
-:label: wage_2
-    (1-\alpha)(k_t)^{\alpha} = w_t
-```
+In the case of log utility, we saw that these dynamics are given by
 
-
-
-Combining [](supply_capital_log_olg) and [](wage_2) yields the law of motion for capital
 ```{math}
 :label: law_of_motion_capital
     k_{t+1} = \frac{\beta}{1+\beta} (1-\alpha)(k_t)^{\alpha}
 ```
 
-
-
-A steady state can be solved analytically in this case.
-
-That is, $k_{t+1} = k_t = k^*$, where
-```{math}
-:label: steady_state_1
-    k^* = \frac{\beta (1-\alpha) (k^*)^{\alpha}}{(1+\beta)}
-```
-
-
-
-We can solve this equation to obtain
-```{math}
-:label: steady_state_2
-    k^* = \left (\frac{\beta (1-\alpha)}{1+\beta} \right )^{1/(1-\alpha)}
-```
+Let's plot the 45 degree diagram.
 
 ```{code-cell} ipython3
 def k_update(k, model):
@@ -538,6 +468,81 @@ def plot_45(m, k_update, kstar=None):
 plot_45(m, k_update, kstar=None)
 ```
 
+Let's plot some time series
+
+observe the dynamics of the equilibrium price $R^*_{t+1}$.
+
+```{code-cell} ipython3
+K_t_vals = np.linspace(10, 500, 10_000)
+R_t1_vals = m.α * (m.β * (1-m.α) * (K_t_vals / m.L)**m.α / (1+m.β))**(m.α-1)
+```
+
+```{code-cell} ipython3
+fig, ax = plt.subplots()
+ax.plot(K_t_vals, R_t1_vals)
+ax.set_ylabel("$R^*_{t+1}$")
+ax.set_xlabel("$K_{t}$")
+plt.show()
+```
+
+
+### Steady state (log case)
+
+The diagram shows that the model has a unique positive steady state, which we
+denote by $k^*$.
+
+We can solve for $k^*$ by setting $k_{t+1} = k_t = k^*$ in [](law_of_motion_capital), which yields
+
+```{math}
+:label: steady_state_1
+    k^* = \frac{\beta (1-\alpha) (k^*)^{\alpha}}{(1+\beta)}
+```
+
+
+
+
+
+
+
+
+```{code-cell} ipython3
+Model = namedtuple('Model', ['α',        # Cobb-Douglas parameter
+                             'β',        # discount factor
+                             'u']        # flow utility
+                   )
+```
+```{code-cell} ipython3
+def create_olg_model(α=0.3, β=0.9, u=u, L=10.0, u_params=dict()):
+    return Model(α=α, β=β, u=u, L=L, u_params=u_params)
+```
+
+
+```{code-cell} ipython3
+m = create_olg_model()
+K_prev = 50
+```
+
+```{code-cell} ipython3
+E_star = equilibrium(m, K_prev)
+```
+
+```{code-cell} ipython3
+R_star, K_star = E_star
+```
+
+```{code-cell} ipython3
+plot_ad_as(aggregate_capital_demand, aggregate_capital_supply, m, K_prev=50, E_star=E_star)
+```
+
+
+
+We can solve this equation to obtain
+```{math}
+:label: steady_state_2
+    k^* = \left (\frac{\beta (1-\alpha)}{1+\beta} \right )^{1/(1-\alpha)}
+```
+
+
 ```{code-cell} ipython3
 def k_star(model):
     α, β = model.α, model.β
@@ -547,6 +552,9 @@ def k_star(model):
 ```{code-cell} ipython3
 plot_45(m, k_update, kstar=k_star(m))
 ```
+
+
+
 
 
 ## CRRA preferences
