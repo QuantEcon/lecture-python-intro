@@ -348,7 +348,7 @@ G_p = nx.DiGraph()
 ```
 
 
-Next, we populate it with nodes and edges.
+Next we populate it with nodes and edges.
 
 To do this we write down a list of
 all edges, with *poor* represented by *p* and so on:
@@ -1069,7 +1069,7 @@ The next centrality measures will have these recursive features.
 Suppose we have a weighted directed graph with adjacency matrix $A$.
 
 For simplicity, we will suppose that the nodes $V$ of the graph are just the
-integers $1, \cdots, n$.
+integers $1, \ldots, n$.
 
 Let $r(A)$ denote the {ref}`spectral radius<neumann_series_lemma>` of $A$.
 
@@ -1176,7 +1176,7 @@ Japan takes the highest rank according to this measure, although
 countries with large financial sectors such as Great Britain and France are
 not far behind.
 
-The advantage of eigenvector centrality is that it measures a node’s importance while considering the importance of its neighbours.
+The advantage of eigenvector centrality is that it measures a node's importance while considering the importance of its neighbours.
 
 A variant of eigenvector centrality is at the core of Google’s PageRank algorithm, which is used to rank web pages.
 
