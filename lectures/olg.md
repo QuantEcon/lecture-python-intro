@@ -85,6 +85,9 @@ population size.
 
 We normalize the constant population size in each period to 1.
 
+We also suppose that each agent supplies one "unit" of labor hours, so total
+labor supply is 1.
+
 
 ## Supply of capital
 
@@ -161,8 +164,10 @@ so the Euler equation can also be expressed as
     u'(w_t - s_t) = \beta R_{t+1}  u'( R_{t+1} s_t)
 ```
 
-This implies that savings can be written as a fixed function of $w_t$ and
-$R_{t+1}$.
+Suppose that, for each $w_t$ and $R_{t+1}$, there is exactly one $s_t$ that
+solves :eq:`euler_2_olg`.
+
+Then savings can be written as a fixed function of $w_t$ and $R_{t+1}$.
 
 We write this as
 
@@ -171,8 +176,10 @@ We write this as
     s_t = s(w_t, R_{t+1})
 ```
 
-Since the population size is normalized to 1, this is also total savings in
-the economy at time $t$.
+Together, $w_t$ and $R_{t+1}$ represent the *prices* in the economy (price of
+labor and rental rate of capital).
+
+Thus, [](saving_1_olg) states the quantity of savings given prices.
 
 
 ### Example: log preferences
@@ -192,111 +199,140 @@ Solving for saving, we get
 ```
 
 
+### Savings and investment
+
+Since the population size is normalized to 1, $s_t$ is also total savings in
+the economy at time $t$.
+
+In our closed economy, there is no foreign investment, so net savings equals
+total investment, which can be understood as supply of capital to firms.
+
+
+In the next section we investigate demand for capital.
+
+Equating supply and demand will allow us to determine equilibrium in the OLG
+economy.
+
 
 
 ## Demand for capital
 
-Now let's pin down the demand for capital.
+First we describe the firm problem and then we write down an equation
+describing demand for capital given prices.
 
 
 ### Firm's problem
 
-For each integer $t \geq 0$, output $Y_t$ in period $t$ is given by
+For each integer $t \geq 0$, output $y_t$ in period $t$ is given by
+the **Cobb-Douglas production function**
 
 ```{math}
 :label: cobb_douglas
-    Y_t = K_t^{\alpha} L_t^{1-\alpha}
+    y_t = k_t^{\alpha} \ell_t^{1-\alpha}
 ```
 
-Here $K_t$ is capital, $L_t$ is labor, and  $\alpha$ is the output elasticity of capital in the **Cobb-Douglas production function**.
+Here $k_t$ is capital, $\ell_t$ is labor, and  $\alpha$ is the called the output
+elasticity of capital.
 
-
-Demand for labor $L$ and capital $K_t$ is determined by the profit
-maximization problem
+The profit maximization problem of the firm is
 
 ```{math}
 :label: opt_profit_olg
-    \max_{K_t, L} \{ K^{\alpha}_t L^{1-\alpha} - R_t K_t - L w_t   \}
+    \max_{k_t, \ell_t} \{ k^{\alpha}_t \ell_t^{1-\alpha} - R_t k_t - \ell_t w_t   \}
 ```
 
-### Demand for capital
-
-The first-order conditions for a maximum can be obtained by taking the
-derivative of the objective function with respect to capital and labor
-respectively and setting it to zero:
+The first-order conditions are obtained by taking the derivative of the
+objective function with respect to capital and labor respectively and setting
+them to zero:
 
 ```{math}
 :label: wage
-    (1-\alpha)(K_t / L)^{\alpha} = w_t
+    (1-\alpha)(k_t / \ell_t)^{\alpha} = w_t
 ```
 
 and
 
 ```{math}
 :label: interest_rate
-    \alpha (K_t / L)^{\alpha - 1} = R_t
+    \alpha (k_t / \ell_t)^{\alpha - 1} = R_t
 ```
 
-Rearranging [](interest_rate) gives the aggregate demand for capital
+
+
+### Demand 
+
+Using our assumption $\ell_1 = 1$ allows us to write 
+
+```{math}
+:label: wage_one
+    w_t = (1-\alpha)k_t^\alpha 
+```
+
+and
+
+```{math}
+:label: interest_rate_one
+    R_t =
+    \alpha k_t^{\alpha - 1} 
+```
+
+Rearranging [](interest_rate_2) gives the aggregate demand for capital
 
 ```{math}
 :label: aggregate_demand_capital_olg
-    K_{t+1} = K^d (R_{t+1}) = L \left (\frac{R_{t+1}}{\alpha} \right )^{1/(\alpha - 1)}
+    k^d (R_{t+1}) 
+    := \left (\frac{R_{t+1}}{\alpha} \right )^{1/(\alpha - 1)}
 ```
 
 
 
 ## Equilibrium
 
-In our closed economy, net saving this period will be equal to supply next period, i.e.,
+In equilibrium, savings at time $t$ equals investment at time $t$, which
+equals capital supply at time $t+1$.
 
-```{math}
-:label: aggregate_supply_capital_1_olg
-    K_{t+1} = K^S(w_t, R_{t+1}) =  S_t = L s_t = L s(w_t, R_{t+1})
-```
-
-Here $K^S$ is a time-invariant function mapping wage $w_t$ and capital return rate $R_{t+1}$ to aggregate capital supply $K_{t+1}$.
-
-
-And hence
-```{math}
-:label: aggregate_supply_capital_log_olg
-    K_{t+1} = K^s(R_{t+1}) = Ls_t = L \frac{\beta}{1+\beta} w_t
-```
-
-
-
-The equality of aggregate demand [](aggregate_demand_capital_olg) and aggregate supply [](aggregate_supply_capital_log_olg) for capital yields the equalibrium.
+Equilibrium is obtained this supply with demand for capital from firms.
 
 Specifically we have
 
 ```{math}
 :label: equilibrium_1
-    K^s(R_{t+1}) = K^d(R_{t+1})
+    s(w_t, R_{t+1}) 
+    = k^d(R_{t+1})
+    = \left (\frac{R_{t+1}}{\alpha} \right )^{1/(\alpha - 1)}
 ```
+
+This equation determines the equilibrium price $R_{t+1}$.
+
+From it and [](aggregate_demand_capital_olg), we can obtain the equilibrium quantity $k_{t+1}$.
+
+When we solve for this equilibrium, time $t$ quantities are already given, so
+we can treat $w_t$ as a constant.
 
 or, equivalently,
 
 ```{math}
 :label: equilibrium_2
-    L\frac{\beta}{1+\beta} (1-\alpha)(K_t / L)^{\alpha} = L\left (\frac{R_{t+1}}{\alpha} \right )^{1/(\alpha - 1)}
+    \frac{\beta}{1+\beta} (1-\alpha)k_t^{\alpha} 
+    = \left (\frac{R_{t+1}}{\alpha} \right )^{1/(\alpha - 1)}
 ```
 
-
-
-Then we can solve for the equilibrium price
+Solving for the equilibrium interest rate gives
 
 ```{math}
 :label: equilibrium_price
-    R^*_{t+1} = \alpha \left ( \frac{\beta (1-\alpha)(K_t / L)^{\alpha}}{1+\beta} \right )^{\alpha - 1}
+    R_{t+1} = 
+    \alpha 
+    \left ( 
+        \frac{\beta (1-\alpha)(k_t / \ell )^{\alpha}}{1+\beta} 
+    \right )^{\alpha - 1}
 ```
 
+Plugging into either the demand or the supply function gives the equilibrium quantity
 
-
-Plugging it into either the demand or the supply function gives the equilibrium quantity
 ```{math}
 :label: equilibrium_quantity
-    K^*_{t+1} = \frac{\beta }{1+\beta} (1-\alpha)(K_t / L)^{\alpha} L
+    k_{t+1} = \frac{\beta }{1+\beta} (1-\alpha)(k_t / \ell )^{\alpha} \ell 
 ```
 
 ```{code-cell} ipython3
@@ -405,7 +441,7 @@ plt.show()
 Let $k_t := K_t / L$.
 
 
-Aggregate supply of capital [](aggregate_supply_capital_log_olg) becomes
+Aggregate supply of capital becomes
 ```{math}
 :label: supply_capital_log_olg
     k_{t+1} = k^s(R_{t+1}) = \frac{\beta}{1+\beta} w_t
@@ -500,8 +536,8 @@ def k_star(model):
 plot_45(m, k_update, kstar=k_star(m))
 ```
 
-## Another special case: CRRA preference
 
+## CRRA preferences
 
 
 Let's now assume that the model is the same except that $u(c) = \frac{ c^{1- \gamma}-1}{1-\gamma}$, where $\gamma >0, \gamma\neq 1$.
@@ -536,7 +572,7 @@ Solving for savings, we have
 
 
 
-With the CRRA utility, the aggregate supply of capital [](aggregate_supply_capital_1_olg) becomes
+With the CRRA utility, aggregate supply of capital becomes
 ```{math}
 :label: aggregate_supply_capital_crra_olg
     K_{t+1} = K^S(w_t, R_{t+1}) =  S_t = L s_t = L s(w_t, R_{t+1}) = L w_t \left [ 1 + \beta^{-1/\gamma} R_{t+1}^{(\gamma-1)/\gamma} \right ]^{-1}
@@ -614,12 +650,8 @@ TODO: Do we need to add some explanation?
 
 ### Dynamics and steady state
 
+Under log utility, capital evolves according to
 
-
-Setting $k_t := K_t / L$ and using [](saving_crra).
-
-
-Aggregate supply of capital [](aggregate_supply_capital_1_olg) becomes
 ```{math}
 :label: supply_capital_crra_olg
     k_{t+1} = k^s(R_{t+1}) = \left [ 1 + \beta^{-1/\gamma} R_{t+1}^{(\gamma-1)/\gamma} \right ]^{-1} w_t
@@ -867,7 +899,7 @@ With the quasilinear preference the Euler equation [](euler_2_olg) becomes
 
 Let $k_t := K_t / L$.
 
-Since [](aggregate_supply_capital_log_olg), [](wage_2) and [](interest_rate_2) the Euler equation becomes
+Since [](supply_capital_log_olg), [](wage_2) and [](interest_rate_2) the Euler equation becomes
 
 ```{math}
 :label: euler_quasilinear1
