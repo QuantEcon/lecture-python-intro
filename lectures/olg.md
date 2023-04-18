@@ -15,7 +15,11 @@ kernelspec:
 
 In this lecture we study the overlapping generations (OLG) model.
 
-The dynamics of this model are quite similar to Solow-Swan growth model.
+
+
+## Overview
+
+The dynamics of the OLG model are quite similar to Solow-Swan growth model.
 
 At the same time, the OLG model adds an important new feature: the choice of
 how much to save is endogenous.
@@ -165,7 +169,7 @@ so the Euler equation can also be expressed as
 ```
 
 Suppose that, for each $w_t$ and $R_{t+1}$, there is exactly one $s_t$ that
-solves :eq:`euler_2_olg`.
+solves [](euler_2_olg).
 
 Then savings can be written as a fixed function of $w_t$ and $R_{t+1}$.
 
@@ -288,6 +292,11 @@ Rearranging [](interest_rate_2) gives the aggregate demand for capital
 
 ## Equilibrium
 
+In this section we derive equilibrium conditions and investigate an example.
+
+
+### Equilibrium Conditions
+
 In equilibrium, savings at time $t$ equals investment at time $t$, which
 equals capital supply at time $t+1$.
 
@@ -309,7 +318,10 @@ From it and [](aggregate_demand_capital_olg), we can obtain the equilibrium quan
 When we solve for this equilibrium, time $t$ quantities are already given, so
 we can treat $w_t$ as a constant.
 
-or, equivalently,
+
+### Example: log utility
+
+In the case of log utility, we can use [](equilibrium_1) and [](saving_log_2_olg) to obtain
 
 ```{math}
 :label: equilibrium_2
@@ -324,7 +336,7 @@ Solving for the equilibrium interest rate gives
     R_{t+1} = 
     \alpha 
     \left ( 
-        \frac{\beta (1-\alpha)(k_t / \ell )^{\alpha}}{1+\beta} 
+        \frac{\beta (1-\alpha)k_t^{\alpha}}{1+\beta} 
     \right )^{\alpha - 1}
 ```
 
@@ -332,7 +344,7 @@ Plugging into either the demand or the supply function gives the equilibrium qua
 
 ```{math}
 :label: equilibrium_quantity
-    k_{t+1} = \frac{\beta }{1+\beta} (1-\alpha)(k_t / \ell )^{\alpha} \ell 
+    k_{t+1} = \frac{\beta }{1+\beta} (1-\alpha)k_t^{\alpha} 
 ```
 
 ```{code-cell} ipython3
