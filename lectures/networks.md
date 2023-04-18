@@ -1178,7 +1178,7 @@ not far behind.
 
 The advantage of eigenvector centrality is that it measures a node's importance while considering the importance of its neighbours.
 
-A variant of eigenvector centrality is at the core of Google’s PageRank algorithm, which is used to rank web pages.
+A variant of eigenvector centrality is at the core of Google's PageRank algorithm, which is used to rank web pages.
 
 The main principle is that links from important nodes (as measured by degree centrality) are worth more than links from unimportant nodes.
 
