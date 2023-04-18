@@ -1,0 +1,2098 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>12. Linear Equations and Matrix Algebra &#8212; An Introduction to Quantitative Economics and Finance</title>
+    <script src="https://unpkg.com/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://unpkg.com/tippy.js@6.3.1/dist/tippy-bundle.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    
+        <script>
+            MathJax = {
+            loader: {load: ['[tex]/boldsymbol', '[tex]/textmacros']},
+            tex: {
+                packages: {'[+]': ['boldsymbol', 'textmacros']},
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                processEscapes: true,
+                macros: {
+                    "argmax" : "arg\\,max",
+                    "argmin" : "arg\\,min",
+                    "col"    : "col",
+                    "Span"   :  "span",
+                    "epsilon": "\\varepsilon",
+                    "EE": "\\mathbb{E}",
+                    "PP": "\\mathbb{P}",
+                    "RR": "\\mathbb{R}",
+                    "NN": "\\mathbb{N}",
+                    "ZZ": "\\mathbb{Z}",
+                    "aA": "\\mathcal{A}",
+                    "bB": "\\mathcal{B}",
+                    "cC": "\\mathcal{C}",
+                    "dD": "\\mathcal{D}",
+                    "eE": "\\mathcal{E}",
+                    "fF": "\\mathcal{F}",
+                    "gG": "\\mathcal{G}",
+                    "hH": "\\mathcal{H}",
+                }
+            },
+            svg: {
+                fontCache: 'global',
+                scale: 0.92,
+                displayAlign: "center",
+            },
+            };
+        </script>
+    
+    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/quantecon-book-theme.279dae03c5caae754d20501e3fa00bbf.css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/exercise.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script src="_static/quantecon-book-theme.15b0c36fffe88f468997fa7b698991d3.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'linear_equations';</script>
+    <link rel="canonical" href="https://intro.quantecon.org/linear_equations.html" />
+    <link rel="shortcut icon" href="_static/lectures-favicon.ico"/>
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="13. Eigenvalues and Eigenvectors" href="eigen_I.html" />
+    <link rel="prev" title="11. Geometric Series for Elementary Economics" href="geom_series.html" />
+
+<!-- Normal Meta Tags -->
+<meta name="author" context="Thomas J. Sargent &amp; John Stachurski" />
+<meta name="keywords" content="Python, QuantEcon, Quantitative Economics, Economics, Sloan, Alfred P. Sloan Foundation, Tom J. Sargent, John Stachurski" />
+<meta name="description" content=This website presents introductory lectures on computational economics, designed and written by Thomas J. Sargent and John Stachurski. />
+
+<!-- Twitter tags -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@quantecon" />
+<meta name="twitter:title" content="Linear Equations and Matrix Algebra"/>
+<meta name="twitter:description" content="This website presents introductory lectures on computational economics, designed and written by Thomas J. Sargent and John Stachurski.">
+<meta name="twitter:creator" content="@quantecon">
+<meta name="twitter:image" content="https://assets.quantecon.org/img/qe-twitter-logo.png">
+
+<!-- Opengraph tags -->
+<meta property="og:title" content="Linear Equations and Matrix Algebra" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://intro.quantecon.org/linear_equations.html" />
+<meta property="og:image" content="https://assets.quantecon.org/img/qe-og-logo.png" />
+<meta property="og:description" content="This website presents introductory lectures on computational economics, designed and written by Thomas J. Sargent and John Stachurski." />
+<meta property="og:site_name" content="An Introduction to Quantitative Economics and Finance" />
+<meta name="theme-color" content="#ffffff" />
+
+  </head>
+<body>
+
+
+    <span id="top"></span>
+
+    <div class="qe-wrapper">
+
+        <div class="qe-main">
+
+            <div class="qe-page" id=linear_equations>
+
+                <div class="qe-page__toc">
+
+                    <div class="inner">
+
+                        
+                        <div class="qe-page__toc-header">
+                            On this page
+                        </div>
+
+
+                        <nav id="bd-toc-nav" class="qe-page__toc-nav">
+                            <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">12.1. Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-two-good-example">12.2. A Two Good Example</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pencil-and-paper-methods">12.2.1. Pencil and Paper Methods</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#looking-forward">12.2.2. Looking Forward</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vectors">12.3. Vectors</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vector-operations">12.3.1. Vector Operations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inner-product-and-norm">12.3.2. Inner Product and Norm</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-operations">12.4. Matrix Operations</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#addition-and-scalar-multiplication">12.4.1. Addition and Scalar Multiplication</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-multiplication">12.4.2. Matrix Multiplication</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matrices-in-numpy">12.4.3. Matrices in NumPy</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#two-good-model-in-matrix-form">12.4.4. Two Good Model in Matrix Form</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#more-goods">12.4.5. More Goods</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#general-linear-systems">12.4.6. General Linear Systems</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solving-systems-of-equations">12.5. Solving Systems of Equations</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#no-solution">12.5.1. No Solution</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#many-solutions">12.5.2. Many Solutions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nonsingular-matrices">12.5.3. Nonsingular Matrices</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-equations-with-numpy">12.5.4. Linear Equations with NumPy</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">12.6. Exercises</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#further-reading">12.6.1. Further Reading</a></li>
+</ul>
+</li>
+</ul>
+                            <p class="logo">
+                                
+                                    
+                                    <a href=https://quantecon.org><img src="_static/qe-logo.png" class="logo" alt="logo"></a>
+                                    
+                                
+                            </p>
+
+                            <p class="powered">Powered by <a href="https://jupyterbook.org/">Jupyter Book</a></p>
+
+                        </nav>
+
+                        <div class="qe-page__toc-footer">
+                            
+                            
+                            <p><a href="#top"><strong>Back to top</strong></a></p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="qe-page__header">
+
+                    <div class="qe-page__header-copy">
+
+                        <p class="qe-page__header-heading"><a href="intro.html">An Introduction to Quantitative Economics and Finance</a></p>
+
+                        <p class="qe-page__header-subheading">Linear Equations and Matrix Algebra</p>
+
+                    </div>
+
+                    <p class="qe-page__header-authors">Thomas J. Sargent & John Stachurski</p>
+
+                </div> <!-- .page__header -->
+
+
+
+                
+                <main class="qe-page__content" role="main">
+                    
+                    <div>
+                        
+  <section class="tex2jax_ignore mathjax_ignore" id="linear-equations-and-matrix-algebra">
+<h1><a class="toc-backref" href="#id1"><span class="section-number">12. </span>Linear Equations and Matrix Algebra</a><a class="headerlink" href="#linear-equations-and-matrix-algebra" title="Permalink to this heading">#</a></h1>
+<div class="contents topic" id="contents">
+<span id="index-0"></span><p class="topic-title">Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#linear-equations-and-matrix-algebra" id="id1">Linear Equations and Matrix Algebra</a></p>
+<ul>
+<li><p><a class="reference internal" href="#overview" id="id2">Overview</a></p></li>
+<li><p><a class="reference internal" href="#a-two-good-example" id="id3">A Two Good Example</a></p></li>
+<li><p><a class="reference internal" href="#vectors" id="id4">Vectors</a></p></li>
+<li><p><a class="reference internal" href="#matrix-operations" id="id5">Matrix Operations</a></p></li>
+<li><p><a class="reference internal" href="#solving-systems-of-equations" id="id6">Solving Systems of Equations</a></p></li>
+<li><p><a class="reference internal" href="#exercises" id="id7">Exercises</a></p></li>
+</ul>
+</li>
+</ul>
+</div>
+<section id="overview">
+<h2><a class="toc-backref" href="#id2"><span class="section-number">12.1. </span>Overview</a><a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
+<p>Many problems in economics and finance require solving linear equations.</p>
+<p>In this lecture we discuss linear equations and their applications.</p>
+<p>To illustrate the importance of linear equations, we begin with a two good
+model of supply and demand.</p>
+<p>The two good case is so simple that solutions can be calculated by hand.</p>
+<p>But often we need to consider markets containing many goods.</p>
+<p>In this case we face large systems of linear equations, with many equations
+and unknowns.</p>
+<p>To handle such systems we need two things:</p>
+<ul class="simple">
+<li><p>matrix algebra (and the knowledge of how to use it) plus</p></li>
+<li><p>computer code to apply matrix algebra to the problems of interest.</p></li>
+</ul>
+<p>This lecture covers these steps.</p>
+<p>We will use the following imports:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;figure.figsize&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>  <span class="c1"># set default figure size</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="a-two-good-example">
+<h2><a class="toc-backref" href="#id3"><span class="section-number">12.2. </span>A Two Good Example</a><a class="headerlink" href="#a-two-good-example" title="Permalink to this heading">#</a></h2>
+<p>In this section we discuss a simple two good example and solve it by</p>
+<ol class="arabic simple">
+<li><p>pencil and paper</p></li>
+<li><p>matrix algebra</p></li>
+</ol>
+<p>The second method is more general, as we will see.</p>
+<section id="pencil-and-paper-methods">
+<h3><span class="section-number">12.2.1. </span>Pencil and Paper Methods<a class="headerlink" href="#pencil-and-paper-methods" title="Permalink to this heading">#</a></h3>
+<p>Suppose that we have two related goods, such as</p>
+<ul class="simple">
+<li><p>propane and ethanol</p></li>
+<li><p>rice and wheat, etc.</p></li>
+</ul>
+<p>To keep things simple, we label them as good 0 and good 1.</p>
+<p>The demand for each good depends on the price of both goods:</p>
+<div class="math notranslate nohighlight" id="equation-two-eq-demand">
+<span class="eqno">(12.1)<a class="headerlink" href="#equation-two-eq-demand" title="Permalink to this equation">#</a></span>\[\begin{split}\begin{aligned}
+    q_0^d = 100 - 10 p_0 - 5 p_1 \\
+    q_1^d = 50 - p_0 - 10 p_1 
+\end{aligned}\end{split}\]</div>
+<p>(We are assuming demand decreases when the price of either good goes up, but
+other cases are also possible.)</p>
+<p>Let’s suppose that supply is given by</p>
+<div class="math notranslate nohighlight" id="equation-two-eq-supply">
+<span class="eqno">(12.2)<a class="headerlink" href="#equation-two-eq-supply" title="Permalink to this equation">#</a></span>\[\begin{split}\begin{aligned}
+    q_0^s = 10 p_0 + 5 p_1 \\
+    q_1^s = 5 p_0 + 10 p_1 
+\end{aligned}\end{split}\]</div>
+<p>Equilibrium holds when supply equals demand (<span class="math notranslate nohighlight">\(q_0^s = q_0^d\)</span> and <span class="math notranslate nohighlight">\(q_1^s = q_1^d\)</span>).</p>
+<p>This yields the linear system</p>
+<div class="math notranslate nohighlight" id="equation-two-equilibrium">
+<span class="eqno">(12.3)<a class="headerlink" href="#equation-two-equilibrium" title="Permalink to this equation">#</a></span>\[\begin{split}\begin{aligned}
+    100 - 10 p_0 - 5 p_1 = 10 p_0 + 5 p_1 \\
+    50 - p_0 - 10 p_1 = 5 p_0 + 10 p_1 
+\end{aligned}\end{split}\]</div>
+<p>We can solve this with pencil and paper to get</p>
+<div class="math notranslate nohighlight">
+\[
+    p_0 = 4.41 \quad \text{and} \quad p_1 = 1.18
+\]</div>
+<p>Inserting these results into either <a class="reference internal" href="#equation-two-eq-demand">(12.1)</a> or <a class="reference internal" href="#equation-two-eq-supply">(12.2)</a> yields the
+equilibrium quantities</p>
+<div class="math notranslate nohighlight">
+\[
+    q_0 = 50 \quad \text{and} \quad q_1 = 33.82
+\]</div>
+</section>
+<section id="looking-forward">
+<h3><span class="section-number">12.2.2. </span>Looking Forward<a class="headerlink" href="#looking-forward" title="Permalink to this heading">#</a></h3>
+<p>Pencil and paper methods are easy in the two good case.</p>
+<p>But what if there are many goods?</p>
+<p>For such problems we need matrix algebra.</p>
+<p>Before solving problems with matrix algebra, let’s first recall the
+basics of vectors and matrices, in both theory and computation.</p>
+</section>
+</section>
+<section id="vectors">
+<h2><a class="toc-backref" href="#id4"><span class="section-number">12.3. </span><span class="target" id="index-1"></span>Vectors</a><a class="headerlink" href="#vectors" title="Permalink to this heading">#</a></h2>
+<p id="index-2">A <strong>vector</strong> of length <span class="math notranslate nohighlight">\(n\)</span> is just a sequence (or array, or tuple) of <span class="math notranslate nohighlight">\(n\)</span> numbers, which we write as <span class="math notranslate nohighlight">\(x = (x_1, \ldots, x_n)\)</span>.</p>
+<p>We can write these sequences either horizontally or vertically.</p>
+<p>But when we use matrix operations, our default assumption is that vectors are
+column vectors.</p>
+<p>The set of all <span class="math notranslate nohighlight">\(n\)</span>-vectors is denoted by <span class="math notranslate nohighlight">\(\mathbb R^n\)</span>.</p>
+<p>For example,</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\mathbb R^2\)</span> is the plane — the set of pairs <span class="math notranslate nohighlight">\((x_1, x_2)\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathbb R^3\)</span> is 3 dimensional space — the set of vectors <span class="math notranslate nohighlight">\((x_1, x_2, x_3)\)</span></p></li>
+</ul>
+<p>Often vectors are represented visually as arrows from the origin to the point.</p>
+<p>Here’s a visualization.</p>
+<div class="cell tag_hide_input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="c1"># Set the axes through the origin</span>
+<span class="k">for</span> <span class="n">spine</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="s1">&#39;bottom&#39;</span><span class="p">]:</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="n">spine</span><span class="p">]</span><span class="o">.</span><span class="n">set_position</span><span class="p">(</span><span class="s1">&#39;zero&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">spine</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="s1">&#39;top&#39;</span><span class="p">]:</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="n">spine</span><span class="p">]</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+<span class="n">vecs</span> <span class="o">=</span> <span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.5</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">vecs</span><span class="p">:</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">xy</span><span class="o">=</span><span class="n">v</span><span class="p">,</span> <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+                <span class="n">arrowprops</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span>
+                <span class="n">shrink</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span>
+                <span class="n">width</span><span class="o">=</span><span class="mf">0.5</span><span class="p">))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">1.1</span> <span class="o">*</span> <span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mf">1.1</span> <span class="o">*</span> <span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="nb">str</span><span class="p">(</span><span class="n">v</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/81f4e19df8709e7636f7862e999a6dc02a0c93176e9d5b4e219ca160c3a62d7e.png" src="_images/81f4e19df8709e7636f7862e999a6dc02a0c93176e9d5b4e219ca160c3a62d7e.png" />
+</div>
+</div>
+<section id="vector-operations">
+<h3><span class="section-number">12.3.1. </span>Vector Operations<a class="headerlink" href="#vector-operations" title="Permalink to this heading">#</a></h3>
+<p id="index-3">Sometimes we want to modify vectors.</p>
+<p>The two most common operators on vectors are addition and scalar
+multiplication, which we now describe.</p>
+<p>When we add two vectors, we add them element-by-element.</p>
+<p>For example,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{bmatrix}
+    4 \\
+    -2 
+\end{bmatrix}
++
+\begin{bmatrix}
+    3 \\
+    3 
+\end{bmatrix}
+=
+\begin{bmatrix}
+    4 &amp; + &amp; 3 \\
+    -2 &amp; + &amp; 3 
+\end{bmatrix}
+=
+\begin{bmatrix}
+    7 \\
+    1
+\end{bmatrix}
+\end{split}\]</div>
+<p>In general,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+x + y =
+\begin{bmatrix}
+    x_1 \\
+    x_2 \\
+    \vdots \\
+    x_n
+\end{bmatrix} +
+\begin{bmatrix}
+     y_1 \\
+     y_2 \\
+    \vdots \\
+     y_n
+\end{bmatrix} :=
+\begin{bmatrix}
+    x_1 + y_1 \\
+    x_2 + y_2 \\
+    \vdots \\
+    x_n + y_n
+\end{bmatrix}
+\end{split}\]</div>
+<p>We can visualise vector addition in <span class="math notranslate nohighlight">\(\mathbb{R}^2\)</span> as follows.</p>
+<div class="cell tag_hide_input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="c1"># Set the axes through the origin</span>
+<span class="k">for</span> <span class="n">spine</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="s1">&#39;bottom&#39;</span><span class="p">]:</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="n">spine</span><span class="p">]</span><span class="o">.</span><span class="n">set_position</span><span class="p">(</span><span class="s1">&#39;zero&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">spine</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="s1">&#39;top&#39;</span><span class="p">]:</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="n">spine</span><span class="p">]</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="c1">#ax.grid()</span>
+<span class="n">vecs</span> <span class="o">=</span> <span class="p">((</span><span class="mi">4</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">),(</span><span class="mi">7</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">tags</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;(x1, x2)&#39;</span><span class="p">,</span><span class="s1">&#39;(y1, y2)&#39;</span><span class="p">,</span><span class="s1">&#39;(x1+x2, y1+y2)&#39;</span><span class="p">)</span>
+<span class="n">colors</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span><span class="s1">&#39;green&#39;</span><span class="p">,</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">vecs</span><span class="p">):</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">xy</span><span class="o">=</span><span class="n">v</span><span class="p">,</span> <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+                <span class="n">arrowprops</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span> <span class="o">=</span> <span class="n">colors</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+                <span class="n">shrink</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span>
+                <span class="n">width</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+                <span class="n">headwidth</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
+                <span class="n">headlength</span><span class="o">=</span><span class="mi">15</span><span class="p">))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mf">0.2</span><span class="p">,</span> <span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">tags</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">vecs</span><span class="p">):</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="n">xytext</span><span class="o">=</span><span class="n">v</span><span class="p">,</span>
+                <span class="n">arrowprops</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;gray&#39;</span><span class="p">,</span>
+                <span class="n">shrink</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span>
+                <span class="n">width</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+                <span class="n">headwidth</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+                <span class="n">headlength</span><span class="o">=</span><span class="mi">20</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ecf59e015760c9cda54be94f024699beaddd76f2aa8818046e8cfbc501ad4439.png" src="_images/ecf59e015760c9cda54be94f024699beaddd76f2aa8818046e8cfbc501ad4439.png" />
+</div>
+</div>
+<p>Scalar multiplication is an operation that multiplies a vector <span class="math notranslate nohighlight">\(x\)</span> with a scalar elementwise.</p>
+<p>For example,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+-2
+\begin{bmatrix}
+    3 \\
+    -7 
+\end{bmatrix}
+=
+\begin{bmatrix}
+    -2 &amp; \times &amp; 3 \\
+    -2 &amp; \times &amp; -7
+\end{bmatrix}
+=
+\begin{bmatrix}
+    -6 \\
+    14
+\end{bmatrix}
+\end{split}\]</div>
+<p>More generally, it takes a number <span class="math notranslate nohighlight">\(\gamma\)</span> and a vector <span class="math notranslate nohighlight">\(x\)</span> and produces</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\gamma x :=
+\begin{bmatrix}
+    \gamma x_1 \\
+    \gamma x_2 \\
+    \vdots \\
+    \gamma x_n
+\end{bmatrix}
+\end{split}\]</div>
+<p>Scalar multiplication is illustrated in the next figure.</p>
+<div class="cell tag_hide_input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="c1"># Set the axes through the origin</span>
+<span class="k">for</span> <span class="n">spine</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="s1">&#39;bottom&#39;</span><span class="p">]:</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="n">spine</span><span class="p">]</span><span class="o">.</span><span class="n">set_position</span><span class="p">(</span><span class="s1">&#39;zero&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">spine</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="s1">&#39;top&#39;</span><span class="p">]:</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="n">spine</span><span class="p">]</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">xy</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+            <span class="n">arrowprops</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span>
+            <span class="n">shrink</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+            <span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+            <span class="n">width</span><span class="o">=</span><span class="mf">0.5</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mf">0.4</span><span class="p">,</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mf">0.2</span><span class="p">,</span> <span class="s1">&#39;$x$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="s1">&#39;16&#39;</span><span class="p">)</span>
+
+<span class="n">scalars</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">scalars</span><span class="p">:</span>
+    <span class="n">v</span> <span class="o">=</span> <span class="n">s</span> <span class="o">*</span> <span class="n">x</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">xy</span><span class="o">=</span><span class="n">v</span><span class="p">,</span> <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+                <span class="n">arrowprops</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span>
+                <span class="n">shrink</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+                <span class="n">width</span><span class="o">=</span><span class="mf">0.5</span><span class="p">))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mf">0.4</span><span class="p">,</span> <span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mf">0.2</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;$</span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s1"> x$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="s1">&#39;16&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/60969ac282580f2911271ff6ad0dbe54a38c38c9b3e4ed582291252da96623f7.png" src="_images/60969ac282580f2911271ff6ad0dbe54a38c38c9b3e4ed582291252da96623f7.png" />
+</div>
+</div>
+<p>In Python, a vector can be represented as a list or tuple,
+such as <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">=</span> <span class="pre">[2,</span> <span class="pre">4,</span> <span class="pre">6]</span></code> or <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">=</span> <span class="pre">(2,</span> <span class="pre">4,</span> <span class="pre">6)</span></code>.</p>
+<p>However, it is more common to represent vectors with
+<a class="reference external" href="https://python-programming.quantecon.org/numpy.html#numpy-arrays">NumPy arrays</a>.</p>
+<p>One advantage of NumPy arrays is that scalar multiplication and addition have
+very natural syntax.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>            <span class="c1"># Vector of three ones</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>   <span class="c1"># Converts tuple (2, 4, 6) into a NumPy array</span>
+<span class="n">x</span> <span class="o">+</span> <span class="n">y</span>                     <span class="c1"># Add (element-by-element)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([3., 5., 7.])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">4</span> <span class="o">*</span> <span class="n">x</span>                     <span class="c1"># Scalar multiply</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([4., 4., 4.])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="inner-product-and-norm">
+<h3><span class="section-number">12.3.2. </span>Inner Product and Norm<a class="headerlink" href="#inner-product-and-norm" title="Permalink to this heading">#</a></h3>
+<span class="target" id="index-4"></span><p id="index-5">The <strong>inner product</strong> of vectors <span class="math notranslate nohighlight">\(x,y \in \mathbb R^n\)</span> is defined as</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+x' y = 
+\begin{bmatrix}
+    \color{red}{x_1} &amp; \color{blue}{x_2} &amp; \cdots &amp; x_n
+\end{bmatrix}
+\begin{bmatrix}
+    \color{red}{y_1} \\
+    \color{blue}{y_2} \\
+    \vdots \\
+    y_n
+\end{bmatrix}
+= {\color{red}{x_1 y_1}} + {\color{blue}{x_2 y_2}} + \cdots + x_n y_n
+:= \sum_{i=1}^n x_i y_i
+\end{split}\]</div>
+<p>The <strong>norm</strong> of a vector <span class="math notranslate nohighlight">\(x\)</span> represents its “length” (i.e., its distance from
+the zero vector) and is defined as</p>
+<div class="math notranslate nohighlight">
+\[
+    \| x \| := \sqrt{x' x} := \left( \sum_{i=1}^n x_i^2 \right)^{1/2}
+\]</div>
+<p>The expression <span class="math notranslate nohighlight">\(\| x - y\|\)</span> can be thought of as the “distance” between <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span>.</p>
+<p>The inner product and norm can be computed as follows</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="n">y</span><span class="p">)</span>      <span class="c1"># Inner product of x and y</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>12.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">@</span> <span class="n">y</span>            <span class="c1"># Another way to compute the inner product </span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>12.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>  <span class="c1"># Norm of x, take one</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.7320508075688772
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>      <span class="c1"># Norm of x, take two</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.7320508075688772
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="matrix-operations">
+<h2><a class="toc-backref" href="#id5"><span class="section-number">12.4. </span>Matrix Operations</a><a class="headerlink" href="#matrix-operations" title="Permalink to this heading">#</a></h2>
+<p id="index-6">When we discussed linear price systems, we mentioned using matrix algebra.</p>
+<p>Matrix algebra is similar to algebra for numbers.</p>
+<p>Let’s review some details.</p>
+<section id="addition-and-scalar-multiplication">
+<h3><span class="section-number">12.4.1. </span>Addition and Scalar Multiplication<a class="headerlink" href="#addition-and-scalar-multiplication" title="Permalink to this heading">#</a></h3>
+<p>Just as was the case for vectors, we can add, subtract and scalar multiply
+matrices.</p>
+<p>Scalar multiplication and addition are generalizations of the vector case:</p>
+<p>Here is an example of scalar multiplication</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+3
+\begin{bmatrix}
+    2 &amp; -13 \\
+    0 &amp; 5
+\end{bmatrix}
+=
+\begin{bmatrix}
+    6 &amp; -39 \\
+    0 &amp; 15
+\end{bmatrix}
+\end{split}\]</div>
+<p>In general for a number <span class="math notranslate nohighlight">\(\gamma\)</span> and any matrix <span class="math notranslate nohighlight">\(A\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\gamma A =
+\gamma
+\begin{bmatrix}
+    a_{11} &amp;  \cdots &amp; a_{1k} \\
+    \vdots &amp; \vdots  &amp; \vdots \\
+    a_{n1} &amp;  \cdots &amp; a_{nk}
+\end{bmatrix} :=
+\begin{bmatrix}
+    \gamma a_{11} &amp; \cdots &amp; \gamma a_{1k} \\
+    \vdots &amp; \vdots &amp; \vdots \\
+    \gamma a_{n1} &amp; \cdots &amp; \gamma a_{nk}
+\end{bmatrix}
+\end{split}\]</div>
+<p>Consider this example of matrix addition,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{bmatrix}
+    1 &amp; 5 \\
+    7 &amp; 3 \\
+\end{bmatrix}
++
+\begin{bmatrix}
+    12 &amp; -1 \\
+    0 &amp; 9
+\end{bmatrix}
+=
+\begin{bmatrix}
+    13 &amp; 4 \\
+    7 &amp; 12
+\end{bmatrix}
+\end{split}\]</div>
+<p>In general,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+A + B =
+\begin{bmatrix}
+    a_{11} &amp; \cdots &amp; a_{1k} \\
+    \vdots &amp; \vdots &amp; \vdots \\
+    a_{n1} &amp; \cdots &amp; a_{nk}
+\end{bmatrix} +
+\begin{bmatrix}
+    b_{11} &amp; \cdots &amp; b_{1k} \\
+    \vdots &amp; \vdots &amp; \vdots \\
+    b_{n1} &amp; \cdots &amp; b_{nk}
+\end{bmatrix} :=
+\begin{bmatrix}
+    a_{11} + b_{11} &amp;  \cdots &amp; a_{1k} + b_{1k} \\
+    \vdots &amp; \vdots &amp; \vdots \\
+    a_{n1} + b_{n1} &amp;  \cdots &amp; a_{nk} + b_{nk}
+\end{bmatrix}
+\end{split}\]</div>
+<p>In the latter case, the matrices must have the same shape in order for the
+definition to make sense.</p>
+</section>
+<section id="matrix-multiplication">
+<h3><span class="section-number">12.4.2. </span>Matrix Multiplication<a class="headerlink" href="#matrix-multiplication" title="Permalink to this heading">#</a></h3>
+<p>We also have a convention for <em>multiplying</em> two matrices.</p>
+<p>The rule for matrix multiplication generalizes the idea of inner products
+discussed above.</p>
+<p>If <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> are two matrices, then their product <span class="math notranslate nohighlight">\(A B\)</span> is formed by taking
+as its <span class="math notranslate nohighlight">\(i,j\)</span>-th element the inner product of the <span class="math notranslate nohighlight">\(i\)</span>-th row of <span class="math notranslate nohighlight">\(A\)</span> and the
+<span class="math notranslate nohighlight">\(j\)</span>-th column of <span class="math notranslate nohighlight">\(B\)</span>.</p>
+<p>If <span class="math notranslate nohighlight">\(A\)</span> is <span class="math notranslate nohighlight">\(n \times k\)</span> and <span class="math notranslate nohighlight">\(B\)</span> is <span class="math notranslate nohighlight">\(j \times m\)</span>, then to multiply <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span>
+we require <span class="math notranslate nohighlight">\(k = j\)</span>, and the resulting matrix <span class="math notranslate nohighlight">\(A B\)</span> is <span class="math notranslate nohighlight">\(n \times m\)</span>.</p>
+<p>Here’s an example of a <span class="math notranslate nohighlight">\(2 \times 2\)</span> matrix multiplied by a <span class="math notranslate nohighlight">\(2 \times 1\)</span> vector.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+Ax =
+\begin{bmatrix}
+    \color{red}{a_{11}} &amp; \color{red}{a_{12}} \\
+    a_{21} &amp; a_{22}
+\end{bmatrix}
+\begin{bmatrix}
+    \color{red}{x_1} \\
+    \color{red}{x_2}
+\end{bmatrix}
+=
+\begin{bmatrix}
+    \color{red}{a_{11}x_1 + a_{12}x_2} \\
+    a_{21}x_1 + a_{22}x_2
+\end{bmatrix}
+\end{split}\]</div>
+<p>As an important special case, consider multiplying <span class="math notranslate nohighlight">\(n \times k\)</span>
+matrix <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(k \times 1\)</span> column vector <span class="math notranslate nohighlight">\(x\)</span>.</p>
+<p>According to the preceding rule, this gives us an <span class="math notranslate nohighlight">\(n \times 1\)</span> column vector.</p>
+<div class="math notranslate nohighlight" id="equation-la-atx">
+<span class="eqno">(12.4)<a class="headerlink" href="#equation-la-atx" title="Permalink to this equation">#</a></span>\[\begin{split}A x =
+{\begin{bmatrix}
+    a_{11} &amp; a_{12} &amp;  \cdots &amp; a_{1k} \\
+    \vdots &amp; \vdots &amp; &amp; \vdots \\
+    \color{red}{a_{i1}} &amp; \color{red}{a_{i2}} &amp; \color{red}{\cdots} &amp; \color{red}{a_{i}k} \\
+    \vdots &amp; \vdots &amp; &amp; \vdots \\
+    a_{n1} &amp; a_{n2} &amp; \cdots &amp; a_{nk}
+\end{bmatrix}}_{n \times k}
+{\begin{bmatrix}
+    \color{red}{x_{1}}  \\
+    \color{red}{x_{2}}  \\
+    \color{red}{\vdots} \\
+    \color{red}{\vdots}  \\
+    \color{red}{x_{k}}
+\end{bmatrix}}_{k \times 1} :=
+{\begin{bmatrix}
+    a_{11} x_1 + a_{22} x_2 + \cdots + a_{1k} x_k \\
+    \vdots \\
+    \color{red}{a_{i1} x_1 + a_{i2} x_2 + \cdots + a_{ik} x_k} \\
+    \vdots \\
+    a_{n1} x_1 + a_{n2} x_2 + \cdots + a_{nk} x_k
+\end{bmatrix}}_{n \times 1}\end{split}\]</div>
+<p>Here is a simple illustration of multiplication of two matrices.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+AB =
+\begin{bmatrix}
+    a_{11} &amp; a_{12} \\
+    \color{red}{a_{21}} &amp; \color{red}{a_{22}} \\
+\end{bmatrix}
+\begin{bmatrix}
+    b_{11} &amp; \color{red}{b_{12}} \\
+    b_{21} &amp; \color{red}{b_{22}} \\
+\end{bmatrix} :=
+\begin{bmatrix}
+    a_{11}b_{11} + a_{12}b_{21} &amp; a_{11}b_{12} + a_{12}b_{22} \\
+    a_{21}b_{11} + a_{22}b_{21} &amp; \color{red}{a_{21}b_{12} + a_{22}b_{22}}
+\end{bmatrix}
+\end{split}\]</div>
+<p>There are many tutorials to help you further visualize this operation, such as</p>
+<ul class="simple">
+<li><p><a class="reference external" href="http://www.mathsisfun.com/algebra/matrix-multiplying.html">this one</a>, or</p></li>
+<li><p>the discussion on the <a class="reference external" href="https://en.wikipedia.org/wiki/Matrix_multiplication">Wikipedia page</a>.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Unlike number products, <span class="math notranslate nohighlight">\(A B\)</span> and <span class="math notranslate nohighlight">\(B A\)</span> are not generally the same thing.</p>
+</div>
+<p>ONe important special case is the <a class="reference external" href="https://en.wikipedia.org/wiki/Identity_matrix">identity matrix</a>, which has ones on the principal diagonal and zero elsewhere:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    I = 
+    \begin{bmatrix}
+        1 &amp; \cdots &amp; 0 \\
+        \vdots &amp; \ddots &amp; \vdots \\
+        0 &amp;  \cdots &amp; 1
+    \end{bmatrix}
+\end{split}\]</div>
+<p>It is a useful exercise to check the following:</p>
+<ul class="simple">
+<li><p>If <span class="math notranslate nohighlight">\(A\)</span> is <span class="math notranslate nohighlight">\(n \times k\)</span> and <span class="math notranslate nohighlight">\(I\)</span> is the <span class="math notranslate nohighlight">\(k \times k\)</span> identity matrix, then <span class="math notranslate nohighlight">\(AI = A\)</span>.</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(I\)</span> is the <span class="math notranslate nohighlight">\(n \times n\)</span> identity matrix, then <span class="math notranslate nohighlight">\(IA = A\)</span>.</p></li>
+</ul>
+</section>
+<section id="matrices-in-numpy">
+<h3><span class="section-number">12.4.3. </span>Matrices in NumPy<a class="headerlink" href="#matrices-in-numpy" title="Permalink to this heading">#</a></h3>
+<p id="index-7">NumPy arrays are also used as matrices, and have fast, efficient functions and methods for all the standard matrix operations.</p>
+<p>You can create them manually from tuples of tuples (or lists of lists) as follows</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+     <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+
+<span class="nb">type</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tuple
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+
+<span class="nb">type</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>numpy.ndarray
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(2, 2)
+</pre></div>
+</div>
+</div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">shape</span></code> attribute is a tuple giving the number of rows and columns —
+see <a class="reference external" href="https://python-programming.quantecon.org/numpy.html#shape-and-dimension">here</a>
+for more discussion.</p>
+<p>To get the transpose of <code class="docutils literal notranslate"><span class="pre">A</span></code>, use <code class="docutils literal notranslate"><span class="pre">A.transpose()</span></code> or, more simply, <code class="docutils literal notranslate"><span class="pre">A.T</span></code>.</p>
+<p>There are many convenient functions for creating common matrices (matrices of zeros,
+ones, etc.) — see <a class="reference external" href="https://python-programming.quantecon.org/numpy.html#creating-arrays">here</a>.</p>
+<p>Since operations are performed elementwise by default, scalar multiplication and addition have very natural syntax</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">identity</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>    <span class="c1"># 3 x 3 identity matrix</span>
+<span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>   <span class="c1"># 3 x 3 matrix of ones</span>
+<span class="mi">2</span> <span class="o">*</span> <span class="n">A</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[2., 0., 0.],
+       [0., 2., 0.],
+       [0., 0., 2.]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">+</span> <span class="n">B</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[2., 1., 1.],
+       [1., 2., 1.],
+       [1., 1., 2.]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>To multiply matrices we use the <code class="docutils literal notranslate"><span class="pre">&#64;</span></code> symbol.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In particular, <code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">&#64;</span> <span class="pre">B</span></code> is matrix multiplication, whereas <code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">*</span> <span class="pre">B</span></code> is element-by-element multiplication.</p>
+</div>
+</section>
+<section id="two-good-model-in-matrix-form">
+<h3><span class="section-number">12.4.4. </span>Two Good Model in Matrix Form<a class="headerlink" href="#two-good-model-in-matrix-form" title="Permalink to this heading">#</a></h3>
+<p>We can now revisit the two good model and solve <a class="reference internal" href="#equation-two-equilibrium">(12.3)</a>
+numerically via matrix algebra.</p>
+<p>This involves some extra steps but the method is widely applicable — as we
+will see when we include more goods.</p>
+<p>First we rewrite <a class="reference internal" href="#equation-two-eq-demand">(12.1)</a> as</p>
+<div class="math notranslate nohighlight" id="equation-two-eq-demand-mat">
+<span class="eqno">(12.5)<a class="headerlink" href="#equation-two-eq-demand-mat" title="Permalink to this equation">#</a></span>\[\begin{split}    q^d = D p + h
+    \quad \text{where} \quad
+    q^d = 
+    \begin{bmatrix}
+        q_0^d \\
+        q_1^d
+    \end{bmatrix}
+    \quad
+    D = 
+    \begin{bmatrix}
+         -10 &amp; - 5  \\
+         - 1  &amp; - 10  
+    \end{bmatrix}
+    \quad \text{and} \quad
+    h =
+    \begin{bmatrix}
+        100 \\
+        50
+    \end{bmatrix}\end{split}\]</div>
+<p>(Please check that <span class="math notranslate nohighlight">\(q^d = D p + h\)</span> represents the same equations as <a class="reference internal" href="#equation-two-eq-demand">(12.1)</a>.)</p>
+<p>We rewrite <a class="reference internal" href="#equation-two-eq-supply">(12.2)</a> as</p>
+<div class="math notranslate nohighlight" id="equation-two-eq-supply-mat">
+<span class="eqno">(12.6)<a class="headerlink" href="#equation-two-eq-supply-mat" title="Permalink to this equation">#</a></span>\[\begin{split}    q^s = C p 
+    \quad \text{where} \quad
+    q^s = 
+    \begin{bmatrix}
+        q_0^s \\
+        q_1^s
+    \end{bmatrix}
+    \quad \text{and} \quad
+    C = 
+    \begin{bmatrix}
+         10 &amp; 5  \\
+         5 &amp; 10  
+    \end{bmatrix}\end{split}\]</div>
+<p>Now equality of supply and demand can be expressed as <span class="math notranslate nohighlight">\(q^s = q^d\)</span>, or</p>
+<div class="math notranslate nohighlight">
+\[
+    C p = D p + h
+\]</div>
+<p>We can rearrange the terms to get</p>
+<div class="math notranslate nohighlight">
+\[
+    (C - D) p = h
+\]</div>
+<p>If all of the terms were numbers, we could solve for prices as <span class="math notranslate nohighlight">\(p = h /
+(C-D)\)</span>.</p>
+<p>Matrix algebra allows us to do something similar: we can solve for equilibrium
+prices using the inverse of <span class="math notranslate nohighlight">\(C - D\)</span>:</p>
+<div class="math notranslate nohighlight" id="equation-two-matrix">
+<span class="eqno">(12.7)<a class="headerlink" href="#equation-two-matrix" title="Permalink to this equation">#</a></span>\[    p = (C - D)^{-1} h\]</div>
+<p>Before we implement the solution let us consider a more general setting.</p>
+</section>
+<section id="more-goods">
+<h3><span class="section-number">12.4.5. </span>More Goods<a class="headerlink" href="#more-goods" title="Permalink to this heading">#</a></h3>
+<p>It is natural to think about demand systems with more goods.</p>
+<p>For example, even within energy commodities there are many different goods,
+including crude oil, gasoline, coal, natural gas, ethanol and uranium.</p>
+<p>The prices of these goods are related, so it makes sense to study them
+together.</p>
+<p>Pencil and paper solutions become very time consuming with large systems.</p>
+<p>But fortunately the matrix methods described above are essentially unchanged.</p>
+<p>In general, we can write the demand equation as <span class="math notranslate nohighlight">\(q^d = Dp + h\)</span>, where</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(q^d\)</span> is an <span class="math notranslate nohighlight">\(n \times 1\)</span> vector of demand quantities for <span class="math notranslate nohighlight">\(n\)</span> different goods</p></li>
+<li><p><span class="math notranslate nohighlight">\(D\)</span> is an <span class="math notranslate nohighlight">\(n \times n\)</span> “coefficient” matrix</p></li>
+<li><p><span class="math notranslate nohighlight">\(h\)</span> is an <span class="math notranslate nohighlight">\(n \times 1\)</span> vector of constant values</p></li>
+</ul>
+<p>Similarly, we can write the supply equation as <span class="math notranslate nohighlight">\(q^s = Cp + e\)</span>, where</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(q^d\)</span> is an <span class="math notranslate nohighlight">\(n \times 1\)</span> vector of supply quantities for the same goods</p></li>
+<li><p><span class="math notranslate nohighlight">\(C\)</span> is an <span class="math notranslate nohighlight">\(n \times n\)</span> “coefficient” matrix</p></li>
+<li><p><span class="math notranslate nohighlight">\(e\)</span> is an <span class="math notranslate nohighlight">\(n \times 1\)</span> vector of constant values</p></li>
+</ul>
+<p>To find an equilibrium, we solve <span class="math notranslate nohighlight">\(Dp + h = Cp + e\)</span>, or</p>
+<div class="math notranslate nohighlight" id="equation-n-eq-sys-la">
+<span class="eqno">(12.8)<a class="headerlink" href="#equation-n-eq-sys-la" title="Permalink to this equation">#</a></span>\[    (D- C)p = e - h \]</div>
+<p>The solution is</p>
+<div class="math notranslate nohighlight">
+\[ 
+    p = (D- C)^{-1}(e - h) 
+\]</div>
+</section>
+<section id="general-linear-systems">
+<h3><span class="section-number">12.4.6. </span>General Linear Systems<a class="headerlink" href="#general-linear-systems" title="Permalink to this heading">#</a></h3>
+<p>A more general version of the problem described above looks as follows.</p>
+<div class="math notranslate nohighlight" id="equation-la-se">
+<span class="eqno">(12.9)<a class="headerlink" href="#equation-la-se" title="Permalink to this equation">#</a></span>\[\begin{split}\begin{matrix}
+    a_{11} x_1 &amp; + &amp; a_{12} x_2 &amp; + &amp; \cdots &amp; + &amp; a_{1n} x_n &amp; = &amp; b_1 \\
+    \vdots &amp; &amp; \vdots &amp; &amp; &amp; &amp; \vdots &amp; &amp; \vdots \\
+    a_{n1} x_1 &amp; + &amp; a_{n2} x_2 &amp; + &amp; \cdots &amp; + &amp; a_{nn} x_n &amp; = &amp; b_n
+\end{matrix}\end{split}\]</div>
+<p>The objective here is to solve for the “unknowns” <span class="math notranslate nohighlight">\(x_1, \ldots, x_n\)</span></p>
+<p>We take as given the coefficients <span class="math notranslate nohighlight">\(a_{11}, \ldots, a_{nn}\)</span> and constants <span class="math notranslate nohighlight">\(b_1, \ldots, b_n\)</span>.</p>
+<p>Notice that we are treating a setting where the number of unknowns equals the
+number of equations.</p>
+<p>This is the case where we are most likely to find a well-defined solution.</p>
+<p>(The other cases are referred to as <a class="reference external" href="https://en.wikipedia.org/wiki/Overdetermined_system">overdetermined</a> and <a class="reference external" href="https://en.wikipedia.org/wiki/Underdetermined_system">underdetermined</a> systems
+of equations — we defer discussion of these cases until later lectures.)</p>
+<p>In matrix form, the system <a class="reference internal" href="#equation-la-se">(12.9)</a> becomes</p>
+<div class="math notranslate nohighlight" id="equation-la-gf">
+<span class="eqno">(12.10)<a class="headerlink" href="#equation-la-gf" title="Permalink to this equation">#</a></span>\[\begin{split}    A x = b
+    \quad \text{where} \quad
+    A = 
+    \begin{bmatrix}
+        a_{11} &amp;  \cdots &amp; a_{1n} \\
+        \vdots &amp; \vdots  &amp; \vdots \\
+        a_{n1} &amp;  \cdots &amp; a_{nn}
+    \end{bmatrix}
+    \quad \text{and} \quad
+    b =
+    \begin{bmatrix}
+        b_1 \\
+        \vdots \\
+        b_n
+    \end{bmatrix}\end{split}\]</div>
+<p>For example, <a class="reference internal" href="#equation-n-eq-sys-la">(12.8)</a> has this form with</p>
+<div class="math notranslate nohighlight">
+\[ 
+    A = D - C, 
+    \quad
+    b = e - h
+    \quad \text{and} \quad
+    x = p
+\]</div>
+<p>When considering problems such as <a class="reference internal" href="#equation-la-gf">(12.10)</a>, we need to ask at least some of
+the following questions</p>
+<ul class="simple">
+<li><p>Does a solution actually exist?</p></li>
+<li><p>If a solution exists, how should we compute it?</p></li>
+</ul>
+</section>
+</section>
+<section id="solving-systems-of-equations">
+<h2><a class="toc-backref" href="#id6"><span class="section-number">12.5. </span>Solving Systems of Equations</a><a class="headerlink" href="#solving-systems-of-equations" title="Permalink to this heading">#</a></h2>
+<p id="index-8">Recall again the system of equations <a class="reference internal" href="#equation-la-se">(12.9)</a>, which we write here again as</p>
+<div class="math notranslate nohighlight" id="equation-la-se2">
+<span class="eqno">(12.11)<a class="headerlink" href="#equation-la-se2" title="Permalink to this equation">#</a></span>\[    A x = b\]</div>
+<p>The problem we face is to find a vector <span class="math notranslate nohighlight">\(x \in \mathbb R^n\)</span> that solves
+<a class="reference internal" href="#equation-la-se2">(12.11)</a>, taking <span class="math notranslate nohighlight">\(b\)</span> and <span class="math notranslate nohighlight">\(A\)</span> as given.</p>
+<p>We may not always find a unique vector <span class="math notranslate nohighlight">\(x\)</span> that solves <a class="reference internal" href="#equation-la-se2">(12.11)</a>.</p>
+<p>We illustrate two such cases below.</p>
+<section id="no-solution">
+<h3><span class="section-number">12.5.1. </span>No Solution<a class="headerlink" href="#no-solution" title="Permalink to this heading">#</a></h3>
+<p>Consider the system of equations given by,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+    x + 3y = 3 \\
+    2x + 6y = -8
+\end{aligned}
+\end{split}\]</div>
+<p>It can be verified manually that this system has no possible solution.</p>
+<p>To illustrate why this situation arises let’s plot the two lines.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="o">-</span><span class="n">x</span><span class="p">)</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;$x + 3y = 3$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">(</span><span class="o">-</span><span class="mi">8</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="p">)</span><span class="o">/</span><span class="mi">6</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;$2x + 6y = -8$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/44459eaa67c2193bbe6325dc670607612698bfcae960eab01329d030a243afd3.png" src="_images/44459eaa67c2193bbe6325dc670607612698bfcae960eab01329d030a243afd3.png" />
+</div>
+</div>
+<p>Clearly, these are parallel lines and hence we will never find a point <span class="math notranslate nohighlight">\(x \in \mathbb{R}^2\)</span>
+such that these lines intersect.</p>
+<p>Thus, this system has no possible solution.</p>
+<p>We can rewrite this system in matrix form as</p>
+<div class="math notranslate nohighlight" id="equation-no-soln">
+<span class="eqno">(12.12)<a class="headerlink" href="#equation-no-soln" title="Permalink to this equation">#</a></span>\[\begin{split}    A x = b
+    \quad \text{where} \quad
+    A =
+    \begin{bmatrix}
+        1 &amp; 3 \\
+        2 &amp; 6 
+    \end{bmatrix}
+    \quad \text{and} \quad
+    b =
+    \begin{bmatrix}
+        3 \\
+        -8
+    \end{bmatrix}\end{split}\]</div>
+<p>It can be noted that the <span class="math notranslate nohighlight">\(2^{nd}\)</span> row of matrix <span class="math notranslate nohighlight">\(A = (2, 6)\)</span> is just a scalar multiple of the <span class="math notranslate nohighlight">\(1^{st}\)</span> row of matrix <span class="math notranslate nohighlight">\(A = (1, 3)\)</span>.</p>
+<p>The rows of matrix <span class="math notranslate nohighlight">\(A\)</span> in this case are called <strong>linearly dependent.</strong></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Advanced readers can find a detailed explanation of linear dependence and
+independence <a class="reference external" href="https://python.quantecon.org/linear_algebra.html#linear-independence">here</a>.</p>
+<p>But these details are not needed in what follows.</p>
+</div>
+</section>
+<section id="many-solutions">
+<h3><span class="section-number">12.5.2. </span>Many Solutions<a class="headerlink" href="#many-solutions" title="Permalink to this heading">#</a></h3>
+<p>Now consider,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+    x - 2y = -4 \\
+    -2x + 4y = 8
+\end{aligned}
+\end{split}\]</div>
+<p>Any vector <span class="math notranslate nohighlight">\(v = (x,y)\)</span> such that <span class="math notranslate nohighlight">\(x = 2y - 4\)</span> will solve the above system.</p>
+<p>Since we can find infinite such vectors this system has infinitely many solutions.</p>
+<p>This is because the rows of the corresponding matrix</p>
+<div class="math notranslate nohighlight" id="equation-many-solns">
+<span class="eqno">(12.13)<a class="headerlink" href="#equation-many-solns" title="Permalink to this equation">#</a></span>\[\begin{split}    A =
+    \begin{bmatrix}
+        1 &amp; -2 \\
+        -2 &amp; 4
+    \end{bmatrix}\end{split}\]</div>
+<p>are linearly dependent — can you see why?</p>
+<p>We now impose conditions on <span class="math notranslate nohighlight">\(A\)</span> in <a class="reference internal" href="#equation-la-se2">(12.11)</a> that rule out these problems.</p>
+</section>
+<section id="nonsingular-matrices">
+<h3><span class="section-number">12.5.3. </span>Nonsingular Matrices<a class="headerlink" href="#nonsingular-matrices" title="Permalink to this heading">#</a></h3>
+<p>To every square matrix we can assign a unique number called the
+<a class="reference external" href="https://en.wikipedia.org/wiki/Determinant">determinant</a>.</p>
+<p>For <span class="math notranslate nohighlight">\(2 \times 2\)</span> matrices, the determinant is given by,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{bmatrix}
+    \color{red}{a} &amp; \color{blue}{b} \\
+    \color{blue}{c} &amp; \color{red}{d}
+\end{bmatrix}
+=
+{\color{red}{ad}} - {\color{blue}{bc}}
+\end{split}\]</div>
+<p>If the determinant of <span class="math notranslate nohighlight">\(A\)</span> is not zero, then we say that <span class="math notranslate nohighlight">\(A\)</span> is <em>nonsingular</em>.</p>
+<p>A square matrix <span class="math notranslate nohighlight">\(A\)</span> is nonsingular if and only if the rows and columns of <span class="math notranslate nohighlight">\(A\)</span>
+are linearly independent.</p>
+<p>You can check yourself that the in <a class="reference internal" href="#equation-no-soln">(12.12)</a> and <a class="reference internal" href="#equation-many-solns">(12.13)</a> with
+linearly dependent rows are singular matrices as well.</p>
+<p>This gives us a useful one-number summary of whether or not a square matrix
+can be inverted.</p>
+<p>In particular, a square matrix <span class="math notranslate nohighlight">\(A\)</span> has a nonzero determinant, if and only if
+it possesses an <em>inverse matrix</em> <span class="math notranslate nohighlight">\(A^{-1}\)</span>, with the property that <span class="math notranslate nohighlight">\(A A^{-1} =
+A^{-1} A = I\)</span>.</p>
+<p>As a consequence, if we pre-multiply both sides of <span class="math notranslate nohighlight">\(Ax = b\)</span> by <span class="math notranslate nohighlight">\(A^{-1}\)</span>, we
+get</p>
+<div class="math notranslate nohighlight" id="equation-la-se-inv">
+<span class="eqno">(12.14)<a class="headerlink" href="#equation-la-se-inv" title="Permalink to this equation">#</a></span>\[    x = A^{-1} b.\]</div>
+<p>This is the solution to <span class="math notranslate nohighlight">\(Ax = b\)</span> — the solution we are looking for.</p>
+</section>
+<section id="linear-equations-with-numpy">
+<h3><span class="section-number">12.5.4. </span>Linear Equations with NumPy<a class="headerlink" href="#linear-equations-with-numpy" title="Permalink to this heading">#</a></h3>
+<p id="index-9">In the two good example we obtained the matrix equation,</p>
+<div class="math notranslate nohighlight">
+\[
+p = (C-D)^{-1} h
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(C\)</span>, <span class="math notranslate nohighlight">\(D\)</span> and <span class="math notranslate nohighlight">\(h\)</span> are given by <a class="reference internal" href="#equation-two-eq-demand-mat">(12.5)</a> and <a class="reference internal" href="#equation-two-eq-supply-mat">(12.6)</a>.</p>
+<p>This equation is analogous to <a class="reference internal" href="#equation-la-se-inv">(12.14)</a> with <span class="math notranslate nohighlight">\(A = (C-D)^{-1}\)</span>, <span class="math notranslate nohighlight">\(b = h\)</span>, and <span class="math notranslate nohighlight">\(x = p\)</span>.</p>
+<p>We can now solve for equilibrium prices with NumPy’s <code class="docutils literal notranslate"><span class="pre">linalg</span></code> submodule.</p>
+<p>All of these routines are Python front ends to time-tested and highly optimized FORTRAN code.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">C</span> <span class="o">=</span> <span class="p">((</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span>      <span class="c1">#matrix C</span>
+     <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we change this to a NumPy array.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">C</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">C</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">D</span> <span class="o">=</span> <span class="p">((</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">),</span>     <span class="c1">#matrix D</span>
+     <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">D</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">D</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">h</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">((</span><span class="mi">100</span><span class="p">,</span> <span class="mi">50</span><span class="p">))</span>   <span class="c1">#vector h</span>
+<span class="n">h</span><span class="o">.</span><span class="n">shape</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span><span class="mi">1</span>             <span class="c1">#transforming h to a column vector</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">numpy.linalg</span> <span class="kn">import</span> <span class="n">det</span><span class="p">,</span> <span class="n">inv</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">C</span> <span class="o">-</span> <span class="n">D</span>
+<span class="n">det</span><span class="p">(</span><span class="n">A</span><span class="p">)</span> <span class="c1"># check that A is nonsingular (non-zero determinant), and hence invertible</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>340.0000000000001
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A_inv</span> <span class="o">=</span> <span class="n">inv</span><span class="p">(</span><span class="n">A</span><span class="p">)</span> <span class="c1"># Compute the inverse</span>
+<span class="n">A_inv</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 0.05882353, -0.02941176],
+       [-0.01764706,  0.05882353]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="n">A_inv</span> <span class="o">@</span> <span class="n">h</span> <span class="c1"># equilibrium prices</span>
+<span class="n">p</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[4.41176471],
+       [1.17647059]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">q</span> <span class="o">=</span> <span class="n">C</span> <span class="o">@</span> <span class="n">p</span> <span class="c1"># equilibrium quantities</span>
+<span class="n">q</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[50.        ],
+       [33.82352941]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Notice that we get the same solutions as the pencil and paper case.</p>
+<p>We can also solve for <span class="math notranslate nohighlight">\(p\)</span> using <code class="docutils literal notranslate"><span class="pre">solve(A,</span> <span class="pre">h)</span></code> as follows.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">numpy.linalg</span> <span class="kn">import</span> <span class="n">solve</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">solve</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">h</span><span class="p">)</span> <span class="c1"># equilibrium prices</span>
+<span class="n">p</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[4.41176471],
+       [1.17647059]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">q</span> <span class="o">=</span> <span class="n">C</span> <span class="o">@</span> <span class="n">p</span> <span class="c1"># equilibrium quantities</span>
+<span class="n">q</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[50.        ],
+       [33.82352941]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Observe how we can solve for <span class="math notranslate nohighlight">\(x = A^{-1} y\)</span> by either via <code class="docutils literal notranslate"><span class="pre">inv(A)</span> <span class="pre">&#64;</span> <span class="pre">y</span></code>, or using <code class="docutils literal notranslate"><span class="pre">solve(A,</span> <span class="pre">y)</span></code>.</p>
+<p>The latter method uses a different algorithm that is numerically more stable and hence should be the default option.</p>
+</section>
+</section>
+<section id="exercises">
+<h2><a class="toc-backref" href="#id7"><span class="section-number">12.6. </span>Exercises</a><a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h2>
+<div class="exercise admonition" id="lin_eqs_ex1">
+
+<p class="admonition-title"><span class="caption-number">Exercise 12.1 </span></p>
+<section id="exercise-content">
+<p>Let’s consider a market with 3 commodities - good 0, good 1 and good 2.</p>
+<p>The demand for each good depends on the price of the other two goods and is given by:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+    q_0^d &amp; = 90 - 15p_0 + 5p_1 + 5p_2 \\
+    q_1^d &amp; = 60 + 5p_0 - 10p_1 + 10p_2 \\
+    q_2^d &amp; = 50 + 5p_0 + 5p_1 - 5p_2
+\end{aligned}
+\end{split}\]</div>
+<p>(Here demand decreases when own price increases but increases when prices of other goods increase.)</p>
+<p>The supply of each good is given by:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+    q_0^s &amp; = -10 + 20p_0 \\
+    q_1^s &amp; = -15 + 15p_1 \\
+    q_2^s &amp; =  -5 + 10p_2
+\end{aligned}
+\end{split}\]</div>
+<p>Equilibrium holds when supply equals demand, i.e, <span class="math notranslate nohighlight">\(q_0^d = q_0^s\)</span>, <span class="math notranslate nohighlight">\(q_1^d = q_1^s\)</span> and <span class="math notranslate nohighlight">\(q_2^d = q_2^s\)</span>.</p>
+<ol class="arabic simple">
+<li><p>Set up the market as a system of linear equations.</p></li>
+<li><p>Use matrix algebra to solve for equilibrium prices. Do this using both the <code class="docutils literal notranslate"><span class="pre">numpy.linalg.solve</span></code>
+and <code class="docutils literal notranslate"><span class="pre">inv(A)</span></code> methods. Compare the solutions.</p></li>
+</ol>
+</section>
+</div>
+<div class="solution dropdown admonition" id="linear_equations-solution-1">
+
+<p class="admonition-title">Solution to<a class="reference internal" href="#lin_eqs_ex1"> Exercise 12.1</a></p>
+<section id="solution-content">
+<p>The generated system would be:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+    35p_0 - 5p_1 - 5p_2 = 100 \\
+    -5p_0 + 25p_1 - 10p_2 = 75 \\
+    -5p_0 - 5p_1 + 15p_2 = 55
+\end{aligned}
+\end{split}\]</div>
+<p>In matrix form we will write this as:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+Ap = b
+\quad \text{where} \quad
+A =
+\begin{bmatrix}
+    35 &amp; -5 &amp; -5 \\
+    -5 &amp; 25 &amp; -10 \\
+    -5 &amp; -5 &amp; 15
+\end{bmatrix}
+, \quad p =
+\begin{bmatrix}
+    p_0 \\
+    p_1 \\
+    p_2
+\end{bmatrix}
+\quad \text{and} \quad
+b = 
+\begin{bmatrix}
+    100 \\
+    75 \\
+    55
+\end{bmatrix}
+\end{split}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">numpy.linalg</span> <span class="kn">import</span> <span class="n">det</span>
+
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">35</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">],</span>        <span class="c1">#matrix A</span>
+              <span class="p">[</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="o">-</span><span class="mi">10</span><span class="p">],</span>
+              <span class="p">[</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">15</span><span class="p">]])</span>
+
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">((</span><span class="mi">100</span><span class="p">,</span> <span class="mi">75</span><span class="p">,</span> <span class="mi">55</span><span class="p">))</span>        <span class="c1">#column vector b</span>
+<span class="n">b</span><span class="o">.</span><span class="n">shape</span> <span class="o">=</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">det</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>    <span class="c1">#check if A is nonsingular</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9999.99999999999
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#using inverse</span>
+<span class="kn">from</span> <span class="nn">numpy.linalg</span> <span class="kn">import</span> <span class="n">det</span>
+
+<span class="n">A_inv</span> <span class="o">=</span> <span class="n">inv</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="n">A_inv</span> <span class="o">@</span> <span class="n">b</span>
+<span class="n">p</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[4.9625],
+       [7.0625],
+       [7.675 ]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#using numpy.linalg.solve</span>
+<span class="kn">from</span> <span class="nn">numpy.linalg</span> <span class="kn">import</span> <span class="n">solve</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">solve</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
+<span class="n">p</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[4.9625],
+       [7.0625],
+       [7.675 ]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>The solution is given by:
+$<span class="math notranslate nohighlight">\(
+p_0 = 4.6925, \; p_1 = 7.0625 \;\; \text{and} \;\; p_2 = 7.675
+\)</span>$</p>
+</section>
+</div>
+<div class="exercise admonition" id="lin_eqs_ex2">
+
+<p class="admonition-title"><span class="caption-number">Exercise 12.2 </span></p>
+<section id="exercise-content">
+<p>Earlier in the lecture we discussed cases where the system of equations given by <span class="math notranslate nohighlight">\(Ax = b\)</span> has no solution.</p>
+<p>In this case <span class="math notranslate nohighlight">\(Ax = b\)</span> is called an <em>inconsistent</em> system of equations.</p>
+<p>When faced with an inconsistent system we try to find the best “approximate” solution.</p>
+<p>There are various methods to do this, one such method is the <strong>method of least squares.</strong></p>
+<p>Suppose we have an inconsistent system</p>
+<div class="math notranslate nohighlight" id="equation-inconsistent">
+<span class="eqno">(12.15)<a class="headerlink" href="#equation-inconsistent" title="Permalink to this equation">#</a></span>\[    Ax = b\]</div>
+<p>where <span class="math notranslate nohighlight">\(A\)</span> is an <span class="math notranslate nohighlight">\(m \times n\)</span> matrix and <span class="math notranslate nohighlight">\(b\)</span> is an <span class="math notranslate nohighlight">\(m \times 1\)</span> column vector.</p>
+<p>A <strong>least squares solution</strong> to <a class="reference internal" href="#equation-inconsistent">(12.15)</a> is an <span class="math notranslate nohighlight">\(n \times 1\)</span> column vector <span class="math notranslate nohighlight">\(\hat{x}\)</span> such that, for all other vectors <span class="math notranslate nohighlight">\(x \in \mathbb{R}^n\)</span>, the distance from <span class="math notranslate nohighlight">\(A\hat{x}\)</span> to <span class="math notranslate nohighlight">\(b\)</span>
+is less than the distance from <span class="math notranslate nohighlight">\(Ax\)</span> to <span class="math notranslate nohighlight">\(b\)</span>.</p>
+<p>That is,</p>
+<div class="math notranslate nohighlight">
+\[
+    \|A\hat{x} - b\| \leq \|Ax - b\| 
+\]</div>
+<p>It can be shown that, for the system of equations <span class="math notranslate nohighlight">\(Ax = b\)</span>, the least squares
+solution <span class="math notranslate nohighlight">\(\hat{x}\)</span> is</p>
+<div class="math notranslate nohighlight" id="equation-least-squares">
+<span class="eqno">(12.16)<a class="headerlink" href="#equation-least-squares" title="Permalink to this equation">#</a></span>\[    \hat{x} =  (A^T A)^{-1} A^T b\]</div>
+<p>Now consider the general equation of a linear demand curve of a good given by:</p>
+<div class="math notranslate nohighlight">
+\[
+    p = a - bq
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(p\)</span> is the price of the good and <span class="math notranslate nohighlight">\(q\)</span> is the quantity demanded.</p>
+<p>Suppose we are trying to <em>estimate</em> the values of <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span>.</p>
+<p>We do this by repeatedly observing the price and quantity (for example, each
+month) and then choosing <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span> to fit the relationship between <span class="math notranslate nohighlight">\(p\)</span> and
+<span class="math notranslate nohighlight">\(q\)</span>.</p>
+<p>We have the following observations:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-center head"><p>Price</p></th>
+<th class="text-center head"><p>Quantity Demanded</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>1</p></td>
+<td class="text-center"><p>9</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>3</p></td>
+<td class="text-center"><p>7</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>8</p></td>
+<td class="text-center"><p>3</p></td>
+</tr>
+</tbody>
+</table>
+<p>Requiring the demand curve <span class="math notranslate nohighlight">\(p = a - b q\)</span> to pass through all these points leads to the
+following three equations:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+    1 = a - 9b \\
+    3 = a - 7b \\
+    8 = a - 3b
+\end{aligned}
+\end{split}\]</div>
+<p>Thus we obtain a system of equations <span class="math notranslate nohighlight">\(Ax = b\)</span> where <span class="math notranslate nohighlight">\(A = \begin{bmatrix} 1 &amp; -9 \\ 1 &amp; -7 \\ 1 &amp; -3 \end{bmatrix}\)</span>,
+<span class="math notranslate nohighlight">\(x = \begin{bmatrix} a \\ b \end{bmatrix}\)</span> and <span class="math notranslate nohighlight">\(b = \begin{bmatrix} 1 \\ 3 \\ 8 \end{bmatrix}\)</span>.</p>
+<p>It can be verified that this system has no solutions.</p>
+<p>(The problem is that we have three equations and only two unknowns.)</p>
+<p>We will thus try to find the best approximate solution for <span class="math notranslate nohighlight">\(x\)</span>.</p>
+<ol class="arabic simple">
+<li><p>Use <a class="reference internal" href="#equation-least-squares">(12.16)</a> and matrix algebra to find the least squares solution <span class="math notranslate nohighlight">\(\hat{x}\)</span>.</p></li>
+<li><p>Find the least squares solution using <code class="docutils literal notranslate"><span class="pre">numpy.linalg.lstsq</span></code> and compare the results.</p></li>
+</ol>
+</section>
+</div>
+<div class="solution dropdown admonition" id="linear_equations-solution-3">
+
+<p class="admonition-title">Solution to<a class="reference internal" href="#lin_eqs_ex2"> Exercise 12.2</a></p>
+<section id="solution-content">
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">numpy.linalg</span> <span class="kn">import</span> <span class="n">inv</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#using matrix algebra</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">9</span><span class="p">],</span>    <span class="c1">#matrix A</span>
+              <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">7</span><span class="p">],</span>
+              <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">]])</span>
+
+<span class="n">A_T</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>    <span class="c1">#transpose of matrix A</span>
+
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>    <span class="c1">#column vector b</span>
+<span class="n">b</span><span class="o">.</span><span class="n">shape</span> <span class="o">=</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">inv</span><span class="p">(</span><span class="n">A_T</span> <span class="o">@</span> <span class="n">A</span><span class="p">)</span> <span class="o">@</span> <span class="n">A_T</span> <span class="o">@</span> <span class="n">b</span>
+<span class="n">x</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[11.46428571],
+       [ 1.17857143]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#using numpy.linalg.lstsq</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">lstsq</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">rcond</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span>
+<span class="n">x</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([[11.46428571],
+        [ 1.17857143]]),
+ array([0.07142857]),
+ 2,
+ array([11.89977027,  0.62886212]))
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here is a visualization of how the least squares method approximates the equation of a line connecting a set of points.</p>
+<p>We can also describe this as “fitting” a line between a set of points.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">((</span><span class="mi">9</span><span class="p">,</span> <span class="mi">7</span> <span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+
+<span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;observations&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">a</span> <span class="o">-</span> <span class="n">b</span><span class="o">*</span><span class="n">q</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Fitted line&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;quantity demanded&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;price&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/73b97726b0f1386b9a89cc1f8c635d9769644a1b64d07a8721ebd09a33ee5a52.png" src="_images/73b97726b0f1386b9a89cc1f8c635d9769644a1b64d07a8721ebd09a33ee5a52.png" />
+</div>
+</div>
+</section>
+</div>
+<section id="further-reading">
+<h3><span class="section-number">12.6.1. </span>Further Reading<a class="headerlink" href="#further-reading" title="Permalink to this heading">#</a></h3>
+<p>The documentation of the <code class="docutils literal notranslate"><span class="pre">numpy.linalg</span></code> submodule can be found <a class="reference external" href="https://numpy.org/devdocs/reference/routines.linalg.html">here</a>.</p>
+<p>More advanced topics in linear algebra can be found <a class="reference external" href="https://python.quantecon.org/linear_algebra.html#id5">here</a>.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                    </div>
+                    
+                </main> <!-- .page__content -->
+                
+
+
+                <footer class="qe-page__footer">
+
+                    <p><a href="https://creativecommons.org/licenses/by-sa/4.0/"><img src="https://licensebuttons.net/l/by-sa/4.0/80x15.png"></a></p>
+
+                    <p>Creative Commons License &ndash; This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International.</p>
+
+                </footer> <!-- .page__footer -->
+
+            </div> <!-- .page -->
+
+            
+
+            
+            <div class="qe-sidebar bd-sidebar inactive" id="site-navigation">
+
+                <div class="qe-sidebar__header">
+
+
+                    Contents
+
+                </div>
+
+                <nav class="qe-sidebar__nav" id="qe-sidebar-nav" aria-label="Main navigation">
+                    <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Introduction
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="about.html">
+   1. About these Lectures
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Supply and Demand
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro_supply_demand.html">
+   2. Introduction to Supply and Demand
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="supply_demand_multiple_goods.html">
+   3. Supply and Demand with Many Goods
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="supply_demand_heterogeneity.html">
+   4. Market Equilibrium with Heterogeneity
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="input_output.html">
+   5. Input-Output Models
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Data and Measurement
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="long_run_growth.html">
+   6. Long Run Growth
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="business_cycle.html">
+   7. Business Cycles
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="inflation_unemployment.html">
+   8. Inflation and Unemployment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="inequality.html">
+   9. Income and Wealth Inequality
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="distributions.html">
+   10. Distributions in Economics
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Useful Tools
+ </span>
+</p>
+<ul class="current nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="geom_series.html">
+   11. Geometric Series for Elementary Economics
+  </a>
+ </li>
+ <li class="toctree-l1 current active active">
+  <a class="current reference internal" href="#">
+   12. Linear Equations and Matrix Algebra
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="eigen_I.html">
+   13. Eigenvalues and Eigenvectors
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Simulation
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="lln_clt.html">
+   14. LLN and CLT
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="monte_carlo.html">
+   15. Monte Carlo and Option Pricing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="schelling.html">
+   16. Racial Segregation
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Dynamics
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="solow.html">
+   17. The Solow-Swan Growth Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="scalar_dynam.html">
+   18. Dynamics in One Dimension
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cobweb.html">
+   19. The Cobweb Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="olg.html">
+   20. The Overlapping Generations Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="markov_chains_I.html">
+   21. Markov Chains: Basic Concepts and Stationarity
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="markov_chains_II.html">
+   22. Markov Chains: Irreducibility and Ergodicity
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Modeling in Higher Dimensions
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="eigen_II.html">
+   23. Theorems of Nonnegative Matrices and Eigenvalues
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lake_model.html">
+   24. A Lake Model of Employment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="asset_pricing.html">
+   25. Introduction to Asset Pricing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="networks.html">
+   26. Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="samuelson.html">
+   27. Multiplier Accelerator Model
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Optimization
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="lp_intro.html">
+   28. Linear Programming
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="comparative_adv.html">
+   29. Comparative Advantage
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nonlinear.html">
+   30. Nonlinear Problems
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="short_path.html">
+   31. Shortest Paths
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Markets and Competitive Equilibrium
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="markets_welfare.html">
+   32. Markets and Welfare
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="risk.html">
+   33. Risk
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="uncertainty.html">
+   34. Uncertainty
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Estimation
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="simple_linear_regression.html">
+   35. Simple Linear Regression Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lr_with_matrices.html">
+   36. Linear Regression with Matrices
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="mle.html">
+   37. Maximum Likelihood Estimation
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Other
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="troubleshooting.html">
+   38. Troubleshooting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="zreferences.html">
+   39. References
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="status.html">
+   40. Execution Statistics
+  </a>
+ </li>
+</ul>
+
+                </nav>
+
+                <div class="qe-sidebar__footer">
+
+                </div>
+
+            </div> <!-- .sidebar -->
+            
+        </div> <!-- .main -->
+
+        <div class="qe-toolbar">
+
+            <div class="qe-toolbar__inner">
+
+                <ul class="qe-toolbar__main">
+                    <li data-tippy-content="Table of Contents" class="btn__sidebar"><i data-feather="menu"></i></li>
+                    <li data-tippy-content="Home"><a href="intro.html"><i data-feather="home"></i></a></li>
+                    <li class="btn__qelogo"><a href="https://quantecon.org" title=""><span class="show-for-sr">QuantEcon</span></a></li>
+                    <!-- <li class="btn__search">
+                        <form action="search.html" method="get">
+                            <input type="search" class="form-control" name="q" id="search-input" placeholder="Search..." aria-label="Search..." autocomplete="off">
+                            <i data-feather="search"></i>
+                        </form>
+                    </li> -->
+                </ul>
+
+                <ul class="qe-toolbar__links">
+                    <li data-tippy-content="Fullscreen" class="btn__fullscreen"><i data-feather="maximize"></i></li>
+                    <li data-tippy-content="Increase font size" class="btn__plus"><i data-feather="plus-circle"></i></li>
+                    <li data-tippy-content="Decrease font size" class="btn__minus"><i data-feather="minus-circle"></i></li>
+                    <li data-tippy-content="Change contrast" class="btn__contrast"><i data-feather="sunset"></i></li>
+                    <li data-tippy-content="Download Notebook"><a href="/_notebooks/linear_equations.ipynb" download><i data-feather="download-cloud"></i></a></li>
+                    <li class="settings-button" id="settingsButton"><div data-tippy-content="Launch Notebook"><i data-feather="play-circle"></i></div></li>
+                        <li data-tippy-content="Download PDF" onClick="window.print()"><i data-feather="file"></i></li>
+                    <li data-tippy-content="View Source"><a target="_blank" href="https://github.com/QuantEcon/lecture-python-intro/tree/master/lectures/linear_equations.md" download><i data-feather="github"></i></a></li>
+                </ul>
+
+            </div>
+
+        </div> <!-- .toolbar -->
+        <div id="downloadPDFModal" style="display: none;">
+            <ul class="pdf-options" style="display: block;">
+                <li class="download-pdf-book" onClick="window.print()">
+                    <p>Lecture (PDF)</p>
+                </li>
+                <li class="download-pdf-file">
+                    <a href="" download><p>Book (PDF)</p></a>
+                </li>
+            </ul>
+        </div>
+        <div id="settingsModal" style="display: none;">
+            <p class="modal-title"> Notebook Launcher </p>
+            <div class="modal-desc">
+            <p>
+                Choose public or private cloud service for "Launch" button.
+            </p>
+            </div>
+            <p class="modal-subtitle">Select a server</p>
+            <ul class="modal-servers">
+            <li class="active launcher-public">
+                <span class="label">Public</span>
+                <select id="launcher-public-input">
+                
+                    <option value="https://mybinder.org/v2/gh/QuantEcon/lecture-python-intro.notebooks/master?urlpath=tree/linear_equations.ipynb">BinderHub</option>
+                
+                    <option value="https://colab.research.google.com/github/QuantEcon/lecture-python-intro.notebooks/blob/master/linear_equations.ipynb">Colab</option>
+                
+                </select>
+                <i class="fas fa-check-circle"></i>
+            </li>
+            <li class="launcher-private">
+                <span class="label">Private</span>
+                <input type="text" id="launcher-private-input" data-repourl="https://github.com/QuantEcon/lecture-python-intro.notebooks" data-urlpath="tree/lecture-python-intro.notebooks/linear_equations.ipynb" data-branch=master>
+                <i class="fas fa-check-circle"></i>
+            </li>
+            </ul>
+            <p class="launch"><a href="https://mybinder.org/v2/gh/QuantEcon/lecture-python-intro.notebooks/master?urlpath=tree/linear_equations.ipynb" id="advancedLaunchButton" target="_blank">Launch Notebook</a></p>
+            <script>
+                // QuantEcon Notebook Launcher
+                const launcherTypeElements = document.querySelectorAll('#settingsModal .modal-servers li');
+                // Highlight the server type if previous selection exists
+                if (typeof localStorage.launcherType !== 'undefined') {
+                  for (var i = 0; i < launcherTypeElements.length; i++) {
+                    launcherTypeElements[i].classList.remove('active');
+                    if ( launcherTypeElements[i].classList.contains(localStorage.launcherType) ) {
+                      launcherTypeElements[i].classList.add('active');
+                    }
+                  }
+                }
+                // Highlight server type on click and set local storage value
+                for (var i = 0; i < launcherTypeElements.length; i++) {
+                  launcherTypeElements[i].addEventListener('click', function() {
+                    for (var j = 0; j < launcherTypeElements.length; j++) {
+                      launcherTypeElements[j].classList.remove('active');
+                    }
+                    this.classList.add('active');
+                    if ( this.classList.contains('launcher-private') ) {
+                      localStorage.launcherType = 'launcher-private';
+                    } else if ( this.classList.contains('launcher-public') ) {
+                      localStorage.launcherType = 'launcher-public';
+                    }
+                    setLaunchServer();
+                  })
+                }
+                const launcherPublic = document.getElementById('launcher-public-input');
+                const launcherPrivate = document.getElementById('launcher-private-input');
+                const pageName = "linear_equations";
+                const repoURL = "https://github.com/QuantEcon/lecture-python-intro.notebooks";
+                const urlPath = "tree/lecture-python-intro.notebooks/linear_equations.ipynb";
+                const branch = "master"
+                const launchNotebookLink = document.getElementById('advancedLaunchButton');
+
+                // Highlight public server option if previous selection exists
+                if (typeof localStorage.launcherPublic !== 'undefined') {
+                  launcherPublic.value = localStorage.launcherPublic;
+                }
+                // Update local storage upon public server selection
+                launcherPublic.addEventListener('change', (event) => {
+                  setLaunchServer();
+                });
+                // Populate private server input if previous entry exists
+                if (typeof localStorage.launcherPrivate !== 'undefined') {
+                  launcherPrivate.value = localStorage.launcherPrivate;
+                }
+                // Update local storage when a private server is entered
+                launcherPrivate.addEventListener('input', (event) => {
+                  setLaunchServer();
+                });
+
+                // Function to update the "Launch Notebook" link href
+                function setLaunchServer() {
+                  launchNotebookLink.removeAttribute("style")
+                  if ( localStorage.launcherType == 'launcher-private' ) {
+                    let repoPrefix = "/jupyter/hub/user-redirect/git-pull?repo=" + repoURL + "&branch=" + branch + "&urlpath=" + urlPath;
+                    launcherPrivateValue = launcherPrivate.value
+                    if (!launcherPrivateValue) {
+                        launchNotebookLink.removeAttribute("href")
+                        launchNotebookLink.style.background = "grey"
+                        return
+                    }
+                    localStorage.launcherPrivate = launcherPrivateValue;
+                    privateServer = localStorage.launcherPrivate.replace(/\/$/, "")
+                    if (!privateServer.includes("http")) {
+                        privateServer = "http://" + privateServer
+                    }
+                    launchNotebookLinkURL = privateServer + repoPrefix;
+                  } else if ( localStorage.launcherType == 'launcher-public' ) {
+                    launcherPublicValue = launcherPublic.options[launcherPublic.selectedIndex].value;
+                    localStorage.launcherPublic = launcherPublicValue;
+                    launchNotebookLinkURL = localStorage.launcherPublic;
+                  }
+                  if (launchNotebookLinkURL) launchNotebookLink.href = launchNotebookLinkURL;
+                }
+                // Check if user has previously selected a server
+                if ( (typeof localStorage.launcherPrivate !== 'undefined') || (typeof localStorage.launcherPublic !== 'undefined') ) {
+                  setLaunchServer();
+                }
+                </script>
+
+        </div>
+
+    </div> <!-- .wrapper-->
+  </body>
+</html>

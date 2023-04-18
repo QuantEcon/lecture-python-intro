@@ -1,0 +1,1118 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>3. Supply and Demand with Many Goods &#8212; An Introduction to Quantitative Economics and Finance</title>
+    <script src="https://unpkg.com/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://unpkg.com/tippy.js@6.3.1/dist/tippy-bundle.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    
+        <script>
+            MathJax = {
+            loader: {load: ['[tex]/boldsymbol', '[tex]/textmacros']},
+            tex: {
+                packages: {'[+]': ['boldsymbol', 'textmacros']},
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                processEscapes: true,
+                macros: {
+                    "argmax" : "arg\\,max",
+                    "argmin" : "arg\\,min",
+                    "col"    : "col",
+                    "Span"   :  "span",
+                    "epsilon": "\\varepsilon",
+                    "EE": "\\mathbb{E}",
+                    "PP": "\\mathbb{P}",
+                    "RR": "\\mathbb{R}",
+                    "NN": "\\mathbb{N}",
+                    "ZZ": "\\mathbb{Z}",
+                    "aA": "\\mathcal{A}",
+                    "bB": "\\mathcal{B}",
+                    "cC": "\\mathcal{C}",
+                    "dD": "\\mathcal{D}",
+                    "eE": "\\mathcal{E}",
+                    "fF": "\\mathcal{F}",
+                    "gG": "\\mathcal{G}",
+                    "hH": "\\mathcal{H}",
+                }
+            },
+            svg: {
+                fontCache: 'global',
+                scale: 0.92,
+                displayAlign: "center",
+            },
+            };
+        </script>
+    
+    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/quantecon-book-theme.279dae03c5caae754d20501e3fa00bbf.css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/exercise.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script src="_static/quantecon-book-theme.15b0c36fffe88f468997fa7b698991d3.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'supply_demand_multiple_goods';</script>
+    <link rel="canonical" href="https://intro.quantecon.org/supply_demand_multiple_goods.html" />
+    <link rel="shortcut icon" href="_static/lectures-favicon.ico"/>
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="4. Market Equilibrium with Heterogeneity" href="supply_demand_heterogeneity.html" />
+    <link rel="prev" title="2. Introduction to Supply and Demand" href="intro_supply_demand.html" />
+
+<!-- Normal Meta Tags -->
+<meta name="author" context="Thomas J. Sargent &amp; John Stachurski" />
+<meta name="keywords" content="Python, QuantEcon, Quantitative Economics, Economics, Sloan, Alfred P. Sloan Foundation, Tom J. Sargent, John Stachurski" />
+<meta name="description" content=This website presents introductory lectures on computational economics, designed and written by Thomas J. Sargent and John Stachurski. />
+
+<!-- Twitter tags -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@quantecon" />
+<meta name="twitter:title" content="Supply and Demand with Many Goods"/>
+<meta name="twitter:description" content="This website presents introductory lectures on computational economics, designed and written by Thomas J. Sargent and John Stachurski.">
+<meta name="twitter:creator" content="@quantecon">
+<meta name="twitter:image" content="https://assets.quantecon.org/img/qe-twitter-logo.png">
+
+<!-- Opengraph tags -->
+<meta property="og:title" content="Supply and Demand with Many Goods" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://intro.quantecon.org/supply_demand_multiple_goods.html" />
+<meta property="og:image" content="https://assets.quantecon.org/img/qe-og-logo.png" />
+<meta property="og:description" content="This website presents introductory lectures on computational economics, designed and written by Thomas J. Sargent and John Stachurski." />
+<meta property="og:site_name" content="An Introduction to Quantitative Economics and Finance" />
+<meta name="theme-color" content="#ffffff" />
+
+  </head>
+<body>
+
+
+    <span id="top"></span>
+
+    <div class="qe-wrapper">
+
+        <div class="qe-main">
+
+            <div class="qe-page" id=supply_demand_multiple_goods>
+
+                <div class="qe-page__toc">
+
+                    <div class="inner">
+
+                        
+                        <div class="qe-page__toc-header">
+                            On this page
+                        </div>
+
+
+                        <nav id="bd-toc-nav" class="qe-page__toc-nav">
+                            <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">3.1. Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#formulas-from-linear-algebra">3.2. Formulas from linear algebra</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#from-utility-function-to-demand-curve">3.3. From utility function to demand curve</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#demand-curve-implied-by-constrained-utility-maximization">3.3.1. Demand Curve Implied  by Constrained Utility Maximization</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#endowment-economy">3.4. Endowment economy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#digression-marshallian-and-hicksian-demand-curves">3.5. Digression: Marshallian and Hicksian Demand Curves</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dynamics-and-risk-as-special-cases-of-pure-exchange-economy">3.6. Dynamics and Risk as Special Cases of Pure Exchange Economy</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dynamics">3.6.1. Dynamics</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#risk-and-state-contingent-claims">3.6.2. Risk and state-contingent claims</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises-we-can-do">3.7. Exercises we can do</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#economies-with-endogenous-supplies-of-goods">3.8. Economies with Endogenous Supplies of Goods</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#supply-curve-of-a-competitive-firm">3.8.1. Supply Curve of a Competitive Firm</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#competitive-equilibrium">3.8.2. Competitive Equilibrium</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mu-1-warmup">3.8.2.1. <span class="math notranslate nohighlight">\(\mu=1\)</span> warmup</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#general-mu-neq-1-case">3.8.2.2. General <span class="math notranslate nohighlight">\(\mu\neq 1\)</span> case</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#digression-a-supplier-who-is-a-monopolist">3.8.3. Digression: A  Supplier Who is a Monopolist</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-good-welfare-maximization-problem">3.9. Multi-good  Welfare Maximization Problem</a></li>
+</ul>
+                            <p class="logo">
+                                
+                                    
+                                    <a href=https://quantecon.org><img src="_static/qe-logo.png" class="logo" alt="logo"></a>
+                                    
+                                
+                            </p>
+
+                            <p class="powered">Powered by <a href="https://jupyterbook.org/">Jupyter Book</a></p>
+
+                        </nav>
+
+                        <div class="qe-page__toc-footer">
+                            
+                            
+                            <p><a href="#top"><strong>Back to top</strong></a></p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="qe-page__header">
+
+                    <div class="qe-page__header-copy">
+
+                        <p class="qe-page__header-heading"><a href="intro.html">An Introduction to Quantitative Economics and Finance</a></p>
+
+                        <p class="qe-page__header-subheading">Supply and Demand with Many Goods</p>
+
+                    </div>
+
+                    <p class="qe-page__header-authors">Thomas J. Sargent & John Stachurski</p>
+
+                </div> <!-- .page__header -->
+
+
+
+                
+                <main class="qe-page__content" role="main">
+                    
+                    <div>
+                        
+  <section class="tex2jax_ignore mathjax_ignore" id="supply-and-demand-with-many-goods">
+<h1><span class="section-number">3. </span>Supply and Demand with Many Goods<a class="headerlink" href="#supply-and-demand-with-many-goods" title="Permalink to this heading">#</a></h1>
+<section id="overview">
+<h2><span class="section-number">3.1. </span>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
+<p>We study a setting with <span class="math notranslate nohighlight">\(n\)</span> goods and <span class="math notranslate nohighlight">\(n\)</span> corresponding prices.</p>
+</section>
+<section id="formulas-from-linear-algebra">
+<h2><span class="section-number">3.2. </span>Formulas from linear algebra<a class="headerlink" href="#formulas-from-linear-algebra" title="Permalink to this heading">#</a></h2>
+<p>We  shall apply  formulas from linear algebra that</p>
+<ul class="simple">
+<li><p>differentiate an inner product with respect to each vector</p></li>
+<li><p>differentiate a product of a matrix and a vector with respect to the vector</p></li>
+<li><p>differentiate a quadratic form in a vector with respect to the vector</p></li>
+</ul>
+<p>Where <span class="math notranslate nohighlight">\(a\)</span> is an <span class="math notranslate nohighlight">\(n \times 1\)</span> vector, <span class="math notranslate nohighlight">\(A\)</span> is an <span class="math notranslate nohighlight">\(n \times n\)</span> matrix, and <span class="math notranslate nohighlight">\(x\)</span> is an <span class="math notranslate nohighlight">\(n \times 1\)</span> vector:</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial a^\top x }{\partial x} = a
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial A x} {\partial x} = A
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial x^\top A x}{\partial x} = (A + A^\top)x
+\]</div>
+</section>
+<section id="from-utility-function-to-demand-curve">
+<h2><span class="section-number">3.3. </span>From utility function to demand curve<a class="headerlink" href="#from-utility-function-to-demand-curve" title="Permalink to this heading">#</a></h2>
+<p>Let</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\Pi\)</span> be an <span class="math notranslate nohighlight">\(m \times n\)</span> matrix,</p></li>
+<li><p><span class="math notranslate nohighlight">\(c\)</span> be an <span class="math notranslate nohighlight">\(n \times 1\)</span> vector of consumptions of various goods,</p></li>
+<li><p><span class="math notranslate nohighlight">\(b\)</span> be an <span class="math notranslate nohighlight">\(m \times 1\)</span> vector of bliss points,</p></li>
+<li><p><span class="math notranslate nohighlight">\(e\)</span> be an <span class="math notranslate nohighlight">\(n \times 1\)</span> vector of endowments, and</p></li>
+<li><p><span class="math notranslate nohighlight">\(p\)</span> be an <span class="math notranslate nohighlight">\(n \times 1\)</span> vector of prices</p></li>
+</ul>
+<p>We assume that <span class="math notranslate nohighlight">\(\Pi\)</span> has linearly independent columns, which implies that <span class="math notranslate nohighlight">\(\Pi^\top \Pi\)</span> is a positive definite matrix.</p>
+<ul class="simple">
+<li><p>it follows that <span class="math notranslate nohighlight">\(\Pi^\top \Pi\)</span> has an inverse.</p></li>
+</ul>
+<p>The matrix <span class="math notranslate nohighlight">\(\Pi\)</span> describes a consumer’s willingness to substitute one good for every other good.</p>
+<p>We shall see below that <span class="math notranslate nohighlight">\((\Pi^T \Pi)^{-1}\)</span> is a matrix of slopes of (compensated) demand curves for <span class="math notranslate nohighlight">\(c\)</span> with respect to a vector of prices:</p>
+<div class="math notranslate nohighlight">
+\[
+    \frac{\partial c } {\partial p} = (\Pi^T \Pi)^{-1}
+\]</div>
+<p>A consumer faces <span class="math notranslate nohighlight">\(p\)</span> as a price taker and chooses <span class="math notranslate nohighlight">\(c\)</span> to maximize the utility function</p>
+<div class="math notranslate nohighlight" id="equation-eq-old0">
+<span class="eqno">(3.1)<a class="headerlink" href="#equation-eq-old0" title="Permalink to this equation">#</a></span>\[
+    -.5 (\Pi c -b) ^\top (\Pi c -b )
+\]</div>
+<p>subject to the budget constraint</p>
+<div class="math notranslate nohighlight" id="equation-eq-old2">
+<span class="eqno">(3.2)<a class="headerlink" href="#equation-eq-old2" title="Permalink to this equation">#</a></span>\[
+    p^\top (c -e ) = 0
+\]</div>
+<p>We shall specify examples in which  <span class="math notranslate nohighlight">\(\Pi\)</span> and <span class="math notranslate nohighlight">\(b\)</span> are such that it typically happens that</p>
+<div class="math notranslate nohighlight" id="equation-eq-bversusc">
+<span class="eqno">(3.3)<a class="headerlink" href="#equation-eq-bversusc" title="Permalink to this equation">#</a></span>\[
+    \Pi c &lt; &lt; b
+\]</div>
+<p>so that utility function <a class="reference internal" href="#equation-eq-old2">(3.2)</a> tells us that the consumer has much less  of each good than he wants.</p>
+<p>Condition <a class="reference internal" href="#equation-eq-bversusc">(3.3)</a> will ultimately  assure us that competitive equilibrium prices  are  positive.</p>
+<section id="demand-curve-implied-by-constrained-utility-maximization">
+<h3><span class="section-number">3.3.1. </span>Demand Curve Implied  by Constrained Utility Maximization<a class="headerlink" href="#demand-curve-implied-by-constrained-utility-maximization" title="Permalink to this heading">#</a></h3>
+<p>For now, we assume that the budget constraint is <a class="reference internal" href="#equation-eq-old2">(3.2)</a>.</p>
+<p>So we’ll be deriving what is known as  a <strong>Marshallian</strong> demand curve.</p>
+<p>Form a Lagrangian</p>
+<div class="math notranslate nohighlight">
+\[ L = -.5 (\Pi c -b) ^\top (\Pi c -b ) + \mu [p^\top (e-c)] \]</div>
+<p>where <span class="math notranslate nohighlight">\(\mu\)</span> is a Lagrange multiplier that is often called a <strong>marginal utility of wealth</strong>.</p>
+<p>The consumer chooses <span class="math notranslate nohighlight">\(c\)</span> to maximize <span class="math notranslate nohighlight">\(L\)</span> and <span class="math notranslate nohighlight">\(\mu\)</span> to minimize it.</p>
+<p>First-order conditions for <span class="math notranslate nohighlight">\(c\)</span> are</p>
+<div class="math notranslate nohighlight">
+\[
+    \frac{\partial L} {\partial c}
+    = - \Pi^\top \Pi c + \Pi^\top b - \mu p = 0
+\]</div>
+<p>so that, given <span class="math notranslate nohighlight">\(\mu\)</span>, the consumer chooses</p>
+<div class="math notranslate nohighlight" id="equation-eq-old3">
+<span class="eqno">(3.4)<a class="headerlink" href="#equation-eq-old3" title="Permalink to this equation">#</a></span>\[
+    c = (\Pi^\top \Pi )^{-1}(\Pi^\top b -  \mu p )
+\]</div>
+<p>Substituting <a class="reference internal" href="#equation-eq-old3">(3.4)</a> into budget constraint <a class="reference internal" href="#equation-eq-old2">(3.2)</a> and solving for <span class="math notranslate nohighlight">\(\mu\)</span> gives</p>
+<div class="math notranslate nohighlight" id="equation-eq-old4">
+<span class="eqno">(3.5)<a class="headerlink" href="#equation-eq-old4" title="Permalink to this equation">#</a></span>\[
+    \mu(p,e) = \frac{p^\top ( \Pi^\top \Pi )^{-1} \Pi^\top b - p^\top e}{p^\top (\Pi^\top \Pi )^{-1} p}.
+\]</div>
+<p>Equation <a class="reference internal" href="#equation-eq-old4">(3.5)</a> tells how marginal utility of wealth depends on  the endowment vector  <span class="math notranslate nohighlight">\(e\)</span> and the price vector  <span class="math notranslate nohighlight">\(p\)</span>.</p>
+<p><strong>Remark:</strong> Equation <a class="reference internal" href="#equation-eq-old4">(3.5)</a> is a consequence of imposing that <span class="math notranslate nohighlight">\(p^\top (c - e) = 0\)</span>.  We could instead take <span class="math notranslate nohighlight">\(\mu\)</span> as a parameter and use <a class="reference internal" href="#equation-eq-old3">(3.4)</a> and the budget constraint <a class="reference internal" href="#equation-eq-old2p">(3.6)</a> to solve for <span class="math notranslate nohighlight">\(W.\)</span> Which way we proceed determines whether we are constructing a <strong>Marshallian</strong> or <strong>Hicksian</strong> demand curve.</p>
+</section>
+</section>
+<section id="endowment-economy">
+<h2><span class="section-number">3.4. </span>Endowment economy<a class="headerlink" href="#endowment-economy" title="Permalink to this heading">#</a></h2>
+<p>We now study a pure-exchange economy, or what is sometimes called an  endowment economy.</p>
+<p>Consider a single-consumer, multiple-goods economy without production.</p>
+<p>The only source of goods is the single consumer’s endowment vector   <span class="math notranslate nohighlight">\(e\)</span>.</p>
+<p>A competitive equilibrium price vector  induces the consumer to choose  <span class="math notranslate nohighlight">\(c=e\)</span>.</p>
+<p>This implies that the equilibrium price vector satisfies</p>
+<div class="math notranslate nohighlight">
+\[
+p = \mu^{-1} (\Pi^\top b - \Pi^\top \Pi e)
+\]</div>
+<p>In the present case where we have imposed budget constraint in the form <a class="reference internal" href="#equation-eq-old2">(3.2)</a>, we are free to normalize the price vector by setting the marginal utility of wealth <span class="math notranslate nohighlight">\(\mu =1\)</span> (or any other value for that matter).</p>
+<p>This amounts to choosing a common  unit (or numeraire) in which prices of all goods are expressed.</p>
+<p>(Doubling all prices will affect neither quantities nor relative prices.)</p>
+<p>We’ll set <span class="math notranslate nohighlight">\(\mu=1\)</span>.</p>
+<p><strong>Exercise:</strong> Verify that setting <span class="math notranslate nohighlight">\(\mu=1\)</span> in <a class="reference internal" href="#equation-eq-old3">(3.4)</a> implies that   formula <a class="reference internal" href="#equation-eq-old4">(3.5)</a> is satisfied.</p>
+<p><strong>Exercise:</strong> Verify that setting  <span class="math notranslate nohighlight">\(\mu=2\)</span> in <a class="reference internal" href="#equation-eq-old3">(3.4)</a> also implies that formula <a class="reference internal" href="#equation-eq-old4">(3.5)</a> is satisfied.</p>
+</section>
+<section id="digression-marshallian-and-hicksian-demand-curves">
+<h2><span class="section-number">3.5. </span>Digression: Marshallian and Hicksian Demand Curves<a class="headerlink" href="#digression-marshallian-and-hicksian-demand-curves" title="Permalink to this heading">#</a></h2>
+<p><strong>Remark:</strong> Sometimes we’ll use budget constraint <a class="reference internal" href="#equation-eq-old2">(3.2)</a> in situations in which a consumers’s endowment vector <span class="math notranslate nohighlight">\(e\)</span> is his <strong>only</strong> source of income. Other times we’ll instead assume that the consumer has another source of income (positive or negative) and write his budget constraint as</p>
+<div class="math notranslate nohighlight" id="equation-eq-old2p">
+<span class="eqno">(3.6)<a class="headerlink" href="#equation-eq-old2p" title="Permalink to this equation">#</a></span>\[
+p ^\top (c -e ) = W
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(W\)</span> is measured in “dollars” (or some other <strong>numeraire</strong>) and component <span class="math notranslate nohighlight">\(p_i\)</span> of the price vector is measured in dollars per unit of good <span class="math notranslate nohighlight">\(i\)</span>.</p>
+<p>Whether the consumer’s budget constraint is  <a class="reference internal" href="#equation-eq-old2">(3.2)</a> or <a class="reference internal" href="#equation-eq-old2p">(3.6)</a> and whether we take <span class="math notranslate nohighlight">\(W\)</span> as a free parameter or instead as an endogenous variable   will  affect the consumer’s marginal utility of wealth.</p>
+<p>Consequently, how we set <span class="math notranslate nohighlight">\(\mu\)</span>  determines whether we are constructing</p>
+<ul class="simple">
+<li><p>a <strong>Marshallian</strong> demand curve, as when we use <a class="reference internal" href="#equation-eq-old2">(3.2)</a> and solve for <span class="math notranslate nohighlight">\(\mu\)</span> using equation <a class="reference internal" href="#equation-eq-old4">(3.5)</a> below, or</p></li>
+<li><p>a <strong>Hicksian</strong> demand curve, as when we  treat <span class="math notranslate nohighlight">\(\mu\)</span> as a fixed parameter and solve for <span class="math notranslate nohighlight">\(W\)</span> from <a class="reference internal" href="#equation-eq-old2p">(3.6)</a>.</p></li>
+</ul>
+<p>Marshallian and Hicksian demand curves contemplate different mental experiments:</p>
+<ul class="simple">
+<li><p>For a Marshallian demand curve, hypothetical changes in a price vector  have  both <strong>substitution</strong> and <strong>income</strong> effects</p>
+<ul>
+<li><p>income effects are consequences of  changes in <span class="math notranslate nohighlight">\(p^\top e\)</span> associated with the change in the price vector</p></li>
+</ul>
+</li>
+<li><p>For a Hicksian demand curve, hypothetical price vector  changes  have only <strong>substitution</strong>  effects</p>
+<ul>
+<li><p>changes in the price vector leave the <span class="math notranslate nohighlight">\(p^\top e + W\)</span> unaltered because we freeze <span class="math notranslate nohighlight">\(\mu\)</span> and solve for <span class="math notranslate nohighlight">\(W\)</span></p></li>
+</ul>
+</li>
+</ul>
+<p>Sometimes a Hicksian demand curve is called a <strong>compensated</strong> demand curve in order to emphasize that, to disarm the income (or wealth) effect associated with a price change, the consumer’s wealth <span class="math notranslate nohighlight">\(W\)</span> is adjusted.</p>
+<p>We’ll discuss these distinct demand curves more  below.</p>
+</section>
+<section id="dynamics-and-risk-as-special-cases-of-pure-exchange-economy">
+<h2><span class="section-number">3.6. </span>Dynamics and Risk as Special Cases of Pure Exchange Economy<a class="headerlink" href="#dynamics-and-risk-as-special-cases-of-pure-exchange-economy" title="Permalink to this heading">#</a></h2>
+<p>Special cases of our <span class="math notranslate nohighlight">\(n\)</span>-good pure exchange  model can be created to represent</p>
+<ul class="simple">
+<li><p>dynamics</p>
+<ul>
+<li><p>by putting different dates on different commodities</p></li>
+</ul>
+</li>
+<li><p>risk</p>
+<ul>
+<li><p>by interpreting delivery  of goods as being contingent on states of the world whose realizations are described by a <strong>known probability distribution</strong></p></li>
+</ul>
+</li>
+</ul>
+<p>Let’s illustrate how.</p>
+<section id="dynamics">
+<h3><span class="section-number">3.6.1. </span>Dynamics<a class="headerlink" href="#dynamics" title="Permalink to this heading">#</a></h3>
+<p>Suppose that we want to represent a utility function</p>
+<div class="math notranslate nohighlight">
+\[
+  -.5 [(c_1 - b_1)^2 + \beta (c_2 - b_2)^2]
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\beta \in (0,1)\)</span> is a discount factor, <span class="math notranslate nohighlight">\(c_1\)</span> is consumption at time <span class="math notranslate nohighlight">\(1\)</span> and <span class="math notranslate nohighlight">\(c_2\)</span> is consumption at time 2.</p>
+<p>To capture this with our quadratic utility function <a class="reference internal" href="#equation-eq-old0">(3.1)</a>,  set</p>
+<div class="math notranslate nohighlight">
+\[
+\Pi = \begin{bmatrix} 1 &amp; 0 \cr
+         0 &amp; \sqrt{\beta} \end{bmatrix}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+c = \begin{bmatrix} c_1 \cr c_2 \end{bmatrix}
+\]</div>
+<p>and</p>
+<div class="math notranslate nohighlight">
+\[
+b = \begin{bmatrix} b_1 \cr \sqrt{\beta} b_2
+\end{bmatrix}
+\]</div>
+<p>The  budget constraint <a class="reference internal" href="#equation-eq-old2">(3.2)</a> becomes</p>
+<div class="math notranslate nohighlight">
+\[
+p_1 c_1 + p_2 c_2 = p_1 e_1 + p_2 e_2
+\]</div>
+<p>The left side is the <strong>discounted present value</strong> of consumption.</p>
+<p>The right side is the <strong>discounted present value</strong> of the consumer’s endowment.</p>
+<p>The relative price  <span class="math notranslate nohighlight">\(\frac{p_1}{p_2}\)</span> has units of time <span class="math notranslate nohighlight">\(2\)</span> goods per unit of time <span class="math notranslate nohighlight">\(1\)</span> goods.</p>
+<p>Consequently, <span class="math notranslate nohighlight">\((1+r) = R \equiv \frac{p_1}{p_2}\)</span> is the  <strong>gross interest rate</strong> and <span class="math notranslate nohighlight">\(r\)</span> is the <strong>net interest rate</strong>.</p>
+</section>
+<section id="risk-and-state-contingent-claims">
+<h3><span class="section-number">3.6.2. </span>Risk and state-contingent claims<a class="headerlink" href="#risk-and-state-contingent-claims" title="Permalink to this heading">#</a></h3>
+<p>We study risk in the context of a <strong>static</strong> environment,  meaning that there is only one period.</p>
+<p>By <strong>risk</strong> we mean that an outcome is not known in advance, but that it is governed by a known probability distribution.</p>
+<p>As an example, our consumer confronts <strong>risk</strong> meaning in particular that</p>
+<ul class="simple">
+<li><p>there are two states of nature, <span class="math notranslate nohighlight">\(1\)</span> and <span class="math notranslate nohighlight">\(2\)</span>.</p></li>
+<li><p>the consumer knows that  probability that state <span class="math notranslate nohighlight">\(1\)</span> occurs is <span class="math notranslate nohighlight">\(\lambda\)</span>.</p></li>
+<li><p>the consumer knows that the probability that state <span class="math notranslate nohighlight">\(2\)</span> occurs is <span class="math notranslate nohighlight">\((1-\lambda)\)</span>.</p></li>
+</ul>
+<p>Before the outcome is realized, the the consumer’s <strong>expected utility</strong> is</p>
+<div class="math notranslate nohighlight">
+\[
+-.5 [\lambda (c_1 - b_1)^2 + (1-\lambda)(c_2 - b_2)^2]
+\]</div>
+<p>where</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(c_1\)</span> is consumption in state <span class="math notranslate nohighlight">\(1\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(c_2\)</span> is consumption in state <span class="math notranslate nohighlight">\(2\)</span></p></li>
+</ul>
+<p>To capture these preferences we set</p>
+<div class="math notranslate nohighlight">
+\[
+\Pi = \begin{bmatrix} \sqrt{\lambda} &amp; 0 \cr
+                     0  &amp; \sqrt{1-\lambda} \end{bmatrix}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+c = \begin{bmatrix} c_1 \cr c_2 \end{bmatrix}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+b = \begin{bmatrix} b_1 \cr b_2 \end{bmatrix}
+\]</div>
+<!-- #region -->
+<div class="math notranslate nohighlight">
+\[
+b = \begin{bmatrix} \sqrt{\lambda}b_1 \cr \sqrt{1-\lambda}b_2 \end{bmatrix}
+\]</div>
+<p>A consumer’s  endowment vector is</p>
+<div class="math notranslate nohighlight">
+\[
+e = \begin{bmatrix} e_1 \cr e_2 \end{bmatrix}
+\]</div>
+<p>A price vector is</p>
+<div class="math notranslate nohighlight">
+\[
+p = \begin{bmatrix} p_1 \cr p_2 \end{bmatrix}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(p_i\)</span> is the price of one unit of consumption in state <span class="math notranslate nohighlight">\(i\)</span>.</p>
+<p>The state-contingent goods being traded are often called <strong>Arrow securities</strong>.</p>
+<p>Before the random state of the world <span class="math notranslate nohighlight">\(i\)</span> is realized, the consumer  sells his/her state-contingent endowment bundle and purchases a state-contingent consumption bundle.</p>
+<p>Trading such state-contingent goods  is one  way economists often model <strong>insurance</strong>.</p>
+</section>
+</section>
+<section id="exercises-we-can-do">
+<h2><span class="section-number">3.7. </span>Exercises we can do<a class="headerlink" href="#exercises-we-can-do" title="Permalink to this heading">#</a></h2>
+<p>To illustrate consequences of demand and supply shifts, we have lots of parameters to shift</p>
+<ul class="simple">
+<li><p>distribution of endowments <span class="math notranslate nohighlight">\(e_1, e_2\)</span></p></li>
+<li><p>bliss point vectors <span class="math notranslate nohighlight">\(b_1, b_2\)</span></p></li>
+<li><p>probability <span class="math notranslate nohighlight">\(\lambda\)</span></p></li>
+</ul>
+<p>We can study how these things affect equilibrium prices and allocations.</p>
+</section>
+<section id="economies-with-endogenous-supplies-of-goods">
+<h2><span class="section-number">3.8. </span>Economies with Endogenous Supplies of Goods<a class="headerlink" href="#economies-with-endogenous-supplies-of-goods" title="Permalink to this heading">#</a></h2>
+<p>Up to now we have described a pure exchange economy in which endowments of good are exogenous, meaning that they are taken as given from outside the model.</p>
+<section id="supply-curve-of-a-competitive-firm">
+<h3><span class="section-number">3.8.1. </span>Supply Curve of a Competitive Firm<a class="headerlink" href="#supply-curve-of-a-competitive-firm" title="Permalink to this heading">#</a></h3>
+<p>A competitive firm that can produce goods  takes a price vector <span class="math notranslate nohighlight">\(p\)</span> as given and chooses a quantity <span class="math notranslate nohighlight">\(q\)</span>
+to maximize total revenue minus total costs.</p>
+<p>The firm’s total  revenue equals <span class="math notranslate nohighlight">\(p^\top q\)</span> and its total cost equals <span class="math notranslate nohighlight">\(C(q)\)</span>  where <span class="math notranslate nohighlight">\(C(q)\)</span> is a total cost function</p>
+<div class="math notranslate nohighlight">
+\[
+C(q) = h ^\top q + .5 q^\top J q
+\]</div>
+<p>and  <span class="math notranslate nohighlight">\(J\)</span> is a positive definite matrix.</p>
+<p>So the firm’s profits are</p>
+<div class="math notranslate nohighlight" id="equation-eq-compprofits">
+<span class="eqno">(3.7)<a class="headerlink" href="#equation-eq-compprofits" title="Permalink to this equation">#</a></span>\[
+p^\top q  - C(q)
+\]</div>
+<p>An <span class="math notranslate nohighlight">\(n\times 1\)</span> vector of <strong>marginal costs</strong> is</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial C(q)}{\partial q} = h + H q
+\]</div>
+<p>where</p>
+<div class="math notranslate nohighlight">
+\[
+H = .5 (J + J')
+\]</div>
+<p>An <span class="math notranslate nohighlight">\(n \times 1\)</span> vector of marginal revenues for the price-taking firm is <span class="math notranslate nohighlight">\(\frac{\partial p^\top q}
+{\partial q} = p \)</span>.</p>
+<p>So <strong>price equals marginal revenue</strong> for our price-taking competitive firm.</p>
+<p>The firm maximizes total profits by setting  <strong>marginal revenue to marginal costs</strong>.</p>
+<p>This leads to the following <strong>inverse supply curve</strong> for the competitive firm:</p>
+<div class="math notranslate nohighlight">
+\[
+p = h + H q
+\]</div>
+</section>
+<section id="competitive-equilibrium">
+<h3><span class="section-number">3.8.2. </span>Competitive Equilibrium<a class="headerlink" href="#competitive-equilibrium" title="Permalink to this heading">#</a></h3>
+<section id="mu-1-warmup">
+<h4><span class="section-number">3.8.2.1. </span><span class="math notranslate nohighlight">\(\mu=1\)</span> warmup<a class="headerlink" href="#mu-1-warmup" title="Permalink to this heading">#</a></h4>
+<p>As a special case, let’s pin down a demand curve by setting the marginal utility of wealth  <span class="math notranslate nohighlight">\(\mu =1\)</span>.</p>
+<p>Equating  supply price to demand price we get</p>
+<div class="math notranslate nohighlight">
+\[
+p = h + H c = \Pi^\top b - \Pi^\top \Pi c ,
+\]</div>
+<p>which implies the equilibrium quantity vector</p>
+<div class="math notranslate nohighlight" id="equation-eq-old5">
+<span class="eqno">(3.8)<a class="headerlink" href="#equation-eq-old5" title="Permalink to this equation">#</a></span>\[
+c = (\Pi^\top \Pi + H )^{-1} ( \Pi^\top b - h)
+\]</div>
+<p>This equation is the counterpart of equilibrium quantity <a class="reference internal" href="intro_supply_demand.html#equation-eq-old1">(2.1)</a> for the scalar <span class="math notranslate nohighlight">\(n=1\)</span> model with which we began.</p>
+</section>
+<section id="general-mu-neq-1-case">
+<h4><span class="section-number">3.8.2.2. </span>General <span class="math notranslate nohighlight">\(\mu\neq 1\)</span> case<a class="headerlink" href="#general-mu-neq-1-case" title="Permalink to this heading">#</a></h4>
+<p>Now let’s extend the preceding analysis to a more
+general case by allowing <span class="math notranslate nohighlight">\(\mu \neq 1\)</span>.</p>
+<p>Then the inverse demand curve is</p>
+<div class="math notranslate nohighlight" id="equation-eq-old5pa">
+<span class="eqno">(3.9)<a class="headerlink" href="#equation-eq-old5pa" title="Permalink to this equation">#</a></span>\[
+p = \mu^{-1} [\Pi^\top b - \Pi^\top \Pi c]
+\]</div>
+<p>Equating this to the inverse supply curve and solving
+for <span class="math notranslate nohighlight">\(c\)</span> gives</p>
+<div class="math notranslate nohighlight" id="equation-eq-old5p">
+<span class="eqno">(3.10)<a class="headerlink" href="#equation-eq-old5p" title="Permalink to this equation">#</a></span>\[
+c = [\Pi^\top \Pi + \mu H]^{-1} [ \Pi^\top b - \mu h]
+\]</div>
+</section>
+</section>
+<section id="digression-a-supplier-who-is-a-monopolist">
+<h3><span class="section-number">3.8.3. </span>Digression: A  Supplier Who is a Monopolist<a class="headerlink" href="#digression-a-supplier-who-is-a-monopolist" title="Permalink to this heading">#</a></h3>
+<p>A competitive firm is a <strong>price-taker</strong> who regards the price and therefore its marginal revenue as being beyond its control.</p>
+<p>A monopolist knows that it has no competition and can influence the price and its marginal revenue by
+setting quantity.</p>
+<p>A monopolist takes a <strong>demand curve</strong> and not the <strong>price</strong> as beyond its control.</p>
+<p>Thus, instead of being a price-taker, a monopolist sets prices to maximize profits subject to the inverse  demand curve
+<a class="reference internal" href="#equation-eq-old5pa">(3.9)</a>.</p>
+<p>So the monopolist’s total profits as a function of its  output <span class="math notranslate nohighlight">\(q\)</span> is</p>
+<div class="math notranslate nohighlight" id="equation-eq-monopprof">
+<span class="eqno">(3.11)<a class="headerlink" href="#equation-eq-monopprof" title="Permalink to this equation">#</a></span>\[
+[\mu^{-1} \Pi^\top (b - \Pi q)]^\top  q - h^\top q - .5 q^\top J q
+\]</div>
+<p>After finding
+first-order necessary conditions for maximizing monopoly profits with respect to <span class="math notranslate nohighlight">\(q\)</span>
+and solving them for <span class="math notranslate nohighlight">\(q\)</span>, we find that the monopolist sets</p>
+<div class="math notranslate nohighlight" id="equation-eq-qmonop">
+<span class="eqno">(3.12)<a class="headerlink" href="#equation-eq-qmonop" title="Permalink to this equation">#</a></span>\[
+q = (H + 2 \mu^{-1} \Pi^T \Pi)^{-1} (\mu^{-1} \Pi^\top b - h)
+\]</div>
+<p>We’ll soon  see that a monopolist sets a <strong>lower output</strong> <span class="math notranslate nohighlight">\(q\)</span> than does either a</p>
+<ul class="simple">
+<li><p>planner who chooses <span class="math notranslate nohighlight">\(q\)</span> to maximize social welfare</p></li>
+<li><p>a competitive equilibrium</p></li>
+</ul>
+<p><strong>Exercise:</strong> Please  verify the monopolist’s supply curve <a class="reference internal" href="#equation-eq-qmonop">(3.12)</a>.</p>
+</section>
+</section>
+<section id="multi-good-welfare-maximization-problem">
+<h2><span class="section-number">3.9. </span>Multi-good  Welfare Maximization Problem<a class="headerlink" href="#multi-good-welfare-maximization-problem" title="Permalink to this heading">#</a></h2>
+<p>Our welfare maximization problem – also sometimes called a  social planning  problem  – is to choose <span class="math notranslate nohighlight">\(c\)</span> to maximize</p>
+<div class="math notranslate nohighlight">
+\[
+-.5 \mu^{-1}(\Pi c -b) ^\top (\Pi c -b )
+\]</div>
+<p>minus the area under the inverse supply curve, namely,</p>
+<div class="math notranslate nohighlight">
+\[
+h c + .5 c^\top J c  .
+\]</div>
+<p>So the welfare criterion is</p>
+<div class="math notranslate nohighlight">
+\[
+-.5 \mu^{-1}(\Pi c -b) ^\top (\Pi c -b ) -h c - .5 c^\top J c
+\]</div>
+<p>In this formulation, <span class="math notranslate nohighlight">\(\mu\)</span> is a parameter that describes how the planner weights interests of outside suppliers and our representative consumer.</p>
+<p>The first-order condition with respect to <span class="math notranslate nohighlight">\(c\)</span> is</p>
+<div class="math notranslate nohighlight">
+\[
+- \mu^{-1} \Pi^\top \Pi c + \mu^{-1}\Pi^\top b - h -  H c = 0
+\]</div>
+<p>which implies <a class="reference internal" href="#equation-eq-old5p">(3.10)</a>.</p>
+<p>Thus,  as for the single-good case, with  multiple goods   a competitive equilibrium quantity vector solves a planning problem.</p>
+<p>(This is another version of the first welfare theorem.)</p>
+<p>We can deduce a competitive equilibrium price vector from either</p>
+<ul class="simple">
+<li><p>the inverse demand curve, or</p></li>
+<li><p>the inverse supply curve</p></li>
+</ul>
+<!-- #endregion -->
+<!-- #region -->
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                    </div>
+                    
+                </main> <!-- .page__content -->
+                
+
+
+                <footer class="qe-page__footer">
+
+                    <p><a href="https://creativecommons.org/licenses/by-sa/4.0/"><img src="https://licensebuttons.net/l/by-sa/4.0/80x15.png"></a></p>
+
+                    <p>Creative Commons License &ndash; This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International.</p>
+
+                </footer> <!-- .page__footer -->
+
+            </div> <!-- .page -->
+
+            
+
+            
+            <div class="qe-sidebar bd-sidebar inactive" id="site-navigation">
+
+                <div class="qe-sidebar__header">
+
+
+                    Contents
+
+                </div>
+
+                <nav class="qe-sidebar__nav" id="qe-sidebar-nav" aria-label="Main navigation">
+                    <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Introduction
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="about.html">
+   1. About these Lectures
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Supply and Demand
+ </span>
+</p>
+<ul class="current nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro_supply_demand.html">
+   2. Introduction to Supply and Demand
+  </a>
+ </li>
+ <li class="toctree-l1 current active active">
+  <a class="current reference internal" href="#">
+   3. Supply and Demand with Many Goods
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="supply_demand_heterogeneity.html">
+   4. Market Equilibrium with Heterogeneity
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="input_output.html">
+   5. Input-Output Models
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Data and Measurement
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="long_run_growth.html">
+   6. Long Run Growth
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="business_cycle.html">
+   7. Business Cycles
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="inflation_unemployment.html">
+   8. Inflation and Unemployment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="inequality.html">
+   9. Income and Wealth Inequality
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="distributions.html">
+   10. Distributions in Economics
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Useful Tools
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="geom_series.html">
+   11. Geometric Series for Elementary Economics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="linear_equations.html">
+   12. Linear Equations and Matrix Algebra
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="eigen_I.html">
+   13. Eigenvalues and Eigenvectors
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Simulation
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="lln_clt.html">
+   14. LLN and CLT
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="monte_carlo.html">
+   15. Monte Carlo and Option Pricing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="schelling.html">
+   16. Racial Segregation
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Dynamics
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="solow.html">
+   17. The Solow-Swan Growth Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="scalar_dynam.html">
+   18. Dynamics in One Dimension
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cobweb.html">
+   19. The Cobweb Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="olg.html">
+   20. The Overlapping Generations Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="markov_chains_I.html">
+   21. Markov Chains: Basic Concepts and Stationarity
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="markov_chains_II.html">
+   22. Markov Chains: Irreducibility and Ergodicity
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Modeling in Higher Dimensions
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="eigen_II.html">
+   23. Theorems of Nonnegative Matrices and Eigenvalues
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lake_model.html">
+   24. A Lake Model of Employment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="asset_pricing.html">
+   25. Introduction to Asset Pricing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="networks.html">
+   26. Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="samuelson.html">
+   27. Multiplier Accelerator Model
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Optimization
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="lp_intro.html">
+   28. Linear Programming
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="comparative_adv.html">
+   29. Comparative Advantage
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nonlinear.html">
+   30. Nonlinear Problems
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="short_path.html">
+   31. Shortest Paths
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Markets and Competitive Equilibrium
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="markets_welfare.html">
+   32. Markets and Welfare
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="risk.html">
+   33. Risk
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="uncertainty.html">
+   34. Uncertainty
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Estimation
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="simple_linear_regression.html">
+   35. Simple Linear Regression Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lr_with_matrices.html">
+   36. Linear Regression with Matrices
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="mle.html">
+   37. Maximum Likelihood Estimation
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Other
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="troubleshooting.html">
+   38. Troubleshooting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="zreferences.html">
+   39. References
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="status.html">
+   40. Execution Statistics
+  </a>
+ </li>
+</ul>
+
+                </nav>
+
+                <div class="qe-sidebar__footer">
+
+                </div>
+
+            </div> <!-- .sidebar -->
+            
+        </div> <!-- .main -->
+
+        <div class="qe-toolbar">
+
+            <div class="qe-toolbar__inner">
+
+                <ul class="qe-toolbar__main">
+                    <li data-tippy-content="Table of Contents" class="btn__sidebar"><i data-feather="menu"></i></li>
+                    <li data-tippy-content="Home"><a href="intro.html"><i data-feather="home"></i></a></li>
+                    <li class="btn__qelogo"><a href="https://quantecon.org" title=""><span class="show-for-sr">QuantEcon</span></a></li>
+                    <!-- <li class="btn__search">
+                        <form action="search.html" method="get">
+                            <input type="search" class="form-control" name="q" id="search-input" placeholder="Search..." aria-label="Search..." autocomplete="off">
+                            <i data-feather="search"></i>
+                        </form>
+                    </li> -->
+                </ul>
+
+                <ul class="qe-toolbar__links">
+                    <li data-tippy-content="Fullscreen" class="btn__fullscreen"><i data-feather="maximize"></i></li>
+                    <li data-tippy-content="Increase font size" class="btn__plus"><i data-feather="plus-circle"></i></li>
+                    <li data-tippy-content="Decrease font size" class="btn__minus"><i data-feather="minus-circle"></i></li>
+                    <li data-tippy-content="Change contrast" class="btn__contrast"><i data-feather="sunset"></i></li>
+                    <li data-tippy-content="Download Notebook"><a href="/_notebooks/supply_demand_multiple_goods.ipynb" download><i data-feather="download-cloud"></i></a></li>
+                    <li class="settings-button" id="settingsButton"><div data-tippy-content="Launch Notebook"><i data-feather="play-circle"></i></div></li>
+                        <li data-tippy-content="Download PDF" onClick="window.print()"><i data-feather="file"></i></li>
+                    <li data-tippy-content="View Source"><a target="_blank" href="https://github.com/QuantEcon/lecture-python-intro/tree/master/lectures/supply_demand_multiple_goods.md" download><i data-feather="github"></i></a></li>
+                </ul>
+
+            </div>
+
+        </div> <!-- .toolbar -->
+        <div id="downloadPDFModal" style="display: none;">
+            <ul class="pdf-options" style="display: block;">
+                <li class="download-pdf-book" onClick="window.print()">
+                    <p>Lecture (PDF)</p>
+                </li>
+                <li class="download-pdf-file">
+                    <a href="" download><p>Book (PDF)</p></a>
+                </li>
+            </ul>
+        </div>
+        <div id="settingsModal" style="display: none;">
+            <p class="modal-title"> Notebook Launcher </p>
+            <div class="modal-desc">
+            <p>
+                Choose public or private cloud service for "Launch" button.
+            </p>
+            </div>
+            <p class="modal-subtitle">Select a server</p>
+            <ul class="modal-servers">
+            <li class="active launcher-public">
+                <span class="label">Public</span>
+                <select id="launcher-public-input">
+                
+                    <option value="https://mybinder.org/v2/gh/QuantEcon/lecture-python-intro.notebooks/master?urlpath=tree/supply_demand_multiple_goods.ipynb">BinderHub</option>
+                
+                    <option value="https://colab.research.google.com/github/QuantEcon/lecture-python-intro.notebooks/blob/master/supply_demand_multiple_goods.ipynb">Colab</option>
+                
+                </select>
+                <i class="fas fa-check-circle"></i>
+            </li>
+            <li class="launcher-private">
+                <span class="label">Private</span>
+                <input type="text" id="launcher-private-input" data-repourl="https://github.com/QuantEcon/lecture-python-intro.notebooks" data-urlpath="tree/lecture-python-intro.notebooks/supply_demand_multiple_goods.ipynb" data-branch=master>
+                <i class="fas fa-check-circle"></i>
+            </li>
+            </ul>
+            <p class="launch"><a href="https://mybinder.org/v2/gh/QuantEcon/lecture-python-intro.notebooks/master?urlpath=tree/supply_demand_multiple_goods.ipynb" id="advancedLaunchButton" target="_blank">Launch Notebook</a></p>
+            <script>
+                // QuantEcon Notebook Launcher
+                const launcherTypeElements = document.querySelectorAll('#settingsModal .modal-servers li');
+                // Highlight the server type if previous selection exists
+                if (typeof localStorage.launcherType !== 'undefined') {
+                  for (var i = 0; i < launcherTypeElements.length; i++) {
+                    launcherTypeElements[i].classList.remove('active');
+                    if ( launcherTypeElements[i].classList.contains(localStorage.launcherType) ) {
+                      launcherTypeElements[i].classList.add('active');
+                    }
+                  }
+                }
+                // Highlight server type on click and set local storage value
+                for (var i = 0; i < launcherTypeElements.length; i++) {
+                  launcherTypeElements[i].addEventListener('click', function() {
+                    for (var j = 0; j < launcherTypeElements.length; j++) {
+                      launcherTypeElements[j].classList.remove('active');
+                    }
+                    this.classList.add('active');
+                    if ( this.classList.contains('launcher-private') ) {
+                      localStorage.launcherType = 'launcher-private';
+                    } else if ( this.classList.contains('launcher-public') ) {
+                      localStorage.launcherType = 'launcher-public';
+                    }
+                    setLaunchServer();
+                  })
+                }
+                const launcherPublic = document.getElementById('launcher-public-input');
+                const launcherPrivate = document.getElementById('launcher-private-input');
+                const pageName = "supply_demand_multiple_goods";
+                const repoURL = "https://github.com/QuantEcon/lecture-python-intro.notebooks";
+                const urlPath = "tree/lecture-python-intro.notebooks/supply_demand_multiple_goods.ipynb";
+                const branch = "master"
+                const launchNotebookLink = document.getElementById('advancedLaunchButton');
+
+                // Highlight public server option if previous selection exists
+                if (typeof localStorage.launcherPublic !== 'undefined') {
+                  launcherPublic.value = localStorage.launcherPublic;
+                }
+                // Update local storage upon public server selection
+                launcherPublic.addEventListener('change', (event) => {
+                  setLaunchServer();
+                });
+                // Populate private server input if previous entry exists
+                if (typeof localStorage.launcherPrivate !== 'undefined') {
+                  launcherPrivate.value = localStorage.launcherPrivate;
+                }
+                // Update local storage when a private server is entered
+                launcherPrivate.addEventListener('input', (event) => {
+                  setLaunchServer();
+                });
+
+                // Function to update the "Launch Notebook" link href
+                function setLaunchServer() {
+                  launchNotebookLink.removeAttribute("style")
+                  if ( localStorage.launcherType == 'launcher-private' ) {
+                    let repoPrefix = "/jupyter/hub/user-redirect/git-pull?repo=" + repoURL + "&branch=" + branch + "&urlpath=" + urlPath;
+                    launcherPrivateValue = launcherPrivate.value
+                    if (!launcherPrivateValue) {
+                        launchNotebookLink.removeAttribute("href")
+                        launchNotebookLink.style.background = "grey"
+                        return
+                    }
+                    localStorage.launcherPrivate = launcherPrivateValue;
+                    privateServer = localStorage.launcherPrivate.replace(/\/$/, "")
+                    if (!privateServer.includes("http")) {
+                        privateServer = "http://" + privateServer
+                    }
+                    launchNotebookLinkURL = privateServer + repoPrefix;
+                  } else if ( localStorage.launcherType == 'launcher-public' ) {
+                    launcherPublicValue = launcherPublic.options[launcherPublic.selectedIndex].value;
+                    localStorage.launcherPublic = launcherPublicValue;
+                    launchNotebookLinkURL = localStorage.launcherPublic;
+                  }
+                  if (launchNotebookLinkURL) launchNotebookLink.href = launchNotebookLinkURL;
+                }
+                // Check if user has previously selected a server
+                if ( (typeof localStorage.launcherPrivate !== 'undefined') || (typeof localStorage.launcherPublic !== 'undefined') ) {
+                  setLaunchServer();
+                }
+                </script>
+
+        </div>
+
+    </div> <!-- .wrapper-->
+  </body>
+</html>

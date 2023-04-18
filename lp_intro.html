@@ -1,0 +1,1580 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>28. Linear Programming &#8212; An Introduction to Quantitative Economics and Finance</title>
+    <script src="https://unpkg.com/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://unpkg.com/tippy.js@6.3.1/dist/tippy-bundle.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    
+        <script>
+            MathJax = {
+            loader: {load: ['[tex]/boldsymbol', '[tex]/textmacros']},
+            tex: {
+                packages: {'[+]': ['boldsymbol', 'textmacros']},
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                processEscapes: true,
+                macros: {
+                    "argmax" : "arg\\,max",
+                    "argmin" : "arg\\,min",
+                    "col"    : "col",
+                    "Span"   :  "span",
+                    "epsilon": "\\varepsilon",
+                    "EE": "\\mathbb{E}",
+                    "PP": "\\mathbb{P}",
+                    "RR": "\\mathbb{R}",
+                    "NN": "\\mathbb{N}",
+                    "ZZ": "\\mathbb{Z}",
+                    "aA": "\\mathcal{A}",
+                    "bB": "\\mathcal{B}",
+                    "cC": "\\mathcal{C}",
+                    "dD": "\\mathcal{D}",
+                    "eE": "\\mathcal{E}",
+                    "fF": "\\mathcal{F}",
+                    "gG": "\\mathcal{G}",
+                    "hH": "\\mathcal{H}",
+                }
+            },
+            svg: {
+                fontCache: 'global',
+                scale: 0.92,
+                displayAlign: "center",
+            },
+            };
+        </script>
+    
+    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/quantecon-book-theme.279dae03c5caae754d20501e3fa00bbf.css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/exercise.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script src="_static/quantecon-book-theme.15b0c36fffe88f468997fa7b698991d3.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lp_intro';</script>
+    <link rel="canonical" href="https://intro.quantecon.org/lp_intro.html" />
+    <link rel="shortcut icon" href="_static/lectures-favicon.ico"/>
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="29. Comparative Advantage" href="comparative_adv.html" />
+    <link rel="prev" title="27. Multiplier Accelerator Model" href="samuelson.html" />
+
+<!-- Normal Meta Tags -->
+<meta name="author" context="Thomas J. Sargent &amp; John Stachurski" />
+<meta name="keywords" content="Python, QuantEcon, Quantitative Economics, Economics, Sloan, Alfred P. Sloan Foundation, Tom J. Sargent, John Stachurski" />
+<meta name="description" content=This website presents introductory lectures on computational economics, designed and written by Thomas J. Sargent and John Stachurski. />
+
+<!-- Twitter tags -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@quantecon" />
+<meta name="twitter:title" content="Linear Programming"/>
+<meta name="twitter:description" content="This website presents introductory lectures on computational economics, designed and written by Thomas J. Sargent and John Stachurski.">
+<meta name="twitter:creator" content="@quantecon">
+<meta name="twitter:image" content="https://assets.quantecon.org/img/qe-twitter-logo.png">
+
+<!-- Opengraph tags -->
+<meta property="og:title" content="Linear Programming" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://intro.quantecon.org/lp_intro.html" />
+<meta property="og:image" content="https://assets.quantecon.org/img/qe-og-logo.png" />
+<meta property="og:description" content="This website presents introductory lectures on computational economics, designed and written by Thomas J. Sargent and John Stachurski." />
+<meta property="og:site_name" content="An Introduction to Quantitative Economics and Finance" />
+<meta name="theme-color" content="#ffffff" />
+
+  </head>
+<body>
+
+
+    <span id="top"></span>
+
+    <div class="qe-wrapper">
+
+        <div class="qe-main">
+
+            <div class="qe-page" id=lp_intro>
+
+                <div class="qe-page__toc">
+
+                    <div class="inner">
+
+                        
+                        <div class="qe-page__toc-header">
+                            On this page
+                        </div>
+
+
+                        <nav id="bd-toc-nav" class="qe-page__toc-nav">
+                            <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">28.1. Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-1-production-problem">28.2. Example 1: Production Problem</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#computation-using-or-tools">28.2.1. Computation: Using OR-Tools</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-investment-problem">28.3. Example 2: Investment Problem</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">28.3.1. Computation: Using OR-Tools</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#standard-form">28.4. Standard Form</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#useful-transformations">28.4.1. Useful Transformations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">28.4.2. Example 1: Production Problem</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#computation-using-scipy">28.4.3. Computation: Using SciPy</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">28.4.4. Example 2: Investment Problem</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">28.5. Exercises</a></li>
+</ul>
+                            <p class="logo">
+                                
+                                    
+                                    <a href=https://quantecon.org><img src="_static/qe-logo.png" class="logo" alt="logo"></a>
+                                    
+                                
+                            </p>
+
+                            <p class="powered">Powered by <a href="https://jupyterbook.org/">Jupyter Book</a></p>
+
+                        </nav>
+
+                        <div class="qe-page__toc-footer">
+                            
+                            
+                            <p><a href="#top"><strong>Back to top</strong></a></p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="qe-page__header">
+
+                    <div class="qe-page__header-copy">
+
+                        <p class="qe-page__header-heading"><a href="intro.html">An Introduction to Quantitative Economics and Finance</a></p>
+
+                        <p class="qe-page__header-subheading">Linear Programming</p>
+
+                    </div>
+
+                    <p class="qe-page__header-authors">Thomas J. Sargent & John Stachurski</p>
+
+                </div> <!-- .page__header -->
+
+
+
+                
+                <main class="qe-page__content" role="main">
+                    
+                    <div>
+                        
+  <p id="lp-intro">In this lecture, we will need the following library. Install <a class="reference external" href="https://developers.google.com/optimization">ortools</a> using <code class="docutils literal notranslate"><span class="pre">pip</span></code>.</p>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input above-output-prompt docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip install ortools
+</pre></div>
+</div>
+</div>
+<details class="hide below-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell output</span>
+<span class="expanded">Hide code cell output</span>
+</summary>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting ortools
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Downloading ortools-9.6.2534-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (16.4 MB)
+?25l     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/16.4 MB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
+     ╸━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.3/16.4 MB</span> <span class=" -Color -Color-Red">9.2 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:02</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     ━━━━━━━╺━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">3.0/16.4 MB</span> <span class=" -Color -Color-Red">44.5 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     ━━━━━━━━━━━━━━━━━━━╸━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">8.0/16.4 MB</span> <span class=" -Color -Color-Red">77.5 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━╸━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">10.5/16.4 MB</span> <span class=" -Color -Color-Red">98.4 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╺━━━━━━ <span class=" -Color -Color-Green">13.6/16.4 MB</span> <span class=" -Color -Color-Red">103.6 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸ <span class=" -Color -Color-Green">16.4/16.4 MB</span> <span class=" -Color -Color-Red">92.7 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">16.4/16.4 MB</span> <span class=" -Color -Color-Red">65.4 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25h
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting protobuf&gt;=4.21.12
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Downloading protobuf-4.22.3-cp37-abi3-manylinux2014_x86_64.whl (302 kB)
+?25l     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/302.4 kB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">302.4/302.4 kB</span> <span class=" -Color -Color-Red">69.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hRequirement already satisfied: scipy&gt;=1.10.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from ortools) (1.10.0)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting absl-py&gt;=0.13
+  Downloading absl_py-1.4.0-py3-none-any.whl (126 kB)
+?25l     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/126.5 kB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">126.5/126.5 kB</span> <span class=" -Color -Color-Red">47.2 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hRequirement already satisfied: numpy&gt;=1.13.3 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from ortools) (1.23.5)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Installing collected packages: protobuf, absl-py, ortools
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Successfully installed absl-py-1.4.0 ortools-9.6.2534 protobuf-4.22.3
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<section class="tex2jax_ignore mathjax_ignore" id="linear-programming">
+<h1><span class="section-number">28. </span>Linear Programming<a class="headerlink" href="#linear-programming" title="Permalink to this heading">#</a></h1>
+<section id="overview">
+<h2><span class="section-number">28.1. </span>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
+<p><strong>Linear programming</strong> problems either maximize or minimize
+a linear objective function subject to a set of  linear equality and/or inequality constraints.</p>
+<p>Linear programs come in pairs:</p>
+<ul class="simple">
+<li><p>an original  <strong>primal</strong> problem, and</p></li>
+<li><p>an associated <strong>dual</strong> problem.</p></li>
+</ul>
+<p>If a primal problem involves <strong>maximization</strong>, the dual problem involves <strong>minimization</strong>.</p>
+<p>If a primal problem involves  <strong>minimization</strong>, the dual problem involves <strong>maximization</strong>.</p>
+<p>We provide a standard form of a linear program and methods to transform other forms of linear programming problems  into a standard form.</p>
+<p>We tell how to solve a linear programming problem using <a class="reference external" href="https://scipy.org/">SciPy</a> and <a class="reference external" href="https://developers.google.com/optimization">Google OR-Tools</a>.</p>
+<p>We describe the important concept of complementary slackness and how it relates to the dual problem.</p>
+<p>Let’s start with some standard imports.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">ortools.linear_solver</span> <span class="kn">import</span> <span class="n">pywraplp</span>
+<span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">linprog</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">matplotlib.patches</span> <span class="kn">import</span> <span class="n">Polygon</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s start with some examples of linear programming problem.</p>
+</section>
+<section id="example-1-production-problem">
+<h2><span class="section-number">28.2. </span>Example 1: Production Problem<a class="headerlink" href="#example-1-production-problem" title="Permalink to this heading">#</a></h2>
+<p>This example was created by <span id="id1">[<a class="reference internal" href="zreferences.html#id42" title="J. N. Bertsimas, D. &amp; Tsitsiklis. Introduction to linear optimization. Athena Scientific, 1997.">Ber97</a>]</span></p>
+<p>Suppose that a factory can produce two goods called Product <span class="math notranslate nohighlight">\(1\)</span> and Product <span class="math notranslate nohighlight">\(2\)</span>.</p>
+<p>To produce each product requires both material and labor.</p>
+<p>Selling each product generates revenue.</p>
+<p>Required per unit material and labor  inputs and  revenues  are shown in table below:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-center head"><p></p></th>
+<th class="text-center head"><p>Product 1</p></th>
+<th class="text-center head"><p>Product 2</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>Material</p></td>
+<td class="text-center"><p>2</p></td>
+<td class="text-center"><p>5</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>Labor</p></td>
+<td class="text-center"><p>4</p></td>
+<td class="text-center"><p>2</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>Revenue</p></td>
+<td class="text-center"><p>3</p></td>
+<td class="text-center"><p>4</p></td>
+</tr>
+</tbody>
+</table>
+<p>30 units of material and 20 units of labor available.</p>
+<p>A firm’s problem is to construct a  production plan that uses its  30 units of materials and 20 units of labor to maximize its revenue.</p>
+<p>Let <span class="math notranslate nohighlight">\(x_i\)</span> denote the quantity of Product <span class="math notranslate nohighlight">\(i\)</span> that the firm produces.</p>
+<p>This problem can be formulated as:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\max_{x_1,x_2} \ &amp; z = 3 x_1 + 4 x_2 \\
+\mbox{subject to } \ &amp; 2 x_1 + 5 x_2 \le 30 \\
+&amp; 4 x_1 + 2 x_2 \le 20 \\
+&amp; x_1, x_2 \ge 0 \\
+\end{aligned}
+\end{split}\]</div>
+<p>The following graph illustrates the firm’s constraints and iso-revenue lines.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+
+<span class="c1"># Draw constraint lines</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mf">17.5</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mf">17.5</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="mi">6</span><span class="o">-</span><span class="mf">0.4</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mf">17.5</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;r&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mf">5.5</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="mi">10</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mf">5.5</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;r&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">1.5</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="s2">&quot;$2x_1 + 5x_2 \leq 30$&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="s2">&quot;$4x_1 + 2x_2 \leq 20$&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;$x_2 \geq 0$&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">2.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.7</span><span class="p">,</span> <span class="s2">&quot;$x_1 \geq 0$&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+
+<span class="c1"># Draw the feasible region</span>
+<span class="n">feasible_set</span> <span class="o">=</span> <span class="n">Polygon</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+                                 <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span>
+                                 <span class="p">[</span><span class="mf">2.5</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
+                                 <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">]]),</span>
+                       <span class="n">color</span><span class="o">=</span><span class="s2">&quot;cyan&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">feasible_set</span><span class="p">)</span>
+
+<span class="c1"># Draw the objective function</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mf">5.5</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="mf">3.875</span><span class="o">-</span><span class="mf">0.75</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mf">5.5</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;orange&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mf">5.5</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="mf">5.375</span><span class="o">-</span><span class="mf">0.75</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mf">5.5</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;orange&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mf">5.5</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="mf">6.875</span><span class="o">-</span><span class="mf">0.75</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mf">5.5</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;orange&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">arrow</span><span class="p">(</span><span class="o">-</span><span class="mf">1.6</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">width</span> <span class="o">=</span> <span class="mf">0.05</span><span class="p">,</span> <span class="n">head_width</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">head_length</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;orange&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">5.7</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;$z = 3x_1 + 4x_2$&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+
+<span class="c1"># Draw the optimal solution</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mf">2.5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="s2">&quot;*&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">2.7</span><span class="p">,</span> <span class="mf">5.2</span><span class="p">,</span> <span class="s2">&quot;Optimal Solution&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="_images/3417b23f2efa8a17adfef2254a0be413d26cf2da72b9aa43624694d1e8bb556e.png" src="_images/3417b23f2efa8a17adfef2254a0be413d26cf2da72b9aa43624694d1e8bb556e.png" />
+</div>
+</div>
+<p>The blue region is the feasible set within which all constraints are satisfied.</p>
+<p>Parallel orange lines are iso-revenue lines.</p>
+<p>The firm’s objective is to find the  parallel orange lines to the upper boundary of the feasible set.</p>
+<p>The intersection of the feasible set and the highest orange line delineates the optimal set.</p>
+<p>In this example, the optimal set is the point <span class="math notranslate nohighlight">\((2.5, 5)\)</span>.</p>
+<section id="computation-using-or-tools">
+<h3><span class="section-number">28.2.1. </span>Computation: Using OR-Tools<a class="headerlink" href="#computation-using-or-tools" title="Permalink to this heading">#</a></h3>
+<p>Let’s try to solve the same problem using the package <em>ortools.linear_solver</em></p>
+<p>The following cell instantiates a solver and creates two variables specifying the range of values that they can have.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Instantiate a GLOP(Google Linear Optimization Package) solver</span>
+<span class="n">solver</span> <span class="o">=</span> <span class="n">pywraplp</span><span class="o">.</span><span class="n">Solver</span><span class="o">.</span><span class="n">CreateSolver</span><span class="p">(</span><span class="s1">&#39;GLOP&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s us create two variables <span class="math notranslate nohighlight">\(x_1\)</span> and <span class="math notranslate nohighlight">\(x_2\)</span> such that they can only have nonnegative values.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create the two variables and let them take on any non-negative value.</span>
+<span class="n">x1</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">NumVar</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">solver</span><span class="o">.</span><span class="n">infinity</span><span class="p">(),</span> <span class="s1">&#39;x1&#39;</span><span class="p">)</span>
+<span class="n">x2</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">NumVar</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">solver</span><span class="o">.</span><span class="n">infinity</span><span class="p">(),</span> <span class="s1">&#39;x2&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Add the constraints to the problem.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Constraint 1: 2x_1 + 5x_2 &lt;= 30.0</span>
+<span class="n">solver</span><span class="o">.</span><span class="n">Add</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">x1</span> <span class="o">+</span> <span class="mi">5</span> <span class="o">*</span> <span class="n">x2</span> <span class="o">&lt;=</span> <span class="mf">30.0</span><span class="p">)</span>
+
+<span class="c1"># Constraint 2: 4x_1 + 2x_2 &lt;= 20.0</span>
+<span class="n">solver</span><span class="o">.</span><span class="n">Add</span><span class="p">(</span><span class="mi">4</span> <span class="o">*</span> <span class="n">x1</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">x2</span> <span class="o">&lt;=</span> <span class="mf">20.0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ortools.linear_solver.pywraplp.Constraint; proxy of &lt;Swig Object of type &#39;operations_research::MPConstraint *&#39; at 0x7f59188d7a80&gt; &gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s specify the objective function. We use <code class="docutils literal notranslate"><span class="pre">solver.Maximize</span></code> method in the case when we want to maximize the objective function and in the case of minimization we can use <code class="docutils literal notranslate"><span class="pre">solver.Minimize</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Objective function: 3x_1 + 4x_2</span>
+<span class="n">solver</span><span class="o">.</span><span class="n">Maximize</span><span class="p">(</span><span class="mi">3</span> <span class="o">*</span> <span class="n">x1</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">x2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Once we solve the problem, we can check whether the solver was successful in solving the problem using it’s status. If it’s successful, then the status will be equal to <code class="docutils literal notranslate"><span class="pre">pywraplp.Solver.OPTIMAL</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Solve the system.</span>
+<span class="n">status</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">Solve</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="n">status</span> <span class="o">==</span> <span class="n">pywraplp</span><span class="o">.</span><span class="n">Solver</span><span class="o">.</span><span class="n">OPTIMAL</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Objective value =&#39;</span><span class="p">,</span> <span class="n">solver</span><span class="o">.</span><span class="n">Objective</span><span class="p">()</span><span class="o">.</span><span class="n">Value</span><span class="p">())</span>
+    <span class="n">x1_sol</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">x1</span><span class="o">.</span><span class="n">solution_value</span><span class="p">(),</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">x2_sol</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">x2</span><span class="o">.</span><span class="n">solution_value</span><span class="p">(),</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;(x1, x2): (</span><span class="si">{</span><span class="n">x1_sol</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">x2_sol</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The problem does not have an optimal solution.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Objective value = 27.5
+(x1, x2): (2.5, 5.0)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="example-2-investment-problem">
+<h2><span class="section-number">28.3. </span>Example 2: Investment Problem<a class="headerlink" href="#example-2-investment-problem" title="Permalink to this heading">#</a></h2>
+<p>We now consider a problem posed and solved by  <span id="id2">[<a class="reference internal" href="zreferences.html#id43" title="Y. Hu, Y. &amp; Guo. Operations research. Tsinghua University Press, 5th edition, 2018.">Hu18</a>]</span>.</p>
+<p>A mutual fund has <span class="math notranslate nohighlight">\( \$ 100,000\)</span> to be invested over a three year horizon.</p>
+<p>Three investment options are available:</p>
+<ol class="arabic simple">
+<li><p><strong>Annuity:</strong>  the fund can  pay a same amount of new capital at the beginning of each of three years and receive a payoff of 130% of <strong>total capital</strong> invested  at the end of the third year. Once the mutual fund decides to invest in this annuity, it has to keep investing in all subsequent  years in the three year horizon.</p></li>
+<li><p><strong>Bank account:</strong> the fund can deposit any amount  into a bank at the beginning of each year and receive its capital plus 6% interest at the end of that year. In addition, the mutual fund is permitted to borrow no more than $20,000 at the beginning of each year and is asked to pay back the amount borrowed plus 6% interest at the end of the year. The mutual fund can choose whether to deposit or borrow at the beginning of each year.</p></li>
+<li><p><strong>Corporate bond:</strong> At the beginning of the second year, a  corporate bond becomes available.
+The fund can buy an amount
+that is no more than <span class="math notranslate nohighlight">\( \$ \)</span>50,000 of this bond at the beginning of the second year and  at the end of the third year receive a payout of 130% of the amount invested in the bond.</p></li>
+</ol>
+<p>The mutual fund’s objective is to maximize total payout that it owns at the end of the third year.</p>
+<p>We can formulate this  as a linear programming problem.</p>
+<p>Let  <span class="math notranslate nohighlight">\(x_1\)</span> be the amount of put in the annuity, <span class="math notranslate nohighlight">\(x_2, x_3, x_4\)</span> be  bank deposit balances at the beginning of the three years,  and <span class="math notranslate nohighlight">\(x_5\)</span> be the amount invested  in the corporate bond.</p>
+<p>When <span class="math notranslate nohighlight">\(x_2, x_3, x_4\)</span> are negative, it means that  the mutual fund has borrowed from  bank.</p>
+<p>The table below shows the mutual fund’s decision variables together with the timing protocol described above:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-center head"><p></p></th>
+<th class="text-center head"><p>Year 1</p></th>
+<th class="text-center head"><p>Year 2</p></th>
+<th class="text-center head"><p>Year 3</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>Annuity</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(x_1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(x_1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(x_1\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>Bank account</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(x_2\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(x_3\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(x_4\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>Corporate bond</p></td>
+<td class="text-center"><p>0</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(x_5\)</span></p></td>
+<td class="text-center"><p>0</p></td>
+</tr>
+</tbody>
+</table>
+<p>The  mutual fund’s decision making proceeds according to the following timing protocol:</p>
+<ol class="arabic">
+<li><p>At the beginning of the first year, the mutual fund decides how much to invest in the annuity and
+how much to deposit in the bank. This decision is subject to the constraint:</p>
+<div class="math notranslate nohighlight">
+\[
+   x_1 + x_2 = 100,000
+   \]</div>
+</li>
+<li><p>At the beginning of the second year, the mutual fund has a bank balance  of <span class="math notranslate nohighlight">\(1.06 x_2\)</span>.
+It must keep <span class="math notranslate nohighlight">\(x_1\)</span> in the annuity. It can choose to put <span class="math notranslate nohighlight">\(x_5\)</span> into the corporate bond,
+and put <span class="math notranslate nohighlight">\(x_3\)</span> in the bank. These decisions are restricted by</p>
+<div class="math notranslate nohighlight">
+\[
+   x_1 + x_5 = 1.06 x_2 - x_3
+   \]</div>
+</li>
+<li><p>At the beginning of the third year, the mutual fund has a bank account balance equal
+to <span class="math notranslate nohighlight">\(1.06 x_3\)</span>. It must again invest  <span class="math notranslate nohighlight">\(x_1\)</span> in the annuity,
+leaving it with  a bank account balance equal to <span class="math notranslate nohighlight">\(x_4\)</span>. This situation is summarized by the restriction:</p>
+<div class="math notranslate nohighlight">
+\[
+   x_1 = 1.06 x_3 - x_4
+   \]</div>
+</li>
+</ol>
+<p>The mutual fund’s objective function, i.e., its wealth at the end of the third year is:</p>
+<div class="math notranslate nohighlight">
+\[
+1.30 \cdot 3x_1 + 1.06 x_4 + 1.30 x_5
+\]</div>
+<p>Thus, the mutual fund confronts the linear program:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\max_{x} \ &amp; 1.30 \cdot 3x_1 + 1.06 x_4 + 1.30 x_5 \\
+\mbox{subject to } \ &amp; x_1 + x_2 = 100,000\\
+ &amp; x_1 - 1.06 x_2 + x_3 + x_5 = 0\\
+ &amp; x_1 - 1.06 x_3 + x_4 = 0\\
+ &amp; x_2 \ge -20,000\\
+ &amp; x_3 \ge -20,000\\
+ &amp; x_4 \ge -20,000\\
+ &amp; x_5 \le 50,000\\
+ &amp; x_j \ge 0, \quad j = 1,5\\
+ &amp; x_j \ \text{unrestricted}, \quad j = 2,3,4\\
+\end{aligned}
+\end{split}\]</div>
+<section id="id3">
+<h3><span class="section-number">28.3.1. </span>Computation: Using OR-Tools<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
+<p>Let’s try to solve the above problem using the package <em>ortools.linear_solver</em>.</p>
+<p>The following cell instantiates a solver and creates two variables specifying the range of values that they can have.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Instantiate a GLOP(Google Linear Optimization Package) solver</span>
+<span class="n">solver</span> <span class="o">=</span> <span class="n">pywraplp</span><span class="o">.</span><span class="n">Solver</span><span class="o">.</span><span class="n">CreateSolver</span><span class="p">(</span><span class="s1">&#39;GLOP&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s us create five variables <span class="math notranslate nohighlight">\(x_1, x_2, x_3, x_4,\)</span> and <span class="math notranslate nohighlight">\(x_5\)</span> such that they can only have the values defined in the above constraints.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create the variables using the ranges available from constraints</span>
+<span class="n">x1</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">NumVar</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">solver</span><span class="o">.</span><span class="n">infinity</span><span class="p">(),</span> <span class="s1">&#39;x1&#39;</span><span class="p">)</span>
+<span class="n">x2</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">NumVar</span><span class="p">(</span><span class="o">-</span><span class="mi">20_000</span><span class="p">,</span> <span class="n">solver</span><span class="o">.</span><span class="n">infinity</span><span class="p">(),</span> <span class="s1">&#39;x2&#39;</span><span class="p">)</span>
+<span class="n">x3</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">NumVar</span><span class="p">(</span><span class="o">-</span><span class="mi">20_000</span><span class="p">,</span> <span class="n">solver</span><span class="o">.</span><span class="n">infinity</span><span class="p">(),</span> <span class="s1">&#39;x3&#39;</span><span class="p">)</span>
+<span class="n">x4</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">NumVar</span><span class="p">(</span><span class="o">-</span><span class="mi">20_000</span><span class="p">,</span> <span class="n">solver</span><span class="o">.</span><span class="n">infinity</span><span class="p">(),</span> <span class="s1">&#39;x4&#39;</span><span class="p">)</span>
+<span class="n">x5</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">NumVar</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">50_000</span><span class="p">,</span> <span class="s1">&#39;x5&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Add the constraints to the problem.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Constraint 1: x_1 + x_2 = 100,000</span>
+<span class="n">solver</span><span class="o">.</span><span class="n">Add</span><span class="p">(</span><span class="n">x1</span> <span class="o">+</span> <span class="n">x2</span> <span class="o">==</span> <span class="mf">100_000.0</span><span class="p">)</span>
+
+<span class="c1"># Constraint 2: x_1 - 1.06 * x_2 + x_3 + x_5 = 0</span>
+<span class="n">solver</span><span class="o">.</span><span class="n">Add</span><span class="p">(</span><span class="n">x1</span> <span class="o">-</span> <span class="mf">1.06</span> <span class="o">*</span> <span class="n">x2</span> <span class="o">+</span> <span class="n">x3</span> <span class="o">+</span> <span class="n">x5</span> <span class="o">==</span> <span class="mf">0.0</span><span class="p">)</span>
+
+<span class="c1"># Constraint 3: x_1 - 1.06 * x_3 + x_4 = 0</span>
+<span class="n">solver</span><span class="o">.</span><span class="n">Add</span><span class="p">(</span><span class="n">x1</span> <span class="o">-</span> <span class="mf">1.06</span> <span class="o">*</span> <span class="n">x3</span> <span class="o">+</span> <span class="n">x4</span> <span class="o">==</span> <span class="mf">0.0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ortools.linear_solver.pywraplp.Constraint; proxy of &lt;Swig Object of type &#39;operations_research::MPConstraint *&#39; at 0x7f59188d7810&gt; &gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s specify the objective function.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Objective function: 1.30 * 3 * x_1 + 1.06 * x_4 + 1.30 * x_5</span>
+<span class="n">solver</span><span class="o">.</span><span class="n">Maximize</span><span class="p">(</span><span class="mf">1.30</span> <span class="o">*</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">x1</span> <span class="o">+</span> <span class="mf">1.06</span> <span class="o">*</span> <span class="n">x4</span> <span class="o">+</span> <span class="mf">1.30</span> <span class="o">*</span> <span class="n">x5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s solve the problem and check the status using <code class="docutils literal notranslate"><span class="pre">pywraplp.Solver.OPTIMAL</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Solve the system.</span>
+<span class="n">status</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">Solve</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="n">status</span> <span class="o">==</span> <span class="n">pywraplp</span><span class="o">.</span><span class="n">Solver</span><span class="o">.</span><span class="n">OPTIMAL</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Objective value =&#39;</span><span class="p">,</span> <span class="n">solver</span><span class="o">.</span><span class="n">Objective</span><span class="p">()</span><span class="o">.</span><span class="n">Value</span><span class="p">())</span>
+    <span class="n">x1_sol</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">x1</span><span class="o">.</span><span class="n">solution_value</span><span class="p">(),</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="n">x2_sol</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">x2</span><span class="o">.</span><span class="n">solution_value</span><span class="p">(),</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="n">x3_sol</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">x1</span><span class="o">.</span><span class="n">solution_value</span><span class="p">(),</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="n">x4_sol</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">x2</span><span class="o">.</span><span class="n">solution_value</span><span class="p">(),</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="n">x5_sol</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">x1</span><span class="o">.</span><span class="n">solution_value</span><span class="p">(),</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;(x1, x2, x3, x4, x5): (</span><span class="si">{</span><span class="n">x1_sol</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">x2_sol</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">x3_sol</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">x4_sol</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">x5_sol</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The problem does not have an optimal solution.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Objective value = 141018.24349792692
+(x1, x2, x3, x4, x5): (24927.755, 75072.245, 24927.755, 75072.245, 24927.755)
+</pre></div>
+</div>
+</div>
+</div>
+<p>OR-Tools tells us that  the best investment strategy is:</p>
+<ol class="arabic simple">
+<li><p>At the beginning of the first year, the mutual fund should buy <span class="math notranslate nohighlight">\( \$24,927.755\)</span> of the annuity. Its bank account balance should be <span class="math notranslate nohighlight">\( \$75,072.245\)</span>.</p></li>
+<li><p>At the beginning of the second year, the mutual fund should buy <span class="math notranslate nohighlight">\( \$24,927.755\)</span> of the corporate bond and keep invest in the annuity. Its bank balance should be <span class="math notranslate nohighlight">\( \$24,927.755\)</span>.</p></li>
+<li><p>At the beginning of the third year, the bank balance should be <span class="math notranslate nohighlight">\( \$75,072.245 \)</span>.</p></li>
+<li><p>At the end of the third year, the mutual fund will get payouts from the annuity and corporate bond and repay its loan from the bank. At the end  it will own <span class="math notranslate nohighlight">\( \$141018.24 \)</span>, so that it’s total net  rate of return over the three periods is <span class="math notranslate nohighlight">\( 41.02\%\)</span>.</p></li>
+</ol>
+</section>
+</section>
+<section id="standard-form">
+<h2><span class="section-number">28.4. </span>Standard Form<a class="headerlink" href="#standard-form" title="Permalink to this heading">#</a></h2>
+<p>For purposes of</p>
+<ul class="simple">
+<li><p>unifying linear programs that are initially stated in superficially different forms, and</p></li>
+<li><p>having a form that is convenient to put into black-box software packages,</p></li>
+</ul>
+<p>it is useful to devote some effort to describe a <strong>standard form</strong>.</p>
+<p>Our standard form  is:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\min_{x} \ &amp; c_1 x_1 + c_2 x_2 + \dots + c_n x_n  \\
+\mbox{subject to } \ &amp; a_{11} x_1 + a_{12} x_2 + \dots + a_{1n} x_n = b_1 \\
+ &amp; a_{21} x_1 + a_{22} x_2 + \dots + a_{2n} x_n = b_2 \\
+ &amp; \quad \vdots \\
+ &amp; a_{m1} x_1 + a_{m2} x_2 + \dots + a_{mn} x_n = b_m \\
+ &amp; x_1, x_2, \dots, x_n \ge 0 \\
+\end{aligned}
+\end{split}\]</div>
+<p>Let</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+A = \begin{bmatrix}
+a_{11} &amp; a_{12} &amp; \dots &amp; a_{1n} \\
+a_{21} &amp; a_{22} &amp; \dots &amp; a_{2n} \\
+  &amp;   &amp; \vdots &amp;   \\
+a_{m1} &amp; a_{m2} &amp; \dots &amp; a_{mn} \\
+\end{bmatrix}, \quad
+b = \begin{bmatrix} b_1 \\ b_2 \\ \vdots \\ b_m \\ \end{bmatrix}, \quad
+c = \begin{bmatrix} c_1 \\ c_2 \\ \vdots \\ c_n \\ \end{bmatrix}, \quad
+x = \begin{bmatrix} x_1 \\ x_2 \\ \vdots \\ x_n \\ \end{bmatrix}. \quad
+\end{split}\]</div>
+<p>The standard form LP problem can be expressed concisely as:</p>
+<div class="math notranslate nohighlight" id="equation-lpproblem">
+<span class="eqno">(28.1)<a class="headerlink" href="#equation-lpproblem" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{aligned}
+\min_{x} \ &amp; c'x \\
+\mbox{subject to } \ &amp; Ax = b\\
+ &amp; x \geq 0\\
+\end{aligned}
+\end{split}\]</div>
+<p>Here, <span class="math notranslate nohighlight">\(Ax = b\)</span> means that  the <span class="math notranslate nohighlight">\(i\)</span>-th entry of <span class="math notranslate nohighlight">\(Ax\)</span>  equals the <span class="math notranslate nohighlight">\(i\)</span>-th entry of <span class="math notranslate nohighlight">\(b\)</span> for every <span class="math notranslate nohighlight">\(i\)</span>.</p>
+<p>Similarly, <span class="math notranslate nohighlight">\(x \geq 0\)</span> means that  <span class="math notranslate nohighlight">\(x_j\)</span> is greater than equal to <span class="math notranslate nohighlight">\(0\)</span> for every <span class="math notranslate nohighlight">\(j\)</span>.</p>
+<section id="useful-transformations">
+<h3><span class="section-number">28.4.1. </span>Useful Transformations<a class="headerlink" href="#useful-transformations" title="Permalink to this heading">#</a></h3>
+<p>It is useful to know how to transform a problem that initially is not stated in the standard form into one that is.</p>
+<p>By deploying the following steps, any linear programming problem can be transformed into an  equivalent  standard form linear programming problem.</p>
+<ol class="arabic simple">
+<li><p><strong>Objective Function:</strong> If a problem is originally a constrained <strong>maximization</strong> problem, we can construct a new objective function that  is the additive inverse of the original objective function. The transformed problem is then a <strong>minimization</strong> problem.</p></li>
+<li><p><strong>Decision Variables:</strong> Given a variable <span class="math notranslate nohighlight">\(x_j\)</span> satisfying <span class="math notranslate nohighlight">\(x_j \le 0\)</span>, we can introduce a new variable <span class="math notranslate nohighlight">\(x_j' = - x_j\)</span> and substitute it into original problem. Given a free variable <span class="math notranslate nohighlight">\(x_i\)</span> with no restriction on its sign, we can introduce two new variables <span class="math notranslate nohighlight">\(x_j^+\)</span> and <span class="math notranslate nohighlight">\(x_j^-\)</span> satisfying <span class="math notranslate nohighlight">\(x_j^+, x_j^- \ge 0\)</span> and replace <span class="math notranslate nohighlight">\(x_j\)</span> by <span class="math notranslate nohighlight">\(x_j^+ - x_j^-\)</span>.</p></li>
+<li><p><strong>Inequality constraints:</strong> Given an inequality constraint <span class="math notranslate nohighlight">\(\sum_{j=1}^n a_{ij}x_j \le 0\)</span>, we can introduce a new variable <span class="math notranslate nohighlight">\(s_i\)</span>, called a <strong>slack variable</strong> that satisfies <span class="math notranslate nohighlight">\(s_i \ge 0\)</span> and replace the original constraint by <span class="math notranslate nohighlight">\(\sum_{j=1}^n a_{ij}x_j + s_i = 0\)</span>.</p></li>
+</ol>
+<p>Let’s apply the above steps to the two examples described above.</p>
+</section>
+<section id="id4">
+<h3><span class="section-number">28.4.2. </span>Example 1: Production Problem<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h3>
+<p>The original problem is:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\max_{x_1,x_2} \ &amp; 3 x_1 + 4 x_2 \\
+\mbox{subject to } \ &amp; 2 x_1 + 5 x_2 \le 30 \\
+&amp; 4 x_1 + 2 x_2 \le 20 \\
+&amp; x_1, x_2 \ge 0 \\
+\end{aligned}
+\end{split}\]</div>
+<p>This problem is equivalent to the following problem with a standard form:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\min_{x_1,x_2} \ &amp; -(3 x_1 + 4 x_2) \\
+\mbox{subject to } \ &amp; 2 x_1 + 5 x_2 + s_1 = 30 \\
+&amp; 4 x_1 + 2 x_2 + s_2 = 20 \\
+&amp; x_1, x_2, s_1, s_2 \ge 0 \\
+\end{aligned}
+\end{split}\]</div>
+</section>
+<section id="computation-using-scipy">
+<h3><span class="section-number">28.4.3. </span>Computation: Using SciPy<a class="headerlink" href="#computation-using-scipy" title="Permalink to this heading">#</a></h3>
+<p>The package <em>scipy.optimize</em> provides a function <em><strong>linprog</strong></em> to solve linear programming problems with a form below:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\min_{x} \ &amp; c' x  \\
+\mbox{subject to } \ &amp; A_{ub}x \le b_{ub} \\
+ &amp; A_{eq}x = b_{eq} \\
+ &amp; l \le x \le u \\
+\end{aligned}
+\end{split}\]</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>By default <span class="math notranslate nohighlight">\(l = 0\)</span> and <span class="math notranslate nohighlight">\(u = \text{None}\)</span> unless explicitly specified with the argument ‘bounds’.</p>
+</div>
+<p>Let’s now try to solve the Problem 1 using SciPy.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Construct parameters</span>
+<span class="n">c_ex1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+
+<span class="c1"># Inequality constraints</span>
+<span class="n">A_ex1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
+                  <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">]])</span>
+<span class="n">b_ex1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">30</span><span class="p">,</span><span class="mi">20</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Once we solve the problem, we can check whether the solver was successful in solving the problem using the boolean attribute <code class="docutils literal notranslate"><span class="pre">success</span></code>. If it’s successful, then the <code class="docutils literal notranslate"><span class="pre">success</span></code> attribute is set to <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Solve the problem</span>
+<span class="c1"># we put a negative sign on the objective as linprog does minimization</span>
+<span class="n">res_ex1</span> <span class="o">=</span> <span class="n">linprog</span><span class="p">(</span><span class="o">-</span><span class="n">c_ex1</span><span class="p">,</span> <span class="n">A_ub</span><span class="o">=</span><span class="n">A_ex1</span><span class="p">,</span> <span class="n">b_ub</span><span class="o">=</span><span class="n">b_ex1</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">res_ex1</span><span class="o">.</span><span class="n">success</span><span class="p">:</span>
+    <span class="c1"># We use negative sign to get the optimal value (maximized value)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Optimal Value:&#39;</span><span class="p">,</span> <span class="o">-</span><span class="n">res_ex1</span><span class="o">.</span><span class="n">fun</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;(x1, x2): </span><span class="si">{</span><span class="n">res_ex1</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">res_ex1</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The problem does not have an optimal solution.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimal Value: 27.5
+(x1, x2): (2.5, 5.0)
+</pre></div>
+</div>
+</div>
+</div>
+<p>The optimal plan tells the  factory to produce <span class="math notranslate nohighlight">\(2.5\)</span> units of Product 1 and <span class="math notranslate nohighlight">\(5\)</span> units of  Product 2; that  generates a maximizing value of  revenue of <span class="math notranslate nohighlight">\(27.5\)</span>.</p>
+<p>We are using the <em>linprog</em> function as a <strong>black box</strong>.</p>
+<p>Inside it, Python first  transforms the problem into  standard form.</p>
+<p>To do that, for each inequality constraint it generates one slack variable.</p>
+<p>Here the vector of slack variables is a two-dimensional NumPy array that  equals <span class="math notranslate nohighlight">\(b_{ub} - A_{ub}x\)</span>.</p>
+<p>See the <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.linprog.html#scipy.optimize.linprog">official documentation</a> for more details.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This problem is to maximize the objective, so that we need to put a minus sign in front of parameter vector c.</p>
+</div>
+</section>
+<section id="id5">
+<h3><span class="section-number">28.4.4. </span>Example 2: Investment Problem<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h3>
+<p>The original problem is:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\max_{x} \ &amp; 1.30 \cdot 3x_1 + 1.06 x_4 + 1.30 x_5 \\
+\mbox{subject to } \ &amp; x_1 + x_2 = 100,000\\
+ &amp; x_1 - 1.06 x_2 + x_3 + x_5 = 0\\
+ &amp; x_1 - 1.06 x_3 + x_4 = 0\\
+ &amp; x_2 \ge -20,000\\
+ &amp; x_3 \ge -20,000\\
+ &amp; x_4 \ge -20,000\\
+ &amp; x_5 \le 50,000\\
+ &amp; x_j \ge 0, \quad j = 1,5\\
+ &amp; x_j \ \text{unrestricted}, \quad j = 2,3,4\\
+\end{aligned}
+\end{split}\]</div>
+<p>This problem is equivalent to the following problem with a standard form:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\min_{x} \ &amp; -(1.30 \cdot 3x_1 + 1.06 x_4^+ - 1.06 x_4^- + 1.30 x_5) \\
+\mbox{subject to } \ &amp; x_1 + x_2^+ - x_2^- = 100,000\\
+ &amp; x_1 - 1.06 (x_2^+ - x_2^-) + x_3^+ - x_3^- + x_5 = 0\\
+ &amp; x_1 - 1.06 (x_3^+ - x_3^-) + x_4^+ - x_4^- = 0\\
+ &amp; x_2^- - x_2^+ + s_1 = 20,000\\
+ &amp; x_3^- - x_3^+ + s_2 = 20,000\\
+ &amp; x_4^- - x_4^+ + s_3 = 20,000\\
+ &amp; x_5 + s_4 = 50,000\\
+ &amp; x_j \ge 0, \quad j = 1,5\\
+ &amp; x_j^+, x_j^- \ge 0, \quad j = 2,3,4\\
+ &amp; s_j \ge 0, \quad j = 1,2,3,4\\
+\end{aligned}
+\end{split}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Construct parameters</span>
+<span class="n">rate</span> <span class="o">=</span> <span class="mf">1.06</span>
+
+<span class="c1"># Objective function parameters</span>
+<span class="n">c_ex2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.30</span><span class="o">*</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">1.06</span><span class="p">,</span> <span class="mf">1.30</span><span class="p">])</span>
+
+<span class="c1"># Inequality constraints</span>
+<span class="n">A_ex2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                  <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="n">rate</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+                  <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="n">rate</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+<span class="n">b_ex2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">100000</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+
+<span class="c1"># Bounds on decision variables</span>
+<span class="n">bounds_ex2</span> <span class="o">=</span> <span class="p">[(</span>  <span class="mi">0</span><span class="p">,</span>    <span class="kc">None</span><span class="p">),</span>
+              <span class="p">(</span><span class="o">-</span><span class="mi">20000</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+              <span class="p">(</span><span class="o">-</span><span class="mi">20000</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+              <span class="p">(</span><span class="o">-</span><span class="mi">20000</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+              <span class="p">(</span>  <span class="mi">0</span><span class="p">,</span>   <span class="mi">50000</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s solve the problem and check the status using <code class="docutils literal notranslate"><span class="pre">success</span></code> attribute.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Solve the problem</span>
+<span class="n">res_ex2</span> <span class="o">=</span> <span class="n">linprog</span><span class="p">(</span><span class="o">-</span><span class="n">c_ex2</span><span class="p">,</span> <span class="n">A_eq</span><span class="o">=</span><span class="n">A_ex2</span><span class="p">,</span> <span class="n">b_eq</span><span class="o">=</span><span class="n">b_ex2</span><span class="p">,</span>
+                  <span class="n">bounds</span><span class="o">=</span><span class="n">bounds_ex2</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">res_ex2</span><span class="o">.</span><span class="n">success</span><span class="p">:</span>
+    <span class="c1"># We use negative sign to get the optimal value (maximized value)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Optimal Value:&#39;</span><span class="p">,</span> <span class="o">-</span><span class="n">res_ex2</span><span class="o">.</span><span class="n">fun</span><span class="p">)</span>
+    <span class="n">x1_sol</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">res_ex2</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="n">x2_sol</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">res_ex2</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="n">x3_sol</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">res_ex2</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="n">x4_sol</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">res_ex2</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="n">x5_sol</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">res_ex2</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;(x1, x2, x3, x4, x5): </span><span class="si">{</span><span class="n">x1_sol</span><span class="p">,</span> <span class="n">x2_sol</span><span class="p">,</span> <span class="n">x3_sol</span><span class="p">,</span> <span class="n">x4_sol</span><span class="p">,</span> <span class="n">x5_sol</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The problem does not have an optimal solution.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimal Value: 141018.24349792697
+(x1, x2, x3, x4, x5): (24927.755, 75072.245, 4648.825, -20000.0, 50000.0)
+</pre></div>
+</div>
+</div>
+</div>
+<p>SciPy tells us that  the best investment strategy is:</p>
+<ol class="arabic simple">
+<li><p>At the beginning of the first year, the mutual fund should buy <span class="math notranslate nohighlight">\( \$24,927.75\)</span> of the annuity. Its bank account balance should be <span class="math notranslate nohighlight">\( \$75,072.25\)</span>.</p></li>
+<li><p>At the beginning of the second year, the mutual fund should buy <span class="math notranslate nohighlight">\( \$50,000 \)</span> of the corporate bond and keep invest in the annuity. Its bank account balance should be <span class="math notranslate nohighlight">\( \$ 4,648.83\)</span>.</p></li>
+<li><p>At the beginning of the third year, the mutual fund should borrow <span class="math notranslate nohighlight">\( \$20,000\)</span> from the bank and invest in the annuity.</p></li>
+<li><p>At the end of the third year, the mutual fund will get payouts from the annuity and corporate bond and repay its loan from the bank. At the end  it will own <span class="math notranslate nohighlight">\( \$141018.24 \)</span>, so that it’s total net  rate of return over the three periods is <span class="math notranslate nohighlight">\( 41.02\% \)</span>.</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You might notice the difference in the values of optimal solution using OR-Tools and SciPy but the optimal value is the same. It is because there can be many optimal solutions for the same problem.</p>
+</div>
+</section>
+</section>
+<section id="exercises">
+<h2><span class="section-number">28.5. </span>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h2>
+<div class="exercise admonition" id="lp_intro_ex1">
+
+<p class="admonition-title"><span class="caption-number">Exercise 28.1 </span></p>
+<section id="exercise-content">
+<p>Implement a new extended solution for the Problem 1 where in the factory owner decides that number of units of Product 1 should not be less than the number of units of Product 2.</p>
+</section>
+</div>
+<div class="solution dropdown admonition" id="lp_intro-solution-1">
+
+<p class="admonition-title">Solution to<a class="reference internal" href="#lp_intro_ex1"> Exercise 28.1</a></p>
+<section id="solution-content">
+<p>So we can reformulate the problem as:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\max_{x_1,x_2} \ &amp; z = 3 x_1 + 4 x_2 \\
+\mbox{subject to } \ &amp; 2 x_1 + 5 x_2 \le 30 \\
+&amp; 4 x_1 + 2 x_2 \le 20 \\
+&amp; x_1 \ge x_2 \\
+&amp; x_1, x_2 \ge 0 \\
+\end{aligned}
+\end{split}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Instantiate a GLOP(Google Linear Optimization Package) solver</span>
+<span class="n">solver</span> <span class="o">=</span> <span class="n">pywraplp</span><span class="o">.</span><span class="n">Solver</span><span class="o">.</span><span class="n">CreateSolver</span><span class="p">(</span><span class="s1">&#39;GLOP&#39;</span><span class="p">)</span>
+
+<span class="c1"># Create the two variables and let them take on any non-negative value.</span>
+<span class="n">x1</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">NumVar</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">solver</span><span class="o">.</span><span class="n">infinity</span><span class="p">(),</span> <span class="s1">&#39;x1&#39;</span><span class="p">)</span>
+<span class="n">x2</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">NumVar</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">solver</span><span class="o">.</span><span class="n">infinity</span><span class="p">(),</span> <span class="s1">&#39;x2&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Constraint 1: 2x_1 + 5x_2 &lt;= 30.0</span>
+<span class="n">solver</span><span class="o">.</span><span class="n">Add</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">x1</span> <span class="o">+</span> <span class="mi">5</span> <span class="o">*</span> <span class="n">x2</span> <span class="o">&lt;=</span> <span class="mf">30.0</span><span class="p">)</span>
+
+<span class="c1"># Constraint 2: 4x_1 + 2x_2 &lt;= 20.0</span>
+<span class="n">solver</span><span class="o">.</span><span class="n">Add</span><span class="p">(</span><span class="mi">4</span> <span class="o">*</span> <span class="n">x1</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">x2</span> <span class="o">&lt;=</span> <span class="mf">20.0</span><span class="p">)</span>
+
+<span class="c1"># Constraint 3: x_1 &gt;= x_2</span>
+<span class="n">solver</span><span class="o">.</span><span class="n">Add</span><span class="p">(</span><span class="n">x1</span> <span class="o">&gt;=</span> <span class="n">x2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ortools.linear_solver.pywraplp.Constraint; proxy of &lt;Swig Object of type &#39;operations_research::MPConstraint *&#39; at 0x7f59188d7f30&gt; &gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Objective function: 3x_1 + 4x_2</span>
+<span class="n">solver</span><span class="o">.</span><span class="n">Maximize</span><span class="p">(</span><span class="mi">3</span> <span class="o">*</span> <span class="n">x1</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">x2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Solve the system.</span>
+<span class="n">status</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">Solve</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="n">status</span> <span class="o">==</span> <span class="n">pywraplp</span><span class="o">.</span><span class="n">Solver</span><span class="o">.</span><span class="n">OPTIMAL</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Objective value =&#39;</span><span class="p">,</span> <span class="n">solver</span><span class="o">.</span><span class="n">Objective</span><span class="p">()</span><span class="o">.</span><span class="n">Value</span><span class="p">())</span>
+    <span class="n">x1_sol</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">x1</span><span class="o">.</span><span class="n">solution_value</span><span class="p">(),</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">x2_sol</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">x2</span><span class="o">.</span><span class="n">solution_value</span><span class="p">(),</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;(x1, x2): (</span><span class="si">{</span><span class="n">x1_sol</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">x2_sol</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The problem does not have an optimal solution.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Objective value = 23.333333333333336
+(x1, x2): (3.33, 3.33)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<div class="exercise admonition" id="lp_intro_ex2">
+
+<p class="admonition-title"><span class="caption-number">Exercise 28.2 </span></p>
+<section id="exercise-content">
+<p>A carpenter manufactures <span class="math notranslate nohighlight">\(2\)</span> products - <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span>.</p>
+<p>Product <span class="math notranslate nohighlight">\(A\)</span> generates a profit of <span class="math notranslate nohighlight">\(23\)</span> and product <span class="math notranslate nohighlight">\(B\)</span> generates a profit of <span class="math notranslate nohighlight">\(10\)</span>.</p>
+<p>It takes <span class="math notranslate nohighlight">\(2\)</span> hours for the carpenter to produce <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(0.8\)</span> hours to produce <span class="math notranslate nohighlight">\(B\)</span>.</p>
+<p>Moreover, he can’t spend more than <span class="math notranslate nohighlight">\(25\)</span> hours per week and the total number of units of <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> should not be greater than <span class="math notranslate nohighlight">\(20\)</span>.</p>
+<p>Find the number of units of <span class="math notranslate nohighlight">\(A\)</span> and product <span class="math notranslate nohighlight">\(B\)</span> that he should manufacture in order to maximise his profit.</p>
+</section>
+</div>
+<div class="solution dropdown admonition" id="lp_intro-solution-3">
+
+<p class="admonition-title">Solution to<a class="reference internal" href="#lp_intro_ex2"> Exercise 28.2</a></p>
+<section id="solution-content">
+<p>Let us assume the carpenter produces <span class="math notranslate nohighlight">\(x\)</span> units of <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(y\)</span> units of <span class="math notranslate nohighlight">\(B\)</span>.</p>
+<p>So we can formulate the problem as:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\max_{x,y} \ &amp; z = 23 x + 10 y \\
+\mbox{subject to } \ &amp; x + y \le 20 \\
+&amp; 2 x + 0.8 y \le 25 \\
+\end{aligned}
+\end{split}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Instantiate a GLOP(Google Linear Optimization Package) solver</span>
+<span class="n">solver</span> <span class="o">=</span> <span class="n">pywraplp</span><span class="o">.</span><span class="n">Solver</span><span class="o">.</span><span class="n">CreateSolver</span><span class="p">(</span><span class="s1">&#39;GLOP&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s us create two variables <span class="math notranslate nohighlight">\(x_1\)</span> and <span class="math notranslate nohighlight">\(x_2\)</span> such that they can only have nonnegative values.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create the two variables and let them take on any non-negative value.</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">NumVar</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">solver</span><span class="o">.</span><span class="n">infinity</span><span class="p">(),</span> <span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">NumVar</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">solver</span><span class="o">.</span><span class="n">infinity</span><span class="p">(),</span> <span class="s1">&#39;y&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Constraint 1: x + y &lt;= 20.0</span>
+<span class="n">solver</span><span class="o">.</span><span class="n">Add</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span> <span class="o">&lt;=</span> <span class="mf">20.0</span><span class="p">)</span>
+
+<span class="c1"># Constraint 2: 2x + 0.8y &lt;= 25.0</span>
+<span class="n">solver</span><span class="o">.</span><span class="n">Add</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="mf">0.8</span> <span class="o">*</span> <span class="n">y</span> <span class="o">&lt;=</span> <span class="mf">25.0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ortools.linear_solver.pywraplp.Constraint; proxy of &lt;Swig Object of type &#39;operations_research::MPConstraint *&#39; at 0x7f59188d4480&gt; &gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Objective function: 23x + 10y</span>
+<span class="n">solver</span><span class="o">.</span><span class="n">Maximize</span><span class="p">(</span><span class="mi">23</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">10</span> <span class="o">*</span> <span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Solve the system.</span>
+<span class="n">status</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">Solve</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="n">status</span> <span class="o">==</span> <span class="n">pywraplp</span><span class="o">.</span><span class="n">Solver</span><span class="o">.</span><span class="n">OPTIMAL</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Maximum Profit =&#39;</span><span class="p">,</span> <span class="n">solver</span><span class="o">.</span><span class="n">Objective</span><span class="p">()</span><span class="o">.</span><span class="n">Value</span><span class="p">())</span>
+    <span class="n">x_sol</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">solution_value</span><span class="p">(),</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="n">y_sol</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">solution_value</span><span class="p">(),</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;(x, y): (</span><span class="si">{</span><span class="n">x_sol</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">y_sol</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The problem does not have an optimal solution.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Maximum Profit = 297.5
+(x, y): (7.5, 12.5)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                    </div>
+                    
+                </main> <!-- .page__content -->
+                
+
+
+                <footer class="qe-page__footer">
+
+                    <p><a href="https://creativecommons.org/licenses/by-sa/4.0/"><img src="https://licensebuttons.net/l/by-sa/4.0/80x15.png"></a></p>
+
+                    <p>Creative Commons License &ndash; This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International.</p>
+
+                </footer> <!-- .page__footer -->
+
+            </div> <!-- .page -->
+
+            
+
+            
+            <div class="qe-sidebar bd-sidebar inactive" id="site-navigation">
+
+                <div class="qe-sidebar__header">
+
+
+                    Contents
+
+                </div>
+
+                <nav class="qe-sidebar__nav" id="qe-sidebar-nav" aria-label="Main navigation">
+                    <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Introduction
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="about.html">
+   1. About these Lectures
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Supply and Demand
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro_supply_demand.html">
+   2. Introduction to Supply and Demand
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="supply_demand_multiple_goods.html">
+   3. Supply and Demand with Many Goods
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="supply_demand_heterogeneity.html">
+   4. Market Equilibrium with Heterogeneity
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="input_output.html">
+   5. Input-Output Models
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Data and Measurement
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="long_run_growth.html">
+   6. Long Run Growth
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="business_cycle.html">
+   7. Business Cycles
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="inflation_unemployment.html">
+   8. Inflation and Unemployment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="inequality.html">
+   9. Income and Wealth Inequality
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="distributions.html">
+   10. Distributions in Economics
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Useful Tools
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="geom_series.html">
+   11. Geometric Series for Elementary Economics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="linear_equations.html">
+   12. Linear Equations and Matrix Algebra
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="eigen_I.html">
+   13. Eigenvalues and Eigenvectors
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Simulation
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="lln_clt.html">
+   14. LLN and CLT
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="monte_carlo.html">
+   15. Monte Carlo and Option Pricing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="schelling.html">
+   16. Racial Segregation
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Dynamics
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="solow.html">
+   17. The Solow-Swan Growth Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="scalar_dynam.html">
+   18. Dynamics in One Dimension
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cobweb.html">
+   19. The Cobweb Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="olg.html">
+   20. The Overlapping Generations Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="markov_chains_I.html">
+   21. Markov Chains: Basic Concepts and Stationarity
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="markov_chains_II.html">
+   22. Markov Chains: Irreducibility and Ergodicity
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Modeling in Higher Dimensions
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="eigen_II.html">
+   23. Theorems of Nonnegative Matrices and Eigenvalues
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lake_model.html">
+   24. A Lake Model of Employment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="asset_pricing.html">
+   25. Introduction to Asset Pricing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="networks.html">
+   26. Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="samuelson.html">
+   27. Multiplier Accelerator Model
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Optimization
+ </span>
+</p>
+<ul class="current nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1 current active active">
+  <a class="current reference internal" href="#">
+   28. Linear Programming
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="comparative_adv.html">
+   29. Comparative Advantage
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nonlinear.html">
+   30. Nonlinear Problems
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="short_path.html">
+   31. Shortest Paths
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Markets and Competitive Equilibrium
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="markets_welfare.html">
+   32. Markets and Welfare
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="risk.html">
+   33. Risk
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="uncertainty.html">
+   34. Uncertainty
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Estimation
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="simple_linear_regression.html">
+   35. Simple Linear Regression Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lr_with_matrices.html">
+   36. Linear Regression with Matrices
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="mle.html">
+   37. Maximum Likelihood Estimation
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Other
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="troubleshooting.html">
+   38. Troubleshooting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="zreferences.html">
+   39. References
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="status.html">
+   40. Execution Statistics
+  </a>
+ </li>
+</ul>
+
+                </nav>
+
+                <div class="qe-sidebar__footer">
+
+                </div>
+
+            </div> <!-- .sidebar -->
+            
+        </div> <!-- .main -->
+
+        <div class="qe-toolbar">
+
+            <div class="qe-toolbar__inner">
+
+                <ul class="qe-toolbar__main">
+                    <li data-tippy-content="Table of Contents" class="btn__sidebar"><i data-feather="menu"></i></li>
+                    <li data-tippy-content="Home"><a href="intro.html"><i data-feather="home"></i></a></li>
+                    <li class="btn__qelogo"><a href="https://quantecon.org" title=""><span class="show-for-sr">QuantEcon</span></a></li>
+                    <!-- <li class="btn__search">
+                        <form action="search.html" method="get">
+                            <input type="search" class="form-control" name="q" id="search-input" placeholder="Search..." aria-label="Search..." autocomplete="off">
+                            <i data-feather="search"></i>
+                        </form>
+                    </li> -->
+                </ul>
+
+                <ul class="qe-toolbar__links">
+                    <li data-tippy-content="Fullscreen" class="btn__fullscreen"><i data-feather="maximize"></i></li>
+                    <li data-tippy-content="Increase font size" class="btn__plus"><i data-feather="plus-circle"></i></li>
+                    <li data-tippy-content="Decrease font size" class="btn__minus"><i data-feather="minus-circle"></i></li>
+                    <li data-tippy-content="Change contrast" class="btn__contrast"><i data-feather="sunset"></i></li>
+                    <li data-tippy-content="Download Notebook"><a href="/_notebooks/lp_intro.ipynb" download><i data-feather="download-cloud"></i></a></li>
+                    <li class="settings-button" id="settingsButton"><div data-tippy-content="Launch Notebook"><i data-feather="play-circle"></i></div></li>
+                        <li data-tippy-content="Download PDF" onClick="window.print()"><i data-feather="file"></i></li>
+                    <li data-tippy-content="View Source"><a target="_blank" href="https://github.com/QuantEcon/lecture-python-intro/tree/master/lectures/lp_intro.md" download><i data-feather="github"></i></a></li>
+                </ul>
+
+            </div>
+
+        </div> <!-- .toolbar -->
+        <div id="downloadPDFModal" style="display: none;">
+            <ul class="pdf-options" style="display: block;">
+                <li class="download-pdf-book" onClick="window.print()">
+                    <p>Lecture (PDF)</p>
+                </li>
+                <li class="download-pdf-file">
+                    <a href="" download><p>Book (PDF)</p></a>
+                </li>
+            </ul>
+        </div>
+        <div id="settingsModal" style="display: none;">
+            <p class="modal-title"> Notebook Launcher </p>
+            <div class="modal-desc">
+            <p>
+                Choose public or private cloud service for "Launch" button.
+            </p>
+            </div>
+            <p class="modal-subtitle">Select a server</p>
+            <ul class="modal-servers">
+            <li class="active launcher-public">
+                <span class="label">Public</span>
+                <select id="launcher-public-input">
+                
+                    <option value="https://mybinder.org/v2/gh/QuantEcon/lecture-python-intro.notebooks/master?urlpath=tree/lp_intro.ipynb">BinderHub</option>
+                
+                    <option value="https://colab.research.google.com/github/QuantEcon/lecture-python-intro.notebooks/blob/master/lp_intro.ipynb">Colab</option>
+                
+                </select>
+                <i class="fas fa-check-circle"></i>
+            </li>
+            <li class="launcher-private">
+                <span class="label">Private</span>
+                <input type="text" id="launcher-private-input" data-repourl="https://github.com/QuantEcon/lecture-python-intro.notebooks" data-urlpath="tree/lecture-python-intro.notebooks/lp_intro.ipynb" data-branch=master>
+                <i class="fas fa-check-circle"></i>
+            </li>
+            </ul>
+            <p class="launch"><a href="https://mybinder.org/v2/gh/QuantEcon/lecture-python-intro.notebooks/master?urlpath=tree/lp_intro.ipynb" id="advancedLaunchButton" target="_blank">Launch Notebook</a></p>
+            <script>
+                // QuantEcon Notebook Launcher
+                const launcherTypeElements = document.querySelectorAll('#settingsModal .modal-servers li');
+                // Highlight the server type if previous selection exists
+                if (typeof localStorage.launcherType !== 'undefined') {
+                  for (var i = 0; i < launcherTypeElements.length; i++) {
+                    launcherTypeElements[i].classList.remove('active');
+                    if ( launcherTypeElements[i].classList.contains(localStorage.launcherType) ) {
+                      launcherTypeElements[i].classList.add('active');
+                    }
+                  }
+                }
+                // Highlight server type on click and set local storage value
+                for (var i = 0; i < launcherTypeElements.length; i++) {
+                  launcherTypeElements[i].addEventListener('click', function() {
+                    for (var j = 0; j < launcherTypeElements.length; j++) {
+                      launcherTypeElements[j].classList.remove('active');
+                    }
+                    this.classList.add('active');
+                    if ( this.classList.contains('launcher-private') ) {
+                      localStorage.launcherType = 'launcher-private';
+                    } else if ( this.classList.contains('launcher-public') ) {
+                      localStorage.launcherType = 'launcher-public';
+                    }
+                    setLaunchServer();
+                  })
+                }
+                const launcherPublic = document.getElementById('launcher-public-input');
+                const launcherPrivate = document.getElementById('launcher-private-input');
+                const pageName = "lp_intro";
+                const repoURL = "https://github.com/QuantEcon/lecture-python-intro.notebooks";
+                const urlPath = "tree/lecture-python-intro.notebooks/lp_intro.ipynb";
+                const branch = "master"
+                const launchNotebookLink = document.getElementById('advancedLaunchButton');
+
+                // Highlight public server option if previous selection exists
+                if (typeof localStorage.launcherPublic !== 'undefined') {
+                  launcherPublic.value = localStorage.launcherPublic;
+                }
+                // Update local storage upon public server selection
+                launcherPublic.addEventListener('change', (event) => {
+                  setLaunchServer();
+                });
+                // Populate private server input if previous entry exists
+                if (typeof localStorage.launcherPrivate !== 'undefined') {
+                  launcherPrivate.value = localStorage.launcherPrivate;
+                }
+                // Update local storage when a private server is entered
+                launcherPrivate.addEventListener('input', (event) => {
+                  setLaunchServer();
+                });
+
+                // Function to update the "Launch Notebook" link href
+                function setLaunchServer() {
+                  launchNotebookLink.removeAttribute("style")
+                  if ( localStorage.launcherType == 'launcher-private' ) {
+                    let repoPrefix = "/jupyter/hub/user-redirect/git-pull?repo=" + repoURL + "&branch=" + branch + "&urlpath=" + urlPath;
+                    launcherPrivateValue = launcherPrivate.value
+                    if (!launcherPrivateValue) {
+                        launchNotebookLink.removeAttribute("href")
+                        launchNotebookLink.style.background = "grey"
+                        return
+                    }
+                    localStorage.launcherPrivate = launcherPrivateValue;
+                    privateServer = localStorage.launcherPrivate.replace(/\/$/, "")
+                    if (!privateServer.includes("http")) {
+                        privateServer = "http://" + privateServer
+                    }
+                    launchNotebookLinkURL = privateServer + repoPrefix;
+                  } else if ( localStorage.launcherType == 'launcher-public' ) {
+                    launcherPublicValue = launcherPublic.options[launcherPublic.selectedIndex].value;
+                    localStorage.launcherPublic = launcherPublicValue;
+                    launchNotebookLinkURL = localStorage.launcherPublic;
+                  }
+                  if (launchNotebookLinkURL) launchNotebookLink.href = launchNotebookLinkURL;
+                }
+                // Check if user has previously selected a server
+                if ( (typeof localStorage.launcherPrivate !== 'undefined') || (typeof localStorage.launcherPublic !== 'undefined') ) {
+                  setLaunchServer();
+                }
+                </script>
+
+        </div>
+
+    </div> <!-- .wrapper-->
+  </body>
+</html>

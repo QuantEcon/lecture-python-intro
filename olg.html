@@ -1,0 +1,1588 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>20. The Overlapping Generations Model &#8212; An Introduction to Quantitative Economics and Finance</title>
+    <script src="https://unpkg.com/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://unpkg.com/tippy.js@6.3.1/dist/tippy-bundle.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    
+        <script>
+            MathJax = {
+            loader: {load: ['[tex]/boldsymbol', '[tex]/textmacros']},
+            tex: {
+                packages: {'[+]': ['boldsymbol', 'textmacros']},
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                processEscapes: true,
+                macros: {
+                    "argmax" : "arg\\,max",
+                    "argmin" : "arg\\,min",
+                    "col"    : "col",
+                    "Span"   :  "span",
+                    "epsilon": "\\varepsilon",
+                    "EE": "\\mathbb{E}",
+                    "PP": "\\mathbb{P}",
+                    "RR": "\\mathbb{R}",
+                    "NN": "\\mathbb{N}",
+                    "ZZ": "\\mathbb{Z}",
+                    "aA": "\\mathcal{A}",
+                    "bB": "\\mathcal{B}",
+                    "cC": "\\mathcal{C}",
+                    "dD": "\\mathcal{D}",
+                    "eE": "\\mathcal{E}",
+                    "fF": "\\mathcal{F}",
+                    "gG": "\\mathcal{G}",
+                    "hH": "\\mathcal{H}",
+                }
+            },
+            svg: {
+                fontCache: 'global',
+                scale: 0.92,
+                displayAlign: "center",
+            },
+            };
+        </script>
+    
+    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/quantecon-book-theme.279dae03c5caae754d20501e3fa00bbf.css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/exercise.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script src="_static/quantecon-book-theme.15b0c36fffe88f468997fa7b698991d3.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'olg';</script>
+    <link rel="canonical" href="https://intro.quantecon.org/olg.html" />
+    <link rel="shortcut icon" href="_static/lectures-favicon.ico"/>
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="21. Markov Chains: Basic Concepts and Stationarity" href="markov_chains_I.html" />
+    <link rel="prev" title="19. The Cobweb Model" href="cobweb.html" />
+
+<!-- Normal Meta Tags -->
+<meta name="author" context="Thomas J. Sargent &amp; John Stachurski" />
+<meta name="keywords" content="Python, QuantEcon, Quantitative Economics, Economics, Sloan, Alfred P. Sloan Foundation, Tom J. Sargent, John Stachurski" />
+<meta name="description" content=This website presents introductory lectures on computational economics, designed and written by Thomas J. Sargent and John Stachurski. />
+
+<!-- Twitter tags -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@quantecon" />
+<meta name="twitter:title" content="The Overlapping Generations Model"/>
+<meta name="twitter:description" content="This website presents introductory lectures on computational economics, designed and written by Thomas J. Sargent and John Stachurski.">
+<meta name="twitter:creator" content="@quantecon">
+<meta name="twitter:image" content="https://assets.quantecon.org/img/qe-twitter-logo.png">
+
+<!-- Opengraph tags -->
+<meta property="og:title" content="The Overlapping Generations Model" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://intro.quantecon.org/olg.html" />
+<meta property="og:image" content="https://assets.quantecon.org/img/qe-og-logo.png" />
+<meta property="og:description" content="This website presents introductory lectures on computational economics, designed and written by Thomas J. Sargent and John Stachurski." />
+<meta property="og:site_name" content="An Introduction to Quantitative Economics and Finance" />
+<meta name="theme-color" content="#ffffff" />
+
+  </head>
+<body>
+
+
+    <span id="top"></span>
+
+    <div class="qe-wrapper">
+
+        <div class="qe-main">
+
+            <div class="qe-page" id=olg>
+
+                <div class="qe-page__toc">
+
+                    <div class="inner">
+
+                        
+                        <div class="qe-page__toc-header">
+                            On this page
+                        </div>
+
+
+                        <nav id="bd-toc-nav" class="qe-page__toc-nav">
+                            <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#environment">20.1. Environment</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#supply-of-capital">20.2. Supply of capital</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#consumers-problem">20.2.1. Consumer’s problem</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#special-case-log-preference">20.2.2. Special case: log preference</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#demand-for-capital">20.3. Demand for capital</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#firms-problem">20.3.1. Firm’s problem</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">20.3.2. Demand for capital</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#equilibrium">20.4. Equilibrium</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dynamics-and-steady-state">20.5. Dynamics and steady state</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#another-special-case-crra-preference">20.6. Another special case: CRRA preference</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#new-aggregate-supply">20.6.1. New aggregate supply</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">20.6.2. Equilibrium</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">20.6.3. Dynamics and steady state</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">20.7. Exercises</a></li>
+</ul>
+                            <p class="logo">
+                                
+                                    
+                                    <a href=https://quantecon.org><img src="_static/qe-logo.png" class="logo" alt="logo"></a>
+                                    
+                                
+                            </p>
+
+                            <p class="powered">Powered by <a href="https://jupyterbook.org/">Jupyter Book</a></p>
+
+                        </nav>
+
+                        <div class="qe-page__toc-footer">
+                            
+                            
+                            <p><a href="#top"><strong>Back to top</strong></a></p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="qe-page__header">
+
+                    <div class="qe-page__header-copy">
+
+                        <p class="qe-page__header-heading"><a href="intro.html">An Introduction to Quantitative Economics and Finance</a></p>
+
+                        <p class="qe-page__header-subheading">The Overlapping Generations Model</p>
+
+                    </div>
+
+                    <p class="qe-page__header-authors">Thomas J. Sargent & John Stachurski</p>
+
+                </div> <!-- .page__header -->
+
+
+
+                
+                <main class="qe-page__content" role="main">
+                    
+                    <div>
+                        
+  <section class="tex2jax_ignore mathjax_ignore" id="the-overlapping-generations-model">
+<h1><span class="section-number">20. </span>The Overlapping Generations Model<a class="headerlink" href="#the-overlapping-generations-model" title="Permalink to this heading">#</a></h1>
+<p>In this lecture we study the overlapping generations (OLG) model.</p>
+<p>The dynamics of this model are quite similar to Solow-Swan growth model.</p>
+<p>At the same time, the OLG model adds an important new feature: the choice of
+how much to save is endogenous.</p>
+<p>To see why this is important, suppose, for example, that we are interested in
+predicting the effect of a new tax on long-run growth.</p>
+<p>We could add a tax to the Solow-Swan model and look at the change in the
+steady state.</p>
+<p>But this ignores something important: households will change their behavior
+when they face the new tax rate.</p>
+<p>Some might decide to save less, and some might decide to save more.</p>
+<p>Such changes can substantially alter the predictions of the model.</p>
+<p>Hence, if we care about accurate predictions, we should model the decision
+problems of the agents.</p>
+<p>In particular, households in the model should decide how much to save and how
+much to consume, given the environment that they face (technology, taxes,
+prices, etc.)</p>
+<p>The OLG model takes up this challenge.</p>
+<p>We will present a simple version of the OLG model that clarifies the decision
+problem of households and studies the implications for long run growth.</p>
+<p>Let’s start with some imports.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">optimize</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">namedtuple</span>
+<span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">partial</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;figure.figsize&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>  <span class="c1">#set default figure size</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="environment">
+<h2><span class="section-number">20.1. </span>Environment<a class="headerlink" href="#environment" title="Permalink to this heading">#</a></h2>
+<p>TODO add timing and basic ideas of OLG</p>
+<p>We assume that</p>
+<ul class="simple">
+<li><p>time is discrete, so that <span class="math notranslate nohighlight">\(t=0, 1, \ldots\)</span>,</p></li>
+<li><p>individuals born at time <span class="math notranslate nohighlight">\(t\)</span> live for two periods: <span class="math notranslate nohighlight">\(t\)</span> and <span class="math notranslate nohighlight">\(t + 1\)</span>,</p></li>
+<li><p>capital depreciates fully after one period (TODO to be checked)</p></li>
+</ul>
+<p>First let’s consider the household side.</p>
+</section>
+<section id="supply-of-capital">
+<h2><span class="section-number">20.2. </span>Supply of capital<a class="headerlink" href="#supply-of-capital" title="Permalink to this heading">#</a></h2>
+<section id="consumers-problem">
+<h3><span class="section-number">20.2.1. </span>Consumer’s problem<a class="headerlink" href="#consumers-problem" title="Permalink to this heading">#</a></h3>
+<p>Suppose that utility for individuals born at time <span class="math notranslate nohighlight">\(t\)</span> take the form</p>
+<div class="math notranslate nohighlight" id="equation-eq-crra">
+<span class="eqno">(20.1)<a class="headerlink" href="#equation-eq-crra" title="Permalink to this equation">#</a></span>\[    U_t = u(c^1_t) + \beta u(c^2_{t+1})\]</div>
+<p>Here</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(u: \mathbb R_+ \to \mathbb R\)</span> is the flow utility function satisfying some properties</p></li>
+<li><p><span class="math notranslate nohighlight">\(\beta \in (0, 1)\)</span> is the discount factor</p></li>
+<li><p><span class="math notranslate nohighlight">\(c^1_t\)</span> is time <span class="math notranslate nohighlight">\(t\)</span> consumption of the individual born at time <span class="math notranslate nohighlight">\(t\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(c^2_{t+1}\)</span> is time <span class="math notranslate nohighlight">\(t+1\)</span> consumption of the same individual (born at time <span class="math notranslate nohighlight">\(t\)</span>)</p></li>
+</ul>
+<p>Savings by an individual of generation <span class="math notranslate nohighlight">\(t\)</span>, <span class="math notranslate nohighlight">\(s_t\)</span>, is determined as a
+solution to:</p>
+<div class="math notranslate nohighlight" id="equation-max-sav-olg">
+<span class="eqno">(20.2)<a class="headerlink" href="#equation-max-sav-olg" title="Permalink to this equation">#</a></span>\[\begin{split}    \begin{aligned}
+    \max_{c^1_t, c^2_{t+1}, s_t} \ &amp; \left \{ u(c^1_t) + \beta u(c^2_{t+1}) \right \} \\
+    \mbox{subject to } \ &amp; c^1_t + s_t \le w_t \\
+                         &amp; c^2_{t+1} \le R_{t+1}s_t\\
+    \end{aligned}\end{split}\]</div>
+<p>where</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(w_t\)</span> is the wage rate at time</p></li>
+<li><p><span class="math notranslate nohighlight">\(R_{t+1}\)</span> is time <span class="math notranslate nohighlight">\(t+1\)</span> rental rate of capital.</p></li>
+</ul>
+<p>The second constraint incorporates the notion that individuals only spend
+money on their own end of life consumption. Also, Since <span class="math notranslate nohighlight">\(u\)</span> is strictly increasing, both constraints will hold as equalities.</p>
+<p>Substituting <span class="math notranslate nohighlight">\(s_t\)</span> from the first constraint into the second we get <span class="math notranslate nohighlight">\(c^2_{t+1}\)</span> in terms of <span class="math notranslate nohighlight">\(c^1_t\)</span>, i.e.,</p>
+<div class="math notranslate nohighlight" id="equation-c-2-olg">
+<span class="eqno">(20.3)<a class="headerlink" href="#equation-c-2-olg" title="Permalink to this equation">#</a></span>\[    c^2_{t+1} = R_{t+1}(w_t - c^1_t)\]</div>
+<p>Thus first-order condition for a maximum can be written in the
+familiar form of the consumption Euler equation by plugging <span class="math notranslate nohighlight">\(c^2_{t+1}\)</span> into the objective function and taking derivative with respect to <span class="math notranslate nohighlight">\(c^1_t\)</span></p>
+<div class="math notranslate nohighlight" id="equation-euler-1-olg">
+<span class="eqno">(20.4)<a class="headerlink" href="#equation-euler-1-olg" title="Permalink to this equation">#</a></span>\[    u'(c^1_t) = \beta R_{t+1}  u'( R_{t+1} (w_t - c^1_t))\]</div>
+<p>From the first constraint we get</p>
+<div class="math notranslate nohighlight" id="equation-c-1-olg">
+<span class="eqno">(20.5)<a class="headerlink" href="#equation-c-1-olg" title="Permalink to this equation">#</a></span>\[    c^1_{t} = w_t - s_t\]</div>
+<p>With it the Euler equation (4) becomes</p>
+<div class="math notranslate nohighlight" id="equation-euler-2-olg">
+<span class="eqno">(20.6)<a class="headerlink" href="#equation-euler-2-olg" title="Permalink to this equation">#</a></span>\[    u'(w_t - s_t) = \beta R_{t+1}  u'( R_{t+1} s_t)\]</div>
+<p>From this we can solve for savings analytically or, if necessary, numerically</p>
+<div class="math notranslate nohighlight" id="equation-saving-1-olg">
+<span class="eqno">(20.7)<a class="headerlink" href="#equation-saving-1-olg" title="Permalink to this equation">#</a></span>\[    s_t = s(w_t, R_{t+1})\]</div>
+<p>Let <span class="math notranslate nohighlight">\(L_t\)</span> be the time <span class="math notranslate nohighlight">\(t\)</span> labor.</p>
+<p>Furthermore let’s assume a constant population size, i.e., <span class="math notranslate nohighlight">\(L_{t+1}=L_t=L\)</span> for all <span class="math notranslate nohighlight">\(t\)</span>.</p>
+<p>Total savings in the economy will be equal to</p>
+<div class="math notranslate nohighlight" id="equation-total-savings-1-olg">
+<span class="eqno">(20.8)<a class="headerlink" href="#equation-total-savings-1-olg" title="Permalink to this equation">#</a></span>\[    S_t = s_t L\]</div>
+<p>In our closed economy, net saving this period will be equal to supply next period, i.e.,</p>
+<div class="math notranslate nohighlight" id="equation-aggregate-supply-capital-1-olg">
+<span class="eqno">(20.9)<a class="headerlink" href="#equation-aggregate-supply-capital-1-olg" title="Permalink to this equation">#</a></span>\[    K_{t+1} = K^S(w_t, R_{t+1}) =  S_t = L s_t = L s(w_t, R_{t+1})\]</div>
+<p>Here <span class="math notranslate nohighlight">\(K^S\)</span> is a time-invariant function mapping wage <span class="math notranslate nohighlight">\(w_t\)</span> and capital return rate <span class="math notranslate nohighlight">\(R_{t+1}\)</span> to aggregate capital supply <span class="math notranslate nohighlight">\(K_{t+1}\)</span>.</p>
+</section>
+<section id="special-case-log-preference">
+<h3><span class="section-number">20.2.2. </span>Special case: log preference<a class="headerlink" href="#special-case-log-preference" title="Permalink to this heading">#</a></h3>
+<p>Assume <span class="math notranslate nohighlight">\(u(c) = \log c\)</span>.</p>
+<p>The Euler equation simplifies to</p>
+<div class="math notranslate nohighlight" id="equation-saving-log-1-olg">
+<span class="eqno">(20.10)<a class="headerlink" href="#equation-saving-log-1-olg" title="Permalink to this equation">#</a></span>\[    s_t= \beta (w_t - s_t)\]</div>
+<p>Solving for saving,</p>
+<div class="math notranslate nohighlight" id="equation-saving-log-2-olg">
+<span class="eqno">(20.11)<a class="headerlink" href="#equation-saving-log-2-olg" title="Permalink to this equation">#</a></span>\[    s_t = s(w_t, R_{t+1}) = \frac{\beta}{1+\beta} w_t\]</div>
+<p>And hence</p>
+<div class="math notranslate nohighlight" id="equation-aggregate-supply-capital-log-olg">
+<span class="eqno">(20.12)<a class="headerlink" href="#equation-aggregate-supply-capital-log-olg" title="Permalink to this equation">#</a></span>\[    K_{t+1} = K^s(R_{t+1}) = Ls_t = L \frac{\beta}{1+\beta} w_t\]</div>
+</section>
+</section>
+<section id="demand-for-capital">
+<h2><span class="section-number">20.3. </span>Demand for capital<a class="headerlink" href="#demand-for-capital" title="Permalink to this heading">#</a></h2>
+<section id="firms-problem">
+<h3><span class="section-number">20.3.1. </span>Firm’s problem<a class="headerlink" href="#firms-problem" title="Permalink to this heading">#</a></h3>
+<p>For each integer <span class="math notranslate nohighlight">\(t \geq 0\)</span>, output <span class="math notranslate nohighlight">\(Y_t\)</span> in period <span class="math notranslate nohighlight">\(t\)</span> is given by</p>
+<div class="math notranslate nohighlight" id="equation-cobb-douglas">
+<span class="eqno">(20.13)<a class="headerlink" href="#equation-cobb-douglas" title="Permalink to this equation">#</a></span>\[    Y_t = K_t^{\alpha} L_t^{1-\alpha}\]</div>
+<p>Here <span class="math notranslate nohighlight">\(K_t\)</span> is capital, <span class="math notranslate nohighlight">\(L_t\)</span> is labor, and  <span class="math notranslate nohighlight">\(\alpha\)</span> is the output elasticity of capital in the <strong>Cobb-Douglas production function</strong>.</p>
+<p>Demand for labor <span class="math notranslate nohighlight">\(L\)</span> and capital <span class="math notranslate nohighlight">\(K_t\)</span> is determined by the profit maximization problem</p>
+<div class="math notranslate nohighlight" id="equation-opt-profit-olg">
+<span class="eqno">(20.14)<a class="headerlink" href="#equation-opt-profit-olg" title="Permalink to this equation">#</a></span>\[    \max_{K_t, L} \{ K^{\alpha}_t L^{1-\alpha} - R_t K_t - L w_t   \}\]</div>
+</section>
+<section id="id1">
+<h3><span class="section-number">20.3.2. </span>Demand for capital<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<p>The first-order conditions for a maximum can be obtained by taking the derivative of the objective function with respect to capital and labor respectively and setting it to zero:</p>
+<div class="math notranslate nohighlight" id="equation-wage">
+<span class="eqno">(20.15)<a class="headerlink" href="#equation-wage" title="Permalink to this equation">#</a></span>\[    (1-\alpha)(K_t / L)^{\alpha} = w_t\]</div>
+<p>and</p>
+<div class="math notranslate nohighlight" id="equation-interest-rate">
+<span class="eqno">(20.16)<a class="headerlink" href="#equation-interest-rate" title="Permalink to this equation">#</a></span>\[    \alpha (K_t / L)^{\alpha - 1} = R_t\]</div>
+<p>Rearranging <a class="reference internal" href="#equation-interest-rate">(20.16)</a> gives the aggregate demand for capital</p>
+<div class="math notranslate nohighlight" id="equation-aggregate-demand-capital-olg">
+<span class="eqno">(20.17)<a class="headerlink" href="#equation-aggregate-demand-capital-olg" title="Permalink to this equation">#</a></span>\[    K_{t+1} = K^d (R_{t+1}) = L \left (\frac{R_{t+1}}{\alpha} \right )^{1/(\alpha - 1)}\]</div>
+</section>
+</section>
+<section id="equilibrium">
+<h2><span class="section-number">20.4. </span>Equilibrium<a class="headerlink" href="#equilibrium" title="Permalink to this heading">#</a></h2>
+<p>The equality of aggregate demand <a class="reference internal" href="#equation-aggregate-demand-capital-olg">(20.17)</a> and aggregate supply <a class="reference internal" href="#equation-aggregate-supply-capital-log-olg">(20.12)</a> for capital yields the equalibrium.</p>
+<p>Specifically we have</p>
+<div class="math notranslate nohighlight" id="equation-equilibrium-1">
+<span class="eqno">(20.18)<a class="headerlink" href="#equation-equilibrium-1" title="Permalink to this equation">#</a></span>\[    K^s(R_{t+1}) = K^d(R_{t+1})\]</div>
+<p>or, equivalently,</p>
+<div class="math notranslate nohighlight" id="equation-equilibrium-2">
+<span class="eqno">(20.19)<a class="headerlink" href="#equation-equilibrium-2" title="Permalink to this equation">#</a></span>\[    L\frac{\beta}{1+\beta} (1-\alpha)(K_t / L)^{\alpha} = L\left (\frac{R_{t+1}}{\alpha} \right )^{1/(\alpha - 1)}\]</div>
+<p>Then we can solve for the equilibrium price</p>
+<div class="math notranslate nohighlight" id="equation-equilibrium-price">
+<span class="eqno">(20.20)<a class="headerlink" href="#equation-equilibrium-price" title="Permalink to this equation">#</a></span>\[    R^*_{t+1} = \alpha \left ( \frac{\beta (1-\alpha)(K_t / L)^{\alpha}}{1+\beta} \right )^{\alpha - 1}\]</div>
+<p>Plugging it into either the demand or the supply function gives the equilibrium quantity</p>
+<div class="math notranslate nohighlight" id="equation-equilibrium-quantity">
+<span class="eqno">(20.21)<a class="headerlink" href="#equation-equilibrium-quantity" title="Permalink to this equation">#</a></span>\[    K^*_{t+1} = \frac{\beta }{1+\beta} (1-\alpha)(K_t / L)^{\alpha} L\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Model</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s1">&#39;Model&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;α&#39;</span><span class="p">,</span>        <span class="c1"># output elasticity of capital in the Cobb-Douglas production function</span>
+                             <span class="s1">&#39;β&#39;</span><span class="p">,</span>        <span class="c1"># discount factor</span>
+                             <span class="s1">&#39;u&#39;</span><span class="p">,</span>        <span class="c1"># parameter which defines the flow utility</span>
+                             <span class="s1">&#39;L&#39;</span><span class="p">,</span>        <span class="c1"># population size</span>
+                             <span class="s1">&#39;u_params&#39;</span><span class="p">]</span> <span class="c1"># other params used to define u</span>
+                   <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">u</span><span class="p">(</span><span class="n">c</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">create_olg_model</span><span class="p">(</span><span class="n">α</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">β</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">u</span><span class="o">=</span><span class="n">u</span><span class="p">,</span> <span class="n">L</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span> <span class="n">u_params</span><span class="o">=</span><span class="nb">dict</span><span class="p">()):</span>
+    <span class="k">return</span> <span class="n">Model</span><span class="p">(</span><span class="n">α</span><span class="o">=</span><span class="n">α</span><span class="p">,</span> <span class="n">β</span><span class="o">=</span><span class="n">β</span><span class="p">,</span> <span class="n">u</span><span class="o">=</span><span class="n">u</span><span class="p">,</span> <span class="n">L</span><span class="o">=</span><span class="n">L</span><span class="p">,</span> <span class="n">u_params</span><span class="o">=</span><span class="n">u_params</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">equilibrium</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">K_prev</span><span class="p">):</span>
+    <span class="n">α</span><span class="p">,</span> <span class="n">β</span><span class="p">,</span> <span class="n">L</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">α</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">β</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">L</span>
+    <span class="n">R</span> <span class="o">=</span> <span class="n">α</span> <span class="o">*</span> <span class="p">(</span> <span class="n">β</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">α</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">K_prev</span> <span class="o">/</span> <span class="n">L</span><span class="p">)</span><span class="o">**</span><span class="n">α</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">β</span><span class="p">))</span><span class="o">**</span><span class="p">(</span><span class="n">α</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">K</span> <span class="o">=</span> <span class="n">β</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">β</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">α</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">K_prev</span> <span class="o">/</span> <span class="n">L</span><span class="p">)</span><span class="o">**</span><span class="n">α</span> <span class="o">*</span> <span class="n">L</span>
+    <span class="k">return</span> <span class="n">R</span><span class="p">,</span> <span class="n">K</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">aggregate_capital_demand</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">K_prev</span><span class="p">):</span>
+    <span class="n">α</span><span class="p">,</span> <span class="n">L</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">α</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">L</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">R</span><span class="o">/</span><span class="n">α</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="n">α</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span> <span class="o">*</span> <span class="n">L</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">aggregate_capital_supply</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">K_prev</span><span class="p">):</span>
+    <span class="n">α</span><span class="p">,</span> <span class="n">β</span><span class="p">,</span> <span class="n">L</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">α</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">β</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">L</span>
+    <span class="n">λ</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">R</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">λ</span> <span class="o">*</span> <span class="n">β</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">β</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">α</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">K_prev</span> <span class="o">/</span> <span class="n">L</span><span class="p">)</span><span class="o">**</span><span class="n">α</span> <span class="o">*</span> <span class="n">L</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_ad_as</span><span class="p">(</span><span class="n">demand</span><span class="p">,</span> <span class="n">supply</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">K_prev</span><span class="p">,</span> <span class="n">E_star</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+
+    <span class="n">R_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.3</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">R_vals</span><span class="p">,</span> <span class="n">demand</span><span class="p">(</span><span class="n">R_vals</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">K_prev</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;aggregate demand&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">R_vals</span><span class="p">,</span> <span class="n">supply</span><span class="p">(</span><span class="n">R_vals</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">K_prev</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;aggregate supply&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">E_star</span><span class="p">:</span>
+        <span class="n">R_star</span><span class="p">,</span> <span class="n">K_star</span> <span class="o">=</span> <span class="n">E_star</span>
+
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">R_star</span><span class="p">,</span> <span class="n">K_star</span><span class="p">,</span> <span class="s1">&#39;go&#39;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
+
+        <span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Equilibrium&#39;</span><span class="p">,</span>
+                 <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="n">R_star</span><span class="p">,</span> <span class="n">K_star</span><span class="p">),</span>
+                 <span class="n">xycoords</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">,</span>
+                 <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">60</span><span class="p">),</span>
+                 <span class="n">textcoords</span><span class="o">=</span><span class="s1">&#39;offset points&#39;</span><span class="p">,</span>
+                 <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span>
+                 <span class="n">arrowprops</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">arrowstyle</span><span class="o">=</span><span class="s2">&quot;-&gt;&quot;</span><span class="p">))</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;$R_{t+1}$&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;$K_{t+1}$&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m</span> <span class="o">=</span> <span class="n">create_olg_model</span><span class="p">()</span>
+<span class="n">K_prev</span> <span class="o">=</span> <span class="mi">50</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">E_star</span> <span class="o">=</span> <span class="n">equilibrium</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">K_prev</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">R_star</span><span class="p">,</span> <span class="n">K_star</span> <span class="o">=</span> <span class="n">E_star</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_ad_as</span><span class="p">(</span><span class="n">aggregate_capital_demand</span><span class="p">,</span> <span class="n">aggregate_capital_supply</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">K_prev</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">E_star</span><span class="o">=</span><span class="n">E_star</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/a6d922e64855ced8bca1e209e9272036cf073de60d7558c0c96619f79f04a3a2.png" src="_images/a6d922e64855ced8bca1e209e9272036cf073de60d7558c0c96619f79f04a3a2.png" />
+</div>
+</div>
+<p>Let’s observe the dynamics of the equilibrium price <span class="math notranslate nohighlight">\(R^*_{t+1}\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">K_t_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">10_000</span><span class="p">)</span>
+<span class="n">R_t1_vals</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">α</span> <span class="o">*</span> <span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">β</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">m</span><span class="o">.</span><span class="n">α</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">K_t_vals</span> <span class="o">/</span> <span class="n">m</span><span class="o">.</span><span class="n">L</span><span class="p">)</span><span class="o">**</span><span class="n">m</span><span class="o">.</span><span class="n">α</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">m</span><span class="o">.</span><span class="n">β</span><span class="p">))</span><span class="o">**</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">α</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">K_t_vals</span><span class="p">,</span> <span class="n">R_t1_vals</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;$R^*_{t+1}$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;$K_</span><span class="si">{t}</span><span class="s2">$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/0b4cafeeca33be742588a5ab0193ca1a8ce690a1d21cdd57039383a8cbc27d19.png" src="_images/0b4cafeeca33be742588a5ab0193ca1a8ce690a1d21cdd57039383a8cbc27d19.png" />
+</div>
+</div>
+</section>
+<section id="dynamics-and-steady-state">
+<h2><span class="section-number">20.5. </span>Dynamics and steady state<a class="headerlink" href="#dynamics-and-steady-state" title="Permalink to this heading">#</a></h2>
+<p>Let <span class="math notranslate nohighlight">\(k_t := K_t / L\)</span>.</p>
+<p>Aggregate supply of capital <a class="reference internal" href="#equation-aggregate-supply-capital-log-olg">(20.12)</a> becomes</p>
+<div class="math notranslate nohighlight" id="equation-supply-capital-log-olg">
+<span class="eqno">(20.22)<a class="headerlink" href="#equation-supply-capital-log-olg" title="Permalink to this equation">#</a></span>\[    k_{t+1} = k^s(R_{t+1}) = \frac{\beta}{1+\beta} w_t\]</div>
+<p><a class="reference internal" href="#equation-wage">(20.15)</a> becomes</p>
+<div class="math notranslate nohighlight" id="equation-wage-2">
+<span class="eqno">(20.23)<a class="headerlink" href="#equation-wage-2" title="Permalink to this equation">#</a></span>\[    (1-\alpha)(k_t)^{\alpha} = w_t\]</div>
+<p>Combining <a class="reference internal" href="#equation-supply-capital-log-olg">(20.22)</a> and <a class="reference internal" href="#equation-wage-2">(20.23)</a> yields the law of motion for capital</p>
+<div class="math notranslate nohighlight" id="equation-law-of-motion-capital">
+<span class="eqno">(20.24)<a class="headerlink" href="#equation-law-of-motion-capital" title="Permalink to this equation">#</a></span>\[    k_{t+1} = \frac{\beta}{1+\beta} (1-\alpha)(k_t)^{\alpha}\]</div>
+<p>A steady state can be solved analytically in this case.</p>
+<p>That is, <span class="math notranslate nohighlight">\(k_{t+1} = k_t = k^*\)</span>, where</p>
+<div class="math notranslate nohighlight" id="equation-steady-state-1">
+<span class="eqno">(20.25)<a class="headerlink" href="#equation-steady-state-1" title="Permalink to this equation">#</a></span>\[    k^* = \frac{\beta (1-\alpha) (k^*)^{\alpha}}{(1+\beta)}\]</div>
+<p>We can solve this equation to obtain</p>
+<div class="math notranslate nohighlight" id="equation-steady-state-2">
+<span class="eqno">(20.26)<a class="headerlink" href="#equation-steady-state-2" title="Permalink to this equation">#</a></span>\[    k^* = \left (\frac{\beta (1-\alpha)}{1+\beta} \right )^{1/(1-\alpha)}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">k_update</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
+    <span class="n">α</span><span class="p">,</span> <span class="n">β</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">α</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">β</span>
+    <span class="k">return</span> <span class="n">β</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">α</span><span class="p">)</span> <span class="o">*</span> <span class="n">k</span><span class="o">**</span><span class="n">α</span> <span class="o">/</span>  <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">β</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_45</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">k_update</span><span class="p">,</span> <span class="n">kstar</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="n">kmin</span><span class="p">,</span> <span class="n">kmax</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.6</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="mi">1000</span>
+    <span class="n">k_grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">kmin</span><span class="p">,</span> <span class="n">kmax</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+    <span class="n">k_grid_next</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty_like</span><span class="p">(</span><span class="n">k_grid</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+        <span class="n">k_grid_next</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">k_update</span><span class="p">(</span><span class="n">k_grid</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">m</span><span class="p">)</span>
+
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+    <span class="n">ymin</span><span class="p">,</span> <span class="n">ymax</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">k_grid_next</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">k_grid_next</span><span class="p">)</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">k_grid</span><span class="p">,</span> <span class="n">k_grid_next</span><span class="p">,</span>  <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$g$&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">k_grid</span><span class="p">,</span> <span class="n">k_grid</span><span class="p">,</span> <span class="s1">&#39;k-&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$45^{\circ}$&#39;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">kstar</span><span class="p">:</span>
+        <span class="n">fps</span> <span class="o">=</span> <span class="p">(</span><span class="n">kstar</span><span class="p">,)</span>
+
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">fps</span><span class="p">,</span> <span class="n">fps</span><span class="p">,</span> <span class="s1">&#39;go&#39;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
+
+        <span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$k^*$&#39;</span><span class="p">,</span>
+                 <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="n">kstar</span><span class="p">,</span> <span class="n">kstar</span><span class="p">),</span>
+                 <span class="n">xycoords</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">,</span>
+                 <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">60</span><span class="p">),</span>
+                 <span class="n">textcoords</span><span class="o">=</span><span class="s1">&#39;offset points&#39;</span><span class="p">,</span>
+                 <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span>
+                 <span class="n">arrowprops</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">arrowstyle</span><span class="o">=</span><span class="s2">&quot;-&gt;&quot;</span><span class="p">))</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">,</span> <span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$k_t$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$k_{t+1}$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_45</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">k_update</span><span class="p">,</span> <span class="n">kstar</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/851e6e4327f9fd93311498904e97d54afb16ebdb57d0ea6d77bbabe56bbc2a84.png" src="_images/851e6e4327f9fd93311498904e97d54afb16ebdb57d0ea6d77bbabe56bbc2a84.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">k_star</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
+    <span class="n">α</span><span class="p">,</span> <span class="n">β</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">α</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">β</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">β</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">α</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">β</span><span class="p">)</span>  <span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">α</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_45</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">k_update</span><span class="p">,</span> <span class="n">kstar</span><span class="o">=</span><span class="n">k_star</span><span class="p">(</span><span class="n">m</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/6c1df8c33f1d04a356519b5c16d2b568ac24d5054f63c0364aa1f5cfe1b5804e.png" src="_images/6c1df8c33f1d04a356519b5c16d2b568ac24d5054f63c0364aa1f5cfe1b5804e.png" />
+</div>
+</div>
+</section>
+<section id="another-special-case-crra-preference">
+<h2><span class="section-number">20.6. </span>Another special case: CRRA preference<a class="headerlink" href="#another-special-case-crra-preference" title="Permalink to this heading">#</a></h2>
+<p>Let’s now assume that the model is the same except that <span class="math notranslate nohighlight">\(u(c) = \frac{ c^{1- \gamma}-1}{1-\gamma}\)</span>, where <span class="math notranslate nohighlight">\(\gamma &gt;0, \gamma\neq 1\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">crra</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">γ</span><span class="o">=</span><span class="mf">0.5</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">c</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">γ</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">γ</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m_crra</span> <span class="o">=</span> <span class="n">create_olg_model</span><span class="p">(</span><span class="n">u</span><span class="o">=</span><span class="n">crra</span><span class="p">,</span> <span class="n">u_params</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;γ&#39;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="new-aggregate-supply">
+<h3><span class="section-number">20.6.1. </span>New aggregate supply<a class="headerlink" href="#new-aggregate-supply" title="Permalink to this heading">#</a></h3>
+<p>For households, the Euler equation becomes</p>
+<div class="math notranslate nohighlight" id="equation-euler-crra">
+<span class="eqno">(20.27)<a class="headerlink" href="#equation-euler-crra" title="Permalink to this equation">#</a></span>\[    (w_t - s_t)^{-\gamma} = \beta R^{1-\gamma}_{t+1}  (s_t)^{-\gamma}\]</div>
+<p>Solving for savings, we have</p>
+<div class="math notranslate nohighlight" id="equation-saving-crra">
+<span class="eqno">(20.28)<a class="headerlink" href="#equation-saving-crra" title="Permalink to this equation">#</a></span>\[    s_t = s(w_t, R_{t+1}) = w_t \left [ 1 + \beta^{-1/\gamma} R_{t+1}^{(\gamma-1)/\gamma} \right ]^{-1}\]</div>
+<p>With the CRRA utility, the aggregate supply of capital <a class="reference internal" href="#equation-aggregate-supply-capital-1-olg">(20.9)</a> becomes</p>
+<div class="math notranslate nohighlight" id="equation-aggregate-supply-capital-crra-olg">
+<span class="eqno">(20.29)<a class="headerlink" href="#equation-aggregate-supply-capital-crra-olg" title="Permalink to this equation">#</a></span>\[    K_{t+1} = K^S(w_t, R_{t+1}) =  S_t = L s_t = L s(w_t, R_{t+1}) = L w_t \left [ 1 + \beta^{-1/\gamma} R_{t+1}^{(\gamma-1)/\gamma} \right ]^{-1}\]</div>
+</section>
+<section id="id2">
+<h3><span class="section-number">20.6.2. </span>Equilibrium<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
+<p>The equality of aggregate demand <a class="reference internal" href="#equation-aggregate-demand-capital-olg">(20.17)</a> and new aggregate supply <a class="reference internal" href="#equation-aggregate-supply-capital-crra-olg">(20.29)</a> for capital yields the equalibrium.</p>
+<p>Specifically we have</p>
+<div class="math notranslate nohighlight" id="equation-equilibrium-crra-1">
+<span class="eqno">(20.30)<a class="headerlink" href="#equation-equilibrium-crra-1" title="Permalink to this equation">#</a></span>\[    K^S(R_{t+1}) = K^d(R_{t+1})\]</div>
+<p>or equivalently</p>
+<div class="math notranslate nohighlight" id="equation-equilibrium-crra-2">
+<span class="eqno">(20.31)<a class="headerlink" href="#equation-equilibrium-crra-2" title="Permalink to this equation">#</a></span>\[    L w_t \left [ 1 + \beta^{-1/\gamma} R_{t+1}^{(\gamma-1)/\gamma} \right ]^{-1} = L\left (\frac{R_{t+1}}{\alpha} \right )^{1/(\alpha - 1)}\]</div>
+<p>Combining with <a class="reference internal" href="#equation-wage">(20.15)</a> yields</p>
+<div class="math notranslate nohighlight" id="equation-equilibrium-crra">
+<span class="eqno">(20.32)<a class="headerlink" href="#equation-equilibrium-crra" title="Permalink to this equation">#</a></span>\[    L (1-\alpha)(K_t / L)^{\alpha} \left [ 1 + \beta^{-1/\gamma} R_{t+1}^{(\gamma-1)/\gamma} \right ]^{-1} = L\left (\frac{R_{t+1}}{\alpha} \right )^{1/(\alpha - 1)}\]</div>
+<p>Here we cannot solve for the equilibrium price and quantity analytically.</p>
+<p>Exercise 1 asks you to solve <a class="reference internal" href="#equation-equilibrium-crra">(20.32)</a> to obtain the equilibrium quantity <span class="math notranslate nohighlight">\(R_{t+1}\)</span> and the equilibrium price numerically, and verify it using the plot below.</p>
+<p>Below we just show a plot of the equilibrium.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">aggregate_supply_capital_crra</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">K_prev</span><span class="p">):</span>
+    <span class="n">α</span><span class="p">,</span> <span class="n">β</span><span class="p">,</span> <span class="n">γ</span><span class="p">,</span> <span class="n">L</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">α</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">β</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">u_params</span><span class="p">[</span><span class="s1">&#39;γ&#39;</span><span class="p">],</span> <span class="n">model</span><span class="o">.</span><span class="n">L</span>
+    <span class="k">return</span> <span class="n">L</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">α</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">α</span><span class="p">)</span> <span class="o">*</span> <span class="n">K_prev</span><span class="o">**</span><span class="n">α</span> <span class="o">/</span> <span class="p">(</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">β</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="n">γ</span><span class="p">)</span> <span class="o">*</span> <span class="n">R</span><span class="o">**</span><span class="p">((</span><span class="n">γ</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="n">γ</span><span class="p">)</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_ad_as</span><span class="p">(</span><span class="n">aggregate_capital_demand</span><span class="p">,</span> <span class="n">aggregate_supply_capital_crra</span><span class="p">,</span> <span class="n">m_crra</span><span class="p">,</span> <span class="n">K_prev</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">E_star</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>  <span class="c1"># John this is to be fixed.</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/f94f9a0b446bc3a4e0a270e7c7c7f413eb9f39b8cc3d345ee426cff79fe68973.png" src="_images/f94f9a0b446bc3a4e0a270e7c7c7f413eb9f39b8cc3d345ee426cff79fe68973.png" />
+</div>
+</div>
+<p>Let’s plot the aggregate supply with different values of utility parameter <span class="math notranslate nohighlight">\(\gamma\)</span> and observe it’s behaviour.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">γ_vals</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">]</span>
+<span class="n">K_prev</span> <span class="o">=</span> <span class="mi">50</span>
+
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">R_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.3</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">γ</span> <span class="ow">in</span> <span class="n">γ_vals</span><span class="p">:</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="n">create_olg_model</span><span class="p">(</span><span class="n">u</span><span class="o">=</span><span class="n">partial</span><span class="p">(</span><span class="n">crra</span><span class="p">,</span> <span class="n">γ</span><span class="o">=</span><span class="n">γ</span><span class="p">),</span> <span class="n">u_params</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;γ&#39;</span><span class="p">:</span> <span class="n">γ</span><span class="p">})</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">R_vals</span><span class="p">,</span> <span class="n">aggregate_supply_capital_crra</span><span class="p">(</span><span class="n">R_vals</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">K_prev</span><span class="p">),</span>
+            <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$\gamma=$&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">γ</span><span class="p">))</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;$R_{t+1}$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Aggregate Supply&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/a03d7deb8d0a96e7f483fd15dbf4575367dd53d9a6e533c54449214a60ab582a.png" src="_images/a03d7deb8d0a96e7f483fd15dbf4575367dd53d9a6e533c54449214a60ab582a.png" />
+</div>
+</div>
+<p>When <span class="math notranslate nohighlight">\(\gamma &lt;1\)</span> the supply curve is downward sloping. When <span class="math notranslate nohighlight">\(\gamma &gt; 1\)</span> the supply curve is upward sloping.</p>
+<p>TODO: Do we need to add some explanation?</p>
+</section>
+<section id="id3">
+<h3><span class="section-number">20.6.3. </span>Dynamics and steady state<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
+<p>Setting <span class="math notranslate nohighlight">\(k_t := K_t / L\)</span> and using <a class="reference internal" href="#equation-saving-crra">(20.28)</a>.</p>
+<p>Aggregate supply of capital <a class="reference internal" href="#equation-aggregate-supply-capital-1-olg">(20.9)</a> becomes</p>
+<div class="math notranslate nohighlight" id="equation-supply-capital-crra-olg">
+<span class="eqno">(20.33)<a class="headerlink" href="#equation-supply-capital-crra-olg" title="Permalink to this equation">#</a></span>\[    k_{t+1} = k^s(R_{t+1}) = \left [ 1 + \beta^{-1/\gamma} R_{t+1}^{(\gamma-1)/\gamma} \right ]^{-1} w_t\]</div>
+<p><a class="reference internal" href="#equation-interest-rate">(20.16)</a> becomes</p>
+<div class="math notranslate nohighlight" id="equation-interest-rate-2">
+<span class="eqno">(20.34)<a class="headerlink" href="#equation-interest-rate-2" title="Permalink to this equation">#</a></span>\[    \alpha k^{\alpha - 1}_t = R_t\]</div>
+<p>Combing with <a class="reference internal" href="#equation-wage-2">(20.23)</a> and <a class="reference internal" href="#equation-supply-capital-crra-olg">(20.33)</a> gives</p>
+<div class="math notranslate nohighlight" id="equation-law-of-motion-capital-crra">
+<span class="eqno">(20.35)<a class="headerlink" href="#equation-law-of-motion-capital-crra" title="Permalink to this equation">#</a></span>\[    k_{t+1} = \left [ 1 + \beta^{-1/\gamma} (\alpha k^{\alpha - 1}_{t+1})^{(\gamma-1)/\gamma} \right ]^{-1} (1-\alpha)(k_t)^{\alpha}\]</div>
+<p>Note that with this equation and <span class="math notranslate nohighlight">\(k_t\)</span> as given we cannot solve for <span class="math notranslate nohighlight">\(k_{t+1}\)</span> by pencil and paper.</p>
+<p>That is we don’t have an analytical solution for the sample path <span class="math notranslate nohighlight">\(\{k_{t+1}\}\)</span> now.</p>
+<p>To solve for <span class="math notranslate nohighlight">\(k_{t+1}\)</span> we need to turn to newton’s method.</p>
+<p>Suppose,</p>
+<div class="math notranslate nohighlight" id="equation-crra-newton-1">
+<span class="eqno">(20.36)<a class="headerlink" href="#equation-crra-newton-1" title="Permalink to this equation">#</a></span>\[    f(k_{t+1}; k_t)=k_{t+1} \left [ 1 + \beta^{-1/\gamma} \left ( \alpha k^{\alpha-1}_{t+1} \right )^{(\gamma-1)/\gamma} \right ] - (1-\alpha) k^{\alpha}_t =0\]</div>
+<p>If <span class="math notranslate nohighlight">\(k_t\)</span> is given then <span class="math notranslate nohighlight">\(f(\cdot)\)</span> is a function of unknown <span class="math notranslate nohighlight">\(k_{t+1}\)</span>.</p>
+<p>Then we can use <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.newton.html#scipy.optimize.newton">scipy.optimize.newton</a> to solve the Equation <span class="math notranslate nohighlight">\(f(k_{t+1})=0\)</span> for <span class="math notranslate nohighlight">\(k_{t+1}\)</span>.</p>
+<p>First let define <span class="math notranslate nohighlight">\(f(\cdot)\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">k_prime</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
+    <span class="n">α</span><span class="p">,</span> <span class="n">β</span><span class="p">,</span> <span class="n">γ</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">α</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">β</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">u_params</span><span class="p">[</span><span class="s1">&#39;γ&#39;</span><span class="p">]</span>
+    <span class="n">z</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">α</span><span class="p">)</span> <span class="o">*</span> <span class="n">k</span><span class="o">**</span><span class="n">α</span>
+    <span class="n">R1</span> <span class="o">=</span> <span class="n">α</span> <span class="o">**</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="n">γ</span><span class="p">)</span>
+    <span class="n">R2</span> <span class="o">=</span> <span class="n">k_prime</span><span class="o">**</span><span class="p">((</span><span class="n">α</span> <span class="o">*</span> <span class="n">γ</span> <span class="o">-</span> <span class="n">α</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">γ</span><span class="p">)</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">k_prime</span> <span class="o">+</span> <span class="n">k_prime</span> <span class="o">*</span> <span class="n">β</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="n">γ</span><span class="p">)</span> <span class="o">*</span> <span class="n">R1</span> <span class="o">*</span> <span class="n">R2</span>
+    <span class="k">return</span> <span class="n">p</span> <span class="o">-</span> <span class="n">z</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s define a function <code class="docutils literal notranslate"><span class="pre">k_next</span></code> that finds the value of <span class="math notranslate nohighlight">\(k_{t+1}\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">k_next</span><span class="p">(</span><span class="n">k_prime</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">optimize</span><span class="o">.</span><span class="n">newton</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">k_prime</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">k_prime</span><span class="p">,</span> <span class="n">model</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_45</span><span class="p">(</span><span class="n">m_crra</span><span class="p">,</span> <span class="n">k_next</span><span class="p">,</span> <span class="n">kstar</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/c8f5ee3c2f65ce13ae2af146a7696f238c2fafa4f1868ec5fd4aee0c27f11451.png" src="_images/c8f5ee3c2f65ce13ae2af146a7696f238c2fafa4f1868ec5fd4aee0c27f11451.png" />
+</div>
+</div>
+<p>Unlike the log preference case now a steady state cannot be solved analytically.</p>
+<p>To see this recall that, a steady state can be obtained by setting <a class="reference internal" href="#equation-law-of-motion-capital-crra">(20.35)</a> to <span class="math notranslate nohighlight">\(k_{t+1} = k_t = k^*\)</span>, i.e.,</p>
+<div class="math notranslate nohighlight" id="equation-steady-state-crra">
+<span class="eqno">(20.37)<a class="headerlink" href="#equation-steady-state-crra" title="Permalink to this equation">#</a></span>\[    k^* = \frac{(1-\alpha)(k^*)^{\alpha}}{  1 + \beta^{-1/\gamma} (\alpha (k^*)^{\alpha-1})^{(\gamma-1)/\gamma}}\]</div>
+<p>Similarly we can solve for <span class="math notranslate nohighlight">\(k^*\)</span> using newton’s method.</p>
+<p>Suppose that</p>
+<div class="math notranslate nohighlight" id="equation-crra-newton-2">
+<span class="eqno">(20.38)<a class="headerlink" href="#equation-crra-newton-2" title="Permalink to this equation">#</a></span>\[    g(k^*) = k^*  \left [ 1 + \beta^{-1/\gamma} (\alpha (k^*)^{\alpha-1})^{(\gamma-1)/\gamma} \right ] - (1-\alpha)(k^*)^{\alpha}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">g</span><span class="p">(</span><span class="n">k_star</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
+    <span class="n">α</span><span class="p">,</span> <span class="n">β</span><span class="p">,</span> <span class="n">γ</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">α</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">β</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">u_params</span><span class="p">[</span><span class="s1">&#39;γ&#39;</span><span class="p">]</span>
+    <span class="n">z</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">α</span><span class="p">)</span> <span class="o">*</span> <span class="n">k_star</span><span class="o">**</span><span class="n">α</span>
+    <span class="n">R1</span> <span class="o">=</span> <span class="n">α</span> <span class="o">**</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="n">γ</span><span class="p">)</span>
+    <span class="n">R2</span> <span class="o">=</span> <span class="n">k_star</span><span class="o">**</span><span class="p">((</span><span class="n">α</span> <span class="o">*</span> <span class="n">γ</span> <span class="o">-</span> <span class="n">α</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">γ</span><span class="p">)</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">k_star</span> <span class="o">+</span> <span class="n">k_star</span> <span class="o">*</span> <span class="n">β</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="n">γ</span><span class="p">)</span> <span class="o">*</span> <span class="n">R1</span> <span class="o">*</span> <span class="n">R2</span>
+    <span class="k">return</span> <span class="n">p</span> <span class="o">-</span> <span class="n">z</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">k_star</span> <span class="o">=</span> <span class="n">optimize</span><span class="o">.</span><span class="n">newton</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">m_crra</span><span class="p">,))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;k_star = </span><span class="si">{</span><span class="n">k_star</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>k_star = 0.31408046100809445
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_45</span><span class="p">(</span><span class="n">m_crra</span><span class="p">,</span> <span class="n">k_next</span><span class="p">,</span> <span class="n">k_star</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/be850bf0c97d9633da154a963aadd05e48cfbd109f5e556febb8529345f0b754.png" src="_images/be850bf0c97d9633da154a963aadd05e48cfbd109f5e556febb8529345f0b754.png" />
+</div>
+</div>
+<p>The next figure shows three time paths for capital, from
+three distinct initial conditions, under the parameterization listed above.</p>
+<p>At this parameterization, <span class="math notranslate nohighlight">\(k^* \approx 0.314\)</span>.</p>
+<p>Let’s define the constants and three distinct intital conditions</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ts_length</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">x0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">,</span> <span class="mf">2.6</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">simulate_ts</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">x0_values</span><span class="p">,</span> <span class="n">ts_length</span><span class="p">):</span>
+
+    <span class="n">k_star</span> <span class="o">=</span> <span class="n">optimize</span><span class="o">.</span><span class="n">newton</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">m</span><span class="p">,))</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+    <span class="n">ts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">ts_length</span><span class="p">)</span>
+
+    <span class="c1"># simulate and plot time series</span>
+    <span class="k">for</span> <span class="n">x_init</span> <span class="ow">in</span> <span class="n">x0_values</span><span class="p">:</span>
+        <span class="n">ts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">x_init</span>
+        <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">ts_length</span><span class="p">):</span>
+            <span class="n">ts</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">=</span> <span class="n">k_next</span><span class="p">(</span><span class="n">ts</span><span class="p">[</span><span class="n">t</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">m</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">ts_length</span><span class="p">),</span> <span class="n">ts</span><span class="p">,</span> <span class="s1">&#39;-o&#39;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span>
+                <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$k_0=</span><span class="si">%g</span><span class="s1">$&#39;</span> <span class="o">%</span><span class="k">x_init</span>)
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">ts_length</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">ts_length</span><span class="p">,</span> <span class="n">k_star</span><span class="p">),</span>
+            <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$k^*$&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$t$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$k_t$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">simulate_ts</span><span class="p">(</span><span class="n">m_crra</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">ts_length</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ee2e6c19c4fec6d591201eecf500a691362a2c8d908f4ecae6eb5cee51bf5a61.png" src="_images/ee2e6c19c4fec6d591201eecf500a691362a2c8d908f4ecae6eb5cee51bf5a61.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="exercises">
+<h2><span class="section-number">20.7. </span>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h2>
+<div class="exercise admonition" id="olg_ex1">
+
+<p class="admonition-title"><span class="caption-number">Exercise 20.1 </span></p>
+<section id="exercise-content">
+<p>Solve the equilibrium of the CRRA case numerically using <a class="reference internal" href="#equation-equilibrium-crra">(20.32)</a>.</p>
+<p>Plot the equilibrium quantity and equilibrium price in the equilibrium plot with the CRRA utility (TODO label and refer the plot generated by the code).</p>
+</section>
+</div>
+<div class="solution dropdown admonition" id="olg-solution-1">
+
+<p class="admonition-title">Solution to<a class="reference internal" href="#olg_ex1"> Exercise 20.1</a></p>
+<section id="solution-content">
+<p>To solve the equation we need to turn to Newton’s method.</p>
+<p>The function <code class="docutils literal notranslate"><span class="pre">find_Rstar</span></code> is used to find <span class="math notranslate nohighlight">\(R^*_{t+1}\)</span> by finding
+the zero of equation <a class="reference internal" href="#equation-equilibrium-crra">(20.32)</a> using the helper
+function <code class="docutils literal notranslate"><span class="pre">find_Rstar_newton</span></code> for a given value of <span class="math notranslate nohighlight">\(K_t\)</span>.</p>
+<p>Similary, <code class="docutils literal notranslate"><span class="pre">find_Kstar</span></code> finds the equilibrium quantity <span class="math notranslate nohighlight">\(K^*_{t+1}\)</span> using the value of <span class="math notranslate nohighlight">\(R^*_{t+1}\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">find_Rstar_newton</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">K_prev</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
+    <span class="n">α</span><span class="p">,</span> <span class="n">β</span><span class="p">,</span> <span class="n">γ</span><span class="p">,</span> <span class="n">L</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">α</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">β</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">u_params</span><span class="p">[</span><span class="s1">&#39;γ&#39;</span><span class="p">],</span> <span class="n">model</span><span class="o">.</span><span class="n">L</span>
+    <span class="n">lhs</span> <span class="o">=</span> <span class="n">L</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">α</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">K_prev</span> <span class="o">/</span> <span class="n">L</span><span class="p">)</span><span class="o">**</span><span class="n">α</span>
+    <span class="n">lhs</span> <span class="o">/=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">β</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="n">γ</span><span class="p">)</span> <span class="o">*</span> <span class="n">x</span><span class="o">**</span><span class="p">((</span><span class="n">γ</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="n">γ</span><span class="p">))</span>
+    <span class="n">rhs</span> <span class="o">=</span> <span class="n">L</span> <span class="o">*</span> <span class="p">(</span><span class="n">x</span> <span class="o">/</span> <span class="n">α</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="n">α</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">lhs</span> <span class="o">-</span> <span class="n">rhs</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">find_Rstar</span><span class="p">(</span><span class="n">K_prev</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">optimize</span><span class="o">.</span><span class="n">newton</span><span class="p">(</span><span class="n">find_Rstar_newton</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">K_prev</span><span class="p">,</span> <span class="n">model</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">find_Kstar</span><span class="p">(</span><span class="n">R_star</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">model</span><span class="o">.</span><span class="n">L</span> <span class="o">*</span> <span class="p">(</span><span class="n">R_star</span> <span class="o">/</span> <span class="n">model</span><span class="o">.</span><span class="n">α</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">α</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The following function plots the equilibrium quantity and equilibrium price.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_ks_rs</span><span class="p">(</span><span class="n">K_t_vals</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">K_t_vals</span><span class="p">)</span>
+    <span class="n">R_star</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="n">K_star</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">R_star</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">find_Rstar</span><span class="p">(</span><span class="n">K_t_vals</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">model</span><span class="p">)</span>
+        <span class="n">K_star</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">find_Kstar</span><span class="p">(</span><span class="n">R_star</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">model</span><span class="p">)</span>
+
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">K_t_vals</span><span class="p">,</span> <span class="n">R_star</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;equilibrium price&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">K_t_vals</span><span class="p">,</span> <span class="n">K_star</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;equilibrium quantity&quot;</span><span class="p">)</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;$K_</span><span class="si">{t}</span><span class="s2">$&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">K_t_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+<span class="n">m_crra</span> <span class="o">=</span> <span class="n">create_olg_model</span><span class="p">(</span><span class="n">u</span><span class="o">=</span><span class="n">crra</span><span class="p">,</span> <span class="n">u_params</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;γ&#39;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">})</span>
+<span class="n">plot_ks_rs</span><span class="p">(</span><span class="n">K_t_vals</span><span class="p">,</span> <span class="n">m_crra</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<figure class="align-default" id="equi-ps-q-crra">
+<a class="shadow bg-primary reference internal image-reference" href="_images/aac3b63309ce800cf0626187a57a206eb0447090e5043c8bf246d87913826c01.png"><img alt="equi_ps_q_crra" class="shadow bg-primary" src="_images/aac3b63309ce800cf0626187a57a206eb0447090e5043c8bf246d87913826c01.png" style="width: 200px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 20.1 </span><span class="caption-text">Equilibrium price and quantity</span><a class="headerlink" href="#equi-ps-q-crra" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</div>
+</div>
+</section>
+</div>
+<div class="exercise admonition" id="olg_ex2">
+
+<p class="admonition-title"><span class="caption-number">Exercise 20.2 </span></p>
+<section id="exercise-content">
+<p>Let’s keep the model the same except for replacing the utility function <span class="math notranslate nohighlight">\(u(c)\)</span> in <a class="reference internal" href="#equation-eq-crra">(20.1)</a>  with a nonlinear form <span class="math notranslate nohighlight">\(u(c)=c + c^{\theta}\)</span>.</p>
+<p>Like what we did in the CRRA case we don’t have an analytical solution.</p>
+<p>Try to compute the time path capital <span class="math notranslate nohighlight">\(\{k_t\}\)</span> in this case.</p>
+</section>
+</div>
+<div class="solution dropdown admonition" id="olg-solution-3">
+
+<p class="admonition-title">Solution to<a class="reference internal" href="#olg_ex2"> Exercise 20.2</a></p>
+<section id="solution-content">
+<p>To get the time path capital <span class="math notranslate nohighlight">\(\{k_t\}\)</span> first we need to solve the household’s utility maximization problem for the optimal consumption and optimal saving.</p>
+<p>With the quasilinear preference the Euler equation <a class="reference internal" href="#equation-euler-2-olg">(20.6)</a> becomes</p>
+<div class="math notranslate nohighlight" id="equation-euler-quasilinear">
+<span class="eqno">(20.39)<a class="headerlink" href="#equation-euler-quasilinear" title="Permalink to this equation">#</a></span>\[    1 + \theta (w_t - s_t)^{\theta-1} = \beta R_{t+1} + \beta R^{\theta}_{t+1} \theta s_t^{\theta - 1}\]</div>
+<p>Let <span class="math notranslate nohighlight">\(k_t := K_t / L\)</span>.</p>
+<p>Since <a class="reference internal" href="#equation-aggregate-supply-capital-log-olg">(20.12)</a>, <a class="reference internal" href="#equation-wage-2">(20.23)</a> and <a class="reference internal" href="#equation-interest-rate-2">(20.34)</a> the Euler equation becomes</p>
+<div class="math notranslate nohighlight" id="equation-euler-quasilinear1">
+<span class="eqno">(20.40)<a class="headerlink" href="#equation-euler-quasilinear1" title="Permalink to this equation">#</a></span>\[    1 + \theta ((1-\alpha)k^{\alpha}_t - k_{t+1})^{\theta-1} = \beta \alpha k^{\alpha - 1}_{t+1} + \beta \theta \alpha^{\theta} k^{\alpha \theta - 1}_{t+1}\]</div>
+<p>Obviously <span class="math notranslate nohighlight">\(k_{t+1}\)</span> cannot be solved by pencil and paper.</p>
+<p>To solve for <span class="math notranslate nohighlight">\(k_{t+1}\)</span> we need to turn to the newton’s method.</p>
+<p>Let’s start by defining the utility function.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">u_quasilinear</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">θ</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">c</span> <span class="o">+</span> <span class="n">c</span><span class="o">**</span><span class="n">θ</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The function <code class="docutils literal notranslate"><span class="pre">find_k_next</span></code> is used to find <span class="math notranslate nohighlight">\(k_{t+1}\)</span> by finding
+the root of equation <a class="reference internal" href="#equation-euler-quasilinear1">(20.40)</a> using the helper
+function <code class="docutils literal notranslate"><span class="pre">solve_for_k_next</span></code> for a given value of <span class="math notranslate nohighlight">\(k_t\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">solve_for_k_next</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">k_t</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
+    <span class="n">α</span><span class="p">,</span> <span class="n">β</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">θ</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">α</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">β</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">L</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">u_params</span><span class="p">[</span><span class="s1">&#39;θ&#39;</span><span class="p">]</span>
+    <span class="n">l</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">θ</span> <span class="o">*</span> <span class="p">((</span><span class="mi">1</span> <span class="o">-</span> <span class="n">α</span><span class="p">)</span> <span class="o">*</span> <span class="n">k_t</span><span class="o">**</span><span class="n">α</span> <span class="o">-</span> <span class="n">x</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="n">θ</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">β</span> <span class="o">*</span> <span class="n">α</span> <span class="o">*</span> <span class="n">x</span><span class="o">**</span><span class="p">(</span><span class="n">α</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">r</span> <span class="o">+=</span> <span class="n">β</span> <span class="o">*</span> <span class="n">θ</span> <span class="o">*</span> <span class="n">α</span><span class="o">**</span><span class="n">θ</span> <span class="o">*</span> <span class="n">x</span><span class="o">**</span><span class="p">(</span><span class="n">α</span> <span class="o">*</span> <span class="n">θ</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">l</span> <span class="o">-</span> <span class="n">r</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">find_k_next</span><span class="p">(</span><span class="n">k_t</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
+    <span class="n">x_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">k_t</span><span class="p">,</span> <span class="mi">200_000</span><span class="p">)</span>
+    <span class="n">k_vals</span> <span class="o">=</span> <span class="n">solve_for_k_next</span><span class="p">(</span><span class="n">x_vals</span><span class="p">,</span> <span class="n">k_t</span><span class="p">,</span> <span class="n">model</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">x_vals</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">k_vals</span><span class="o">-</span><span class="mi">0</span><span class="p">))]</span>
+    <span class="c1"># return optimize.newton(solve_for_k_next, k_t, args=(k_t, model))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">solve_for_k_star_q</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
+    <span class="n">α</span><span class="p">,</span> <span class="n">β</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">θ</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">α</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">β</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">L</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">u_params</span><span class="p">[</span><span class="s1">&#39;θ&#39;</span><span class="p">]</span>
+    <span class="n">l</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">θ</span> <span class="o">*</span> <span class="p">((</span><span class="mi">1</span> <span class="o">-</span> <span class="n">α</span><span class="p">)</span> <span class="o">*</span> <span class="n">x</span><span class="o">**</span><span class="n">α</span> <span class="o">-</span> <span class="n">x</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="n">θ</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">β</span> <span class="o">*</span> <span class="n">α</span> <span class="o">*</span> <span class="n">x</span><span class="o">**</span><span class="p">(</span><span class="n">α</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">r</span> <span class="o">+=</span> <span class="n">β</span> <span class="o">*</span> <span class="n">θ</span> <span class="o">*</span> <span class="n">α</span><span class="o">**</span><span class="n">θ</span> <span class="o">*</span> <span class="n">x</span><span class="o">**</span><span class="p">(</span><span class="n">α</span> <span class="o">*</span> <span class="n">θ</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">l</span> <span class="o">-</span> <span class="n">r</span>
+
+<span class="k">def</span> <span class="nf">find_k_star_q</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
+    <span class="n">x_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">200_000</span><span class="p">)</span>
+    <span class="n">k_vals</span> <span class="o">=</span> <span class="n">solve_for_k_next</span><span class="p">(</span><span class="n">x_vals</span><span class="p">,</span> <span class="n">x_vals</span><span class="p">,</span> <span class="n">model</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">x_vals</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">k_vals</span><span class="o">-</span><span class="mi">0</span><span class="p">))]</span>
+    <span class="c1"># return optimize.newton(solve_for_k_star_q, 0.2, args=(model,))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s simulate and plot the time path capital <span class="math notranslate nohighlight">\(\{k_t\}\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">simulate_ts</span><span class="p">(</span><span class="n">k0_values</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">ts_length</span><span class="o">=</span><span class="mi">6</span><span class="p">):</span>
+    <span class="n">k_star</span> <span class="o">=</span> <span class="n">find_k_star_q</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;k_star:&quot;</span><span class="p">,</span> <span class="n">k_star</span><span class="p">)</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+    <span class="n">ts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">ts_length</span><span class="p">)</span>
+
+    <span class="c1"># simulate and plot time series</span>
+    <span class="k">for</span> <span class="n">x_init</span> <span class="ow">in</span> <span class="n">k0_values</span><span class="p">:</span>
+        <span class="n">ts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">x_init</span>
+        <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">ts_length</span><span class="p">):</span>
+            <span class="n">ts</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">=</span> <span class="n">find_k_next</span><span class="p">(</span><span class="n">ts</span><span class="p">[</span><span class="n">t</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">model</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">ts_length</span><span class="p">),</span> <span class="n">ts</span><span class="p">,</span> <span class="s1">&#39;-o&#39;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span>
+                <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$k_0=</span><span class="si">%g</span><span class="s1">$&#39;</span> <span class="o">%</span><span class="k">x_init</span>)
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">ts_length</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">ts_length</span><span class="p">,</span> <span class="n">k_star</span><span class="p">),</span>
+            <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$k^*$&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$t$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$k_t$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">k0_values</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.02</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">]</span>
+<span class="n">m_quasilinear</span> <span class="o">=</span> <span class="n">create_olg_model</span><span class="p">(</span><span class="n">u</span><span class="o">=</span><span class="n">u_quasilinear</span><span class="p">,</span> <span class="n">u_params</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;θ&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">})</span>
+<span class="n">simulate_ts</span><span class="p">(</span><span class="n">k0_values</span><span class="p">,</span> <span class="n">m_quasilinear</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>k_star: 0.13500317501587508
+</pre></div>
+</div>
+<img alt="_images/e9f0407ddf2b6191dca3d3da6da1630af47452df99d306c14e007d6e933b6068.png" src="_images/e9f0407ddf2b6191dca3d3da6da1630af47452df99d306c14e007d6e933b6068.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_45</span><span class="p">(</span><span class="n">m_quasilinear</span><span class="p">,</span> <span class="n">find_k_next</span><span class="p">,</span> <span class="n">kstar</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_4814/81627742.py:4: RuntimeWarning: divide by zero encountered in power
+  r = β * α * x**(α - 1)
+/tmp/ipykernel_4814/81627742.py:5: RuntimeWarning: divide by zero encountered in power
+  r += β * θ * α**θ * x**(α * θ - 1)
+</pre></div>
+</div>
+<img alt="_images/09b5c84dcaa7527dc3baee9fc198c58f4b911cb0ebe9cad0d2d9cc03f98f2385.png" src="_images/09b5c84dcaa7527dc3baee9fc198c58f4b911cb0ebe9cad0d2d9cc03f98f2385.png" />
+</div>
+</div>
+</section>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                    </div>
+                    
+                </main> <!-- .page__content -->
+                
+
+
+                <footer class="qe-page__footer">
+
+                    <p><a href="https://creativecommons.org/licenses/by-sa/4.0/"><img src="https://licensebuttons.net/l/by-sa/4.0/80x15.png"></a></p>
+
+                    <p>Creative Commons License &ndash; This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International.</p>
+
+                </footer> <!-- .page__footer -->
+
+            </div> <!-- .page -->
+
+            
+
+            
+            <div class="qe-sidebar bd-sidebar inactive" id="site-navigation">
+
+                <div class="qe-sidebar__header">
+
+
+                    Contents
+
+                </div>
+
+                <nav class="qe-sidebar__nav" id="qe-sidebar-nav" aria-label="Main navigation">
+                    <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Introduction
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="about.html">
+   1. About these Lectures
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Supply and Demand
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro_supply_demand.html">
+   2. Introduction to Supply and Demand
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="supply_demand_multiple_goods.html">
+   3. Supply and Demand with Many Goods
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="supply_demand_heterogeneity.html">
+   4. Market Equilibrium with Heterogeneity
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="input_output.html">
+   5. Input-Output Models
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Data and Measurement
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="long_run_growth.html">
+   6. Long Run Growth
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="business_cycle.html">
+   7. Business Cycles
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="inflation_unemployment.html">
+   8. Inflation and Unemployment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="inequality.html">
+   9. Income and Wealth Inequality
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="distributions.html">
+   10. Distributions in Economics
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Useful Tools
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="geom_series.html">
+   11. Geometric Series for Elementary Economics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="linear_equations.html">
+   12. Linear Equations and Matrix Algebra
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="eigen_I.html">
+   13. Eigenvalues and Eigenvectors
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Simulation
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="lln_clt.html">
+   14. LLN and CLT
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="monte_carlo.html">
+   15. Monte Carlo and Option Pricing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="schelling.html">
+   16. Racial Segregation
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Dynamics
+ </span>
+</p>
+<ul class="current nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="solow.html">
+   17. The Solow-Swan Growth Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="scalar_dynam.html">
+   18. Dynamics in One Dimension
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cobweb.html">
+   19. The Cobweb Model
+  </a>
+ </li>
+ <li class="toctree-l1 current active active">
+  <a class="current reference internal" href="#">
+   20. The Overlapping Generations Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="markov_chains_I.html">
+   21. Markov Chains: Basic Concepts and Stationarity
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="markov_chains_II.html">
+   22. Markov Chains: Irreducibility and Ergodicity
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Modeling in Higher Dimensions
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="eigen_II.html">
+   23. Theorems of Nonnegative Matrices and Eigenvalues
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lake_model.html">
+   24. A Lake Model of Employment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="asset_pricing.html">
+   25. Introduction to Asset Pricing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="networks.html">
+   26. Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="samuelson.html">
+   27. Multiplier Accelerator Model
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Optimization
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="lp_intro.html">
+   28. Linear Programming
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="comparative_adv.html">
+   29. Comparative Advantage
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nonlinear.html">
+   30. Nonlinear Problems
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="short_path.html">
+   31. Shortest Paths
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Markets and Competitive Equilibrium
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="markets_welfare.html">
+   32. Markets and Welfare
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="risk.html">
+   33. Risk
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="uncertainty.html">
+   34. Uncertainty
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Estimation
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="simple_linear_regression.html">
+   35. Simple Linear Regression Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lr_with_matrices.html">
+   36. Linear Regression with Matrices
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="mle.html">
+   37. Maximum Likelihood Estimation
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Other
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="troubleshooting.html">
+   38. Troubleshooting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="zreferences.html">
+   39. References
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="status.html">
+   40. Execution Statistics
+  </a>
+ </li>
+</ul>
+
+                </nav>
+
+                <div class="qe-sidebar__footer">
+
+                </div>
+
+            </div> <!-- .sidebar -->
+            
+        </div> <!-- .main -->
+
+        <div class="qe-toolbar">
+
+            <div class="qe-toolbar__inner">
+
+                <ul class="qe-toolbar__main">
+                    <li data-tippy-content="Table of Contents" class="btn__sidebar"><i data-feather="menu"></i></li>
+                    <li data-tippy-content="Home"><a href="intro.html"><i data-feather="home"></i></a></li>
+                    <li class="btn__qelogo"><a href="https://quantecon.org" title=""><span class="show-for-sr">QuantEcon</span></a></li>
+                    <!-- <li class="btn__search">
+                        <form action="search.html" method="get">
+                            <input type="search" class="form-control" name="q" id="search-input" placeholder="Search..." aria-label="Search..." autocomplete="off">
+                            <i data-feather="search"></i>
+                        </form>
+                    </li> -->
+                </ul>
+
+                <ul class="qe-toolbar__links">
+                    <li data-tippy-content="Fullscreen" class="btn__fullscreen"><i data-feather="maximize"></i></li>
+                    <li data-tippy-content="Increase font size" class="btn__plus"><i data-feather="plus-circle"></i></li>
+                    <li data-tippy-content="Decrease font size" class="btn__minus"><i data-feather="minus-circle"></i></li>
+                    <li data-tippy-content="Change contrast" class="btn__contrast"><i data-feather="sunset"></i></li>
+                    <li data-tippy-content="Download Notebook"><a href="/_notebooks/olg.ipynb" download><i data-feather="download-cloud"></i></a></li>
+                    <li class="settings-button" id="settingsButton"><div data-tippy-content="Launch Notebook"><i data-feather="play-circle"></i></div></li>
+                        <li data-tippy-content="Download PDF" onClick="window.print()"><i data-feather="file"></i></li>
+                    <li data-tippy-content="View Source"><a target="_blank" href="https://github.com/QuantEcon/lecture-python-intro/tree/master/lectures/olg.md" download><i data-feather="github"></i></a></li>
+                </ul>
+
+            </div>
+
+        </div> <!-- .toolbar -->
+        <div id="downloadPDFModal" style="display: none;">
+            <ul class="pdf-options" style="display: block;">
+                <li class="download-pdf-book" onClick="window.print()">
+                    <p>Lecture (PDF)</p>
+                </li>
+                <li class="download-pdf-file">
+                    <a href="" download><p>Book (PDF)</p></a>
+                </li>
+            </ul>
+        </div>
+        <div id="settingsModal" style="display: none;">
+            <p class="modal-title"> Notebook Launcher </p>
+            <div class="modal-desc">
+            <p>
+                Choose public or private cloud service for "Launch" button.
+            </p>
+            </div>
+            <p class="modal-subtitle">Select a server</p>
+            <ul class="modal-servers">
+            <li class="active launcher-public">
+                <span class="label">Public</span>
+                <select id="launcher-public-input">
+                
+                    <option value="https://mybinder.org/v2/gh/QuantEcon/lecture-python-intro.notebooks/master?urlpath=tree/olg.ipynb">BinderHub</option>
+                
+                    <option value="https://colab.research.google.com/github/QuantEcon/lecture-python-intro.notebooks/blob/master/olg.ipynb">Colab</option>
+                
+                </select>
+                <i class="fas fa-check-circle"></i>
+            </li>
+            <li class="launcher-private">
+                <span class="label">Private</span>
+                <input type="text" id="launcher-private-input" data-repourl="https://github.com/QuantEcon/lecture-python-intro.notebooks" data-urlpath="tree/lecture-python-intro.notebooks/olg.ipynb" data-branch=master>
+                <i class="fas fa-check-circle"></i>
+            </li>
+            </ul>
+            <p class="launch"><a href="https://mybinder.org/v2/gh/QuantEcon/lecture-python-intro.notebooks/master?urlpath=tree/olg.ipynb" id="advancedLaunchButton" target="_blank">Launch Notebook</a></p>
+            <script>
+                // QuantEcon Notebook Launcher
+                const launcherTypeElements = document.querySelectorAll('#settingsModal .modal-servers li');
+                // Highlight the server type if previous selection exists
+                if (typeof localStorage.launcherType !== 'undefined') {
+                  for (var i = 0; i < launcherTypeElements.length; i++) {
+                    launcherTypeElements[i].classList.remove('active');
+                    if ( launcherTypeElements[i].classList.contains(localStorage.launcherType) ) {
+                      launcherTypeElements[i].classList.add('active');
+                    }
+                  }
+                }
+                // Highlight server type on click and set local storage value
+                for (var i = 0; i < launcherTypeElements.length; i++) {
+                  launcherTypeElements[i].addEventListener('click', function() {
+                    for (var j = 0; j < launcherTypeElements.length; j++) {
+                      launcherTypeElements[j].classList.remove('active');
+                    }
+                    this.classList.add('active');
+                    if ( this.classList.contains('launcher-private') ) {
+                      localStorage.launcherType = 'launcher-private';
+                    } else if ( this.classList.contains('launcher-public') ) {
+                      localStorage.launcherType = 'launcher-public';
+                    }
+                    setLaunchServer();
+                  })
+                }
+                const launcherPublic = document.getElementById('launcher-public-input');
+                const launcherPrivate = document.getElementById('launcher-private-input');
+                const pageName = "olg";
+                const repoURL = "https://github.com/QuantEcon/lecture-python-intro.notebooks";
+                const urlPath = "tree/lecture-python-intro.notebooks/olg.ipynb";
+                const branch = "master"
+                const launchNotebookLink = document.getElementById('advancedLaunchButton');
+
+                // Highlight public server option if previous selection exists
+                if (typeof localStorage.launcherPublic !== 'undefined') {
+                  launcherPublic.value = localStorage.launcherPublic;
+                }
+                // Update local storage upon public server selection
+                launcherPublic.addEventListener('change', (event) => {
+                  setLaunchServer();
+                });
+                // Populate private server input if previous entry exists
+                if (typeof localStorage.launcherPrivate !== 'undefined') {
+                  launcherPrivate.value = localStorage.launcherPrivate;
+                }
+                // Update local storage when a private server is entered
+                launcherPrivate.addEventListener('input', (event) => {
+                  setLaunchServer();
+                });
+
+                // Function to update the "Launch Notebook" link href
+                function setLaunchServer() {
+                  launchNotebookLink.removeAttribute("style")
+                  if ( localStorage.launcherType == 'launcher-private' ) {
+                    let repoPrefix = "/jupyter/hub/user-redirect/git-pull?repo=" + repoURL + "&branch=" + branch + "&urlpath=" + urlPath;
+                    launcherPrivateValue = launcherPrivate.value
+                    if (!launcherPrivateValue) {
+                        launchNotebookLink.removeAttribute("href")
+                        launchNotebookLink.style.background = "grey"
+                        return
+                    }
+                    localStorage.launcherPrivate = launcherPrivateValue;
+                    privateServer = localStorage.launcherPrivate.replace(/\/$/, "")
+                    if (!privateServer.includes("http")) {
+                        privateServer = "http://" + privateServer
+                    }
+                    launchNotebookLinkURL = privateServer + repoPrefix;
+                  } else if ( localStorage.launcherType == 'launcher-public' ) {
+                    launcherPublicValue = launcherPublic.options[launcherPublic.selectedIndex].value;
+                    localStorage.launcherPublic = launcherPublicValue;
+                    launchNotebookLinkURL = localStorage.launcherPublic;
+                  }
+                  if (launchNotebookLinkURL) launchNotebookLink.href = launchNotebookLinkURL;
+                }
+                // Check if user has previously selected a server
+                if ( (typeof localStorage.launcherPrivate !== 'undefined') || (typeof localStorage.launcherPublic !== 'undefined') ) {
+                  setLaunchServer();
+                }
+                </script>
+
+        </div>
+
+    </div> <!-- .wrapper-->
+  </body>
+</html>

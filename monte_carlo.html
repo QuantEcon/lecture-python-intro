@@ -1,0 +1,1499 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>15. Monte Carlo and Option Pricing &#8212; An Introduction to Quantitative Economics and Finance</title>
+    <script src="https://unpkg.com/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://unpkg.com/tippy.js@6.3.1/dist/tippy-bundle.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    
+        <script>
+            MathJax = {
+            loader: {load: ['[tex]/boldsymbol', '[tex]/textmacros']},
+            tex: {
+                packages: {'[+]': ['boldsymbol', 'textmacros']},
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                processEscapes: true,
+                macros: {
+                    "argmax" : "arg\\,max",
+                    "argmin" : "arg\\,min",
+                    "col"    : "col",
+                    "Span"   :  "span",
+                    "epsilon": "\\varepsilon",
+                    "EE": "\\mathbb{E}",
+                    "PP": "\\mathbb{P}",
+                    "RR": "\\mathbb{R}",
+                    "NN": "\\mathbb{N}",
+                    "ZZ": "\\mathbb{Z}",
+                    "aA": "\\mathcal{A}",
+                    "bB": "\\mathcal{B}",
+                    "cC": "\\mathcal{C}",
+                    "dD": "\\mathcal{D}",
+                    "eE": "\\mathcal{E}",
+                    "fF": "\\mathcal{F}",
+                    "gG": "\\mathcal{G}",
+                    "hH": "\\mathcal{H}",
+                }
+            },
+            svg: {
+                fontCache: 'global',
+                scale: 0.92,
+                displayAlign: "center",
+            },
+            };
+        </script>
+    
+    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/quantecon-book-theme.279dae03c5caae754d20501e3fa00bbf.css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/exercise.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script src="_static/quantecon-book-theme.15b0c36fffe88f468997fa7b698991d3.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'monte_carlo';</script>
+    <link rel="canonical" href="https://intro.quantecon.org/monte_carlo.html" />
+    <link rel="shortcut icon" href="_static/lectures-favicon.ico"/>
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="16. Racial Segregation" href="schelling.html" />
+    <link rel="prev" title="14. LLN and CLT" href="lln_clt.html" />
+
+<!-- Normal Meta Tags -->
+<meta name="author" context="Thomas J. Sargent &amp; John Stachurski" />
+<meta name="keywords" content="Python, QuantEcon, Quantitative Economics, Economics, Sloan, Alfred P. Sloan Foundation, Tom J. Sargent, John Stachurski" />
+<meta name="description" content=This website presents introductory lectures on computational economics, designed and written by Thomas J. Sargent and John Stachurski. />
+
+<!-- Twitter tags -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@quantecon" />
+<meta name="twitter:title" content="Monte Carlo and Option Pricing"/>
+<meta name="twitter:description" content="This website presents introductory lectures on computational economics, designed and written by Thomas J. Sargent and John Stachurski.">
+<meta name="twitter:creator" content="@quantecon">
+<meta name="twitter:image" content="https://assets.quantecon.org/img/qe-twitter-logo.png">
+
+<!-- Opengraph tags -->
+<meta property="og:title" content="Monte Carlo and Option Pricing" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://intro.quantecon.org/monte_carlo.html" />
+<meta property="og:image" content="https://assets.quantecon.org/img/qe-og-logo.png" />
+<meta property="og:description" content="This website presents introductory lectures on computational economics, designed and written by Thomas J. Sargent and John Stachurski." />
+<meta property="og:site_name" content="An Introduction to Quantitative Economics and Finance" />
+<meta name="theme-color" content="#ffffff" />
+
+  </head>
+<body>
+
+
+    <span id="top"></span>
+
+    <div class="qe-wrapper">
+
+        <div class="qe-main">
+
+            <div class="qe-page" id=monte_carlo>
+
+                <div class="qe-page__toc">
+
+                    <div class="inner">
+
+                        
+                        <div class="qe-page__toc-header">
+                            On this page
+                        </div>
+
+
+                        <nav id="bd-toc-nav" class="qe-page__toc-nav">
+                            <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">15.1. Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#an-introduction-to-monte-carlo">15.2. An Introduction to Monte Carlo</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#share-price-with-known-distribution">15.2.1. Share Price with Known Distribution</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#share-price-with-unknown-distribution">15.2.2. Share Price with Unknown Distribution</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#a-routine-using-loops-in-python">15.2.2.1. A Routine using Loops in Python</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-vectorized-routine">15.2.3. A Vectorized Routine</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pricing-a-european-call-option-under-risk-neutrality">15.3. Pricing a European Call Option under Risk Neutrality</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#risk-neutral-pricing">15.3.1. Risk-Neutral Pricing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-comment-on-risk">15.3.2. A Comment on Risk</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#discounting">15.3.3. Discounting</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#european-call-options">15.3.4. European Call Options</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pricing-via-a-dynamic-model">15.4. Pricing Via a Dynamic Model</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simple-dynamics">15.4.1. Simple Dynamics</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#problems-with-simple-dynamics">15.4.2. Problems with Simple Dynamics</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#more-realistic-dynamics">15.4.3. More Realistic Dynamics</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#default-parameters">15.4.4. Default Parameters</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizations">15.4.5. Visualizations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#computing-the-price">15.4.6. Computing the Price</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">15.5. Exercises</a></li>
+</ul>
+                            <p class="logo">
+                                
+                                    
+                                    <a href=https://quantecon.org><img src="_static/qe-logo.png" class="logo" alt="logo"></a>
+                                    
+                                
+                            </p>
+
+                            <p class="powered">Powered by <a href="https://jupyterbook.org/">Jupyter Book</a></p>
+
+                        </nav>
+
+                        <div class="qe-page__toc-footer">
+                            
+                            
+                            <p><a href="#top"><strong>Back to top</strong></a></p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="qe-page__header">
+
+                    <div class="qe-page__header-copy">
+
+                        <p class="qe-page__header-heading"><a href="intro.html">An Introduction to Quantitative Economics and Finance</a></p>
+
+                        <p class="qe-page__header-subheading">Monte Carlo and Option Pricing</p>
+
+                    </div>
+
+                    <p class="qe-page__header-authors">Thomas J. Sargent & John Stachurski</p>
+
+                </div> <!-- .page__header -->
+
+
+
+                
+                <main class="qe-page__content" role="main">
+                    
+                    <div>
+                        
+  <section class="tex2jax_ignore mathjax_ignore" id="monte-carlo-and-option-pricing">
+<h1><span class="section-number">15. </span>Monte Carlo and Option Pricing<a class="headerlink" href="#monte-carlo-and-option-pricing" title="Permalink to this heading">#</a></h1>
+<section id="overview">
+<h2><span class="section-number">15.1. </span>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
+<p>Simple probability calculations can be done either</p>
+<ul class="simple">
+<li><p>with pencil and paper, or</p></li>
+<li><p>by looking up facts about well known probability distributions, or</p></li>
+<li><p>in our heads.</p></li>
+</ul>
+<p>For example, we can easily work out</p>
+<ul class="simple">
+<li><p>the probability of three heads in five flips of a fair coin</p></li>
+<li><p>the expected value of a random variable that equals <span class="math notranslate nohighlight">\(-10\)</span> with probability
+<span class="math notranslate nohighlight">\(1/2\)</span> and <span class="math notranslate nohighlight">\(100\)</span> with probability <span class="math notranslate nohighlight">\(1/2\)</span>.</p></li>
+</ul>
+<p>But some probability calculations are very complex.</p>
+<p>Complex calculations concerning probabilities and expectations occur in many
+economic and financial problems.</p>
+<p>Perhaps the most important tool for handling complicated probability
+calculations is <a class="reference external" href="https://en.wikipedia.org/wiki/Monte_Carlo_method">Monte Carlo methods</a>.</p>
+<p>In this lecture we introduce Monte Carlo methods for computing expectations,
+with some applications in finance.</p>
+<p>We will use the following imports.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">numpy.random</span> <span class="kn">import</span> <span class="n">randn</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="an-introduction-to-monte-carlo">
+<h2><span class="section-number">15.2. </span>An Introduction to Monte Carlo<a class="headerlink" href="#an-introduction-to-monte-carlo" title="Permalink to this heading">#</a></h2>
+<p>In this section we describe how Monte Carlo can be used to compute
+expectations.</p>
+<section id="share-price-with-known-distribution">
+<h3><span class="section-number">15.2.1. </span>Share Price with Known Distribution<a class="headerlink" href="#share-price-with-known-distribution" title="Permalink to this heading">#</a></h3>
+<p>Suppose that we are considering buying a share in some company.</p>
+<p>Our plan is either to</p>
+<ol class="arabic simple">
+<li><p>buy the share now, hold it for one year and then sell it, or</p></li>
+<li><p>do something else with our money.</p></li>
+</ol>
+<p>We start by thinking of the share price in one year as a random variable <span class="math notranslate nohighlight">\(S\)</span>.</p>
+<p>Before deciding whether or not to buy the share, we need to know some features
+of the distribution of <span class="math notranslate nohighlight">\(S\)</span>.</p>
+<p>For example, suppose the mean of <span class="math notranslate nohighlight">\(S\)</span> is high relative to the price of buying
+the share.</p>
+<p>This suggests we have a good chance of selling at a relatively high price.</p>
+<p>Suppose, however, that the variance of <span class="math notranslate nohighlight">\(S\)</span> is also high.</p>
+<p>This suggests that buying the share is risky, so perhaps we should refrain.</p>
+<p>Either way, this discussion shows the importance of understanding the
+distribution of <span class="math notranslate nohighlight">\(S\)</span>.</p>
+<p>Suppose that, after analyzing the data, we guess that <span class="math notranslate nohighlight">\(S\)</span> is well
+represented by a lognormal distribution with parameters <span class="math notranslate nohighlight">\(\mu, \sigma\)</span> .</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(S\)</span> has the same distribution as <span class="math notranslate nohighlight">\(\exp(\mu + \sigma Z)\)</span> where <span class="math notranslate nohighlight">\(Z\)</span> is standard normal.</p></li>
+<li><p>we write this statement as <span class="math notranslate nohighlight">\(S \sim LN(\mu, \sigma)\)</span>.</p></li>
+</ul>
+<p>Any good reference on statistics (such as
+<a class="reference external" href="https://en.wikipedia.org/wiki/Log-normal_distribution">Wikipedia</a>) will tell
+us that the mean and variance are</p>
+<div class="math notranslate nohighlight">
+\[
+    \mathbb E S
+        = \exp \left(\mu + \frac{\sigma^2}{2} \right)
+\]</div>
+<p>and</p>
+<div class="math notranslate nohighlight">
+\[
+    \mathop{\mathrm{Var}} S
+    = [\exp(\sigma^2) - 1] \exp(2\mu + \sigma^2)
+\]</div>
+<p>So far we have no need for a computer.</p>
+</section>
+<section id="share-price-with-unknown-distribution">
+<h3><span class="section-number">15.2.2. </span>Share Price with Unknown Distribution<a class="headerlink" href="#share-price-with-unknown-distribution" title="Permalink to this heading">#</a></h3>
+<p>But now suppose that we study the distribution of <span class="math notranslate nohighlight">\(S\)</span> more carefully.</p>
+<p>We decide that the share price depends on three variables, <span class="math notranslate nohighlight">\(X_1\)</span>, <span class="math notranslate nohighlight">\(X_2\)</span>, and
+<span class="math notranslate nohighlight">\(X_3\)</span> (e.g., sales, inflation, and interest rates).</p>
+<p>In particular, our study suggests that</p>
+<div class="math notranslate nohighlight">
+\[
+    S = (X_1 + X_2 + X_3)^p
+\]</div>
+<p>where</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(p\)</span> is a positive number, which is known to us  (i.e., has been estimated),</p></li>
+<li><p><span class="math notranslate nohighlight">\(X_i \sim LN(\mu_i, \sigma_i)\)</span> for <span class="math notranslate nohighlight">\(i=1,2,3\)</span>,</p></li>
+<li><p>the values <span class="math notranslate nohighlight">\(\mu_i, \sigma_i\)</span> are also known, and</p></li>
+<li><p>the random variables <span class="math notranslate nohighlight">\(X_1\)</span>, <span class="math notranslate nohighlight">\(X_2\)</span> and <span class="math notranslate nohighlight">\(X_3\)</span> are independent.</p></li>
+</ul>
+<p>How should we compute the mean of <span class="math notranslate nohighlight">\(S\)</span>?</p>
+<p>To do this with pencil and paper is hard (unless, say, <span class="math notranslate nohighlight">\(p=1\)</span>).</p>
+<p>But fortunately there’s an easy way to do this, at least approximately.</p>
+<p>This is the Monte Carlo method, which runs as follows:</p>
+<ol class="arabic simple">
+<li><p>Generate <span class="math notranslate nohighlight">\(n\)</span> independent draws of <span class="math notranslate nohighlight">\(X_1\)</span>, <span class="math notranslate nohighlight">\(X_2\)</span> and <span class="math notranslate nohighlight">\(X_3\)</span> on a computer,</p></li>
+<li><p>Use these draws to generate <span class="math notranslate nohighlight">\(n\)</span> independent draws of <span class="math notranslate nohighlight">\(S\)</span>, and</p></li>
+<li><p>Take the average value of these draws of <span class="math notranslate nohighlight">\(S\)</span>.</p></li>
+</ol>
+<p>This average will be close to the true mean when <span class="math notranslate nohighlight">\(n\)</span> is large.</p>
+<p>This is due to the law of large numbers, which we discussed in <a class="reference internal" href="lln_clt.html"><span class="doc">another lecture</span></a>.</p>
+<p>We use the following values for <span class="math notranslate nohighlight">\(p\)</span> and each <span class="math notranslate nohighlight">\(\mu_i\)</span> and <span class="math notranslate nohighlight">\(\sigma_i\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">1_000_000</span>
+<span class="n">p</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">μ_1</span><span class="p">,</span> <span class="n">μ_2</span><span class="p">,</span> <span class="n">μ_3</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.4</span>
+<span class="n">σ_1</span><span class="p">,</span> <span class="n">σ_2</span><span class="p">,</span> <span class="n">σ_3</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.2</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="a-routine-using-loops-in-python">
+<h4><span class="section-number">15.2.2.1. </span>A Routine using Loops in Python<a class="headerlink" href="#a-routine-using-loops-in-python" title="Permalink to this heading">#</a></h4>
+<p>Here’s a routine using native Python loops to calculate the desired mean</p>
+<div class="math notranslate nohighlight">
+\[
+    \frac{1}{n} \sum_{i=1}^n S_i
+    \approx \mathbb E S
+\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+
+<span class="n">S</span> <span class="o">=</span> <span class="mf">0.0</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">X_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">μ_1</span> <span class="o">+</span> <span class="n">σ_1</span> <span class="o">*</span> <span class="n">randn</span><span class="p">())</span>
+    <span class="n">X_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">μ_2</span> <span class="o">+</span> <span class="n">σ_2</span> <span class="o">*</span> <span class="n">randn</span><span class="p">())</span>
+    <span class="n">X_3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">μ_3</span> <span class="o">+</span> <span class="n">σ_3</span> <span class="o">*</span> <span class="n">randn</span><span class="p">())</span>
+    <span class="n">S</span> <span class="o">+=</span> <span class="p">(</span><span class="n">X_1</span> <span class="o">+</span> <span class="n">X_2</span> <span class="o">+</span> <span class="n">X_3</span><span class="p">)</span><span class="o">**</span><span class="n">p</span>
+<span class="n">S</span> <span class="o">/</span> <span class="n">n</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 4.83 s, sys: 0 ns, total: 4.83 s
+Wall time: 4.83 s
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.2296071442794383
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can also construct a function that contains these operations:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">compute_mean</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">1_000_000</span><span class="p">):</span>
+    <span class="n">S</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">X_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">μ_1</span> <span class="o">+</span> <span class="n">σ_1</span> <span class="o">*</span> <span class="n">randn</span><span class="p">())</span>
+        <span class="n">X_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">μ_2</span> <span class="o">+</span> <span class="n">σ_2</span> <span class="o">*</span> <span class="n">randn</span><span class="p">())</span>
+        <span class="n">X_3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">μ_3</span> <span class="o">+</span> <span class="n">σ_3</span> <span class="o">*</span> <span class="n">randn</span><span class="p">())</span>
+        <span class="n">S</span> <span class="o">+=</span> <span class="p">(</span><span class="n">X_1</span> <span class="o">+</span> <span class="n">X_2</span> <span class="o">+</span> <span class="n">X_3</span><span class="p">)</span><span class="o">**</span><span class="n">p</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">S</span> <span class="o">/</span> <span class="n">n</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now let’s call it.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">compute_mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.2298487801088918
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="a-vectorized-routine">
+<h3><span class="section-number">15.2.3. </span>A Vectorized Routine<a class="headerlink" href="#a-vectorized-routine" title="Permalink to this heading">#</a></h3>
+<p>If we want a more accurate estimate we should increase <span class="math notranslate nohighlight">\(n\)</span>.</p>
+<p>But the code above runs quite slowly.</p>
+<p>To make it faster, let’s implement a vectorized routine using NumPy.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">compute_mean_vectorized</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">1_000_000</span><span class="p">):</span>
+    <span class="n">X_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">μ_1</span> <span class="o">+</span> <span class="n">σ_1</span> <span class="o">*</span> <span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+    <span class="n">X_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">μ_2</span> <span class="o">+</span> <span class="n">σ_2</span> <span class="o">*</span> <span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+    <span class="n">X_3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">μ_3</span> <span class="o">+</span> <span class="n">σ_3</span> <span class="o">*</span> <span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+    <span class="n">S</span> <span class="o">=</span> <span class="p">(</span><span class="n">X_1</span> <span class="o">+</span> <span class="n">X_2</span> <span class="o">+</span> <span class="n">X_3</span><span class="p">)</span><span class="o">**</span><span class="n">p</span>
+    <span class="k">return</span> <span class="n">S</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+
+<span class="n">compute_mean_vectorized</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 96.5 ms, sys: 4 ms, total: 100 ms
+Wall time: 100 ms
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.2298715578848363
+</pre></div>
+</div>
+</div>
+</div>
+<p>Notice that this routine is much faster.</p>
+<p>We can increase <span class="math notranslate nohighlight">\(n\)</span> to get more accuracy and still have reasonable speed:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+
+<span class="n">compute_mean_vectorized</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">10_000_000</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 941 ms, sys: 80 ms, total: 1.02 s
+Wall time: 1.02 s
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.2297518129276117
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="pricing-a-european-call-option-under-risk-neutrality">
+<h2><span class="section-number">15.3. </span>Pricing a European Call Option under Risk Neutrality<a class="headerlink" href="#pricing-a-european-call-option-under-risk-neutrality" title="Permalink to this heading">#</a></h2>
+<p>Next we are going to price a European call option under risk neutrality.</p>
+<p>Let’s first discuss risk neutrality and then consider European options.</p>
+<section id="risk-neutral-pricing">
+<h3><span class="section-number">15.3.1. </span>Risk-Neutral Pricing<a class="headerlink" href="#risk-neutral-pricing" title="Permalink to this heading">#</a></h3>
+<p>When we use risk-neutral pricing, we determine the price of a given asset
+according to its expected payoff:</p>
+<div class="math notranslate nohighlight">
+\[
+\text{cost } = \text{ expected benefit}
+\]</div>
+<p>For example, suppose someone promises to pay you</p>
+<ul class="simple">
+<li><p>1,000,000 dollars if “heads” is the outcome of a fair coin flip</p></li>
+<li><p>0 dollars if “tails” is the outcome</p></li>
+</ul>
+<p>Let’s denote the payoff as <span class="math notranslate nohighlight">\(G\)</span>, so that</p>
+<div class="math notranslate nohighlight">
+\[
+    \mathbb P\left\{G = 10^6 \right\} = \mathbb P\{G = 0\} = \frac{1}{2}
+\]</div>
+<p>Suppose in addition that you can sell this promise to anyone who wants it.</p>
+<ul class="simple">
+<li><p>First they pay you <span class="math notranslate nohighlight">\(P\)</span>, the price at which you sell it</p></li>
+<li><p>Then they get <span class="math notranslate nohighlight">\(G\)</span>, which could be either 1,000,000 or 0.</p></li>
+</ul>
+<p>What’s a fair price for this asset (this promise)?</p>
+<p>The definition of “fair” is ambiguous, but we can say that the
+<strong>risk-neutral price</strong> is 500,000 dollars.</p>
+<p>This is because the risk-neutral price is just the expected payoff of the
+asset, which is</p>
+<div class="math notranslate nohighlight">
+\[
+    \mathbb E G = \frac{1}{2} \times 10^6 + \frac{1}{2} \times 0 = 5 \times 10^5
+\]</div>
+</section>
+<section id="a-comment-on-risk">
+<h3><span class="section-number">15.3.2. </span>A Comment on Risk<a class="headerlink" href="#a-comment-on-risk" title="Permalink to this heading">#</a></h3>
+<p>As suggested by the name, the risk-neutral price ignores risk.</p>
+<p>To understand this, consider whether you would pay 500,000 dollars for such a
+promise.</p>
+<p>Would you prefer to receive 500,000 for sure or 1,000,000 dollars with
+50% probability and nothing with 50% probability?</p>
+<p>At least some readers will strictly prefer the first option — although some
+might prefer the second.</p>
+<p>Thinking about this makes us realize that 500,000 is not necessarily the
+“right” price — or the price that we would see if there was a market for
+these promises.</p>
+<p>Nonetheless, the risk-neutral price is an important benchmark, which economists
+and financial market participants try to calculate every day.</p>
+</section>
+<section id="discounting">
+<h3><span class="section-number">15.3.3. </span>Discounting<a class="headerlink" href="#discounting" title="Permalink to this heading">#</a></h3>
+<p>Another thing we ignored in the previous discussion was time.</p>
+<p>In general, receiving <span class="math notranslate nohighlight">\(x\)</span> dollars now is preferable to receiving <span class="math notranslate nohighlight">\(x\)</span> dollars
+in <span class="math notranslate nohighlight">\(n\)</span> periods (e.g., 10 years).</p>
+<p>After all, if we receive <span class="math notranslate nohighlight">\(x\)</span> dollars now, we could put it in the bank at
+interest rate <span class="math notranslate nohighlight">\(r &gt; 0\)</span> and receive <span class="math notranslate nohighlight">\( (1 + r)^n x \)</span> in <span class="math notranslate nohighlight">\(n\)</span> periods.</p>
+<p>Hence future payments need to be discounted when we consider their present
+value.</p>
+<p>We will implement discounting by</p>
+<ul class="simple">
+<li><p>multiplying a payment in one period by <span class="math notranslate nohighlight">\(\beta &lt; 1\)</span></p></li>
+<li><p>multiplying a payment in <span class="math notranslate nohighlight">\(n\)</span> periods by <span class="math notranslate nohighlight">\(\beta^n\)</span>, etc.</p></li>
+</ul>
+<p>The same adjustment needs to be applied to our risk-neutral price for the
+promise described above.</p>
+<p>Thus, if <span class="math notranslate nohighlight">\(G\)</span> is realized in <span class="math notranslate nohighlight">\(n\)</span> periods, then the risk-neutral price is</p>
+<div class="math notranslate nohighlight">
+\[
+    P = \beta^n \mathbb E G
+      = \beta^n 5 \times 10^5
+\]</div>
+</section>
+<section id="european-call-options">
+<h3><span class="section-number">15.3.4. </span>European Call Options<a class="headerlink" href="#european-call-options" title="Permalink to this heading">#</a></h3>
+<p>Now let’s price a European call option.</p>
+<p>The option is described by three things:</p>
+<ol class="arabic simple" start="2">
+<li><p><span class="math notranslate nohighlight">\(n\)</span>, the <strong>expiry date</strong>,</p></li>
+<li><p><span class="math notranslate nohighlight">\(K\)</span>, the <strong>strike price</strong>, and</p></li>
+<li><p><span class="math notranslate nohighlight">\(S_n\)</span>, the price of the <strong>underlying</strong> asset at date <span class="math notranslate nohighlight">\(n\)</span>.</p></li>
+</ol>
+<p>For example, suppose that the underlying is one share in Amazon.</p>
+<p>The owner of this option has the right to buy one share in Amazon at price <span class="math notranslate nohighlight">\(K\)</span> after <span class="math notranslate nohighlight">\(n\)</span> days.</p>
+<p>If <span class="math notranslate nohighlight">\(S_n &gt; K\)</span>, then the owner will exercise the option, buy at <span class="math notranslate nohighlight">\(K\)</span>, sell at
+<span class="math notranslate nohighlight">\(S_n\)</span>, and make profit <span class="math notranslate nohighlight">\(S_n - K\)</span>.</p>
+<p>If <span class="math notranslate nohighlight">\(S_n \leq K\)</span>, then the owner will not exercise the option and the payoff is zero.</p>
+<p>Thus, the payoff is <span class="math notranslate nohighlight">\(\max\{ S_n - K, 0 \}\)</span>.</p>
+<p>Under the assumption of risk neutrality,  the price of the option is
+the expected discounted payoff:</p>
+<div class="math notranslate nohighlight">
+\[ P = \beta^n \mathbb E \max\{ S_n - K, 0 \} \]</div>
+<p>Now all we need to do is specify the distribution of <span class="math notranslate nohighlight">\(S_n\)</span>, so the expectation
+can be calculated.</p>
+<p>Suppose we know that <span class="math notranslate nohighlight">\(S_n \sim LN(\mu, \sigma)\)</span> and <span class="math notranslate nohighlight">\(\mu\)</span> and <span class="math notranslate nohighlight">\(\sigma\)</span> are known.</p>
+<p>If <span class="math notranslate nohighlight">\(S_n^1, \ldots, S_n^M\)</span> are independent draws from this lognormal distribution then, by the law of large numbers,</p>
+<div class="math notranslate nohighlight">
+\[
+    \mathbb E \max\{ S_n - K, 0 \}
+    \approx
+    \frac{1}{M} \sum_{m=1}^M \max \{S_n^m - K, 0 \}
+\]</div>
+<p>We suppose that</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">μ</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="n">σ</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">K</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">β</span> <span class="o">=</span> <span class="mf">0.95</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We set the simulation size to</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">M</span> <span class="o">=</span> <span class="mi">10_000_000</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here is our code</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">S</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">μ</span> <span class="o">+</span> <span class="n">σ</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">M</span><span class="p">))</span>
+<span class="n">return_draws</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">S</span> <span class="o">-</span> <span class="n">K</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">P</span> <span class="o">=</span> <span class="n">β</span><span class="o">**</span><span class="n">n</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">return_draws</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The Monte Carlo option price is approximately </span><span class="si">{</span><span class="n">P</span><span class="si">:</span><span class="s2">3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The Monte Carlo option price is approximately 1.036885
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="pricing-via-a-dynamic-model">
+<h2><span class="section-number">15.4. </span>Pricing Via a Dynamic Model<a class="headerlink" href="#pricing-via-a-dynamic-model" title="Permalink to this heading">#</a></h2>
+<p>In this exercise we investigate a more realistic model for the share price <span class="math notranslate nohighlight">\(S_n\)</span>.</p>
+<p>This comes from specifying the underlying dynamics of the share price.</p>
+<p>First we specify the dynamics.</p>
+<p>Then we’ll compute the price of the option using Monte Carlo.</p>
+<section id="simple-dynamics">
+<h3><span class="section-number">15.4.1. </span>Simple Dynamics<a class="headerlink" href="#simple-dynamics" title="Permalink to this heading">#</a></h3>
+<p>One simple model for <span class="math notranslate nohighlight">\(\{S_t\}\)</span> is</p>
+<div class="math notranslate nohighlight">
+\[ \ln \frac{S_{t+1}}{S_t} = \mu + \sigma \xi_{t+1} \]</div>
+<p>where</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(S_0\)</span> is normally distributed and</p></li>
+<li><p><span class="math notranslate nohighlight">\(\{ \xi_t \}\)</span> is IID and standard normal.</p></li>
+</ul>
+<p>Under the stated assumptions, <span class="math notranslate nohighlight">\(S_n\)</span> is lognormally distributed.</p>
+<p>To see why, observe that, with <span class="math notranslate nohighlight">\(s_t := \ln S_t\)</span>, the price dynamics become</p>
+<div class="math notranslate nohighlight" id="equation-s-mc-dyms">
+<span class="eqno">(15.1)<a class="headerlink" href="#equation-s-mc-dyms" title="Permalink to this equation">#</a></span>\[s_{t+1} = s_t + \mu + \sigma \xi_{t+1}\]</div>
+<p>Since <span class="math notranslate nohighlight">\(s_0\)</span> is normal and <span class="math notranslate nohighlight">\(\xi_1\)</span> is normal and IID, we see that <span class="math notranslate nohighlight">\(s_1\)</span> is
+normally distributed.</p>
+<p>Continuing in this way shows that <span class="math notranslate nohighlight">\(s_n\)</span> is normally distributed.</p>
+<p>Hence <span class="math notranslate nohighlight">\(S_n = \exp(s_n)\)</span> is lognormal.</p>
+</section>
+<section id="problems-with-simple-dynamics">
+<h3><span class="section-number">15.4.2. </span>Problems with Simple Dynamics<a class="headerlink" href="#problems-with-simple-dynamics" title="Permalink to this heading">#</a></h3>
+<p>The simple dynamic model we studied above is convenient, since we can work out
+the distribution of <span class="math notranslate nohighlight">\(S_n\)</span>.</p>
+<p>However, its predictions are counterfactual because, in the real world,
+volatility (measured by <span class="math notranslate nohighlight">\(\sigma\)</span>) is not stationary.</p>
+<p>Instead it rather changes over time, sometimes high (like during the GFC) and sometimes low.</p>
+<p>In terms of our model above, this means that <span class="math notranslate nohighlight">\(\sigma\)</span> should not be constant.</p>
+</section>
+<section id="more-realistic-dynamics">
+<h3><span class="section-number">15.4.3. </span>More Realistic Dynamics<a class="headerlink" href="#more-realistic-dynamics" title="Permalink to this heading">#</a></h3>
+<p>This leads us to study the improved version:</p>
+<div class="math notranslate nohighlight">
+\[ \ln \frac{S_{t+1}}{S_t} = \mu + \sigma_t \xi_{t+1} \]</div>
+<p>where</p>
+<div class="math notranslate nohighlight">
+\[
+    \sigma_t = \exp(h_t),
+    \quad
+        h_{t+1} = \rho h_t + \nu \eta_{t+1}
+\]</div>
+<p>Here <span class="math notranslate nohighlight">\(\{\eta_t\}\)</span> is also IID and standard normal.</p>
+</section>
+<section id="default-parameters">
+<h3><span class="section-number">15.4.4. </span>Default Parameters<a class="headerlink" href="#default-parameters" title="Permalink to this heading">#</a></h3>
+<p>For the dynamic model, we adopt the following parameter values.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">μ</span>  <span class="o">=</span> <span class="mf">0.0001</span>
+<span class="n">ρ</span>  <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">ν</span>  <span class="o">=</span> <span class="mf">0.001</span>
+<span class="n">S0</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">h0</span> <span class="o">=</span> <span class="mi">0</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>(Here <code class="docutils literal notranslate"><span class="pre">S0</span></code> is <span class="math notranslate nohighlight">\(S_0\)</span> and <code class="docutils literal notranslate"><span class="pre">h0</span></code> is <span class="math notranslate nohighlight">\(h_0\)</span>.)</p>
+<p>For the option we use the following defaults.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">K</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">β</span> <span class="o">=</span> <span class="mf">0.95</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="visualizations">
+<h3><span class="section-number">15.4.5. </span>Visualizations<a class="headerlink" href="#visualizations" title="Permalink to this heading">#</a></h3>
+<p>With <span class="math notranslate nohighlight">\(s_t := \ln S_t\)</span>, the price dynamics become</p>
+<div class="math notranslate nohighlight">
+\[ s_{t+1} = s_t + \mu + \exp(h_t) \xi_{t+1} \]</div>
+<p>Here is a function to simulate a path using this equation:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">simulate_asset_price_path</span><span class="p">(</span><span class="n">μ</span><span class="o">=</span><span class="n">μ</span><span class="p">,</span> <span class="n">S0</span><span class="o">=</span><span class="n">S0</span><span class="p">,</span> <span class="n">h0</span><span class="o">=</span><span class="n">h0</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">ρ</span><span class="o">=</span><span class="n">ρ</span><span class="p">,</span> <span class="n">ν</span><span class="o">=</span><span class="n">ν</span><span class="p">):</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">S0</span><span class="p">)</span>
+
+    <span class="n">h</span> <span class="o">=</span> <span class="n">h0</span>
+    <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">s</span><span class="p">[</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">+</span> <span class="n">μ</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">h</span><span class="p">)</span> <span class="o">*</span> <span class="n">randn</span><span class="p">()</span>
+        <span class="n">h</span> <span class="o">=</span> <span class="n">ρ</span> <span class="o">*</span> <span class="n">h</span> <span class="o">+</span> <span class="n">ν</span> <span class="o">*</span> <span class="n">randn</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here we plot the paths and the log of the paths.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="n">titles</span> <span class="o">=</span> <span class="s1">&#39;log paths&#39;</span><span class="p">,</span> <span class="s1">&#39;paths&#39;</span>
+<span class="n">transforms</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span>
+<span class="k">for</span> <span class="n">ax</span><span class="p">,</span> <span class="n">transform</span><span class="p">,</span> <span class="n">title</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">axes</span><span class="p">,</span> <span class="n">transforms</span><span class="p">,</span> <span class="n">titles</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">50</span><span class="p">):</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="n">simulate_asset_price_path</span><span class="p">()</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">transform</span><span class="p">(</span><span class="n">path</span><span class="p">))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/a12115a4f2c83513eea0a8db34f5a8171591fb82a49f7c5e9b60954ddaaf7928.png" src="_images/a12115a4f2c83513eea0a8db34f5a8171591fb82a49f7c5e9b60954ddaaf7928.png" />
+</div>
+</div>
+</section>
+<section id="computing-the-price">
+<h3><span class="section-number">15.4.6. </span>Computing the Price<a class="headerlink" href="#computing-the-price" title="Permalink to this heading">#</a></h3>
+<p>Now that our model is more complicated, we cannot easily determine the
+distribution of <span class="math notranslate nohighlight">\(S_n\)</span>.</p>
+<p>So to compute the price <span class="math notranslate nohighlight">\(P\)</span> of the option, we use Monte Carlo.</p>
+<p>We average over realizations <span class="math notranslate nohighlight">\(S_n^1, \ldots, S_n^M\)</span> of <span class="math notranslate nohighlight">\(S_n\)</span> and appealing to
+the law of large numbers:</p>
+<div class="math notranslate nohighlight">
+\[
+    \mathbb E \max\{ S_n - K, 0 \}
+    \approx
+    \frac{1}{M} \sum_{m=1}^M \max \{S_n^m - K, 0 \}
+\]</div>
+<p>Here’s a version using Python loops.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">compute_call_price</span><span class="p">(</span><span class="n">β</span><span class="o">=</span><span class="n">β</span><span class="p">,</span>
+                       <span class="n">μ</span><span class="o">=</span><span class="n">μ</span><span class="p">,</span>
+                       <span class="n">S0</span><span class="o">=</span><span class="n">S0</span><span class="p">,</span>
+                       <span class="n">h0</span><span class="o">=</span><span class="n">h0</span><span class="p">,</span>
+                       <span class="n">K</span><span class="o">=</span><span class="n">K</span><span class="p">,</span>
+                       <span class="n">n</span><span class="o">=</span><span class="n">n</span><span class="p">,</span>
+                       <span class="n">ρ</span><span class="o">=</span><span class="n">ρ</span><span class="p">,</span>
+                       <span class="n">ν</span><span class="o">=</span><span class="n">ν</span><span class="p">,</span>
+                       <span class="n">M</span><span class="o">=</span><span class="mi">10_000</span><span class="p">):</span>
+    <span class="n">current_sum</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="c1"># For each sample path</span>
+    <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">M</span><span class="p">):</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">S0</span><span class="p">)</span>
+        <span class="n">h</span> <span class="o">=</span> <span class="n">h0</span>
+        <span class="c1"># Simulate forward in time</span>
+        <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+            <span class="n">s</span> <span class="o">=</span> <span class="n">s</span> <span class="o">+</span> <span class="n">μ</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">h</span><span class="p">)</span> <span class="o">*</span> <span class="n">randn</span><span class="p">()</span>
+            <span class="n">h</span> <span class="o">=</span> <span class="n">ρ</span> <span class="o">*</span> <span class="n">h</span> <span class="o">+</span> <span class="n">ν</span> <span class="o">*</span> <span class="n">randn</span><span class="p">()</span>
+        <span class="c1"># And add the value max{S_n - K, 0} to current_sum</span>
+        <span class="n">current_sum</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">-</span> <span class="n">K</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">β</span><span class="o">**</span><span class="n">n</span> <span class="o">*</span> <span class="n">current_sum</span> <span class="o">/</span> <span class="n">M</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+<span class="n">compute_call_price</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 248 ms, sys: 0 ns, total: 248 ms
+Wall time: 249 ms
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>690.600924683126
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="exercises">
+<h2><span class="section-number">15.5. </span>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h2>
+<div class="exercise admonition" id="monte_carlo_ex1">
+
+<p class="admonition-title"><span class="caption-number">Exercise 15.1 </span></p>
+<section id="exercise-content">
+<p>We would like to increase <span class="math notranslate nohighlight">\(M\)</span> in the code above to make the calculation more
+accurate.</p>
+<p>But this is problematic because Python loops are slow.</p>
+<p>Your task is to write a faster version of this code using NumPy.</p>
+</section>
+</div>
+<div class="solution dropdown admonition" id="monte_carlo-solution-1">
+
+<p class="admonition-title">Solution to<a class="reference internal" href="#monte_carlo_ex1"> Exercise 15.1</a></p>
+<section id="solution-content">
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">compute_call_price</span><span class="p">(</span><span class="n">β</span><span class="o">=</span><span class="n">β</span><span class="p">,</span>
+                       <span class="n">μ</span><span class="o">=</span><span class="n">μ</span><span class="p">,</span>
+                       <span class="n">S0</span><span class="o">=</span><span class="n">S0</span><span class="p">,</span>
+                       <span class="n">h0</span><span class="o">=</span><span class="n">h0</span><span class="p">,</span>
+                       <span class="n">K</span><span class="o">=</span><span class="n">K</span><span class="p">,</span>
+                       <span class="n">n</span><span class="o">=</span><span class="n">n</span><span class="p">,</span>
+                       <span class="n">ρ</span><span class="o">=</span><span class="n">ρ</span><span class="p">,</span>
+                       <span class="n">ν</span><span class="o">=</span><span class="n">ν</span><span class="p">,</span>
+                       <span class="n">M</span><span class="o">=</span><span class="mi">10_000</span><span class="p">):</span>
+
+    <span class="n">s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">S0</span><span class="p">))</span>
+    <span class="n">h</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">h0</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">Z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">M</span><span class="p">)</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">s</span> <span class="o">+</span> <span class="n">μ</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">h</span><span class="p">)</span> <span class="o">*</span> <span class="n">Z</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:]</span>
+        <span class="n">h</span> <span class="o">=</span> <span class="n">ρ</span> <span class="o">*</span> <span class="n">h</span> <span class="o">+</span> <span class="n">ν</span> <span class="o">*</span> <span class="n">Z</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span>
+    <span class="n">expectation</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">-</span> <span class="n">K</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">β</span><span class="o">**</span><span class="n">n</span> <span class="o">*</span> <span class="n">expectation</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+<span class="n">compute_call_price</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 6.5 ms, sys: 14 µs, total: 6.52 ms
+Wall time: 6.42 ms
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2011.7213941850048
+</pre></div>
+</div>
+</div>
+</div>
+<p>Notice that this version is faster than the one using a Python loop.</p>
+<p>Now let’s try with larger <span class="math notranslate nohighlight">\(M\)</span> to get a more accurate calculation.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+<span class="n">compute_call_price</span><span class="p">(</span><span class="n">M</span><span class="o">=</span><span class="mi">10_000_000</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 6.2 s, sys: 872 ms, total: 7.07 s
+Wall time: 7.07 s
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>847.8266657952051
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<div class="exercise admonition" id="monte_carlo_ex2">
+
+<p class="admonition-title"><span class="caption-number">Exercise 15.2 </span></p>
+<section id="exercise-content">
+<p>Consider that a European call option may be written on an underlying with spot price of $100 and a knockout barrier of $120.</p>
+<p>This option behaves in every way like a vanilla European call, except if the spot price ever moves above $120, the option “knocks out” and the contract is null and void.</p>
+<p>Note that the option does not reactivate if the spot price falls below $120 again.</p>
+<p>Use the dynamics defined in <a class="reference internal" href="#equation-s-mc-dyms">(15.1)</a> to price the European call option.</p>
+</section>
+</div>
+<div class="solution dropdown admonition" id="monte_carlo-solution-3">
+
+<p class="admonition-title">Solution to<a class="reference internal" href="#monte_carlo_ex2"> Exercise 15.2</a></p>
+<section id="solution-content">
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">μ</span>  <span class="o">=</span> <span class="mf">0.0001</span>
+<span class="n">ρ</span>  <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">ν</span>  <span class="o">=</span> <span class="mf">0.001</span>
+<span class="n">S0</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">h0</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">K</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">β</span> <span class="o">=</span> <span class="mf">0.95</span>
+<span class="n">bp</span> <span class="o">=</span> <span class="mi">120</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">compute_call_price_with_barrier</span><span class="p">(</span><span class="n">β</span><span class="o">=</span><span class="n">β</span><span class="p">,</span>
+                                    <span class="n">μ</span><span class="o">=</span><span class="n">μ</span><span class="p">,</span>
+                                    <span class="n">S0</span><span class="o">=</span><span class="n">S0</span><span class="p">,</span>
+                                    <span class="n">h0</span><span class="o">=</span><span class="n">h0</span><span class="p">,</span>
+                                    <span class="n">K</span><span class="o">=</span><span class="n">K</span><span class="p">,</span>
+                                    <span class="n">n</span><span class="o">=</span><span class="n">n</span><span class="p">,</span>
+                                    <span class="n">ρ</span><span class="o">=</span><span class="n">ρ</span><span class="p">,</span>
+                                    <span class="n">ν</span><span class="o">=</span><span class="n">ν</span><span class="p">,</span>
+                                    <span class="n">bp</span><span class="o">=</span><span class="n">bp</span><span class="p">,</span>
+                                    <span class="n">M</span><span class="o">=</span><span class="mi">50_000</span><span class="p">):</span>
+    <span class="n">current_sum</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="c1"># For each sample path</span>
+    <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">M</span><span class="p">):</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">S0</span><span class="p">)</span>
+        <span class="n">h</span> <span class="o">=</span> <span class="n">h0</span>
+        <span class="n">payoff</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">option_is_null</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="c1"># Simulate forward in time</span>
+        <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+            <span class="n">s</span> <span class="o">=</span> <span class="n">s</span> <span class="o">+</span> <span class="n">μ</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">h</span><span class="p">)</span> <span class="o">*</span> <span class="n">randn</span><span class="p">()</span>
+            <span class="n">h</span> <span class="o">=</span> <span class="n">ρ</span> <span class="o">*</span> <span class="n">h</span> <span class="o">+</span> <span class="n">ν</span> <span class="o">*</span> <span class="n">randn</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">bp</span><span class="p">:</span>
+                <span class="n">payoff</span> <span class="o">=</span> <span class="mi">0</span>
+                <span class="n">option_is_null</span> <span class="o">=</span> <span class="kc">True</span>
+                <span class="k">break</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">option_is_null</span><span class="p">:</span>
+            <span class="n">payoff</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">-</span> <span class="n">K</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="c1"># And add the payoff to current_sum</span>
+        <span class="n">current_sum</span> <span class="o">+=</span> <span class="n">payoff</span>
+
+    <span class="k">return</span> <span class="n">β</span><span class="o">**</span><span class="n">n</span> <span class="o">*</span> <span class="n">current_sum</span> <span class="o">/</span> <span class="n">M</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">time</span> compute_call_price_with_barrier()
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 1.42 s, sys: 7 µs, total: 1.42 s
+Wall time: 1.42 s
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.036780373767689736
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s look at the vectorized version which is faster than using Python loops.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">compute_call_price_with_barrier_vector</span><span class="p">(</span><span class="n">β</span><span class="o">=</span><span class="n">β</span><span class="p">,</span>
+                                           <span class="n">μ</span><span class="o">=</span><span class="n">μ</span><span class="p">,</span>
+                                           <span class="n">S0</span><span class="o">=</span><span class="n">S0</span><span class="p">,</span>
+                                           <span class="n">h0</span><span class="o">=</span><span class="n">h0</span><span class="p">,</span>
+                                           <span class="n">K</span><span class="o">=</span><span class="n">K</span><span class="p">,</span>
+                                           <span class="n">n</span><span class="o">=</span><span class="n">n</span><span class="p">,</span>
+                                           <span class="n">ρ</span><span class="o">=</span><span class="n">ρ</span><span class="p">,</span>
+                                           <span class="n">ν</span><span class="o">=</span><span class="n">ν</span><span class="p">,</span>
+                                           <span class="n">bp</span><span class="o">=</span><span class="n">bp</span><span class="p">,</span>
+                                           <span class="n">M</span><span class="o">=</span><span class="mi">50_000</span><span class="p">):</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">S0</span><span class="p">))</span>
+    <span class="n">h</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">h0</span><span class="p">)</span>
+    <span class="n">option_is_null</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">Z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">M</span><span class="p">)</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">s</span> <span class="o">+</span> <span class="n">μ</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">h</span><span class="p">)</span> <span class="o">*</span> <span class="n">Z</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:]</span>
+        <span class="n">h</span> <span class="o">=</span> <span class="n">ρ</span> <span class="o">*</span> <span class="n">h</span> <span class="o">+</span> <span class="n">ν</span> <span class="o">*</span> <span class="n">Z</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span>
+        <span class="c1"># Mark all the options null where S_n &gt; barrier price</span>
+        <span class="n">option_is_null</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">bp</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="n">option_is_null</span><span class="p">)</span>
+
+    <span class="c1"># mark payoff as 0 in the indices where options are null</span>
+    <span class="n">payoff</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">option_is_null</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">-</span> <span class="n">K</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+    <span class="n">expectation</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">payoff</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">β</span><span class="o">**</span><span class="n">n</span> <span class="o">*</span> <span class="n">expectation</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">time</span> compute_call_price_with_barrier_vector()
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 32.7 ms, sys: 27 µs, total: 32.7 ms
+Wall time: 32.6 ms
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.03796045851600586
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                    </div>
+                    
+                </main> <!-- .page__content -->
+                
+
+
+                <footer class="qe-page__footer">
+
+                    <p><a href="https://creativecommons.org/licenses/by-sa/4.0/"><img src="https://licensebuttons.net/l/by-sa/4.0/80x15.png"></a></p>
+
+                    <p>Creative Commons License &ndash; This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International.</p>
+
+                </footer> <!-- .page__footer -->
+
+            </div> <!-- .page -->
+
+            
+
+            
+            <div class="qe-sidebar bd-sidebar inactive" id="site-navigation">
+
+                <div class="qe-sidebar__header">
+
+
+                    Contents
+
+                </div>
+
+                <nav class="qe-sidebar__nav" id="qe-sidebar-nav" aria-label="Main navigation">
+                    <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Introduction
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="about.html">
+   1. About these Lectures
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Supply and Demand
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro_supply_demand.html">
+   2. Introduction to Supply and Demand
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="supply_demand_multiple_goods.html">
+   3. Supply and Demand with Many Goods
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="supply_demand_heterogeneity.html">
+   4. Market Equilibrium with Heterogeneity
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="input_output.html">
+   5. Input-Output Models
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Data and Measurement
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="long_run_growth.html">
+   6. Long Run Growth
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="business_cycle.html">
+   7. Business Cycles
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="inflation_unemployment.html">
+   8. Inflation and Unemployment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="inequality.html">
+   9. Income and Wealth Inequality
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="distributions.html">
+   10. Distributions in Economics
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Useful Tools
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="geom_series.html">
+   11. Geometric Series for Elementary Economics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="linear_equations.html">
+   12. Linear Equations and Matrix Algebra
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="eigen_I.html">
+   13. Eigenvalues and Eigenvectors
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Simulation
+ </span>
+</p>
+<ul class="current nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="lln_clt.html">
+   14. LLN and CLT
+  </a>
+ </li>
+ <li class="toctree-l1 current active active">
+  <a class="current reference internal" href="#">
+   15. Monte Carlo and Option Pricing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="schelling.html">
+   16. Racial Segregation
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Dynamics
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="solow.html">
+   17. The Solow-Swan Growth Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="scalar_dynam.html">
+   18. Dynamics in One Dimension
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cobweb.html">
+   19. The Cobweb Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="olg.html">
+   20. The Overlapping Generations Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="markov_chains_I.html">
+   21. Markov Chains: Basic Concepts and Stationarity
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="markov_chains_II.html">
+   22. Markov Chains: Irreducibility and Ergodicity
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Modeling in Higher Dimensions
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="eigen_II.html">
+   23. Theorems of Nonnegative Matrices and Eigenvalues
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lake_model.html">
+   24. A Lake Model of Employment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="asset_pricing.html">
+   25. Introduction to Asset Pricing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="networks.html">
+   26. Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="samuelson.html">
+   27. Multiplier Accelerator Model
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Optimization
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="lp_intro.html">
+   28. Linear Programming
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="comparative_adv.html">
+   29. Comparative Advantage
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nonlinear.html">
+   30. Nonlinear Problems
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="short_path.html">
+   31. Shortest Paths
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Markets and Competitive Equilibrium
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="markets_welfare.html">
+   32. Markets and Welfare
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="risk.html">
+   33. Risk
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="uncertainty.html">
+   34. Uncertainty
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Estimation
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="simple_linear_regression.html">
+   35. Simple Linear Regression Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lr_with_matrices.html">
+   36. Linear Regression with Matrices
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="mle.html">
+   37. Maximum Likelihood Estimation
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Other
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="troubleshooting.html">
+   38. Troubleshooting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="zreferences.html">
+   39. References
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="status.html">
+   40. Execution Statistics
+  </a>
+ </li>
+</ul>
+
+                </nav>
+
+                <div class="qe-sidebar__footer">
+
+                </div>
+
+            </div> <!-- .sidebar -->
+            
+        </div> <!-- .main -->
+
+        <div class="qe-toolbar">
+
+            <div class="qe-toolbar__inner">
+
+                <ul class="qe-toolbar__main">
+                    <li data-tippy-content="Table of Contents" class="btn__sidebar"><i data-feather="menu"></i></li>
+                    <li data-tippy-content="Home"><a href="intro.html"><i data-feather="home"></i></a></li>
+                    <li class="btn__qelogo"><a href="https://quantecon.org" title=""><span class="show-for-sr">QuantEcon</span></a></li>
+                    <!-- <li class="btn__search">
+                        <form action="search.html" method="get">
+                            <input type="search" class="form-control" name="q" id="search-input" placeholder="Search..." aria-label="Search..." autocomplete="off">
+                            <i data-feather="search"></i>
+                        </form>
+                    </li> -->
+                </ul>
+
+                <ul class="qe-toolbar__links">
+                    <li data-tippy-content="Fullscreen" class="btn__fullscreen"><i data-feather="maximize"></i></li>
+                    <li data-tippy-content="Increase font size" class="btn__plus"><i data-feather="plus-circle"></i></li>
+                    <li data-tippy-content="Decrease font size" class="btn__minus"><i data-feather="minus-circle"></i></li>
+                    <li data-tippy-content="Change contrast" class="btn__contrast"><i data-feather="sunset"></i></li>
+                    <li data-tippy-content="Download Notebook"><a href="/_notebooks/monte_carlo.ipynb" download><i data-feather="download-cloud"></i></a></li>
+                    <li class="settings-button" id="settingsButton"><div data-tippy-content="Launch Notebook"><i data-feather="play-circle"></i></div></li>
+                        <li data-tippy-content="Download PDF" onClick="window.print()"><i data-feather="file"></i></li>
+                    <li data-tippy-content="View Source"><a target="_blank" href="https://github.com/QuantEcon/lecture-python-intro/tree/master/lectures/monte_carlo.md" download><i data-feather="github"></i></a></li>
+                </ul>
+
+            </div>
+
+        </div> <!-- .toolbar -->
+        <div id="downloadPDFModal" style="display: none;">
+            <ul class="pdf-options" style="display: block;">
+                <li class="download-pdf-book" onClick="window.print()">
+                    <p>Lecture (PDF)</p>
+                </li>
+                <li class="download-pdf-file">
+                    <a href="" download><p>Book (PDF)</p></a>
+                </li>
+            </ul>
+        </div>
+        <div id="settingsModal" style="display: none;">
+            <p class="modal-title"> Notebook Launcher </p>
+            <div class="modal-desc">
+            <p>
+                Choose public or private cloud service for "Launch" button.
+            </p>
+            </div>
+            <p class="modal-subtitle">Select a server</p>
+            <ul class="modal-servers">
+            <li class="active launcher-public">
+                <span class="label">Public</span>
+                <select id="launcher-public-input">
+                
+                    <option value="https://mybinder.org/v2/gh/QuantEcon/lecture-python-intro.notebooks/master?urlpath=tree/monte_carlo.ipynb">BinderHub</option>
+                
+                    <option value="https://colab.research.google.com/github/QuantEcon/lecture-python-intro.notebooks/blob/master/monte_carlo.ipynb">Colab</option>
+                
+                </select>
+                <i class="fas fa-check-circle"></i>
+            </li>
+            <li class="launcher-private">
+                <span class="label">Private</span>
+                <input type="text" id="launcher-private-input" data-repourl="https://github.com/QuantEcon/lecture-python-intro.notebooks" data-urlpath="tree/lecture-python-intro.notebooks/monte_carlo.ipynb" data-branch=master>
+                <i class="fas fa-check-circle"></i>
+            </li>
+            </ul>
+            <p class="launch"><a href="https://mybinder.org/v2/gh/QuantEcon/lecture-python-intro.notebooks/master?urlpath=tree/monte_carlo.ipynb" id="advancedLaunchButton" target="_blank">Launch Notebook</a></p>
+            <script>
+                // QuantEcon Notebook Launcher
+                const launcherTypeElements = document.querySelectorAll('#settingsModal .modal-servers li');
+                // Highlight the server type if previous selection exists
+                if (typeof localStorage.launcherType !== 'undefined') {
+                  for (var i = 0; i < launcherTypeElements.length; i++) {
+                    launcherTypeElements[i].classList.remove('active');
+                    if ( launcherTypeElements[i].classList.contains(localStorage.launcherType) ) {
+                      launcherTypeElements[i].classList.add('active');
+                    }
+                  }
+                }
+                // Highlight server type on click and set local storage value
+                for (var i = 0; i < launcherTypeElements.length; i++) {
+                  launcherTypeElements[i].addEventListener('click', function() {
+                    for (var j = 0; j < launcherTypeElements.length; j++) {
+                      launcherTypeElements[j].classList.remove('active');
+                    }
+                    this.classList.add('active');
+                    if ( this.classList.contains('launcher-private') ) {
+                      localStorage.launcherType = 'launcher-private';
+                    } else if ( this.classList.contains('launcher-public') ) {
+                      localStorage.launcherType = 'launcher-public';
+                    }
+                    setLaunchServer();
+                  })
+                }
+                const launcherPublic = document.getElementById('launcher-public-input');
+                const launcherPrivate = document.getElementById('launcher-private-input');
+                const pageName = "monte_carlo";
+                const repoURL = "https://github.com/QuantEcon/lecture-python-intro.notebooks";
+                const urlPath = "tree/lecture-python-intro.notebooks/monte_carlo.ipynb";
+                const branch = "master"
+                const launchNotebookLink = document.getElementById('advancedLaunchButton');
+
+                // Highlight public server option if previous selection exists
+                if (typeof localStorage.launcherPublic !== 'undefined') {
+                  launcherPublic.value = localStorage.launcherPublic;
+                }
+                // Update local storage upon public server selection
+                launcherPublic.addEventListener('change', (event) => {
+                  setLaunchServer();
+                });
+                // Populate private server input if previous entry exists
+                if (typeof localStorage.launcherPrivate !== 'undefined') {
+                  launcherPrivate.value = localStorage.launcherPrivate;
+                }
+                // Update local storage when a private server is entered
+                launcherPrivate.addEventListener('input', (event) => {
+                  setLaunchServer();
+                });
+
+                // Function to update the "Launch Notebook" link href
+                function setLaunchServer() {
+                  launchNotebookLink.removeAttribute("style")
+                  if ( localStorage.launcherType == 'launcher-private' ) {
+                    let repoPrefix = "/jupyter/hub/user-redirect/git-pull?repo=" + repoURL + "&branch=" + branch + "&urlpath=" + urlPath;
+                    launcherPrivateValue = launcherPrivate.value
+                    if (!launcherPrivateValue) {
+                        launchNotebookLink.removeAttribute("href")
+                        launchNotebookLink.style.background = "grey"
+                        return
+                    }
+                    localStorage.launcherPrivate = launcherPrivateValue;
+                    privateServer = localStorage.launcherPrivate.replace(/\/$/, "")
+                    if (!privateServer.includes("http")) {
+                        privateServer = "http://" + privateServer
+                    }
+                    launchNotebookLinkURL = privateServer + repoPrefix;
+                  } else if ( localStorage.launcherType == 'launcher-public' ) {
+                    launcherPublicValue = launcherPublic.options[launcherPublic.selectedIndex].value;
+                    localStorage.launcherPublic = launcherPublicValue;
+                    launchNotebookLinkURL = localStorage.launcherPublic;
+                  }
+                  if (launchNotebookLinkURL) launchNotebookLink.href = launchNotebookLinkURL;
+                }
+                // Check if user has previously selected a server
+                if ( (typeof localStorage.launcherPrivate !== 'undefined') || (typeof localStorage.launcherPublic !== 'undefined') ) {
+                  setLaunchServer();
+                }
+                </script>
+
+        </div>
+
+    </div> <!-- .wrapper-->
+  </body>
+</html>

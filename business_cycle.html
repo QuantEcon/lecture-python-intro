@@ -1,0 +1,1913 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>7. Business Cycles &#8212; An Introduction to Quantitative Economics and Finance</title>
+    <script src="https://unpkg.com/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://unpkg.com/tippy.js@6.3.1/dist/tippy-bundle.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    
+        <script>
+            MathJax = {
+            loader: {load: ['[tex]/boldsymbol', '[tex]/textmacros']},
+            tex: {
+                packages: {'[+]': ['boldsymbol', 'textmacros']},
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                processEscapes: true,
+                macros: {
+                    "argmax" : "arg\\,max",
+                    "argmin" : "arg\\,min",
+                    "col"    : "col",
+                    "Span"   :  "span",
+                    "epsilon": "\\varepsilon",
+                    "EE": "\\mathbb{E}",
+                    "PP": "\\mathbb{P}",
+                    "RR": "\\mathbb{R}",
+                    "NN": "\\mathbb{N}",
+                    "ZZ": "\\mathbb{Z}",
+                    "aA": "\\mathcal{A}",
+                    "bB": "\\mathcal{B}",
+                    "cC": "\\mathcal{C}",
+                    "dD": "\\mathcal{D}",
+                    "eE": "\\mathcal{E}",
+                    "fF": "\\mathcal{F}",
+                    "gG": "\\mathcal{G}",
+                    "hH": "\\mathcal{H}",
+                }
+            },
+            svg: {
+                fontCache: 'global',
+                scale: 0.92,
+                displayAlign: "center",
+            },
+            };
+        </script>
+    
+    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/quantecon-book-theme.279dae03c5caae754d20501e3fa00bbf.css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/exercise.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script src="_static/quantecon-book-theme.15b0c36fffe88f468997fa7b698991d3.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'business_cycle';</script>
+    <link rel="canonical" href="https://intro.quantecon.org/business_cycle.html" />
+    <link rel="shortcut icon" href="_static/lectures-favicon.ico"/>
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="8. Inflation and Unemployment" href="inflation_unemployment.html" />
+    <link rel="prev" title="6. Long Run Growth" href="long_run_growth.html" />
+
+<!-- Normal Meta Tags -->
+<meta name="author" context="Thomas J. Sargent &amp; John Stachurski" />
+<meta name="keywords" content="Python, QuantEcon, Quantitative Economics, Economics, Sloan, Alfred P. Sloan Foundation, Tom J. Sargent, John Stachurski" />
+<meta name="description" content=This website presents introductory lectures on computational economics, designed and written by Thomas J. Sargent and John Stachurski. />
+
+<!-- Twitter tags -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@quantecon" />
+<meta name="twitter:title" content="Business Cycles"/>
+<meta name="twitter:description" content="This website presents introductory lectures on computational economics, designed and written by Thomas J. Sargent and John Stachurski.">
+<meta name="twitter:creator" content="@quantecon">
+<meta name="twitter:image" content="https://assets.quantecon.org/img/qe-twitter-logo.png">
+
+<!-- Opengraph tags -->
+<meta property="og:title" content="Business Cycles" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://intro.quantecon.org/business_cycle.html" />
+<meta property="og:image" content="https://assets.quantecon.org/img/qe-og-logo.png" />
+<meta property="og:description" content="This website presents introductory lectures on computational economics, designed and written by Thomas J. Sargent and John Stachurski." />
+<meta property="og:site_name" content="An Introduction to Quantitative Economics and Finance" />
+<meta name="theme-color" content="#ffffff" />
+
+  </head>
+<body>
+
+
+    <span id="top"></span>
+
+    <div class="qe-wrapper">
+
+        <div class="qe-main">
+
+            <div class="qe-page" id=business_cycle>
+
+                <div class="qe-page__toc">
+
+                    <div class="inner">
+
+                        
+                        <div class="qe-page__toc-header">
+                            On this page
+                        </div>
+
+
+                        <nav id="bd-toc-nav" class="qe-page__toc-nav">
+                            <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">7.1. Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-acquisition">7.2. Data Acquisition</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gdp-growth-rate">7.3. GDP Growth Rate</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unemployment">7.4. Unemployment</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#synchronization">7.5. Synchronization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#leading-indicators-and-correlated-factors-for-business-cycles">7.6. Leading Indicators and Correlated Factors for Business Cycles</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#consumption">7.6.1. Consumption</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#production">7.6.2. Production</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#credit-level">7.6.3. Credit Level</a></li>
+</ul>
+</li>
+</ul>
+                            <p class="logo">
+                                
+                                    
+                                    <a href=https://quantecon.org><img src="_static/qe-logo.png" class="logo" alt="logo"></a>
+                                    
+                                
+                            </p>
+
+                            <p class="powered">Powered by <a href="https://jupyterbook.org/">Jupyter Book</a></p>
+
+                        </nav>
+
+                        <div class="qe-page__toc-footer">
+                            
+                            
+                            <p><a href="#top"><strong>Back to top</strong></a></p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="qe-page__header">
+
+                    <div class="qe-page__header-copy">
+
+                        <p class="qe-page__header-heading"><a href="intro.html">An Introduction to Quantitative Economics and Finance</a></p>
+
+                        <p class="qe-page__header-subheading">Business Cycles</p>
+
+                    </div>
+
+                    <p class="qe-page__header-authors">Thomas J. Sargent & John Stachurski</p>
+
+                </div> <!-- .page__header -->
+
+
+
+                
+                <main class="qe-page__content" role="main">
+                    
+                    <div>
+                        
+  <section class="tex2jax_ignore mathjax_ignore" id="business-cycles">
+<h1><span class="section-number">7. </span>Business Cycles<a class="headerlink" href="#business-cycles" title="Permalink to this heading">#</a></h1>
+<section id="overview">
+<h2><span class="section-number">7.1. </span>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
+<p>In this lecture we study business cycles, which
+are fluctuations in economic activity over time.</p>
+<p>These fluctuations can be observed in the form of expansions (booms), contractions (recessions), and recoveries.</p>
+<p>We will look into a series of economic indicators to visualize the expansions and contractions of economies from the 1960s to the recent pandemic using <a class="reference external" href="https://documents.worldbank.org/en/publication/documents-reports/api">World Bank</a> and <a class="reference external" href="https://fred.stlouisfed.org/">FRED</a> data.</p>
+<p>In addition to those installed by Anaconda, this lecture requires
+libraries to obtain World Bank and FRED data:</p>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input above-output-prompt docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip install wbgapi
+<span class="o">!</span>pip install pandas-datareader
+</pre></div>
+</div>
+</div>
+<details class="hide below-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell output</span>
+<span class="expanded">Hide code cell output</span>
+</summary>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting wbgapi
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Downloading wbgapi-1.0.12-py3-none-any.whl (36 kB)
+Requirement already satisfied: requests in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from wbgapi) (2.28.1)
+Requirement already satisfied: PyYAML in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from wbgapi) (6.0)
+Requirement already satisfied: tabulate in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from wbgapi) (0.8.10)
+Requirement already satisfied: charset-normalizer&lt;3,&gt;=2 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests-&gt;wbgapi) (2.0.4)
+Requirement already satisfied: idna&lt;4,&gt;=2.5 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests-&gt;wbgapi) (3.4)
+Requirement already satisfied: urllib3&lt;1.27,&gt;=1.21.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests-&gt;wbgapi) (1.26.14)
+Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests-&gt;wbgapi) (2022.12.7)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Installing collected packages: wbgapi
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Successfully installed wbgapi-1.0.12
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting pandas-datareader
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Downloading pandas_datareader-0.10.0-py3-none-any.whl (109 kB)
+?25l     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/109.5 kB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">109.5/109.5 kB</span> <span class=" -Color -Color-Red">5.5 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hRequirement already satisfied: pandas&gt;=0.23 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from pandas-datareader) (1.5.3)
+Requirement already satisfied: lxml in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from pandas-datareader) (4.9.1)
+Requirement already satisfied: requests&gt;=2.19.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from pandas-datareader) (2.28.1)
+Requirement already satisfied: python-dateutil&gt;=2.8.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from pandas&gt;=0.23-&gt;pandas-datareader) (2.8.2)
+Requirement already satisfied: pytz&gt;=2020.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from pandas&gt;=0.23-&gt;pandas-datareader) (2022.7)
+Requirement already satisfied: numpy&gt;=1.21.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from pandas&gt;=0.23-&gt;pandas-datareader) (1.23.5)
+Requirement already satisfied: urllib3&lt;1.27,&gt;=1.21.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests&gt;=2.19.0-&gt;pandas-datareader) (1.26.14)
+Requirement already satisfied: idna&lt;4,&gt;=2.5 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests&gt;=2.19.0-&gt;pandas-datareader) (3.4)
+Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests&gt;=2.19.0-&gt;pandas-datareader) (2022.12.7)
+Requirement already satisfied: charset-normalizer&lt;3,&gt;=2 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests&gt;=2.19.0-&gt;pandas-datareader) (2.0.4)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: six&gt;=1.5 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from python-dateutil&gt;=2.8.1-&gt;pandas&gt;=0.23-&gt;pandas-datareader) (1.16.0)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Installing collected packages: pandas-datareader
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Successfully installed pandas-datareader-0.10.0
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<p>We use the following imports</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">st</span>
+<span class="kn">import</span> <span class="nn">datetime</span>
+<span class="kn">import</span> <span class="nn">wbgapi</span> <span class="k">as</span> <span class="nn">wb</span>
+<span class="kn">import</span> <span class="nn">pandas_datareader.data</span> <span class="k">as</span> <span class="nn">web</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set Graphical Parameters</span>
+<span class="n">cycler</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">cycler</span><span class="p">(</span><span class="n">linestyle</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;-.&#39;</span><span class="p">,</span> <span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="s1">&#39;:&#39;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;#377eb8&#39;</span><span class="p">,</span> <span class="s1">&#39;#ff7f00&#39;</span><span class="p">,</span> <span class="s1">&#39;#4daf4a&#39;</span><span class="p">,</span> <span class="s1">&#39;#ff334f&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s1">&#39;axes&#39;</span><span class="p">,</span> <span class="n">prop_cycle</span><span class="o">=</span><span class="n">cycler</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+</section>
+<section id="data-acquisition">
+<h2><span class="section-number">7.2. </span>Data Acquisition<a class="headerlink" href="#data-acquisition" title="Permalink to this heading">#</a></h2>
+<p>We will use <code class="docutils literal notranslate"><span class="pre">wbgapi</span></code> and <code class="docutils literal notranslate"><span class="pre">pandas_datareader</span></code> to retrieve data throughout this
+lecture.</p>
+<p>Let’s explore how to query data first.</p>
+<p>We can use <code class="docutils literal notranslate"><span class="pre">wb.series.info</span></code> with the argument <code class="docutils literal notranslate"><span class="pre">q</span></code> to query available data from
+the <a class="reference external" href="https://www.worldbank.org/en/home">World Bank</a>.</p>
+<p>For example, let’s retrieve the ID to query GDP growth data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wb</span><span class="o">.</span><span class="n">series</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">q</span><span class="o">=</span><span class="s1">&#39;GDP growth&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div class="wbgapi"><table>
+<thead>
+<tr><th>id               </th><th>value                </th></tr>
+</thead>
+<tbody>
+<tr><td>NY.GDP.MKTP.KD.ZG</td><td>GDP growth (annual %)</td></tr>
+<tr><td>                 </td><td>1 elements           </td></tr>
+</tbody>
+</table></div></div></div>
+</div>
+<p>Now we use this series ID to obtain the data.</p>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input above-output-prompt docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gdp_growth</span> <span class="o">=</span> <span class="n">wb</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="s1">&#39;NY.GDP.MKTP.KD.ZG&#39;</span><span class="p">,</span>
+            <span class="p">[</span><span class="s1">&#39;USA&#39;</span><span class="p">,</span> <span class="s1">&#39;ARG&#39;</span><span class="p">,</span> <span class="s1">&#39;GBR&#39;</span><span class="p">,</span> <span class="s1">&#39;GRC&#39;</span><span class="p">,</span> <span class="s1">&#39;JPN&#39;</span><span class="p">],</span> <span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">gdp_growth</span>
+</pre></div>
+</div>
+</div>
+<details class="hide below-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell output</span>
+<span class="expanded">Hide code cell output</span>
+</summary>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Country</th>
+      <th>YR1960</th>
+      <th>YR1961</th>
+      <th>YR1962</th>
+      <th>YR1963</th>
+      <th>YR1964</th>
+      <th>YR1965</th>
+      <th>YR1966</th>
+      <th>YR1967</th>
+      <th>YR1968</th>
+      <th>...</th>
+      <th>YR2012</th>
+      <th>YR2013</th>
+      <th>YR2014</th>
+      <th>YR2015</th>
+      <th>YR2016</th>
+      <th>YR2017</th>
+      <th>YR2018</th>
+      <th>YR2019</th>
+      <th>YR2020</th>
+      <th>YR2021</th>
+    </tr>
+    <tr>
+      <th>economy</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>JPN</th>
+      <td>Japan</td>
+      <td>NaN</td>
+      <td>12.043536</td>
+      <td>8.908973</td>
+      <td>8.473642</td>
+      <td>11.676708</td>
+      <td>5.819708</td>
+      <td>10.638562</td>
+      <td>11.082142</td>
+      <td>12.882468</td>
+      <td>...</td>
+      <td>1.374751</td>
+      <td>2.005100</td>
+      <td>0.296206</td>
+      <td>1.560627</td>
+      <td>0.753827</td>
+      <td>1.675332</td>
+      <td>0.584068</td>
+      <td>-0.240351</td>
+      <td>-4.506905</td>
+      <td>1.657071</td>
+    </tr>
+    <tr>
+      <th>GRC</th>
+      <td>Greece</td>
+      <td>NaN</td>
+      <td>13.203841</td>
+      <td>0.364811</td>
+      <td>11.844868</td>
+      <td>9.409677</td>
+      <td>10.768011</td>
+      <td>6.494502</td>
+      <td>5.669485</td>
+      <td>7.203719</td>
+      <td>...</td>
+      <td>-7.086697</td>
+      <td>-2.515997</td>
+      <td>0.475696</td>
+      <td>-0.196088</td>
+      <td>-0.487173</td>
+      <td>1.092149</td>
+      <td>1.668429</td>
+      <td>1.884342</td>
+      <td>-9.004044</td>
+      <td>8.434426</td>
+    </tr>
+    <tr>
+      <th>GBR</th>
+      <td>United Kingdom</td>
+      <td>NaN</td>
+      <td>2.677119</td>
+      <td>1.102910</td>
+      <td>4.874384</td>
+      <td>5.533659</td>
+      <td>2.142177</td>
+      <td>1.573100</td>
+      <td>2.786475</td>
+      <td>5.441083</td>
+      <td>...</td>
+      <td>1.448457</td>
+      <td>1.819863</td>
+      <td>3.199703</td>
+      <td>2.393103</td>
+      <td>2.165206</td>
+      <td>2.443570</td>
+      <td>1.705021</td>
+      <td>1.604309</td>
+      <td>-11.030858</td>
+      <td>7.524910</td>
+    </tr>
+    <tr>
+      <th>ARG</th>
+      <td>Argentina</td>
+      <td>NaN</td>
+      <td>5.427843</td>
+      <td>-0.852022</td>
+      <td>-5.308197</td>
+      <td>10.130298</td>
+      <td>10.569433</td>
+      <td>-0.659726</td>
+      <td>3.191997</td>
+      <td>4.822501</td>
+      <td>...</td>
+      <td>-1.026420</td>
+      <td>2.405324</td>
+      <td>-2.512615</td>
+      <td>2.731160</td>
+      <td>-2.080328</td>
+      <td>2.818503</td>
+      <td>-2.617396</td>
+      <td>-2.000861</td>
+      <td>-9.943235</td>
+      <td>10.398249</td>
+    </tr>
+    <tr>
+      <th>USA</th>
+      <td>United States</td>
+      <td>NaN</td>
+      <td>2.300000</td>
+      <td>6.100000</td>
+      <td>4.400000</td>
+      <td>5.800000</td>
+      <td>6.400000</td>
+      <td>6.500000</td>
+      <td>2.500000</td>
+      <td>4.800000</td>
+      <td>...</td>
+      <td>2.280688</td>
+      <td>1.841875</td>
+      <td>2.287776</td>
+      <td>2.706370</td>
+      <td>1.667472</td>
+      <td>2.241921</td>
+      <td>2.945385</td>
+      <td>2.294439</td>
+      <td>-2.767803</td>
+      <td>5.945485</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 63 columns</p>
+</div></div></div>
+</details>
+</div>
+<p>We can learn more about the data by checking the series metadata.</p>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input above-output-prompt docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wb</span><span class="o">.</span><span class="n">series</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;NY.GDP.MKTP.KD.ZG&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<details class="hide below-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell output</span>
+<span class="expanded">Hide code cell output</span>
+</summary>
+<div class="cell_output docutils container">
+<div class="output text_html"><div class="wbgapi"><h4>Series: NY.GDP.MKTP.KD.ZG</h4><table>
+<thead>
+<tr><th>Field                           </th><th>Value                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </th></tr>
+</thead>
+<tbody>
+<tr><td>Aggregationmethod               </td><td>Weighted average                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         </td></tr>
+<tr><td>Developmentrelevance            </td><td>An economy&#x27;s growth is measured by the change in the volume of its output or in the real incomes of its residents. The 2008 United Nations System of National Accounts (2008 SNA) offers three plausible indicators for calculating growth: the volume of gross domestic product (GDP), real gross domestic income, and real gross national income. The volume of GDP is the sum of value added, measured at constant prices, by households, government, and industries operating in the economy. GDP accounts for all domestic production, regardless of whether the income accrues to domestic or foreign institutions.</td></tr>
+<tr><td>IndicatorName                   </td><td>GDP growth (annual %)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </td></tr>
+<tr><td>License_Type                    </td><td>CC BY-4.0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </td></tr>
+<tr><td>License_URL                     </td><td>https://datacatalog.worldbank.org/public-licenses#cc-by                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  </td></tr>
+<tr><td>Limitationsandexceptions        </td><td>Each industry&#x27;s contribution to growth in the economy&#x27;s output is measured by growth in the industry&#x27;s value added. In principle, value added in constant prices can be estimated by measuring the quantity of goods and services produced in a period, valuing them at an agreed set of base year prices, and subtracting the cost of intermediate inputs, also in constant prices. This double-deflation method requires detailed information on the structure of prices of inputs and outputs.
+
+In many industries, however, value added is extrapolated from the base year using single volume indexes of outputs or, less commonly, inputs. Particularly in the services industries, including most of government, value added in constant prices is often imputed from labor inputs, such as real wages or number of employees. In the absence of well defined measures of output, measuring the growth of services remains difficult.
+
+Moreover, technical progress can lead to improvements in production processes and in the quality of goods and services that, if not properly accounted for, can distort measures of value added and thus of growth. When inputs are used to estimate output, as for nonmarket services, unmeasured technical progress leads to underestimates of the volume of output. Similarly, unmeasured improvements in quality lead to underestimates of the value of output and value added. The result can be underestimates of growth and productivity improvement and overestimates of inflation.
+
+Informal economic activities pose a particular measurement problem, especially in developing countries, where much economic activity is unrecorded. A complete picture of the economy requires estimating household outputs produced for home use, sales in informal markets, barter exchanges, and illicit or deliberately unreported activities. The consistency and completeness of such estimates depend on the skill and methods of the compiling statisticians.
+
+Rebasing of national accounts can alter the measured growth rate of an economy and lead to breaks in series that affect the consistency of data over time. When countries rebase their national accounts, they update the weights assigned to various components to better reflect current patterns of production or uses of output. The new base year should represent normal operation of the economy - it should be a year without major shocks or distortions. Some developing countries have not rebased their national accounts for many years. Using an old base year can be misleading because implicit price and volume weights become progressively less relevant and useful.
+
+To obtain comparable series of constant price data for computing aggregates, the World Bank rescales GDP and value added by industrial origin to a common reference year. Because rescaling changes the implicit weights used in forming regional and income group aggregates, aggregate growth rates are not comparable with those from earlier editions with different base years. Rescaling may result in a discrepancy between the rescaled GDP and the sum of the rescaled components. To avoid distortions in the growth rates, the discrepancy is left unallocated. As a result, the weighted average of the growth rates of the components generally does not equal the GDP growth rate.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          </td></tr>
+<tr><td>Longdefinition                  </td><td>Annual percentage growth rate of GDP at market prices based on constant local currency. Aggregates are based on constant 2015 prices, expressed in U.S. dollars. GDP is the sum of gross value added by all resident producers in the economy plus any product taxes and minus any subsidies not included in the value of the products. It is calculated without making deductions for depreciation of fabricated assets or for depletion and degradation of natural resources.                                                                                                                                          </td></tr>
+<tr><td>Periodicity                     </td><td>Annual                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   </td></tr>
+<tr><td>Source                          </td><td>World Bank national accounts data, and OECD National Accounts data files.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </td></tr>
+<tr><td>Statisticalconceptandmethodology</td><td>Gross domestic product (GDP) represents the sum of value added by all its producers. Value added is the value of the gross output of producers less the value of intermediate goods and services consumed in production, before accounting for consumption of fixed capital in production. The United Nations System of National Accounts calls for value added to be valued at either basic prices (excluding net taxes on products) or producer prices (including net taxes on products paid by producers but excluding sales or value added taxes). Both valuations exclude transport charges that are invoiced separately by producers. Total GDP is measured at purchaser prices. Value added by industry is normally measured at basic prices. When value added is measured at producer prices.
+
+Growth rates of GDP and its components are calculated using the least squares method and constant price data in the local currency. Constant price in U.S. dollar series are used to calculate regional and income group growth rates. Local currency series are converted to constant U.S. dollars using an exchange rate in the common reference year.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          </td></tr>
+<tr><td>Topic                           </td><td>Economic Policy &amp; Debt: National accounts: Growth rates                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  </td></tr>
+</tbody>
+</table></div></div></div>
+</details>
+</div>
+<p>Let’s dive into the data with the tools we have.</p>
+</section>
+<section id="gdp-growth-rate">
+<h2><span class="section-number">7.3. </span>GDP Growth Rate<a class="headerlink" href="#gdp-growth-rate" title="Permalink to this heading">#</a></h2>
+<p>First we look at the GDP growth rate.</p>
+<p>Let’s source our data from the World Bank and clean it.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Use the series ID retrived before</span>
+<span class="n">gdp_growth</span> <span class="o">=</span> <span class="n">wb</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="s1">&#39;NY.GDP.MKTP.KD.ZG&#39;</span><span class="p">,</span>
+            <span class="p">[</span><span class="s1">&#39;USA&#39;</span><span class="p">,</span> <span class="s1">&#39;ARG&#39;</span><span class="p">,</span> <span class="s1">&#39;GBR&#39;</span><span class="p">,</span> <span class="s1">&#39;GRC&#39;</span><span class="p">,</span> <span class="s1">&#39;JPN&#39;</span><span class="p">],</span> <span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">gdp_growth</span> <span class="o">=</span> <span class="n">gdp_growth</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;Country&#39;</span><span class="p">)</span>
+<span class="n">gdp_growth</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">gdp_growth</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;YR&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here’s a first look at the data, which measures the GDP growth rate in
+percentages.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gdp_growth</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>1960</th>
+      <th>1961</th>
+      <th>1962</th>
+      <th>1963</th>
+      <th>1964</th>
+      <th>1965</th>
+      <th>1966</th>
+      <th>1967</th>
+      <th>1968</th>
+      <th>1969</th>
+      <th>...</th>
+      <th>2012</th>
+      <th>2013</th>
+      <th>2014</th>
+      <th>2015</th>
+      <th>2016</th>
+      <th>2017</th>
+      <th>2018</th>
+      <th>2019</th>
+      <th>2020</th>
+      <th>2021</th>
+    </tr>
+    <tr>
+      <th>Country</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Japan</th>
+      <td>NaN</td>
+      <td>12.043536</td>
+      <td>8.908973</td>
+      <td>8.473642</td>
+      <td>11.676708</td>
+      <td>5.819708</td>
+      <td>10.638562</td>
+      <td>11.082142</td>
+      <td>12.882468</td>
+      <td>12.477895</td>
+      <td>...</td>
+      <td>1.374751</td>
+      <td>2.005100</td>
+      <td>0.296206</td>
+      <td>1.560627</td>
+      <td>0.753827</td>
+      <td>1.675332</td>
+      <td>0.584068</td>
+      <td>-0.240351</td>
+      <td>-4.506905</td>
+      <td>1.657071</td>
+    </tr>
+    <tr>
+      <th>Greece</th>
+      <td>NaN</td>
+      <td>13.203841</td>
+      <td>0.364811</td>
+      <td>11.844868</td>
+      <td>9.409677</td>
+      <td>10.768011</td>
+      <td>6.494502</td>
+      <td>5.669485</td>
+      <td>7.203719</td>
+      <td>11.563667</td>
+      <td>...</td>
+      <td>-7.086697</td>
+      <td>-2.515997</td>
+      <td>0.475696</td>
+      <td>-0.196088</td>
+      <td>-0.487173</td>
+      <td>1.092149</td>
+      <td>1.668429</td>
+      <td>1.884342</td>
+      <td>-9.004044</td>
+      <td>8.434426</td>
+    </tr>
+    <tr>
+      <th>United Kingdom</th>
+      <td>NaN</td>
+      <td>2.677119</td>
+      <td>1.102910</td>
+      <td>4.874384</td>
+      <td>5.533659</td>
+      <td>2.142177</td>
+      <td>1.573100</td>
+      <td>2.786475</td>
+      <td>5.441083</td>
+      <td>1.924097</td>
+      <td>...</td>
+      <td>1.448457</td>
+      <td>1.819863</td>
+      <td>3.199703</td>
+      <td>2.393103</td>
+      <td>2.165206</td>
+      <td>2.443570</td>
+      <td>1.705021</td>
+      <td>1.604309</td>
+      <td>-11.030858</td>
+      <td>7.524910</td>
+    </tr>
+    <tr>
+      <th>Argentina</th>
+      <td>NaN</td>
+      <td>5.427843</td>
+      <td>-0.852022</td>
+      <td>-5.308197</td>
+      <td>10.130298</td>
+      <td>10.569433</td>
+      <td>-0.659726</td>
+      <td>3.191997</td>
+      <td>4.822501</td>
+      <td>9.679526</td>
+      <td>...</td>
+      <td>-1.026420</td>
+      <td>2.405324</td>
+      <td>-2.512615</td>
+      <td>2.731160</td>
+      <td>-2.080328</td>
+      <td>2.818503</td>
+      <td>-2.617396</td>
+      <td>-2.000861</td>
+      <td>-9.943235</td>
+      <td>10.398249</td>
+    </tr>
+    <tr>
+      <th>United States</th>
+      <td>NaN</td>
+      <td>2.300000</td>
+      <td>6.100000</td>
+      <td>4.400000</td>
+      <td>5.800000</td>
+      <td>6.400000</td>
+      <td>6.500000</td>
+      <td>2.500000</td>
+      <td>4.800000</td>
+      <td>3.100000</td>
+      <td>...</td>
+      <td>2.280688</td>
+      <td>1.841875</td>
+      <td>2.287776</td>
+      <td>2.706370</td>
+      <td>1.667472</td>
+      <td>2.241921</td>
+      <td>2.945385</td>
+      <td>2.294439</td>
+      <td>-2.767803</td>
+      <td>5.945485</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 62 columns</p>
+</div></div></div>
+</div>
+<p>The cell below contains a function to generate plots for individual countries.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_comparison</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">country</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> 
+                    <span class="n">ylabel</span><span class="p">,</span> <span class="n">title_pos</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="n">g_params</span><span class="p">,</span>
+                     <span class="n">b_params</span><span class="p">,</span> <span class="n">t_params</span><span class="p">,</span> <span class="n">ylim</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">baseline</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">country</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="n">country</span><span class="p">,</span> <span class="o">**</span><span class="n">g_params</span><span class="p">)</span>
+    
+    <span class="c1"># Highlight Recessions</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">axvspan</span><span class="p">(</span><span class="mi">1973</span><span class="p">,</span> <span class="mi">1975</span><span class="p">,</span> <span class="o">**</span><span class="n">b_params</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">axvspan</span><span class="p">(</span><span class="mi">1990</span><span class="p">,</span> <span class="mi">1992</span><span class="p">,</span> <span class="o">**</span><span class="n">b_params</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">axvspan</span><span class="p">(</span><span class="mi">2007</span><span class="p">,</span> <span class="mi">2009</span><span class="p">,</span> <span class="o">**</span><span class="n">b_params</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">axvspan</span><span class="p">(</span><span class="mi">2019</span><span class="p">,</span> <span class="mi">2021</span><span class="p">,</span> <span class="o">**</span><span class="n">b_params</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">ylim</span> <span class="o">!=</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="o">-</span><span class="n">ylim</span><span class="p">,</span> <span class="n">ylim</span><span class="p">])</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">ylim</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_ylim</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">1974</span><span class="p">,</span> <span class="n">ylim</span> <span class="o">+</span> <span class="n">ylim</span> <span class="o">*</span> <span class="n">title_pos</span><span class="p">,</span>
+            <span class="s1">&#39;Oil Crisis</span><span class="se">\n</span><span class="s1">(1974)&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">t_params</span><span class="p">)</span> 
+    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">1991</span><span class="p">,</span> <span class="n">ylim</span> <span class="o">+</span> <span class="n">ylim</span> <span class="o">*</span> <span class="n">title_pos</span><span class="p">,</span>
+            <span class="s1">&#39;1990s recession</span><span class="se">\n</span><span class="s1">(1991)&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">t_params</span><span class="p">)</span> 
+    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">2008</span><span class="p">,</span> <span class="n">ylim</span> <span class="o">+</span> <span class="n">ylim</span> <span class="o">*</span> <span class="n">title_pos</span><span class="p">,</span>
+            <span class="s1">&#39;GFC</span><span class="se">\n</span><span class="s1">(2008)&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">t_params</span><span class="p">)</span> 
+    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">2020</span><span class="p">,</span> <span class="n">ylim</span> <span class="o">+</span> <span class="n">ylim</span> <span class="o">*</span> <span class="n">title_pos</span><span class="p">,</span>
+            <span class="s1">&#39;Covid-19</span><span class="se">\n</span><span class="s1">(2020)&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">t_params</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">baseline</span> <span class="o">!=</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">baseline</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">40</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">ylabel</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">ax</span>
+
+<span class="c1"># Define graphical parameters </span>
+<span class="n">g_params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;alpha&#39;</span><span class="p">:</span> <span class="mf">0.7</span><span class="p">}</span>
+<span class="n">b_params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;color&#39;</span><span class="p">:</span><span class="s1">&#39;grey&#39;</span><span class="p">,</span> <span class="s1">&#39;alpha&#39;</span><span class="p">:</span> <span class="mf">0.2</span><span class="p">}</span>
+<span class="n">t_params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;color&#39;</span><span class="p">:</span><span class="s1">&#39;grey&#39;</span><span class="p">,</span> <span class="s1">&#39;fontsize&#39;</span><span class="p">:</span> <span class="mi">9</span><span class="p">,</span> 
+            <span class="s1">&#39;va&#39;</span><span class="p">:</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="s1">&#39;ha&#39;</span><span class="p">:</span><span class="s1">&#39;center&#39;</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<p>Now we can plot the data as a time series.</p>
+<p>Let’s start with the United States.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+
+<span class="n">country</span> <span class="o">=</span> <span class="s1">&#39;United States&#39;</span>
+<span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;United States (GDP Growth Rate %)&#39;</span>
+<span class="n">ylabel</span> <span class="o">=</span> <span class="s1">&#39;GDP Growth Rate (%)&#39;</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">plot_comparison</span><span class="p">(</span><span class="n">gdp_growth</span><span class="p">,</span> <span class="n">country</span><span class="p">,</span> 
+                    <span class="n">title</span><span class="p">,</span> <span class="n">ylabel</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> 
+                    <span class="n">g_params</span><span class="p">,</span> <span class="n">b_params</span><span class="p">,</span> <span class="n">t_params</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/f821930bc546e5fc845498047032abf5d65d2c8e310bb34213e74f92860c5127.png" src="_images/f821930bc546e5fc845498047032abf5d65d2c8e310bb34213e74f92860c5127.png" />
+</div>
+</div>
+<p>GDP growth is positive on average and trending slightly downward over time.</p>
+<p>We also see fluctuations over GDP growth over time, some of which are quite large.</p>
+<p>Let’s look at a few more countries to get a basis for comparison.</p>
+<p>The United Kingdom (UK) has a similar pattern to the US, with a slow decline
+in the growth rate and significant fluctuations.</p>
+<p>Notice the very large dip during the Covid-19 pandemic.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+
+<span class="n">country</span> <span class="o">=</span> <span class="s1">&#39;United Kingdom&#39;</span>
+<span class="n">title</span> <span class="o">=</span> <span class="s1">&#39; United Kingdom (GDP Growth Rate %)&#39;</span>
+<span class="n">title_height</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">plot_comparison</span><span class="p">(</span><span class="n">gdp_growth</span><span class="p">,</span> <span class="n">country</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span>
+                    <span class="n">ylabel</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="n">g_params</span><span class="p">,</span> 
+                    <span class="n">b_params</span><span class="p">,</span> <span class="n">t_params</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/34d458458be388c57568491f82df6052ebc48a8cf8107180bff6923c5598b20b.png" src="_images/34d458458be388c57568491f82df6052ebc48a8cf8107180bff6923c5598b20b.png" />
+</div>
+</div>
+<p>Now let’s consider Japan, which experienced rapid growth in the 1960s and
+1970s, followed by slowed expansion in the past two decades.</p>
+<p>Major dips in the growth rate coincided with the Oil Crisis of the 1970s, the
+GFC and the Covid-19 pandemic.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+
+<span class="n">country</span> <span class="o">=</span> <span class="s1">&#39;Japan&#39;</span>
+<span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;Japan (GDP Growth Rate %)&#39;</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">plot_comparison</span><span class="p">(</span><span class="n">gdp_growth</span><span class="p">,</span> <span class="n">country</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> 
+                    <span class="n">ylabel</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="n">g_params</span><span class="p">,</span> 
+                    <span class="n">b_params</span><span class="p">,</span> <span class="n">t_params</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/8f88cc74284a53768006d6b36b95763743089aec20427db7aa75156cc7a699a2.png" src="_images/8f88cc74284a53768006d6b36b95763743089aec20427db7aa75156cc7a699a2.png" />
+</div>
+</div>
+<p>Now let’s study Greece.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+
+<span class="n">country</span> <span class="o">=</span> <span class="s1">&#39;Greece&#39;</span>
+<span class="n">title</span> <span class="o">=</span> <span class="s1">&#39; Greece (GDP Growth Rate %)&#39;</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">plot_comparison</span><span class="p">(</span><span class="n">gdp_growth</span><span class="p">,</span> <span class="n">country</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> 
+                    <span class="n">ylabel</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="n">g_params</span><span class="p">,</span> 
+                    <span class="n">b_params</span><span class="p">,</span> <span class="n">t_params</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/9045276d7ac73e848138d52e6d5bcd56ceb4953c0d1c64e6bd8621e2a32fa45a.png" src="_images/9045276d7ac73e848138d52e6d5bcd56ceb4953c0d1c64e6bd8621e2a32fa45a.png" />
+</div>
+</div>
+<p>Greece had a significant drop in GDP growth around 2010-2011, during the peak
+of the Greek debt crisis.</p>
+<p>Next let’s consider Argentina.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+
+<span class="n">country</span> <span class="o">=</span> <span class="s1">&#39;Argentina&#39;</span>
+<span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;Argentina (GDP Growth Rate %)&#39;</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">plot_comparison</span><span class="p">(</span><span class="n">gdp_growth</span><span class="p">,</span> <span class="n">country</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> 
+                    <span class="n">ylabel</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> 
+                    <span class="n">g_params</span><span class="p">,</span> <span class="n">b_params</span><span class="p">,</span> <span class="n">t_params</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/d41c4e62afe96bdcdff08e81e62a2e4262b444b2b06f53f88b8e4af3c656d279.png" src="_images/d41c4e62afe96bdcdff08e81e62a2e4262b444b2b06f53f88b8e4af3c656d279.png" />
+</div>
+</div>
+<p>The figure shows that Argentina has experienced more volatile cycles than
+the economies mentioned above.</p>
+<p>At the same time, growth of Argentina did not fall during the two developed
+economy recessions in the 1970s and 1990s.</p>
+</section>
+<section id="unemployment">
+<h2><span class="section-number">7.4. </span>Unemployment<a class="headerlink" href="#unemployment" title="Permalink to this heading">#</a></h2>
+<p>Another important measure of business cycles is the unemployment rate.</p>
+<p>During a recession, it is more likely that a larger proportion of the working
+population will be laid off.</p>
+<p>We demonstrate this using a long-run unemployment rate from FRED spanning from <a class="reference external" href="https://fred.stlouisfed.org/series/M0892AUSM156SNBR">1929-1942</a> to <a class="reference external" href="https://fred.stlouisfed.org/series/UNRATE">1948-2022</a> with the unemployment rate between 1942 and 1948 estimated by <a class="reference external" href="https://www.census.gov/library/publications/1975/compendia/hist_stats_colonial-1970.html">The Census Bureau</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">start_date</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">1929</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">end_date</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">1942</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="n">unrate_history</span> <span class="o">=</span> <span class="n">web</span><span class="o">.</span><span class="n">DataReader</span><span class="p">(</span><span class="s1">&#39;M0892AUSM156SNBR&#39;</span><span class="p">,</span> <span class="s1">&#39;fred&#39;</span><span class="p">,</span> <span class="n">start_date</span><span class="p">,</span><span class="n">end_date</span><span class="p">)</span>
+<span class="n">unrate_history</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;M0892AUSM156SNBR&#39;</span><span class="p">:</span> <span class="s1">&#39;UNRATE&#39;</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">start_date</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">1948</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">end_date</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2022</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">31</span><span class="p">)</span>
+
+<span class="n">unrate</span> <span class="o">=</span> <span class="n">web</span><span class="o">.</span><span class="n">DataReader</span><span class="p">(</span><span class="s1">&#39;UNRATE&#39;</span><span class="p">,</span> <span class="s1">&#39;fred&#39;</span><span class="p">,</span> <span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># We use the census bureau&#39;s estimate for the unemployment rate </span>
+<span class="c1"># between 1942 and 1948</span>
+<span class="n">years</span> <span class="o">=</span> <span class="p">[</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1942</span><span class="p">,</span><span class="mi">1948</span><span class="p">)]</span>
+<span class="n">unrate_census</span> <span class="o">=</span> <span class="p">[</span><span class="mf">4.7</span><span class="p">,</span> <span class="mf">1.9</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">,</span> <span class="mf">1.9</span><span class="p">,</span> <span class="mf">3.9</span><span class="p">,</span> <span class="mf">3.9</span><span class="p">]</span>
+
+<span class="n">unrate_census</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;DATE&#39;</span><span class="p">:</span> <span class="n">years</span><span class="p">,</span> <span class="s1">&#39;UNRATE&#39;</span><span class="p">:</span> <span class="n">unrate_census</span><span class="p">}</span>
+<span class="n">unrate_census</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">unrate_census</span><span class="p">)</span>
+<span class="n">unrate_census</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;DATE&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Obtain the NBER-defined recession periods</span>
+<span class="n">start_date</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">1929</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">end_date</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2022</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">31</span><span class="p">)</span>
+
+<span class="n">nber</span> <span class="o">=</span> <span class="n">web</span><span class="o">.</span><span class="n">DataReader</span><span class="p">(</span><span class="s1">&#39;USREC&#39;</span><span class="p">,</span> <span class="s1">&#39;fred&#39;</span><span class="p">,</span> <span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">unrate_history</span><span class="p">,</span> <span class="o">**</span><span class="n">g_params</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#377eb8&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">unrate_census</span><span class="p">,</span> <span class="o">**</span><span class="n">g_params</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Census Estimates&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">unrate</span><span class="p">,</span> <span class="o">**</span><span class="n">g_params</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#377eb8&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># Draw gray boxes according to NBER recession indicators</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">nber</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="n">nber</span><span class="p">[</span><span class="s1">&#39;USREC&#39;</span><span class="p">]</span><span class="o">==</span><span class="mi">1</span><span class="p">,</span> 
+                <span class="n">color</span><span class="o">=</span><span class="s1">&#39;grey&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span>
+                <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">get_xaxis_transform</span><span class="p">(),</span> 
+                <span class="n">label</span><span class="o">=</span><span class="s1">&#39;NBER Recession Indicators&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_ylim</span><span class="p">()[</span><span class="mi">1</span><span class="p">]])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper center&#39;</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">),</span>
+          <span class="n">ncol</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">fancybox</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">shadow</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Unemployment Rate (%)&#39;</span><span class="p">)</span>
+
+<span class="n">_</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Long-run Unemployment Rate, 1929-2022</span><span class="se">\n</span><span class="s1"> with Recession Indicators (United States)&#39;</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/c97e36de87bf15758a51cb149d3a80b4a51a4d9aba2004d60577cad2f689e63a.png" src="_images/c97e36de87bf15758a51cb149d3a80b4a51a4d9aba2004d60577cad2f689e63a.png" />
+</div>
+</div>
+<p>In the plot, we can see that the expansions and contractions of the labor
+market have been highly correlated with recessions.</p>
+<p>However, there is often a delay in the recovery of the labor market after
+recessions.</p>
+<p>This trend is clearly visible in the 1930s, as well as in recessions in the
+1980s.</p>
+<p>It also shows us how unique labor market conditions have been during the
+post-pandemic recovery.</p>
+<p>The labor market has recovered at an unprecedented rate, leading to the
+tightest point in the past decades after the shock in 2020-2021.</p>
+</section>
+<section id="synchronization">
+<span id="id1"></span><h2><span class="section-number">7.5. </span>Synchronization<a class="headerlink" href="#synchronization" title="Permalink to this heading">#</a></h2>
+<p>In our previous discussion, we found that developed economies have had
+relatively synchronized periods of recession.</p>
+<p>At the same time, this synchronization does not appear in Argentina until the 2000s.</p>
+<p>Let’s examine this trend further.</p>
+<p>With slight modifications, we can use our previous function to draw a plot
+that includes many countries</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_comparison_multi</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">countries</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> 
+                        <span class="n">ylabel</span><span class="p">,</span> <span class="n">title_pos</span><span class="p">,</span> <span class="n">y_lim</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> 
+                        <span class="n">g_params</span><span class="p">,</span> <span class="n">b_params</span><span class="p">,</span> <span class="n">t_params</span><span class="p">,</span> <span class="n">baseline</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+
+    <span class="c1"># Allow the function to go through more than one series</span>
+    <span class="k">for</span> <span class="n">country</span> <span class="ow">in</span> <span class="n">countries</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">country</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="n">country</span><span class="p">,</span> <span class="o">**</span><span class="n">g_params</span><span class="p">)</span>
+    
+    <span class="c1"># Highlight Recessions</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">axvspan</span><span class="p">(</span><span class="mi">1973</span><span class="p">,</span> <span class="mi">1975</span><span class="p">,</span> <span class="o">**</span><span class="n">b_params</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">axvspan</span><span class="p">(</span><span class="mi">1990</span><span class="p">,</span> <span class="mi">1992</span><span class="p">,</span> <span class="o">**</span><span class="n">b_params</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">axvspan</span><span class="p">(</span><span class="mi">2007</span><span class="p">,</span> <span class="mi">2009</span><span class="p">,</span> <span class="o">**</span><span class="n">b_params</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">axvspan</span><span class="p">(</span><span class="mi">2019</span><span class="p">,</span> <span class="mi">2021</span><span class="p">,</span> <span class="o">**</span><span class="n">b_params</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">y_lim</span> <span class="o">!=</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="o">-</span><span class="n">y_lim</span><span class="p">,</span> <span class="n">y_lim</span><span class="p">])</span>
+    <span class="n">ylim</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_ylim</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">1974</span><span class="p">,</span> <span class="n">ylim</span> <span class="o">+</span> <span class="n">ylim</span> <span class="o">*</span> <span class="n">title_pos</span><span class="p">,</span> 
+            <span class="s1">&#39;Oil Crisis</span><span class="se">\n</span><span class="s1">(1974)&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">t_params</span><span class="p">)</span> 
+    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">1991</span><span class="p">,</span> <span class="n">ylim</span> <span class="o">+</span> <span class="n">ylim</span> <span class="o">*</span> <span class="n">title_pos</span><span class="p">,</span> 
+            <span class="s1">&#39;1990s recession</span><span class="se">\n</span><span class="s1">(1991)&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">t_params</span><span class="p">)</span> 
+    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">2008</span><span class="p">,</span> <span class="n">ylim</span> <span class="o">+</span> <span class="n">ylim</span> <span class="o">*</span> <span class="n">title_pos</span><span class="p">,</span> 
+            <span class="s1">&#39;GFC</span><span class="se">\n</span><span class="s1">(2008)&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">t_params</span><span class="p">)</span> 
+    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">2020</span><span class="p">,</span> <span class="n">ylim</span> <span class="o">+</span> <span class="n">ylim</span> <span class="o">*</span> <span class="n">title_pos</span><span class="p">,</span> 
+            <span class="s1">&#39;Covid-19</span><span class="se">\n</span><span class="s1">(2020)&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">t_params</span><span class="p">)</span> 
+    <span class="k">if</span> <span class="n">baseline</span> <span class="o">!=</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">baseline</span><span class="p">,</span> <span class="n">xmin</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">get_xlim</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span> 
+                  <span class="n">xmax</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">get_xlim</span><span class="p">()[</span><span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> 
+                  <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">40</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">ylabel</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">ax</span>
+
+<span class="c1"># Define graphical parameters </span>
+<span class="n">g_params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;alpha&#39;</span><span class="p">:</span> <span class="mf">0.7</span><span class="p">}</span>
+<span class="n">b_params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;color&#39;</span><span class="p">:</span><span class="s1">&#39;grey&#39;</span><span class="p">,</span> <span class="s1">&#39;alpha&#39;</span><span class="p">:</span> <span class="mf">0.2</span><span class="p">}</span>
+<span class="n">t_params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;color&#39;</span><span class="p">:</span><span class="s1">&#39;grey&#39;</span><span class="p">,</span> <span class="s1">&#39;fontsize&#39;</span><span class="p">:</span> <span class="mi">9</span><span class="p">,</span> 
+            <span class="s1">&#39;va&#39;</span><span class="p">:</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="s1">&#39;ha&#39;</span><span class="p">:</span><span class="s1">&#39;center&#39;</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Obtain GDP growth rate for a list of countries</span>
+<span class="n">gdp_growth</span> <span class="o">=</span> <span class="n">wb</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="s1">&#39;NY.GDP.MKTP.KD.ZG&#39;</span><span class="p">,</span>
+            <span class="p">[</span><span class="s1">&#39;CHN&#39;</span><span class="p">,</span> <span class="s1">&#39;USA&#39;</span><span class="p">,</span> <span class="s1">&#39;DEU&#39;</span><span class="p">,</span> <span class="s1">&#39;BRA&#39;</span><span class="p">,</span> <span class="s1">&#39;ARG&#39;</span><span class="p">,</span> <span class="s1">&#39;GBR&#39;</span><span class="p">,</span> <span class="s1">&#39;JPN&#39;</span><span class="p">,</span> <span class="s1">&#39;MEX&#39;</span><span class="p">],</span> <span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">gdp_growth</span> <span class="o">=</span> <span class="n">gdp_growth</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;Country&#39;</span><span class="p">)</span>
+<span class="n">gdp_growth</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">gdp_growth</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;YR&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">countries</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;United Kingdom&#39;</span><span class="p">,</span> <span class="s1">&#39;United States&#39;</span><span class="p">,</span> <span class="s1">&#39;Germany&#39;</span><span class="p">,</span> <span class="s1">&#39;Japan&#39;</span><span class="p">]</span>
+<span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;United Kingdom, United States, Germany, and Japan (GDP Growth Rate %)&#39;</span>
+<span class="n">ylabel</span> <span class="o">=</span> <span class="s1">&#39;GDP Growth Rate (%)&#39;</span>
+<span class="n">title_height</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">plot_comparison_multi</span><span class="p">(</span><span class="n">gdp_growth</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">countries</span><span class="p">,</span> <span class="mi">1962</span><span class="p">:],</span> <span class="n">countries</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">ylabel</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="n">g_params</span><span class="p">,</span> <span class="n">b_params</span><span class="p">,</span> <span class="n">t_params</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/2f59936febac47e9d454a1cfc8fbe48d74e9afb1615fd543c7cc9825f83e90a5.png" src="_images/2f59936febac47e9d454a1cfc8fbe48d74e9afb1615fd543c7cc9825f83e90a5.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">countries</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Brazil&#39;</span><span class="p">,</span> <span class="s1">&#39;China&#39;</span><span class="p">,</span> <span class="s1">&#39;Argentina&#39;</span><span class="p">,</span> <span class="s1">&#39;Mexico&#39;</span><span class="p">]</span>
+<span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;Brazil, China, Argentina, and Mexico (GDP Growth Rate %)&#39;</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">plot_comparison_multi</span><span class="p">(</span><span class="n">gdp_growth</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">countries</span><span class="p">,</span> <span class="mi">1962</span><span class="p">:],</span> <span class="n">countries</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">ylabel</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="n">g_params</span><span class="p">,</span> <span class="n">b_params</span><span class="p">,</span> <span class="n">t_params</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/3053db4194a2c3309a1d004c7a58110c74349c8d799e8dd06c0974c7e41ddb53.png" src="_images/3053db4194a2c3309a1d004c7a58110c74349c8d799e8dd06c0974c7e41ddb53.png" />
+</div>
+</div>
+<p>On comparison of GDP growth rates between developed and developing
+economies, we find that business cycles are becoming more synchronized in 21st-century recessions.</p>
+<p>However, emerging and less developed economies often experience more volatile
+changes throughout the economic cycles.</p>
+<p>Although we see synchronization in GDP growth as a general trend, the experience of individual countries during
+the recession often differs.</p>
+<p>We use unemployment rate and the recovery of labor market conditions
+as another example.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">unempl_rate</span> <span class="o">=</span> <span class="n">wb</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="s1">&#39;SL.UEM.TOTL.NE.ZS&#39;</span><span class="p">,</span>
+    <span class="p">[</span><span class="s1">&#39;USA&#39;</span><span class="p">,</span> <span class="s1">&#39;FRA&#39;</span><span class="p">,</span> <span class="s1">&#39;GBR&#39;</span><span class="p">,</span> <span class="s1">&#39;JPN&#39;</span><span class="p">],</span> <span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">unempl_rate</span> <span class="o">=</span> <span class="n">unempl_rate</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;Country&#39;</span><span class="p">)</span>
+<span class="n">unempl_rate</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">unempl_rate</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;YR&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+
+<span class="n">countries</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;United Kingdom&#39;</span><span class="p">,</span> <span class="s1">&#39;United States&#39;</span><span class="p">,</span> <span class="s1">&#39;Japan&#39;</span><span class="p">,</span> <span class="s1">&#39;France&#39;</span><span class="p">]</span>
+<span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;United Kingdom, United States, Japan, and France (Unemployment Rate %)&#39;</span>
+<span class="n">ylabel</span> <span class="o">=</span> <span class="s1">&#39;Unemployment Rate (National Estimate) (%)&#39;</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">plot_comparison_multi</span><span class="p">(</span><span class="n">unempl_rate</span><span class="p">,</span> <span class="n">countries</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> 
+                          <span class="n">ylabel</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="n">g_params</span><span class="p">,</span> 
+                          <span class="n">b_params</span><span class="p">,</span> <span class="n">t_params</span><span class="p">,</span> <span class="n">baseline</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/e02a786cd93103670f2e8ca47091a6834b3b6cd40be1ddbe85006758965507ec.png" src="_images/e02a786cd93103670f2e8ca47091a6834b3b6cd40be1ddbe85006758965507ec.png" />
+</div>
+</div>
+<p>France, with its strong labor unions, has a prolonged labor market recovery
+compared to the US and UK.</p>
+<p>However, Japan has a history of very low and stable unemployment rates due to
+a constellation of social, demographic, and cultural factors.</p>
+</section>
+<section id="leading-indicators-and-correlated-factors-for-business-cycles">
+<h2><span class="section-number">7.6. </span>Leading Indicators and Correlated Factors for Business Cycles<a class="headerlink" href="#leading-indicators-and-correlated-factors-for-business-cycles" title="Permalink to this heading">#</a></h2>
+<p>Examining leading indicators and correlated factors helps policymakers to
+understand the causes and results of business cycles.</p>
+<p>We will discuss potential leading indicators and correlated factors from three
+perspectives: consumption, production, and credit level.</p>
+<section id="consumption">
+<h3><span class="section-number">7.6.1. </span>Consumption<a class="headerlink" href="#consumption" title="Permalink to this heading">#</a></h3>
+<p>Consumption depends on consumers’ confidence towards their
+income and the overall performance of the economy in the future.</p>
+<p>One widely cited indicator for consumer confidence is the <a class="reference external" href="https://fred.stlouisfed.org/series/UMCSENT">Consumer Sentiment Index</a> published by the University
+of Michigan.</p>
+<p>We find that consumer sentiment remains high during periods of expansion, but there are significant drops before recession hits.</p>
+<p>There is also a clear negative correlation between consumer sentiment and <a class="reference external" href="https://fred.stlouisfed.org/series/CPILFESL">core consumer price index</a>.</p>
+<p>This trend is more significant in the period of <a class="reference external" href="https://en.wikipedia.org/wiki/Stagflation">stagflation</a>.</p>
+<p>When the price of consumer commodities rises, consumer confidence diminishes.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">start_date</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">1978</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">end_date</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2022</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">31</span><span class="p">)</span>
+
+<span class="c1"># Limit the plot to a specific range</span>
+<span class="n">start_date_graph</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">1977</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">end_date_graph</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2023</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">31</span><span class="p">)</span>
+
+<span class="n">nber</span> <span class="o">=</span> <span class="n">web</span><span class="o">.</span><span class="n">DataReader</span><span class="p">(</span><span class="s1">&#39;USREC&#39;</span><span class="p">,</span> <span class="s1">&#39;fred&#39;</span><span class="p">,</span> <span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">)</span>
+<span class="n">consumer_confidence</span> <span class="o">=</span> <span class="n">web</span><span class="o">.</span><span class="n">DataReader</span><span class="p">(</span><span class="s1">&#39;UMCSENT&#39;</span><span class="p">,</span> <span class="s1">&#39;fred&#39;</span><span class="p">,</span> <span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">consumer_confidence</span><span class="p">,</span> <span class="o">**</span><span class="n">g_params</span><span class="p">,</span> 
+        <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#377eb8&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> 
+        <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">nber</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> 
+            <span class="n">where</span><span class="o">=</span><span class="n">nber</span><span class="p">[</span><span class="s1">&#39;USREC&#39;</span><span class="p">]</span><span class="o">==</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;grey&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span>
+            <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">get_xaxis_transform</span><span class="p">(),</span> 
+            <span class="n">label</span><span class="o">=</span><span class="s1">&#39;NBER Recession Indicators&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_ylim</span><span class="p">()[</span><span class="mi">1</span><span class="p">]])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Consumer Sentiment Index&#39;</span><span class="p">)</span>
+
+<span class="c1"># Plot CPI on another y-axis</span>
+<span class="n">ax_t</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">twinx</span><span class="p">()</span>
+<span class="n">inflation</span> <span class="o">=</span> <span class="n">web</span><span class="o">.</span><span class="n">DataReader</span><span class="p">(</span><span class="s1">&#39;CPILFESL&#39;</span><span class="p">,</span> <span class="s1">&#39;fred&#39;</span><span class="p">,</span> 
+                <span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">)</span><span class="o">.</span><span class="n">pct_change</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
+
+<span class="c1"># Add CPI on the legend without drawing the line again</span>
+<span class="n">ax_t</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mi">2020</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">**</span><span class="n">g_params</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> 
+          <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Consumer Sentiment Index&#39;</span><span class="p">)</span>
+<span class="n">ax_t</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">inflation</span><span class="p">,</span> <span class="o">**</span><span class="n">g_params</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#ff7f00&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> 
+          <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;CPI YoY Change (%)&#39;</span><span class="p">)</span>
+<span class="n">ax_t</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">nber</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="n">nber</span><span class="p">[</span><span class="s1">&#39;USREC&#39;</span><span class="p">]</span><span class="o">==</span><span class="mi">1</span><span class="p">,</span> 
+                  <span class="n">color</span><span class="o">=</span><span class="s1">&#39;grey&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span>
+                  <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">get_xaxis_transform</span><span class="p">(),</span> 
+                  <span class="n">label</span><span class="o">=</span><span class="s1">&#39;NBER Recession Indicators&#39;</span><span class="p">)</span>
+<span class="n">ax_t</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">ax_t</span><span class="o">.</span><span class="n">get_ylim</span><span class="p">()[</span><span class="mi">1</span><span class="p">]])</span>
+<span class="n">ax_t</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="n">start_date_graph</span><span class="p">,</span> <span class="n">end_date_graph</span><span class="p">])</span>
+<span class="n">ax_t</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper center&#39;</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">),</span>
+            <span class="n">ncol</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">9</span><span class="p">)</span>
+<span class="n">ax_t</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Consumer Price Index (% Change)&#39;</span><span class="p">,)</span>
+
+<span class="c1"># Suppress the text output</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;University of Michigan Consumer Sentiment Index,</span><span class="se">\n</span><span class="s1"> and </span><span class="se">\</span>
+<span class="s1">Year-over-year Consumer Price Index Change, 1978-2022 (United States)&#39;</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/15d13de83185dd0d53c2b2740a24f1547fcdca4770c4fde8904d28b9917d8113.png" src="_images/15d13de83185dd0d53c2b2740a24f1547fcdca4770c4fde8904d28b9917d8113.png" />
+</div>
+</div>
+</section>
+<section id="production">
+<h3><span class="section-number">7.6.2. </span>Production<a class="headerlink" href="#production" title="Permalink to this heading">#</a></h3>
+<p>Consumers’ confidence often influences their consumption pattern.</p>
+<p>This often manifests on the production side.</p>
+<p>We find that real industrial output is highly correlated with
+recessions in the economy.</p>
+<p>However, it is not a leading indicator, as the peak of contraction in production delays compared to consumer confidence and inflation.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">start_date</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">1919</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">end_date</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2022</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">31</span><span class="p">)</span>
+
+<span class="n">nber</span> <span class="o">=</span> <span class="n">web</span><span class="o">.</span><span class="n">DataReader</span><span class="p">(</span><span class="s1">&#39;USREC&#39;</span><span class="p">,</span> <span class="s1">&#39;fred&#39;</span><span class="p">,</span> <span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">)</span>
+<span class="n">consumer_confidence</span> <span class="o">=</span> <span class="n">web</span><span class="o">.</span><span class="n">DataReader</span><span class="p">(</span><span class="s1">&#39;INDPRO&#39;</span><span class="p">,</span> <span class="s1">&#39;fred&#39;</span><span class="p">,</span> <span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">)</span><span class="o">.</span><span class="n">pct_change</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">consumer_confidence</span><span class="p">,</span> <span class="o">**</span><span class="n">g_params</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#377eb8&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Consumer Price Index&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">nber</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="n">nber</span><span class="p">[</span><span class="s1">&#39;USREC&#39;</span><span class="p">]</span><span class="o">==</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;grey&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span>
+                <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">get_xaxis_transform</span><span class="p">(),</span> 
+                <span class="n">label</span><span class="o">=</span><span class="s1">&#39;NBER Recession Indicators&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="n">ax</span><span class="o">.</span><span class="n">get_ylim</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_ylim</span><span class="p">()[</span><span class="mi">1</span><span class="p">]])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;YoY Real Ouput Change (%)&#39;</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Year-over-year Industrial Production: </span><span class="se">\</span>
+<span class="s1">Total Index, 1919-2022 (United States)&#39;</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/871bb44d46bb4627a273e627784bc2e26acdabcd472bc64fb199dfb6cb09e96f.png" src="_images/871bb44d46bb4627a273e627784bc2e26acdabcd472bc64fb199dfb6cb09e96f.png" />
+</div>
+</div>
+</section>
+<section id="credit-level">
+<h3><span class="section-number">7.6.3. </span>Credit Level<a class="headerlink" href="#credit-level" title="Permalink to this heading">#</a></h3>
+<p>Credit contractions often occur during recessions, as lenders become more
+cautious and borrowers become more hesitant to take on additional debt.</p>
+<p>This can be due to several factors such as a decrease in overall economic
+activity, rising unemployment, and gloomy expectations for the future.</p>
+<p>One example is domestic credit to the private sector by banks in the UK.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">private_credit</span> <span class="o">=</span> <span class="n">wb</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="s1">&#39;FS.AST.PRVT.GD.ZS&#39;</span><span class="p">,[</span><span class="s1">&#39;GBR&#39;</span><span class="p">],</span> <span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">private_credit</span> <span class="o">=</span> <span class="n">private_credit</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;Country&#39;</span><span class="p">)</span>
+<span class="n">private_credit</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">private_credit</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;YR&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<span class="n">private_credit</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>1960</th>
+      <th>1961</th>
+      <th>1962</th>
+      <th>1963</th>
+      <th>1964</th>
+      <th>1965</th>
+      <th>1966</th>
+      <th>1967</th>
+      <th>1968</th>
+      <th>1969</th>
+      <th>...</th>
+      <th>2012</th>
+      <th>2013</th>
+      <th>2014</th>
+      <th>2015</th>
+      <th>2016</th>
+      <th>2017</th>
+      <th>2018</th>
+      <th>2019</th>
+      <th>2020</th>
+      <th>2021</th>
+    </tr>
+    <tr>
+      <th>Country</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>United Kingdom</th>
+      <td>17.338941</td>
+      <td>17.493247</td>
+      <td>17.438054</td>
+      <td>19.343361</td>
+      <td>20.672065</td>
+      <td>20.623659</td>
+      <td>19.496596</td>
+      <td>19.824219</td>
+      <td>19.710468</td>
+      <td>19.350053</td>
+      <td>...</td>
+      <td>160.801494</td>
+      <td>149.472366</td>
+      <td>135.489427</td>
+      <td>130.55797</td>
+      <td>131.828228</td>
+      <td>133.108458</td>
+      <td>133.654196</td>
+      <td>132.301188</td>
+      <td>146.615842</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>1 rows × 62 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+
+<span class="n">countries</span> <span class="o">=</span> <span class="s1">&#39;United Kingdom&#39;</span>
+<span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;Domestic Credit to Private Sector by Banks, United Kingdom (</span><span class="si">% o</span><span class="s1">f GDP)&#39;</span>
+<span class="n">ylabel</span> <span class="o">=</span> <span class="s1">&#39;Credit Level (</span><span class="si">% o</span><span class="s1">f GDP)&#39;</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plot_comparison</span><span class="p">(</span><span class="n">private_credit</span><span class="p">,</span> <span class="n">countries</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> 
+                     <span class="n">ylabel</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="n">g_params</span><span class="p">,</span> <span class="n">b_params</span><span class="p">,</span> 
+                     <span class="n">t_params</span><span class="p">,</span> <span class="n">ylim</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">baseline</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/413375fb8c00154bbceb50d7795e121cf7ae608834a8a6c5abad47bfb2610a70.png" src="_images/413375fb8c00154bbceb50d7795e121cf7ae608834a8a6c5abad47bfb2610a70.png" />
+</div>
+</div>
+<p>Note that the credit rises in periods of economic expansion
+and stagnates or even contracts after recessions.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                    </div>
+                    
+                </main> <!-- .page__content -->
+                
+
+
+                <footer class="qe-page__footer">
+
+                    <p><a href="https://creativecommons.org/licenses/by-sa/4.0/"><img src="https://licensebuttons.net/l/by-sa/4.0/80x15.png"></a></p>
+
+                    <p>Creative Commons License &ndash; This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International.</p>
+
+                </footer> <!-- .page__footer -->
+
+            </div> <!-- .page -->
+
+            
+
+            
+            <div class="qe-sidebar bd-sidebar inactive" id="site-navigation">
+
+                <div class="qe-sidebar__header">
+
+
+                    Contents
+
+                </div>
+
+                <nav class="qe-sidebar__nav" id="qe-sidebar-nav" aria-label="Main navigation">
+                    <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Introduction
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="about.html">
+   1. About these Lectures
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Supply and Demand
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro_supply_demand.html">
+   2. Introduction to Supply and Demand
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="supply_demand_multiple_goods.html">
+   3. Supply and Demand with Many Goods
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="supply_demand_heterogeneity.html">
+   4. Market Equilibrium with Heterogeneity
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="input_output.html">
+   5. Input-Output Models
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Data and Measurement
+ </span>
+</p>
+<ul class="current nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="long_run_growth.html">
+   6. Long Run Growth
+  </a>
+ </li>
+ <li class="toctree-l1 current active active">
+  <a class="current reference internal" href="#">
+   7. Business Cycles
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="inflation_unemployment.html">
+   8. Inflation and Unemployment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="inequality.html">
+   9. Income and Wealth Inequality
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="distributions.html">
+   10. Distributions in Economics
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Useful Tools
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="geom_series.html">
+   11. Geometric Series for Elementary Economics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="linear_equations.html">
+   12. Linear Equations and Matrix Algebra
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="eigen_I.html">
+   13. Eigenvalues and Eigenvectors
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Simulation
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="lln_clt.html">
+   14. LLN and CLT
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="monte_carlo.html">
+   15. Monte Carlo and Option Pricing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="schelling.html">
+   16. Racial Segregation
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Dynamics
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="solow.html">
+   17. The Solow-Swan Growth Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="scalar_dynam.html">
+   18. Dynamics in One Dimension
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cobweb.html">
+   19. The Cobweb Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="olg.html">
+   20. The Overlapping Generations Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="markov_chains_I.html">
+   21. Markov Chains: Basic Concepts and Stationarity
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="markov_chains_II.html">
+   22. Markov Chains: Irreducibility and Ergodicity
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Modeling in Higher Dimensions
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="eigen_II.html">
+   23. Theorems of Nonnegative Matrices and Eigenvalues
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lake_model.html">
+   24. A Lake Model of Employment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="asset_pricing.html">
+   25. Introduction to Asset Pricing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="networks.html">
+   26. Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="samuelson.html">
+   27. Multiplier Accelerator Model
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Optimization
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="lp_intro.html">
+   28. Linear Programming
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="comparative_adv.html">
+   29. Comparative Advantage
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nonlinear.html">
+   30. Nonlinear Problems
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="short_path.html">
+   31. Shortest Paths
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Markets and Competitive Equilibrium
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="markets_welfare.html">
+   32. Markets and Welfare
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="risk.html">
+   33. Risk
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="uncertainty.html">
+   34. Uncertainty
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Estimation
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="simple_linear_regression.html">
+   35. Simple Linear Regression Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lr_with_matrices.html">
+   36. Linear Regression with Matrices
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="mle.html">
+   37. Maximum Likelihood Estimation
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Other
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="troubleshooting.html">
+   38. Troubleshooting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="zreferences.html">
+   39. References
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="status.html">
+   40. Execution Statistics
+  </a>
+ </li>
+</ul>
+
+                </nav>
+
+                <div class="qe-sidebar__footer">
+
+                </div>
+
+            </div> <!-- .sidebar -->
+            
+        </div> <!-- .main -->
+
+        <div class="qe-toolbar">
+
+            <div class="qe-toolbar__inner">
+
+                <ul class="qe-toolbar__main">
+                    <li data-tippy-content="Table of Contents" class="btn__sidebar"><i data-feather="menu"></i></li>
+                    <li data-tippy-content="Home"><a href="intro.html"><i data-feather="home"></i></a></li>
+                    <li class="btn__qelogo"><a href="https://quantecon.org" title=""><span class="show-for-sr">QuantEcon</span></a></li>
+                    <!-- <li class="btn__search">
+                        <form action="search.html" method="get">
+                            <input type="search" class="form-control" name="q" id="search-input" placeholder="Search..." aria-label="Search..." autocomplete="off">
+                            <i data-feather="search"></i>
+                        </form>
+                    </li> -->
+                </ul>
+
+                <ul class="qe-toolbar__links">
+                    <li data-tippy-content="Fullscreen" class="btn__fullscreen"><i data-feather="maximize"></i></li>
+                    <li data-tippy-content="Increase font size" class="btn__plus"><i data-feather="plus-circle"></i></li>
+                    <li data-tippy-content="Decrease font size" class="btn__minus"><i data-feather="minus-circle"></i></li>
+                    <li data-tippy-content="Change contrast" class="btn__contrast"><i data-feather="sunset"></i></li>
+                    <li data-tippy-content="Download Notebook"><a href="/_notebooks/business_cycle.ipynb" download><i data-feather="download-cloud"></i></a></li>
+                    <li class="settings-button" id="settingsButton"><div data-tippy-content="Launch Notebook"><i data-feather="play-circle"></i></div></li>
+                        <li data-tippy-content="Download PDF" onClick="window.print()"><i data-feather="file"></i></li>
+                    <li data-tippy-content="View Source"><a target="_blank" href="https://github.com/QuantEcon/lecture-python-intro/tree/master/lectures/business_cycle.md" download><i data-feather="github"></i></a></li>
+                </ul>
+
+            </div>
+
+        </div> <!-- .toolbar -->
+        <div id="downloadPDFModal" style="display: none;">
+            <ul class="pdf-options" style="display: block;">
+                <li class="download-pdf-book" onClick="window.print()">
+                    <p>Lecture (PDF)</p>
+                </li>
+                <li class="download-pdf-file">
+                    <a href="" download><p>Book (PDF)</p></a>
+                </li>
+            </ul>
+        </div>
+        <div id="settingsModal" style="display: none;">
+            <p class="modal-title"> Notebook Launcher </p>
+            <div class="modal-desc">
+            <p>
+                Choose public or private cloud service for "Launch" button.
+            </p>
+            </div>
+            <p class="modal-subtitle">Select a server</p>
+            <ul class="modal-servers">
+            <li class="active launcher-public">
+                <span class="label">Public</span>
+                <select id="launcher-public-input">
+                
+                    <option value="https://mybinder.org/v2/gh/QuantEcon/lecture-python-intro.notebooks/master?urlpath=tree/business_cycle.ipynb">BinderHub</option>
+                
+                    <option value="https://colab.research.google.com/github/QuantEcon/lecture-python-intro.notebooks/blob/master/business_cycle.ipynb">Colab</option>
+                
+                </select>
+                <i class="fas fa-check-circle"></i>
+            </li>
+            <li class="launcher-private">
+                <span class="label">Private</span>
+                <input type="text" id="launcher-private-input" data-repourl="https://github.com/QuantEcon/lecture-python-intro.notebooks" data-urlpath="tree/lecture-python-intro.notebooks/business_cycle.ipynb" data-branch=master>
+                <i class="fas fa-check-circle"></i>
+            </li>
+            </ul>
+            <p class="launch"><a href="https://mybinder.org/v2/gh/QuantEcon/lecture-python-intro.notebooks/master?urlpath=tree/business_cycle.ipynb" id="advancedLaunchButton" target="_blank">Launch Notebook</a></p>
+            <script>
+                // QuantEcon Notebook Launcher
+                const launcherTypeElements = document.querySelectorAll('#settingsModal .modal-servers li');
+                // Highlight the server type if previous selection exists
+                if (typeof localStorage.launcherType !== 'undefined') {
+                  for (var i = 0; i < launcherTypeElements.length; i++) {
+                    launcherTypeElements[i].classList.remove('active');
+                    if ( launcherTypeElements[i].classList.contains(localStorage.launcherType) ) {
+                      launcherTypeElements[i].classList.add('active');
+                    }
+                  }
+                }
+                // Highlight server type on click and set local storage value
+                for (var i = 0; i < launcherTypeElements.length; i++) {
+                  launcherTypeElements[i].addEventListener('click', function() {
+                    for (var j = 0; j < launcherTypeElements.length; j++) {
+                      launcherTypeElements[j].classList.remove('active');
+                    }
+                    this.classList.add('active');
+                    if ( this.classList.contains('launcher-private') ) {
+                      localStorage.launcherType = 'launcher-private';
+                    } else if ( this.classList.contains('launcher-public') ) {
+                      localStorage.launcherType = 'launcher-public';
+                    }
+                    setLaunchServer();
+                  })
+                }
+                const launcherPublic = document.getElementById('launcher-public-input');
+                const launcherPrivate = document.getElementById('launcher-private-input');
+                const pageName = "business_cycle";
+                const repoURL = "https://github.com/QuantEcon/lecture-python-intro.notebooks";
+                const urlPath = "tree/lecture-python-intro.notebooks/business_cycle.ipynb";
+                const branch = "master"
+                const launchNotebookLink = document.getElementById('advancedLaunchButton');
+
+                // Highlight public server option if previous selection exists
+                if (typeof localStorage.launcherPublic !== 'undefined') {
+                  launcherPublic.value = localStorage.launcherPublic;
+                }
+                // Update local storage upon public server selection
+                launcherPublic.addEventListener('change', (event) => {
+                  setLaunchServer();
+                });
+                // Populate private server input if previous entry exists
+                if (typeof localStorage.launcherPrivate !== 'undefined') {
+                  launcherPrivate.value = localStorage.launcherPrivate;
+                }
+                // Update local storage when a private server is entered
+                launcherPrivate.addEventListener('input', (event) => {
+                  setLaunchServer();
+                });
+
+                // Function to update the "Launch Notebook" link href
+                function setLaunchServer() {
+                  launchNotebookLink.removeAttribute("style")
+                  if ( localStorage.launcherType == 'launcher-private' ) {
+                    let repoPrefix = "/jupyter/hub/user-redirect/git-pull?repo=" + repoURL + "&branch=" + branch + "&urlpath=" + urlPath;
+                    launcherPrivateValue = launcherPrivate.value
+                    if (!launcherPrivateValue) {
+                        launchNotebookLink.removeAttribute("href")
+                        launchNotebookLink.style.background = "grey"
+                        return
+                    }
+                    localStorage.launcherPrivate = launcherPrivateValue;
+                    privateServer = localStorage.launcherPrivate.replace(/\/$/, "")
+                    if (!privateServer.includes("http")) {
+                        privateServer = "http://" + privateServer
+                    }
+                    launchNotebookLinkURL = privateServer + repoPrefix;
+                  } else if ( localStorage.launcherType == 'launcher-public' ) {
+                    launcherPublicValue = launcherPublic.options[launcherPublic.selectedIndex].value;
+                    localStorage.launcherPublic = launcherPublicValue;
+                    launchNotebookLinkURL = localStorage.launcherPublic;
+                  }
+                  if (launchNotebookLinkURL) launchNotebookLink.href = launchNotebookLinkURL;
+                }
+                // Check if user has previously selected a server
+                if ( (typeof localStorage.launcherPrivate !== 'undefined') || (typeof localStorage.launcherPublic !== 'undefined') ) {
+                  setLaunchServer();
+                }
+                </script>
+
+        </div>
+
+    </div> <!-- .wrapper-->
+  </body>
+</html>
