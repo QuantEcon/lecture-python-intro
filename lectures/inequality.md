@@ -245,7 +245,6 @@ mystnb:
   image:
     alt: lorenz_us
     classes: shadow bg-primary
-    width: 75%
 ---
 fig, ax = plt.subplots()
 
@@ -313,7 +312,6 @@ mystnb:
   image:
     alt: lorenz_gini
     classes: shadow bg-primary
-    width: 75%
 ---
 fig, ax = plt.subplots()
 
@@ -391,7 +389,6 @@ mystnb:
   image:
     alt: gini_simulated
     classes: shadow bg-primary
-    width: 75%
 ---
 plot_inequality_measures(range(k), 
                          ginis, 
@@ -466,7 +463,6 @@ mystnb:
   image:
     alt: gini_wealth_us
     classes: shadow bg-primary
-    width: 75%
 ---
 xlabel = "year"
 ylabel = "gini coefficient"
@@ -490,7 +486,6 @@ mystnb:
   image:
     alt: gini_income_us
     classes: shadow bg-primary
-    width: 75%
 ---
 xlabel = "year"
 ylabel = "gini coefficient"
@@ -597,7 +592,6 @@ mystnb:
   image:
     alt: top_shares_us
     classes: shadow bg-primary
-    width: 75%
 ---
 xlabel = "year"
 ylabel = "top $10\%$ share"
@@ -678,7 +672,6 @@ mystnb:
   image:
     alt: top_shares_simulated
     classes: shadow bg-primary
-    width: 75%
 ---
 plot_inequality_measures(range(len(topshares)), 
                          topshares, 
@@ -733,7 +726,6 @@ mystnb:
   image:
     alt: top_shares_us_al
     classes: shadow bg-primary
-    width: 75%
 ---
 xlabel = "year"
 ylabel = "top $10\%$ share"
