@@ -192,7 +192,7 @@ Thus, we have  verified that,  up to choice of a numeraire in which to express a
 <!-- #endregion -->
 
 ```python
-class Exchange_economy:
+class ExchangeEconomy:
     def __init__(self, Pi, bs, es, Ws=None, thres=4):
         """
         Set up the environment for an exchange economy
@@ -272,7 +272,7 @@ bs = [np.array([5, 5]),   # first consumer's bliss points
 es = [np.array([0, 2]),     # first consumer's endowment
       np.array([2, 0])]     # second consumer's endowment
 
-example = Exchange_economy(Pi, bs, es)
+example = ExchangeEconomy(Pi, bs, es)
 p, c_s, mu_s = example.competitive_equilibrium()
 
 print('Competitive equilibrium price vector:', p)
@@ -289,7 +289,7 @@ es = [np.array([0, 2]),     # first consumer's endowment
       np.array([2, 0])]     # second consumer's endowment
 
 
-example = Exchange_economy(Pi, bs, es)
+example = ExchangeEconomy(Pi, bs, es)
 p, c_s, mu_s = example.competitive_equilibrium()
 
 print('Competitive equilibrium price vector:', p)
@@ -306,7 +306,7 @@ es = [np.array([0.5, 0.5]),     # first consumer's endowment
       np.array([1, 1])]     # second consumer's endowment
 
 
-example = Exchange_economy(Pi, bs, es)
+example = ExchangeEconomy(Pi, bs, es)
 p, c_s, mu_s = example.competitive_equilibrium()
 
 print('Competitive equilibrium price vector:', p)
@@ -323,7 +323,7 @@ es = [np.array([0, 2]),     # first consumer's endowment
       np.array([2, 0])]     # second consumer's endowment
 
 
-example = Exchange_economy(Pi, bs, es)
+example = ExchangeEconomy(Pi, bs, es)
 p, c_s, mu_s = example.competitive_equilibrium()
 
 print('Competitive equilibrium price vector:', p)
@@ -340,7 +340,7 @@ es = [np.array([1, 1]),     # first consumer's endowment
       np.array([1, 1])]     # second consumer's endowment
 
 Ws = [0.5, -0.5]
-example = Exchange_economy(Pi, bs, es, Ws)
+example = ExchangeEconomy(Pi, bs, es, Ws)
 p, c_s, mu_s = example.competitive_equilibrium()
 
 print('Competitive equilibrium price vector:', p)
@@ -362,7 +362,7 @@ bs = [np.array([5, np.sqrt(beta)*5])]
 
 es = [np.array([1,1])]
 
-example = Exchange_economy(Pi, bs, es)
+example = ExchangeEconomy(Pi, bs, es)
 p, c_s, mu_s = example.competitive_equilibrium()
 
 print('Competitive equilibrium price vector:', p)
@@ -388,7 +388,7 @@ bs = [np.array([np.sqrt(prob)*5, np.sqrt(1-prob)*5]),
 es = [np.array([1, 0]),
       np.array([0, 1])]
 
-example = Exchange_economy(Pi, bs, es)
+example = ExchangeEconomy(Pi, bs, es)
 p, c_s, mu_s = example.competitive_equilibrium()
 
 print('Competitive equilibrium price vector:', p)
@@ -405,7 +405,7 @@ Then we compute the equilibrium  price vector using the inverse demand or supply
 
 ```python
 
-class Production_economy:
+class ProductionEconomy:
     def __init__(self, Pi, b, h, J, mu):
         """
         Set up the environment for a production economy
@@ -547,7 +547,7 @@ h   = np.array([0.5])
 J   = np.array([[1]])
 mu = 1
 
-PE = Production_economy(Pi, b, h, J, mu)
+PE = ProductionEconomy(Pi, b, h, J, mu)
 c, p = PE.competitive_equilibrium()
 
 print('Competitive equilibrium price:', p.item())
@@ -617,7 +617,7 @@ J   = np.array([[1, 0.5],
                 [0.5, 1]])
 mu = 1
 
-PE = Production_economy(Pi, b, h, J, mu)
+PE = ProductionEconomy(Pi, b, h, J, mu)
 c, p = PE.competitive_equilibrium()
 
 print('Competitive equilibrium price:', p)
@@ -643,7 +643,7 @@ J   = np.array([[1, 0.5],
                 [0.5, 1]])
 mu = 1
 
-PE = Production_economy(Pi, b, h, J, mu)
+PE = ProductionEconomy(Pi, b, h, J, mu)
 c, p = PE.competitive_equilibrium()
 
 print('Competitive equilibrium price:', p)
@@ -662,7 +662,7 @@ print('Competitive equilibrium allocation:', c)
 
 Let's  consider a monopolist  supplier.
 
-We have included a method in  our `production_economy` class to compute an equilibrium price and allocation when the supplier is  a monopolist.
+We have included a method in  our `productionEconomy` class to compute an equilibrium price and allocation when the supplier is  a monopolist.
 
 Since the supplier now has the price-setting power
 
@@ -759,7 +759,7 @@ J   = np.array([[1, 0.5],
                 [0.5, 1]])
 mu = 1
 
-PE = Production_economy(Pi, b, h, J, mu)
+PE = ProductionEconomy(Pi, b, h, J, mu)
 c, p = PE.competitive_equilibrium()
 q, pm = PE.equilibrium_with_monopoly()
 
@@ -779,7 +779,7 @@ h   = np.array([0.5])
 J   = np.array([[1]])
 mu = 1
 
-PE = Production_economy(Pi, b, h, J, mu)
+PE = ProductionEconomy(Pi, b, h, J, mu)
 c, p = PE.competitive_equilibrium()
 q, pm = PE.equilibrium_with_monopoly()
 
