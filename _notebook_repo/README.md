@@ -1,7 +1,7 @@
-# lecture-python.notebooks
+# lecture-python-intro.notebooks
 
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/QuantEcon/lecture-python-intro.notebooks/master)
 
-<!-- Notebooks for https://python.quantecon.org -->
+<!-- Notebooks for https://python-intro.quantecon.org -->
 
 **Note:** This README should be edited [here](https://github.com/quantecon/lecture-python-intro/_notebook_repo)
