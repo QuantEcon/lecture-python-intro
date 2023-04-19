@@ -44,10 +44,10 @@ We assume that $\Pi$ has linearly independent columns, which implies that $\Pi^\
 
 The matrix $\Pi$ describes a consumer's willingness to substitute one good for every other good.
 
-We shall see below that $(\Pi^T \Pi)^{-1}$ is a matrix of slopes of (compensated) demand curves for $c$ with respect to a vector of prices:
+We shall see below that $(\Pi^\top \Pi)^{-1}$ is a matrix of slopes of (compensated) demand curves for $c$ with respect to a vector of prices:
 
 $$
-    \frac{\partial c } {\partial p} = (\Pi^T \Pi)^{-1}
+    \frac{\partial c } {\partial p} = (\Pi^\top \Pi)^{-1}
 $$
 
 A consumer faces $p$ as a price taker and chooses $c$ to maximize the utility function
@@ -418,7 +418,7 @@ first-order necessary conditions for maximizing monopoly profits with respect to
 and solving them for $q$, we find that the monopolist sets
 
 $$
-q = (H + 2 \mu^{-1} \Pi^T \Pi)^{-1} (\mu^{-1} \Pi^\top b - h)
+q = (H + 2 \mu^{-1} \Pi^\top \Pi)^{-1} (\mu^{-1} \Pi^\top b - h)
 $$ (eq:qmonop)
 
 We'll soon  see that a monopolist sets a **lower output** $q$ than does either a
