@@ -11,11 +11,20 @@ kernelspec:
   name: python3
 ---
 
++++ {"user_expressions": []}
+
 # The Overlapping Generations Model
 
-In this lecture we study the overlapping generations (OLG) model.
+In this lecture we study the famous overlapping generations (OLG) model.
 
+The first rigorous version of the OLG model was developed by Paul Samuelson
+{cite}`samuelson1958exact`.
 
+The OLG model is now used by policy makers and researchers to examine fiscal
+policy, monetary policy and many other topics.
+
+Here our aim is to gain a good understanding of a simple version of the OLG
+model.
 
 ## Overview
 
@@ -59,6 +68,8 @@ from functools import partial
 import matplotlib.pyplot as plt
 plt.rcParams["figure.figsize"] = (11, 5)  #set default figure size
 ```
+
++++ {"user_expressions": []}
 
 ## Environment
 
@@ -104,32 +115,33 @@ Suppose that utility for individuals born at time $t$ take the form
 ```{math}
 :label: eq_crra
 
-    U_t = u(c^1_t) + \beta u(c^2_{t+1})
+    U_t = u(c_t) + \beta u(c_{t+1})
 ```
 
 Here
 
-- $u: \mathbb R_+ \to \mathbb R$ is the flow utility function, which is
-  strictly increasing
+- $u: \mathbb R_+ \to \mathbb R$ is called the "flow" utility function
 - $\beta \in (0, 1)$ is the discount factor
-- $c^1_t$ is time $t$ consumption of the individual born at time $t$
-- $c^2_{t+1}$ is time $t+1$ consumption of the same individual (born at time $t$)
+- $c_t$ is time $t$ consumption of the individual born at time $t$
+- $c_{t+1}$ is time $t+1$ consumption of the same individual 
 
-Their savings behavior is determined by the optimization problem
+We assume that $u$ is strictly increasing.
+
+Savings behavior is determined by the optimization problem
 
 
 ```{math}
 :label: max_sav_olg
-    \max_{c^1_t, c^2_{t+1}} 
-    \,  \left \{ u(c^1_t) + \beta u(c^2_{t+1}) \right \} 
+    \max_{c_t, c_{t+1}} 
+    \,  \left \{ u(c_t) + \beta u(c_{t+1}) \right \} 
 ```
 
 subject to
 
 $$
-     c^1_t + s_t \le w_t 
+     c_t + s_t \le w_t 
      \quad \text{and} \quad
-     c^2_{t+1}   \le R_{t+1} s_t
+     c_{t+1}   \le R_{t+1} s_t
 $$
 
 Here
@@ -138,27 +150,27 @@ Here
 - $w_t$ is the wage rate at time $t$
 - $R_{t+1}$ is the interest rate on savings invested at time $t$, paid at time $t+1$
 
-Since $u$ is strictly increasing, both of these constraints will hold as equalities.
+Since $u$ is strictly increasing, both of these constraints will hold as equalities at the maximum.
 
-
-Substituting $s_t$ from the first constraint into the second we get
+Using this fact and substituting $s_t$ from the first constraint into the second we get
 
 ```{math}
 :label: c_2_olg
-    c^2_{t+1} = R_{t+1}(w_t - c^1_t)
+    c_{t+1} = R_{t+1}(w_t - c_t)
 ```
-Thus first-order condition for a maximum can be obtained
-by plugging $c^2_{t+1}$ into the objective function, taking the derivative
-with respect to $c^1_t$, and setting it to zero.
+
+The first-order condition for a maximum can be obtained
+by plugging $c_{t+1}$ into the objective function, taking the derivative
+with respect to $c_t$, and setting it to zero.
 
 This leads to the **Euler equation** of the OLG model, which is
 
 ```{math}
 :label: euler_1_olg
-    u'(c^1_t) = \beta R_{t+1}  u'( R_{t+1} (w_t - c^1_t))
+    u'(c_t) = \beta R_{t+1}  u'( R_{t+1} (w_t - c_t))
 ```
 
-From the first constraint we get $c^1_{t} = w_t - s_t$, so the Euler equation
+From the first constraint we get $c_t = w_t - s_t$, so the Euler equation
 can also be expressed as
 
 ```{math}
@@ -195,6 +207,10 @@ Solving for saving, we get
 :label: saving_log_2_olg
     s_t = s(w_t, R_{t+1}) = \frac{\beta}{1+\beta} w_t
 ```
+
+
+In this special case, savings does not depend on the interest rate.
+
 
 
 ### Savings and investment
@@ -288,86 +304,6 @@ def capital_demand(R, α):
     return (α/R)**(1/(1-α)) 
 ```
 
-
-## Equilibrium
-
-In this section we derive equilibrium conditions and investigate an example.
-
-
-### Equilibrium Conditions
-
-In equilibrium, savings at time $t$ equals investment at time $t$, which
-equals capital supply at time $t+1$.
-
-Equilibrium is obtained this supply with demand for capital from firms.
-
-Specifically we have
-
-```{math}
-:label: equilibrium_1
-    s(w_t, R_{t+1}) 
-    = k^d(R_{t+1})
-    = \left (\frac{R_{t+1}}{\alpha} \right )^{1/(\alpha - 1)}
-```
-
-This equation determines the equilibrium price $R_{t+1}$.
-
-From it and [](aggregate_demand_capital_olg), we can obtain the equilibrium quantity $k_{t+1}$.
-
-When we solve for this equilibrium, time $t$ quantities are already given, so
-we can treat $w_t$ as a constant.
-
-
-### Example: log utility
-
-In the case of log utility, we can use [](equilibrium_1) and [](saving_log_2_olg) to obtain
-
-```{math}
-:label: equilibrium_2
-    \frac{\beta}{1+\beta} (1-\alpha)k_t^{\alpha} 
-    = \left (\frac{R_{t+1}}{\alpha} \right )^{1/(\alpha - 1)}
-```
-
-Solving for the equilibrium interest rate gives
-
-```{math}
-:label: equilibrium_price
-    R_{t+1} = 
-    \alpha 
-    \left ( 
-        \frac{\beta (1-\alpha)k_t^{\alpha}}{1+\beta} 
-    \right )^{\alpha - 1}
-```
-
-In Python we can compute this via
-
-```{code-cell} ipython3
-def equilibrium_R_log_utility(α, β, k_prev):
-    R = α * ( β * (1-α) * k_prev**α / (1+β))**(α-1)
-    return R
-```
-
-Plugging into either the demand or the supply function gives the equilibrium quantity
-
-```{math}
-:label: equilibrium_quantity
-    k_{t+1} = \frac{\beta }{1+\beta} (1-\alpha)k_t^{\alpha} 
-```
-
-In Python this is
-
-
-```{code-cell} ipython3
-def capital_supply_log_utility(R, α, β, k_prev):
-    return (β / (1+β)) * (1-α) * k_prev**α 
-```
-
-
-
-Here is a plot of the demand and supply curves for capital, along with the
-equilibrium values.
-
-
 ```{code-cell} ipython3
 def plot_ad_as(α, β, k_prev):
 
@@ -399,9 +335,89 @@ def plot_ad_as(α, β, k_prev):
     plt.show()
 ```
 
++++ {"user_expressions": []}
+
+## Equilibrium
+
+In this section we derive equilibrium conditions and investigate an example.
 
 
+### Equilibrium conditions
 
+In equilibrium, savings at time $t$ equals investment at time $t$, which
+equals capital supply at time $t+1$.
+
+Equilibrium is obtained by equating this supply with demand for capital from firms.
+
+Specifically we have
+
+```{math}
+:label: equilibrium_1
+    s(w_t, R_{t+1}) 
+    = k^d(R_{t+1})
+    = \left (\frac{\alpha}{R_{t+1}} \right )^{1/(1-\alpha)}
+```
+
+This equation determines the equilibrium price $R_{t+1}$ given $w_t$.
+
+From it and [](aggregate_demand_capital_olg), we can obtain the equilibrium
+quantity $k_{t+1}$.
+
+(When we solve for this equilibrium, which concerns time $t+1$ outcomes, time
+$t$ quantities are already determined, so we can treat $w_t$ as a constant.)
+
+
+### Example: log utility
+
+In the case of log utility, we can use [](equilibrium_1) and [](saving_log_2_olg) to obtain
+
+```{math}
+:label: equilibrium_2
+    \frac{\beta}{1+\beta} w_t
+    = \left( \frac{\alpha}{R_{t+1}} \right)^{1/(1-\alpha)}
+```
+
+Solving for the equilibrium interest rate gives
+
+```{math}
+:label: equilibrium_price
+    R_{t+1} = 
+    \alpha 
+    \left( 
+        \frac{\beta}{1+\beta} w_t
+    \right)^{\alpha - 1}
+```
+
+In Python we can compute this via
+
+```{code-cell} ipython3
+def equilibrium_R_log_utility(α, β, k_prev):
+    R = α * ( β * (1-α) * k_prev**α / (1+β))**(α-1)
+    return R
+```
+
++++ {"user_expressions": []}
+
+Plugging into either the demand or the supply function gives the equilibrium quantity
+
+```{math}
+:label: equilibrium_quantity
+    k_{t+1} = \frac{\beta }{1+\beta} (1-\alpha)k_t^{\alpha} 
+```
+
+In Python this is
+
+```{code-cell} ipython3
+def capital_supply_log_utility(R, α, β, k_prev):
+    return (β / (1+β)) * (1-α) * k_prev**α 
+```
+
++++ {"user_expressions": []}
+
+Here is a plot of the demand and supply curves for capital, along with the
+equilibrium values.
+
++++
 
 ## Dynamics and steady state
 
@@ -473,18 +489,17 @@ Let's plot some time series
 observe the dynamics of the equilibrium price $R^*_{t+1}$.
 
 ```{code-cell} ipython3
-K_t_vals = np.linspace(10, 500, 10_000)
-R_t1_vals = m.α * (m.β * (1-m.α) * (K_t_vals / m.L)**m.α / (1+m.β))**(m.α-1)
+k_t_vals = np.linspace(10, 500, 10_000)
+R_t1_vals = m.α * (m.β * (1-m.α) * (k_t_vals / m.L)**m.α / (1+m.β))**(m.α-1)
 ```
 
 ```{code-cell} ipython3
 fig, ax = plt.subplots()
-ax.plot(K_t_vals, R_t1_vals)
+ax.plot(k_t_vals, R_t1_vals)
 ax.set_ylabel("$R^*_{t+1}$")
-ax.set_xlabel("$K_{t}$")
+ax.set_xlabel("$k_{t}$")
 plt.show()
 ```
-
 
 ### Steady state (log case)
 
@@ -498,50 +513,40 @@ We can solve for $k^*$ by setting $k_{t+1} = k_t = k^*$ in [](law_of_motion_capi
     k^* = \frac{\beta (1-\alpha) (k^*)^{\alpha}}{(1+\beta)}
 ```
 
-
-
-
-
-
-
-
 ```{code-cell} ipython3
 Model = namedtuple('Model', ['α',        # Cobb-Douglas parameter
                              'β',        # discount factor
                              'u']        # flow utility
                    )
 ```
+
 ```{code-cell} ipython3
 def create_olg_model(α=0.3, β=0.9, u=u, L=10.0, u_params=dict()):
     return Model(α=α, β=β, u=u, L=L, u_params=u_params)
 ```
 
-
 ```{code-cell} ipython3
 m = create_olg_model()
-K_prev = 50
+k_prev = 50
 ```
 
 ```{code-cell} ipython3
-E_star = equilibrium(m, K_prev)
+E_star = equilibrium(m, k_prev)
 ```
 
 ```{code-cell} ipython3
-R_star, K_star = E_star
+R_star, k_star = E_star
 ```
 
 ```{code-cell} ipython3
-plot_ad_as(aggregate_capital_demand, aggregate_capital_supply, m, K_prev=50, E_star=E_star)
+plot_ad_as(aggregate_capital_demand, aggregate_capital_supply, m, k_prev=50, E_star=E_star)
 ```
-
-
 
 We can solve this equation to obtain
 ```{math}
 :label: steady_state_2
     k^* = \left (\frac{\beta (1-\alpha)}{1+\beta} \right )^{1/(1-\alpha)}
 ```
-
 
 ```{code-cell} ipython3
 def k_star(model):
@@ -553,14 +558,18 @@ def k_star(model):
 plot_45(m, k_update, kstar=k_star(m))
 ```
 
-
-
-
-
 ## CRRA preferences
 
+Previously, in our examples, we looked at the case of log utility.
 
-Let's now assume that the model is the same except that $u(c) = \frac{ c^{1- \gamma}-1}{1-\gamma}$, where $\gamma >0, \gamma\neq 1$.
+Log utility is a rather special case.
+
+In this section, we are going to assume that $u(c) = \frac{ c^{1-
+\gamma}-1}{1-\gamma}$, where $\gamma >0, \gamma\neq 1$.
+
+This function is called the CRRA utility function.
+
+In other respects, the model is the same.
 
 ```{code-cell} ipython3
 def crra(c, γ=0.5):
@@ -571,8 +580,7 @@ def crra(c, γ=0.5):
 m_crra = create_olg_model(u=crra, u_params={'γ': 0.5})
 ```
 
-### New aggregate supply
-
+### Supply
 
 
 For households, the Euler equation becomes
@@ -582,33 +590,40 @@ For households, the Euler equation becomes
 ```
 
 
-
 Solving for savings, we have
 
 ```{math}
 :label: saving_crra
-    s_t = s(w_t, R_{t+1}) = w_t \left [ 1 + \beta^{-1/\gamma} R_{t+1}^{(\gamma-1)/\gamma} \right ]^{-1}
+    s_t 
+    = s(w_t, R_{t+1}) 
+    = w_t \left [ 
+        1 + \beta^{-1/\gamma} R_{t+1}^{(\gamma-1)/\gamma} 
+      \right ]^{-1}
 ```
 
 
 
 With the CRRA utility, aggregate supply of capital becomes
+
 ```{math}
 :label: aggregate_supply_capital_crra_olg
-    K_{t+1} = K^S(w_t, R_{t+1}) =  S_t = L s_t = L s(w_t, R_{t+1}) = L w_t \left [ 1 + \beta^{-1/\gamma} R_{t+1}^{(\gamma-1)/\gamma} \right ]^{-1}
+    s(w_t, R_{t+1}) 
+    = w_t \left [ 1 + \beta^{-1/\gamma} R_{t+1}^{(\gamma-1)/\gamma} \right ]^{-1}
 ```
 
 
 
 ### Equilibrium
 
-The equality of aggregate demand [](aggregate_demand_capital_olg) and new aggregate supply [](aggregate_supply_capital_crra_olg) for capital yields the equalibrium.
+Equating aggregate demand for capital  (see [](aggregate_demand_capital_olg))
+with our new aggregate supply function [](aggregate_supply_capital_crra_olg)
+yields the equalibrium.
 
 Specifically we have
 
 ```{math}
 :label: equilibrium_crra_1
-    K^S(R_{t+1}) = K^d(R_{t+1})
+    s(w_t, R_{t+1}) = k^d(R_{t+1})
 ```
 
 or equivalently
@@ -621,7 +636,7 @@ or equivalently
 Combining with [](wage) yields
 ```{math}
 :label: equilibrium_crra
-    L (1-\alpha)(K_t / L)^{\alpha} \left [ 1 + \beta^{-1/\gamma} R_{t+1}^{(\gamma-1)/\gamma} \right ]^{-1} = L\left (\frac{R_{t+1}}{\alpha} \right )^{1/(\alpha - 1)}
+    L (1-\alpha)(k_t / L)^{\alpha} \left [ 1 + \beta^{-1/\gamma} R_{t+1}^{(\gamma-1)/\gamma} \right ]^{-1} = L\left (\frac{R_{t+1}}{\alpha} \right )^{1/(\alpha - 1)}
 ```
 
 
@@ -633,20 +648,20 @@ Exercise 1 asks you to solve [](equilibrium_crra) to obtain the equilibrium quan
 Below we just show a plot of the equilibrium.
 
 ```{code-cell} ipython3
-def aggregate_supply_capital_crra(R, model, K_prev):
+def aggregate_supply_capital_crra(R, model, k_prev):
     α, β, γ, L = model.α, model.β, model.u_params['γ'], model.L
-    return L**(1-α) * (1-α) * K_prev**α / ( 1 + β**(-1/γ) * R**((γ-1)/γ) )
+    return L**(1-α) * (1-α) * k_prev**α / ( 1 + β**(-1/γ) * R**((γ-1)/γ) )
 ```
 
 ```{code-cell} ipython3
-plot_ad_as(aggregate_capital_demand, aggregate_supply_capital_crra, m_crra, K_prev=50, E_star=None)  # John this is to be fixed.
+plot_ad_as(aggregate_capital_demand, aggregate_supply_capital_crra, m_crra, k_prev=50, E_star=None)  # John this is to be fixed.
 ```
 
 Let's plot the aggregate supply with different values of utility parameter $\gamma$ and observe it's behaviour.
 
 ```{code-cell} ipython3
 γ_vals = [0.1, 0.5, 1.5, 2.0]
-K_prev = 50
+k_prev = 50
 
 
 fig, ax = plt.subplots()
@@ -654,7 +669,7 @@ R_vals = np.linspace(0.3, 1)
 
 for γ in γ_vals:
     m = create_olg_model(u=partial(crra, γ=γ), u_params={'γ': γ})
-    ax.plot(R_vals, aggregate_supply_capital_crra(R_vals, m, K_prev),
+    ax.plot(R_vals, aggregate_supply_capital_crra(R_vals, m, k_prev),
             label=r"$\gamma=$" + str(γ))
 
 ax.set_xlabel("$R_{t+1}$")
@@ -830,45 +845,45 @@ To solve the equation we need to turn to Newton's method.
 
 The function `find_Rstar` is used to find $R^*_{t+1}$ by finding
 the zero of equation [](equilibrium_crra) using the helper
-function `find_Rstar_newton` for a given value of $K_t$.
+function `find_Rstar_newton` for a given value of $k_t$.
 
-Similary, `find_Kstar` finds the equilibrium quantity $K^*_{t+1}$ using the value of $R^*_{t+1}$.
+Similary, `find_kstar` finds the equilibrium quantity $k^*_{t+1}$ using the value of $R^*_{t+1}$.
 
 ```{code-cell} ipython3
-def find_Rstar_newton(x, K_prev, model):
+def find_Rstar_newton(x, k_prev, model):
     α, β, γ, L = model.α, model.β, model.u_params['γ'], model.L
-    lhs = L * (1-α) * (K_prev / L)**α
+    lhs = L * (1-α) * (k_prev / L)**α
     lhs /= (1 + β**(-1/γ) * x**((γ-1)/γ))
     rhs = L * (x / α)**(1/(α-1))
     return lhs - rhs
 ```
 
 ```{code-cell} ipython3
-def find_Rstar(K_prev, model):
-    return optimize.newton(find_Rstar_newton, 0.5, args=(K_prev, model))
+def find_Rstar(k_prev, model):
+    return optimize.newton(find_Rstar_newton, 0.5, args=(k_prev, model))
 
-def find_Kstar(R_star, model):
+def find_kstar(R_star, model):
     return model.L * (R_star / model.α)**(1/(model.α-1))
 ```
 
 The following function plots the equilibrium quantity and equilibrium price.
 
 ```{code-cell} ipython3
-def plot_ks_rs(K_t_vals, model):
-    n = len(K_t_vals)
+def plot_ks_rs(k_t_vals, model):
+    n = len(k_t_vals)
     R_star = np.empty(n)
-    K_star = np.empty(n)
+    k_star = np.empty(n)
 
     for i in range(n):
-        R_star[i] = find_Rstar(K_t_vals[i], model)
-        K_star[i] = find_Kstar(R_star[i], model)
+        R_star[i] = find_Rstar(k_t_vals[i], model)
+        k_star[i] = find_kstar(R_star[i], model)
 
     fig, ax = plt.subplots()
 
-    ax.plot(K_t_vals, R_star, label="equilibrium price")
-    ax.plot(K_t_vals, K_star, label="equilibrium quantity")
+    ax.plot(k_t_vals, R_star, label="equilibrium price")
+    ax.plot(k_t_vals, k_star, label="equilibrium quantity")
 
-    ax.set_xlabel("$K_{t}$")
+    ax.set_xlabel("$k_{t}$")
     ax.legend()
     plt.show()
 ```
@@ -886,9 +901,9 @@ mystnb:
     classes: shadow bg-primary
     width: 200px
 ---
-K_t_vals = np.linspace(0.1, 50, 50)
+k_t_vals = np.linspace(0.1, 50, 50)
 m_crra = create_olg_model(u=crra, u_params={'γ': 0.5})
-plot_ks_rs(K_t_vals, m_crra)
+plot_ks_rs(k_t_vals, m_crra)
 ```
 
 ```{solution-end}
@@ -917,7 +932,7 @@ With the quasilinear preference the Euler equation [](euler_2_olg) becomes
     1 + \theta (w_t - s_t)^{\theta-1} = \beta R_{t+1} + \beta R^{\theta}_{t+1} \theta s_t^{\theta - 1}
 ```
 
-Let $k_t := K_t / L$.
+Let $k_t := k_t / L$.
 
 Since [](supply_capital_log_olg), [](wage_2) and [](interest_rate_2) the Euler equation becomes
 
