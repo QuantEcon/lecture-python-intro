@@ -53,7 +53,7 @@ not essential.
 ## Credits
 
 In building this lecture series, we had invaluable assistance from research
-assistants at QuantEcon, as well as our QuantEcon colleages.  Without their
+assistants at QuantEcon, as well as our QuantEcon colleagues.  Without their
 help this series would not have been possible.
 
 In particular, we sincerely thank and give credit to

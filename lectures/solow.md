@@ -182,7 +182,7 @@ Then we have $k_{t+1} = g(k_t) > k_t$ and capital per worker rises.
 
 If $g(k_t) < k_t$ then capital per worker falls.
 
-If $g(k_t) = k_t$, then we are at a **steady state** and $k_t$ remainds constant.
+If $g(k_t) = k_t$, then we are at a **steady state** and $k_t$ remains constant.
 
 (A steady state of the model is a [fixed point](https://en.wikipedia.org/wiki/Fixed_point_(mathematics)) of the mapping $g$.)
 
@@ -218,7 +218,7 @@ three distinct initial conditions, under the parameterization listed above.
 
 At this parameterization, $k^* \approx 1.78$.
 
-Let's define the constants and three distinct intital conditions
+Let's define the constants and three distinct initial conditions
 
 ```{code-cell} ipython3
 A, s, alpha, delta = 2, 0.3, 0.3, 0.4
@@ -247,7 +247,7 @@ def simulate_ts(x0_values, ts_length):
         ax.plot(np.arange(ts_length), ts, '-o', ms=4, alpha=0.6,
                 label=r'$k_0=%g$' %x_init)
     ax.plot(np.arange(ts_length), np.full(ts_length,k_star),
-            alpha=0.6, color='red', label=r'$k_*$')
+            alpha=0.6, color='red', label=r'$k^*$')
     ax.legend(fontsize=10)
 
     ax.set_xlabel(r'$t$', fontsize=14)
