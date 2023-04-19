@@ -23,7 +23,7 @@ many goods.)
 
 We shall describe two classic welfare theorems:
 
-* **first welfare theorem:** for a  given a distribution of wealth among consumers,  a competitive  equilibrium  allocation of goods solves a  social planning problem.
+* **first welfare theorem:** for a  given distribution of wealth among consumers,  a competitive  equilibrium  allocation of goods solves a  social planning problem.
 
 * **second welfare theorem:** An allocation of goods to consumers that solves a social planning problem can be supported by a competitive equilibrium with an appropriate initial distribution of  wealth.
 
@@ -102,14 +102,13 @@ $$
 q = \frac{ d_0 - s_0}{s_1 + d_1}
 $$ (eq:old1)
 
-Let's remember the quantity $q$ given by equation {eq}`eq:old1` that a social planner would choose to maximize consumer plus producer surplus.
+Let's remember the quantity $q$ given by equation {eq}`eq:old1` that a social planner would choose to maximize consumer surplus plus producer surplus.
 
-We'll compare it to the quantity that emerges in a competitive  equilibrium
-equilibrium that equates supply to demand.
+We'll compare it to the quantity that emerges in a competitive  equilibrium that equates supply to demand.
 
 ### Competitive Equilibrium
 
-Instead of equating quantities supplied and demanded, we'll can accomplish the same thing by equating demand price to supply price:
+Instead of equating quantities supplied and demanded, we can accomplish the same thing by equating demand price to supply price:
 
 $$
 p =  d_0 - d_1 q = s_0 + s_1 q ,
@@ -117,8 +116,8 @@ $$
 
 +++
 
-It we solve the equation defined by the second equality in the above line for $q$, we obtain the
-competitive equilibrium quantity; it equals the same $q$ given by equation  {eq}`eq:old1`.
+If we solve the equation defined by the second equality in the above line for $q$, we obtain the
+competitive equilibrium quantity, which equals the same $q$ given by equation  {eq}`eq:old1`.
 
 The outcome that the quantity determined by equation {eq}`eq:old1` equates
 supply to demand brings us a **key finding:**
