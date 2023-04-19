@@ -60,7 +60,7 @@ $$
 e = e_1 + e_2 .
 $$
 
-## Designing some Python code
+## Designing some Python Code
 
 
 Below we shall construct a Python class with the following attributes:
@@ -119,11 +119,11 @@ from scipy.linalg import inv
 ```
 
 <!-- #region -->
-### Pure exchange economy
+### Pure Exchange Economy
 
 Let's first explore a pure exchange economy with $n$ goods and $m$ people.
 
-We'll  compute a competitive equilibrium.
+We'll compute a competitive equilibrium.
 
 To compute a competitive equilibrium of a pure exchange economy, we use the fact that
 
@@ -141,7 +141,7 @@ $$ c_{i}=\Pi^{-1}b_{i}-(\Pi^{\top}\Pi)^{-1}\mu_{i}p. $$
 
 
 
-## Deducing a representative consumer
+## Deducing a Representative Consumer
 
 In the class of multiple consumer economies that we are studying here, it turns out that there
 exists a single **representative consumer** whose preferences and endowments can be deduced from lists of preferences and endowments for the separate individual consumers.
@@ -254,7 +254,7 @@ class Exchange_economy:
         return p, c_s, mu_s
 ```
 
-### Example: Two-person economy **without** production
+### Example: Two-Person Economy **without** Production
   * Study how competitive equilibrium $p, c^1, c^2$ respond to  different
 
      * $b^i$'s
@@ -347,7 +347,7 @@ print('Competitive equilibrium price vector:', p)
 print('Competitive equilibrium allocation:', c_s)
 ```
 
-### A **dynamic economy**
+### A **Dynamic Economy**
 
 Now let's use the tricks described above to study a dynamic economy, one with two periods.
 
@@ -370,7 +370,7 @@ print('Competitive equilibrium allocation:', c_s)
 
 ```
 
-### Example:  **Arrow securities**
+### Example: **Arrow Securities**
 
 We use the tricks described above to interpret  $c_1, c_2$ as "Arrow securities" that are state-contingent claims to consumption goods.
 
@@ -526,7 +526,7 @@ def plot_competitive_equilibrium(PE):
 
 ```
 
-#### Example: single agent with one good and  with production
+#### Example: Single Agent with One Good and with Production
 
 Now let's construct an example of a production economy with one good.
 
@@ -601,7 +601,7 @@ plot_competitive_equilibrium(PE)
 This raises both the equilibrium price and quantity.
 
 
-#### Example: single agent two-good economy **with** production
+#### Example: Single Agent Two-Good Economy **with** Production
 
   * we'll do some experiments like those above
   * we can do experiments with a  **diagonal** $\Pi$ and also with a **non-diagonal** $\Pi$ matrices to study  how cross-slopes affect responses of $p$ and $c$ to various shifts in $b$
@@ -745,7 +745,7 @@ def plot_monopoly(PE):
     plt.show()
 ```
 
-#### A multiple good example
+#### A Multiple Good Example
 
 Let's study compare competitive equilibrium and monopoly outcomes in a multiple goods economy.
 
@@ -770,7 +770,7 @@ print('Equilibrium with monopolist supplier price:', pm)
 print('Equilibrium with monopolist supplier allocation:', q)
 ```
 
-#### A single-good example
+#### A Single-Good Example
 
 ```python
 Pi  = np.array([[1]])        # the matrix now is a singleton

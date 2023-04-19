@@ -6,7 +6,7 @@ We study a setting with $n$ goods and $n$ corresponding prices.
 
 
 
-## Formulas from linear algebra
+## Formulas from Linear Algebra
 
 We  shall apply  formulas from linear algebra that
 
@@ -28,7 +28,7 @@ $$
 \frac{\partial x^\top A x}{\partial x} = (A + A^\top)x
 $$
 
-## From utility function to demand curve
+## From Utility Function to Demand Curve
 
 Let
 
@@ -72,7 +72,7 @@ so that utility function {eq}`eq:old2` tells us that the consumer has much less 
 
 Condition {eq}`eq:bversusc` will ultimately  assure us that competitive equilibrium prices  are  positive.
 
-### Demand Curve Implied  by Constrained Utility Maximization
+### Demand Curve Implied by Constrained Utility Maximization
 
 For now, we assume that the budget constraint is {eq}`eq:old2`.
 
@@ -110,7 +110,7 @@ Equation {eq}`eq:old4` tells how marginal utility of wealth depends on  the endo
 **Remark:** Equation {eq}`eq:old4` is a consequence of imposing that $p^\top (c - e) = 0$.  We could instead take $\mu$ as a parameter and use {eq}`eq:old3` and the budget constraint {eq}`eq:old2p` to solve for $W.$ Which way we proceed determines whether we are constructing a **Marshallian** or **Hicksian** demand curve.
 
 
-## Endowment economy
+## Endowment Economy
 
 We now study a pure-exchange economy, or what is sometimes called an  endowment economy.
 
@@ -225,7 +225,7 @@ The relative price  $\frac{p_1}{p_2}$ has units of time $2$ goods per unit of ti
 
 Consequently, $(1+r) = R \equiv \frac{p_1}{p_2}$ is the  **gross interest rate** and $r$ is the **net interest rate**.
 
-### Risk and state-contingent claims
+### Risk and State-Contingent Claims
 
 We study risk in the context of a **static** environment,  meaning that there is only one period.
 
@@ -290,7 +290,7 @@ Before the random state of the world $i$ is realized, the consumer  sells his/he
 
 Trading such state-contingent goods  is one  way economists often model **insurance**.
 
-## Exercises we can do
+## Exercises We Can Do
 
 To illustrate consequences of demand and supply shifts, we have lots of parameters to shift
 
@@ -358,7 +358,7 @@ $$
 
 ### Competitive Equilibrium
 
-#### $\mu=1$ warmup
+#### $\mu=1$ Warmup
 
 As a special case, let's pin down a demand curve by setting the marginal utility of wealth  $\mu =1$.
 
@@ -376,7 +376,7 @@ $$ (eq:old5)
 
 This equation is the counterpart of equilibrium quantity {eq}`eq:old1` for the scalar $n=1$ model with which we began.
 
-#### General $\mu\neq 1$ case
+#### General $\mu\neq 1$ Case
 
 Now let's extend the preceding analysis to a more
 general case by allowing $\mu \neq 1$.
@@ -395,7 +395,7 @@ c = [\Pi^\top \Pi + \mu H]^{-1} [ \Pi^\top b - \mu h]
 $$ (eq:old5p)
 
 
-### Digression: A  Supplier Who is a Monopolist
+### Digression: A Supplier Who is a Monopolist
 
 A competitive firm is a **price-taker** who regards the price and therefore its marginal revenue as being beyond its control.
 
@@ -433,7 +433,7 @@ We'll soon  see that a monopolist sets a **lower output** $q$ than does either a
 
 
 
-## Multi-good  Welfare Maximization Problem
+## Multi-Good Welfare Maximization Problem
 
 Our welfare maximization problem -- also sometimes called a  social planning  problem  -- is to choose $c$ to maximize
 
