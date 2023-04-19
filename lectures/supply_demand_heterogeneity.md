@@ -9,7 +9,7 @@ There are two consumers who differ in their endowment vectors $e_i$ and their bl
 
 The total endowment is $e_1 + e_2$.
 
-A competitive equilibrium  requires that
+A competitive equilibrium requires that
 
 $$
 c_1 + c_2 = e_1 + e_2
@@ -21,7 +21,7 @@ $$
     c_i = (\Pi^\top \Pi )^{-1}(\Pi^\top b_i -  \mu_i p )
 $$
 
-Competitive equilibrium  then requires that
+Competitive equilibrium then requires that
 
 $$
 e_1 + e_2 =
@@ -42,7 +42,7 @@ $$ (eq:old7)
 
 for $\mu_i, i = 1,2$.
 
-**Exercise:** Show that, up to normalization by a positive scalar,  the same competitive equilibrium price vector that you computed in the preceding two-consumer economy would prevail in a single-consumer economy in which a single **representative consumer** has utility function
+**Exercise:** Show that, up to normalization by a positive scalar, the same competitive equilibrium price vector that you computed in the preceding two-consumer economy would prevail in a single-consumer economy in which a single **representative consumer** has utility function
 
 $$
 -.5 (\Pi c -b) ^\top (\Pi c -b )
@@ -75,19 +75,19 @@ Below we shall construct a Python class with the following attributes:
      * an $n \times 1$ vector $e$
      * a scalar "wealth" $W$ with default value $0$
 
- * **Production Costs**  pinned down  by
+ * **Production Costs** pinned down by
 
      * an $n \times 1$ nonnegative vector $h$
      * an $n \times n$ positive definite matrix $J$
 
-The class will include  a test to make sure that $b  > > \Pi e $ and raise an exception if it is violated
+The class will include a test to make sure that $b  > > \Pi e $ and raise an exception if it is violated
 (at some threshold level we'd have to specify).
 
  * **A Person** in the form of a pair that consists of
 
     * **Preferences** and **Endowments**
 
- * **A Pure Exchange Economy** will  consist of
+ * **A Pure Exchange Economy** will consist of
 
     * a collection of $m$ **persons**
 
@@ -131,13 +131,18 @@ To compute a competitive equilibrium of a pure exchange economy, we use the fact
 
 We can use the following steps to compute a competitive equilibrium:
 
-- First, we solve the single representative consumer economy by normalizing $\mu = 1$. Then, we renormalize the price vector by using the first consumption good as numeraire.
+- First we solve the single representative consumer economy by normalizing $\mu = 1$. Then, we renormalize the price vector by using the first consumption good as numeraire.
 
-- Next, we use the competitive equilibrium prices to compute each consumer's marginal utility of wealth:
-$$ \mu_{i}=\frac{-W_{i}+p^{\top}\left(\Pi^{-1}b_{i}-e_{i}\right)}{p^{\top}(\Pi^{\top}\Pi)^{-1}p}.$$
+- Next we use the competitive equilibrium prices to compute each consumer's marginal utility of wealth:
 
-- Finally, we compute a competitive equilibrium allocation by  using the demand curves:
-$$ c_{i}=\Pi^{-1}b_{i}-(\Pi^{\top}\Pi)^{-1}\mu_{i}p. $$
+$$
+\mu_{i}=\frac{-W_{i}+p^{\top}\left(\Pi^{-1}b_{i}-e_{i}\right)}{p^{\top}(\Pi^{\top}\Pi)^{-1}p}$$
+
+- Finally we compute a competitive equilibrium allocation by using the demand curves:
+  
+$$
+c_{i}=\Pi^{-1}b_{i}-(\Pi^{\top}\Pi)^{-1}\mu_{i}p 
+$$
 
 
 
@@ -148,30 +153,46 @@ exists a single **representative consumer** whose preferences and endowments can
 
 Consider a multiple consumer economy with initial distribution of wealth $W_i$ satisfying $\sum_i W_{i}=0$
 
-We allow an initial  redistribution of wealth.
+We allow an initial redistribution of wealth.
 
 We have the following objects
 
 
 - The demand curve:
-$$ c_{i}=\Pi^{-1}b_{i}-(\Pi^{\top}\Pi)^{-1}\mu_{i}p $$
+  
+$$ 
+c_{i}=\Pi^{-1}b_{i}-(\Pi^{\top}\Pi)^{-1}\mu_{i}p 
+$$
 
 - The marginal utility of wealth:
-$$ \mu_{i}=\frac{-W_{i}+p^{\top}\left(\Pi^{-1}b_{i}-e_{i}\right)}{p^{\top}(\Pi^{\top}\Pi)^{-1}p}$$
+  
+$$ 
+\mu_{i}=\frac{-W_{i}+p^{\top}\left(\Pi^{-1}b_{i}-e_{i}\right)}{p^{\top}(\Pi^{\top}\Pi)^{-1}p}
+$$
 
 - Market clearing:
-$$ \sum c_{i}=\sum e_{i}$$
+  
+$$ 
+\sum c_{i}=\sum e_{i}
+$$
 
 Denote aggregate consumption $\sum_i c_{i}=c$ and $\sum_i \mu_i = \mu$.
 
-Market  clearing requires
+Market clearing requires
 
-$$ \Pi^{-1}\left(\sum_{i}b_{i}\right)-(\Pi^{\top}\Pi)^{-1}p\left(\sum_{i}\mu_{i}\right)=\sum_{i}e_{i}$$
+$$ 
+\Pi^{-1}\left(\sum_{i}b_{i}\right)-(\Pi^{\top}\Pi)^{-1}p\left(\sum_{i}\mu_{i}\right)=\sum_{i}e_{i}
+$$
 which, after a few steps, leads to
-$$p=\mu^{-1}\left(\Pi^{\top}b-\Pi^{\top}\Pi e\right)$$
+
+$$
+p=\mu^{-1}\left(\Pi^{\top}b-\Pi^{\top}\Pi e\right)
+$$
 
 where
-$$ \mu = \sum_i\mu_{i}=\frac{0 + p^{\top}\left(\Pi^{-1}b-e\right)}{p^{\top}(\Pi^{\top}\Pi)^{-1}p}.
+
+$$ 
+\mu = \sum_i\mu_{i}=\frac{0 + p^{\top}\left(\Pi^{-1}b-e\right)}{p^{\top}(\Pi^{\top}\Pi)^{-1}p}.
 $$
 
 Now consider the representative consumer economy specified above.
@@ -180,15 +201,23 @@ Denote the marginal utility of wealth of the representative consumer by $\tilde{
 
 The demand function is
 
-$$c=\Pi^{-1}b-(\Pi^{\top}\Pi)^{-1}\tilde{\mu} p.$$
+$$
+c=\Pi^{-1}b-(\Pi^{\top}\Pi)^{-1}\tilde{\mu} p
+$$
 
 Substituting this into the budget constraint gives
-$$\tilde{\mu}=\frac{p^{\top}\left(\Pi^{-1}b-e\right)}{p^{\top}(\Pi^{\top}\Pi)^{-1}p}.$$
+
+$$
+\tilde{\mu}=\frac{p^{\top}\left(\Pi^{-1}b-e\right)}{p^{\top}(\Pi^{\top}\Pi)^{-1}p}
+$$
 
 In an equilibrium $c=e$, so
-$$p=\tilde{\mu}^{-1}(\Pi^{\top}b-\Pi^{\top}\Pi e).$$
 
-Thus, we have  verified that,  up to choice of a numeraire in which to express absolute prices,  the price vector in our representative consumer economy is the same as that in an underlying  economy with multiple consumers.
+$$
+p=\tilde{\mu}^{-1}(\Pi^{\top}b-\Pi^{\top}\Pi e)
+$$
+
+Thus, we have  verified that, up to choice of a numeraire in which to express absolute prices,  the price vector in our representative consumer economy is the same as that in an underlying  economy with multiple consumers.
 <!-- #endregion -->
 
 ```python
@@ -330,7 +359,7 @@ print('Competitive equilibrium price vector:', p)
 print('Competitive equilibrium allocation:', c_s)
 ```
 
-Now let's  redistribute endowments  before trade.
+Now let's redistribute endowments before trade.
 
 ```python
 bs = [np.array([5, 5]),   # first consumer's bliss points
@@ -400,7 +429,7 @@ print('Competitive equilibrium allocation:', c_s)
 
 To compute a competitive equilibrium for a production economy where demand curve is pinned down by the marginal utility of wealth $\mu$, we first compute an allocation by solving a planning problem.
 
-Then we compute the equilibrium  price vector using the inverse demand or supply curve.
+Then we compute the equilibrium price vector using the inverse demand or supply curve.
 
 
 ```python
@@ -531,9 +560,9 @@ def plot_competitive_equilibrium(PE):
 Now let's construct an example of a production economy with one good.
 
 To do this we
+<!-- TODO -->
+  * specify a single **person** and a **cost curve** in a way that let's us replicate the simple single-good supply demand example with which we started
 
-  * specify a single **person** and a **cost curve** in a way that let's us replicate the simple
-    single-good supply demand example with which we started
   * compute equilibrium $p$ and $c$ and consumer and producer surpluses
 
   * draw graphs of both surpluses
@@ -584,7 +613,7 @@ print('Consumer surplus:', c_surplus.item())
 print('Producer surplus:', p_surplus.item())
 ```
 
-Now we change  the bliss point  so that the consumer derives more utility from consumption.
+Now we change the bliss point so that the consumer derives more utility from consumption.
 
 ```python
 PE.mu = 1
@@ -604,7 +633,8 @@ This raises both the equilibrium price and quantity.
 #### Example: Single Agent Two-Good Economy **with** Production
 
   * we'll do some experiments like those above
-  * we can do experiments with a  **diagonal** $\Pi$ and also with a **non-diagonal** $\Pi$ matrices to study  how cross-slopes affect responses of $p$ and $c$ to various shifts in $b$
+
+  * we can do experiments with a **diagonal** $\Pi$ and also with a **non-diagonal** $\Pi$ matrices to study how cross-slopes affect responses of $p$ and $c$ to various shifts in $b$
 
 
 ```python
@@ -625,7 +655,7 @@ print('Competitive equilibrium allocation:', c)
 ```
 
 ```python
-PE.b   = np.array([12, 10])
+PE.b = np.array([12, 10])
 
 c, p = PE.competitive_equilibrium()
 
@@ -634,12 +664,12 @@ print('Competitive equilibrium allocation:', c)
 ```
 
 ```python
-Pi  = np.array([[1, 0.5],
+Pi = np.array([[1, 0.5],
                 [0.5, 1]])
-b   = np.array([10, 10])
+b = np.array([10, 10])
 
-h   = np.array([0.5, 0.5])
-J   = np.array([[1, 0.5],
+h = np.array([0.5, 0.5])
+J = np.array([[1, 0.5],
                 [0.5, 1]])
 mu = 1
 
@@ -660,22 +690,22 @@ print('Competitive equilibrium allocation:', c)
 
 ### A Monopolist
 
-Let's  consider a monopolist  supplier.
+Let's consider a monopolist supplier.
 
-We have included a method in  our `productionEconomy` class to compute an equilibrium price and allocation when the supplier is  a monopolist.
+We have included a method in our `productionEconomy` class to compute an equilibrium price and allocation when the supplier is a monopolist.
 
 Since the supplier now has the price-setting power
 
 - we first compute the optimal quantity that solves the monopolist's profit maximization problem.
-- Then we back out  an equilibrium  price from the consumer's inverse demand curve.
+- Then we back out an equilibrium price from the consumer's inverse demand curve.
 
 Next, we use a graph for the single good case to illustrate the difference between a competitive equilibrium and an equilibrium with a monopolist supplier.
 
-Recall that in a competitive equilibrium, a price-taking supplier equates  marginal revenue $p$ to marginal cost $h + Hq$.
+Recall that in a competitive equilibrium, a price-taking supplier equates marginal revenue $p$ to marginal cost $h + Hq$.
 
-This yields a competitive producer's  inverse supply curve.
+This yields a competitive producer's inverse supply curve.
 
-A monopolist's marginal revenue is not constant but instead  is a non-trivial function of the quantity it sets.
+A monopolist's marginal revenue is not constant but instead is a non-trivial function of the quantity it sets.
 
 The monopolist's marginal revenue is
 
@@ -683,7 +713,7 @@ $$
 MR(q) = -2\mu^{-1}\Pi^{\top}\Pi q+\mu^{-1}\Pi^{\top}b,
 $$
 
-which the monopolist equates to its  marginal cost.
+which the monopolist equates to its marginal cost.
 
 The plot indicates that the monopolist's sets output  lower than either the competitive equilibrium quantity.
 
@@ -711,14 +741,14 @@ def plot_monopoly(PE):
 
     # inverse supply/demand curve
     marg_cost = lambda x: h + H*x
-    marg_rev  = lambda x: -2*1/mu*Pi*Pi*x + 1/mu*Pi*b
+    marg_rev = lambda x: -2*1/mu*Pi*Pi*x + 1/mu*Pi*b
     demand_inv = lambda x: 1/mu*(Pi*b - Pi*Pi*x)
 
     xs = np.linspace(0, 2*c, 100)
     pms = np.ones(100) * pm
     marg_cost_curve = marg_cost(xs)
-    marg_rev_curve  = marg_rev(xs)
-    demand_curve    = demand_inv(xs)
+    marg_rev_curve = marg_rev(xs)
+    demand_curve = demand_inv(xs)
 
     # plot
     plt.figure(figsize=[7,5])
@@ -773,10 +803,10 @@ print('Equilibrium with monopolist supplier allocation:', q)
 #### A Single-Good Example
 
 ```python
-Pi  = np.array([[1]])        # the matrix now is a singleton
-b   = np.array([10])
-h   = np.array([0.5])
-J   = np.array([[1]])
+Pi = np.array([[1]])        # the matrix now is a singleton
+b = np.array([10])
+h = np.array([0.5])
+J = np.array([[1]])
 mu = 1
 
 PE = ProductionEconomy(Pi, b, h, J, mu)
