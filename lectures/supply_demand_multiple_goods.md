@@ -8,7 +8,7 @@ We study a setting with $n$ goods and $n$ corresponding prices.
 
 ## Formulas from Linear Algebra
 
-We  shall apply  formulas from linear algebra that
+We shall apply formulas from linear algebra that
 
 * differentiate an inner product with respect to each vector
 * differentiate a product of a matrix and a vector with respect to the vector
@@ -62,21 +62,21 @@ $$
     p^\top (c -e ) = 0
 $$ (eq:old2)
 
-We shall specify examples in which  $\Pi$ and $b$ are such that it typically happens that
+We shall specify examples in which $\Pi$ and $b$ are such that it typically happens that
 
 $$
     \Pi c < < b
 $$ (eq:bversusc)
 
-so that utility function {eq}`eq:old2` tells us that the consumer has much less  of each good than he wants.
+so that utility function {eq}`eq:old2` tells us that the consumer has much less of each good than he wants.
 
-Condition {eq}`eq:bversusc` will ultimately  assure us that competitive equilibrium prices  are  positive.
+Condition {eq}`eq:bversusc` will ultimately assure us that competitive equilibrium prices are positive.
 
 ### Demand Curve Implied by Constrained Utility Maximization
 
 For now, we assume that the budget constraint is {eq}`eq:old2`.
 
-So we'll be deriving what is known as  a **Marshallian** demand curve.
+So we'll be deriving what is known as a **Marshallian** demand curve.
 
 Form a Lagrangian
 
@@ -105,20 +105,20 @@ $$
     \mu(p,e) = \frac{p^\top ( \Pi^\top \Pi )^{-1} \Pi^\top b - p^\top e}{p^\top (\Pi^\top \Pi )^{-1} p}.
 $$ (eq:old4)
 
-Equation {eq}`eq:old4` tells how marginal utility of wealth depends on  the endowment vector  $e$ and the price vector  $p$.
+Equation {eq}`eq:old4` tells how marginal utility of wealth depends on the endowment vector $e$ and the price vector $p$.
 
-**Remark:** Equation {eq}`eq:old4` is a consequence of imposing that $p^\top (c - e) = 0$.  We could instead take $\mu$ as a parameter and use {eq}`eq:old3` and the budget constraint {eq}`eq:old2p` to solve for $W.$ Which way we proceed determines whether we are constructing a **Marshallian** or **Hicksian** demand curve.
+**Remark:** Equation {eq}`eq:old4` is a consequence of imposing that $p^\top (c - e) = 0$. We could instead take $\mu$ as a parameter and use {eq}`eq:old3` and the budget constraint {eq}`eq:old2p` to solve for $W.$ Which way we proceed determines whether we are constructing a **Marshallian** or **Hicksian** demand curve.
 
 
 ## Endowment Economy
 
-We now study a pure-exchange economy, or what is sometimes called an  endowment economy.
+We now study a pure-exchange economy, or what is sometimes called an endowment economy.
 
 Consider a single-consumer, multiple-goods economy without production.
 
-The only source of goods is the single consumer's endowment vector   $e$.
+The only source of goods is the single consumer's endowment vector $e$.
 
-A competitive equilibrium price vector  induces the consumer to choose  $c=e$.
+A competitive equilibrium price vector induces the consumer to choose $c=e$.
 
 This implies that the equilibrium price vector satisfies
 
@@ -128,20 +128,20 @@ $$
 
 In the present case where we have imposed budget constraint in the form {eq}`eq:old2`, we are free to normalize the price vector by setting the marginal utility of wealth $\mu =1$ (or any other value for that matter).
 
-This amounts to choosing a common  unit (or numeraire) in which prices of all goods are expressed.
+This amounts to choosing a common unit (or numeraire) in which prices of all goods are expressed.
 
 (Doubling all prices will affect neither quantities nor relative prices.)
 
 We'll set $\mu=1$.
 
-**Exercise:** Verify that setting $\mu=1$ in {eq}`eq:old3` implies that   formula {eq}`eq:old4` is satisfied.
+**Exercise:** Verify that setting $\mu=1$ in {eq}`eq:old3` implies that formula {eq}`eq:old4` is satisfied.
 
-**Exercise:** Verify that setting  $\mu=2$ in {eq}`eq:old3` also implies that formula {eq}`eq:old4` is satisfied.
+**Exercise:** Verify that setting $\mu=2$ in {eq}`eq:old3` also implies that formula {eq}`eq:old4` is satisfied.
 
 
 ## Digression: Marshallian and Hicksian Demand Curves
 
-**Remark:** Sometimes we'll use budget constraint {eq}`eq:old2` in situations in which a consumers's endowment vector $e$ is his **only** source of income. Other times we'll instead assume that the consumer has another source of income (positive or negative) and write his budget constraint as
+**Remark:** Sometimes we'll use budget constraint {eq}`eq:old2` in situations in which a consumer's endowment vector $e$ is his **only** source of income. Other times we'll instead assume that the consumer has another source of income (positive or negative) and write his budget constraint as
 
 $$
 p ^\top (c -e ) = W
@@ -149,20 +149,20 @@ $$ (eq:old2p)
 
 where $W$ is measured in "dollars" (or some other **numeraire**) and component $p_i$ of the price vector is measured in dollars per unit of good $i$.
 
-Whether the consumer's budget constraint is  {eq}`eq:old2` or {eq}`eq:old2p` and whether we take $W$ as a free parameter or instead as an endogenous variable   will  affect the consumer's marginal utility of wealth.
+Whether the consumer's budget constraint is {eq}`eq:old2` or {eq}`eq:old2p` and whether we take $W$ as a free parameter or instead as an endogenous variable will affect the consumer's marginal utility of wealth.
 
-Consequently, how we set $\mu$  determines whether we are constructing
+Consequently, how we set $\mu$ determines whether we are constructing
 
 * a **Marshallian** demand curve, as when we use {eq}`eq:old2` and solve for $\mu$ using equation {eq}`eq:old4` below, or
-* a **Hicksian** demand curve, as when we  treat $\mu$ as a fixed parameter and solve for $W$ from {eq}`eq:old2p`.
+* a **Hicksian** demand curve, as when we treat $\mu$ as a fixed parameter and solve for $W$ from {eq}`eq:old2p`.
 
 Marshallian and Hicksian demand curves contemplate different mental experiments:
 
-* For a Marshallian demand curve, hypothetical changes in a price vector  have  both **substitution** and **income** effects
+* For a Marshallian demand curve, hypothetical changes in a price vector have both **substitution** and **income** effects
 
-  * income effects are consequences of  changes in $p^\top e$ associated with the change in the price vector
+  * income effects are consequences of changes in $p^\top e$ associated with the change in the price vector
 
-* For a Hicksian demand curve, hypothetical price vector  changes  have only **substitution**  effects
+* For a Hicksian demand curve, hypothetical price vector changes have only **substitution**  effects
 
   * changes in the price vector leave the $p^\top e + W$ unaltered because we freeze $\mu$ and solve for $W$
 
@@ -174,12 +174,12 @@ We'll discuss these distinct demand curves more  below.
 
 ## Dynamics and Risk as Special Cases of Pure Exchange Economy
 
-Special cases of our $n$-good pure exchange  model can be created to represent
+Special cases of our $n$-good pure exchange model can be created to represent
 
 * dynamics
   - by putting different dates on different commodities
 * risk
-  - by interpreting delivery  of goods as being contingent on states of the world whose realizations are described by a **known probability distribution**
+  - by interpreting delivery of goods as being contingent on states of the world whose realizations are described by a **known probability distribution**
 
 Let's illustrate how.
 
@@ -193,7 +193,7 @@ $$
 
 where $\beta \in (0,1)$ is a discount factor, $c_1$ is consumption at time $1$ and $c_2$ is consumption at time 2.
 
-To capture this with our quadratic utility function {eq}`eq:old0`,  set
+To capture this with our quadratic utility function {eq}`eq:old0`, set
 
 $$
 \Pi = \begin{bmatrix} 1 & 0 \cr
@@ -211,7 +211,7 @@ b = \begin{bmatrix} b_1 \cr \sqrt{\beta} b_2
 \end{bmatrix}
 $$
 
-The  budget constraint {eq}`eq:old2` becomes
+The budget constraint {eq}`eq:old2` becomes
 
 $$
 p_1 c_1 + p_2 c_2 = p_1 e_1 + p_2 e_2
@@ -223,11 +223,11 @@ The right side is the **discounted present value** of the consumer's endowment.
 
 The relative price  $\frac{p_1}{p_2}$ has units of time $2$ goods per unit of time $1$ goods.
 
-Consequently, $(1+r) = R \equiv \frac{p_1}{p_2}$ is the  **gross interest rate** and $r$ is the **net interest rate**.
+Consequently, $(1+r) = R \equiv \frac{p_1}{p_2}$ is the **gross interest rate** and $r$ is the **net interest rate**.
 
 ### Risk and State-Contingent Claims
 
-We study risk in the context of a **static** environment,  meaning that there is only one period.
+We study risk in the context of a **static** environment, meaning that there is only one period.
 
 By **risk** we mean that an outcome is not known in advance, but that it is governed by a known probability distribution.
 
@@ -235,11 +235,11 @@ As an example, our consumer confronts **risk** meaning in particular that
 
   * there are two states of nature, $1$ and $2$.
 
- * the consumer knows that  probability that state $1$ occurs is $\lambda$.
+  * the consumer knows that probability that state $1$ occurs is $\lambda$.
 
- * the consumer knows that the probability that state $2$ occurs is $(1-\lambda)$.
+  * the consumer knows that the probability that state $2$ occurs is $(1-\lambda)$.
 
-Before the outcome is realized, the the consumer's **expected utility** is
+Before the outcome is realized, the consumer's **expected utility** is
 
 $$
 -.5 [\lambda (c_1 - b_1)^2 + (1-\lambda)(c_2 - b_2)^2]
@@ -261,16 +261,12 @@ $$
 c = \begin{bmatrix} c_1 \cr c_2 \end{bmatrix}
 $$
 
-$$
-b = \begin{bmatrix} b_1 \cr b_2 \end{bmatrix}
-$$
-
 <!-- #region -->
 $$
 b = \begin{bmatrix} \sqrt{\lambda}b_1 \cr \sqrt{1-\lambda}b_2 \end{bmatrix}
 $$
 
-A consumer's  endowment vector is
+A consumer's endowment vector is
 
 $$
 e = \begin{bmatrix} e_1 \cr e_2 \end{bmatrix}
@@ -286,9 +282,9 @@ where $p_i$ is the price of one unit of consumption in state $i$.
 
 The state-contingent goods being traded are often called **Arrow securities**.
 
-Before the random state of the world $i$ is realized, the consumer  sells his/her state-contingent endowment bundle and purchases a state-contingent consumption bundle.
+Before the random state of the world $i$ is realized, the consumer sells his/her state-contingent endowment bundle and purchases a state-contingent consumption bundle.
 
-Trading such state-contingent goods  is one  way economists often model **insurance**.
+Trading such state-contingent goods is one way economists often model **insurance**.
 
 ## Exercises We Can Do
 
@@ -306,23 +302,23 @@ Up to now we have described a pure exchange economy in which endowments of good 
 
 ### Supply Curve of a Competitive Firm
 
-A competitive firm that can produce goods  takes a price vector $p$ as given and chooses a quantity $q$
+A competitive firm that can produce goods takes a price vector $p$ as given and chooses a quantity $q$
 to maximize total revenue minus total costs.
 
-The firm's total  revenue equals $p^\top q$ and its total cost equals $C(q)$  where $C(q)$ is a total cost function
+The firm's total revenue equals $p^\top q$ and its total cost equals $C(q)$ where $C(q)$ is a total cost function
 
 $$
 C(q) = h ^\top q + .5 q^\top J q
 $$
 
 
-and  $J$ is a positive definite matrix.
+and $J$ is a positive definite matrix.
 
 
 So the firm's profits are
 
 $$
-p^\top q  - C(q)
+p^\top q - C(q)
 $$ (eq:compprofits)
 
 
@@ -344,7 +340,7 @@ An $n \times 1$ vector of marginal revenues for the price-taking firm is $\frac{
 
 So **price equals marginal revenue** for our price-taking competitive firm.
 
-The firm maximizes total profits by setting  **marginal revenue to marginal costs**.
+The firm maximizes total profits by setting **marginal revenue to marginal costs**.
 
 This leads to the following **inverse supply curve** for the competitive firm:
 
@@ -360,9 +356,9 @@ $$
 
 #### $\mu=1$ Warmup
 
-As a special case, let's pin down a demand curve by setting the marginal utility of wealth  $\mu =1$.
+As a special case, let's pin down a demand curve by setting the marginal utility of wealth $\mu =1$.
 
-Equating  supply price to demand price we get
+Equating supply price to demand price we get
 
 $$
 p = h + H c = \Pi^\top b - \Pi^\top \Pi c ,
@@ -404,10 +400,10 @@ setting quantity.
 
 A monopolist takes a **demand curve** and not the **price** as beyond its control.
 
-Thus, instead of being a price-taker, a monopolist sets prices to maximize profits subject to the inverse  demand curve
+Thus, instead of being a price-taker, a monopolist sets prices to maximize profits subject to the inverse demand curve
 {eq}`eq:old5pa`.
 
-So the monopolist's total profits as a function of its  output $q$ is
+So the monopolist's total profits as a function of its output $q$ is
 
 $$
 [\mu^{-1} \Pi^\top (b - \Pi q)]^\top  q - h^\top q - .5 q^\top J q
@@ -421,21 +417,21 @@ $$
 q = (H + 2 \mu^{-1} \Pi^\top \Pi)^{-1} (\mu^{-1} \Pi^\top b - h)
 $$ (eq:qmonop)
 
-We'll soon  see that a monopolist sets a **lower output** $q$ than does either a
+We'll soon see that a monopolist sets a **lower output** $q$ than does either a
 
  * planner who chooses $q$ to maximize social welfare
 
  * a competitive equilibrium
 
 
-**Exercise:** Please  verify the monopolist's supply curve {eq}`eq:qmonop`.
+**Exercise:** Please verify the monopolist's supply curve {eq}`eq:qmonop`.
 
 
 
 
 ## Multi-Good Welfare Maximization Problem
 
-Our welfare maximization problem -- also sometimes called a  social planning  problem  -- is to choose $c$ to maximize
+Our welfare maximization problem -- also sometimes called a social planning problem  -- is to choose $c$ to maximize
 
 $$
 -.5 \mu^{-1}(\Pi c -b) ^\top (\Pi c -b )
@@ -463,7 +459,7 @@ $$
 
 which implies {eq}`eq:old5p`.
 
-Thus,  as for the single-good case, with  multiple goods   a competitive equilibrium quantity vector solves a planning problem.
+Thus, as for the single-good case, with multiple goods a competitive equilibrium quantity vector solves a planning problem.
 
 (This is another version of the first welfare theorem.)
 

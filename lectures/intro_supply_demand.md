@@ -23,7 +23,7 @@ many goods.)
 
 We shall describe two classic welfare theorems:
 
-* **first welfare theorem:** for a  given distribution of wealth among consumers,  a competitive  equilibrium  allocation of goods solves a  social planning problem.
+* **first welfare theorem:** for a given distribution of wealth among consumers, a competitive equilibrium allocation of goods solves a social planning problem.
 
 * **second welfare theorem:** An allocation of goods to consumers that solves a social planning problem can be supported by a competitive equilibrium with an appropriate initial distribution of  wealth.
 
@@ -46,9 +46,9 @@ import matplotlib.pyplot as plt
 
 ## Supply and Demand
 
-We study a market for a single good in which buyers and sellers exchange a  quantity $q$ for a price $p$.
+We study a market for a single good in which buyers and sellers exchange a quantity $q$ for a price $p$.
 
-Quantity $q$ and price  $p$ are  both scalars.
+Quantity $q$ and price $p$ are  both scalars.
 
 We assume that inverse demand and supply curves for the good are:
 
@@ -64,19 +64,19 @@ We call them inverse demand and supply curves because price is on the left side 
 
 ### Surpluses and Welfare
 
-We define **consumer surplus** as the  area under an inverse demand curve minus $p q$:
+We define **consumer surplus** as the area under an inverse demand curve minus $p q$:
 
 $$
 \int_0^q (d_0 - d_1 x) dx - pq = d_0 q -.5 d_1 q^2 - pq
 $$
 
-We define **producer surplus** as $p q$ minus   the area under an inverse supply curve:
+We define **producer surplus** as $p q$ minus the area under an inverse supply curve:
 
 $$
 p q - \int_0^q (s_0 + s_1 x) dx = pq - s_0 q - .5 s_1 q^2
 $$
 
-Sometimes economists measure social welfare by a **welfare criterion** that equals  consumer surplus plus producer surplus
+Sometimes economists measure social welfare by a **welfare criterion** that equals consumer surplus plus producer surplus
 
 $$
 \int_0^q (d_0 - d_1 x) dx - \int_0^q (s_0 + s_1 x) dx  \equiv \textrm{Welf}
@@ -88,7 +88,7 @@ $$
 \textrm{Welf} = (d_0 - s_0) q - .5 (d_1 + s_1) q^2
 $$
 
-To compute a quantity that  maximizes  welfare criterion $\textrm{Welf}$, we differentiate $\textrm{Welf}$ with respect to   $q$ and then set the derivative to zero.
+To compute a quantity that maximizes welfare criterion $\textrm{Welf}$, we differentiate $\textrm{Welf}$ with respect to $q$ and then set the derivative to zero.
 
 We get
 
@@ -104,7 +104,7 @@ $$ (eq:old1)
 
 Let's remember the quantity $q$ given by equation {eq}`eq:old1` that a social planner would choose to maximize consumer surplus plus producer surplus.
 
-We'll compare it to the quantity that emerges in a competitive  equilibrium that equates supply to demand.
+We'll compare it to the quantity that emerges in a competitive equilibrium that equates supply to demand.
 
 ### Competitive Equilibrium
 
@@ -124,23 +124,21 @@ supply to demand brings us a **key finding:**
 
 *  a competitive equilibrium quantity maximizes our  welfare criterion
 
-It also brings  a useful  **competitive equilibrium computation strategy:**
+It also brings a useful **competitive equilibrium computation strategy:**
 
-* after solving the welfare problem for an optimal  quantity, we can read a competitive equilibrium price from  either supply price or demand price at the  competitive equilibrium quantity
+* after solving the welfare problem for an optimal  quantity, we can read a competitive equilibrium price from either supply price or demand price at the competitive equilibrium quantity
 
 ### Generalizations
 
-In later lectures,  we'll derive generalizations of the above demand and
-supply curves from other objects.
+In later lectures, we'll derive generalizations of the above demand and supply curves from other objects.
 
-Our generalizations will extend the preceding analysis of a market for a
-single good to the analysis of $n$ simultaneous markets in $n$ goods.
+Our generalizations will extend the preceding analysis of a market for a single good to the analysis of $n$ simultaneous markets in $n$ goods.
 
 In addition
 
- * we'll derive  **demand curves** from a consumer problem that maximizes a **utility function** subject to a **budget constraint**.
+ * we'll derive **demand curves** from a consumer problem that maximizes a **utility function** subject to a **budget constraint**.
 
- * we'll derive  **supply curves** from the problem of a producer who is price taker and maximizes his profits minus total costs that are described by a  **cost function**.
+ * we'll derive **supply curves** from the problem of a producer who is price taker and maximizes his profits minus total costs that are described by a  **cost function**.
 
 ## Code
 
