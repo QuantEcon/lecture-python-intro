@@ -561,6 +561,12 @@ plot_ad_as(aggregate_capital_demand, aggregate_supply_capital_crra, m_crra, K_pr
 Let's plot the aggregate supply with different values of utility parameter $\gamma$ and observe it's behaviour.
 
 ```{code-cell} ipython3
+---
+mystnb:
+    figure:
+        caption: "Aggregate supply"
+        name: aggregate_supply
+---
 γ_vals = [0.1, 0.5, 1.5, 2.0]
 K_prev = 50
 
@@ -574,7 +580,6 @@ for γ in γ_vals:
             label=r"$\gamma=$" + str(γ))
 
 ax.set_xlabel("$R_{t+1}$")
-ax.set_title("Aggregate Supply")
 ax.legend()
 plt.show()
 ```
@@ -705,7 +710,7 @@ x0 = np.array([0.001, 1.2, 2.6])
 def simulate_ts(m, x0_values, ts_length):
 
     k_star = optimize.newton(g, 0.2, args=(m,))
-    fig, ax = plt.subplots(figsize=(10, 5))
+    fig, ax = plt.subplots()
 
     ts = np.zeros(ts_length)
 
@@ -797,14 +802,12 @@ def plot_ks_rs(K_t_vals, model):
 ---
 mystnb:
   figure:
-    caption: 'Equilibrium price and quantity
-
-      '
+    caption: "Equilibrium price and quantity"
     name: equi_ps_q_crra
   image:
     alt: equi_ps_q_crra
     classes: shadow bg-primary
-    width: 200px
+    width: 90%
 ---
 K_t_vals = np.linspace(0.1, 50, 50)
 m_crra = create_olg_model(u=crra, u_params={'γ': 0.5})
@@ -900,7 +903,7 @@ def simulate_ts(k0_values, model, ts_length=6):
     k_star = find_k_star_q(model)
 
     print("k_star:", k_star)
-    fig, ax = plt.subplots(figsize=(10, 5))
+    fig, ax = plt.subplots()
 
     ts = np.zeros(ts_length)
 
