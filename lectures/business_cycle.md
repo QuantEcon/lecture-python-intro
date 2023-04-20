@@ -214,9 +214,10 @@ fig, ax = plt.subplots()
 
 country = 'United States'
 ylabel = 'GDP Growth Rate (%)'
-_ = plot_comparison(gdp_growth, country, 
+plot_comparison(gdp_growth, country, 
                     ylabel, 0.1, ax, 
                     g_params, b_params, t_params)
+plt.show()
 ```
 
 +++ {"user_expressions": []}
@@ -246,9 +247,10 @@ fig, ax = plt.subplots()
 
 country = 'United Kingdom'
 title_height = 0.1
-_ = plot_comparison(gdp_growth, country, 
+plot_comparison(gdp_growth, country, 
                     ylabel, 0.1, ax, 
                     g_params, b_params, t_params)
+plt.show()
 ```
 
 +++ {"user_expressions": []}
@@ -270,9 +272,10 @@ mystnb:
 fig, ax = plt.subplots()
 
 country = 'Japan'
-_ = plot_comparison(gdp_growth, country, 
+plot_comparison(gdp_growth, country, 
                     ylabel, 0.1, ax, 
                     g_params, b_params, t_params)
+plt.show()
 ```
 
 Now let's study Greece.
@@ -289,9 +292,10 @@ fig, ax = plt.subplots()
 
 country = 'Greece'
 title = ' Greece (GDP Growth Rate %)'
-_ = plot_comparison(gdp_growth, country, 
+plot_comparison(gdp_growth, country, 
                     ylabel, 0.1, ax, 
                     g_params, b_params, t_params)
+plt.show()
 ```
 
 Greece had a significant drop in GDP growth around 2010-2011, during the peak
@@ -310,9 +314,10 @@ mystnb:
 fig, ax = plt.subplots()
 
 country = 'Argentina'
-_ = plot_comparison(gdp_growth, country, 
+plot_comparison(gdp_growth, country, 
                     ylabel, 0.1, ax, 
                     g_params, b_params, t_params)
+plt.show()
 ```
 
 +++ {"user_expressions": []}
@@ -392,6 +397,8 @@ ax.set_ylim([0, ax.get_ylim()[1]])
 ax.legend(loc='upper center', bbox_to_anchor=(0.5, 1.1),
           ncol=3, fancybox=True, shadow=True)
 ax.set_ylabel('Unemployment Rate (%)')
+
+plt.show()
 ```
 
 +++ {"user_expressions": []}
@@ -528,10 +535,11 @@ fig, ax = plt.subplots()
 countries = ['United Kingdom', 'United States', 'Germany', 'Japan']
 ylabel = 'GDP Growth Rate (%)'
 title_height = 0.1
-_ = plot_comparison_multi(gdp_growth.loc[countries, 1962:], 
+plot_comparison_multi(gdp_growth.loc[countries, 1962:], 
                           countries, ylabel,
                           0.1, 20, ax, 
                           g_params, b_params, t_params)
+plt.show()
 ```
 
 For the developing economies, we use Brazil, China, Argentina, and Mexico
@@ -547,10 +555,11 @@ tags: [hide-input]
 
 fig, ax = plt.subplots()
 countries = ['Brazil', 'China', 'Argentina', 'Mexico']
-_ = plot_comparison_multi(gdp_growth.loc[countries, 1962:], 
+plot_comparison_multi(gdp_growth.loc[countries, 1962:], 
                           countries, ylabel, 
                           0.1, 20, ax, 
                           g_params, b_params, t_params)
+plt.show()
 ```
 
 +++ {"user_expressions": []}
@@ -587,9 +596,10 @@ fig, ax = plt.subplots()
 
 countries = ['United Kingdom', 'United States', 'Japan', 'France']
 ylabel = 'Unemployment Rate (National Estimate) (%)'
-_ = plot_comparison_multi(unempl_rate, countries, 
+plot_comparison_multi(unempl_rate, countries, 
                           ylabel, 0.05, None, ax, g_params, 
                           b_params, t_params, baseline=None)
+plt.show()
 ```
 
 France, with its strong labor unions, has a prolonged labor market recovery
@@ -681,7 +691,8 @@ ax_t.set_ylim([0, ax_t.get_ylim()[1]])
 ax_t.set_xlim([start_date_graph, end_date_graph])
 ax_t.legend(loc='upper center', bbox_to_anchor=(0.5, 1.1),
             ncol=3, fontsize=9)
-ax_t.set_ylabel('Consumer Price Index (% Change)',)
+ax_t.set_ylabel('Consumer Price Index (% Change)')
+plt.show()
 ```
 
 +++ {"user_expressions": []}
@@ -725,6 +736,7 @@ ax.fill_between(nber.index, 0, 1,
                 label='NBER Recession Indicators')
 ax.set_ylim([ax.get_ylim()[0], ax.get_ylim()[1]])
 ax.set_ylabel('YoY Real Ouput Change (%)')
+plt.show()
 ```
 
 We observe the delayed contraction in the plot across recessions.
@@ -763,6 +775,7 @@ ylabel = 'Credit Level (% of GDP)'
 ax = plot_comparison(private_credit, countries, 
                      ylabel, 0.05, ax, g_params, b_params, 
                      t_params, ylim=None, baseline=None)
+plt.show()
 ```
 
 +++ {"user_expressions": []}
