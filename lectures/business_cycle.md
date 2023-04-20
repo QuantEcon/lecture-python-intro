@@ -98,9 +98,7 @@ wb.series.metadata.get('NY.GDP.MKTP.KD.ZG')
 
 Let's dive into the data with the tools we have.
 
-
-
-
+(gdp_growth)=
 ## GDP Growth Rate
 
 First we look at the GDP growth rate. 
@@ -423,7 +421,7 @@ tightest point in the past decades after the shock in 2020-2021.
 (synchronization)=
 ## Synchronization
 
-In our previous discussion, we found that developed economies have had
+In our {ref}`previous discussion<gdp_growth>`, we found that developed economies have had
 relatively synchronized periods of recession. 
 
 At the same time, this synchronization does not appear in Argentina until the 2000s. 
@@ -505,7 +503,7 @@ t_params = {'color':'grey', 'fontsize': 9,
             'va':'center', 'ha':'center'}
 ```
 
-Here we compare the GDP growth rate of the developed economies and developing economies.
+Here we compare the GDP growth rate of developed economies and developing economies.
 
 ```{code-cell} ipython3
 ---
@@ -520,7 +518,7 @@ gdp_growth.columns = gdp_growth.columns.str.replace('YR', '').astype(int)
 
 ```
 
-For the developed economies, we use the United Kingdom, United States, Germany, and Japan
+We use the United Kingdom, United States, Germany, and Japan as examples of developed economies
 
 ```{code-cell} ipython3
 ---
@@ -542,7 +540,7 @@ plot_comparison_multi(gdp_growth.loc[countries, 1962:],
 plt.show()
 ```
 
-For the developing economies, we use Brazil, China, Argentina, and Mexico
+We choose Brazil, China, Argentina, and Mexico as representative developing economies
 
 ```{code-cell} ipython3
 ---
