@@ -80,7 +80,8 @@ Now we use this series ID to obtain the data.
 :tags: [hide-output]
 
 gdp_growth = wb.data.DataFrame('NY.GDP.MKTP.KD.ZG',
-            ['USA', 'ARG', 'GBR', 'GRC', 'JPN'], labels=True)
+            ['USA', 'ARG', 'GBR', 'GRC', 'JPN'], 
+            labels=True)
 gdp_growth
 ```
 
@@ -108,7 +109,8 @@ Let's source our data from the World Bank and clean it.
 ```{code-cell} ipython3
 # Use the series ID retrived before
 gdp_growth = wb.data.DataFrame('NY.GDP.MKTP.KD.ZG',
-            ['USA', 'ARG', 'GBR', 'GRC', 'JPN'], labels=True)
+            ['USA', 'ARG', 'GBR', 'GRC', 'JPN'], 
+            labels=True)
 gdp_growth = gdp_growth.set_index('Country')
 gdp_growth.columns = gdp_growth.columns.str.replace('YR', '').astype(int)
 ```
@@ -127,7 +129,7 @@ The cell below contains a function to generate plots for individual countries.
 ```{code-cell} ipython3
 :tags: [hide-input]
 
-def plot_comparison(data, country, ylabel, 
+def plot_series(data, country, ylabel, 
                     txt_pos, ax, g_params,
                     b_params, t_params, ylim=15, baseline=0):
     """
@@ -173,16 +175,18 @@ def plot_comparison(data, country, ylabel,
         ax.set_ylim([-ylim, ylim])
     else:
         ylim = ax.get_ylim()[1]
-    ax.text(1974, ylim + ylim * txt_pos,
+    ax.text(1974, ylim + ylim*txt_pos,
             'Oil Crisis\n(1974)', **t_params) 
-    ax.text(1991, ylim + ylim * txt_pos,
+    ax.text(1991, ylim + ylim*txt_pos,
             '1990s recession\n(1991)', **t_params) 
-    ax.text(2008, ylim + ylim * txt_pos,
+    ax.text(2008, ylim + ylim*txt_pos,
             'GFC\n(2008)', **t_params) 
-    ax.text(2020, ylim + ylim * txt_pos,
+    ax.text(2020, ylim + ylim*txt_pos,
             'Covid-19\n(2020)', **t_params)
     if baseline != None:
-        ax.axhline(y=baseline, color='black', linestyle='--')
+        ax.axhline(y=baseline, 
+                   color='black', 
+                   linestyle='--')
     ax.set_ylabel(ylabel)
     ax.legend()
     return ax
@@ -212,9 +216,9 @@ fig, ax = plt.subplots()
 
 country = 'United States'
 ylabel = 'GDP Growth Rate (%)'
-plot_comparison(gdp_growth, country, 
-                    ylabel, 0.1, ax, 
-                    g_params, b_params, t_params)
+plot_series(gdp_growth, country, 
+            ylabel, 0.1, ax, 
+            g_params, b_params, t_params)
 plt.show()
 ```
 
@@ -245,9 +249,9 @@ fig, ax = plt.subplots()
 
 country = 'United Kingdom'
 title_height = 0.1
-plot_comparison(gdp_growth, country, 
-                    ylabel, 0.1, ax, 
-                    g_params, b_params, t_params)
+plot_series(gdp_growth, country, 
+            ylabel, 0.1, ax, 
+            g_params, b_params, t_params)
 plt.show()
 ```
 
@@ -270,9 +274,9 @@ mystnb:
 fig, ax = plt.subplots()
 
 country = 'Japan'
-plot_comparison(gdp_growth, country, 
-                    ylabel, 0.1, ax, 
-                    g_params, b_params, t_params)
+plot_series(gdp_growth, country, 
+            ylabel, 0.1, ax, 
+            g_params, b_params, t_params)
 plt.show()
 ```
 
@@ -290,9 +294,9 @@ fig, ax = plt.subplots()
 
 country = 'Greece'
 title = ' Greece (GDP Growth Rate %)'
-plot_comparison(gdp_growth, country, 
-                    ylabel, 0.1, ax, 
-                    g_params, b_params, t_params)
+plot_series(gdp_growth, country, 
+            ylabel, 0.1, ax, 
+            g_params, b_params, t_params)
 plt.show()
 ```
 
@@ -312,9 +316,9 @@ mystnb:
 fig, ax = plt.subplots()
 
 country = 'Argentina'
-plot_comparison(gdp_growth, country, 
-                    ylabel, 0.1, ax, 
-                    g_params, b_params, t_params)
+plot_series(gdp_growth, country, 
+            ylabel, 0.1, ax, 
+            g_params, b_params, t_params)
 plt.show()
 ```
 
@@ -343,13 +347,16 @@ We demonstrate this using a long-run unemployment rate from FRED spanning from [
 start_date = datetime.datetime(1929, 1, 1)
 end_date = datetime.datetime(1942, 6, 1)
 
-unrate_history = web.DataReader('M0892AUSM156SNBR', 'fred', start_date,end_date)
-unrate_history.rename(columns={'M0892AUSM156SNBR': 'UNRATE'}, inplace=True)
+unrate_history = web.DataReader('M0892AUSM156SNBR', 
+                    'fred', start_date,end_date)
+unrate_history.rename(columns={'M0892AUSM156SNBR': 'UNRATE'}, 
+                        inplace=True)
 
 start_date = datetime.datetime(1948, 1, 1)
 end_date = datetime.datetime(2022, 12, 31)
 
-unrate = web.DataReader('UNRATE', 'fred', start_date, end_date)
+unrate = web.DataReader('UNRATE', 'fred', 
+                    start_date, end_date)
 ```
 
 Now we plot the long-run unemployment rate in the US from 1929 to 2022 with recession defined by NBER
@@ -365,7 +372,7 @@ tags: [hide-input]
 
 # We use the census bureau's estimate for the unemployment rate 
 # between 1942 and 1948
-years = [datetime.datetime(year, 6, 1) for year in range(1942,1948)]
+years = [datetime.datetime(year, 6, 1) for year in range(1942, 1948)]
 unrate_census = [4.7, 1.9, 1.2, 1.9, 3.9, 3.9]
 
 unrate_census = {'DATE': years, 'UNRATE': unrate_census}
@@ -380,9 +387,14 @@ nber = web.DataReader('USREC', 'fred', start_date, end_date)
 
 fig, ax = plt.subplots()
 
-ax.plot(unrate_history, **g_params, color='#377eb8', linestyle='-', linewidth=2)
-ax.plot(unrate_census, **g_params, color='black', linestyle='--', label='Census Estimates', linewidth=2)
-ax.plot(unrate, **g_params, color='#377eb8', linestyle='-', linewidth=2)
+ax.plot(unrate_history, **g_params, 
+        color='#377eb8', 
+        linestyle='-', linewidth=2)
+ax.plot(unrate_census, **g_params, 
+        color='black', linestyle='--', 
+        label='Census Estimates', linewidth=2)
+ax.plot(unrate, **g_params, color='#377eb8', 
+        linestyle='-', linewidth=2)
 
 # Draw gray boxes according to NBER recession indicators
 ax.fill_between(nber.index, 0, 1,
@@ -392,7 +404,8 @@ ax.fill_between(nber.index, 0, 1,
                 transform=ax.get_xaxis_transform(), 
                 label='NBER Recession Indicators')
 ax.set_ylim([0, ax.get_ylim()[1]])
-ax.legend(loc='upper center', bbox_to_anchor=(0.5, 1.1),
+ax.legend(loc='upper center', 
+          bbox_to_anchor=(0.5, 1.1),
           ncol=3, fancybox=True, shadow=True)
 ax.set_ylabel('Unemployment Rate (%)')
 
@@ -437,7 +450,7 @@ tags: [hide-input]
 ---
 
 
-def plot_comparison_multi(data, countries, 
+def plot_comparison(data, countries, 
                         ylabel, txt_pos, y_lim, ax, 
                         g_params, b_params, t_params, 
                         baseline=0):
@@ -480,13 +493,13 @@ def plot_comparison_multi(data, countries,
     if y_lim != None:
         ax.set_ylim([-y_lim, y_lim])
     ylim = ax.get_ylim()[1]
-    ax.text(1974, ylim + ylim * txt_pos, 
+    ax.text(1974, ylim + ylim*txt_pos, 
             'Oil Crisis\n(1974)', **t_params) 
-    ax.text(1991, ylim + ylim * txt_pos, 
+    ax.text(1991, ylim + ylim*txt_pos, 
             '1990s recession\n(1991)', **t_params) 
-    ax.text(2008, ylim + ylim * txt_pos, 
+    ax.text(2008, ylim + ylim*txt_pos, 
             'GFC\n(2008)', **t_params) 
-    ax.text(2020, ylim + ylim * txt_pos, 
+    ax.text(2020, ylim + ylim*txt_pos, 
             'Covid-19\n(2020)', **t_params) 
     if baseline != None:
         ax.hlines(y=baseline, xmin=ax.get_xlim()[0], 
@@ -512,7 +525,8 @@ tags: [hide-input]
 
 # Obtain GDP growth rate for a list of countries
 gdp_growth = wb.data.DataFrame('NY.GDP.MKTP.KD.ZG',
-            ['CHN', 'USA', 'DEU', 'BRA', 'ARG', 'GBR', 'JPN', 'MEX'], labels=True)
+            ['CHN', 'USA', 'DEU', 'BRA', 'ARG', 'GBR', 'JPN', 'MEX'], 
+            labels=True)
 gdp_growth = gdp_growth.set_index('Country')
 gdp_growth.columns = gdp_growth.columns.str.replace('YR', '').astype(int)
 
@@ -533,10 +547,10 @@ fig, ax = plt.subplots()
 countries = ['United Kingdom', 'United States', 'Germany', 'Japan']
 ylabel = 'GDP Growth Rate (%)'
 title_height = 0.1
-plot_comparison_multi(gdp_growth.loc[countries, 1962:], 
-                          countries, ylabel,
-                          0.1, 20, ax, 
-                          g_params, b_params, t_params)
+plot_comparison(gdp_growth.loc[countries, 1962:], 
+                countries, ylabel,
+                0.1, 20, ax, 
+                g_params, b_params, t_params)
 plt.show()
 ```
 
@@ -553,10 +567,10 @@ tags: [hide-input]
 
 fig, ax = plt.subplots()
 countries = ['Brazil', 'China', 'Argentina', 'Mexico']
-plot_comparison_multi(gdp_growth.loc[countries, 1962:], 
-                          countries, ylabel, 
-                          0.1, 20, ax, 
-                          g_params, b_params, t_params)
+plot_comparison(gdp_growth.loc[countries, 1962:], 
+                countries, ylabel, 
+                0.1, 20, ax, 
+                g_params, b_params, t_params)
 plt.show()
 ```
 
@@ -594,9 +608,9 @@ fig, ax = plt.subplots()
 
 countries = ['United Kingdom', 'United States', 'Japan', 'France']
 ylabel = 'Unemployment Rate (National Estimate) (%)'
-plot_comparison_multi(unempl_rate, countries, 
-                          ylabel, 0.05, None, ax, g_params, 
-                          b_params, t_params, baseline=None)
+plot_comparison(unempl_rate, countries, 
+                ylabel, 0.05, None, ax, g_params, 
+                b_params, t_params, baseline=None)
 plt.show()
 ```
 
@@ -654,7 +668,8 @@ start_date_graph = datetime.datetime(1977, 1, 1)
 end_date_graph = datetime.datetime(2023, 12, 31)
 
 nber = web.DataReader('USREC', 'fred', start_date, end_date)
-consumer_confidence = web.DataReader('UMCSENT', 'fred', start_date, end_date)
+consumer_confidence = web.DataReader('UMCSENT', 'fred', 
+                                start_date, end_date)
 
 fig, ax = plt.subplots()
 ax.plot(consumer_confidence, **g_params, 
@@ -672,12 +687,13 @@ ax.set_ylabel('Consumer Sentiment Index')
 # Plot CPI on another y-axis
 ax_t = ax.twinx()
 inflation = web.DataReader('CPILFESL', 'fred', 
-                start_date, end_date).pct_change(12) * 100
+                start_date, end_date).pct_change(12)*100
 
 # Add CPI on the legend without drawing the line again
 ax_t.plot(2020, 0, **g_params, linestyle='-', 
           linewidth=2, label='Consumer Sentiment Index')
-ax_t.plot(inflation, **g_params, color='#ff7f00', linestyle='--', 
+ax_t.plot(inflation, **g_params, 
+          color='#ff7f00', linestyle='--', 
           linewidth=2, label='CPI YoY Change (%)')
 ax_t.fill_between(nber.index, 0, 1,
                   where=nber['USREC']==1, 
@@ -687,7 +703,8 @@ ax_t.fill_between(nber.index, 0, 1,
                   label='NBER Recession Indicators')
 ax_t.set_ylim([0, ax_t.get_ylim()[1]])
 ax_t.set_xlim([start_date_graph, end_date_graph])
-ax_t.legend(loc='upper center', bbox_to_anchor=(0.5, 1.1),
+ax_t.legend(loc='upper center',
+            bbox_to_anchor=(0.5, 1.1),
             ncol=3, fontsize=9)
 ax_t.set_ylabel('Consumer Price Index (% Change)')
 plt.show()
@@ -721,11 +738,15 @@ tags: [hide-input]
 start_date = datetime.datetime(1919, 1, 1)
 end_date = datetime.datetime(2022, 12, 31)
 
-nber = web.DataReader('USREC', 'fred', start_date, end_date)
-consumer_confidence = web.DataReader('INDPRO', 'fred', start_date, end_date).pct_change(12) * 100
+nber = web.DataReader('USREC', 'fred', 
+                    start_date, end_date)
+consumer_confidence = web.DataReader('INDPRO', 'fred', 
+                    start_date, end_date).pct_change(12)*100
 
 fig, ax = plt.subplots()
-ax.plot(consumer_confidence, **g_params, color='#377eb8', linestyle='-', linewidth=2, label='Consumer Price Index')
+ax.plot(consumer_confidence, **g_params, 
+        color='#377eb8', linestyle='-', 
+        linewidth=2, label='Consumer Price Index')
 ax.fill_between(nber.index, 0, 1,
                 where=nber['USREC']==1, 
                 color='grey', edgecolor='none',
@@ -762,7 +783,8 @@ mystnb:
 tags: [hide-input]
 ---
 
-private_credit = wb.data.DataFrame('FS.AST.PRVT.GD.ZS',['GBR'], labels=True)
+private_credit = wb.data.DataFrame('FS.AST.PRVT.GD.ZS', 
+                ['GBR'], labels=True)
 private_credit = private_credit.set_index('Country')
 private_credit.columns = private_credit.columns.str.replace('YR', '').astype(int)
 
@@ -770,9 +792,9 @@ fig, ax = plt.subplots()
 
 countries = 'United Kingdom'
 ylabel = 'Credit Level (% of GDP)'
-ax = plot_comparison(private_credit, countries, 
-                     ylabel, 0.05, ax, g_params, b_params, 
-                     t_params, ylim=None, baseline=None)
+ax = plot_series(private_credit, countries, 
+                 ylabel, 0.05, ax, g_params, b_params, 
+                 t_params, ylim=None, baseline=None)
 plt.show()
 ```
 
