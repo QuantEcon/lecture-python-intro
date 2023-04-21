@@ -208,14 +208,14 @@ Let's start with the United States.
 ---
 mystnb:
   figure:
-    caption: "United States (GDP Growth Rate %)"
+    caption: "United States (GDP growth rate %)"
     name: us_gdp
 ---
 
 fig, ax = plt.subplots()
 
 country = 'United States'
-ylabel = 'GDP Growth Rate (%)'
+ylabel = 'GDP growth rate (%)'
 plot_series(gdp_growth, country, 
             ylabel, 0.1, ax, 
             g_params, b_params, t_params)
@@ -241,7 +241,7 @@ Notice the very large dip during the Covid-19 pandemic.
 ---
 mystnb:
   figure:
-    caption: "United Kingdom (GDP Growth Rate %)"
+    caption: "United Kingdom (GDP growth rate %)"
     name: uk_gdp
 ---
 
@@ -267,7 +267,7 @@ GFC and the Covid-19 pandemic.
 ---
 mystnb:
   figure:
-    caption: "Japan (GDP Growth Rate %)"
+    caption: "Japan (GDP growth rate %)"
     name: jp_gdp
 ---
 
@@ -286,14 +286,14 @@ Now let's study Greece.
 ---
 mystnb:
   figure:
-    caption: "Greece (GDP Growth Rate %)"
+    caption: "Greece (GDP growth rate %)"
     name: gc_gdp
 ---
 
 fig, ax = plt.subplots()
 
 country = 'Greece'
-title = ' Greece (GDP Growth Rate %)'
+title = ' Greece (GDP growth rate %)'
 plot_series(gdp_growth, country, 
             ylabel, 0.1, ax, 
             g_params, b_params, t_params)
@@ -309,7 +309,7 @@ Next let's consider Argentina.
 ---
 mystnb:
   figure:
-    caption: "Argentina (GDP Growth Rate %)"
+    caption: "Argentina (GDP growth rate %)"
     name: arg_gdp
 ---
 
@@ -339,7 +339,7 @@ Another important measure of business cycles is the unemployment rate.
 During a recession, it is more likely that a larger proportion of the working
 population will be laid off.
 
-We demonstrate this using a long-run unemployment rate from FRED spanning from [1929-1942](https://fred.stlouisfed.org/series/M0892AUSM156SNBR) to [1948-2022](https://fred.stlouisfed.org/series/UNRATE) with the unemployment rate between 1942 and 1948 estimated by [The Census Bureau](https://www.census.gov/library/publications/1975/compendia/hist_stats_colonial-1970.html).
+We demonstrate this using a long-run unemployment rate from FRED spanning from [1929-1942](https://fred.stlouisfed.org/series/M0892AUSM156SNBR) to [1948-2022](https://fred.stlouisfed.org/series/UNRATE) with the unemployment rate between 1942 and 1948 estimated by the [Census Bureau](https://www.census.gov/library/publications/1975/compendia/hist_stats_colonial-1970.html).
 
 ```{code-cell} ipython3
 :tags: [hide-input]
@@ -365,7 +365,7 @@ Now we plot the long-run unemployment rate in the US from 1929 to 2022 with rece
 ---
 mystnb:
   figure:
-    caption: "Long-run Unemployment Rate, US (%)"
+    caption: "Long-run unemployment rate, US (%)"
     name: lrunrate
 tags: [hide-input]
 ---
@@ -392,7 +392,7 @@ ax.plot(unrate_history, **g_params,
         linestyle='-', linewidth=2)
 ax.plot(unrate_census, **g_params, 
         color='black', linestyle='--', 
-        label='Census Estimates', linewidth=2)
+        label='Census estimates', linewidth=2)
 ax.plot(unrate, **g_params, color='#377eb8', 
         linestyle='-', linewidth=2)
 
@@ -402,12 +402,12 @@ ax.fill_between(nber.index, 0, 1,
                 color='grey', edgecolor='none',
                 alpha=0.3, 
                 transform=ax.get_xaxis_transform(), 
-                label='NBER Recession Indicators')
+                label='NBER recession indicators')
 ax.set_ylim([0, ax.get_ylim()[1]])
 ax.legend(loc='upper center', 
           bbox_to_anchor=(0.5, 1.1),
           ncol=3, fancybox=True, shadow=True)
-ax.set_ylabel('Unemployment Rate (%)')
+ax.set_ylabel('unemployment rate (%)')
 
 plt.show()
 ```
@@ -538,14 +538,14 @@ We use the United Kingdom, United States, Germany, and Japan as examples of deve
 ---
 mystnb:
   figure:
-    caption: "Developed Economies (GDP Growth Rate %)"
+    caption: "Developed economies (GDP growth rate %)"
     name: adv_gdp
 tags: [hide-input]
 ---
 
 fig, ax = plt.subplots()
 countries = ['United Kingdom', 'United States', 'Germany', 'Japan']
-ylabel = 'GDP Growth Rate (%)'
+ylabel = 'GDP growth rate (%)'
 title_height = 0.1
 plot_comparison(gdp_growth.loc[countries, 1962:], 
                 countries, ylabel,
@@ -560,7 +560,7 @@ We choose Brazil, China, Argentina, and Mexico as representative developing econ
 ---
 mystnb:
   figure:
-    caption: "Developing Economies (GDP Growth Rate %)"
+    caption: "Developing economies (GDP growth rate %)"
     name: deve_gdp
 tags: [hide-input]
 ---
@@ -594,7 +594,7 @@ Here we compare the unemployment rate of the United States, United Kingdom, Japa
 ---
 mystnb:
   figure:
-    caption: "Developed Economies (Unemployment Rate %)"
+    caption: "Developed economies (unemployment rate %)"
     name: adv_unemp
 tags: [hide-input]
 ---
@@ -607,7 +607,7 @@ unempl_rate.columns = unempl_rate.columns.str.replace('YR', '').astype(int)
 fig, ax = plt.subplots()
 
 countries = ['United Kingdom', 'United States', 'Japan', 'France']
-ylabel = 'Unemployment Rate (National Estimate) (%)'
+ylabel = 'unemployment rate (national estimate) (%)'
 plot_comparison(unempl_rate, countries, 
                 ylabel, 0.05, None, ax, g_params, 
                 b_params, t_params, baseline=None)
@@ -637,7 +637,7 @@ perspectives: consumption, production, and credit level.
 Consumption depends on consumers' confidence towards their
 income and the overall performance of the economy in the future. 
 
-One widely cited indicator for consumer confidence is the [Consumer Sentiment Index](https://fred.stlouisfed.org/series/UMCSENT) published by the University
+One widely cited indicator for consumer confidence is the [consumer sentiment index](https://fred.stlouisfed.org/series/UMCSENT) published by the University
 of Michigan.
 
 We find that consumer sentiment remains high during periods of expansion, but there are significant drops before recession hits.
@@ -655,7 +655,7 @@ Year-over-year Consumer Price Index Change from 1978-2022 in the US to show this
 ---
 mystnb:
   figure:
-    caption: "Consumer Sentiment Index and YoY CPI Change, US"
+    caption: "Consumer sentiment index and YoY CPI change, US"
     name: csicpi
 tags: [hide-input]
 ---
@@ -680,9 +680,9 @@ ax.fill_between(nber.index, 0, 1,
             color='grey', edgecolor='none',
             alpha=0.3, 
             transform=ax.get_xaxis_transform(), 
-            label='NBER Recession Indicators')
+            label='NBER recession indicators')
 ax.set_ylim([0, ax.get_ylim()[1]])
-ax.set_ylabel('Consumer Sentiment Index')
+ax.set_ylabel('consumer sentiment index')
 
 # Plot CPI on another y-axis
 ax_t = ax.twinx()
@@ -691,22 +691,23 @@ inflation = web.DataReader('CPILFESL', 'fred',
 
 # Add CPI on the legend without drawing the line again
 ax_t.plot(2020, 0, **g_params, linestyle='-', 
-          linewidth=2, label='Consumer Sentiment Index')
+          linewidth=2, label='consumer sentiment index')
 ax_t.plot(inflation, **g_params, 
           color='#ff7f00', linestyle='--', 
-          linewidth=2, label='CPI YoY Change (%)')
+          linewidth=2, label='CPI YoY change (%)')
+
 ax_t.fill_between(nber.index, 0, 1,
                   where=nber['USREC']==1, 
                   color='grey', edgecolor='none',
                   alpha=0.3, 
                   transform=ax.get_xaxis_transform(), 
-                  label='NBER Recession Indicators')
+                  label='NBER recession indicators')
 ax_t.set_ylim([0, ax_t.get_ylim()[1]])
 ax_t.set_xlim([start_date_graph, end_date_graph])
 ax_t.legend(loc='upper center',
             bbox_to_anchor=(0.5, 1.1),
             ncol=3, fontsize=9)
-ax_t.set_ylabel('Consumer Price Index (% Change)')
+ax_t.set_ylabel('CPI YoY change (%)')
 plt.show()
 ```
 
@@ -730,7 +731,7 @@ The following graph shows the real industrial output change from the previous ye
 ---
 mystnb:
   figure:
-    caption: "YoY Real Ouput Change, US (%)"
+    caption: "YoY real ouput change, US (%)"
     name: roc
 tags: [hide-input]
 ---
@@ -746,15 +747,15 @@ consumer_confidence = web.DataReader('INDPRO', 'fred',
 fig, ax = plt.subplots()
 ax.plot(consumer_confidence, **g_params, 
         color='#377eb8', linestyle='-', 
-        linewidth=2, label='Consumer Price Index')
+        linewidth=2, label='Consumer price index')
 ax.fill_between(nber.index, 0, 1,
                 where=nber['USREC']==1, 
                 color='grey', edgecolor='none',
                 alpha=0.3, 
                 transform=ax.get_xaxis_transform(), 
-                label='NBER Recession Indicators')
+                label='NBER recession indicators')
 ax.set_ylim([ax.get_ylim()[0], ax.get_ylim()[1]])
-ax.set_ylabel('YoY Real Ouput Change (%)')
+ax.set_ylabel('YoY real ouput change (%)')
 plt.show()
 ```
 
@@ -778,7 +779,7 @@ The following graph shows the domestic credit to the private sector as a percent
 ---
 mystnb:
   figure:
-    caption: "Domestic Credit to Private Sector by Banks (% of GDP)"
+    caption: "Domestic credit to private sector by banks (% of GDP)"
     name: dcpc
 tags: [hide-input]
 ---
@@ -791,7 +792,7 @@ private_credit.columns = private_credit.columns.str.replace('YR', '').astype(int
 fig, ax = plt.subplots()
 
 countries = 'United Kingdom'
-ylabel = 'Credit Level (% of GDP)'
+ylabel = 'credit level (% of GDP)'
 ax = plot_series(private_credit, countries, 
                  ylabel, 0.05, ax, g_params, b_params, 
                  t_params, ylim=None, baseline=None)
