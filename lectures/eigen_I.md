@@ -870,18 +870,23 @@ Here is one solution.
 We start by looking into the distance between the eigenvector approximation and the true eigenvector.
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: "Power iteration"
+    name: pow-dist
+---
+
 # Define a matrix A
 A = np.array([[1, 0, 3], 
               [0, 2, 0], 
               [3, 0, 1]])
 
-# Define a number of iterations
 num_iters = 20
 
 # Define a random starting vector b
 b = np.random.rand(A.shape[1])
 
-# Initialize a list to store the eigenvector approximations
 norm_ls = []
 res = []
 
@@ -898,15 +903,22 @@ for i in range(num_iters):
     
 # Plot the eigenvector approximations for each iteration
 plt.figure(figsize=(10, 6))
-plt.xlabel('Iterations')
+plt.xlabel('iterations')
 plt.ylabel('L2 Norm')
-plt.title('Distance between the Approximation and the True Eigenvector')
 _ = plt.plot(norm_ls)
 ```
 
 Then we can look at the trajectory of the eigenvector approximation
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: "Power iteration trajectory"
+    name: pow-trajectory
+---
+
+
 # Get the eigenvectors of matrix A
 eigenvector = np.linalg.eig(A)[1][:, 0]
 
@@ -917,16 +929,14 @@ ax = fig.add_subplot(111, projection='3d')
 # Plot the eigenvectors
 ax.scatter(eigenvector[0], eigenvector[1], eigenvector[2], color='r', s = 80)
 
-# Plot the approximated eigenvectors (b) at each iteration
 for i, vec in enumerate(res):
     ax.scatter(vec[0], vec[1], vec[2], color='b', alpha=(i + 1) / (num_iters+1), s = 80)
 
-ax.set_xlabel('X')
-ax.set_ylabel('Y')
-ax.set_zlabel('Z')
-ax.set_title('Power Iteration and Eigenvector Approximations')
+ax.set_xlabel('x')
+ax.set_ylabel('y')
+ax.set_zlabel('z')
 points = [plt.Line2D([0], [0], linestyle='none', c=i, marker='o') for i in ['r', 'b']]
-ax.legend(points, ['Actual eigenvectors', 'Approximated eigenvectors (b)'], numpoints=1)
+ax.legend(points, ['actual eigenvectors', 'approximated eigenvectors (b)'], numpoints=1)
 ax.set_box_aspect(aspect=None, zoom=0.8)
 
 # Show the plot
@@ -947,7 +957,6 @@ Try to compute the trajectory of $v$ after being transformed by $A$ for $n=6$ it
 
 ```
 
-
 ```{solution-start} eig1_ex2
 :class: dropdown
 ```
@@ -958,7 +967,7 @@ A = np.array([[1, 2],
 v = (0.4, -0.4)
 n = 11
 
-# Compute right eigenvectors and eigenvalues
+# Compute eigenvectors and eigenvalues
 eigenvalues, eigenvectors = np.linalg.eig(A)
 
 print(f"eigenvalues:\n {eigenvalues}")
@@ -972,34 +981,42 @@ We find the trajectory of the vector $v$ after being transformed by $A$ for $n=6
 Let's use a vector field to visualize the transformation brought by A.
 
 ```{code-cell} ipython3
-# Create a grid of points (vector field)
-x, y = np.meshgrid(np.linspace(-5, 5, 15), np.linspace(-5, 5, 20))
+---
+mystnb:
+  figure:
+    caption: "Convergence towards eigenvectors"
+    name: eigen-conv
+---
+
+# Create a grid of points
+x, y = np.meshgrid(np.linspace(-5, 5, 15), 
+                np.linspace(-5, 5, 20))
 
 # Apply the matrix A to each point in the vector field
 vec_field = np.stack([x, y])
 u, v = np.tensordot(A, vec_field, axes=1)
 
-
 # Plot the transformed vector field
-c = plt.streamplot(x, y, u - x, v - y, density=1, linewidth=None, color='#A23BEC')
+c = plt.streamplot(x, y, u - x, v - y, 
+                density=1, linewidth=None, color='#A23BEC')
 c.lines.set_alpha(0.5)
 c.arrows.set_alpha(0.5)
 
-# Plot the eigenvectors as long blue and green arrows
 origin = np.zeros((2, len(eigenvectors)))
 parameters = {'color':['b', 'g'], 'angles':'xy', 
                 'scale_units':'xy', 'scale':0.1, 'width':0.01}
-plt.quiver(*origin, eigenvectors[0], eigenvectors[1], **parameters)
-plt.quiver(*origin, - eigenvectors[0], - eigenvectors[1], **parameters)
+plt.quiver(*origin, eigenvectors[0], 
+        eigenvectors[1], **parameters)
+plt.quiver(*origin, - eigenvectors[0], 
+        - eigenvectors[1], **parameters)
 
 colors = ['b', 'g']
 lines = [Line2D([0], [0], color=c, linewidth=3) for c in colors]
 labels = ["2.4 eigenspace", "0.4 eigenspace"]
 plt.legend(lines, labels,loc='center left', bbox_to_anchor=(1, 0.5))
 
-plt.title("Convergence/Divergence towards Eigenvectors")
-plt.xlabel("x-axis")
-plt.ylabel("y-axis")
+plt.xlabel("x")
+plt.ylabel("y")
 plt.grid()
 plt.gca().set_aspect('equal', adjustable='box')
 plt.show()
@@ -1033,7 +1050,14 @@ Use the visualization in the previous exercise to explain why the trajectory of 
 Here is one solution
 
 ```{code-cell} ipython3
-figure, ax = plt.subplots(1,3, figsize = (15,5))
+---
+mystnb:
+  figure:
+    caption: "Vector fields of the three matrices"
+    name: vector-field
+---
+
+figure, ax = plt.subplots(1,3, figsize = (15, 5))
 A = np.array([[sqrt(3) + 1, -2],
               [1, sqrt(3) - 1]])
 A = (1/(2*sqrt(2))) * A
@@ -1060,24 +1084,30 @@ for i, example in enumerate(examples):
     eigenvalues_real = eigenvalues.real
     eigenvectors_real = eigenvectors.real
 
-    # Create a grid of points (vector field)
-    x, y = np.meshgrid(np.linspace(-20, 20, 15), np.linspace(-20, 20, 20))
+    # Create a grid of points
+    x, y = np.meshgrid(np.linspace(-20, 20, 15), 
+                    np.linspace(-20, 20, 20))
 
     # Apply the matrix A to each point in the vector field
     vec_field = np.stack([x, y])
     u, v = np.tensordot(M, vec_field, axes=1)
 
     # Plot the transformed vector field
-    c = ax[i].streamplot(x, y, u - x, v - y, density=1, linewidth=None, color='#A23BEC')
+    c = ax[i].streamplot(x, y, u - x, v - y,
+             density=1, linewidth=None, color='#A23BEC')
     c.lines.set_alpha(0.5)
     c.arrows.set_alpha(0.5)
 
-    # Plot the eigenvectors as long blue and green arrows
     parameters = {'color':['b', 'g'], 'angles':'xy', 
-                'scale_units':'xy', 'scale':1, 'width':0.01, 'alpha':0.5}
+                'scale_units':'xy', 'scale':1, 
+                'width':0.01, 'alpha':0.5}
     origin = np.zeros((2, len(eigenvectors)))
-    ax[i].quiver(*origin, eigenvectors_real[0], eigenvectors_real[1], **parameters)
-    ax[i].quiver(*origin, - eigenvectors_real[0], - eigenvectors_real[1], **parameters)
+    ax[i].quiver(*origin, eigenvectors_real[0], 
+            eigenvectors_real[1], **parameters)
+    ax[i].quiver(*origin, 
+                - eigenvectors_real[0], 
+                - eigenvectors_real[1], 
+                **parameters)
 
     ax[i].set_xlabel("x-axis")
     ax[i].set_ylabel("y-axis")
@@ -1100,6 +1130,13 @@ Here we used the real part of the eigenvalues and eigenvectors.
 We can try to plot the complex plane for one of the matrices using `Arrow3D` class retrieved from [stackoverflow](https://stackoverflow.com/questions/22867620/putting-arrowheads-on-vectors-in-matplotlibs-3d-plot).
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: "3D plot of the vector field"
+    name: 3d-vector-field
+---
+
 class Arrow3D(FancyArrowPatch):
     def __init__(self, xs, ys, zs, *args, **kwargs):
         super().__init__((0,0), (0,0), *args, **kwargs)
@@ -1143,8 +1180,8 @@ for c, i in zip(['b', 'g'], [0, 1]):
     ax.add_artist(a)
 
 # Set axis labels and title
-ax.set_xlabel('X')
-ax.set_ylabel('Y')
+ax.set_xlabel('x')
+ax.set_ylabel('y')
 ax.set_zlabel('Im')
 ax.set_box_aspect(aspect=None, zoom=0.8)
 
