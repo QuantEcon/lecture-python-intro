@@ -107,7 +107,7 @@ First let's consider the household side.
 
 ### Consumer's problem
 
-Suppose that utility for individuals born at time $t$ take the form
+Suppose that utility for individuals born at time $t$ takes the form
 
 ```{math}
 :label: eq_crra
@@ -263,7 +263,7 @@ them to zero:
 
 ### Demand 
 
-Using our assumption $\ell_1 = 1$ allows us to write 
+Using our assumption $\ell_t = 1$ allows us to write 
 
 ```{math}
 :label: wage_one
@@ -444,7 +444,14 @@ In particular, since $w_t = (1-\alpha)k_t^\alpha$, we have
 If we iterate on this equation, we get a sequence for capital stock.
 
 
-Let's plot the 45 degree diagram.
+Let's plot the 45 degree diagram of these dynamics, which we write as
+
+$$
+    k_{t+1} = g(k_t)
+    \quad \text{where }
+    g(k) := \frac{\beta}{1+\beta} (1-\alpha)(k)^{\alpha}
+$$
+
 
 ```{code-cell} ipython3
 def k_update(k, α, β):
@@ -481,14 +488,15 @@ plt.show()
 The diagram shows that the model has a unique positive steady state, which we
 denote by $k^*$.
 
-We can solve for $k^*$ by setting $k_{t+1} = k_t = k^*$ in [](law_of_motion_capital), which yields
+We can solve for $k^*$ by setting $k^* = g(k^*)$, or
 
 ```{math}
 :label: steady_state_1
     k^* = \frac{\beta (1-\alpha) (k^*)^{\alpha}}{(1+\beta)}
 ```
 
-We can solve this equation to obtain
+Solving this equation yields
+
 ```{math}
 :label: steady_state_2
     k^* = \left (\frac{\beta (1-\alpha)}{1+\beta} \right )^{1/(1-\alpha)}
@@ -707,7 +715,7 @@ If $k_t$ is given then $f$ is a function of unknown $k_{t+1}$.
 
 Then we can use `scipy.optimize.newton` to solve $f(k_{t+1}, k_t)=0$ for $k_{t+1}$.
 
-First let define $f$.
+First let's define $f$.
 
 ```{code-cell} ipython3
 def f(k_prime, k, model):
@@ -774,7 +782,7 @@ $$
 Unlike the log preference case, the CRRA utility steady state $k^*$ 
 cannot be obtained analytically.
 
-Instead, solve for $k^*$ using newton's method.
+Instead, we solve for $k^*$ using Newton's method.
 
 ```
 
@@ -783,12 +791,12 @@ Instead, solve for $k^*$ using newton's method.
 :class: dropdown
 ```
 
-We introduce a function $g$ such that
-positive steady state is the root of $g$.
+We introduce a function $h$ such that
+positive steady state is the root of $h$.
 
 ```{math}
 :label: crra_newton_2
-    g(k^*) = k^*  
+    h(k^*) = k^*  
     \left [ 
         1 + \beta^{-1/\gamma} (\alpha (k^*)^{\alpha-1})^{(\gamma-1)/\gamma} 
     \right ] - (1-\alpha)(k^*)^{\alpha}
@@ -797,7 +805,7 @@ positive steady state is the root of $g$.
 Here it is in Python
 
 ```{code-cell} ipython3
-def g(k_star, model):
+def h(k_star, model):
     α, β, γ = model.α, model.β, model.γ
     z = (1 - α) * k_star**α
     R1 = α ** (1-1/γ)
@@ -809,7 +817,7 @@ def g(k_star, model):
 Let's apply Newton's method to find the root:
 
 ```{code-cell} ipython3
-k_star = optimize.newton(g, 0.2, args=(model,))
+k_star = optimize.newton(h, 0.2, args=(model,))
 print(f"k_star = {k_star}")
 ```
 
