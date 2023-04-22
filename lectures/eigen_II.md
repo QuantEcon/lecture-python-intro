@@ -22,10 +22,9 @@ kernelspec:
 
 In addition to what's in Anaconda, this lecture will need the following libraries:
 
-```{code-cell} ipython
----
-tags: [hide-output]
----
+```{code-cell} ipython3
+:tags: [hide-output]
+
 !pip install graphviz
 ```
 
@@ -45,7 +44,7 @@ We will use the following imports:
 ```{code-cell} ipython3
 import matplotlib.pyplot as plt
 import numpy as np
-from numpy.linalg import eig
+import scipy as sp
 import graphviz as gv
 ```
 
@@ -116,29 +115,38 @@ In other words, if $\varepsilon$ is a left eigenvector of matrix A, then $A^T \v
 This hints at how to compute left eigenvectors
 
 ```{code-cell} ipython3
-# Define a sample matrix
 A = np.array([[3, 2], 
               [1, 4]])
 
 # Compute right eigenvectors and eigenvalues
-right_eigenvalues, right_eigenvectors = np.linalg.eig(A)
+eigvals_r, e = np.linalg.eig(A)
 
 # Compute left eigenvectors and eigenvalues
-left_eigenvalues, left_eigenvectors = np.linalg.eig(A.T)
+eigvals_l, ε = np.linalg.eig(A.T)
 
-# Transpose left eigenvectors for comparison (because they are returned as column vectors)
-left_eigenvectors = left_eigenvectors.T
-
-print("Matrix A:")
-print(A)
-print("\nRight Eigenvalues:")
-print(right_eigenvalues)
+print("Right Eigenvalues:")
+print(eigvals_r)
 print("\nRight Eigenvectors:")
-print(right_eigenvectors)
+print(e)
 print("\nLeft Eigenvalues:")
-print(left_eigenvalues)
+print(eigvals_l)
 print("\nLeft Eigenvectors:")
-print(left_eigenvectors)
+print(ε)
+```
+
+We can use `scipy.linalg.eig` with argument `left=True` to find left eigenvectors directly
+
+```{code-cell} ipython3
+eigenvals, ε, e = sp.linalg.eig(A, left=True)
+
+print("Right Eigenvalues:")
+print(eigvals_r)
+print("\nRight Eigenvectors:")
+print(e)
+print("\nLeft Eigenvalues:")
+print(eigvals_l)
+print("\nLeft Eigenvectors:")
+print(ε)
 ```
 
 Note that the eigenvalues for both left and right eigenvectors are the same, but the eigenvectors themselves are different.
@@ -175,13 +183,164 @@ If $A$ is primitive then,
 
 6. the inequality $|\lambda| \leq r(A)$ is strict for all eigenvalues $\lambda$ of $A$ distinct from $r(A)$, and
 7. with $e$ and $\varepsilon$ normalized so that the inner product of $\varepsilon$ and  $e = 1$, we have
-$ r(A)^{-m} A^m$ converges to $\varepsilon^{\top}$ when $m \rightarrow \infty$
+$ r(A)^{-m} A^m$ converges to $e \varepsilon^{\top}$ when $m \rightarrow \infty$
 ```
 
 (This is a relatively simple version of the theorem --- for more details see
 [here](https://en.wikipedia.org/wiki/Perron%E2%80%93Frobenius_theorem)).
 
 We will see applications of the theorem below.
+
+Let's build our intuition for the theorem using a simple example we have seen [before](mc_eg1).
+
+Now let's consider examples for each case.
+
+#### Example 1: Irreducible Matrix
+
+Consider the following irreducible matrix A:`
+
+```{code-cell} ipython3
+A = np.array([[0, 1, 0], 
+              [.5, 0, .5], 
+              [0, 1, 0]])
+```
+
+We can compute the dominant eigenvalue and the corresponding eigenvector
+
+```{code-cell} ipython3
+np.linalg.eig(A)
+```
+
+Now we can go through our checklist to verify the claims of the Perron-Frobenius theorem for the irreducible matrix A:
+
+1. The dominant eigenvalue is real-valued and non-negative.
+2. All other eigenvalues have absolute values less than or equal to the dominant eigenvalue.
+3. A non-negative and nonzero eigenvector is associated with the dominant eigenvalue.
+4. As the matrix is irreducible, the eigenvector associated with the dominant eigenvalue is strictly positive.
+5. There exists no other positive eigenvector associated with the dominant eigenvalue.
+
+#### Example 2: Primitive Matrix
+
+Consider the following primitive matrix B:
+
+```{code-cell} ipython3
+B = np.array([[0, 1, 1], 
+              [1, 0, 1], 
+              [1, 1, 0]])
+
+np.linalg.matrix_power(B, 2)
+```
+
+We can compute the dominant eigenvalue and the corresponding eigenvector using the power iteration method as discussed {ref} `earlier<eig1_ex1>`:
+
+```{code-cell} ipython3
+num_iters = 20
+b = np.random.rand(B.shape[1])
+
+for i in range(num_iters):
+    b = B @ b
+    b = b / np.linalg.norm(b)
+
+dominant_eigenvalue = np.dot(B @ b, b) / np.dot(b, b)
+np.round(dominant_eigenvalue, 2)
+```
+
+```{code-cell} ipython3
+np.linalg.eig(B)
+```
+
+Now let's verify the claims of the Perron-Frobenius theorem for the primitive matrix B:
+
+1. The dominant eigenvalue is real-valued and non-negative.
+2. All other eigenvalues have absolute values strictly less than the dominant eigenvalue.
+3. A non-negative and nonzero eigenvector is associated with the dominant eigenvalue.
+4. The eigenvector associated with the dominant eigenvalue is strictly positive.
+5. There exists no other positive eigenvector associated with the dominant eigenvalue.
+6. The inequality $|\lambda| < r(B)$ holds for all eigenvalues $\lambda$ of $B distinct from the dominant eigenvalue.
+
+Furthermore, we can verify the convergence property (7) of the theorem:
+
+```{code-cell} ipython3
+import numpy as np
+
+def compute_perron_projection(A):
+    # Compute the eigenvalues and right eigenvectors of A
+    eigval, v = np.linalg.eig(A)
+    eigval, w = np.linalg.eig(A.T)
+
+    r = np.max(eigval)
+
+    # Find the index of the Perron eigenvalue (the largest one)
+    i = np.argmax(eigval)
+
+    # Get the Perron eigenvalue and its corresponding right eigenvector
+    v_col = v[:, i].reshape(-1, 1)
+    w_col = w[:, i].reshape(-1, 1)
+
+    # Normalize the left and right eigenvectors so that w^T * v = 1
+    norm_factor = w_col.T @ v_col
+    v_norm = v_col / norm_factor
+    w_norm = w_col
+
+    # Compute the Perron projection matrix by multiplying the right eigenvector by the transpose of the left eigenvector
+    P = v_norm @ w_norm.T
+    return P, r
+
+A1 = np.array([[0.971, 0.029, 0.1],
+               [0.145, 0.778, 0.077],
+               [0.1, 0.508, 0.492]])
+
+A2 = np.array([[1, 2],
+               [1, 4]])
+
+for A in [A1, A2]:
+    P, r = compute_perron_projection(A)
+    print("Matrix A:")
+    print(A)
+    print("Perron projection matrix:")
+    print(P)
+
+    # Define a list of values for n
+    n_list = [1, 10, 100, 1000, 10000]
+
+    # Loop over n_list and compute the matrix power A^n / r^n
+    for n in n_list:
+        # Compute A^n / r^n using numpy.linalg.matrix_power function
+        An_rn = np.linalg.matrix_power(A, n) / r**n
+
+        # Compute the difference between A^n / r^n and the Perron projection matrix
+        diff = np.abs(An_rn - P)
+
+        # Calculate the Frobenius norm of the difference matrix
+        frobenius_norm = np.linalg.norm(diff, 'fro')
+
+        # Print the Frobenius norm for the current value of n
+        print(f"n = {n}, Frobenius norm of the difference: {frobenius_norm:.10f}")
+```
+
+```{math}
+P
+= \left(
+\begin{array}{cc}
+    1 - \alpha & \alpha \\
+    \beta & 1 - \beta
+\end{array}
+  \right) \quad \text{where} \quad \alpha, \beta \in \left[0,1 \right]
+```
+
+Calculating the eigenvalues and eigenvectors of $P$ by hand we find that the dominant eigenvalue is $1$ ($\lambda_1 = 1$), and ($\lambda_2 = 1 - \alpha - \beta$).
+
+In this case, $r(A) = 1$.
+
+As $A \geq 0$, we can apply the first part of the theorem to say that r(A) is an eigenvalue.
+
+This verifies the first part of the theorem.
+
+In fact, we have already seen Perron-Frobenius theorem in action before in {ref}`the exercise <mc1_ex_1>`.
+
+In the exercise, we stated that the convegence rate is determined by the spectral gap, the difference between the largest and the second largest eigenvalue.
+
+This can be proved using Perron-Frobenius theorem.
 
 (la_neumann)=
 ## The Neumann Series Lemma 

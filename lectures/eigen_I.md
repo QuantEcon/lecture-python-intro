@@ -1127,14 +1127,19 @@ v_imag = np.zeros_like(y)
 fig = plt.figure()
 ax = fig.add_subplot(111, projection='3d')
 vlength = np.linalg.norm(eigenvectors)
-ax.quiver(x, y, u_imag, u_real-x, v_real-y, v_imag-u_imag, colors = 'b', alpha=0.3, length = .2, arrow_length_ratio = 0.01)
+ax.quiver(x, y, u_imag, u_real-x, v_real-y, v_imag-u_imag, 
+          colors = 'b', alpha=0.3, length = .2, 
+          arrow_length_ratio = 0.01)
 
-arrow_prop_dict = dict(mutation_scale=5, arrowstyle='-|>', shrinkA=0, shrinkB=0)
+arrow_prop_dict = dict(mutation_scale=5, 
+                arrowstyle='-|>', shrinkA=0, shrinkB=0)
 
 # Plot 3D eigenvectors
 for c, i in zip(['b', 'g'], [0, 1]):
-    a = Arrow3D([0, eigenvectors[0][i].real], [0, eigenvectors[1][i].real], 
-            [0, eigenvectors[1][i].imag], color=c, **arrow_prop_dict)
+    a = Arrow3D([0, eigenvectors[0][i].real], 
+                [0, eigenvectors[1][i].real], 
+                [0, eigenvectors[1][i].imag], 
+                color=c, **arrow_prop_dict)
     ax.add_artist(a)
 
 # Set axis labels and title
