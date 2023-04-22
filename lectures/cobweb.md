@@ -106,12 +106,12 @@ where $a, b$ are nonnegative constants and $p_t$ is the spot (i.e, current marke
 
 ($D(p_t)$ is the quantity demanded in some fixed unit, such as thousands of tons.)
 
-Because the crop of soy beans for time $t$ is planted at $t-1$, supply of soy beans at time $t$ depends on *expected* prices at time $t$, which we denote $p^e_t$.
+Because the crop of soy beans for time $t$ is planted at $t-1$, supply of soy beans at time $t$ depends on *expected* prices at time $t$, which we denote $p^e_{t-1}$.
 
 We suppose that supply is nonlinear in expected prices, and takes the form
 
 $$
-    S(p^e_t) = \tanh(\lambda(p^e_t - c)) + d
+    S(p^e_{t-1}) = \tanh(\lambda(p^e_{t-1} - c)) + d
 $$
 
 where $\lambda$ is a positive constant and $c, d \geq 0$.
@@ -160,13 +160,13 @@ plt.show()
 Market equilibrium requires that supply equals demand, or
 
 $$
-    a - b p_t = S(p^e_t)
+    a - b p_t = S(p^e_{t-1})
 $$
 
 Rewriting in terms of $p_t$ gives
 
 $$
-    p_t = - \frac{1}{b} [S(p^e_t) - a]
+    p_t = - \frac{1}{b} [S(p^e_{t-1}) - a]
 $$
 
 Finally, to complete the model, we need to describe how price expectations are formed.
@@ -177,7 +177,7 @@ In particular, we suppose that
 
 ```{math}
 :label: p_et
-    p^e_t = f(p_{t-1}, p_{t-2})
+    p^e_{t-1} = f(p_{t-1}, p_{t-2})
 ```
 
 where $f$ is some function.
@@ -204,7 +204,7 @@ Let's start with naive expectations, which refers to the case where producers ex
 
 In other words,
 
-$$ p_t^e = p_{t-1} $$
+$$ p_{t-1}^e = p_{t-1} $$
 
 Using {eq}`price_t`, we then have
 
@@ -276,7 +276,7 @@ def plot45(model, pmin, pmax, p0, num_arrows=5):
             alpha=0.6, head_length=hl)
 
     ax.plot(pgrid, g(model, pgrid), 'b-',
-            lw=2, alpha=0.6, label='p')
+            lw=2, alpha=0.6, label='g')
     ax.plot(pgrid, pgrid, lw=1, alpha=0.7, label='45')
 
     x = p0
@@ -408,7 +408,7 @@ That is,
 
 ```{math}
 :label: pe_adaptive
-p_t^e = \alpha p_{t-1} + (1-\alpha) p^e_{t-1}
+p_{t-1}^e = \alpha p_{t-1} + (1-\alpha) p^e_{t-2}
 \qquad (0 \leq \alpha \leq 1)
 ```
 
@@ -416,7 +416,7 @@ Another way to write this is
 
 ```{math}
 :label: pe_adaptive_2
-p_t^e = p^e_{t-1} + \alpha (p_{t-1} - p_{t-1}^e)
+p_{t-1}^e = p^e_{t-2} + \alpha (p_{t-1} - p_{t-2}^e)
 ```
 
 This equation helps to show that expectations shift
@@ -427,7 +427,7 @@ This equation helps to show that expectations shift
 Using {eq}`pe_adaptive`, we obtain the dynamics
 
 $$
-    p_t = - \frac{1}{b} [ S(\alpha p_{t-1} + (1-\alpha) p^e_{t-1}) - a]
+    p_t = - \frac{1}{b} [ S(\alpha p_{t-1} + (1-\alpha) p^e_{t-2}) - a]
 $$
 
 
@@ -547,7 +547,7 @@ That is,
 
 ```{math}
 :label: pe_blae
-p_t^e = \alpha p_{t-1} + (1-\alpha) p_{t-2}
+p_{t-1}^e = \alpha p_{t-1} + (1-\alpha) p_{t-2}
 ```
 
 
@@ -610,3 +610,4 @@ ts_plot_price_blae(m,
 ```{code-cell} ipython3
 
 ```
+

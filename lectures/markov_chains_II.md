@@ -24,6 +24,13 @@ In addition to what's in Anaconda, this lecture will need the following librarie
 !pip install graphviz
 ```
 
+```{admonition} graphviz
+:class: warning
+If you are running this lecture locally it requires [graphviz](https://www.graphviz.org)
+to be installed on your computer. Installation instructions for graphviz can be found
+[here](https://www.graphviz.org/download/) 
+```
+
 +++ {"user_expressions": []}
 
 ## Overview
