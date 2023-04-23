@@ -39,30 +39,35 @@ $$
 
 ## From utility function to demand curve
 
-Let
+Our study of consumers will use the following primitives
 
 * $\Pi$ be an $m \times n$ matrix,
-* $c$ be an $n \times 1$ vector of consumptions of various goods,
 * $b$ be an $m \times 1$ vector of bliss points,
 * $e$ be an $n \times 1$ vector of endowments, and
-* $p$ be an $n \times 1$ vector of prices
+
+
+We will analyze endogenous objects $c$ and $p$, where
+
+* $c$ is an $n \times 1$ vector of consumptions of various goods,
+* $p$ is an $n \times 1$ vector of prices
+
+
+The matrix $\Pi$ describes a consumer's willingness to substitute one good for every other good.
 
 We assume that $\Pi$ has linearly independent columns, which implies that $\Pi^\top \Pi$ is a positive definite matrix.
 
 * it follows that $\Pi^\top \Pi$ has an inverse.
 
-The matrix $\Pi$ describes a consumer's willingness to substitute one good for every other good.
-
-We shall see below that $(\Pi^T \Pi)^{-1}$ is a matrix of slopes of (compensated) demand curves for $c$ with respect to a vector of prices:
+We shall see below that $(\Pi^\top \Pi)^{-1}$ is a matrix of slopes of (compensated) demand curves for $c$ with respect to a vector of prices:
 
 $$
-    \frac{\partial c } {\partial p} = (\Pi^T \Pi)^{-1}
+    \frac{\partial c } {\partial p} = (\Pi^\top \Pi)^{-1}
 $$
 
 A consumer faces $p$ as a price taker and chooses $c$ to maximize the utility function
 
 $$
-    -.5 (\Pi c -b) ^\top (\Pi c -b )
+    - \frac{1}{2} (\Pi c -b) ^\top (\Pi c -b )
 $$ (eq:old0)
 
 subject to the budget constraint
@@ -71,15 +76,16 @@ $$
     p^\top (c -e ) = 0
 $$ (eq:old2)
 
-We shall specify examples in which  $\Pi$ and $b$ are such that it typically happens that
+We shall specify examples in which  $\Pi$ and $b$ are such that 
 
 $$
-    \Pi c < < b
+    \Pi c \ll b
 $$ (eq:bversusc)
 
-so that utility function {eq}`eq:old2` tells us that the consumer has much less  of each good than he wants.
+This means that the consumer has much less of each good than he wants.
 
-Condition {eq}`eq:bversusc` will ultimately  assure us that competitive equilibrium prices  are  positive.
+The deviation in {eq}`eq:bversusc` will ultimately  assure us that competitive equilibrium prices  are  positive.
+
 
 ### Demand Curve Implied  by Constrained Utility Maximization
 
@@ -87,9 +93,11 @@ For now, we assume that the budget constraint is {eq}`eq:old2`.
 
 So we'll be deriving what is known as  a **Marshallian** demand curve.
 
+Our aim is to maximize [](eq:old0) subject to [](eq:old2).
+
 Form a Lagrangian
 
-$$ L = -.5 (\Pi c -b) ^\top (\Pi c -b ) + \mu [p^\top (e-c)] $$
+$$ L = - \frac{1}{2} (\Pi c -b)^\top (\Pi c -b ) + \mu [p^\top (e-c)] $$
 
 where $\mu$ is a Lagrange multiplier that is often called a **marginal utility of wealth**.
 
@@ -116,8 +124,13 @@ $$ (eq:old4)
 
 Equation {eq}`eq:old4` tells how marginal utility of wealth depends on  the endowment vector  $e$ and the price vector  $p$.
 
-**Remark:** Equation {eq}`eq:old4` is a consequence of imposing that $p^\top (c - e) = 0$.  We could instead take $\mu$ as a parameter and use {eq}`eq:old3` and the budget constraint {eq}`eq:old2p` to solve for $W.$ Which way we proceed determines whether we are constructing a **Marshallian** or **Hicksian** demand curve.
+```{note}
+Equation {eq}`eq:old4` is a consequence of imposing that $p^\top (c - e) = 0$.  
 
+We could instead take $\mu$ as a parameter and use {eq}`eq:old3` and the budget constraint {eq}`eq:old2p` to solve for wealth. 
+
+Which way we proceed determines whether we are constructing a **Marshallian** or **Hicksian** demand curve.
+```
 
 ## Endowment economy
 
@@ -143,52 +156,63 @@ This amounts to choosing a common  unit (or numeraire) in which prices of all go
 
 We'll set $\mu=1$.
 
-**Exercise:** Verify that setting $\mu=1$ in {eq}`eq:old3` implies that   formula {eq}`eq:old4` is satisfied.
+```{exercise}
+:label: sdm_ex1
 
-**Exercise:** Verify that setting  $\mu=2$ in {eq}`eq:old3` also implies that formula {eq}`eq:old4` is satisfied.
+Verify that setting $\mu=1$ in {eq}`eq:old3` implies that formula {eq}`eq:old4` is satisfied.
+
+```
+
+```{exercise}
+:label: sdm_ex2
+
+Verify that setting  $\mu=2$ in {eq}`eq:old3` also implies that formula
+{eq}`eq:old4` is satisfied.
+
+```
 
 
 ## Digression: Marshallian and Hicksian Demand Curves
 
-**Remark:** Sometimes we'll use budget constraint {eq}`eq:old2` in situations in which a consumers's endowment vector $e$ is his **only** source of income. Other times we'll instead assume that the consumer has another source of income (positive or negative) and write his budget constraint as
+Sometimes we'll use budget constraint {eq}`eq:old2` in situations in which a consumers's endowment vector $e$ is his **only** source of income.
+
+Other times we'll instead assume that the consumer has another source of income (positive or negative) and write his budget constraint as
 
 $$
-p ^\top (c -e ) = W
+p ^\top (c -e ) = w
 $$ (eq:old2p)
 
-where $W$ is measured in "dollars" (or some other **numeraire**) and component $p_i$ of the price vector is measured in dollars per unit of good $i$.
+where $w$ is measured in "dollars" (or some other **numeraire**) and component $p_i$ of the price vector is measured in dollars per unit of good $i$.
 
-Whether the consumer's budget constraint is  {eq}`eq:old2` or {eq}`eq:old2p` and whether we take $W$ as a free parameter or instead as an endogenous variable   will  affect the consumer's marginal utility of wealth.
+Whether the consumer's budget constraint is  {eq}`eq:old2` or {eq}`eq:old2p` and whether we take $w$ as a free parameter or instead as an endogenous variable   will  affect the consumer's marginal utility of wealth.
 
 Consequently, how we set $\mu$  determines whether we are constructing
 
 * a **Marshallian** demand curve, as when we use {eq}`eq:old2` and solve for $\mu$ using equation {eq}`eq:old4` below, or
-* a **Hicksian** demand curve, as when we  treat $\mu$ as a fixed parameter and solve for $W$ from {eq}`eq:old2p`.
+* a **Hicksian** demand curve, as when we  treat $\mu$ as a fixed parameter and solve for $w$ from {eq}`eq:old2p`.
 
 Marshallian and Hicksian demand curves contemplate different mental experiments:
 
-* For a Marshallian demand curve, hypothetical changes in a price vector  have  both **substitution** and **income** effects
+For a Marshallian demand curve, hypothetical changes in a price vector  have  both **substitution** and **income** effects
 
-  * income effects are consequences of  changes in $p^\top e$ associated with the change in the price vector
+* income effects are consequences of  changes in $p^\top e$ associated with the change in the price vector
 
-* For a Hicksian demand curve, hypothetical price vector  changes  have only **substitution**  effects
+For a Hicksian demand curve, hypothetical price vector  changes  have only **substitution**  effects
 
-  * changes in the price vector leave the $p^\top e + W$ unaltered because we freeze $\mu$ and solve for $W$
+* changes in the price vector leave the $p^\top e + w$ unaltered because we freeze $\mu$ and solve for $w$
 
-Sometimes a Hicksian demand curve is called a **compensated** demand curve in order to emphasize that, to disarm the income (or wealth) effect associated with a price change, the consumer's wealth $W$ is adjusted.
+Sometimes a Hicksian demand curve is called a **compensated** demand curve in order to emphasize that, to disarm the income (or wealth) effect associated with a price change, the consumer's wealth $w$ is adjusted.
 
 We'll discuss these distinct demand curves more  below.
 
 
 
-## Dynamics and Risk as Special Cases of Pure Exchange Economy
+## Dynamics and Risk as Special Cases
 
 Special cases of our $n$-good pure exchange  model can be created to represent
 
-* dynamics
-  - by putting different dates on different commodities
-* risk
-  - by interpreting delivery  of goods as being contingent on states of the world whose realizations are described by a **known probability distribution**
+* **dynamics** --- by putting different dates on different commodities
+* **risk** --- by interpreting delivery  of goods as being contingent on states of the world whose realizations are described by a *known probability distribution*
 
 Let's illustrate how.
 
@@ -197,7 +221,7 @@ Let's illustrate how.
 Suppose that we want to represent a utility function
 
 $$
-  -.5 [(c_1 - b_1)^2 + \beta (c_2 - b_2)^2]
+  - \frac{1}{2} [(c_1 - b_1)^2 + \beta (c_2 - b_2)^2]
 $$
 
 where $\beta \in (0,1)$ is a discount factor, $c_1$ is consumption at time $1$ and $c_2$ is consumption at time 2.
@@ -232,7 +256,13 @@ The right side is the **discounted present value** of the consumer's endowment.
 
 The relative price  $\frac{p_1}{p_2}$ has units of time $2$ goods per unit of time $1$ goods.
 
-Consequently, $(1+r) = R \equiv \frac{p_1}{p_2}$ is the  **gross interest rate** and $r$ is the **net interest rate**.
+Consequently, 
+
+$$
+    (1+r) := R := \frac{p_1}{p_2}
+$$ 
+
+is the  **gross interest rate** and $r$ is the **net interest rate**.
 
 ### Risk and state-contingent claims
 
@@ -251,7 +281,7 @@ As an example, our consumer confronts **risk** meaning in particular that
 Before the outcome is realized, the the consumer's **expected utility** is
 
 $$
--.5 [\lambda (c_1 - b_1)^2 + (1-\lambda)(c_2 - b_2)^2]
+- \frac{1}{2} [\lambda (c_1 - b_1)^2 + (1-\lambda)(c_2 - b_2)^2]
 $$
 
 where
@@ -321,7 +351,7 @@ to maximize total revenue minus total costs.
 The firm's total  revenue equals $p^\top q$ and its total cost equals $C(q)$  where $C(q)$ is a total cost function
 
 $$
-C(q) = h ^\top q + .5 q^\top J q
+C(q) = h ^\top q +  \frac{1}{2} q^\top J q
 $$
 
 
@@ -345,7 +375,7 @@ $$
 where
 
 $$
-H = .5 (J + J')
+H =  \frac{1}{2} (J + J')
 $$
 
 An $n \times 1$ vector of marginal revenues for the price-taking firm is $\frac{\partial p^\top q}
@@ -419,7 +449,7 @@ Thus, instead of being a price-taker, a monopolist sets prices to maximize profi
 So the monopolist's total profits as a function of its  output $q$ is
 
 $$
-[\mu^{-1} \Pi^\top (b - \Pi q)]^\top  q - h^\top q - .5 q^\top J q
+[\mu^{-1} \Pi^\top (b - \Pi q)]^\top  q - h^\top q -  \frac{1}{2} q^\top J q
 $$ (eq:monopprof)
 
 After finding
@@ -427,7 +457,7 @@ first-order necessary conditions for maximizing monopoly profits with respect to
 and solving them for $q$, we find that the monopolist sets
 
 $$
-q = (H + 2 \mu^{-1} \Pi^T \Pi)^{-1} (\mu^{-1} \Pi^\top b - h)
+q = (H + 2 \mu^{-1} \Pi^\top \Pi)^{-1} (\mu^{-1} \Pi^\top b - h)
 $$ (eq:qmonop)
 
 We'll soon  see that a monopolist sets a **lower output** $q$ than does either a
@@ -437,7 +467,13 @@ We'll soon  see that a monopolist sets a **lower output** $q$ than does either a
  * a competitive equilibrium
 
 
-**Exercise:** Please  verify the monopolist's supply curve {eq}`eq:qmonop`.
+
+```{exercise}
+:label: sdm_ex3
+
+Please  verify the monopolist's supply curve {eq}`eq:qmonop`.
+
+```
 
 
 
@@ -447,19 +483,20 @@ We'll soon  see that a monopolist sets a **lower output** $q$ than does either a
 Our welfare maximization problem -- also sometimes called a  social planning  problem  -- is to choose $c$ to maximize
 
 $$
--.5 \mu^{-1}(\Pi c -b) ^\top (\Pi c -b )
+    - \frac{1}{2} \mu^{-1}(\Pi c -b) ^\top (\Pi c -b )
 $$
 
 minus the area under the inverse supply curve, namely,
 
 $$
-h c + .5 c^\top J c  .
+    h c +  \frac{1}{2} c^\top J c  
 $$
 
 So the welfare criterion is
 
 $$
--.5 \mu^{-1}(\Pi c -b) ^\top (\Pi c -b ) -h c - .5 c^\top J c
+    - \frac{1}{2} \mu^{-1}(\Pi c -b)^\top (\Pi c -b ) -h c 
+        -  \frac{1}{2} c^\top J c
 $$
 
 In this formulation, $\mu$ is a parameter that describes how the planner weights interests of outside suppliers and our representative consumer.
@@ -481,8 +518,4 @@ We can deduce a competitive equilibrium price vector from either
   * the inverse demand curve, or
 
   * the inverse supply curve
-
-<!-- #endregion -->
-
-<!-- #region -->
-
+  
