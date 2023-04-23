@@ -2,7 +2,16 @@
 
 ## Overview
 
-We study a setting with $n$ goods and $n$ corresponding prices.
+In a {doc}`previous lecture <intro_supply_demand>` we studied supply, demand
+and welfare in a market with just one good.
+
+In this lecture, we study a setting with $n$ goods and $n$ corresponding prices.
+
+We shall describe two classic welfare theorems:
+
+* **first welfare theorem:** for a  given a distribution of wealth among consumers,  a competitive  equilibrium  allocation of goods solves a  social planning problem.
+
+* **second welfare theorem:** An allocation of goods to consumers that solves a social planning problem can be supported by a competitive equilibrium with an appropriate initial distribution of  wealth.
 
 
 
