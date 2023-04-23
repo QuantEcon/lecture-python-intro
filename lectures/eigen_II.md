@@ -4,14 +4,16 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.14.4
+    jupytext_version: 1.14.5
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
   name: python3
 ---
 
-# Theorems of Nonnegative Matrices and Eigenvalues
++++ {"user_expressions": []}
+
+# Theorems of Nonnegative Matrices
 
 ```{index} single: Eigenvalues and Eigenvectors
 ```
@@ -47,6 +49,7 @@ import numpy as np
 from numpy.linalg import eig
 import scipy as sp
 import graphviz as gv
+import quantecon as qe
 ```
 
 ## Nonnegative Matrices
@@ -250,6 +253,8 @@ np.round(dominant_eigenvalue, 2)
 eig(B)
 ```
 
++++ {"user_expressions": []}
+
 Now let's verify the claims of the Perron-Frobenius theorem for the primitive matrix B:
 
 1. The dominant eigenvalue is real-valued and non-negative.
@@ -257,7 +262,7 @@ Now let's verify the claims of the Perron-Frobenius theorem for the primitive ma
 3. A non-negative and nonzero eigenvector is associated with the dominant eigenvalue.
 4. The eigenvector associated with the dominant eigenvalue is strictly positive.
 5. There exists no other positive eigenvector associated with the dominant eigenvalue.
-6. The inequality $|\lambda| < r(B)$ holds for all eigenvalues $\lambda$ of $B distinct from the dominant eigenvalue.
+6. The inequality $|\lambda| < r(B)$ holds for all eigenvalues $\lambda$ of $B$ distinct from the dominant eigenvalue.
 
 Furthermore, we can verify the convergence property (7) of the theorem:
 
@@ -345,11 +350,56 @@ print(np.linalg.matrix_power(B, 100))
 check_convergence(B)
 ```
 
-In fact, we have already seen Perron-Frobenius theorem in action before in {ref}`the exercise <mc1_ex_1>`.
+The result shows that the matrix is not primitive as it is not everywhere positive.
+
+These examples shows how the Perron-Frobenius theorem relates to the eigenvalues and eigenvectors of positive matrices and the convergence of the power of matrices.
+
+In fact we have already seen the theorem in action before in {ref}`the markov chain lecture <mc1_ex_1>`.
+
+We are now prepared to bridge the languages spoken in the two lectures. 
+
+A primitive matrix is both irreducible (or strongly connected in the language of graph) and aperiodic.
+
+So Perron-Frobenius threorem explains why both Imam and Temple matrix and Hamilton matrix converge to a stationary distribution, which is the perron projection of the two matrices
+
+```{code-cell} ipython3
+P = np.array([[0.68, 0.12, 0.20],
+              [0.50, 0.24, 0.26],
+              [0.36, 0.18, 0.46]])
+
+print(compute_perron_projection(P)[0])
+```
+
+```{code-cell} ipython3
+mc = qe.MarkovChain(P)
+ψ_star = mc.stationary_distributions[0]
+ψ_star
+```
+
+```{code-cell} ipython3
+P_hamilton = np.array([[0.971, 0.029, 0.000],
+                       [0.145, 0.778, 0.077],
+                       [0.000, 0.508, 0.492]])
+
+print(compute_perron_projection(P_hamilton)[0])
+```
+
+```{code-cell} ipython3
+mc = qe.MarkovChain(P_hamilton)
+ψ_star = mc.stationary_distributions[0]
+ψ_star
+```
+
+We can also verify other properties hinted by Perron-Frobenius in these stochastic matrices.
+
++++
+
+Other than the stationary distribution of the Markov chain process, we can also derive the convergence rate towards the stationary distribution. 
 
 In the exercise, we stated that the convegence rate is determined by the spectral gap, the difference between the largest and the second largest eigenvalue.
 
-This can be proved using Perron-Frobenius theorem.
+This can be proven using the results we learnt before.
+
 
 
 

@@ -1140,9 +1140,9 @@ Since the matrix is everywhere positive, there is a unique stationary distributi
 One simple way to calculate the stationary distribution is to take the power of the transition matrix as we have shown before
 
 ```{code-cell} ipython3
-P = [[0.68, 0.12, 0.20],
-     [0.50, 0.24, 0.26],
-     [0.36, 0.18, 0.46]]
+P = np.array([[0.68, 0.12, 0.20],
+              [0.50, 0.24, 0.26],
+              [0.36, 0.18, 0.46]])
 P_power = np.linalg.matrix_power(P, 20)
 P_power
 ```
