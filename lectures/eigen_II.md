@@ -306,7 +306,7 @@ for A in [A1, A2]:
     # Loop over n_list and compute the matrix power A^n / r^n
     for n in n_list:
         # Compute A^n / r^n using numpy.linalg.matrix_power function
-        An_rn = np.linalg.matrix_power(A, n) / r**n
+        An_rn = np.linalg.matrix_power(A/r, n)
 
         # Compute the difference between A^n / r^n and the Perron projection matrix
         diff = np.abs(An_rn - P)
