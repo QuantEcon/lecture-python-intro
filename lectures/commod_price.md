@@ -9,6 +9,14 @@ kernelspec:
   name: python3
 ---
 
+For this lecture we need the `yfinance` library.
+
+```{code-cell} ipython3
+:tags: [hide-output]
+!pip install yfinance 
+```
+
+
 # Commodity Prices
 
 For more than half of all countries around the globe, [commodities](https://en.wikipedia.org/wiki/Commodity) account for [the majority of total exports](https://unctad.org/publication/commodities-and-development-report-2019).
@@ -26,9 +34,6 @@ The figure below shows the price of cotton in USD since the start of 2016.
 
 import yfinance as yf
 import matplotlib.pyplot as plt
-#from pandas.plotting import register_matplotlib_converters
-#register_matplotlib_converters()
-
 s = yf.download('CT=F', '2016-1-1', '2023-4-1')['Adj Close']
 ```
 
