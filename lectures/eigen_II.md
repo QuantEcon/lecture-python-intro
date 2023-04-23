@@ -44,6 +44,7 @@ We will use the following imports:
 ```{code-cell} ipython3
 import matplotlib.pyplot as plt
 import numpy as np
+from numpy.linalg import eig
 import scipy as sp
 import graphviz as gv
 ```
@@ -108,9 +109,9 @@ Left eigenvectors will play important roles in what follows, including that of s
 
 We will talk more about this later, but for now, let's define left eigenvectors.
 
-A vector $\varepsilon$ is called a left eigenvector of $A$ if $\varepsilon$ is an eigenvector of $A^T$.
+A vector $w$ is called a left eigenvector of $A$ if $w$ is an eigenvector of $A^T$.
 
-In other words, if $\varepsilon$ is a left eigenvector of matrix A, then $A^T \varepsilon = \lambda \varepsilon$, where $\lambda$ is the eigenvalue associated with the left eigenvector $v$.
+In other words, if $w$ is a left eigenvector of matrix A, then $A^T w = \lambda w$, where $\lambda$ is the eigenvalue associated with the left eigenvector $v$.
 
 This hints at how to compute left eigenvectors
 
@@ -119,19 +120,19 @@ A = np.array([[3, 2],
               [1, 4]])
 
 # Compute right eigenvectors and eigenvalues
-eigvals_r, e = np.linalg.eig(A)
+λ_r, v = eig(A)
 
 # Compute left eigenvectors and eigenvalues
-eigvals_l, ε = np.linalg.eig(A.T)
+λ_l, w = eig(A.T)
 
 print("Right Eigenvalues:")
-print(eigvals_r)
+print(λ_r)
 print("\nRight Eigenvectors:")
-print(e)
+print(v)
 print("\nLeft Eigenvalues:")
-print(eigvals_l)
+print(λ_l)
 print("\nLeft Eigenvectors:")
-print(ε)
+print(w)
 ```
 
 We can use `scipy.linalg.eig` with argument `left=True` to find left eigenvectors directly
@@ -140,18 +141,18 @@ We can use `scipy.linalg.eig` with argument `left=True` to find left eigenvector
 eigenvals, ε, e = sp.linalg.eig(A, left=True)
 
 print("Right Eigenvalues:")
-print(eigvals_r)
+print(λ_r)
 print("\nRight Eigenvectors:")
-print(e)
+print(v)
 print("\nLeft Eigenvalues:")
-print(eigvals_l)
+print(λ_l)
 print("\nLeft Eigenvectors:")
-print(ε)
+print(w)
 ```
 
 Note that the eigenvalues for both left and right eigenvectors are the same, but the eigenvectors themselves are different.
 
-We can then take transpose to obtain $A^T \varepsilon = \lambda \varepsilon$ and obtain $\varepsilon^T A= \lambda \varepsilon^T$.
+We can then take transpose to obtain $A^T w = \lambda w$ and obtain $w^T A= \lambda w^T$.
 
 This is a more common expression and where the name left eigenvectors originates.
 
@@ -182,8 +183,8 @@ Moreover if $A$ is also irreducible then,
 If $A$ is primitive then,
 
 6. the inequality $|\lambda| \leq r(A)$ is strict for all eigenvalues $\lambda$ of $A$ distinct from $r(A)$, and
-7. with $e$ and $\varepsilon$ normalized so that the inner product of $\varepsilon$ and  $e = 1$, we have
-$ r(A)^{-m} A^m$ converges to $e \varepsilon^{\top}$ when $m \rightarrow \infty$
+7. with $v$ and $w$ normalized so that the inner product of $w$ and  $v = 1$, we have
+$ r(A)^{-m} A^m$ converges to $v w^{\top}$ when $m \rightarrow \infty$
 ```
 
 (This is a relatively simple version of the theorem --- for more details see
@@ -208,7 +209,7 @@ A = np.array([[0, 1, 0],
 We can compute the dominant eigenvalue and the corresponding eigenvector
 
 ```{code-cell} ipython3
-np.linalg.eig(A)
+eig(A)
 ```
 
 Now we can go through our checklist to verify the claims of the Perron-Frobenius theorem for the irreducible matrix A:
@@ -246,7 +247,7 @@ np.round(dominant_eigenvalue, 2)
 ```
 
 ```{code-cell} ipython3
-np.linalg.eig(B)
+eig(B)
 ```
 
 Now let's verify the claims of the Perron-Frobenius theorem for the primitive matrix B:
@@ -261,86 +262,96 @@ Now let's verify the claims of the Perron-Frobenius theorem for the primitive ma
 Furthermore, we can verify the convergence property (7) of the theorem:
 
 ```{code-cell} ipython3
-import numpy as np
+def compute_perron_projection(M):
 
-def compute_perron_projection(A):
-    # Compute the eigenvalues and right eigenvectors of A
-    eigval, v = np.linalg.eig(A)
-    eigval, w = np.linalg.eig(A.T)
+    eigval, v = eig(M)
+    eigval, w = eig(M.T)
 
     r = np.max(eigval)
 
-    # Find the index of the Perron eigenvalue (the largest one)
+    # Find the index of the Perron eigenvalue
     i = np.argmax(eigval)
 
-    # Get the Perron eigenvalue and its corresponding right eigenvector
-    v_col = v[:, i].reshape(-1, 1)
-    w_col = w[:, i].reshape(-1, 1)
+    # Get the Perron eigenvectors
+    v_P = v[:, i].reshape(-1, 1)
+    w_P = w[:, i].reshape(-1, 1)
 
-    # Normalize the left and right eigenvectors so that w^T * v = 1
-    norm_factor = w_col.T @ v_col
-    v_norm = v_col / norm_factor
-    w_norm = w_col
+    # Normalize the left and right eigenvectors
+    norm_factor = w_P.T @ v_P
+    v_norm = v_P / norm_factor
 
-    # Compute the Perron projection matrix by multiplying the right eigenvector by the transpose of the left eigenvector
-    P = v_norm @ w_norm.T
+    # Compute the Perron projection matrix
+    P = v_norm @ w_P.T
     return P, r
 
-A1 = np.array([[0.971, 0.029, 0.1],
-               [0.145, 0.778, 0.077],
-               [0.1, 0.508, 0.492]])
-
-A2 = np.array([[1, 2],
-               [1, 4]])
-
-for A in [A1, A2]:
-    P, r = compute_perron_projection(A)
-    print("Matrix A:")
-    print(A)
-    print("Perron projection matrix:")
+def check_convergence(M):
+    P, r = compute_perron_projection(M)
+    print("Perron projection:")
     print(P)
 
     # Define a list of values for n
     n_list = [1, 10, 100, 1000, 10000]
 
-    # Loop over n_list and compute the matrix power A^n / r^n
     for n in n_list:
-        # Compute A^n / r^n using numpy.linalg.matrix_power function
-        An_rn = np.linalg.matrix_power(A/r, n)
+        
+        # Compute (A/r)^n
+        M_n = np.linalg.matrix_power(M/r, n)
 
-        # Compute the difference between A^n / r^n and the Perron projection matrix
-        diff = np.abs(An_rn - P)
+        # Compute the difference between A^n / r^n and the Perron projection
+        diff = np.abs(M_n - P)
 
-        # Calculate the Frobenius norm of the difference matrix
-        frobenius_norm = np.linalg.norm(diff, 'fro')
+        # Calculate the norm of the difference matrix
+        diff_norm = np.linalg.norm(diff, 'fro')
+        print(f"n = {n}, norm of the difference: {diff_norm:.10f}")
 
-        # Print the Frobenius norm for the current value of n
-        print(f"n = {n}, Frobenius norm of the difference: {frobenius_norm:.10f}")
+
+A1 = np.array([[1, 2],
+               [1, 4]])
+
+A2 = np.array([[0, 1, 1], 
+              [1, 0, 1], 
+              [1, 1, 0]])
+
+A3 = np.array([[0.971, 0.029, 0.1, 1],
+               [0.145, 0.778, 0.077, 0.59],
+               [0.1, 0.508, 0.492, 1.12],
+               [0.2, 0.8, 0.71, 0.95]])
+
+for M in A1, A2, A3:
+    print("Matrix:")
+    print(M)
+    check_convergence(M)
+    print()
+    print("-"*36)
+    print()
 ```
 
-```{math}
-P
-= \left(
-\begin{array}{cc}
-    1 - \alpha & \alpha \\
-    \beta & 1 - \beta
-\end{array}
-  \right) \quad \text{where} \quad \alpha, \beta \in \left[0,1 \right]
+The convergence is not observed in cases of non-primitive matrices.
+
+Let's go through an example
+
+```{code-cell} ipython3
+B = np.array([[0, 1, 1], 
+              [1, 0, 0], 
+              [1, 0, 0]])
+
+# This shows that the matrix is not primitive
+# as it is not everywhere positive
+print("Matrix:")
+print(B)
+print("100th power of matrix:")
+print(np.linalg.matrix_power(B, 100))
+
+check_convergence(B)
 ```
-
-Calculating the eigenvalues and eigenvectors of $P$ by hand we find that the dominant eigenvalue is $1$ ($\lambda_1 = 1$), and ($\lambda_2 = 1 - \alpha - \beta$).
-
-In this case, $r(A) = 1$.
-
-As $A \geq 0$, we can apply the first part of the theorem to say that r(A) is an eigenvalue.
-
-This verifies the first part of the theorem.
 
 In fact, we have already seen Perron-Frobenius theorem in action before in {ref}`the exercise <mc1_ex_1>`.
 
 In the exercise, we stated that the convegence rate is determined by the spectral gap, the difference between the largest and the second largest eigenvalue.
 
 This can be proved using Perron-Frobenius theorem.
+
+
 
 (la_neumann)=
 ## The Neumann Series Lemma 

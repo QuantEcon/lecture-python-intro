@@ -873,10 +873,9 @@ We start by looking into the distance between the eigenvector approximation and 
 ---
 mystnb:
   figure:
-    caption: "Power iteration"
+    caption: Power iteration
     name: pow-dist
 ---
-
 # Define a matrix A
 A = np.array([[1, 0, 3], 
               [0, 2, 0], 
@@ -914,10 +913,9 @@ Then we can look at the trajectory of the eigenvector approximation
 ---
 mystnb:
   figure:
-    caption: "Power iteration trajectory"
+    caption: Power iteration trajectory
     name: pow-trajectory
 ---
-
 
 # Get the eigenvectors of matrix A
 eigenvector = np.linalg.eig(A)[1][:, 0]
@@ -984,10 +982,9 @@ Let's use a vector field to visualize the transformation brought by A.
 ---
 mystnb:
   figure:
-    caption: "Convergence towards eigenvectors"
+    caption: Convergence towards eigenvectors
     name: eigen-conv
 ---
-
 # Create a grid of points
 x, y = np.meshgrid(np.linspace(-5, 5, 15), 
                 np.linspace(-5, 5, 20))
@@ -1053,10 +1050,9 @@ Here is one solution
 ---
 mystnb:
   figure:
-    caption: "Vector fields of the three matrices"
+    caption: Vector fields of the three matrices
     name: vector-field
 ---
-
 figure, ax = plt.subplots(1,3, figsize = (15, 5))
 A = np.array([[sqrt(3) + 1, -2],
               [1, sqrt(3) - 1]])
@@ -1133,10 +1129,9 @@ We can try to plot the complex plane for one of the matrices using `Arrow3D` cla
 ---
 mystnb:
   figure:
-    caption: "3D plot of the vector field"
+    caption: 3D plot of the vector field
     name: 3d-vector-field
 ---
-
 class Arrow3D(FancyArrowPatch):
     def __init__(self, xs, ys, zs, *args, **kwargs):
         super().__init__((0,0), (0,0), *args, **kwargs)
