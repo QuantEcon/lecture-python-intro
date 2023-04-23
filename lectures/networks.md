@@ -23,7 +23,7 @@ to be installed on your computer. Installation instructions for graphviz can be 
 ```{code-cell} ipython3
 :tags: [hide-output]
 
-pip install quantecon-book-networks pandas-datareader graphviz
+!pip install quantecon-book-networks pandas-datareader graphviz
 ```
 
 
