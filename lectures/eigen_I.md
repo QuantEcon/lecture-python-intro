@@ -916,7 +916,6 @@ mystnb:
     caption: Power iteration trajectory
     name: pow-trajectory
 ---
-
 # Get the eigenvectors of matrix A
 eigenvector = np.linalg.eig(A)[1][:, 0]
 

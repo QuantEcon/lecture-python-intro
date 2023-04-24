@@ -4,7 +4,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.14.5
+    jupytext_version: 1.14.4
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
@@ -13,9 +13,9 @@ kernelspec:
 
 +++ {"user_expressions": []}
 
-# Theorems of Nonnegative Matrices
+# Spectral Theory
 
-```{index} single: Eigenvalues and Eigenvectors
+```{index} single: Spectral Theory
 ```
 
 ```{contents} Contents
@@ -37,7 +37,7 @@ to be installed on your computer. Installation instructions for graphviz can be 
 [here](https://www.graphviz.org/download/) 
 ```
 
-In this lecture we will begin with the basic properties of nonnegative matrices.
+In this lecture we will begin with the foundational concepts in spectral theory.
 
 Then we will explore the Perron-Frobenius Theorem and the Neumann Series Lemma, and connect them to applications in Markov chains and networks. 
 
@@ -165,11 +165,11 @@ This is a more common expression and where the name left eigenvectors originates
 For a nonnegative matrix $A$ the behavior of $A^k$ as $k \to \infty$ is controlled by the eigenvalue with the largest
 absolute value, often called the **dominant eigenvalue**.
 
-For a matrix $A$, the Perron-Frobenius theorem characterizes certain
+For a matrix $A$, the Perron-Frobenius Theorem characterizes certain
 properties of the dominant eigenvalue and its corresponding eigenvector when
 $A$ is a nonnegative square matrix.
 
-```{prf:theorem} Perron-Frobenius Theorem
+```{prf:Theorem} Perron-Frobenius Theorem
 :label: perron-frobenius
 
 If a matrix $A \geq 0$ then,
@@ -185,13 +185,13 @@ Moreover if $A$ is also irreducible then,
 
 If $A$ is primitive then,
 
-6. the inequality $|\lambda| \leq r(A)$ is strict for all eigenvalues $\lambda$ of $A$ distinct from $r(A)$, and
+6. the inequality $|\lambda| \leq r(A)$ is **strict** for all eigenvalues $\lambda$ of $A$ distinct from $r(A)$, and
 7. with $v$ and $w$ normalized so that the inner product of $w$ and  $v = 1$, we have
 $ r(A)^{-m} A^m$ converges to $v w^{\top}$ when $m \rightarrow \infty$
 ```
 
 (This is a relatively simple version of the theorem --- for more details see
-[here](https://en.wikipedia.org/wiki/Perron%E2%80%93Frobenius_theorem)).
+[here](https://en.wikipedia.org/wiki/Perron%E2%80%93Frobenius_Theorem)).
 
 We will see applications of the theorem below.
 
@@ -215,7 +215,7 @@ We can compute the dominant eigenvalue and the corresponding eigenvector
 eig(A)
 ```
 
-Now we can go through our checklist to verify the claims of the Perron-Frobenius theorem for the irreducible matrix A:
+Now we can go through our checklist to verify the claims of the Perron-Frobenius Theorem for the irreducible matrix A:
 
 1. The dominant eigenvalue is real-valued and non-negative.
 2. All other eigenvalues have absolute values less than or equal to the dominant eigenvalue.
@@ -255,7 +255,7 @@ eig(B)
 
 +++ {"user_expressions": []}
 
-Now let's verify the claims of the Perron-Frobenius theorem for the primitive matrix B:
+Now let's verify the claims of the Perron-Frobenius Theorem for the primitive matrix B:
 
 1. The dominant eigenvalue is real-valued and non-negative.
 2. All other eigenvalues have absolute values strictly less than the dominant eigenvalue.
@@ -352,7 +352,7 @@ check_convergence(B)
 
 The result shows that the matrix is not primitive as it is not everywhere positive.
 
-These examples shows how the Perron-Frobenius theorem relates to the eigenvalues and eigenvectors of positive matrices and the convergence of the power of matrices.
+These examples shows how the Perron-Frobenius Theorem relates to the eigenvalues and eigenvectors of positive matrices and the convergence of the power of matrices.
 
 In fact we have already seen the theorem in action before in {ref}`the markov chain lecture <mc1_ex_1>`.
 
@@ -394,13 +394,43 @@ We can also verify other properties hinted by Perron-Frobenius in these stochast
 
 +++
 
-Other than the stationary distribution of the Markov chain process, we can also derive the convergence rate towards the stationary distribution. 
+Another example on how spectral theorem governs the dynamics of positive matrices is the relationship between convergence gap and convergence rate.
 
-In the exercise, we stated that the convegence rate is determined by the spectral gap, the difference between the largest and the second largest eigenvalue.
+In the {ref}`exercise<mc1_ex_1>`, we stated that the convegence rate is determined by the spectral gap, the difference between the largest and the second largest eigenvalue.
 
-This can be proven using the results we learnt before.
+This can be proven using what we have learnt here.
+
+With Markov model $M$ with state space $S$ and transition matrix $P$, we can write $P^t$ as
+
+$$
+P^t=\sum_{i=1}^{n-1} \lambda_i^t v_i w_i^{\top}+\mathbb{1} \psi^*,
+$$
+
+This is proven in {cite}`<sargent2023economic>` with a nice discussion [here](https://math.stackexchange.com/questions/2433997/can-all-matrices-be-decomposed-as-product-of-right-and-left-eigenvector).
+
+In the formula $\lambda_i$ is an eigenvalue of $P$ and $v_i$ and $w_i$ are the right and left eigenvectors corresponding to $\lambda_i$. 
+
+Premultiplying $P^t$ by arbitrary $\psi \in \mathscr{D}(S)$ and rearranging now gives
+$$
+\psi P^t-\psi^*=\sum_{i=1}^{n-1} \lambda_i^t \psi v_i w_i^{\top}
+$$
+
+Recall that eigenvalues are ordered from smallest to largest from $i = 1 ... n$. 
+
+As we have seen, the largest eigenvalue for a primitive stochastic matrix is one.
+
+(this can be proven using [Gershgorin Circle Theorem](https://en.wikipedia.org/wiki/Gershgorin_circle_theorem), but it is out of the scope of this lecture)
+
+So by the statement (6) of Perron-Frobenius Theorem, $\lambda_i<1$ for all $i<n$, and $\lambda_n=1$ when $P$ is primitive (strongly connected and aperiodic). 
 
 
+Hence, after taking the Euclidean norm deviation, we obtain
+
+$$
+\left\|\psi P^t-\psi^*\right\|=O\left(\eta^t\right) \quad \text { where } \quad \eta:=\left|\lambda_{n-1}\right|<1
+$$
+
+Thus, the rate of convergence is governed by the modulus of the second largest eigenvalue.
 
 
 (la_neumann)=
@@ -454,7 +484,7 @@ The following is a fundamental result in functional analysis that generalizes
 {eq}`gp_sum` to a multivariate case.
 
 (neumann_series_lemma)=
-```{prf:theorem} Neumann Series Lemma
+```{prf:Theorem} Neumann Series Lemma
 :label: neumann_series_lemma
 
 Let $A$ be a square matrix and let $A^k$ be the $k$-th power of $A$.
@@ -464,7 +494,7 @@ Let $r(A)$ be the dominant eigenvector or as it is commonly called the *spectral
 * $\{\lambda_i\}_i$ is the set of eigenvalues of $A$ and
 * $|\lambda_i|$ is the modulus of the complex number $\lambda_i$
 
-Neumann's theorem states the following: If $r(A) < 1$, then $I - A$ is invertible, and
+Neumann's Theorem states the following: If $r(A) < 1$, then $I - A$ is invertible, and
 
 $$
 (I - A)^{-1} = \sum_{k=0}^{\infty} A^k
