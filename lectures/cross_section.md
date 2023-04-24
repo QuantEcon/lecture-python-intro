@@ -22,9 +22,7 @@ In addition to what's in Anaconda, this lecture will need the following librarie
 ```{code-cell} ipython3
 :tags: [hide-output]
 
-!pip install quantecon
-!pip install --upgrade yfinance
-!pip install pandas_datareader
+!pip install --upgrade yfinance quantecon pandas_datareader statsmodels interpolation
 ```
 
 We run the following code to prepare for the lecture:
@@ -270,7 +268,7 @@ distribution](https://en.wikipedia.org/wiki/Cauchy_distribution), which is
 heavy-tailed.
 
 (light_heavy_fig1)=
-```{figure} /_static/lecture_specific/heavy_tails/light_heavy_fig1.png
+```{figure} /_static/lecture_specific/cross_section/light_heavy_fig1.png
 
 ```
 
@@ -461,6 +459,51 @@ plt.show()
 ```
 
 
+## Pareto Tails
+
+TODO Hi John I added this part with equations you cited below from lecture heavy_tails
+
+One specific class of heavy-tailed distributions has been found repeatedly in
+economic and social phenomena: the class of so-called power laws.
+
+Specifically, given $\alpha > 0$, a nonnegative random variable $X$ is said to
+have a **Pareto tail** with **tail index** $\alpha$ if
+
+```{math}
+:label: plrt
+
+\lim_{x \to \infty} x^\alpha \, \mathbb P\{X > x\} = c.
+```
+
+The limit {eq}`plrt` implies the existence of positive constants $b$ and $\bar x$ such that $\mathbb P\{X > x\} \geq b x^{- \alpha}$ whenever $x \geq \bar x$.
+
+The implication is that $\mathbb P\{X > x\}$ converges to zero no faster than $x^{-\alpha}$.
+
+In some sources, a random variable obeying {eq}`plrt` is said to have a **power law tail**.
+
+One example is the [Pareto distribution](https://en.wikipedia.org/wiki/Pareto_distribution). 
+
+If $X$ has the Pareto distribution, then there are positive constants $\bar x$
+and $\alpha$ such that
+
+```{math}
+:label: pareto
+
+\mathbb P\{X > x\} =
+\begin{cases}
+    \left( \bar x/x \right)^{\alpha}
+        & \text{ if } x \geq \bar x
+    \\
+    1
+        & \text{ if } x < \bar x
+\end{cases}
+```
+
+It is easy to see that $\mathbb P\{X > x\}$ satisfies {eq}`plrt`.
+
+Thus, in line with the terminology, Pareto distributed random variables have a Pareto tail.
+
+
 ## Exercises
 
 ```{exercise}
@@ -495,6 +538,11 @@ Use `np.random.seed(11)` to set the seed.
 
 ```{exercise}
 :label: ht_ex4
+
+(rank_size_fig1)=
+```{figure} /_static/lecture_specific/cross_section/rank_size_fig1.png
+
+```
 
 Replicate the rank-size plot figure {ref}`presented above <rank_size_fig1>`.
 
@@ -533,6 +581,9 @@ Present discounted value of tax revenue will be estimated by
 1. multiplying by the tax rate, and
 1. summing the results with discounting to obtain present value.
 
+If $X$ has the Pareto distribution, then there are positive constants $\bar x$
+and $\alpha$ such that
+
 The Pareto distribution is assumed to take the form {eq}`pareto` with $\bar x = 1$ and $\alpha = 1.05$.
 
 (The value the tail index $\alpha$ is plausible given the data {cite}`gabaix2016power`.)
@@ -555,7 +606,6 @@ try to track individual firms given the current distribution.  We will discuss
 firm dynamics in later lectures.)
 ```
 
-## Solutions
 
 ```{solution-start} ht_ex1
 :class: dropdown
@@ -596,6 +646,7 @@ plt.show()
 
 ```{solution-start} ht_ex2
 :class: dropdown
+```
 
 Let $X$ have a Pareto tail with tail index $\alpha$ and let $F$ be its cdf.
 
@@ -619,8 +670,6 @@ $$
 We know that $\int_{\bar x}^\infty x^{r-\alpha-1} x = \infty$ whenever $r - \alpha - 1 \geq -1$.
 
 Since $r \geq \alpha$, we have $\mathbb E X^r = \infty$.
-```
-
 
 ```{solution-end}
 ```
