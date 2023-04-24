@@ -503,6 +503,10 @@ It is easy to see that $\mathbb P\{X > x\}$ satisfies {eq}`plrt`.
 
 Thus, in line with the terminology, Pareto distributed random variables have a Pareto tail.
 
+(rank_size_fig1)=
+```{figure} /_static/lecture_specific/cross_section/rank_size_fig1.png
+
+```
 
 ## Exercises
 
@@ -539,10 +543,6 @@ Use `np.random.seed(11)` to set the seed.
 ```{exercise}
 :label: ht_ex4
 
-(rank_size_fig1)=
-```{figure} /_static/lecture_specific/cross_section/rank_size_fig1.png
-
-```
 
 Replicate the rank-size plot figure {ref}`presented above <rank_size_fig1>`.
 
