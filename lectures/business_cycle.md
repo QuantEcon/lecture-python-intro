@@ -17,12 +17,13 @@ kernelspec:
 
 ## Overview
 
-In this lecture we study business cycles, which 
-are fluctuations in economic activity over time.
+In this lecture we study business cycles
 
-These fluctuations can be observed in the form of expansions (booms), contractions (recessions), and recoveries.
+Business cycles are fluctuations in economic activity over time.
 
-We will look into a series of economic indicators to visualize the expansions and contractions of economies from the 1960s to the recent pandemic using [World Bank](https://documents.worldbank.org/en/publication/documents-reports/api) and [FRED](https://fred.stlouisfed.org/) data.
+These fluctuations are in the form of expansions (booms), contractions (recessions), and recoveries.
+
+We will look into a series of economic indicators to visualize the expansions and contractions of economies using [World Bank](https://documents.worldbank.org/en/publication/documents-reports/api) and [FRED](https://fred.stlouisfed.org/) data.
 
 In addition to those installed by Anaconda, this lecture requires
 libraries to obtain World Bank and FRED data:
@@ -50,7 +51,8 @@ import pandas_datareader.data as web
 :tags: [hide-input]
 
 # Set Graphical Parameters
-cycler = plt.cycler(linestyle=['-', '-.', '--', ':'], color=['#377eb8', '#ff7f00', '#4daf4a', '#ff334f'])
+cycler = plt.cycler(linestyle=['-', '-.', '--', ':'], 
+        color=['#377eb8', '#ff7f00', '#4daf4a', '#ff334f'])
 plt.rc('axes', prop_cycle=cycler)
 ```
 
@@ -87,7 +89,7 @@ gdp_growth
 
 +++ {"user_expressions": []}
 
-We can learn more about the data by checking the series metadata.
+We can the metadata to learn more about the series.
 
 ```{code-cell} ipython3
 :tags: [hide-output]
@@ -115,48 +117,45 @@ gdp_growth = gdp_growth.set_index('Country')
 gdp_growth.columns = gdp_growth.columns.str.replace('YR', '').astype(int)
 ```
 
-Here's a first look at the data, which measures the GDP growth rate in
-percentages.
+Here's a first look at the data
 
 ```{code-cell} ipython3
 gdp_growth
 ```
 
-+++ {"user_expressions": []}
-
-The cell below contains a function to generate plots for individual countries.
+Now we can write a function to generate plots for individual countries taking into account the recessions.
 
 ```{code-cell} ipython3
 :tags: [hide-input]
 
 def plot_series(data, country, ylabel, 
-                    txt_pos, ax, g_params,
-                    b_params, t_params, ylim=15, baseline=0):
+                txt_pos, ax, g_params,
+                b_params, t_params, ylim=15, baseline=0):
     """
     Plots a time series with recessions highlighted. 
 
     Parameters
     ----------
-    data : pandas.DataFrame
-        DataFrame with the data to plot.
-    country : pandas.Series
-        Series with the data to plot.
+    data : pd.DataFrame
+        Data to plot
+    country : str
+        Name of the country to plot
     ylabel : str
-        Label of the y-axis.
+        Label of the y-axis
     txt_pos : float
-        Position of the recession labels.
-    ax : matplotlib.axes.Axes
-        Axes on which to plot.
+        Position of the recession labels
+    y_lim : float
+        Limit of the y-axis
+    ax : matplotlib.axes._subplots.AxesSubplot
+        Axes to plot on
     g_params : dict
-        Dictionary with the parameters for the plot.
+        Parameters for the graph
     b_params : dict
-        Dictionary with the parameters for the recessions.
+        Parameters for the recession highlights
     t_params : dict
-        Dictionary with the parameters for the text.
-    ylim : float, optional
-        Limits of the y-axis.
+        Parameters for the recession labels
     baseline : float, optional
-        Baseline for the plot.
+        Dashed baseline on the plot, by default 0
     
     Returns
     -------
@@ -183,6 +182,8 @@ def plot_series(data, country, ylabel,
             'GFC\n(2008)', **t_params) 
     ax.text(2020, ylim + ylim*txt_pos,
             'Covid-19\n(2020)', **t_params)
+
+    # Add a baseline for reference
     if baseline != None:
         ax.axhline(y=baseline, 
                    color='black', 
@@ -248,7 +249,6 @@ mystnb:
 fig, ax = plt.subplots()
 
 country = 'United Kingdom'
-title_height = 0.1
 plot_series(gdp_growth, country, 
             ylabel, 0.1, ax, 
             g_params, b_params, t_params)
@@ -293,7 +293,6 @@ mystnb:
 fig, ax = plt.subplots()
 
 country = 'Greece'
-title = ' Greece (GDP growth rate %)'
 plot_series(gdp_growth, country, 
             ylabel, 0.1, ax, 
             g_params, b_params, t_params)
@@ -350,7 +349,7 @@ end_date = datetime.datetime(1942, 6, 1)
 unrate_history = web.DataReader('M0892AUSM156SNBR', 
                     'fred', start_date,end_date)
 unrate_history.rename(columns={'M0892AUSM156SNBR': 'UNRATE'}, 
-                        inplace=True)
+                inplace=True)
 
 start_date = datetime.datetime(1948, 1, 1)
 end_date = datetime.datetime(2022, 12, 31)
@@ -466,7 +465,7 @@ def plot_comparison(data, countries,
     ylabel : str
         Label of the y-axis
     txt_pos : float
-        Position of the label position
+        Position of the recession labels
     y_lim : float
         Limit of the y-axis
     ax : matplotlib.axes._subplots.AxesSubplot
@@ -474,11 +473,16 @@ def plot_comparison(data, countries,
     g_params : dict
         Parameters for the graph
     b_params : dict
-        Parameters for the recession highlight
+        Parameters for the recession highlights
     t_params : dict
-        Parameters for the recession title
+        Parameters for the recession labels
     baseline : float, optional
-        Baseline to plot, by default 0
+        Dashed baseline on the plot, by default 0
+    
+    Returns
+    -------
+    ax : matplotlib.axes.Axes
+        Axes with the plot.
     """
     
     # Allow the function to go through more than one series
@@ -546,7 +550,6 @@ tags: [hide-input]
 fig, ax = plt.subplots()
 countries = ['United Kingdom', 'United States', 'Germany', 'Japan']
 ylabel = 'GDP growth rate (%)'
-title_height = 0.1
 plot_comparison(gdp_growth.loc[countries, 1962:], 
                 countries, ylabel,
                 0.1, 20, ax, 
@@ -576,19 +579,20 @@ plt.show()
 
 +++ {"user_expressions": []}
 
-On comparison of GDP growth rates between developed and developing
-economies, we find that business cycles are becoming more synchronized in 21st-century recessions.
+The comparison of GDP growth rates above shows that 
+business cycles are becoming more synchronized in 21st-century recessions.
 
 However, emerging and less developed economies often experience more volatile
 changes throughout the economic cycles. 
 
-Although we see synchronization in GDP growth as a general trend, the experience of individual countries during
+Despite of the synchronization in GDP growth, the experience of individual countries during
 the recession often differs. 
 
 We use unemployment rate and the recovery of labor market conditions
 as another example.
 
-Here we compare the unemployment rate of the United States, United Kingdom, Japan, and France
+Here we compare the unemployment rate of the United States, 
+United Kingdom, Japan, and France
 
 ```{code-cell} ipython3
 ---
@@ -640,11 +644,11 @@ income and the overall performance of the economy in the future.
 One widely cited indicator for consumer confidence is the [consumer sentiment index](https://fred.stlouisfed.org/series/UMCSENT) published by the University
 of Michigan.
 
-We find that consumer sentiment remains high during periods of expansion, but there are significant drops before recession hits.
+Consumer sentiment remains high during during expansion, but there are significant drops before recession hits.
 
 There is also a clear negative correlation between consumer sentiment and [core consumer price index](https://fred.stlouisfed.org/series/CPILFESL).
 
-This trend is more significant in the period of [stagflation](https://en.wikipedia.org/wiki/Stagflation).
+This trend is more significant in the during [stagflation](https://en.wikipedia.org/wiki/Stagflation).
 
 When the price of consumer commodities rises, consumer confidence diminishes.
 
@@ -720,12 +724,14 @@ Consumers' confidence often influences their consumption pattern.
 
 This often manifests on the production side.
 
-We find that real industrial output is highly correlated with
+The real industrial output is highly correlated with
 recessions in the economy. 
 
-However, it is not a leading indicator, as the peak of contraction in production delays compared to consumer confidence and inflation.
+However, it is not a leading indicator, as the peak of contraction in production 
+delays compared to consumer confidence and inflation.
 
-The following graph shows the real industrial output change from the previous year from 1919 to 2022 in the United States
+We plot the real industrial output change from the previous year 
+from 1919 to 2022 in the US to show this trend
 
 ```{code-cell} ipython3
 ---
@@ -773,7 +779,8 @@ activity, rising unemployment, and gloomy expectations for the future.
 
 One example is domestic credit to the private sector by banks in the UK.
 
-The following graph shows the domestic credit to the private sector as a percentage of GDP by banks from 1970 to 2022 in the United Kingdom
+The following graph shows the domestic credit to the private sector 
+as a percentage of GDP by banks from 1970 to 2022 in the UK
 
 ```{code-cell} ipython3
 ---
@@ -801,7 +808,7 @@ plt.show()
 
 +++ {"user_expressions": []}
 
-Note that the credit rises in periods of economic expansion
+Note that the credit rises during economic expansion
 and stagnates or even contracts after recessions.
 
 ```{code-cell} ipython3
