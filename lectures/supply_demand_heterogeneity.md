@@ -249,10 +249,10 @@ class ExchangeEconomy:
             if np.min(b / np.max(Pi @ e)) <= 1.5:
                 raise Exception('set bliss points further away')
 
-        if Ws==None:
+        if Ws == None:
             Ws = np.zeros(m)
         else:
-            if sum(Ws)!=0:
+            if sum(Ws) != 0:
                 raise Exception('invalid wealth distribution')
 
         self.Pi, self.bs, self.es, self.Ws, self.n, self.m = Pi, bs, es, Ws, n, m
@@ -272,7 +272,7 @@ class ExchangeEconomy:
 
         # compute price vector with mu=1 and renormalize
         p = Pi.T @ b - Pi.T @ Pi @ e
-        p = p/p[0]
+        p = p / p[0]
 
         # compute marg util of wealth
         mu_s = []
@@ -280,8 +280,8 @@ class ExchangeEconomy:
         A = p.T @ slope_dc @ p
 
         for i in range(m):
-            mu_i = (-Ws[i] + p.T @ (Pi_inv @ bs[i] - es[i]))/A
-            c_i = Pi_inv @ bs[i] - mu_i*slope_dc @ p
+            mu_i = (-Ws[i] + p.T @ (Pi_inv @ bs[i] - es[i])) / A
+            c_i = Pi_inv @ bs[i] - mu_i * slope_dc @ p
             mu_s.append(mu_i)
             c_s.append(c_i)
 
@@ -305,11 +305,11 @@ class ExchangeEconomy:
 Pi = np.array([[1, 0],
                [0, 1]])
 
-bs = [np.array([5, 5]),   # first consumer's bliss points
-      np.array([5, 5])]   # second consumer's bliss points
+bs = [np.array([5, 5]),  # first consumer's bliss points
+      np.array([5, 5])]  # second consumer's bliss points
 
-es = [np.array([0, 2]),     # first consumer's endowment
-      np.array([2, 0])]     # second consumer's endowment
+es = [np.array([0, 2]),  # first consumer's endowment
+      np.array([2, 0])]  # second consumer's endowment
 
 example = ExchangeEconomy(Pi, bs, es)
 p, c_s, mu_s = example.competitive_equilibrium()
@@ -321,12 +321,11 @@ print('Competitive equilibrium allocation:', c_s)
 What happens if the first consumer likes the first good more and the second consumer likes the second good more?
 
 ```{code-cell} ipython3
-bs = [np.array([6, 5]),   # first consumer's bliss points
-      np.array([5, 6])]   # second consumer's bliss points
+bs = [np.array([6, 5]),  # first consumer's bliss points
+      np.array([5, 6])]  # second consumer's bliss points
 
-es = [np.array([0, 2]),     # first consumer's endowment
-      np.array([2, 0])]     # second consumer's endowment
-
+es = [np.array([0, 2]),  # first consumer's endowment
+      np.array([2, 0])]  # second consumer's endowment
 
 example = ExchangeEconomy(Pi, bs, es)
 p, c_s, mu_s = example.competitive_equilibrium()
@@ -338,12 +337,11 @@ print('Competitive equilibrium allocation:', c_s)
 Let the first consumer be poorer.
 
 ```{code-cell} ipython3
-bs = [np.array([5, 5]),   # first consumer's bliss points
-      np.array([5, 5])]   # second consumer's bliss points
+bs = [np.array([5, 5]),  # first consumer's bliss points
+      np.array([5, 5])]  # second consumer's bliss points
 
-es = [np.array([0.5, 0.5]),     # first consumer's endowment
-      np.array([1, 1])]     # second consumer's endowment
-
+es = [np.array([0.5, 0.5]),  # first consumer's endowment
+      np.array([1, 1])]  # second consumer's endowment
 
 example = ExchangeEconomy(Pi, bs, es)
 p, c_s, mu_s = example.competitive_equilibrium()
@@ -355,12 +353,11 @@ print('Competitive equilibrium allocation:', c_s)
 Now let's construct an autarky (i.e, no-trade) equilibrium.
 
 ```{code-cell} ipython3
-bs = [np.array([4, 6]),   # first consumer's bliss points
-      np.array([6, 4])]   # second consumer's bliss points
+bs = [np.array([4, 6]),  # first consumer's bliss points
+      np.array([6, 4])]  # second consumer's bliss points
 
-es = [np.array([0, 2]),     # first consumer's endowment
-      np.array([2, 0])]     # second consumer's endowment
-
+es = [np.array([0, 2]),  # first consumer's endowment
+      np.array([2, 0])]  # second consumer's endowment
 
 example = ExchangeEconomy(Pi, bs, es)
 p, c_s, mu_s = example.competitive_equilibrium()
@@ -372,11 +369,11 @@ print('Competitive equilibrium allocation:', c_s)
 Now let's redistribute endowments before trade.
 
 ```{code-cell} ipython3
-bs = [np.array([5, 5]),   # first consumer's bliss points
-      np.array([5, 5])]   # second consumer's bliss points
+bs = [np.array([5, 5]),  # first consumer's bliss points
+      np.array([5, 5])]  # second consumer's bliss points
 
-es = [np.array([1, 1]),     # first consumer's endowment
-      np.array([1, 1])]     # second consumer's endowment
+es = [np.array([1, 1]),  # first consumer's endowment
+      np.array([1, 1])]  # second consumer's endowment
 
 Ws = [0.5, -0.5]
 example = ExchangeEconomy(Pi, bs, es, Ws)
@@ -397,9 +394,9 @@ beta = 0.95
 Pi = np.array([[1, 0],
                [0, np.sqrt(beta)]])
 
-bs = [np.array([5, np.sqrt(beta)*5])]
+bs = [np.array([5, np.sqrt(beta) * 5])]
 
-es = [np.array([1,1])]
+es = [np.array([1, 1])]
 
 example = ExchangeEconomy(Pi, bs, es)
 p, c_s, mu_s = example.competitive_equilibrium()
@@ -419,10 +416,10 @@ We use the tricks described above to interpret  $c_1, c_2$ as "Arrow securities"
 prob = 0.7
 
 Pi = np.array([[np.sqrt(prob), 0],
-               [0, np.sqrt(1-prob)]])
+               [0, np.sqrt(1 - prob)]])
 
-bs = [np.array([np.sqrt(prob)*5, np.sqrt(1-prob)*5]),
-      np.array([np.sqrt(prob)*5, np.sqrt(1-prob)*5])]
+bs = [np.array([np.sqrt(prob) * 5, np.sqrt(1 - prob) * 5]),
+      np.array([np.sqrt(prob) * 5, np.sqrt(1 - prob) * 5])]
 
 es = [np.array([1, 0]),
       np.array([0, 1])]
@@ -464,13 +461,13 @@ class ProductionEconomy:
         Compute a competitive equilibrium of the production economy
         """
         Pi, b, h, mu, J = self.Pi, self.b, self.h, self.mu, self.J
-        H = .5*(J+J.T)
+        H = .5 * (J + J.T)
 
         # allocation
-        c = inv(Pi.T@Pi + mu*H) @ (Pi.T@b - mu*h)
+        c = inv(Pi.T @ Pi + mu * H) @ (Pi.T @ b - mu * h)
 
         # price
-        p = 1/mu * (Pi.T@b - Pi.T@Pi@c)
+        p = 1 / mu * (Pi.T @ b - Pi.T @ Pi @ c)
 
         # check non-satiation
         if any(Pi @ c - b >= 0):
@@ -483,13 +480,13 @@ class ProductionEconomy:
         Compute the equilibrium price and allocation when there is a monopolist supplier
         """
         Pi, b, h, mu, J = self.Pi, self.b, self.h, self.mu, self.J
-        H = .5*(J+J.T)
+        H = .5 * (J + J.T)
 
         # allocation
-        q = inv(mu*H + 2*Pi.T@Pi)@(Pi.T@b - mu*h)
+        q = inv(mu * H + 2 * Pi.T @ Pi) @ (Pi.T @ b - mu * h)
 
         # price
-        p = 1/mu * (Pi.T@b - Pi.T@Pi@q)
+        p = 1 / mu * (Pi.T @ b - Pi.T @ Pi @ q)
 
         if any(Pi @ q - b >= 0):
             raise Exception('invalid result: set bliss points further away')
@@ -500,21 +497,21 @@ class ProductionEconomy:
         """
         Compute consumer and producer surplus for single good case
         """
-        if self.n!=1:
+        if self.n != 1:
             raise Exception('not single good')
         h, J, Pi, b, mu = self.h.item(), self.J.item(), self.Pi.item(), self.b.item(), self.mu
         H = J
 
         # supply/demand curve coefficients
         s0, s1 = h, H
-        d0, d1 = 1/mu * Pi * b, 1/mu * Pi**2
+        d0, d1 = 1 / mu * Pi * b, 1 / mu * Pi**2
 
         # competitive equilibrium
         c, p = self.competitive_equilibrium()
 
         # calculate surplus
-        c_surplus = d0*c - .5*d1*c**2 - p*c
-        p_surplus = p*c - s0*c - .5*s1*c**2
+        c_surplus = d0 * c - .5 * d1 * c**2 - p * c
+        p_surplus = p * c - s0 * c - .5 * s1 * c**2
 
         return c_surplus, p_surplus
 
@@ -536,21 +533,21 @@ def plot_competitive_equilibrium(PE):
     c, p = c.item(), p.item()
 
     # inverse supply/demand curve
-    supply_inv = lambda x: h + H*x
-    demand_inv = lambda x: 1/mu*(Pi*b - Pi*Pi*x)
+    supply_inv = lambda x: h + H * x
+    demand_inv = lambda x: 1 / mu * (Pi * b - Pi * Pi * x)
 
-    xs = np.linspace(0, 2*c, 100)
+    xs = np.linspace(0, 2 * c, 100)
     ps = np.ones(100) * p
     supply_curve = supply_inv(xs)
-    demand_curve =  demand_inv(xs)
+    demand_curve = demand_inv(xs)
 
     # plot
-    plt.figure(figsize=[7,5])
+    plt.figure(figsize=[7, 5])
     plt.plot(xs, supply_curve, label='Supply', color='#020060')
     plt.plot(xs, demand_curve, label='Demand', color='#600001')
 
-    plt.fill_between(xs[xs<=c], demand_curve[xs<=c], ps[xs<=c], label='Consumer surplus', color='#EED1CF')
-    plt.fill_between(xs[xs<=c], supply_curve[xs<=c], ps[xs<=c], label='Producer surplus', color='#E6E6F5')
+    plt.fill_between(xs[xs <= c], demand_curve[xs <= c], ps[xs <= c], label='Consumer surplus', color='#EED1CF')
+    plt.fill_between(xs[xs <= c], supply_curve[xs <= c], ps[xs <= c], label='Producer surplus', color='#E6E6F5')
 
     plt.vlines(c, 0, p, linestyle="dashed", color='black', alpha=0.7)
     plt.hlines(p, 0, c, linestyle="dashed", color='black', alpha=0.7)
@@ -580,10 +577,10 @@ To do this we
   * do experiments in which we shift $b$ and watch what happens to $p, c$.
 
 ```{code-cell} ipython3
-Pi  = np.array([[1]])        # the matrix now is a singleton
-b   = np.array([10])
-h   = np.array([0.5])
-J   = np.array([[1]])
+Pi = np.array([[1]])  # the matrix now is a singleton
+b = np.array([10])
+h = np.array([0.5])
+J = np.array([[1]])
 mu = 1
 
 PE = ProductionEconomy(Pi, b, h, J, mu)
@@ -648,13 +645,13 @@ This raises both the equilibrium price and quantity.
 
 
 ```{code-cell} ipython3
-Pi  = np.array([[1, 0],
-                [0, 1]])
-b   = np.array([10, 10])
+Pi = np.array([[1, 0],
+               [0, 1]])
+b = np.array([10, 10])
 
-h   = np.array([0.5, 0.5])
-J   = np.array([[1, 0.5],
-                [0.5, 1]])
+h = np.array([0.5, 0.5])
+J = np.array([[1, 0.5],
+              [0.5, 1]])
 mu = 1
 
 PE = ProductionEconomy(Pi, b, h, J, mu)
@@ -750,24 +747,24 @@ def plot_monopoly(PE):
     # compute
 
     # inverse supply/demand curve
-    marg_cost = lambda x: h + H*x
-    marg_rev = lambda x: -2*1/mu*Pi*Pi*x + 1/mu*Pi*b
-    demand_inv = lambda x: 1/mu*(Pi*b - Pi*Pi*x)
+    marg_cost = lambda x: h + H * x
+    marg_rev = lambda x: -2 * 1 / mu * Pi * Pi * x + 1 / mu * Pi * b
+    demand_inv = lambda x: 1 / mu * (Pi * b - Pi * Pi * x)
 
-    xs = np.linspace(0, 2*c, 100)
+    xs = np.linspace(0, 2 * c, 100)
     pms = np.ones(100) * pm
     marg_cost_curve = marg_cost(xs)
     marg_rev_curve = marg_rev(xs)
     demand_curve = demand_inv(xs)
 
     # plot
-    plt.figure(figsize=[7,5])
+    plt.figure(figsize=[7, 5])
     plt.plot(xs, marg_cost_curve, label='Marginal cost', color='#020060')
     plt.plot(xs, marg_rev_curve, label='Marginal revenue', color='#E55B13')
     plt.plot(xs, demand_curve, label='Demand', color='#600001')
 
-    plt.fill_between(xs[xs<=q], demand_curve[xs<=q], pms[xs<=q], label='Consumer surplus', color='#EED1CF')
-    plt.fill_between(xs[xs<=q], marg_cost_curve[xs<=q], pms[xs<=q], label='Producer surplus', color='#E6E6F5')
+    plt.fill_between(xs[xs <= q], demand_curve[xs <= q], pms[xs <= q], label='Consumer surplus', color='#EED1CF')
+    plt.fill_between(xs[xs <= q], marg_cost_curve[xs <= q], pms[xs <= q], label='Producer surplus', color='#E6E6F5')
 
     plt.vlines(c, 0, p, linestyle="dashed", color='black', alpha=0.7)
     plt.hlines(p, 0, c, linestyle="dashed", color='black', alpha=0.7)
@@ -790,13 +787,13 @@ def plot_monopoly(PE):
 Let's study compare competitive equilibrium and monopoly outcomes in a multiple goods economy.
 
 ```{code-cell} ipython3
-Pi  = np.array([[1, 0],
-                [0, 1.2]])
-b   = np.array([10, 10])
+Pi = np.array([[1, 0],
+               [0, 1.2]])
+b = np.array([10, 10])
 
-h   = np.array([0.5, 0.5])
-J   = np.array([[1, 0.5],
-                [0.5, 1]])
+h = np.array([0.5, 0.5])
+J = np.array([[1, 0.5],
+              [0.5, 1]])
 mu = 1
 
 PE = ProductionEconomy(Pi, b, h, J, mu)
@@ -813,7 +810,7 @@ print('Equilibrium with monopolist supplier allocation:', q)
 #### A Single-Good Example
 
 ```{code-cell} ipython3
-Pi = np.array([[1]])        # the matrix now is a singleton
+Pi = np.array([[1]])  # the matrix now is a singleton
 b = np.array([10])
 h = np.array([0.5])
 J = np.array([[1]])

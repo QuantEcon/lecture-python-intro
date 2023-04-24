@@ -145,11 +145,11 @@ In addition
 ```{code-cell} ipython3
 class SingleGoodMarket:
 
-    def __init__(self, 
-        d_0=1.0,      # demand intercept
-        d_1=0.5,      # demand slope
-        s_0=0.1,      # supply intercept
-        s_1=0.4):     # supply slope
+    def __init__(self,
+                 d_0=1.0,  # demand intercept
+                 d_1=0.5,  # demand slope
+                 s_0=0.1,  # supply intercept
+                 s_1=0.4):  # supply slope
 
         self.d_0, self.d_1 = d_0, d_1
         self.s_0, self.s_1 = s_0, s_1
@@ -170,7 +170,6 @@ class SingleGoodMarket:
 
 ```{code-cell} ipython3
 def plot_supply_demand(market):
-
     # Unpack
     d_0, d_1 = market.d_0, market.d_1
     s_0, s_1 = market.s_0, market.s_1
@@ -187,16 +186,16 @@ def plot_supply_demand(market):
     ax.plot(x_grid, supply_curve, label='Supply', color='#020060')
     ax.plot(x_grid, demand_curve, label='Demand', color='#600001')
 
-    ax.fill_between(x_grid[x_grid <= q], 
-        demand_curve[x_grid<=q], 
-        ps[x_grid <= q], 
-        label='Consumer surplus', 
-        color='#EED1CF')
-    ax.fill_between(x_grid[x_grid <= q], 
-        supply_curve[x_grid <= q], 
-        ps[x_grid <= q], 
-        label='Producer surplus', 
-        color='#E6E6F5')
+    ax.fill_between(x_grid[x_grid <= q],
+                    demand_curve[x_grid <= q],
+                    ps[x_grid <= q],
+                    label='Consumer surplus',
+                    color='#EED1CF')
+    ax.fill_between(x_grid[x_grid <= q],
+                    supply_curve[x_grid <= q],
+                    ps[x_grid <= q],
+                    label='Producer surplus',
+                    color='#E6E6F5')
 
     ax.vlines(q, 0, p, linestyle="dashed", color='black', alpha=0.7)
     ax.hlines(p, 0, q, linestyle="dashed", color='black', alpha=0.7)
