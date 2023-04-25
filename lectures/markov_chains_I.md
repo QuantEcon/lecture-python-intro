@@ -69,12 +69,12 @@ from itertools import cycle
 
 +++ {"user_expressions": []}
 
-## Definitions and Examples
+## Definitions and examples
 
 In this section we provide the basic definitions and some elementary examples.
 
 (finite_dp_stoch_mat)=
-### Stochastic Matrices
+### Stochastic matrices
 
 Recall that a **probability mass function** over $n$ possible outcomes is a
 nonnegative $n$-vector $p$ that sums to one.
@@ -94,7 +94,7 @@ If $P$ is a stochastic matrix, then so is the $k$-th power $P^k$ for all $k \in 
 Checking this is {ref}`one of the exercises <mc1_ex_3>` below.
 
 
-### Markov Chains
+### Markov chains
 
 Now we can introduce Markov chains.
 
@@ -315,7 +315,7 @@ plt.colorbar(pc, ax=ax)
 plt.show()
 ```
 
-### Defining Markov Chains
+### Defining Markov chains
 
 So far we've given examples of Markov chains but now let's define them more
 carefully.
@@ -387,7 +387,7 @@ In these exercises, we'll take the state space to be $S = 0,\ldots, n-1$.
 (We start at $0$ because Python arrays are indexed from $0$.)
 
 
-### Writing Our Own Simulation Code
+### Writing our own simulation code
 
 To simulate a Markov chain, we need 
 
@@ -488,7 +488,7 @@ You can try changing the initial distribution to confirm that the output is
 always close to 0.25 (for the `P` matrix above).
 
 
-### Using QuantEcon's Routines
+### Using QuantEcon's routines
 
 [QuantEcon.py](http://quantecon.org/quantecon-py) has routines for handling Markov chains, including simulation.
 
@@ -514,7 +514,7 @@ The `simulate` routine is faster (because it is [JIT compiled](https://python-pr
 
 +++ {"user_expressions": []}
 
-#### Adding State Values and Initial Conditions
+#### Adding state values and initial conditions
 
 If we wish to, we can provide a specification of state values to `MarkovChain`.
 
@@ -546,7 +546,7 @@ mc.simulate_indices(ts_length=4)
 +++ {"user_expressions": []}
 
 (mc_md)=
-## Distributions over Time
+## Distributions over time
 
 We learnt that
 
@@ -623,7 +623,7 @@ X_t \sim \psi_t \quad \implies \quad X_{t+m} \sim \psi_t P^m
 +++ {"user_expressions": []}
 
 (finite_mc_mstp)=
-### Multiple Step Transition Probabilities
+### Multiple step transition probabilities
 
 We know that the probability of transitioning from $x$ to $y$ in
 one step is $P(x,y)$.
@@ -645,7 +645,7 @@ $$
 $$
 
 
-### Example: Probability of Recession
+### Example: probability of recession
 
 ```{index} single: Markov Chains; Future Probabilities
 ```
@@ -665,7 +665,7 @@ $$
 +++ {"user_expressions": []}
 
 (mc_eg1-1)=
-### Example 2: Cross-Sectional Distributions
+### Example 2: Cross-sectional distributions
 
 The distributions we have been studying can be viewed either 
 
@@ -704,7 +704,7 @@ each state.
 This is exactly the cross-sectional distribution.
 
 (stationary)=
-## Stationary Distributions
+## Stationary distributions
 
 
 As seen in {eq}`fin_mc_fr`, we can shift a distribution forward one
@@ -785,7 +785,7 @@ This is, in some sense, a steady state probability of unemployment.
 
 Not surprisingly it tends to zero as $\beta \to 0$, and to one as $\alpha \to 0$.
 
-### Calculating Stationary Distributions
+### Calculating stationary distributions
 
 A stable algorithm for computing stationary distributions is implemented in [QuantEcon.py](http://quantecon.org/quantecon-py).
 
@@ -799,7 +799,7 @@ mc = qe.MarkovChain(P)
 mc.stationary_distributions  # Show all stationary distributions
 ```
 
-### Asymptotic Stationarity
+### Asymptotic stationarity
 
 Consider a everywhere positive stochastic matrix with unique stationary distribution $\psi^*$.
 
@@ -824,7 +824,7 @@ See, for example, {cite}`sargent2023economic` Chapter 4.
 +++ {"user_expressions": []}
 
 (hamilton)=
-#### Example: Hamilton's Chain
+#### Example: Hamilton's chain
 
 Hamilton's chain satisfies the conditions of the theorem because $P^2$ is everywhere positive:
 
@@ -889,7 +889,7 @@ Here
 You might like to try experimenting with different initial conditions.
 
 
-#### An Alternative Illustration
+#### An alternative illustration
 
 We can show this in a slightly different way by focusing on the probability that $\psi_t$ puts on each state.
 
@@ -963,7 +963,7 @@ The convergence to $\psi^*$ holds for different initial distributions.
 
 +++ {"user_expressions": []}
 
-#### Example: Failure of Convergence
+#### Example: Failure of convergence
 
 
 In the case of our periodic chain, we find the distribution is oscillating
@@ -981,7 +981,7 @@ plot_distribution(P, ts_length, num_distributions)
 +++ {"user_expressions": []}
 
 (finite_mc_expec)=
-## Computing Expectations
+## Computing expectations
 
 ```{index} single: Markov Chains; Forecasting Future Values
 ```
@@ -1051,7 +1051,7 @@ We already know that this is $P^k(x, \cdot)$, so
 = (P^k h)(x)
 ```
 
-### Expectations of Geometric Sums
+### Expectations of geometric sums
 
 Sometimes we want to compute the mathematical expectation of a geometric sum, such as
 $\sum_t \beta^t h(X_t)$.

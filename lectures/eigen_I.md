@@ -60,11 +60,11 @@ from mpl_toolkits.mplot3d import proj3d
 ```
 
 (matrices_as_transformation)=
-## Matrices as Transformations
+## Matrices as transformations
 
 Let's start by discussing an important concept concerning matrices.
 
-### Mapping Vectors into Vectors
+### Mapping vectors into vectors
 
 One way to think about a given matrix is as a rectangular collection of
 numbers.
@@ -90,7 +90,7 @@ We can write this formally as $A \colon \mathbb{R}^m \rightarrow \mathbb{R}^n$
 (You might argue that if $A$ is a function then we should write 
 $A(x) = y$ rather than $Ax = y$ but the second notation is more conventional.)
 
-### Square Matrices
+### Square matrices
 
 Let's restrict our discussion to square matrices.
 
@@ -186,7 +186,7 @@ One way to understand this transformation is that $A$
 
 
 
-## Types of Transformations
+## Types of transformations
 
 Let's examine some standard transformations we can perform with matrices.
 
@@ -374,13 +374,13 @@ grid_transform(A)
 
 More examples of common transition matrices can be found [here](https://en.wikipedia.org/wiki/Transformation_matrix#Examples_in_2_dimensions).
 
-## Matrix Multiplication as Composition
+## Matrix multiplication as composition
 
 Since matrices act as functions that transform one vector to another, we can
 apply the concept of function composition to matrices as well. 
 
 
-### Linear Compositions
+### Linear compositions
 
 Consider the two matrices 
 
@@ -562,13 +562,13 @@ B = np.array([[1, 2],     # shear along x-axis
               [0, 1]])
 ```
 
-#### Shear then Rotate
+#### Shear then rotate
 
 ```{code-cell} ipython3
 grid_composition_transform(A,B)        #transformation AB
 ```
 
-#### Rotate then Shear
+#### Rotate then shear
 
 ```{code-cell} ipython3
 grid_composition_transform(B,A)         #transformation BA
@@ -576,7 +576,7 @@ grid_composition_transform(B,A)         #transformation BA
 
 It is quite evident that the transformation $AB$ is not the same as the transformation $BA$.
 
-## Iterating on a Fixed Map
+## Iterating on a fixed map
 
 In economics (and especially in dynamic modeling), we often are interested in
 analyzing behavior where we repeatedly apply a fixed matrix.
@@ -720,8 +720,8 @@ As expected, the image $Av$ of each $v$ is just a scaled version of the original
 
 from numpy.linalg import eig
 
-A = ((1, 2),
-     (2, 1))
+A = [[1, 2],
+     [2, 1]]
 A = np.array(A)
 evals, evecs = eig(A)
 evecs = evecs[:, 0], evecs[:, 1]
@@ -764,7 +764,7 @@ for v in evecs:
 plt.show()
 ```
 
-### Complex Values
+### Complex values
 
 So far our definition of eigenvalues and eigenvectors seems straightforward.
 
@@ -778,7 +778,7 @@ When solving $Av = \lambda v$,
 We will see some examples below.
 
 
-### Some Mathematical Details
+### Some mathematical details
 
 We note some mathematical details for more advanced readers.
 

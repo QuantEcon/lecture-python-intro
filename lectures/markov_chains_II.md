@@ -183,7 +183,7 @@ For example, poverty is a life sentence in the second graph but not the first.
 
 We'll come back to this a bit later.
 
-### Irreducibility and Stationarity
+### Irreducibility and stationarity
 
 We discussed uniqueness of the stationary in the {ref}`previous lecture <stationary>` requires the transition matrix to be everywhere positive.
 
@@ -435,7 +435,7 @@ However, the distribution at each state does not.
 
 +++ {"user_expressions": []}
 
-### Expectations of Geometric Sums
+### Expectations of geometric sums
 
 Sometimes we want to compute the mathematical expectation of a geometric sum, such as
 $\sum_t \beta^t h(X_t)$.

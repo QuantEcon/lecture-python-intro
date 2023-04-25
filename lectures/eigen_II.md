@@ -52,7 +52,7 @@ import graphviz as gv
 import quantecon as qe
 ```
 
-## Nonnegative Matrices
+## Nonnegative matrices
 
 Often, in economics, the matrix that we are dealing with is nonnegative.
 
@@ -69,7 +69,7 @@ is nonnegative, i.e., $a_{ij} \geq 0$ for every $i,j$.
 We denote this as $A \geq 0$.
 
 (irreducible)=
-### Irreducible Matrices
+### Irreducible matrices
 
 We have (informally) introduced irreducible matrices in the Markov chain lecture (TODO: link to Markov chain lecture).
 
@@ -88,7 +88,7 @@ Here are some examples to illustrate this further.
 3. $A = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}$ is reducible since $A^k = A$ for all $k \geq 0$ and thus
    $a^{k}_{12},a^{k}_{21} = 0$ for all $k \geq 0$.
 
-### Primitive Matrices
+### Primitive matrices
 
 Let $A$ be a square nonnegative matrix and let $A^k$ be the $k^{th}$ power of $A$.
 
@@ -102,7 +102,7 @@ This is because if there exists an $A^k$ such that $a^{k}_{ij} > 0$ for all $(i,
 
 In other words, a primitive matrix is both irreducible and aperiodical as aperiodicity requires a state to be visited with a guarantee of returning to itself after a certain amount of iterations.
 
-### Left Eigenvectors
+### Left eigenvectors
 
 We have previously discussed right (ordinary) eigenvectors $Av = \lambda v$.
 
@@ -199,7 +199,7 @@ Let's build our intuition for the theorem using a simple example we have seen [b
 
 Now let's consider examples for each case.
 
-#### Example 1: Irreducible Matrix
+#### Example 1: irreducible matrix
 
 Consider the following irreducible matrix A:`
 
@@ -223,7 +223,7 @@ Now we can go through our checklist to verify the claims of the Perron-Frobenius
 4. As the matrix is irreducible, the eigenvector associated with the dominant eigenvalue is strictly positive.
 5. There exists no other positive eigenvector associated with the dominant eigenvalue.
 
-#### Example 2: Primitive Matrix
+#### Example 2: primitive matrix
 
 Consider the following primitive matrix B:
 
@@ -442,7 +442,7 @@ Thus, the rate of convergence is governed by the modulus of the second largest e
 In this section we present a famous result about series of matrices that has
 many applications in economics.
 
-### Scalar Series
+### Scalar series
 
 Here's a fundamental result about series that you surely know:
 
@@ -461,7 +461,7 @@ $$
     x^{*} = \frac{b}{1-a} = \sum_{k=0}^{\infty} a^k b
 $$
 
-### Matrix Series
+### Matrix series
 
 A generalization of this idea exists in the matrix setting.
 
@@ -478,7 +478,7 @@ Using matrix algebra we can conclude that the solution to this system of equatio
 ```
 
 What guarantees the existence of a unique vector $x^{*}$ that satisfies
-{eq}`neumann_eqn` ?
+{eq}`neumann_eqn`?
 
 The following is a fundamental result in functional analysis that generalizes
 {eq}`gp_sum` to a multivariate case.
