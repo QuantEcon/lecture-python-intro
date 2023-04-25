@@ -58,7 +58,7 @@ plt.rc('axes', prop_cycle=cycler)
 
 +++ {"user_expressions": []}
 
-## Data Acquisition
+## Data acquisition
 
 We will use `wbgapi` and `pandas_datareader` to retrieve data throughout this
 lecture.
@@ -102,7 +102,7 @@ wb.series.metadata.get('NY.GDP.MKTP.KD.ZG')
 Let's dive into the data with the tools we have.
 
 (gdp_growth)=
-## GDP Growth Rate
+## GDP growth rate
 
 First we look at the GDP growth rate. 
 
@@ -626,7 +626,7 @@ a constellation of social, demographic, and cultural factors.
 
 +++ {"user_expressions": []}
 
-## Leading Indicators and Correlated Factors for Business Cycles
+## Leading indicators and correlated factors for business cycles
 
 Examining leading indicators and correlated factors helps policymakers to
 understand the causes and results of business cycles. 
@@ -769,7 +769,7 @@ We observe the delayed contraction in the plot across recessions.
 
 +++ {"user_expressions": []}
 
-### Credit Level
+### Credit level
 
 Credit contractions often occur during recessions, as lenders become more
 cautious and borrowers become more hesitant to take on additional debt.
