@@ -238,7 +238,7 @@ Since by intuition if we consider unemployment pool and employment pool as a clo
 We next ask whether the long run growth rates of $e_t$ and $u_t$
 also dominated by $1+b-d$ as labor force.
 
-The answer will be clearer if we appeal to Perron-Frobenius theorem.
+The answer will be clearer if we appeal to {ref}`Perron-Frobenius theorem<perron-frobe>`.
 
 The importance of the Perron-Frobenius theorem stems from the fact that
 firstly in the real world most matrices we encounter are nonnegative matrices.
@@ -528,7 +528,9 @@ In this case, $c_1 v_1$ must be a normalized eigenvector, so $c_1 v_1 = \bar{x}$
 
 ## Exercise
 
+```{exercise-start} Evolution of unemployment and employment rate
 :label: lake_model_ex1
+```
 
 How do the long-run unemployment rate and employment rate elvove if there is an increase in the separation rate $\alpha$
 or a decrease in job finding rate $\lambda$?
@@ -538,7 +540,12 @@ Is the result compatible with your intuition?
 Plot the graph to illustrate how the line $D := \{ x \in \mathbb{R}^2 : x = \alpha \bar{x} \; \text{for some} \; \alpha >0 \}$
 shifts in the unemployment-employment space.
 
+```{exercise-end}
+```
+
+```{solution-start} lake_model_ex1
 :class: dropdown
+```
 
 Eq. {eq}`steady_x` implies that the long-run unemployment rate will increase, and the employment rate will decrease
 if $\alpha$ increases or $\lambda$ decreases.
@@ -563,4 +570,7 @@ ax.plot([0, s * lm.ū], [0, s * lm.ē], "r--", lw=1, label='set $D$, α=0.04')
 
 ax.legend(loc='best')
 plt.show()
+```
+
+```{solution-end}
 ```
