@@ -9,7 +9,7 @@ In this lecture, we study a setting with $n$ goods and $n$ corresponding prices.
 
 We shall describe two classic welfare theorems:
 
-* **first welfare theorem:** for a  given a distribution of wealth among consumers,  a competitive  equilibrium  allocation of goods solves a  social planning problem.
+* **first welfare theorem:** for a given distribution of wealth among consumers, a competitive  equilibrium  allocation of goods solves a  social planning problem.
 
 * **second welfare theorem:** An allocation of goods to consumers that solves a social planning problem can be supported by a competitive equilibrium with an appropriate initial distribution of  wealth.
 
@@ -174,7 +174,7 @@ Verify that setting  $\mu=2$ in {eq}`eq:old3` also implies that formula
 
 ## Digression: Marshallian and Hicksian Demand Curves
 
-Sometimes we'll use budget constraint {eq}`eq:old2` in situations in which a consumers's endowment vector $e$ is his **only** source of income.
+Sometimes we'll use budget constraint {eq}`eq:old2` in situations in which a consumer's endowment vector $e$ is his **only** source of income.
 
 Other times we'll instead assume that the consumer has another source of income (positive or negative) and write his budget constraint as
 
@@ -274,7 +274,7 @@ As an example, our consumer confronts **risk** meaning in particular that
 
   * there are two states of nature, $1$ and $2$.
 
-  * the consumer knows that probability that state $1$ occurs is $\lambda$.
+  * the consumer knows that the probability that state $1$ occurs is $\lambda$.
 
   * the consumer knows that the probability that state $2$ occurs is $(1-\lambda)$.
 
@@ -337,7 +337,7 @@ We can study how these things affect equilibrium prices and allocations.
 
 ## Economies with Endogenous Supplies of Goods
 
-Up to now we have described a pure exchange economy in which endowments of good are exogenous, meaning that they are taken as given from outside the model.
+Up to now we have described a pure exchange economy in which endowments of goods are exogenous, meaning that they are taken as given from outside the model.
 
 ### Supply Curve of a Competitive Firm
 

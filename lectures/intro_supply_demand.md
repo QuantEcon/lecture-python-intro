@@ -177,7 +177,7 @@ plt.show()
 
 Consumer surplus gives a measure of total consumer welfare at quantity $q$.
 
-The idea is that the inverse demand curve $d_0 - d_1 q$ shows willingness to
+The idea is that the inverse demand curve $d_0 - d_1 q$ shows willingness to 
 pay at a given quantity $q$.
 
 The difference between willingness to pay and the actual price is the surplus.
@@ -314,14 +314,13 @@ $$ (eq:old1)
 
 Let's remember the quantity $q$ given by equation {eq}`eq:old1` that a social planner would choose to maximize consumer surplus plus producer surplus.
 
-We'll compare it to the quantity that emerges in a competitive  equilibrium
-equilibrium that equates supply to demand.
+We'll compare it to the quantity that emerges in a competitive equilibrium that equates supply to demand.
 
 
 
 ### Competitive Equilibrium
 
-Instead of equating quantities supplied and demanded, we'll can accomplish the
+Instead of equating quantities supplied and demanded, we can accomplish the
 same thing by equating demand price to supply price:
 
 $$
@@ -353,7 +352,7 @@ It also brings a useful **competitive equilibrium computation strategy:**
 
 ## Generalizations
 
-In a {doc}`later lecture <supply_demand_multiple_goods>`,  we'll derive
+In a {doc}`later lecture <supply_demand_multiple_goods>`, we'll derive
 generalizations of the above demand and supply curves from other objects.
 
 Our generalizations will extend the preceding analysis of a market for a single good to the analysis of $n$ simultaneous markets in $n$ goods.
@@ -364,8 +363,7 @@ In addition
    **utility function** subject to a **budget constraint**.
 
  * we'll derive  **supply curves** from the problem of a producer who is price
-   taker and maximizes his profits minus total costs that are described by a
-   **cost function**.
+   taker and maximizes his profits minus total costs that are described by a **cost function**.
 
 ## Exercises
 
@@ -383,19 +381,16 @@ $$
 All parameters are positive, as before.
 
 
-
-
 ```{exercise}
 :label: isd_ex1
 
 Define a new `Market` class that holds the same parameter values as before by
-changes the `inverse_demand` and `inverse_supply` methods to
+changing the `inverse_demand` and `inverse_supply` methods to
 match these new definitions.
 
 Using the class, plot the inverse demand and supply curves $i_d$ and $i_s$
 
 ```
-
 
 
 ```{solution-start} isd_ex1
@@ -428,7 +423,6 @@ Let's create an instance.
 market = Market()
 ```
 
-
 Here is a plot of inverse supply and demand.
 
 ```{code-cell} ipython3
@@ -451,15 +445,12 @@ ax.set_ylabel('price')
 plt.show()
 ```
 
-
 ```{solution-end}
 ```
 
 
-
 ```{exercise}
 :label: isd_ex2
-
 
 As before, consumer surplus at $q$ is the area under the demand curve minus
 price times quantity:
@@ -496,7 +487,6 @@ Plot welfare as a function of $q$.
 ```
 
 
-
 ```{solution-start} isd_ex2
 :class: dropdown
 ```
@@ -511,7 +501,6 @@ $$
 
 Here's a Python function that computes this value:
 
-
 ```{code-cell} ipython3
 def W(q, market):
     # Unpack
@@ -523,7 +512,6 @@ def W(q, market):
 ```
 
 The next figure plots welfare as a function of $q$.
-
 
 ```{code-cell} ipython3
 fig, ax = plt.subplots()
@@ -537,10 +525,8 @@ plt.show()
 ```
 
 
-
 ```{exercise}
 :label: isd_ex3
-
 
 Due to nonlinearities, the new welfare function is not easy to maximize with
 pencil and paper.
@@ -548,7 +534,6 @@ pencil and paper.
 Maximize it using `scipy.optimize.minimize_scalar` instead.
 
 ```
-
 
 
 ```{solution-start} isd_ex3
@@ -565,8 +550,6 @@ result = minimize_scalar(objective, bounds=(0, 10))
 print(result.message)
 ```
 
-
-
 ```{code-cell} ipython3
 maximizing_q = result.x
 print(f"{maximizing_q: .5f}")
@@ -574,7 +557,6 @@ print(f"{maximizing_q: .5f}")
 
 ```{solution-end}
 ```
-
 
 
 ```{exercise}
@@ -601,11 +583,9 @@ price, in line with the first fundamental welfare theorem.
 ```
 
 
-
 ```{solution-start} isd_ex3
 :class: dropdown
 ```
-
 
 ```{code-cell} ipython3
 from scipy.optimize import newton
@@ -617,7 +597,5 @@ equilibrium_q = newton(excess_demand, 0.1)
 print(f"{equilibrium_q: .5f}")
 ```
 
-
 ```{solution-end}
 ```
-
