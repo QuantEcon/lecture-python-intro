@@ -13,10 +13,18 @@ kernelspec:
 
 # Networks
 
+```{admonition} graphviz
+:class: warning
+If you are running this lecture locally it requires [graphviz](https://www.graphviz.org)
+to be installed on your computer. Installation instructions for graphviz can be found
+[here](https://www.graphviz.org/download/)
+```
+
 ```{code-cell} ipython3
 :tags: [hide-output]
 
-pip install quantecon-book-networks pandas-datareader
+!pip install quantecon graphviz
+!pip install quantecon-book-networks pandas-datareader
 ```
 
 
