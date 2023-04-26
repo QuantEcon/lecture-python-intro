@@ -13,6 +13,8 @@ kernelspec:
 
 # A Lake Model of Employment
 
+## Outline
+
 In addition to what's in Anaconda, this lecture will need the following libraries:
 
 ```{code-cell} ipython
@@ -30,7 +32,17 @@ to be installed on your computer. Installation instructions for graphviz can be 
 ```
 
 This lecture studies a model of employment and unemployment flows in a large
-population.
+population called the **lake model**.
+
+We will use the following imports in this lecture.
+
+```{code-cell} ipython3
+import numpy as np
+import matplotlib.pyplot as plt
+from graphviz import Digraph
+```
+
+## The Model
 
 This model is sometimes called the **lake model** because there are two pools of workers:
 
@@ -47,8 +59,6 @@ The "flows" between the two lakes are as follows:
 The below graph illustrates the lake model.
 
 ```{code-cell} ipython3
-from graphviz import Digraph
-
 # Create Digraph object
 G = Digraph()
 G.attr(rankdir='LR')
@@ -118,13 +128,6 @@ What long-run unemployment rate and employment rate should we expect?
 Do long-run outcomes depend on the initial values $(u_0, e_o)$?
 
 Let us first plot the time series of unemployment $u_t$, employment $e_t$, and labor force $n_t$.
-
-We will use the following imports.
-
-```{code-cell} ipython3
-import numpy as np
-import matplotlib.pyplot as plt
-```
 
 ```{code-cell} ipython3
 class LakeModel:
@@ -283,10 +286,10 @@ Recall that the spectral radius is bounded by column sums: for $A \geq 0$, we ha
 
 ```{math}
 :label: PF_bounds
-\min_j colsum_j (A) \leq r(A) \leq \max_j colsum_j (A)
+\min_j \text{colsum}_j (A) \leq r(A) \leq \max_j \text{colsum}_j (A)
 ```
 
-Note that $colsum_j(A) = 1 + b - d$ for $j=1,2$ and by {eq}`PF_bounds` we can thus conclude that the dominant eigenvalue
+Note that $\text{colsum}_j(A) = 1 + b - d$ for $j=1,2$ and by {eq}`PF_bounds` we can thus conclude that the dominant eigenvalue
 is $r(A) = 1 + b - d$.
 
 Denote $g = b - d$ as the overall growth rate of the total labor force, so that $r(A) = 1 + g$.
