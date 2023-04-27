@@ -102,7 +102,7 @@ jobs:
           cp _build/jupyter/*.ipynb _build/lecture-python-intro.notebooks
           ls -a _build/lecture-python-intro.notebooks
       - name: Commit latest notebooks to lecture-python-intro.notebooks
-        uses: cpina/github-action-push-to-another-repository@master
+        uses: cpina/github-action-push-to-another-repository@main
         env:
           API_TOKEN_GITHUB: ${{ secrets.QUANTECON_SERVICES_PAT }}
         with:
