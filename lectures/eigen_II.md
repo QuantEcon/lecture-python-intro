@@ -100,7 +100,7 @@ We can see that if a matrix is primitive, then it implies the matrix is irreduci
 
 This is because if there exists an $A^k$ such that $a^{k}_{ij} > 0$ for all $(i,j)$, then it guarantees the same property for ${k+1}^th, {k+2}^th ... {k+n}^th$ iterations.
 
-In other words, a primitive matrix is both irreducible and aperiodical as aperiodicity requires a state to be visited with a guarantee of returning to itself after a certain amount of iterations.
+In other words, a primitive matrix is both irreducible and aperiodic as aperiodicity requires a state to be visited with a guarantee of returning to itself after a certain amount of iterations.
 
 ### Left eigenvectors
 
@@ -191,7 +191,7 @@ $ r(A)^{-m} A^m$ converges to $v w^{\top}$ when $m \rightarrow \infty$
 ```
 
 (This is a relatively simple version of the theorem --- for more details see
-[here](https://en.wikipedia.org/wiki/Perron%E2%80%93Frobenius_Theorem)).
+[here](https://en.wikipedia.org/wiki/Perron%E2%80%93Frobenius_theorem)).
 
 We will see applications of the theorem below.
 
@@ -201,7 +201,7 @@ Now let's consider examples for each case.
 
 #### Example 1: irreducible matrix
 
-Consider the following irreducible matrix A:`
+Consider the following irreducible matrix A:
 
 ```{code-cell} ipython3
 A = np.array([[0, 1, 0], 
@@ -235,7 +235,7 @@ B = np.array([[0, 1, 1],
 np.linalg.matrix_power(B, 2)
 ```
 
-We can compute the dominant eigenvalue and the corresponding eigenvector using the power iteration method as discussed {ref} `earlier<eig1_ex1>`:
+We can compute the dominant eigenvalue and the corresponding eigenvector using the power iteration method as discussed {ref}`earlier<eig1_ex1>`:
 
 ```{code-cell} ipython3
 num_iters = 20
@@ -352,7 +352,7 @@ check_convergence(B)
 
 The result shows that the matrix is not primitive as it is not everywhere positive.
 
-These examples shows how the Perron-Frobenius Theorem relates to the eigenvalues and eigenvectors of positive matrices and the convergence of the power of matrices.
+These examples show how the Perron-Frobenius Theorem relates to the eigenvalues and eigenvectors of positive matrices and the convergence of the power of matrices.
 
 In fact we have already seen the theorem in action before in {ref}`the markov chain lecture <mc1_ex_1>`.
 
@@ -360,7 +360,7 @@ We are now prepared to bridge the languages spoken in the two lectures.
 
 A primitive matrix is both irreducible (or strongly connected in the language of graph) and aperiodic.
 
-So Perron-Frobenius threorem explains why both Imam and Temple matrix and Hamilton matrix converge to a stationary distribution, which is the perron projection of the two matrices
+So Perron-Frobenius Theorem explains why both Imam and Temple matrix and Hamilton matrix converge to a stationary distribution, which is the Perron projection of the two matrices
 
 ```{code-cell} ipython3
 P = np.array([[0.68, 0.12, 0.20],
@@ -396,9 +396,9 @@ We can also verify other properties hinted by Perron-Frobenius in these stochast
 
 Another example on how spectral theorem governs the dynamics of positive matrices is the relationship between convergence gap and convergence rate.
 
-In the {ref}`exercise<mc1_ex_1>`, we stated that the convegence rate is determined by the spectral gap, the difference between the largest and the second largest eigenvalue.
+In the {ref}`exercise<mc1_ex_1>`, we stated that the convergence rate is determined by the spectral gap, the difference between the largest and the second largest eigenvalue.
 
-This can be proven using what we have learnt here.
+This can be proven using what we have learned here.
 
 With Markov model $M$ with state space $S$ and transition matrix $P$, we can write $P^t$ as
 
@@ -411,6 +411,7 @@ This is proven in {cite}`sargent2023economic` and a nice discussion can be found
 In the formula $\lambda_i$ is an eigenvalue of $P$ and $v_i$ and $w_i$ are the right and left eigenvectors corresponding to $\lambda_i$. 
 
 Premultiplying $P^t$ by arbitrary $\psi \in \mathscr{D}(S)$ and rearranging now gives
+
 $$
 \psi P^t-\psi^*=\sum_{i=1}^{n-1} \lambda_i^t \psi v_i w_i^{\top}
 $$
