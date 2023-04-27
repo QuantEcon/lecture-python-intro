@@ -97,10 +97,6 @@ mystnb:
   figure:
     caption: "Commercial Aircraft Network \n"
     name: aircraft_network
-  image:
-    alt: aircraft_network
-    classes: shadow bg-primary
-    width: 500px
 tags: [hide-input]
 ---
 ch1_data = qbn_data.introduction()
@@ -268,10 +264,6 @@ mystnb:
   figure:
     caption: "Poverty Trap 1 \n"
     name: poverty_trap_1
-  image:
-    alt: poverty_trap_1
-    classes: shadow bg-primary
-    width: 500px
 ---
 graph1 = graphviz.Digraph(comment='Graph',engine = "neato")
 graph1.attr(rankdir='LR')
@@ -299,10 +291,6 @@ mystnb:
   figure:
     caption: "Poverty Trap \n"
     name: poverty_trap_2
-  image:
-    alt: poverty_trap_2
-    classes: shadow bg-primary
-    width: 500px
 ---
 graph2 = graphviz.Digraph(comment='Graph',engine="neato")
 graph2.attr(rankdir='LR')
@@ -479,10 +467,6 @@ mystnb:
   figure:
     caption: "International Credit Network \n"
     name: financial_network
-  image:
-    alt: financial_network
-    classes: shadow bg-primary
-    width: 500px
 tags: [hide-input]
 ---
 Z = ch1_data["adjacency_matrix_2019"]["Z"]
@@ -589,9 +573,6 @@ mystnb:
   figure:
     caption: "Weighted Poverty Trap \n"
     name: poverty_trap_weighted
-  image:
-    alt: poverty_trap_weighted
-    classes: shadow bg-primary
 tags: [hide-input]
 ---
 graph3 = graphviz.Digraph(comment='Graph')
@@ -956,9 +937,6 @@ mystnb:
   figure:
     caption: Sample Graph
     name: sample_gph_1
-  image:
-    alt: sample_gph_1
-    classes: shadow bg-primary
 ---
 G7 = nx.DiGraph()
 
@@ -1158,7 +1136,7 @@ eig_central = eigenvector_centrality(Z)
 mystnb:
   figure:
     caption: "Eigenvector centrality"
-    name: eigenvector_centrality
+    name: eigenvctr_centrality
 ---
 fig, ax = plt.subplots()
 
