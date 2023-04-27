@@ -187,7 +187,7 @@ If $A$ is primitive then,
 
 6. the inequality $|\lambda| \leq r(A)$ is **strict** for all eigenvalues $\lambda$ of $A$ distinct from $r(A)$, and
 7. with $v$ and $w$ normalized so that the inner product of $w$ and  $v = 1$, we have
-$ r(A)^{-m} A^m$ converges to $v w^{\top}$ when $m \rightarrow \infty$
+$ r(A)^{-m} A^m$ converges to $v w^{\top}$ when $m \rightarrow \infty$. $v w^{\top}$ is called the **Perron projection** of $A$.
 ```
 
 (This is a relatively simple version of the theorem --- for more details see
@@ -264,7 +264,7 @@ Now let's verify the claims of the Perron-Frobenius Theorem for the primitive ma
 5. There exists no other positive eigenvector associated with the dominant eigenvalue.
 6. The inequality $|\lambda| < r(B)$ holds for all eigenvalues $\lambda$ of $B$ distinct from the dominant eigenvalue.
 
-Furthermore, we can verify the convergence property (7) of the theorem:
+Furthermore, we can verify the convergence property (7) of the theorem on the following examples:
 
 ```{code-cell} ipython3
 def compute_perron_projection(M):
@@ -274,7 +274,7 @@ def compute_perron_projection(M):
 
     r = np.max(eigval)
 
-    # Find the index of the Perron eigenvalue
+    # Find the index of the dominant (Perron) eigenvalue
     i = np.argmax(eigval)
 
     # Get the Perron eigenvectors
@@ -341,7 +341,7 @@ B = np.array([[0, 1, 1],
               [1, 0, 0]])
 
 # This shows that the matrix is not primitive
-# as it is not everywhere positive
+# as it is not everywhere positive for some power
 print("Matrix:")
 print(B)
 print("100th power of matrix:")
@@ -355,6 +355,9 @@ The result shows that the matrix is not primitive as it is not everywhere positi
 These examples show how the Perron-Frobenius Theorem relates to the eigenvalues and eigenvectors of positive matrices and the convergence of the power of matrices.
 
 In fact we have already seen the theorem in action before in {ref}`the markov chain lecture <mc1_ex_1>`.
+
+(spec_markov)=
+#### Example 3: Connection to Markov chains
 
 We are now prepared to bridge the languages spoken in the two lectures. 
 
@@ -394,7 +397,7 @@ We can also verify other properties hinted by Perron-Frobenius in these stochast
 
 +++
 
-Another example on how spectral theorem governs the dynamics of positive matrices is the relationship between convergence gap and convergence rate.
+Another example is the relationship between convergence gap and convergence rate.
 
 In the {ref}`exercise<mc1_ex_1>`, we stated that the convergence rate is determined by the spectral gap, the difference between the largest and the second largest eigenvalue.
 
@@ -420,7 +423,8 @@ Recall that eigenvalues are ordered from smallest to largest from $i = 1 ... n$.
 
 As we have seen, the largest eigenvalue for a primitive stochastic matrix is one.
 
-(this can be proven using [Gershgorin Circle Theorem](https://en.wikipedia.org/wiki/Gershgorin_circle_theorem), but it is out of the scope of this lecture)
+(this can be proven using [Gershgorin Circle Theorem](https://en.wikipedia.org/wiki/Gershgorin_circle_theorem), 
+but it is out of the scope of this lecture)
 
 So by the statement (6) of Perron-Frobenius Theorem, $\lambda_i<1$ for all $i<n$, and $\lambda_n=1$ when $P$ is primitive (strongly connected and aperiodic). 
 

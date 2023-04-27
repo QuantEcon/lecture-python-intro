@@ -172,14 +172,12 @@ $$
 We can collect all of these conditional probabilities into a matrix, as follows
 
 $$
-    P =
-    \left(
-      \begin{array}{ccc}
-         0.971 & 0.029 & 0 \\
-         0.145 & 0.778 & 0.077 \\
-         0 & 0.508 & 0.492
-      \end{array}
-    \right)
+P =
+\begin{bmatrix} 
+0.971 & 0.029 & 0 \\
+0.145 & 0.778 & 0.077 \\
+0 & 0.508 & 0.492
+\end{bmatrix} 
 $$
 
 Notice that $P$ is a stochastic matrix.
@@ -205,7 +203,7 @@ In particular, $P(i,j)$ is the
 Consider a worker who, at any given time $t$, is either unemployed (state 0)
 or employed (state 1).
 
-Suppose that, over a one month period,
+Suppose that, over a one-month period,
 
 1. the unemployed worker finds a job with probability $\alpha \in (0, 1)$.
 1. the employed worker loses her job and becomes unemployed with probability $\beta \in (0, 1)$.
@@ -215,13 +213,11 @@ Given the above information, we can write out the transition probabilities in ma
 ```{math}
 :label: p_unempemp
 
-P
-= \left(
-\begin{array}{cc}
+P = 
+\begin{bmatrix} 
     1 - \alpha & \alpha \\
     \beta & 1 - \beta
-\end{array}
-  \right)
+\end{bmatrix} 
 ```
 
 For example,
@@ -264,16 +260,14 @@ We can also find a higher probability from collapse to growth in democratic regi
 
 $$
 P :=
-\left(
-  \begin{array}{cccccc}
+\begin{bmatrix} 
 0.86 & 0.11 & 0.03 & 0.00 & 0.00 & 0.00 \\
 0.52 & 0.33 & 0.13 & 0.02 & 0.00 & 0.00 \\
 0.12 & 0.03 & 0.70 & 0.11 & 0.03 & 0.01 \\
 0.13 & 0.02 & 0.35 & 0.36 & 0.10 & 0.04 \\
 0.00 & 0.00 & 0.09 & 0.11 & 0.55 & 0.25 \\
 0.00 & 0.00 & 0.09 & 0.15 & 0.26 & 0.50
-  \end{array}
-\right)
+\end{bmatrix} 
 $$
 
 ```{code-cell} ipython3
@@ -548,7 +542,7 @@ mc.simulate_indices(ts_length=4)
 (mc_md)=
 ## Distributions over time
 
-We learnt that
+We learned that
 
 1. $\{X_t\}$ is a Markov chain with stochastic matrix $P$
 1. the distribution of $X_t$ is known to be $\psi_t$
@@ -652,7 +646,7 @@ $$
 
 Recall the stochastic matrix $P$ for recession and growth {ref}`considered above <mc_eg2>`.
 
-Suppose that the current state is unknown --- perhaps statistics are available only  at the *end* of the current month.
+Suppose that the current state is unknown --- perhaps statistics are available only at the *end* of the current month.
 
 We guess that the probability that the economy is in state $x$ is $\psi_t(x)$ at time t.
 
@@ -670,7 +664,7 @@ $$
 The distributions we have been studying can be viewed either 
 
 1. as probabilities or 
-1. as cross-sectional frequencies that a Law of Large Numbers leads us to anticipate for  large samples.
+1. as cross-sectional frequencies that a Law of Large Numbers leads us to anticipate for large samples.
 
 To illustrate, recall our model of employment/unemployment dynamics for a given worker {ref}`discussed above <mc_eg1>`.
 
@@ -801,7 +795,7 @@ mc.stationary_distributions  # Show all stationary distributions
 
 ### Asymptotic stationarity
 
-Consider a everywhere positive stochastic matrix with unique stationary distribution $\psi^*$.
+Consider an everywhere positive stochastic matrix with unique stationary distribution $\psi^*$.
 
 Sometimes the distribution $\psi_t = \psi_0 P^t$ of $X_t$ converges to $\psi^*$ regardless of $\psi_0$.
 
@@ -1009,14 +1003,12 @@ where
   algebra, we'll think of as the column vector
 
 $$
-h
-= \left(
-\begin{array}{c}
+h = 
+\begin{bmatrix} 
     h(x_1) \\
     \vdots \\
     h(x_n)
-\end{array}
-  \right)
+\end{bmatrix} 
 $$
 
 Computing the unconditional expectation {eq}`mc_une` is easy.
@@ -1083,13 +1075,11 @@ Imam and Temple {cite}`imampolitical` used a three-state transition matrix to de
 
 $$
 P :=
-\left(
-  \begin{array}{ccc}
+\begin{bmatrix} 
     0.68 & 0.12 & 0.20 \\
     0.50 & 0.24 & 0.26 \\
     0.36 & 0.18 & 0.46
-  \end{array}
-\right)
+\end{bmatrix} 
 $$
 
 where rows, from top to down, correspond to growth, stagnation, and collapse.
@@ -1195,9 +1185,7 @@ sp_gap_hamilton = hamilton_eigenvals[0] - np.diff(hamilton_eigenvals)[0]
 sp_gap_P > sp_gap_hamilton
 ```
 
-We will come back to this in 
-
-TODO: add a reference to eigen II
+We will come back to this when we discuss {ref}`spectral theory<spec_markov>`.
 
 ```{solution-end}
 ```
