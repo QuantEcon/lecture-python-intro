@@ -42,7 +42,7 @@ import matplotlib.pyplot as plt
 from graphviz import Digraph
 ```
 
-## The Model
+## The Lake model
 
 This model is sometimes called the **lake model** because there are two pools of workers:
 
@@ -131,7 +131,7 @@ What long-run unemployment rate and employment rate should we expect?
 
 Do long-run outcomes depend on the initial values $(u_0, e_o)$?
 
-### Visualising the Long-Run Outcomes
+### Visualising the long-run outcomes
 
 Let us first plot the time series of unemployment $u_t$, employment $e_t$, and labor force $n_t$.
 
@@ -248,7 +248,7 @@ Hence, the growth rate of $n_t$ is fixed at $1 + b - d$.
 
 Moreover, the times series of unemployment and employment seems to grow at some stable rates in the long run.
 
-### The Application of Perron-Frobenius Theorem
+### The application of erron-Frobenius theorem
 
 Since by intuition if we consider unemployment pool and employment pool as a closed system, the growth should be similar to the labor force.
 
@@ -267,7 +267,7 @@ $x_{t+1} = Ax_t$ or in short $x_t = A^tx_0$.
 This theorem helps characterise the dominant eigenvalue $r(A)$ which
 determines the behavior of this iterative process.
 
-#### Dominant Eigenvector
+#### Dominant eigenvector
 
 We now illustrate the power of the Perron-Frobenius theorem by showing how it
 helps us to analyze the lake model.
@@ -415,7 +415,7 @@ The graph illustrates that for two distinct initial conditions $x_0$ the sequenc
 
 This suggests that all such sequences share strong similarities in the long run, determined by the dominant eigenvector $\bar{x}$.
 
-#### Negative Growth Rate
+#### Negative growth rate
 
 In the example illustrated above we considered parameters such that overall growth rate of the labor force $g>0$.
 
