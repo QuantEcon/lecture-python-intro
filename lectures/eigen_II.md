@@ -341,7 +341,7 @@ B = np.array([[0, 1, 1],
               [1, 0, 0]])
 
 # This shows that the matrix is not primitive
-# as it is not everywhere positive for some power
+# as it is not everywhere positive in certain iterates
 print("Matrix:")
 print(B)
 print("100th power of matrix:")
@@ -423,8 +423,8 @@ Recall that eigenvalues are ordered from smallest to largest from $i = 1 ... n$.
 
 As we have seen, the largest eigenvalue for a primitive stochastic matrix is one.
 
-(this can be proven using [Gershgorin Circle Theorem](https://en.wikipedia.org/wiki/Gershgorin_circle_theorem), 
-but it is out of the scope of this lecture)
+This can be proven using [Gershgorin Circle Theorem](https://en.wikipedia.org/wiki/Gershgorin_circle_theorem), 
+but it is out of the scope of this lecture.
 
 So by the statement (6) of Perron-Frobenius Theorem, $\lambda_i<1$ for all $i<n$, and $\lambda_n=1$ when $P$ is primitive (strongly connected and aperiodic). 
 
@@ -570,7 +570,7 @@ The following table describes how output is distributed within the economy:
 The first row depicts how agriculture's total output $x_1$ is distributed 
 
 * $0.3x_1$ is used as inputs within agriculture itself,
-* $0.2x_2$ is used as inputs by the industry sector to produce $x_2$ units
+* $0.2x_2$ is used as inputs by the industry sector to produce $x_2$ units,
 * $0.3x_3$ is used as inputs by the service sector to produce $x_3$ units and 
 * 4 units is the external demand by consumers.
 
