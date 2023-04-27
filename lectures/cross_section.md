@@ -22,7 +22,7 @@ In addition to what's in Anaconda, this lecture will need the following librarie
 ```{code-cell} ipython3
 :tags: [hide-output]
 
-!pip install --upgrade yfinance quantecon pandas_datareader statsmodels interpolation
+!pip install --upgrade yfinance quantecon pandas_datareader interpolation
 ```
 
 We run the following code to prepare for the lecture:
@@ -202,8 +202,8 @@ ax.set_xlabel('returns', fontsize=12)
 plt.show()
 ```
 
-If we look at higher frequency returns data (e.g., tick-by-tick), we often see even more
-extreme observations.
+If we look at higher frequency returns data (e.g., tick-by-tick), we often see 
+even more extreme observations.
 
 See, for example, {cite}`mandelbrot1963variation` or {cite}`rachev2003handbook`.
 
@@ -220,16 +220,19 @@ frequently.
 Importantly, there are many examples of heavy-tailed distributions
 observed in economic and financial settings include
 
-For example, the income and the wealth distributions are heavy-tailed (see, e.g., {cite}`pareto1896cours`, {cite}`benhabib2018skewed`).
+For example, the income and the wealth distributions are heavy-tailed 
+(see, e.g., {cite}`pareto1896cours`, {cite}`benhabib2018skewed`).
 
 * You can imagine this: most people have low or modest wealth but some people
   are extremely rich.
 
-The firm size distribution is also heavy-tailed ({cite}`axtell2001zipf`, {cite}`gabaix2016power`}).
+The firm size distribution is also heavy-tailed 
+({cite}`axtell2001zipf`, {cite}`gabaix2016power`).
 
 * You can imagine this too: most firms are small but some firms are enormous.
 
-The distribution of town and city sizes is heavy-tailed ({cite}`rozenfeld2011area`, {cite}`gabaix2016power`).
+The distribution of town and city sizes is heavy-tailed 
+({cite}`rozenfeld2011area`, {cite}`gabaix2016power`).
 
 * Most towns and cities are small but some are very large.
 
@@ -305,6 +308,13 @@ def extract_wb(varlist=['NY.GDP.MKTP.CD'], c='all', s=1900, e=2021):
 ```
 
 ```{code-cell} ipython3
+c='all'
+s=1900
+e=2021
+wb.download(indicator=['NY.GDP.MKTP.CD'], country=c, start=s, end=e)
+```
+
+```{code-cell} ipython3
 def empirical_ccdf(data, 
                    ax, 
                    aw=None,   # weights
@@ -365,8 +375,13 @@ def empirical_ccdf(data,
 ### GDP
 
 ```{code-cell} ipython3
-df_gdp1 = extract_wb(varlist=['NY.GDP.MKTP.CD']) # gdp for all countries from 1960 to 2022
-df_gdp2 = extract_wb(varlist=['NY.GDP.PCAP.CD']) # gdp per capita for all countries from 1960 to 2022
+# get gdp and gdp per capita for all regions and countries in 2021
+df_gdp1 = extract_wb(varlist=['NY.GDP.MKTP.CD'], s="2021", e="2021")[48:] 
+df_gdp2 = extract_wb(varlist=['NY.GDP.PCAP.CD'], s="2021", e="2021")[48:] 
+
+# Keep the data for all countries only
+df_gdp1 = df_gdp1[48:] 
+df_gdp2 = df_gdp2[48:]
 ```
 
 ```{code-cell} ipython3
@@ -458,7 +473,6 @@ fig.tight_layout()
 plt.show()
 ```
 
-
 ## Pareto Tails
 
 TODO Hi John I added this part with equations you cited below from lecture heavy_tails
@@ -475,7 +489,8 @@ have a **Pareto tail** with **tail index** $\alpha$ if
 \lim_{x \to \infty} x^\alpha \, \mathbb P\{X > x\} = c.
 ```
 
-The limit {eq}`plrt` implies the existence of positive constants $b$ and $\bar x$ such that $\mathbb P\{X > x\} \geq b x^{- \alpha}$ whenever $x \geq \bar x$.
+The limit {eq}`plrt` implies the existence of positive constants $b$ and $\bar x$ 
+such that $\mathbb P\{X > x\} \geq b x^{- \alpha}$ whenever $x \geq \bar x$.
 
 The implication is that $\mathbb P\{X > x\}$ converges to zero no faster than $x^{-\alpha}$.
 
@@ -727,11 +742,14 @@ The Pareto distribution is assumed to take the form {eq}`pareto` with $\bar x = 
 
 (The value the tail index $\alpha$ is plausible given the data {cite}`gabaix2016power`.)
 
-To make the lognormal option as similar as possible to the Pareto option, choose its parameters such that the mean and median of both distributions are the same.
+To make the lognormal option as similar as possible to the Pareto option, choose 
+its parameters such that the mean and median of both distributions are the same.
 
-Note that, for each distribution, your estimate of tax revenue will be random because it is based on a finite number of draws.
+Note that, for each distribution, your estimate of tax revenue will be random 
+because it is based on a finite number of draws.
 
-To take this into account, generate 100 replications (evaluations of tax revenue) for each of the two distributions and compare the two samples by
+To take this into account, generate 100 replications (evaluations of tax revenue) 
+for each of the two distributions and compare the two samples by
 
 * producing a [violin plot](https://en.wikipedia.org/wiki/Violin_plot) visualizing the two samples side-by-side and
 * printing the mean and standard deviation of both samples.
