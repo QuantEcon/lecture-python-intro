@@ -11,12 +11,13 @@ kernelspec:
   name: python3
 ---
 
++++ {"user_expressions": []}
+
 # Distributions and Probabilities
 
 ## Outline
 
 In this lecture we give a quick introduction to data and probability distributions using Python
-
 
 ```{code-cell} ipython3
 !pip install --upgrade yfinance  
@@ -28,7 +29,10 @@ import pandas as pd
 import numpy as np
 import yfinance as yf
 import scipy.stats
+import seaborn as sns
 ```
+
++++ {"user_expressions": []}
 
 ## Common distributions
 
@@ -85,6 +89,8 @@ n = 10
 u = scipy.stats.randint(1, n+1)
 ```
 
++++ {"user_expressions": []}
+
 Here's the mean and variance
 
 ```{code-cell} ipython3
@@ -95,6 +101,8 @@ u.mean()
 u.var()
 ```
 
++++ {"user_expressions": []}
+
 Now let's evaluate the PMF
 
 ```{code-cell} ipython3
@@ -104,6 +112,8 @@ u.pmf(1)
 ```{code-cell} ipython3
 u.pmf(2)
 ```
+
++++ {"user_expressions": []}
 
 Here's a plot of the probability mass function:
 
@@ -116,6 +126,8 @@ ax.set_xticks(S)
 plt.show()
 ```
 
++++ {"user_expressions": []}
+
 Here's a plot of the CDF:
 
 ```{code-cell} ipython3
@@ -127,9 +139,11 @@ ax.set_xticks(S)
 plt.show()
 ```
 
++++ {"user_expressions": []}
+
 The CDF jumps up by $p(x_i)$ and $x_i$.
 
-+++
++++ {"user_expressions": []}
 
 #### Exercise
 
@@ -137,7 +151,7 @@ Calculate the mean and variance directly from the PMF, using the expressions giv
 
 Check that your answers agree with `u.mean()` and `u.var()`.
 
-+++
++++ {"user_expressions": []}
 
 #### Binomial distribution
 
@@ -174,6 +188,8 @@ ax.set_xticks(S)
 plt.show()
 ```
 
++++ {"user_expressions": []}
+
 Here's the CDF
 
 ```{code-cell} ipython3
@@ -185,19 +201,22 @@ ax.set_xticks(S)
 plt.show()
 ```
 
++++ {"user_expressions": []}
+
 #### Exercise
 
 Using `u.pmf`, check that our definition of the CDF given above calculates the same function as `u.cdf`.
 
-+++
++++ {"user_expressions": []}
 
 #### Poisson distribution
 
-+++
+
++++ {"user_expressions": []}
 
 ## Continuous distributions
 
-+++
++++ {"user_expressions": []}
 
 Continuous distributions are represented by a **density function**, which is a function $p$ over $\mathbb R$ (the set of all numbers) such that $p(x) \geq 0$ for all $x$ and
 
@@ -226,7 +245,7 @@ $$
          = \int_{-\infty}^y p(y) dy
 $$
 
-+++
++++ {"user_expressions": []}
 
 #### Normal distribution
 
@@ -252,6 +271,8 @@ u = scipy.stats.norm(μ, σ)
 u.mean(), u.var()
 ```
 
++++ {"user_expressions": []}
+
 Here's a plot of the density --- the famous "bell-shaped curve":
 
 ```{code-cell} ipython3
@@ -260,6 +281,8 @@ x_grid = np.linspace(-4, 4, 200)
 ax.plot(x_grid, u.pdf(x_grid))
 plt.show()
 ```
+
++++ {"user_expressions": []}
 
 Here's a plot of the CDF:
 
@@ -270,21 +293,23 @@ ax.set_ylim(0, 1)
 plt.show()
 ```
 
++++ {"user_expressions": []}
+
 #### Lognormal distribution
 
-+++
++++ {"user_expressions": []}
 
 #### Exponential distribution
 
-+++
++++ {"user_expressions": []}
 
 #### Beta distribution
 
-+++
++++ {"user_expressions": []}
 
 ## Observed distributions
 
-+++
++++ {"user_expressions": []}
 
 Sometimes we refer to observed data or measurements as "distributions".
 
@@ -306,6 +331,8 @@ df = pd.DataFrame(data, columns=['name', 'income'])
 df
 ```
 
++++ {"user_expressions": []}
+
 In this situation, we might refer to the set of their incomes as the "income distribution."
 
 The terminology is confusing because this is not the same thing as a probability distribution --- it's just a collection of numbers.
@@ -314,7 +341,7 @@ Below we explore some observed distributions.
 
 We will see that there are connections between observed distributions---like the income distribution above---and probability distributions, as we'll see below.
 
-+++
++++ {"user_expressions": []}
 
 ### Summary statistics
 
@@ -332,7 +359,7 @@ $$
     \frac{1}{n} \sum_{i=1}^n (x_i - \bar x)^2
 $$
 
-+++
++++ {"user_expressions": []}
 
 For the income distribution given above, we can calculate these numbers via
 
@@ -344,11 +371,13 @@ x = np.asarray(df['income'])
 x.mean(), x.var()
 ```
 
++++ {"user_expressions": []}
+
 #### Exercise
 
 Check that the formulas given above produce the same numbers.
 
-+++
++++ {"user_expressions": []}
 
 ### Visualization
 
@@ -360,11 +389,11 @@ We will cover
 - kernel density estimates and
 - violin plots
 
-+++
++++ {"user_expressions": []}
 
 #### Histograms
 
-+++
++++ {"user_expressions": []}
 
 We can histogram the income distribution we just constructed as follows
 
@@ -374,6 +403,8 @@ fig, ax = plt.subplots()
 ax.hist(x, bins=5, density=True, histtype='bar')
 plt.show()
 ```
+
++++ {"user_expressions": []}
 
 Let's look at a distribution from real data.
 
@@ -390,11 +421,15 @@ data = prices.pct_change()[1:] * 100
 data.head()
 ```
 
++++ {"user_expressions": []}
+
 The first observation is the monthly return (percent change) over January 2000, which was
 
 ```{code-cell} ipython3
 data[0] 
 ```
+
++++ {"user_expressions": []}
 
 Let's turn the return observations into an array and histogram it.
 
@@ -408,15 +443,39 @@ ax.hist(x_amazon, bins=20)
 plt.show()
 ```
 
++++ {"user_expressions": []}
+
 #### Kernel density estimates
 
-TODO
+Kernel density estimate (KDE) is a non-parametric way to estimate and visualize the PDF of a distribution.
 
-+++
+KDE will generate a smooth curve that approximates the PDF.
+
+```{code-cell} ipython3
+fig, ax = plt.subplots()
+sns.kdeplot(x_amazon, ax=ax)
+plt.show()
+```
+
+The smoothness of the KDE is dependent on how we choose the bandwidth.
+
+```{code-cell} ipython3
+fig, ax = plt.subplots()
+sns.kdeplot(x_amazon, ax=ax, bw_adjust=0.1, alpha=0.5, label="bw=0.1")
+sns.kdeplot(x_amazon, ax=ax, bw_adjust=0.5, alpha=0.5, label="bw=0.5")
+sns.kdeplot(x_amazon, ax=ax, bw_adjust=1, alpha=0.5, label="bw=1")
+plt.legend()
+plt.show()
+```
+
+When we use a larger bandwidth, the KDE is smoother.
+
+A suitable bandwith is the one that is not too smooth (underfitting) or too wiggly (overfitting).
+
 
 #### Violin plots
 
-+++
++++ {"user_expressions": []}
 
 Yet another way to display an observed distribution is via a violin plot.
 
@@ -426,17 +485,30 @@ ax.violinplot(x_amazon)
 plt.show()
 ```
 
++++ {"user_expressions": []}
+
 Violin plots are particularly useful when we want to compare different distributions.
 
-For example, let's compare the monthly returns on Amazon shares with the monthly return on
+For example, let's compare the monthly returns on Amazon shares with the monthly return on Apple shares.
 
-TODO complete
+```{code-cell} ipython3
+df = yf.download('AAPL', '2000-1-1', '2023-1-1', interval='1mo' )
+prices = df['Adj Close']
+data = prices.pct_change()[1:] * 100
+x_apple = np.asarray(data)
+```
 
-+++
+```{code-cell} ipython3
+fig, ax = plt.subplots()
+ax.violinplot([x_amazon, x_apple])
+plt.show()
+```
+
++++ {"user_expressions": []}
 
 ### Connection to probability distributions
 
-+++
++++ {"user_expressions": []}
 
 Let's discuss the connection between observed distributions and probability distributions.
 
@@ -465,12 +537,13 @@ ax.hist(x_amazon, density=True, bins=40)
 plt.show()
 ```
 
++++ {"user_expressions": []}
+
 The match between the histogram and the density is not very bad but also not very good.
 
 One reason is that the normal distribution is not really a good fit for this observed data --- we will discuss this point again when we talk about heavy tailed distributions in TODO add link.
 
-
-+++
++++ {"user_expressions": []}
 
 Of course, if the data really *is* generated by the normal distribution, then the fit will be better.
 
@@ -491,10 +564,8 @@ ax.hist(x_draws, density=True, bins=40)
 plt.show()
 ```
 
++++ {"user_expressions": []}
+
 Note that if you keep increasing $N$, which is the number of observations, the fit will get better and better.
 
-This convergence is a version of the "law of large numbers", which we will discuss in TODO add link
-
-```{code-cell} ipython3
-
-```
+This convergence is a version of the "law of large numbers", which we will discuss in {ref}`lln_mr`.
