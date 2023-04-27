@@ -511,7 +511,7 @@ In this exercise,
 ```{solution-start} mc_ex1
 :class: dropdown
 ```
-1.
+Solution 1:
 
 Use the technique we learnt before, we can take the power of the transition matrix
 
@@ -539,7 +539,7 @@ mc = qe.MarkovChain(P)
 ψ_star
 ```
 
-2.
+Solution 2:
 
 ```{code-cell} ipython3
 ts_length = 1000
