@@ -149,7 +149,7 @@ def plot_series(data, country, ylabel,
     ax : matplotlib.axes._subplots.AxesSubplot
         Axes to plot on
     g_params : dict
-        Parameters for the graph
+        Parameters for the line
     b_params : dict
         Parameters for the recession highlights
     t_params : dict
@@ -471,7 +471,7 @@ def plot_comparison(data, countries,
     ax : matplotlib.axes._subplots.AxesSubplot
         Axes to plot on
     g_params : dict
-        Parameters for the graph
+        Parameters for the lines
     b_params : dict
         Parameters for the recession highlights
     t_params : dict
