@@ -73,7 +73,7 @@ In the competitive storage model, commodities are assets that
 1. can be traded by speculators and
 1. have intrinsic value to consumers.
 
-Total demand is the sum of consumer demand and demand by spectulators.
+Total demand is the sum of consumer demand and demand by speculators.
 
 Supply is exogenous, depending on "harvests".
 
@@ -172,7 +172,7 @@ Let $P := D^{-1}$ be the inverse demand function.
 
 Regarding quantities,
 
-* supply is the sum of of carryover by speculators and the current harvest
+* supply is the sum of carryover by speculators and the current harvest
 * demand is the sum of purchases by consumers and purchases by speculators.  
 
 Mathematically,
@@ -262,7 +262,7 @@ Then by [](eq:dopf) we have $p^*(X_t) = P(X_t)$
 
 But then $D(p^*(X_t)) = X_t$ and $I_t = I(X_t) = 0$. 
 
-As a consquence, both [](eq:arbi) and [](eq:pmco) hold. 
+As a consequence, both [](eq:arbi) and [](eq:pmco) hold. 
 
 We have found an equilibrium.
 
@@ -272,7 +272,7 @@ We have found an equilibrium.
 We now know that an equilibrium can be obtained by finding a function $p^*$
 that satisfies [](eq:dopf).
 
-It can be shown that, under mild conditions there is exactly on function on
+It can be shown that, under mild conditions there is exactly one function on
 $S$ satisfying [](eq:dopf).
 
 Moreover, we can compute this function using successive approximation.
@@ -374,6 +374,7 @@ while error > tol:
 
 ax.plot(grid, price, 'k-', alpha=0.5, lw=2, label=r'$p^*$')
 ax.legend()
+ax.set_xlabel('$x$', fontsize=12)
 
 plt.show()
 ```
