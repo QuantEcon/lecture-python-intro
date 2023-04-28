@@ -301,17 +301,22 @@ TODO Review exercises below --- are they all too hard for undergrads or should
 we keep some of them.
 
 ```{code-cell} ipython3
-def extract_wb(varlist=['NY.GDP.MKTP.CD'], c='all', s=1900, e=2021):
-    df = wb.download(indicator=varlist, country=c, start=s, end=e).stack().unstack(0).reset_index()
-    df = df.drop(['level_1'], axis=1).set_index(['year']).transpose()
+def extract_wb(varlist=['NY.GDP.MKTP.CD'], 
+               c='all', 
+               s=1900, 
+               e=2021, 
+               varnames=None):
+    if c == "all_countries":
+        #  keep countries only (no aggregated regions)
+        countries = wb.get_countries()
+        countries_code = countries[countries['region'] != 'Aggregates']['iso3c'].values
+            
+    df = wb.download(indicator=varlist, country=countries_code, start=s, end=e).stack().unstack(0).reset_index()
+    df = df.drop(['level_1'], axis=1).transpose() # set_index(['year'])
+    if varnames != None:
+        df.columns = varnames
+        df = df[1:]
     return df
-```
-
-```{code-cell} ipython3
-c='all'
-s=1900
-e=2021
-wb.download(indicator=['NY.GDP.MKTP.CD'], country=c, start=s, end=e)
 ```
 
 ```{code-cell} ipython3
@@ -376,19 +381,22 @@ def empirical_ccdf(data,
 
 ```{code-cell} ipython3
 # get gdp and gdp per capita for all regions and countries in 2021
-df_gdp1 = extract_wb(varlist=['NY.GDP.MKTP.CD'], s="2021", e="2021")[48:] 
-df_gdp2 = extract_wb(varlist=['NY.GDP.PCAP.CD'], s="2021", e="2021")[48:] 
 
-# Keep the data for all countries only
-df_gdp1 = df_gdp1[48:] 
-df_gdp2 = df_gdp2[48:]
+variable_code = ['NY.GDP.MKTP.CD', 'NY.GDP.PCAP.CD']
+variable_names = ['GDP', 'GDP per capita']
+
+df_gdp1 = extract_wb(varlist=variable_code, 
+                     c="all_countries", 
+                     s="2021", 
+                     e="2021", 
+                     varnames=variable_names)
 ```
 
 ```{code-cell} ipython3
 fig, axes = plt.subplots(1, 2, figsize=(8.8, 3.6))
 
-empirical_ccdf(np.asarray(df_gdp1['2021'].dropna()), axes[0], add_reg_line=False, label='GDP')
-empirical_ccdf(np.asarray(df_gdp2['2021'].dropna()), axes[1], add_reg_line=False, label='GDP per capita')
+for name, ax in zip(variable_names, axes):
+    empirical_ccdf(np.asarray(df_gdp1[name]).astype("float64"), ax, add_reg_line=False, label=name)
 
 plt.show()
 ```
