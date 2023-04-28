@@ -8,6 +8,7 @@ kernelspec:
   language: python
   name: python3
 ---
+
 # Market Equilibrium with Heterogeneity
 
 
@@ -542,7 +543,7 @@ def plot_competitive_equilibrium(PE):
     demand_curve = demand_inv(xs)
 
     # plot
-    plt.figure(figsize=[7, 5])
+    plt.figure()
     plt.plot(xs, supply_curve, label='Supply', color='#020060')
     plt.plot(xs, demand_curve, label='Demand', color='#600001')
 
@@ -758,7 +759,7 @@ def plot_monopoly(PE):
     demand_curve = demand_inv(xs)
 
     # plot
-    plt.figure(figsize=[7, 5])
+    plt.figure()
     plt.plot(xs, marg_cost_curve, label='Marginal cost', color='#020060')
     plt.plot(xs, marg_rev_curve, label='Marginal revenue', color='#E55B13')
     plt.plot(xs, demand_curve, label='Demand', color='#600001')

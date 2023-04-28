@@ -38,6 +38,7 @@ import matplotlib as mpl
 import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib.lines import Line2D
+plt.rcParams["figure.figsize"] = (11, 5)  #set default figure size
 ```
 
 +++ {"user_expressions": []}
@@ -131,18 +132,23 @@ code_to_name.loc['GBR']
 and then using that code to access and plot the data
 
 ```{code-cell} ipython3
-fig = plt.figure(dpi=110)
+fig = plt.figure()
 gdppc['GBR'].plot(ax = fig.gca())
 ```
 
 We can see that the data is non-continuous for longer periods in early part of this milenium so we could choose to interpolate to get a continuous line plot. 
 
 ```{code-cell} ipython3
-fig = plt.figure(dpi=110)
+---
+mystnb:
+  figure:
+    caption: "GDP per Capita (GBR)"
+    name: gdp_per_capita_gbr
+---
+fig = plt.figure()
 cntry = 'GBR'
 gdppc[cntry].interpolate().plot(
     ax = fig.gca(),
-    title = f'GDP per Capita ({cntry})',
     ylabel = 'International $\'s',
     xlabel = 'Year'
 );
@@ -159,12 +165,17 @@ As you can see from this chart economic growth started in earnest in the 18th Ce
 How does this compare with other countries growth trajectories? Let's look at the United States (USA), United Kingdom (GBR), and China (CHN)
 
 ```{code-cell} ipython3
-fig = plt.figure(dpi=110)
+---
+mystnb:
+  figure:
+    caption: "GDP per Capita of different countries"
+    name: gdp_per_capita_diff
+---
+fig = plt.figure()
 ax = fig.gca()
 cntry = ['USA', 'GBR', 'CHN']
 gdppc[cntry].plot(
     ax = ax,
-    title = f'GDP per Capita',
     ylabel = 'International $\'s',
     xlabel = 'Year'
 )
@@ -185,7 +196,7 @@ This dataset has been carefully curated to enable cross-country comparisons.
 Let's compare the growth trajectories of Australia (AUS) and Argentina (ARG)
 
 ```{code-cell} ipython3
-fig = plt.figure(dpi=110)
+fig = plt.figure()
 gdppc[['AUS', 'ARG']].plot(ax = fig.gca())
 ```
 
@@ -217,7 +228,7 @@ Gross Domestic Product
 ```{code-cell} ipython3
 cntry = ['DEU', 'SUN', 'USA', 'GBR', 'FRA', 'JPN', 'CHN']
 start_year, end_year = (1820,1940)
-fig = plt.figure(dpi=110)
+fig = plt.figure()
 gdp[cntry].loc[start_year:end_year].interpolate().plot(
     ax=fig.gca(),
 );
@@ -230,7 +241,7 @@ GDP per Capita
 ```{code-cell} ipython3
 cntry = ['DEU', 'SUN', 'USA', 'GBR', 'FRA', 'JPN', 'CHN']
 start_year, end_year = (1820,1940)
-fig = plt.figure(dpi=110)
+fig = plt.figure()
 gdppc[cntry].loc[start_year:end_year].interpolate().plot(
     ax=fig.gca()
 );
@@ -247,9 +258,9 @@ Gross Domestic Product (GDP)
 ```{code-cell} ipython3
 cntry = ['DEU', 'SUN', 'USA', 'GBR', 'FRA', 'JPN', 'CHN']
 start_year, end_year = (1970, 2018)
-fig = plt.figure(dpi=110)
+fig = plt.figure()
 gdp[cntry].loc[start_year:end_year].interpolate().plot(ax=fig.gca())
-plt.savefig(f"plot-for-tom-gdp-{start_year}-to-{end_year}.png", dpi=200)
+plt.savefig(f"plot-for-tom-gdp-{start_year}-to-{end_year}.png")
 ```
 
 +++ {"user_expressions": []}
@@ -259,16 +270,14 @@ GDP per Capita
 ```{code-cell} ipython3
 cntry = ['DEU', 'SUN', 'USA', 'GBR', 'FRA', 'JPN', 'CHN']
 start_year, end_year = (1970, 2018)
-fig = plt.figure(dpi=110)
+fig = plt.figure()
 gdppc[cntry].loc[start_year:end_year].interpolate().plot(
     ax=fig.gca()
 );
 ```
 
 
-
 +++ {"user_expressions": []}
-
 
 ---
 
@@ -279,7 +288,7 @@ Here are a collection of interesting plots that could be linked to interesting s
 Looking at China GDP per capita levels from 1500 through to the 1970's showed a long period of declining GDP per capital levels from 1700's to early 20th century. (Closed Border / Inward Looking Domestic Focused Policies?)
 
 ```{code-cell} ipython3
-fig = plt.figure(dpi=110)
+fig = plt.figure()
 gdppc['CHN'].loc[1500:1980].interpolate().plot(ax=fig.gca());
 ```
 
@@ -288,13 +297,10 @@ gdppc['CHN'].loc[1500:1980].interpolate().plot(ax=fig.gca());
 China (CHN) then followed a very similar growth story from the 1980s through to current day China. 
 
 ```{code-cell} ipython3
-fig = plt.figure(dpi=110)
+fig = plt.figure()
 gdppc[['CHN', 'GBR']].interpolate().plot(ax = fig.gca())
 ```
 
-```{code-cell} ipython3
-
-```
 
 +++ {"user_expressions": []}
 
@@ -319,7 +325,7 @@ worldgdppc = regionalgdppc['World GDP pc']
 ```
 
 ```{code-cell} ipython3
-fig = plt.figure(dpi=110)
+fig = plt.figure()
 ax = worldgdppc.plot(
     ax = fig.gca(),
     title='World GDP per capita',
@@ -329,44 +335,17 @@ ax = worldgdppc.plot(
 ```
 
 ```{code-cell} ipython3
-fig = plt.figure(dpi=110)
+fig = plt.figure()
 regionalgdppc[['Western Offshoots', 'Sub-Sahara Africa']].plot(ax = fig.gca())
 ```
 
 ```{code-cell} ipython3
-fig = plt.figure(dpi=200)
+fig = plt.figure()
 line_styles = ['-', '--', ':', '-.', '.', 'o']  # TODO: Improve this
 ax = regionalgdppc.plot(ax = fig.gca(), style=line_styles)
 plt.legend(loc='center left', bbox_to_anchor=(1.0, 0.5))
 ```
 
-```{code-cell} ipython3
-
-```
-
-```{code-cell} ipython3
-
-```
-
-```{code-cell} ipython3
-
-```
-
-```{code-cell} ipython3
-
-```
-
-```{code-cell} ipython3
-
-```
-
-```{code-cell} ipython3
-
-```
-
-```{code-cell} ipython3
-
-```
 
 +++ {"user_expressions": []}
 
@@ -504,6 +483,3 @@ wbiall = wbi.drop(['Country Name' , 'Indicator Name', 'Indicator Code'], axis=1)
 get_log_hist(wbiall, ['1960', '1990', '2020'])
 ```
 
-```{code-cell} ipython3
-
-```

@@ -3,8 +3,10 @@ jupytext:
   text_representation:
     extension: .md
     format_name: myst
+    format_version: 0.13
+    jupytext_version: 1.14.5
 kernelspec:
-  display_name: Python 3
+  display_name: Python 3 (ipykernel)
   language: python
   name: python3
 ---
@@ -652,7 +654,7 @@ approximations, under different values of $T$, and $g$ and $r$ in Python.
 First we plot the true finite stream present-value after computing it
 below
 
-```{code-cell} python3
+```{code-cell} ipython3
 # True present value of a finite lease
 def finite_lease_pv_true(T, g, r, x_0):
     G = (1 + g)
@@ -679,7 +681,13 @@ Now that we have defined our functions, we can plot some outcomes.
 
 First we study the quality of our approximations
 
-```{code-cell} python3
+```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: "Finite lease present value $T$ periods ahead"
+    name: finite_lease_present_value
+---
 def plot_function(axes, x_vals, func, args):
     axes.plot(x_vals, func(*args), label=func.__name__)
 
@@ -694,10 +702,9 @@ our_args = (T, g, r, x_0)
 funcs = [finite_lease_pv_true,
         finite_lease_pv_approx_1,
         finite_lease_pv_approx_2]
-        ## the three functions we want to compare
+        # the three functions we want to compare
 
 fig, ax = plt.subplots()
-ax.set_title('Finite Lease Present Value $T$ Periods Ahead')
 for f in funcs:
     plot_function(ax, T, f, our_args)
 ax.legend()
@@ -713,12 +720,17 @@ However, holding $g$ and r fixed, our approximations deteriorate as $T$ increase
 Next we compare the infinite and finite duration lease present values
 over different lease lengths $T$.
 
-```{code-cell} python3
+```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: "Infinite and finite lease present value $T$ periods ahead"
+    name: infinite_and_finite_lease_present_value
+---
 # Convergence of infinite and finite
 T_max = 1000
 T = np.arange(0, T_max+1)
 fig, ax = plt.subplots()
-ax.set_title('Infinite and Finite Lease Present Value $T$ Periods Ahead')
 f_1 = finite_lease_pv_true(T, g, r, x_0)
 f_2 = np.full(T_max+1, infinite_lease(g, r, x_0))
 ax.plot(T, f_1, label='T-period lease PV')
@@ -736,11 +748,16 @@ perpetual lease.
 Now we consider two different views of what happens as $r$ and
 $g$ covary
 
-```{code-cell} python3
+```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: "Value of lease of length $T$"
+    name: value_of_lease
+---
 # First view
 # Changing r and g
 fig, ax = plt.subplots()
-ax.set_title('Value of lease of length $T$')
 ax.set_ylabel('Present Value, $p_0$')
 ax.set_xlabel('$T$ periods ahead')
 T_max = 10
@@ -765,9 +782,15 @@ graph.
 If you aren't enamored of 3-d graphs, feel free to skip the next
 visualization!
 
-```{code-cell} python3
+```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: "Three period lease PV with varying $g$ and $r$"
+    name: three_period_lease_PV
+---
 # Second view
-fig = plt.figure()
+fig = plt.figure(figsize = [16, 5])
 T = 3
 ax = plt.subplot(projection='3d')
 r = np.arange(0.01, 0.99, 0.005)
@@ -785,8 +808,7 @@ fig.colorbar(surf, shrink=0.5, aspect=5)
 ax.set_xlabel('$r$')
 ax.set_ylabel('$g$')
 ax.set_zlabel('Present Value, $p_0$')
-ax.view_init(20, 10)
-ax.set_title('Three Period Lease PV with Varying $g$ and $r$')
+ax.view_init(20, 8)
 plt.show()
 ```
 
@@ -803,7 +825,7 @@ represents our present value formula for an infinite lease.
 
 After that, we'll use SymPy to compute derivatives
 
-```{code-cell} python3
+```{code-cell} ipython3
 # Creates algebraic symbols that can be used in an algebraic expression
 g, r, x0 = sym.symbols('g, r, x0')
 G = (1 + g)
@@ -814,13 +836,13 @@ print('Our formula is:')
 p0
 ```
 
-```{code-cell} python3
+```{code-cell} ipython3
 print('dp0 / dg is:')
 dp_dg = sym.diff(p0, g)
 dp_dg
 ```
 
-```{code-cell} python3
+```{code-cell} ipython3
 print('dp0 / dr is:')
 dp_dr = sym.diff(p0, r)
 dp_dr
@@ -839,7 +861,13 @@ We will now go back to the case of the Keynesian multiplier and plot the
 time path of $y_t$, given that consumption is a constant fraction
 of national income, and investment is fixed.
 
-```{code-cell} python3
+```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: "Path of aggregate output tver time"
+    name: path_of_aggregate_output_over_time
+---
 # Function that calculates a path of y
 def calculate_y(i, b, g, T, y_init):
     y = np.zeros(T+1)
@@ -857,7 +885,6 @@ y_init = 0
 T = 100
 
 fig, ax = plt.subplots()
-ax.set_title('Path of Aggregate Output Over Time')
 ax.set_xlabel('$t$')
 ax.set_ylabel('$y_t$')
 ax.plot(np.arange(0, T+1), calculate_y(i_0, b, g_0, T, y_init))
@@ -873,11 +900,16 @@ We now examine what will
 happen if we vary the so-called **marginal propensity to consume**,
 i.e., the fraction of income that is consumed
 
-```{code-cell} python3
+```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: "Changing consumption as a fraction of income"
+    name: changing_consumption_as_fraction_of_income
+---
 bs = (1/3, 2/3, 5/6, 0.9)
 
 fig,ax = plt.subplots()
-ax.set_title('Changing Consumption as a Fraction of Income')
 ax.set_ylabel('$y_t$')
 ax.set_xlabel('$t$')
 x = np.arange(0, T+1)
@@ -893,7 +925,13 @@ path of output over time.
 
 Now we will compare the effects on output of increases in investment and government spending.
 
-```{code-cell} python3
+```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: "Different increase on output"
+    name: different_increase_on_output
+---
 fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(6, 10))
 fig.subplots_adjust(hspace=0.3)
 

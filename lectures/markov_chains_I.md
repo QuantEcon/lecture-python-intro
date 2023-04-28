@@ -65,7 +65,6 @@ Let's start with some standard imports:
 
 ```{code-cell} ipython3
 import matplotlib.pyplot as plt
-plt.rcParams["figure.figsize"] = (11, 5)  # set default figure size
 import quantecon as qe
 import numpy as np
 from graphviz import Digraph
@@ -561,7 +560,7 @@ To answer this, we let $\psi_t$ be the distribution of $X_t$ for $t = 0, 1, 2, \
 
 Our first aim is to find $\psi_{t + 1}$ given $\psi_t$ and $P$.
 
-To begin, pick any $y  \in S$.
+To begin, pick any $y \in S$.
 
 To get the probability of being at $y$ tomorrow (at $t+1$), we account for
 all ways this can happen and sum their probabilities.
@@ -859,7 +858,7 @@ Now we plot the sequence
 ```{code-cell} ipython3
 ψ_0 = (0.0, 0.2, 0.8)        # Initial condition
 
-fig = plt.figure(figsize=(8, 6))
+fig = plt.figure()
 ax = fig.add_subplot(111, projection='3d')
 
 ax.set(xlim=(0, 1), ylim=(0, 1), zlim=(0, 1),
@@ -922,7 +921,7 @@ def plot_distribution(P, ts_length, num_distributions):
     ψ_star = mc.stationary_distributions[0]
 
     ## Draw the plot
-    fig, axes = plt.subplots(nrows=1, ncols=n)
+    fig, axes = plt.subplots(nrows=1, ncols=n, figsize=[11, 5])
     plt.subplots_adjust(wspace=0.35)
 
     ψ_0s = generate_initial_values(num_distributions)

@@ -72,7 +72,6 @@ Let's start with some imports:
 ```{code-cell} ipython3
 %matplotlib inline
 import matplotlib.pyplot as plt
-plt.rcParams["figure.figsize"] = (11, 5)  #set default figure size
 from random import uniform, seed
 from math import sqrt
 import numpy as np
@@ -246,7 +245,7 @@ def plot_distribution(agents, cycle_num):
         else:
             x_values_1.append(x)
             y_values_1.append(y)
-    fig, ax = plt.subplots(figsize=(8, 8))
+    fig, ax = plt.subplots()
     plot_args = {'markersize': 8, 'alpha': 0.8}
     ax.set_facecolor('azure')
     ax.plot(x_values_0, y_values_0, 
@@ -429,7 +428,7 @@ def update_agent(i, locations, types):
 
 def plot_distribution(locations, types, title, savepdf=False):
     " Plot the distribution of agents after cycle_num rounds of the loop."
-    fig, ax = plt.subplots(figsize=(8, 8))
+    fig, ax = plt.subplots()
     colors = 'orange', 'green'
     for agent_type, color in zip((0, 1), colors):
         idx = (types == agent_type)
