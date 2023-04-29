@@ -15,6 +15,13 @@ kernelspec:
 
 # Distributions and Probabilities
 
+```{index} single: Distributions and Probabilities
+```
+
+```{contents} Contents
+:depth: 2
+```
+
 ## Outline
 
 In this lecture we give a quick introduction to data and probability distributions using Python
@@ -162,12 +169,12 @@ Check that your answers agree with `u.mean()` and `u.var()`.
 Another useful (and more interesting) distribution is the **binomial distribution** on $S=\{0, \ldots, n\}$, which has PMF
 
 $$ 
-    p(i) = \binom{i}{n} \theta^i (1-\theta)^{n-i}
+    p(i) = \binom{n}{i} \theta^i (1-\theta)^{n-i}
 $$
 
 Here $\theta \in [0,1]$ is a parameter.
 
-The interpretatin of $p(i)$ is: the number of successes in $n$ independent trials with success probability $\theta$.
+The interpretation of $p(i)$ is: the number of successes in $n$ independent trials with success probability $\theta$.
 
 (If $\theta=0.5$, this is "how many heads in $n$ flips of a fair coin")
 
@@ -272,7 +279,7 @@ plt.show()
 
 Continuous distributions are represented by a **density function**, which is a function $p$ over $\mathbb R$ (the set of all numbers) such that $p(x) \geq 0$ for all $x$ and
 
-$$ \int_{-\infty}^\infty p(x) = 1 $$
+$$ \int_{-\infty}^\infty p(x) dx = 1 $$
 
 We say that random variable $X$ has distribution $p$ if
 
@@ -294,14 +301,14 @@ The **cumulative distribution function** (CDF) of $X$ is defined by
 
 $$
     F(x) = \mathbb P\{X \leq x\}
-         = \int_{-\infty}^y p(y) dy
+         = \int_{-\infty}^x p(x) dx
 $$
 
 +++ {"user_expressions": []}
 
 #### Normal distribution
 
-Perhaps the most famous distribution is the **normal distribution**, which as density
+Perhaps the most famous distribution is the **normal distribution**, which has density
 
 $$
     p(x) = \frac{1}{\sqrt{2\pi}\sigma}
@@ -312,7 +319,7 @@ This distribution has two parameters, $\mu$ and $\sigma$.
 
 It can be shown that, for this distribution, the mean is $\mu$ and the variance is $\sigma^2$.
 
-We can obtain the moments, PDF, CDF of the normal density via SciPy as follows:
+We can obtain the moments, PDF, and CDF of the normal density as follows:
 
 ```{code-cell} ipython3
 μ, σ = 0.0, 1.0
@@ -376,7 +383,7 @@ It has a nice interpretation: if $X$ is lognormally distributed, then $\log X$ i
 
 It is often used to model variables that are "multiplicative" in nature, such as income or asset prices.
 
-We can obtain the moments, PDF, CDF of the normal density via SciPy as follows:
+We can obtain the moments, PDF, and CDF of the normal density as follows:
 
 ```{code-cell} ipython3
 μ, σ = 0.0, 1.0
@@ -390,10 +397,9 @@ u.mean(), u.var()
 ```{code-cell} ipython3
 μ_vals = [-1, 0, 1]
 σ_vals = [0.25, 0.5, 1]
-fig, ax = plt.subplots()
-
 x_grid = np.linspace(0, 3, 200)
 
+fig, ax = plt.subplots()
 for μ, σ in zip(μ_vals, σ_vals):
     u = scipy.stats.lognorm(σ, scale=np.exp(μ))
     ax.plot(x_grid, u.pdf(x_grid),
@@ -432,7 +438,7 @@ It is related to the Poisson distribution as it describes the distribution of th
 
 It can be shown that, for this distribution, the mean is $1/\lambda$ and the variance is $1/\lambda^2$.
 
-We can obtain the moments, PDF, CDF of the normal density via SciPy as follows:
+We can obtain the moments, PDF, and CDF of the normal density as follows:
 
 ```{code-cell} ipython3
 λ = 1.0
@@ -446,6 +452,8 @@ u.mean(), u.var()
 ```{code-cell} ipython3
 fig, ax = plt.subplots()
 λ_vals = [0.5, 1, 2]
+x_grid = np.linspace(0, 6, 200)
+
 for λ in λ_vals:
     u = scipy.stats.expon(scale=1/λ)
     ax.plot(x_grid, u.pdf(x_grid),
@@ -486,12 +494,13 @@ For example, if $\alpha = \beta = 1$, then the beta distribution is uniform on $
 
 While, if $\alpha = 3$ and $\beta = 2$, then the beta distribution is located more towards 1 as there are more successes than failures.
 
-It can be shown that, for this distribution, the mean is $\alpha / (\alpha + \beta)$ and the variance is $\alpha \beta / (\alpha + \beta)^2 (\alpha + \beta + 1)$.
+It can be shown that, for this distribution, the mean is $\alpha / (\alpha + \beta)$ and 
+the variance is $\alpha \beta / (\alpha + \beta)^2 (\alpha + \beta + 1)$.
 
-We can obtain the moments, PDF, CDF of the normal density via SciPy as follows:
+We can obtain the moments, PDF, and CDF of the normal density as follows:
 
 ```{code-cell} ipython3
-α, β = 1.0, 1.0
+α, β = 3.0, 1.0
 u = scipy.stats.beta(α, β)
 ```
 
@@ -500,8 +509,8 @@ u.mean(), u.var()
 ```
 
 ```{code-cell} ipython3
-α_vals = [0.5, 1, 50, 250, 3]
-β_vals = [3, 1, 100, 200, 1]
+α_vals = [0.5, 1, 5, 25, 3]
+β_vals = [3, 1, 10, 20, 0.5]
 x_grid = np.linspace(0, 1, 200)
 
 fig, ax = plt.subplots()
@@ -541,10 +550,10 @@ It can be shown that, for this distribution, the mean is $\alpha / \beta$ and th
 
 One interpretation is that if $X$ is gamma distributed, then $X$ is the sum of $\alpha$ independent exponentially distributed random variables with mean $1/\beta$.
 
-We can obtain the moments, PDF, CDF of the normal density via SciPy as follows:
+We can obtain the moments, PDF, and CDF of the normal density as follows:
 
 ```{code-cell} ipython3
-α, β = 1.0, 1.0
+α, β = 3.0, 2.0
 u = scipy.stats.gamma(α, scale=1/β)
 ```
 
@@ -742,7 +751,7 @@ plt.show()
 
 When we use a larger bandwidth, the KDE is smoother.
 
-A suitable bandwith is the one that is not too smooth (underfitting) or too wiggly (overfitting).
+A suitable bandwidth is not too smooth (underfitting) or too wiggly (overfitting).
 
 
 #### Violin plots
@@ -813,7 +822,7 @@ plt.show()
 
 The match between the histogram and the density is not very bad but also not very good.
 
-One reason is that the normal distribution is not really a good fit for this observed data --- we will discuss this point again when we talk about heavy tailed distributions in TODO add link.
+One reason is that the normal distribution is not really a good fit for this observed data --- we will discuss this point again when we talk about {ref}`heavy tailed distributions<heavy_tail>`.
 
 +++ {"user_expressions": []}
 
