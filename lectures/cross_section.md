@@ -11,6 +11,7 @@ kernelspec:
   name: python3
 ---
 
+(heavy_tail)=
 # Heavy-Tailed Distributions
 
 ```{contents} Contents
@@ -207,7 +208,6 @@ even more extreme observations.
 
 See, for example, {cite}`mandelbrot1963variation` or {cite}`rachev2003handbook`.
 
-(heavy_tail)=
 ### Other Data
 
 The data we have just seen is said to be "heavy-tailed".

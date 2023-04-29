@@ -105,12 +105,10 @@ u = scipy.stats.randint(1, n+1)
 Here's the mean and variance
 
 ```{code-cell} ipython3
-u.mean()
+u.mean(), u.var()
 ```
 
-```{code-cell} ipython3
-u.var()
-```
+The formula for the mean is $(n+1)/2$, and the formula for the variance is $(n^2 - 1)/12$.
 
 +++ {"user_expressions": []}
 
@@ -178,13 +176,21 @@ The interpretation of $p(i)$ is: the number of successes in $n$ independent tria
 
 (If $\theta=0.5$, this is "how many heads in $n$ flips of a fair coin")
 
-Here's the PDF
+The mean and variance are
 
 ```{code-cell} ipython3
 n = 10
 θ = 0.5
 u = scipy.stats.binom(n, θ)
 ```
+
+```{code-cell} ipython3
+u.mean(), u.var()
+```
+
+The formula for the mean is $n \theta$ and the formula for the variance is $n \theta (1-\theta)$.
+
+Here's the PDF
 
 ```{code-cell} ipython3
 u.pmf(1)
@@ -220,7 +226,7 @@ plt.show()
 Using `u.pmf`, check that our definition of the CDF given above calculates the same function as `u.cdf`.
 ```
 
-```{solution-start} mc_ex2
+```{solution-start} prob_ex2
 :class: dropdown
 ```
 
@@ -250,6 +256,18 @@ $$
 $$
 
 The interpretation of $p(i)$ is: the number of events in a fixed time interval, where the events occur at a constant rate $\lambda$ and independently of each other.
+
+The mean and variance are
+```{code-cell} ipython3
+λ = 2
+u = scipy.stats.poisson(λ)
+```
+    
+```{code-cell} ipython3
+u.mean(), u.var()
+```
+
+The the expectation of Poisson distribution is $\lambda$ and the variance is also $\lambda$.
 
 Here's the PMF
 
@@ -312,7 +330,7 @@ Perhaps the most famous distribution is the **normal distribution**, which has d
 
 $$
     p(x) = \frac{1}{\sqrt{2\pi}\sigma}
-        \exp \left( - \frac{x - \mu}{2 \sigma^2} \right)
+              \exp\left(-\frac{(x-\mu)^2}{2\sigma^2}\right)
 $$
 
 This distribution has two parameters, $\mu$ and $\sigma$.  
