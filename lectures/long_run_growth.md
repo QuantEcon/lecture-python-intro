@@ -3,8 +3,10 @@ jupytext:
   text_representation:
     extension: .md
     format_name: myst
+    format_version: 0.13
+    jupytext_version: 1.14.5
 kernelspec:
-  display_name: Python 3
+  display_name: Python 3 (ipykernel)
   language: python
   name: python3
 ---
@@ -36,7 +38,6 @@ import matplotlib as mpl
 import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib.lines import Line2D
-plt.rcParams["figure.figsize"] = (11, 5)  #set default figure size
 ```
 
 
@@ -55,7 +56,6 @@ data = pd.read_excel("datasets/mpd2020.xlsx", sheet_name='Full data')
 data
 ```
 
-
 We can see that this dataset contains GDP per capita (gdppc) and population (pop) for many countries and years.
 
 Let's look at how many and which countries are available in this dataset
@@ -67,7 +67,6 @@ data.country.unique()
 ```{code-cell} ipython3
 len(data.country.unique())
 ```
-
 
 We can now explore some of the 169 countries that are available. 
 
@@ -83,13 +82,11 @@ cntry_years = pd.DataFrame(cntry_years, columns=['country', 'Min Year', 'Max Yea
 cntry_years
 ```
 
-
 You can query this dataframe for each country of interest such as `Australia` by using `.loc`
 
 ```{code-cell} ipython3
 cntry_years.loc['Australia']
 ```
-
 
 Let us now reshape the original data into some convenient variables to enable quicker access to countries time series data.
 
@@ -98,7 +95,6 @@ We can build a useful mapping between country code's and country names in this d
 ```{code-cell} ipython3
 code_to_name = data[['countrycode','country']].drop_duplicates().reset_index(drop=True).set_index(['countrycode'])
 ```
-
 
 Then we can quickly focus on GDP per capita (gdp)
 
@@ -127,10 +123,10 @@ and then using that code to access and plot the data
 ---
 mystnb:
   figure:
-    caption: "GDP per Capita (GBR)"
+    caption: GDP per Capita (GBR)
     name: gdppc_gbr1
 ---
-fig = plt.figure(dpi=110)
+fig = plt.figure()
 gdppc['GBR'].plot(ax = fig.gca())
 plt.show()
 ```
@@ -141,7 +137,7 @@ We can see that the data is non-continuous for longer periods in early part of t
 ---
 mystnb:
   figure:
-    caption: "GDP per Capita (GBR)"
+    caption: GDP per Capita (GBR)
     name: gdppc_gbr2
 ---
 fig = plt.figure(dpi=300)
@@ -166,7 +162,7 @@ How does this compare with other countries growth trajectories? Let's look at th
 ---
 mystnb:
   figure:
-    caption: "GDP per Capita"
+    caption: GDP per Capita
     name: gdppc_usa_gbr_chn
 ---
 fig = plt.figure(dpi=300)
@@ -185,10 +181,9 @@ legend_elements = []
 for i,c in enumerate(cntry):
     line = Line2D([0], [0], color=line_color[i], lw=2, label=code_to_name.loc[c]['country'])
     legend_elements.append(line)
-ax.legend(handles=legend_elements, loc='center right', bbox_to_anchor=(1.4,0.5))
+ax.legend(handles=legend_elements, loc='lower center', ncol=3, bbox_to_anchor=[0.5, -0.25])
 plt.show()
 ```
-
 
 This dataset has been carefully curated to enable cross-country comparisons.
 
@@ -198,7 +193,7 @@ Let's compare the growth trajectories of Australia (AUS) and Argentina (ARG)
 ---
 mystnb:
   figure:
-    caption: "GDP per capita"
+    caption: GDP per capita
     name: gdppc_aus_arg
 ---
 fig = plt.figure(dpi=300)
@@ -217,10 +212,9 @@ legend_elements = []
 for i,c in enumerate(cntry):
     line = Line2D([0], [0], color=line_color[i], lw=2, label=code_to_name.loc[c]['country'])
     legend_elements.append(line)
-ax.legend(handles=legend_elements, loc='center right', bbox_to_anchor=(1.4,0.5))
+ax.legend(handles=legend_elements, loc='lower center', ncol=3, bbox_to_anchor=[0.5, -0.25])
 plt.show()
 ```
-
 
 As you can see the countries had similar GDP per capita levels with divergence starting around 1940. Australia's growth experience is both more continuous and less volatile post 1940.
 
@@ -246,7 +240,7 @@ Gross Domestic Product
 ---
 mystnb:
   figure:
-    caption: "GDP"
+    caption: GDP
     name: gdp1
 ---
 fig = plt.figure(dpi=110)
@@ -266,7 +260,7 @@ legend_elements = []
 for i,c in enumerate(cntry):
     line = Line2D([0], [0], color=line_color[i], lw=2, label=code_to_name.loc[c]['country'])
     legend_elements.append(line)
-ax.legend(handles=legend_elements, loc='center right', bbox_to_anchor=(1.4,0.5))
+ax.legend(handles=legend_elements, loc='lower center', ncol=4, bbox_to_anchor=[0.5, -0.26])
 plt.show()
 ```
 
@@ -276,7 +270,7 @@ GDP per Capita
 ---
 mystnb:
   figure:
-    caption: "GDP per Capita"
+    caption: GDP per Capita
     name: gdppc1
 ---
 fig = plt.figure(dpi=110)
@@ -296,13 +290,11 @@ legend_elements = []
 for i,c in enumerate(cntry):
     line = Line2D([0], [0], color=line_color[i], lw=2, label=code_to_name.loc[c]['country'])
     legend_elements.append(line)
-ax.legend(handles=legend_elements, loc='center right', bbox_to_anchor=(1.4,0.5))
+ax.legend(handles=legend_elements, loc='lower center', ncol=4, bbox_to_anchor=[0.5, -0.25])
 plt.show()
 ```
 
-
 ## The Modern Era (1970 to 2018)
-
 
 Gross Domestic Product (GDP)
 
@@ -310,7 +302,7 @@ Gross Domestic Product (GDP)
 ---
 mystnb:
   figure:
-    caption: "GDP"
+    caption: GDP
     name: gdp2
 ---
 fig = plt.figure(dpi=300)
@@ -330,10 +322,9 @@ legend_elements = []
 for i,c in enumerate(cntry):
     line = Line2D([0], [0], color=line_color[i], lw=2, label=code_to_name.loc[c]['country'])
     legend_elements.append(line)
-ax.legend(handles=legend_elements, loc='center right', bbox_to_anchor=(1.4,0.5))
+ax.legend(handles=legend_elements, loc='lower center', ncol=4, bbox_to_anchor=[0.5, -0.25])
 plt.show()
 ```
-
 
 GDP per Capita
 
@@ -341,7 +332,7 @@ GDP per Capita
 ---
 mystnb:
   figure:
-    caption: "GDP per Capita"
+    caption: GDP per Capita
     name: gdppc2
 ---
 fig = plt.figure(dpi=300)
@@ -361,7 +352,7 @@ legend_elements = []
 for i,c in enumerate(cntry):
     line = Line2D([0], [0], color=line_color[i], lw=2, label=code_to_name.loc[c]['country'])
     legend_elements.append(line)
-ax.legend(handles=legend_elements, loc='center right', bbox_to_anchor=(1.4,0.5))
+ax.legend(handles=legend_elements, loc='lower center', ncol=3, bbox_to_anchor=[0.5, -0.3])
 plt.show()
 ```
 
@@ -437,7 +428,7 @@ Looking more closely, let us compare the time series for `Western Offshoots` and
 fig = plt.figure(dpi=300)
 ax = fig.gca()
 regionalgdppc[['Western Offshoots', 'Sub-Sahara Africa']].plot(ax = ax)
-ax.legend(loc='center right', bbox_to_anchor=(1.4,0.5))
+ax.legend(loc='lower center', ncol=2, bbox_to_anchor=[0.5, -0.26])
 plt.show()
 ```
 
@@ -449,6 +440,6 @@ fig = plt.figure(dpi=300)
 ax = fig.gca()
 line_styles = ['-', '--', ':', '-.', '.', 'o', '-', '--', '-']
 ax = regionalgdppc.plot(ax = ax, style=line_styles)
-plt.legend(loc='center left', bbox_to_anchor=(1.0, 0.5))
+plt.legend(loc='lower center', ncol=4, bbox_to_anchor=[0.5, -0.4])
 plt.show()
 ```
