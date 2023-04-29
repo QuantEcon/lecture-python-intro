@@ -11,6 +11,7 @@ kernelspec:
   name: python3
 ---
 
+(heavy_tail)=
 # Heavy-Tailed Distributions
 
 ```{contents} Contents
@@ -206,7 +207,6 @@ If we look at higher frequency returns data (e.g., tick-by-tick), we often see
 even more extreme observations.
 
 See, for example, {cite}`mandelbrot1963variation` or {cite}`rachev2003handbook`.
-
 
 ### Other Data
 
