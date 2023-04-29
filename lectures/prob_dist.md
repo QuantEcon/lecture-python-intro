@@ -58,6 +58,8 @@ $$
     \mathbb E X = \sum_{i=1}^n x_i p(x_i)
 $$
 
+Expectation is also called the *first moment* of the distribution.
+
 We also refer to this number as the mean of the distribution (represented by) $p$.
 
 The **variance** of $X$ is defined as 
@@ -65,6 +67,8 @@ The **variance** of $X$ is defined as
 $$ 
     \mathbb V X = \sum_{i=1}^n (x_i - \mathbb E X)^2 p(x_i)
 $$
+
+Variance is also called the *second central moment* of the distribution.
 
 The **cumulative distribution function** (CDF) of $X$ is defined by
 
@@ -145,13 +149,13 @@ The CDF jumps up by $p(x_i)$ and $x_i$.
 
 +++ {"user_expressions": []}
 
-#### Exercise
+```{exercise}
+:label: prob_ex1
 
 Calculate the mean and variance directly from the PMF, using the expressions given above.
 
 Check that your answers agree with `u.mean()` and `u.var()`.
-
-+++ {"user_expressions": []}
+```
 
 #### Binomial distribution
 
@@ -203,18 +207,66 @@ plt.show()
 
 +++ {"user_expressions": []}
 
-#### Exercise
+```{exercise}
+:label: prob_ex2
 
 Using `u.pmf`, check that our definition of the CDF given above calculates the same function as `u.cdf`.
+```
 
-+++ {"user_expressions": []}
+```{solution-start} mc_ex2
+:class: dropdown
+```
+
+Here is one solution
+
+```{code-cell} ipython3
+fig, ax = plt.subplots()
+S = np.arange(1, n+1)
+u_sum = np.cumsum(u.pmf(S))
+ax.step(S, u_sum)
+ax.vlines(S, 0, u_sum, lw=0.2)
+ax.set_xticks(S)
+plt.show()
+```
+
+We can see that the output graph is the same as the one above.
+
+```{solution-end}
+```
 
 #### Poisson distribution
 
+Poisson distribution on $S = \{0, 1, \ldots\}$ with parameter $\lambda > 0$ has PMF
+
+$$
+    p(i) = \frac{\lambda^i}{i!} e^{-\lambda}
+$$
+
+The interpretation of $p(i)$ is: the number of events in a fixed time interval, where the events occur at a constant rate $\lambda$ and independently of each other.
+
+Here's the PMF
+
+```{code-cell} ipython3
+λ = 2
+u = scipy.stats.poisson(λ)
+```
+
+```{code-cell} ipython3
+u.pmf(1)
+```
+
+```{code-cell} ipython3
+fig, ax = plt.subplots()
+S = np.arange(1, n+1)
+ax.plot(S, u.pmf(S), linestyle='', marker='o', alpha=0.8, ms=4)
+ax.vlines(S, 0, u.pmf(S), lw=0.2)
+ax.set_xticks(S)
+plt.show()
+```
 
 +++ {"user_expressions": []}
 
-## Continuous distributions
+### Continuous distributions
 
 +++ {"user_expressions": []}
 
@@ -260,7 +312,7 @@ This distribution has two parameters, $\mu$ and $\sigma$.
 
 It can be shown that, for this distribution, the mean is $\mu$ and the variance is $\sigma^2$.
 
-We can obtain the PDF, CDF and moments of the normal density via SciPy as follows.
+We can obtain the moments, PDF, CDF of the normal density via SciPy as follows:
 
 ```{code-cell} ipython3
 μ, σ = 0.0, 1.0
@@ -271,14 +323,21 @@ u = scipy.stats.norm(μ, σ)
 u.mean(), u.var()
 ```
 
-+++ {"user_expressions": []}
-
 Here's a plot of the density --- the famous "bell-shaped curve":
 
 ```{code-cell} ipython3
+μ_vals = [-1, 0, 1]
+σ_vals = [0.4, 1, 1.6]
 fig, ax = plt.subplots()
 x_grid = np.linspace(-4, 4, 200)
-ax.plot(x_grid, u.pdf(x_grid))
+
+for μ, σ in zip(μ_vals, σ_vals):
+    u = scipy.stats.norm(μ, σ)
+    ax.plot(x_grid, u.pdf(x_grid),
+    alpha=0.5, lw=2,
+    label=f'$\mu={μ}, \sigma={σ}$')
+
+plt.legend()
 plt.show()
 ```
 
@@ -288,8 +347,13 @@ Here's a plot of the CDF:
 
 ```{code-cell} ipython3
 fig, ax = plt.subplots()
-ax.plot(x_grid, u.cdf(x_grid))
-ax.set_ylim(0, 1)
+for μ, σ in zip(μ_vals, σ_vals):
+    u = scipy.stats.norm(μ, σ)
+    ax.plot(x_grid, u.cdf(x_grid),
+    alpha=0.5, lw=2,
+    label=f'$\mu={μ}, \sigma={σ}$')
+    ax.set_ylim(0, 1)
+plt.legend()
 plt.show()
 ```
 
@@ -297,15 +361,223 @@ plt.show()
 
 #### Lognormal distribution
 
-+++ {"user_expressions": []}
+The **lognormal distribution** is a distribution on $\left(0, \infty\right)$ with density
+
+$$
+    p(x) = \frac{1}{\sigma x \sqrt{2\pi}}
+        \exp \left(- \frac{\left(\log x - \mu\right)^2}{2 \sigma^2} \right)
+$$
+
+This distribution has two parameters, $\mu$ and $\sigma$.
+
+It can be shown that, for this distribution, the mean is $\exp\left(\mu + \sigma^2/2\right)$ and the variance is $\left[\exp\left(\sigma^2\right) - 1\right] \exp\left(2\mu + \sigma^2\right)$.
+
+It has a nice interpretation: if $X$ is lognormally distributed, then $\log X$ is normally distributed.
+
+It is often used to model variables that are "multiplicative" in nature, such as income or asset prices.
+
+We can obtain the moments, PDF, CDF of the normal density via SciPy as follows:
+
+```{code-cell} ipython3
+μ, σ = 0.0, 1.0
+u = scipy.stats.lognorm(s=σ, scale=np.exp(μ))
+```
+
+```{code-cell} ipython3
+u.mean(), u.var()
+```
+
+```{code-cell} ipython3
+μ_vals = [-1, 0, 1]
+σ_vals = [0.25, 0.5, 1]
+fig, ax = plt.subplots()
+
+x_grid = np.linspace(0, 3, 200)
+
+for μ, σ in zip(μ_vals, σ_vals):
+    u = scipy.stats.lognorm(σ, scale=np.exp(μ))
+    ax.plot(x_grid, u.pdf(x_grid),
+    alpha=0.5, lw=2,
+    label=f'$\mu={μ}, \sigma={σ}$')
+
+plt.legend()
+plt.show()
+```
+
+```{code-cell} ipython3
+fig, ax = plt.subplots()
+μ = 1
+for σ in σ_vals:
+    u = scipy.stats.norm(μ, σ)
+    ax.plot(x_grid, u.cdf(x_grid),
+    alpha=0.5, lw=2,
+    label=f'$\mu={μ}, \sigma={σ}$')
+    ax.set_ylim(0, 1)
+    ax.set_xlim(0, 3)
+plt.legend()
+plt.show()
+```
 
 #### Exponential distribution
 
-+++ {"user_expressions": []}
+The **exponential distribution** is a distribution on $\left(0, \infty\right)$ with density
+
+$$
+    p(x) = \lambda \exp \left( - \lambda x \right)
+$$
+
+This distribution has one parameter, $\lambda$.
+
+It is related to the Poisson distribution as it describes the distribution of the length of the time interval between two consecutive events in a Poisson process.
+
+It can be shown that, for this distribution, the mean is $1/\lambda$ and the variance is $1/\lambda^2$.
+
+We can obtain the moments, PDF, CDF of the normal density via SciPy as follows:
+
+```{code-cell} ipython3
+λ = 1.0
+u = scipy.stats.expon(scale=1/λ)
+```
+
+```{code-cell} ipython3
+u.mean(), u.var()
+```
+
+```{code-cell} ipython3
+fig, ax = plt.subplots()
+λ_vals = [0.5, 1, 2]
+for λ in λ_vals:
+    u = scipy.stats.expon(scale=1/λ)
+    ax.plot(x_grid, u.pdf(x_grid),
+    alpha=0.5, lw=2,
+    label=f'$\lambda={λ}$')
+plt.legend()
+plt.show()
+```
+
+```{code-cell} ipython3
+fig, ax = plt.subplots()
+for λ in λ_vals:
+    u = scipy.stats.expon(scale=1/λ)
+    ax.plot(x_grid, u.cdf(x_grid),
+    alpha=0.5, lw=2,
+    label=f'$\lambda={λ}$')
+    ax.set_ylim(0, 1)
+plt.legend()
+plt.show()
+```
 
 #### Beta distribution
 
-+++ {"user_expressions": []}
+The **beta distribution** is a distribution on $\left(0, 1\right)$ with density
+
+$$
+    p(x) = \frac{\Gamma(\alpha + \beta)}{\Gamma(\alpha) \Gamma(\beta)}
+        x^{\alpha - 1} (1 - x)^{\beta - 1}
+$$
+
+where $\Gamma$ is the gamma function ($\Gamma(n) = (n - 1)!$ for $n \in \mathbb{N}$).
+
+This distribution has two parameters, $\alpha$ and $\beta$.
+
+It has a nice interpretation: if $X$ is beta distributed, then $X$ is the probability of success in a Bernoulli trial with a number of successes $\alpha$ and a number of failures $\beta$.
+
+For example, if $\alpha = \beta = 1$, then the beta distribution is uniform on $\left(0, 1\right)$ as the number of successes and failures are both 1.
+
+While, if $\alpha = 3$ and $\beta = 2$, then the beta distribution is located more towards 1 as there are more successes than failures.
+
+It can be shown that, for this distribution, the mean is $\alpha / (\alpha + \beta)$ and the variance is $\alpha \beta / (\alpha + \beta)^2 (\alpha + \beta + 1)$.
+
+We can obtain the moments, PDF, CDF of the normal density via SciPy as follows:
+
+```{code-cell} ipython3
+α, β = 1.0, 1.0
+u = scipy.stats.beta(α, β)
+```
+
+```{code-cell} ipython3
+u.mean(), u.var()
+```
+
+```{code-cell} ipython3
+α_vals = [0.5, 1, 50, 250, 3]
+β_vals = [3, 1, 100, 200, 1]
+x_grid = np.linspace(0, 1, 200)
+
+fig, ax = plt.subplots()
+for α, β in zip(α_vals, β_vals):
+    u = scipy.stats.beta(α, β)
+    ax.plot(x_grid, u.pdf(x_grid),
+    alpha=0.5, lw=2,
+    label=fr'$\alpha={α}, \beta={β}$')
+plt.legend()
+plt.show()
+```
+
+```{code-cell} ipython3
+fig, ax = plt.subplots()
+for α, β in zip(α_vals, β_vals):
+    u = scipy.stats.beta(α, β)
+    ax.plot(x_grid, u.cdf(x_grid),
+    alpha=0.5, lw=2,
+    label=fr'$\alpha={α}, \beta={β}$')
+    ax.set_ylim(0, 1)
+plt.legend()
+plt.show()
+```
+
+#### Gamma distribution
+
+The **gamma distribution** is a distribution on $\left(0, \infty\right)$ with density
+
+$$
+    p(x) = \frac{\beta^\alpha}{\Gamma(\alpha)}
+        x^{\alpha - 1} \exp(-\beta x)
+$$
+
+This distribution has two parameters, $\alpha$ and $\beta$.
+
+It can be shown that, for this distribution, the mean is $\alpha / \beta$ and the variance is $\alpha / \beta^2$.
+
+One interpretation is that if $X$ is gamma distributed, then $X$ is the sum of $\alpha$ independent exponentially distributed random variables with mean $1/\beta$.
+
+We can obtain the moments, PDF, CDF of the normal density via SciPy as follows:
+
+```{code-cell} ipython3
+α, β = 1.0, 1.0
+u = scipy.stats.gamma(α, scale=1/β)
+```
+
+```{code-cell} ipython3
+u.mean(), u.var()
+```
+
+```{code-cell} ipython3
+α_vals = [1, 3, 5, 10]
+β_vals = [3, 5, 3, 3]
+x_grid = np.linspace(0, 7, 200)
+
+fig, ax = plt.subplots()
+for α, β in zip(α_vals, β_vals):
+    u = scipy.stats.gamma(α, scale=1/β)
+    ax.plot(x_grid, u.pdf(x_grid),
+    alpha=0.5, lw=2,
+    label=fr'$\alpha={α}, \beta={β}$')
+plt.legend()
+plt.show()
+```
+
+```{code-cell} ipython3
+fig, ax = plt.subplots()
+for α, β in zip(α_vals, β_vals):
+    u = scipy.stats.gamma(α, scale=1/β)
+    ax.plot(x_grid, u.cdf(x_grid),
+    alpha=0.5, lw=2,
+    label=fr'$\alpha={α}, \beta={β}$')
+    ax.set_ylim(0, 1)
+plt.legend()
+plt.show()
+```
 
 ## Observed distributions
 
@@ -373,11 +645,11 @@ x.mean(), x.var()
 
 +++ {"user_expressions": []}
 
-#### Exercise
+```{exercise}
+:label: prob_ex3
 
 Check that the formulas given above produce the same numbers.
-
-+++ {"user_expressions": []}
+```
 
 ### Visualization
 
@@ -568,4 +840,5 @@ plt.show()
 
 Note that if you keep increasing $N$, which is the number of observations, the fit will get better and better.
 
-This convergence is a version of the "law of large numbers", which we will discuss in {ref}`lln_mr`.
+This convergence is a version of the "law of large numbers", which we will discuss {ref}`later<lln_mr>`.
+
