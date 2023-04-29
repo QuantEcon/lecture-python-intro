@@ -440,6 +440,6 @@ fig = plt.figure(dpi=300)
 ax = fig.gca()
 line_styles = ['-', '--', ':', '-.', '.', 'o', '-', '--', '-']
 ax = regionalgdppc.plot(ax = ax, style=line_styles)
-plt.legend(loc='lower center', ncol=4, bbox_to_anchor=[0.5, -0.4])
+plt.legend(loc='lower center', ncol=3, bbox_to_anchor=[0.5, -0.4])
 plt.show()
 ```
