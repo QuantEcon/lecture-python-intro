@@ -105,10 +105,6 @@ mystnb:
   figure:
     caption: "Commercial Aircraft Network \n"
     name: aircraft_network
-  image:
-    alt: aircraft_network
-    classes: shadow bg-primary
-    width: 500px
 tags: [hide-input]
 ---
 ch1_data = qbn_data.introduction()
@@ -276,10 +272,6 @@ mystnb:
   figure:
     caption: "Poverty Trap 1 \n"
     name: poverty_trap_1
-  image:
-    alt: poverty_trap_1
-    classes: shadow bg-primary
-    width: 500px
 ---
 graph1 = graphviz.Digraph(comment='Graph',engine = "neato")
 graph1.attr(rankdir='LR')
@@ -307,10 +299,6 @@ mystnb:
   figure:
     caption: "Poverty Trap \n"
     name: poverty_trap_2
-  image:
-    alt: poverty_trap_2
-    classes: shadow bg-primary
-    width: 500px
 ---
 graph2 = graphviz.Digraph(comment='Graph',engine="neato")
 graph2.attr(rankdir='LR')
@@ -440,7 +428,7 @@ however in {numref}`poverty_trap_2` rich is not accessible from poor, thus it is
 We can verify this by first constructing the graphs using Networkx and then using `nx.is_strongly_connected`.
 
 ```{code-cell} ipython3
-fig, ax = plt.subplots(figsize = (5,5))
+fig, ax = plt.subplots()
 G1 = nx.DiGraph()
 
 G1.add_edges_from([('p', 'p'),('p','m'),('p','r'),
@@ -455,7 +443,7 @@ nx.is_strongly_connected(G1)    #checking if above graph is strongly connected
 ```
 
 ```{code-cell} ipython3
-fig, ax = plt.subplots(figsize = (5,5))
+fig, ax = plt.subplots()
 G2 = nx.DiGraph()
 
 G2.add_edges_from([('p', 'p'),
@@ -487,10 +475,6 @@ mystnb:
   figure:
     caption: "International Credit Network \n"
     name: financial_network
-  image:
-    alt: financial_network
-    classes: shadow bg-primary
-    width: 500px
 tags: [hide-input]
 ---
 Z = ch1_data["adjacency_matrix_2019"]["Z"]
@@ -515,7 +499,7 @@ edge_colors = []
 for src,_ in G.edges:
     edge_colors.append(node_to_color[src])
 
-fig, ax = plt.subplots(figsize=(8, 10))
+fig, ax = plt.subplots(figsize=(10, 10))
 ax.axis('off')
 
 nx.draw_networkx_nodes(G,
@@ -597,10 +581,6 @@ mystnb:
   figure:
     caption: "Weighted Poverty Trap \n"
     name: poverty_trap_weighted
-  image:
-    alt: poverty_trap_weighted
-    classes: shadow bg-primary
-    width: 500px
 tags: [hide-input]
 ---
 graph3 = graphviz.Digraph(comment='Graph')
@@ -965,10 +945,6 @@ mystnb:
   figure:
     caption: Sample Graph
     name: sample_gph_1
-  image:
-    alt: sample_gph_1
-    classes: shadow bg-primary
-    width: 500px
 ---
 G7 = nx.DiGraph()
 
@@ -1164,13 +1140,19 @@ eig_central = eigenvector_centrality(Z)
 ```
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: "Eigenvector centrality"
+    name: eigenvctr_centrality
+---
 fig, ax = plt.subplots()
 
 df = centrality_plot_data(countries, eig_central)
 
 ax.bar('code', 'centrality', data=df, color=df["color"], alpha=0.6)
 
-patch = mpatches.Patch(color=None, label='eigenvector centrality', visible=False)
+patch = mpatches.Patch(color=None, visible=False)
 ax.legend(handles=[patch], fontsize=12, loc="upper left", handlelength=0, frameon=False)
 
 plt.show()
@@ -1299,13 +1281,19 @@ ecentral_authority = eigenvector_centrality(Z, authority=True)
 ```
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: "Eigenvector authority"
+    name: eigenvector_centrality
+---
 fig, ax = plt.subplots()
 
 df = centrality_plot_data(countries, ecentral_authority)
 
 ax.bar('code', 'centrality', data=df, color=df["color"], alpha=0.6)
 
-patch = mpatches.Patch(color=None, label='eigenvector authority', visible=False)
+patch = mpatches.Patch(color=None, visible=False)
 ax.legend(handles=[patch], fontsize=12, loc="upper left", handlelength=0, frameon=False)
 
 plt.show()

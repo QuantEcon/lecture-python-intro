@@ -36,6 +36,7 @@ import matplotlib as mpl
 import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib.lines import Line2D
+plt.rcParams["figure.figsize"] = (11, 5)  #set default figure size
 ```
 
 
@@ -197,7 +198,7 @@ Let's compare the growth trajectories of Australia (AUS) and Argentina (ARG)
 ---
 mystnb:
   figure:
-    caption: "GDP per Capita"
+    caption: "GDP per capita"
     name: gdppc_aus_arg
 ---
 fig = plt.figure(dpi=300)
