@@ -11,13 +11,6 @@ kernelspec:
   name: python3
 ---
 
-+++ {"user_expressions": []}
-
-(input_output)=
-
-In this lecture, we will need the following library.
-
-+++ {"user_expressions": []}
 
 # Input-Output Models
 
@@ -33,8 +26,9 @@ jupyter:
   source_hidden: true
 ---
 pip install --upgrade quantecon_book_networks
-pip install quantecon
 ```
+
+In this lecture, we will need the following library.
 
 ```{code-cell} ipython3
 import numpy as np
@@ -80,7 +74,7 @@ qbn_plt.plot_graph(A_71, X_71, ax, codes_71,
 plt.show()
 ```
 
-+++ {"user_expressions": []}
++++ 
 
 An arrow from $i$ to $j$ implies that sector $i$ supplies some of its output as raw material to sector $j$.
 
@@ -92,7 +86,7 @@ This model's key aspect is its simplicity.
 
 In this lecture, we introduce the standard input-ouput model and approach it as a [linear programming](link to lpp lecture) problem.
 
-+++ {"user_expressions": []}
++++ 
 
 ## Input Output Analysis
 
@@ -154,7 +148,7 @@ plt.text(0.955,-0.05, r'$x_{12}$')
 plt.show()
 ```
 
-+++ {"user_expressions": []}
++++
 
 #### Feasible allocations must satisfy
 
@@ -293,9 +287,6 @@ $$
 
 where $^*$'s denote optimal choices for the primal and dual problems.
 
-```{code-cell} ipython3
-
-```
 
 ## Exercise
 
@@ -344,10 +335,3 @@ $$
 
 where $L$ is a vector of labor services used in each industry.
 
-```{code-cell} ipython3
-
-```
-
-```{code-cell} ipython3
-
-```
