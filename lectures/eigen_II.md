@@ -27,7 +27,7 @@ In addition to what's in Anaconda, this lecture will need the following librarie
 ```{code-cell} ipython3
 :tags: [hide-output]
 
-!pip install graphviz
+!pip install graphviz quantecon
 ```
 
 ```{admonition} graphviz
