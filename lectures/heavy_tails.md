@@ -125,7 +125,7 @@ Many statisticians and econometricians
 use rules of thumb such as "outcomes more than four or five
 standard deviations from the mean can safely be ignored."
 
-But this is only true when distributions have light tails...
+But this is only true when distributions have light tails.
 
 
 ### When are light tails valid?
@@ -400,7 +400,7 @@ Notice how extreme outcomes are more common.
 
 ### Counter CDFs
 
-For nonnegative random varialbes, one way to visualize the difference between
+For nonnegative random variables, one way to visualize the difference between
 light and heavy tails is to look at the 
 **counter CDF** (CCDF).
 
@@ -424,7 +424,7 @@ $$ G_P(x) = x^{- \alpha} $$
 
 This function goes to zero as $x \to \infty$, but much slower than $G_E$.
 
-Here's a plot that illustrates how $G_E$ goes to zero faster that $G_P$.
+Here's a plot that illustrates how $G_E$ goes to zero faster than $G_P$.
 
 ```{code-cell} ipython3
 x = np.linspace(1.5, 100, 1000)
@@ -452,12 +452,12 @@ In the log-log plot, the Pareto CCDF is linear, while the exponential one is
 concave.
 
 This idea is often used to separate light- and heavy-tailed distributions in
-visualations --- we return to this point below.
+visualisations --- we return to this point below.
 
 
 ### Empirical CCDFs
 
-The sample countpart of the CCDF function is the **empirical CCDF**.
+The sample counterpart of the CCDF function is the **empirical CCDF**.
 
 Given a sample $x_1, \ldots, x_n$, the empirical CCDF is given by
 
@@ -529,7 +529,7 @@ We can write this more mathematically as
 ```
 
 It is also common to say that a random variable $X$ with this property
-has a **Pareto tail** with **tail index** $\alpha$ if
+has a **Pareto tail** with **tail index** $\alpha$.
 
 Notice that every Pareto distribution with tail index $\alpha$ 
 has a **Pareto tail** with **tail index** $\alpha$.
@@ -548,7 +548,7 @@ As mentioned above, heavy tails are pervasive in economic data.
 
 In fact power laws seem to be very common as well.
 
-We now illustrate this by showing the empirical CCDF of 
+We now illustrate this by showing the empirical CCDF of heavy tails.
 
 All plots are in log-log, so that a power law shows up as a linear log-log
 plot, at least in the upper tail.
@@ -642,7 +642,7 @@ def extract_wb(varlist=['NY.GDP.MKTP.CD'],
 
 ### Firm size
 
-Here is a plot of the firm size distribution taken from Forbes Global 2000.
+Here is a plot of the firm size distribution for the largest 500 firms in 2020 taken from Forbes Global 2000.
 
 ```{code-cell} ipython3
 :tags: [hide-input]
@@ -652,36 +652,29 @@ df_fs = df_fs[['Country', 'Sales', 'Profits', 'Assets', 'Market Value']]
 fig, ax = plt.subplots(figsize=(6.4, 3.5))
 
 label="firm size (market value)"
+top = 500 # set the cutting for top
 d = df_fs.sort_values('Market Value', ascending=False)
-empirical_ccdf(np.asarray(d['Market Value'])[0:500], ax, label=label, add_reg_line=True)
+empirical_ccdf(np.asarray(d['Market Value'])[:top], ax, label=label, add_reg_line=True)
 
 plt.show()
 ```
 
 ### City size
 
-Here is a plot of the city size distribution for the US, where size is
-measured by population.
+Here are plots of the city size distribution for the US and brazil in 2023 from world population review.
+
+The size is measured by population.
 
 ```{code-cell} ipython3
 :tags: [hide-input]
 
-df_cs_us = pd.read_csv('https://raw.githubusercontent.com/QuantEcon/high_dim_data/update_csdata/cross_section/cities_us.txt', delimiter="\t", header=None)
-df_cs_us = df_cs_us[[0, 3]]
-df_cs_us.columns = 'rank', 'pop'
-x = np.asarray(df_cs_us['pop'])
-citysize = []
-for i in x:
-    i = i.replace(",", "")
-    citysize.append(int(i))
-df_cs_us['pop'] = citysize
-df_cs_br = pd.read_csv('https://media.githubusercontent.com/media/QuantEcon/high_dim_data/update_csdata/cross_section/cities_brazil.csv', delimiter=",", header=None)
-df_cs_br.columns = df_cs_br.iloc[0]
-df_cs_br = df_cs_br[1:401]
-df_cs_br = df_cs_br.astype({"pop2023": float})
+# import population data of cities in 2023 United States and 2023 Brazil from world population review
+df_cs_us = pd.read_csv('https://media.githubusercontent.com/media/QuantEcon/high_dim_data/update_csdata/cross_section/cities_us.csv')
+df_cs_br = pd.read_csv('https://media.githubusercontent.com/media/QuantEcon/high_dim_data/update_csdata/cross_section/cities_brazil.csv')
 
 fig, axes = plt.subplots(1, 2, figsize=(8.8, 3.6))
-empirical_ccdf(np.asarray(df_cs_us['pop']), axes[0], label="US", add_reg_line=True)
+
+empirical_ccdf(np.asarray(df_cs_us["pop2023"]), axes[0], label="US", add_reg_line=True)
 empirical_ccdf(np.asarray(df_cs_br['pop2023']), axes[1], label="Brazil", add_reg_line=True)
 
 plt.show()
@@ -689,9 +682,9 @@ plt.show()
 
 ### Wealth
 
-Here is a plot of the upper tail of the wealth distribution.
+Here is a plot of the upper tail (top 500) of the wealth distribution.
 
-The data is from the Forbes billionaires list.
+The data is from the Forbes Billionaires list in 2020.
 
 ```{code-cell} ipython3
 :tags: [hide-input]
@@ -710,10 +703,11 @@ for i, c in enumerate(countries):
     df_w_c = df_w[df_w['country'] == c].reset_index()
     z = np.asarray(df_w_c['realTimeWorth'])
     # print('number of the global richest 2000 from '+ c, len(z))
-    if len(z) <= 500:    # cut-off number: top 500
-        z = z[0:500]
+    top = 500           # cut-off number: top 500
+    if len(z) <= top:    
+        z = z[:top]
 
-    empirical_ccdf(z[0:500], axs[i], label=c, xlabel='log wealth', add_reg_line=True)
+    empirical_ccdf(z[:top], axs[i], label=c, xlabel='log wealth', add_reg_line=True)
     
 fig.tight_layout()
 
@@ -742,6 +736,8 @@ df_gdp1 = extract_wb(varlist=variable_code,
 ```
 
 ```{code-cell} ipython3
+:tags: [hide-input]
+
 fig, axes = plt.subplots(1, 2, figsize=(8.8, 3.6))
 
 for name, ax in zip(variable_names, axes):
@@ -856,7 +852,7 @@ You will find that
 
 Diversification reduces risk, as expected.
 
-But there is a hidden assumption here: the variance is of returns is finite.
+But there is a hidden assumption here: the variance of returns is finite.
 
 If the distribution is heavy-tailed and the variance is infinite, then this
 logic is incorrect.
@@ -1070,9 +1066,6 @@ Present discounted value of tax revenue will be estimated by
 1. generating 100,000 draws of firm profit from the firm size distribution,
 1. multiplying by the tax rate, and
 1. summing the results with discounting to obtain present value.
-
-If $X$ has the Pareto distribution, then there are positive constants $\bar x$
-and $\alpha$ such that
 
 The Pareto distribution is assumed to take the form {eq}`pareto` with $\bar x = 1$ and $\alpha = 1.05$.
 
