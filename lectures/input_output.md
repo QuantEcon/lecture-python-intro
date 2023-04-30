@@ -11,21 +11,17 @@ kernelspec:
   name: python3
 ---
 
-
+(input_output)=
 # Input-Output Models
 
-## Overview
-
-The following figure illustrates a network of linkages between 71 sectors obtained from the US Bureau of Economic Analysis’s
-2019 Input-Output Accounts Data.
+```{contents} Contents
+:depth: 2
+```
 
 ```{code-cell} ipython3
----
-jupyter:
-  outputs_hidden: true
-  source_hidden: true
----
-pip install --upgrade quantecon_book_networks
+:tags: [hide-output]
+
+!pip install --upgrade quantecon_book_networks quantecon pandas_datareader
 ```
 
 In this lecture, we will need the following library.
@@ -37,14 +33,13 @@ import networkx as nx
 ```
 
 ```{code-cell} ipython3
-#hide
+:tags: [hide-input]
 
 import quantecon as qe
 import quantecon_book_networks
 import quantecon_book_networks.input_output as qbn_io
 import quantecon_book_networks.plotting as qbn_plt
 import quantecon_book_networks.data as qbn_data
-ch2_data = qbn_data.production()
 import matplotlib.pyplot as plt
 import matplotlib.cm as cm
 import matplotlib.colors as plc
@@ -52,7 +47,15 @@ from matplotlib import cm
 quantecon_book_networks.config("matplotlib")
 import matplotlib as mpl
 mpl.rcParams.update(mpl.rcParamsDefault)
+```
 
+## Overview
+
+The following figure illustrates a network of linkages between 71 sectors obtained from the US Bureau of Economic Analysis’s
+2019 Input-Output Accounts Data.
+
+```{code-cell} ipython3
+ch2_data = qbn_data.production()
 codes_71 = ch2_data['us_sectors_71']['codes']
 A_71 = ch2_data['us_sectors_71']['adjacency_matrix']
 X_71 = ch2_data['us_sectors_71']['total_industry_sales']
@@ -74,8 +77,6 @@ qbn_plt.plot_graph(A_71, X_71, ax, codes_71,
 plt.show()
 ```
 
-+++ 
-
 An arrow from $i$ to $j$ implies that sector $i$ supplies some of its output as raw material to sector $j$.
 
 Economies are characterised by many such complex and interdependent multisector production networks.
@@ -86,7 +87,7 @@ This model's key aspect is its simplicity.
 
 In this lecture, we introduce the standard input-ouput model and approach it as a [linear programming](link to lpp lecture) problem.
 
-+++ 
++++
 
 ## Input Output Analysis
 
@@ -117,7 +118,7 @@ To illustrate ideas, we begin by setting $n =2$.
 The following is a simple illustration of this network.
 
 ```{code-cell} ipython3
-:tags: [hide_input]
+:tags: [hide-input]
 
 G = nx.DiGraph()
 
@@ -145,8 +146,6 @@ plt.text(0.955,-0.05, r'$x_{12}$')
         
 plt.show()
 ```
-
-+++
 
 ## Feasible allocations must satisfy
 
@@ -333,3 +332,6 @@ $$
 
 where $L$ is a vector of labor services used in each industry.
 
+```{code-cell} ipython3
+
+```
