@@ -117,10 +117,8 @@ To illustrate ideas, we begin by setting $n =2$.
 The following is a simple illustration of this network.
 
 ```{code-cell} ipython3
----
-jupyter:
-  source_hidden: true
----
+:tags: [hide_input]
+
 G = nx.DiGraph()
 
 nodes= (1,2)
@@ -150,7 +148,7 @@ plt.show()
 
 +++
 
-#### Feasible allocations must satisfy
+## Feasible allocations must satisfy
 
 $$
 \begin{aligned}
