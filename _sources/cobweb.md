@@ -265,7 +265,7 @@ def plot45(model, pmin, pmax, p0, num_arrows=5):
     """
     pgrid = np.linspace(pmin, pmax, 200)
 
-    fig, ax = plt.subplots(figsize=(7, 5))
+    fig, ax = plt.subplots()
     ax.set_xlim(pmin, pmax)
     ax.set_ylim(pmin, pmax)
 

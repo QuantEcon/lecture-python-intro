@@ -1,0 +1,1113 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>20. Commodity Prices &#8212; An Introduction to Quantitative Economics and Finance</title>
+    <script src="https://unpkg.com/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://unpkg.com/tippy.js@6.3.1/dist/tippy-bundle.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    
+        <script>
+            MathJax = {
+            loader: {load: ['[tex]/boldsymbol', '[tex]/textmacros']},
+            tex: {
+                packages: {'[+]': ['boldsymbol', 'textmacros']},
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                processEscapes: true,
+                macros: {
+                    "argmax" : "arg\\,max",
+                    "argmin" : "arg\\,min",
+                    "col"    : "col",
+                    "Span"   :  "span",
+                    "epsilon": "\\varepsilon",
+                    "EE": "\\mathbb{E}",
+                    "PP": "\\mathbb{P}",
+                    "RR": "\\mathbb{R}",
+                    "NN": "\\mathbb{N}",
+                    "ZZ": "\\mathbb{Z}",
+                    "aA": "\\mathcal{A}",
+                    "bB": "\\mathcal{B}",
+                    "cC": "\\mathcal{C}",
+                    "dD": "\\mathcal{D}",
+                    "eE": "\\mathcal{E}",
+                    "fF": "\\mathcal{F}",
+                    "gG": "\\mathcal{G}",
+                    "hH": "\\mathcal{H}",
+                }
+            },
+            svg: {
+                fontCache: 'global',
+                scale: 0.92,
+                displayAlign: "center",
+            },
+            };
+        </script>
+    
+    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/quantecon-book-theme.27f831372ca8a27cbff86bbb33459986.css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/exercise.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script src="_static/quantecon-book-theme.15b0c36fffe88f468997fa7b698991d3.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'commod_price';</script>
+    <link rel="canonical" href="https://intro.quantecon.org/commod_price.html" />
+    <link rel="shortcut icon" href="_static/lectures-favicon.ico"/>
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="21. Linear Programming" href="lp_intro.html" />
+    <link rel="prev" title="19. Markov Chains: Irreducibility and Ergodicity" href="markov_chains_II.html" />
+
+<!-- Normal Meta Tags -->
+<meta name="author" context="Thomas J. Sargent &amp; John Stachurski" />
+<meta name="keywords" content="Python, QuantEcon, Quantitative Economics, Economics, Sloan, Alfred P. Sloan Foundation, Tom J. Sargent, John Stachurski" />
+<meta name="description" content=This website presents introductory lectures on computational economics, designed and written by Thomas J. Sargent and John Stachurski. />
+
+<!-- Twitter tags -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@quantecon" />
+<meta name="twitter:title" content="Commodity Prices"/>
+<meta name="twitter:description" content="This website presents introductory lectures on computational economics, designed and written by Thomas J. Sargent and John Stachurski.">
+<meta name="twitter:creator" content="@quantecon">
+<meta name="twitter:image" content="https://assets.quantecon.org/img/qe-twitter-logo.png">
+
+<!-- Opengraph tags -->
+<meta property="og:title" content="Commodity Prices" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://intro.quantecon.org/commod_price.html" />
+<meta property="og:image" content="https://assets.quantecon.org/img/qe-og-logo.png" />
+<meta property="og:description" content="This website presents introductory lectures on computational economics, designed and written by Thomas J. Sargent and John Stachurski." />
+<meta property="og:site_name" content="An Introduction to Quantitative Economics and Finance" />
+<meta name="theme-color" content="#ffffff" />
+
+  </head>
+<body>
+
+
+    <span id="top"></span>
+
+    <div class="qe-wrapper">
+
+        <div class="qe-main">
+
+            <div class="qe-page" id=commod_price>
+
+                <div class="qe-page__toc">
+
+                    <div class="inner">
+
+                        
+                        <div class="qe-page__toc-header">
+                            On this page
+                        </div>
+
+
+                        <nav id="bd-toc-nav" class="qe-page__toc-nav">
+                            <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#outline">20.1. Outline</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-model">20.2. The Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#equilibrium">20.3. Equilibrium</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#equilibrium-conditions">20.3.1. Equilibrium conditions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#an-equilibrium-function">20.3.2. An equilibrium function</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#computing-the-equilibrium">20.3.3. Computing the equilibrium</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code">20.4. Code</a></li>
+</ul>
+                            <p class="logo">
+                                
+                                    
+                                    <a href=https://quantecon.org><img src="_static/qe-logo.png" class="logo" alt="logo"></a>
+                                    
+                                
+                            </p>
+
+                            <p class="powered">Powered by <a href="https://jupyterbook.org/">Jupyter Book</a></p>
+
+                        </nav>
+
+                        <div class="qe-page__toc-footer">
+                            
+                            
+                            <p><a href="#top"><strong>Back to top</strong></a></p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="qe-page__header">
+
+                    <div class="qe-page__header-copy">
+
+                        <p class="qe-page__header-heading"><a href="intro.html">An Introduction to Quantitative Economics and Finance</a></p>
+
+                        <p class="qe-page__header-subheading">Commodity Prices</p>
+
+                    </div>
+
+                    <p class="qe-page__header-authors">Thomas J. Sargent & John Stachurski</p>
+
+                </div> <!-- .page__header -->
+
+
+
+                
+                <main class="qe-page__content" role="main">
+                    
+                    <div>
+                        
+  <p>For this lecture we need the <code class="docutils literal notranslate"><span class="pre">yfinance</span></code> library.</p>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input above-output-prompt docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip install yfinance 
+</pre></div>
+</div>
+</div>
+<details class="hide below-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell output</span>
+<span class="expanded">Hide code cell output</span>
+</summary>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting yfinance
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Downloading yfinance-0.2.18-py2.py3-none-any.whl (60 kB)
+?25l     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/60.3 kB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">60.3/60.3 kB</span> <span class=" -Color -Color-Red">12.3 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hRequirement already satisfied: cryptography&gt;=3.3.2 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from yfinance) (39.0.1)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting frozendict&gt;=2.3.4
+  Downloading frozendict-2.3.8-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (115 kB)
+?25l     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/115.3 kB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">115.3/115.3 kB</span> <span class=" -Color -Color-Red">36.3 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hRequirement already satisfied: appdirs&gt;=1.4.4 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from yfinance) (1.4.4)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting multitasking&gt;=0.0.7
+  Downloading multitasking-0.0.11-py3-none-any.whl (8.5 kB)
+Requirement already satisfied: requests&gt;=2.26 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from yfinance) (2.28.1)
+Requirement already satisfied: pandas&gt;=1.3.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from yfinance) (1.5.3)
+Requirement already satisfied: beautifulsoup4&gt;=4.11.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from yfinance) (4.11.1)
+Collecting html5lib&gt;=1.1
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Downloading html5lib-1.1-py2.py3-none-any.whl (112 kB)
+?25l     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/112.2 kB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">112.2/112.2 kB</span> <span class=" -Color -Color-Red">22.6 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hRequirement already satisfied: lxml&gt;=4.9.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from yfinance) (4.9.1)
+Requirement already satisfied: numpy&gt;=1.16.5 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from yfinance) (1.23.5)
+Requirement already satisfied: pytz&gt;=2022.5 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from yfinance) (2022.7)
+Requirement already satisfied: soupsieve&gt;1.2 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from beautifulsoup4&gt;=4.11.1-&gt;yfinance) (2.3.2.post1)
+Requirement already satisfied: cffi&gt;=1.12 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from cryptography&gt;=3.3.2-&gt;yfinance) (1.15.1)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: six&gt;=1.9 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from html5lib&gt;=1.1-&gt;yfinance) (1.16.0)
+Requirement already satisfied: webencodings in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from html5lib&gt;=1.1-&gt;yfinance) (0.5.1)
+Requirement already satisfied: python-dateutil&gt;=2.8.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from pandas&gt;=1.3.0-&gt;yfinance) (2.8.2)
+Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests&gt;=2.26-&gt;yfinance) (2022.12.7)
+Requirement already satisfied: idna&lt;4,&gt;=2.5 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests&gt;=2.26-&gt;yfinance) (3.4)
+Requirement already satisfied: urllib3&lt;1.27,&gt;=1.21.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests&gt;=2.26-&gt;yfinance) (1.26.14)
+Requirement already satisfied: charset-normalizer&lt;3,&gt;=2 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests&gt;=2.26-&gt;yfinance) (2.0.4)
+Requirement already satisfied: pycparser in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from cffi&gt;=1.12-&gt;cryptography&gt;=3.3.2-&gt;yfinance) (2.21)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Installing collected packages: multitasking, html5lib, frozendict, yfinance
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Successfully installed frozendict-2.3.8 html5lib-1.1 multitasking-0.0.11 yfinance-0.2.18
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<section class="tex2jax_ignore mathjax_ignore" id="commodity-prices">
+<h1><span class="section-number">20. </span>Commodity Prices<a class="headerlink" href="#commodity-prices" title="Permalink to this heading">#</a></h1>
+<p>For more than half of all countries around the globe, <a class="reference external" href="https://en.wikipedia.org/wiki/Commodity">commodities</a> account for <a class="reference external" href="https://unctad.org/publication/commodities-and-development-report-2019">the majority of total exports</a>.</p>
+<p>Examples of commodities include copper, diamonds, iron ore, lithium, cotton
+and coffee beans.</p>
+<p>In this lecture we give an introduction to the theory of commodity prices.</p>
+<p>The figure below shows the price of cotton in USD since the start of 2016.</p>
+<div class="cell tag_hide-input tag_hide-output docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input above-output-prompt docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">yfinance</span> <span class="k">as</span> <span class="nn">yf</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">yf</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;CT=F&#39;</span><span class="p">,</span> <span class="s1">&#39;2016-1-1&#39;</span><span class="p">,</span> <span class="s1">&#39;2023-4-1&#39;</span><span class="p">)[</span><span class="s1">&#39;Adj Close&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</details>
+<details class="hide below-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell output</span>
+<span class="expanded">Hide code cell output</span>
+</summary>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[*********************100%***********************]  1 of 1 completed
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;price&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;date&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/a685a279499e63486ff409fb8bef2657eea0be556bd60b43f1fbda3967606eab.png"><img alt="_images/a685a279499e63486ff409fb8bef2657eea0be556bd60b43f1fbda3967606eab.png" src="_images/a685a279499e63486ff409fb8bef2657eea0be556bd60b43f1fbda3967606eab.png" style="width: 80%;" /></a>
+</div>
+</div>
+<p>The figure shows surprisingly large movements in the price of cotton.</p>
+<p>In general, prices depend on the choices and actions of suppliers, consumers and
+speculators.</p>
+<p>Our focus will be on the interaction between these parties, viewed through the
+lens of the standard competitive storage model</p>
+<p>This model was developed by
+<span id="id1">[<a class="reference internal" href="zreferences.html#id8" title="Paul A Samuelson. Stochastic speculative price. Proceedings of the National Academy of Sciences, 68(2):335–337, 1971.">Sam71</a>]</span>,
+<span id="id2">[<a class="reference internal" href="zreferences.html#id7" title="Brian D Wright and Jeffrey C Williams. The economic role of commodity storage. The Economic Journal, 92(367):596–614, 1982.">WW82</a>]</span>, <span id="id3">[<a class="reference internal" href="zreferences.html#id6" title="Jose A Scheinkman and Jack Schechtman. A simple competitive model with production and storage. The Review of Economic Studies, 50(3):427–441, 1983.">SS83</a>]</span>,
+<span id="id4">[<a class="reference internal" href="zreferences.html#id5" title="Angus Deaton and Guy Laroque. On the behavior of commodity prices. The Review of Economic Studies, 59:1–23, 1992.">DL92</a>]</span>, <span id="id5">[<a class="reference internal" href="zreferences.html#id4" title="Angus Deaton and Guy Laroque. Competitive storage and commodity price dynamics. Journal of Political Economy, 104(5):896–923, 1996.">DL96</a>]</span>, and
+<span id="id6">[<a class="reference internal" href="zreferences.html#id3" title="Marcus J Chambers and Roy E Bailey. A theory of commodity price fluctuations. Journal of Political Economy, 104(5):924–957, 1996.">CB96</a>]</span>.</p>
+<section id="outline">
+<h2><span class="section-number">20.1. </span>Outline<a class="headerlink" href="#outline" title="Permalink to this heading">#</a></h2>
+<p>In the competitive storage model, commodities are assets that</p>
+<ol class="arabic simple">
+<li><p>can be traded by speculators and</p></li>
+<li><p>have intrinsic value to consumers.</p></li>
+</ol>
+<p>Total demand is the sum of consumer demand and demand by speculators.</p>
+<p>Supply is exogenous, depending on “harvests”.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>These days, goods such as basic computer chips and integrated circuits are
+often treated as commodities in financial markets, being highly standardized,
+and, for these kinds of commodities, the word “harvest” is not
+appropriate.</p>
+<p>Nonetheless, we maintain it for simplicity.</p>
+</div>
+<p>The equilibrium price is determined competitively.</p>
+<p>It is a function of the current state (which determines
+current harvests and predicts future harvests).</p>
+<p>We begin with the following imports</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">numba</span> <span class="kn">import</span> <span class="n">jit</span><span class="p">,</span> <span class="n">vectorize</span>
+<span class="kn">from</span> <span class="nn">scipy.interpolate</span> <span class="kn">import</span> <span class="n">interp1d</span>
+<span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">minimize_scalar</span><span class="p">,</span> <span class="n">brentq</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">beta</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="the-model">
+<h2><span class="section-number">20.2. </span>The Model<a class="headerlink" href="#the-model" title="Permalink to this heading">#</a></h2>
+<p>Consider a market for a single commodity, whose price is given at <span class="math notranslate nohighlight">\(t\)</span> by
+<span class="math notranslate nohighlight">\(p_t\)</span>.</p>
+<p>The harvest of the commodity at time <span class="math notranslate nohighlight">\(t\)</span> is <span class="math notranslate nohighlight">\(Z_t\)</span>.</p>
+<p>We assume that the sequence <span class="math notranslate nohighlight">\(\{ Z_t \}_{t \geq 1}\)</span> is IID with common
+density function <span class="math notranslate nohighlight">\(\phi\)</span>.</p>
+<p>The harvests take values in <span class="math notranslate nohighlight">\(S\)</span>, a subset of the nonnegative numbers.</p>
+<p>Speculators can store the commodity between periods, with <span class="math notranslate nohighlight">\(I_t\)</span> units
+purchased in the current period yielding <span class="math notranslate nohighlight">\(\alpha I_t\)</span> units in the next.</p>
+<p>Here <span class="math notranslate nohighlight">\(\alpha \in (0,1)\)</span> is a depreciation rate for the commodity.</p>
+<p>For simplicity, the risk free interest rate is taken to be
+zero, so expected profit on purchasing <span class="math notranslate nohighlight">\(I_t\)</span> units is</p>
+<div class="math notranslate nohighlight">
+\[
+  \mathbb{E}_t \, p_{t+1} \cdot \alpha I_t - p_t I_t 
+   = (\alpha \mathbb{E}_t \, p_{t+1} - p_t) I_t
+\]</div>
+<p>Here <span class="math notranslate nohighlight">\(\mathbb{E}_t \, p_{t+1}\)</span> is the expectation of <span class="math notranslate nohighlight">\(p_{t+1}\)</span> taken at time
+<span class="math notranslate nohighlight">\(t\)</span>.</p>
+</section>
+<section id="equilibrium">
+<h2><span class="section-number">20.3. </span>Equilibrium<a class="headerlink" href="#equilibrium" title="Permalink to this heading">#</a></h2>
+<p>In this section we define the equilibrium and discuss how to compute it.</p>
+<section id="equilibrium-conditions">
+<h3><span class="section-number">20.3.1. </span>Equilibrium conditions<a class="headerlink" href="#equilibrium-conditions" title="Permalink to this heading">#</a></h3>
+<p>Speculators are assumed to be risk neutral, which means that they buy the
+commodity whenever expected profits are positive.</p>
+<p>As a consequence, if expected prices are positive, then the market is not in
+equilibrium.</p>
+<p>Hence, to be in equilibrium, prices must satisfy the “no-arbitrage”
+condition</p>
+<div class="math notranslate nohighlight" id="equation-eq-arbi">
+<span class="eqno">(20.1)<a class="headerlink" href="#equation-eq-arbi" title="Permalink to this equation">#</a></span>\[
+  \alpha \mathbb{E}_t \, p_{t+1}  - p_t \leq 0
+\]</div>
+<p>Profit maximization gives the additional condition</p>
+<div class="math notranslate nohighlight" id="equation-eq-pmco">
+<span class="eqno">(20.2)<a class="headerlink" href="#equation-eq-pmco" title="Permalink to this equation">#</a></span>\[
+  \alpha \mathbb{E}_t \, p_{t+1}  - p_t  &lt; 0 \text{ implies } I_t = 0
+\]</div>
+<p>We also require that the market clears in each period.</p>
+<p>We assume that consumers generate demand quantity <span class="math notranslate nohighlight">\(D(p)\)</span> corresponding to
+price <span class="math notranslate nohighlight">\(p\)</span>.</p>
+<p>Let <span class="math notranslate nohighlight">\(P := D^{-1}\)</span> be the inverse demand function.</p>
+<p>Regarding quantities,</p>
+<ul class="simple">
+<li><p>supply is the sum of carryover by speculators and the current harvest</p></li>
+<li><p>demand is the sum of purchases by consumers and purchases by speculators.</p></li>
+</ul>
+<p>Mathematically,</p>
+<ul class="simple">
+<li><p>supply <span class="math notranslate nohighlight">\( = X_t = \alpha I_{t-1} + Z_t\)</span></p></li>
+<li><p>demand <span class="math notranslate nohighlight">\( = D(p_t) + I_t\)</span></p></li>
+</ul>
+<p>Thus, the market equilibrium condition is</p>
+<div class="math notranslate nohighlight" id="equation-eq-mkeq">
+<span class="eqno">(20.3)<a class="headerlink" href="#equation-eq-mkeq" title="Permalink to this equation">#</a></span>\[
+  \alpha I_{t-1} + Z_t =  D(p_t) + I_t
+\]</div>
+<p>The initial condition <span class="math notranslate nohighlight">\(X_0 \in S\)</span> is treated as given.</p>
+</section>
+<section id="an-equilibrium-function">
+<h3><span class="section-number">20.3.2. </span>An equilibrium function<a class="headerlink" href="#an-equilibrium-function" title="Permalink to this heading">#</a></h3>
+<p>Now to find an equilibrium?</p>
+<p>Our path of attack will be to seek a system of prices that depend only on the
+current state.</p>
+<p>In other words, we take a function <span class="math notranslate nohighlight">\(p\)</span> on <span class="math notranslate nohighlight">\(S\)</span> and set <span class="math notranslate nohighlight">\(p_t = p(X_t)\)</span> for every <span class="math notranslate nohighlight">\(t\)</span>.</p>
+<p>Prices and quantities then follow</p>
+<div class="math notranslate nohighlight" id="equation-eq-eosy">
+<span class="eqno">(20.4)<a class="headerlink" href="#equation-eq-eosy" title="Permalink to this equation">#</a></span>\[
+  p_t = p(X_t), \quad I_t = X_t - D(p_t), \quad X_{t+1} = \alpha I_t + Z_{t+1}
+\]</div>
+<p>We choose <span class="math notranslate nohighlight">\(p\)</span> so that these prices and quantities satisfy the equilibrium
+conditions above.</p>
+<p>More precisely, we seek a <span class="math notranslate nohighlight">\(p\)</span> such that <a class="reference internal" href="#equation-eq-arbi">(20.1)</a> and <a class="reference internal" href="#equation-eq-pmco">(20.2)</a> hold for
+the corresponding system <a class="reference internal" href="#equation-eq-eosy">(20.4)</a>.</p>
+<p>To this end, suppose that there exists a function <span class="math notranslate nohighlight">\(p^*\)</span> on <span class="math notranslate nohighlight">\(S\)</span>
+satisfying</p>
+<div class="math notranslate nohighlight" id="equation-eq-dopf">
+<span class="eqno">(20.5)<a class="headerlink" href="#equation-eq-dopf" title="Permalink to this equation">#</a></span>\[
+  p^*(x) = \max 
+    \left\{
+    \alpha \int_0^\infty p^*(\alpha I(x) + z) \phi(z)dz, P(x)
+    \right\}
+    \qquad (x \in S)
+\]</div>
+<p>where</p>
+<div class="math notranslate nohighlight" id="equation-eq-einvf">
+<span class="eqno">(20.6)<a class="headerlink" href="#equation-eq-einvf" title="Permalink to this equation">#</a></span>\[
+  I(x) := x - D(p^*(x))
+    \qquad (x \in S)
+\]</div>
+<p>It turns out that such a <span class="math notranslate nohighlight">\(p^*\)</span> will suffice, in the sense that <a class="reference internal" href="#equation-eq-arbi">(20.1)</a>
+and <a class="reference internal" href="#equation-eq-pmco">(20.2)</a> hold for the corresponding system <a class="reference internal" href="#equation-eq-eosy">(20.4)</a>.</p>
+<p>To see this, observe first that</p>
+<div class="math notranslate nohighlight">
+\[
+  \mathbb{E}_t \, p_{t+1}
+   = \mathbb{E}_t \, p^*(X_{t+1}) 
+   = \mathbb{E}_t \, p^*(\alpha I(X_t) + Z_{t+1}) 
+   = \int_0^\infty p^*(\alpha I(X_t) + z) \phi(z)dz
+\]</div>
+<p>Thus <a class="reference internal" href="#equation-eq-arbi">(20.1)</a> requires that</p>
+<div class="math notranslate nohighlight">
+\[
+   \alpha \int_0^\infty p^*(\alpha I(X_t) + z) \phi(z)dz \leq p^*(X_t)
+\]</div>
+<p>This inequality is immediate from <a class="reference internal" href="#equation-eq-dopf">(20.5)</a>.</p>
+<p>Second, regarding <a class="reference internal" href="#equation-eq-pmco">(20.2)</a>, suppose that</p>
+<div class="math notranslate nohighlight">
+\[
+   \alpha \int_0^\infty p^*(\alpha I(X_t) + z) \phi(z)dz &lt; p^*(X_t)
+\]</div>
+<p>Then by <a class="reference internal" href="#equation-eq-dopf">(20.5)</a> we have <span class="math notranslate nohighlight">\(p^*(X_t) = P(X_t)\)</span></p>
+<p>But then <span class="math notranslate nohighlight">\(D(p^*(X_t)) = X_t\)</span> and <span class="math notranslate nohighlight">\(I_t = I(X_t) = 0\)</span>.</p>
+<p>As a consequence, both <a class="reference internal" href="#equation-eq-arbi">(20.1)</a> and <a class="reference internal" href="#equation-eq-pmco">(20.2)</a> hold.</p>
+<p>We have found an equilibrium.</p>
+</section>
+<section id="computing-the-equilibrium">
+<h3><span class="section-number">20.3.3. </span>Computing the equilibrium<a class="headerlink" href="#computing-the-equilibrium" title="Permalink to this heading">#</a></h3>
+<p>We now know that an equilibrium can be obtained by finding a function <span class="math notranslate nohighlight">\(p^*\)</span>
+that satisfies <a class="reference internal" href="#equation-eq-dopf">(20.5)</a>.</p>
+<p>It can be shown that, under mild conditions there is exactly one function on
+<span class="math notranslate nohighlight">\(S\)</span> satisfying <a class="reference internal" href="#equation-eq-dopf">(20.5)</a>.</p>
+<p>Moreover, we can compute this function using successive approximation.</p>
+<p>This means that we start with a guess of the function and then update it using
+<a class="reference internal" href="#equation-eq-dopf">(20.5)</a>.</p>
+<p>This generates a sequence of functions <span class="math notranslate nohighlight">\(p_1, p_2, \ldots\)</span></p>
+<p>We continue until this process converges, in the sense that <span class="math notranslate nohighlight">\(p_k\)</span> and
+<span class="math notranslate nohighlight">\(p_{k+1}\)</span> are very close together.</p>
+<p>Then we take the final <span class="math notranslate nohighlight">\(p_k\)</span> that we computed as our approximation of <span class="math notranslate nohighlight">\(p^*\)</span>.</p>
+<p>To implement our update step, it is helpful if we put <a class="reference internal" href="#equation-eq-dopf">(20.5)</a> and
+<a class="reference internal" href="#equation-eq-einvf">(20.6)</a> together.</p>
+<p>This leads us to the update rule</p>
+<div class="math notranslate nohighlight" id="equation-eq-dopf2">
+<span class="eqno">(20.7)<a class="headerlink" href="#equation-eq-dopf2" title="Permalink to this equation">#</a></span>\[
+  p_{k+1}(x) = \max 
+    \left\{
+    \alpha \int_0^\infty p_k(\alpha ( x - D(p_{k+1}(x))) + z) \phi(z)dz, P(x)
+    \right\}
+\]</div>
+<p>In other words, we take <span class="math notranslate nohighlight">\(p_k\)</span> as given and, at each <span class="math notranslate nohighlight">\(x\)</span>, solve for <span class="math notranslate nohighlight">\(q\)</span> in</p>
+<div class="math notranslate nohighlight" id="equation-eq-dopf3">
+<span class="eqno">(20.8)<a class="headerlink" href="#equation-eq-dopf3" title="Permalink to this equation">#</a></span>\[
+  q = \max 
+    \left\{
+    \alpha \int_0^\infty p_k(\alpha ( x - D(q)) + z) \phi(z)dz, P(x)
+    \right\}
+\]</div>
+<p>Actually we can’t do this at every <span class="math notranslate nohighlight">\(x\)</span>, so instead we do it on a grid of
+points <span class="math notranslate nohighlight">\(x_1, \ldots, x_n\)</span>.</p>
+<p>Then we get the corresponding values <span class="math notranslate nohighlight">\(q_1, \ldots, q_n\)</span>.</p>
+<p>Then we compute <span class="math notranslate nohighlight">\(p_{k+1}\)</span> as the linear interpolation of
+the values <span class="math notranslate nohighlight">\(q_1, \ldots, q_n\)</span> over the grid <span class="math notranslate nohighlight">\(x_1, \ldots, x_n\)</span>.</p>
+<p>Then we repeat, seeking convergence.</p>
+</section>
+</section>
+<section id="code">
+<h2><span class="section-number">20.4. </span>Code<a class="headerlink" href="#code" title="Permalink to this heading">#</a></h2>
+<p>The code below implements this iterative process, starting from <span class="math notranslate nohighlight">\(p_0 = P\)</span>.</p>
+<p>The distribution <span class="math notranslate nohighlight">\(\phi\)</span> is set to a shifted Beta distribution (although many
+other choices are possible).</p>
+<p>The integral in <a class="reference internal" href="#equation-eq-dopf3">(20.8)</a> is computed via Monte Carlo.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">α</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span>                           
+<span class="n">beta_a</span><span class="p">,</span> <span class="n">beta_b</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span>
+<span class="n">mc_draw_size</span> <span class="o">=</span> <span class="mi">250</span>
+<span class="n">gridsize</span> <span class="o">=</span> <span class="mi">150</span>
+<span class="n">grid_max</span> <span class="o">=</span> <span class="mi">35</span>
+<span class="n">grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">grid_max</span><span class="p">,</span> <span class="n">gridsize</span><span class="p">)</span>
+
+<span class="n">beta_dist</span> <span class="o">=</span> <span class="n">beta</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">Z</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">beta_dist</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">mc_draw_size</span><span class="p">)</span> <span class="o">*</span> <span class="n">c</span>    <span class="c1"># Shock observations</span>
+<span class="n">D</span> <span class="o">=</span> <span class="n">P</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">x</span>   
+<span class="n">tol</span> <span class="o">=</span> <span class="mf">1e-4</span>
+
+
+<span class="k">def</span> <span class="nf">T</span><span class="p">(</span><span class="n">p_array</span><span class="p">):</span>
+
+    <span class="n">new_p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty_like</span><span class="p">(</span><span class="n">p_array</span><span class="p">)</span>
+
+    <span class="c1"># Interpolate to obtain p as a function.</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">interp1d</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> 
+                 <span class="n">p_array</span><span class="p">,</span> 
+                 <span class="n">fill_value</span><span class="o">=</span><span class="p">(</span><span class="n">p_array</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">p_array</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span>
+                 <span class="n">bounds_error</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+    <span class="c1"># Update</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">grid</span><span class="p">):</span>
+
+        <span class="n">h</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">q</span><span class="p">:</span> <span class="n">q</span> <span class="o">-</span> <span class="nb">max</span><span class="p">(</span><span class="n">α</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">p</span><span class="p">(</span><span class="n">α</span> <span class="o">*</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">D</span><span class="p">(</span><span class="n">q</span><span class="p">))</span> <span class="o">+</span> <span class="n">Z</span><span class="p">)),</span> <span class="n">P</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+        <span class="n">new_p</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">brentq</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="mf">1e-8</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">new_p</span>
+
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+
+<span class="n">price</span> <span class="o">=</span> <span class="n">P</span><span class="p">(</span><span class="n">grid</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> <span class="n">price</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;inverse demand curve&quot;</span><span class="p">)</span>
+<span class="n">error</span> <span class="o">=</span> <span class="n">tol</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="k">while</span> <span class="n">error</span> <span class="o">&gt;</span> <span class="n">tol</span><span class="p">:</span>
+    <span class="n">new_price</span> <span class="o">=</span> <span class="n">T</span><span class="p">(</span><span class="n">price</span><span class="p">)</span>
+    <span class="n">error</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">new_price</span> <span class="o">-</span> <span class="n">price</span><span class="p">))</span>
+    <span class="n">price</span> <span class="o">=</span> <span class="n">new_price</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> <span class="n">price</span><span class="p">,</span> <span class="s1">&#39;k-&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$p^*$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$x$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/15a773f9288ed8958d72d32631fce3129c51594563895952944ac2e01ae79b71.png"><img alt="_images/15a773f9288ed8958d72d32631fce3129c51594563895952944ac2e01ae79b71.png" src="_images/15a773f9288ed8958d72d32631fce3129c51594563895952944ac2e01ae79b71.png" style="width: 80%;" /></a>
+</div>
+</div>
+<p>The figure above shows the inverse demand curve <span class="math notranslate nohighlight">\(P\)</span>, which is also <span class="math notranslate nohighlight">\(p_0\)</span>, as
+well as our approximation of <span class="math notranslate nohighlight">\(p^*\)</span>.</p>
+<p>Once we have an approximation of <span class="math notranslate nohighlight">\(p^*\)</span>, we can simulate a time series of
+prices.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Turn the price array into a price function</span>
+<span class="n">p_star</span> <span class="o">=</span> <span class="n">interp1d</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> 
+                  <span class="n">price</span><span class="p">,</span> 
+                  <span class="n">fill_value</span><span class="o">=</span><span class="p">(</span><span class="n">price</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">price</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span>
+                  <span class="n">bounds_error</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">carry_over</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">α</span> <span class="o">*</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">D</span><span class="p">(</span><span class="n">p_star</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span>
+
+<span class="k">def</span> <span class="nf">generate_cp_ts</span><span class="p">(</span><span class="n">init</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">50</span><span class="p">):</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="n">X</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">init</span>
+    <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+            <span class="n">Z</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">c</span> <span class="o">*</span> <span class="n">beta_dist</span><span class="o">.</span><span class="n">rvs</span><span class="p">()</span>
+            <span class="n">X</span><span class="p">[</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">carry_over</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">t</span><span class="p">])</span> <span class="o">+</span> <span class="n">Z</span>
+    <span class="k">return</span> <span class="n">p_star</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">generate_cp_ts</span><span class="p">(),</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;price&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/2321c2287edf7db2141b4f86d144671a0da4ab4fb800af67054c9b4e8e5b2024.png"><img alt="_images/2321c2287edf7db2141b4f86d144671a0da4ab4fb800af67054c9b4e8e5b2024.png" src="_images/2321c2287edf7db2141b4f86d144671a0da4ab4fb800af67054c9b4e8e5b2024.png" style="width: 80%;" /></a>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                    </div>
+                    
+                </main> <!-- .page__content -->
+                
+
+
+                <footer class="qe-page__footer">
+
+                    <p><a href="https://creativecommons.org/licenses/by-sa/4.0/"><img src="https://licensebuttons.net/l/by-sa/4.0/80x15.png"></a></p>
+
+                    <p>Creative Commons License &ndash; This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International.</p>
+
+                </footer> <!-- .page__footer -->
+
+            </div> <!-- .page -->
+
+            
+
+            
+            <div class="qe-sidebar bd-sidebar inactive" id="site-navigation">
+
+                <div class="qe-sidebar__header">
+
+
+                    Contents
+
+                </div>
+
+                <nav class="qe-sidebar__nav" id="qe-sidebar-nav" aria-label="Main navigation">
+                    <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Introduction
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="about.html">
+   1. About these Lectures
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Economic Data
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="long_run_growth.html">
+   2. Long Run Growth
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="business_cycle.html">
+   3. Business Cycles
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="inequality.html">
+   4. Income and Wealth Inequality
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Essential Tools
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="linear_equations.html">
+   5. Linear Equations and Matrix Algebra
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="eigen_I.html">
+   6. Eigenvalues and Eigenvectors
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro_supply_demand.html">
+   7. Introduction to Supply and Demand
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="geom_series.html">
+   8. Geometric Series for Elementary Economics
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Probability and Distributions
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="prob_dist.html">
+   9. Distributions and Probabilities
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lln_clt.html">
+   10. LLN and CLT
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="monte_carlo.html">
+   11. Monte Carlo and Option Pricing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="heavy_tails.html">
+   12. Heavy-Tailed Distributions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="schelling.html">
+   13. Racial Segregation
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Dynamics
+ </span>
+</p>
+<ul class="current nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="solow.html">
+   14. The Solow-Swan Growth Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="scalar_dynam.html">
+   15. Dynamics in One Dimension
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cobweb.html">
+   16. The Cobweb Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="olg.html">
+   17. The Overlapping Generations Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="markov_chains_I.html">
+   18. Markov Chains: Basic Concepts and Stationarity
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="markov_chains_II.html">
+   19. Markov Chains: Irreducibility and Ergodicity
+  </a>
+ </li>
+ <li class="toctree-l1 current active active">
+  <a class="current reference internal" href="#">
+   20. Commodity Prices
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Optimization
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="lp_intro.html">
+   21. Linear Programming
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="comparative_adv.html">
+   22. Comparative Advantage
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nonlinear.html">
+   23. Nonlinear Problems
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="short_path.html">
+   24. Shortest Paths
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Modeling in Higher Dimensions
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="eigen_II.html">
+   25. Spectral Theory
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="input_output.html">
+   26. Input-Output Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lake_model.html">
+   27. A Lake Model of Employment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="asset_pricing.html">
+   28. Introduction to Asset Pricing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="networks.html">
+   29. Networks
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Markets and Competitive Equilibrium
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="supply_demand_multiple_goods.html">
+   30. Supply and Demand with Many Goods
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="supply_demand_heterogeneity.html">
+   31. Market Equilibrium with Heterogeneity
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Estimation
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="simple_linear_regression.html">
+   32. Simple Linear Regression Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lr_with_matrices.html">
+   33. Linear Regression with Matrices
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="mle.html">
+   34. Maximum Likelihood Estimation
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Other
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="troubleshooting.html">
+   35. Troubleshooting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="zreferences.html">
+   36. References
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="status.html">
+   37. Execution Statistics
+  </a>
+ </li>
+</ul>
+
+                </nav>
+
+                <div class="qe-sidebar__footer">
+
+                </div>
+
+            </div> <!-- .sidebar -->
+            
+        </div> <!-- .main -->
+
+        <div class="qe-toolbar">
+
+            <div class="qe-toolbar__inner">
+
+                <ul class="qe-toolbar__main">
+                    <li data-tippy-content="Table of Contents" class="btn__sidebar"><i data-feather="menu"></i></li>
+                    <li data-tippy-content="Home"><a href="intro.html"><i data-feather="home"></i></a></li>
+                    <li class="btn__qelogo"><a href="https://quantecon.org" title=""><span class="show-for-sr">QuantEcon</span></a></li>
+                    <!-- <li class="btn__search">
+                        <form action="search.html" method="get">
+                            <input type="search" class="form-control" name="q" id="search-input" placeholder="Search..." aria-label="Search..." autocomplete="off">
+                            <i data-feather="search"></i>
+                        </form>
+                    </li> -->
+                </ul>
+
+                <ul class="qe-toolbar__links">
+                    <li data-tippy-content="Fullscreen" class="btn__fullscreen"><i data-feather="maximize"></i></li>
+                    <li data-tippy-content="Increase font size" class="btn__plus"><i data-feather="plus-circle"></i></li>
+                    <li data-tippy-content="Decrease font size" class="btn__minus"><i data-feather="minus-circle"></i></li>
+                    <li data-tippy-content="Change contrast" class="btn__contrast"><i data-feather="sunset"></i></li>
+                    <li data-tippy-content="Download Notebook"><a href="/_notebooks/commod_price.ipynb" download><i data-feather="download-cloud"></i></a></li>
+                    <li class="settings-button" id="settingsButton"><div data-tippy-content="Launch Notebook"><i data-feather="play-circle"></i></div></li>
+                        <li data-tippy-content="Download PDF" onClick="window.print()"><i data-feather="file"></i></li>
+                    <li data-tippy-content="View Source"><a target="_blank" href="https://github.com/QuantEcon/lecture-python-intro/tree/master/lectures/commod_price.md" download><i data-feather="github"></i></a></li>
+                </ul>
+
+            </div>
+
+        </div> <!-- .toolbar -->
+        <div id="downloadPDFModal" style="display: none;">
+            <ul class="pdf-options" style="display: block;">
+                <li class="download-pdf-book" onClick="window.print()">
+                    <p>Lecture (PDF)</p>
+                </li>
+                <li class="download-pdf-file">
+                    <a href="" download><p>Book (PDF)</p></a>
+                </li>
+            </ul>
+        </div>
+        <div id="settingsModal" style="display: none;">
+            <p class="modal-title"> Notebook Launcher </p>
+            <div class="modal-desc">
+            <p>
+                Choose public or private cloud service for "Launch" button.
+            </p>
+            </div>
+            <p class="modal-subtitle">Select a server</p>
+            <ul class="modal-servers">
+            <li class="active launcher-public">
+                <span class="label">Public</span>
+                <select id="launcher-public-input">
+                
+                    <option value="https://mybinder.org/v2/gh/QuantEcon/lecture-python-intro.notebooks/master?urlpath=tree/commod_price.ipynb">BinderHub</option>
+                
+                    <option value="https://colab.research.google.com/github/QuantEcon/lecture-python-intro.notebooks/blob/master/commod_price.ipynb">Colab</option>
+                
+                </select>
+                <i class="fas fa-check-circle"></i>
+            </li>
+            <li class="launcher-private">
+                <span class="label">Private</span>
+                <input type="text" id="launcher-private-input" data-repourl="https://github.com/QuantEcon/lecture-python-intro.notebooks" data-urlpath="tree/lecture-python-intro.notebooks/commod_price.ipynb" data-branch=master>
+                <i class="fas fa-check-circle"></i>
+            </li>
+            </ul>
+            <p class="launch"><a href="https://mybinder.org/v2/gh/QuantEcon/lecture-python-intro.notebooks/master?urlpath=tree/commod_price.ipynb" id="advancedLaunchButton" target="_blank">Launch Notebook</a></p>
+            <script>
+                // QuantEcon Notebook Launcher
+                const launcherTypeElements = document.querySelectorAll('#settingsModal .modal-servers li');
+                // Highlight the server type if previous selection exists
+                if (typeof localStorage.launcherType !== 'undefined') {
+                  for (var i = 0; i < launcherTypeElements.length; i++) {
+                    launcherTypeElements[i].classList.remove('active');
+                    if ( launcherTypeElements[i].classList.contains(localStorage.launcherType) ) {
+                      launcherTypeElements[i].classList.add('active');
+                    }
+                  }
+                }
+                // Highlight server type on click and set local storage value
+                for (var i = 0; i < launcherTypeElements.length; i++) {
+                  launcherTypeElements[i].addEventListener('click', function() {
+                    for (var j = 0; j < launcherTypeElements.length; j++) {
+                      launcherTypeElements[j].classList.remove('active');
+                    }
+                    this.classList.add('active');
+                    if ( this.classList.contains('launcher-private') ) {
+                      localStorage.launcherType = 'launcher-private';
+                    } else if ( this.classList.contains('launcher-public') ) {
+                      localStorage.launcherType = 'launcher-public';
+                    }
+                    setLaunchServer();
+                  })
+                }
+                const launcherPublic = document.getElementById('launcher-public-input');
+                const launcherPrivate = document.getElementById('launcher-private-input');
+                const pageName = "commod_price";
+                const repoURL = "https://github.com/QuantEcon/lecture-python-intro.notebooks";
+                const urlPath = "tree/lecture-python-intro.notebooks/commod_price.ipynb";
+                const branch = "master"
+                const launchNotebookLink = document.getElementById('advancedLaunchButton');
+
+                // Highlight public server option if previous selection exists
+                if (typeof localStorage.launcherPublic !== 'undefined') {
+                  launcherPublic.value = localStorage.launcherPublic;
+                }
+                // Update local storage upon public server selection
+                launcherPublic.addEventListener('change', (event) => {
+                  setLaunchServer();
+                });
+                // Populate private server input if previous entry exists
+                if (typeof localStorage.launcherPrivate !== 'undefined') {
+                  launcherPrivate.value = localStorage.launcherPrivate;
+                }
+                // Update local storage when a private server is entered
+                launcherPrivate.addEventListener('input', (event) => {
+                  setLaunchServer();
+                });
+
+                // Function to update the "Launch Notebook" link href
+                function setLaunchServer() {
+                  launchNotebookLink.removeAttribute("style")
+                  if ( localStorage.launcherType == 'launcher-private' ) {
+                    let repoPrefix = "/jupyter/hub/user-redirect/git-pull?repo=" + repoURL + "&branch=" + branch + "&urlpath=" + urlPath;
+                    launcherPrivateValue = launcherPrivate.value
+                    if (!launcherPrivateValue) {
+                        launchNotebookLink.removeAttribute("href")
+                        launchNotebookLink.style.background = "grey"
+                        return
+                    }
+                    localStorage.launcherPrivate = launcherPrivateValue;
+                    privateServer = localStorage.launcherPrivate.replace(/\/$/, "")
+                    if (!privateServer.includes("http")) {
+                        privateServer = "http://" + privateServer
+                    }
+                    launchNotebookLinkURL = privateServer + repoPrefix;
+                  } else if ( localStorage.launcherType == 'launcher-public' ) {
+                    launcherPublicValue = launcherPublic.options[launcherPublic.selectedIndex].value;
+                    localStorage.launcherPublic = launcherPublicValue;
+                    launchNotebookLinkURL = localStorage.launcherPublic;
+                  }
+                  if (launchNotebookLinkURL) launchNotebookLink.href = launchNotebookLinkURL;
+                }
+                // Check if user has previously selected a server
+                if ( (typeof localStorage.launcherPrivate !== 'undefined') || (typeof localStorage.launcherPublic !== 'undefined') ) {
+                  setLaunchServer();
+                }
+                </script>
+
+        </div>
+
+    </div> <!-- .wrapper-->
+  </body>
+</html>

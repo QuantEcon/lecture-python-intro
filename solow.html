@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>17. The Solow-Swan Growth Model &#8212; An Introduction to Quantitative Economics and Finance</title>
+    <title>14. The Solow-Swan Growth Model &#8212; An Introduction to Quantitative Economics and Finance</title>
     <script src="https://unpkg.com/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://unpkg.com/tippy.js@6.3.1/dist/tippy-bundle.umd.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
@@ -71,7 +71,7 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/quantecon-book-theme.279dae03c5caae754d20501e3fa00bbf.css" />
+    <link rel="stylesheet" type="text/css" href="_static/quantecon-book-theme.27f831372ca8a27cbff86bbb33459986.css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
@@ -114,8 +114,8 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="18. Dynamics in One Dimension" href="scalar_dynam.html" />
-    <link rel="prev" title="16. Racial Segregation" href="schelling.html" />
+    <link rel="next" title="15. Dynamics in One Dimension" href="scalar_dynam.html" />
+    <link rel="prev" title="13. Racial Segregation" href="schelling.html" />
 
 <!-- Normal Meta Tags -->
 <meta name="author" context="Thomas J. Sargent &amp; John Stachurski" />
@@ -163,10 +163,10 @@ const thebe_selector_output = ".output, .cell_output"
 
                         <nav id="bd-toc-nav" class="qe-page__toc-nav">
                             <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-model">17.1. The Model</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-graphical-perspective">17.2. A Graphical Perspective</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#growth-in-continuous-time">17.3. Growth in Continuous Time</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">17.4. Exercises</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-model">14.1. The Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-graphical-perspective">14.2. A Graphical Perspective</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#growth-in-continuous-time">14.3. Growth in Continuous Time</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">14.4. Exercises</a></li>
 </ul>
                             <p class="logo">
                                 
@@ -212,7 +212,7 @@ const thebe_selector_output = ".output, .cell_output"
                     <div>
                         
   <section class="tex2jax_ignore mathjax_ignore" id="the-solow-swan-growth-model">
-<span id="solow"></span><h1><span class="section-number">17. </span>The Solow-Swan Growth Model<a class="headerlink" href="#the-solow-swan-growth-model" title="Permalink to this heading">#</a></h1>
+<span id="solow"></span><h1><span class="section-number">14. </span>The Solow-Swan Growth Model<a class="headerlink" href="#the-solow-swan-growth-model" title="Permalink to this heading">#</a></h1>
 <p>In this lecture we review a famous model due
 to <a class="reference external" href="https://en.wikipedia.org/wiki/Robert_Solow">Robert Solow (1925–2014)</a> and <a class="reference external" href="https://en.wikipedia.org/wiki/Trevor_Swan">Trevor Swan (1918–1989)</a>.</p>
 <p>The model is used to study growth over the long run.</p>
@@ -221,14 +221,13 @@ to <a class="reference external" href="https://en.wikipedia.org/wiki/Robert_Solo
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;figure.figsize&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>  <span class="c1">#set default figure size</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 </pre></div>
 </div>
 </div>
 </div>
 <section id="the-model">
-<h2><span class="section-number">17.1. </span>The Model<a class="headerlink" href="#the-model" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">14.1. </span>The Model<a class="headerlink" href="#the-model" title="Permalink to this heading">#</a></h2>
 <p>In a Solow–Swan economy, agents save a fixed fraction of their current
 incomes.</p>
 <p>Savings sustain or increase the stock of capital.</p>
@@ -274,20 +273,20 @@ becomes <span class="math notranslate nohighlight">\(1-\delta\)</span> units tom
 \]</div>
 <p>With  <span class="math notranslate nohighlight">\(f(k) := F(k, 1)\)</span>, the final expression for capital dynamics is</p>
 <div class="math notranslate nohighlight" id="equation-solow">
-<span class="eqno">(17.1)<a class="headerlink" href="#equation-solow" title="Permalink to this equation">#</a></span>\[    k_{t+1} = g(k_t)
+<span class="eqno">(14.1)<a class="headerlink" href="#equation-solow" title="Permalink to this equation">#</a></span>\[    k_{t+1} = g(k_t)
     \text{ where } g(k) := s f(k) + (1 - \delta) k\]</div>
 <p>Our aim is to learn about the evolution of <span class="math notranslate nohighlight">\(k_t\)</span> over time,
 given an exogenous initial capital stock  <span class="math notranslate nohighlight">\(k_0\)</span>.</p>
 </section>
 <section id="a-graphical-perspective">
-<h2><span class="section-number">17.2. </span>A Graphical Perspective<a class="headerlink" href="#a-graphical-perspective" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">14.2. </span>A Graphical Perspective<a class="headerlink" href="#a-graphical-perspective" title="Permalink to this heading">#</a></h2>
 <p>To understand the dynamics of the sequence <span class="math notranslate nohighlight">\((k_t)_{t \geq 0}\)</span> we use a 45
 degree diagram.</p>
 <p>To do so, we first
 need to specify the functional form for <span class="math notranslate nohighlight">\(f\)</span> and assign values to the parameters.</p>
 <p>We choose the Cobb–Douglas specification <span class="math notranslate nohighlight">\(f(k) = A k^\alpha\)</span> and set <span class="math notranslate nohighlight">\(A=2.0\)</span>,
 <span class="math notranslate nohighlight">\(\alpha=0.3\)</span>, <span class="math notranslate nohighlight">\(s=0.3\)</span> and <span class="math notranslate nohighlight">\(\delta=0.4\)</span>.</p>
-<p>The function <span class="math notranslate nohighlight">\(g\)</span> from <a class="reference internal" href="#equation-solow">(17.1)</a> is then plotted, along with the 45
+<p>The function <span class="math notranslate nohighlight">\(g\)</span> from <a class="reference internal" href="#equation-solow">(14.1)</a> is then plotted, along with the 45
 degree line.</p>
 <p>Let’s define the constants.</p>
 <div class="cell docutils container">
@@ -314,7 +313,7 @@ degree line.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot45</span><span class="p">(</span><span class="n">kstar</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="n">xgrid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="mi">12000</span><span class="p">)</span>
 
-    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 
     <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">)</span>
 
@@ -360,7 +359,7 @@ degree line.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/0208720d10f9012e0127f293b02eb47481376fad1221c1db764f3e14be57cccb.png" src="_images/0208720d10f9012e0127f293b02eb47481376fad1221c1db764f3e14be57cccb.png" />
+<a class="reference internal image-reference" href="_images/aeb68b8116bb936bc26c1c70ba6c9f1296ba4dc0a8eee9510fc15c56a15e5a4c.png"><img alt="_images/aeb68b8116bb936bc26c1c70ba6c9f1296ba4dc0a8eee9510fc15c56a15e5a4c.png" src="_images/aeb68b8116bb936bc26c1c70ba6c9f1296ba4dc0a8eee9510fc15c56a15e5a4c.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>Suppose, at some <span class="math notranslate nohighlight">\(k_t\)</span>, the value <span class="math notranslate nohighlight">\(g(k_t)\)</span> lies strictly above the 45 degree line.</p>
@@ -372,7 +371,7 @@ degree line.</p>
 there is a unique steady state in <span class="math notranslate nohighlight">\((0, \infty)\)</span>.</p>
 <p>It solves <span class="math notranslate nohighlight">\(k = s Ak^{\alpha} + (1-\delta)k\)</span> and hence is given by</p>
 <div class="math notranslate nohighlight" id="equation-kstarss">
-<span class="eqno">(17.2)<a class="headerlink" href="#equation-kstarss" title="Permalink to this equation">#</a></span>\[    k^* := \left( \frac{s A}{\delta} \right)^{1/(1 - \alpha)}\]</div>
+<span class="eqno">(14.2)<a class="headerlink" href="#equation-kstarss" title="Permalink to this equation">#</a></span>\[    k^* := \left( \frac{s A}{\delta} \right)^{1/(1 - \alpha)}\]</div>
 <p>If initial capital is below <span class="math notranslate nohighlight">\(k^*\)</span>, then capital increases over time.</p>
 <p>If initial capital is above this level, then the reverse is true.</p>
 <p>Let’s plot the 45 degree diagram to show the <span class="math notranslate nohighlight">\(k^*\)</span> in the plot</p>
@@ -384,7 +383,7 @@ there is a unique steady state in <span class="math notranslate nohighlight">\((
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/754bbc1895edcacac66c7721e93be83eea0756daead58a4c98d69f8f0bf28389.png" src="_images/754bbc1895edcacac66c7721e93be83eea0756daead58a4c98d69f8f0bf28389.png" />
+<a class="reference internal image-reference" href="_images/f23f86598c419ba9baccd5c882142dc293cadb19f7c17319a7679e8deeb61f2f.png"><img alt="_images/f23f86598c419ba9baccd5c882142dc293cadb19f7c17319a7679e8deeb61f2f.png" src="_images/f23f86598c419ba9baccd5c882142dc293cadb19f7c17319a7679e8deeb61f2f.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>From our graphical analysis, it appears that <span class="math notranslate nohighlight">\((k_t)\)</span> converges to <span class="math notranslate nohighlight">\(k^*\)</span>, regardless of initial capital
@@ -411,7 +410,7 @@ three distinct initial conditions, under the parameterization listed above.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">simulate_ts</span><span class="p">(</span><span class="n">x0_values</span><span class="p">,</span> <span class="n">ts_length</span><span class="p">):</span>
 
     <span class="n">k_star</span> <span class="o">=</span> <span class="p">(</span><span class="n">s</span> <span class="o">*</span> <span class="n">A</span> <span class="o">/</span> <span class="n">delta</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">alpha</span><span class="p">))</span>
-    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">11</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">ymin</span><span class="p">,</span> <span class="n">ymax</span><span class="p">)</span>
 
@@ -443,13 +442,13 @@ three distinct initial conditions, under the parameterization listed above.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/8c8c5a404c221db8a242c538ac5925324ca1f6e81945658a37d267b195b99808.png" src="_images/8c8c5a404c221db8a242c538ac5925324ca1f6e81945658a37d267b195b99808.png" />
+<a class="reference internal image-reference" href="_images/8c8c5a404c221db8a242c538ac5925324ca1f6e81945658a37d267b195b99808.png"><img alt="_images/8c8c5a404c221db8a242c538ac5925324ca1f6e81945658a37d267b195b99808.png" src="_images/8c8c5a404c221db8a242c538ac5925324ca1f6e81945658a37d267b195b99808.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>As expected, the time paths in the figure both converge to this value.</p>
 </section>
 <section id="growth-in-continuous-time">
-<h2><span class="section-number">17.3. </span>Growth in Continuous Time<a class="headerlink" href="#growth-in-continuous-time" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">14.3. </span>Growth in Continuous Time<a class="headerlink" href="#growth-in-continuous-time" title="Permalink to this heading">#</a></h2>
 <p>In this section we investigate a continuous time version of the Solow–Swan
 growth model.</p>
 <p>We will see how the smoothing provided by continuous time can
@@ -465,18 +464,18 @@ given by <span class="math notranslate nohighlight">\(k_{t+1} = s f(k_t) + (1 - 
 \]</div>
 <p>Taking the time step to zero gives the continuous time limit</p>
 <div class="math notranslate nohighlight" id="equation-solowc">
-<span class="eqno">(17.3)<a class="headerlink" href="#equation-solowc" title="Permalink to this equation">#</a></span>\[    k'_t = s f(k_t) - \delta k_t
+<span class="eqno">(14.3)<a class="headerlink" href="#equation-solowc" title="Permalink to this equation">#</a></span>\[    k'_t = s f(k_t) - \delta k_t
     \qquad \text{with} \qquad
     k'_t := \frac{d}{dt} k_t\]</div>
 <p>Our aim is to learn about the evolution of <span class="math notranslate nohighlight">\(k_t\)</span> over time,
 given initial stock  <span class="math notranslate nohighlight">\(k_0\)</span>.</p>
-<p>A <strong>steady state</strong> for <a class="reference internal" href="#equation-solowc">(17.3)</a> is a value <span class="math notranslate nohighlight">\(k^*\)</span>
+<p>A <strong>steady state</strong> for <a class="reference internal" href="#equation-solowc">(14.3)</a> is a value <span class="math notranslate nohighlight">\(k^*\)</span>
 at which capital is unchanging, meaning <span class="math notranslate nohighlight">\(k'_t = 0\)</span> or, equivalently,
 <span class="math notranslate nohighlight">\(s f(k^*) = \delta k^*\)</span>.</p>
 <p>We assume
 <span class="math notranslate nohighlight">\(f(k) = Ak^\alpha\)</span>, so <span class="math notranslate nohighlight">\(k^*\)</span> solves
 <span class="math notranslate nohighlight">\(s A k^\alpha = \delta k\)</span>.</p>
-<p>The solution is the same as the discrete time case—see <a class="reference internal" href="#equation-kstarss">(17.2)</a>.</p>
+<p>The solution is the same as the discrete time case—see <a class="reference internal" href="#equation-kstarss">(14.2)</a>.</p>
 <p>The dynamics are represented in
 the next figure, maintaining the parameterization we used
 above.</p>
@@ -509,7 +508,7 @@ levels of capital combine to yield global stability.</p>
 
     <span class="n">k_grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">2.8</span><span class="p">,</span> <span class="mi">10000</span><span class="p">)</span>
 
-    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">11</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">k_grid</span><span class="p">,</span> <span class="n">g_con</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="n">k_grid</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$g(k)$&#39;</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">k_grid</span><span class="p">,</span> <span class="mi">0</span> <span class="o">*</span> <span class="n">k_grid</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;$k&#39;=0$&quot;</span><span class="p">)</span>
 
@@ -548,7 +547,7 @@ levels of capital combine to yield global stability.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/491e69538375dcfe7baa49171fa43e7395418ce7d3f1724ff0d7432e6428f62a.png" src="_images/491e69538375dcfe7baa49171fa43e7395418ce7d3f1724ff0d7432e6428f62a.png" />
+<a class="reference internal image-reference" href="_images/491e69538375dcfe7baa49171fa43e7395418ce7d3f1724ff0d7432e6428f62a.png"><img alt="_images/491e69538375dcfe7baa49171fa43e7395418ce7d3f1724ff0d7432e6428f62a.png" src="_images/491e69538375dcfe7baa49171fa43e7395418ce7d3f1724ff0d7432e6428f62a.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>This shows global stability heuristically for a fixed parameterization, but
@@ -562,7 +561,7 @@ k'_t\)</span>.</p>
 <p>Substituting into <span class="math notranslate nohighlight">\(k'_t = sAk_t^\alpha - \delta k_t\)</span> leads to the
 linear differential equation</p>
 <div class="math notranslate nohighlight" id="equation-xsolow">
-<span class="eqno">(17.4)<a class="headerlink" href="#equation-xsolow" title="Permalink to this equation">#</a></span>\[    x'_t = (1-\alpha) (sA - \delta x_t)\]</div>
+<span class="eqno">(14.4)<a class="headerlink" href="#equation-xsolow" title="Permalink to this equation">#</a></span>\[    x'_t = (1-\alpha) (sA - \delta x_t)\]</div>
 <p>This equation has the exact solution</p>
 <div class="math notranslate nohighlight">
 \[
@@ -573,11 +572,11 @@ linear differential equation</p>
       \mathrm{e}^{-\delta (1-\alpha) t} +
     \frac{sA}{\delta}
 \]</div>
-<p>(You can confirm that this function <span class="math notranslate nohighlight">\(x_t\)</span> satisfies <a class="reference internal" href="#equation-xsolow">(17.4)</a> by
+<p>(You can confirm that this function <span class="math notranslate nohighlight">\(x_t\)</span> satisfies <a class="reference internal" href="#equation-xsolow">(14.4)</a> by
 differentiating it with respect to <span class="math notranslate nohighlight">\(t\)</span>.)</p>
 <p>Converting back to <span class="math notranslate nohighlight">\(k_t\)</span> yields</p>
 <div class="math notranslate nohighlight" id="equation-ssivs">
-<span class="eqno">(17.5)<a class="headerlink" href="#equation-ssivs" title="Permalink to this equation">#</a></span>\[    k_t
+<span class="eqno">(14.5)<a class="headerlink" href="#equation-ssivs" title="Permalink to this equation">#</a></span>\[    k_t
     =
     \left[
         \left(
@@ -591,10 +590,10 @@ k^*\)</span> as <span class="math notranslate nohighlight">\(t \to \infty\)</spa
 <p>Thus, global stability holds.</p>
 </section>
 <section id="exercises">
-<h2><span class="section-number">17.4. </span>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">14.4. </span>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h2>
 <div class="exercise admonition" id="solow_ex1">
 
-<p class="admonition-title"><span class="caption-number">Exercise 17.1 </span></p>
+<p class="admonition-title"><span class="caption-number">Exercise 14.1 </span></p>
 <section id="exercise-content">
 <p>Plot per capita consumption <span class="math notranslate nohighlight">\(c\)</span> at the steady state, as a function of the savings rate <span class="math notranslate nohighlight">\(s\)</span>, where <span class="math notranslate nohighlight">\(0 \leq s \leq 1\)</span>.</p>
 <p>Use the Cobb–Douglas specification <span class="math notranslate nohighlight">\(f(k) = A k^\alpha\)</span>.</p>
@@ -604,7 +603,7 @@ k^*\)</span> as <span class="math notranslate nohighlight">\(t \to \infty\)</spa
 </div>
 <div class="solution dropdown admonition" id="solow-solution-1">
 
-<p class="admonition-title">Solution to<a class="reference internal" href="#solow_ex1"> Exercise 17.1</a></p>
+<p class="admonition-title">Solution to<a class="reference internal" href="#solow_ex1"> Exercise 14.1</a></p>
 <section id="solution-content">
 <p>Steady state consumption at savings rate <span class="math notranslate nohighlight">\(s\)</span> is given by</p>
 <div class="math notranslate nohighlight">
@@ -667,7 +666,7 @@ We will use <span class="math notranslate nohighlight">\(-c^*(s)\)</span> since 
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x_s_max</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">s_star_max</span><span class="p">,</span> <span class="n">s_star_max</span><span class="p">])</span>
 <span class="n">y_s_max</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">c_star_max</span><span class="p">])</span>
 
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">11</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
 
 <span class="n">fps</span> <span class="o">=</span> <span class="p">(</span><span class="n">c_star_max</span><span class="p">,)</span>
 
@@ -692,7 +691,7 @@ We will use <span class="math notranslate nohighlight">\(-c^*(s)\)</span> since 
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/bfba40f887cf5f0598c55ee8c2304fe763dbe8eddc2fdfaf8972caf8d3541e49.png" src="_images/bfba40f887cf5f0598c55ee8c2304fe763dbe8eddc2fdfaf8972caf8d3541e49.png" />
+<a class="reference internal image-reference" href="_images/bfba40f887cf5f0598c55ee8c2304fe763dbe8eddc2fdfaf8972caf8d3541e49.png"><img alt="_images/bfba40f887cf5f0598c55ee8c2304fe763dbe8eddc2fdfaf8972caf8d3541e49.png" src="_images/bfba40f887cf5f0598c55ee8c2304fe763dbe8eddc2fdfaf8972caf8d3541e49.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>One can also try to solve this mathematically by differentiating <span class="math notranslate nohighlight">\(c^*(s)\)</span> and solve for <span class="math notranslate nohighlight">\(\frac{d}{ds}c^*(s)=0\)</span> using <a class="reference external" href="https://www.sympy.org/en/index.html">sympy</a>.</p>
@@ -732,7 +731,7 @@ We will use <span class="math notranslate nohighlight">\(-c^*(s)\)</span> since 
 </div>
 <div class="exercise admonition" id="solow_ex2">
 
-<p class="admonition-title"><span class="caption-number">Exercise 17.2 </span></p>
+<p class="admonition-title"><span class="caption-number">Exercise 14.2 </span></p>
 <section id="exercise-content">
 <p><strong>Stochastic Productivity</strong></p>
 <p>To bring the Solow–Swan model closer to data, we need to think about handling
@@ -745,7 +744,7 @@ k^\alpha_t\)</span> converges to a constant <span class="math notranslate nohigh
 stochastic sequence <span class="math notranslate nohighlight">\((A_t)_{t \geq 1}\)</span>.</p>
 <p>Dynamics are now</p>
 <div class="math notranslate nohighlight" id="equation-solowran">
-<span class="eqno">(17.6)<a class="headerlink" href="#equation-solowran" title="Permalink to this equation">#</a></span>\[    k_{t+1} = s A_{t+1} f(k_t) + (1 - \delta) k_t\]</div>
+<span class="eqno">(14.6)<a class="headerlink" href="#equation-solowran" title="Permalink to this equation">#</a></span>\[    k_{t+1} = s A_{t+1} f(k_t) + (1 - \delta) k_t\]</div>
 <p>We suppose <span class="math notranslate nohighlight">\(f\)</span> is Cobb–Douglas and <span class="math notranslate nohighlight">\((A_t)\)</span> is IID and lognormal.</p>
 <p>Now the long run convergence obtained in the deterministic case breaks
 down, since the system is hit with new shocks at each point in time.</p>
@@ -755,7 +754,7 @@ down, since the system is hit with new shocks at each point in time.</p>
 </div>
 <div class="solution dropdown admonition" id="solow-solution-3">
 
-<p class="admonition-title">Solution to<a class="reference internal" href="#solow_ex2"> Exercise 17.2</a></p>
+<p class="admonition-title">Solution to<a class="reference internal" href="#solow_ex2"> Exercise 14.2</a></p>
 <section id="solution-content">
 <p>Let’s define the constants for lognormal distribution and initial values used for simulation</p>
 <div class="cell docutils container">
@@ -787,7 +786,7 @@ down, since the system is hit with new shocks at each point in time.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">ts_plot</span><span class="p">(</span><span class="n">x_values</span><span class="p">,</span> <span class="n">ts_length</span><span class="p">):</span>
-    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">11</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
     <span class="n">ts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">ts_length</span><span class="p">)</span>
 
     <span class="c1"># simulate and plot time series</span>
@@ -816,7 +815,7 @@ down, since the system is hit with new shocks at each point in time.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/09cd0cd6dd4b6e7493e4034846a41acf51787c0a4c473f1dcdbdd2c5d59f629d.png" src="_images/09cd0cd6dd4b6e7493e4034846a41acf51787c0a4c473f1dcdbdd2c5d59f629d.png" />
+<a class="reference internal image-reference" href="_images/86ef6ebb94b08367cc72988d42b8f49c68cabe7ebbba24c0d84f2b9dc889e885.png"><img alt="_images/86ef6ebb94b08367cc72988d42b8f49c68cabe7ebbba24c0d84f2b9dc889e885.png" src="_images/86ef6ebb94b08367cc72988d42b8f49c68cabe7ebbba24c0d84f2b9dc889e885.png" style="width: 80%;" /></a>
 </div>
 </div>
 </section>
@@ -887,104 +886,82 @@ down, since the system is hit with new shocks at each point in time.</p>
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
-  Supply and Demand
- </span>
-</p>
-<ul class="nav bd-sidenav nav sidenav_l1">
- <li class="toctree-l1">
-  <a class="reference internal" href="intro_supply_demand.html">
-   2. Introduction to Supply and Demand
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="supply_demand_multiple_goods.html">
-   3. Supply and Demand with Many Goods
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="supply_demand_heterogeneity.html">
-   4. Market Equilibrium with Heterogeneity
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="input_output.html">
-   5. Input-Output Models
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Data and Measurement
+  Economic Data
  </span>
 </p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="long_run_growth.html">
-   6. Long Run Growth
+   2. Long Run Growth
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="business_cycle.html">
-   7. Business Cycles
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="inflation_unemployment.html">
-   8. Inflation and Unemployment
+   3. Business Cycles
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="inequality.html">
-   9. Income and Wealth Inequality
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="distributions.html">
-   10. Distributions in Economics
+   4. Income and Wealth Inequality
   </a>
  </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
-  Useful Tools
+  Essential Tools
  </span>
 </p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
-  <a class="reference internal" href="geom_series.html">
-   11. Geometric Series for Elementary Economics
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="linear_equations.html">
-   12. Linear Equations and Matrix Algebra
+   5. Linear Equations and Matrix Algebra
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="eigen_I.html">
-   13. Eigenvalues and Eigenvectors
+   6. Eigenvalues and Eigenvectors
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro_supply_demand.html">
+   7. Introduction to Supply and Demand
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="geom_series.html">
+   8. Geometric Series for Elementary Economics
   </a>
  </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
-  Simulation
+  Probability and Distributions
  </span>
 </p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
+  <a class="reference internal" href="prob_dist.html">
+   9. Distributions and Probabilities
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="lln_clt.html">
-   14. LLN and CLT
+   10. LLN and CLT
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="monte_carlo.html">
-   15. Monte Carlo and Option Pricing
+   11. Monte Carlo and Option Pricing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="heavy_tails.html">
+   12. Heavy-Tailed Distributions
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="schelling.html">
-   16. Racial Segregation
+   13. Racial Segregation
   </a>
  </li>
 </ul>
@@ -996,64 +973,37 @@ down, since the system is hit with new shocks at each point in time.</p>
 <ul class="current nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1 current active active">
   <a class="current reference internal" href="#">
-   17. The Solow-Swan Growth Model
+   14. The Solow-Swan Growth Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="scalar_dynam.html">
-   18. Dynamics in One Dimension
+   15. Dynamics in One Dimension
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cobweb.html">
-   19. The Cobweb Model
+   16. The Cobweb Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="olg.html">
-   20. The Overlapping Generations Model
+   17. The Overlapping Generations Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="markov_chains_I.html">
-   21. Markov Chains: Basic Concepts and Stationarity
+   18. Markov Chains: Basic Concepts and Stationarity
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="markov_chains_II.html">
-   22. Markov Chains: Irreducibility and Ergodicity
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Modeling in Higher Dimensions
- </span>
-</p>
-<ul class="nav bd-sidenav nav sidenav_l1">
- <li class="toctree-l1">
-  <a class="reference internal" href="eigen_II.html">
-   23. Theorems of Nonnegative Matrices and Eigenvalues
+   19. Markov Chains: Irreducibility and Ergodicity
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="lake_model.html">
-   24. A Lake Model of Employment
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="asset_pricing.html">
-   25. Introduction to Asset Pricing
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="networks.html">
-   26. Networks
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="samuelson.html">
-   27. Multiplier Accelerator Model
+  <a class="reference internal" href="commod_price.html">
+   20. Commodity Prices
   </a>
  </li>
 </ul>
@@ -1065,22 +1015,54 @@ down, since the system is hit with new shocks at each point in time.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="lp_intro.html">
-   28. Linear Programming
+   21. Linear Programming
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="comparative_adv.html">
-   29. Comparative Advantage
+   22. Comparative Advantage
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="nonlinear.html">
-   30. Nonlinear Problems
+   23. Nonlinear Problems
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="short_path.html">
-   31. Shortest Paths
+   24. Shortest Paths
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Modeling in Higher Dimensions
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="eigen_II.html">
+   25. Spectral Theory
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="input_output.html">
+   26. Input-Output Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lake_model.html">
+   27. A Lake Model of Employment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="asset_pricing.html">
+   28. Introduction to Asset Pricing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="networks.html">
+   29. Networks
   </a>
  </li>
 </ul>
@@ -1091,18 +1073,13 @@ down, since the system is hit with new shocks at each point in time.</p>
 </p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
-  <a class="reference internal" href="markets_welfare.html">
-   32. Markets and Welfare
+  <a class="reference internal" href="supply_demand_multiple_goods.html">
+   30. Supply and Demand with Many Goods
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="risk.html">
-   33. Risk
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="uncertainty.html">
-   34. Uncertainty
+  <a class="reference internal" href="supply_demand_heterogeneity.html">
+   31. Market Equilibrium with Heterogeneity
   </a>
  </li>
 </ul>
@@ -1114,17 +1091,17 @@ down, since the system is hit with new shocks at each point in time.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="simple_linear_regression.html">
-   35. Simple Linear Regression Model
+   32. Simple Linear Regression Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="lr_with_matrices.html">
-   36. Linear Regression with Matrices
+   33. Linear Regression with Matrices
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="mle.html">
-   37. Maximum Likelihood Estimation
+   34. Maximum Likelihood Estimation
   </a>
  </li>
 </ul>
@@ -1136,17 +1113,17 @@ down, since the system is hit with new shocks at each point in time.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="troubleshooting.html">
-   38. Troubleshooting
+   35. Troubleshooting
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="zreferences.html">
-   39. References
+   36. References
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="status.html">
-   40. Execution Statistics
+   37. Execution Statistics
   </a>
  </li>
 </ul>

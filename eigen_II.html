@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>23. Theorems of Nonnegative Matrices and Eigenvalues &#8212; An Introduction to Quantitative Economics and Finance</title>
+    <title>25. Spectral Theory &#8212; An Introduction to Quantitative Economics and Finance</title>
     <script src="https://unpkg.com/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://unpkg.com/tippy.js@6.3.1/dist/tippy-bundle.umd.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
@@ -71,7 +71,7 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/quantecon-book-theme.279dae03c5caae754d20501e3fa00bbf.css" />
+    <link rel="stylesheet" type="text/css" href="_static/quantecon-book-theme.27f831372ca8a27cbff86bbb33459986.css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
@@ -114,8 +114,8 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="24. A Lake Model of Employment" href="lake_model.html" />
-    <link rel="prev" title="22. Markov Chains: Irreducibility and Ergodicity" href="markov_chains_II.html" />
+    <link rel="next" title="26. Input-Output Models" href="input_output.html" />
+    <link rel="prev" title="24. Shortest Paths" href="short_path.html" />
 
 <!-- Normal Meta Tags -->
 <meta name="author" context="Thomas J. Sargent &amp; John Stachurski" />
@@ -125,13 +125,13 @@ const thebe_selector_output = ".output, .cell_output"
 <!-- Twitter tags -->
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:site" content="@quantecon" />
-<meta name="twitter:title" content="Theorems of Nonnegative Matrices and Eigenvalues"/>
+<meta name="twitter:title" content="Spectral Theory"/>
 <meta name="twitter:description" content="This website presents introductory lectures on computational economics, designed and written by Thomas J. Sargent and John Stachurski.">
 <meta name="twitter:creator" content="@quantecon">
 <meta name="twitter:image" content="https://assets.quantecon.org/img/qe-twitter-logo.png">
 
 <!-- Opengraph tags -->
-<meta property="og:title" content="Theorems of Nonnegative Matrices and Eigenvalues" />
+<meta property="og:title" content="Spectral Theory" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://intro.quantecon.org/eigen_II.html" />
 <meta property="og:image" content="https://assets.quantecon.org/img/qe-og-logo.png" />
@@ -163,19 +163,24 @@ const thebe_selector_output = ".output, .cell_output"
 
                         <nav id="bd-toc-nav" class="qe-page__toc-nav">
                             <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nonnegative-matrices">23.1. Nonnegative Matrices</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#irreducible-matrices">23.1.1. Irreducible Matrices</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#primitive-matrices">23.1.2. Primitive Matrices</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#left-eigenvectors">23.1.3. Left Eigenvectors</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-perron-frobenius-theorem">23.1.4. The Perron-Frobenius Theorem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nonnegative-matrices">25.1. Nonnegative matrices</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#irreducible-matrices">25.1.1. Irreducible matrices</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#primitive-matrices">25.1.2. Primitive matrices</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#left-eigenvectors">25.1.3. Left eigenvectors</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-perron-frobenius-theorem">25.1.4. The Perron-Frobenius Theorem</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-1-irreducible-matrix">25.1.4.1. Example 1: irreducible matrix</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-primitive-matrix">25.1.4.2. Example 2: primitive matrix</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-3-connection-to-markov-chains">25.1.4.3. Example 3: Connection to Markov chains</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-neumann-series-lemma">23.2. The Neumann Series Lemma</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scalar-series">23.2.1. Scalar Series</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-series">23.2.2. Matrix Series</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">23.3. Exercises</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-neumann-series-lemma">25.2. The Neumann Series Lemma</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scalar-series">25.2.1. Scalar series</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-series">25.2.2. Matrix series</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">25.3. Exercises</a></li>
 </ul>
                             <p class="logo">
                                 
@@ -205,7 +210,7 @@ const thebe_selector_output = ".output, .cell_output"
 
                         <p class="qe-page__header-heading"><a href="intro.html">An Introduction to Quantitative Economics and Finance</a></p>
 
-                        <p class="qe-page__header-subheading">Theorems of Nonnegative Matrices and Eigenvalues</p>
+                        <p class="qe-page__header-subheading">Spectral Theory</p>
 
                     </div>
 
@@ -220,16 +225,16 @@ const thebe_selector_output = ".output, .cell_output"
                     
                     <div>
                         
-  <section class="tex2jax_ignore mathjax_ignore" id="theorems-of-nonnegative-matrices-and-eigenvalues">
-<h1><a class="toc-backref" href="#id1"><span class="section-number">23. </span>Theorems of Nonnegative Matrices and Eigenvalues</a><a class="headerlink" href="#theorems-of-nonnegative-matrices-and-eigenvalues" title="Permalink to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="spectral-theory">
+<h1><a class="toc-backref" href="#id2"><span class="section-number">25. </span>Spectral Theory</a><a class="headerlink" href="#spectral-theory" title="Permalink to this heading">#</a></h1>
 <div class="contents topic" id="contents">
 <span id="index-0"></span><p class="topic-title">Contents</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#theorems-of-nonnegative-matrices-and-eigenvalues" id="id1">Theorems of Nonnegative Matrices and Eigenvalues</a></p>
+<li><p><a class="reference internal" href="#spectral-theory" id="id2">Spectral Theory</a></p>
 <ul>
-<li><p><a class="reference internal" href="#nonnegative-matrices" id="id2">Nonnegative Matrices</a></p></li>
-<li><p><a class="reference internal" href="#the-neumann-series-lemma" id="id3">The Neumann Series Lemma</a></p></li>
-<li><p><a class="reference internal" href="#exercises" id="id4">Exercises</a></p></li>
+<li><p><a class="reference internal" href="#nonnegative-matrices" id="id3">Nonnegative matrices</a></p></li>
+<li><p><a class="reference internal" href="#the-neumann-series-lemma" id="id4">The Neumann Series Lemma</a></p></li>
+<li><p><a class="reference internal" href="#exercises" id="id5">Exercises</a></p></li>
 </ul>
 </li>
 </ul>
@@ -237,7 +242,7 @@ const thebe_selector_output = ".output, .cell_output"
 <p>In addition to what’s in Anaconda, this lecture will need the following libraries:</p>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input above-output-prompt docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip install graphviz
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip install graphviz quantecon
 </pre></div>
 </div>
 </div>
@@ -247,21 +252,34 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="expanded">Hide code cell output</span>
 </summary>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting graphviz
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: graphviz in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (0.20.1)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Downloading graphviz-0.20.1-py3-none-any.whl (47 kB)
-?25l     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/47.0 kB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">47.0/47.0 kB</span> <span class=" -Color -Color-Red">5.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting quantecon
+  Downloading quantecon-0.7.0-py3-none-any.whl (214 kB)
+?25l     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/214.8 kB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">214.8/214.8 kB</span> <span class=" -Color -Color-Red">27.3 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
 ?25h
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Installing collected packages: graphviz
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: numpy&gt;=1.17.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from quantecon) (1.23.5)
+Requirement already satisfied: sympy in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from quantecon) (1.11.1)
+Requirement already satisfied: numba&gt;=0.49.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from quantecon) (0.56.4)
+Requirement already satisfied: requests in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from quantecon) (2.28.1)
+Requirement already satisfied: scipy&gt;=1.5.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from quantecon) (1.10.0)
+Requirement already satisfied: llvmlite&lt;0.40,&gt;=0.39.0dev0 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from numba&gt;=0.49.0-&gt;quantecon) (0.39.1)
+Requirement already satisfied: setuptools in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from numba&gt;=0.49.0-&gt;quantecon) (65.6.3)
+Requirement already satisfied: idna&lt;4,&gt;=2.5 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests-&gt;quantecon) (3.4)
+Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests-&gt;quantecon) (2022.12.7)
+Requirement already satisfied: urllib3&lt;1.27,&gt;=1.21.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests-&gt;quantecon) (1.26.14)
+Requirement already satisfied: charset-normalizer&lt;3,&gt;=2 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests-&gt;quantecon) (2.0.4)
+Requirement already satisfied: mpmath&gt;=0.19 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages/mpmath-1.2.1-py3.10.egg (from sympy-&gt;quantecon) (1.2.1)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Successfully installed graphviz-0.20.1
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Installing collected packages: quantecon
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Successfully installed quantecon-0.7.0
 </pre></div>
 </div>
 </div>
@@ -273,7 +291,7 @@ const thebe_selector_output = ".output, .cell_output"
 to be installed on your computer. Installation instructions for graphviz can be found
 <a class="reference external" href="https://www.graphviz.org/download/">here</a></p>
 </div>
-<p>In this lecture we will begin with the basic properties of nonnegative matrices.</p>
+<p>In this lecture we will begin with the foundational concepts in spectral theory.</p>
 <p>Then we will explore the Perron-Frobenius Theorem and the Neumann Series Lemma, and connect them to applications in Markov chains and networks.</p>
 <p>We will use the following imports:</p>
 <div class="cell docutils container">
@@ -281,13 +299,15 @@ to be installed on your computer. Installation instructions for graphviz can be 
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">numpy.linalg</span> <span class="kn">import</span> <span class="n">eig</span>
+<span class="kn">import</span> <span class="nn">scipy</span> <span class="k">as</span> <span class="nn">sp</span>
 <span class="kn">import</span> <span class="nn">graphviz</span> <span class="k">as</span> <span class="nn">gv</span>
+<span class="kn">import</span> <span class="nn">quantecon</span> <span class="k">as</span> <span class="nn">qe</span>
 </pre></div>
 </div>
 </div>
 </div>
 <section id="nonnegative-matrices">
-<h2><a class="toc-backref" href="#id2"><span class="section-number">23.1. </span>Nonnegative Matrices</a><a class="headerlink" href="#nonnegative-matrices" title="Permalink to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id3"><span class="section-number">25.1. </span>Nonnegative matrices</a><a class="headerlink" href="#nonnegative-matrices" title="Permalink to this heading">#</a></h2>
 <p>Often, in economics, the matrix that we are dealing with is nonnegative.</p>
 <p>Nonnegative matrices have several special and useful properties.</p>
 <p>In this section we discuss some of them — in particular, the connection
@@ -297,7 +317,7 @@ between nonnegativity and eigenvalues.</p>
 is nonnegative, i.e., <span class="math notranslate nohighlight">\(a_{ij} \geq 0\)</span> for every <span class="math notranslate nohighlight">\(i,j\)</span>.</p>
 <p>We denote this as <span class="math notranslate nohighlight">\(A \geq 0\)</span>.</p>
 <section id="irreducible-matrices">
-<span id="irreducible"></span><h3><span class="section-number">23.1.1. </span>Irreducible Matrices<a class="headerlink" href="#irreducible-matrices" title="Permalink to this heading">#</a></h3>
+<span id="irreducible"></span><h3><span class="section-number">25.1.1. </span>Irreducible matrices<a class="headerlink" href="#irreducible-matrices" title="Permalink to this heading">#</a></h3>
 <p>We have (informally) introduced irreducible matrices in the Markov chain lecture (TODO: link to Markov chain lecture).</p>
 <p>Here we will introduce this concept formally.</p>
 <p><span class="math notranslate nohighlight">\(A\)</span> is called <strong>irreducible</strong> if for <em>each</em> <span class="math notranslate nohighlight">\((i,j)\)</span> there is an integer <span class="math notranslate nohighlight">\(k \geq 0\)</span> such that <span class="math notranslate nohighlight">\(a^{k}_{ij} &gt; 0\)</span>.</p>
@@ -311,57 +331,47 @@ is nonnegative, i.e., <span class="math notranslate nohighlight">\(a_{ij} \geq 0
 </ol>
 </section>
 <section id="primitive-matrices">
-<h3><span class="section-number">23.1.2. </span>Primitive Matrices<a class="headerlink" href="#primitive-matrices" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">25.1.2. </span>Primitive matrices<a class="headerlink" href="#primitive-matrices" title="Permalink to this heading">#</a></h3>
 <p>Let <span class="math notranslate nohighlight">\(A\)</span> be a square nonnegative matrix and let <span class="math notranslate nohighlight">\(A^k\)</span> be the <span class="math notranslate nohighlight">\(k^{th}\)</span> power of <span class="math notranslate nohighlight">\(A\)</span>.</p>
 <p>A matrix is considered <strong>primitive</strong> if there exists a <span class="math notranslate nohighlight">\(k \in \mathbb{N}\)</span> such that <span class="math notranslate nohighlight">\(A^k\)</span> is everywhere positive.</p>
 <p>It means that <span class="math notranslate nohighlight">\(A\)</span> is called primitive if there is an integer <span class="math notranslate nohighlight">\(k \geq 0\)</span> such that <span class="math notranslate nohighlight">\(a^{k}_{ij} &gt; 0\)</span> for <em>all</em> <span class="math notranslate nohighlight">\((i,j)\)</span>.</p>
 <p>We can see that if a matrix is primitive, then it implies the matrix is irreducible.</p>
 <p>This is because if there exists an <span class="math notranslate nohighlight">\(A^k\)</span> such that <span class="math notranslate nohighlight">\(a^{k}_{ij} &gt; 0\)</span> for all <span class="math notranslate nohighlight">\((i,j)\)</span>, then it guarantees the same property for <span class="math notranslate nohighlight">\({k+1}^th, {k+2}^th ... {k+n}^th\)</span> iterations.</p>
-<p>In other words, a primitive matrix is both irreducible and aperiodical as aperiodicity requires a state to be visited with a guarantee of returning to itself after a certain amount of iterations.</p>
+<p>In other words, a primitive matrix is both irreducible and aperiodic as aperiodicity requires a state to be visited with a guarantee of returning to itself after a certain amount of iterations.</p>
 </section>
 <section id="left-eigenvectors">
-<h3><span class="section-number">23.1.3. </span>Left Eigenvectors<a class="headerlink" href="#left-eigenvectors" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">25.1.3. </span>Left eigenvectors<a class="headerlink" href="#left-eigenvectors" title="Permalink to this heading">#</a></h3>
 <p>We have previously discussed right (ordinary) eigenvectors <span class="math notranslate nohighlight">\(Av = \lambda v\)</span>.</p>
 <p>Here we introduce left eigenvectors.</p>
 <p>Left eigenvectors will play important roles in what follows, including that of stochastic steady states for dynamic models under a Markov assumption.</p>
 <p>We will talk more about this later, but for now, let’s define left eigenvectors.</p>
-<p>A vector <span class="math notranslate nohighlight">\(\varepsilon\)</span> is called a left eigenvector of <span class="math notranslate nohighlight">\(A\)</span> if <span class="math notranslate nohighlight">\(\varepsilon\)</span> is an eigenvector of <span class="math notranslate nohighlight">\(A^T\)</span>.</p>
-<p>In other words, if <span class="math notranslate nohighlight">\(\varepsilon\)</span> is a left eigenvector of matrix A, then <span class="math notranslate nohighlight">\(A^T \varepsilon = \lambda \varepsilon\)</span>, where <span class="math notranslate nohighlight">\(\lambda\)</span> is the eigenvalue associated with the left eigenvector <span class="math notranslate nohighlight">\(v\)</span>.</p>
+<p>A vector <span class="math notranslate nohighlight">\(w\)</span> is called a left eigenvector of <span class="math notranslate nohighlight">\(A\)</span> if <span class="math notranslate nohighlight">\(w\)</span> is an eigenvector of <span class="math notranslate nohighlight">\(A^T\)</span>.</p>
+<p>In other words, if <span class="math notranslate nohighlight">\(w\)</span> is a left eigenvector of matrix A, then <span class="math notranslate nohighlight">\(A^T w = \lambda w\)</span>, where <span class="math notranslate nohighlight">\(\lambda\)</span> is the eigenvalue associated with the left eigenvector <span class="math notranslate nohighlight">\(v\)</span>.</p>
 <p>This hints at how to compute left eigenvectors</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a sample matrix</span>
-<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> 
               <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">]])</span>
 
 <span class="c1"># Compute right eigenvectors and eigenvalues</span>
-<span class="n">right_eigenvalues</span><span class="p">,</span> <span class="n">right_eigenvectors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eig</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="n">λ_r</span><span class="p">,</span> <span class="n">v</span> <span class="o">=</span> <span class="n">eig</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
 
 <span class="c1"># Compute left eigenvectors and eigenvalues</span>
-<span class="n">left_eigenvalues</span><span class="p">,</span> <span class="n">left_eigenvectors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eig</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+<span class="n">λ_l</span><span class="p">,</span> <span class="n">w</span> <span class="o">=</span> <span class="n">eig</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
 
-<span class="c1"># Transpose left eigenvectors for comparison (because they are returned as column vectors)</span>
-<span class="n">left_eigenvectors</span> <span class="o">=</span> <span class="n">left_eigenvectors</span><span class="o">.</span><span class="n">T</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Matrix A:&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Right Eigenvalues:&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">right_eigenvalues</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Right Eigenvalues:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">λ_r</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Right Eigenvectors:&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">right_eigenvectors</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Left Eigenvalues:&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">left_eigenvalues</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">λ_l</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Left Eigenvectors:&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">left_eigenvectors</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Matrix A:
-[[3 2]
- [1 4]]
-
-Right Eigenvalues:
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Right Eigenvalues:
 [2. 5.]
 
 Right Eigenvectors:
@@ -372,25 +382,59 @@ Left Eigenvalues:
 [2. 5.]
 
 Left Eigenvectors:
-[[-0.70710678  0.70710678]
- [-0.4472136  -0.89442719]]
+[[-0.70710678 -0.4472136 ]
+ [ 0.70710678 -0.89442719]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can use <code class="docutils literal notranslate"><span class="pre">scipy.linalg.eig</span></code> with argument <code class="docutils literal notranslate"><span class="pre">left=True</span></code> to find left eigenvectors directly</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eigenvals</span><span class="p">,</span> <span class="n">ε</span><span class="p">,</span> <span class="n">e</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eig</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">left</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Right Eigenvalues:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">λ_r</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Right Eigenvectors:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Left Eigenvalues:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">λ_l</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Left Eigenvectors:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Right Eigenvalues:
+[2. 5.]
+
+Right Eigenvectors:
+[[-0.89442719 -0.70710678]
+ [ 0.4472136  -0.70710678]]
+
+Left Eigenvalues:
+[2. 5.]
+
+Left Eigenvectors:
+[[-0.70710678 -0.4472136 ]
+ [ 0.70710678 -0.89442719]]
 </pre></div>
 </div>
 </div>
 </div>
 <p>Note that the eigenvalues for both left and right eigenvectors are the same, but the eigenvectors themselves are different.</p>
-<p>We can then take transpose to obtain <span class="math notranslate nohighlight">\(A^T \varepsilon = \lambda \varepsilon\)</span> and obtain <span class="math notranslate nohighlight">\(\varepsilon^T A= \lambda \varepsilon^T\)</span>.</p>
+<p>We can then take transpose to obtain <span class="math notranslate nohighlight">\(A^T w = \lambda w\)</span> and obtain <span class="math notranslate nohighlight">\(w^T A= \lambda w^T\)</span>.</p>
 <p>This is a more common expression and where the name left eigenvectors originates.</p>
 </section>
 <section id="the-perron-frobenius-theorem">
-<span id="perron-frobe"></span><h3><span class="section-number">23.1.4. </span>The Perron-Frobenius Theorem<a class="headerlink" href="#the-perron-frobenius-theorem" title="Permalink to this heading">#</a></h3>
+<span id="perron-frobe"></span><h3><span class="section-number">25.1.4. </span>The Perron-Frobenius Theorem<a class="headerlink" href="#the-perron-frobenius-theorem" title="Permalink to this heading">#</a></h3>
 <p>For a nonnegative matrix <span class="math notranslate nohighlight">\(A\)</span> the behavior of <span class="math notranslate nohighlight">\(A^k\)</span> as <span class="math notranslate nohighlight">\(k \to \infty\)</span> is controlled by the eigenvalue with the largest
 absolute value, often called the <strong>dominant eigenvalue</strong>.</p>
-<p>For a matrix <span class="math notranslate nohighlight">\(A\)</span>, the Perron-Frobenius theorem characterizes certain
+<p>For a matrix <span class="math notranslate nohighlight">\(A\)</span>, the Perron-Frobenius Theorem characterizes certain
 properties of the dominant eigenvalue and its corresponding eigenvector when
 <span class="math notranslate nohighlight">\(A\)</span> is a nonnegative square matrix.</p>
 <div class="proof theorem admonition" id="perron-frobenius">
-<p class="admonition-title"><span class="caption-number">Theorem 23.1 </span> (Perron-Frobenius Theorem)</p>
+<p class="admonition-title"><span class="caption-number">Theorem 25.1 </span> (Perron-Frobenius Theorem)</p>
 <section class="theorem-content" id="proof-content">
 <p>If a matrix <span class="math notranslate nohighlight">\(A \geq 0\)</span> then,</p>
 <ol class="arabic simple">
@@ -405,26 +449,392 @@ properties of the dominant eigenvalue and its corresponding eigenvector when
 </ol>
 <p>If <span class="math notranslate nohighlight">\(A\)</span> is primitive then,</p>
 <ol class="arabic simple" start="6">
-<li><p>the inequality <span class="math notranslate nohighlight">\(|\lambda| \leq r(A)\)</span> is strict for all eigenvalues <span class="math notranslate nohighlight">\(\lambda\)</span> of <span class="math notranslate nohighlight">\(A\)</span> distinct from <span class="math notranslate nohighlight">\(r(A)\)</span>, and</p></li>
-<li><p>with <span class="math notranslate nohighlight">\(e\)</span> and <span class="math notranslate nohighlight">\(\varepsilon\)</span> normalized so that the inner product of <span class="math notranslate nohighlight">\(\varepsilon\)</span> and  <span class="math notranslate nohighlight">\(e = 1\)</span>, we have
-<span class="math notranslate nohighlight">\( r(A)^{-m} A^m\)</span> converges to <span class="math notranslate nohighlight">\(\varepsilon^{\top}\)</span> when <span class="math notranslate nohighlight">\(m \rightarrow \infty\)</span></p></li>
+<li><p>the inequality <span class="math notranslate nohighlight">\(|\lambda| \leq r(A)\)</span> is <strong>strict</strong> for all eigenvalues <span class="math notranslate nohighlight">\(\lambda\)</span> of <span class="math notranslate nohighlight">\(A\)</span> distinct from <span class="math notranslate nohighlight">\(r(A)\)</span>, and</p></li>
+<li><p>with <span class="math notranslate nohighlight">\(v\)</span> and <span class="math notranslate nohighlight">\(w\)</span> normalized so that the inner product of <span class="math notranslate nohighlight">\(w\)</span> and  <span class="math notranslate nohighlight">\(v = 1\)</span>, we have
+<span class="math notranslate nohighlight">\( r(A)^{-m} A^m\)</span> converges to <span class="math notranslate nohighlight">\(v w^{\top}\)</span> when <span class="math notranslate nohighlight">\(m \rightarrow \infty\)</span>. <span class="math notranslate nohighlight">\(v w^{\top}\)</span> is called the <strong>Perron projection</strong> of <span class="math notranslate nohighlight">\(A\)</span>.</p></li>
 </ol>
 </section>
 </div><p>(This is a relatively simple version of the theorem — for more details see
 <a class="reference external" href="https://en.wikipedia.org/wiki/Perron%E2%80%93Frobenius_theorem">here</a>).</p>
 <p>We will see applications of the theorem below.</p>
+<p>Let’s build our intuition for the theorem using a simple example we have seen <a class="reference internal" href="markov_chains_I.html#mc-eg1"><span class="std std-ref">before</span></a>.</p>
+<p>Now let’s consider examples for each case.</p>
+<section id="example-1-irreducible-matrix">
+<h4><span class="section-number">25.1.4.1. </span>Example 1: irreducible matrix<a class="headerlink" href="#example-1-irreducible-matrix" title="Permalink to this heading">#</a></h4>
+<p>Consider the following irreducible matrix A:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> 
+              <span class="p">[</span><span class="mf">.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">.5</span><span class="p">],</span> 
+              <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can compute the dominant eigenvalue and the corresponding eigenvector</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eig</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([-1.00000000e+00, -3.30139063e-18,  1.00000000e+00]),
+ array([[ 5.77350269e-01,  7.07106781e-01,  5.77350269e-01],
+        [-5.77350269e-01,  3.16979233e-18,  5.77350269e-01],
+        [ 5.77350269e-01, -7.07106781e-01,  5.77350269e-01]]))
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we can go through our checklist to verify the claims of the Perron-Frobenius Theorem for the irreducible matrix A:</p>
+<ol class="arabic simple">
+<li><p>The dominant eigenvalue is real-valued and non-negative.</p></li>
+<li><p>All other eigenvalues have absolute values less than or equal to the dominant eigenvalue.</p></li>
+<li><p>A non-negative and nonzero eigenvector is associated with the dominant eigenvalue.</p></li>
+<li><p>As the matrix is irreducible, the eigenvector associated with the dominant eigenvalue is strictly positive.</p></li>
+<li><p>There exists no other positive eigenvector associated with the dominant eigenvalue.</p></li>
+</ol>
+</section>
+<section id="example-2-primitive-matrix">
+<h4><span class="section-number">25.1.4.2. </span>Example 2: primitive matrix<a class="headerlink" href="#example-2-primitive-matrix" title="Permalink to this heading">#</a></h4>
+<p>Consider the following primitive matrix B:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> 
+              <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> 
+              <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">matrix_power</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[2, 1, 1],
+       [1, 2, 1],
+       [1, 1, 2]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can compute the dominant eigenvalue and the corresponding eigenvector using the power iteration method as discussed <a class="reference internal" href="eigen_I.html#eig1_ex1"><span class="std std-ref">earlier</span></a>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">num_iters</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">B</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_iters</span><span class="p">):</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">B</span> <span class="o">@</span> <span class="n">b</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">b</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+
+<span class="n">dominant_eigenvalue</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">B</span> <span class="o">@</span> <span class="n">b</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">dominant_eigenvalue</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eig</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([-1.,  2., -1.]),
+ array([[-0.81649658,  0.57735027, -0.09265789],
+        [ 0.40824829,  0.57735027, -0.65620994],
+        [ 0.40824829,  0.57735027,  0.74886783]]))
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now let’s verify the claims of the Perron-Frobenius Theorem for the primitive matrix B:</p>
+<ol class="arabic simple">
+<li><p>The dominant eigenvalue is real-valued and non-negative.</p></li>
+<li><p>All other eigenvalues have absolute values strictly less than the dominant eigenvalue.</p></li>
+<li><p>A non-negative and nonzero eigenvector is associated with the dominant eigenvalue.</p></li>
+<li><p>The eigenvector associated with the dominant eigenvalue is strictly positive.</p></li>
+<li><p>There exists no other positive eigenvector associated with the dominant eigenvalue.</p></li>
+<li><p>The inequality <span class="math notranslate nohighlight">\(|\lambda| &lt; r(B)\)</span> holds for all eigenvalues <span class="math notranslate nohighlight">\(\lambda\)</span> of <span class="math notranslate nohighlight">\(B\)</span> distinct from the dominant eigenvalue.</p></li>
+</ol>
+<p>Furthermore, we can verify the convergence property (7) of the theorem on the following examples:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">compute_perron_projection</span><span class="p">(</span><span class="n">M</span><span class="p">):</span>
+
+    <span class="n">eigval</span><span class="p">,</span> <span class="n">v</span> <span class="o">=</span> <span class="n">eig</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>
+    <span class="n">eigval</span><span class="p">,</span> <span class="n">w</span> <span class="o">=</span> <span class="n">eig</span><span class="p">(</span><span class="n">M</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+
+    <span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">eigval</span><span class="p">)</span>
+
+    <span class="c1"># Find the index of the dominant (Perron) eigenvalue</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">eigval</span><span class="p">)</span>
+
+    <span class="c1"># Get the Perron eigenvectors</span>
+    <span class="n">v_P</span> <span class="o">=</span> <span class="n">v</span><span class="p">[:,</span> <span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">w_P</span> <span class="o">=</span> <span class="n">w</span><span class="p">[:,</span> <span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1"># Normalize the left and right eigenvectors</span>
+    <span class="n">norm_factor</span> <span class="o">=</span> <span class="n">w_P</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">v_P</span>
+    <span class="n">v_norm</span> <span class="o">=</span> <span class="n">v_P</span> <span class="o">/</span> <span class="n">norm_factor</span>
+
+    <span class="c1"># Compute the Perron projection matrix</span>
+    <span class="n">P</span> <span class="o">=</span> <span class="n">v_norm</span> <span class="o">@</span> <span class="n">w_P</span><span class="o">.</span><span class="n">T</span>
+    <span class="k">return</span> <span class="n">P</span><span class="p">,</span> <span class="n">r</span>
+
+<span class="k">def</span> <span class="nf">check_convergence</span><span class="p">(</span><span class="n">M</span><span class="p">):</span>
+    <span class="n">P</span><span class="p">,</span> <span class="n">r</span> <span class="o">=</span> <span class="n">compute_perron_projection</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Perron projection:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">P</span><span class="p">)</span>
+
+    <span class="c1"># Define a list of values for n</span>
+    <span class="n">n_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">10000</span><span class="p">]</span>
+
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">n_list</span><span class="p">:</span>
+        
+        <span class="c1"># Compute (A/r)^n</span>
+        <span class="n">M_n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">matrix_power</span><span class="p">(</span><span class="n">M</span><span class="o">/</span><span class="n">r</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+
+        <span class="c1"># Compute the difference between A^n / r^n and the Perron projection</span>
+        <span class="n">diff</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">M_n</span> <span class="o">-</span> <span class="n">P</span><span class="p">)</span>
+
+        <span class="c1"># Calculate the norm of the difference matrix</span>
+        <span class="n">diff_norm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">diff</span><span class="p">,</span> <span class="s1">&#39;fro&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;n = </span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2">, norm of the difference: </span><span class="si">{</span><span class="n">diff_norm</span><span class="si">:</span><span class="s2">.10f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+
+<span class="n">A1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+               <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">]])</span>
+
+<span class="n">A2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> 
+              <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> 
+              <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+
+<span class="n">A3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.971</span><span class="p">,</span> <span class="mf">0.029</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+               <span class="p">[</span><span class="mf">0.145</span><span class="p">,</span> <span class="mf">0.778</span><span class="p">,</span> <span class="mf">0.077</span><span class="p">,</span> <span class="mf">0.59</span><span class="p">],</span>
+               <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.508</span><span class="p">,</span> <span class="mf">0.492</span><span class="p">,</span> <span class="mf">1.12</span><span class="p">],</span>
+               <span class="p">[</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.71</span><span class="p">,</span> <span class="mf">0.95</span><span class="p">]])</span>
+
+<span class="k">for</span> <span class="n">M</span> <span class="ow">in</span> <span class="n">A1</span><span class="p">,</span> <span class="n">A2</span><span class="p">,</span> <span class="n">A3</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Matrix:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>
+    <span class="n">check_convergence</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="o">*</span><span class="mi">36</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Matrix:
+[[1 2]
+ [1 4]]
+Perron projection:
+[[0.13619656 0.48507125]
+ [0.24253563 0.86380344]]
+n = 1, norm of the difference: 0.0989045731
+n = 10, norm of the difference: 0.0000000001
+n = 100, norm of the difference: 0.0000000000
+n = 1000, norm of the difference: 0.0000000000
+n = 10000, norm of the difference: 0.0000000000
+
+------------------------------------
+
+Matrix:
+[[0 1 1]
+ [1 0 1]
+ [1 1 0]]
+Perron projection:
+[[0.33333333 0.33333333 0.33333333]
+ [0.33333333 0.33333333 0.33333333]
+ [0.33333333 0.33333333 0.33333333]]
+n = 1, norm of the difference: 0.7071067812
+n = 10, norm of the difference: 0.0013810679
+n = 100, norm of the difference: 0.0000000000
+n = 1000, norm of the difference: 0.0000000000
+n = 10000, norm of the difference: 0.0000000000
+
+------------------------------------
+
+Matrix:
+[[0.971 0.029 0.1   1.   ]
+ [0.145 0.778 0.077 0.59 ]
+ [0.1   0.508 0.492 1.12 ]
+ [0.2   0.8   0.71  0.95 ]]
+Perron projection:
+[[0.12506189 0.31948872 0.20232606 0.43340956]
+ [0.07714374 0.19707485 0.12480371 0.26734628]
+ [0.12157508 0.31058115 0.19668507 0.4213258 ]
+ [0.1388457  0.35470147 0.22462561 0.4811782 ]]
+n = 1, norm of the difference: 0.5361031549
+n = 10, norm of the difference: 0.0000434043
+n = 100, norm of the difference: 0.0000000000
+n = 1000, norm of the difference: 0.0000000000
+n = 10000, norm of the difference: 0.0000000000
+
+------------------------------------
+</pre></div>
+</div>
+</div>
+</div>
+<p>The convergence is not observed in cases of non-primitive matrices.</p>
+<p>Let’s go through an example</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> 
+              <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> 
+              <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+
+<span class="c1"># This shows that the matrix is not primitive</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Matrix:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;100th power of matrix B:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">matrix_power</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
+
+<span class="n">check_convergence</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Matrix:
+[[0 1 1]
+ [1 0 0]
+ [1 0 0]]
+100th power of matrix B:
+[[1125899906842624                0                0]
+ [               0  562949953421312  562949953421312]
+ [               0  562949953421312  562949953421312]]
+Perron projection:
+[[0.5        0.35355339 0.35355339]
+ [0.35355339 0.25       0.25      ]
+ [0.35355339 0.25       0.25      ]]
+n = 1, norm of the difference: 1.0000000000
+n = 10, norm of the difference: 1.0000000000
+n = 100, norm of the difference: 1.0000000000
+n = 1000, norm of the difference: 1.0000000000
+n = 10000, norm of the difference: 1.0000000000
+</pre></div>
+</div>
+</div>
+</div>
+<p>The result shows that the matrix is not primitive as it is not everywhere positive.</p>
+<p>These examples show how the Perron-Frobenius Theorem relates to the eigenvalues and eigenvectors of positive matrices and the convergence of the power of matrices.</p>
+<p>In fact we have already seen the theorem in action before in <a class="reference internal" href="markov_chains_I.html#mc1_ex_1"><span class="std std-ref">the markov chain lecture</span></a>.</p>
+</section>
+<section id="example-3-connection-to-markov-chains">
+<span id="spec-markov"></span><h4><span class="section-number">25.1.4.3. </span>Example 3: Connection to Markov chains<a class="headerlink" href="#example-3-connection-to-markov-chains" title="Permalink to this heading">#</a></h4>
+<p>We are now prepared to bridge the languages spoken in the two lectures.</p>
+<p>A primitive matrix is both irreducible (or strongly connected in the language of graph) and aperiodic.</p>
+<p>So Perron-Frobenius Theorem explains why both Imam and Temple matrix and Hamilton matrix converge to a stationary distribution, which is the Perron projection of the two matrices</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">P</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.68</span><span class="p">,</span> <span class="mf">0.12</span><span class="p">,</span> <span class="mf">0.20</span><span class="p">],</span>
+              <span class="p">[</span><span class="mf">0.50</span><span class="p">,</span> <span class="mf">0.24</span><span class="p">,</span> <span class="mf">0.26</span><span class="p">],</span>
+              <span class="p">[</span><span class="mf">0.36</span><span class="p">,</span> <span class="mf">0.18</span><span class="p">,</span> <span class="mf">0.46</span><span class="p">]])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">compute_perron_projection</span><span class="p">(</span><span class="n">P</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[0.56145769 0.15565164 0.28289067]
+ [0.56145769 0.15565164 0.28289067]
+ [0.56145769 0.15565164 0.28289067]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mc</span> <span class="o">=</span> <span class="n">qe</span><span class="o">.</span><span class="n">MarkovChain</span><span class="p">(</span><span class="n">P</span><span class="p">)</span>
+<span class="n">ψ_star</span> <span class="o">=</span> <span class="n">mc</span><span class="o">.</span><span class="n">stationary_distributions</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">ψ_star</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.56145769, 0.15565164, 0.28289067])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">P_hamilton</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.971</span><span class="p">,</span> <span class="mf">0.029</span><span class="p">,</span> <span class="mf">0.000</span><span class="p">],</span>
+                       <span class="p">[</span><span class="mf">0.145</span><span class="p">,</span> <span class="mf">0.778</span><span class="p">,</span> <span class="mf">0.077</span><span class="p">],</span>
+                       <span class="p">[</span><span class="mf">0.000</span><span class="p">,</span> <span class="mf">0.508</span><span class="p">,</span> <span class="mf">0.492</span><span class="p">]])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">compute_perron_projection</span><span class="p">(</span><span class="n">P_hamilton</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[0.8128  0.16256 0.02464]
+ [0.8128  0.16256 0.02464]
+ [0.8128  0.16256 0.02464]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mc</span> <span class="o">=</span> <span class="n">qe</span><span class="o">.</span><span class="n">MarkovChain</span><span class="p">(</span><span class="n">P_hamilton</span><span class="p">)</span>
+<span class="n">ψ_star</span> <span class="o">=</span> <span class="n">mc</span><span class="o">.</span><span class="n">stationary_distributions</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">ψ_star</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.8128 , 0.16256, 0.02464])
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can also verify other properties hinted by Perron-Frobenius in these stochastic matrices.</p>
+<p>Another example is the relationship between convergence gap and convergence rate.</p>
+<p>In the <a class="reference internal" href="markov_chains_I.html#mc1_ex_1"><span class="std std-ref">exercise</span></a>, we stated that the convergence rate is determined by the spectral gap, the difference between the largest and the second largest eigenvalue.</p>
+<p>This can be proven using what we have learned here.</p>
+<p>With Markov model <span class="math notranslate nohighlight">\(M\)</span> with state space <span class="math notranslate nohighlight">\(S\)</span> and transition matrix <span class="math notranslate nohighlight">\(P\)</span>, we can write <span class="math notranslate nohighlight">\(P^t\)</span> as</p>
+<div class="math notranslate nohighlight">
+\[
+P^t=\sum_{i=1}^{n-1} \lambda_i^t v_i w_i^{\top}+\mathbb{1} \psi^*,
+\]</div>
+<p>This is proven in <span id="id1">[<a class="reference internal" href="zreferences.html#id10" title="Thomas J Sargent and John Stachurski. Economic networks: theory and computation. arXiv preprint arXiv:2203.11972, 2023.">SS23</a>]</span> and a nice discussion can be found <a class="reference external" href="https://math.stackexchange.com/questions/2433997/can-all-matrices-be-decomposed-as-product-of-right-and-left-eigenvector">here</a>.</p>
+<p>In the formula <span class="math notranslate nohighlight">\(\lambda_i\)</span> is an eigenvalue of <span class="math notranslate nohighlight">\(P\)</span> and <span class="math notranslate nohighlight">\(v_i\)</span> and <span class="math notranslate nohighlight">\(w_i\)</span> are the right and left eigenvectors corresponding to <span class="math notranslate nohighlight">\(\lambda_i\)</span>.</p>
+<p>Premultiplying <span class="math notranslate nohighlight">\(P^t\)</span> by arbitrary <span class="math notranslate nohighlight">\(\psi \in \mathscr{D}(S)\)</span> and rearranging now gives</p>
+<div class="math notranslate nohighlight">
+\[
+\psi P^t-\psi^*=\sum_{i=1}^{n-1} \lambda_i^t \psi v_i w_i^{\top}
+\]</div>
+<p>Recall that eigenvalues are ordered from smallest to largest from <span class="math notranslate nohighlight">\(i = 1 ... n\)</span>.</p>
+<p>As we have seen, the largest eigenvalue for a primitive stochastic matrix is one.</p>
+<p>This can be proven using <a class="reference external" href="https://en.wikipedia.org/wiki/Gershgorin_circle_theorem">Gershgorin Circle Theorem</a>,
+but it is out of the scope of this lecture.</p>
+<p>So by the statement (6) of Perron-Frobenius Theorem, <span class="math notranslate nohighlight">\(\lambda_i&lt;1\)</span> for all <span class="math notranslate nohighlight">\(i&lt;n\)</span>, and <span class="math notranslate nohighlight">\(\lambda_n=1\)</span> when <span class="math notranslate nohighlight">\(P\)</span> is primitive (strongly connected and aperiodic).</p>
+<p>Hence, after taking the Euclidean norm deviation, we obtain</p>
+<div class="math notranslate nohighlight">
+\[
+\left\|\psi P^t-\psi^*\right\|=O\left(\eta^t\right) \quad \text { where } \quad \eta:=\left|\lambda_{n-1}\right|&lt;1
+\]</div>
+<p>Thus, the rate of convergence is governed by the modulus of the second largest eigenvalue.</p>
+</section>
 </section>
 </section>
 <section id="the-neumann-series-lemma">
-<span id="la-neumann"></span><h2><a class="toc-backref" href="#id3"><span class="section-number">23.2. </span>The Neumann Series Lemma</a><a class="headerlink" href="#the-neumann-series-lemma" title="Permalink to this heading">#</a></h2>
+<span id="la-neumann"></span><h2><a class="toc-backref" href="#id4"><span class="section-number">25.2. </span>The Neumann Series Lemma</a><a class="headerlink" href="#the-neumann-series-lemma" title="Permalink to this heading">#</a></h2>
 <p id="index-1">In this section we present a famous result about series of matrices that has
 many applications in economics.</p>
 <section id="scalar-series">
-<h3><span class="section-number">23.2.1. </span>Scalar Series<a class="headerlink" href="#scalar-series" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">25.2.1. </span>Scalar series<a class="headerlink" href="#scalar-series" title="Permalink to this heading">#</a></h3>
 <p>Here’s a fundamental result about series that you surely know:</p>
 <p>If <span class="math notranslate nohighlight">\(a\)</span> is a number and <span class="math notranslate nohighlight">\(|a| &lt; 1\)</span>, then</p>
 <div class="math notranslate nohighlight" id="equation-gp-sum">
-<span class="eqno">(23.1)<a class="headerlink" href="#equation-gp-sum" title="Permalink to this equation">#</a></span>\[    \sum_{k=0}^{\infty} a^k =\frac{1}{1-a} = (1 - a)^{-1} \]</div>
+<span class="eqno">(25.1)<a class="headerlink" href="#equation-gp-sum" title="Permalink to this equation">#</a></span>\[    \sum_{k=0}^{\infty} a^k =\frac{1}{1-a} = (1 - a)^{-1} \]</div>
 <p>For a one-dimensional linear equation <span class="math notranslate nohighlight">\(x = ax + b\)</span> where x is unknown we can thus conclude that the solution <span class="math notranslate nohighlight">\(x^{*}\)</span> is given by:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -432,19 +842,19 @@ many applications in economics.</p>
 \]</div>
 </section>
 <section id="matrix-series">
-<h3><span class="section-number">23.2.2. </span>Matrix Series<a class="headerlink" href="#matrix-series" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">25.2.2. </span>Matrix series<a class="headerlink" href="#matrix-series" title="Permalink to this heading">#</a></h3>
 <p>A generalization of this idea exists in the matrix setting.</p>
 <p>Consider the system of equations <span class="math notranslate nohighlight">\(x = Ax + b\)</span> where <span class="math notranslate nohighlight">\(A\)</span> is an <span class="math notranslate nohighlight">\(n \times n\)</span>
 square matrix and <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(b\)</span> are both column vectors in <span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span>.</p>
 <p>Using matrix algebra we can conclude that the solution to this system of equations will be given by:</p>
 <div class="math notranslate nohighlight" id="equation-neumann-eqn">
-<span class="eqno">(23.2)<a class="headerlink" href="#equation-neumann-eqn" title="Permalink to this equation">#</a></span>\[    x^{*} = (I-A)^{-1}b\]</div>
+<span class="eqno">(25.2)<a class="headerlink" href="#equation-neumann-eqn" title="Permalink to this equation">#</a></span>\[    x^{*} = (I-A)^{-1}b\]</div>
 <p>What guarantees the existence of a unique vector <span class="math notranslate nohighlight">\(x^{*}\)</span> that satisfies
-<a class="reference internal" href="#equation-neumann-eqn">(23.2)</a> ?</p>
+<a class="reference internal" href="#equation-neumann-eqn">(25.2)</a>?</p>
 <p>The following is a fundamental result in functional analysis that generalizes
-<a class="reference internal" href="#equation-gp-sum">(23.1)</a> to a multivariate case.</p>
+<a class="reference internal" href="#equation-gp-sum">(25.1)</a> to a multivariate case.</p>
 <div class="proof theorem admonition" id="neumann_series_lemma">
-<span id="neumann-series-lemma"></span><p class="admonition-title"><span class="caption-number">Theorem 23.2 </span> (Neumann Series Lemma)</p>
+<span id="neumann-series-lemma"></span><p class="admonition-title"><span class="caption-number">Theorem 25.2 </span> (Neumann Series Lemma)</p>
 <section class="theorem-content" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(A\)</span> be a square matrix and let <span class="math notranslate nohighlight">\(A^k\)</span> be the <span class="math notranslate nohighlight">\(k\)</span>-th power of <span class="math notranslate nohighlight">\(A\)</span>.</p>
 <p>Let <span class="math notranslate nohighlight">\(r(A)\)</span> be the dominant eigenvector or as it is commonly called the <em>spectral radius</em>, defined as <span class="math notranslate nohighlight">\(\max_i |\lambda_i|\)</span>, where</p>
@@ -452,7 +862,7 @@ square matrix and <span class="math notranslate nohighlight">\(x\)</span> and <s
 <li><p><span class="math notranslate nohighlight">\(\{\lambda_i\}_i\)</span> is the set of eigenvalues of <span class="math notranslate nohighlight">\(A\)</span> and</p></li>
 <li><p><span class="math notranslate nohighlight">\(|\lambda_i|\)</span> is the modulus of the complex number <span class="math notranslate nohighlight">\(\lambda_i\)</span></p></li>
 </ul>
-<p>Neumann’s theorem states the following: If <span class="math notranslate nohighlight">\(r(A) &lt; 1\)</span>, then <span class="math notranslate nohighlight">\(I - A\)</span> is invertible, and</p>
+<p>Neumann’s Theorem states the following: If <span class="math notranslate nohighlight">\(r(A) &lt; 1\)</span>, then <span class="math notranslate nohighlight">\(I - A\)</span> is invertible, and</p>
 <div class="math notranslate nohighlight">
 \[
 (I - A)^{-1} = \sum_{k=0}^{\infty} A^k
@@ -523,10 +933,10 @@ result which illustrates the result of the Neumann Series lemma.</p>
 </section>
 </section>
 <section id="exercises">
-<h2><a class="toc-backref" href="#id4"><span class="section-number">23.3. </span>Exercises</a><a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id5"><span class="section-number">25.3. </span>Exercises</a><a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h2>
 <div class="exercise admonition" id="eig_ex1">
 
-<p class="admonition-title"><span class="caption-number">Exercise 23.1 </span> (Leontief’s Input-Output Model)</p>
+<p class="admonition-title"><span class="caption-number">Exercise 25.1 </span> (Leontief’s Input-Output Model)</p>
 <section id="exercise-content">
 <p><a class="reference external" href="https://en.wikipedia.org/wiki/Wassily_Leontief">Wassily Leontief</a> developed a model of an economy with <span class="math notranslate nohighlight">\(n\)</span> sectors producing <span class="math notranslate nohighlight">\(n\)</span> different commodities representing the interdependencies of different sectors of an economy.</p>
 <p>Under this model some of the output is consumed internally by the industries and the rest is consumed by external consumers.</p>
@@ -569,7 +979,7 @@ result which illustrates the result of the Neumann Series lemma.</p>
 <p>The first row depicts how agriculture’s total output <span class="math notranslate nohighlight">\(x_1\)</span> is distributed</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(0.3x_1\)</span> is used as inputs within agriculture itself,</p></li>
-<li><p><span class="math notranslate nohighlight">\(0.2x_2\)</span> is used as inputs by the industry sector to produce <span class="math notranslate nohighlight">\(x_2\)</span> units</p></li>
+<li><p><span class="math notranslate nohighlight">\(0.2x_2\)</span> is used as inputs by the industry sector to produce <span class="math notranslate nohighlight">\(x_2\)</span> units,</p></li>
 <li><p><span class="math notranslate nohighlight">\(0.3x_3\)</span> is used as inputs by the service sector to produce <span class="math notranslate nohighlight">\(x_3\)</span> units and</p></li>
 <li><p>4 units is the external demand by consumers.</p></li>
 </ul>
@@ -613,7 +1023,7 @@ d =
 </div>
 <div class="solution dropdown admonition" id="eigen_II-solution-3">
 
-<p class="admonition-title">Solution to<a class="reference internal" href="#eig_ex1"> Exercise 23.1 (Leontief’s Input-Output Model)</a></p>
+<p class="admonition-title">Solution to<a class="reference internal" href="#eig_ex1"> Exercise 25.1 (Leontief’s Input-Output Model)</a></p>
 <section id="solution-content">
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -725,104 +1135,82 @@ d =
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
-  Supply and Demand
- </span>
-</p>
-<ul class="nav bd-sidenav nav sidenav_l1">
- <li class="toctree-l1">
-  <a class="reference internal" href="intro_supply_demand.html">
-   2. Introduction to Supply and Demand
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="supply_demand_multiple_goods.html">
-   3. Supply and Demand with Many Goods
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="supply_demand_heterogeneity.html">
-   4. Market Equilibrium with Heterogeneity
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="input_output.html">
-   5. Input-Output Models
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Data and Measurement
+  Economic Data
  </span>
 </p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="long_run_growth.html">
-   6. Long Run Growth
+   2. Long Run Growth
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="business_cycle.html">
-   7. Business Cycles
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="inflation_unemployment.html">
-   8. Inflation and Unemployment
+   3. Business Cycles
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="inequality.html">
-   9. Income and Wealth Inequality
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="distributions.html">
-   10. Distributions in Economics
+   4. Income and Wealth Inequality
   </a>
  </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
-  Useful Tools
+  Essential Tools
  </span>
 </p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
-  <a class="reference internal" href="geom_series.html">
-   11. Geometric Series for Elementary Economics
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="linear_equations.html">
-   12. Linear Equations and Matrix Algebra
+   5. Linear Equations and Matrix Algebra
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="eigen_I.html">
-   13. Eigenvalues and Eigenvectors
+   6. Eigenvalues and Eigenvectors
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro_supply_demand.html">
+   7. Introduction to Supply and Demand
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="geom_series.html">
+   8. Geometric Series for Elementary Economics
   </a>
  </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
-  Simulation
+  Probability and Distributions
  </span>
 </p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
+  <a class="reference internal" href="prob_dist.html">
+   9. Distributions and Probabilities
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="lln_clt.html">
-   14. LLN and CLT
+   10. LLN and CLT
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="monte_carlo.html">
-   15. Monte Carlo and Option Pricing
+   11. Monte Carlo and Option Pricing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="heavy_tails.html">
+   12. Heavy-Tailed Distributions
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="schelling.html">
-   16. Racial Segregation
+   13. Racial Segregation
   </a>
  </li>
 </ul>
@@ -834,64 +1222,37 @@ d =
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="solow.html">
-   17. The Solow-Swan Growth Model
+   14. The Solow-Swan Growth Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="scalar_dynam.html">
-   18. Dynamics in One Dimension
+   15. Dynamics in One Dimension
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cobweb.html">
-   19. The Cobweb Model
+   16. The Cobweb Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="olg.html">
-   20. The Overlapping Generations Model
+   17. The Overlapping Generations Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="markov_chains_I.html">
-   21. Markov Chains: Basic Concepts and Stationarity
+   18. Markov Chains: Basic Concepts and Stationarity
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="markov_chains_II.html">
-   22. Markov Chains: Irreducibility and Ergodicity
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Modeling in Higher Dimensions
- </span>
-</p>
-<ul class="current nav bd-sidenav nav sidenav_l1">
- <li class="toctree-l1 current active active">
-  <a class="current reference internal" href="#">
-   23. Theorems of Nonnegative Matrices and Eigenvalues
+   19. Markov Chains: Irreducibility and Ergodicity
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="lake_model.html">
-   24. A Lake Model of Employment
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="asset_pricing.html">
-   25. Introduction to Asset Pricing
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="networks.html">
-   26. Networks
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="samuelson.html">
-   27. Multiplier Accelerator Model
+  <a class="reference internal" href="commod_price.html">
+   20. Commodity Prices
   </a>
  </li>
 </ul>
@@ -903,22 +1264,54 @@ d =
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="lp_intro.html">
-   28. Linear Programming
+   21. Linear Programming
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="comparative_adv.html">
-   29. Comparative Advantage
+   22. Comparative Advantage
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="nonlinear.html">
-   30. Nonlinear Problems
+   23. Nonlinear Problems
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="short_path.html">
-   31. Shortest Paths
+   24. Shortest Paths
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Modeling in Higher Dimensions
+ </span>
+</p>
+<ul class="current nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1 current active active">
+  <a class="current reference internal" href="#">
+   25. Spectral Theory
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="input_output.html">
+   26. Input-Output Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lake_model.html">
+   27. A Lake Model of Employment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="asset_pricing.html">
+   28. Introduction to Asset Pricing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="networks.html">
+   29. Networks
   </a>
  </li>
 </ul>
@@ -929,18 +1322,13 @@ d =
 </p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
-  <a class="reference internal" href="markets_welfare.html">
-   32. Markets and Welfare
+  <a class="reference internal" href="supply_demand_multiple_goods.html">
+   30. Supply and Demand with Many Goods
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="risk.html">
-   33. Risk
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="uncertainty.html">
-   34. Uncertainty
+  <a class="reference internal" href="supply_demand_heterogeneity.html">
+   31. Market Equilibrium with Heterogeneity
   </a>
  </li>
 </ul>
@@ -952,17 +1340,17 @@ d =
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="simple_linear_regression.html">
-   35. Simple Linear Regression Model
+   32. Simple Linear Regression Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="lr_with_matrices.html">
-   36. Linear Regression with Matrices
+   33. Linear Regression with Matrices
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="mle.html">
-   37. Maximum Likelihood Estimation
+   34. Maximum Likelihood Estimation
   </a>
  </li>
 </ul>
@@ -974,17 +1362,17 @@ d =
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="troubleshooting.html">
-   38. Troubleshooting
+   35. Troubleshooting
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="zreferences.html">
-   39. References
+   36. References
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="status.html">
-   40. Execution Statistics
+   37. Execution Statistics
   </a>
  </li>
 </ul>

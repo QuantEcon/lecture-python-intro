@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>21. Markov Chains: Basic Concepts and Stationarity &#8212; An Introduction to Quantitative Economics and Finance</title>
+    <title>18. Markov Chains: Basic Concepts and Stationarity &#8212; An Introduction to Quantitative Economics and Finance</title>
     <script src="https://unpkg.com/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://unpkg.com/tippy.js@6.3.1/dist/tippy-bundle.umd.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
@@ -71,7 +71,7 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/quantecon-book-theme.279dae03c5caae754d20501e3fa00bbf.css" />
+    <link rel="stylesheet" type="text/css" href="_static/quantecon-book-theme.27f831372ca8a27cbff86bbb33459986.css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
@@ -114,8 +114,8 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="22. Markov Chains: Irreducibility and Ergodicity" href="markov_chains_II.html" />
-    <link rel="prev" title="20. The Overlapping Generations Model" href="olg.html" />
+    <link rel="next" title="19. Markov Chains: Irreducibility and Ergodicity" href="markov_chains_II.html" />
+    <link rel="prev" title="17. The Overlapping Generations Model" href="olg.html" />
 
 <!-- Normal Meta Tags -->
 <meta name="author" context="Thomas J. Sargent &amp; John Stachurski" />
@@ -163,45 +163,45 @@ const thebe_selector_output = ".output, .cell_output"
 
                         <nav id="bd-toc-nav" class="qe-page__toc-nav">
                             <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">21.1. Overview</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definitions-and-examples">21.2. Definitions and Examples</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stochastic-matrices">21.2.1. Stochastic Matrices</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#markov-chains">21.2.2. Markov Chains</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-1">21.2.2.1. Example 1</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2">21.2.2.2. Example 2</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-3">21.2.2.3. Example 3</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">18.1. Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definitions-and-examples">18.2. Definitions and examples</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stochastic-matrices">18.2.1. Stochastic matrices</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#markov-chains">18.2.2. Markov chains</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-1">18.2.2.1. Example 1</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2">18.2.2.2. Example 2</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-3">18.2.2.3. Example 3</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-markov-chains">21.2.3. Defining Markov Chains</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-markov-chains">18.2.3. Defining Markov chains</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulation">21.3. Simulation</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#writing-our-own-simulation-code">21.3.1. Writing Our Own Simulation Code</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-quantecons-routines">21.3.2. Using QuantEcon’s Routines</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-state-values-and-initial-conditions">21.3.2.1. Adding State Values and Initial Conditions</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distributions-over-time">21.4. Distributions over Time</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multiple-step-transition-probabilities">21.4.1. Multiple Step Transition Probabilities</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-probability-of-recession">21.4.2. Example: Probability of Recession</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-cross-sectional-distributions">21.4.3. Example 2: Cross-Sectional Distributions</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stationary-distributions">21.5. Stationary Distributions</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example">21.5.1. Example</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calculating-stationary-distributions">21.5.2. Calculating Stationary Distributions</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#asymptotic-stationarity">21.5.3. Asymptotic Stationarity</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-hamiltons-chain">21.5.3.1. Example: Hamilton’s Chain</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#an-alternative-illustration">21.5.3.2. An Alternative Illustration</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-failure-of-convergence">21.5.3.3. Example: Failure of Convergence</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulation">18.3. Simulation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#writing-our-own-simulation-code">18.3.1. Writing our own simulation code</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-quantecons-routines">18.3.2. Using QuantEcon’s routines</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-state-values-and-initial-conditions">18.3.2.1. Adding state values and initial conditions</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#computing-expectations">21.6. Computing Expectations</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#expectations-of-geometric-sums">21.6.1. Expectations of Geometric Sums</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distributions-over-time">18.4. Distributions over time</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multiple-step-transition-probabilities">18.4.1. Multiple step transition probabilities</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-probability-of-recession">18.4.2. Example: probability of recession</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-cross-sectional-distributions">18.4.3. Example 2: Cross-sectional distributions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stationary-distributions">18.5. Stationary distributions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example">18.5.1. Example</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calculating-stationary-distributions">18.5.2. Calculating stationary distributions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#asymptotic-stationarity">18.5.3. Asymptotic stationarity</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-hamiltons-chain">18.5.3.1. Example: Hamilton’s chain</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#an-alternative-illustration">18.5.3.2. An alternative illustration</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-failure-of-convergence">18.5.3.3. Example: Failure of convergence</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#computing-expectations">18.6. Computing expectations</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#expectations-of-geometric-sums">18.6.1. Expectations of geometric sums</a></li>
 </ul>
 </li>
 </ul>
@@ -249,7 +249,22 @@ const thebe_selector_output = ".output, .cell_output"
                     <div>
                         
   <section class="tex2jax_ignore mathjax_ignore" id="markov-chains-basic-concepts-and-stationarity">
-<h1><span class="section-number">21. </span>Markov Chains: Basic Concepts and Stationarity<a class="headerlink" href="#markov-chains-basic-concepts-and-stationarity" title="Permalink to this heading">#</a></h1>
+<h1><a class="toc-backref" href="#id8"><span class="section-number">18. </span>Markov Chains: Basic Concepts and Stationarity</a><a class="headerlink" href="#markov-chains-basic-concepts-and-stationarity" title="Permalink to this heading">#</a></h1>
+<div class="contents topic" id="contents">
+<span id="index-0"></span><p class="topic-title">Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#markov-chains-basic-concepts-and-stationarity" id="id8">Markov Chains: Basic Concepts and Stationarity</a></p>
+<ul>
+<li><p><a class="reference internal" href="#overview" id="id9">Overview</a></p></li>
+<li><p><a class="reference internal" href="#definitions-and-examples" id="id10">Definitions and examples</a></p></li>
+<li><p><a class="reference internal" href="#simulation" id="id11">Simulation</a></p></li>
+<li><p><a class="reference internal" href="#distributions-over-time" id="id12">Distributions over time</a></p></li>
+<li><p><a class="reference internal" href="#stationary-distributions" id="id13">Stationary distributions</a></p></li>
+<li><p><a class="reference internal" href="#computing-expectations" id="id14">Computing expectations</a></p></li>
+</ul>
+</li>
+</ul>
+</div>
 <p>In addition to what’s in Anaconda, this lecture will need the following libraries:</p>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input above-output-prompt docutils container">
@@ -264,19 +279,19 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="expanded">Hide code cell output</span>
 </summary>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: quantecon in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (0.6.0)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: numpy&gt;=1.17.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from quantecon) (1.23.5)
-Requirement already satisfied: numba in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from quantecon) (0.56.4)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: quantecon in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (0.7.0)
+Requirement already satisfied: numba&gt;=0.49.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from quantecon) (0.56.4)
+Requirement already satisfied: scipy&gt;=1.5.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from quantecon) (1.10.0)
 Requirement already satisfied: sympy in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from quantecon) (1.11.1)
 Requirement already satisfied: requests in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from quantecon) (2.28.1)
-Requirement already satisfied: scipy&gt;=1.5.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from quantecon) (1.10.0)
-Requirement already satisfied: llvmlite&lt;0.40,&gt;=0.39.0dev0 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from numba-&gt;quantecon) (0.39.1)
-Requirement already satisfied: setuptools in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from numba-&gt;quantecon) (65.6.3)
-Requirement already satisfied: urllib3&lt;1.27,&gt;=1.21.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests-&gt;quantecon) (1.26.14)
-Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests-&gt;quantecon) (2022.12.7)
+Requirement already satisfied: numpy&gt;=1.17.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from quantecon) (1.23.5)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: llvmlite&lt;0.40,&gt;=0.39.0dev0 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from numba&gt;=0.49.0-&gt;quantecon) (0.39.1)
+Requirement already satisfied: setuptools in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from numba&gt;=0.49.0-&gt;quantecon) (65.6.3)
 Requirement already satisfied: idna&lt;4,&gt;=2.5 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests-&gt;quantecon) (3.4)
+Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests-&gt;quantecon) (2022.12.7)
+Requirement already satisfied: urllib3&lt;1.27,&gt;=1.21.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests-&gt;quantecon) (1.26.14)
 Requirement already satisfied: charset-normalizer&lt;3,&gt;=2 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests-&gt;quantecon) (2.0.4)
 Requirement already satisfied: mpmath&gt;=0.19 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages/mpmath-1.2.1-py3.10.egg (from sympy-&gt;quantecon) (1.2.1)
 </pre></div>
@@ -294,7 +309,7 @@ to be installed on your computer. Installation instructions for graphviz can be 
 <a class="reference external" href="https://www.graphviz.org/download/">here</a></p>
 </div>
 <section id="overview">
-<h2><span class="section-number">21.1. </span>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id9"><span class="section-number">18.1. </span>Overview</a><a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
 <p>Markov chains are a standard way to model time series with some dependence
 between observations.</p>
 <p>For example,</p>
@@ -314,7 +329,6 @@ probability and dynamics.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;figure.figsize&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>  <span class="c1"># set default figure size</span>
 <span class="kn">import</span> <span class="nn">quantecon</span> <span class="k">as</span> <span class="nn">qe</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">graphviz</span> <span class="kn">import</span> <span class="n">Digraph</span>
@@ -328,10 +342,10 @@ probability and dynamics.</p>
 </div>
 </section>
 <section id="definitions-and-examples">
-<h2><span class="section-number">21.2. </span>Definitions and Examples<a class="headerlink" href="#definitions-and-examples" title="Permalink to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id10"><span class="section-number">18.2. </span>Definitions and examples</a><a class="headerlink" href="#definitions-and-examples" title="Permalink to this heading">#</a></h2>
 <p>In this section we provide the basic definitions and some elementary examples.</p>
 <section id="stochastic-matrices">
-<span id="finite-dp-stoch-mat"></span><h3><span class="section-number">21.2.1. </span>Stochastic Matrices<a class="headerlink" href="#stochastic-matrices" title="Permalink to this heading">#</a></h3>
+<span id="finite-dp-stoch-mat"></span><h3><span class="section-number">18.2.1. </span>Stochastic matrices<a class="headerlink" href="#stochastic-matrices" title="Permalink to this heading">#</a></h3>
 <p>Recall that a <strong>probability mass function</strong> over <span class="math notranslate nohighlight">\(n\)</span> possible outcomes is a
 nonnegative <span class="math notranslate nohighlight">\(n\)</span>-vector <span class="math notranslate nohighlight">\(p\)</span> that sums to one.</p>
 <p>For example, <span class="math notranslate nohighlight">\(p = (0.2, 0.2, 0.6)\)</span> is a probability mass function over <span class="math notranslate nohighlight">\(3\)</span> outcomes.</p>
@@ -346,14 +360,14 @@ such that each row of <span class="math notranslate nohighlight">\(P\)</span> is
 <p>Checking this is <a class="reference internal" href="#mc1_ex_3"><span class="std std-ref">one of the exercises</span></a> below.</p>
 </section>
 <section id="markov-chains">
-<h3><span class="section-number">21.2.2. </span>Markov Chains<a class="headerlink" href="#markov-chains" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">18.2.2. </span>Markov chains<a class="headerlink" href="#markov-chains" title="Permalink to this heading">#</a></h3>
 <p>Now we can introduce Markov chains.</p>
 <p>First we will give some examples and then we will define them more carefully.</p>
 <p>At that time, the connection between stochastic matrices and Markov chains
 will become clear.</p>
 <section id="example-1">
-<span id="mc-eg2"></span><h4><span class="section-number">21.2.2.1. </span>Example 1<a class="headerlink" href="#example-1" title="Permalink to this heading">#</a></h4>
-<p>From  US unemployment data, Hamilton <span id="id1">[<a class="reference internal" href="zreferences.html#id166" title="James D Hamilton. What's real about the business cycle? Federal Reserve Bank of St. Louis Review, pages 435–452, 2005.">Ham05</a>]</span> estimated the following dynamics.</p>
+<span id="mc-eg2"></span><h4><span class="section-number">18.2.2.1. </span>Example 1<a class="headerlink" href="#example-1" title="Permalink to this heading">#</a></h4>
+<p>From  US unemployment data, Hamilton <span id="id1">[<a class="reference internal" href="zreferences.html#id173" title="James D Hamilton. What's real about the business cycle? Federal Reserve Bank of St. Louis Review, pages 435–452, 2005.">Ham05</a>]</span> estimated the following dynamics.</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -382,146 +396,7 @@ will become clear.</p>
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="nn">File /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages/graphviz/backend/execute.py:79,</span> in <span class="ni">run_check</span><span class="nt">(cmd, input_lines, encoding, quiet, **kwargs)</span>
-<span class="g g-Whitespace">     </span><span class="mi">78</span>         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;stdout&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;stderr&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span>
-<span class="ne">---&gt; </span><span class="mi">79</span>     <span class="n">proc</span> <span class="o">=</span> <span class="n">_run_input_lines</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">input_lines</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">80</span> <span class="k">else</span><span class="p">:</span>
-
-<span class="nn">File /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages/graphviz/backend/execute.py:99,</span> in <span class="ni">_run_input_lines</span><span class="nt">(cmd, input_lines, kwargs)</span>
-<span class="g g-Whitespace">     </span><span class="mi">98</span> <span class="k">def</span> <span class="nf">_run_input_lines</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">input_lines</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">):</span>
-<span class="ne">---&gt; </span><span class="mi">99</span>     <span class="n">popen</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">stdin</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">101</span>     <span class="n">stdin_write</span> <span class="o">=</span> <span class="n">popen</span><span class="o">.</span><span class="n">stdin</span><span class="o">.</span><span class="n">write</span>
-
-<span class="nn">File /usr/share/miniconda3/envs/quantecon/lib/python3.10/subprocess.py:971,</span> in <span class="ni">Popen.__init__</span><span class="nt">(self, args, bufsize, executable, stdin, stdout, stderr, preexec_fn, close_fds, shell, cwd, env, universal_newlines, startupinfo, creationflags, restore_signals, start_new_session, pass_fds, user, group, extra_groups, encoding, errors, text, umask, pipesize)</span>
-<span class="g g-Whitespace">    </span><span class="mi">968</span>             <span class="bp">self</span><span class="o">.</span><span class="n">stderr</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">TextIOWrapper</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stderr</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">969</span>                     <span class="n">encoding</span><span class="o">=</span><span class="n">encoding</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="n">errors</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">971</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_execute_child</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">executable</span><span class="p">,</span> <span class="n">preexec_fn</span><span class="p">,</span> <span class="n">close_fds</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">972</span>                         <span class="n">pass_fds</span><span class="p">,</span> <span class="n">cwd</span><span class="p">,</span> <span class="n">env</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">973</span>                         <span class="n">startupinfo</span><span class="p">,</span> <span class="n">creationflags</span><span class="p">,</span> <span class="n">shell</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">974</span>                         <span class="n">p2cread</span><span class="p">,</span> <span class="n">p2cwrite</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">975</span>                         <span class="n">c2pread</span><span class="p">,</span> <span class="n">c2pwrite</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">976</span>                         <span class="n">errread</span><span class="p">,</span> <span class="n">errwrite</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">977</span>                         <span class="n">restore_signals</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">978</span>                         <span class="n">gid</span><span class="p">,</span> <span class="n">gids</span><span class="p">,</span> <span class="n">uid</span><span class="p">,</span> <span class="n">umask</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">979</span>                         <span class="n">start_new_session</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">980</span> <span class="k">except</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">981</span>     <span class="c1"># Cleanup if the child failed starting.</span>
-
-<span class="nn">File /usr/share/miniconda3/envs/quantecon/lib/python3.10/subprocess.py:1847,</span> in <span class="ni">Popen._execute_child</span><span class="nt">(self, args, executable, preexec_fn, close_fds, pass_fds, cwd, env, startupinfo, creationflags, shell, p2cread, p2cwrite, c2pread, c2pwrite, errread, errwrite, restore_signals, gid, gids, uid, umask, start_new_session)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1846</span>         <span class="n">err_msg</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">strerror</span><span class="p">(</span><span class="n">errno_num</span><span class="p">)</span>
-<span class="ne">-&gt; </span><span class="mi">1847</span>     <span class="k">raise</span> <span class="n">child_exception_type</span><span class="p">(</span><span class="n">errno_num</span><span class="p">,</span> <span class="n">err_msg</span><span class="p">,</span> <span class="n">err_filename</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1848</span> <span class="k">raise</span> <span class="n">child_exception_type</span><span class="p">(</span><span class="n">err_msg</span><span class="p">)</span>
-
-<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: PosixPath(&#39;dot&#39;)
-
-<span class="n">The</span> <span class="n">above</span> <span class="n">exception</span> <span class="n">was</span> <span class="n">the</span> <span class="n">direct</span> <span class="n">cause</span> <span class="n">of</span> <span class="n">the</span> <span class="n">following</span> <span class="n">exception</span><span class="p">:</span>
-
-<span class="ne">ExecutableNotFound</span><span class="g g-Whitespace">                        </span>Traceback (most recent call last)
-<span class="nn">File /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages/IPython/core/formatters.py:972,</span> in <span class="ni">MimeBundleFormatter.__call__</span><span class="nt">(self, obj, include, exclude)</span>
-<span class="g g-Whitespace">    </span><span class="mi">969</span>     <span class="n">method</span> <span class="o">=</span> <span class="n">get_real_method</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">print_method</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">971</span>     <span class="k">if</span> <span class="n">method</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">972</span>         <span class="k">return</span> <span class="n">method</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="n">include</span><span class="p">,</span> <span class="n">exclude</span><span class="o">=</span><span class="n">exclude</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">973</span>     <span class="k">return</span> <span class="kc">None</span>
-<span class="g g-Whitespace">    </span><span class="mi">974</span> <span class="k">else</span><span class="p">:</span>
-
-<span class="nn">File /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages/graphviz/jupyter_integration.py:98,</span> in <span class="ni">JupyterIntegration._repr_mimebundle_</span><span class="nt">(self, include, exclude, **_)</span>
-<span class="g g-Whitespace">     </span><span class="mi">96</span> <span class="n">include</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">include</span><span class="p">)</span> <span class="k">if</span> <span class="n">include</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_jupyter_mimetype</span><span class="p">}</span>
-<span class="g g-Whitespace">     </span><span class="mi">97</span> <span class="n">include</span> <span class="o">-=</span> <span class="nb">set</span><span class="p">(</span><span class="n">exclude</span> <span class="ow">or</span> <span class="p">[])</span>
-<span class="ne">---&gt; </span><span class="mi">98</span> <span class="k">return</span> <span class="p">{</span><span class="n">mimetype</span><span class="p">:</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method_name</span><span class="p">)()</span>
-<span class="nn">     99         for mimetype, method_name</span> in <span class="ni">MIME_TYPES.items</span><span class="nt">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">100</span>         <span class="k">if</span> <span class="n">mimetype</span> <span class="ow">in</span> <span class="n">include</span><span class="p">}</span>
-
-<span class="nn">File /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages/graphviz/jupyter_integration.py:98,</span> in <span class="ni">&lt;dictcomp&gt;</span><span class="nt">(.0)</span>
-<span class="g g-Whitespace">     </span><span class="mi">96</span> <span class="n">include</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">include</span><span class="p">)</span> <span class="k">if</span> <span class="n">include</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_jupyter_mimetype</span><span class="p">}</span>
-<span class="g g-Whitespace">     </span><span class="mi">97</span> <span class="n">include</span> <span class="o">-=</span> <span class="nb">set</span><span class="p">(</span><span class="n">exclude</span> <span class="ow">or</span> <span class="p">[])</span>
-<span class="ne">---&gt; </span><span class="mi">98</span> <span class="k">return</span> <span class="p">{</span><span class="n">mimetype</span><span class="p">:</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method_name</span><span class="p">)()</span>
-<span class="nn">     99         for mimetype, method_name</span> in <span class="ni">MIME_TYPES.items</span><span class="nt">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">100</span>         <span class="k">if</span> <span class="n">mimetype</span> <span class="ow">in</span> <span class="n">include</span><span class="p">}</span>
-
-<span class="nn">File /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages/graphviz/jupyter_integration.py:112,</span> in <span class="ni">JupyterIntegration._repr_image_svg_xml</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">110</span> <span class="k">def</span> <span class="nf">_repr_image_svg_xml</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">111</span>     <span class="sd">&quot;&quot;&quot;Return the rendered graph as SVG string.&quot;&quot;&quot;</span>
-<span class="ne">--&gt; </span><span class="mi">112</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">pipe</span><span class="p">(</span><span class="nb">format</span><span class="o">=</span><span class="s1">&#39;svg&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="n">SVG_ENCODING</span><span class="p">)</span>
-
-<span class="nn">File /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages/graphviz/piping.py:104,</span> in <span class="ni">Pipe.pipe</span><span class="nt">(self, format, renderer, formatter, neato_no_op, quiet, engine, encoding)</span>
-<span class="g g-Whitespace">     </span><span class="mi">55</span> <span class="k">def</span> <span class="nf">pipe</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">56</span>          <span class="nb">format</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">57</span>          <span class="n">renderer</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">61</span>          <span class="n">engine</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">62</span>          <span class="n">encoding</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">typing</span><span class="o">.</span><span class="n">Union</span><span class="p">[</span><span class="nb">bytes</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
-<span class="g g-Whitespace">     </span><span class="mi">63</span>     <span class="sd">&quot;&quot;&quot;Return the source piped through the Graphviz layout command.</span>
-<span class="g g-Whitespace">     </span><span class="mi">64</span><span class="sd"> </span>
-<span class="g g-Whitespace">     </span><span class="mi">65</span><span class="sd">     Args:</span>
-<span class="sd">   (...)</span>
-<span class="g g-Whitespace">    </span><span class="mi">102</span><span class="sd">         &#39;&lt;?xml version=&#39;</span>
-<span class="g g-Whitespace">    </span><span class="mi">103</span><span class="sd">     &quot;&quot;&quot;</span>
-<span class="ne">--&gt; </span><span class="mi">104</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pipe_legacy</span><span class="p">(</span><span class="nb">format</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">105</span>                              <span class="n">renderer</span><span class="o">=</span><span class="n">renderer</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">106</span>                              <span class="n">formatter</span><span class="o">=</span><span class="n">formatter</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">107</span>                              <span class="n">neato_no_op</span><span class="o">=</span><span class="n">neato_no_op</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">108</span>                              <span class="n">quiet</span><span class="o">=</span><span class="n">quiet</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">109</span>                              <span class="n">engine</span><span class="o">=</span><span class="n">engine</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">110</span>                              <span class="n">encoding</span><span class="o">=</span><span class="n">encoding</span><span class="p">)</span>
-
-<span class="nn">File /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages/graphviz/_tools.py:171,</span> in <span class="ni">deprecate_positional_args.&lt;locals&gt;.decorator.&lt;locals&gt;.wrapper</span><span class="nt">(*args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">162</span>     <span class="n">wanted</span> <span class="o">=</span> <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">=</span><span class="si">{</span><span class="n">value</span><span class="si">!r}</span><span class="s1">&#39;</span>
-<span class="nn">    163                        for name, value</span> in <span class="ni">deprecated.items</span><span class="nt">())</span>
-<span class="g g-Whitespace">    </span><span class="mi">164</span>     <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The signature of </span><span class="si">{</span><span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s1"> will be reduced&#39;</span>
-<span class="g g-Whitespace">    </span><span class="mi">165</span>                   <span class="sa">f</span><span class="s1">&#39; to </span><span class="si">{</span><span class="n">supported_number</span><span class="si">}</span><span class="s1"> positional args&#39;</span>
-<span class="g g-Whitespace">    </span><span class="mi">166</span>                   <span class="sa">f</span><span class="s1">&#39; </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">supported</span><span class="p">)</span><span class="si">}</span><span class="s1">: pass </span><span class="si">{</span><span class="n">wanted</span><span class="si">}</span><span class="s1">&#39;</span>
-<span class="g g-Whitespace">    </span><span class="mi">167</span>                   <span class="s1">&#39; as keyword arg(s)&#39;</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">168</span>                   <span class="n">stacklevel</span><span class="o">=</span><span class="n">stacklevel</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">169</span>                   <span class="n">category</span><span class="o">=</span><span class="n">category</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">171</span> <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
-<span class="nn">File /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages/graphviz/piping.py:121,</span> in <span class="ni">Pipe._pipe_legacy</span><span class="nt">(self, format, renderer, formatter, neato_no_op, quiet, engine, encoding)</span>
-<span class="g g-Whitespace">    </span><span class="mi">112</span> <span class="nd">@_tools</span><span class="o">.</span><span class="n">deprecate_positional_args</span><span class="p">(</span><span class="n">supported_number</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">113</span> <span class="k">def</span> <span class="nf">_pipe_legacy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">114</span>                  <span class="nb">format</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">119</span>                  <span class="n">engine</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">120</span>                  <span class="n">encoding</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">typing</span><span class="o">.</span><span class="n">Union</span><span class="p">[</span><span class="nb">bytes</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
-<span class="ne">--&gt; </span><span class="mi">121</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pipe_future</span><span class="p">(</span><span class="nb">format</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">122</span>                              <span class="n">renderer</span><span class="o">=</span><span class="n">renderer</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">123</span>                              <span class="n">formatter</span><span class="o">=</span><span class="n">formatter</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">124</span>                              <span class="n">neato_no_op</span><span class="o">=</span><span class="n">neato_no_op</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">125</span>                              <span class="n">quiet</span><span class="o">=</span><span class="n">quiet</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">126</span>                              <span class="n">engine</span><span class="o">=</span><span class="n">engine</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">127</span>                              <span class="n">encoding</span><span class="o">=</span><span class="n">encoding</span><span class="p">)</span>
-
-<span class="nn">File /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages/graphviz/piping.py:149,</span> in <span class="ni">Pipe._pipe_future</span><span class="nt">(self, format, renderer, formatter, neato_no_op, quiet, engine, encoding)</span>
-<span class="g g-Whitespace">    </span><span class="mi">146</span> <span class="k">if</span> <span class="n">encoding</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">147</span>     <span class="k">if</span> <span class="n">codecs</span><span class="o">.</span><span class="n">lookup</span><span class="p">(</span><span class="n">encoding</span><span class="p">)</span> <span class="ow">is</span> <span class="n">codecs</span><span class="o">.</span><span class="n">lookup</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">encoding</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">148</span>         <span class="c1"># common case: both stdin and stdout need the same encoding</span>
-<span class="ne">--&gt; </span><span class="mi">149</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pipe_lines_string</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="n">encoding</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">150</span>     <span class="k">try</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">151</span>         <span class="n">raw</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pipe_lines</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">input_encoding</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">encoding</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
-<span class="nn">File /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages/graphviz/backend/piping.py:212,</span> in <span class="ni">pipe_lines_string</span><span class="nt">(engine, format, input_lines, encoding, renderer, formatter, neato_no_op, quiet)</span>
-<span class="g g-Whitespace">    </span><span class="mi">206</span> <span class="n">cmd</span> <span class="o">=</span> <span class="n">dot_command</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="n">engine</span><span class="p">,</span> <span class="nb">format</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">207</span>                           <span class="n">renderer</span><span class="o">=</span><span class="n">renderer</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">208</span>                           <span class="n">formatter</span><span class="o">=</span><span class="n">formatter</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">209</span>                           <span class="n">neato_no_op</span><span class="o">=</span><span class="n">neato_no_op</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">210</span> <span class="n">kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;input_lines&#39;</span><span class="p">:</span> <span class="n">input_lines</span><span class="p">,</span> <span class="s1">&#39;encoding&#39;</span><span class="p">:</span> <span class="n">encoding</span><span class="p">}</span>
-<span class="ne">--&gt; </span><span class="mi">212</span> <span class="n">proc</span> <span class="o">=</span> <span class="n">execute</span><span class="o">.</span><span class="n">run_check</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">capture_output</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">quiet</span><span class="o">=</span><span class="n">quiet</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">213</span> <span class="k">return</span> <span class="n">proc</span><span class="o">.</span><span class="n">stdout</span>
-
-<span class="nn">File /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages/graphviz/backend/execute.py:84,</span> in <span class="ni">run_check</span><span class="nt">(cmd, input_lines, encoding, quiet, **kwargs)</span>
-<span class="g g-Whitespace">     </span><span class="mi">82</span> <span class="k">except</span> <span class="ne">OSError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">83</span>     <span class="k">if</span> <span class="n">e</span><span class="o">.</span><span class="n">errno</span> <span class="o">==</span> <span class="n">errno</span><span class="o">.</span><span class="n">ENOENT</span><span class="p">:</span>
-<span class="ne">---&gt; </span><span class="mi">84</span>         <span class="k">raise</span> <span class="n">ExecutableNotFound</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">e</span>
-<span class="g g-Whitespace">     </span><span class="mi">85</span>     <span class="k">raise</span>
-<span class="g g-Whitespace">     </span><span class="mi">87</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">quiet</span> <span class="ow">and</span> <span class="n">proc</span><span class="o">.</span><span class="n">stderr</span><span class="p">:</span>
-
-<span class="ne">ExecutableNotFound</span>: failed to execute PosixPath(&#39;dot&#39;), make sure the Graphviz executables are on your systems&#39; PATH
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;graphviz.graphs.Digraph at 0x7fb04d4a2440&gt;
-</pre></div>
-</div>
+<a class="reference internal image-reference" href="_images/24f51298a2d719c5b995ac7522c3a99613f09f3d0ab1d116e506388c2b67ce18.svg"><img alt="_images/24f51298a2d719c5b995ac7522c3a99613f09f3d0ab1d116e506388c2b67ce18.svg" src="_images/24f51298a2d719c5b995ac7522c3a99613f09f3d0ab1d116e506388c2b67ce18.svg" width="80%" /></a>
 </div>
 </div>
 <p>Here there are three <strong>states</strong></p>
@@ -556,14 +431,12 @@ numbers.</p>
 <p>We can collect all of these conditional probabilities into a matrix, as follows</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-    P =
-    \left(
-      \begin{array}{ccc}
-         0.971 &amp; 0.029 &amp; 0 \\
-         0.145 &amp; 0.778 &amp; 0.077 \\
-         0 &amp; 0.508 &amp; 0.492
-      \end{array}
-    \right)
+P =
+\begin{bmatrix} 
+0.971 &amp; 0.029 &amp; 0 \\
+0.145 &amp; 0.778 &amp; 0.077 \\
+0 &amp; 0.508 &amp; 0.492
+\end{bmatrix} 
 \end{split}\]</div>
 <p>Notice that <span class="math notranslate nohighlight">\(P\)</span> is a stochastic matrix.</p>
 <p>Now we have the following relationship</p>
@@ -577,23 +450,21 @@ numbers.</p>
 probability of transitioning from state <span class="math notranslate nohighlight">\(i\)</span> to state <span class="math notranslate nohighlight">\(j\)</span> in one month.</p>
 </section>
 <section id="example-2">
-<span id="mc-eg1"></span><h4><span class="section-number">21.2.2.2. </span>Example 2<a class="headerlink" href="#example-2" title="Permalink to this heading">#</a></h4>
+<span id="mc-eg1"></span><h4><span class="section-number">18.2.2.2. </span>Example 2<a class="headerlink" href="#example-2" title="Permalink to this heading">#</a></h4>
 <p>Consider a worker who, at any given time <span class="math notranslate nohighlight">\(t\)</span>, is either unemployed (state 0)
 or employed (state 1).</p>
-<p>Suppose that, over a one month period,</p>
+<p>Suppose that, over a one-month period,</p>
 <ol class="arabic simple">
 <li><p>the unemployed worker finds a job with probability <span class="math notranslate nohighlight">\(\alpha \in (0, 1)\)</span>.</p></li>
 <li><p>the employed worker loses her job and becomes unemployed with probability <span class="math notranslate nohighlight">\(\beta \in (0, 1)\)</span>.</p></li>
 </ol>
 <p>Given the above information, we can write out the transition probabilities in matrix form as</p>
 <div class="math notranslate nohighlight" id="equation-p-unempemp">
-<span class="eqno">(21.1)<a class="headerlink" href="#equation-p-unempemp" title="Permalink to this equation">#</a></span>\[\begin{split}P
-= \left(
-\begin{array}{cc}
+<span class="eqno">(18.1)<a class="headerlink" href="#equation-p-unempemp" title="Permalink to this equation">#</a></span>\[\begin{split}P = 
+\begin{bmatrix} 
     1 - \alpha &amp; \alpha \\
     \beta &amp; 1 - \beta
-\end{array}
-  \right)\end{split}\]</div>
+\end{bmatrix} \end{split}\]</div>
 <p>For example,</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -618,8 +489,8 @@ or employed (state 1).</p>
 <p>We’ll cover some of these applications below.</p>
 </section>
 <section id="example-3">
-<span id="mc-eg3"></span><h4><span class="section-number">21.2.2.3. </span>Example 3<a class="headerlink" href="#example-3" title="Permalink to this heading">#</a></h4>
-<p>Imam and Temple <span id="id2">[<a class="reference internal" href="zreferences.html#id268" title="Patrick Imam and Jonathan RW Temple. Political institutions and output collapses. IMF Working Paper, 2023.">IT23</a>]</span> categorize political institutions into three types: democracy (D), autocracy (A), and an intermediate state called anocracy (N).</p>
+<span id="mc-eg3"></span><h4><span class="section-number">18.2.2.3. </span>Example 3<a class="headerlink" href="#example-3" title="Permalink to this heading">#</a></h4>
+<p>Imam and Temple <span id="id2">[<a class="reference internal" href="zreferences.html#id275" title="Patrick Imam and Jonathan RW Temple. Political institutions and output collapses. IMF Working Paper, 2023.">IT23</a>]</span> categorize political institutions into three types: democracy (D), autocracy (A), and an intermediate state called anocracy (N).</p>
 <p>Each institution can have two potential development regimes: collapse © and growth (G). This results in six possible states: DG, DC, NG, NC, AG, and AC.</p>
 <p>The lower probability of transitioning from NC to itself indicates that collapses in anocracies quickly evolve into changes in the political institution.</p>
 <p>Democracies tend to have longer-lasting growth regimes compared to autocracies as indicated by the lower probability of transitioning from growth to growth in autocracies.</p>
@@ -627,16 +498,14 @@ or employed (state 1).</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 P :=
-\left(
-  \begin{array}{cccccc}
+\begin{bmatrix} 
 0.86 &amp; 0.11 &amp; 0.03 &amp; 0.00 &amp; 0.00 &amp; 0.00 \\
 0.52 &amp; 0.33 &amp; 0.13 &amp; 0.02 &amp; 0.00 &amp; 0.00 \\
 0.12 &amp; 0.03 &amp; 0.70 &amp; 0.11 &amp; 0.03 &amp; 0.01 \\
 0.13 &amp; 0.02 &amp; 0.35 &amp; 0.36 &amp; 0.10 &amp; 0.04 \\
 0.00 &amp; 0.00 &amp; 0.09 &amp; 0.11 &amp; 0.55 &amp; 0.25 \\
 0.00 &amp; 0.00 &amp; 0.09 &amp; 0.15 &amp; 0.26 &amp; 0.50
-  \end{array}
-\right)
+\end{bmatrix} 
 \end{split}\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -683,13 +552,13 @@ P :=
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/bafe2becdac144d2f8dce6167a461390927d6f76f9dae801f0afceddc3ff900e.png" src="_images/bafe2becdac144d2f8dce6167a461390927d6f76f9dae801f0afceddc3ff900e.png" />
+<a class="reference internal image-reference" href="_images/5b47b0b8e61182447b94d3365ad040a7149fa70c55a973cb07d815d2dd356964.png"><img alt="_images/5b47b0b8e61182447b94d3365ad040a7149fa70c55a973cb07d815d2dd356964.png" src="_images/5b47b0b8e61182447b94d3365ad040a7149fa70c55a973cb07d815d2dd356964.png" style="width: 80%;" /></a>
 </div>
 </div>
 </section>
 </section>
 <section id="defining-markov-chains">
-<h3><span class="section-number">21.2.3. </span>Defining Markov Chains<a class="headerlink" href="#defining-markov-chains" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">18.2.3. </span>Defining Markov chains<a class="headerlink" href="#defining-markov-chains" title="Permalink to this heading">#</a></h3>
 <p>So far we’ve given examples of Markov chains but now let’s define them more
 carefully.</p>
 <p>To begin, let <span class="math notranslate nohighlight">\(S\)</span> be a finite set <span class="math notranslate nohighlight">\(\{x_1, \ldots, x_n\}\)</span> with <span class="math notranslate nohighlight">\(n\)</span> elements.</p>
@@ -699,12 +568,12 @@ carefully.</p>
 that have the <strong>Markov property</strong>.</p>
 <p>This means that, for any date <span class="math notranslate nohighlight">\(t\)</span> and any state <span class="math notranslate nohighlight">\(y \in S\)</span>,</p>
 <div class="math notranslate nohighlight" id="equation-fin-markov-mp">
-<span class="eqno">(21.2)<a class="headerlink" href="#equation-fin-markov-mp" title="Permalink to this equation">#</a></span>\[\mathbb P \{ X_{t+1} = y  \,|\, X_t \}
+<span class="eqno">(18.2)<a class="headerlink" href="#equation-fin-markov-mp" title="Permalink to this equation">#</a></span>\[\mathbb P \{ X_{t+1} = y  \,|\, X_t \}
 = \mathbb P \{ X_{t+1}  = y \,|\, X_t, X_{t-1}, \ldots \}\]</div>
 <p>In other words, knowing the current state is enough to know probabilities for the future states.</p>
 <p>In particular, the dynamics of a Markov chain are fully determined by the set of values</p>
 <div class="math notranslate nohighlight" id="equation-mpp">
-<span class="eqno">(21.3)<a class="headerlink" href="#equation-mpp" title="Permalink to this equation">#</a></span>\[P(x, y) := \mathbb P \{ X_{t+1} = y \,|\, X_t = x \}
+<span class="eqno">(18.3)<a class="headerlink" href="#equation-mpp" title="Permalink to this equation">#</a></span>\[P(x, y) := \mathbb P \{ X_{t+1} = y \,|\, X_t = x \}
 \qquad (x, y \in S)\]</div>
 <p>By construction,</p>
 <ul class="simple">
@@ -723,18 +592,18 @@ chain <span class="math notranslate nohighlight">\(\{X_t\}\)</span> as follows:<
 <li><p>draw <span class="math notranslate nohighlight">\(X_0\)</span> from a distribution <span class="math notranslate nohighlight">\(\psi_0\)</span> on <span class="math notranslate nohighlight">\(S\)</span></p></li>
 <li><p>for each <span class="math notranslate nohighlight">\(t = 0, 1, \ldots\)</span>, draw <span class="math notranslate nohighlight">\(X_{t+1}\)</span> from <span class="math notranslate nohighlight">\(P(X_t,\cdot)\)</span></p></li>
 </ul>
-<p>By construction, the resulting process satisfies <a class="reference internal" href="#equation-mpp">(21.3)</a>.</p>
+<p>By construction, the resulting process satisfies <a class="reference internal" href="#equation-mpp">(18.3)</a>.</p>
 </section>
 </section>
 <section id="simulation">
-<h2><span class="section-number">21.3. </span>Simulation<a class="headerlink" href="#simulation" title="Permalink to this heading">#</a></h2>
-<p id="index-0">One natural way to answer questions about Markov chains is to simulate them.</p>
+<h2><a class="toc-backref" href="#id11"><span class="section-number">18.3. </span>Simulation</a><a class="headerlink" href="#simulation" title="Permalink to this heading">#</a></h2>
+<p id="index-1">One natural way to answer questions about Markov chains is to simulate them.</p>
 <p>Let’s start by doing this ourselves and then look at libraries that can help
 us.</p>
 <p>In these exercises, we’ll take the state space to be <span class="math notranslate nohighlight">\(S = 0,\ldots, n-1\)</span>.</p>
 <p>(We start at <span class="math notranslate nohighlight">\(0\)</span> because Python arrays are indexed from <span class="math notranslate nohighlight">\(0\)</span>.)</p>
 <section id="writing-our-own-simulation-code">
-<h3><span class="section-number">21.3.1. </span>Writing Our Own Simulation Code<a class="headerlink" href="#writing-our-own-simulation-code" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">18.3.1. </span>Writing our own simulation code<a class="headerlink" href="#writing-our-own-simulation-code" title="Permalink to this heading">#</a></h3>
 <p>To simulate a Markov chain, we need</p>
 <ol class="arabic simple">
 <li><p>a stochastic matrix <span class="math notranslate nohighlight">\(P\)</span> and</p></li>
@@ -760,16 +629,16 @@ to a cumulative distribution</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 0, 0, 1, 1])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1, 1, 1, 1, 0])
 </pre></div>
 </div>
 </div>
 </div>
 <p>We’ll write our code as a function that accepts the following three arguments</p>
 <ul class="simple">
-<li><p>A stochastic matrix <code class="docutils literal notranslate"><span class="pre">P</span></code></p></li>
-<li><p>An initial distribution <code class="docutils literal notranslate"><span class="pre">ψ_0</span></code></p></li>
-<li><p>A positive integer <code class="docutils literal notranslate"><span class="pre">ts_length</span></code> representing the length of the time series the function should return</p></li>
+<li><p>A stochastic matrix <code class="docutils literal notranslate"><span class="pre">P</span></code>.</p></li>
+<li><p>An initial distribution <code class="docutils literal notranslate"><span class="pre">ψ_0</span></code>.</p></li>
+<li><p>A positive integer <code class="docutils literal notranslate"><span class="pre">ts_length</span></code> representing the length of the time series the function should return.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -816,7 +685,7 @@ to a cumulative distribution</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 0, 0, 1, 1, 1, 1, 1, 1, 1])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 0, 1, 0, 1, 1, 1, 1, 1, 1])
 </pre></div>
 </div>
 </div>
@@ -835,7 +704,7 @@ sample that takes value 0 will be about 0.25.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.249024
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.2507
 </pre></div>
 </div>
 </div>
@@ -844,7 +713,7 @@ sample that takes value 0 will be about 0.25.</p>
 always close to 0.25 (for the <code class="docutils literal notranslate"><span class="pre">P</span></code> matrix above).</p>
 </section>
 <section id="using-quantecons-routines">
-<h3><span class="section-number">21.3.2. </span>Using QuantEcon’s Routines<a class="headerlink" href="#using-quantecons-routines" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">18.3.2. </span>Using QuantEcon’s routines<a class="headerlink" href="#using-quantecons-routines" title="Permalink to this heading">#</a></h3>
 <p><a class="reference external" href="http://quantecon.org/quantecon-py">QuantEcon.py</a> has routines for handling Markov chains, including simulation.</p>
 <p>Here’s an illustration using the same <span class="math notranslate nohighlight">\(P\)</span> as the preceding example</p>
 <div class="cell docutils container">
@@ -856,7 +725,7 @@ always close to 0.25 (for the <code class="docutils literal notranslate"><span c
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.249572
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.250274
 </pre></div>
 </div>
 </div>
@@ -869,11 +738,11 @@ always close to 0.25 (for the <code class="docutils literal notranslate"><span c
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 918 ms, sys: 3.74 ms, total: 922 ms
-Wall time: 922 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 1.69 s, sys: 4.08 ms, total: 1.7 s
+Wall time: 1.7 s
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 0, 1, ..., 1, 0, 1])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 1, 1, ..., 1, 1, 1])
 </pre></div>
 </div>
 </div>
@@ -885,17 +754,17 @@ Wall time: 922 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 19.1 ms, sys: 3.97 ms, total: 23.1 ms
-Wall time: 22.8 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 15.4 ms, sys: 11.7 ms, total: 27.2 ms
+Wall time: 26.9 ms
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 1, 1, ..., 0, 1, 0])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1, 1, 1, ..., 0, 1, 1])
 </pre></div>
 </div>
 </div>
 </div>
 <section id="adding-state-values-and-initial-conditions">
-<h4><span class="section-number">21.3.2.1. </span>Adding State Values and Initial Conditions<a class="headerlink" href="#adding-state-values-and-initial-conditions" title="Permalink to this heading">#</a></h4>
+<h4><span class="section-number">18.3.2.1. </span>Adding state values and initial conditions<a class="headerlink" href="#adding-state-values-and-initial-conditions" title="Permalink to this heading">#</a></h4>
 <p>If we wish to, we can provide a specification of state values to <code class="docutils literal notranslate"><span class="pre">MarkovChain</span></code>.</p>
 <p>These state values can be integers, floats, or even strings.</p>
 <p>The following code illustrates</p>
@@ -907,7 +776,7 @@ Wall time: 22.8 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;employed&#39;, &#39;employed&#39;, &#39;employed&#39;, &#39;employed&#39;], dtype=&#39;&lt;U10&#39;)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;employed&#39;, &#39;employed&#39;, &#39;unemployed&#39;, &#39;unemployed&#39;], dtype=&#39;&lt;U10&#39;)
 </pre></div>
 </div>
 </div>
@@ -931,7 +800,7 @@ Wall time: 22.8 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;employed&#39;, &#39;unemployed&#39;, &#39;employed&#39;, &#39;employed&#39;], dtype=&#39;&lt;U10&#39;)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;unemployed&#39;, &#39;employed&#39;, &#39;employed&#39;, &#39;employed&#39;], dtype=&#39;&lt;U10&#39;)
 </pre></div>
 </div>
 </div>
@@ -944,7 +813,7 @@ Wall time: 22.8 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 1, 1, 1])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1, 1, 1, 0])
 </pre></div>
 </div>
 </div>
@@ -953,8 +822,8 @@ Wall time: 22.8 ms
 </section>
 </section>
 <section id="distributions-over-time">
-<span id="mc-md"></span><h2><span class="section-number">21.4. </span>Distributions over Time<a class="headerlink" href="#distributions-over-time" title="Permalink to this heading">#</a></h2>
-<p>We learnt that</p>
+<span id="mc-md"></span><h2><a class="toc-backref" href="#id12"><span class="section-number">18.4. </span>Distributions over time</a><a class="headerlink" href="#distributions-over-time" title="Permalink to this heading">#</a></h2>
+<p>We learned that</p>
 <ol class="arabic simple">
 <li><p><span class="math notranslate nohighlight">\(\{X_t\}\)</span> is a Markov chain with stochastic matrix <span class="math notranslate nohighlight">\(P\)</span></p></li>
 <li><p>the distribution of <span class="math notranslate nohighlight">\(X_t\)</span> is known to be <span class="math notranslate nohighlight">\(\psi_t\)</span></p></li>
@@ -962,7 +831,7 @@ Wall time: 22.8 ms
 <p>What then is the distribution of <span class="math notranslate nohighlight">\(X_{t+1}\)</span>, or, more generally, of <span class="math notranslate nohighlight">\(X_{t+m}\)</span>?</p>
 <p>To answer this, we let <span class="math notranslate nohighlight">\(\psi_t\)</span> be the distribution of <span class="math notranslate nohighlight">\(X_t\)</span> for <span class="math notranslate nohighlight">\(t = 0, 1, 2, \ldots\)</span>.</p>
 <p>Our first aim is to find <span class="math notranslate nohighlight">\(\psi_{t + 1}\)</span> given <span class="math notranslate nohighlight">\(\psi_t\)</span> and <span class="math notranslate nohighlight">\(P\)</span>.</p>
-<p>To begin, pick any <span class="math notranslate nohighlight">\(y  \in S\)</span>.</p>
+<p>To begin, pick any <span class="math notranslate nohighlight">\(y \in S\)</span>.</p>
 <p>To get the probability of being at <span class="math notranslate nohighlight">\(y\)</span> tomorrow (at <span class="math notranslate nohighlight">\(t+1\)</span>), we account for
 all ways this can happen and sum their probabilities.</p>
 <p>This leads to</p>
@@ -981,30 +850,30 @@ all ways this can happen and sum their probabilities.</p>
 <p>There are <span class="math notranslate nohighlight">\(n\)</span> such equations, one for each <span class="math notranslate nohighlight">\(y \in S\)</span>.</p>
 <p>If we think of <span class="math notranslate nohighlight">\(\psi_{t+1}\)</span> and <span class="math notranslate nohighlight">\(\psi_t\)</span> as <em>row vectors</em>, these <span class="math notranslate nohighlight">\(n\)</span> equations are summarized by the matrix expression</p>
 <div class="math notranslate nohighlight" id="equation-fin-mc-fr">
-<span class="eqno">(21.4)<a class="headerlink" href="#equation-fin-mc-fr" title="Permalink to this equation">#</a></span>\[\psi_{t+1} = \psi_t P\]</div>
+<span class="eqno">(18.4)<a class="headerlink" href="#equation-fin-mc-fr" title="Permalink to this equation">#</a></span>\[\psi_{t+1} = \psi_t P\]</div>
 <p>Thus, to move a distribution forward one unit of time, we postmultiply by <span class="math notranslate nohighlight">\(P\)</span>.</p>
 <p>By postmultiplying <span class="math notranslate nohighlight">\(m\)</span> times, we move a distribution forward <span class="math notranslate nohighlight">\(m\)</span> steps into the future.</p>
-<p>Hence, iterating on <a class="reference internal" href="#equation-fin-mc-fr">(21.4)</a>, the expression <span class="math notranslate nohighlight">\(\psi_{t+m} = \psi_t P^m\)</span> is also valid — here <span class="math notranslate nohighlight">\(P^m\)</span> is the <span class="math notranslate nohighlight">\(m\)</span>-th power of <span class="math notranslate nohighlight">\(P\)</span>.</p>
+<p>Hence, iterating on <a class="reference internal" href="#equation-fin-mc-fr">(18.4)</a>, the expression <span class="math notranslate nohighlight">\(\psi_{t+m} = \psi_t P^m\)</span> is also valid — here <span class="math notranslate nohighlight">\(P^m\)</span> is the <span class="math notranslate nohighlight">\(m\)</span>-th power of <span class="math notranslate nohighlight">\(P\)</span>.</p>
 <p>As a special case, we see that if <span class="math notranslate nohighlight">\(\psi_0\)</span> is the initial distribution from
 which <span class="math notranslate nohighlight">\(X_0\)</span> is drawn, then <span class="math notranslate nohighlight">\(\psi_0 P^m\)</span> is the distribution of
 <span class="math notranslate nohighlight">\(X_m\)</span>.</p>
 <p>This is very important, so let’s repeat it</p>
 <div class="math notranslate nohighlight" id="equation-mdfmc">
-<span class="eqno">(21.5)<a class="headerlink" href="#equation-mdfmc" title="Permalink to this equation">#</a></span>\[X_0 \sim \psi_0 \quad \implies \quad X_m \sim \psi_0 P^m\]</div>
+<span class="eqno">(18.5)<a class="headerlink" href="#equation-mdfmc" title="Permalink to this equation">#</a></span>\[X_0 \sim \psi_0 \quad \implies \quad X_m \sim \psi_0 P^m\]</div>
 <p>The general rule is that post-multiplying a distribution by <span class="math notranslate nohighlight">\(P^m\)</span> shifts it forward <span class="math notranslate nohighlight">\(m\)</span> units of time.</p>
 <p>Hence the following is also valid.</p>
 <div class="math notranslate nohighlight" id="equation-mdfmc2">
-<span class="eqno">(21.6)<a class="headerlink" href="#equation-mdfmc2" title="Permalink to this equation">#</a></span>\[X_t \sim \psi_t \quad \implies \quad X_{t+m} \sim \psi_t P^m\]</div>
+<span class="eqno">(18.6)<a class="headerlink" href="#equation-mdfmc2" title="Permalink to this equation">#</a></span>\[X_t \sim \psi_t \quad \implies \quad X_{t+m} \sim \psi_t P^m\]</div>
 <section id="multiple-step-transition-probabilities">
-<span id="finite-mc-mstp"></span><h3><span class="section-number">21.4.1. </span>Multiple Step Transition Probabilities<a class="headerlink" href="#multiple-step-transition-probabilities" title="Permalink to this heading">#</a></h3>
+<span id="finite-mc-mstp"></span><h3><span class="section-number">18.4.1. </span>Multiple step transition probabilities<a class="headerlink" href="#multiple-step-transition-probabilities" title="Permalink to this heading">#</a></h3>
 <p>We know that the probability of transitioning from <span class="math notranslate nohighlight">\(x\)</span> to <span class="math notranslate nohighlight">\(y\)</span> in
 one step is <span class="math notranslate nohighlight">\(P(x,y)\)</span>.</p>
 <p>It turns out that the probability of transitioning from <span class="math notranslate nohighlight">\(x\)</span> to <span class="math notranslate nohighlight">\(y\)</span> in
 <span class="math notranslate nohighlight">\(m\)</span> steps is <span class="math notranslate nohighlight">\(P^m(x,y)\)</span>, the <span class="math notranslate nohighlight">\((x,y)\)</span>-th element of the
 <span class="math notranslate nohighlight">\(m\)</span>-th power of <span class="math notranslate nohighlight">\(P\)</span>.</p>
-<p>To see why, consider again <a class="reference internal" href="#equation-mdfmc2">(21.6)</a>, but now with a <span class="math notranslate nohighlight">\(\psi_t\)</span> that puts all probability on state <span class="math notranslate nohighlight">\(x\)</span>.</p>
+<p>To see why, consider again <a class="reference internal" href="#equation-mdfmc2">(18.6)</a>, but now with a <span class="math notranslate nohighlight">\(\psi_t\)</span> that puts all probability on state <span class="math notranslate nohighlight">\(x\)</span>.</p>
 <p>Then <span class="math notranslate nohighlight">\(\psi_t\)</span> is a vector with <span class="math notranslate nohighlight">\(1\)</span> in position <span class="math notranslate nohighlight">\(x\)</span> and zero elsewhere.</p>
-<p>Inserting this into <a class="reference internal" href="#equation-mdfmc2">(21.6)</a>, we see that, conditional on <span class="math notranslate nohighlight">\(X_t = x\)</span>, the distribution of <span class="math notranslate nohighlight">\(X_{t+m}\)</span> is the <span class="math notranslate nohighlight">\(x\)</span>-th row of <span class="math notranslate nohighlight">\(P^m\)</span>.</p>
+<p>Inserting this into <a class="reference internal" href="#equation-mdfmc2">(18.6)</a>, we see that, conditional on <span class="math notranslate nohighlight">\(X_t = x\)</span>, the distribution of <span class="math notranslate nohighlight">\(X_{t+m}\)</span> is the <span class="math notranslate nohighlight">\(x\)</span>-th row of <span class="math notranslate nohighlight">\(P^m\)</span>.</p>
 <p>In particular</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1012,9 +881,9 @@ one step is <span class="math notranslate nohighlight">\(P(x,y)\)</span>.</p>
 \]</div>
 </section>
 <section id="example-probability-of-recession">
-<h3><span class="section-number">21.4.2. </span>Example: Probability of Recession<a class="headerlink" href="#example-probability-of-recession" title="Permalink to this heading">#</a></h3>
-<p id="index-1">Recall the stochastic matrix <span class="math notranslate nohighlight">\(P\)</span> for recession and growth <a class="reference internal" href="#mc-eg2"><span class="std std-ref">considered above</span></a>.</p>
-<p>Suppose that the current state is unknown — perhaps statistics are available only  at the <em>end</em> of the current month.</p>
+<h3><span class="section-number">18.4.2. </span>Example: probability of recession<a class="headerlink" href="#example-probability-of-recession" title="Permalink to this heading">#</a></h3>
+<p id="index-2">Recall the stochastic matrix <span class="math notranslate nohighlight">\(P\)</span> for recession and growth <a class="reference internal" href="#mc-eg2"><span class="std std-ref">considered above</span></a>.</p>
+<p>Suppose that the current state is unknown — perhaps statistics are available only at the <em>end</em> of the current month.</p>
 <p>We guess that the probability that the economy is in state <span class="math notranslate nohighlight">\(x\)</span> is <span class="math notranslate nohighlight">\(\psi_t(x)\)</span> at time t.</p>
 <p>The probability of being in recession (either mild or severe) in 6 months time is given by</p>
 <div class="math notranslate nohighlight">
@@ -1023,11 +892,11 @@ one step is <span class="math notranslate nohighlight">\(P(x,y)\)</span>.</p>
 \]</div>
 </section>
 <section id="example-2-cross-sectional-distributions">
-<span id="mc-eg1-1"></span><h3><span class="section-number">21.4.3. </span>Example 2: Cross-Sectional Distributions<a class="headerlink" href="#example-2-cross-sectional-distributions" title="Permalink to this heading">#</a></h3>
+<span id="mc-eg1-1"></span><h3><span class="section-number">18.4.3. </span>Example 2: Cross-sectional distributions<a class="headerlink" href="#example-2-cross-sectional-distributions" title="Permalink to this heading">#</a></h3>
 <p>The distributions we have been studying can be viewed either</p>
 <ol class="arabic simple">
 <li><p>as probabilities or</p></li>
-<li><p>as cross-sectional frequencies that a Law of Large Numbers leads us to anticipate for  large samples.</p></li>
+<li><p>as cross-sectional frequencies that a Law of Large Numbers leads us to anticipate for large samples.</p></li>
 </ol>
 <p>To illustrate, recall our model of employment/unemployment dynamics for a given worker <a class="reference internal" href="#mc-eg1"><span class="std std-ref">discussed above</span></a>.</p>
 <p>Consider a large population of workers, each of whose lifetime experience is
@@ -1041,7 +910,7 @@ workers’ processes.</p>
 </ul>
 <p>What will the cross-sectional distribution be in 10 periods hence?</p>
 <p>The answer is <span class="math notranslate nohighlight">\(\psi_t P^{10}\)</span>, where <span class="math notranslate nohighlight">\(P\)</span> is the stochastic matrix in
-<a class="reference internal" href="#equation-p-unempemp">(21.1)</a>.</p>
+<a class="reference internal" href="#equation-p-unempemp">(18.1)</a>.</p>
 <p>This is because each worker’s state evolves according to <span class="math notranslate nohighlight">\(P\)</span>, so
 <span class="math notranslate nohighlight">\(\psi_t P^{10}\)</span> is a marginal distribution  for a single randomly selected
 worker.</p>
@@ -1054,8 +923,8 @@ each state.</p>
 </section>
 </section>
 <section id="stationary-distributions">
-<span id="stationary"></span><h2><span class="section-number">21.5. </span>Stationary Distributions<a class="headerlink" href="#stationary-distributions" title="Permalink to this heading">#</a></h2>
-<p>As seen in <a class="reference internal" href="#equation-fin-mc-fr">(21.4)</a>, we can shift a distribution forward one
+<span id="stationary"></span><h2><a class="toc-backref" href="#id13"><span class="section-number">18.5. </span>Stationary distributions</a><a class="headerlink" href="#stationary-distributions" title="Permalink to this heading">#</a></h2>
+<p>As seen in <a class="reference internal" href="#equation-fin-mc-fr">(18.4)</a>, we can shift a distribution forward one
 unit of time via postmultiplication by <span class="math notranslate nohighlight">\(P\)</span>.</p>
 <p>Some distributions are invariant under this updating process — for example,</p>
 <div class="cell docutils container">
@@ -1079,9 +948,9 @@ unit of time via postmultiplication by <span class="math notranslate nohighlight
 <p>Notice that, post-multiplying by <span class="math notranslate nohighlight">\(P\)</span>, we have <span class="math notranslate nohighlight">\(\psi^* P^2 = \psi^* P = \psi^*\)</span>.</p>
 <p>Continuing in the same way leads to <span class="math notranslate nohighlight">\(\psi^* = \psi^* P^t\)</span> for all <span class="math notranslate nohighlight">\(t\)</span>.</p>
 <p>This tells us an important fact: If the distribution of <span class="math notranslate nohighlight">\(\psi_0\)</span> is a stationary distribution, then <span class="math notranslate nohighlight">\(\psi_t\)</span> will have this same distribution for all <span class="math notranslate nohighlight">\(t\)</span>.</p>
-<p>The following theorem is proved in Chapter 4 of <span id="id3">[<a class="reference internal" href="zreferences.html#id3" title="Thomas J Sargent and John Stachurski. Economic networks: theory and computation. arXiv preprint arXiv:2203.11972, 2023.">SS23</a>]</span> and numerous other sources.</p>
+<p>The following theorem is proved in Chapter 4 of <span id="id3">[<a class="reference internal" href="zreferences.html#id10" title="Thomas J Sargent and John Stachurski. Economic networks: theory and computation. arXiv preprint arXiv:2203.11972, 2023.">SS23</a>]</span> and numerous other sources.</p>
 <div class="proof theorem admonition" id="unique_stat">
-<p class="admonition-title"><span class="caption-number">Theorem 21.1 </span></p>
+<p class="admonition-title"><span class="caption-number">Theorem 18.1 </span></p>
 <section class="theorem-content" id="proof-content">
 <p>Every stochastic matrix <span class="math notranslate nohighlight">\(P\)</span> has at least one stationary distribution.</p>
 </section>
@@ -1094,14 +963,14 @@ stochastic matrix <span class="math notranslate nohighlight">\(P\)</span>.</p>
 doesn’t get stuck in some part of the state space.</p>
 <p>This gives some intuition for the following theorem.</p>
 <div class="proof theorem admonition" id="mc_po_conv_thm">
-<p class="admonition-title"><span class="caption-number">Theorem 21.2 </span></p>
+<p class="admonition-title"><span class="caption-number">Theorem 18.2 </span></p>
 <section class="theorem-content" id="proof-content">
 <p>If <span class="math notranslate nohighlight">\(P\)</span> is everywhere positive, then <span class="math notranslate nohighlight">\(P\)</span> has exactly one stationary
 distribution.</p>
 </section>
 </div><p>We will come back to this when we introduce irreducibility in the next lecture</p>
 <section id="example">
-<h3><span class="section-number">21.5.1. </span>Example<a class="headerlink" href="#example" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">18.5.1. </span>Example<a class="headerlink" href="#example" title="Permalink to this heading">#</a></h3>
 <p>Recall our model of the employment/unemployment dynamics of a particular worker <a class="reference internal" href="#mc-eg1"><span class="std std-ref">discussed above</span></a>.</p>
 <p>If <span class="math notranslate nohighlight">\(\alpha \in (0,1)\)</span> and <span class="math notranslate nohighlight">\(\beta \in (0,1)\)</span>, then the transition matrix is everywhere positive.</p>
 <p>Let <span class="math notranslate nohighlight">\(\psi^* = (p, 1-p)\)</span> be the stationary distribution, so that <span class="math notranslate nohighlight">\(p\)</span>
@@ -1115,7 +984,7 @@ corresponds to unemployment (state 0).</p>
 <p>Not surprisingly it tends to zero as <span class="math notranslate nohighlight">\(\beta \to 0\)</span>, and to one as <span class="math notranslate nohighlight">\(\alpha \to 0\)</span>.</p>
 </section>
 <section id="calculating-stationary-distributions">
-<h3><span class="section-number">21.5.2. </span>Calculating Stationary Distributions<a class="headerlink" href="#calculating-stationary-distributions" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">18.5.2. </span>Calculating stationary distributions<a class="headerlink" href="#calculating-stationary-distributions" title="Permalink to this heading">#</a></h3>
 <p>A stable algorithm for computing stationary distributions is implemented in <a class="reference external" href="http://quantecon.org/quantecon-py">QuantEcon.py</a>.</p>
 <p>Here’s an example</p>
 <div class="cell docutils container">
@@ -1136,12 +1005,12 @@ corresponds to unemployment (state 0).</p>
 </div>
 </section>
 <section id="asymptotic-stationarity">
-<h3><span class="section-number">21.5.3. </span>Asymptotic Stationarity<a class="headerlink" href="#asymptotic-stationarity" title="Permalink to this heading">#</a></h3>
-<p>Consider a everywhere positive stochastic matrix with unique stationary distribution <span class="math notranslate nohighlight">\(\psi^*\)</span>.</p>
+<h3><span class="section-number">18.5.3. </span>Asymptotic stationarity<a class="headerlink" href="#asymptotic-stationarity" title="Permalink to this heading">#</a></h3>
+<p>Consider an everywhere positive stochastic matrix with unique stationary distribution <span class="math notranslate nohighlight">\(\psi^*\)</span>.</p>
 <p>Sometimes the distribution <span class="math notranslate nohighlight">\(\psi_t = \psi_0 P^t\)</span> of <span class="math notranslate nohighlight">\(X_t\)</span> converges to <span class="math notranslate nohighlight">\(\psi^*\)</span> regardless of <span class="math notranslate nohighlight">\(\psi_0\)</span>.</p>
 <p>For example, we have the following result</p>
 <div class="proof theorem admonition" id="theorem-2">
-<span id="strict-stationary"></span><p class="admonition-title"><span class="caption-number">Theorem 21.3 </span></p>
+<span id="strict-stationary"></span><p class="admonition-title"><span class="caption-number">Theorem 18.3 </span></p>
 <section class="theorem-content" id="proof-content">
 <p>Theorem: If there exists an integer <span class="math notranslate nohighlight">\(m\)</span> such that all entries of <span class="math notranslate nohighlight">\(P^m\)</span> are
 strictly positive, with unique stationary distribution <span class="math notranslate nohighlight">\(\psi^*\)</span>, and</p>
@@ -1151,9 +1020,9 @@ strictly positive, with unique stationary distribution <span class="math notrans
     \quad \text{as } t \to \infty
 \]</div>
 </section>
-</div><p>See, for example, <span id="id4">[<a class="reference internal" href="zreferences.html#id3" title="Thomas J Sargent and John Stachurski. Economic networks: theory and computation. arXiv preprint arXiv:2203.11972, 2023.">SS23</a>]</span> Chapter 4.</p>
+</div><p>See, for example, <span id="id4">[<a class="reference internal" href="zreferences.html#id10" title="Thomas J Sargent and John Stachurski. Economic networks: theory and computation. arXiv preprint arXiv:2203.11972, 2023.">SS23</a>]</span> Chapter 4.</p>
 <section id="example-hamiltons-chain">
-<span id="hamilton"></span><h4><span class="section-number">21.5.3.1. </span>Example: Hamilton’s Chain<a class="headerlink" href="#example-hamiltons-chain" title="Permalink to this heading">#</a></h4>
+<span id="hamilton"></span><h4><span class="section-number">18.5.3.1. </span>Example: Hamilton’s chain<a class="headerlink" href="#example-hamiltons-chain" title="Permalink to this heading">#</a></h4>
 <p>Hamilton’s chain satisfies the conditions of the theorem because <span class="math notranslate nohighlight">\(P^2\)</span> is everywhere positive:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1193,7 +1062,7 @@ strictly positive, with unique stationary distribution <span class="math notrans
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ψ_0</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">)</span>        <span class="c1"># Initial condition</span>
 
-<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s1">&#39;3d&#39;</span><span class="p">)</span>
 
 <span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">zlim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
@@ -1215,7 +1084,7 @@ strictly positive, with unique stationary distribution <span class="math notrans
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/dd8620e67ad4685566ad5361250f73d9a45eca900b5dc5bb40d886c5f7fdec6f.png" src="_images/dd8620e67ad4685566ad5361250f73d9a45eca900b5dc5bb40d886c5f7fdec6f.png" />
+<a class="reference internal image-reference" href="_images/6f7193862615bc64d0ea1d292aef0b4a854148be79ae27b6eaefc4a36c334fcd.png"><img alt="_images/6f7193862615bc64d0ea1d292aef0b4a854148be79ae27b6eaefc4a36c334fcd.png" src="_images/6f7193862615bc64d0ea1d292aef0b4a854148be79ae27b6eaefc4a36c334fcd.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>Here</p>
@@ -1228,7 +1097,7 @@ strictly positive, with unique stationary distribution <span class="math notrans
 <p>You might like to try experimenting with different initial conditions.</p>
 </section>
 <section id="an-alternative-illustration">
-<h4><span class="section-number">21.5.3.2. </span>An Alternative Illustration<a class="headerlink" href="#an-alternative-illustration" title="Permalink to this heading">#</a></h4>
+<h4><span class="section-number">18.5.3.2. </span>An alternative illustration<a class="headerlink" href="#an-alternative-illustration" title="Permalink to this heading">#</a></h4>
 <p>We can show this in a slightly different way by focusing on the probability that <span class="math notranslate nohighlight">\(\psi_t\)</span> puts on each state.</p>
 <p>First, we write a function to draw initial distributions <span class="math notranslate nohighlight">\(\psi_0\)</span> of size <code class="docutils literal notranslate"><span class="pre">num_distributions</span></code></p>
 <div class="cell docutils container">
@@ -1259,7 +1128,7 @@ strictly positive, with unique stationary distribution <span class="math notrans
     <span class="n">ψ_star</span> <span class="o">=</span> <span class="n">mc</span><span class="o">.</span><span class="n">stationary_distributions</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
     <span class="c1">## Draw the plot</span>
-    <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">11</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">wspace</span><span class="o">=</span><span class="mf">0.35</span><span class="p">)</span>
 
     <span class="n">ψ_0s</span> <span class="o">=</span> <span class="n">generate_initial_values</span><span class="p">(</span><span class="n">num_distributions</span><span class="p">)</span>
@@ -1302,13 +1171,13 @@ strictly positive, with unique stationary distribution <span class="math notrans
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/047875bfdd8cf4b4d988b233019da4f4e247427a57d6d197be338fc4d52fe08d.png" src="_images/047875bfdd8cf4b4d988b233019da4f4e247427a57d6d197be338fc4d52fe08d.png" />
+<a class="reference internal image-reference" href="_images/c2c7995e6ffc1a29e72707ebf498e3ebc39f367dec6f047435332d83d5fade23.png"><img alt="_images/c2c7995e6ffc1a29e72707ebf498e3ebc39f367dec6f047435332d83d5fade23.png" src="_images/c2c7995e6ffc1a29e72707ebf498e3ebc39f367dec6f047435332d83d5fade23.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>The convergence to <span class="math notranslate nohighlight">\(\psi^*\)</span> holds for different initial distributions.</p>
 </section>
 <section id="example-failure-of-convergence">
-<h4><span class="section-number">21.5.3.3. </span>Example: Failure of Convergence<a class="headerlink" href="#example-failure-of-convergence" title="Permalink to this heading">#</a></h4>
+<h4><span class="section-number">18.5.3.3. </span>Example: Failure of convergence<a class="headerlink" href="#example-failure-of-convergence" title="Permalink to this heading">#</a></h4>
 <p>In the case of our periodic chain, we find the distribution is oscillating</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1323,38 +1192,36 @@ strictly positive, with unique stationary distribution <span class="math notrans
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/36c755db6bbcb1373f497070b496841afb064c5182f10d54dcca2b632477c9c8.png" src="_images/36c755db6bbcb1373f497070b496841afb064c5182f10d54dcca2b632477c9c8.png" />
+<a class="reference internal image-reference" href="_images/cd55a7421a94ada372e183395552e3390e8ee22e7b3d8ad0178119adbdd5cf14.png"><img alt="_images/cd55a7421a94ada372e183395552e3390e8ee22e7b3d8ad0178119adbdd5cf14.png" src="_images/cd55a7421a94ada372e183395552e3390e8ee22e7b3d8ad0178119adbdd5cf14.png" style="width: 80%;" /></a>
 </div>
 </div>
 </section>
 </section>
 </section>
 <section id="computing-expectations">
-<span id="finite-mc-expec"></span><h2><span class="section-number">21.6. </span>Computing Expectations<a class="headerlink" href="#computing-expectations" title="Permalink to this heading">#</a></h2>
-<p id="index-2">We sometimes want to  compute mathematical  expectations of functions of <span class="math notranslate nohighlight">\(X_t\)</span> of the form</p>
+<span id="finite-mc-expec"></span><h2><a class="toc-backref" href="#id14"><span class="section-number">18.6. </span>Computing expectations</a><a class="headerlink" href="#computing-expectations" title="Permalink to this heading">#</a></h2>
+<p id="index-3">We sometimes want to  compute mathematical  expectations of functions of <span class="math notranslate nohighlight">\(X_t\)</span> of the form</p>
 <div class="math notranslate nohighlight" id="equation-mc-une">
-<span class="eqno">(21.7)<a class="headerlink" href="#equation-mc-une" title="Permalink to this equation">#</a></span>\[\mathbb E [ h(X_t) ]\]</div>
+<span class="eqno">(18.7)<a class="headerlink" href="#equation-mc-une" title="Permalink to this equation">#</a></span>\[\mathbb E [ h(X_t) ]\]</div>
 <p>and conditional expectations such as</p>
 <div class="math notranslate nohighlight" id="equation-mc-cce">
-<span class="eqno">(21.8)<a class="headerlink" href="#equation-mc-cce" title="Permalink to this equation">#</a></span>\[\mathbb E [ h(X_{t + k})  \mid X_t = x]\]</div>
+<span class="eqno">(18.8)<a class="headerlink" href="#equation-mc-cce" title="Permalink to this equation">#</a></span>\[\mathbb E [ h(X_{t + k})  \mid X_t = x]\]</div>
 <p>where</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(\{X_t\}\)</span> is a Markov chain generated by <span class="math notranslate nohighlight">\(n \times n\)</span> stochastic matrix <span class="math notranslate nohighlight">\(P\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\{X_t\}\)</span> is a Markov chain generated by <span class="math notranslate nohighlight">\(n \times n\)</span> stochastic matrix <span class="math notranslate nohighlight">\(P\)</span>.</p></li>
 <li><p><span class="math notranslate nohighlight">\(h\)</span> is a given function, which, in terms of matrix
 algebra, we’ll think of as the column vector</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-h
-= \left(
-\begin{array}{c}
+h = 
+\begin{bmatrix} 
     h(x_1) \\
     \vdots \\
     h(x_n)
-\end{array}
-  \right)
+\end{bmatrix}.
 \end{split}\]</div>
-<p>Computing the unconditional expectation <a class="reference internal" href="#equation-mc-une">(21.7)</a> is easy.</p>
+<p>Computing the unconditional expectation <a class="reference internal" href="#equation-mc-une">(18.7)</a> is easy.</p>
 <p>We just sum over the marginal  distribution  of <span class="math notranslate nohighlight">\(X_t\)</span> to get</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1369,14 +1236,14 @@ write this as</p>
 \mathbb E [ h(X_t) ]
 =  \psi P^t h
 \]</div>
-<p>For the conditional expectation <a class="reference internal" href="#equation-mc-cce">(21.8)</a>, we need to sum over
+<p>For the conditional expectation <a class="reference internal" href="#equation-mc-cce">(18.8)</a>, we need to sum over
 the conditional distribution of <span class="math notranslate nohighlight">\(X_{t + k}\)</span> given <span class="math notranslate nohighlight">\(X_t = x\)</span>.</p>
 <p>We already know that this is <span class="math notranslate nohighlight">\(P^k(x, \cdot)\)</span>, so</p>
 <div class="math notranslate nohighlight" id="equation-mc-cce2">
-<span class="eqno">(21.9)<a class="headerlink" href="#equation-mc-cce2" title="Permalink to this equation">#</a></span>\[\mathbb E [ h(X_{t + k})  \mid X_t = x]
+<span class="eqno">(18.9)<a class="headerlink" href="#equation-mc-cce2" title="Permalink to this equation">#</a></span>\[\mathbb E [ h(X_{t + k})  \mid X_t = x]
 = (P^k h)(x)\]</div>
 <section id="expectations-of-geometric-sums">
-<h3><span class="section-number">21.6.1. </span>Expectations of Geometric Sums<a class="headerlink" href="#expectations-of-geometric-sums" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">18.6.1. </span>Expectations of geometric sums<a class="headerlink" href="#expectations-of-geometric-sums" title="Permalink to this heading">#</a></h3>
 <p>Sometimes we want to compute the mathematical expectation of a geometric sum, such as
 <span class="math notranslate nohighlight">\(\sum_t \beta^t h(X_t)\)</span>.</p>
 <p>In view of the preceding discussion, this is</p>
@@ -1397,19 +1264,17 @@ the conditional distribution of <span class="math notranslate nohighlight">\(X_{
 <p>The vector <span class="math notranslate nohighlight">\(P^k h\)</span> stores the conditional expectation <span class="math notranslate nohighlight">\(\mathbb E [ h(X_{t + k})  \mid X_t = x]\)</span> over all <span class="math notranslate nohighlight">\(x\)</span>.</p>
 <div class="exercise admonition" id="mc1_ex_1">
 
-<p class="admonition-title"><span class="caption-number">Exercise 21.1 </span></p>
+<p class="admonition-title"><span class="caption-number">Exercise 18.1 </span></p>
 <section id="exercise-content">
-<p>Imam and Temple <span id="id5">[<a class="reference internal" href="zreferences.html#id268" title="Patrick Imam and Jonathan RW Temple. Political institutions and output collapses. IMF Working Paper, 2023.">IT23</a>]</span> used a three-state transition matrix to describe the transition of three states of a regime: growth, stagnation, and collapse</p>
+<p>Imam and Temple <span id="id5">[<a class="reference internal" href="zreferences.html#id275" title="Patrick Imam and Jonathan RW Temple. Political institutions and output collapses. IMF Working Paper, 2023.">IT23</a>]</span> used a three-state transition matrix to describe the transition of three states of a regime: growth, stagnation, and collapse</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 P :=
-\left(
-  \begin{array}{ccc}
+\begin{bmatrix} 
     0.68 &amp; 0.12 &amp; 0.20 \\
     0.50 &amp; 0.24 &amp; 0.26 \\
     0.36 &amp; 0.18 &amp; 0.46
-  \end{array}
-\right)
+\end{bmatrix} 
 \end{split}\]</div>
 <p>where rows, from top to down, correspond to growth, stagnation, and collapse.</p>
 <p>In this exercise,</p>
@@ -1423,11 +1288,9 @@ P :=
 </div>
 <div class="solution dropdown admonition" id="markov_chains_I-solution-4">
 
-<p class="admonition-title">Solution to<a class="reference internal" href="#mc1_ex_1"> Exercise 21.1</a></p>
+<p class="admonition-title">Solution to<a class="reference internal" href="#mc1_ex_1"> Exercise 18.1</a></p>
 <section id="solution-content">
-<ol class="arabic simple">
-<li></li>
-</ol>
+<p>Solution 1:</p>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input above-output-prompt docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dot</span> <span class="o">=</span> <span class="n">Digraph</span><span class="p">(</span><span class="n">comment</span><span class="o">=</span><span class="s1">&#39;Graph&#39;</span><span class="p">)</span>
@@ -1458,159 +1321,18 @@ P :=
 <span class="expanded">Hide code cell output</span>
 </summary>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="nn">File /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages/graphviz/backend/execute.py:79,</span> in <span class="ni">run_check</span><span class="nt">(cmd, input_lines, encoding, quiet, **kwargs)</span>
-<span class="g g-Whitespace">     </span><span class="mi">78</span>         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;stdout&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;stderr&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span>
-<span class="ne">---&gt; </span><span class="mi">79</span>     <span class="n">proc</span> <span class="o">=</span> <span class="n">_run_input_lines</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">input_lines</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">80</span> <span class="k">else</span><span class="p">:</span>
-
-<span class="nn">File /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages/graphviz/backend/execute.py:99,</span> in <span class="ni">_run_input_lines</span><span class="nt">(cmd, input_lines, kwargs)</span>
-<span class="g g-Whitespace">     </span><span class="mi">98</span> <span class="k">def</span> <span class="nf">_run_input_lines</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">input_lines</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">):</span>
-<span class="ne">---&gt; </span><span class="mi">99</span>     <span class="n">popen</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">stdin</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">101</span>     <span class="n">stdin_write</span> <span class="o">=</span> <span class="n">popen</span><span class="o">.</span><span class="n">stdin</span><span class="o">.</span><span class="n">write</span>
-
-<span class="nn">File /usr/share/miniconda3/envs/quantecon/lib/python3.10/subprocess.py:971,</span> in <span class="ni">Popen.__init__</span><span class="nt">(self, args, bufsize, executable, stdin, stdout, stderr, preexec_fn, close_fds, shell, cwd, env, universal_newlines, startupinfo, creationflags, restore_signals, start_new_session, pass_fds, user, group, extra_groups, encoding, errors, text, umask, pipesize)</span>
-<span class="g g-Whitespace">    </span><span class="mi">968</span>             <span class="bp">self</span><span class="o">.</span><span class="n">stderr</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">TextIOWrapper</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stderr</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">969</span>                     <span class="n">encoding</span><span class="o">=</span><span class="n">encoding</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="n">errors</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">971</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_execute_child</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">executable</span><span class="p">,</span> <span class="n">preexec_fn</span><span class="p">,</span> <span class="n">close_fds</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">972</span>                         <span class="n">pass_fds</span><span class="p">,</span> <span class="n">cwd</span><span class="p">,</span> <span class="n">env</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">973</span>                         <span class="n">startupinfo</span><span class="p">,</span> <span class="n">creationflags</span><span class="p">,</span> <span class="n">shell</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">974</span>                         <span class="n">p2cread</span><span class="p">,</span> <span class="n">p2cwrite</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">975</span>                         <span class="n">c2pread</span><span class="p">,</span> <span class="n">c2pwrite</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">976</span>                         <span class="n">errread</span><span class="p">,</span> <span class="n">errwrite</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">977</span>                         <span class="n">restore_signals</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">978</span>                         <span class="n">gid</span><span class="p">,</span> <span class="n">gids</span><span class="p">,</span> <span class="n">uid</span><span class="p">,</span> <span class="n">umask</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">979</span>                         <span class="n">start_new_session</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">980</span> <span class="k">except</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">981</span>     <span class="c1"># Cleanup if the child failed starting.</span>
-
-<span class="nn">File /usr/share/miniconda3/envs/quantecon/lib/python3.10/subprocess.py:1847,</span> in <span class="ni">Popen._execute_child</span><span class="nt">(self, args, executable, preexec_fn, close_fds, pass_fds, cwd, env, startupinfo, creationflags, shell, p2cread, p2cwrite, c2pread, c2pwrite, errread, errwrite, restore_signals, gid, gids, uid, umask, start_new_session)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1846</span>         <span class="n">err_msg</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">strerror</span><span class="p">(</span><span class="n">errno_num</span><span class="p">)</span>
-<span class="ne">-&gt; </span><span class="mi">1847</span>     <span class="k">raise</span> <span class="n">child_exception_type</span><span class="p">(</span><span class="n">errno_num</span><span class="p">,</span> <span class="n">err_msg</span><span class="p">,</span> <span class="n">err_filename</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1848</span> <span class="k">raise</span> <span class="n">child_exception_type</span><span class="p">(</span><span class="n">err_msg</span><span class="p">)</span>
-
-<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: PosixPath(&#39;dot&#39;)
-
-<span class="n">The</span> <span class="n">above</span> <span class="n">exception</span> <span class="n">was</span> <span class="n">the</span> <span class="n">direct</span> <span class="n">cause</span> <span class="n">of</span> <span class="n">the</span> <span class="n">following</span> <span class="n">exception</span><span class="p">:</span>
-
-<span class="ne">ExecutableNotFound</span><span class="g g-Whitespace">                        </span>Traceback (most recent call last)
-<span class="nn">File /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages/IPython/core/formatters.py:972,</span> in <span class="ni">MimeBundleFormatter.__call__</span><span class="nt">(self, obj, include, exclude)</span>
-<span class="g g-Whitespace">    </span><span class="mi">969</span>     <span class="n">method</span> <span class="o">=</span> <span class="n">get_real_method</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">print_method</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">971</span>     <span class="k">if</span> <span class="n">method</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">972</span>         <span class="k">return</span> <span class="n">method</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="n">include</span><span class="p">,</span> <span class="n">exclude</span><span class="o">=</span><span class="n">exclude</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">973</span>     <span class="k">return</span> <span class="kc">None</span>
-<span class="g g-Whitespace">    </span><span class="mi">974</span> <span class="k">else</span><span class="p">:</span>
-
-<span class="nn">File /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages/graphviz/jupyter_integration.py:98,</span> in <span class="ni">JupyterIntegration._repr_mimebundle_</span><span class="nt">(self, include, exclude, **_)</span>
-<span class="g g-Whitespace">     </span><span class="mi">96</span> <span class="n">include</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">include</span><span class="p">)</span> <span class="k">if</span> <span class="n">include</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_jupyter_mimetype</span><span class="p">}</span>
-<span class="g g-Whitespace">     </span><span class="mi">97</span> <span class="n">include</span> <span class="o">-=</span> <span class="nb">set</span><span class="p">(</span><span class="n">exclude</span> <span class="ow">or</span> <span class="p">[])</span>
-<span class="ne">---&gt; </span><span class="mi">98</span> <span class="k">return</span> <span class="p">{</span><span class="n">mimetype</span><span class="p">:</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method_name</span><span class="p">)()</span>
-<span class="nn">     99         for mimetype, method_name</span> in <span class="ni">MIME_TYPES.items</span><span class="nt">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">100</span>         <span class="k">if</span> <span class="n">mimetype</span> <span class="ow">in</span> <span class="n">include</span><span class="p">}</span>
-
-<span class="nn">File /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages/graphviz/jupyter_integration.py:98,</span> in <span class="ni">&lt;dictcomp&gt;</span><span class="nt">(.0)</span>
-<span class="g g-Whitespace">     </span><span class="mi">96</span> <span class="n">include</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">include</span><span class="p">)</span> <span class="k">if</span> <span class="n">include</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_jupyter_mimetype</span><span class="p">}</span>
-<span class="g g-Whitespace">     </span><span class="mi">97</span> <span class="n">include</span> <span class="o">-=</span> <span class="nb">set</span><span class="p">(</span><span class="n">exclude</span> <span class="ow">or</span> <span class="p">[])</span>
-<span class="ne">---&gt; </span><span class="mi">98</span> <span class="k">return</span> <span class="p">{</span><span class="n">mimetype</span><span class="p">:</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method_name</span><span class="p">)()</span>
-<span class="nn">     99         for mimetype, method_name</span> in <span class="ni">MIME_TYPES.items</span><span class="nt">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">100</span>         <span class="k">if</span> <span class="n">mimetype</span> <span class="ow">in</span> <span class="n">include</span><span class="p">}</span>
-
-<span class="nn">File /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages/graphviz/jupyter_integration.py:112,</span> in <span class="ni">JupyterIntegration._repr_image_svg_xml</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">110</span> <span class="k">def</span> <span class="nf">_repr_image_svg_xml</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">111</span>     <span class="sd">&quot;&quot;&quot;Return the rendered graph as SVG string.&quot;&quot;&quot;</span>
-<span class="ne">--&gt; </span><span class="mi">112</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">pipe</span><span class="p">(</span><span class="nb">format</span><span class="o">=</span><span class="s1">&#39;svg&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="n">SVG_ENCODING</span><span class="p">)</span>
-
-<span class="nn">File /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages/graphviz/piping.py:104,</span> in <span class="ni">Pipe.pipe</span><span class="nt">(self, format, renderer, formatter, neato_no_op, quiet, engine, encoding)</span>
-<span class="g g-Whitespace">     </span><span class="mi">55</span> <span class="k">def</span> <span class="nf">pipe</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">56</span>          <span class="nb">format</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">57</span>          <span class="n">renderer</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">61</span>          <span class="n">engine</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">62</span>          <span class="n">encoding</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">typing</span><span class="o">.</span><span class="n">Union</span><span class="p">[</span><span class="nb">bytes</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
-<span class="g g-Whitespace">     </span><span class="mi">63</span>     <span class="sd">&quot;&quot;&quot;Return the source piped through the Graphviz layout command.</span>
-<span class="g g-Whitespace">     </span><span class="mi">64</span><span class="sd"> </span>
-<span class="g g-Whitespace">     </span><span class="mi">65</span><span class="sd">     Args:</span>
-<span class="sd">   (...)</span>
-<span class="g g-Whitespace">    </span><span class="mi">102</span><span class="sd">         &#39;&lt;?xml version=&#39;</span>
-<span class="g g-Whitespace">    </span><span class="mi">103</span><span class="sd">     &quot;&quot;&quot;</span>
-<span class="ne">--&gt; </span><span class="mi">104</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pipe_legacy</span><span class="p">(</span><span class="nb">format</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">105</span>                              <span class="n">renderer</span><span class="o">=</span><span class="n">renderer</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">106</span>                              <span class="n">formatter</span><span class="o">=</span><span class="n">formatter</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">107</span>                              <span class="n">neato_no_op</span><span class="o">=</span><span class="n">neato_no_op</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">108</span>                              <span class="n">quiet</span><span class="o">=</span><span class="n">quiet</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">109</span>                              <span class="n">engine</span><span class="o">=</span><span class="n">engine</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">110</span>                              <span class="n">encoding</span><span class="o">=</span><span class="n">encoding</span><span class="p">)</span>
-
-<span class="nn">File /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages/graphviz/_tools.py:171,</span> in <span class="ni">deprecate_positional_args.&lt;locals&gt;.decorator.&lt;locals&gt;.wrapper</span><span class="nt">(*args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">162</span>     <span class="n">wanted</span> <span class="o">=</span> <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">=</span><span class="si">{</span><span class="n">value</span><span class="si">!r}</span><span class="s1">&#39;</span>
-<span class="nn">    163                        for name, value</span> in <span class="ni">deprecated.items</span><span class="nt">())</span>
-<span class="g g-Whitespace">    </span><span class="mi">164</span>     <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The signature of </span><span class="si">{</span><span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s1"> will be reduced&#39;</span>
-<span class="g g-Whitespace">    </span><span class="mi">165</span>                   <span class="sa">f</span><span class="s1">&#39; to </span><span class="si">{</span><span class="n">supported_number</span><span class="si">}</span><span class="s1"> positional args&#39;</span>
-<span class="g g-Whitespace">    </span><span class="mi">166</span>                   <span class="sa">f</span><span class="s1">&#39; </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">supported</span><span class="p">)</span><span class="si">}</span><span class="s1">: pass </span><span class="si">{</span><span class="n">wanted</span><span class="si">}</span><span class="s1">&#39;</span>
-<span class="g g-Whitespace">    </span><span class="mi">167</span>                   <span class="s1">&#39; as keyword arg(s)&#39;</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">168</span>                   <span class="n">stacklevel</span><span class="o">=</span><span class="n">stacklevel</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">169</span>                   <span class="n">category</span><span class="o">=</span><span class="n">category</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">171</span> <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
-<span class="nn">File /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages/graphviz/piping.py:121,</span> in <span class="ni">Pipe._pipe_legacy</span><span class="nt">(self, format, renderer, formatter, neato_no_op, quiet, engine, encoding)</span>
-<span class="g g-Whitespace">    </span><span class="mi">112</span> <span class="nd">@_tools</span><span class="o">.</span><span class="n">deprecate_positional_args</span><span class="p">(</span><span class="n">supported_number</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">113</span> <span class="k">def</span> <span class="nf">_pipe_legacy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">114</span>                  <span class="nb">format</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">119</span>                  <span class="n">engine</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">120</span>                  <span class="n">encoding</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">typing</span><span class="o">.</span><span class="n">Union</span><span class="p">[</span><span class="nb">bytes</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
-<span class="ne">--&gt; </span><span class="mi">121</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pipe_future</span><span class="p">(</span><span class="nb">format</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">122</span>                              <span class="n">renderer</span><span class="o">=</span><span class="n">renderer</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">123</span>                              <span class="n">formatter</span><span class="o">=</span><span class="n">formatter</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">124</span>                              <span class="n">neato_no_op</span><span class="o">=</span><span class="n">neato_no_op</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">125</span>                              <span class="n">quiet</span><span class="o">=</span><span class="n">quiet</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">126</span>                              <span class="n">engine</span><span class="o">=</span><span class="n">engine</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">127</span>                              <span class="n">encoding</span><span class="o">=</span><span class="n">encoding</span><span class="p">)</span>
-
-<span class="nn">File /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages/graphviz/piping.py:149,</span> in <span class="ni">Pipe._pipe_future</span><span class="nt">(self, format, renderer, formatter, neato_no_op, quiet, engine, encoding)</span>
-<span class="g g-Whitespace">    </span><span class="mi">146</span> <span class="k">if</span> <span class="n">encoding</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">147</span>     <span class="k">if</span> <span class="n">codecs</span><span class="o">.</span><span class="n">lookup</span><span class="p">(</span><span class="n">encoding</span><span class="p">)</span> <span class="ow">is</span> <span class="n">codecs</span><span class="o">.</span><span class="n">lookup</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">encoding</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">148</span>         <span class="c1"># common case: both stdin and stdout need the same encoding</span>
-<span class="ne">--&gt; </span><span class="mi">149</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pipe_lines_string</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="n">encoding</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">150</span>     <span class="k">try</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">151</span>         <span class="n">raw</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pipe_lines</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">input_encoding</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">encoding</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
-<span class="nn">File /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages/graphviz/backend/piping.py:212,</span> in <span class="ni">pipe_lines_string</span><span class="nt">(engine, format, input_lines, encoding, renderer, formatter, neato_no_op, quiet)</span>
-<span class="g g-Whitespace">    </span><span class="mi">206</span> <span class="n">cmd</span> <span class="o">=</span> <span class="n">dot_command</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="n">engine</span><span class="p">,</span> <span class="nb">format</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">207</span>                           <span class="n">renderer</span><span class="o">=</span><span class="n">renderer</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">208</span>                           <span class="n">formatter</span><span class="o">=</span><span class="n">formatter</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">209</span>                           <span class="n">neato_no_op</span><span class="o">=</span><span class="n">neato_no_op</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">210</span> <span class="n">kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;input_lines&#39;</span><span class="p">:</span> <span class="n">input_lines</span><span class="p">,</span> <span class="s1">&#39;encoding&#39;</span><span class="p">:</span> <span class="n">encoding</span><span class="p">}</span>
-<span class="ne">--&gt; </span><span class="mi">212</span> <span class="n">proc</span> <span class="o">=</span> <span class="n">execute</span><span class="o">.</span><span class="n">run_check</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">capture_output</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">quiet</span><span class="o">=</span><span class="n">quiet</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">213</span> <span class="k">return</span> <span class="n">proc</span><span class="o">.</span><span class="n">stdout</span>
-
-<span class="nn">File /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages/graphviz/backend/execute.py:84,</span> in <span class="ni">run_check</span><span class="nt">(cmd, input_lines, encoding, quiet, **kwargs)</span>
-<span class="g g-Whitespace">     </span><span class="mi">82</span> <span class="k">except</span> <span class="ne">OSError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">83</span>     <span class="k">if</span> <span class="n">e</span><span class="o">.</span><span class="n">errno</span> <span class="o">==</span> <span class="n">errno</span><span class="o">.</span><span class="n">ENOENT</span><span class="p">:</span>
-<span class="ne">---&gt; </span><span class="mi">84</span>         <span class="k">raise</span> <span class="n">ExecutableNotFound</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">e</span>
-<span class="g g-Whitespace">     </span><span class="mi">85</span>     <span class="k">raise</span>
-<span class="g g-Whitespace">     </span><span class="mi">87</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">quiet</span> <span class="ow">and</span> <span class="n">proc</span><span class="o">.</span><span class="n">stderr</span><span class="p">:</span>
-
-<span class="ne">ExecutableNotFound</span>: failed to execute PosixPath(&#39;dot&#39;), make sure the Graphviz executables are on your systems&#39; PATH
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;graphviz.graphs.Digraph at 0x7fb048b90b20&gt;
-</pre></div>
-</div>
+<a class="reference internal image-reference" href="_images/6c13e064832d061af8303c996469f81fd5e0b1ba626d32659ea5c16cc5778069.svg"><img alt="_images/6c13e064832d061af8303c996469f81fd5e0b1ba626d32659ea5c16cc5778069.svg" src="_images/6c13e064832d061af8303c996469f81fd5e0b1ba626d32659ea5c16cc5778069.svg" width="80%" /></a>
 </div>
 </details>
 </div>
 <p>Since the matrix is everywhere positive, there is a unique stationary distribution.</p>
-<ol class="arabic simple" start="2">
-<li></li>
-</ol>
+<p>Solution 2:</p>
 <p>One simple way to calculate the stationary distribution is to take the power of the transition matrix as we have shown before</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">P</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">0.68</span><span class="p">,</span> <span class="mf">0.12</span><span class="p">,</span> <span class="mf">0.20</span><span class="p">],</span>
-     <span class="p">[</span><span class="mf">0.50</span><span class="p">,</span> <span class="mf">0.24</span><span class="p">,</span> <span class="mf">0.26</span><span class="p">],</span>
-     <span class="p">[</span><span class="mf">0.36</span><span class="p">,</span> <span class="mf">0.18</span><span class="p">,</span> <span class="mf">0.46</span><span class="p">]]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">P</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.68</span><span class="p">,</span> <span class="mf">0.12</span><span class="p">,</span> <span class="mf">0.20</span><span class="p">],</span>
+              <span class="p">[</span><span class="mf">0.50</span><span class="p">,</span> <span class="mf">0.24</span><span class="p">,</span> <span class="mf">0.26</span><span class="p">],</span>
+              <span class="p">[</span><span class="mf">0.36</span><span class="p">,</span> <span class="mf">0.18</span><span class="p">,</span> <span class="mf">0.46</span><span class="p">]])</span>
 <span class="n">P_power</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">matrix_power</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
 <span class="n">P_power</span>
 </pre></div>
@@ -1652,9 +1374,7 @@ P :=
 </div>
 </div>
 </div>
-<ol class="arabic simple" start="3">
-<li></li>
-</ol>
+<p>Solution 3:</p>
 <p>We find the distribution <span class="math notranslate nohighlight">\(\psi\)</span> converges to the stationary distribution more quickly compared to the <a class="reference internal" href="#hamilton"><span class="std std-ref">hamilton’s chain</span></a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1665,10 +1385,10 @@ P :=
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/6df07ddb73b1cdb0c50b39c059e69c10e9f2a2e2ae0187b94f33c5872909cc88.png" src="_images/6df07ddb73b1cdb0c50b39c059e69c10e9f2a2e2ae0187b94f33c5872909cc88.png" />
+<a class="reference internal image-reference" href="_images/07becf1d7758b1b77f1d81f093cb22c75df9ea9ab1733d06d3f7c36471bf460b.png"><img alt="_images/07becf1d7758b1b77f1d81f093cb22c75df9ea9ab1733d06d3f7c36471bf460b.png" src="_images/07becf1d7758b1b77f1d81f093cb22c75df9ea9ab1733d06d3f7c36471bf460b.png" style="width: 80%;" /></a>
 </div>
 </div>
-<p>In fact, the rate of convergence is governed by <a class="reference internal" href="eigen_I.html#eigen"><span class="std std-ref">eigenvalues</span></a> <span id="id6">[<a class="reference internal" href="zreferences.html#id3" title="Thomas J Sargent and John Stachurski. Economic networks: theory and computation. arXiv preprint arXiv:2203.11972, 2023.">SS23</a>]</span>.</p>
+<p>In fact, the rate of convergence is governed by <a class="reference internal" href="eigen_I.html#eigen"><span class="std std-ref">eigenvalues</span></a> <span id="id6">[<a class="reference internal" href="zreferences.html#id10" title="Thomas J Sargent and John Stachurski. Economic networks: theory and computation. arXiv preprint arXiv:2203.11972, 2023.">SS23</a>]</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">P_eigenvals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigvals</span><span class="p">(</span><span class="n">P</span><span class="p">)</span>
@@ -1715,15 +1435,14 @@ P :=
 </div>
 </div>
 </div>
-<p>We will come back to this in</p>
-<p>TODO: add a reference to eigen II</p>
+<p>We will come back to this when we discuss <a class="reference internal" href="eigen_II.html#spec-markov"><span class="std std-ref">spectral theory</span></a>.</p>
 </section>
 </div>
 <div class="exercise admonition" id="mc1_ex_2">
 
-<p class="admonition-title"><span class="caption-number">Exercise 21.2 </span></p>
+<p class="admonition-title"><span class="caption-number">Exercise 18.2 </span></p>
 <section id="exercise-content">
-<p>We discussed the six-state transition matrix estimated by Imam &amp; Temple <span id="id7">[<a class="reference internal" href="zreferences.html#id268" title="Patrick Imam and Jonathan RW Temple. Political institutions and output collapses. IMF Working Paper, 2023.">IT23</a>]</span> <a class="reference internal" href="#mc-eg3"><span class="std std-ref">before</span></a>.</p>
+<p>We discussed the six-state transition matrix estimated by Imam &amp; Temple <span id="id7">[<a class="reference internal" href="zreferences.html#id275" title="Patrick Imam and Jonathan RW Temple. Political institutions and output collapses. IMF Working Paper, 2023.">IT23</a>]</span> <a class="reference internal" href="#mc-eg3"><span class="std std-ref">before</span></a>.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">nodes</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;DG&#39;</span><span class="p">,</span> <span class="s1">&#39;DC&#39;</span><span class="p">,</span> <span class="s1">&#39;NG&#39;</span><span class="p">,</span> <span class="s1">&#39;NC&#39;</span><span class="p">,</span> <span class="s1">&#39;AG&#39;</span><span class="p">,</span> <span class="s1">&#39;AC&#39;</span><span class="p">]</span>
 <span class="n">P</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">0.86</span><span class="p">,</span> <span class="mf">0.11</span><span class="p">,</span> <span class="mf">0.03</span><span class="p">,</span> <span class="mf">0.00</span><span class="p">,</span> <span class="mf">0.00</span><span class="p">,</span> <span class="mf">0.00</span><span class="p">],</span>
      <span class="p">[</span><span class="mf">0.52</span><span class="p">,</span> <span class="mf">0.33</span><span class="p">,</span> <span class="mf">0.13</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.00</span><span class="p">,</span> <span class="mf">0.00</span><span class="p">],</span>
@@ -1743,11 +1462,9 @@ P :=
 </div>
 <div class="solution dropdown admonition" id="markov_chains_I-solution-6">
 
-<p class="admonition-title">Solution to<a class="reference internal" href="#mc1_ex_2"> Exercise 21.2</a></p>
+<p class="admonition-title">Solution to<a class="reference internal" href="#mc1_ex_2"> Exercise 18.2</a></p>
 <section id="solution-content">
-<ol class="arabic simple">
-<li></li>
-</ol>
+<p>Solution 1:</p>
 <p>Although <span class="math notranslate nohighlight">\(P\)</span> is not every positive, <span class="math notranslate nohighlight">\(P^m\)</span> when <span class="math notranslate nohighlight">\(m=3\)</span> is everywhere positive.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1774,9 +1491,7 @@ P :=
 </div>
 </div>
 <p>So it satisfies the requirement.</p>
-<ol class="arabic simple" start="2">
-<li></li>
-</ol>
+<p>Solution 2:</p>
 <p>We find the distribution <span class="math notranslate nohighlight">\(\psi\)</span> converges to the stationary distribution quickly regardless of the initial distributions</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1808,14 +1523,14 @@ P :=
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/dd7db7e5c6e980f4a559c7a5d39800a2f5476038a3787197031b8825b22b746b.png" src="_images/dd7db7e5c6e980f4a559c7a5d39800a2f5476038a3787197031b8825b22b746b.png" />
+<a class="reference internal image-reference" href="_images/f9840c042e29700b64eb171385fd0cd2592737d9dbb59be9c536b1f9bd319341.png"><img alt="_images/f9840c042e29700b64eb171385fd0cd2592737d9dbb59be9c536b1f9bd319341.png" src="_images/f9840c042e29700b64eb171385fd0cd2592737d9dbb59be9c536b1f9bd319341.png" style="width: 80%;" /></a>
 </div>
 </div>
 </section>
 </div>
 <div class="exercise admonition" id="mc1_ex_3">
 
-<p class="admonition-title"><span class="caption-number">Exercise 21.3 </span></p>
+<p class="admonition-title"><span class="caption-number">Exercise 18.3 </span></p>
 <section id="exercise-content">
 <p>Prove the following: If <span class="math notranslate nohighlight">\(P\)</span> is a stochastic matrix, then so is the <span class="math notranslate nohighlight">\(k\)</span>-th
 power <span class="math notranslate nohighlight">\(P^k\)</span> for all <span class="math notranslate nohighlight">\(k \in \mathbb N\)</span>.</p>
@@ -1823,7 +1538,7 @@ power <span class="math notranslate nohighlight">\(P^k\)</span> for all <span cl
 </div>
 <div class="solution dropdown admonition" id="markov_chains_I-solution-8">
 
-<p class="admonition-title">Solution to<a class="reference internal" href="#mc1_ex_3"> Exercise 21.3</a></p>
+<p class="admonition-title">Solution to<a class="reference internal" href="#mc1_ex_3"> Exercise 18.3</a></p>
 <section id="solution-content">
 <p>Suppose that <span class="math notranslate nohighlight">\(P\)</span> is stochastic and, moreover, that <span class="math notranslate nohighlight">\(P^k\)</span> is
 stochastic for some integer <span class="math notranslate nohighlight">\(k\)</span>.</p>
@@ -1905,104 +1620,82 @@ have <span class="math notranslate nohighlight">\(P^k \mathbf 1 = \mathbf 1\)</s
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
-  Supply and Demand
- </span>
-</p>
-<ul class="nav bd-sidenav nav sidenav_l1">
- <li class="toctree-l1">
-  <a class="reference internal" href="intro_supply_demand.html">
-   2. Introduction to Supply and Demand
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="supply_demand_multiple_goods.html">
-   3. Supply and Demand with Many Goods
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="supply_demand_heterogeneity.html">
-   4. Market Equilibrium with Heterogeneity
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="input_output.html">
-   5. Input-Output Models
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Data and Measurement
+  Economic Data
  </span>
 </p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="long_run_growth.html">
-   6. Long Run Growth
+   2. Long Run Growth
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="business_cycle.html">
-   7. Business Cycles
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="inflation_unemployment.html">
-   8. Inflation and Unemployment
+   3. Business Cycles
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="inequality.html">
-   9. Income and Wealth Inequality
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="distributions.html">
-   10. Distributions in Economics
+   4. Income and Wealth Inequality
   </a>
  </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
-  Useful Tools
+  Essential Tools
  </span>
 </p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
-  <a class="reference internal" href="geom_series.html">
-   11. Geometric Series for Elementary Economics
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="linear_equations.html">
-   12. Linear Equations and Matrix Algebra
+   5. Linear Equations and Matrix Algebra
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="eigen_I.html">
-   13. Eigenvalues and Eigenvectors
+   6. Eigenvalues and Eigenvectors
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro_supply_demand.html">
+   7. Introduction to Supply and Demand
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="geom_series.html">
+   8. Geometric Series for Elementary Economics
   </a>
  </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
-  Simulation
+  Probability and Distributions
  </span>
 </p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
+  <a class="reference internal" href="prob_dist.html">
+   9. Distributions and Probabilities
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="lln_clt.html">
-   14. LLN and CLT
+   10. LLN and CLT
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="monte_carlo.html">
-   15. Monte Carlo and Option Pricing
+   11. Monte Carlo and Option Pricing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="heavy_tails.html">
+   12. Heavy-Tailed Distributions
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="schelling.html">
-   16. Racial Segregation
+   13. Racial Segregation
   </a>
  </li>
 </ul>
@@ -2014,64 +1707,37 @@ have <span class="math notranslate nohighlight">\(P^k \mathbf 1 = \mathbf 1\)</s
 <ul class="current nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="solow.html">
-   17. The Solow-Swan Growth Model
+   14. The Solow-Swan Growth Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="scalar_dynam.html">
-   18. Dynamics in One Dimension
+   15. Dynamics in One Dimension
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cobweb.html">
-   19. The Cobweb Model
+   16. The Cobweb Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="olg.html">
-   20. The Overlapping Generations Model
+   17. The Overlapping Generations Model
   </a>
  </li>
  <li class="toctree-l1 current active active">
   <a class="current reference internal" href="#">
-   21. Markov Chains: Basic Concepts and Stationarity
+   18. Markov Chains: Basic Concepts and Stationarity
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="markov_chains_II.html">
-   22. Markov Chains: Irreducibility and Ergodicity
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Modeling in Higher Dimensions
- </span>
-</p>
-<ul class="nav bd-sidenav nav sidenav_l1">
- <li class="toctree-l1">
-  <a class="reference internal" href="eigen_II.html">
-   23. Theorems of Nonnegative Matrices and Eigenvalues
+   19. Markov Chains: Irreducibility and Ergodicity
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="lake_model.html">
-   24. A Lake Model of Employment
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="asset_pricing.html">
-   25. Introduction to Asset Pricing
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="networks.html">
-   26. Networks
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="samuelson.html">
-   27. Multiplier Accelerator Model
+  <a class="reference internal" href="commod_price.html">
+   20. Commodity Prices
   </a>
  </li>
 </ul>
@@ -2083,22 +1749,54 @@ have <span class="math notranslate nohighlight">\(P^k \mathbf 1 = \mathbf 1\)</s
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="lp_intro.html">
-   28. Linear Programming
+   21. Linear Programming
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="comparative_adv.html">
-   29. Comparative Advantage
+   22. Comparative Advantage
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="nonlinear.html">
-   30. Nonlinear Problems
+   23. Nonlinear Problems
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="short_path.html">
-   31. Shortest Paths
+   24. Shortest Paths
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Modeling in Higher Dimensions
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="eigen_II.html">
+   25. Spectral Theory
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="input_output.html">
+   26. Input-Output Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lake_model.html">
+   27. A Lake Model of Employment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="asset_pricing.html">
+   28. Introduction to Asset Pricing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="networks.html">
+   29. Networks
   </a>
  </li>
 </ul>
@@ -2109,18 +1807,13 @@ have <span class="math notranslate nohighlight">\(P^k \mathbf 1 = \mathbf 1\)</s
 </p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
-  <a class="reference internal" href="markets_welfare.html">
-   32. Markets and Welfare
+  <a class="reference internal" href="supply_demand_multiple_goods.html">
+   30. Supply and Demand with Many Goods
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="risk.html">
-   33. Risk
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="uncertainty.html">
-   34. Uncertainty
+  <a class="reference internal" href="supply_demand_heterogeneity.html">
+   31. Market Equilibrium with Heterogeneity
   </a>
  </li>
 </ul>
@@ -2132,17 +1825,17 @@ have <span class="math notranslate nohighlight">\(P^k \mathbf 1 = \mathbf 1\)</s
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="simple_linear_regression.html">
-   35. Simple Linear Regression Model
+   32. Simple Linear Regression Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="lr_with_matrices.html">
-   36. Linear Regression with Matrices
+   33. Linear Regression with Matrices
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="mle.html">
-   37. Maximum Likelihood Estimation
+   34. Maximum Likelihood Estimation
   </a>
  </li>
 </ul>
@@ -2154,17 +1847,17 @@ have <span class="math notranslate nohighlight">\(P^k \mathbf 1 = \mathbf 1\)</s
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="troubleshooting.html">
-   38. Troubleshooting
+   35. Troubleshooting
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="zreferences.html">
-   39. References
+   36. References
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="status.html">
-   40. Execution Statistics
+   37. Execution Statistics
   </a>
  </li>
 </ul>

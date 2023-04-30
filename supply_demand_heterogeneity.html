@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>4. Market Equilibrium with Heterogeneity &#8212; An Introduction to Quantitative Economics and Finance</title>
+    <title>31. Market Equilibrium with Heterogeneity &#8212; An Introduction to Quantitative Economics and Finance</title>
     <script src="https://unpkg.com/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://unpkg.com/tippy.js@6.3.1/dist/tippy-bundle.umd.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
@@ -71,7 +71,7 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/quantecon-book-theme.279dae03c5caae754d20501e3fa00bbf.css" />
+    <link rel="stylesheet" type="text/css" href="_static/quantecon-book-theme.27f831372ca8a27cbff86bbb33459986.css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
@@ -114,8 +114,8 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="5. Input-Output Models" href="input_output.html" />
-    <link rel="prev" title="3. Supply and Demand with Many Goods" href="supply_demand_multiple_goods.html" />
+    <link rel="next" title="32. Simple Linear Regression Model" href="simple_linear_regression.html" />
+    <link rel="prev" title="30. Supply and Demand with Many Goods" href="supply_demand_multiple_goods.html" />
 
 <!-- Normal Meta Tags -->
 <meta name="author" context="Thomas J. Sargent &amp; John Stachurski" />
@@ -163,23 +163,23 @@ const thebe_selector_output = ".output, .cell_output"
 
                         <nav id="bd-toc-nav" class="qe-page__toc-nav">
                             <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#an-endowment-economy">4.1. An Endowment Economy</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#designing-some-python-code">4.2. Designing some Python code</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pure-exchange-economy">4.2.1. Pure exchange economy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#an-endowment-economy">31.1. An Endowment Economy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#designing-some-python-code">31.2. Designing some Python Code</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pure-exchange-economy">31.2.1. Pure Exchange Economy</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deducing-a-representative-consumer">4.3. Deducing a representative consumer</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-two-person-economy-without-production">4.3.1. Example: Two-person economy <strong>without</strong> production</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-dynamic-economy">4.3.2. A <strong>dynamic economy</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-arrow-securities">4.3.3. Example:  <strong>Arrow securities</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#production-economy">4.3.4. Production Economy</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-single-agent-with-one-good-and-with-production">4.3.4.1. Example: single agent with one good and  with production</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-single-agent-two-good-economy-with-production">4.3.4.2. Example: single agent two-good economy <strong>with</strong> production</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deducing-a-representative-consumer">31.3. Deducing a Representative Consumer</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-two-person-economy-without-production">31.3.1. Example: Two-Person Economy <strong>without</strong> Production</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-dynamic-economy">31.3.2. A <strong>Dynamic Economy</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-arrow-securities">31.3.3. Example: <strong>Arrow Securities</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#production-economy">31.3.4. Production Economy</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-single-agent-with-one-good-and-with-production">31.3.4.1. Example: Single Agent with One Good and with Production</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-single-agent-two-good-economy-with-production">31.3.4.2. Example: Single Agent Two-Good Economy <strong>with</strong> Production</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-monopolist">4.3.5. A Monopolist</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#a-multiple-good-example">4.3.5.1. A multiple good example</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#a-single-good-example">4.3.5.2. A single-good example</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-monopolist">31.3.5. A Monopolist</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#a-multiple-good-example">31.3.5.1. A Multiple Good Example</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#a-single-good-example">31.3.5.2. A Single-Good Example</a></li>
 </ul>
 </li>
 </ul>
@@ -229,13 +229,13 @@ const thebe_selector_output = ".output, .cell_output"
                     <div>
                         
   <section class="tex2jax_ignore mathjax_ignore" id="market-equilibrium-with-heterogeneity">
-<h1><span class="section-number">4. </span>Market Equilibrium with Heterogeneity<a class="headerlink" href="#market-equilibrium-with-heterogeneity" title="Permalink to this heading">#</a></h1>
+<h1><span class="section-number">31. </span>Market Equilibrium with Heterogeneity<a class="headerlink" href="#market-equilibrium-with-heterogeneity" title="Permalink to this heading">#</a></h1>
 <section id="an-endowment-economy">
-<h2><span class="section-number">4.1. </span>An Endowment Economy<a class="headerlink" href="#an-endowment-economy" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">31.1. </span>An Endowment Economy<a class="headerlink" href="#an-endowment-economy" title="Permalink to this heading">#</a></h2>
 <p>Let’s study a <strong>pure exchange</strong> economy without production.</p>
 <p>There are two consumers who differ in their endowment vectors <span class="math notranslate nohighlight">\(e_i\)</span> and their bliss-point vectors <span class="math notranslate nohighlight">\(b_i\)</span> for <span class="math notranslate nohighlight">\(i=1,2\)</span>.</p>
 <p>The total endowment is <span class="math notranslate nohighlight">\(e_1 + e_2\)</span>.</p>
-<p>A competitive equilibrium  requires that</p>
+<p>A competitive equilibrium requires that</p>
 <div class="math notranslate nohighlight">
 \[
 c_1 + c_2 = e_1 + e_2
@@ -245,7 +245,7 @@ c_1 + c_2 = e_1 + e_2
 \[
     c_i = (\Pi^\top \Pi )^{-1}(\Pi^\top b_i -  \mu_i p )
 \]</div>
-<p>Competitive equilibrium  then requires that</p>
+<p>Competitive equilibrium then requires that</p>
 <div class="math notranslate nohighlight">
 \[
 e_1 + e_2 =
@@ -253,16 +253,16 @@ e_1 + e_2 =
 \]</div>
 <p>which after a line or two of linear algebra implies that</p>
 <div class="math notranslate nohighlight" id="equation-eq-old6">
-<span class="eqno">(4.1)<a class="headerlink" href="#equation-eq-old6" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(31.1)<a class="headerlink" href="#equation-eq-old6" title="Permalink to this equation">#</a></span>\[
 (\mu_1 + \mu_2) p = \Pi^\top(b_1+ b_2) - \Pi^\top \Pi (e_1 + e_2)
 \]</div>
 <p>We can normalize prices by setting <span class="math notranslate nohighlight">\(\mu_1 + \mu_2 =1\)</span> and then solving</p>
 <div class="math notranslate nohighlight" id="equation-eq-old7">
-<span class="eqno">(4.2)<a class="headerlink" href="#equation-eq-old7" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(31.2)<a class="headerlink" href="#equation-eq-old7" title="Permalink to this equation">#</a></span>\[
 \mu_i(p,e) = \frac{p^\top (\Pi^{-1} b_i - e_i)}{p^\top (\Pi^\top \Pi )^{-1} p}
 \]</div>
 <p>for <span class="math notranslate nohighlight">\(\mu_i, i = 1,2\)</span>.</p>
-<p><strong>Exercise:</strong> Show that, up to normalization by a positive scalar,  the same competitive equilibrium price vector that you computed in the preceding two-consumer economy would prevail in a single-consumer economy in which a single <strong>representative consumer</strong> has utility function</p>
+<p><strong>Exercise:</strong> Show that, up to normalization by a positive scalar, the same competitive equilibrium price vector that you computed in the preceding two-consumer economy would prevail in a single-consumer economy in which a single <strong>representative consumer</strong> has utility function</p>
 <div class="math notranslate nohighlight">
 \[
 -.5 (\Pi c -b) ^\top (\Pi c -b )
@@ -279,7 +279,7 @@ e = e_1 + e_2 .
 \]</div>
 </section>
 <section id="designing-some-python-code">
-<h2><span class="section-number">4.2. </span>Designing some Python code<a class="headerlink" href="#designing-some-python-code" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">31.2. </span>Designing some Python Code<a class="headerlink" href="#designing-some-python-code" title="Permalink to this heading">#</a></h2>
 <p>Below we shall construct a Python class with the following attributes:</p>
 <ul class="simple">
 <li><p><strong>Preferences</strong> in the form of</p>
@@ -294,14 +294,14 @@ e = e_1 + e_2 .
 <li><p>a scalar “wealth” <span class="math notranslate nohighlight">\(W\)</span> with default value <span class="math notranslate nohighlight">\(0\)</span></p></li>
 </ul>
 </li>
-<li><p><strong>Production Costs</strong>  pinned down  by</p>
+<li><p><strong>Production Costs</strong> pinned down by</p>
 <ul>
 <li><p>an <span class="math notranslate nohighlight">\(n \times 1\)</span> nonnegative vector <span class="math notranslate nohighlight">\(h\)</span></p></li>
 <li><p>an <span class="math notranslate nohighlight">\(n \times n\)</span> positive definite matrix <span class="math notranslate nohighlight">\(J\)</span></p></li>
 </ul>
 </li>
 </ul>
-<p>The class will include  a test to make sure that <span class="math notranslate nohighlight">\(b  &gt; &gt; \Pi e \)</span> and raise an exception if it is violated
+<p>The class will include a test to make sure that <span class="math notranslate nohighlight">\(b  &gt; &gt; \Pi e \)</span> and raise an exception if it is violated
 (at some threshold level we’d have to specify).</p>
 <ul class="simple">
 <li><p><strong>A Person</strong> in the form of a pair that consists of</p>
@@ -309,7 +309,7 @@ e = e_1 + e_2 .
 <li><p><strong>Preferences</strong> and <strong>Endowments</strong></p></li>
 </ul>
 </li>
-<li><p><strong>A Pure Exchange Economy</strong> will  consist of</p>
+<li><p><strong>A Pure Exchange Economy</strong> will consist of</p>
 <ul>
 <li><p>a collection of <span class="math notranslate nohighlight">\(m\)</span> <strong>persons</strong></p>
 <ul>
@@ -334,69 +334,108 @@ e = e_1 + e_2 .
 </li>
 </ul>
 <p>Now let’s proceed to code.</p>
-<!-- #endregion -->
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># import some packages</span>
+<!-- #endregion --><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># import some packages</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">from</span> <span class="nn">scipy.linalg</span> <span class="kn">import</span> <span class="n">inv</span>
 </pre></div>
 </div>
+</div>
+</div>
 <!-- #region -->
 <section id="pure-exchange-economy">
-<h3><span class="section-number">4.2.1. </span>Pure exchange economy<a class="headerlink" href="#pure-exchange-economy" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">31.2.1. </span>Pure Exchange Economy<a class="headerlink" href="#pure-exchange-economy" title="Permalink to this heading">#</a></h3>
 <p>Let’s first explore a pure exchange economy with <span class="math notranslate nohighlight">\(n\)</span> goods and <span class="math notranslate nohighlight">\(m\)</span> people.</p>
-<p>We’ll  compute a competitive equilibrium.</p>
+<p>We’ll compute a competitive equilibrium.</p>
 <p>To compute a competitive equilibrium of a pure exchange economy, we use the fact that</p>
 <ul class="simple">
 <li><p>Relative prices in a competitive equilibrium are the same as those in a special single person or  representative consumer economy with preference <span class="math notranslate nohighlight">\(\Pi\)</span> and <span class="math notranslate nohighlight">\(b=\sum_i b_i\)</span>, and endowment <span class="math notranslate nohighlight">\(e = \sum_i e_{i}\)</span>.</p></li>
 </ul>
 <p>We can use the following steps to compute a competitive equilibrium:</p>
 <ul class="simple">
-<li><p>First, we solve the single representative consumer economy by normalizing <span class="math notranslate nohighlight">\(\mu = 1\)</span>. Then, we renormalize the price vector by using the first consumption good as numeraire.</p></li>
-<li><p>Next, we use the competitive equilibrium prices to compute each consumer’s marginal utility of wealth:
-$<span class="math notranslate nohighlight">\( \mu_{i}=\frac{-W_{i}+p^{\top}\left(\Pi^{-1}b_{i}-e_{i}\right)}{p^{\top}(\Pi^{\top}\Pi)^{-1}p}.\)</span>$</p></li>
-<li><p>Finally, we compute a competitive equilibrium allocation by  using the demand curves:
-$<span class="math notranslate nohighlight">\( c_{i}=\Pi^{-1}b_{i}-(\Pi^{\top}\Pi)^{-1}\mu_{i}p. \)</span>$</p></li>
+<li><p>First we solve the single representative consumer economy by normalizing <span class="math notranslate nohighlight">\(\mu = 1\)</span>. Then, we renormalize the price vector by using the first consumption good as numeraire.</p></li>
+<li><p>Next we use the competitive equilibrium prices to compute each consumer’s marginal utility of wealth:</p></li>
 </ul>
+<div class="math notranslate nohighlight">
+\[
+\mu_{i}=\frac{-W_{i}+p^{\top}\left(\Pi^{-1}b_{i}-e_{i}\right)}{p^{\top}(\Pi^{\top}\Pi)^{-1}p}\]</div>
+<ul class="simple">
+<li><p>Finally we compute a competitive equilibrium allocation by using the demand curves:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+c_{i}=\Pi^{-1}b_{i}-(\Pi^{\top}\Pi)^{-1}\mu_{i}p 
+\]</div>
 </section>
 </section>
 <section id="deducing-a-representative-consumer">
-<h2><span class="section-number">4.3. </span>Deducing a representative consumer<a class="headerlink" href="#deducing-a-representative-consumer" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">31.3. </span>Deducing a Representative Consumer<a class="headerlink" href="#deducing-a-representative-consumer" title="Permalink to this heading">#</a></h2>
 <p>In the class of multiple consumer economies that we are studying here, it turns out that there
 exists a single <strong>representative consumer</strong> whose preferences and endowments can be deduced from lists of preferences and endowments for the separate individual consumers.</p>
 <p>Consider a multiple consumer economy with initial distribution of wealth <span class="math notranslate nohighlight">\(W_i\)</span> satisfying <span class="math notranslate nohighlight">\(\sum_i W_{i}=0\)</span></p>
-<p>We allow an initial  redistribution of wealth.</p>
+<p>We allow an initial redistribution of wealth.</p>
 <p>We have the following objects</p>
 <ul class="simple">
-<li><p>The demand curve:
-$<span class="math notranslate nohighlight">\( c_{i}=\Pi^{-1}b_{i}-(\Pi^{\top}\Pi)^{-1}\mu_{i}p \)</span>$</p></li>
-<li><p>The marginal utility of wealth:
-$<span class="math notranslate nohighlight">\( \mu_{i}=\frac{-W_{i}+p^{\top}\left(\Pi^{-1}b_{i}-e_{i}\right)}{p^{\top}(\Pi^{\top}\Pi)^{-1}p}\)</span>$</p></li>
-<li><p>Market clearing:
-$<span class="math notranslate nohighlight">\( \sum c_{i}=\sum e_{i}\)</span>$</p></li>
+<li><p>The demand curve:</p></li>
 </ul>
-<p>Denote aggregate consumption <span class="math notranslate nohighlight">\(\sum_i c_{i}=c\)</span> and <span class="math notranslate nohighlight">\(\sum_i \mu_i = \mu\)</span>.</p>
-<p>Market  clearing requires</p>
 <div class="math notranslate nohighlight">
-\[ \Pi^{-1}\left(\sum_{i}b_{i}\right)-(\Pi^{\top}\Pi)^{-1}p\left(\sum_{i}\mu_{i}\right)=\sum_{i}e_{i}\]</div>
-<p>which, after a few steps, leads to
-$<span class="math notranslate nohighlight">\(p=\mu^{-1}\left(\Pi^{\top}b-\Pi^{\top}\Pi e\right)\)</span>$</p>
-<p>where
-$<span class="math notranslate nohighlight">\( \mu = \sum_i\mu_{i}=\frac{0 + p^{\top}\left(\Pi^{-1}b-e\right)}{p^{\top}(\Pi^{\top}\Pi)^{-1}p}.
-\)</span>$</p>
+\[ 
+c_{i}=\Pi^{-1}b_{i}-(\Pi^{\top}\Pi)^{-1}\mu_{i}p 
+\]</div>
+<ul class="simple">
+<li><p>The marginal utility of wealth:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ 
+\mu_{i}=\frac{-W_{i}+p^{\top}\left(\Pi^{-1}b_{i}-e_{i}\right)}{p^{\top}(\Pi^{\top}\Pi)^{-1}p}
+\]</div>
+<ul class="simple">
+<li><p>Market clearing:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ 
+\sum c_{i}=\sum e_{i}
+\]</div>
+<p>Denote aggregate consumption <span class="math notranslate nohighlight">\(\sum_i c_{i}=c\)</span> and <span class="math notranslate nohighlight">\(\sum_i \mu_i = \mu\)</span>.</p>
+<p>Market clearing requires</p>
+<div class="math notranslate nohighlight">
+\[ 
+\Pi^{-1}\left(\sum_{i}b_{i}\right)-(\Pi^{\top}\Pi)^{-1}p\left(\sum_{i}\mu_{i}\right)=\sum_{i}e_{i}
+\]</div>
+<p>which, after a few steps, leads to</p>
+<div class="math notranslate nohighlight">
+\[
+p=\mu^{-1}\left(\Pi^{\top}b-\Pi^{\top}\Pi e\right)
+\]</div>
+<p>where</p>
+<div class="math notranslate nohighlight">
+\[ 
+\mu = \sum_i\mu_{i}=\frac{0 + p^{\top}\left(\Pi^{-1}b-e\right)}{p^{\top}(\Pi^{\top}\Pi)^{-1}p}.
+\]</div>
 <p>Now consider the representative consumer economy specified above.</p>
 <p>Denote the marginal utility of wealth of the representative consumer by <span class="math notranslate nohighlight">\(\tilde{\mu}\)</span>.</p>
 <p>The demand function is</p>
 <div class="math notranslate nohighlight">
-\[c=\Pi^{-1}b-(\Pi^{\top}\Pi)^{-1}\tilde{\mu} p.\]</div>
-<p>Substituting this into the budget constraint gives
-$<span class="math notranslate nohighlight">\(\tilde{\mu}=\frac{p^{\top}\left(\Pi^{-1}b-e\right)}{p^{\top}(\Pi^{\top}\Pi)^{-1}p}.\)</span>$</p>
-<p>In an equilibrium <span class="math notranslate nohighlight">\(c=e\)</span>, so
-$<span class="math notranslate nohighlight">\(p=\tilde{\mu}^{-1}(\Pi^{\top}b-\Pi^{\top}\Pi e).\)</span>$</p>
-<p>Thus, we have  verified that,  up to choice of a numeraire in which to express absolute prices,  the price vector in our representative consumer economy is the same as that in an underlying  economy with multiple consumers.</p>
-<!-- #endregion -->
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Exchange_economy</span><span class="p">:</span>
+\[
+c=\Pi^{-1}b-(\Pi^{\top}\Pi)^{-1}\tilde{\mu} p
+\]</div>
+<p>Substituting this into the budget constraint gives</p>
+<div class="math notranslate nohighlight">
+\[
+\tilde{\mu}=\frac{p^{\top}\left(\Pi^{-1}b-e\right)}{p^{\top}(\Pi^{\top}\Pi)^{-1}p}
+\]</div>
+<p>In an equilibrium <span class="math notranslate nohighlight">\(c=e\)</span>, so</p>
+<div class="math notranslate nohighlight">
+\[
+p=\tilde{\mu}^{-1}(\Pi^{\top}b-\Pi^{\top}\Pi e)
+\]</div>
+<p>Thus, we have  verified that, up to choice of a numeraire in which to express absolute prices,  the price vector in our representative consumer economy is the same as that in an underlying  economy with multiple consumers.</p>
+<!-- #endregion --><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ExchangeEconomy</span><span class="p">:</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Pi</span><span class="p">,</span> <span class="n">bs</span><span class="p">,</span> <span class="n">es</span><span class="p">,</span> <span class="n">Ws</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">thres</span><span class="o">=</span><span class="mi">4</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Set up the environment for an exchange economy</span>
@@ -414,10 +453,10 @@ $<span class="math notranslate nohighlight">\(p=\tilde{\mu}^{-1}(\Pi^{\top}b-\Pi
             <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">b</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">Pi</span> <span class="o">@</span> <span class="n">e</span><span class="p">))</span> <span class="o">&lt;=</span> <span class="mf">1.5</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;set bliss points further away&#39;</span><span class="p">)</span>
 
-        <span class="k">if</span> <span class="n">Ws</span><span class="o">==</span><span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">Ws</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">Ws</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">if</span> <span class="nb">sum</span><span class="p">(</span><span class="n">Ws</span><span class="p">)</span><span class="o">!=</span><span class="mi">0</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">sum</span><span class="p">(</span><span class="n">Ws</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;invalid wealth distribution&#39;</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">Pi</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">bs</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">es</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Ws</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">m</span> <span class="o">=</span> <span class="n">Pi</span><span class="p">,</span> <span class="n">bs</span><span class="p">,</span> <span class="n">es</span><span class="p">,</span> <span class="n">Ws</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">m</span>
@@ -437,7 +476,7 @@ $<span class="math notranslate nohighlight">\(p=\tilde{\mu}^{-1}(\Pi^{\top}b-\Pi
 
         <span class="c1"># compute price vector with mu=1 and renormalize</span>
         <span class="n">p</span> <span class="o">=</span> <span class="n">Pi</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">b</span> <span class="o">-</span> <span class="n">Pi</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">Pi</span> <span class="o">@</span> <span class="n">e</span>
-        <span class="n">p</span> <span class="o">=</span> <span class="n">p</span><span class="o">/</span><span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="n">p</span> <span class="o">/</span> <span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
         <span class="c1"># compute marg util of wealth</span>
         <span class="n">mu_s</span> <span class="o">=</span> <span class="p">[]</span>
@@ -445,8 +484,8 @@ $<span class="math notranslate nohighlight">\(p=\tilde{\mu}^{-1}(\Pi^{\top}b-\Pi
         <span class="n">A</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">slope_dc</span> <span class="o">@</span> <span class="n">p</span>
 
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
-            <span class="n">mu_i</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="n">Ws</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">p</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="p">(</span><span class="n">Pi_inv</span> <span class="o">@</span> <span class="n">bs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">es</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span><span class="o">/</span><span class="n">A</span>
-            <span class="n">c_i</span> <span class="o">=</span> <span class="n">Pi_inv</span> <span class="o">@</span> <span class="n">bs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">mu_i</span><span class="o">*</span><span class="n">slope_dc</span> <span class="o">@</span> <span class="n">p</span>
+            <span class="n">mu_i</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="n">Ws</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">p</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="p">(</span><span class="n">Pi_inv</span> <span class="o">@</span> <span class="n">bs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">es</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span> <span class="o">/</span> <span class="n">A</span>
+            <span class="n">c_i</span> <span class="o">=</span> <span class="n">Pi_inv</span> <span class="o">@</span> <span class="n">bs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">mu_i</span> <span class="o">*</span> <span class="n">slope_dc</span> <span class="o">@</span> <span class="n">p</span>
             <span class="n">mu_s</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mu_i</span><span class="p">)</span>
             <span class="n">c_s</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">c_i</span><span class="p">)</span>
 
@@ -458,8 +497,10 @@ $<span class="math notranslate nohighlight">\(p=\tilde{\mu}^{-1}(\Pi^{\top}b-\Pi
         <span class="k">return</span> <span class="n">p</span><span class="p">,</span> <span class="n">c_s</span><span class="p">,</span> <span class="n">mu_s</span>
 </pre></div>
 </div>
+</div>
+</div>
 <section id="example-two-person-economy-without-production">
-<h3><span class="section-number">4.3.1. </span>Example: Two-person economy <strong>without</strong> production<a class="headerlink" href="#example-two-person-economy-without-production" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">31.3.1. </span>Example: Two-Person Economy <strong>without</strong> Production<a class="headerlink" href="#example-two-person-economy-without-production" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Study how competitive equilibrium <span class="math notranslate nohighlight">\(p, c^1, c^2\)</span> respond to  different</p>
 <ul>
@@ -468,133 +509,199 @@ $<span class="math notranslate nohighlight">\(p=\tilde{\mu}^{-1}(\Pi^{\top}b-\Pi
 </ul>
 </li>
 </ul>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Pi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Pi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
                <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
 
-<span class="n">bs</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">]),</span>   <span class="c1"># first consumer&#39;s bliss points</span>
-      <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">])]</span>   <span class="c1"># second consumer&#39;s bliss points</span>
+<span class="n">bs</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">]),</span>  <span class="c1"># first consumer&#39;s bliss points</span>
+      <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">])]</span>  <span class="c1"># second consumer&#39;s bliss points</span>
 
-<span class="n">es</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">]),</span>     <span class="c1"># first consumer&#39;s endowment</span>
-      <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">])]</span>     <span class="c1"># second consumer&#39;s endowment</span>
+<span class="n">es</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">]),</span>  <span class="c1"># first consumer&#39;s endowment</span>
+      <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">])]</span>  <span class="c1"># second consumer&#39;s endowment</span>
 
-<span class="n">example</span> <span class="o">=</span> <span class="n">Exchange_economy</span><span class="p">(</span><span class="n">Pi</span><span class="p">,</span> <span class="n">bs</span><span class="p">,</span> <span class="n">es</span><span class="p">)</span>
+<span class="n">example</span> <span class="o">=</span> <span class="n">ExchangeEconomy</span><span class="p">(</span><span class="n">Pi</span><span class="p">,</span> <span class="n">bs</span><span class="p">,</span> <span class="n">es</span><span class="p">)</span>
 <span class="n">p</span><span class="p">,</span> <span class="n">c_s</span><span class="p">,</span> <span class="n">mu_s</span> <span class="o">=</span> <span class="n">example</span><span class="o">.</span><span class="n">competitive_equilibrium</span><span class="p">()</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Competitive equilibrium price vector:&#39;</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Competitive equilibrium allocation:&#39;</span><span class="p">,</span> <span class="n">c_s</span><span class="p">)</span>
 </pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Competitive equilibrium price vector: [1. 1.]
+Competitive equilibrium allocation: [array([1., 1.]), array([1., 1.])]
+</pre></div>
+</div>
+</div>
 </div>
 <p>What happens if the first consumer likes the first good more and the second consumer likes the second good more?</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">bs</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">]),</span>   <span class="c1"># first consumer&#39;s bliss points</span>
-      <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">])]</span>   <span class="c1"># second consumer&#39;s bliss points</span>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bs</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">]),</span>  <span class="c1"># first consumer&#39;s bliss points</span>
+      <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">])]</span>  <span class="c1"># second consumer&#39;s bliss points</span>
 
-<span class="n">es</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">]),</span>     <span class="c1"># first consumer&#39;s endowment</span>
-      <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">])]</span>     <span class="c1"># second consumer&#39;s endowment</span>
+<span class="n">es</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">]),</span>  <span class="c1"># first consumer&#39;s endowment</span>
+      <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">])]</span>  <span class="c1"># second consumer&#39;s endowment</span>
 
-
-<span class="n">example</span> <span class="o">=</span> <span class="n">Exchange_economy</span><span class="p">(</span><span class="n">Pi</span><span class="p">,</span> <span class="n">bs</span><span class="p">,</span> <span class="n">es</span><span class="p">)</span>
+<span class="n">example</span> <span class="o">=</span> <span class="n">ExchangeEconomy</span><span class="p">(</span><span class="n">Pi</span><span class="p">,</span> <span class="n">bs</span><span class="p">,</span> <span class="n">es</span><span class="p">)</span>
 <span class="n">p</span><span class="p">,</span> <span class="n">c_s</span><span class="p">,</span> <span class="n">mu_s</span> <span class="o">=</span> <span class="n">example</span><span class="o">.</span><span class="n">competitive_equilibrium</span><span class="p">()</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Competitive equilibrium price vector:&#39;</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Competitive equilibrium allocation:&#39;</span><span class="p">,</span> <span class="n">c_s</span><span class="p">)</span>
 </pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Competitive equilibrium price vector: [1. 1.]
+Competitive equilibrium allocation: [array([1.5, 0.5]), array([0.5, 1.5])]
+</pre></div>
+</div>
+</div>
 </div>
 <p>Let the first consumer be poorer.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">bs</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">]),</span>   <span class="c1"># first consumer&#39;s bliss points</span>
-      <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">])]</span>   <span class="c1"># second consumer&#39;s bliss points</span>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bs</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">]),</span>  <span class="c1"># first consumer&#39;s bliss points</span>
+      <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">])]</span>  <span class="c1"># second consumer&#39;s bliss points</span>
 
-<span class="n">es</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">]),</span>     <span class="c1"># first consumer&#39;s endowment</span>
-      <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])]</span>     <span class="c1"># second consumer&#39;s endowment</span>
+<span class="n">es</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">]),</span>  <span class="c1"># first consumer&#39;s endowment</span>
+      <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])]</span>  <span class="c1"># second consumer&#39;s endowment</span>
 
-
-<span class="n">example</span> <span class="o">=</span> <span class="n">Exchange_economy</span><span class="p">(</span><span class="n">Pi</span><span class="p">,</span> <span class="n">bs</span><span class="p">,</span> <span class="n">es</span><span class="p">)</span>
+<span class="n">example</span> <span class="o">=</span> <span class="n">ExchangeEconomy</span><span class="p">(</span><span class="n">Pi</span><span class="p">,</span> <span class="n">bs</span><span class="p">,</span> <span class="n">es</span><span class="p">)</span>
 <span class="n">p</span><span class="p">,</span> <span class="n">c_s</span><span class="p">,</span> <span class="n">mu_s</span> <span class="o">=</span> <span class="n">example</span><span class="o">.</span><span class="n">competitive_equilibrium</span><span class="p">()</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Competitive equilibrium price vector:&#39;</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Competitive equilibrium allocation:&#39;</span><span class="p">,</span> <span class="n">c_s</span><span class="p">)</span>
 </pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Competitive equilibrium price vector: [1. 1.]
+Competitive equilibrium allocation: [array([0.5, 0.5]), array([1., 1.])]
+</pre></div>
+</div>
+</div>
 </div>
 <p>Now let’s construct an autarky (i.e, no-trade) equilibrium.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">bs</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">]),</span>   <span class="c1"># first consumer&#39;s bliss points</span>
-      <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">])]</span>   <span class="c1"># second consumer&#39;s bliss points</span>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bs</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">]),</span>  <span class="c1"># first consumer&#39;s bliss points</span>
+      <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">])]</span>  <span class="c1"># second consumer&#39;s bliss points</span>
 
-<span class="n">es</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">]),</span>     <span class="c1"># first consumer&#39;s endowment</span>
-      <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">])]</span>     <span class="c1"># second consumer&#39;s endowment</span>
+<span class="n">es</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">]),</span>  <span class="c1"># first consumer&#39;s endowment</span>
+      <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">])]</span>  <span class="c1"># second consumer&#39;s endowment</span>
 
-
-<span class="n">example</span> <span class="o">=</span> <span class="n">Exchange_economy</span><span class="p">(</span><span class="n">Pi</span><span class="p">,</span> <span class="n">bs</span><span class="p">,</span> <span class="n">es</span><span class="p">)</span>
+<span class="n">example</span> <span class="o">=</span> <span class="n">ExchangeEconomy</span><span class="p">(</span><span class="n">Pi</span><span class="p">,</span> <span class="n">bs</span><span class="p">,</span> <span class="n">es</span><span class="p">)</span>
 <span class="n">p</span><span class="p">,</span> <span class="n">c_s</span><span class="p">,</span> <span class="n">mu_s</span> <span class="o">=</span> <span class="n">example</span><span class="o">.</span><span class="n">competitive_equilibrium</span><span class="p">()</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Competitive equilibrium price vector:&#39;</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Competitive equilibrium allocation:&#39;</span><span class="p">,</span> <span class="n">c_s</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Now let’s  redistribute endowments  before trade.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">bs</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">]),</span>   <span class="c1"># first consumer&#39;s bliss points</span>
-      <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">])]</span>   <span class="c1"># second consumer&#39;s bliss points</span>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Competitive equilibrium price vector: [1. 1.]
+Competitive equilibrium allocation: [array([0., 2.]), array([2., 0.])]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now let’s redistribute endowments before trade.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bs</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">]),</span>  <span class="c1"># first consumer&#39;s bliss points</span>
+      <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">])]</span>  <span class="c1"># second consumer&#39;s bliss points</span>
 
-<span class="n">es</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]),</span>     <span class="c1"># first consumer&#39;s endowment</span>
-      <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])]</span>     <span class="c1"># second consumer&#39;s endowment</span>
+<span class="n">es</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]),</span>  <span class="c1"># first consumer&#39;s endowment</span>
+      <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])]</span>  <span class="c1"># second consumer&#39;s endowment</span>
 
 <span class="n">Ws</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">]</span>
-<span class="n">example</span> <span class="o">=</span> <span class="n">Exchange_economy</span><span class="p">(</span><span class="n">Pi</span><span class="p">,</span> <span class="n">bs</span><span class="p">,</span> <span class="n">es</span><span class="p">,</span> <span class="n">Ws</span><span class="p">)</span>
+<span class="n">example</span> <span class="o">=</span> <span class="n">ExchangeEconomy</span><span class="p">(</span><span class="n">Pi</span><span class="p">,</span> <span class="n">bs</span><span class="p">,</span> <span class="n">es</span><span class="p">,</span> <span class="n">Ws</span><span class="p">)</span>
 <span class="n">p</span><span class="p">,</span> <span class="n">c_s</span><span class="p">,</span> <span class="n">mu_s</span> <span class="o">=</span> <span class="n">example</span><span class="o">.</span><span class="n">competitive_equilibrium</span><span class="p">()</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Competitive equilibrium price vector:&#39;</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Competitive equilibrium allocation:&#39;</span><span class="p">,</span> <span class="n">c_s</span><span class="p">)</span>
 </pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Competitive equilibrium price vector: [1. 1.]
+Competitive equilibrium allocation: [array([1.25, 1.25]), array([0.75, 0.75])]
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 <section id="a-dynamic-economy">
-<h3><span class="section-number">4.3.2. </span>A <strong>dynamic economy</strong><a class="headerlink" href="#a-dynamic-economy" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">31.3.2. </span>A <strong>Dynamic Economy</strong><a class="headerlink" href="#a-dynamic-economy" title="Permalink to this heading">#</a></h3>
 <p>Now let’s use the tricks described above to study a dynamic economy, one with two periods.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">beta</span> <span class="o">=</span> <span class="mf">0.95</span>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">beta</span> <span class="o">=</span> <span class="mf">0.95</span>
 
 <span class="n">Pi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
                <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">beta</span><span class="p">)]])</span>
 
-<span class="n">bs</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">beta</span><span class="p">)</span><span class="o">*</span><span class="mi">5</span><span class="p">])]</span>
+<span class="n">bs</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">beta</span><span class="p">)</span> <span class="o">*</span> <span class="mi">5</span><span class="p">])]</span>
 
-<span class="n">es</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">])]</span>
+<span class="n">es</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])]</span>
 
-<span class="n">example</span> <span class="o">=</span> <span class="n">Exchange_economy</span><span class="p">(</span><span class="n">Pi</span><span class="p">,</span> <span class="n">bs</span><span class="p">,</span> <span class="n">es</span><span class="p">)</span>
+<span class="n">example</span> <span class="o">=</span> <span class="n">ExchangeEconomy</span><span class="p">(</span><span class="n">Pi</span><span class="p">,</span> <span class="n">bs</span><span class="p">,</span> <span class="n">es</span><span class="p">)</span>
 <span class="n">p</span><span class="p">,</span> <span class="n">c_s</span><span class="p">,</span> <span class="n">mu_s</span> <span class="o">=</span> <span class="n">example</span><span class="o">.</span><span class="n">competitive_equilibrium</span><span class="p">()</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Competitive equilibrium price vector:&#39;</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Competitive equilibrium allocation:&#39;</span><span class="p">,</span> <span class="n">c_s</span><span class="p">)</span>
-
 </pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Competitive equilibrium price vector: [1.   0.95]
+Competitive equilibrium allocation: [array([1., 1.])]
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 <section id="example-arrow-securities">
-<h3><span class="section-number">4.3.3. </span>Example:  <strong>Arrow securities</strong><a class="headerlink" href="#example-arrow-securities" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">31.3.3. </span>Example: <strong>Arrow Securities</strong><a class="headerlink" href="#example-arrow-securities" title="Permalink to this heading">#</a></h3>
 <p>We use the tricks described above to interpret  <span class="math notranslate nohighlight">\(c_1, c_2\)</span> as “Arrow securities” that are state-contingent claims to consumption goods.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">prob</span> <span class="o">=</span> <span class="mf">0.7</span>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prob</span> <span class="o">=</span> <span class="mf">0.7</span>
 
 <span class="n">Pi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">prob</span><span class="p">),</span> <span class="mi">0</span><span class="p">],</span>
-               <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">prob</span><span class="p">)]])</span>
+               <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">prob</span><span class="p">)]])</span>
 
-<span class="n">bs</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">prob</span><span class="p">)</span><span class="o">*</span><span class="mi">5</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">prob</span><span class="p">)</span><span class="o">*</span><span class="mi">5</span><span class="p">]),</span>
-      <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">prob</span><span class="p">)</span><span class="o">*</span><span class="mi">5</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">prob</span><span class="p">)</span><span class="o">*</span><span class="mi">5</span><span class="p">])]</span>
+<span class="n">bs</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">prob</span><span class="p">)</span> <span class="o">*</span> <span class="mi">5</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">prob</span><span class="p">)</span> <span class="o">*</span> <span class="mi">5</span><span class="p">]),</span>
+      <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">prob</span><span class="p">)</span> <span class="o">*</span> <span class="mi">5</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">prob</span><span class="p">)</span> <span class="o">*</span> <span class="mi">5</span><span class="p">])]</span>
 
 <span class="n">es</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]),</span>
       <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])]</span>
 
-<span class="n">example</span> <span class="o">=</span> <span class="n">Exchange_economy</span><span class="p">(</span><span class="n">Pi</span><span class="p">,</span> <span class="n">bs</span><span class="p">,</span> <span class="n">es</span><span class="p">)</span>
+<span class="n">example</span> <span class="o">=</span> <span class="n">ExchangeEconomy</span><span class="p">(</span><span class="n">Pi</span><span class="p">,</span> <span class="n">bs</span><span class="p">,</span> <span class="n">es</span><span class="p">)</span>
 <span class="n">p</span><span class="p">,</span> <span class="n">c_s</span><span class="p">,</span> <span class="n">mu_s</span> <span class="o">=</span> <span class="n">example</span><span class="o">.</span><span class="n">competitive_equilibrium</span><span class="p">()</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Competitive equilibrium price vector:&#39;</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Competitive equilibrium allocation:&#39;</span><span class="p">,</span> <span class="n">c_s</span><span class="p">)</span>
-
 </pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Competitive equilibrium price vector: [1.         0.42857143]
+Competitive equilibrium allocation: [array([0.7, 0.7]), array([0.3, 0.3])]
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 <section id="production-economy">
-<h3><span class="section-number">4.3.4. </span>Production Economy<a class="headerlink" href="#production-economy" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">31.3.4. </span>Production Economy<a class="headerlink" href="#production-economy" title="Permalink to this heading">#</a></h3>
 <p>To compute a competitive equilibrium for a production economy where demand curve is pinned down by the marginal utility of wealth <span class="math notranslate nohighlight">\(\mu\)</span>, we first compute an allocation by solving a planning problem.</p>
-<p>Then we compute the equilibrium  price vector using the inverse demand or supply curve.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
-<span class="k">class</span> <span class="nc">Production_economy</span><span class="p">:</span>
+<p>Then we compute the equilibrium price vector using the inverse demand or supply curve.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ProductionEconomy</span><span class="p">:</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Pi</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">J</span><span class="p">,</span> <span class="n">mu</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Set up the environment for a production economy</span>
@@ -614,13 +721,13 @@ $<span class="math notranslate nohighlight">\(p=\tilde{\mu}^{-1}(\Pi^{\top}b-\Pi
 <span class="sd">        Compute a competitive equilibrium of the production economy</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">Pi</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">J</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">Pi</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">b</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">h</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mu</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">J</span>
-        <span class="n">H</span> <span class="o">=</span> <span class="mf">.5</span><span class="o">*</span><span class="p">(</span><span class="n">J</span><span class="o">+</span><span class="n">J</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+        <span class="n">H</span> <span class="o">=</span> <span class="mf">.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">J</span> <span class="o">+</span> <span class="n">J</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
 
         <span class="c1"># allocation</span>
-        <span class="n">c</span> <span class="o">=</span> <span class="n">inv</span><span class="p">(</span><span class="n">Pi</span><span class="o">.</span><span class="n">T</span><span class="nd">@Pi</span> <span class="o">+</span> <span class="n">mu</span><span class="o">*</span><span class="n">H</span><span class="p">)</span> <span class="o">@</span> <span class="p">(</span><span class="n">Pi</span><span class="o">.</span><span class="n">T</span><span class="nd">@b</span> <span class="o">-</span> <span class="n">mu</span><span class="o">*</span><span class="n">h</span><span class="p">)</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="n">inv</span><span class="p">(</span><span class="n">Pi</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">Pi</span> <span class="o">+</span> <span class="n">mu</span> <span class="o">*</span> <span class="n">H</span><span class="p">)</span> <span class="o">@</span> <span class="p">(</span><span class="n">Pi</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">b</span> <span class="o">-</span> <span class="n">mu</span> <span class="o">*</span> <span class="n">h</span><span class="p">)</span>
 
         <span class="c1"># price</span>
-        <span class="n">p</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">mu</span> <span class="o">*</span> <span class="p">(</span><span class="n">Pi</span><span class="o">.</span><span class="n">T</span><span class="nd">@b</span> <span class="o">-</span> <span class="n">Pi</span><span class="o">.</span><span class="n">T</span><span class="nd">@Pi@c</span><span class="p">)</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">mu</span> <span class="o">*</span> <span class="p">(</span><span class="n">Pi</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">b</span> <span class="o">-</span> <span class="n">Pi</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">Pi</span> <span class="o">@</span> <span class="n">c</span><span class="p">)</span>
 
         <span class="c1"># check non-satiation</span>
         <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">Pi</span> <span class="o">@</span> <span class="n">c</span> <span class="o">-</span> <span class="n">b</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">):</span>
@@ -633,13 +740,13 @@ $<span class="math notranslate nohighlight">\(p=\tilde{\mu}^{-1}(\Pi^{\top}b-\Pi
 <span class="sd">        Compute the equilibrium price and allocation when there is a monopolist supplier</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">Pi</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">J</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">Pi</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">b</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">h</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mu</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">J</span>
-        <span class="n">H</span> <span class="o">=</span> <span class="mf">.5</span><span class="o">*</span><span class="p">(</span><span class="n">J</span><span class="o">+</span><span class="n">J</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+        <span class="n">H</span> <span class="o">=</span> <span class="mf">.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">J</span> <span class="o">+</span> <span class="n">J</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
 
         <span class="c1"># allocation</span>
-        <span class="n">q</span> <span class="o">=</span> <span class="n">inv</span><span class="p">(</span><span class="n">mu</span><span class="o">*</span><span class="n">H</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">Pi</span><span class="o">.</span><span class="n">T</span><span class="nd">@Pi</span><span class="p">)</span><span class="o">@</span><span class="p">(</span><span class="n">Pi</span><span class="o">.</span><span class="n">T</span><span class="nd">@b</span> <span class="o">-</span> <span class="n">mu</span><span class="o">*</span><span class="n">h</span><span class="p">)</span>
+        <span class="n">q</span> <span class="o">=</span> <span class="n">inv</span><span class="p">(</span><span class="n">mu</span> <span class="o">*</span> <span class="n">H</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">Pi</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">Pi</span><span class="p">)</span> <span class="o">@</span> <span class="p">(</span><span class="n">Pi</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">b</span> <span class="o">-</span> <span class="n">mu</span> <span class="o">*</span> <span class="n">h</span><span class="p">)</span>
 
         <span class="c1"># price</span>
-        <span class="n">p</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">mu</span> <span class="o">*</span> <span class="p">(</span><span class="n">Pi</span><span class="o">.</span><span class="n">T</span><span class="nd">@b</span> <span class="o">-</span> <span class="n">Pi</span><span class="o">.</span><span class="n">T</span><span class="nd">@Pi@q</span><span class="p">)</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">mu</span> <span class="o">*</span> <span class="p">(</span><span class="n">Pi</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">b</span> <span class="o">-</span> <span class="n">Pi</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">Pi</span> <span class="o">@</span> <span class="n">q</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">Pi</span> <span class="o">@</span> <span class="n">q</span> <span class="o">-</span> <span class="n">b</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;invalid result: set bliss points further away&#39;</span><span class="p">)</span>
@@ -650,21 +757,21 @@ $<span class="math notranslate nohighlight">\(p=\tilde{\mu}^{-1}(\Pi^{\top}b-\Pi
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Compute consumer and producer surplus for single good case</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="o">!=</span><span class="mi">1</span><span class="p">:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;not single good&#39;</span><span class="p">)</span>
         <span class="n">h</span><span class="p">,</span> <span class="n">J</span><span class="p">,</span> <span class="n">Pi</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">mu</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">h</span><span class="o">.</span><span class="n">item</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">J</span><span class="o">.</span><span class="n">item</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">Pi</span><span class="o">.</span><span class="n">item</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">b</span><span class="o">.</span><span class="n">item</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">mu</span>
         <span class="n">H</span> <span class="o">=</span> <span class="n">J</span>
 
         <span class="c1"># supply/demand curve coefficients</span>
         <span class="n">s0</span><span class="p">,</span> <span class="n">s1</span> <span class="o">=</span> <span class="n">h</span><span class="p">,</span> <span class="n">H</span>
-        <span class="n">d0</span><span class="p">,</span> <span class="n">d1</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">mu</span> <span class="o">*</span> <span class="n">Pi</span> <span class="o">*</span> <span class="n">b</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="n">mu</span> <span class="o">*</span> <span class="n">Pi</span><span class="o">**</span><span class="mi">2</span>
+        <span class="n">d0</span><span class="p">,</span> <span class="n">d1</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">mu</span> <span class="o">*</span> <span class="n">Pi</span> <span class="o">*</span> <span class="n">b</span><span class="p">,</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">mu</span> <span class="o">*</span> <span class="n">Pi</span><span class="o">**</span><span class="mi">2</span>
 
         <span class="c1"># competitive equilibrium</span>
         <span class="n">c</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">competitive_equilibrium</span><span class="p">()</span>
 
         <span class="c1"># calculate surplus</span>
-        <span class="n">c_surplus</span> <span class="o">=</span> <span class="n">d0</span><span class="o">*</span><span class="n">c</span> <span class="o">-</span> <span class="mf">.5</span><span class="o">*</span><span class="n">d1</span><span class="o">*</span><span class="n">c</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="n">p</span><span class="o">*</span><span class="n">c</span>
-        <span class="n">p_surplus</span> <span class="o">=</span> <span class="n">p</span><span class="o">*</span><span class="n">c</span> <span class="o">-</span> <span class="n">s0</span><span class="o">*</span><span class="n">c</span> <span class="o">-</span> <span class="mf">.5</span><span class="o">*</span><span class="n">s1</span><span class="o">*</span><span class="n">c</span><span class="o">**</span><span class="mi">2</span>
+        <span class="n">c_surplus</span> <span class="o">=</span> <span class="n">d0</span> <span class="o">*</span> <span class="n">c</span> <span class="o">-</span> <span class="mf">.5</span> <span class="o">*</span> <span class="n">d1</span> <span class="o">*</span> <span class="n">c</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="n">p</span> <span class="o">*</span> <span class="n">c</span>
+        <span class="n">p_surplus</span> <span class="o">=</span> <span class="n">p</span> <span class="o">*</span> <span class="n">c</span> <span class="o">-</span> <span class="n">s0</span> <span class="o">*</span> <span class="n">c</span> <span class="o">-</span> <span class="mf">.5</span> <span class="o">*</span> <span class="n">s1</span> <span class="o">*</span> <span class="n">c</span><span class="o">**</span><span class="mi">2</span>
 
         <span class="k">return</span> <span class="n">c_surplus</span><span class="p">,</span> <span class="n">p_surplus</span>
 
@@ -686,21 +793,21 @@ $<span class="math notranslate nohighlight">\(p=\tilde{\mu}^{-1}(\Pi^{\top}b-\Pi
     <span class="n">c</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">item</span><span class="p">(),</span> <span class="n">p</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
 
     <span class="c1"># inverse supply/demand curve</span>
-    <span class="n">supply_inv</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">h</span> <span class="o">+</span> <span class="n">H</span><span class="o">*</span><span class="n">x</span>
-    <span class="n">demand_inv</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">1</span><span class="o">/</span><span class="n">mu</span><span class="o">*</span><span class="p">(</span><span class="n">Pi</span><span class="o">*</span><span class="n">b</span> <span class="o">-</span> <span class="n">Pi</span><span class="o">*</span><span class="n">Pi</span><span class="o">*</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">supply_inv</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">h</span> <span class="o">+</span> <span class="n">H</span> <span class="o">*</span> <span class="n">x</span>
+    <span class="n">demand_inv</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">mu</span> <span class="o">*</span> <span class="p">(</span><span class="n">Pi</span> <span class="o">*</span> <span class="n">b</span> <span class="o">-</span> <span class="n">Pi</span> <span class="o">*</span> <span class="n">Pi</span> <span class="o">*</span> <span class="n">x</span><span class="p">)</span>
 
-    <span class="n">xs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">c</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+    <span class="n">xs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">c</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
     <span class="n">ps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span> <span class="o">*</span> <span class="n">p</span>
     <span class="n">supply_curve</span> <span class="o">=</span> <span class="n">supply_inv</span><span class="p">(</span><span class="n">xs</span><span class="p">)</span>
-    <span class="n">demand_curve</span> <span class="o">=</span>  <span class="n">demand_inv</span><span class="p">(</span><span class="n">xs</span><span class="p">)</span>
+    <span class="n">demand_curve</span> <span class="o">=</span> <span class="n">demand_inv</span><span class="p">(</span><span class="n">xs</span><span class="p">)</span>
 
     <span class="c1"># plot</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">7</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">supply_curve</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Supply&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#020060&#39;</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">demand_curve</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Demand&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#600001&#39;</span><span class="p">)</span>
 
-    <span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">xs</span><span class="p">[</span><span class="n">xs</span><span class="o">&lt;=</span><span class="n">c</span><span class="p">],</span> <span class="n">demand_curve</span><span class="p">[</span><span class="n">xs</span><span class="o">&lt;=</span><span class="n">c</span><span class="p">],</span> <span class="n">ps</span><span class="p">[</span><span class="n">xs</span><span class="o">&lt;=</span><span class="n">c</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Consumer surplus&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#EED1CF&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">xs</span><span class="p">[</span><span class="n">xs</span><span class="o">&lt;=</span><span class="n">c</span><span class="p">],</span> <span class="n">supply_curve</span><span class="p">[</span><span class="n">xs</span><span class="o">&lt;=</span><span class="n">c</span><span class="p">],</span> <span class="n">ps</span><span class="p">[</span><span class="n">xs</span><span class="o">&lt;=</span><span class="n">c</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Producer surplus&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#E6E6F5&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">xs</span><span class="p">[</span><span class="n">xs</span> <span class="o">&lt;=</span> <span class="n">c</span><span class="p">],</span> <span class="n">demand_curve</span><span class="p">[</span><span class="n">xs</span> <span class="o">&lt;=</span> <span class="n">c</span><span class="p">],</span> <span class="n">ps</span><span class="p">[</span><span class="n">xs</span> <span class="o">&lt;=</span> <span class="n">c</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Consumer surplus&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#EED1CF&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">xs</span><span class="p">[</span><span class="n">xs</span> <span class="o">&lt;=</span> <span class="n">c</span><span class="p">],</span> <span class="n">supply_curve</span><span class="p">[</span><span class="n">xs</span> <span class="o">&lt;=</span> <span class="n">c</span><span class="p">],</span> <span class="n">ps</span><span class="p">[</span><span class="n">xs</span> <span class="o">&lt;=</span> <span class="n">c</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Producer surplus&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#E6E6F5&#39;</span><span class="p">)</span>
 
     <span class="n">plt</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;dashed&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;dashed&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
@@ -712,27 +819,30 @@ $<span class="math notranslate nohighlight">\(p=\tilde{\mu}^{-1}(\Pi^{\top}b-\Pi
     <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Quantity&#39;</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Price&#39;</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-
 </pre></div>
 </div>
+</div>
+</div>
 <section id="example-single-agent-with-one-good-and-with-production">
-<h4><span class="section-number">4.3.4.1. </span>Example: single agent with one good and  with production<a class="headerlink" href="#example-single-agent-with-one-good-and-with-production" title="Permalink to this heading">#</a></h4>
+<h4><span class="section-number">31.3.4.1. </span>Example: Single Agent with One Good and with Production<a class="headerlink" href="#example-single-agent-with-one-good-and-with-production" title="Permalink to this heading">#</a></h4>
 <p>Now let’s construct an example of a production economy with one good.</p>
 <p>To do this we</p>
+<!-- TODO -->
 <ul class="simple">
-<li><p>specify a single <strong>person</strong> and a <strong>cost curve</strong> in a way that let’s us replicate the simple
-single-good supply demand example with which we started</p></li>
+<li><p>specify a single <strong>person</strong> and a <strong>cost curve</strong> in a way that let’s us replicate the simple single-good supply demand example with which we started</p></li>
 <li><p>compute equilibrium <span class="math notranslate nohighlight">\(p\)</span> and <span class="math notranslate nohighlight">\(c\)</span> and consumer and producer surpluses</p></li>
 <li><p>draw graphs of both surpluses</p></li>
 <li><p>do experiments in which we shift <span class="math notranslate nohighlight">\(b\)</span> and watch what happens to <span class="math notranslate nohighlight">\(p, c\)</span>.</p></li>
 </ul>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Pi</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">]])</span>        <span class="c1"># the matrix now is a singleton</span>
-<span class="n">b</span>   <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">10</span><span class="p">])</span>
-<span class="n">h</span>   <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.5</span><span class="p">])</span>
-<span class="n">J</span>   <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">]])</span>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Pi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">]])</span>  <span class="c1"># the matrix now is a singleton</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">10</span><span class="p">])</span>
+<span class="n">h</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.5</span><span class="p">])</span>
+<span class="n">J</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">]])</span>
 <span class="n">mu</span> <span class="o">=</span> <span class="mi">1</span>
 
-<span class="n">PE</span> <span class="o">=</span> <span class="n">Production_economy</span><span class="p">(</span><span class="n">Pi</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">J</span><span class="p">,</span> <span class="n">mu</span><span class="p">)</span>
+<span class="n">PE</span> <span class="o">=</span> <span class="n">ProductionEconomy</span><span class="p">(</span><span class="n">Pi</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">J</span><span class="p">,</span> <span class="n">mu</span><span class="p">)</span>
 <span class="n">c</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="n">PE</span><span class="o">.</span><span class="n">competitive_equilibrium</span><span class="p">()</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Competitive equilibrium price:&#39;</span><span class="p">,</span> <span class="n">p</span><span class="o">.</span><span class="n">item</span><span class="p">())</span>
@@ -742,14 +852,35 @@ single-good supply demand example with which we started</p></li>
 <span class="n">plot_competitive_equilibrium</span><span class="p">(</span><span class="n">PE</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">c_surplus</span><span class="p">,</span> <span class="n">p_surplus</span> <span class="o">=</span> <span class="n">PE</span><span class="o">.</span><span class="n">compute_surplus</span><span class="p">()</span>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Competitive equilibrium price: 5.25
+Competitive equilibrium allocation: 4.75
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/8aa4eaaffa32fc4c04c70685b4e0b43fad26f154c1645c46c0ae2e3c69a2e88a.png"><img alt="_images/8aa4eaaffa32fc4c04c70685b4e0b43fad26f154c1645c46c0ae2e3c69a2e88a.png" src="_images/8aa4eaaffa32fc4c04c70685b4e0b43fad26f154c1645c46c0ae2e3c69a2e88a.png" style="width: 80%;" /></a>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">c_surplus</span><span class="p">,</span> <span class="n">p_surplus</span> <span class="o">=</span> <span class="n">PE</span><span class="o">.</span><span class="n">compute_surplus</span><span class="p">()</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Consumer surplus:&#39;</span><span class="p">,</span> <span class="n">c_surplus</span><span class="o">.</span><span class="n">item</span><span class="p">())</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Producer surplus:&#39;</span><span class="p">,</span> <span class="n">p_surplus</span><span class="o">.</span><span class="n">item</span><span class="p">())</span>
 </pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Consumer surplus: 11.28125
+Producer surplus: 11.28125
+</pre></div>
+</div>
+</div>
 </div>
 <p>Let’s give consumers a lower welfare weight by raising <span class="math notranslate nohighlight">\(\mu\)</span>.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">PE</span><span class="o">.</span><span class="n">mu</span> <span class="o">=</span> <span class="mi">2</span>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">PE</span><span class="o">.</span><span class="n">mu</span> <span class="o">=</span> <span class="mi">2</span>
 <span class="n">c</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="n">PE</span><span class="o">.</span><span class="n">competitive_equilibrium</span><span class="p">()</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Competitive equilibrium price:&#39;</span><span class="p">,</span> <span class="n">p</span><span class="o">.</span><span class="n">item</span><span class="p">())</span>
@@ -759,14 +890,35 @@ single-good supply demand example with which we started</p></li>
 <span class="n">plot_competitive_equilibrium</span><span class="p">(</span><span class="n">PE</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">c_surplus</span><span class="p">,</span> <span class="n">p_surplus</span> <span class="o">=</span> <span class="n">PE</span><span class="o">.</span><span class="n">compute_surplus</span><span class="p">()</span>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Competitive equilibrium price: 3.5
+Competitive equilibrium allocation: 3.0
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/d145455c875cac6cd6e07aae3bc7af31d514707c391f8e4cb01a201e4646ffef.png"><img alt="_images/d145455c875cac6cd6e07aae3bc7af31d514707c391f8e4cb01a201e4646ffef.png" src="_images/d145455c875cac6cd6e07aae3bc7af31d514707c391f8e4cb01a201e4646ffef.png" style="width: 80%;" /></a>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">c_surplus</span><span class="p">,</span> <span class="n">p_surplus</span> <span class="o">=</span> <span class="n">PE</span><span class="o">.</span><span class="n">compute_surplus</span><span class="p">()</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Consumer surplus:&#39;</span><span class="p">,</span> <span class="n">c_surplus</span><span class="o">.</span><span class="n">item</span><span class="p">())</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Producer surplus:&#39;</span><span class="p">,</span> <span class="n">p_surplus</span><span class="o">.</span><span class="n">item</span><span class="p">())</span>
 </pre></div>
 </div>
-<p>Now we change  the bliss point  so that the consumer derives more utility from consumption.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">PE</span><span class="o">.</span><span class="n">mu</span> <span class="o">=</span> <span class="mi">1</span>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Consumer surplus: 2.25
+Producer surplus: 4.5
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we change the bliss point so that the consumer derives more utility from consumption.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">PE</span><span class="o">.</span><span class="n">mu</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="n">PE</span><span class="o">.</span><span class="n">b</span> <span class="o">=</span> <span class="n">PE</span><span class="o">.</span><span class="n">b</span> <span class="o">*</span> <span class="mf">1.5</span>
 <span class="n">c</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="n">PE</span><span class="o">.</span><span class="n">competitive_equilibrium</span><span class="p">()</span>
 
@@ -777,85 +929,136 @@ single-good supply demand example with which we started</p></li>
 <span class="n">plot_competitive_equilibrium</span><span class="p">(</span><span class="n">PE</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Competitive equilibrium price: 7.75
+Competitive equilibrium allocation: 7.25
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/8460386b9c7ed5905be88974e6fad14a7d9823e8e294a6e00abea58f1610cb79.png"><img alt="_images/8460386b9c7ed5905be88974e6fad14a7d9823e8e294a6e00abea58f1610cb79.png" src="_images/8460386b9c7ed5905be88974e6fad14a7d9823e8e294a6e00abea58f1610cb79.png" style="width: 80%;" /></a>
+</div>
+</div>
 <p>This raises both the equilibrium price and quantity.</p>
 </section>
 <section id="example-single-agent-two-good-economy-with-production">
-<h4><span class="section-number">4.3.4.2. </span>Example: single agent two-good economy <strong>with</strong> production<a class="headerlink" href="#example-single-agent-two-good-economy-with-production" title="Permalink to this heading">#</a></h4>
+<h4><span class="section-number">31.3.4.2. </span>Example: Single Agent Two-Good Economy <strong>with</strong> Production<a class="headerlink" href="#example-single-agent-two-good-economy-with-production" title="Permalink to this heading">#</a></h4>
 <ul class="simple">
 <li><p>we’ll do some experiments like those above</p></li>
-<li><p>we can do experiments with a  <strong>diagonal</strong> <span class="math notranslate nohighlight">\(\Pi\)</span> and also with a <strong>non-diagonal</strong> <span class="math notranslate nohighlight">\(\Pi\)</span> matrices to study  how cross-slopes affect responses of <span class="math notranslate nohighlight">\(p\)</span> and <span class="math notranslate nohighlight">\(c\)</span> to various shifts in <span class="math notranslate nohighlight">\(b\)</span></p></li>
+<li><p>we can do experiments with a <strong>diagonal</strong> <span class="math notranslate nohighlight">\(\Pi\)</span> and also with a <strong>non-diagonal</strong> <span class="math notranslate nohighlight">\(\Pi\)</span> matrices to study how cross-slopes affect responses of <span class="math notranslate nohighlight">\(p\)</span> and <span class="math notranslate nohighlight">\(c\)</span> to various shifts in <span class="math notranslate nohighlight">\(b\)</span></p></li>
 </ul>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Pi</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
-                <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
-<span class="n">b</span>   <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">])</span>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Pi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+               <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">])</span>
 
-<span class="n">h</span>   <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">])</span>
-<span class="n">J</span>   <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span>
+<span class="n">h</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">])</span>
+<span class="n">J</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span>
+              <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
+<span class="n">mu</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="n">PE</span> <span class="o">=</span> <span class="n">ProductionEconomy</span><span class="p">(</span><span class="n">Pi</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">J</span><span class="p">,</span> <span class="n">mu</span><span class="p">)</span>
+<span class="n">c</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="n">PE</span><span class="o">.</span><span class="n">competitive_equilibrium</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Competitive equilibrium price:&#39;</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Competitive equilibrium allocation:&#39;</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Competitive equilibrium price: [6.2 6.2]
+Competitive equilibrium allocation: [3.8 3.8]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">PE</span><span class="o">.</span><span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">12</span><span class="p">,</span> <span class="mi">10</span><span class="p">])</span>
+
+<span class="n">c</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="n">PE</span><span class="o">.</span><span class="n">competitive_equilibrium</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Competitive equilibrium price:&#39;</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Competitive equilibrium allocation:&#39;</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Competitive equilibrium price: [7.13333333 6.46666667]
+Competitive equilibrium allocation: [4.86666667 3.53333333]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Pi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span>
+                <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">])</span>
+
+<span class="n">h</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">])</span>
+<span class="n">J</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span>
                 <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
 <span class="n">mu</span> <span class="o">=</span> <span class="mi">1</span>
 
-<span class="n">PE</span> <span class="o">=</span> <span class="n">Production_economy</span><span class="p">(</span><span class="n">Pi</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">J</span><span class="p">,</span> <span class="n">mu</span><span class="p">)</span>
+<span class="n">PE</span> <span class="o">=</span> <span class="n">ProductionEconomy</span><span class="p">(</span><span class="n">Pi</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">J</span><span class="p">,</span> <span class="n">mu</span><span class="p">)</span>
 <span class="n">c</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="n">PE</span><span class="o">.</span><span class="n">competitive_equilibrium</span><span class="p">()</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Competitive equilibrium price:&#39;</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Competitive equilibrium allocation:&#39;</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">PE</span><span class="o">.</span><span class="n">b</span>   <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">12</span><span class="p">,</span> <span class="mi">10</span><span class="p">])</span>
-
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Competitive equilibrium price: [6.3 6.3]
+Competitive equilibrium allocation: [3.86666667 3.86666667]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">PE</span><span class="o">.</span><span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">12</span><span class="p">,</span> <span class="mi">10</span><span class="p">])</span>
 <span class="n">c</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="n">PE</span><span class="o">.</span><span class="n">competitive_equilibrium</span><span class="p">()</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Competitive equilibrium price:&#39;</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Competitive equilibrium allocation:&#39;</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Pi</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span>
-                <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
-<span class="n">b</span>   <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">])</span>
-
-<span class="n">h</span>   <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">])</span>
-<span class="n">J</span>   <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span>
-                <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
-<span class="n">mu</span> <span class="o">=</span> <span class="mi">1</span>
-
-<span class="n">PE</span> <span class="o">=</span> <span class="n">Production_economy</span><span class="p">(</span><span class="n">Pi</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">J</span><span class="p">,</span> <span class="n">mu</span><span class="p">)</span>
-<span class="n">c</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="n">PE</span><span class="o">.</span><span class="n">competitive_equilibrium</span><span class="p">()</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Competitive equilibrium price:&#39;</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Competitive equilibrium allocation:&#39;</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Competitive equilibrium price: [7.23333333 6.56666667]
+Competitive equilibrium allocation: [4.93333333 3.6       ]
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">PE</span><span class="o">.</span><span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">12</span><span class="p">,</span> <span class="mi">10</span><span class="p">])</span>
-<span class="n">c</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="n">PE</span><span class="o">.</span><span class="n">competitive_equilibrium</span><span class="p">()</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Competitive equilibrium price:&#39;</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Competitive equilibrium allocation:&#39;</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
-</pre></div>
+</div>
 </div>
 </section>
 </section>
 <section id="a-monopolist">
-<h3><span class="section-number">4.3.5. </span>A Monopolist<a class="headerlink" href="#a-monopolist" title="Permalink to this heading">#</a></h3>
-<p>Let’s  consider a monopolist  supplier.</p>
-<p>We have included a method in  our <code class="docutils literal notranslate"><span class="pre">production_economy</span></code> class to compute an equilibrium price and allocation when the supplier is  a monopolist.</p>
+<h3><span class="section-number">31.3.5. </span>A Monopolist<a class="headerlink" href="#a-monopolist" title="Permalink to this heading">#</a></h3>
+<p>Let’s consider a monopolist supplier.</p>
+<p>We have included a method in our <code class="docutils literal notranslate"><span class="pre">productionEconomy</span></code> class to compute an equilibrium price and allocation when the supplier is a monopolist.</p>
 <p>Since the supplier now has the price-setting power</p>
 <ul class="simple">
 <li><p>we first compute the optimal quantity that solves the monopolist’s profit maximization problem.</p></li>
-<li><p>Then we back out  an equilibrium  price from the consumer’s inverse demand curve.</p></li>
+<li><p>Then we back out an equilibrium price from the consumer’s inverse demand curve.</p></li>
 </ul>
 <p>Next, we use a graph for the single good case to illustrate the difference between a competitive equilibrium and an equilibrium with a monopolist supplier.</p>
-<p>Recall that in a competitive equilibrium, a price-taking supplier equates  marginal revenue <span class="math notranslate nohighlight">\(p\)</span> to marginal cost <span class="math notranslate nohighlight">\(h + Hq\)</span>.</p>
-<p>This yields a competitive producer’s  inverse supply curve.</p>
-<p>A monopolist’s marginal revenue is not constant but instead  is a non-trivial function of the quantity it sets.</p>
+<p>Recall that in a competitive equilibrium, a price-taking supplier equates marginal revenue <span class="math notranslate nohighlight">\(p\)</span> to marginal cost <span class="math notranslate nohighlight">\(h + Hq\)</span>.</p>
+<p>This yields a competitive producer’s inverse supply curve.</p>
+<p>A monopolist’s marginal revenue is not constant but instead is a non-trivial function of the quantity it sets.</p>
 <p>The monopolist’s marginal revenue is</p>
 <div class="math notranslate nohighlight">
 \[
 MR(q) = -2\mu^{-1}\Pi^{\top}\Pi q+\mu^{-1}\Pi^{\top}b,
 \]</div>
-<p>which the monopolist equates to its  marginal cost.</p>
+<p>which the monopolist equates to its marginal cost.</p>
 <p>The plot indicates that the monopolist’s sets output  lower than either the competitive equilibrium quantity.</p>
 <p>In a single good case, this equilibrium is associated with a higher price of the good.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_monopoly</span><span class="p">(</span><span class="n">PE</span><span class="p">):</span>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_monopoly</span><span class="p">(</span><span class="n">PE</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Plot demand curve, marginal production cost and revenue, surpluses and the</span>
 <span class="sd">    equilibrium in a monopolist supplier economy with a single good</span>
@@ -875,24 +1078,24 @@ MR(q) = -2\mu^{-1}\Pi^{\top}\Pi q+\mu^{-1}\Pi^{\top}b,
     <span class="c1"># compute</span>
 
     <span class="c1"># inverse supply/demand curve</span>
-    <span class="n">marg_cost</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">h</span> <span class="o">+</span> <span class="n">H</span><span class="o">*</span><span class="n">x</span>
-    <span class="n">marg_rev</span>  <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="mi">1</span><span class="o">/</span><span class="n">mu</span><span class="o">*</span><span class="n">Pi</span><span class="o">*</span><span class="n">Pi</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="mi">1</span><span class="o">/</span><span class="n">mu</span><span class="o">*</span><span class="n">Pi</span><span class="o">*</span><span class="n">b</span>
-    <span class="n">demand_inv</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">1</span><span class="o">/</span><span class="n">mu</span><span class="o">*</span><span class="p">(</span><span class="n">Pi</span><span class="o">*</span><span class="n">b</span> <span class="o">-</span> <span class="n">Pi</span><span class="o">*</span><span class="n">Pi</span><span class="o">*</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">marg_cost</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">h</span> <span class="o">+</span> <span class="n">H</span> <span class="o">*</span> <span class="n">x</span>
+    <span class="n">marg_rev</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="o">-</span><span class="mi">2</span> <span class="o">*</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">mu</span> <span class="o">*</span> <span class="n">Pi</span> <span class="o">*</span> <span class="n">Pi</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">mu</span> <span class="o">*</span> <span class="n">Pi</span> <span class="o">*</span> <span class="n">b</span>
+    <span class="n">demand_inv</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">mu</span> <span class="o">*</span> <span class="p">(</span><span class="n">Pi</span> <span class="o">*</span> <span class="n">b</span> <span class="o">-</span> <span class="n">Pi</span> <span class="o">*</span> <span class="n">Pi</span> <span class="o">*</span> <span class="n">x</span><span class="p">)</span>
 
-    <span class="n">xs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">c</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+    <span class="n">xs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">c</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
     <span class="n">pms</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span> <span class="o">*</span> <span class="n">pm</span>
     <span class="n">marg_cost_curve</span> <span class="o">=</span> <span class="n">marg_cost</span><span class="p">(</span><span class="n">xs</span><span class="p">)</span>
-    <span class="n">marg_rev_curve</span>  <span class="o">=</span> <span class="n">marg_rev</span><span class="p">(</span><span class="n">xs</span><span class="p">)</span>
-    <span class="n">demand_curve</span>    <span class="o">=</span> <span class="n">demand_inv</span><span class="p">(</span><span class="n">xs</span><span class="p">)</span>
+    <span class="n">marg_rev_curve</span> <span class="o">=</span> <span class="n">marg_rev</span><span class="p">(</span><span class="n">xs</span><span class="p">)</span>
+    <span class="n">demand_curve</span> <span class="o">=</span> <span class="n">demand_inv</span><span class="p">(</span><span class="n">xs</span><span class="p">)</span>
 
     <span class="c1"># plot</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">7</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">marg_cost_curve</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Marginal cost&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#020060&#39;</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">marg_rev_curve</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Marginal revenue&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#E55B13&#39;</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">demand_curve</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Demand&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#600001&#39;</span><span class="p">)</span>
 
-    <span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">xs</span><span class="p">[</span><span class="n">xs</span><span class="o">&lt;=</span><span class="n">q</span><span class="p">],</span> <span class="n">demand_curve</span><span class="p">[</span><span class="n">xs</span><span class="o">&lt;=</span><span class="n">q</span><span class="p">],</span> <span class="n">pms</span><span class="p">[</span><span class="n">xs</span><span class="o">&lt;=</span><span class="n">q</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Consumer surplus&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#EED1CF&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">xs</span><span class="p">[</span><span class="n">xs</span><span class="o">&lt;=</span><span class="n">q</span><span class="p">],</span> <span class="n">marg_cost_curve</span><span class="p">[</span><span class="n">xs</span><span class="o">&lt;=</span><span class="n">q</span><span class="p">],</span> <span class="n">pms</span><span class="p">[</span><span class="n">xs</span><span class="o">&lt;=</span><span class="n">q</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Producer surplus&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#E6E6F5&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">xs</span><span class="p">[</span><span class="n">xs</span> <span class="o">&lt;=</span> <span class="n">q</span><span class="p">],</span> <span class="n">demand_curve</span><span class="p">[</span><span class="n">xs</span> <span class="o">&lt;=</span> <span class="n">q</span><span class="p">],</span> <span class="n">pms</span><span class="p">[</span><span class="n">xs</span> <span class="o">&lt;=</span> <span class="n">q</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Consumer surplus&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#EED1CF&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">xs</span><span class="p">[</span><span class="n">xs</span> <span class="o">&lt;=</span> <span class="n">q</span><span class="p">],</span> <span class="n">marg_cost_curve</span><span class="p">[</span><span class="n">xs</span> <span class="o">&lt;=</span> <span class="n">q</span><span class="p">],</span> <span class="n">pms</span><span class="p">[</span><span class="n">xs</span> <span class="o">&lt;=</span> <span class="n">q</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Producer surplus&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#E6E6F5&#39;</span><span class="p">)</span>
 
     <span class="n">plt</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;dashed&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;dashed&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
@@ -910,19 +1113,23 @@ MR(q) = -2\mu^{-1}\Pi^{\top}\Pi q+\mu^{-1}\Pi^{\top}b,
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+</div>
 <section id="a-multiple-good-example">
-<h4><span class="section-number">4.3.5.1. </span>A multiple good example<a class="headerlink" href="#a-multiple-good-example" title="Permalink to this heading">#</a></h4>
+<h4><span class="section-number">31.3.5.1. </span>A Multiple Good Example<a class="headerlink" href="#a-multiple-good-example" title="Permalink to this heading">#</a></h4>
 <p>Let’s study compare competitive equilibrium and monopoly outcomes in a multiple goods economy.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Pi</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
-                <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">]])</span>
-<span class="n">b</span>   <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">])</span>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Pi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+               <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">]])</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">])</span>
 
-<span class="n">h</span>   <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">])</span>
-<span class="n">J</span>   <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span>
-                <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
+<span class="n">h</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">])</span>
+<span class="n">J</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span>
+              <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
 <span class="n">mu</span> <span class="o">=</span> <span class="mi">1</span>
 
-<span class="n">PE</span> <span class="o">=</span> <span class="n">Production_economy</span><span class="p">(</span><span class="n">Pi</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">J</span><span class="p">,</span> <span class="n">mu</span><span class="p">)</span>
+<span class="n">PE</span> <span class="o">=</span> <span class="n">ProductionEconomy</span><span class="p">(</span><span class="n">Pi</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">J</span><span class="p">,</span> <span class="n">mu</span><span class="p">)</span>
 <span class="n">c</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="n">PE</span><span class="o">.</span><span class="n">competitive_equilibrium</span><span class="p">()</span>
 <span class="n">q</span><span class="p">,</span> <span class="n">pm</span> <span class="o">=</span> <span class="n">PE</span><span class="o">.</span><span class="n">equilibrium_with_monopoly</span><span class="p">()</span>
 
@@ -933,16 +1140,28 @@ MR(q) = -2\mu^{-1}\Pi^{\top}\Pi q+\mu^{-1}\Pi^{\top}b,
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Equilibrium with monopolist supplier allocation:&#39;</span><span class="p">,</span> <span class="n">q</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Competitive equilibrium price: [6.23542117 6.32397408]
+Competitive equilibrium allocation: [3.76457883 3.94168467]
+Equilibrium with monopolist supplier price: [7.26865672 8.23880597]
+Equilibrium with monopolist supplier allocation: [2.73134328 2.6119403 ]
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 <section id="a-single-good-example">
-<h4><span class="section-number">4.3.5.2. </span>A single-good example<a class="headerlink" href="#a-single-good-example" title="Permalink to this heading">#</a></h4>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Pi</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">]])</span>        <span class="c1"># the matrix now is a singleton</span>
-<span class="n">b</span>   <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">10</span><span class="p">])</span>
-<span class="n">h</span>   <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.5</span><span class="p">])</span>
-<span class="n">J</span>   <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">]])</span>
+<h4><span class="section-number">31.3.5.2. </span>A Single-Good Example<a class="headerlink" href="#a-single-good-example" title="Permalink to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Pi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">]])</span>  <span class="c1"># the matrix now is a singleton</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">10</span><span class="p">])</span>
+<span class="n">h</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.5</span><span class="p">])</span>
+<span class="n">J</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">]])</span>
 <span class="n">mu</span> <span class="o">=</span> <span class="mi">1</span>
 
-<span class="n">PE</span> <span class="o">=</span> <span class="n">Production_economy</span><span class="p">(</span><span class="n">Pi</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">J</span><span class="p">,</span> <span class="n">mu</span><span class="p">)</span>
+<span class="n">PE</span> <span class="o">=</span> <span class="n">ProductionEconomy</span><span class="p">(</span><span class="n">Pi</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">J</span><span class="p">,</span> <span class="n">mu</span><span class="p">)</span>
 <span class="n">c</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="n">PE</span><span class="o">.</span><span class="n">competitive_equilibrium</span><span class="p">()</span>
 <span class="n">q</span><span class="p">,</span> <span class="n">pm</span> <span class="o">=</span> <span class="n">PE</span><span class="o">.</span><span class="n">equilibrium_with_monopoly</span><span class="p">()</span>
 
@@ -955,6 +1174,17 @@ MR(q) = -2\mu^{-1}\Pi^{\top}\Pi q+\mu^{-1}\Pi^{\top}b,
 <span class="c1"># plot</span>
 <span class="n">plot_monopoly</span><span class="p">(</span><span class="n">PE</span><span class="p">)</span>
 </pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Competitive equilibrium price: 5.25
+Competitive equilibrium allocation: 4.75
+Equilibrium with monopolist supplier price: 6.833333333333334
+Equilibrium with monopolist supplier allocation: 3.1666666666666665
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/2b7efd08ed00761e6316094e2a493388bd73aa5011792d5088de4e1fedb70928.png"><img alt="_images/2b7efd08ed00761e6316094e2a493388bd73aa5011792d5088de4e1fedb70928.png" src="_images/2b7efd08ed00761e6316094e2a493388bd73aa5011792d5088de4e1fedb70928.png" style="width: 80%;" /></a>
+</div>
 </div>
 </section>
 </section>
@@ -1024,104 +1254,82 @@ MR(q) = -2\mu^{-1}\Pi^{\top}\Pi q+\mu^{-1}\Pi^{\top}b,
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
-  Supply and Demand
- </span>
-</p>
-<ul class="current nav bd-sidenav nav sidenav_l1">
- <li class="toctree-l1">
-  <a class="reference internal" href="intro_supply_demand.html">
-   2. Introduction to Supply and Demand
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="supply_demand_multiple_goods.html">
-   3. Supply and Demand with Many Goods
-  </a>
- </li>
- <li class="toctree-l1 current active active">
-  <a class="current reference internal" href="#">
-   4. Market Equilibrium with Heterogeneity
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="input_output.html">
-   5. Input-Output Models
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Data and Measurement
+  Economic Data
  </span>
 </p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="long_run_growth.html">
-   6. Long Run Growth
+   2. Long Run Growth
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="business_cycle.html">
-   7. Business Cycles
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="inflation_unemployment.html">
-   8. Inflation and Unemployment
+   3. Business Cycles
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="inequality.html">
-   9. Income and Wealth Inequality
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="distributions.html">
-   10. Distributions in Economics
+   4. Income and Wealth Inequality
   </a>
  </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
-  Useful Tools
+  Essential Tools
  </span>
 </p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
-  <a class="reference internal" href="geom_series.html">
-   11. Geometric Series for Elementary Economics
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="linear_equations.html">
-   12. Linear Equations and Matrix Algebra
+   5. Linear Equations and Matrix Algebra
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="eigen_I.html">
-   13. Eigenvalues and Eigenvectors
+   6. Eigenvalues and Eigenvectors
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro_supply_demand.html">
+   7. Introduction to Supply and Demand
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="geom_series.html">
+   8. Geometric Series for Elementary Economics
   </a>
  </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
-  Simulation
+  Probability and Distributions
  </span>
 </p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
+  <a class="reference internal" href="prob_dist.html">
+   9. Distributions and Probabilities
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="lln_clt.html">
-   14. LLN and CLT
+   10. LLN and CLT
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="monte_carlo.html">
-   15. Monte Carlo and Option Pricing
+   11. Monte Carlo and Option Pricing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="heavy_tails.html">
+   12. Heavy-Tailed Distributions
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="schelling.html">
-   16. Racial Segregation
+   13. Racial Segregation
   </a>
  </li>
 </ul>
@@ -1133,64 +1341,37 @@ MR(q) = -2\mu^{-1}\Pi^{\top}\Pi q+\mu^{-1}\Pi^{\top}b,
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="solow.html">
-   17. The Solow-Swan Growth Model
+   14. The Solow-Swan Growth Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="scalar_dynam.html">
-   18. Dynamics in One Dimension
+   15. Dynamics in One Dimension
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cobweb.html">
-   19. The Cobweb Model
+   16. The Cobweb Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="olg.html">
-   20. The Overlapping Generations Model
+   17. The Overlapping Generations Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="markov_chains_I.html">
-   21. Markov Chains: Basic Concepts and Stationarity
+   18. Markov Chains: Basic Concepts and Stationarity
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="markov_chains_II.html">
-   22. Markov Chains: Irreducibility and Ergodicity
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Modeling in Higher Dimensions
- </span>
-</p>
-<ul class="nav bd-sidenav nav sidenav_l1">
- <li class="toctree-l1">
-  <a class="reference internal" href="eigen_II.html">
-   23. Theorems of Nonnegative Matrices and Eigenvalues
+   19. Markov Chains: Irreducibility and Ergodicity
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="lake_model.html">
-   24. A Lake Model of Employment
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="asset_pricing.html">
-   25. Introduction to Asset Pricing
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="networks.html">
-   26. Networks
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="samuelson.html">
-   27. Multiplier Accelerator Model
+  <a class="reference internal" href="commod_price.html">
+   20. Commodity Prices
   </a>
  </li>
 </ul>
@@ -1202,22 +1383,54 @@ MR(q) = -2\mu^{-1}\Pi^{\top}\Pi q+\mu^{-1}\Pi^{\top}b,
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="lp_intro.html">
-   28. Linear Programming
+   21. Linear Programming
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="comparative_adv.html">
-   29. Comparative Advantage
+   22. Comparative Advantage
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="nonlinear.html">
-   30. Nonlinear Problems
+   23. Nonlinear Problems
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="short_path.html">
-   31. Shortest Paths
+   24. Shortest Paths
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Modeling in Higher Dimensions
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="eigen_II.html">
+   25. Spectral Theory
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="input_output.html">
+   26. Input-Output Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lake_model.html">
+   27. A Lake Model of Employment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="asset_pricing.html">
+   28. Introduction to Asset Pricing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="networks.html">
+   29. Networks
   </a>
  </li>
 </ul>
@@ -1226,20 +1439,15 @@ MR(q) = -2\mu^{-1}\Pi^{\top}\Pi q+\mu^{-1}\Pi^{\top}b,
   Markets and Competitive Equilibrium
  </span>
 </p>
-<ul class="nav bd-sidenav nav sidenav_l1">
+<ul class="current nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
-  <a class="reference internal" href="markets_welfare.html">
-   32. Markets and Welfare
+  <a class="reference internal" href="supply_demand_multiple_goods.html">
+   30. Supply and Demand with Many Goods
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="risk.html">
-   33. Risk
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="uncertainty.html">
-   34. Uncertainty
+ <li class="toctree-l1 current active active">
+  <a class="current reference internal" href="#">
+   31. Market Equilibrium with Heterogeneity
   </a>
  </li>
 </ul>
@@ -1251,17 +1459,17 @@ MR(q) = -2\mu^{-1}\Pi^{\top}\Pi q+\mu^{-1}\Pi^{\top}b,
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="simple_linear_regression.html">
-   35. Simple Linear Regression Model
+   32. Simple Linear Regression Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="lr_with_matrices.html">
-   36. Linear Regression with Matrices
+   33. Linear Regression with Matrices
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="mle.html">
-   37. Maximum Likelihood Estimation
+   34. Maximum Likelihood Estimation
   </a>
  </li>
 </ul>
@@ -1273,17 +1481,17 @@ MR(q) = -2\mu^{-1}\Pi^{\top}\Pi q+\mu^{-1}\Pi^{\top}b,
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="troubleshooting.html">
-   38. Troubleshooting
+   35. Troubleshooting
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="zreferences.html">
-   39. References
+   36. References
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="status.html">
-   40. Execution Statistics
+   37. Execution Statistics
   </a>
  </li>
 </ul>

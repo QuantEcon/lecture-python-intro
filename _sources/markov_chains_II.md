@@ -11,9 +11,15 @@ kernelspec:
   name: python3
 ---
 
-+++ {"user_expressions": []}
-
 # Markov Chains: Irreducibility and Ergodicity
+
+```{index} single: Markov Chains: Irreducibility and Ergodicity
+```
+
+```{contents} Contents
+:depth: 2
+```
+
 
 In addition to what's in Anaconda, this lecture will need the following libraries:
 
@@ -35,7 +41,7 @@ to be installed on your computer. Installation instructions for graphviz can be 
 
 ## Overview
 
-This lecture continues the journey in Markov chain.
+This lecture continues our journey in Markov chains.
 
 Specifically, we will introduce irreducibility and ergodicity, and how they connect to stationarity.
 
@@ -116,13 +122,11 @@ there's no edge between nodes
 
 $$
 P :=
-\left(
-  \begin{array}{ccc}
+\begin{bmatrix} 
      0.9 & 0.1 & 0 \\
      0.4 & 0.4 & 0.2 \\
      0.1 & 0.1 & 0.8
-  \end{array}
-\right)
+\end{bmatrix} 
 $$
 
 It's clear from the graph that this stochastic matrix is irreducible: we can  eventually
@@ -177,15 +181,15 @@ mc.is_irreducible
 +++ {"user_expressions": []}
 
 It might be clear to you already that irreducibility is going to be important
-in terms of long run outcomes.
+in terms of long-run outcomes.
 
 For example, poverty is a life sentence in the second graph but not the first.
 
 We'll come back to this a bit later.
 
-### Irreducibility and Stationarity
+### Irreducibility and stationarity
 
-We discussed uniqueness of the stationary in the {ref}`previous lecture <stationary>` requires the transition matrix to be everywhere positive.
+We discussed the uniqueness of the stationary in the {ref}`previous lecture <stationary>` requires the transition matrix to be everywhere positive.
 
 In fact irreducibility is enough for the uniqueness of the stationary distribution to hold if the distribution exists.
 
@@ -261,14 +265,13 @@ In the cross-sectional interpretation, this is the fraction of people unemployed
 
 In view of our latest (ergodicity) result, it is also the fraction of time that a single worker can expect to spend unemployed.
 
-Thus, in the long-run, cross-sectional averages for a population and time-series averages for a given person coincide.
+Thus, in the long run, cross-sectional averages for a population and time-series averages for a given person coincide.
 
 This is one aspect of the concept  of ergodicity.
 
 
 (ergo)=
 ### Example 2
-
 
 Another example is Hamilton {cite}`Hamilton2005` dynamics {ref}`discussed before <mc_eg2>`.
 
@@ -310,25 +313,21 @@ Let's look at one more example with six states {ref}`discussed before <mc_eg3>`.
 
 
 $$
-$$
 P :=
-\left(
-  \begin{array}{cccccc}
+\begin{bmatrix} 
 0.86 & 0.11 & 0.03 & 0.00 & 0.00 & 0.00 \\
 0.52 & 0.33 & 0.13 & 0.02 & 0.00 & 0.00 \\
 0.12 & 0.03 & 0.70 & 0.11 & 0.03 & 0.01 \\
 0.13 & 0.02 & 0.35 & 0.36 & 0.10 & 0.04 \\
 0.00 & 0.00 & 0.09 & 0.11 & 0.55 & 0.25 \\
 0.00 & 0.00 & 0.09 & 0.15 & 0.26 & 0.50
-  \end{array}
-\right)
-$$
+\end{bmatrix} 
 $$
 
 
 The graph for the chain shows states are densely connected indicating that it is **irreducible**.
 
-Similar to previous examples, the sample path averages for each state converges to the stationary distribution
+Similar to previous examples, the sample path averages for each state converge to the stationary distribution
 
 ```{code-cell} ipython3
 P = [[0.86, 0.11, 0.03, 0.00, 0.00, 0.00],
@@ -366,12 +365,10 @@ Let's look at another example with two states: 0 and 1.
 
 $$
 P :=
-\left(
-  \begin{array}{cc}
+\begin{bmatrix} 
      0 & 1\\
      1 & 0\\
-  \end{array}
-\right)
+\end{bmatrix} 
 $$
 
 
@@ -435,7 +432,7 @@ However, the distribution at each state does not.
 
 +++ {"user_expressions": []}
 
-### Expectations of Geometric Sums
+### Expectations of geometric sums
 
 Sometimes we want to compute the mathematical expectation of a geometric sum, such as
 $\sum_t \beta^t h(X_t)$.
@@ -465,7 +462,19 @@ $$
 
 Benhabib el al. {cite}`benhabib_wealth_2019` estimated that the transition matrix for social mobility as the following
 
-$$P:=\left(\begin{array}{cccccccc}0.222 & 0.222 & 0.215 & 0.187 & 0.081 & 0.038 & 0.029 & 0.006 \\ 0.221 & 0.22 & 0.215 & 0.188 & 0.082 & 0.039 & 0.029 & 0.006 \\ 0.207 & 0.209 & 0.21 & 0.194 & 0.09 & 0.046 & 0.036 & 0.008 \\ 0.198 & 0.201 & 0.207 & 0.198 & 0.095 & 0.052 & 0.04 & 0.009 \\ 0.175 & 0.178 & 0.197 & 0.207 & 0.11 & 0.067 & 0.054 & 0.012 \\ 0.182 & 0.184 & 0.2 & 0.205 & 0.106 & 0.062 & 0.05 & 0.011 \\ 0.123 & 0.125 & 0.166 & 0.216 & 0.141 & 0.114 & 0.094 & 0.021 \\ 0.084 & 0.084 & 0.142 & 0.228 & 0.17 & 0.143 & 0.121 & 0.028\end{array}\right)$$
+$$
+P:=
+\begin{bmatrix} 
+0.222 & 0.222 & 0.215 & 0.187 & 0.081 & 0.038 & 0.029 & 0.006 \\
+0.221 & 0.22 & 0.215 & 0.188 & 0.082 & 0.039 & 0.029 & 0.006 \\
+0.207 & 0.209 & 0.21 & 0.194 & 0.09 & 0.046 & 0.036 & 0.008 \\ 
+0.198 & 0.201 & 0.207 & 0.198 & 0.095 & 0.052 & 0.04 & 0.009 \\ 
+0.175 & 0.178 & 0.197 & 0.207 & 0.11 & 0.067 & 0.054 & 0.012 \\ 
+0.182 & 0.184 & 0.2 & 0.205 & 0.106 & 0.062 & 0.05 & 0.011 \\ 
+0.123 & 0.125 & 0.166 & 0.216 & 0.141 & 0.114 & 0.094 & 0.021 \\ 
+0.084 & 0.084 & 0.142 & 0.228 & 0.17 & 0.143 & 0.121 & 0.028
+\end{bmatrix} 
+$$
 
 where each state 1 to 8 corresponds to a  percentile of wealth shares
 
@@ -502,7 +511,7 @@ In this exercise,
 ```{solution-start} mc_ex1
 :class: dropdown
 ```
-1.
+Solution 1:
 
 Use the technique we learnt before, we can take the power of the transition matrix
 
@@ -530,7 +539,7 @@ mc = qe.MarkovChain(P)
 ψ_star
 ```
 
-2.
+Solution 2:
 
 ```{code-cell} ipython3
 ts_length = 1000
@@ -563,16 +572,14 @@ Note that the fraction of time spent at each state quickly converges to the prob
 According to the discussion {ref}`above <mc_eg1-2>`, if a worker's employment dynamics obey the stochastic matrix
 
 $$
-P
-= \left(
-\begin{array}{cc}
-    1 - \alpha & \alpha \\
-    \beta & 1 - \beta
-\end{array}
-  \right)
+P := 
+\begin{bmatrix} 
+1 - \alpha & \alpha \\
+\beta & 1 - \beta
+\end{bmatrix} 
 $$
 
-with $\alpha \in (0,1)$ and $\beta \in (0,1)$, then, in the long-run, the fraction
+with $\alpha \in (0,1)$ and $\beta \in (0,1)$, then, in the long run, the fraction
 of time spent unemployed will be
 
 $$

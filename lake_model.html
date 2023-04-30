@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>24. A Lake Model of Employment &#8212; An Introduction to Quantitative Economics and Finance</title>
+    <title>27. A Lake Model of Employment &#8212; An Introduction to Quantitative Economics and Finance</title>
     <script src="https://unpkg.com/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://unpkg.com/tippy.js@6.3.1/dist/tippy-bundle.umd.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
@@ -71,7 +71,7 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/quantecon-book-theme.279dae03c5caae754d20501e3fa00bbf.css" />
+    <link rel="stylesheet" type="text/css" href="_static/quantecon-book-theme.27f831372ca8a27cbff86bbb33459986.css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
@@ -114,8 +114,8 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="25. Introduction to Asset Pricing" href="asset_pricing.html" />
-    <link rel="prev" title="23. Theorems of Nonnegative Matrices and Eigenvalues" href="eigen_II.html" />
+    <link rel="next" title="28. Introduction to Asset Pricing" href="asset_pricing.html" />
+    <link rel="prev" title="26. Input-Output Models" href="input_output.html" />
 
 <!-- Normal Meta Tags -->
 <meta name="author" context="Thomas J. Sargent &amp; John Stachurski" />
@@ -163,7 +163,19 @@ const thebe_selector_output = ".output, .cell_output"
 
                         <nav id="bd-toc-nav" class="qe-page__toc-nav">
                             <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise">24.1. Exercise</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#outline">27.1. Outline</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-lake-model">27.2. The Lake model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dynamics">27.3. Dynamics</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualising-the-long-run-outcomes">27.3.1. Visualising the long-run outcomes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-application-of-erron-frobenius-theorem">27.3.2. The application of erron-Frobenius theorem</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dominant-eigenvector">27.3.2.1. Dominant eigenvector</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#negative-growth-rate">27.3.2.2. Negative growth rate</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#properties">27.3.3. Properties</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise">27.4. Exercise</a></li>
 </ul>
                             <p class="logo">
                                 
@@ -209,7 +221,9 @@ const thebe_selector_output = ".output, .cell_output"
                     <div>
                         
   <section class="tex2jax_ignore mathjax_ignore" id="a-lake-model-of-employment">
-<h1><span class="section-number">24. </span>A Lake Model of Employment<a class="headerlink" href="#a-lake-model-of-employment" title="Permalink to this heading">#</a></h1>
+<h1><span class="section-number">27. </span>A Lake Model of Employment<a class="headerlink" href="#a-lake-model-of-employment" title="Permalink to this heading">#</a></h1>
+<section id="outline">
+<h2><span class="section-number">27.1. </span>Outline<a class="headerlink" href="#outline" title="Permalink to this heading">#</a></h2>
 <p>In addition to what’s in Anaconda, this lecture will need the following libraries:</p>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input above-output-prompt docutils container">
@@ -236,7 +250,20 @@ to be installed on your computer. Installation instructions for graphviz can be 
 <a class="reference external" href="https://www.graphviz.org/download/">here</a></p>
 </div>
 <p>This lecture studies a model of employment and unemployment flows in a large
-population.</p>
+population called the <strong>lake model</strong>.</p>
+<p>We will use the following imports in this lecture.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">graphviz</span> <span class="kn">import</span> <span class="n">Digraph</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="the-lake-model">
+<h2><span class="section-number">27.2. </span>The Lake model<a class="headerlink" href="#the-lake-model" title="Permalink to this heading">#</a></h2>
 <p>This model is sometimes called the <strong>lake model</strong> because there are two pools of workers:</p>
 <ol class="arabic simple">
 <li><p>those who are currently employed.</p></li>
@@ -252,9 +279,7 @@ population.</p>
 <p>The below graph illustrates the lake model.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">graphviz</span> <span class="kn">import</span> <span class="n">Digraph</span>
-
-<span class="c1"># Create Digraph object</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create Digraph object</span>
 <span class="n">G</span> <span class="o">=</span> <span class="n">Digraph</span><span class="p">()</span>
 <span class="n">G</span><span class="o">.</span><span class="n">attr</span><span class="p">(</span><span class="n">rankdir</span><span class="o">=</span><span class="s1">&#39;LR&#39;</span><span class="p">)</span>
 
@@ -277,157 +302,22 @@ population.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="nn">File /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages/graphviz/backend/execute.py:79,</span> in <span class="ni">run_check</span><span class="nt">(cmd, input_lines, encoding, quiet, **kwargs)</span>
-<span class="g g-Whitespace">     </span><span class="mi">78</span>         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;stdout&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;stderr&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span>
-<span class="ne">---&gt; </span><span class="mi">79</span>     <span class="n">proc</span> <span class="o">=</span> <span class="n">_run_input_lines</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">input_lines</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">80</span> <span class="k">else</span><span class="p">:</span>
-
-<span class="nn">File /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages/graphviz/backend/execute.py:99,</span> in <span class="ni">_run_input_lines</span><span class="nt">(cmd, input_lines, kwargs)</span>
-<span class="g g-Whitespace">     </span><span class="mi">98</span> <span class="k">def</span> <span class="nf">_run_input_lines</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">input_lines</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">):</span>
-<span class="ne">---&gt; </span><span class="mi">99</span>     <span class="n">popen</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">stdin</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">101</span>     <span class="n">stdin_write</span> <span class="o">=</span> <span class="n">popen</span><span class="o">.</span><span class="n">stdin</span><span class="o">.</span><span class="n">write</span>
-
-<span class="nn">File /usr/share/miniconda3/envs/quantecon/lib/python3.10/subprocess.py:971,</span> in <span class="ni">Popen.__init__</span><span class="nt">(self, args, bufsize, executable, stdin, stdout, stderr, preexec_fn, close_fds, shell, cwd, env, universal_newlines, startupinfo, creationflags, restore_signals, start_new_session, pass_fds, user, group, extra_groups, encoding, errors, text, umask, pipesize)</span>
-<span class="g g-Whitespace">    </span><span class="mi">968</span>             <span class="bp">self</span><span class="o">.</span><span class="n">stderr</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">TextIOWrapper</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stderr</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">969</span>                     <span class="n">encoding</span><span class="o">=</span><span class="n">encoding</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="n">errors</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">971</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_execute_child</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">executable</span><span class="p">,</span> <span class="n">preexec_fn</span><span class="p">,</span> <span class="n">close_fds</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">972</span>                         <span class="n">pass_fds</span><span class="p">,</span> <span class="n">cwd</span><span class="p">,</span> <span class="n">env</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">973</span>                         <span class="n">startupinfo</span><span class="p">,</span> <span class="n">creationflags</span><span class="p">,</span> <span class="n">shell</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">974</span>                         <span class="n">p2cread</span><span class="p">,</span> <span class="n">p2cwrite</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">975</span>                         <span class="n">c2pread</span><span class="p">,</span> <span class="n">c2pwrite</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">976</span>                         <span class="n">errread</span><span class="p">,</span> <span class="n">errwrite</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">977</span>                         <span class="n">restore_signals</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">978</span>                         <span class="n">gid</span><span class="p">,</span> <span class="n">gids</span><span class="p">,</span> <span class="n">uid</span><span class="p">,</span> <span class="n">umask</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">979</span>                         <span class="n">start_new_session</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">980</span> <span class="k">except</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">981</span>     <span class="c1"># Cleanup if the child failed starting.</span>
-
-<span class="nn">File /usr/share/miniconda3/envs/quantecon/lib/python3.10/subprocess.py:1847,</span> in <span class="ni">Popen._execute_child</span><span class="nt">(self, args, executable, preexec_fn, close_fds, pass_fds, cwd, env, startupinfo, creationflags, shell, p2cread, p2cwrite, c2pread, c2pwrite, errread, errwrite, restore_signals, gid, gids, uid, umask, start_new_session)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1846</span>         <span class="n">err_msg</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">strerror</span><span class="p">(</span><span class="n">errno_num</span><span class="p">)</span>
-<span class="ne">-&gt; </span><span class="mi">1847</span>     <span class="k">raise</span> <span class="n">child_exception_type</span><span class="p">(</span><span class="n">errno_num</span><span class="p">,</span> <span class="n">err_msg</span><span class="p">,</span> <span class="n">err_filename</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1848</span> <span class="k">raise</span> <span class="n">child_exception_type</span><span class="p">(</span><span class="n">err_msg</span><span class="p">)</span>
-
-<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: PosixPath(&#39;dot&#39;)
-
-<span class="n">The</span> <span class="n">above</span> <span class="n">exception</span> <span class="n">was</span> <span class="n">the</span> <span class="n">direct</span> <span class="n">cause</span> <span class="n">of</span> <span class="n">the</span> <span class="n">following</span> <span class="n">exception</span><span class="p">:</span>
-
-<span class="ne">ExecutableNotFound</span><span class="g g-Whitespace">                        </span>Traceback (most recent call last)
-<span class="nn">File /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages/IPython/core/formatters.py:972,</span> in <span class="ni">MimeBundleFormatter.__call__</span><span class="nt">(self, obj, include, exclude)</span>
-<span class="g g-Whitespace">    </span><span class="mi">969</span>     <span class="n">method</span> <span class="o">=</span> <span class="n">get_real_method</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">print_method</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">971</span>     <span class="k">if</span> <span class="n">method</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">972</span>         <span class="k">return</span> <span class="n">method</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="n">include</span><span class="p">,</span> <span class="n">exclude</span><span class="o">=</span><span class="n">exclude</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">973</span>     <span class="k">return</span> <span class="kc">None</span>
-<span class="g g-Whitespace">    </span><span class="mi">974</span> <span class="k">else</span><span class="p">:</span>
-
-<span class="nn">File /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages/graphviz/jupyter_integration.py:98,</span> in <span class="ni">JupyterIntegration._repr_mimebundle_</span><span class="nt">(self, include, exclude, **_)</span>
-<span class="g g-Whitespace">     </span><span class="mi">96</span> <span class="n">include</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">include</span><span class="p">)</span> <span class="k">if</span> <span class="n">include</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_jupyter_mimetype</span><span class="p">}</span>
-<span class="g g-Whitespace">     </span><span class="mi">97</span> <span class="n">include</span> <span class="o">-=</span> <span class="nb">set</span><span class="p">(</span><span class="n">exclude</span> <span class="ow">or</span> <span class="p">[])</span>
-<span class="ne">---&gt; </span><span class="mi">98</span> <span class="k">return</span> <span class="p">{</span><span class="n">mimetype</span><span class="p">:</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method_name</span><span class="p">)()</span>
-<span class="nn">     99         for mimetype, method_name</span> in <span class="ni">MIME_TYPES.items</span><span class="nt">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">100</span>         <span class="k">if</span> <span class="n">mimetype</span> <span class="ow">in</span> <span class="n">include</span><span class="p">}</span>
-
-<span class="nn">File /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages/graphviz/jupyter_integration.py:98,</span> in <span class="ni">&lt;dictcomp&gt;</span><span class="nt">(.0)</span>
-<span class="g g-Whitespace">     </span><span class="mi">96</span> <span class="n">include</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">include</span><span class="p">)</span> <span class="k">if</span> <span class="n">include</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_jupyter_mimetype</span><span class="p">}</span>
-<span class="g g-Whitespace">     </span><span class="mi">97</span> <span class="n">include</span> <span class="o">-=</span> <span class="nb">set</span><span class="p">(</span><span class="n">exclude</span> <span class="ow">or</span> <span class="p">[])</span>
-<span class="ne">---&gt; </span><span class="mi">98</span> <span class="k">return</span> <span class="p">{</span><span class="n">mimetype</span><span class="p">:</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method_name</span><span class="p">)()</span>
-<span class="nn">     99         for mimetype, method_name</span> in <span class="ni">MIME_TYPES.items</span><span class="nt">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">100</span>         <span class="k">if</span> <span class="n">mimetype</span> <span class="ow">in</span> <span class="n">include</span><span class="p">}</span>
-
-<span class="nn">File /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages/graphviz/jupyter_integration.py:112,</span> in <span class="ni">JupyterIntegration._repr_image_svg_xml</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">110</span> <span class="k">def</span> <span class="nf">_repr_image_svg_xml</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">111</span>     <span class="sd">&quot;&quot;&quot;Return the rendered graph as SVG string.&quot;&quot;&quot;</span>
-<span class="ne">--&gt; </span><span class="mi">112</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">pipe</span><span class="p">(</span><span class="nb">format</span><span class="o">=</span><span class="s1">&#39;svg&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="n">SVG_ENCODING</span><span class="p">)</span>
-
-<span class="nn">File /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages/graphviz/piping.py:104,</span> in <span class="ni">Pipe.pipe</span><span class="nt">(self, format, renderer, formatter, neato_no_op, quiet, engine, encoding)</span>
-<span class="g g-Whitespace">     </span><span class="mi">55</span> <span class="k">def</span> <span class="nf">pipe</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">56</span>          <span class="nb">format</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">57</span>          <span class="n">renderer</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">61</span>          <span class="n">engine</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">62</span>          <span class="n">encoding</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">typing</span><span class="o">.</span><span class="n">Union</span><span class="p">[</span><span class="nb">bytes</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
-<span class="g g-Whitespace">     </span><span class="mi">63</span>     <span class="sd">&quot;&quot;&quot;Return the source piped through the Graphviz layout command.</span>
-<span class="g g-Whitespace">     </span><span class="mi">64</span><span class="sd"> </span>
-<span class="g g-Whitespace">     </span><span class="mi">65</span><span class="sd">     Args:</span>
-<span class="sd">   (...)</span>
-<span class="g g-Whitespace">    </span><span class="mi">102</span><span class="sd">         &#39;&lt;?xml version=&#39;</span>
-<span class="g g-Whitespace">    </span><span class="mi">103</span><span class="sd">     &quot;&quot;&quot;</span>
-<span class="ne">--&gt; </span><span class="mi">104</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pipe_legacy</span><span class="p">(</span><span class="nb">format</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">105</span>                              <span class="n">renderer</span><span class="o">=</span><span class="n">renderer</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">106</span>                              <span class="n">formatter</span><span class="o">=</span><span class="n">formatter</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">107</span>                              <span class="n">neato_no_op</span><span class="o">=</span><span class="n">neato_no_op</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">108</span>                              <span class="n">quiet</span><span class="o">=</span><span class="n">quiet</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">109</span>                              <span class="n">engine</span><span class="o">=</span><span class="n">engine</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">110</span>                              <span class="n">encoding</span><span class="o">=</span><span class="n">encoding</span><span class="p">)</span>
-
-<span class="nn">File /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages/graphviz/_tools.py:171,</span> in <span class="ni">deprecate_positional_args.&lt;locals&gt;.decorator.&lt;locals&gt;.wrapper</span><span class="nt">(*args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">162</span>     <span class="n">wanted</span> <span class="o">=</span> <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">=</span><span class="si">{</span><span class="n">value</span><span class="si">!r}</span><span class="s1">&#39;</span>
-<span class="nn">    163                        for name, value</span> in <span class="ni">deprecated.items</span><span class="nt">())</span>
-<span class="g g-Whitespace">    </span><span class="mi">164</span>     <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The signature of </span><span class="si">{</span><span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s1"> will be reduced&#39;</span>
-<span class="g g-Whitespace">    </span><span class="mi">165</span>                   <span class="sa">f</span><span class="s1">&#39; to </span><span class="si">{</span><span class="n">supported_number</span><span class="si">}</span><span class="s1"> positional args&#39;</span>
-<span class="g g-Whitespace">    </span><span class="mi">166</span>                   <span class="sa">f</span><span class="s1">&#39; </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">supported</span><span class="p">)</span><span class="si">}</span><span class="s1">: pass </span><span class="si">{</span><span class="n">wanted</span><span class="si">}</span><span class="s1">&#39;</span>
-<span class="g g-Whitespace">    </span><span class="mi">167</span>                   <span class="s1">&#39; as keyword arg(s)&#39;</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">168</span>                   <span class="n">stacklevel</span><span class="o">=</span><span class="n">stacklevel</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">169</span>                   <span class="n">category</span><span class="o">=</span><span class="n">category</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">171</span> <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
-<span class="nn">File /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages/graphviz/piping.py:121,</span> in <span class="ni">Pipe._pipe_legacy</span><span class="nt">(self, format, renderer, formatter, neato_no_op, quiet, engine, encoding)</span>
-<span class="g g-Whitespace">    </span><span class="mi">112</span> <span class="nd">@_tools</span><span class="o">.</span><span class="n">deprecate_positional_args</span><span class="p">(</span><span class="n">supported_number</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">113</span> <span class="k">def</span> <span class="nf">_pipe_legacy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">114</span>                  <span class="nb">format</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">119</span>                  <span class="n">engine</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">120</span>                  <span class="n">encoding</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">typing</span><span class="o">.</span><span class="n">Union</span><span class="p">[</span><span class="nb">bytes</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
-<span class="ne">--&gt; </span><span class="mi">121</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pipe_future</span><span class="p">(</span><span class="nb">format</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">122</span>                              <span class="n">renderer</span><span class="o">=</span><span class="n">renderer</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">123</span>                              <span class="n">formatter</span><span class="o">=</span><span class="n">formatter</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">124</span>                              <span class="n">neato_no_op</span><span class="o">=</span><span class="n">neato_no_op</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">125</span>                              <span class="n">quiet</span><span class="o">=</span><span class="n">quiet</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">126</span>                              <span class="n">engine</span><span class="o">=</span><span class="n">engine</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">127</span>                              <span class="n">encoding</span><span class="o">=</span><span class="n">encoding</span><span class="p">)</span>
-
-<span class="nn">File /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages/graphviz/piping.py:149,</span> in <span class="ni">Pipe._pipe_future</span><span class="nt">(self, format, renderer, formatter, neato_no_op, quiet, engine, encoding)</span>
-<span class="g g-Whitespace">    </span><span class="mi">146</span> <span class="k">if</span> <span class="n">encoding</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">147</span>     <span class="k">if</span> <span class="n">codecs</span><span class="o">.</span><span class="n">lookup</span><span class="p">(</span><span class="n">encoding</span><span class="p">)</span> <span class="ow">is</span> <span class="n">codecs</span><span class="o">.</span><span class="n">lookup</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">encoding</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">148</span>         <span class="c1"># common case: both stdin and stdout need the same encoding</span>
-<span class="ne">--&gt; </span><span class="mi">149</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pipe_lines_string</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="n">encoding</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">150</span>     <span class="k">try</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">151</span>         <span class="n">raw</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pipe_lines</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">input_encoding</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">encoding</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
-<span class="nn">File /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages/graphviz/backend/piping.py:212,</span> in <span class="ni">pipe_lines_string</span><span class="nt">(engine, format, input_lines, encoding, renderer, formatter, neato_no_op, quiet)</span>
-<span class="g g-Whitespace">    </span><span class="mi">206</span> <span class="n">cmd</span> <span class="o">=</span> <span class="n">dot_command</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="n">engine</span><span class="p">,</span> <span class="nb">format</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">207</span>                           <span class="n">renderer</span><span class="o">=</span><span class="n">renderer</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">208</span>                           <span class="n">formatter</span><span class="o">=</span><span class="n">formatter</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">209</span>                           <span class="n">neato_no_op</span><span class="o">=</span><span class="n">neato_no_op</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">210</span> <span class="n">kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;input_lines&#39;</span><span class="p">:</span> <span class="n">input_lines</span><span class="p">,</span> <span class="s1">&#39;encoding&#39;</span><span class="p">:</span> <span class="n">encoding</span><span class="p">}</span>
-<span class="ne">--&gt; </span><span class="mi">212</span> <span class="n">proc</span> <span class="o">=</span> <span class="n">execute</span><span class="o">.</span><span class="n">run_check</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">capture_output</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">quiet</span><span class="o">=</span><span class="n">quiet</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">213</span> <span class="k">return</span> <span class="n">proc</span><span class="o">.</span><span class="n">stdout</span>
-
-<span class="nn">File /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages/graphviz/backend/execute.py:84,</span> in <span class="ni">run_check</span><span class="nt">(cmd, input_lines, encoding, quiet, **kwargs)</span>
-<span class="g g-Whitespace">     </span><span class="mi">82</span> <span class="k">except</span> <span class="ne">OSError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">83</span>     <span class="k">if</span> <span class="n">e</span><span class="o">.</span><span class="n">errno</span> <span class="o">==</span> <span class="n">errno</span><span class="o">.</span><span class="n">ENOENT</span><span class="p">:</span>
-<span class="ne">---&gt; </span><span class="mi">84</span>         <span class="k">raise</span> <span class="n">ExecutableNotFound</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">e</span>
-<span class="g g-Whitespace">     </span><span class="mi">85</span>     <span class="k">raise</span>
-<span class="g g-Whitespace">     </span><span class="mi">87</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">quiet</span> <span class="ow">and</span> <span class="n">proc</span><span class="o">.</span><span class="n">stderr</span><span class="p">:</span>
-
-<span class="ne">ExecutableNotFound</span>: failed to execute PosixPath(&#39;dot&#39;), make sure the Graphviz executables are on your systems&#39; PATH
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;graphviz.graphs.Digraph at 0x7f43ff8b2650&gt;
-</pre></div>
+<a class="reference internal image-reference" href="_images/e84a056cce2eca81f92de404516a7868c6fefd28477d4535b2fef15977e10baf.svg"><img alt="_images/e84a056cce2eca81f92de404516a7868c6fefd28477d4535b2fef15977e10baf.svg" src="_images/e84a056cce2eca81f92de404516a7868c6fefd28477d4535b2fef15977e10baf.svg" width="80%" /></a>
 </div>
 </div>
-</div>
+</section>
+<section id="dynamics">
+<h2><span class="section-number">27.3. </span>Dynamics<a class="headerlink" href="#dynamics" title="Permalink to this heading">#</a></h2>
 <p>Let <span class="math notranslate nohighlight">\(e_t\)</span> and <span class="math notranslate nohighlight">\(u_t\)</span> be the number of employed and unemployed workers at time <span class="math notranslate nohighlight">\(t\)</span> respectively.</p>
 <p>The total population of workers is <span class="math notranslate nohighlight">\(n_t = e_t + u_t\)</span>.</p>
-<p>The number of unemployed and employed workers thus evolve according to:</p>
+<p>The number of unemployed and employed workers thus evolves according to:</p>
 <div class="math notranslate nohighlight" id="equation-lake-model">
-<span class="eqno">(24.1)<a class="headerlink" href="#equation-lake-model" title="Permalink to this equation">#</a></span>\[\begin{split}\begin{aligned}
-    u_{t+1} = (1-d)(1-\lambda)u_t + \alpha(1-d)e_t + bn_t = ((1-d)(1-\lambda) +&amp; b)u_t + (\alpha(1-d) + b)e_t \\
-    e_{t+1} = (1-d)\lambda u_t + (1 - \alpha)(1-d)e_t&amp;
+<span class="eqno">(27.1)<a class="headerlink" href="#equation-lake-model" title="Permalink to this equation">#</a></span>\[\begin{split}\begin{aligned}
+    u_{t+1} &amp;= (1-d)(1-\lambda)u_t + \alpha(1-d)e_t + bn_t \\
+    &amp;= ((1-d)(1-\lambda) + b)u_t + (\alpha(1-d) + b)e_t \\
+    e_{t+1} &amp;= (1-d)\lambda u_t + (1 - \alpha)(1-d)e_t
 \end{aligned}\end{split}\]</div>
-<p>We can arrange <a class="reference internal" href="#equation-lake-model">(24.1)</a> as a linear system of equations in matrix form <span class="math notranslate nohighlight">\(x_{t+1} = Ax_t\)</span> such that:</p>
+<p>We can arrange <a class="reference internal" href="#equation-lake-model">(27.1)</a> as a linear system of equations in matrix form <span class="math notranslate nohighlight">\(x_{t+1} = Ax_t\)</span> where</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 x_{t+1} =
@@ -435,17 +325,18 @@ x_{t+1} =
     u_{t+1} \\
     e_{t+1}
 \end{bmatrix}
-, \; A =
+\quad
+A =
 \begin{bmatrix}
     (1-d)(1-\lambda) + b &amp; \alpha(1-d) + b \\
     (1-d)\lambda &amp; (1 - \alpha)(1-d)
 \end{bmatrix}
-\; \text{and} \;
+\quad \text{and} \quad
 x_t =
 \begin{bmatrix}
     u_t \\
     e_t
-\end{bmatrix}
+\end{bmatrix}.
 \end{split}\]</div>
 <p>Suppose at <span class="math notranslate nohighlight">\(t=0\)</span> we have <span class="math notranslate nohighlight">\(x_0 = \begin{bmatrix} u_0 &amp; e_0 \end{bmatrix}^\top\)</span>.</p>
 <p>Then, <span class="math notranslate nohighlight">\(x_1=Ax_0\)</span>, <span class="math notranslate nohighlight">\(x_2=Ax_1=A^2x_0\)</span> and thus <span class="math notranslate nohighlight">\(x_t = A^tx_0\)</span>.</p>
@@ -453,16 +344,9 @@ x_t =
 <p>We are interested in how <span class="math notranslate nohighlight">\(u_t\)</span> and <span class="math notranslate nohighlight">\(e_t\)</span> evolve over time.</p>
 <p>What long-run unemployment rate and employment rate should we expect?</p>
 <p>Do long-run outcomes depend on the initial values <span class="math notranslate nohighlight">\((u_0, e_o)\)</span>?</p>
+<section id="visualising-the-long-run-outcomes">
+<h3><span class="section-number">27.3.1. </span>Visualising the long-run outcomes<a class="headerlink" href="#visualising-the-long-run-outcomes" title="Permalink to this heading">#</a></h3>
 <p>Let us first plot the time series of unemployment <span class="math notranslate nohighlight">\(u_t\)</span>, employment <span class="math notranslate nohighlight">\(e_t\)</span>, and labor force <span class="math notranslate nohighlight">\(n_t\)</span>.</p>
-<p>We will use the following imports.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-</pre></div>
-</div>
-</div>
-</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">LakeModel</span><span class="p">:</span>
@@ -557,25 +441,34 @@ x_t =
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/4794673f5e290058f2d3993f58be600719d0435ea1f0d14a28302ce054dbfb4c.png" src="_images/4794673f5e290058f2d3993f58be600719d0435ea1f0d14a28302ce054dbfb4c.png" />
+<a class="reference internal image-reference" href="_images/4794673f5e290058f2d3993f58be600719d0435ea1f0d14a28302ce054dbfb4c.png"><img alt="_images/4794673f5e290058f2d3993f58be600719d0435ea1f0d14a28302ce054dbfb4c.png" src="_images/4794673f5e290058f2d3993f58be600719d0435ea1f0d14a28302ce054dbfb4c.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>Not surprisingly, we observe that labor force <span class="math notranslate nohighlight">\(n_t\)</span> increases at a constant rate.</p>
-<p>This conincides with the fact there is only one inflow source (new entrants pool) to unemployment and employment pools.</p>
+<p>This coincides with the fact there is only one inflow source (new entrants pool) to unemployment and employment pools.</p>
 <p>The inflow and outflow of labor market system
 is determined by constant exit rate and entry rate of labor market in the long run.</p>
 <p>In detail, let <span class="math notranslate nohighlight">\(\mathbb{1}=[1, 1]^\top\)</span> be a vector of ones.</p>
 <p>Observe that</p>
 <div class="math notranslate nohighlight">
-\[
-    n_{t+1} = u_{t+1} + e_{t+1} =  \mathbb{1}^\top x_t = \mathbb{1}^\top A x_t = (1 + b - d) (u_t + e_t)  = (1 + b - d) n_t.
-\]</div>
+\[\begin{split}
+    \begin{aligned}
+    n_{t+1} &amp;= u_{t+1} + e_{t+1} \\
+    &amp;= \mathbb{1}^\top x_{t+1} \\
+    &amp;= \mathbb{1}^\top A x_t \\
+    &amp;= (1 + b - d) (u_t + e_t) \\
+    &amp;= (1 + b - d) n_t.
+    \end{aligned}
+\end{split}\]</div>
 <p>Hence, the growth rate of <span class="math notranslate nohighlight">\(n_t\)</span> is fixed at <span class="math notranslate nohighlight">\(1 + b - d\)</span>.</p>
 <p>Moreover, the times series of unemployment and employment seems to grow at some stable rates in the long run.</p>
-<p>Since by intuition if we consider unemployment pool and employment pool as a closed system, the growth should be similar the labor force.</p>
+</section>
+<section id="the-application-of-erron-frobenius-theorem">
+<h3><span class="section-number">27.3.2. </span>The application of erron-Frobenius theorem<a class="headerlink" href="#the-application-of-erron-frobenius-theorem" title="Permalink to this heading">#</a></h3>
+<p>Since by intuition if we consider unemployment pool and employment pool as a closed system, the growth should be similar to the labor force.</p>
 <p>We next ask whether the long run growth rates of <span class="math notranslate nohighlight">\(e_t\)</span> and <span class="math notranslate nohighlight">\(u_t\)</span>
 also dominated by <span class="math notranslate nohighlight">\(1+b-d\)</span> as labor force.</p>
-<p>The answer will be clearer if we appeal to Perron-Frobenius theorem.</p>
+<p>The answer will be clearer if we appeal to <a class="reference internal" href="eigen_II.html#perron-frobe"><span class="std std-ref">Perron-Frobenius theorem</span></a>.</p>
 <p>The importance of the Perron-Frobenius theorem stems from the fact that
 firstly in the real world most matrices we encounter are nonnegative matrices.</p>
 <p>Secondly, many important models are simply linear iterative models that
@@ -583,6 +476,8 @@ begin with an initial condition <span class="math notranslate nohighlight">\(x_0
 <span class="math notranslate nohighlight">\(x_{t+1} = Ax_t\)</span> or in short <span class="math notranslate nohighlight">\(x_t = A^tx_0\)</span>.</p>
 <p>This theorem helps characterise the dominant eigenvalue <span class="math notranslate nohighlight">\(r(A)\)</span> which
 determines the behavior of this iterative process.</p>
+<section id="dominant-eigenvector">
+<h4><span class="section-number">27.3.2.1. </span>Dominant eigenvector<a class="headerlink" href="#dominant-eigenvector" title="Permalink to this heading">#</a></h4>
 <p>We now illustrate the power of the Perron-Frobenius theorem by showing how it
 helps us to analyze the lake model.</p>
 <p>Since <span class="math notranslate nohighlight">\(A\)</span> is a nonnegative and irreducible matrix, the Perron-Frobenius theorem implies that:</p>
@@ -594,7 +489,7 @@ helps us to analyze the lake model.</p>
     r(A) := \max\{|\lambda|: \lambda \text{ is an eigenvalue of } A \}
 \]</div>
 <ul class="simple">
-<li><p>any other eigenvalue <span class="math notranslate nohighlight">\(\lambda\)</span> in absolue value is strictly smaller than <span class="math notranslate nohighlight">\(r(A)\)</span>: <span class="math notranslate nohighlight">\(|\lambda|&lt; r(A)\)</span>,</p></li>
+<li><p>any other eigenvalue <span class="math notranslate nohighlight">\(\lambda\)</span> in absolute value is strictly smaller than <span class="math notranslate nohighlight">\(r(A)\)</span>: <span class="math notranslate nohighlight">\(|\lambda|&lt; r(A)\)</span>,</p></li>
 <li><p>there exist unique and everywhere positive right eigenvector <span class="math notranslate nohighlight">\(\phi\)</span> (column vector) and left eigenvector <span class="math notranslate nohighlight">\(\psi\)</span> (row vector):</p></li>
 </ul>
 <div class="math notranslate nohighlight">
@@ -608,18 +503,18 @@ helps us to analyze the lake model.</p>
 \[
     r(A)^{-t} A^t \to \phi \psi
 \]</div>
-<p>The last statement implies that the magnitude of <span class="math notranslate nohighlight">\(A^t\)</span> is identical to the magnitude of <span class="math notranslate nohighlight">\(r(A)^t\)</span> in the long run, where <span class="math notranslate nohighlight">\(r(A)\)</span> can be considered as the dominated eigenvalue in this lecture.</p>
+<p>The last statement implies that the magnitude of <span class="math notranslate nohighlight">\(A^t\)</span> is identical to the magnitude of <span class="math notranslate nohighlight">\(r(A)^t\)</span> in the long run, where <span class="math notranslate nohighlight">\(r(A)\)</span> can be considered as the dominant eigenvalue in this lecture.</p>
 <p>Therefore, the magnitude <span class="math notranslate nohighlight">\(x_t = A^t x_0\)</span> is also dominated by <span class="math notranslate nohighlight">\(r(A)^t\)</span> in the long run.</p>
 <p>Recall that the spectral radius is bounded by column sums: for <span class="math notranslate nohighlight">\(A \geq 0\)</span>, we have</p>
 <div class="math notranslate nohighlight" id="equation-pf-bounds">
-<span class="eqno">(24.2)<a class="headerlink" href="#equation-pf-bounds" title="Permalink to this equation">#</a></span>\[\min_j colsum_j (A) \leq r(A) \leq \max_j colsum_j (A)\]</div>
-<p>Note that <span class="math notranslate nohighlight">\(colsum_j(A) = 1 + b - d\)</span> for <span class="math notranslate nohighlight">\(j=1,2\)</span> and by <a class="reference internal" href="#equation-pf-bounds">(24.2)</a> we can thus conclude that the dominant eigenvalue
+<span class="eqno">(27.2)<a class="headerlink" href="#equation-pf-bounds" title="Permalink to this equation">#</a></span>\[\min_j \text{colsum}_j (A) \leq r(A) \leq \max_j \text{colsum}_j (A)\]</div>
+<p>Note that <span class="math notranslate nohighlight">\(\text{colsum}_j(A) = 1 + b - d\)</span> for <span class="math notranslate nohighlight">\(j=1,2\)</span> and by <a class="reference internal" href="#equation-pf-bounds">(27.2)</a> we can thus conclude that the dominant eigenvalue
 is <span class="math notranslate nohighlight">\(r(A) = 1 + b - d\)</span>.</p>
 <p>Denote <span class="math notranslate nohighlight">\(g = b - d\)</span> as the overall growth rate of the total labor force, so that <span class="math notranslate nohighlight">\(r(A) = 1 + g\)</span>.</p>
 <p>The Perron-Frobenius implies that there is a unique positive eigenvector <span class="math notranslate nohighlight">\(\bar{x} = \begin{bmatrix} \bar{u} \\ \bar{e} \end{bmatrix}\)</span>
 such that <span class="math notranslate nohighlight">\(A\bar{x} = r(A)\bar{x}\)</span> and <span class="math notranslate nohighlight">\(\begin{bmatrix} 1 &amp; 1 \end{bmatrix} \bar{x} = 1\)</span>:</p>
 <div class="math notranslate nohighlight" id="equation-steady-x">
-<span class="eqno">(24.3)<a class="headerlink" href="#equation-steady-x" title="Permalink to this equation">#</a></span>\[\begin{split}\begin{aligned}
+<span class="eqno">(27.3)<a class="headerlink" href="#equation-steady-x" title="Permalink to this equation">#</a></span>\[\begin{split}\begin{aligned}
     \bar{u} &amp; = \frac{b + \alpha (1-d)}{b + (\alpha+\lambda)(1-d)} \\
     \bar{e} &amp; = \frac{\lambda(1-d)}{b + (\alpha+\lambda)(1-d)}
 \end{aligned}\end{split}\]</div>
@@ -710,7 +605,7 @@ such that <span class="math notranslate nohighlight">\(A\bar{x} = r(A)\bar{x}\)<
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/111533dd163bd0f89a0821d854481b682fe6c8f1986cb8c88875fa32dcc26ac4.png" src="_images/111533dd163bd0f89a0821d854481b682fe6c8f1986cb8c88875fa32dcc26ac4.png" />
+<a class="reference internal image-reference" href="_images/111533dd163bd0f89a0821d854481b682fe6c8f1986cb8c88875fa32dcc26ac4.png"><img alt="_images/111533dd163bd0f89a0821d854481b682fe6c8f1986cb8c88875fa32dcc26ac4.png" src="_images/111533dd163bd0f89a0821d854481b682fe6c8f1986cb8c88875fa32dcc26ac4.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>Since <span class="math notranslate nohighlight">\(\bar{x}\)</span> is an eigenvector corresponding to the eigenvalue <span class="math notranslate nohighlight">\(r(A)\)</span>, all the vectors in the set
@@ -719,8 +614,11 @@ to <span class="math notranslate nohighlight">\(r(A)\)</span>.</p>
 <p>This set <span class="math notranslate nohighlight">\(D\)</span> is represented by a dashed line in the above figure.</p>
 <p>The graph illustrates that for two distinct initial conditions <span class="math notranslate nohighlight">\(x_0\)</span> the sequences of iterates <span class="math notranslate nohighlight">\((A^t x_0)_{t \geq 0}\)</span> move towards <span class="math notranslate nohighlight">\(D\)</span> over time.</p>
 <p>This suggests that all such sequences share strong similarities in the long run, determined by the dominant eigenvector <span class="math notranslate nohighlight">\(\bar{x}\)</span>.</p>
+</section>
+<section id="negative-growth-rate">
+<h4><span class="section-number">27.3.2.2. </span>Negative growth rate<a class="headerlink" href="#negative-growth-rate" title="Permalink to this heading">#</a></h4>
 <p>In the example illustrated above we considered parameters such that overall growth rate of the labor force <span class="math notranslate nohighlight">\(g&gt;0\)</span>.</p>
-<p>Suppose now we are faced with a situation where the <span class="math notranslate nohighlight">\(g&lt;0\)</span>, i.e, negative growth in the labor force.</p>
+<p>Suppose now we are faced with a situation where the <span class="math notranslate nohighlight">\(g&lt;0\)</span>, i.e., negative growth in the labor force.</p>
 <p>This means that <span class="math notranslate nohighlight">\(b-d&lt;0\)</span>, i.e., workers exit the market faster than they enter.</p>
 <p>What would the behavior of the iterative sequence <span class="math notranslate nohighlight">\(x_{t+1} = Ax_t\)</span> be now?</p>
 <p>This is visualised below.</p>
@@ -732,32 +630,40 @@ to <span class="math notranslate nohighlight">\(r(A)\)</span>.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/9a9bb12d80f4ecb8efd73cde4768a19e2a1d0121882eb2814c420cd816cfb6b5.png" src="_images/9a9bb12d80f4ecb8efd73cde4768a19e2a1d0121882eb2814c420cd816cfb6b5.png" />
+<a class="reference internal image-reference" href="_images/9a9bb12d80f4ecb8efd73cde4768a19e2a1d0121882eb2814c420cd816cfb6b5.png"><img alt="_images/9a9bb12d80f4ecb8efd73cde4768a19e2a1d0121882eb2814c420cd816cfb6b5.png" src="_images/9a9bb12d80f4ecb8efd73cde4768a19e2a1d0121882eb2814c420cd816cfb6b5.png" style="width: 80%;" /></a>
 </div>
 </div>
-<p>Thus, while the sequence of iterates still move towards the dominant eigenvector <span class="math notranslate nohighlight">\(\bar{x}\)</span>, in this case
+<p>Thus, while the sequence of iterates still moves towards the dominant eigenvector <span class="math notranslate nohighlight">\(\bar{x}\)</span>, in this case
 they converge to the origin.</p>
 <p>This is a result of the fact that <span class="math notranslate nohighlight">\(r(A)&lt;1\)</span>, which ensures that the iterative sequence <span class="math notranslate nohighlight">\((A^t x_0)_{t \geq 0}\)</span> will converge
 to some point, in this case to <span class="math notranslate nohighlight">\((0,0)\)</span>.</p>
-<p>This leads us into the next result.</p>
+<p>This leads us to the next result.</p>
+</section>
+</section>
+<section id="properties">
+<h3><span class="section-number">27.3.3. </span>Properties<a class="headerlink" href="#properties" title="Permalink to this heading">#</a></h3>
 <p>Since the column sums of <span class="math notranslate nohighlight">\(A\)</span> are <span class="math notranslate nohighlight">\(r(A)=1\)</span>, the left eigenvector is <span class="math notranslate nohighlight">\(\mathbb{1}^\top=[1, 1]\)</span>.</p>
 <p>Perron-Frobenius theory implies that</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-r(A)^{-t} A^{t} \approx \bar{x} \mathbb{1}^\top = \begin{pmatrix} \bar{u} &amp; \bar{u} \\ \bar{e} &amp; \bar{e} \end{pmatrix}.
+r(A)^{-t} A^{t} \approx \bar{x} \mathbb{1}^\top = \begin{bmatrix} \bar{u} &amp; \bar{u} \\ \bar{e} &amp; \bar{e} \end{bmatrix}.
 \end{split}\]</div>
 <p>As a result, for any <span class="math notranslate nohighlight">\(x_0 = (u_0, e_0)^\top\)</span>, we have</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-x_t= A^t x_0 \approx r(A)^t \begin{pmatrix} \bar{u} &amp; \bar{u} \\ \bar{e} &amp; \bar{e} \end{pmatrix} \begin{pmatrix}u_0 \\ e_0 \end{pmatrix}
-= (1+g)^t(u_0 + e_0) \begin{pmatrix}\bar{u} \\ \bar{e} \end{pmatrix} = (1 + g)^t n_0 \bar{x} = n_t \bar{x}.
+\begin{aligned}
+x_t = A^t x_0 &amp;\approx r(A)^t \begin{bmatrix} \bar{u} &amp; \bar{u} \\ \bar{e} &amp; \bar{e} \end{bmatrix} \begin{bmatrix}u_0 \\ e_0 \end{bmatrix} \\
+&amp;= (1+g)^t(u_0 + e_0) \begin{bmatrix}\bar{u} \\ \bar{e} \end{bmatrix} \\
+&amp;= (1 + g)^t n_0 \bar{x} \\
+&amp;= n_t \bar{x}.
+\end{aligned}
 \end{split}\]</div>
 <p>as <span class="math notranslate nohighlight">\(t\)</span> is large enough.</p>
 <p>We see that the growth of <span class="math notranslate nohighlight">\(u_t\)</span> and <span class="math notranslate nohighlight">\(e_t\)</span> also dominated by <span class="math notranslate nohighlight">\(r(A) = 1+g\)</span> in the long run: <span class="math notranslate nohighlight">\(x_t\)</span> grows along <span class="math notranslate nohighlight">\(D\)</span> as <span class="math notranslate nohighlight">\(r(A) &gt; 1\)</span> and converges to <span class="math notranslate nohighlight">\((0, 0)\)</span> as <span class="math notranslate nohighlight">\(r(A) &lt; 1\)</span>.</p>
-<p>Moreover, the long-run uneumploment and employment are steady fractions of <span class="math notranslate nohighlight">\(n_t\)</span>.</p>
+<p>Moreover, the long-run unemployment and employment are steady fractions of <span class="math notranslate nohighlight">\(n_t\)</span>.</p>
 <p>The latter implies that <span class="math notranslate nohighlight">\(\bar{u}\)</span> and <span class="math notranslate nohighlight">\(\bar{e}\)</span> are long-run unemployment rate and employment rate, respectively.</p>
 <p>In detail, we have the unemployment rates and employment rates: <span class="math notranslate nohighlight">\(x_t / n_t = A^t n_0 / n_t \to \bar{x}\)</span> as <span class="math notranslate nohighlight">\(t \to \infty\)</span>.</p>
-<p>To illustate the dynamics of the rates, let <span class="math notranslate nohighlight">\(\hat{A} := A / (1+g)\)</span> be the transition matrix of <span class="math notranslate nohighlight">\(r_t := x_t/ n_t\)</span>.</p>
+<p>To illustrate the dynamics of the rates, let <span class="math notranslate nohighlight">\(\hat{A} := A / (1+g)\)</span> be the transition matrix of <span class="math notranslate nohighlight">\(r_t := x_t/ n_t\)</span>.</p>
 <p>The dynamics of the rates follow</p>
 <div class="math notranslate nohighlight">
 \[
@@ -766,8 +672,11 @@ r_{t+1} = \frac{x_{t+1}}{n_{t+1}} = \frac{x_{t+1}}{(1+g) n_{t}} = \frac{A x_t}{(
 \]</div>
 <p>Observe that the column sums of <span class="math notranslate nohighlight">\(\hat{A}\)</span> are all one so that <span class="math notranslate nohighlight">\(r(\hat{A})=1\)</span>.</p>
 <p>One can check that <span class="math notranslate nohighlight">\(\bar{x}\)</span> is also the right eigenvector of <span class="math notranslate nohighlight">\(\hat{A}\)</span> corresponding to <span class="math notranslate nohighlight">\(r(\hat{A})\)</span> that <span class="math notranslate nohighlight">\(\bar{x} = \hat{A} \bar{x}\)</span>.</p>
-<p>Moreover, <span class="math notranslate nohighlight">\(\hat{A}^t r_0 \to \bar{x}\)</span> as <span class="math notranslate nohighlight">\(t \to \infty\)</span> for any <span class="math notranslate nohighlight">\(r_0 = x_0 / n_0\)</span>, since the above discussion implies
-$<span class="math notranslate nohighlight">\(r_t = \hat{A}^t r_0 = (1+g)^{-t} A^t r_0 = r(A)^{-t} A^t r_0 \to \begin{pmatrix} \bar{u} &amp; \bar{u} \\ \bar{e} &amp; \bar{e} \end{pmatrix} r_0 = \begin{pmatrix} \bar{u} \\  \bar{e} \end{pmatrix}. \)</span>$</p>
+<p>Moreover, <span class="math notranslate nohighlight">\(\hat{A}^t r_0 \to \bar{x}\)</span> as <span class="math notranslate nohighlight">\(t \to \infty\)</span> for any <span class="math notranslate nohighlight">\(r_0 = x_0 / n_0\)</span>, since the above discussion implies</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+r_t = \hat{A}^t r_0 = (1+g)^{-t} A^t r_0 = r(A)^{-t} A^t r_0 \to \begin{bmatrix} \bar{u} &amp; \bar{u} \\ \bar{e} &amp; \bar{e} \end{bmatrix} r_0 = \begin{bmatrix} \bar{u} \\  \bar{e} \end{bmatrix}. 
+\end{split}\]</div>
 <p>This is illustrated below.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -807,37 +716,47 @@ $<span class="math notranslate nohighlight">\(r_t = \hat{A}^t r_0 = (1+g)^{-t} A
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/3baec9d4ff1856a78c1dccb8fc0d3d2ff099116c8877d830ef12b4825c75e293.png" src="_images/3baec9d4ff1856a78c1dccb8fc0d3d2ff099116c8877d830ef12b4825c75e293.png" />
+<a class="reference internal image-reference" href="_images/3baec9d4ff1856a78c1dccb8fc0d3d2ff099116c8877d830ef12b4825c75e293.png"><img alt="_images/3baec9d4ff1856a78c1dccb8fc0d3d2ff099116c8877d830ef12b4825c75e293.png" src="_images/3baec9d4ff1856a78c1dccb8fc0d3d2ff099116c8877d830ef12b4825c75e293.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>To provide more intuition for convergence, we further explain the convergence below without the Perron-Frobenius theorem.</p>
 <p>Suppose that <span class="math notranslate nohighlight">\(\hat{A} = P D P^{-1}\)</span> is diagonalizable, where <span class="math notranslate nohighlight">\(P = [v_1, v_2]\)</span> consists of eigenvectors <span class="math notranslate nohighlight">\(v_1\)</span> and <span class="math notranslate nohighlight">\(v_2\)</span> of <span class="math notranslate nohighlight">\(\hat{A}\)</span>
 corresponding to eigenvalues <span class="math notranslate nohighlight">\(\gamma_1\)</span> and <span class="math notranslate nohighlight">\(\gamma_2\)</span> respectively,
-and <span class="math notranslate nohighlight">\(D = diag(\gamma_1, \gamma_2)\)</span>.</p>
+and <span class="math notranslate nohighlight">\(D = \text{diag}(\gamma_1, \gamma_2)\)</span>.</p>
 <p>Let <span class="math notranslate nohighlight">\(\gamma_1 = r(\hat{A})=1\)</span> and <span class="math notranslate nohighlight">\(|\gamma_2| &lt; \gamma_1\)</span>, so that the spectral radius is a dominant eigenvalue.</p>
-<p>The dynamics of the rates follows <span class="math notranslate nohighlight">\(r_{t+1} = \hat{A} r_t\)</span>, where <span class="math notranslate nohighlight">\(r_0\)</span> is a probability vector: <span class="math notranslate nohighlight">\(\sum_j r_{0,j}=1\)</span>.</p>
+<p>The dynamics of the rates follow <span class="math notranslate nohighlight">\(r_{t+1} = \hat{A} r_t\)</span>, where <span class="math notranslate nohighlight">\(r_0\)</span> is a probability vector: <span class="math notranslate nohighlight">\(\sum_j r_{0,j}=1\)</span>.</p>
 <p>Consider <span class="math notranslate nohighlight">\(z_t = P^{-1} r_t \)</span>.</p>
 <p>Then, we have <span class="math notranslate nohighlight">\(z_{t+1} = P^{-1} r_{t+1} = P^{-1} \hat{A} r_t = P^{-1} \hat{A} P z_t = D z_t\)</span>.</p>
 <p>Hence, we obtain <span class="math notranslate nohighlight">\(z_t = D^t z_0\)</span>, and for some <span class="math notranslate nohighlight">\(z_0 = (c_1, c_2)^\top\)</span> we have</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-r_t = P z_t = \begin{pmatrix} v_1 &amp; v_2 \end{pmatrix} \begin{pmatrix} \gamma_1^t &amp; 0 \\ 0 &amp; \gamma_2^t \end{pmatrix}
-\begin{pmatrix} c_1 \\ c_2 \end{pmatrix} = c_1 \gamma_1^t v_1 + c_2 \gamma_2^t v_2.
+r_t = P z_t = \begin{bmatrix} v_1 &amp; v_2 \end{bmatrix}  \begin{bmatrix} \gamma_1^t &amp; 0 \\ 0 &amp; \gamma_2^t \end{bmatrix}
+\begin{bmatrix} c_1 \\ c_2 \end{bmatrix} = c_1 \gamma_1^t v_1 + c_2 \gamma_2^t v_2.
 \end{split}\]</div>
 <p>Since <span class="math notranslate nohighlight">\(|\gamma_2| &lt; |\gamma_1|=1\)</span>, the second term in the right hand side converges to zero.</p>
 <p>Therefore, the convergence follows <span class="math notranslate nohighlight">\(r_t \to c_1 v_1\)</span>.</p>
 <p>Since the column sums of <span class="math notranslate nohighlight">\(\hat{A}\)</span> are one and <span class="math notranslate nohighlight">\(r_0\)</span> is a probability vector, <span class="math notranslate nohighlight">\(r_t\)</span> must be a probability vector.</p>
 <p>In this case, <span class="math notranslate nohighlight">\(c_1 v_1\)</span> must be a normalized eigenvector, so <span class="math notranslate nohighlight">\(c_1 v_1 = \bar{x}\)</span> and then <span class="math notranslate nohighlight">\(r_t \to \bar{x}\)</span>.</p>
+</section>
+</section>
 <section id="exercise">
-<h2><span class="section-number">24.1. </span>Exercise<a class="headerlink" href="#exercise" title="Permalink to this heading">#</a></h2>
-<p>:label: lake_model_ex1</p>
-<p>How do the long-run unemployment rate and employment rate elvove if there is an increase in the separation rate <span class="math notranslate nohighlight">\(\alpha\)</span>
+<h2><span class="section-number">27.4. </span>Exercise<a class="headerlink" href="#exercise" title="Permalink to this heading">#</a></h2>
+<div class="exercise admonition" id="lake_model_ex1">
+
+<p class="admonition-title"><span class="caption-number">Exercise 27.1 </span> (Evolution of unemployment and employment rate)</p>
+<section id="exercise-content">
+<p>How do the long-run unemployment rate and employment rate evolve if there is an increase in the separation rate <span class="math notranslate nohighlight">\(\alpha\)</span>
 or a decrease in job finding rate <span class="math notranslate nohighlight">\(\lambda\)</span>?</p>
 <p>Is the result compatible with your intuition?</p>
 <p>Plot the graph to illustrate how the line <span class="math notranslate nohighlight">\(D := \{ x \in \mathbb{R}^2 : x = \alpha \bar{x} \; \text{for some} \; \alpha &gt;0 \}\)</span>
 shifts in the unemployment-employment space.</p>
-<p>:class: dropdown</p>
-<p>Eq. <a class="reference internal" href="#equation-steady-x">(24.3)</a> implies that the long-run unemployment rate will increase, and the employment rate will decrease
+</section>
+</div>
+<div class="solution dropdown admonition" id="lake_model-solution-1">
+
+<p class="admonition-title">Solution to<a class="reference internal" href="#lake_model_ex1"> Exercise 27.1 (Evolution of unemployment and employment rate)</a></p>
+<section id="solution-content">
+<p>Eq. <a class="reference internal" href="#equation-steady-x">(27.3)</a> implies that the long-run unemployment rate will increase, and the employment rate will decrease
 if <span class="math notranslate nohighlight">\(\alpha\)</span> increases or <span class="math notranslate nohighlight">\(\lambda\)</span> decreases.</p>
 <p>Suppose first that <span class="math notranslate nohighlight">\(\alpha=0.01, \lambda=0.1, d=0.02, b=0.025\)</span>.
 Assume that <span class="math notranslate nohighlight">\(\alpha\)</span> increases to <span class="math notranslate nohighlight">\(0.04\)</span>.</p>
@@ -862,8 +781,10 @@ the fraction of unemployment rises as the separation rate increases.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/8c1025433aa4908c8b36c36203878028537ec9df6b843780acfda015ddadfc83.png" src="_images/8c1025433aa4908c8b36c36203878028537ec9df6b843780acfda015ddadfc83.png" />
+<a class="reference internal image-reference" href="_images/8c1025433aa4908c8b36c36203878028537ec9df6b843780acfda015ddadfc83.png"><img alt="_images/8c1025433aa4908c8b36c36203878028537ec9df6b843780acfda015ddadfc83.png" src="_images/8c1025433aa4908c8b36c36203878028537ec9df6b843780acfda015ddadfc83.png" style="width: 80%;" /></a>
 </div>
+</div>
+</section>
 </div>
 </section>
 </section>
@@ -931,104 +852,82 @@ the fraction of unemployment rises as the separation rate increases.</p>
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
-  Supply and Demand
- </span>
-</p>
-<ul class="nav bd-sidenav nav sidenav_l1">
- <li class="toctree-l1">
-  <a class="reference internal" href="intro_supply_demand.html">
-   2. Introduction to Supply and Demand
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="supply_demand_multiple_goods.html">
-   3. Supply and Demand with Many Goods
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="supply_demand_heterogeneity.html">
-   4. Market Equilibrium with Heterogeneity
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="input_output.html">
-   5. Input-Output Models
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Data and Measurement
+  Economic Data
  </span>
 </p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="long_run_growth.html">
-   6. Long Run Growth
+   2. Long Run Growth
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="business_cycle.html">
-   7. Business Cycles
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="inflation_unemployment.html">
-   8. Inflation and Unemployment
+   3. Business Cycles
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="inequality.html">
-   9. Income and Wealth Inequality
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="distributions.html">
-   10. Distributions in Economics
+   4. Income and Wealth Inequality
   </a>
  </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
-  Useful Tools
+  Essential Tools
  </span>
 </p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
-  <a class="reference internal" href="geom_series.html">
-   11. Geometric Series for Elementary Economics
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="linear_equations.html">
-   12. Linear Equations and Matrix Algebra
+   5. Linear Equations and Matrix Algebra
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="eigen_I.html">
-   13. Eigenvalues and Eigenvectors
+   6. Eigenvalues and Eigenvectors
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro_supply_demand.html">
+   7. Introduction to Supply and Demand
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="geom_series.html">
+   8. Geometric Series for Elementary Economics
   </a>
  </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
-  Simulation
+  Probability and Distributions
  </span>
 </p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
+  <a class="reference internal" href="prob_dist.html">
+   9. Distributions and Probabilities
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="lln_clt.html">
-   14. LLN and CLT
+   10. LLN and CLT
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="monte_carlo.html">
-   15. Monte Carlo and Option Pricing
+   11. Monte Carlo and Option Pricing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="heavy_tails.html">
+   12. Heavy-Tailed Distributions
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="schelling.html">
-   16. Racial Segregation
+   13. Racial Segregation
   </a>
  </li>
 </ul>
@@ -1040,64 +939,37 @@ the fraction of unemployment rises as the separation rate increases.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="solow.html">
-   17. The Solow-Swan Growth Model
+   14. The Solow-Swan Growth Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="scalar_dynam.html">
-   18. Dynamics in One Dimension
+   15. Dynamics in One Dimension
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cobweb.html">
-   19. The Cobweb Model
+   16. The Cobweb Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="olg.html">
-   20. The Overlapping Generations Model
+   17. The Overlapping Generations Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="markov_chains_I.html">
-   21. Markov Chains: Basic Concepts and Stationarity
+   18. Markov Chains: Basic Concepts and Stationarity
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="markov_chains_II.html">
-   22. Markov Chains: Irreducibility and Ergodicity
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Modeling in Higher Dimensions
- </span>
-</p>
-<ul class="current nav bd-sidenav nav sidenav_l1">
- <li class="toctree-l1">
-  <a class="reference internal" href="eigen_II.html">
-   23. Theorems of Nonnegative Matrices and Eigenvalues
-  </a>
- </li>
- <li class="toctree-l1 current active active">
-  <a class="current reference internal" href="#">
-   24. A Lake Model of Employment
+   19. Markov Chains: Irreducibility and Ergodicity
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="asset_pricing.html">
-   25. Introduction to Asset Pricing
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="networks.html">
-   26. Networks
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="samuelson.html">
-   27. Multiplier Accelerator Model
+  <a class="reference internal" href="commod_price.html">
+   20. Commodity Prices
   </a>
  </li>
 </ul>
@@ -1109,22 +981,54 @@ the fraction of unemployment rises as the separation rate increases.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="lp_intro.html">
-   28. Linear Programming
+   21. Linear Programming
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="comparative_adv.html">
-   29. Comparative Advantage
+   22. Comparative Advantage
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="nonlinear.html">
-   30. Nonlinear Problems
+   23. Nonlinear Problems
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="short_path.html">
-   31. Shortest Paths
+   24. Shortest Paths
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Modeling in Higher Dimensions
+ </span>
+</p>
+<ul class="current nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="eigen_II.html">
+   25. Spectral Theory
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="input_output.html">
+   26. Input-Output Models
+  </a>
+ </li>
+ <li class="toctree-l1 current active active">
+  <a class="current reference internal" href="#">
+   27. A Lake Model of Employment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="asset_pricing.html">
+   28. Introduction to Asset Pricing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="networks.html">
+   29. Networks
   </a>
  </li>
 </ul>
@@ -1135,18 +1039,13 @@ the fraction of unemployment rises as the separation rate increases.</p>
 </p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
-  <a class="reference internal" href="markets_welfare.html">
-   32. Markets and Welfare
+  <a class="reference internal" href="supply_demand_multiple_goods.html">
+   30. Supply and Demand with Many Goods
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="risk.html">
-   33. Risk
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="uncertainty.html">
-   34. Uncertainty
+  <a class="reference internal" href="supply_demand_heterogeneity.html">
+   31. Market Equilibrium with Heterogeneity
   </a>
  </li>
 </ul>
@@ -1158,17 +1057,17 @@ the fraction of unemployment rises as the separation rate increases.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="simple_linear_regression.html">
-   35. Simple Linear Regression Model
+   32. Simple Linear Regression Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="lr_with_matrices.html">
-   36. Linear Regression with Matrices
+   33. Linear Regression with Matrices
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="mle.html">
-   37. Maximum Likelihood Estimation
+   34. Maximum Likelihood Estimation
   </a>
  </li>
 </ul>
@@ -1180,17 +1079,17 @@ the fraction of unemployment rises as the separation rate increases.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="troubleshooting.html">
-   38. Troubleshooting
+   35. Troubleshooting
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="zreferences.html">
-   39. References
+   36. References
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="status.html">
-   40. Execution Statistics
+   37. Execution Statistics
   </a>
  </li>
 </ul>

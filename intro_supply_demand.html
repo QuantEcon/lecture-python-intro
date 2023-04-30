@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>2. Introduction to Supply and Demand &#8212; An Introduction to Quantitative Economics and Finance</title>
+    <title>7. Introduction to Supply and Demand &#8212; An Introduction to Quantitative Economics and Finance</title>
     <script src="https://unpkg.com/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://unpkg.com/tippy.js@6.3.1/dist/tippy-bundle.umd.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
@@ -71,7 +71,7 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/quantecon-book-theme.279dae03c5caae754d20501e3fa00bbf.css" />
+    <link rel="stylesheet" type="text/css" href="_static/quantecon-book-theme.27f831372ca8a27cbff86bbb33459986.css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
@@ -114,8 +114,8 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="3. Supply and Demand with Many Goods" href="supply_demand_multiple_goods.html" />
-    <link rel="prev" title="1. About these Lectures" href="about.html" />
+    <link rel="next" title="8. Geometric Series for Elementary Economics" href="geom_series.html" />
+    <link rel="prev" title="6. Eigenvalues and Eigenvectors" href="eigen_I.html" />
 
 <!-- Normal Meta Tags -->
 <meta name="author" context="Thomas J. Sargent &amp; John Stachurski" />
@@ -163,14 +163,16 @@ const thebe_selector_output = ".output, .cell_output"
 
                         <nav id="bd-toc-nav" class="qe-page__toc-nav">
                             <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#outline">2.1. Outline</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#supply-and-demand">2.2. Supply and Demand</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#surpluses-and-welfare">2.2.1. Surpluses and Welfare</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#competitive-equilibrium">2.2.2. Competitive Equilibrium</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generalizations">2.2.3. Generalizations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#outline">7.1. Outline</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#supply-and-demand">7.2. Supply and Demand</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#consumer-surplus">7.2.1. Consumer Surplus</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#producer-surplus">7.2.2. Producer Surplus</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#social-welfare">7.2.3. Social Welfare</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#competitive-equilibrium">7.2.4. Competitive Equilibrium</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code">2.3. Code</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generalizations">7.3. Generalizations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">7.4. Exercises</a></li>
 </ul>
                             <p class="logo">
                                 
@@ -216,19 +218,14 @@ const thebe_selector_output = ".output, .cell_output"
                     <div>
                         
   <section class="tex2jax_ignore mathjax_ignore" id="introduction-to-supply-and-demand">
-<h1><span class="section-number">2. </span>Introduction to Supply and Demand<a class="headerlink" href="#introduction-to-supply-and-demand" title="Permalink to this heading">#</a></h1>
+<h1><span class="section-number">7. </span>Introduction to Supply and Demand<a class="headerlink" href="#introduction-to-supply-and-demand" title="Permalink to this heading">#</a></h1>
 <section id="outline">
-<h2><span class="section-number">2.1. </span>Outline<a class="headerlink" href="#outline" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">7.1. </span>Outline<a class="headerlink" href="#outline" title="Permalink to this heading">#</a></h2>
 <p>This lecture is about some models of equilibrium prices and quantities, one of
 the main topics of elementary microeconomics.</p>
 <p>Throughout the lecture, we focus on models with one good and one price.</p>
 <p>(<a class="reference internal" href="supply_demand_multiple_goods.html"><span class="doc">Later</span></a> we will investigate settings with
 many goods.)</p>
-<p>We shall describe two classic welfare theorems:</p>
-<ul class="simple">
-<li><p><strong>first welfare theorem:</strong> for a  given a distribution of wealth among consumers,  a competitive  equilibrium  allocation of goods solves a  social planning problem.</p></li>
-<li><p><strong>second welfare theorem:</strong> An allocation of goods to consumers that solves a social planning problem can be supported by a competitive equilibrium with an appropriate initial distribution of  wealth.</p></li>
-</ul>
 <p>Key infrastructure concepts that we’ll encounter in this lecture are</p>
 <ul class="simple">
 <li><p>inverse demand curves</p></li>
@@ -239,7 +236,21 @@ many goods.)</p>
 <li><p>social welfare as a sum of consumer and producer surpluses</p></li>
 <li><p>competitive equilibrium</p></li>
 </ul>
-<p>We will use the following imports.</p>
+<p>We will provide a version of the <a class="reference external" href="https://en.wikipedia.org/wiki/Fundamental_theorems_of_welfare_economics">first fundamental welfare theorem</a>, which was formulated by</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/L%C3%A9on_Walras">Leon Walras</a></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Francis_Ysidro_Edgeworth">Francis Ysidro Edgeworth</a></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Vilfredo_Pareto">Vilfredo Pareto</a></p></li>
+</ul>
+<p>Important extensions to the key ideas were obtained by</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Abba_P._Lerner">Abba Lerner</a></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Harold_Hotelling">Harold Hotelling</a></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Paul_Samuelson">Paul Samuelson</a></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Kenneth_Arrow">Kenneth Arrow</a></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/G%C3%A9rard_Debreu">Gerard Debreu</a></p></li>
+</ul>
+<p>In our exposition we will use the following imports.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -250,97 +261,28 @@ many goods.)</p>
 </div>
 </section>
 <section id="supply-and-demand">
-<h2><span class="section-number">2.2. </span>Supply and Demand<a class="headerlink" href="#supply-and-demand" title="Permalink to this heading">#</a></h2>
-<p>We study a market for a single good in which buyers and sellers exchange a  quantity <span class="math notranslate nohighlight">\(q\)</span> for a price <span class="math notranslate nohighlight">\(p\)</span>.</p>
-<p>Quantity <span class="math notranslate nohighlight">\(q\)</span> and price  <span class="math notranslate nohighlight">\(p\)</span> are  both scalars.</p>
+<h2><span class="section-number">7.2. </span>Supply and Demand<a class="headerlink" href="#supply-and-demand" title="Permalink to this heading">#</a></h2>
+<p>We study a market for a single good in which buyers and sellers exchange a quantity <span class="math notranslate nohighlight">\(q\)</span> for a price <span class="math notranslate nohighlight">\(p\)</span>.</p>
+<p>Quantity <span class="math notranslate nohighlight">\(q\)</span> and price <span class="math notranslate nohighlight">\(p\)</span> are  both scalars.</p>
 <p>We assume that inverse demand and supply curves for the good are:</p>
 <div class="math notranslate nohighlight">
 \[
-p = d_0 - d_1 q, \quad d_0, d_1 &gt; 0
+    p = d_0 - d_1 q, \quad d_0, d_1 &gt; 0
 \]</div>
 <div class="math notranslate nohighlight">
 \[
-p = s_0 + s_1 q , \quad s_0, s_1 &gt; 0
+    p = s_0 + s_1 q , \quad s_0, s_1 &gt; 0
 \]</div>
 <p>We call them inverse demand and supply curves because price is on the left side of the equation rather than on the right side as it would be in a direct demand or supply function.</p>
-<section id="surpluses-and-welfare">
-<h3><span class="section-number">2.2.1. </span>Surpluses and Welfare<a class="headerlink" href="#surpluses-and-welfare" title="Permalink to this heading">#</a></h3>
-<p>We define <strong>consumer surplus</strong> as the  area under an inverse demand curve minus <span class="math notranslate nohighlight">\(p q\)</span>:</p>
-<div class="math notranslate nohighlight">
-\[
-\int_0^q (d_0 - d_1 x) dx - pq = d_0 q -.5 d_1 q^2 - pq
-\]</div>
-<p>We define <strong>producer surplus</strong> as <span class="math notranslate nohighlight">\(p q\)</span> minus   the area under an inverse supply curve:</p>
-<div class="math notranslate nohighlight">
-\[
-p q - \int_0^q (s_0 + s_1 x) dx = pq - s_0 q - .5 s_1 q^2
-\]</div>
-<p>Sometimes economists measure social welfare by a <strong>welfare criterion</strong> that equals  consumer surplus plus producer surplus</p>
-<div class="math notranslate nohighlight">
-\[
-\int_0^q (d_0 - d_1 x) dx - \int_0^q (s_0 + s_1 x) dx  \equiv \textrm{Welf}
-\]</div>
-<p>or</p>
-<div class="math notranslate nohighlight">
-\[
-\textrm{Welf} = (d_0 - s_0) q - .5 (d_1 + s_1) q^2
-\]</div>
-<p>To compute a quantity that  maximizes  welfare criterion <span class="math notranslate nohighlight">\(\textrm{Welf}\)</span>, we differentiate <span class="math notranslate nohighlight">\(\textrm{Welf}\)</span> with respect to   <span class="math notranslate nohighlight">\(q\)</span> and then set the derivative to zero.</p>
-<p>We get</p>
-<div class="math notranslate nohighlight">
-\[
-\frac{d \textrm{Welf}}{d q} = d_0 - s_0 - (d_1 + s_1) q  = 0
-\]</div>
-<p>which implies</p>
-<div class="math notranslate nohighlight" id="equation-eq-old1">
-<span class="eqno">(2.1)<a class="headerlink" href="#equation-eq-old1" title="Permalink to this equation">#</a></span>\[
-q = \frac{ d_0 - s_0}{s_1 + d_1}
-\]</div>
-<p>Let’s remember the quantity <span class="math notranslate nohighlight">\(q\)</span> given by equation <a class="reference internal" href="#equation-eq-old1">(2.1)</a> that a social planner would choose to maximize consumer plus producer surplus.</p>
-<p>We’ll compare it to the quantity that emerges in a competitive  equilibrium
-equilibrium that equates supply to demand.</p>
-</section>
-<section id="competitive-equilibrium">
-<h3><span class="section-number">2.2.2. </span>Competitive Equilibrium<a class="headerlink" href="#competitive-equilibrium" title="Permalink to this heading">#</a></h3>
-<p>Instead of equating quantities supplied and demanded, we’ll can accomplish the same thing by equating demand price to supply price:</p>
-<div class="math notranslate nohighlight">
-\[
-p =  d_0 - d_1 q = s_0 + s_1 q ,
-\]</div>
-<p>It we solve the equation defined by the second equality in the above line for <span class="math notranslate nohighlight">\(q\)</span>, we obtain the
-competitive equilibrium quantity; it equals the same <span class="math notranslate nohighlight">\(q\)</span> given by equation  <a class="reference internal" href="#equation-eq-old1">(2.1)</a>.</p>
-<p>The outcome that the quantity determined by equation <a class="reference internal" href="#equation-eq-old1">(2.1)</a> equates
-supply to demand brings us a <strong>key finding:</strong></p>
-<ul class="simple">
-<li><p>a competitive equilibrium quantity maximizes our  welfare criterion</p></li>
-</ul>
-<p>It also brings  a useful  <strong>competitive equilibrium computation strategy:</strong></p>
-<ul class="simple">
-<li><p>after solving the welfare problem for an optimal  quantity, we can read a competitive equilibrium price from  either supply price or demand price at the  competitive equilibrium quantity</p></li>
-</ul>
-</section>
-<section id="generalizations">
-<h3><span class="section-number">2.2.3. </span>Generalizations<a class="headerlink" href="#generalizations" title="Permalink to this heading">#</a></h3>
-<p>In later lectures,  we’ll derive generalizations of the above demand and
-supply curves from other objects.</p>
-<p>Our generalizations will extend the preceding analysis of a market for a
-single good to the analysis of <span class="math notranslate nohighlight">\(n\)</span> simultaneous markets in <span class="math notranslate nohighlight">\(n\)</span> goods.</p>
-<p>In addition</p>
-<ul class="simple">
-<li><p>we’ll derive  <strong>demand curves</strong> from a consumer problem that maximizes a <strong>utility function</strong> subject to a <strong>budget constraint</strong>.</p></li>
-<li><p>we’ll derive  <strong>supply curves</strong> from the problem of a producer who is price taker and maximizes his profits minus total costs that are described by a  <strong>cost function</strong>.</p></li>
-</ul>
-</section>
-</section>
-<section id="code">
-<h2><span class="section-number">2.3. </span>Code<a class="headerlink" href="#code" title="Permalink to this heading">#</a></h2>
+<p>Here is a class that stores parameters for our single good market, as well as
+implementing the inverse demand and supply curves.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">SingleGoodMarket</span><span class="p">:</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Market</span><span class="p">:</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> 
         <span class="n">d_0</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>      <span class="c1"># demand intercept</span>
-        <span class="n">d_1</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>      <span class="c1"># demand slope</span>
+        <span class="n">d_1</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span>      <span class="c1"># demand slope</span>
         <span class="n">s_0</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>      <span class="c1"># supply intercept</span>
         <span class="n">s_1</span><span class="o">=</span><span class="mf">0.4</span><span class="p">):</span>     <span class="c1"># supply slope</span>
 
@@ -352,78 +294,531 @@ single good to the analysis of <span class="math notranslate nohighlight">\(n\)<
 
     <span class="k">def</span> <span class="nf">inverse_supply</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">q</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">s_0</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">s_1</span> <span class="o">*</span> <span class="n">q</span>
-
-    <span class="k">def</span> <span class="nf">equilibrium_quantity</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">d_0</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">s_0</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">d_1</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">s_1</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">equilibrium_price</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">q</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">equilibrium_quantity</span><span class="p">()</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">s_0</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">s_1</span> <span class="o">*</span> <span class="n">q</span>
 </pre></div>
 </div>
 </div>
 </div>
+<p>Let’s create an instance.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_supply_demand</span><span class="p">(</span><span class="n">market</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">market</span> <span class="o">=</span> <span class="n">Market</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here is a plot of these two functions using <code class="docutils literal notranslate"><span class="pre">market</span></code>.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">market</span> <span class="o">=</span> <span class="n">Market</span><span class="p">()</span>
 
+<span class="n">grid_min</span><span class="p">,</span> <span class="n">grid_max</span><span class="p">,</span> <span class="n">grid_size</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mi">200</span>
+<span class="n">q_grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">grid_min</span><span class="p">,</span> <span class="n">grid_max</span><span class="p">,</span> <span class="n">grid_size</span><span class="p">)</span>
+<span class="n">supply_curve</span> <span class="o">=</span> <span class="n">market</span><span class="o">.</span><span class="n">inverse_supply</span><span class="p">(</span><span class="n">q_grid</span><span class="p">)</span>
+<span class="n">demand_curve</span> <span class="o">=</span> <span class="n">market</span><span class="o">.</span><span class="n">inverse_demand</span><span class="p">(</span><span class="n">q_grid</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">q_grid</span><span class="p">,</span> <span class="n">supply_curve</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;supply&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">q_grid</span><span class="p">,</span> <span class="n">demand_curve</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;demand&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper center&#39;</span><span class="p">,</span> <span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;quantity&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;price&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/b69143db7721008349b41f252d65ff8c42a57d08248ac7eb650929640096d92d.png"><img alt="_images/b69143db7721008349b41f252d65ff8c42a57d08248ac7eb650929640096d92d.png" src="_images/b69143db7721008349b41f252d65ff8c42a57d08248ac7eb650929640096d92d.png" style="width: 80%;" /></a>
+</div>
+</div>
+<section id="consumer-surplus">
+<h3><span class="section-number">7.2.1. </span>Consumer Surplus<a class="headerlink" href="#consumer-surplus" title="Permalink to this heading">#</a></h3>
+<p>Let a quantity <span class="math notranslate nohighlight">\(q\)</span> be given and let <span class="math notranslate nohighlight">\(p := d_0 - d_1 q\)</span> be the
+corresponding price on the inverse demand curve.</p>
+<p>We define <strong>consumer surplus</strong> <span class="math notranslate nohighlight">\(S_c(q)\)</span> as the area under an inverse demand
+curve minus <span class="math notranslate nohighlight">\(p q\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+    S_c(q) := 
+    \int_0^{q} (d_0 - d_1 x) dx - p q 
+\]</div>
+<p>The next figure illustrates</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">q</span> <span class="o">=</span> <span class="mf">1.25</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">market</span><span class="o">.</span><span class="n">inverse_demand</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+<span class="n">ps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">q_grid</span><span class="p">)</span> <span class="o">*</span> <span class="n">p</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">q_grid</span><span class="p">,</span> <span class="n">demand_curve</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;demand&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">q_grid</span><span class="p">[</span><span class="n">q_grid</span> <span class="o">&lt;=</span> <span class="n">q</span><span class="p">],</span> 
+    <span class="n">demand_curve</span><span class="p">[</span><span class="n">q_grid</span><span class="o">&lt;=</span><span class="n">q</span><span class="p">],</span> 
+    <span class="n">ps</span><span class="p">[</span><span class="n">q_grid</span> <span class="o">&lt;=</span> <span class="n">q</span><span class="p">],</span> 
+    <span class="n">label</span><span class="o">=</span><span class="s1">&#39;consumer surplus&#39;</span><span class="p">,</span> 
+    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#EED1CF&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;dashed&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;dashed&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper center&#39;</span><span class="p">,</span> <span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">((</span><span class="n">q</span><span class="p">,))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">((</span><span class="s2">&quot;$q$&quot;</span><span class="p">,))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">((</span><span class="n">p</span><span class="p">,))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">((</span><span class="s2">&quot;$p$&quot;</span><span class="p">,))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;quantity&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;price&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/52ab72d3a0aec9c0ee8e2320d693c9bf6753e72d8f669ab077984957894585ce.png"><img alt="_images/52ab72d3a0aec9c0ee8e2320d693c9bf6753e72d8f669ab077984957894585ce.png" src="_images/52ab72d3a0aec9c0ee8e2320d693c9bf6753e72d8f669ab077984957894585ce.png" style="width: 80%;" /></a>
+</div>
+</div>
+<p>Consumer surplus gives a measure of total consumer welfare at quantity <span class="math notranslate nohighlight">\(q\)</span>.</p>
+<p>The idea is that the inverse demand curve <span class="math notranslate nohighlight">\(d_0 - d_1 q\)</span> shows willingness to
+pay at a given quantity <span class="math notranslate nohighlight">\(q\)</span>.</p>
+<p>The difference between willingness to pay and the actual price is the surplus.</p>
+<p>The value <span class="math notranslate nohighlight">\(S_c(q)\)</span> is the “sum” (i.e., integral) of these surpluses when the total
+quantity purchased is <span class="math notranslate nohighlight">\(q\)</span> and the purchase price is <span class="math notranslate nohighlight">\(p\)</span>.</p>
+<p>Evaluating the integral in the definition of consumer surplus gives</p>
+<div class="math notranslate nohighlight">
+\[
+    S_c(q) 
+    = d_0 q - \frac{1}{2} d_1 q^2 - p q
+\]</div>
+</section>
+<section id="producer-surplus">
+<h3><span class="section-number">7.2.2. </span>Producer Surplus<a class="headerlink" href="#producer-surplus" title="Permalink to this heading">#</a></h3>
+<p>Let a quantity <span class="math notranslate nohighlight">\(q\)</span> be given and let <span class="math notranslate nohighlight">\(p := s_0 + s_1 q\)</span> be the
+corresponding price on the inverse supply curve.</p>
+<p>We define <strong>producer surplus</strong> as <span class="math notranslate nohighlight">\(p q\)</span> minus the area under an inverse supply curve</p>
+<div class="math notranslate nohighlight">
+\[
+    S_p(q) 
+    := p q - \int_0^q (s_0 + s_1 x) dx 
+\]</div>
+<p>The next figure illustrates</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">q</span> <span class="o">=</span> <span class="mf">0.75</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">market</span><span class="o">.</span><span class="n">inverse_supply</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+<span class="n">ps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">q_grid</span><span class="p">)</span> <span class="o">*</span> <span class="n">p</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">q_grid</span><span class="p">,</span> <span class="n">supply_curve</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;supply&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">q_grid</span><span class="p">[</span><span class="n">q_grid</span> <span class="o">&lt;=</span> <span class="n">q</span><span class="p">],</span> 
+    <span class="n">supply_curve</span><span class="p">[</span><span class="n">q_grid</span><span class="o">&lt;=</span><span class="n">q</span><span class="p">],</span> 
+    <span class="n">ps</span><span class="p">[</span><span class="n">q_grid</span> <span class="o">&lt;=</span> <span class="n">q</span><span class="p">],</span> 
+    <span class="n">label</span><span class="o">=</span><span class="s1">&#39;producer surplus&#39;</span><span class="p">,</span> 
+    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#E6E6F5&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;dashed&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;dashed&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper center&#39;</span><span class="p">,</span> <span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">((</span><span class="n">q</span><span class="p">,))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">((</span><span class="s2">&quot;$q$&quot;</span><span class="p">,))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">((</span><span class="n">p</span><span class="p">,))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">((</span><span class="s2">&quot;$p$&quot;</span><span class="p">,))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;quantity&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;price&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/b8eddca21acd0f2749daecb15d7a188b44be1a527b411e0321f2e58a99b09953.png"><img alt="_images/b8eddca21acd0f2749daecb15d7a188b44be1a527b411e0321f2e58a99b09953.png" src="_images/b8eddca21acd0f2749daecb15d7a188b44be1a527b411e0321f2e58a99b09953.png" style="width: 80%;" /></a>
+</div>
+</div>
+<p>Producer surplus measures total producer welfare at quantity <span class="math notranslate nohighlight">\(q\)</span></p>
+<p>The idea is similar to that of consumer surplus.</p>
+<p>The inverse supply curve <span class="math notranslate nohighlight">\(s_0 + s_1 q\)</span> shows the price at which producers are
+prepared to sell, given quantity <span class="math notranslate nohighlight">\(q\)</span>.</p>
+<p>The difference between willingness to sell and the actual price is the surplus.</p>
+<p>The value <span class="math notranslate nohighlight">\(S_p(q)\)</span> is the integral of these surpluses.</p>
+<p>Evaluating the integral in the definition of consumer surplus gives</p>
+<div class="math notranslate nohighlight">
+\[
+    S_p(q) = pq - s_0 q -  \frac{1}{2} s_1 q^2
+\]</div>
+</section>
+<section id="social-welfare">
+<h3><span class="section-number">7.2.3. </span>Social Welfare<a class="headerlink" href="#social-welfare" title="Permalink to this heading">#</a></h3>
+<p>Sometimes economists measure social welfare by a <strong>welfare criterion</strong> that
+equals consumer surplus plus producer surplus, assuming that consumers and
+producers pay the same price:</p>
+<div class="math notranslate nohighlight">
+\[
+    W(q)
+    = \int_0^q (d_0 - d_1 x) dx - \int_0^q (s_0 + s_1 x) dx  
+\]</div>
+<p>Evaluating the integrals gives</p>
+<div class="math notranslate nohighlight">
+\[
+    W(q) = (d_0 - s_0) q -  \frac{1}{2} (d_1 + s_1) q^2
+\]</div>
+<p>Here is a Python function that evaluates this social welfare at a given
+quantity <span class="math notranslate nohighlight">\(q\)</span> and a fixed set of parameters.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">W</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">market</span><span class="p">):</span>
     <span class="c1"># Unpack</span>
-    <span class="n">d_0</span><span class="p">,</span> <span class="n">d_1</span> <span class="o">=</span> <span class="n">market</span><span class="o">.</span><span class="n">d_0</span><span class="p">,</span> <span class="n">market</span><span class="o">.</span><span class="n">d_1</span>
-    <span class="n">s_0</span><span class="p">,</span> <span class="n">s_1</span> <span class="o">=</span> <span class="n">market</span><span class="o">.</span><span class="n">s_0</span><span class="p">,</span> <span class="n">market</span><span class="o">.</span><span class="n">s_1</span>
-    <span class="n">q</span> <span class="o">=</span> <span class="n">market</span><span class="o">.</span><span class="n">equilibrium_quantity</span><span class="p">()</span>
-    <span class="n">p</span> <span class="o">=</span> <span class="n">market</span><span class="o">.</span><span class="n">equilibrium_price</span><span class="p">()</span>
-    <span class="n">grid_size</span> <span class="o">=</span> <span class="mi">200</span>
-    <span class="n">x_grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">q</span><span class="p">,</span> <span class="n">grid_size</span><span class="p">)</span>
-    <span class="n">ps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">x_grid</span><span class="p">)</span> <span class="o">*</span> <span class="n">p</span>
-    <span class="n">supply_curve</span> <span class="o">=</span> <span class="n">market</span><span class="o">.</span><span class="n">inverse_supply</span><span class="p">(</span><span class="n">x_grid</span><span class="p">)</span>
-    <span class="n">demand_curve</span> <span class="o">=</span> <span class="n">market</span><span class="o">.</span><span class="n">inverse_demand</span><span class="p">(</span><span class="n">x_grid</span><span class="p">)</span>
-
-    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
-
-    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_grid</span><span class="p">,</span> <span class="n">supply_curve</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Supply&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#020060&#39;</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_grid</span><span class="p">,</span> <span class="n">demand_curve</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Demand&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#600001&#39;</span><span class="p">)</span>
-
-    <span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">x_grid</span><span class="p">[</span><span class="n">x_grid</span> <span class="o">&lt;=</span> <span class="n">q</span><span class="p">],</span> 
-        <span class="n">demand_curve</span><span class="p">[</span><span class="n">x_grid</span><span class="o">&lt;=</span><span class="n">q</span><span class="p">],</span> 
-        <span class="n">ps</span><span class="p">[</span><span class="n">x_grid</span> <span class="o">&lt;=</span> <span class="n">q</span><span class="p">],</span> 
-        <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Consumer surplus&#39;</span><span class="p">,</span> 
-        <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#EED1CF&#39;</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">x_grid</span><span class="p">[</span><span class="n">x_grid</span> <span class="o">&lt;=</span> <span class="n">q</span><span class="p">],</span> 
-        <span class="n">supply_curve</span><span class="p">[</span><span class="n">x_grid</span> <span class="o">&lt;=</span> <span class="n">q</span><span class="p">],</span> 
-        <span class="n">ps</span><span class="p">[</span><span class="n">x_grid</span> <span class="o">&lt;=</span> <span class="n">q</span><span class="p">],</span> 
-        <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Producer surplus&#39;</span><span class="p">,</span> 
-        <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#E6E6F5&#39;</span><span class="p">)</span>
-
-    <span class="n">ax</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;dashed&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;dashed&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
-
-    <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper center&#39;</span><span class="p">,</span> <span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">margins</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Quantity&#39;</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Price&#39;</span><span class="p">)</span>
-
-    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    <span class="n">d_0</span><span class="p">,</span> <span class="n">d_1</span><span class="p">,</span> <span class="n">s_0</span><span class="p">,</span> <span class="n">s_1</span> <span class="o">=</span> <span class="n">market</span><span class="o">.</span><span class="n">d_0</span><span class="p">,</span> <span class="n">market</span><span class="o">.</span><span class="n">d_1</span><span class="p">,</span> <span class="n">market</span><span class="o">.</span><span class="n">s_0</span><span class="p">,</span> <span class="n">market</span><span class="o">.</span><span class="n">s_1</span>
+    <span class="c1"># Compute and return welfare</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">d_0</span> <span class="o">-</span> <span class="n">s_0</span><span class="p">)</span> <span class="o">*</span> <span class="n">q</span> <span class="o">-</span>  <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">d_1</span> <span class="o">+</span> <span class="n">s_1</span><span class="p">)</span> <span class="o">*</span> <span class="n">q</span><span class="o">**</span><span class="mi">2</span>
 </pre></div>
 </div>
 </div>
 </div>
+<p>The next figure plots welfare as a function of <span class="math notranslate nohighlight">\(q\)</span>.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">q_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.78</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">q_vals</span><span class="p">,</span> <span class="n">W</span><span class="p">(</span><span class="n">q_vals</span><span class="p">,</span> <span class="n">market</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;welfare&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;quantity&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/873526de2efb90a206bddf7826a7857edd7d601067552ea1200de9d4a0c8cb8f.png"><img alt="_images/873526de2efb90a206bddf7826a7857edd7d601067552ea1200de9d4a0c8cb8f.png" src="_images/873526de2efb90a206bddf7826a7857edd7d601067552ea1200de9d4a0c8cb8f.png" style="width: 80%;" /></a>
+</div>
+</div>
+<p>Let’s now give a social planner the task of maximizing social welfare.</p>
+<p>To compute a quantity that  maximizes the welfare criterion, we differentiate
+<span class="math notranslate nohighlight">\(W\)</span> with respect to <span class="math notranslate nohighlight">\(q\)</span> and then set the derivative to zero.</p>
+<div class="math notranslate nohighlight">
+\[
+    \frac{d W(q)}{d q} = d_0 - s_0 - (d_1 + s_1) q  = 0
+\]</div>
+<p>Solving for <span class="math notranslate nohighlight">\(q\)</span> yields</p>
+<div class="math notranslate nohighlight" id="equation-eq-old1">
+<span class="eqno">(7.1)<a class="headerlink" href="#equation-eq-old1" title="Permalink to this equation">#</a></span>\[
+    q = \frac{ d_0 - s_0}{s_1 + d_1}
+\]</div>
+<p>Let’s remember the quantity <span class="math notranslate nohighlight">\(q\)</span> given by equation <a class="reference internal" href="#equation-eq-old1">(7.1)</a> that a social planner would choose to maximize consumer surplus plus producer surplus.</p>
+<p>We’ll compare it to the quantity that emerges in a competitive equilibrium that equates supply to demand.</p>
+</section>
+<section id="competitive-equilibrium">
+<h3><span class="section-number">7.2.4. </span>Competitive Equilibrium<a class="headerlink" href="#competitive-equilibrium" title="Permalink to this heading">#</a></h3>
+<p>Instead of equating quantities supplied and demanded, we can accomplish the
+same thing by equating demand price to supply price:</p>
+<div class="math notranslate nohighlight">
+\[
+    p =  d_0 - d_1 q = s_0 + s_1 q 
+\]</div>
+<p>If we solve the equation defined by the second equality in the above line for
+<span class="math notranslate nohighlight">\(q\)</span>, we obtain</p>
+<div class="math notranslate nohighlight" id="equation-eq-equilib-q">
+<span class="eqno">(7.2)<a class="headerlink" href="#equation-eq-equilib-q" title="Permalink to this equation">#</a></span>\[
+    q = \frac{ d_0 - s_0}{s_1 + d_1}
+\]</div>
+<p>This is the competitive equilibrium quantity.</p>
+<p>Observe that the equilibrium quantity equals the same <span class="math notranslate nohighlight">\(q\)</span> given by equation  <a class="reference internal" href="#equation-eq-old1">(7.1)</a>.</p>
+<p>The outcome that the quantity determined by equation <a class="reference internal" href="#equation-eq-old1">(7.1)</a> equates
+supply to demand brings us a <strong>key finding:</strong></p>
+<ul class="simple">
+<li><p>a competitive equilibrium quantity maximizes our welfare criterion</p></li>
+</ul>
+<p>This is a version of the <a class="reference external" href="https://en.wikipedia.org/wiki/Fundamental_theorems_of_welfare_economics">first fundamental welfare theorem</a>,</p>
+<p>It also brings a useful <strong>competitive equilibrium computation strategy:</strong></p>
+<ul class="simple">
+<li><p>after solving the welfare problem for an optimal quantity, we can read a competitive equilibrium price from either supply price or demand price at the competitive equilibrium quantity</p></li>
+</ul>
+</section>
+</section>
+<section id="generalizations">
+<h2><span class="section-number">7.3. </span>Generalizations<a class="headerlink" href="#generalizations" title="Permalink to this heading">#</a></h2>
+<p>In a <a class="reference internal" href="supply_demand_multiple_goods.html"><span class="doc">later lecture</span></a>, we’ll derive
+generalizations of the above demand and supply curves from other objects.</p>
+<p>Our generalizations will extend the preceding analysis of a market for a single good to the analysis of <span class="math notranslate nohighlight">\(n\)</span> simultaneous markets in <span class="math notranslate nohighlight">\(n\)</span> goods.</p>
+<p>In addition</p>
+<ul class="simple">
+<li><p>we’ll derive  <strong>demand curves</strong> from a consumer problem that maximizes a
+<strong>utility function</strong> subject to a <strong>budget constraint</strong>.</p></li>
+<li><p>we’ll derive  <strong>supply curves</strong> from the problem of a producer who is price
+taker and maximizes his profits minus total costs that are described by a <strong>cost function</strong>.</p></li>
+</ul>
+</section>
+<section id="exercises">
+<h2><span class="section-number">7.4. </span>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h2>
+<p>Suppose now that the inverse demand and supply curves are modified to take the
+form</p>
+<div class="math notranslate nohighlight">
+\[
+    p = i_d(q) := d_0 - d_1 q^{0.6} 
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+    p = i_s(q) := s_0 + s_1 q^{1.2} 
+\]</div>
+<p>All parameters are positive, as before.</p>
+<div class="exercise admonition" id="isd_ex1">
+
+<p class="admonition-title"><span class="caption-number">Exercise 7.1 </span></p>
+<section id="exercise-content">
+<p>Define a new <code class="docutils literal notranslate"><span class="pre">Market</span></code> class that holds the same parameter values as before by
+changing the <code class="docutils literal notranslate"><span class="pre">inverse_demand</span></code> and <code class="docutils literal notranslate"><span class="pre">inverse_supply</span></code> methods to
+match these new definitions.</p>
+<p>Using the class, plot the inverse demand and supply curves <span class="math notranslate nohighlight">\(i_d\)</span> and <span class="math notranslate nohighlight">\(i_s\)</span></p>
+</section>
+</div>
+<div class="solution dropdown admonition" id="intro_supply_demand-solution-1">
+
+<p class="admonition-title">Solution to<a class="reference internal" href="#isd_ex1"> Exercise 7.1</a></p>
+<section id="solution-content">
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">market</span> <span class="o">=</span> <span class="n">SingleGoodMarket</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Market</span><span class="p">:</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> 
+        <span class="n">d_0</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>      <span class="c1"># demand intercept</span>
+        <span class="n">d_1</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span>      <span class="c1"># demand slope</span>
+        <span class="n">s_0</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>      <span class="c1"># supply intercept</span>
+        <span class="n">s_1</span><span class="o">=</span><span class="mf">0.4</span><span class="p">):</span>     <span class="c1"># supply slope</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">d_0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">d_1</span> <span class="o">=</span> <span class="n">d_0</span><span class="p">,</span> <span class="n">d_1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">s_0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">s_1</span> <span class="o">=</span> <span class="n">s_0</span><span class="p">,</span> <span class="n">s_1</span>
+
+    <span class="k">def</span> <span class="nf">inverse_demand</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">q</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">d_0</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">d_1</span> <span class="o">*</span> <span class="n">q</span><span class="o">**</span><span class="mf">0.6</span>
+
+    <span class="k">def</span> <span class="nf">inverse_supply</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">q</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">s_0</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">s_1</span> <span class="o">*</span> <span class="n">q</span><span class="o">**</span><span class="mf">1.8</span>
 </pre></div>
 </div>
 </div>
 </div>
+<p>Let’s create an instance.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_supply_demand</span><span class="p">(</span><span class="n">market</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">market</span> <span class="o">=</span> <span class="n">Market</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here is a plot of inverse supply and demand.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grid_min</span><span class="p">,</span> <span class="n">grid_max</span><span class="p">,</span> <span class="n">grid_size</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mi">200</span>
+<span class="n">q_grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">grid_min</span><span class="p">,</span> <span class="n">grid_max</span><span class="p">,</span> <span class="n">grid_size</span><span class="p">)</span>
+<span class="n">supply_curve</span> <span class="o">=</span> <span class="n">market</span><span class="o">.</span><span class="n">inverse_supply</span><span class="p">(</span><span class="n">q_grid</span><span class="p">)</span>
+<span class="n">demand_curve</span> <span class="o">=</span> <span class="n">market</span><span class="o">.</span><span class="n">inverse_demand</span><span class="p">(</span><span class="n">q_grid</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">q_grid</span><span class="p">,</span> <span class="n">supply_curve</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;supply&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">q_grid</span><span class="p">,</span> <span class="n">demand_curve</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;demand&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper center&#39;</span><span class="p">,</span> <span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;quantity&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;price&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/7585f016d6530643ea68cf06529f59155fc51a47b2af62f6339ec0574c635c37.png"><img alt="_images/7585f016d6530643ea68cf06529f59155fc51a47b2af62f6339ec0574c635c37.png" src="_images/7585f016d6530643ea68cf06529f59155fc51a47b2af62f6339ec0574c635c37.png" style="width: 80%;" /></a>
+</div>
+</div>
+</section>
+</div>
+<div class="exercise admonition" id="isd_ex2">
+
+<p class="admonition-title"><span class="caption-number">Exercise 7.2 </span></p>
+<section id="exercise-content">
+<p>As before, consumer surplus at <span class="math notranslate nohighlight">\(q\)</span> is the area under the demand curve minus
+price times quantity:</p>
+<div class="math notranslate nohighlight">
+\[
+    S_c(q) = \int_0^{q} i_d(x) dx - p q 
+\]</div>
+<p>Here <span class="math notranslate nohighlight">\(p\)</span> is set to <span class="math notranslate nohighlight">\(i_d(q)\)</span></p>
+<p>Producer surplus is price times quantity minus the area under the inverse
+supply curve:</p>
+<div class="math notranslate nohighlight">
+\[
+    S_p(q) 
+    = p q - \int_0^q i_s(x) dx 
+\]</div>
+<p>Here <span class="math notranslate nohighlight">\(p\)</span> is set to <span class="math notranslate nohighlight">\(i_s(q)\)</span>.</p>
+<p>Social welfare is the sum of consumer and producer surplus under the
+assumption that the price is the same for buyers and sellers:</p>
+<div class="math notranslate nohighlight">
+\[
+    W(q)
+    = \int_0^q i_d(x) dx - \int_0^q i_q(x) dx  
+\]</div>
+<p>Solve the integrals and write a function to compute this quantity numerically
+at given <span class="math notranslate nohighlight">\(q\)</span>.</p>
+<p>Plot welfare as a function of <span class="math notranslate nohighlight">\(q\)</span>.</p>
+</section>
+</div>
+<div class="solution dropdown admonition" id="intro_supply_demand-solution-3">
+
+<p class="admonition-title">Solution to<a class="reference internal" href="#isd_ex2"> Exercise 7.2</a></p>
+<section id="solution-content">
+<p>Solving the integrals gives</p>
+<div class="math notranslate nohighlight">
+\[
+    W(q) 
+    = d_0 q - \frac{d_1 q^{1.6}}{1.6}
+        - \left( s_0 q + \frac{s_1 q^{2.8}}{2.8} \right)
+\]</div>
+<p>Here’s a Python function that computes this value:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">W</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">market</span><span class="p">):</span>
+    <span class="c1"># Unpack</span>
+    <span class="n">d_0</span><span class="p">,</span> <span class="n">d_1</span><span class="p">,</span> <span class="n">s_0</span><span class="p">,</span> <span class="n">s_1</span> <span class="o">=</span> <span class="n">market</span><span class="o">.</span><span class="n">d_0</span><span class="p">,</span> <span class="n">market</span><span class="o">.</span><span class="n">d_1</span><span class="p">,</span> <span class="n">market</span><span class="o">.</span><span class="n">s_0</span><span class="p">,</span> <span class="n">market</span><span class="o">.</span><span class="n">s_1</span>
+    <span class="c1"># Compute and return welfare</span>
+    <span class="n">S_c</span> <span class="o">=</span> <span class="n">d_0</span> <span class="o">*</span> <span class="n">q</span> <span class="o">-</span> <span class="n">d_1</span> <span class="o">*</span> <span class="n">q</span><span class="o">**</span><span class="mf">1.6</span> <span class="o">/</span> <span class="mf">1.6</span>
+    <span class="n">S_p</span> <span class="o">=</span> <span class="n">s_0</span> <span class="o">*</span> <span class="n">q</span> <span class="o">+</span> <span class="n">s_1</span> <span class="o">*</span> <span class="n">q</span><span class="o">**</span><span class="mf">2.8</span> <span class="o">/</span> <span class="mf">2.8</span>
+    <span class="k">return</span> <span class="n">S_c</span> <span class="o">-</span> <span class="n">S_p</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The next figure plots welfare as a function of <span class="math notranslate nohighlight">\(q\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">q_vals</span><span class="p">,</span> <span class="n">W</span><span class="p">(</span><span class="n">q_vals</span><span class="p">,</span> <span class="n">market</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;welfare&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;quantity&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/35ac504cfc3e2bbfece738b472e2a5f9c6e3fc9766f6569a556db08a056782ba.png" src="_images/35ac504cfc3e2bbfece738b472e2a5f9c6e3fc9766f6569a556db08a056782ba.png" />
+<a class="reference internal image-reference" href="_images/40b61956be8bd3211ea6901eeefe8f70b260cdddcd4f724a566ee2498d547c6c.png"><img alt="_images/40b61956be8bd3211ea6901eeefe8f70b260cdddcd4f724a566ee2498d547c6c.png" src="_images/40b61956be8bd3211ea6901eeefe8f70b260cdddcd4f724a566ee2498d547c6c.png" style="width: 80%;" /></a>
 </div>
+</div>
+</section>
+</div>
+<div class="exercise admonition" id="isd_ex3">
+
+<p class="admonition-title"><span class="caption-number">Exercise 7.3 </span></p>
+<section id="exercise-content">
+<p>Due to nonlinearities, the new welfare function is not easy to maximize with
+pencil and paper.</p>
+<p>Maximize it using <code class="docutils literal notranslate"><span class="pre">scipy.optimize.minimize_scalar</span></code> instead.</p>
+</section>
+</div>
+<div class="solution dropdown admonition" id="intro_supply_demand-solution-5">
+
+<p class="admonition-title">Solution to<a class="reference internal" href="#isd_ex3"> Exercise 7.3</a></p>
+<section id="solution-content">
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">minimize_scalar</span>
+
+<span class="k">def</span> <span class="nf">objective</span><span class="p">(</span><span class="n">q</span><span class="p">):</span>
+    <span class="k">return</span> <span class="o">-</span><span class="n">W</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">market</span><span class="p">)</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">minimize_scalar</span><span class="p">(</span><span class="n">objective</span><span class="p">,</span> <span class="n">bounds</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">message</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Solution found.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">maximizing_q</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">x</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">maximizing_q</span><span class="si">:</span><span class="s2"> .5f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 0.90564
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<div class="exercise admonition" id="isd_ex4">
+
+<p class="admonition-title"><span class="caption-number">Exercise 7.4 </span></p>
+<section id="exercise-content">
+<p>Now compute the equilibrium quantity by finding the price that equates supply
+and demand.</p>
+<p>You can do this numerically by finding the root of the excess demand function</p>
+<div class="math notranslate nohighlight">
+\[
+    e_d(q) := i_d(q) - i_s(q) 
+\]</div>
+<p>You can use <code class="docutils literal notranslate"><span class="pre">scipy.optimize.newton</span></code> to compute the root.</p>
+<p>Initialize <code class="docutils literal notranslate"><span class="pre">newton</span></code> with a starting guess somewhere close to 1.0.</p>
+<p>(Similar initial conditions will give the same result.)</p>
+<p>You should find that the equilibrium price agrees with the welfare maximizing
+price, in line with the first fundamental welfare theorem.</p>
+</section>
+</div>
+<div class="solution dropdown admonition" id="intro_supply_demand-solution-7">
+
+<p class="admonition-title">Solution to<a class="reference internal" href="#isd_ex3"> Exercise 7.3</a></p>
+<section id="solution-content">
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">newton</span>
+
+<span class="k">def</span> <span class="nf">excess_demand</span><span class="p">(</span><span class="n">q</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">market</span><span class="o">.</span><span class="n">inverse_demand</span><span class="p">(</span><span class="n">q</span><span class="p">)</span> <span class="o">-</span> <span class="n">market</span><span class="o">.</span><span class="n">inverse_supply</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+
+<span class="n">equilibrium_q</span> <span class="o">=</span> <span class="n">newton</span><span class="p">(</span><span class="n">excess_demand</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">equilibrium_q</span><span class="si">:</span><span class="s2"> .5f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 0.90564
+</pre></div>
+</div>
+</div>
+</div>
+</section>
 </div>
 </section>
 </section>
@@ -491,104 +886,82 @@ single good to the analysis of <span class="math notranslate nohighlight">\(n\)<
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
-  Supply and Demand
- </span>
-</p>
-<ul class="current nav bd-sidenav nav sidenav_l1">
- <li class="toctree-l1 current active active">
-  <a class="current reference internal" href="#">
-   2. Introduction to Supply and Demand
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="supply_demand_multiple_goods.html">
-   3. Supply and Demand with Many Goods
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="supply_demand_heterogeneity.html">
-   4. Market Equilibrium with Heterogeneity
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="input_output.html">
-   5. Input-Output Models
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Data and Measurement
+  Economic Data
  </span>
 </p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="long_run_growth.html">
-   6. Long Run Growth
+   2. Long Run Growth
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="business_cycle.html">
-   7. Business Cycles
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="inflation_unemployment.html">
-   8. Inflation and Unemployment
+   3. Business Cycles
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="inequality.html">
-   9. Income and Wealth Inequality
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="distributions.html">
-   10. Distributions in Economics
+   4. Income and Wealth Inequality
   </a>
  </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
-  Useful Tools
+  Essential Tools
  </span>
 </p>
-<ul class="nav bd-sidenav nav sidenav_l1">
- <li class="toctree-l1">
-  <a class="reference internal" href="geom_series.html">
-   11. Geometric Series for Elementary Economics
-  </a>
- </li>
+<ul class="current nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="linear_equations.html">
-   12. Linear Equations and Matrix Algebra
+   5. Linear Equations and Matrix Algebra
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="eigen_I.html">
-   13. Eigenvalues and Eigenvectors
+   6. Eigenvalues and Eigenvectors
+  </a>
+ </li>
+ <li class="toctree-l1 current active active">
+  <a class="current reference internal" href="#">
+   7. Introduction to Supply and Demand
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="geom_series.html">
+   8. Geometric Series for Elementary Economics
   </a>
  </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
-  Simulation
+  Probability and Distributions
  </span>
 </p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
+  <a class="reference internal" href="prob_dist.html">
+   9. Distributions and Probabilities
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="lln_clt.html">
-   14. LLN and CLT
+   10. LLN and CLT
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="monte_carlo.html">
-   15. Monte Carlo and Option Pricing
+   11. Monte Carlo and Option Pricing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="heavy_tails.html">
+   12. Heavy-Tailed Distributions
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="schelling.html">
-   16. Racial Segregation
+   13. Racial Segregation
   </a>
  </li>
 </ul>
@@ -600,64 +973,37 @@ single good to the analysis of <span class="math notranslate nohighlight">\(n\)<
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="solow.html">
-   17. The Solow-Swan Growth Model
+   14. The Solow-Swan Growth Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="scalar_dynam.html">
-   18. Dynamics in One Dimension
+   15. Dynamics in One Dimension
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cobweb.html">
-   19. The Cobweb Model
+   16. The Cobweb Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="olg.html">
-   20. The Overlapping Generations Model
+   17. The Overlapping Generations Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="markov_chains_I.html">
-   21. Markov Chains: Basic Concepts and Stationarity
+   18. Markov Chains: Basic Concepts and Stationarity
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="markov_chains_II.html">
-   22. Markov Chains: Irreducibility and Ergodicity
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Modeling in Higher Dimensions
- </span>
-</p>
-<ul class="nav bd-sidenav nav sidenav_l1">
- <li class="toctree-l1">
-  <a class="reference internal" href="eigen_II.html">
-   23. Theorems of Nonnegative Matrices and Eigenvalues
+   19. Markov Chains: Irreducibility and Ergodicity
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="lake_model.html">
-   24. A Lake Model of Employment
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="asset_pricing.html">
-   25. Introduction to Asset Pricing
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="networks.html">
-   26. Networks
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="samuelson.html">
-   27. Multiplier Accelerator Model
+  <a class="reference internal" href="commod_price.html">
+   20. Commodity Prices
   </a>
  </li>
 </ul>
@@ -669,22 +1015,54 @@ single good to the analysis of <span class="math notranslate nohighlight">\(n\)<
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="lp_intro.html">
-   28. Linear Programming
+   21. Linear Programming
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="comparative_adv.html">
-   29. Comparative Advantage
+   22. Comparative Advantage
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="nonlinear.html">
-   30. Nonlinear Problems
+   23. Nonlinear Problems
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="short_path.html">
-   31. Shortest Paths
+   24. Shortest Paths
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Modeling in Higher Dimensions
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="eigen_II.html">
+   25. Spectral Theory
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="input_output.html">
+   26. Input-Output Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lake_model.html">
+   27. A Lake Model of Employment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="asset_pricing.html">
+   28. Introduction to Asset Pricing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="networks.html">
+   29. Networks
   </a>
  </li>
 </ul>
@@ -695,18 +1073,13 @@ single good to the analysis of <span class="math notranslate nohighlight">\(n\)<
 </p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
-  <a class="reference internal" href="markets_welfare.html">
-   32. Markets and Welfare
+  <a class="reference internal" href="supply_demand_multiple_goods.html">
+   30. Supply and Demand with Many Goods
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="risk.html">
-   33. Risk
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="uncertainty.html">
-   34. Uncertainty
+  <a class="reference internal" href="supply_demand_heterogeneity.html">
+   31. Market Equilibrium with Heterogeneity
   </a>
  </li>
 </ul>
@@ -718,17 +1091,17 @@ single good to the analysis of <span class="math notranslate nohighlight">\(n\)<
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="simple_linear_regression.html">
-   35. Simple Linear Regression Model
+   32. Simple Linear Regression Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="lr_with_matrices.html">
-   36. Linear Regression with Matrices
+   33. Linear Regression with Matrices
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="mle.html">
-   37. Maximum Likelihood Estimation
+   34. Maximum Likelihood Estimation
   </a>
  </li>
 </ul>
@@ -740,17 +1113,17 @@ single good to the analysis of <span class="math notranslate nohighlight">\(n\)<
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="troubleshooting.html">
-   38. Troubleshooting
+   35. Troubleshooting
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="zreferences.html">
-   39. References
+   36. References
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="status.html">
-   40. Execution Statistics
+   37. Execution Statistics
   </a>
  </li>
 </ul>

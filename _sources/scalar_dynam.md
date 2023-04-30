@@ -39,7 +39,6 @@ Let's start with some standard imports:
 ```{code-cell} ipython
 %matplotlib inline
 import matplotlib.pyplot as plt
-plt.rcParams["figure.figsize"] = (11, 5)  #set default figure size
 import numpy as np
 ```
 
@@ -317,9 +316,9 @@ plots.
 tags: [hide-input,
        output_scroll]
 ---
-def subplots(fs):
+def subplots():
     "Custom subplots with axes throught the origin"
-    fig, ax = plt.subplots(figsize=fs)
+    fig, ax = plt.subplots()
 
     # Set the axes through the origin
     for spine in ['left', 'bottom']:
@@ -335,7 +334,7 @@ def plot45(g, xmin, xmax, x0, num_arrows=6, var='x'):
 
     xgrid = np.linspace(xmin, xmax, 200)
 
-    fig, ax = subplots((6.5, 6))
+    fig, ax = subplots()
     ax.set_xlim(xmin, xmax)
     ax.set_ylim(xmin, xmax)
 
@@ -382,7 +381,7 @@ def plot45(g, xmin, xmax, x0, num_arrows=6, var='x'):
     plt.show()
 
 def ts_plot(g, xmin, xmax, x0, ts_length=6, var='x'):
-    fig, ax = subplots((7, 5.5))
+    fig, ax = subplots()
     ax.set_ylim(xmin, xmax)
     ax.set_xlabel(r'$t$', fontsize=14)
     ax.set_ylabel(r'${}_t$'.format(var), fontsize=14)

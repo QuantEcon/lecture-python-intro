@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>13. Eigenvalues and Eigenvectors &#8212; An Introduction to Quantitative Economics and Finance</title>
+    <title>6. Eigenvalues and Eigenvectors &#8212; An Introduction to Quantitative Economics and Finance</title>
     <script src="https://unpkg.com/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://unpkg.com/tippy.js@6.3.1/dist/tippy-bundle.umd.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
@@ -71,7 +71,7 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/quantecon-book-theme.279dae03c5caae754d20501e3fa00bbf.css" />
+    <link rel="stylesheet" type="text/css" href="_static/quantecon-book-theme.27f831372ca8a27cbff86bbb33459986.css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
@@ -114,8 +114,8 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="14. LLN and CLT" href="lln_clt.html" />
-    <link rel="prev" title="12. Linear Equations and Matrix Algebra" href="linear_equations.html" />
+    <link rel="next" title="7. Introduction to Supply and Demand" href="intro_supply_demand.html" />
+    <link rel="prev" title="5. Linear Equations and Matrix Algebra" href="linear_equations.html" />
 
 <!-- Normal Meta Tags -->
 <meta name="author" context="Thomas J. Sargent &amp; John Stachurski" />
@@ -163,38 +163,38 @@ const thebe_selector_output = ".output, .cell_output"
 
                         <nav id="bd-toc-nav" class="qe-page__toc-nav">
                             <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">13.1. Overview</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matrices-as-transformations">13.2. Matrices as Transformations</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mapping-vectors-into-vectors">13.2.1. Mapping Vectors into Vectors</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#square-matrices">13.2.2. Square Matrices</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">6.1. Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matrices-as-transformations">6.2. Matrices as transformations</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mapping-vectors-into-vectors">6.2.1. Mapping vectors into vectors</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#square-matrices">6.2.2. Square matrices</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#types-of-transformations">13.3. Types of Transformations</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scaling">13.3.1. Scaling</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#shearing">13.3.2. Shearing</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rotation">13.3.3. Rotation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#permutation">13.3.4. Permutation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#types-of-transformations">6.3. Types of transformations</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scaling">6.3.1. Scaling</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#shearing">6.3.2. Shearing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rotation">6.3.3. Rotation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#permutation">6.3.4. Permutation</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-multiplication-as-composition">13.4. Matrix Multiplication as Composition</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-compositions">13.4.1. Linear Compositions</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">13.4.2. Examples</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shear-then-rotate">13.4.2.1. Shear then Rotate</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#rotate-then-shear">13.4.2.2. Rotate then Shear</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-multiplication-as-composition">6.4. Matrix multiplication as composition</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-compositions">6.4.1. Linear compositions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">6.4.2. Examples</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shear-then-rotate">6.4.2.1. Shear then rotate</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#rotate-then-shear">6.4.2.2. Rotate then shear</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iterating-on-a-fixed-map">13.5. Iterating on a Fixed Map</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eigenvalues">13.6. Eigenvalues</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definitions">13.6.1. Definitions</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#complex-values">13.6.2. Complex Values</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#some-mathematical-details">13.6.3. Some Mathematical Details</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#facts">13.6.4. Facts</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#computation">13.6.5. Computation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iterating-on-a-fixed-map">6.5. Iterating on a fixed map</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eigenvalues">6.6. Eigenvalues</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definitions">6.6.1. Definitions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#complex-values">6.6.2. Complex values</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#some-mathematical-details">6.6.3. Some mathematical details</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#facts">6.6.4. Facts</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#computation">6.6.5. Computation</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">13.7. Exercises</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">6.7. Exercises</a></li>
 </ul>
                             <p class="logo">
                                 
@@ -240,17 +240,17 @@ const thebe_selector_output = ".output, .cell_output"
                     <div>
                         
   <section class="tex2jax_ignore mathjax_ignore" id="eigenvalues-and-eigenvectors">
-<span id="eigen"></span><h1><a class="toc-backref" href="#id1"><span class="section-number">13. </span>Eigenvalues and Eigenvectors</a><a class="headerlink" href="#eigenvalues-and-eigenvectors" title="Permalink to this heading">#</a></h1>
+<span id="eigen"></span><h1><a class="toc-backref" href="#id1"><span class="section-number">6. </span>Eigenvalues and Eigenvectors</a><a class="headerlink" href="#eigenvalues-and-eigenvectors" title="Permalink to this heading">#</a></h1>
 <div class="contents topic" id="contents">
 <span id="index-0"></span><p class="topic-title">Contents</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="#eigenvalues-and-eigenvectors" id="id1">Eigenvalues and Eigenvectors</a></p>
 <ul>
 <li><p><a class="reference internal" href="#overview" id="id2">Overview</a></p></li>
-<li><p><a class="reference internal" href="#matrices-as-transformations" id="id3">Matrices as Transformations</a></p></li>
-<li><p><a class="reference internal" href="#types-of-transformations" id="id4">Types of Transformations</a></p></li>
-<li><p><a class="reference internal" href="#matrix-multiplication-as-composition" id="id5">Matrix Multiplication as Composition</a></p></li>
-<li><p><a class="reference internal" href="#iterating-on-a-fixed-map" id="id6">Iterating on a Fixed Map</a></p></li>
+<li><p><a class="reference internal" href="#matrices-as-transformations" id="id3">Matrices as transformations</a></p></li>
+<li><p><a class="reference internal" href="#types-of-transformations" id="id4">Types of transformations</a></p></li>
+<li><p><a class="reference internal" href="#matrix-multiplication-as-composition" id="id5">Matrix multiplication as composition</a></p></li>
+<li><p><a class="reference internal" href="#iterating-on-a-fixed-map" id="id6">Iterating on a fixed map</a></p></li>
 <li><p><a class="reference internal" href="#eigenvalues" id="id7">Eigenvalues</a></p></li>
 <li><p><a class="reference internal" href="#exercises" id="id8">Exercises</a></p></li>
 </ul>
@@ -258,7 +258,7 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </div>
 <section id="overview">
-<h2><a class="toc-backref" href="#id2"><span class="section-number">13.1. </span>Overview</a><a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id2"><span class="section-number">6.1. </span>Overview</a><a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
 <p>Eigenvalues and eigenvectors are a somewhat advanced topic in linear and
 matrix algebra.</p>
 <p>At the same time, these concepts are extremely useful for</p>
@@ -294,10 +294,10 @@ understand the basics of matrix algebra.</p>
 </div>
 </section>
 <section id="matrices-as-transformations">
-<span id="matrices-as-transformation"></span><h2><a class="toc-backref" href="#id3"><span class="section-number">13.2. </span>Matrices as Transformations</a><a class="headerlink" href="#matrices-as-transformations" title="Permalink to this heading">#</a></h2>
+<span id="matrices-as-transformation"></span><h2><a class="toc-backref" href="#id3"><span class="section-number">6.2. </span>Matrices as transformations</a><a class="headerlink" href="#matrices-as-transformations" title="Permalink to this heading">#</a></h2>
 <p>Let’s start by discussing an important concept concerning matrices.</p>
 <section id="mapping-vectors-into-vectors">
-<h3><span class="section-number">13.2.1. </span>Mapping Vectors into Vectors<a class="headerlink" href="#mapping-vectors-into-vectors" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.2.1. </span>Mapping vectors into vectors<a class="headerlink" href="#mapping-vectors-into-vectors" title="Permalink to this heading">#</a></h3>
 <p>One way to think about a given matrix is as a rectangular collection of
 numbers.</p>
 <p>Another way to think about a matrix is as a <strong>map</strong> (i.e., as a function) that
@@ -317,7 +317,7 @@ a map transforming <span class="math notranslate nohighlight">\(x\)</span> into 
 <span class="math notranslate nohighlight">\(A(x) = y\)</span> rather than <span class="math notranslate nohighlight">\(Ax = y\)</span> but the second notation is more conventional.)</p>
 </section>
 <section id="square-matrices">
-<h3><span class="section-number">13.2.2. </span>Square Matrices<a class="headerlink" href="#square-matrices" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.2.2. </span>Square matrices<a class="headerlink" href="#square-matrices" title="Permalink to this heading">#</a></h3>
 <p>Let’s restrict our discussion to square matrices.</p>
 <p>In the above discussion, this means that <span class="math notranslate nohighlight">\(m=n\)</span> and <span class="math notranslate nohighlight">\(A\)</span> maps <span class="math notranslate nohighlight">\(\mathbb R^n\)</span> into
 itself.</p>
@@ -400,7 +400,7 @@ itself.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/4109cb8b211dd869f4a2363d812508f4fa12439beb1b7574bd7ee3f58863b61c.png" src="_images/4109cb8b211dd869f4a2363d812508f4fa12439beb1b7574bd7ee3f58863b61c.png" />
+<a class="reference internal image-reference" href="_images/4109cb8b211dd869f4a2363d812508f4fa12439beb1b7574bd7ee3f58863b61c.png"><img alt="_images/4109cb8b211dd869f4a2363d812508f4fa12439beb1b7574bd7ee3f58863b61c.png" src="_images/4109cb8b211dd869f4a2363d812508f4fa12439beb1b7574bd7ee3f58863b61c.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>One way to understand this transformation is that <span class="math notranslate nohighlight">\(A\)</span></p>
@@ -411,7 +411,7 @@ itself.</p>
 </section>
 </section>
 <section id="types-of-transformations">
-<h2><a class="toc-backref" href="#id4"><span class="section-number">13.3. </span>Types of Transformations</a><a class="headerlink" href="#types-of-transformations" title="Permalink to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id4"><span class="section-number">6.3. </span>Types of transformations</a><a class="headerlink" href="#types-of-transformations" title="Permalink to this heading">#</a></h2>
 <p>Let’s examine some standard transformations we can perform with matrices.</p>
 <p>Below we visualize transformations by thinking of vectors as points
 instead of arrows.</p>
@@ -516,7 +516,7 @@ instead of arrows.</p>
 </details>
 </div>
 <section id="scaling">
-<h3><span class="section-number">13.3.1. </span>Scaling<a class="headerlink" href="#scaling" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.3.1. </span>Scaling<a class="headerlink" href="#scaling" title="Permalink to this heading">#</a></h3>
 <p>A matrix of the form</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -538,13 +538,13 @@ a factor <span class="math notranslate nohighlight">\(\beta\)</span>.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/4421279b653ecefc53036475295ac288938fd77fe392ec2a6fbbea45e73167ad.png" src="_images/4421279b653ecefc53036475295ac288938fd77fe392ec2a6fbbea45e73167ad.png" />
-<img alt="_images/dd03bba0cc8d8e6040665d252726d6197cdd4fc9069cfc1787fb984bc29f8be0.png" src="_images/dd03bba0cc8d8e6040665d252726d6197cdd4fc9069cfc1787fb984bc29f8be0.png" />
+<a class="reference internal image-reference" href="_images/4421279b653ecefc53036475295ac288938fd77fe392ec2a6fbbea45e73167ad.png"><img alt="_images/4421279b653ecefc53036475295ac288938fd77fe392ec2a6fbbea45e73167ad.png" src="_images/4421279b653ecefc53036475295ac288938fd77fe392ec2a6fbbea45e73167ad.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/dd03bba0cc8d8e6040665d252726d6197cdd4fc9069cfc1787fb984bc29f8be0.png"><img alt="_images/dd03bba0cc8d8e6040665d252726d6197cdd4fc9069cfc1787fb984bc29f8be0.png" src="_images/dd03bba0cc8d8e6040665d252726d6197cdd4fc9069cfc1787fb984bc29f8be0.png" style="width: 80%;" /></a>
 </div>
 </div>
 </section>
 <section id="shearing">
-<h3><span class="section-number">13.3.2. </span>Shearing<a class="headerlink" href="#shearing" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.3.2. </span>Shearing<a class="headerlink" href="#shearing" title="Permalink to this heading">#</a></h3>
 <p>A “shear” matrix of the form</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -565,13 +565,13 @@ y-coordinate of a point.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/9c562f548551c50382f5116c7d18322a05c28134d3678f0491fc6e546b084c0b.png" src="_images/9c562f548551c50382f5116c7d18322a05c28134d3678f0491fc6e546b084c0b.png" />
-<img alt="_images/bb094bca59027f4843ab1e629bf945eecff57bd11e3cf3296b06eeffe1ee03c3.png" src="_images/bb094bca59027f4843ab1e629bf945eecff57bd11e3cf3296b06eeffe1ee03c3.png" />
+<a class="reference internal image-reference" href="_images/9c562f548551c50382f5116c7d18322a05c28134d3678f0491fc6e546b084c0b.png"><img alt="_images/9c562f548551c50382f5116c7d18322a05c28134d3678f0491fc6e546b084c0b.png" src="_images/9c562f548551c50382f5116c7d18322a05c28134d3678f0491fc6e546b084c0b.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/bb094bca59027f4843ab1e629bf945eecff57bd11e3cf3296b06eeffe1ee03c3.png"><img alt="_images/bb094bca59027f4843ab1e629bf945eecff57bd11e3cf3296b06eeffe1ee03c3.png" src="_images/bb094bca59027f4843ab1e629bf945eecff57bd11e3cf3296b06eeffe1ee03c3.png" style="width: 80%;" /></a>
 </div>
 </div>
 </section>
 <section id="rotation">
-<h3><span class="section-number">13.3.3. </span>Rotation<a class="headerlink" href="#rotation" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.3.3. </span>Rotation<a class="headerlink" href="#rotation" title="Permalink to this heading">#</a></h3>
 <p>A matrix of the form</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -592,12 +592,12 @@ y-coordinate of a point.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/5d81acfa533744c099276d345517d337dd1228ea17aa60c7dc80dd8451314853.png" src="_images/5d81acfa533744c099276d345517d337dd1228ea17aa60c7dc80dd8451314853.png" />
+<a class="reference internal image-reference" href="_images/5d81acfa533744c099276d345517d337dd1228ea17aa60c7dc80dd8451314853.png"><img alt="_images/5d81acfa533744c099276d345517d337dd1228ea17aa60c7dc80dd8451314853.png" src="_images/5d81acfa533744c099276d345517d337dd1228ea17aa60c7dc80dd8451314853.png" style="width: 80%;" /></a>
 </div>
 </div>
 </section>
 <section id="permutation">
-<h3><span class="section-number">13.3.4. </span>Permutation<a class="headerlink" href="#permutation" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.3.4. </span>Permutation<a class="headerlink" href="#permutation" title="Permalink to this heading">#</a></h3>
 <p>The permutation matrix</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -615,18 +615,18 @@ y-coordinate of a point.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/18d2c35bacb35797925bb4de115ecddf6e6a9886d7e9befeb99548b20d550b48.png" src="_images/18d2c35bacb35797925bb4de115ecddf6e6a9886d7e9befeb99548b20d550b48.png" />
+<a class="reference internal image-reference" href="_images/18d2c35bacb35797925bb4de115ecddf6e6a9886d7e9befeb99548b20d550b48.png"><img alt="_images/18d2c35bacb35797925bb4de115ecddf6e6a9886d7e9befeb99548b20d550b48.png" src="_images/18d2c35bacb35797925bb4de115ecddf6e6a9886d7e9befeb99548b20d550b48.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>More examples of common transition matrices can be found <a class="reference external" href="https://en.wikipedia.org/wiki/Transformation_matrix#Examples_in_2_dimensions">here</a>.</p>
 </section>
 </section>
 <section id="matrix-multiplication-as-composition">
-<h2><a class="toc-backref" href="#id5"><span class="section-number">13.4. </span>Matrix Multiplication as Composition</a><a class="headerlink" href="#matrix-multiplication-as-composition" title="Permalink to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id5"><span class="section-number">6.4. </span>Matrix multiplication as composition</a><a class="headerlink" href="#matrix-multiplication-as-composition" title="Permalink to this heading">#</a></h2>
 <p>Since matrices act as functions that transform one vector to another, we can
 apply the concept of function composition to matrices as well.</p>
 <section id="linear-compositions">
-<h3><span class="section-number">13.4.1. </span>Linear Compositions<a class="headerlink" href="#linear-compositions" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.4.1. </span>Linear compositions<a class="headerlink" href="#linear-compositions" title="Permalink to this heading">#</a></h3>
 <p>Consider the two matrices</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -743,7 +743,7 @@ understand why, under matrix multiplication, <span class="math notranslate nohig
 <p>(After all, when we compose functions, the order usually matters.)</p>
 </section>
 <section id="examples">
-<h3><span class="section-number">13.4.2. </span>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.4.2. </span>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">#</a></h3>
 <p>Let <span class="math notranslate nohighlight">\(A\)</span> be the <span class="math notranslate nohighlight">\(90^{\circ}\)</span> clockwise rotation matrix given by
 <span class="math notranslate nohighlight">\(\begin{bmatrix} 0 &amp; 1 \\ -1 &amp; 0 \end{bmatrix}\)</span> and let <span class="math notranslate nohighlight">\(B\)</span> be a shear matrix
 along the x-axis given by <span class="math notranslate nohighlight">\(\begin{bmatrix} 1 &amp; 2 \\ 0 &amp; 1 \end{bmatrix}\)</span>.</p>
@@ -808,7 +808,7 @@ transformation <span class="math notranslate nohighlight">\(AB\)</span> and then
 </div>
 </div>
 <section id="shear-then-rotate">
-<h4><span class="section-number">13.4.2.1. </span>Shear then Rotate<a class="headerlink" href="#shear-then-rotate" title="Permalink to this heading">#</a></h4>
+<h4><span class="section-number">6.4.2.1. </span>Shear then rotate<a class="headerlink" href="#shear-then-rotate" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grid_composition_transform</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">)</span>        <span class="c1">#transformation AB</span>
@@ -816,12 +816,12 @@ transformation <span class="math notranslate nohighlight">\(AB\)</span> and then
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/f13933e3cbe248e0da130072deb4239807f5781f4d7f24220806e812f3ab8fe3.png" src="_images/f13933e3cbe248e0da130072deb4239807f5781f4d7f24220806e812f3ab8fe3.png" />
+<a class="reference internal image-reference" href="_images/f13933e3cbe248e0da130072deb4239807f5781f4d7f24220806e812f3ab8fe3.png"><img alt="_images/f13933e3cbe248e0da130072deb4239807f5781f4d7f24220806e812f3ab8fe3.png" src="_images/f13933e3cbe248e0da130072deb4239807f5781f4d7f24220806e812f3ab8fe3.png" style="width: 80%;" /></a>
 </div>
 </div>
 </section>
 <section id="rotate-then-shear">
-<h4><span class="section-number">13.4.2.2. </span>Rotate then Shear<a class="headerlink" href="#rotate-then-shear" title="Permalink to this heading">#</a></h4>
+<h4><span class="section-number">6.4.2.2. </span>Rotate then shear<a class="headerlink" href="#rotate-then-shear" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grid_composition_transform</span><span class="p">(</span><span class="n">B</span><span class="p">,</span><span class="n">A</span><span class="p">)</span>         <span class="c1">#transformation BA</span>
@@ -829,7 +829,7 @@ transformation <span class="math notranslate nohighlight">\(AB\)</span> and then
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/523971b328634bfb07b6bd7b97f9fd0a73060763a738cefd800cb4350a113fe7.png" src="_images/523971b328634bfb07b6bd7b97f9fd0a73060763a738cefd800cb4350a113fe7.png" />
+<a class="reference internal image-reference" href="_images/523971b328634bfb07b6bd7b97f9fd0a73060763a738cefd800cb4350a113fe7.png"><img alt="_images/523971b328634bfb07b6bd7b97f9fd0a73060763a738cefd800cb4350a113fe7.png" src="_images/523971b328634bfb07b6bd7b97f9fd0a73060763a738cefd800cb4350a113fe7.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>It is quite evident that the transformation <span class="math notranslate nohighlight">\(AB\)</span> is not the same as the transformation <span class="math notranslate nohighlight">\(BA\)</span>.</p>
@@ -837,7 +837,7 @@ transformation <span class="math notranslate nohighlight">\(AB\)</span> and then
 </section>
 </section>
 <section id="iterating-on-a-fixed-map">
-<h2><a class="toc-backref" href="#id6"><span class="section-number">13.5. </span>Iterating on a Fixed Map</a><a class="headerlink" href="#iterating-on-a-fixed-map" title="Permalink to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id6"><span class="section-number">6.5. </span>Iterating on a fixed map</a><a class="headerlink" href="#iterating-on-a-fixed-map" title="Permalink to this heading">#</a></h2>
 <p>In economics (and especially in dynamic modeling), we often are interested in
 analyzing behavior where we repeatedly apply a fixed matrix.</p>
 <p>For example, given a vector <span class="math notranslate nohighlight">\(v\)</span> and a matrix <span class="math notranslate nohighlight">\(A\)</span>, we are interested in
@@ -910,7 +910,7 @@ different maps <span class="math notranslate nohighlight">\(A\)</span>.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/df3452be75fe11ea67b66c33c28222875f063c8809059fa80d99280f916d5dc2.png" src="_images/df3452be75fe11ea67b66c33c28222875f063c8809059fa80d99280f916d5dc2.png" />
+<a class="reference internal image-reference" href="_images/df3452be75fe11ea67b66c33c28222875f063c8809059fa80d99280f916d5dc2.png"><img alt="_images/df3452be75fe11ea67b66c33c28222875f063c8809059fa80d99280f916d5dc2.png" src="_images/df3452be75fe11ea67b66c33c28222875f063c8809059fa80d99280f916d5dc2.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>Here with each iteration the vectors get shorter, i.e., move closer to the origin.</p>
@@ -928,7 +928,7 @@ different maps <span class="math notranslate nohighlight">\(A\)</span>.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/586854c1a5b4631742b23c138aa7c74d51b96619b037c815c76098b597820482.png" src="_images/586854c1a5b4631742b23c138aa7c74d51b96619b037c815c76098b597820482.png" />
+<a class="reference internal image-reference" href="_images/586854c1a5b4631742b23c138aa7c74d51b96619b037c815c76098b597820482.png"><img alt="_images/586854c1a5b4631742b23c138aa7c74d51b96619b037c815c76098b597820482.png" src="_images/586854c1a5b4631742b23c138aa7c74d51b96619b037c815c76098b597820482.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>Here with each iteration vectors do not tend to get longer or shorter.</p>
@@ -947,7 +947,7 @@ an ellipse”.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/2122feaa803b43d61e302c62200729d8e3dd799ae1041426b8921bcc73e29892.png" src="_images/2122feaa803b43d61e302c62200729d8e3dd799ae1041426b8921bcc73e29892.png" />
+<a class="reference internal image-reference" href="_images/2122feaa803b43d61e302c62200729d8e3dd799ae1041426b8921bcc73e29892.png"><img alt="_images/2122feaa803b43d61e302c62200729d8e3dd799ae1041426b8921bcc73e29892.png" src="_images/2122feaa803b43d61e302c62200729d8e3dd799ae1041426b8921bcc73e29892.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>Here with each iteration vectors tend to get longer, i.e., farther from the
@@ -957,10 +957,10 @@ origin.</p>
 <p>We now discuss the property of A that determines this behavior.</p>
 </section>
 <section id="eigenvalues">
-<span id="la-eigenvalues"></span><h2><a class="toc-backref" href="#id7"><span class="section-number">13.6. </span>Eigenvalues</a><a class="headerlink" href="#eigenvalues" title="Permalink to this heading">#</a></h2>
+<span id="la-eigenvalues"></span><h2><a class="toc-backref" href="#id7"><span class="section-number">6.6. </span>Eigenvalues</a><a class="headerlink" href="#eigenvalues" title="Permalink to this heading">#</a></h2>
 <p id="index-1">In this section we introduce the notions of eigenvalues and eigenvectors.</p>
 <section id="definitions">
-<h3><span class="section-number">13.6.1. </span>Definitions<a class="headerlink" href="#definitions" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.6.1. </span>Definitions<a class="headerlink" href="#definitions" title="Permalink to this heading">#</a></h3>
 <p>Let <span class="math notranslate nohighlight">\(A\)</span> be an <span class="math notranslate nohighlight">\(n \times n\)</span> square matrix.</p>
 <p>If <span class="math notranslate nohighlight">\(\lambda\)</span> is scalar and <span class="math notranslate nohighlight">\(v\)</span> is a non-zero <span class="math notranslate nohighlight">\(n\)</span>-vector  such that</p>
 <div class="math notranslate nohighlight">
@@ -977,8 +977,8 @@ applied, <span class="math notranslate nohighlight">\(v\)</span> is merely scale
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">numpy.linalg</span> <span class="kn">import</span> <span class="n">eig</span>
 
-<span class="n">A</span> <span class="o">=</span> <span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
-     <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">A</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+     <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]</span>
 <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
 <span class="n">evals</span><span class="p">,</span> <span class="n">evecs</span> <span class="o">=</span> <span class="n">eig</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
 <span class="n">evecs</span> <span class="o">=</span> <span class="n">evecs</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">evecs</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
@@ -1023,12 +1023,12 @@ applied, <span class="math notranslate nohighlight">\(v\)</span> is merely scale
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/f9eac5fe679fdf63d66e0a249c561d6f834058da62cd66d0120d582ada4b638c.png" src="_images/f9eac5fe679fdf63d66e0a249c561d6f834058da62cd66d0120d582ada4b638c.png" />
+<a class="reference internal image-reference" href="_images/f9eac5fe679fdf63d66e0a249c561d6f834058da62cd66d0120d582ada4b638c.png"><img alt="_images/f9eac5fe679fdf63d66e0a249c561d6f834058da62cd66d0120d582ada4b638c.png" src="_images/f9eac5fe679fdf63d66e0a249c561d6f834058da62cd66d0120d582ada4b638c.png" style="width: 80%;" /></a>
 </div>
 </div>
 </section>
 <section id="complex-values">
-<h3><span class="section-number">13.6.2. </span>Complex Values<a class="headerlink" href="#complex-values" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.6.2. </span>Complex values<a class="headerlink" href="#complex-values" title="Permalink to this heading">#</a></h3>
 <p>So far our definition of eigenvalues and eigenvectors seems straightforward.</p>
 <p>There is, however, one complication we haven’t mentioned yet:</p>
 <p>When solving <span class="math notranslate nohighlight">\(Av = \lambda v\)</span>,</p>
@@ -1039,7 +1039,7 @@ applied, <span class="math notranslate nohighlight">\(v\)</span> is merely scale
 <p>We will see some examples below.</p>
 </section>
 <section id="some-mathematical-details">
-<h3><span class="section-number">13.6.3. </span>Some Mathematical Details<a class="headerlink" href="#some-mathematical-details" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.6.3. </span>Some mathematical details<a class="headerlink" href="#some-mathematical-details" title="Permalink to this heading">#</a></h3>
 <p>We note some mathematical details for more advanced readers.</p>
 <p>(Other readers can skip to the next section.)</p>
 <p>The eigenvalue equation is equivalent to <span class="math notranslate nohighlight">\((A - \lambda I) v = 0\)</span>.</p>
@@ -1053,7 +1053,7 @@ in <span class="math notranslate nohighlight">\(\lambda\)</span> of degree <span
 plane, although some might be repeated.</p>
 </section>
 <section id="facts">
-<h3><span class="section-number">13.6.4. </span>Facts<a class="headerlink" href="#facts" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.6.4. </span>Facts<a class="headerlink" href="#facts" title="Permalink to this heading">#</a></h3>
 <p>Some nice facts about the eigenvalues of a square matrix <span class="math notranslate nohighlight">\(A\)</span> are as follows:</p>
 <ol class="arabic simple">
 <li><p>The determinant of <span class="math notranslate nohighlight">\(A\)</span> equals  the product of the eigenvalues.</p></li>
@@ -1064,7 +1064,7 @@ plane, although some might be repeated.</p>
 <p>A corollary of the first statement is that a matrix is invertible if and only if all its eigenvalues are nonzero.</p>
 </section>
 <section id="computation">
-<h3><span class="section-number">13.6.5. </span>Computation<a class="headerlink" href="#computation" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.6.5. </span>Computation<a class="headerlink" href="#computation" title="Permalink to this heading">#</a></h3>
 <p>Using NumPy, we can solve for the eigenvalues and eigenvectors of a matrix as follows</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1107,10 +1107,10 @@ to one.</p>
 </section>
 </section>
 <section id="exercises">
-<h2><a class="toc-backref" href="#id8"><span class="section-number">13.7. </span>Exercises</a><a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id8"><span class="section-number">6.7. </span>Exercises</a><a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h2>
 <div class="exercise admonition" id="eig1_ex1">
 
-<p class="admonition-title"><span class="caption-number">Exercise 13.1 </span></p>
+<p class="admonition-title"><span class="caption-number">Exercise 6.1 </span></p>
 <section id="exercise-content">
 <p>Power iteration is a method for finding the largest absolute eigenvalue of a diagonalizable matrix.</p>
 <p>The method starts with a random vector <span class="math notranslate nohighlight">\(b_0\)</span> and repeatedly applies the matrix <span class="math notranslate nohighlight">\(A\)</span> to it</p>
@@ -1119,13 +1119,13 @@ to one.</p>
 b_{k+1}=\frac{A b_k}{\left\|A b_k\right\|}
 \]</div>
 <p>A thorough discussion of the method can be found <a class="reference external" href="https://pythonnumericalmethods.berkeley.edu/notebooks/chapter15.02-The-Power-Method.html">here</a>.</p>
-<p>In this exercise, implement the power iteration method and use it to find the largest eigenvalue of the matrix.</p>
-<p>Visualize your results by plotting the eigenvalue as a function of the number of iterations.</p>
+<p>In this exercise, implement the power iteration method and use it to find the largest eigenvalue and its corresponding eigenvector.</p>
+<p>Visualize the convergence.</p>
 </section>
 </div>
 <div class="solution dropdown admonition" id="eigen_I-solution-1">
 
-<p class="admonition-title">Solution to<a class="reference internal" href="#eig1_ex1"> Exercise 13.1</a></p>
+<p class="admonition-title">Solution to<a class="reference internal" href="#eig1_ex1"> Exercise 6.1</a></p>
 <section id="solution-content">
 <p>Here is one solution.</p>
 <p>We start by looking into the distance between the eigenvector approximation and the true eigenvector.</p>
@@ -1136,13 +1136,14 @@ b_{k+1}=\frac{A b_k}{\left\|A b_k\right\|}
               <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> 
               <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
 
-<span class="c1"># Define a number of iterations</span>
 <span class="n">num_iters</span> <span class="o">=</span> <span class="mi">20</span>
 
 <span class="c1"># Define a random starting vector b</span>
 <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 
-<span class="c1"># Initialize a list to store the eigenvector approximations</span>
+<span class="c1"># Get the leading eigenvector of matrix A</span>
+<span class="n">eigenvector</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eig</span><span class="p">(</span><span class="n">A</span><span class="p">)[</span><span class="mi">1</span><span class="p">][:,</span> <span class="mi">0</span><span class="p">]</span>
+
 <span class="n">norm_ls</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">res</span> <span class="o">=</span> <span class="p">[]</span>
 
@@ -1154,45 +1155,63 @@ b_{k+1}=\frac{A b_k}{\left\|A b_k\right\|}
     <span class="n">b</span> <span class="o">=</span> <span class="n">b</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
     <span class="c1"># Append b to the list of eigenvector approximations</span>
     <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
-    <span class="n">norm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eig</span><span class="p">(</span><span class="n">A</span><span class="p">)[</span><span class="mi">1</span><span class="p">][:,</span> <span class="mi">0</span><span class="p">])</span>
+    <span class="n">norm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> 
+                          <span class="o">-</span> <span class="n">eigenvector</span><span class="p">)</span>
     <span class="n">norm_ls</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">norm</span><span class="p">)</span>
-    
+
+<span class="n">dominant_eigenvalue</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">A</span> <span class="o">@</span> <span class="n">b</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The approximated dominant eigenvalue is </span><span class="si">{</span><span class="n">dominant_eigenvalue</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The real eigenvalue is&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eig</span><span class="p">(</span><span class="n">A</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+
 <span class="c1"># Plot the eigenvector approximations for each iteration</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Iterations&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;L2 Norm&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Distance between the Approximation and the True Eigenvector&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;iterations&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Norm&#39;</span><span class="p">)</span>
 <span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">norm_ls</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/2c081704107e015759e87e6df0f56c919f9a27fdfcf3796246683fac36423185.png" src="_images/2c081704107e015759e87e6df0f56c919f9a27fdfcf3796246683fac36423185.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The approximated dominant eigenvalue is 4.00
+The real eigenvalue is [ 4. -2.  2.]
+</pre></div>
+</div>
+<figure class="align-default" id="pow-dist">
+<a class="reference internal image-reference" href="_images/4d378a9afefdc8b08a784486c098b02818999922c588fefa3a41467dab6425b5.png"><img alt="_images/4d378a9afefdc8b08a784486c098b02818999922c588fefa3a41467dab6425b5.png" src="_images/4d378a9afefdc8b08a784486c098b02818999922c588fefa3a41467dab6425b5.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 6.1 </span><span class="caption-text">Power iteration</span><a class="headerlink" href="#pow-dist" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </div>
 </div>
 <p>Then we can look at the trajectory of the eigenvector approximation</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get the eigenvectors of matrix A</span>
-<span class="n">eigenvector</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eig</span><span class="p">(</span><span class="n">A</span><span class="p">)[</span><span class="mi">1</span><span class="p">][:,</span> <span class="mi">0</span><span class="p">]</span>
-
-<span class="c1"># Set up the figure and axis for 3D plot</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up the figure and axis for 3D plot</span>
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s1">&#39;3d&#39;</span><span class="p">)</span>
 
 <span class="c1"># Plot the eigenvectors</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">eigenvector</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">eigenvector</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">eigenvector</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">s</span> <span class="o">=</span> <span class="mi">80</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">eigenvector</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> 
+           <span class="n">eigenvector</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> 
+           <span class="n">eigenvector</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> 
+           <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">s</span> <span class="o">=</span> <span class="mi">80</span><span class="p">)</span>
 
-<span class="c1"># Plot the approximated eigenvectors (b) at each iteration</span>
 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">vec</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">res</span><span class="p">):</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">vec</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">vec</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">vec</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">num_iters</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">s</span> <span class="o">=</span> <span class="mi">80</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">vec</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">vec</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">vec</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> 
+               <span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> 
+               <span class="n">alpha</span><span class="o">=</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">num_iters</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> 
+               <span class="n">s</span> <span class="o">=</span> <span class="mi">80</span><span class="p">)</span>
 
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;X&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Y&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_zlabel</span><span class="p">(</span><span class="s1">&#39;Z&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Power Iteration and Eigenvector Approximations&#39;</span><span class="p">)</span>
-<span class="n">points</span> <span class="o">=</span> <span class="p">[</span><span class="n">plt</span><span class="o">.</span><span class="n">Line2D</span><span class="p">([</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">i</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">]]</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;Actual eigenvectors&#39;</span><span class="p">,</span> <span class="s1">&#39;Approximated eigenvectors (b)&#39;</span><span class="p">],</span> <span class="n">numpoints</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_zlabel</span><span class="p">(</span><span class="s1">&#39;z&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;both&#39;</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s1">&#39;major&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+
+<span class="n">points</span> <span class="o">=</span> <span class="p">[</span><span class="n">plt</span><span class="o">.</span><span class="n">Line2D</span><span class="p">([</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> 
+                     <span class="n">c</span><span class="o">=</span><span class="n">i</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">]]</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;actual eigenvector&#39;</span><span class="p">,</span> 
+                   <span class="sa">r</span><span class="s1">&#39;approximated eigenvector ($b_k$)&#39;</span><span class="p">])</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_box_aspect</span><span class="p">(</span><span class="n">aspect</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">zoom</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
 
 <span class="c1"># Show the plot</span>
@@ -1201,23 +1220,28 @@ b_{k+1}=\frac{A b_k}{\left\|A b_k\right\|}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/b954f0a1285213104e39121086c20d84004fa91268f02a2b8ad06c23203847c1.png" src="_images/b954f0a1285213104e39121086c20d84004fa91268f02a2b8ad06c23203847c1.png" />
+<figure class="align-default" id="pow-trajectory">
+<a class="reference internal image-reference" href="_images/d9c16e8c1b9be0f72261ce7534107958d3dbea1dc5feddd8b498fe1b972339dc.png"><img alt="_images/d9c16e8c1b9be0f72261ce7534107958d3dbea1dc5feddd8b498fe1b972339dc.png" src="_images/d9c16e8c1b9be0f72261ce7534107958d3dbea1dc5feddd8b498fe1b972339dc.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 6.2 </span><span class="caption-text">Power iteration trajectory</span><a class="headerlink" href="#pow-trajectory" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </div>
 </div>
 </section>
 </div>
 <div class="exercise admonition" id="eig1_ex2">
 
-<p class="admonition-title"><span class="caption-number">Exercise 13.2 </span></p>
+<p class="admonition-title"><span class="caption-number">Exercise 6.2 </span></p>
 <section id="exercise-content">
 <p>We have discussed the trajectory of the vector <span class="math notranslate nohighlight">\(v\)</span> after being transformed by <span class="math notranslate nohighlight">\(A\)</span>.</p>
 <p>Consider the matrix <span class="math notranslate nohighlight">\(A = \begin{bmatrix} 1 &amp; 2 \\ 1 &amp; 1 \end{bmatrix}\)</span> and the vector <span class="math notranslate nohighlight">\(v = \begin{bmatrix} 2 \\ -2 \end{bmatrix}\)</span>.</p>
-<p>Try to compute the trajectory of <span class="math notranslate nohighlight">\(v\)</span> after being transformed by <span class="math notranslate nohighlight">\(A\)</span> for <span class="math notranslate nohighlight">\(n=6\)</span> iterations and plot the result.</p>
+<p>Try to compute the trajectory of <span class="math notranslate nohighlight">\(v\)</span> after being transformed by <span class="math notranslate nohighlight">\(A\)</span> for <span class="math notranslate nohighlight">\(n=4\)</span> iterations and plot the result.</p>
 </section>
 </div>
 <div class="solution dropdown admonition" id="eigen_I-solution-3">
 
-<p class="admonition-title">Solution to<a class="reference internal" href="#eig1_ex2"> Exercise 13.2</a></p>
+<p class="admonition-title">Solution to<a class="reference internal" href="#eig1_ex2"> Exercise 6.2</a></p>
 <section id="solution-content">
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1226,7 +1250,7 @@ b_{k+1}=\frac{A b_k}{\left\|A b_k\right\|}
 <span class="n">v</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.4</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.4</span><span class="p">)</span>
 <span class="n">n</span> <span class="o">=</span> <span class="mi">11</span>
 
-<span class="c1"># Compute right eigenvectors and eigenvalues</span>
+<span class="c1"># Compute eigenvectors and eigenvalues</span>
 <span class="n">eigenvalues</span><span class="p">,</span> <span class="n">eigenvectors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eig</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;eigenvalues:</span><span class="se">\n</span><span class="s2"> </span><span class="si">{</span><span class="n">eigenvalues</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -1244,41 +1268,43 @@ eigenvectors:
  [ 0.57735027  0.57735027]]
 </pre></div>
 </div>
-<img alt="_images/f68cc4d338f6ea30f915a8504a2c31fe83bdc8401de0d03a7609657058850c30.png" src="_images/f68cc4d338f6ea30f915a8504a2c31fe83bdc8401de0d03a7609657058850c30.png" />
+<a class="reference internal image-reference" href="_images/f68cc4d338f6ea30f915a8504a2c31fe83bdc8401de0d03a7609657058850c30.png"><img alt="_images/f68cc4d338f6ea30f915a8504a2c31fe83bdc8401de0d03a7609657058850c30.png" src="_images/f68cc4d338f6ea30f915a8504a2c31fe83bdc8401de0d03a7609657058850c30.png" style="width: 80%;" /></a>
 </div>
 </div>
-<p>We find the trajectory of the vector <span class="math notranslate nohighlight">\(v\)</span> after being transformed by <span class="math notranslate nohighlight">\(A\)</span> for <span class="math notranslate nohighlight">\(n=6\)</span> iterations and plot the result seems to converge to the eigenvector of <span class="math notranslate nohighlight">\(A\)</span> with the largest eigenvalue.</p>
+<p>The result seems to converge to the eigenvector of <span class="math notranslate nohighlight">\(A\)</span> with the largest eigenvalue.</p>
 <p>Let’s use a vector field to visualize the transformation brought by A.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a grid of points (vector field)</span>
-<span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">15</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">20</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a grid of points</span>
+<span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">15</span><span class="p">),</span> 
+                <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">20</span><span class="p">))</span>
 
 <span class="c1"># Apply the matrix A to each point in the vector field</span>
 <span class="n">vec_field</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">])</span>
 <span class="n">u</span><span class="p">,</span> <span class="n">v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">tensordot</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">vec_field</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
-
 <span class="c1"># Plot the transformed vector field</span>
-<span class="n">c</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">streamplot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">u</span> <span class="o">-</span> <span class="n">x</span><span class="p">,</span> <span class="n">v</span> <span class="o">-</span> <span class="n">y</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#A23BEC&#39;</span><span class="p">)</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">streamplot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">u</span> <span class="o">-</span> <span class="n">x</span><span class="p">,</span> <span class="n">v</span> <span class="o">-</span> <span class="n">y</span><span class="p">,</span> 
+                <span class="n">density</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#A23BEC&#39;</span><span class="p">)</span>
 <span class="n">c</span><span class="o">.</span><span class="n">lines</span><span class="o">.</span><span class="n">set_alpha</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
 <span class="n">c</span><span class="o">.</span><span class="n">arrows</span><span class="o">.</span><span class="n">set_alpha</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
 
-<span class="c1"># Plot the eigenvectors as long blue and green arrows</span>
+<span class="c1"># Draw eigenvectors</span>
 <span class="n">origin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">eigenvectors</span><span class="p">)))</span>
 <span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;color&#39;</span><span class="p">:[</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">],</span> <span class="s1">&#39;angles&#39;</span><span class="p">:</span><span class="s1">&#39;xy&#39;</span><span class="p">,</span> 
                 <span class="s1">&#39;scale_units&#39;</span><span class="p">:</span><span class="s1">&#39;xy&#39;</span><span class="p">,</span> <span class="s1">&#39;scale&#39;</span><span class="p">:</span><span class="mf">0.1</span><span class="p">,</span> <span class="s1">&#39;width&#39;</span><span class="p">:</span><span class="mf">0.01</span><span class="p">}</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="o">*</span><span class="n">origin</span><span class="p">,</span> <span class="n">eigenvectors</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">eigenvectors</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="o">**</span><span class="n">parameters</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="o">*</span><span class="n">origin</span><span class="p">,</span> <span class="o">-</span> <span class="n">eigenvectors</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="o">-</span> <span class="n">eigenvectors</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="o">**</span><span class="n">parameters</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="o">*</span><span class="n">origin</span><span class="p">,</span> <span class="n">eigenvectors</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> 
+        <span class="n">eigenvectors</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="o">**</span><span class="n">parameters</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="o">*</span><span class="n">origin</span><span class="p">,</span> <span class="o">-</span> <span class="n">eigenvectors</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> 
+        <span class="o">-</span> <span class="n">eigenvectors</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="o">**</span><span class="n">parameters</span><span class="p">)</span>
 
 <span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">]</span>
 <span class="n">lines</span> <span class="o">=</span> <span class="p">[</span><span class="n">Line2D</span><span class="p">([</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">c</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">colors</span><span class="p">]</span>
 <span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;2.4 eigenspace&quot;</span><span class="p">,</span> <span class="s2">&quot;0.4 eigenspace&quot;</span><span class="p">]</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">lines</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;center left&#39;</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">))</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Convergence/Divergence towards Eigenvectors&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;x-axis&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;y-axis&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">,</span> <span class="n">adjustable</span><span class="o">=</span><span class="s1">&#39;box&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -1286,31 +1312,36 @@ eigenvectors:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/44a6a1c89e3f87400ed18f3b53cd65736eab788f39f9b533786ebd6e47141384.png" src="_images/44a6a1c89e3f87400ed18f3b53cd65736eab788f39f9b533786ebd6e47141384.png" />
+<figure class="align-default" id="eigen-conv">
+<a class="reference internal image-reference" href="_images/b5203976c312a91c272ab4e3539f7f0e474fd58e827db359529c7c415ad621c9.png"><img alt="_images/b5203976c312a91c272ab4e3539f7f0e474fd58e827db359529c7c415ad621c9.png" src="_images/b5203976c312a91c272ab4e3539f7f0e474fd58e827db359529c7c415ad621c9.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 6.3 </span><span class="caption-text">Convergence towards eigenvectors</span><a class="headerlink" href="#eigen-conv" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </div>
 </div>
 <p>Note that the vector field converges to the eigenvector of <span class="math notranslate nohighlight">\(A\)</span> with the largest eigenvalue and diverges from the eigenvector of <span class="math notranslate nohighlight">\(A\)</span> with the smallest eigenvalue.</p>
 <p>In fact, the eigenvectors are also the directions in which the matrix <span class="math notranslate nohighlight">\(A\)</span> stretches or shrinks the space.</p>
 <p>Specifically, the eigenvector with the largest eigenvalue is the direction in which the matrix <span class="math notranslate nohighlight">\(A\)</span> stretches the space the most.</p>
-<p>We will see more intriguing examples of eigenvectors in the following exercise.</p>
+<p>We will see more intriguing examples in the following exercise.</p>
 </section>
 </div>
 <div class="exercise admonition" id="eig1_ex3">
 
-<p class="admonition-title"><span class="caption-number">Exercise 13.3 </span></p>
+<p class="admonition-title"><span class="caption-number">Exercise 6.3 </span></p>
 <section id="exercise-content">
 <p><a class="reference internal" href="#plot-series"><span class="std std-ref">Previously</span></a>, we demonstrated the trajectory of the vector <span class="math notranslate nohighlight">\(v\)</span> after being transformed by <span class="math notranslate nohighlight">\(A\)</span> for three different matrices.</p>
-<p>Use the visualization in the previous exercise to explain why the trajectory of the vector <span class="math notranslate nohighlight">\(v\)</span> after being transformed by <span class="math notranslate nohighlight">\(A\)</span> for the three different matrices.</p>
+<p>Use the visualization in the previous exercise to explain the trajectory of the vector <span class="math notranslate nohighlight">\(v\)</span> after being transformed by <span class="math notranslate nohighlight">\(A\)</span> for the three different matrices.</p>
 </section>
 </div>
 <div class="solution dropdown admonition" id="eigen_I-solution-5">
 
-<p class="admonition-title">Solution to<a class="reference internal" href="#eig1_ex3"> Exercise 13.3</a></p>
+<p class="admonition-title">Solution to<a class="reference internal" href="#eig1_ex3"> Exercise 6.3</a></p>
 <section id="solution-content">
 <p>Here is one solution</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">figure</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">figure</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">],</span>
               <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="n">sqrt</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]])</span>
 <span class="n">A</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)))</span> <span class="o">*</span> <span class="n">A</span>
@@ -1337,24 +1368,31 @@ eigenvectors:
     <span class="n">eigenvalues_real</span> <span class="o">=</span> <span class="n">eigenvalues</span><span class="o">.</span><span class="n">real</span>
     <span class="n">eigenvectors_real</span> <span class="o">=</span> <span class="n">eigenvectors</span><span class="o">.</span><span class="n">real</span>
 
-    <span class="c1"># Create a grid of points (vector field)</span>
-    <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">15</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">))</span>
+    <span class="c1"># Create a grid of points</span>
+    <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">15</span><span class="p">),</span> 
+                    <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">))</span>
 
     <span class="c1"># Apply the matrix A to each point in the vector field</span>
     <span class="n">vec_field</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">])</span>
     <span class="n">u</span><span class="p">,</span> <span class="n">v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">tensordot</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">vec_field</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
     <span class="c1"># Plot the transformed vector field</span>
-    <span class="n">c</span> <span class="o">=</span> <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">streamplot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">u</span> <span class="o">-</span> <span class="n">x</span><span class="p">,</span> <span class="n">v</span> <span class="o">-</span> <span class="n">y</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#A23BEC&#39;</span><span class="p">)</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">streamplot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">u</span> <span class="o">-</span> <span class="n">x</span><span class="p">,</span> <span class="n">v</span> <span class="o">-</span> <span class="n">y</span><span class="p">,</span>
+             <span class="n">density</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#A23BEC&#39;</span><span class="p">)</span>
     <span class="n">c</span><span class="o">.</span><span class="n">lines</span><span class="o">.</span><span class="n">set_alpha</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
     <span class="n">c</span><span class="o">.</span><span class="n">arrows</span><span class="o">.</span><span class="n">set_alpha</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
-
-    <span class="c1"># Plot the eigenvectors as long blue and green arrows</span>
+    
+    <span class="c1"># Draw eigenvectors</span>
     <span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;color&#39;</span><span class="p">:[</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">],</span> <span class="s1">&#39;angles&#39;</span><span class="p">:</span><span class="s1">&#39;xy&#39;</span><span class="p">,</span> 
-                <span class="s1">&#39;scale_units&#39;</span><span class="p">:</span><span class="s1">&#39;xy&#39;</span><span class="p">,</span> <span class="s1">&#39;scale&#39;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;width&#39;</span><span class="p">:</span><span class="mf">0.01</span><span class="p">,</span> <span class="s1">&#39;alpha&#39;</span><span class="p">:</span><span class="mf">0.5</span><span class="p">}</span>
+                <span class="s1">&#39;scale_units&#39;</span><span class="p">:</span><span class="s1">&#39;xy&#39;</span><span class="p">,</span> <span class="s1">&#39;scale&#39;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> 
+                <span class="s1">&#39;width&#39;</span><span class="p">:</span><span class="mf">0.01</span><span class="p">,</span> <span class="s1">&#39;alpha&#39;</span><span class="p">:</span><span class="mf">0.5</span><span class="p">}</span>
     <span class="n">origin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">eigenvectors</span><span class="p">)))</span>
-    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="o">*</span><span class="n">origin</span><span class="p">,</span> <span class="n">eigenvectors_real</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">eigenvectors_real</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="o">**</span><span class="n">parameters</span><span class="p">)</span>
-    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="o">*</span><span class="n">origin</span><span class="p">,</span> <span class="o">-</span> <span class="n">eigenvectors_real</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="o">-</span> <span class="n">eigenvectors_real</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="o">**</span><span class="n">parameters</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="o">*</span><span class="n">origin</span><span class="p">,</span> <span class="n">eigenvectors_real</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> 
+            <span class="n">eigenvectors_real</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="o">**</span><span class="n">parameters</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="o">*</span><span class="n">origin</span><span class="p">,</span> 
+                <span class="o">-</span> <span class="n">eigenvectors_real</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> 
+                <span class="o">-</span> <span class="n">eigenvectors_real</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> 
+                <span class="o">**</span><span class="n">parameters</span><span class="p">)</span>
 
     <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;x-axis&quot;</span><span class="p">)</span>
     <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;y-axis&quot;</span><span class="p">)</span>
@@ -1393,15 +1431,17 @@ eigenvectors:
  [0.40824829-0.40824829j 0.40824829+0.40824829j]]
 </pre></div>
 </div>
-<img alt="_images/d683a0fdaf99ac431363553b34a9625c3fa6e490f6b92522f98b00d0f163390f.png" src="_images/d683a0fdaf99ac431363553b34a9625c3fa6e490f6b92522f98b00d0f163390f.png" />
+<figure class="align-default" id="vector-field">
+<a class="reference internal image-reference" href="_images/d683a0fdaf99ac431363553b34a9625c3fa6e490f6b92522f98b00d0f163390f.png"><img alt="_images/d683a0fdaf99ac431363553b34a9625c3fa6e490f6b92522f98b00d0f163390f.png" src="_images/d683a0fdaf99ac431363553b34a9625c3fa6e490f6b92522f98b00d0f163390f.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 6.4 </span><span class="caption-text">Vector fields of the three matrices</span><a class="headerlink" href="#vector-field" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </div>
 </div>
 <p>The vector fields explain why we observed the trajectories of the vector <span class="math notranslate nohighlight">\(v\)</span> multiplied by <span class="math notranslate nohighlight">\(A\)</span> iteratively before.</p>
 <p>The pattern demonstrated here is because we have complex eigenvalues and eigenvectors.</p>
-<p>It is important to acknowledge that there is a complex plane.</p>
-<p>If we add the complex axis to the plot, the plot will be more complicated.</p>
-<p>Here we used the real part of the eigenvalues and eigenvectors.</p>
-<p>We can try to plot the complex plane for one of the matrices using <code class="docutils literal notranslate"><span class="pre">Arrow3D</span></code> class retrieved from <a class="reference external" href="https://stackoverflow.com/questions/22867620/putting-arrowheads-on-vectors-in-matplotlibs-3d-plot">stackoverflow</a>.</p>
+<p>We can plot the complex plane for one of the matrices using <code class="docutils literal notranslate"><span class="pre">Arrow3D</span></code> class retrieved from <a class="reference external" href="https://stackoverflow.com/questions/22867620/putting-arrowheads-on-vectors-in-matplotlibs-3d-plot">stackoverflow</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Arrow3D</span><span class="p">(</span><span class="n">FancyArrowPatch</span><span class="p">):</span>
@@ -1419,7 +1459,8 @@ eigenvectors:
 <span class="n">eigenvalues</span><span class="p">,</span> <span class="n">eigenvectors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eig</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
 
 <span class="c1"># Create meshgrid for vector field</span>
-<span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">15</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">15</span><span class="p">))</span>
+<span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">15</span><span class="p">),</span> 
+                   <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">15</span><span class="p">))</span>
 
 <span class="c1"># Calculate vector field (real and imaginary parts)</span>
 <span class="n">u_real</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">y</span>
@@ -1431,19 +1472,24 @@ eigenvectors:
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s1">&#39;3d&#39;</span><span class="p">)</span>
 <span class="n">vlength</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">eigenvectors</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">u_imag</span><span class="p">,</span> <span class="n">u_real</span><span class="o">-</span><span class="n">x</span><span class="p">,</span> <span class="n">v_real</span><span class="o">-</span><span class="n">y</span><span class="p">,</span> <span class="n">v_imag</span><span class="o">-</span><span class="n">u_imag</span><span class="p">,</span> <span class="n">colors</span> <span class="o">=</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">length</span> <span class="o">=</span> <span class="mf">.2</span><span class="p">,</span> <span class="n">arrow_length_ratio</span> <span class="o">=</span> <span class="mf">0.01</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">u_imag</span><span class="p">,</span> <span class="n">u_real</span><span class="o">-</span><span class="n">x</span><span class="p">,</span> <span class="n">v_real</span><span class="o">-</span><span class="n">y</span><span class="p">,</span> <span class="n">v_imag</span><span class="o">-</span><span class="n">u_imag</span><span class="p">,</span> 
+          <span class="n">colors</span> <span class="o">=</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">length</span> <span class="o">=</span> <span class="mf">.2</span><span class="p">,</span> 
+          <span class="n">arrow_length_ratio</span> <span class="o">=</span> <span class="mf">0.01</span><span class="p">)</span>
 
-<span class="n">arrow_prop_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">mutation_scale</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">arrowstyle</span><span class="o">=</span><span class="s1">&#39;-|&gt;&#39;</span><span class="p">,</span> <span class="n">shrinkA</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">shrinkB</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">arrow_prop_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">mutation_scale</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> 
+                <span class="n">arrowstyle</span><span class="o">=</span><span class="s1">&#39;-|&gt;&#39;</span><span class="p">,</span> <span class="n">shrinkA</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">shrinkB</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
 <span class="c1"># Plot 3D eigenvectors</span>
 <span class="k">for</span> <span class="n">c</span><span class="p">,</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">([</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]):</span>
-    <span class="n">a</span> <span class="o">=</span> <span class="n">Arrow3D</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">eigenvectors</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">real</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">eigenvectors</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">real</span><span class="p">],</span> 
-            <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">eigenvectors</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">imag</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">c</span><span class="p">,</span> <span class="o">**</span><span class="n">arrow_prop_dict</span><span class="p">)</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">Arrow3D</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">eigenvectors</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">real</span><span class="p">],</span> 
+                <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">eigenvectors</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">real</span><span class="p">],</span> 
+                <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">eigenvectors</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">imag</span><span class="p">],</span> 
+                <span class="n">color</span><span class="o">=</span><span class="n">c</span><span class="p">,</span> <span class="o">**</span><span class="n">arrow_prop_dict</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">add_artist</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
 
 <span class="c1"># Set axis labels and title</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;X&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Y&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_zlabel</span><span class="p">(</span><span class="s1">&#39;Im&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_box_aspect</span><span class="p">(</span><span class="n">aspect</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">zoom</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
 
@@ -1453,7 +1499,12 @@ eigenvectors:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/3fcdfa6556e6c4c3cf21d40eff6f4c85d92333fb1407842d924d0b4bf0ad02f0.png" src="_images/3fcdfa6556e6c4c3cf21d40eff6f4c85d92333fb1407842d924d0b4bf0ad02f0.png" />
+<figure class="align-default" id="d-vector-field">
+<a class="reference internal image-reference" href="_images/6bba1b2213d570f09d2a5ce7b87f250e97bbfd99d14a512d7c13f05f71251df0.png"><img alt="_images/6bba1b2213d570f09d2a5ce7b87f250e97bbfd99d14a512d7c13f05f71251df0.png" src="_images/6bba1b2213d570f09d2a5ce7b87f250e97bbfd99d14a512d7c13f05f71251df0.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 6.5 </span><span class="caption-text">3D plot of the vector field</span><a class="headerlink" href="#d-vector-field" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </div>
 </div>
 </section>
@@ -1524,104 +1575,82 @@ eigenvectors:
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
-  Supply and Demand
- </span>
-</p>
-<ul class="nav bd-sidenav nav sidenav_l1">
- <li class="toctree-l1">
-  <a class="reference internal" href="intro_supply_demand.html">
-   2. Introduction to Supply and Demand
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="supply_demand_multiple_goods.html">
-   3. Supply and Demand with Many Goods
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="supply_demand_heterogeneity.html">
-   4. Market Equilibrium with Heterogeneity
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="input_output.html">
-   5. Input-Output Models
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Data and Measurement
+  Economic Data
  </span>
 </p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="long_run_growth.html">
-   6. Long Run Growth
+   2. Long Run Growth
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="business_cycle.html">
-   7. Business Cycles
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="inflation_unemployment.html">
-   8. Inflation and Unemployment
+   3. Business Cycles
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="inequality.html">
-   9. Income and Wealth Inequality
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="distributions.html">
-   10. Distributions in Economics
+   4. Income and Wealth Inequality
   </a>
  </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
-  Useful Tools
+  Essential Tools
  </span>
 </p>
 <ul class="current nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
-  <a class="reference internal" href="geom_series.html">
-   11. Geometric Series for Elementary Economics
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="linear_equations.html">
-   12. Linear Equations and Matrix Algebra
+   5. Linear Equations and Matrix Algebra
   </a>
  </li>
  <li class="toctree-l1 current active active">
   <a class="current reference internal" href="#">
-   13. Eigenvalues and Eigenvectors
+   6. Eigenvalues and Eigenvectors
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro_supply_demand.html">
+   7. Introduction to Supply and Demand
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="geom_series.html">
+   8. Geometric Series for Elementary Economics
   </a>
  </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
-  Simulation
+  Probability and Distributions
  </span>
 </p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
+  <a class="reference internal" href="prob_dist.html">
+   9. Distributions and Probabilities
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="lln_clt.html">
-   14. LLN and CLT
+   10. LLN and CLT
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="monte_carlo.html">
-   15. Monte Carlo and Option Pricing
+   11. Monte Carlo and Option Pricing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="heavy_tails.html">
+   12. Heavy-Tailed Distributions
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="schelling.html">
-   16. Racial Segregation
+   13. Racial Segregation
   </a>
  </li>
 </ul>
@@ -1633,64 +1662,37 @@ eigenvectors:
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="solow.html">
-   17. The Solow-Swan Growth Model
+   14. The Solow-Swan Growth Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="scalar_dynam.html">
-   18. Dynamics in One Dimension
+   15. Dynamics in One Dimension
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cobweb.html">
-   19. The Cobweb Model
+   16. The Cobweb Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="olg.html">
-   20. The Overlapping Generations Model
+   17. The Overlapping Generations Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="markov_chains_I.html">
-   21. Markov Chains: Basic Concepts and Stationarity
+   18. Markov Chains: Basic Concepts and Stationarity
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="markov_chains_II.html">
-   22. Markov Chains: Irreducibility and Ergodicity
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Modeling in Higher Dimensions
- </span>
-</p>
-<ul class="nav bd-sidenav nav sidenav_l1">
- <li class="toctree-l1">
-  <a class="reference internal" href="eigen_II.html">
-   23. Theorems of Nonnegative Matrices and Eigenvalues
+   19. Markov Chains: Irreducibility and Ergodicity
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="lake_model.html">
-   24. A Lake Model of Employment
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="asset_pricing.html">
-   25. Introduction to Asset Pricing
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="networks.html">
-   26. Networks
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="samuelson.html">
-   27. Multiplier Accelerator Model
+  <a class="reference internal" href="commod_price.html">
+   20. Commodity Prices
   </a>
  </li>
 </ul>
@@ -1702,22 +1704,54 @@ eigenvectors:
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="lp_intro.html">
-   28. Linear Programming
+   21. Linear Programming
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="comparative_adv.html">
-   29. Comparative Advantage
+   22. Comparative Advantage
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="nonlinear.html">
-   30. Nonlinear Problems
+   23. Nonlinear Problems
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="short_path.html">
-   31. Shortest Paths
+   24. Shortest Paths
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Modeling in Higher Dimensions
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="eigen_II.html">
+   25. Spectral Theory
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="input_output.html">
+   26. Input-Output Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lake_model.html">
+   27. A Lake Model of Employment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="asset_pricing.html">
+   28. Introduction to Asset Pricing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="networks.html">
+   29. Networks
   </a>
  </li>
 </ul>
@@ -1728,18 +1762,13 @@ eigenvectors:
 </p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
-  <a class="reference internal" href="markets_welfare.html">
-   32. Markets and Welfare
+  <a class="reference internal" href="supply_demand_multiple_goods.html">
+   30. Supply and Demand with Many Goods
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="risk.html">
-   33. Risk
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="uncertainty.html">
-   34. Uncertainty
+  <a class="reference internal" href="supply_demand_heterogeneity.html">
+   31. Market Equilibrium with Heterogeneity
   </a>
  </li>
 </ul>
@@ -1751,17 +1780,17 @@ eigenvectors:
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="simple_linear_regression.html">
-   35. Simple Linear Regression Model
+   32. Simple Linear Regression Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="lr_with_matrices.html">
-   36. Linear Regression with Matrices
+   33. Linear Regression with Matrices
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="mle.html">
-   37. Maximum Likelihood Estimation
+   34. Maximum Likelihood Estimation
   </a>
  </li>
 </ul>
@@ -1773,17 +1802,17 @@ eigenvectors:
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="troubleshooting.html">
-   38. Troubleshooting
+   35. Troubleshooting
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="zreferences.html">
-   39. References
+   36. References
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="status.html">
-   40. Execution Statistics
+   37. Execution Statistics
   </a>
  </li>
 </ul>
