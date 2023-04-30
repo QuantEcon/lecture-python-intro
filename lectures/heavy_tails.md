@@ -461,7 +461,7 @@ The sample countpart of the CCDF function is the **empirical CCDF**.
 
 Given a sample $x_1, \ldots, x_n$, the empirical CCDF is given by
 
-$$ \hat G(x) = \frac{1}{n} \sum_{i=1}^n \1\{x_i > x\} $$
+$$ \hat G(x) = \frac{1}{n} \sum_{i=1}^n \mathbb 1\{x_i > x\} $$
 
 Thus, $\hat G(x)$ shows the fraction of the sample that exceeds $x$.
 
