@@ -99,7 +99,7 @@ The following graph illustrates the firm's constraints and iso-revenue lines.
 ---
 tags: [hide-input]
 ---
-fig, ax = plt.subplots(figsize=(8, 6))
+fig, ax = plt.subplots()
 ax.grid()
 
 # Draw constraint lines

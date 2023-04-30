@@ -13,9 +13,36 @@ kernelspec:
 
 # A Lake Model of Employment
 
-\
+## Outline
+
+In addition to what's in Anaconda, this lecture will need the following libraries:
+
+```{code-cell} ipython
+---
+tags: [hide-output]
+---
+!pip install graphviz
+```
+
+```{admonition} graphviz
+:class: warning
+If you are running this lecture locally it requires [graphviz](https://www.graphviz.org)
+to be installed on your computer. Installation instructions for graphviz can be found
+[here](https://www.graphviz.org/download/) 
+```
+
 This lecture studies a model of employment and unemployment flows in a large
-population.
+population called the **lake model**.
+
+We will use the following imports in this lecture.
+
+```{code-cell} ipython3
+import numpy as np
+import matplotlib.pyplot as plt
+from graphviz import Digraph
+```
+
+## The Lake model
 
 This model is sometimes called the **lake model** because there are two pools of workers:
 
@@ -32,8 +59,6 @@ The "flows" between the two lakes are as follows:
 The below graph illustrates the lake model.
 
 ```{code-cell} ipython3
-from graphviz import Digraph
-
 # Create Digraph object
 G = Digraph()
 G.attr(rankdir='LR')
@@ -55,21 +80,24 @@ G.edge('3', '3', label='(1-α)(1-d)')
 G
 ```
 
+## Dynamics
+
 Let $e_t$ and $u_t$ be the number of employed and unemployed workers at time $t$ respectively.
 
 The total population of workers is $n_t = e_t + u_t$.
 
-The number of unemployed and employed workers thus evolve according to:
+The number of unemployed and employed workers thus evolves according to:
 
 ```{math}
 :label: lake_model
 \begin{aligned}
-    u_{t+1} = (1-d)(1-\lambda)u_t + \alpha(1-d)e_t + bn_t = ((1-d)(1-\lambda) +& b)u_t + (\alpha(1-d) + b)e_t \\
-    e_{t+1} = (1-d)\lambda u_t + (1 - \alpha)(1-d)e_t&
+    u_{t+1} &= (1-d)(1-\lambda)u_t + \alpha(1-d)e_t + bn_t \\
+    &= ((1-d)(1-\lambda) + b)u_t + (\alpha(1-d) + b)e_t \\
+    e_{t+1} &= (1-d)\lambda u_t + (1 - \alpha)(1-d)e_t
 \end{aligned}
 ```
 
-We can arrange {eq}`lake_model` as a linear system of equations in matrix form $x_{t+1} = Ax_t$ such that:
+We can arrange {eq}`lake_model` as a linear system of equations in matrix form $x_{t+1} = Ax_t$ where
 
 $$
 x_{t+1} =
@@ -77,17 +105,18 @@ x_{t+1} =
     u_{t+1} \\
     e_{t+1}
 \end{bmatrix}
-, \; A =
+\quad
+A =
 \begin{bmatrix}
     (1-d)(1-\lambda) + b & \alpha(1-d) + b \\
     (1-d)\lambda & (1 - \alpha)(1-d)
 \end{bmatrix}
-\; \text{and} \;
+\quad \text{and} \quad
 x_t =
 \begin{bmatrix}
     u_t \\
     e_t
-\end{bmatrix}
+\end{bmatrix}.
 $$
 
 Suppose at $t=0$ we have $x_0 = \begin{bmatrix} u_0 & e_0 \end{bmatrix}^\top$.
@@ -102,14 +131,9 @@ What long-run unemployment rate and employment rate should we expect?
 
 Do long-run outcomes depend on the initial values $(u_0, e_o)$?
 
+### Visualising the long-run outcomes
+
 Let us first plot the time series of unemployment $u_t$, employment $e_t$, and labor force $n_t$.
-
-We will use the following imports.
-
-```{code-cell} ipython3
-import numpy as np
-import matplotlib.pyplot as plt
-```
 
 ```{code-cell} ipython3
 class LakeModel:
@@ -201,7 +225,7 @@ plt.show()
 
 Not surprisingly, we observe that labor force $n_t$ increases at a constant rate.
 
-This conincides with the fact there is only one inflow source (new entrants pool) to unemployment and employment pools.
+This coincides with the fact there is only one inflow source (new entrants pool) to unemployment and employment pools.
 
 The inflow and outflow of labor market system
 is determined by constant exit rate and entry rate of labor market in the long run.
@@ -211,19 +235,27 @@ In detail, let $\mathbb{1}=[1, 1]^\top$ be a vector of ones.
 Observe that
 
 $$
-    n_{t+1} = u_{t+1} + e_{t+1} =  \mathbb{1}^\top x_t = \mathbb{1}^\top A x_t = (1 + b - d) (u_t + e_t)  = (1 + b - d) n_t.
+    \begin{aligned}
+    n_{t+1} &= u_{t+1} + e_{t+1} \\
+    &= \mathbb{1}^\top x_{t+1} \\
+    &= \mathbb{1}^\top A x_t \\
+    &= (1 + b - d) (u_t + e_t) \\
+    &= (1 + b - d) n_t.
+    \end{aligned}
 $$
 
 Hence, the growth rate of $n_t$ is fixed at $1 + b - d$.
 
 Moreover, the times series of unemployment and employment seems to grow at some stable rates in the long run.
 
-Since by intuition if we consider unemployment pool and employment pool as a closed system, the growth should be similar the labor force.
+### The application of erron-Frobenius theorem
+
+Since by intuition if we consider unemployment pool and employment pool as a closed system, the growth should be similar to the labor force.
 
 We next ask whether the long run growth rates of $e_t$ and $u_t$
 also dominated by $1+b-d$ as labor force.
 
-The answer will be clearer if we appeal to Perron-Frobenius theorem.
+The answer will be clearer if we appeal to {ref}`Perron-Frobenius theorem<perron-frobe>`.
 
 The importance of the Perron-Frobenius theorem stems from the fact that
 firstly in the real world most matrices we encounter are nonnegative matrices.
@@ -234,6 +266,8 @@ $x_{t+1} = Ax_t$ or in short $x_t = A^tx_0$.
 
 This theorem helps characterise the dominant eigenvalue $r(A)$ which
 determines the behavior of this iterative process.
+
+#### Dominant eigenvector
 
 We now illustrate the power of the Perron-Frobenius theorem by showing how it
 helps us to analyze the lake model.
@@ -246,7 +280,7 @@ $$
     r(A) := \max\{|\lambda|: \lambda \text{ is an eigenvalue of } A \}
 $$
 
-- any other eigenvalue $\lambda$ in absolue value is strictly smaller than $r(A)$: $|\lambda|< r(A)$,
+- any other eigenvalue $\lambda$ in absolute value is strictly smaller than $r(A)$: $|\lambda|< r(A)$,
 
 - there exist unique and everywhere positive right eigenvector $\phi$ (column vector) and left eigenvector $\psi$ (row vector):
 
@@ -260,7 +294,7 @@ $$
     r(A)^{-t} A^t \to \phi \psi
 $$
 
-The last statement implies that the magnitude of $A^t$ is identical to the magnitude of $r(A)^t$ in the long run, where $r(A)$ can be considered as the dominated eigenvalue in this lecture.
+The last statement implies that the magnitude of $A^t$ is identical to the magnitude of $r(A)^t$ in the long run, where $r(A)$ can be considered as the dominant eigenvalue in this lecture.
 
 Therefore, the magnitude $x_t = A^t x_0$ is also dominated by $r(A)^t$ in the long run.
 
@@ -268,10 +302,10 @@ Recall that the spectral radius is bounded by column sums: for $A \geq 0$, we ha
 
 ```{math}
 :label: PF_bounds
-\min_j colsum_j (A) \leq r(A) \leq \max_j colsum_j (A)
+\min_j \text{colsum}_j (A) \leq r(A) \leq \max_j \text{colsum}_j (A)
 ```
 
-Note that $colsum_j(A) = 1 + b - d$ for $j=1,2$ and by {eq}`PF_bounds` we can thus conclude that the dominant eigenvalue
+Note that $\text{colsum}_j(A) = 1 + b - d$ for $j=1,2$ and by {eq}`PF_bounds` we can thus conclude that the dominant eigenvalue
 is $r(A) = 1 + b - d$.
 
 Denote $g = b - d$ as the overall growth rate of the total labor force, so that $r(A) = 1 + g$.
@@ -381,9 +415,11 @@ The graph illustrates that for two distinct initial conditions $x_0$ the sequenc
 
 This suggests that all such sequences share strong similarities in the long run, determined by the dominant eigenvector $\bar{x}$.
 
+#### Negative growth rate
+
 In the example illustrated above we considered parameters such that overall growth rate of the labor force $g>0$.
 
-Suppose now we are faced with a situation where the $g<0$, i.e, negative growth in the labor force.
+Suppose now we are faced with a situation where the $g<0$, i.e., negative growth in the labor force.
 
 This means that $b-d<0$, i.e., workers exit the market faster than they enter.
 
@@ -396,40 +432,46 @@ lm = LakeModel(α=0.01, λ=0.1, d=0.025, b=0.02)
 plot_time_paths(lm, x0=x0)
 ```
 
-Thus, while the sequence of iterates still move towards the dominant eigenvector $\bar{x}$, in this case
+Thus, while the sequence of iterates still moves towards the dominant eigenvector $\bar{x}$, in this case
 they converge to the origin.
 
 This is a result of the fact that $r(A)<1$, which ensures that the iterative sequence $(A^t x_0)_{t \geq 0}$ will converge
 to some point, in this case to $(0,0)$.
 
-This leads us into the next result.
+This leads us to the next result.
+
+### Properties
 
 Since the column sums of $A$ are $r(A)=1$, the left eigenvector is $\mathbb{1}^\top=[1, 1]$.
 
 Perron-Frobenius theory implies that
 
 $$
-r(A)^{-t} A^{t} \approx \bar{x} \mathbb{1}^\top = \begin{pmatrix} \bar{u} & \bar{u} \\ \bar{e} & \bar{e} \end{pmatrix}.
+r(A)^{-t} A^{t} \approx \bar{x} \mathbb{1}^\top = \begin{bmatrix} \bar{u} & \bar{u} \\ \bar{e} & \bar{e} \end{bmatrix}.
 $$
 
 As a result, for any $x_0 = (u_0, e_0)^\top$, we have
 
 $$
-x_t= A^t x_0 \approx r(A)^t \begin{pmatrix} \bar{u} & \bar{u} \\ \bar{e} & \bar{e} \end{pmatrix} \begin{pmatrix}u_0 \\ e_0 \end{pmatrix}
-= (1+g)^t(u_0 + e_0) \begin{pmatrix}\bar{u} \\ \bar{e} \end{pmatrix} = (1 + g)^t n_0 \bar{x} = n_t \bar{x}.
+\begin{aligned}
+x_t = A^t x_0 &\approx r(A)^t \begin{bmatrix} \bar{u} & \bar{u} \\ \bar{e} & \bar{e} \end{bmatrix} \begin{bmatrix}u_0 \\ e_0 \end{bmatrix} \\
+&= (1+g)^t(u_0 + e_0) \begin{bmatrix}\bar{u} \\ \bar{e} \end{bmatrix} \\
+&= (1 + g)^t n_0 \bar{x} \\
+&= n_t \bar{x}.
+\end{aligned}
 $$
 
 as $t$ is large enough.
 
 We see that the growth of $u_t$ and $e_t$ also dominated by $r(A) = 1+g$ in the long run: $x_t$ grows along $D$ as $r(A) > 1$ and converges to $(0, 0)$ as $r(A) < 1$.
 
-Moreover, the long-run uneumploment and employment are steady fractions of $n_t$.
+Moreover, the long-run unemployment and employment are steady fractions of $n_t$.
 
 The latter implies that $\bar{u}$ and $\bar{e}$ are long-run unemployment rate and employment rate, respectively.
 
 In detail, we have the unemployment rates and employment rates: $x_t / n_t = A^t n_0 / n_t \to \bar{x}$ as $t \to \infty$.
 
-To illustate the dynamics of the rates, let $\hat{A} := A / (1+g)$ be the transition matrix of $r_t := x_t/ n_t$.
+To illustrate the dynamics of the rates, let $\hat{A} := A / (1+g)$ be the transition matrix of $r_t := x_t/ n_t$.
 
 The dynamics of the rates follow
 
@@ -443,7 +485,10 @@ Observe that the column sums of $\hat{A}$ are all one so that $r(\hat{A})=1$.
 One can check that $\bar{x}$ is also the right eigenvector of $\hat{A}$ corresponding to $r(\hat{A})$ that $\bar{x} = \hat{A} \bar{x}$.
 
 Moreover, $\hat{A}^t r_0 \to \bar{x}$ as $t \to \infty$ for any $r_0 = x_0 / n_0$, since the above discussion implies
-$$r_t = \hat{A}^t r_0 = (1+g)^{-t} A^t r_0 = r(A)^{-t} A^t r_0 \to \begin{pmatrix} \bar{u} & \bar{u} \\ \bar{e} & \bar{e} \end{pmatrix} r_0 = \begin{pmatrix} \bar{u} \\  \bar{e} \end{pmatrix}. $$
+
+$$
+r_t = \hat{A}^t r_0 = (1+g)^{-t} A^t r_0 = r(A)^{-t} A^t r_0 \to \begin{bmatrix} \bar{u} & \bar{u} \\ \bar{e} & \bar{e} \end{bmatrix} r_0 = \begin{bmatrix} \bar{u} \\  \bar{e} \end{bmatrix}. 
+$$
 
 This is illustrated below.
 
@@ -486,11 +531,11 @@ To provide more intuition for convergence, we further explain the convergence be
 
 Suppose that $\hat{A} = P D P^{-1}$ is diagonalizable, where $P = [v_1, v_2]$ consists of eigenvectors $v_1$ and $v_2$ of $\hat{A}$
 corresponding to eigenvalues $\gamma_1$ and $\gamma_2$ respectively,
-and $D = diag(\gamma_1, \gamma_2)$.
+and $D = \text{diag}(\gamma_1, \gamma_2)$.
 
 Let $\gamma_1 = r(\hat{A})=1$ and $|\gamma_2| < \gamma_1$, so that the spectral radius is a dominant eigenvalue.
 
-The dynamics of the rates follows $r_{t+1} = \hat{A} r_t$, where $r_0$ is a probability vector: $\sum_j r_{0,j}=1$.
+The dynamics of the rates follow $r_{t+1} = \hat{A} r_t$, where $r_0$ is a probability vector: $\sum_j r_{0,j}=1$.
 
 Consider $z_t = P^{-1} r_t $.
 
@@ -499,8 +544,8 @@ Then, we have $z_{t+1} = P^{-1} r_{t+1} = P^{-1} \hat{A} r_t = P^{-1} \hat{A} P 
 Hence, we obtain $z_t = D^t z_0$, and for some $z_0 = (c_1, c_2)^\top$ we have
 
 $$
-r_t = P z_t = \begin{pmatrix} v_1 & v_2 \end{pmatrix} \begin{pmatrix} \gamma_1^t & 0 \\ 0 & \gamma_2^t \end{pmatrix}
-\begin{pmatrix} c_1 \\ c_2 \end{pmatrix} = c_1 \gamma_1^t v_1 + c_2 \gamma_2^t v_2.
+r_t = P z_t = \begin{bmatrix} v_1 & v_2 \end{bmatrix}  \begin{bmatrix} \gamma_1^t & 0 \\ 0 & \gamma_2^t \end{bmatrix}
+\begin{bmatrix} c_1 \\ c_2 \end{bmatrix} = c_1 \gamma_1^t v_1 + c_2 \gamma_2^t v_2.
 $$
 
 Since $|\gamma_2| < |\gamma_1|=1$, the second term in the right hand side converges to zero.
@@ -513,9 +558,11 @@ In this case, $c_1 v_1$ must be a normalized eigenvector, so $c_1 v_1 = \bar{x}$
 
 ## Exercise
 
+```{exercise-start} Evolution of unemployment and employment rate
 :label: lake_model_ex1
+```
 
-How do the long-run unemployment rate and employment rate elvove if there is an increase in the separation rate $\alpha$
+How do the long-run unemployment rate and employment rate evolve if there is an increase in the separation rate $\alpha$
 or a decrease in job finding rate $\lambda$?
 
 Is the result compatible with your intuition?
@@ -523,7 +570,12 @@ Is the result compatible with your intuition?
 Plot the graph to illustrate how the line $D := \{ x \in \mathbb{R}^2 : x = \alpha \bar{x} \; \text{for some} \; \alpha >0 \}$
 shifts in the unemployment-employment space.
 
+```{exercise-end}
+```
+
+```{solution-start} lake_model_ex1
 :class: dropdown
+```
 
 Eq. {eq}`steady_x` implies that the long-run unemployment rate will increase, and the employment rate will decrease
 if $\alpha$ increases or $\lambda$ decreases.
@@ -548,4 +600,7 @@ ax.plot([0, s * lm.ū], [0, s * lm.ē], "r--", lw=1, label='set $D$, α=0.04')
 
 ax.legend(loc='best')
 plt.show()
+```
+
+```{solution-end}
 ```
