@@ -11,6 +11,7 @@ kernelspec:
   name: python3
 ---
 
+(heavy_tail)=
 # Heavy-Tailed Distributions
 
 ```{contents} Contents
