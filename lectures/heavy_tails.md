@@ -635,7 +635,9 @@ def extract_wb(varlist=['NY.GDP.MKTP.CD'],
     if varnames is not None:
         df.columns = varnames
         df = df[1:]
-    return df
+    
+    df1 =df[df.index.isin(countries_name)]
+    return df1
 ```
 
 ### Firm size
