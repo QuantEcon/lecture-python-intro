@@ -280,7 +280,7 @@ The bottom subfigure shows 120 independent draws from [the Cauchy
 distribution](https://en.wikipedia.org/wiki/Cauchy_distribution), which is
 heavy-tailed.
 
-```{code-cell} python3
+```{code-cell} ipython3
 n = 120
 np.random.seed(11)
 
@@ -333,7 +333,7 @@ The exponential distribution is a light-tailed distribution.
 
 Here are some draws from the exponential distribution.
 
-```{code-cell} python3
+```{code-cell} ipython3
 n = 120
 np.random.seed(11)
 
@@ -382,7 +382,7 @@ is Pareto-distributed with minimum $\bar x$ and tail index $\alpha$.
 Here are some draws from the Pareto distribution with tail index $1$ and minimum
 $1$.
 
-```{code-cell} python3
+```{code-cell} ipython3
 n = 120
 np.random.seed(11)
 
@@ -426,7 +426,7 @@ This function goes to zero as $x \to \infty$, but much slower than $G_E$.
 
 Here's a plot that illustrates how $G_E$ goes to zero faster that $G_P$.
 
-```{code-cell} python3
+```{code-cell} ipython3
 x = np.linspace(1.5, 100, 1000)
 fig, ax = plt.subplots()
 alpha = 1.0
@@ -435,11 +435,11 @@ ax.plot(x, x**(- alpha), label='Pareto', alpha=0.8)
 ax.legend()
 plt.show()
 ```
+
 Here's a log-log plot of the same functions, which makes visual comparison a
 bit easier.
 
-
-```{code-cell} python3
+```{code-cell} ipython3
 fig, ax = plt.subplots()
 alpha = 1.0
 ax.loglog(x, np.exp(- alpha * x), label='exponential', alpha=0.8)
@@ -461,12 +461,11 @@ The sample countpart of the CCDF function is the **empirical CCDF**.
 
 Given a sample $x_1, \ldots, x_n$, the empirical CCDF is given by
 
-$$ \hat G(x) = \frac{1}{n} \sum_{i=1}^n \1\{x_i > x\} $$
+$$ \hat G(x) = \frac{1}{n} \sum_{i=1}^n \mathbb 1\{x_i > x\} $$
 
 Thus, $\hat G(x)$ shows the fraction of the sample that exceeds $x$.
 
 Here's a figure containing some empirical CCDFs from simulated data.
-
 
 ```{code-cell} ipython3
 def eccdf(x, data):
@@ -559,6 +558,7 @@ readers are of course welcome to explore the code (perhaps after examining the f
 
 ```{code-cell} ipython3
 :tags: [hide-input]
+
 def empirical_ccdf(data, 
                    ax, 
                    aw=None,   # weights
@@ -616,28 +616,27 @@ def empirical_ccdf(data,
     return np.log(data), y_vals, p_vals
 ```
 
-
 ```{code-cell} ipython3
 :tags: [hide-input]
+
 def extract_wb(varlist=['NY.GDP.MKTP.CD'], 
-               c='all', 
+               c='all_countries', 
                s=1900, 
                e=2021, 
                varnames=None):
     if c == "all_countries":
-        #  keep countries only (no aggregated regions)
+        # Keep countries only (no aggregated regions)
         countries = wb.get_countries()
-        countries_code = countries[countries['region'] != 'Aggregates']['iso3c'].values
-            
-    df = wb.download(indicator=varlist, country=countries_code, start=s, end=e).stack().unstack(0).reset_index()
-    df = df.drop(['level_1'], axis=1).transpose() # set_index(['year'])
-    if varnames != None:
+        countries_name = countries[countries['region'] != 'Aggregates']['name'].values
+        c = "all"
+    
+    df = wb.download(indicator=varlist, country=c, start=s, end=e).stack().unstack(0).reset_index()
+    df = df.drop(['level_1'], axis=1).transpose()
+    if varnames is not None:
         df.columns = varnames
         df = df[1:]
     return df
 ```
-
-
 
 ### Firm size
 
@@ -645,6 +644,7 @@ Here is a plot of the firm size distribution taken from Forbes Global 2000.
 
 ```{code-cell} ipython3
 :tags: [hide-input]
+
 df_fs = pd.read_csv('https://media.githubusercontent.com/media/QuantEcon/high_dim_data/update_csdata/cross_section/forbes-global2000.csv')
 df_fs = df_fs[['Country', 'Sales', 'Profits', 'Assets', 'Market Value']]
 fig, ax = plt.subplots(figsize=(6.4, 3.5))
@@ -663,6 +663,7 @@ measured by population.
 
 ```{code-cell} ipython3
 :tags: [hide-input]
+
 df_cs_us = pd.read_csv('https://raw.githubusercontent.com/QuantEcon/high_dim_data/update_csdata/cross_section/cities_us.txt', delimiter="\t", header=None)
 df_cs_us = df_cs_us[[0, 3]]
 df_cs_us.columns = 'rank', 'pop'
@@ -692,6 +693,7 @@ The data is from the Forbes billionaires list.
 
 ```{code-cell} ipython3
 :tags: [hide-input]
+
 df_w = pd.read_csv('https://media.githubusercontent.com/media/QuantEcon/high_dim_data/update_csdata/cross_section/forbes-billionaires.csv')
 df_w = df_w[['country', 'realTimeWorth', 'realTimeRank']].dropna()
 df_w = df_w.astype({'realTimeRank': int})
@@ -724,6 +726,7 @@ Here we show cross-country per capita GDP.
 
 ```{code-cell} ipython3
 :tags: [hide-input]
+
 # get gdp and gdp per capita for all regions and countries in 2021
 
 variable_code = ['NY.GDP.MKTP.CD', 'NY.GDP.PCAP.CD']
@@ -734,7 +737,9 @@ df_gdp1 = extract_wb(varlist=variable_code,
                      s="2021", 
                      e="2021", 
                      varnames=variable_names)
+```
 
+```{code-cell} ipython3
 fig, axes = plt.subplots(1, 2, figsize=(8.8, 3.6))
 
 for name, ax in zip(variable_names, axes):
@@ -778,7 +783,7 @@ For example, it fails for the Cauchy distribution.
 Let's have a look at the behavior of the sample mean in this case, and see
 whether or not the LLN is still valid.
 
-```{code-cell} python3
+```{code-cell} ipython3
 from scipy.stats import cauchy
 
 np.random.seed(1234)
