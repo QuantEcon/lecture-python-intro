@@ -424,6 +424,30 @@ $$ G_P(x) = x^{- \alpha} $$
 
 This function goes to zero as $x \to \infty$, but much slower than $G_E$.
 
+```{exercise}
+:label: ht_ex_x1
+
+Show how the CCDF of the Pareto distribution can be derived from the CCDF of the exponential distribution.
+```
+
+```{solution-start} ht_ex_x1
+:class: dropdown
+```
+Letting $G_E$ and $G_P$ be defined as above yields
+
+$$
+\begin{aligned}
+ G_P(y) & = \mathbb P\{Y > y\} \\
+         & = \mathbb P\{\exp(X) > y\} \\
+         & = \mathbb P\{X > \ln y\} \\
+         & = G_E(\ln y) \\
+         & = \exp( - \alpha \ln y) \\
+        & = y^{-\alpha}
+\end{aligned}
+$$
+```{solution-end}
+```
+
 Here's a plot that illustrates how $G_E$ goes to zero faster than $G_P$.
 
 ```{code-cell} ipython3
