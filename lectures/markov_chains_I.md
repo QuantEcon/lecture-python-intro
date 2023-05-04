@@ -11,7 +11,7 @@ kernelspec:
   name: python3
 ---
 
-+++ {"user_expressions": []}
+
 
 # Markov Chains: Basic Concepts and Stationarity
 
@@ -36,10 +36,10 @@ In addition to what's in Anaconda, this lecture will need the following librarie
 :class: warning
 If you are running this lecture locally it requires [graphviz](https://www.graphviz.org)
 to be installed on your computer. Installation instructions for graphviz can be found
-[here](https://www.graphviz.org/download/) 
+[here](https://www.graphviz.org/download/)
 ```
 
-+++ {"user_expressions": []}
+
 
 ## Overview
 
@@ -74,7 +74,7 @@ import matplotlib as mpl
 from itertools import cycle
 ```
 
-+++ {"user_expressions": []}
+
 
 ## Definitions and examples
 
@@ -137,7 +137,7 @@ dot.edge("sr", "sr", label="0.492")
 dot
 ```
 
-+++ {"user_expressions": []}
+
 
 Here there are three **states**
 
@@ -180,11 +180,11 @@ We can collect all of these conditional probabilities into a matrix, as follows
 
 $$
 P =
-\begin{bmatrix} 
+\begin{bmatrix}
 0.971 & 0.029 & 0 \\
 0.145 & 0.778 & 0.077 \\
 0 & 0.508 & 0.492
-\end{bmatrix} 
+\end{bmatrix}
 $$
 
 Notice that $P$ is a stochastic matrix.
@@ -220,11 +220,11 @@ Given the above information, we can write out the transition probabilities in ma
 ```{math}
 :label: p_unempemp
 
-P = 
-\begin{bmatrix} 
+P =
+\begin{bmatrix}
     1 - \alpha & \alpha \\
     \beta & 1 - \beta
-\end{bmatrix} 
+\end{bmatrix}
 ```
 
 For example,
@@ -255,11 +255,11 @@ We'll cover some of these applications below.
 (mc_eg3)=
 #### Example 3
 
-Imam and Temple {cite}`imampolitical` categorize political institutions into three types: democracy (D), autocracy (A), and an intermediate state called anocracy (N). 
+Imam and Temple {cite}`imampolitical` categorize political institutions into three types: democracy (D), autocracy (A), and an intermediate state called anocracy (N).
 
-Each institution can have two potential development regimes: collapse (C) and growth (G). This results in six possible states: DG, DC, NG, NC, AG, and AC. 
+Each institution can have two potential development regimes: collapse (C) and growth (G). This results in six possible states: DG, DC, NG, NC, AG, and AC.
 
-The lower probability of transitioning from NC to itself indicates that collapses in anocracies quickly evolve into changes in the political institution. 
+The lower probability of transitioning from NC to itself indicates that collapses in anocracies quickly evolve into changes in the political institution.
 
 Democracies tend to have longer-lasting growth regimes compared to autocracies as indicated by the lower probability of transitioning from growth to growth in autocracies.
 
@@ -267,14 +267,14 @@ We can also find a higher probability from collapse to growth in democratic regi
 
 $$
 P :=
-\begin{bmatrix} 
+\begin{bmatrix}
 0.86 & 0.11 & 0.03 & 0.00 & 0.00 & 0.00 \\
 0.52 & 0.33 & 0.13 & 0.02 & 0.00 & 0.00 \\
 0.12 & 0.03 & 0.70 & 0.11 & 0.03 & 0.01 \\
 0.13 & 0.02 & 0.35 & 0.36 & 0.10 & 0.04 \\
 0.00 & 0.00 & 0.09 & 0.11 & 0.55 & 0.25 \\
 0.00 & 0.00 & 0.09 & 0.15 & 0.26 & 0.50
-\end{bmatrix} 
+\end{bmatrix}
 $$
 
 ```{code-cell} ipython3
@@ -297,7 +297,7 @@ for start_idx, node_start in enumerate(nodes):
         value = P[start_idx][end_idx]
         if value != 0:
             G.add_edge(node_start,node_end, weight=value, len=100)
-            
+
 pos = nx.spring_layout(G, seed=10)
 fig, ax = plt.subplots()
 nx.draw_networkx_nodes(G, pos, node_size=600, edgecolors='black', node_color='white')
@@ -327,7 +327,7 @@ The set $S$ is called the **state space** and $x_1, \ldots, x_n$ are the **state
 
 A **distribution** $\psi$ on $S$ is a probability mass function of length $n$, where $\psi(i)$ is the amount of probability allocated to state $x_i$.
 
-A **Markov chain** $\{X_t\}$ on $S$ is a sequence of random variables taking values in $S$ 
+A **Markov chain** $\{X_t\}$ on $S$ is a sequence of random variables taking values in $S$
 that have the **Markov property**.
 
 This means that, for any date $t$ and any state $y \in S$,
@@ -390,9 +390,9 @@ In these exercises, we'll take the state space to be $S = 0,\ldots, n-1$.
 
 ### Writing our own simulation code
 
-To simulate a Markov chain, we need 
+To simulate a Markov chain, we need
 
-1. a stochastic matrix $P$ and 
+1. a stochastic matrix $P$ and
 1. a probability mass function $\psi_0$ of length $n$ from which to draw a initial realization of $X_0$.
 
 The Markov chain is then constructed as follows:
@@ -416,7 +416,7 @@ cdf = np.cumsum(ψ_0)       # convert into cumulative distribution
 qe.random.draw(cdf, 5)   # generate 5 independent draws from ψ
 ```
 
-+++ {"user_expressions": []}
+
 
 We'll write our code as a function that accepts the following three arguments
 
@@ -449,7 +449,7 @@ def mc_sample_path(P, ψ_0=None, ts_length=1_000):
     return X
 ```
 
-+++ {"user_expressions": []}
+
 
 Let's see how it works using the small matrix
 
@@ -458,7 +458,7 @@ P = [[0.4, 0.6],
      [0.2, 0.8]]
 ```
 
-+++ {"user_expressions": []}
+
 
 Here's a short time series.
 
@@ -466,7 +466,7 @@ Here's a short time series.
 mc_sample_path(P, ψ_0=[1.0, 0.0], ts_length=10)
 ```
 
-+++ {"user_expressions": []}
+
 
 It can be shown that for a long series drawn from `P`, the fraction of the
 sample that takes value 0 will be about 0.25.
@@ -483,7 +483,7 @@ X = mc_sample_path(P, ψ_0=[0.1, 0.9], ts_length=1_000_000)
 np.mean(X == 0)
 ```
 
-+++ {"user_expressions": []}
+
 
 You can try changing the initial distribution to confirm that the output is
 always close to 0.25 (for the `P` matrix above).
@@ -501,7 +501,7 @@ X = mc.simulate(ts_length=1_000_000)
 np.mean(X == 0)
 ```
 
-+++ {"user_expressions": []}
+
 
 The `simulate` routine is faster (because it is [JIT compiled](https://python-programming.quantecon.org/numba.html#numba-link)).
 
@@ -513,7 +513,7 @@ The `simulate` routine is faster (because it is [JIT compiled](https://python-pr
 %time mc.simulate(ts_length=1_000_000) # qe code version
 ```
 
-+++ {"user_expressions": []}
+
 
 #### Adding state values and initial conditions
 
@@ -536,7 +536,7 @@ mc.simulate(ts_length=4, init='unemployed')
 mc.simulate(ts_length=4)  # Start at randomly chosen initial state
 ```
 
-+++ {"user_expressions": []}
+
 
 If we want to see indices rather than state values as outputs as  we can use
 
@@ -544,7 +544,7 @@ If we want to see indices rather than state values as outputs as  we can use
 mc.simulate_indices(ts_length=4)
 ```
 
-+++ {"user_expressions": []}
+
 
 (mc_md)=
 ## Distributions over time
@@ -621,7 +621,7 @@ Hence the following is also valid.
 X_t \sim \psi_t \quad \implies \quad X_{t+m} \sim \psi_t P^m
 ```
 
-+++ {"user_expressions": []}
+
 
 (finite_mc_mstp)=
 ### Multiple step transition probabilities
@@ -657,20 +657,20 @@ Suppose that the current state is unknown --- perhaps statistics are available o
 
 We guess that the probability that the economy is in state $x$ is $\psi_t(x)$ at time t.
 
-The probability of being in recession (either mild or severe) in 6 months time is given by 
+The probability of being in recession (either mild or severe) in 6 months time is given by
 
 $$
 (\psi_t P^6)(1) + (\psi_t P^6)(2)
 $$
 
-+++ {"user_expressions": []}
+
 
 (mc_eg1-1)=
 ### Example 2: Cross-sectional distributions
 
-The distributions we have been studying can be viewed either 
+The distributions we have been studying can be viewed either
 
-1. as probabilities or 
+1. as probabilities or
 1. as cross-sectional frequencies that a Law of Large Numbers leads us to anticipate for large samples.
 
 To illustrate, recall our model of employment/unemployment dynamics for a given worker {ref}`discussed above <mc_eg1>`.
@@ -720,11 +720,11 @@ P = np.array([[0.4, 0.6],
 ψ @ P
 ```
 
-+++ {"user_expressions": []}
+
 
 Notice that `ψ @ P` is the same as `ψ`
 
-+++ {"user_expressions": []}
+
 
 Such distributions are called **stationary** or **invariant**.
 
@@ -765,7 +765,7 @@ distribution.
 
 We will come back to this when we introduce irreducibility in the next lecture
 
-+++ {"user_expressions": []}
+
 
 ### Example
 
@@ -822,7 +822,7 @@ $$
 
 See, for example, {cite}`sargent2023economic` Chapter 4.
 
-+++ {"user_expressions": []}
+
 
 (hamilton)=
 #### Example: Hamilton's chain
@@ -836,7 +836,7 @@ P = np.array([[0.971, 0.029, 0.000],
 P @ P
 ```
 
-+++ {"user_expressions": []}
+
 
 Let's pick an initial distribution $\psi_0$ and trace out the sequence of distributions $\psi_0 P^t$ for $t = 0, 1, 2, \ldots$
 
@@ -900,13 +900,13 @@ First, we write a function to draw initial distributions $\psi_0$ of size `num_d
 def generate_initial_values(num_distributions):
     n = len(P)
     ψ_0s = np.empty((num_distributions, n))
-    
+
     for i in range(num_distributions):
         draws = np.random.randint(1, 10_000_000, size=n)
 
         # Scale them so that they add up into 1
         ψ_0s[i,:] = np.array(draws/sum(draws))
-        
+
     return ψ_0s
 ```
 
@@ -929,14 +929,14 @@ def plot_distribution(P, ts_length, num_distributions):
     # Get the path for each starting value
     for ψ_0 in ψ_0s:
         ψ_t = iterate_ψ(ψ_0, P, ts_length)
-        
+
         # Obtain and plot distributions at each state
         for i in range(n):
             axes[i].plot(range(0, ts_length), ψ_t[:,i], alpha=0.3)
 
     # Add labels
     for i in range(n):
-        axes[i].axhline(ψ_star[i], linestyle='dashed', lw=2, color = 'black', 
+        axes[i].axhline(ψ_star[i], linestyle='dashed', lw=2, color = 'black',
                         label = fr'$\psi^*({i})$')
         axes[i].set_xlabel('t')
         axes[i].set_ylabel(fr'$\psi_t({i})$')
@@ -948,7 +948,7 @@ def plot_distribution(P, ts_length, num_distributions):
 The following figure shows
 
 ```{code-cell} ipython3
-# Define the number of iterations 
+# Define the number of iterations
 # and initial distributions
 ts_length = 50
 num_distributions = 25
@@ -962,7 +962,7 @@ plot_distribution(P, ts_length, num_distributions)
 
 The convergence to $\psi^*$ holds for different initial distributions.
 
-+++ {"user_expressions": []}
+
 
 #### Example: Failure of convergence
 
@@ -979,7 +979,7 @@ num_distributions = 30
 plot_distribution(P, ts_length, num_distributions)
 ```
 
-+++ {"user_expressions": []}
+
 
 (finite_mc_expec)=
 ## Computing expectations
@@ -1010,8 +1010,8 @@ where
   algebra, we'll think of as the column vector
 
 $$
-h = 
-\begin{bmatrix} 
+h =
+\begin{bmatrix}
     h(x_1) \\
     \vdots \\
     h(x_n)
@@ -1058,15 +1058,15 @@ $\sum_t \beta^t h(X_t)$.
 In view of the preceding discussion, this is
 
 $$
-\mathbb{E} 
+\mathbb{E}
     \left[
-        \sum_{j=0}^\infty \beta^j h(X_{t+j}) \mid X_t 
+        \sum_{j=0}^\infty \beta^j h(X_{t+j}) \mid X_t
         = x
     \right]
     = x + \beta (Ph)(x) + \beta^2 (P^2 h)(x) + \cdots
 $$
 
-By the {ref}`Neumann series lemma <la_neumann>`, this sum can be calculated using 
+By the {ref}`Neumann series lemma <la_neumann>`, this sum can be calculated using
 
 $$
     I + \beta P + \beta^2 P^2 + \cdots = (I - \beta P)^{-1}
@@ -1082,11 +1082,11 @@ Imam and Temple {cite}`imampolitical` used a three-state transition matrix to de
 
 $$
 P :=
-\begin{bmatrix} 
+\begin{bmatrix}
     0.68 & 0.12 & 0.20 \\
     0.50 & 0.24 & 0.26 \\
     0.36 & 0.18 & 0.46
-\end{bmatrix} 
+\end{bmatrix}
 $$
 
 where rows, from top to down, correspond to growth, stagnation, and collapse.
