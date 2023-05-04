@@ -13,7 +13,7 @@ For this lecture we need the `yfinance` library.
 
 ```{code-cell} ipython3
 :tags: [hide-output]
-!pip install yfinance 
+!pip install yfinance
 ```
 
 
@@ -55,10 +55,10 @@ In general, prices depend on the choices and actions of suppliers, consumers and
 speculators.
 
 Our focus will be on the interaction between these parties, viewed through the
-lens of the standard competitive storage model 
+lens of the standard competitive storage model
 
 This model was developed by
-{cite}`samuelson1971stochastic`, 
+{cite}`samuelson1971stochastic`,
 {cite}`wright1982economic`, {cite}`scheinkman1983simple`,
 {cite}`deaton1992on`, {cite}`deaton1996competitive`, and
 {cite}`chambers1996theory`.
@@ -81,7 +81,7 @@ Supply is exogenous, depending on "harvests".
 These days, goods such as basic computer chips and integrated circuits are
 often treated as commodities in financial markets, being highly standardized,
 and, for these kinds of commodities, the word "harvest" is not
-appropriate.  
+appropriate.
 
 Nonetheless, we maintain it for simplicity.
 ```
@@ -97,7 +97,6 @@ We begin with the following imports
 ```{code-cell} ipython3
 import numpy as np
 import matplotlib.pyplot as plt
-from numba import jit, vectorize
 from scipy.interpolate import interp1d
 from scipy.optimize import minimize_scalar, brentq
 from scipy.stats import beta
@@ -107,25 +106,25 @@ from scipy.stats import beta
 ## The Model
 
 Consider a market for a single commodity, whose price is given at $t$ by
-$p_t$.  
+$p_t$.
 
 The harvest of the commodity at time $t$ is $Z_t$.
 
 We assume that the sequence $\{ Z_t \}_{t \geq 1}$ is IID with common
-density function $\phi$.  
+density function $\phi$.
 
 The harvests take values in $S$, a subset of the nonnegative numbers.
 
 Speculators can store the commodity between periods, with $I_t$ units
 purchased in the current period yielding $\alpha I_t$ units in the next.
 
-Here $\alpha \in (0,1)$ is a depreciation rate for the commodity.  
+Here $\alpha \in (0,1)$ is a depreciation rate for the commodity.
 
 For simplicity, the risk free interest rate is taken to be
-zero, so expected profit on purchasing $I_t$ units is 
+zero, so expected profit on purchasing $I_t$ units is
 
 $$
-  \mathbb{E}_t \, p_{t+1} \cdot \alpha I_t - p_t I_t 
+  \mathbb{E}_t \, p_{t+1} \cdot \alpha I_t - p_t I_t
    = (\alpha \mathbb{E}_t \, p_{t+1} - p_t) I_t
 $$
 
@@ -162,7 +161,7 @@ $$
 $$ (eq:pmco)
 
 
-We also require that the market clears in each period.  
+We also require that the market clears in each period.
 
 We assume that consumers generate demand quantity $D(p)$ corresponding to
 price $p$.
@@ -173,14 +172,14 @@ Let $P := D^{-1}$ be the inverse demand function.
 Regarding quantities,
 
 * supply is the sum of carryover by speculators and the current harvest
-* demand is the sum of purchases by consumers and purchases by speculators.  
+* demand is the sum of purchases by consumers and purchases by speculators.
 
 Mathematically,
 
-* supply $ = X_t = \alpha I_{t-1} + Z_t$ 
-* demand $ = D(p_t) + I_t$ 
+* supply $ = X_t = \alpha I_{t-1} + Z_t$
+* demand $ = D(p_t) + I_t$
 
-Thus, the market equilibrium condition is 
+Thus, the market equilibrium condition is
 
 $$
   \alpha I_{t-1} + Z_t =  D(p_t) + I_t
@@ -194,14 +193,14 @@ The initial condition $X_0 \in S$ is treated as given.
 
 ### An equilibrium function
 
-Now to find an equilibrium?  
+Now to find an equilibrium?
 
 Our path of attack will be to seek a system of prices that depend only on the
 current state.
 
-In other words, we take a function $p$ on $S$ and set $p_t = p(X_t)$ for every $t$.  
+In other words, we take a function $p$ on $S$ and set $p_t = p(X_t)$ for every $t$.
 
-Prices and quantities then follow 
+Prices and quantities then follow
 
 $$
   p_t = p(X_t), \quad I_t = X_t - D(p_t), \quad X_{t+1} = \alpha I_t + Z_{t+1}
@@ -218,7 +217,7 @@ To this end, suppose that there exists a function $p^*$ on $S$
 satisfying
 
 $$
-  p^*(x) = \max 
+  p^*(x) = \max
     \left\{
     \alpha \int_0^\infty p^*(\alpha I(x) + z) \phi(z)dz, P(x)
     \right\}
@@ -233,14 +232,14 @@ $$
 $$ (eq:einvf)
 
 It turns out that such a $p^*$ will suffice, in the sense that [](eq:arbi)
-and [](eq:pmco) hold for the corresponding system [](eq:eosy).  
+and [](eq:pmco) hold for the corresponding system [](eq:eosy).
 
-To see this, observe first that 
+To see this, observe first that
 
 $$
   \mathbb{E}_t \, p_{t+1}
-   = \mathbb{E}_t \, p^*(X_{t+1}) 
-   = \mathbb{E}_t \, p^*(\alpha I(X_t) + Z_{t+1}) 
+   = \mathbb{E}_t \, p^*(X_{t+1})
+   = \mathbb{E}_t \, p^*(\alpha I(X_t) + Z_{t+1})
    = \int_0^\infty p^*(\alpha I(X_t) + z) \phi(z)dz
 $$
 
@@ -249,10 +248,10 @@ Thus [](eq:arbi) requires that
 $$
    \alpha \int_0^\infty p^*(\alpha I(X_t) + z) \phi(z)dz \leq p^*(X_t)
 $$
- 
-This inequality is immediate from [](eq:dopf).  
 
-Second, regarding [](eq:pmco), suppose that 
+This inequality is immediate from [](eq:dopf).
+
+Second, regarding [](eq:pmco), suppose that
 
 $$
    \alpha \int_0^\infty p^*(\alpha I(X_t) + z) \phi(z)dz < p^*(X_t)
@@ -260,9 +259,9 @@ $$
 
 Then by [](eq:dopf) we have $p^*(X_t) = P(X_t)$
 
-But then $D(p^*(X_t)) = X_t$ and $I_t = I(X_t) = 0$. 
+But then $D(p^*(X_t)) = X_t$ and $I_t = I(X_t) = 0$.
 
-As a consequence, both [](eq:arbi) and [](eq:pmco) hold. 
+As a consequence, both [](eq:arbi) and [](eq:pmco) hold.
 
 We have found an equilibrium.
 
@@ -293,16 +292,16 @@ To implement our update step, it is helpful if we put [](eq:dopf) and
 This leads us to the update rule
 
 $$
-  p_{k+1}(x) = \max 
+  p_{k+1}(x) = \max
     \left\{
     \alpha \int_0^\infty p_k(\alpha ( x - D(p_{k+1}(x))) + z) \phi(z)dz, P(x)
     \right\}
 $$ (eq:dopf2)
 
-In other words, we take $p_k$ as given and, at each $x$, solve for $q$ in 
+In other words, we take $p_k$ as given and, at each $x$, solve for $q$ in
 
 $$
-  q = \max 
+  q = \max
     \left\{
     \alpha \int_0^\infty p_k(\alpha ( x - D(q)) + z) \phi(z)dz, P(x)
     \right\}
@@ -313,7 +312,7 @@ points $x_1, \ldots, x_n$.
 
 Then we get the corresponding values $q_1, \ldots, q_n$.
 
-Then we compute $p_{k+1}$ as the linear interpolation of 
+Then we compute $p_{k+1}$ as the linear interpolation of
 the values $q_1, \ldots, q_n$ over the grid $x_1, \ldots, x_n$.
 
 Then we repeat, seeking convergence.
@@ -330,7 +329,7 @@ The integral in [](eq:dopf3) is computed via Monte Carlo.
 
 
 ```{code-cell} ipython3
-α, a, c = 0.8, 1.0, 2.0                           
+α, a, c = 0.8, 1.0, 2.0
 beta_a, beta_b = 5, 5
 mc_draw_size = 250
 gridsize = 150
@@ -339,7 +338,7 @@ grid = np.linspace(a, grid_max, gridsize)
 
 beta_dist = beta(5, 5)
 Z = a + beta_dist.rvs(mc_draw_size) * c    # Shock observations
-D = P = lambda x: 1.0 / x   
+D = P = lambda x: 1.0 / x
 tol = 1e-4
 
 
@@ -348,8 +347,8 @@ def T(p_array):
     new_p = np.empty_like(p_array)
 
     # Interpolate to obtain p as a function.
-    p = interp1d(grid, 
-                 p_array, 
+    p = interp1d(grid,
+                 p_array,
                  fill_value=(p_array[0], p_array[-1]),
                  bounds_error=False)
 
@@ -388,8 +387,8 @@ prices.
 
 ```{code-cell} ipython3
 # Turn the price array into a price function
-p_star = interp1d(grid, 
-                  price, 
+p_star = interp1d(grid,
+                  price,
                   fill_value=(price[0], price[-1]),
                   bounds_error=False)
 
