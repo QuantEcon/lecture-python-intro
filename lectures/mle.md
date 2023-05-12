@@ -11,7 +11,7 @@ kernelspec:
   name: python3
 ---
 
-# Maximum Likelihood Estimation`
+# Maximum Likelihood Estimation
 
 ```{code-cell} ipython3
 from scipy.stats import lognorm, pareto, expon, norm
@@ -22,114 +22,157 @@ import pandas as pd
 from math import exp, log
 ```
 
-+++ {"user_expressions": []}
 
 ## Introduction
 
-Consider a situation where a policymaker is trying to estimate the revenue a proposed wealth tax
-scheme will raise.
+Consider a situation where a policymaker is trying to estimate how much revenue a proposed wealth tax
+will raise.
 
-The proposed tax is $h(w)$ where $h$ is a function of wealth $w$. For example,
-
-* $h(w) = 0.05w$ means a 5% tax on wealth.
-* $h(w) = 0.05 \bar{w} + 0.10(w-\bar{w})$ means a 5% tax on wealth upto $\bar{w}$ and 10% on wealth in excess of $\bar{w}$
-
-For a population of size $N$, the total revenue will be given by:
+The proposed tax is 
 
 $$
-T = \sum_{i=1}^{N} h(w_i)
+    h(w) = 
+    \begin{cases}
+    a w                       & \text{if } w \leq \bar w  \\
+    a \bar{w} + b (w-\bar{w}) & \text{if } w > \bar w  
+    \end{cases}
+$$ 
+
+where $w$ is wealth.
+
+For example, if $a = 0.05$, $b = 0.1$, and $\bar w = 2.5$, this means a
+5% tax on wealth up to 2.5 and 10% tax on wealth in excess of 2.5.
+
+(The units will be 100,000 so 2.5 means 250,000 dollars.)
+
+Here we define $h$
+
+```{code-cell} ipython3
+def h(w, a=0.05, b=0.1, w_bar=2.5):
+    if w <= w_bar:
+        return a * w
+    else:
+        return a * w_bar + b * (w - w_bar)
+```
+
+For a population of size $N$, where individual $i$ has wealth $w_i$, the total revenue will be given by
+
+$$
+    T = \sum_{i=1}^{N} h(w_i)
 $$
 
-However, in most scenarios wealth is not observed for all individuals.
+However, in most countries wealth is not observed for all individuals.
 
-Recording observations for all individuals can be tedious especially when $N$ is very large.
+Collecting and maintaining accurate wealth data for all individuals or households in a country
+is just too hard.
 
-Instead we obtain a sample $w_1, w_2, \cdots, w_n$ of $n$ individuals.
+So let's suppose instead that we obtain a sample $w_1, w_2, \cdots, w_n$ telling us the wealth of $n$ individuals.
 
-Suppose we draw a sample of $n = 10,000$ from real data on wealth in the US in 2016.
-
-
-The following code block imports a subset of the dataset SCF_plus, which is derived from the
-[Survey of Consumer Finances](https://en.wikipedia.org/wiki/Survey_of_Consumer_Finances) (SCF).
-
-```{code-cell} ipython3
-url = 'https://media.githubusercontent.com/media/QuantEcon/high_dim_data/update_scf_noweights/SCF_plus/SCF_plus_mini_no_weights.csv'
-df = pd.read_csv(url)
-```
-
-```{code-cell} ipython3
-df = df.dropna()
-df = df[df['year'] == 2016]
-df = df.loc[df['n_wealth'] > 0 ]   #restrcting data to net worth > 0
-```
-
-```{code-cell} ipython3
-df.head()
-```
-
-+++ {"user_expressions": []}
-
-We now generate our sample from the obtained dataframe.
-
-```{code-cell} ipython3
-rv = df['n_wealth'].sample(n=10_000, random_state=1234)
-rv = rv.to_numpy()
-sample = rv/100_000
-
-fig, ax = plt.subplots()
-ax.set_xlim(-1,20)
-ax.hist(sample, density=True, bins=5_000, histtype='stepfilled', alpha=0.8)
-
-plt.show()
-```
-
-```{code-cell} ipython3
-N = 100_000_000
-```
+For our exercise we are going to use a sample of $n = 10,000$ observations from wealth data in the US in 2016.
 
 ```{code-cell} ipython3
 n = 10_000
 ```
 
-+++ {"user_expressions": []}
+The data is derived from the
+[Survey of Consumer Finances](https://en.wikipedia.org/wiki/Survey_of_Consumer_Finances) (SCF).
 
-How do we obtain total revenue from the sample data?
 
-One possibility is that we assume that wealth of each individual is a draw from a distribution with density $f$.
+The following code imports this data  and reads it into an array called `sample`. 
+
+```{code-cell} ipython3
+:tags: [hide-input]
+url = 'https://media.githubusercontent.com/media/QuantEcon/high_dim_data/update_scf_noweights/SCF_plus/SCF_plus_mini_no_weights.csv'
+df = pd.read_csv(url)
+df = df.dropna()
+df = df[df['year'] == 2016]
+df = df.loc[df['n_wealth'] > 0 ]   #restrcting data to net worth > 0
+rv = df['n_wealth'].sample(n=n, random_state=1234)
+rv = rv.to_numpy() / 100_000
+sample = rv
+```
+
+Let's histogram this sample.
+
+```{code-cell} ipython3
+fig, ax = plt.subplots()
+ax.set_xlim(-1,20)
+ax.hist(sample, density=True, bins=5_000, histtype='stepfilled', alpha=0.8)
+plt.show()
+```
+
+The histogram shows that many people have very low wealth and a few people have
+very high wealth.
+
+
+We will take the full population size to be
+
+```{code-cell} ipython3
+N = 100_000_000
+```
+
+How can we estimate total revenue from the full population using only the sample data?
+
+Our plan is to assume that wealth of each individual is a draw from a distribution with density $f$.
 
 If we obtain an estimate of $f$ we can then approximate $T$ as follows:
 
 $$
-T = \sum_{i=1}^{N} h(w_i) = N \frac{1}{N} \sum_{i=1}^{N} h(w_i) \approx N \int_{0}^{\infty} h(w)f(w) dw
+    T = \sum_{i=1}^{N} h(w_i) 
+      = N \frac{1}{N} \sum_{i=1}^{N} h(w_i) 
+      \approx N \int_{0}^{\infty} h(w)f(w) dw
 $$ (eq:est_rev)
 
-The problem now is how do we estimate f?
+(The sample mean should be close to the mean by the law of large numbers.)
 
-+++ {"user_expressions": []}
+The problem now is: how do we estimate $f$?
+
 
 ## Maximum Likelihood Estimation
 
-Maximum Likelihood Estimation is a method of estimating the
-parameters of a distribution from observed data.
+[Maximum likelihood estimation](https://en.wikipedia.org/wiki/Maximum_likelihood_estimation) 
+is a method of estimating an unknown distribution.
 
-Note that maximum likelihood estimation requires a prior assumption of what the distribution could be.
+Maximum likelihood estimation has two steps:
 
-The theory behind MLE can be read [here](https://en.wikipedia.org/wiki/Maximum_likelihood_estimation) but our
-concern in this lecture is to illustrate its applications.
+1. Guess what the underlying distribution is (e.g., normal with mean $\mu$ and
+   standard deviation $\sigma$).
+2. Estimate the parameter values (e.g., estimate $\mu$ and $\sigma$ for the
+   normal distribution)
 
-Suppose we assume that $w_i$ are [log-normally distributed](https://en.wikipedia.org/wiki/Log-normal_distribution)
+One reasonable assumption for the wealth is that each
+that $w_i$ is [log-normally distributed](https://en.wikipedia.org/wiki/Log-normal_distribution),
 with parameters $\mu \in (-\infty,\infty)$ and $\sigma \in (0,\infty)$.
 
-We wish to obtain the maximum likelihood estimates $\hat{\mu}$ and $\hat{\sigma}$ given by:
-$$
-\hat{\mu} = \frac{\sum_{i=1}^{n} \ln w_i}{n}
-\text{ , }
-\hat{\sigma^2} = \frac{\sum_{i=1}^{n}(\ln w_i - \hat{\mu})^2}{n}
-$$
+This means that $\ln w_i$ is normally distributed with mean $\mu$ and
+   standard deviation $\sigma$.
+
+You can see that this is a reasonable assumption because if we histogram log wealth
+instead of wealth the picture starts to look something like a bell-shaped curve.
 
 ```{code-cell} ipython3
 ln_sample = np.log(sample)
+fig, ax = plt.subplots()
+ax.hist(ln_sample, density=True, bins=200, histtype='stepfilled', alpha=0.8)
+plt.show()
 ```
+
+Now our job is to obtain the maximum likelihood estimates of $\mu$ and $\sigma$, which
+we denote by $\hat{\mu}$ and $\hat{\sigma}$.
+
+These estimates can be found by maximizing the likelihood function given the
+data.
+
+In our case they are
+
+$$
+    \hat{\mu} = \frac{\sum_{i=1}^{n} \ln w_i}{n}
+    \quad \text{and} \quad
+    \hat{\sigma} 
+    = \left( \frac{\sum_{i=1}^{n}(\ln w_i - \hat{\mu})^2}{n} \right)^{1/2}
+$$
+
+Let's calculate these values
 
 ```{code-cell} ipython3
 μ_hat = np.mean(ln_sample)
@@ -157,43 +200,52 @@ ax.legend()
 plt.show()
 ```
 
-+++ {"user_expressions": []}
 
 Our estimated lognormal distribution appears to be a decent fit for the overall data.
 
 We now use {eq}`eq:est_rev` to calculate total revenue.
 
-Let $g(w) = h(w)f(w)$
+We will compute the integral using numerical integration via SciPy's
+[quad](https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.quad.html)
+function
 
 ```{code-cell} ipython3
-def total_revenue(dist, N):
-    def g(x):
-        return 0.05 * x * dist.pdf(x)
-    q = quad(g, 0, 100_000_000)
-    T = N*q[0]
+def total_revenue(dist):
+    integral, _ = quad(lambda x: h(x) * dist.pdf(x), 0, 100_000)
+    T = N * integral
     return T
 ```
 
 ```{code-cell} ipython3
-total_revenue(dist_lognorm, 100)
+tr_lognorm = total_revenue(dist_lognorm)
+tr_lognorm
 ```
 
-+++ {"user_expressions": []}
+(Our unit was 100,000 dollars, so this means that actual revenue is 100,000
+times as large.)
 
-## Pareto Distribution
 
-We discussed below that MLE requires a prior assumption of the underlying distribution.
 
-Suppose instead we assume that $w_i$ are drawn from the [Pareto Distribution](https://en.wikipedia.org/wiki/Pareto_distribution)
-with parameters $b>0$ and $x_m >0$.
+## Pareto distribution
 
-The maximum likelihood estimates are given by:
+We mentioned above that using maximum likelihood estimation requires us to make
+a prior assumption of the underlying distribution.
+
+Previously we assumed that the distribution is lognormal.
+
+Suppose instead we assume that $w_i$ are drawn from the 
+[Pareto Distribution](https://en.wikipedia.org/wiki/Pareto_distribution)
+with parameters $b$ and $x_m$.
+
+In this case, the maximum likelihood estimates are known to be
 
 $$
-\hat{b} = \frac{n}{\sum_{i=1}^{n} \ln (w_i/\hat{x_m})}
-,\;
-\hat{x_m} = \min_{i} w_i
+    \hat{b} = \frac{n}{\sum_{i=1}^{n} \ln (w_i/\hat{x_m})}
+    \quad \text{and} \quad
+    \hat{x_m} = \min_{i} w_i
 $$
+
+Let's calculate them.
 
 ```{code-cell} ipython3
 xm_hat = min(sample)
@@ -206,179 +258,84 @@ b_hat = 1/np.mean(den)
 b_hat
 ```
 
+Now let's recompute total revenue.
+
 ```{code-cell} ipython3
 dist_pareto = pareto(b = b_hat, scale = xm_hat)
+tr_pareto = total_revenue(dist_pareto) 
+tr_pareto
+```
+
+The number is very different!
+
+
+```{code-cell} ipython3
+tr_pareto / tr_lognorm
+```
+
+We see that choosing the right distribution is extremely important.
+
+
+
+Let's compare the fitted Pareto distribution to the histogram:
+
+```{code-cell} ipython3
 
 fig, ax = plt.subplots()
 ax.set_xlim(-1, 20)
 ax.set_ylim(0,1.75)
 
 ax.hist(sample, density=True, bins=5_000, histtype='stepfilled', alpha=0.5)
-ax.plot(x, dist_pareto.pdf(x), 'k-', lw=0.5, label='pareto pdf')
+ax.plot(x, dist_pareto.pdf(x), 'k-', lw=0.5, label='Pareto pdf')
 ax.legend()
 
 plt.show()
 ```
 
-+++ {"user_expressions": []}
+We observe that in this case the fit for the Pareto distribution is not very
+good, so we can probably reject it.
 
-We observe that the lognormal distribution was a better fit for this data
-as compared to the pareto distribution.
 
-```{code-cell} ipython3
-total_revenue(dist_pareto, 100)
-```
 
-+++ {"user_expressions": []}
+## Exponential distribution
 
-## Distribution of Right Hand Tail
-
-The existing literature on distribution of wealth seems to suggest that the lognormal
-distribution is a better fit for the entire distrubtion.
-
-However when the data is truncated at the upper tail the pareto distribution
-may be a better fit.
-
-Suppose we now set a minimum threshold of net worth in our dataset.
-
-We set an arbitrary threshold of $500,000.
-
-```{code-cell} ipython3
-df_tail = df.loc[df['n_wealth'] > 500_000 ]
-df_tail.head()
-```
-
-```{code-cell} ipython3
-rv_tail = df_tail['n_wealth'].sample(n=10_000, random_state=4321)
-rv_tail = rv_tail.to_numpy()
-sample_tail = rv_tail/500_000
-
-fig, ax = plt.subplots()
-ax.set_xlim(0,50)
-ax.hist(sample_tail, density=True, bins=500, histtype='stepfilled', alpha=0.8)
-
-plt.show()
-```
-
-+++ {"user_expressions": []}
-
-### Lognormal Distribution
-
-Again, let's first assume our distribution is lognormally distributed.
-
-We can thus obtain the following maximum likelihood estimates.
-
-```{code-cell} ipython3
-ln_sample_tail = np.log(sample_tail)
-```
-
-```{code-cell} ipython3
-μ_hat_tail = np.mean(ln_sample_tail)
-μ_hat_tail
-```
-
-```{code-cell} ipython3
-num_tail = (ln_sample_tail - μ_hat_tail)**2
-σ_hat_tail = (np.mean(num_tail))**(1/2)
-σ_hat_tail
-```
-
-```{code-cell} ipython3
-dist_lognorm_tail = lognorm(σ_hat_tail, scale = exp(μ_hat_tail))
-
-fig, ax = plt.subplots()
-ax.set_xlim(0,50)
-
-ax.hist(sample_tail, density=True, bins=500, histtype='stepfilled', alpha=0.5)
-ax.plot(x, dist_lognorm_tail.pdf(x), 'k-', lw=0.5, label='lognormal pdf')
-ax.legend()
-
-plt.show()
-```
-
-+++ {"user_expressions": []}
-
-As expected, while the lognormal distribution was a good fit for the entire dataset
-it is not a good fit for the right hand tail of the data.
-
-```{code-cell} ipython3
-total_revenue(dist_lognorm_tail, 100)
-```
-
-+++ {"user_expressions": []}
-
-### Pareto Distribution
-
-Let's now assume the truncated dataset has a pareto distribution.
-
-The maximum likelihood estimates thus obtained would be
-
-```{code-cell} ipython3
-xm_hat_tail = min(sample_tail)
-xm_hat_tail
-```
-
-```{code-cell} ipython3
-den_tail = np.log(sample_tail/xm_hat_tail)
-b_hat_tail = 1/np.mean(den_tail)
-b_hat_tail
-```
-
-Let's plot the pdf against our data.
-
-```{code-cell} ipython3
-dist_pareto_tail = pareto(b = b_hat_tail, scale = xm_hat_tail)
-
-fig, ax = plt.subplots()
-ax.set_xlim(0, 50)
-ax.set_ylim(0,0.65)
-
-ax.hist(sample_tail, density=True, bins= 500, histtype='stepfilled', alpha=0.5)
-ax.plot(x, dist_pareto_tail.pdf(x), 'k-', lw=0.5, label='pareto pdf')
-
-plt.show()
-```
-
-+++ {"user_expressions": []}
-
-Thus we clearly observe that the pareto distribution is a better fit for the
-right hand tail of our dataset.
-
-```{code-cell} ipython3
-total_revenue(dist_pareto_tail, 100)
-```
-
-+++ {"user_expressions": []}
-
-## Light-tailed Distributions
-
-Both the lognormal and the pareto distributions are heavy-tailed.
-
-What happens if our initial assumption of the underlying distribution is light-tailed?
+What other distributions could we try?
 
 Suppose we assume that the distribution is [exponential](https://en.wikipedia.org/wiki/Exponential_distribution)
 with parameter $\lambda > 0$.
 
-The maximum likelihood estimate of $\lambda$ is given by:
+The maximum likelihood estimate of $\lambda$ is given by
+
 $$
 \hat{\lambda} = \frac{n}{\sum_{i=1}^n w_i}
 $$
 
-+++ {"user_expressions": []}
-
-### Entire Dataset
-
-Let's first consider the distribution of the entire dataset.
-
-The maximum likelihood estimate is
+Let's calculate it.
 
 ```{code-cell} ipython3
 λ_hat = 1/np.mean(sample)
 λ_hat
 ```
 
+Now let's compute total revenue:
+
 ```{code-cell} ipython3
 dist_exp = expon(scale = 1/λ_hat)
+tr_expo = total_revenue(dist_exp) 
+tr_expo
+```
+
+Again, calculated revenue is very different.
+
+```{code-cell} ipython3
+tr_expo / tr_lognorm
+```
+
+But once again, when we plot the fitted distribution against the data we see it
+is a bad fit.
+
+
+```{code-cell} ipython3
 
 fig, ax = plt.subplots()
 ax.set_xlim(-1, 20)
@@ -390,72 +347,107 @@ ax.legend()
 plt.show()
 ```
 
-+++ {"user_expressions": []}
+So we can reject this calculation.
 
-### Right-hand Tail
+
+
+
+
+
+## What is the best distribution?
+
+There is no "best" distribution --- every choice we make is an assumption.
+
+All we can do is try to pick a distribution that fits the data well.
+
+The plots above suggested that the lognormal distribution is optimal.
+
+However when we inspect the upper tail (the richest people), the Pareto distribution may be a better fit.
+
+To see this, let's now set a minimum threshold of net worth in our dataset.
+
+We set an arbitrary threshold of $500,000 and read the data into `sample_tail`.
 
 ```{code-cell} ipython3
-λ_hat_tail = 1/np.mean(sample_tail)
-λ_hat_tail
+:tags: [hide-input]
+df_tail = df.loc[df['n_wealth'] > 500_000 ]
+df_tail.head()
+rv_tail = df_tail['n_wealth'].sample(n=10_000, random_state=4321)
+rv_tail = rv_tail.to_numpy()
+sample_tail = rv_tail/500_000
 ```
 
+Let's plot this data.
+
 ```{code-cell} ipython3
-dist_exp_tail = expon(scale = 1/λ_hat_tail)
+fig, ax = plt.subplots()
+ax.set_xlim(0,50)
+ax.hist(sample_tail, density=True, bins=500, histtype='stepfilled', alpha=0.8)
+plt.show()
+```
+
+Now let's try fitting some distributions to this data.
+
+
+### Lognormal distribution for the right hand tail
+
+Let's start with the lognormal distribution
+
+We estimate the parameters again and plot the density against our data.
+
+```{code-cell} ipython3
+ln_sample_tail = np.log(sample_tail)
+μ_hat_tail = np.mean(ln_sample_tail)
+num_tail = (ln_sample_tail - μ_hat_tail)**2
+σ_hat_tail = (np.mean(num_tail))**(1/2)
+dist_lognorm_tail = lognorm(σ_hat_tail, scale = exp(μ_hat_tail))
+
+fig, ax = plt.subplots()
+ax.set_xlim(0,50)
+ax.hist(sample_tail, density=True, bins=500, histtype='stepfilled', alpha=0.5)
+ax.plot(x, dist_lognorm_tail.pdf(x), 'k-', lw=0.5, label='lognormal pdf')
+ax.legend()
+plt.show()
+```
+
+
+While the lognormal distribution was a good fit for the entire dataset,
+it is not a good fit for the right hand tail.
+
+
+### Pareto distribution for the right hand tail
+
+Let's now assume the truncated dataset has a Pareto distribution.
+
+We estimate the parameters again and plot the density against our data.
+
+```{code-cell} ipython3
+xm_hat_tail = min(sample_tail)
+den_tail = np.log(sample_tail/xm_hat_tail)
+b_hat_tail = 1/np.mean(den_tail)
+dist_pareto_tail = pareto(b = b_hat_tail, scale = xm_hat_tail)
 
 fig, ax = plt.subplots()
 ax.set_xlim(0, 50)
-
+ax.set_ylim(0,0.65)
 ax.hist(sample_tail, density=True, bins= 500, histtype='stepfilled', alpha=0.5)
-ax.plot(x, dist_exp_tail.pdf(x), 'k-', lw=0.5, label='exponential pdf')
-ax.legend()
-
+ax.plot(x, dist_pareto_tail.pdf(x), 'k-', lw=0.5, label='pareto pdf')
 plt.show()
 ```
 
-+++ {"user_expressions": []}
 
-## Log wealth
+The Pareto distribution is a better fit for the right hand tail of our dataset.
 
-```{code-cell} ipython3
-sample_lnwealth = np.log(rv)
-```
+### So what is the best distribution?
 
-```{code-cell} ipython3
-fig, ax = plt.subplots()
-ax.hist(sample_lnwealth, density=True, bins=100, histtype='stepfilled', alpha=0.8)
+As we said above, there is no "best" distribution --- each choice is an
+assumption.
 
-plt.show()
-```
+We just have to test what we think are reasonable distributions.
 
-+++ {"user_expressions": []}
+One test is to plot the data against the fitted distribution, as we did.
 
-### Normal Distribution
+There are other more rigorous tests, such as the [Kolmogorov-Smirnov test](https://en.wikipedia.org/wiki/Kolmogorov%E2%80%93Smirnov_test).
 
-```{code-cell} ipython3
-m_hat = np.mean(sample_lnwealth)
-m_hat
-```
+We omit the details.
 
-```{code-cell} ipython3
-num_lnwealth = (sample_lnwealth - m_hat)**2
-s_hat = (np.mean(num_lnwealth))**(1/2)
-s_hat
-```
-
-```{code-cell} ipython3
-dist_norm = norm(loc = m_hat, scale = s_hat)
-x2 = np.linspace(0,20,10_000)
-
-fig, ax = plt.subplots()
-#ax.set_xlim(-1, 20)
-#ax.set_ylim(0,1.75)
-
-ax.hist(sample_lnwealth, density=True, bins=100, histtype='stepfilled', alpha=0.5)
-ax.plot(x2, dist_norm.pdf(x2), 'k-', lw=0.5, label='pareto pdf')
-
-plt.show()
-```
-
-```{code-cell} ipython3
-
-```
