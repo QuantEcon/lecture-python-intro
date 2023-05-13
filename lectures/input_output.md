@@ -4,13 +4,12 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.14.5
+    jupytext_version: 1.14.4
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
   name: python3
 ---
-
 
 # Input-Output Models
 
@@ -31,7 +30,6 @@ import pandas as pd
 import networkx as nx
 import matplotlib.pyplot as plt
 ```
-
 
 The following figure illustrates a network of linkages between 15 sectors
 obtained from the US Bureau of Economic Analysis’s 2019 Input-Output Accounts
@@ -82,11 +80,11 @@ A, F = build_coefficient_matrices(Z, X)
 
 ```{code-cell} ipython3
 ---
+:tags: [hide-cell]
 mystnb:
   figure:
-    caption: "US 15 sector production network"
+    caption: US 15 sector production network
     name: us_15sectors
-:tags: [hide-cell]
 ---
 centrality = qbn_io.eigenvector_centrality(A)
 
@@ -102,7 +100,6 @@ qbn_plt.plot_graph(A, X, ax, codes,
 
 plt.show()
 ```
-
 
 |Label|     Sector    |Label|      Sector    |Label|            Sector         |
 |:---:|:-------------:|:---:|:--------------:|:---:|:-------------------------:|
@@ -129,7 +126,7 @@ In this lecture, we first introduce the standard input-ouput model and approach 
 (TODO add link to lpp lecture)
 
 
-## Input Output Analysis
+## Input output analysis
 
 Let 
 
@@ -150,7 +147,7 @@ $$
     x_j = \min_{i \in \{0, \ldots , n \}} \left( \frac{z_{ij}}{a_{ij}}\right) 
 $$
 
-### Two Goods
+### Two goods
 
 To illustrate ideas, we begin by setting $n =2$.
 
@@ -319,7 +316,7 @@ x  #solving for gross ouput
 
 +++ {"user_expressions": []}
 
-## Production Possibility Frontier
+## Production possibility frontier
 
 The second equation of {eq}`eq:inout_1` can be written
 
@@ -407,7 +404,7 @@ that are transposes of one another.
 This connection surfaces again in a classic linear program and its dual.
 
 
-## Linear Programs
+## Linear programs
 
 A **primal** problem is 
 
@@ -494,7 +491,7 @@ $$
 L = \sum_{i=0}^{\infty} A^i
 $$
 
-### Demand Shocks
+### Demand shocks
 
 Consider the impact of a demand shock $\Delta d$ which shifts demand from $d_0$ to $d_1 = d_0 + \Delta d$.
 
@@ -518,11 +515,11 @@ $$
 E = \{(i,j) \in V \times V : a_{ij}>0\}
 $$
 
-In {numref}`us_15sectors` weights are indicated by the widths of the arrows, which are proportional to the corresponding input-output coefficients.
+In {ref}`us_15sectors` weights are indicated by the widths of the arrows, which are proportional to the corresponding input-output coefficients.
 
 We can now use centrality measures to rank sectors and discuss their importance relative to the other sectors.
 
-### Eigenvector Centrality
+### Eigenvector centrality
 
 Eigenvector centrality of a node $i$ is measured by
 $$
@@ -531,7 +528,7 @@ $$
 \end{aligned}
 $$
 
-We plot a bar graph of hub-based eigenvector centrality for the sectors represented in {numref}`us_15sectors`.
+We plot a bar graph of hub-based eigenvector centrality for the sectors represented in {ref}`us_15sectors`.
 
 ```{code-cell} ipython3
 :tags: [hide-cell]
@@ -542,14 +539,13 @@ ax.set_ylabel("eigenvector centrality", fontsize=12)
 plt.show()
 ```
 
-
 A higher measure indicates higher importance as a supplier.
 
 As a result demand shocks in most sectors will significantly impact activity in sectors with high eigenvector centrality.
 
 The above figure indicates that manufacturing is the most dominant sector in the US economy.
 
-### Output Multipliers
+### Output multipliers
 
 Another way to rank sectors in input output networks is via outuput multipliers.
 
@@ -574,11 +570,12 @@ High ranking sectors within this measure are important buyers of intermediate go
 A demand shock in such sectors will cause a large impact on the whole production network.
 
 The following figure displays the output multipliers for the sectors represented
-in {numref}`us_15sectors`.
+in {ref}`us_15sectors`.
 
 ```{code-cell} ipython3
 :tags: [hide-cell]
 
+A, F = build_coefficient_matrices(Z, X)
 omult = qbn_io.katz_centrality(A, authority=True)
 
 fig, ax = plt.subplots()
@@ -587,7 +584,6 @@ ax.bar(codes, omult, color=omult_color_list, alpha=0.6)
 ax.set_ylabel("Output multipliers", fontsize=12)
 plt.show()
 ```
-
 
 We observe that manufacturing and agriculture are highest ranking sectors.
 
