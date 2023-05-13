@@ -11,7 +11,6 @@ kernelspec:
   name: python3
 ---
 
-+++ {"user_expressions": []}
 
 # Input-Output Models
 
@@ -20,9 +19,8 @@ kernelspec:
 This lecture requires the following imports and installs before we proceed.
 
 ```{code-cell} ipython3
----
-tags: [hide-output]
----
+:tags: [hide-output]
+
 !pip install quantecon_book_networks
 !pip install quantecon
 ```
@@ -34,15 +32,14 @@ import networkx as nx
 import matplotlib.pyplot as plt
 ```
 
-+++ {"user_expressions": []}
 
-The following figure illustrates a network of linkages between 15 sectors obtained from the US Bureau of Economic Analysis’s
-2019 Input-Output Accounts Data.
+The following figure illustrates a network of linkages between 15 sectors
+obtained from the US Bureau of Economic Analysis’s 2019 Input-Output Accounts
+Data.
 
 ```{code-cell} ipython3
----
-tags: [hide-cell]
----
+:tags: [hide-cell]
+
 import quantecon as qe
 import quantecon_book_networks
 import quantecon_book_networks.input_output as qbn_io
@@ -58,9 +55,8 @@ mpl.rcParams.update(mpl.rcParamsDefault)
 ```
 
 ```{code-cell} ipython3
----
-tags: [hide-cell]
----
+:tags: [hide-cell]
+
 def build_coefficient_matrices(Z, X):
     """
     Build coefficient matrices A and F from Z and X via 
@@ -88,9 +84,9 @@ A, F = build_coefficient_matrices(Z, X)
 ---
 mystnb:
   figure:
-    caption: "US 15 Sector Production Network"
+    caption: "US 15 sector production network"
     name: us_15sectors
-tags: [hide-input]
+:tags: [hide-cell]
 ---
 centrality = qbn_io.eigenvector_centrality(A)
 
@@ -107,7 +103,6 @@ qbn_plt.plot_graph(A, X, ax, codes,
 plt.show()
 ```
 
-+++ {"user_expressions": []}
 
 |Label|     Sector    |Label|      Sector    |Label|            Sector         |
 |:---:|:-------------:|:---:|:--------------:|:---:|:-------------------------:|
@@ -117,19 +112,22 @@ plt.show()
 | co  |  Construction | in  |  Information   | ot  | Other Services (exc govt) |
 | ma  | Manufacturing | fi  |    Finance     | go  |        Government         |
 
-+++ {"user_expressions": []}
 
-An arrow from $i$ to $j$ implies that sector $i$ supplies some of its output as raw material to sector $j$.
+An arrow from $i$ to $j$ implies that sector $i$ supplies some of its output as
+raw material to sector $j$.
 
-Economies are characterised by many such complex and interdependent multisector production networks.
+Economies are characterised by many such complex and interdependent multisector
+production networks.
 
-A basic framework for their analysis is [Leontief's](https://en.wikipedia.org/wiki/Wassily_Leontief) input-output model.
+A basic framework for their analysis is
+[Leontief's](https://en.wikipedia.org/wiki/Wassily_Leontief) input-output model.
 
 This model's key aspect is its simplicity.
 
-In this lecture, we first introduce the standard input-ouput model and approach it as a [linear programming](link to lpp lecture) problem.
+In this lecture, we first introduce the standard input-ouput model and approach it as a linear programming problem.
 
-+++ {"user_expressions": []}
+(TODO add link to lpp lecture)
+
 
 ## Input Output Analysis
 
@@ -149,7 +147,7 @@ Let
 The production function for goods $j \in \{1, \ldots , n\}$ is the **Leontief** function
 
 $$
-x_j = \min_{i \in \{0, \ldots , n \}} \left( \frac{z_{ij}}{a_{ij}}\right) 
+    x_j = \min_{i \in \{0, \ldots , n \}} \left( \frac{z_{ij}}{a_{ij}}\right) 
 $$
 
 ### Two Goods
@@ -160,7 +158,7 @@ The following is a simple illustration of this network.
 
 ```{code-cell} ipython3
 ---
-tags: [hide-input]
+:tags: [hide-cell]
 ---
 G = nx.DiGraph()
 
@@ -192,8 +190,6 @@ plt.text(1.6,-0.5, r'$d_{2}$')
 plt.show()
 ```
 
-+++ {"user_expressions": []}
-
 **Feasible allocations must satisfy**
 
 $$
@@ -208,7 +204,7 @@ This can be graphically represented as follows.
 
 ```{code-cell} ipython3
 ---
-tags: [hide-input]
+:tags: [hide-cell]
 ---
 from matplotlib.patches import Polygon
 
@@ -455,7 +451,7 @@ The dual problem can be graphically represented as follows.
 
 ```{code-cell} ipython3
 ---
-tags: [hide-input]
+:tags: [hide-cell]
 ---
 from matplotlib.patches import Polygon
 
@@ -522,8 +518,7 @@ $$
 E = \{(i,j) \in V \times V : a_{ij}>0\}
 $$
 
-In {numref}`us_15sectors` weights are indicated by the widths of the arrows, which are proportional to the corresponding
-input-output coefficients.
+In {numref}`us_15sectors` weights are indicated by the widths of the arrows, which are proportional to the corresponding input-output coefficients.
 
 We can now use centrality measures to rank sectors and discuss their importance relative to the other sectors.
 
@@ -539,7 +534,7 @@ $$
 We plot a bar graph of hub-based eigenvector centrality for the sectors represented in {numref}`us_15sectors`.
 
 ```{code-cell} ipython3
-tags: [hide-input]
+:tags: [hide-cell]
 
 fig, ax = plt.subplots()
 ax.bar(codes, centrality, color=color_list, alpha=0.6)
@@ -547,7 +542,6 @@ ax.set_ylabel("eigenvector centrality", fontsize=12)
 plt.show()
 ```
 
-+++ {"user_expressions": []}
 
 A higher measure indicates higher importance as a supplier.
 
@@ -579,10 +573,11 @@ High ranking sectors within this measure are important buyers of intermediate go
 
 A demand shock in such sectors will cause a large impact on the whole production network.
 
-The following figure displays the output multipliers for the sectors represented in {numref}`us_15sectors`.
+The following figure displays the output multipliers for the sectors represented
+in {numref}`us_15sectors`.
 
 ```{code-cell} ipython3
-tags: [hide-input]
+:tags: [hide-cell]
 
 omult = qbn_io.katz_centrality(A, authority=True)
 
@@ -593,11 +588,9 @@ ax.set_ylabel("Output multipliers", fontsize=12)
 plt.show()
 ```
 
-+++ {"user_expressions": []}
 
 We observe that manufacturing and agriculture are highest ranking sectors.
 
-+++ {"user_expressions": []}
 
 ## Exercises
 
@@ -605,7 +598,7 @@ We observe that manufacturing and agriculture are highest ranking sectors.
 :label: io_ex1
 ```
 
-{cite}DoSSo Chapter 9 carries along an example with the following
+{cite}`DoSSo` Chapter 9 discusses an example with the following
 parameter settings:
 
 $$ 
