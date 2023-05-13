@@ -22,6 +22,7 @@ This lecture requires the following imports and installs before we proceed.
 
 !pip install quantecon_book_networks
 !pip install quantecon
+!pip install pandas-datareader
 ```
 
 ```{code-cell} ipython3
@@ -80,7 +81,7 @@ A, F = build_coefficient_matrices(Z, X)
 
 ```{code-cell} ipython3
 ---
-:tags: [hide-cell]
+tags: [hide-input]
 mystnb:
   figure:
     caption: US 15 sector production network
@@ -155,7 +156,7 @@ The following is a simple illustration of this network.
 
 ```{code-cell} ipython3
 ---
-:tags: [hide-cell]
+tags: [hide-input]
 ---
 G = nx.DiGraph()
 
@@ -201,7 +202,7 @@ This can be graphically represented as follows.
 
 ```{code-cell} ipython3
 ---
-:tags: [hide-cell]
+tags: [hide-input]
 ---
 from matplotlib.patches import Polygon
 
@@ -448,7 +449,7 @@ The dual problem can be graphically represented as follows.
 
 ```{code-cell} ipython3
 ---
-:tags: [hide-cell]
+tags: [hide-input]
 ---
 from matplotlib.patches import Polygon
 
@@ -531,7 +532,7 @@ $$
 We plot a bar graph of hub-based eigenvector centrality for the sectors represented in {ref}`us_15sectors`.
 
 ```{code-cell} ipython3
-:tags: [hide-cell]
+:tags: [hide-input]
 
 fig, ax = plt.subplots()
 ax.bar(codes, centrality, color=color_list, alpha=0.6)
@@ -573,7 +574,7 @@ The following figure displays the output multipliers for the sectors represented
 in {ref}`us_15sectors`.
 
 ```{code-cell} ipython3
-:tags: [hide-cell]
+:tags: [hide-input]
 
 A, F = build_coefficient_matrices(Z, X)
 omult = qbn_io.katz_centrality(A, authority=True)
