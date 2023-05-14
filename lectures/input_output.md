@@ -32,7 +32,7 @@ import networkx as nx
 import matplotlib.pyplot as plt
 ```
 
-The following figure illustrates a network of linkages between 15 sectors
+The following figure illustrates a network of linkages among 15 sectors
 obtained from the US Bureau of Economic Analysis’s 2019 Input-Output Accounts
 Data.
 
@@ -111,20 +111,18 @@ plt.show()
 | ma  | Manufacturing | fi  |    Finance     | go  |        Government         |
 
 
-An arrow from $i$ to $j$ implies that sector $i$ supplies some of its output as
-raw material to sector $j$.
+An arrow from $i$ to $j$ means that some of sector $i$'s output serves as an input to production of  sector $j$.
 
-Economies are characterised by many such complex and interdependent multisector
-production networks.
+Economies are characterised by many such links. 
 
 A basic framework for their analysis is
 [Leontief's](https://en.wikipedia.org/wiki/Wassily_Leontief) input-output model.
 
-This model's key aspect is its simplicity.
 
-In this lecture, we first introduce the standard input-ouput model and approach it as a linear programming problem.
 
-(TODO add link to lpp lecture)
+After  introducing the input-ouput model, we describe some of its connections to linear programming.
+
+(XXXX TODO add link to lpp lecture)
 
 
 ## Input output analysis
@@ -142,7 +140,7 @@ Let
  
 
 
-The production function for goods $j \in \{1, \ldots , n\}$ is the **Leontief** function
+The technology for producing  good $j \in \{1, \ldots , n\}$ is  described by the **Leontief** function
 
 $$
     x_j = \min_{i \in \{0, \ldots , n \}} \left( \frac{z_{ij}}{a_{ij}}\right) 
@@ -150,9 +148,8 @@ $$
 
 ### Two goods
 
-To illustrate ideas, we begin by setting $n =2$.
-
-The following is a simple illustration of this network.
+To illustrate, we begin by setting $n =2$ and formulating 
+the following network.
 
 ```{code-cell} ipython3
 ---
@@ -235,7 +232,7 @@ plt.show()
 
 +++ {"user_expressions": []}
 
-More generally the constraints can be written as
+More generally,   constraints on production are 
 
 $$
 \begin{aligned}
@@ -254,11 +251,11 @@ $$
 x = (I -A)^{-1} d \equiv L d 
 $$ (eq:inout_2)
 
-where $L = (I-A)^{-1}$.
+where the matrix $L = (I-A)^{-1}$ is sometimes called  a **Leontief Inverse**.
 
-This matrix is also known as the **Leontief Inverse**.
 
-We assume the **Hawkins-Simon conditions** stated as
+
+To assure that the solution $X$ of {eq}`eq:inout_2` is a positive vector, the  following **Hawkins-Simon conditions** suffice:
 
 $$
 \begin{aligned}
@@ -267,9 +264,9 @@ $$
 \end{aligned}
 $$
 
-to assure that the solution $X$ of {eq}`eq:inout_2` is a positive vector.
 
-Consider for example a two good economy such that
+
+For example a two good economy described by
 
 $$
 A =
@@ -337,13 +334,14 @@ $$
 A_0' = a_0' (I - A)^{-1}
 $$
 
-The $i$th Component $A_0$ is the amount of labor that is required to produce one unit of final output of good $i$ for $i \in \{1, \ldots , n\}$.
+ For $i \in \{1, \ldots , n\}$, the $i$th component  of $A_0$ is the amount of labor that is required to produce one unit of final output of good $i$.
 
 Equation {eq}`eq:inout_frontier` sweeps out a  **production possibility frontier** of final consumption bundles $d$ that can be produced with exogenous labor input $x_0$.
 
 Consider the example in {eq}`eq:inout_ex`.
 
 Suppose we are now given
+
 $$
 a_0' = \begin{bmatrix}
 4 & 100
@@ -361,6 +359,7 @@ A0
 +++ {"user_expressions": []}
 
 Thus, the production possibility frontier for this economy is
+
 $$
 10d_1 + 500d_2 = x_0
 $$
@@ -370,6 +369,7 @@ $$
 ## Prices
 
 {cite}`DoSSo` argue that relative prices of the $n$ produced goods must satisfy  
+
 $$
 \begin{aligned}
 p_1 = a_{11}p_1 + a_{21}p_2 + a_{01}w \\
@@ -378,6 +378,7 @@ p_2 = a_{12}p_1 + a_{22}p_2 + a_{02}w
 $$
 
 More generally,
+
 $$ 
 p = A' p + a_0 w
 $$
@@ -487,7 +488,8 @@ We have discussed that gross ouput $x$ is given by {eq}`eq:inout_2`, where $L$ i
 
 Recall the [Neumann Series Lemma](link to eigenvalues lecture) which states that $L$ exists if the spectral radius $r(A)<1$.
 
-In fact,
+In fact
+
 $$
 L = \sum_{i=0}^{\infty} A^i
 $$
@@ -498,7 +500,8 @@ Consider the impact of a demand shock $\Delta d$ which shifts demand from $d_0$ 
 
 Gross output shifts from $x_0 = Ld_0$ to $x_1 = Ld_1$.
 
-If $r(A) < 1$ then a solution exists and thus we yield
+If $r(A) < 1$ then a solution exists and 
+
 $$
 \Delta x = L \Delta d = \Delta d + A(\Delta d) + A^2 (\Delta d) + \cdots
 $$
@@ -516,20 +519,21 @@ $$
 E = \{(i,j) \in V \times V : a_{ij}>0\}
 $$
 
-In {ref}`us_15sectors` weights are indicated by the widths of the arrows, which are proportional to the corresponding input-output coefficients.
+In {numref}`us_15sectors` weights are indicated by the widths of the arrows, which are proportional to the corresponding input-output coefficients.
 
 We can now use centrality measures to rank sectors and discuss their importance relative to the other sectors.
 
 ### Eigenvector centrality
 
 Eigenvector centrality of a node $i$ is measured by
+
 $$
 \begin{aligned}
     e_i = \frac{1}{r(A)} \sum_{1 \leq j \leq n} a_{ij} e_j
 \end{aligned}
 $$
 
-We plot a bar graph of hub-based eigenvector centrality for the sectors represented in {ref}`us_15sectors`.
+We plot a bar graph of hub-based eigenvector centrality for the sectors represented in {numref}`us_15sectors`.
 
 ```{code-cell} ipython3
 :tags: [hide-input]
@@ -571,7 +575,7 @@ High ranking sectors within this measure are important buyers of intermediate go
 A demand shock in such sectors will cause a large impact on the whole production network.
 
 The following figure displays the output multipliers for the sectors represented
-in {ref}`us_15sectors`.
+in {numref}`us_15sectors`.
 
 ```{code-cell} ipython3
 :tags: [hide-input]
