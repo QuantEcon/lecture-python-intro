@@ -424,6 +424,30 @@ $$ G_P(x) = x^{- \alpha} $$
 
 This function goes to zero as $x \to \infty$, but much slower than $G_E$.
 
+```{exercise}
+:label: ht_ex_x1
+
+Show how the CCDF of the Pareto distribution can be derived from the CCDF of the exponential distribution.
+```
+
+```{solution-start} ht_ex_x1
+:class: dropdown
+```
+Letting $G_E$ and $G_P$ be defined as above yields
+
+$$
+\begin{aligned}
+ G_P(y) & = \mathbb P\{Y > y\} \\
+         & = \mathbb P\{\exp(X) > y\} \\
+         & = \mathbb P\{X > \ln y\} \\
+         & = G_E(\ln y) \\
+         & = \exp( - \alpha \ln y) \\
+        & = y^{-\alpha}
+\end{aligned}
+$$
+```{solution-end}
+```
+
 Here's a plot that illustrates how $G_E$ goes to zero faster than $G_P$.
 
 ```{code-cell} ipython3
@@ -647,7 +671,7 @@ Here is a plot of the firm size distribution for the largest 500 firms in 2020 t
 ```{code-cell} ipython3
 :tags: [hide-input]
 
-df_fs = pd.read_csv('https://media.githubusercontent.com/media/QuantEcon/high_dim_data/update_csdata/cross_section/forbes-global2000.csv')
+df_fs = pd.read_csv('https://media.githubusercontent.com/media/QuantEcon/high_dim_data/main/cross_section/forbes-global2000.csv')
 df_fs = df_fs[['Country', 'Sales', 'Profits', 'Assets', 'Market Value']]
 fig, ax = plt.subplots(figsize=(6.4, 3.5))
 
@@ -669,8 +693,8 @@ The size is measured by population.
 :tags: [hide-input]
 
 # import population data of cities in 2023 United States and 2023 Brazil from world population review
-df_cs_us = pd.read_csv('https://media.githubusercontent.com/media/QuantEcon/high_dim_data/update_csdata/cross_section/cities_us.csv')
-df_cs_br = pd.read_csv('https://media.githubusercontent.com/media/QuantEcon/high_dim_data/update_csdata/cross_section/cities_brazil.csv')
+df_cs_us = pd.read_csv('https://media.githubusercontent.com/media/QuantEcon/high_dim_data/main/cross_section/cities_us.csv')
+df_cs_br = pd.read_csv('https://media.githubusercontent.com/media/QuantEcon/high_dim_data/main/cross_section/cities_brazil.csv')
 
 fig, axes = plt.subplots(1, 2, figsize=(8.8, 3.6))
 
@@ -689,7 +713,7 @@ The data is from the Forbes Billionaires list in 2020.
 ```{code-cell} ipython3
 :tags: [hide-input]
 
-df_w = pd.read_csv('https://media.githubusercontent.com/media/QuantEcon/high_dim_data/update_csdata/cross_section/forbes-billionaires.csv')
+df_w = pd.read_csv('https://media.githubusercontent.com/media/QuantEcon/high_dim_data/main/cross_section/forbes-billionaires.csv')
 df_w = df_w[['country', 'realTimeWorth', 'realTimeRank']].dropna()
 df_w = df_w.astype({'realTimeRank': int})
 df_w = df_w.sort_values('realTimeRank', ascending=True).copy()
