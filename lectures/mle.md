@@ -180,9 +180,7 @@ $$
 For our sample $w_1, w_2, \cdots, w_n$, the [likelihood function](https://en.wikipedia.org/wiki/Likelihood_function) is given by
 
 $$
-\begin{aligned}
-    L(\mu, \sigma | w_i) = \prod_{i=1}^{n} f(w_i, \mu, \sigma) \\
-\end{aligned}
+    L(\mu, \sigma | w_i) = \prod_{i=1}^{n} f(w_i, \mu, \sigma)
 $$
 
 The likelihood function can be viewed as both
@@ -207,18 +205,15 @@ To find where this function is maximised we find its partial derivatives wrt $\m
 Let's first find the maximum likelihood estimate (MLE) of $\mu$
 
 $$
-\begin{aligned}
 \frac{\delta \ell}{\delta \mu} 
     = - \frac{1}{2\sigma^2} \times 2 \sum_{i=1}^n (\ln w_i - \mu) = 0 \\
 \implies \sum_{i=1}^n \ln w_i - n \mu = 0 \\
 \implies \hat{\mu} = \frac{\sum_{i=1}^n \ln w_i}{n}
-\end{aligned}
 $$
 
 Now let's find the MLE of $\sigma$
 
 $$
-\begin{aligned}
 \frac{\delta \ell}{\delta \sigma^2} 
     = - \frac{n}{2\sigma^2} + \frac{1}{2\sigma^4} 
     \sum_{i=1}^n (\ln w_i - \mu)^2 = 0 \\
@@ -226,7 +221,6 @@ $$
     \frac{1}{2\sigma^4} \sum_{i=1}^n (\ln w_i - \mu)^2 \\
     \implies \hat{\sigma} = 
     \left( \frac{\sum_{i=1}^{n}(\ln w_i - \hat{\mu})^2}{n} \right)^{1/2}
-\end{aligned}
 $$
 
 Now that we have derived the expressions for $\hat{\mu}$ and $\hat{\sigma}$,
