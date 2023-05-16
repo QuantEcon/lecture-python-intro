@@ -166,50 +166,57 @@ These estimates can be found by maximizing the likelihood function given the
 data.
 
 The pdf of a lognormally distributed random variable $X$ is given by:
+
 $$
 f(x) = \frac{1}{x}\frac{1}{\sigma \sqrt{2\pi}} exp\left(\frac{-1}{2}\left(\frac{\ln x-\mu}{\sigma}\right)\right)^2
 $$
 
 Since $\ln X$ is normally distributed this is the same as
+
 $$
 f(x) = \frac{1}{x} \phi(x)
 $$
+
 where $\phi$ is the pdf of $\ln X$ which is normally distibuted with mean $\mu$ and variance $\sigma ^2$.
 
 For a sample $x = (x_1, x_2, \cdots, x_n)$ the _likelihood function_ is given by:
+
 $$
 \begin{aligned}
-L(\mu, \sigma | x_i) = \prod_{i=1}^{n} f(\mu, \sigma | x_i) \\
-L(\mu, \sigma | x_i) = \prod_{i=1}^{n} \frac{1}{x_i} \phi(\ln x_i)
+L(\mu, \sigma | x_i) &= \prod_{i=1}^{n} f(\mu, \sigma | x_i) \\
+&= \prod_{i=1}^{n} \frac{1}{x_i} \phi(\ln x_i)
 \end{aligned}
 $$
 
+
 Taking $\log$ on both sides gives us the _log likelihood function_ which is:
+
 $$
 \begin{aligned}
-l(\mu, \sigma | x_i) = -\sum_{i=1}^{n} \ln x_i + \sum_{i=1}^n \phi(\ln x_i) \\
-l(\mu, \sigma | x_i) = -\sum_{i=1}^{n} \ln x_i - \frac{n}{2} \ln(2\pi) - \frac{n}{2} \ln \sigma^2 - \frac{1}{2\sigma^2}
-\sum_{i=1}^n (\ln x_i - \mu)^2
+\ell(\mu, \sigma | x_i) &= -\sum_{i=1}^{n} \ln x_i + \sum_{i=1}^n \phi(\ln x_i) \\
+&= -\sum_{i=1}^{n} \ln x_i - \frac{n}{2} \ln(2\pi) - \frac{n}{2} \ln \sigma^2 - \frac{1}{2\sigma^2} \sum_{i=1}^n (\ln x_i - \mu)^2
 \end{aligned}
 $$
 
 To find where this function is maximised we find its partial derivatives wrt $\mu$ and $\sigma ^2$ and equate them to $0$.
 
 Let's first find the MLE of $\mu$,
+
 $$
 \begin{aligned}
-\frac{\delta l}{\delta \mu} = - \frac{1}{2\sigma^2} \times 2 \sum_{i=1}^n (\ln x_i - \mu) = 0 \\
-\Rightarrow \sum_{i=1}^n \ln x_i - n \mu = 0 \\
-\Rightarrow \hat{\mu} = \frac{\sum_{i=1}^n \ln x_i}{n}
+\frac{\delta l}{\delta \mu} = - \frac{1}{2\sigma^2} \times 2 \sum_{i=1}^n (\ln x_i - \mu) &= 0 \\
+\sum_{i=1}^n (\ln x_i - n \mu) &= 0 \\
+\hat{\mu} &= \frac{\sum_{i=1}^n \ln x_i}{n}
 \end{aligned}
 $$
 
 Now let's find the MLE of $\sigma$,
+
 $$
 \begin{aligned}
-\frac{\delta l}{\delta \sigma^2} = - \frac{n}{2\sigma^2} + \frac{1}{2\sigma^4} \sum_{i=1}^n (\ln x_i - \mu)^2 = 0 \\
-\Rightarrow \frac{n}{2\sigma^2} = \frac{1}{2\sigma^4} \sum_{i=1}^n (\ln x_i - \mu)^2 \\
-\Rightarrow \hat{\sigma} = \left( \frac{\sum_{i=1}^{n}(\ln x_i - \hat{\mu})^2}{n} \right)^{1/2}
+\frac{\delta l}{\delta \sigma^2} = - \frac{n}{2\sigma^2} + \frac{1}{2\sigma^4} \sum_{i=1}^n (\ln x_i - \mu)^2 &= 0 \\
+\frac{n}{2\sigma^2} &= \frac{1}{2\sigma^4} \sum_{i=1}^n (\ln x_i - \mu)^2 \\
+\hat{\sigma} &= \left( \frac{\sum_{i=1}^{n}(\ln x_i - \hat{\mu})^2}{n} \right)^{1/2}
 \end{aligned}
 $$
 
@@ -264,7 +271,6 @@ tr_lognorm
 
 (Our unit was 100,000 dollars, so this means that actual revenue is 100,000
 times as large.)
-
 
 
 ## Pareto distribution
