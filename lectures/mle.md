@@ -22,7 +22,6 @@ import pandas as pd
 from math import exp, log
 ```
 
-
 ## Introduction
 
 Consider a situation where a policymaker is trying to estimate how much revenue a proposed wealth tax
@@ -78,15 +77,16 @@ The data is derived from the
 [Survey of Consumer Finances](https://en.wikipedia.org/wiki/Survey_of_Consumer_Finances) (SCF).
 
 
-The following code imports this data  and reads it into an array called `sample`. 
+The following code imports this data  and reads it into an array called `sample`.
 
 ```{code-cell} ipython3
 :tags: [hide-input]
+
 url = 'https://media.githubusercontent.com/media/QuantEcon/high_dim_data/update_scf_noweights/SCF_plus/SCF_plus_mini_no_weights.csv'
 df = pd.read_csv(url)
 df = df.dropna()
 df = df[df['year'] == 2016]
-df = df.loc[df['n_wealth'] > 0 ]   #restrcting data to net worth > 0
+df = df.loc[df['n_wealth'] > 1 ]   #restrcting data to net worth > 1
 rv = df['n_wealth'].sample(n=n, random_state=1234)
 rv = rv.to_numpy() / 100_000
 sample = rv
@@ -157,22 +157,64 @@ ax.hist(ln_sample, density=True, bins=200, histtype='stepfilled', alpha=0.8)
 plt.show()
 ```
 
++++ {"user_expressions": []}
+
 Now our job is to obtain the maximum likelihood estimates of $\mu$ and $\sigma$, which
 we denote by $\hat{\mu}$ and $\hat{\sigma}$.
 
 These estimates can be found by maximizing the likelihood function given the
 data.
 
-In our case they are
-
+The pdf of a lognormally distributed random variable $X$ is given by:
 $$
-    \hat{\mu} = \frac{\sum_{i=1}^{n} \ln w_i}{n}
-    \quad \text{and} \quad
-    \hat{\sigma} 
-    = \left( \frac{\sum_{i=1}^{n}(\ln w_i - \hat{\mu})^2}{n} \right)^{1/2}
+f(x) = \frac{1}{x}\frac{1}{\sigma \sqrt{2\pi}} exp\left(\frac{-1}{2}\left(\frac{\ln x-\mu}{\sigma}\right)\right)^2
 $$
 
-Let's calculate these values
+Since $\ln X$ is normally distributed this is the same as
+$$
+f(x) = \frac{1}{x} \phi(x)
+$$
+where $\phi$ is the pdf of $\ln X$ which is normally distibuted with mean $\mu$ and variance $\sigma ^2$.
+
+For a sample $x = (x_1, x_2, \cdots, x_n)$ the _likelihood function_ is given by:
+$$
+\begin{aligned}
+L(\mu, \sigma | x_i) = \prod_{i=1}^{n} f(\mu, \sigma | x_i) \\
+L(\mu, \sigma | x_i) = \prod_{i=1}^{n} \frac{1}{x_i} \phi(\ln x_i)
+\end{aligned}
+$$
+
+Taking $\log$ on both sides gives us the _log likelihood function_ which is:
+$$
+\begin{aligned}
+l(\mu, \sigma | x_i) = -\sum_{i=1}^{n} \ln x_i + \sum_{i=1}^n \phi(\ln x_i) \\
+l(\mu, \sigma | x_i) = -\sum_{i=1}^{n} \ln x_i - \frac{n}{2} \ln(2\pi) - \frac{n}{2} \ln \sigma^2 - \frac{1}{2\sigma^2}
+\sum_{i=1}^n (\ln x_i - \mu)^2
+\end{aligned}
+$$
+
+To find where this function is maximised we find its partial derivatives wrt $\mu$ and $\sigma ^2$ and equate them to $0$.
+
+Let's first find the MLE of $\mu$,
+$$
+\begin{aligned}
+\frac{\delta l}{\delta \mu} = - \frac{1}{2\sigma^2} \times 2 \sum_{i=1}^n (\ln x_i - \mu) = 0 \\
+\Rightarrow \sum_{i=1}^n \ln x_i - n \mu = 0 \\
+\Rightarrow \hat{\mu} = \frac{\sum_{i=1}^n \ln x_i}{n}
+\end{aligned}
+$$
+
+Now let's find the MLE of $\sigma$,
+$$
+\begin{aligned}
+\frac{\delta l}{\delta \sigma^2} = - \frac{n}{2\sigma^2} + \frac{1}{2\sigma^4} \sum_{i=1}^n (\ln x_i - \mu)^2 = 0 \\
+\Rightarrow \frac{n}{2\sigma^2} = \frac{1}{2\sigma^4} \sum_{i=1}^n (\ln x_i - \mu)^2 \\
+\Rightarrow \hat{\sigma} = \left( \frac{\sum_{i=1}^{n}(\ln x_i - \hat{\mu})^2}{n} \right)^{1/2}
+\end{aligned}
+$$
+
+Now that we have derived the expressions for $\hat{\mu}$ and $\hat{\sigma}$,
+let's compute them for our wealth sample.
 
 ```{code-cell} ipython3
 μ_hat = np.mean(ln_sample)
@@ -199,7 +241,6 @@ ax.plot(x, dist_lognorm.pdf(x), 'k-', lw=0.5, label='lognormal pdf')
 ax.legend()
 plt.show()
 ```
-
 
 Our estimated lognormal distribution appears to be a decent fit for the overall data.
 
@@ -268,7 +309,6 @@ tr_pareto
 
 The number is very different!
 
-
 ```{code-cell} ipython3
 tr_pareto / tr_lognorm
 ```
@@ -280,7 +320,6 @@ We see that choosing the right distribution is extremely important.
 Let's compare the fitted Pareto distribution to the histogram:
 
 ```{code-cell} ipython3
-
 fig, ax = plt.subplots()
 ax.set_xlim(-1, 20)
 ax.set_ylim(0,1.75)
@@ -292,67 +331,10 @@ ax.legend()
 plt.show()
 ```
 
++++ {"user_expressions": []}
+
 We observe that in this case the fit for the Pareto distribution is not very
 good, so we can probably reject it.
-
-
-
-## Exponential distribution
-
-What other distributions could we try?
-
-Suppose we assume that the distribution is [exponential](https://en.wikipedia.org/wiki/Exponential_distribution)
-with parameter $\lambda > 0$.
-
-The maximum likelihood estimate of $\lambda$ is given by
-
-$$
-\hat{\lambda} = \frac{n}{\sum_{i=1}^n w_i}
-$$
-
-Let's calculate it.
-
-```{code-cell} ipython3
-λ_hat = 1/np.mean(sample)
-λ_hat
-```
-
-Now let's compute total revenue:
-
-```{code-cell} ipython3
-dist_exp = expon(scale = 1/λ_hat)
-tr_expo = total_revenue(dist_exp) 
-tr_expo
-```
-
-Again, calculated revenue is very different.
-
-```{code-cell} ipython3
-tr_expo / tr_lognorm
-```
-
-But once again, when we plot the fitted distribution against the data we see it
-is a bad fit.
-
-
-```{code-cell} ipython3
-
-fig, ax = plt.subplots()
-ax.set_xlim(-1, 20)
-
-ax.hist(sample, density=True, bins=5000, histtype='stepfilled', alpha=0.5)
-ax.plot(x, dist_exp.pdf(x), 'k-', lw=0.5, label='exponential pdf')
-ax.legend()
-
-plt.show()
-```
-
-So we can reject this calculation.
-
-
-
-
-
 
 ## What is the best distribution?
 
@@ -370,6 +352,7 @@ We set an arbitrary threshold of $500,000 and read the data into `sample_tail`.
 
 ```{code-cell} ipython3
 :tags: [hide-input]
+
 df_tail = df.loc[df['n_wealth'] > 500_000 ]
 df_tail.head()
 rv_tail = df_tail['n_wealth'].sample(n=10_000, random_state=4321)
@@ -410,7 +393,6 @@ ax.legend()
 plt.show()
 ```
 
-
 While the lognormal distribution was a good fit for the entire dataset,
 it is not a good fit for the right hand tail.
 
@@ -435,6 +417,7 @@ ax.plot(x, dist_pareto_tail.pdf(x), 'k-', lw=0.5, label='pareto pdf')
 plt.show()
 ```
 
++++ {"user_expressions": []}
 
 The Pareto distribution is a better fit for the right hand tail of our dataset.
 
@@ -451,3 +434,73 @@ There are other more rigorous tests, such as the [Kolmogorov-Smirnov test](https
 
 We omit the details.
 
+## Exercises
+
+```{exercise-start}
+:label: mle_ex1
+```
+Suppose we assume wealth is [exponentially](https://en.wikipedia.org/wiki/Exponential_distribution)
+distributed with parameter $\lambda > 0$.
+
+The maximum likelihood estimate of $\lambda$ is given by
+
+$$
+\hat{\lambda} = \frac{n}{\sum_{i=1}^n w_i}
+$$
+
+1. Compute $\hat{\lambda}$ for our initial sample.
+2. Use $\hat{\lambda}$ to find the total revenue 
+
+```{exercise-end}
+```
+
+```{solution-start} mle_ex1
+:class: dropdown
+```
+
+```{code-cell} ipython3
+λ_hat = 1/np.mean(sample)
+λ_hat
+```
+
+```{code-cell} ipython3
+dist_exp = expon(scale = 1/λ_hat)
+tr_expo = total_revenue(dist_exp) 
+tr_expo
+```
+
++++ {"user_expressions": []}
+
+```{solution-end}
+```
+
+```{exercise-start}
+:label: mle_ex2
+```
+
+Plot the exponential distribution against the sample and check if it is a good fit or not.
+
+```{exercise-end}
+```
+
+```{solution-start} mle_ex2
+:class: dropdown
+```
+
+```{code-cell} ipython3
+fig, ax = plt.subplots()
+ax.set_xlim(-1, 20)
+
+ax.hist(sample, density=True, bins=5000, histtype='stepfilled', alpha=0.5)
+ax.plot(x, dist_exp.pdf(x), 'k-', lw=0.5, label='exponential pdf')
+ax.legend()
+
+plt.show()
+```
+
++++ {"user_expressions": []}
+
+Clearly, this distribution is not a good fit for our data.
+
+```{solution-end}
+```
