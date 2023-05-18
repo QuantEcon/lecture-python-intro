@@ -4,7 +4,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.14.5
+    jupytext_version: 1.14.4
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
@@ -22,7 +22,7 @@ equation that would be part of set equations comprising all of the "equilibrium 
 The condition featured in our model determies  a college, high-school wage ratio that equalizes the
 present values of a high school worker and a college educated worker.
 
-It is just one instance of a class of "equalizing difference" theories of relative wage rates, a class dating back at least to Adam Smith's **Wealth of Nations**.  
+It is just one instance of a class of "equalizing difference" theories of relative wage rates, a class dating back at least to Adam Smith's **Wealth of Nations**.
 
 +++
 
@@ -120,21 +120,17 @@ $$
 c_0 = \pi \sum_{t=4}^T R^{-t} w_t^c
 $$
 
-where $\pi \in (0,1) $ is  the probability that the entrepreneur's "project" succeeds.
+where $\pi \in (0,1) $ is  the probability that an entrepreneur's "project" succeeds.
 
 We set $D =0$.
 
 What we used to call the college, high school wage gap $\phi$ now becomes the ratio
-of (successful) entreneurs' earnings to worker's earnings.  
+of a successful entreneur's earnings to a worker's earnings.  
 
 We'll find that as $\pi$ decreases, $\phi$ increases.  
 
 We can have some fun providing some example calculations that tweak various parameters,
 prominently including $\gamma_h, \gamma_c, R$.
-
-
-
-
 
 ```{code-cell} ipython3
 

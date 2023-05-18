@@ -4,7 +4,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.14.5
+    jupytext_version: 1.14.4
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
@@ -15,7 +15,7 @@ kernelspec:
 
 In this notebook, we'll present  some useful models of economic dynamics using only linear algebra -- matrix multiplication and matrix inversion.
 
-**Present value formulas** are at the core of the models. 
+**Present value formulas** are at the core of the models.
 
 +++
 
@@ -71,9 +71,6 @@ where $g_1 > 0, g_2 > 0$.
 
 We shall see that when $\beta R = 1$ (a condition assumed by Milton Friedman and Robert Hall), this criterion assigns higher welfare to **smoother** consumption paths.
 
-
-
-
 +++
 
 ## Difference equations with linear algebra ##
@@ -85,7 +82,16 @@ with appropriate initial conditions and then   use linear algebra to solve it.
 
 #### First-order difference equation
 
-A first-order linear difference equation cast as a matrix equation
+We'll start with a first-order linear difference equation for $\{y_t\}_{t=0}^T$:
+
+$$
+y_{t} = \lambda y_{t-1}, \quad t = 1, 2, \ldots, T
+$$
+
+where  $y_0$ is a given  initial condition.
+
+
+We can cast this set of $T$ equations as a single  matrix equation
 
 $$
 \begin{bmatrix} 1 & 0 & 0 & \cdots & 0 & 0 \cr
@@ -98,7 +104,8 @@ $$
 = \begin{bmatrix} \lambda y_0 \cr 0 \cr 0 \cr \vdots \cr 0 \end{bmatrix}
 $$
 
-Here $y_0$ is an initial condition.
+
+
 
 Multiplying both sides by  inverse of the matrix on the left provides the solution
 
@@ -245,7 +252,7 @@ Let's verify this with our Python code.
 
 ### Feasible consumption variations ###
 
-To explore what types of consumption paths are welfare-improving, we shall create an **admissible consumption path variation** sequence $\{v_t\}_{t=0}^T$
+To explore what types of consumption paths are welfare-improving, we shall create an **admissible consumption path variation sequence** $\{v_t\}_{t=0}^T$
 that satisfies
 
 $$
@@ -266,7 +273,7 @@ Let's compute that function.
 We require
 
 $$
-\sum_{t=0}^T \left[ \xi_1 \phi^t - \phi_0 \right] = 0
+\sum_{t=0}^T \left[ \xi_1 \phi^t - \xi_0 \right] = 0
 $$
 
 which implies that
@@ -299,7 +306,6 @@ to compute alternative consumption paths, then evaluate their welfare.
 graphs to show that, when $\beta R =1$ and  starting from the smooth path, all nontrivial budget-feasible variations lower welfare according to the criterion above.  
 
 We can even use the Python numpy grad command to compute derivatives of welfare with respect to our two parameters.  Notice that we are teaching the key idea beneath the calculus of variations.
-
 
 ```{code-cell} ipython3
 
