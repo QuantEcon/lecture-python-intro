@@ -121,7 +121,7 @@ $$
 $$
 \begin{bmatrix} 1 & 0 & 0 & \cdots & 0 & 0 & 0 \cr
               -\lambda_1 & 1 & 0 & \cdots & 0 & 0 & 0 \cr
-                -\lambda_2 & -\lambda_2 & 1 & \cdots & 0 & 0 & 0 \cr
+                -\lambda_2 & -\lambda_1 & 1 & \cdots & 0 & 0 & 0 \cr
                  \vdots & \vdots & \vdots & \cdots & \vdots & \vdots \cr
                 0 & 0 & 0 & \cdots & \lambda_2 & -\lambda_1 & 1 
 
@@ -266,7 +266,7 @@ Let's compute that function.
 We require
 
 $$
-\sum_{t=0}^T \left[ \xi_1 \phi^t - \phi_0 \right] = 0
+\sum_{t=0}^T \left[ \xi_1 \phi^t - \xi_0 \right] = 0
 $$
 
 which implies that
