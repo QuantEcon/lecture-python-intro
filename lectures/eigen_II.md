@@ -34,12 +34,12 @@ In addition to what's in Anaconda, this lecture will need the following librarie
 :class: warning
 If you are running this lecture locally it requires [graphviz](https://www.graphviz.org)
 to be installed on your computer. Installation instructions for graphviz can be found
-[here](https://www.graphviz.org/download/) 
+[here](https://www.graphviz.org/download/)
 ```
 
 In this lecture we will begin with the foundational concepts in spectral theory.
 
-Then we will explore the Perron-Frobenius Theorem and the Neumann Series Lemma, and connect them to applications in Markov chains and networks. 
+Then we will explore the Perron-Frobenius Theorem and the Neumann Series Lemma, and connect them to applications in Markov chains and networks.
 
 We will use the following imports:
 
@@ -119,7 +119,7 @@ In other words, if $w$ is a left eigenvector of matrix A, then $A^T w = \lambda 
 This hints at how to compute left eigenvectors
 
 ```{code-cell} ipython3
-A = np.array([[3, 2], 
+A = np.array([[3, 2],
               [1, 4]])
 
 # Compute right eigenvectors and eigenvalues
@@ -174,7 +174,7 @@ $A$ is a nonnegative square matrix.
 
 If a matrix $A \geq 0$ then,
 
-1. the dominant eigenvalue of $A$, $r(A)$, is real-valued and nonnegative. 
+1. the dominant eigenvalue of $A$, $r(A)$, is real-valued and nonnegative.
 2. for any other eigenvalue (possibly complex) $\lambda$ of $A$, $|\lambda| \leq r(A)$.
 3. we can find a nonnegative and nonzero eigenvector $v$ such that $Av = r(A)v$.
 
@@ -204,8 +204,8 @@ Now let's consider examples for each case.
 Consider the following irreducible matrix A:
 
 ```{code-cell} ipython3
-A = np.array([[0, 1, 0], 
-              [.5, 0, .5], 
+A = np.array([[0, 1, 0],
+              [.5, 0, .5],
               [0, 1, 0]])
 ```
 
@@ -228,8 +228,8 @@ Now we can go through our checklist to verify the claims of the Perron-Frobenius
 Consider the following primitive matrix B:
 
 ```{code-cell} ipython3
-B = np.array([[0, 1, 1], 
-              [1, 0, 1], 
+B = np.array([[0, 1, 1],
+              [1, 0, 1],
               [1, 1, 0]])
 
 np.linalg.matrix_power(B, 2)
@@ -298,7 +298,7 @@ def check_convergence(M):
     n_list = [1, 10, 100, 1000, 10000]
 
     for n in n_list:
-        
+
         # Compute (A/r)^n
         M_n = np.linalg.matrix_power(M/r, n)
 
@@ -313,8 +313,8 @@ def check_convergence(M):
 A1 = np.array([[1, 2],
                [1, 4]])
 
-A2 = np.array([[0, 1, 1], 
-              [1, 0, 1], 
+A2 = np.array([[0, 1, 1],
+              [1, 0, 1],
               [1, 1, 0]])
 
 A3 = np.array([[0.971, 0.029, 0.1, 1],
@@ -336,8 +336,8 @@ The convergence is not observed in cases of non-primitive matrices.
 Let's go through an example
 
 ```{code-cell} ipython3
-B = np.array([[0, 1, 1], 
-              [1, 0, 0], 
+B = np.array([[0, 1, 1],
+              [1, 0, 0],
               [1, 0, 0]])
 
 # This shows that the matrix is not primitive
@@ -358,7 +358,7 @@ In fact we have already seen the theorem in action before in {ref}`the markov ch
 (spec_markov)=
 #### Example 3: Connection to Markov chains
 
-We are now prepared to bridge the languages spoken in the two lectures. 
+We are now prepared to bridge the languages spoken in the two lectures.
 
 A primitive matrix is both irreducible (or strongly connected in the language of graph) and aperiodic.
 
@@ -410,7 +410,7 @@ $$
 
 This is proven in {cite}`sargent2023economic` and a nice discussion can be found [here](https://math.stackexchange.com/questions/2433997/can-all-matrices-be-decomposed-as-product-of-right-and-left-eigenvector).
 
-In the formula $\lambda_i$ is an eigenvalue of $P$ and $v_i$ and $w_i$ are the right and left eigenvectors corresponding to $\lambda_i$. 
+In the formula $\lambda_i$ is an eigenvalue of $P$ and $v_i$ and $w_i$ are the right and left eigenvectors corresponding to $\lambda_i$.
 
 Premultiplying $P^t$ by arbitrary $\psi \in \mathscr{D}(S)$ and rearranging now gives
 
@@ -418,14 +418,14 @@ $$
 \psi P^t-\psi^*=\sum_{i=1}^{n-1} \lambda_i^t \psi v_i w_i^{\top}
 $$
 
-Recall that eigenvalues are ordered from smallest to largest from $i = 1 ... n$. 
+Recall that eigenvalues are ordered from smallest to largest from $i = 1 ... n$.
 
 As we have seen, the largest eigenvalue for a primitive stochastic matrix is one.
 
-This can be proven using [Gershgorin Circle Theorem](https://en.wikipedia.org/wiki/Gershgorin_circle_theorem), 
+This can be proven using [Gershgorin Circle Theorem](https://en.wikipedia.org/wiki/Gershgorin_circle_theorem),
 but it is out of the scope of this lecture.
 
-So by the statement (6) of Perron-Frobenius Theorem, $\lambda_i<1$ for all $i<n$, and $\lambda_n=1$ when $P$ is primitive (strongly connected and aperiodic). 
+So by the statement (6) of Perron-Frobenius Theorem, $\lambda_i<1$ for all $i<n$, and $\lambda_n=1$ when $P$ is primitive (strongly connected and aperiodic).
 
 
 Hence, after taking the Euclidean norm deviation, we obtain
@@ -438,7 +438,7 @@ Thus, the rate of convergence is governed by the modulus of the second largest e
 
 
 (la_neumann)=
-## The Neumann Series Lemma 
+## The Neumann Series Lemma
 
 ```{index} single: Neumann's Lemma
 ```
@@ -450,12 +450,12 @@ many applications in economics.
 
 Here's a fundamental result about series that you surely know:
 
-If $a$ is a number and $|a| < 1$, then 
+If $a$ is a number and $|a| < 1$, then
 
 ```{math}
 :label: gp_sum
-    
-    \sum_{k=0}^{\infty} a^k =\frac{1}{1-a} = (1 - a)^{-1} 
+
+    \sum_{k=0}^{\infty} a^k =\frac{1}{1-a} = (1 - a)^{-1}
 
 ```
 
@@ -476,7 +476,7 @@ Using matrix algebra we can conclude that the solution to this system of equatio
 
 ```{math}
 :label: neumann_eqn
-    
+
     x^{*} = (I-A)^{-1}b
 
 ```
@@ -493,7 +493,7 @@ The following is a fundamental result in functional analysis that generalizes
 
 Let $A$ be a square matrix and let $A^k$ be the $k$-th power of $A$.
 
-Let $r(A)$ be the dominant eigenvector or as it is commonly called the *spectral radius*, defined as $\max_i |\lambda_i|$, where 
+Let $r(A)$ be the dominant eigenvector or as it is commonly called the *spectral radius*, defined as $\max_i |\lambda_i|$, where
 
 * $\{\lambda_i\}_i$ is the set of eigenvalues of $A$ and
 * $|\lambda_i|$ is the modulus of the complex number $\lambda_i$
@@ -517,7 +517,7 @@ r = max(abs(λ) for λ in evals)    # compute spectral radius
 print(r)
 ```
 
-The spectral radius $r(A)$ obtained is less than 1. 
+The spectral radius $r(A)$ obtained is less than 1.
 
 Thus, we can apply the Neumann Series lemma to find $(I-A)^{-1}$.
 
@@ -541,7 +541,7 @@ for i in range(50):
 Let's check equality between the sum and the inverse methods.
 
 ```{code-cell} ipython3
-np.allclose(A_sum, B_inverse)     
+np.allclose(A_sum, B_inverse)
 ```
 
 Although we truncate the infinite sum at $k = 50$, both methods give us the same
@@ -566,11 +566,11 @@ The following table describes how output is distributed within the economy:
 |   Industry  |     $x_2$    |   0.2$x_1$  | 0.4$x_2$ |0.3$x_3$ |     5    |
 |   Service   |     $x_3$    |   0.2$x_1$  | 0.5$x_2$ |0.1$x_3$ |    12    |
 
-The first row depicts how agriculture's total output $x_1$ is distributed 
+The first row depicts how agriculture's total output $x_1$ is distributed
 
 * $0.3x_1$ is used as inputs within agriculture itself,
 * $0.2x_2$ is used as inputs by the industry sector to produce $x_2$ units,
-* $0.3x_3$ is used as inputs by the service sector to produce $x_3$ units and 
+* $0.3x_3$ is used as inputs by the service sector to produce $x_3$ units and
 * 4 units is the external demand by consumers.
 
 We can transform this into a system of linear equations for the 3 sectors as
