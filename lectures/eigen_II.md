@@ -11,7 +11,7 @@ kernelspec:
   name: python3
 ---
 
-+++ {"user_expressions": []}
+
 
 # Spectral Theory
 
@@ -27,14 +27,7 @@ In addition to what's in Anaconda, this lecture will need the following librarie
 ```{code-cell} ipython3
 :tags: [hide-output]
 
-!pip install graphviz quantecon
-```
-
-```{admonition} graphviz
-:class: warning
-If you are running this lecture locally it requires [graphviz](https://www.graphviz.org)
-to be installed on your computer. Installation instructions for graphviz can be found
-[here](https://www.graphviz.org/download/)
+!pip install quantecon
 ```
 
 In this lecture we will begin with the foundational concepts in spectral theory.
@@ -48,7 +41,6 @@ import matplotlib.pyplot as plt
 import numpy as np
 from numpy.linalg import eig
 import scipy as sp
-import graphviz as gv
 import quantecon as qe
 ```
 
@@ -253,7 +245,7 @@ np.round(dominant_eigenvalue, 2)
 eig(B)
 ```
 
-+++ {"user_expressions": []}
+
 
 Now let's verify the claims of the Perron-Frobenius Theorem for the primitive matrix B:
 
