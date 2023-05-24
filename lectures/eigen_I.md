@@ -25,7 +25,7 @@ kernelspec:
 
 ## Overview
 
-Eigenvalues and eigenvectors are a advanced topic in linear and
+Eigenvalues and eigenvectors are an advanced topic in linear and
 matrix algebra.
 
 At the same time, these concepts are extremely useful for 

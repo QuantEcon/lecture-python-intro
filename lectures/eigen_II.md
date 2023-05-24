@@ -178,7 +178,9 @@ If $A$ is primitive then,
 
 6. the inequality $|\lambda| \leq r(A)$ is **strict** for all eigenvalues $\lambda$ of $A$ distinct from $r(A)$, and
 7. with $v$ and $w$ normalized so that the inner product of $w$ and  $v = 1$, we have
-$ r(A)^{-m} A^m$ converges to $v w^{\top}$ when $m \rightarrow \infty. \text{  } v w^{\top}$ is called the **Perron projection** of $A$.
+$ r(A)^{-m} A^m$ converges to $v w^{\top}$ when $m \rightarrow \infty$.
+\
+the matrix $v w^{\top}$ is called the **Perron projection** of $A$.
 ```
 
 (This is a relatively simple version of the theorem --- for more details see
@@ -486,7 +488,7 @@ The following is a fundamental result in functional analysis that generalizes
 
 Let $A$ be a square matrix and let $A^k$ be the $k$-th power of $A$.
 
-Let $r(A)$ be the *spectral radius* of $A$, defined as $\max_i |\lambda_i|$, where
+Let $r(A)$ be the **spectral radius** of $A$, defined as $\max_i |\lambda_i|$, where
 
 * $\{\lambda_i\}_i$ is the set of eigenvalues of $A$ and
 * $|\lambda_i|$ is the modulus of the complex number $\lambda_i$
