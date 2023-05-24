@@ -50,7 +50,7 @@ Often, in economics, the matrix that we are dealing with is nonnegative.
 
 Nonnegative matrices have several special and useful properties.
 
-In this section we discuss some of them --- in particular, the connection
+In this section we will discuss some of them --- in particular, the connection
 between nonnegativity and eigenvalues.
 
 Let $a^{k}_{ij}$ be element $(i,j)$ of $A^k$.
@@ -63,7 +63,7 @@ We denote this as $A \geq 0$.
 (irreducible)=
 ### Irreducible matrices
 
-We have (informally) introduced irreducible matrices in the Markov chain lecture (TODO: link to Markov chain lecture).
+We have (informally) introduced irreducible matrices in the [Markov chain lecture](markov_chains_II.md).
 
 Here we will introduce this concept formally.
 
@@ -157,9 +157,8 @@ This is a more common expression and where the name left eigenvectors originates
 For a nonnegative matrix $A$ the behavior of $A^k$ as $k \to \infty$ is controlled by the eigenvalue with the largest
 absolute value, often called the **dominant eigenvalue**.
 
-For a matrix $A$, the Perron-Frobenius Theorem characterizes certain
-properties of the dominant eigenvalue and its corresponding eigenvector when
-$A$ is a nonnegative square matrix.
+For a matrix nonnegative square matrix $A$, the Perron-Frobenius Theorem characterizes certain
+properties of the dominant eigenvalue and its corresponding eigenvector.
 
 ```{prf:Theorem} Perron-Frobenius Theorem
 :label: perron-frobenius
@@ -179,7 +178,7 @@ If $A$ is primitive then,
 
 6. the inequality $|\lambda| \leq r(A)$ is **strict** for all eigenvalues $\lambda$ of $A$ distinct from $r(A)$, and
 7. with $v$ and $w$ normalized so that the inner product of $w$ and  $v = 1$, we have
-$ r(A)^{-m} A^m$ converges to $v w^{\top}$ when $m \rightarrow \infty$. $v w^{\top}$ is called the **Perron projection** of $A$.
+$ r(A)^{-m} A^m$ converges to $v w^{\top}$ when $m \rightarrow \infty. \text{  } v w^{\top}$ is called the **Perron projection** of $A$.
 ```
 
 (This is a relatively simple version of the theorem --- for more details see
@@ -289,6 +288,8 @@ def check_convergence(M):
     # Define a list of values for n
     n_list = [1, 10, 100, 1000, 10000]
 
+    print("Frobenius norm of the difference:")
+
     for n in n_list:
 
         # Compute (A/r)^n
@@ -299,7 +300,7 @@ def check_convergence(M):
 
         # Calculate the norm of the difference matrix
         diff_norm = np.linalg.norm(diff, 'fro')
-        print(f"n = {n}, norm of the difference: {diff_norm:.10f}")
+        print(f"when n = {n}, {diff_norm:.10f}")
 
 
 A1 = np.array([[1, 2],
@@ -397,12 +398,12 @@ This can be proven using what we have learned here.
 With Markov model $M$ with state space $S$ and transition matrix $P$, we can write $P^t$ as
 
 $$
-P^t=\sum_{i=1}^{n-1} \lambda_i^t v_i w_i^{\top}+\mathbb{1} \psi^*,
+P^t=\sum_{i=1}^{n-1} \lambda_i^t v_i w_i^{\top}+1 \cdot \psi^*,
 $$
 
 This is proven in {cite}`sargent2023economic` and a nice discussion can be found [here](https://math.stackexchange.com/questions/2433997/can-all-matrices-be-decomposed-as-product-of-right-and-left-eigenvector).
 
-In the formula $\lambda_i$ is an eigenvalue of $P$ and $v_i$ and $w_i$ are the right and left eigenvectors corresponding to $\lambda_i$.
+In this formula $\lambda_i$ is an eigenvalue of $P$ with corresponding right and left eigenvectors $v_i$ and $w_i$ .
 
 Premultiplying $P^t$ by arbitrary $\psi \in \mathscr{D}(S)$ and rearranging now gives
 
@@ -485,7 +486,7 @@ The following is a fundamental result in functional analysis that generalizes
 
 Let $A$ be a square matrix and let $A^k$ be the $k$-th power of $A$.
 
-Let $r(A)$ be the dominant eigenvector or as it is commonly called the *spectral radius*, defined as $\max_i |\lambda_i|$, where
+Let $r(A)$ be the *spectral radius* of $A$, defined as $\max_i |\lambda_i|$, where
 
 * $\{\lambda_i\}_i$ is the set of eigenvalues of $A$ and
 * $|\lambda_i|$ is the modulus of the complex number $\lambda_i$
