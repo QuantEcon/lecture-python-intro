@@ -290,8 +290,6 @@ def check_convergence(M):
     # Define a list of values for n
     n_list = [1, 10, 100, 1000, 10000]
 
-    print("Frobenius norm of the difference:")
-
     for n in n_list:
 
         # Compute (A/r)^n
@@ -302,7 +300,7 @@ def check_convergence(M):
 
         # Calculate the norm of the difference matrix
         diff_norm = np.linalg.norm(diff, 'fro')
-        print(f"when n = {n}, {diff_norm:.10f}")
+        print(f"n = {n}, error = {diff_norm:.10f}")
 
 
 A1 = np.array([[1, 2],
@@ -400,7 +398,7 @@ This can be proven using what we have learned here.
 With Markov model $M$ with state space $S$ and transition matrix $P$, we can write $P^t$ as
 
 $$
-P^t=\sum_{i=1}^{n-1} \lambda_i^t v_i w_i^{\top}+1 \cdot \psi^*,
+P^t=\sum_{i=1}^{n-1} \lambda_i^t v_i w_i^{\top}+\mathbb{1} \psi^*,
 $$
 
 This is proven in {cite}`sargent2023economic` and a nice discussion can be found [here](https://math.stackexchange.com/questions/2433997/can-all-matrices-be-decomposed-as-product-of-right-and-left-eigenvector).

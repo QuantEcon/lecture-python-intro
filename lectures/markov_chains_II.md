@@ -230,7 +230,7 @@ Here
 
 * $\{X_t\}$ is a Markov chain with stochastic matrix $P$ and initial.
   distribution $\psi_0$
-* $1 \cdot \{X_t = x\} = 1$ if $X_t = x$ and zero otherwise.
+* $\mathbb{1} \{X_t = x\} = 1$ if $X_t = x$ and zero otherwise.
 
 The result in [theorem 4.3](llnfmc0) is sometimes called **ergodicity**.
 
