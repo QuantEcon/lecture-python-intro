@@ -209,6 +209,8 @@ Theorem 5.2 of {cite}`haggstrom2002finite`.
 (ergodicity)=
 ## Ergodicity
 
+Please note that we use $\mathbb{1}$ for a vector of ones in this lecture.
+
 Under irreducibility, yet another important result obtains:
 
 ````{prf:theorem}

@@ -395,6 +395,8 @@ In the {ref}`exercise<mc1_ex_1>`, we stated that the convergence rate is determi
 
 This can be proven using what we have learned here.
 
+Please note that we use $\mathbb{1}$ for a vector of ones in this lecture.
+
 With Markov model $M$ with state space $S$ and transition matrix $P$, we can write $P^t$ as
 
 $$
