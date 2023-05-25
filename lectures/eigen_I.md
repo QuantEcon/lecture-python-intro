@@ -25,7 +25,7 @@ kernelspec:
 
 ## Overview
 
-Eigenvalues and eigenvectors are a somewhat advanced topic in linear and
+Eigenvalues and eigenvectors are an advanced topic in linear and
 matrix algebra.
 
 At the same time, these concepts are extremely useful for 
@@ -36,14 +36,7 @@ At the same time, these concepts are extremely useful for
 * machine learning
 * and many other fields of science.
 
-In this lecture we explain the basics of eigenvalues and eigenvectors, and
-state two very important results from linear algebra.
-
-The first is called the Neumann series theorem and the second is called the
-Perron-Frobenius theorem.
-
-We will explain what these theorems tell us and how we can use them to
-understand the predictions of economic models.
+In this lecture we explain the basics of eigenvalues and eigenvectors.
 
 We assume in this lecture that students are familiar with matrices and
 understand the basics of matrix algebra.
@@ -89,10 +82,10 @@ a map transforming $x$ into $Ax$.
 
 Because $A$ is $n \times m$, it transforms $m$-vectors into $n$-vectors.
 
-We can write this formally as $A \colon \mathbb{R}^m \rightarrow \mathbb{R}^n$ 
+We can write this formally as $A \colon \mathbb{R}^m \rightarrow \mathbb{R}^n$.
 
-(You might argue that if $A$ is a function then we should write 
-$A(x) = y$ rather than $Ax = y$ but the second notation is more conventional.)
+You might argue that if $A$ is a function then we should write 
+$A(x) = y$ rather than $Ax = y$ but the second notation is more conventional.
 
 ### Square matrices
 
@@ -101,7 +94,7 @@ Let's restrict our discussion to square matrices.
 In the above discussion, this means that $m=n$ and $A$ maps $\mathbb R^n$ into
 itself.
 
-To repeat, $A$ is an $n \times n$ matrix that maps (or "transforms") a vector
+This means $A$ is an $n \times n$ matrix that maps (or "transforms") a vector
 $x$ in $\mathbb{R}^n$ into a new vector $y=Ax$ also in $\mathbb{R}^n$.
 
 Here's one example:
@@ -183,8 +176,8 @@ plt.show()
 
 One way to understand this transformation is that $A$ 
 
-* first rotates $x$ by some angle $\theta$ 
-* and then scales it by some scalar $\gamma$ to obtain the image $y$ of $x$.
+* first rotates $x$ by some angle $\theta$ and
+* then scales it by some scalar $\gamma$ to obtain the image $y$ of $x$.
 
 
 
@@ -198,7 +191,7 @@ instead of arrows.
 We consider how a given matrix transforms 
 
 * a grid of points and 
-* a set of points located on the unit circle in $\mathbb{R}^2$
+* a set of points located on the unit circle in $\mathbb{R}^2$.
 
 To build the transformations we will use two functions, called `grid_transform` and `circle_transform`.
 
@@ -498,10 +491,8 @@ same as first applying $B$ on $x$ and then applying $A$ on the vector $Bx$.
 
 Thus the matrix product $AB$ is the
 [composition](https://en.wikipedia.org/wiki/Function_composition) of the
-matrix transformations $A$ and $B$.
-
-(To compose the transformations, first apply transformation $B$ and then
-transformation $A$.)
+matrix transformations $A$ and $B$, which repersents first apply transformation $B$ and then
+transformation $A$.
 
 When we matrix multiply an $n \times m$ matrix $A$ with an $m \times k$ matrix
 $B$ the obtained matrix product is an $n \times k$ matrix $AB$.
@@ -590,11 +581,11 @@ grid_composition_transform(B,A)         #transformation BA
 
 +++ {"user_expressions": []}
 
-It is quite evident that the transformation $AB$ is not the same as the transformation $BA$.
+It is evident that the transformation $AB$ is not the same as the transformation $BA$.
 
 ## Iterating on a fixed map
 
-In economics (and especially in dynamic modeling), we often are interested in
+In economics (and especially in dynamic modeling), we are often interested in
 analyzing behavior where we repeatedly apply a fixed matrix.
 
 For example, given a vector $v$ and a matrix $A$, we are interested in
@@ -603,7 +594,7 @@ studying the sequence
 $$ 
     v, \quad
     Av, \quad
-    AAv = A^2v, \ldots
+    AAv = A^2v, \quad \ldots
 $$
 
 Let's first see examples of a sequence of iterates $(A^k v)_{k \geq 0}$ under
@@ -721,13 +712,14 @@ In this section we introduce the notions of eigenvalues and eigenvectors.
 
 Let $A$ be an $n \times n$ square matrix.
 
-If $\lambda$ is scalar and $v$ is a non-zero $n$-vector  such that
+If $\lambda$ is scalar and $v$ is a non-zero $n$-vector such that
 
 $$
-A v = \lambda v
+A v = \lambda v.
 $$
 
-then we say that $\lambda$ is an *eigenvalue* of $A$, and $v$ is an *eigenvector*.
+
+Then we say that $\lambda$ is an *eigenvalue* of $A$, and $v$ is the corresponding *eigenvector*.
 
 Thus, an eigenvector of $A$ is a nonzero vector $v$ such that when the map $A$ is
 applied, $v$ is merely scaled.
@@ -792,7 +784,7 @@ plt.show()
 
 So far our definition of eigenvalues and eigenvectors seems straightforward.
 
-There is, however, one complication we haven't mentioned yet:
+There is one complication we haven't mentioned yet:
 
 When solving $Av = \lambda v$, 
 
@@ -812,7 +804,7 @@ The eigenvalue equation is equivalent to $(A - \lambda I) v = 0$.
 
 This equation has a nonzero solution $v$ only when the columns of $A - \lambda I$ are linearly dependent.
 
-This in turn is equivalent to stating that the determinant is zero.
+This in turn is equivalent to stating the determinant is zero.
 
 Hence, to find all eigenvalues, we can look for $\lambda$ such that the
 determinant of $A - \lambda I$ is zero.
@@ -860,7 +852,7 @@ evecs   #eigenvectors
 Note that the *columns* of `evecs` are the eigenvectors.
 
 Since any scalar multiple of an eigenvector is an eigenvector with the same
-eigenvalue (check it), the eig routine normalizes the length of each eigenvector
+eigenvalue (which can be verified), the `eig` routine normalizes the length of each eigenvector
 to one.
 
 The eigenvectors and eigenvalues of a map $A$ determine how a vector $v$ is transformed when we repeatedly multiply by $A$.
@@ -882,9 +874,9 @@ $$
 
 A thorough discussion of the method can be found [here](https://pythonnumericalmethods.berkeley.edu/notebooks/chapter15.02-The-Power-Method.html).
 
-In this exercise, implement the power iteration method and use it to find the largest eigenvalue and its corresponding eigenvector.
+In this exercise, first implement the power iteration method and use it to find the largest eigenvalue and its corresponding eigenvector.
 
-Visualize the convergence.
+Then visualize the convergence.
 ```
 
 ```{solution-start} eig1_ex1

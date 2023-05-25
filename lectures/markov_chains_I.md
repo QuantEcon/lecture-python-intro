@@ -98,7 +98,7 @@ In other words,
 
 If $P$ is a stochastic matrix, then so is the $k$-th power $P^k$ for all $k \in \mathbb N$.
 
-Checking this is {ref}`one of the exercises <mc1_ex_3>` below.
+Checking this in {ref}`the first exercises <mc1_ex_3>` below.
 
 
 ### Markov chains
@@ -255,11 +255,11 @@ We'll cover some of these applications below.
 (mc_eg3)=
 #### Example 3
 
-Imam and Temple {cite}`imampolitical` categorize political institutions into three types: democracy (D), autocracy (A), and an intermediate state called anocracy (N).
+Imam and Temple {cite}`imampolitical` categorize political institutions into three types: democracy $\text{(D)}$, autocracy $\text{(A)}$, and an intermediate state called anocracy $\text{(N)}$.
 
-Each institution can have two potential development regimes: collapse (C) and growth (G). This results in six possible states: DG, DC, NG, NC, AG, and AC.
+Each institution can have two potential development regimes: collapse $\text{(C)}$ and growth $\text{(G)}$. This results in six possible states: $\text{DG, DC, NG, NC, AG}$ and $\text{AC}$.
 
-The lower probability of transitioning from NC to itself indicates that collapses in anocracies quickly evolve into changes in the political institution.
+The lower probability of transitioning from $\text{NC}$ to itself indicates that collapses in anocracies quickly evolve into changes in the political institution.
 
 Democracies tend to have longer-lasting growth regimes compared to autocracies as indicated by the lower probability of transitioning from growth to growth in autocracies.
 
@@ -393,7 +393,7 @@ In these exercises, we'll take the state space to be $S = 0,\ldots, n-1$.
 To simulate a Markov chain, we need
 
 1. a stochastic matrix $P$ and
-1. a probability mass function $\psi_0$ of length $n$ from which to draw a initial realization of $X_0$.
+1. a probability mass function $\psi_0$ of length $n$ from which to draw an initial realization of $X_0$.
 
 The Markov chain is then constructed as follows:
 
@@ -405,7 +405,7 @@ The Markov chain is then constructed as follows:
 To implement this simulation procedure, we need a method for generating draws
 from a discrete distribution.
 
-For this task, we'll use `random.draw` from [QuantEcon](http://quantecon.org/quantecon-py).
+For this task, we'll use `random.draw` from [QuantEcon.py](http://quantecon.org/quantecon-py).
 
 To use `random.draw`, we first need to convert the probability mass function
 to a cumulative distribution
@@ -491,7 +491,7 @@ always close to 0.25 (for the `P` matrix above).
 
 ### Using QuantEcon's routines
 
-[QuantEcon.py](http://quantecon.org/quantecon-py) has routines for handling Markov chains, including simulation.
+QuantEcon.py has routines for handling Markov chains, including simulation.
 
 Here's an illustration using the same $P$ as the preceding example
 
@@ -585,7 +585,7 @@ $$
 
 There are $n$ such equations, one for each $y \in S$.
 
-If we think of $\psi_{t+1}$ and $\psi_t$ as *row vectors*, these $n$ equations are summarized by the matrix expression
+If we think of $\psi_{t+1}$ and $\psi_t$ as row vectors, these $n$ equations are summarized by the matrix expression
 
 ```{math}
 :label: fin_mc_fr
@@ -593,7 +593,7 @@ If we think of $\psi_{t+1}$ and $\psi_t$ as *row vectors*, these $n$ equations a
 \psi_{t+1} = \psi_t P
 ```
 
-Thus, to move a distribution forward one unit of time, we postmultiply by $P$.
+Thus, we postmultiply by $P$ to move a distribution forward one unit of time.
 
 By postmultiplying $m$ times, we move a distribution forward $m$ steps into the future.
 
@@ -671,7 +671,7 @@ $$
 The distributions we have been studying can be viewed either
 
 1. as probabilities or
-1. as cross-sectional frequencies that a Law of Large Numbers leads us to anticipate for large samples.
+1. as cross-sectional frequencies that the Law of Large Numbers leads us to anticipate for large samples.
 
 To illustrate, recall our model of employment/unemployment dynamics for a given worker {ref}`discussed above <mc_eg1>`.
 
@@ -788,7 +788,7 @@ Not surprisingly it tends to zero as $\beta \to 0$, and to one as $\alpha \to 0$
 
 ### Calculating stationary distributions
 
-A stable algorithm for computing stationary distributions is implemented in [QuantEcon.py](http://quantecon.org/quantecon-py).
+A stable algorithm for computing stationary distributions is implemented in QuantEcon.py.
 
 Here's an example
 

@@ -209,6 +209,8 @@ Theorem 5.2 of {cite}`haggstrom2002finite`.
 (ergodicity)=
 ## Ergodicity
 
+Please note that we use $\mathbb{1}$ for a vector of ones in this lecture.
+
 Under irreducibility, yet another important result obtains:
 
 ````{prf:theorem}
@@ -228,9 +230,9 @@ distribution, then, for all $x \in S$,
 
 Here
 
-* $\{X_t\}$ is a Markov chain with stochastic matrix $P$ and initial
+* $\{X_t\}$ is a Markov chain with stochastic matrix $P$ and initial.
   distribution $\psi_0$
-* $\mathbf{1}\{X_t = x\} = 1$ if $X_t = x$ and zero otherwise
+* $\mathbb{1} \{X_t = x\} = 1$ if $X_t = x$ and zero otherwise.
 
 The result in [theorem 4.3](llnfmc0) is sometimes called **ergodicity**.
 
@@ -242,7 +244,7 @@ This gives us another way to interpret the stationary distribution (provided irr
 
 Importantly, the result is valid for any choice of $\psi_0$.
 
-The theorem is related to {doc}`the law of large numbers <lln_clt>`.
+The theorem is related to {doc}`the Law of Large Numbers <lln_clt>`.
 
 It tells us that, in some settings, the law of large numbers sometimes holds even when the
 sequence of random variables is [not IID](iid_violation).
@@ -394,7 +396,7 @@ Unlike other Markov chains we have seen before, it has a periodic cycle --- the 
 
 This is called [periodicity](https://www.randomservices.org/random/markov/Periodicity.html).
 
-It is still irreducible, however, so ergodicity holds.
+It is still irreducible so ergodicity holds.
 
 ```{code-cell} ipython3
 P = np.array([[0, 1],
@@ -424,7 +426,7 @@ for i in range(n):
 plt.show()
 ```
 
-This example helps to emphasize the fact that asymptotic stationarity is about the distribution, while ergodicity is about the sample path.
+This example helps to emphasize that asymptotic stationarity is about the distribution, while ergodicity is about the sample path.
 
 The proportion of time spent in a state can converge to the stationary distribution with periodic chains.
 
