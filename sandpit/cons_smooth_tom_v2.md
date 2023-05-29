@@ -469,22 +469,59 @@ plt.show()
 
 +++ {"user_expressions": []}
 
-We can even use the Python numpy grad command to compute derivatives of welfare with respect to our two parameters.  
+We can even use the Python `np.gradient` command to compute derivatives of welfare with respect to our two parameters.  
 
 We are teaching the key idea beneath the **calculus of variations**.
 
+First, we define the welfare with respect to $\xi_1$ and $\phi$
+
 ```{code-cell} ipython3
-def welfare_ϕ(ξ1, ϕ):
+def welfare_rel(ξ1, ϕ):
     "Compute welfare of variation sequence for given ϕ, ξ1 with a consumption smoothing model"
     cvar_seq = compute_variation(cs_model, ξ1=ξ1, ϕ=ϕ, a0=a0, 
                                  y_seq=y_seq, verbose=0)
     return welfare(cs_model, cvar_seq)
 
-welfare_ϕ_vec = np.vectorize(welfare_ϕ)
+# Vectorize the function to allow array input
+welfare_vec = np.vectorize(welfare_rel)
+```
+
++++ {"user_expressions": []}
+
+Then we can visualize the relationship between welfare and $\xi_1$ and compute its derivatives
+
+```{code-cell} ipython3
 ξ1_arr = np.linspace(-0.5, 0.5, 20)
 
-plt.plot(ξ1_arr, welfare_ϕ_vec(ξ1_arr, 1.02))
+plt.plot(ξ1_arr, welfare_vec(ξ1_arr, 1.02))
 plt.ylabel('welfare')
 plt.xlabel(r'$\xi_1$')
+plt.show()
+
+welfare_grad = welfare_vec(ξ1_arr, 1.02)
+welfare_grad = np.gradient(welfare_grad)
+plt.plot(ξ1_arr, welfare_grad)
+plt.ylabel('derivatives of welfare')
+plt.xlabel(r'$\xi_1$')
+plt.show()
+```
+
++++ {"user_expressions": []}
+
+The same can be done on $\phi$
+
+```{code-cell} ipython3
+ϕ_arr = np.linspace(-0.5, 0.5, 20)
+
+plt.plot(ξ1_arr, welfare_vec(0.05, ϕ_arr))
+plt.ylabel('welfare')
+plt.xlabel(r'$\phi$')
+plt.show()
+
+welfare_grad = welfare_vec(0.05, ϕ_arr)
+welfare_grad = np.gradient(welfare_grad)
+plt.plot(ξ1_arr, welfare_grad)
+plt.ylabel('derivatives of welfare')
+plt.xlabel(r'$\phi$')
 plt.show()
 ```
