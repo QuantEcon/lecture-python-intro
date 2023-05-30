@@ -25,8 +25,7 @@ kernelspec:
 
 ## Overview
 
-Eigenvalues and eigenvectors are an advanced topic in linear and
-matrix algebra.
+Eigenvalues and eigenvectors are a relatively advanced topic in linear algebra.
 
 At the same time, these concepts are extremely useful for 
 
@@ -38,8 +37,8 @@ At the same time, these concepts are extremely useful for
 
 In this lecture we explain the basics of eigenvalues and eigenvectors.
 
-We assume in this lecture that students are familiar with matrices and
-understand the basics of matrix algebra.
+We assume in this lecture that students are familiar with matrices
+ and understand {doc}`the basics of matrix algebra<linear_equations>`.
 
 We will use the following imports:
 
@@ -54,7 +53,6 @@ from matplotlib.patches import FancyArrowPatch
 from mpl_toolkits.mplot3d import proj3d
 ```
 
-+++ {"user_expressions": []}
 
 (matrices_as_transformation)=
 ## Matrices as transformations
@@ -63,10 +61,10 @@ Let's start by discussing an important concept concerning matrices.
 
 ### Mapping vectors into vectors
 
-One way to think about a given matrix is as a rectangular collection of
+One way to think about a matrix is as a rectangular collection of
 numbers.
 
-Another way to think about a matrix is as a **map** (i.e., as a function) that
+Another way to think about a matrix is as a *map* (i.e., as a function) that
 transforms vectors into new vectors.
 
 To understand the second point of view, suppose we multiply an $n \times m$
