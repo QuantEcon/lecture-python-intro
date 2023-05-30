@@ -276,11 +276,13 @@ This is one aspect of the concept  of ergodicity.
 (ergo)=
 ### Example 2
 
-Another example is Hamilton {cite}`Hamilton2005` dynamics {ref}`discussed before <mc_eg2>`.
+Another example is the Hamilton dynamics we {ref}`discussed before <mc_eg2>`.
 
-The diagram of the Markov chain shows that it is **irreducible**.
+The {ref}`graph <mc_eg2>` of the Markov chain shows it is irreducible
 
-Therefore, we can see the sample path averages for each state (the fraction of time spent in each state) converges to the stationary distribution regardless of the starting state
+Therefore, we can see the sample path averages for each state (the fraction of
+time spent in each state) converges to the stationary distribution regardless of
+the starting state
 
 ```{code-cell} ipython3
 P = np.array([[0.971, 0.029, 0.000],
@@ -328,9 +330,11 @@ P :=
 $$
 
 
-The graph for the chain shows states are densely connected indicating that it is **irreducible**.
+The {ref}`graph <mc_eg3>` for the chain shows all states are reachable,
+indicating that this chain is irreducible.
 
-Similar to previous examples, the sample path averages for each state converge to the stationary distribution
+Similar to previous examples, the sample path averages for each state converge
+to the stationary distribution.
 
 ```{code-cell} ipython3
 P = [[0.86, 0.11, 0.03, 0.00, 0.00, 0.00],
@@ -391,9 +395,8 @@ dot.edge("1", "0", label="1.0", color='red')
 dot
 ```
 
-+++ {"user_expressions": []}
 
-Unlike other Markov chains we have seen before, it has a periodic cycle --- the state cycles between the two states in a regular way.
+In fact it has a periodic cycle --- the state cycles between the two states in a regular way.
 
 This is called [periodicity](https://www.randomservices.org/random/markov/Periodicity.html).
 
