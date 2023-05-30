@@ -13,7 +13,7 @@ kernelspec:
 
 
 
-# Markov Chains: Basic Concepts and Stationarity
+# Markov Chains: Basic Concepts 
 
 
 ```{index} single: Markov Chains: Basic Concepts and Stationarity
@@ -255,15 +255,15 @@ We'll cover some of these applications below.
 (mc_eg3)=
 #### Example 3
 
-Imam and Temple {cite}`imampolitical` categorize political institutions into three types: democracy $\text{(D)}$, autocracy $\text{(A)}$, and an intermediate state called anocracy $\text{(N)}$.
+Imam and Temple {cite}`imampolitical` categorize political institutions into
+three types: democracy $\text{(D)}$, autocracy $\text{(A)}$, and an intermediate
+state called anocracy $\text{(N)}$.
 
 Each institution can have two potential development regimes: collapse $\text{(C)}$ and growth $\text{(G)}$. This results in six possible states: $\text{DG, DC, NG, NC, AG}$ and $\text{AC}$.
 
-The lower probability of transitioning from $\text{NC}$ to itself indicates that collapses in anocracies quickly evolve into changes in the political institution.
+Imam and Temple {cite}`imampolitical` estimate the following transition
+probabilities:
 
-Democracies tend to have longer-lasting growth regimes compared to autocracies as indicated by the lower probability of transitioning from growth to growth in autocracies.
-
-We can also find a higher probability from collapse to growth in democratic regimes
 
 $$
 P :=
@@ -287,7 +287,10 @@ P = [[0.86, 0.11, 0.03, 0.00, 0.00, 0.00],
      [0.00, 0.00, 0.09, 0.15, 0.26, 0.50]]
 ```
 
+Here is a visualization, with darker colors indicating higher probability.
+
 ```{code-cell} ipython3
+:tags: [hide-input]
 G = nx.MultiDiGraph()
 edge_ls = []
 label_dict = {}
@@ -315,6 +318,13 @@ ax.set_axis_off()
 plt.colorbar(pc, ax=ax)
 plt.show()
 ```
+
+Looking at the data, we see that democracies tend to have longer-lasting growth
+regimes compared to autocracies (as indicated by the lower probability of
+transitioning from growth to growth in autocracies).
+
+We can also find a higher probability from collapse to growth in democratic regimes
+
 
 ### Defining Markov chains
 
@@ -763,7 +773,7 @@ If $P$ is everywhere positive, then $P$ has exactly one stationary
 distribution.
 ```
 
-We will come back to this when we introduce irreducibility in the next lecture
+We will come back to this when we introduce irreducibility in the {doc}`next lecture <markov_chains_II>` on Markov chains.
 
 
 
@@ -967,7 +977,17 @@ The convergence to $\psi^*$ holds for different initial distributions.
 #### Example: Failure of convergence
 
 
-In the case of our periodic chain, we find the distribution is oscillating
+In the case of a periodic chain, with
+
+$$
+P = 
+\begin{bmatrix}
+    0 & 1 \\
+    1 & 0 \\
+\end{bmatrix}
+$$
+
+we find the distribution oscillates
 
 ```{code-cell} ipython3
 P = np.array([[0, 1],
@@ -979,6 +999,8 @@ num_distributions = 30
 plot_distribution(P, ts_length, num_distributions)
 ```
 
+Indeed, this $P$ fails our asymptotic stationarity condition, since, as you can
+verify, $P^t$ is not everywhere positive for any $t$.
 
 
 (finite_mc_expec)=
