@@ -4,7 +4,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.14.4
+    jupytext_version: 1.14.5
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
@@ -37,24 +37,19 @@ to be installed on your computer. Installation instructions for graphviz can be 
 [here](https://www.graphviz.org/download/) 
 ```
 
-
 ## Overview
 
-This lecture continues on from our {doc}`earlier lecture on Markov chains
-<markov_chains_I>`.
+This lecture continues our journey in Markov chains.
 
+Specifically, we will introduce irreducibility and ergodicity, and how they connect to stationarity.
 
-Specifically, we will introduce the concepts of irreducibility and ergodicity, and see how they connect to stationarity.
-
-Irreducibility describes the ability of a Markov chain to move between any two states in the system.
+Irreducibility is a concept that describes the ability of a Markov chain to move between any two states in the system.
 
 Ergodicity is a sample path property that describes the behavior of the system over long periods of time. 
 
-As we will see, 
+The concepts of irreducibility and ergodicity are closely related to the idea of stationarity. 
 
-* an irreducible Markov chain guarantees the existence of a unique stationary distribution, while 
-* an ergodic Markov chain generates time series that satisfy a version of the
-  law of large numbers. 
+An irreducible Markov chain guarantees the existence of a unique stationary distribution, while an ergodic Markov chain ensures that the system eventually reaches its stationary distribution, regardless of its initial state. 
 
 Together, these concepts provide a foundation for understanding the long-term behavior of Markov chains.
 
@@ -179,8 +174,6 @@ mc = qe.MarkovChain(P, ('poor', 'middle', 'rich'))
 mc.is_irreducible
 ```
 
-+++ {"user_expressions": []}
-
 It might be clear to you already that irreducibility is going to be important
 in terms of long-run outcomes.
 
@@ -270,19 +263,19 @@ In view of our latest (ergodicity) result, it is also the fraction of time that 
 
 Thus, in the long run, cross-sectional averages for a population and time-series averages for a given person coincide.
 
-This is one aspect of the concept  of ergodicity.
+This is one aspect of the concept of ergodicity.
 
 
 (ergo)=
 ### Example 2
 
-Another example is the Hamilton dynamics we {ref}`discussed before <mc_eg2>`.
+Another example is Hamilton {cite}`Hamilton2005` dynamics {ref}`discussed before <mc_eg2>`.
 
-The {ref}`graph <mc_eg2>` of the Markov chain shows it is irreducible
+The diagram of the Markov chain shows that it is **irreducible**.
 
-Therefore, we can see the sample path averages for each state (the fraction of
-time spent in each state) converges to the stationary distribution regardless of
-the starting state
+Therefore, we can see the sample path averages for each state (the fraction of time spent in each state) converges to the stationary distribution regardless of the starting state
+
+Let's denote the fraction of time spent in state $x$ at time $t$ in our sample path as $\hat p_t(x)$ and compare it with the stationary distribution $\psi^* (x)$
 
 ```{code-cell} ipython3
 P = np.array([[0.971, 0.029, 0.000],
@@ -291,26 +284,27 @@ P = np.array([[0.971, 0.029, 0.000],
 ts_length = 10_000
 mc = qe.MarkovChain(P)
 n = len(P)
-fig, axes = plt.subplots(nrows=1, ncols=n)
+fig, axes = plt.subplots(nrows=1, ncols=n, figsize=(15, 6))
 ψ_star = mc.stationary_distributions[0]
 plt.subplots_adjust(wspace=0.35)
 
 for i in range(n):
-    axes[i].grid()
-    axes[i].axhline(ψ_star[i], linestyle='dashed', lw=2, color = 'black', 
+    axes[i].axhline(ψ_star[i], linestyle='dashed', lw=2, color='black', 
                     label = fr'$\psi^*({i})$')
     axes[i].set_xlabel('t')
-    axes[i].set_ylabel(f'fraction of time spent at {i}')
+    axes[i].set_ylabel(fr'$\hat p_t({i})$')
 
     # Compute the fraction of time spent, starting from different x_0s
     for x0, col in ((0, 'blue'), (1, 'green'), (2, 'red')):
         # Generate time series that starts at different x0
         X = mc.simulate(ts_length, init=x0)
-        X_bar = (X == i).cumsum() / (1 + np.arange(ts_length, dtype=float))
-        axes[i].plot(X_bar, color=col, label=f'$x_0 = \, {x0} $')
+        p_hat = (X == i).cumsum() / (1 + np.arange(ts_length, dtype=float))
+        axes[i].plot(p_hat, color=col, label=f'$x_0 = \, {x0} $')
     axes[i].legend()
 plt.show()
 ```
+
+Note that the convergence to the stationary distribution regardless of the starting point $x_0$.
 
 ### Example 3
 
@@ -330,11 +324,9 @@ P :=
 $$
 
 
-The {ref}`graph <mc_eg3>` for the chain shows all states are reachable,
-indicating that this chain is irreducible.
+The graph for the chain shows states are densely connected indicating that it is **irreducible**.
 
-Similar to previous examples, the sample path averages for each state converge
-to the stationary distribution.
+Then we visualize the difference between $\hat p_t(x)$ and the stationary distribution $\psi^* (x)$
 
 ```{code-cell} ipython3
 P = [[0.86, 0.11, 0.03, 0.00, 0.00, 0.00],
@@ -351,19 +343,21 @@ fig, ax = plt.subplots(figsize=(9, 6))
 X = mc.simulate(ts_length)
 # Center the plot at 0
 ax.set_ylim(-0.25, 0.25)
-ax.axhline(0, linestyle='dashed', lw=2, color = 'black', alpha=0.4)
+ax.axhline(0, linestyle='dashed', lw=2, color='black', alpha=0.4)
 
 
 for x0 in range(6):
     # Calculate the fraction of time for each state
-    X_bar = (X == x0).cumsum() / (1 + np.arange(ts_length, dtype=float))
-    ax.plot(X_bar - ψ_star[x0], label=f'$X = {x0+1} $')
+    p_hat = (X == x0).cumsum() / (1 + np.arange(ts_length, dtype=float))
+    ax.plot(p_hat - ψ_star[x0], label=f'$x = {x0+1} $')
     ax.set_xlabel('t')
-    ax.set_ylabel(r'fraction of time spent in a state $- \psi^* (x)$')
+    ax.set_ylabel(r'$\hat p_t(x) - \psi^* (x)$')
 
 ax.legend()
 plt.show()
 ```
+
+Similar to previous examples, the sample path averages for each state converge to the stationary distribution as the trend converge towards 0.
 
 ### Example 4
 
@@ -395,8 +389,7 @@ dot.edge("1", "0", label="1.0", color='red')
 dot
 ```
 
-
-In fact it has a periodic cycle --- the state cycles between the two states in a regular way.
+Unlike other Markov chains we have seen before, it has a periodic cycle --- the state cycles between the two states in a regular way.
 
 This is called [periodicity](https://www.randomservices.org/random/markov/Periodicity.html).
 
@@ -412,19 +405,18 @@ fig, axes = plt.subplots(nrows=1, ncols=n)
 ψ_star = mc.stationary_distributions[0]
 
 for i in range(n):
-    axes[i].grid()
     axes[i].set_ylim(0.45, 0.55)
-    axes[i].axhline(ψ_star[i], linestyle='dashed', lw=2, color = 'black', 
+    axes[i].axhline(ψ_star[i], linestyle='dashed', lw=2, color='black', 
                     label = fr'$\psi^*({i})$')
     axes[i].set_xlabel('t')
-    axes[i].set_ylabel(f'fraction of time spent at {i}')
+    axes[i].set_ylabel(fr'$\hat p_t({i})$')
 
     # Compute the fraction of time spent, for each x
     for x0 in range(n):
         # Generate time series starting at different x_0
         X = mc.simulate(ts_length, init=x0)
-        X_bar = (X == i).cumsum() / (1 + np.arange(ts_length, dtype=float))
-        axes[i].plot(X_bar, label=f'$x_0 = \, {x0} $')
+        p_hat = (X == i).cumsum() / (1 + np.arange(ts_length, dtype=float))
+        axes[i].plot(p_hat, label=f'$x_0 = \, {x0} $')
 
     axes[i].legend()
 plt.show()
@@ -435,8 +427,6 @@ This example helps to emphasize that asymptotic stationarity is about the distri
 The proportion of time spent in a state can converge to the stationary distribution with periodic chains.
 
 However, the distribution at each state does not.
-
-+++ {"user_expressions": []}
 
 ### Expectations of geometric sums
 
@@ -553,14 +543,14 @@ mc = qe.MarkovChain(P)
 fig, ax = plt.subplots(figsize=(9, 6))
 X = mc.simulate(ts_length)
 ax.set_ylim(-0.25, 0.25)
-ax.axhline(0, linestyle='dashed', lw=2, color = 'black', alpha=0.4)
+ax.axhline(0, linestyle='dashed', lw=2, color='black', alpha=0.4)
 
 for x0 in range(8):
     # Calculate the fraction of time for each worker
-    X_bar = (X == x0).cumsum() / (1 + np.arange(ts_length, dtype=float))
-    ax.plot(X_bar - ψ_star[x0], label=f'$X = {x0+1} $')
+    p_hat = (X == x0).cumsum() / (1 + np.arange(ts_length, dtype=float))
+    ax.plot(p_hat - ψ_star[x0], label=f'$x = {x0+1} $')
     ax.set_xlabel('t')
-    ax.set_ylabel(r'fraction of time spent in a state $- \psi^* (x)$')
+    ax.set_ylabel(r'$\hat p_t(x) - \psi^* (x)$')
 
 ax.legend()
 plt.show()
@@ -616,7 +606,7 @@ The result should be similar to the plot we plotted [here](ergo)
 
 We will address this exercise graphically.
 
-The plots show the time series of $\bar X_m - p$ for two initial
+The plots show the time series of $\bar{\{X=x\}}_m - p$ for two initial
 conditions.
 
 As $m$ gets large, both series converge to zero.
@@ -632,8 +622,7 @@ mc = qe.MarkovChain(P)
 
 fig, ax = plt.subplots(figsize=(9, 6))
 ax.set_ylim(-0.25, 0.25)
-ax.grid()
-ax.hlines(0, 0, ts_length, lw=2, alpha=0.6)   # Horizonal line at zero
+ax.axhline(0, linestyle='dashed', lw=2, color='black', alpha=0.4)
 
 for x0, col in ((0, 'blue'), (1, 'green')):
     # Generate time series for worker that starts at x0
@@ -642,10 +631,12 @@ for x0, col in ((0, 'blue'), (1, 'green')):
     X_bar = (X == 0).cumsum() / (1 + np.arange(ts_length, dtype=float))
     # Plot
     ax.fill_between(range(ts_length), np.zeros(ts_length), X_bar - p, color=col, alpha=0.1)
-    ax.plot(X_bar - p, color=col, label=f'$X_0 = \, {x0} $')
+    ax.plot(X_bar - p, color=col, label=f'$x_0 = \, {x0} $')
     # Overlay in black--make lines clearer
     ax.plot(X_bar - p, 'k-', alpha=0.6)
-
+    ax.set_xlabel('t')
+    ax.set_ylabel(r'$\bar X_m - \psi^* (x)$')
+    
 ax.legend(loc='upper right')
 plt.show()
 ```
