@@ -4,7 +4,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.14.5
+    jupytext_version: 1.14.4
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
@@ -37,19 +37,24 @@ to be installed on your computer. Installation instructions for graphviz can be 
 [here](https://www.graphviz.org/download/) 
 ```
 
+
 ## Overview
 
-This lecture continues our journey in Markov chains.
+This lecture continues on from our {doc}`earlier lecture on Markov chains
+<markov_chains_I>`.
 
-Specifically, we will introduce irreducibility and ergodicity, and how they connect to stationarity.
 
-Irreducibility is a concept that describes the ability of a Markov chain to move between any two states in the system.
+Specifically, we will introduce the concepts of irreducibility and ergodicity, and see how they connect to stationarity.
+
+Irreducibility describes the ability of a Markov chain to move between any two states in the system.
 
 Ergodicity is a sample path property that describes the behavior of the system over long periods of time. 
 
-The concepts of irreducibility and ergodicity are closely related to the idea of stationarity. 
+As we will see, 
 
-An irreducible Markov chain guarantees the existence of a unique stationary distribution, while an ergodic Markov chain ensures that the system eventually reaches its stationary distribution, regardless of its initial state. 
+* an irreducible Markov chain guarantees the existence of a unique stationary distribution, while 
+* an ergodic Markov chain generates time series that satisfy a version of the
+  law of large numbers. 
 
 Together, these concepts provide a foundation for understanding the long-term behavior of Markov chains.
 
@@ -263,17 +268,19 @@ In view of our latest (ergodicity) result, it is also the fraction of time that 
 
 Thus, in the long run, cross-sectional averages for a population and time-series averages for a given person coincide.
 
-This is one aspect of the concept of ergodicity.
+This is one aspect of the concept  of ergodicity.
 
 
 (ergo)=
 ### Example 2
 
-Another example is Hamilton {cite}`Hamilton2005` dynamics {ref}`discussed before <mc_eg2>`.
+Another example is the Hamilton dynamics we {ref}`discussed before <mc_eg2>`.
 
-The diagram of the Markov chain shows that it is **irreducible**.
+The {ref}`graph <mc_eg2>` of the Markov chain shows it is irreducible
 
-Therefore, we can see the sample path averages for each state (the fraction of time spent in each state) converges to the stationary distribution regardless of the starting state
+Therefore, we can see the sample path averages for each state (the fraction of
+time spent in each state) converges to the stationary distribution regardless of
+the starting state
 
 Let's denote the fraction of time spent in state $x$ at time $t$ in our sample path as $\hat p_t(x)$ and compare it with the stationary distribution $\psi^* (x)$
 
@@ -304,7 +311,7 @@ for i in range(n):
 plt.show()
 ```
 
-Note that the convergence to the stationary distribution regardless of the starting point $x_0$.
+Note the convergence to the stationary distribution regardless of the starting point $x_0$.
 
 ### Example 3
 
@@ -324,9 +331,10 @@ P :=
 $$
 
 
-The graph for the chain shows states are densely connected indicating that it is **irreducible**.
+The {ref}`graph <mc_eg3>` for the chain shows all states are reachable,
+indicating that this chain is irreducible.
 
-Then we visualize the difference between $\hat p_t(x)$ and the stationary distribution $\psi^* (x)$
+Here we visualize the difference between $\hat p_t(x)$ and the stationary distribution $\psi^* (x)$ for each state $x$
 
 ```{code-cell} ipython3
 P = [[0.86, 0.11, 0.03, 0.00, 0.00, 0.00],
@@ -357,7 +365,8 @@ ax.legend()
 plt.show()
 ```
 
-Similar to previous examples, the sample path averages for each state converge to the stationary distribution as the trend converge towards 0.
+Similar to previous examples, the sample path averages for each state converge
+to the stationary distribution.
 
 ### Example 4
 
@@ -389,7 +398,8 @@ dot.edge("1", "0", label="1.0", color='red')
 dot
 ```
 
-Unlike other Markov chains we have seen before, it has a periodic cycle --- the state cycles between the two states in a regular way.
+
+In fact it has a periodic cycle --- the state cycles between the two states in a regular way.
 
 This is called [periodicity](https://www.randomservices.org/random/markov/Periodicity.html).
 
@@ -606,7 +616,7 @@ The result should be similar to the plot we plotted [here](ergo)
 
 We will address this exercise graphically.
 
-The plots show the time series of $\bar{\{X=x\}}_m - p$ for two initial
+The plots show the time series of $\bar X_m - p$ for two initial
 conditions.
 
 As $m$ gets large, both series converge to zero.
