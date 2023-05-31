@@ -11,8 +11,6 @@ kernelspec:
   name: python3
 ---
 
-
-
 # Spectral Theory
 
 ```{index} single: Spectral Theory
@@ -63,9 +61,9 @@ We denote this as $A \geq 0$.
 (irreducible)=
 ### Irreducible matrices
 
-We have (informally) introduced irreducible matrices in the [Markov chain lecture](markov_chains_II.md).
+We have introduced irreducible matrices in the [Markov chain lecture](mc_irreducible).
 
-Here we will introduce this concept formally.
+Here we generalize this concept:
 
 $A$ is called **irreducible** if for *each* $(i,j)$ there is an integer $k \geq 0$ such that $a^{k}_{ij} > 0$.
 
@@ -89,10 +87,6 @@ A matrix is considered **primitive** if there exists a $k \in \mathbb{N}$ such t
 It means that $A$ is called primitive if there is an integer $k \geq 0$ such that $a^{k}_{ij} > 0$ for *all* $(i,j)$.
 
 We can see that if a matrix is primitive, then it implies the matrix is irreducible.
-
-This is because if there exists an $A^k$ such that $a^{k}_{ij} > 0$ for all $(i,j)$, then it guarantees the same property for ${k+1}^th, {k+2}^th ... {k+n}^th$ iterations.
-
-In other words, a primitive matrix is both irreducible and aperiodic as aperiodicity requires a state to be visited with a guarantee of returning to itself after a certain amount of iterations.
 
 ### Left eigenvectors
 
@@ -178,9 +172,7 @@ If $A$ is primitive then,
 
 6. the inequality $|\lambda| \leq r(A)$ is **strict** for all eigenvalues $\lambda$ of $A$ distinct from $r(A)$, and
 7. with $v$ and $w$ normalized so that the inner product of $w$ and  $v = 1$, we have
-$ r(A)^{-m} A^m$ converges to $v w^{\top}$ when $m \rightarrow \infty$.
-\
-the matrix $v w^{\top}$ is called the **Perron projection** of $A$.
+$ r(A)^{-m} A^m$ converges to $v w^{\top}$ when $m \rightarrow \infty$. $v w^{\top}$ is called the **Perron projection** of $A$
 ```
 
 (This is a relatively simple version of the theorem --- for more details see
@@ -228,25 +220,11 @@ B = np.array([[0, 1, 1],
 np.linalg.matrix_power(B, 2)
 ```
 
-We can compute the dominant eigenvalue and the corresponding eigenvector using the power iteration method as discussed {ref}`earlier<eig1_ex1>`:
-
-```{code-cell} ipython3
-num_iters = 20
-b = np.random.rand(B.shape[1])
-
-for i in range(num_iters):
-    b = B @ b
-    b = b / np.linalg.norm(b)
-
-dominant_eigenvalue = np.dot(B @ b, b) / np.dot(b, b)
-np.round(dominant_eigenvalue, 2)
-```
+We compute the dominant eigenvalue and the corresponding eigenvector
 
 ```{code-cell} ipython3
 eig(B)
 ```
-
-
 
 Now let's verify the claims of the Perron-Frobenius Theorem for the primitive matrix B:
 
@@ -307,8 +285,8 @@ A1 = np.array([[1, 2],
                [1, 4]])
 
 A2 = np.array([[0, 1, 1],
-              [1, 0, 1],
-              [1, 1, 0]])
+               [1, 0, 1],
+               [1, 1, 0]])
 
 A3 = np.array([[0.971, 0.029, 0.1, 1],
                [0.145, 0.778, 0.077, 0.59],

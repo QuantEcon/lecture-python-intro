@@ -66,12 +66,10 @@ from matplotlib import cm
 import matplotlib as mpl
 ```
 
+(mc_irreducible)=
 ## Irreducibility
 
-
-Irreducibility is a central concept of Markov chain theory.
-
-To explain it, let's take $P$ to be a fixed stochastic matrix.
+To explain irreducibility, let's take $P$ to be a fixed stochastic matrix.
 
 Two states $x$ and $y$ are said to **communicate** with each other if
 there exist positive integers $j$ and $k$ such that
