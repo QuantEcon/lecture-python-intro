@@ -11,8 +11,6 @@ kernelspec:
   name: python3
 ---
 
-
-
 # Markov Chains: Basic Concepts 
 
 
@@ -29,17 +27,7 @@ In addition to what's in Anaconda, this lecture will need the following librarie
 :tags: [hide-output]
 
 !pip install quantecon
-!pip install graphviz
 ```
-
-```{admonition} graphviz
-:class: warning
-If you are running this lecture locally it requires [graphviz](https://www.graphviz.org)
-to be installed on your computer. Installation instructions for graphviz can be found
-[here](https://www.graphviz.org/download/)
-```
-
-
 
 ## Overview
 
@@ -67,14 +55,11 @@ Let's start with some standard imports:
 import matplotlib.pyplot as plt
 import quantecon as qe
 import numpy as np
-from graphviz import Digraph
 import networkx as nx
 from matplotlib import cm
 import matplotlib as mpl
 from itertools import cycle
 ```
-
-
 
 ## Definitions and examples
 
@@ -116,28 +101,12 @@ will become clear.
 
 From  US unemployment data, Hamilton {cite}`Hamilton2005` estimated the following dynamics.
 
-```{code-cell} ipython3
-:tags: [hide-input]
+```{image} /_static/lecture_specific/markov_chains_I/Hamilton.png
+:name: mc_temple
 
-dot = Digraph(comment='Graph')
-dot.attr(rankdir='LR')
-dot.node("ng")
-dot.node("mr")
-dot.node("sr")
-
-dot.edge("ng", "ng", label="0.971")
-dot.edge("ng", "mr", label="0.029")
-dot.edge("mr", "ng", label="0.145")
-
-dot.edge("mr", "mr", label="0.778")
-dot.edge("mr", "sr", label="0.077")
-dot.edge("sr", "mr", label="0.508")
-
-dot.edge("sr", "sr", label="0.492")
-dot
 ```
 
-
++++
 
 Here there are three **states**
 
@@ -291,6 +260,7 @@ Here is a visualization, with darker colors indicating higher probability.
 
 ```{code-cell} ipython3
 :tags: [hide-input]
+
 G = nx.MultiDiGraph()
 edge_ls = []
 label_dict = {}
@@ -426,8 +396,6 @@ cdf = np.cumsum(ψ_0)       # convert into cumulative distribution
 qe.random.draw(cdf, 5)   # generate 5 independent draws from ψ
 ```
 
-
-
 We'll write our code as a function that accepts the following three arguments
 
 * A stochastic matrix `P`.
@@ -459,8 +427,6 @@ def mc_sample_path(P, ψ_0=None, ts_length=1_000):
     return X
 ```
 
-
-
 Let's see how it works using the small matrix
 
 ```{code-cell} ipython3
@@ -468,15 +434,11 @@ P = [[0.4, 0.6],
      [0.2, 0.8]]
 ```
 
-
-
 Here's a short time series.
 
 ```{code-cell} ipython3
 mc_sample_path(P, ψ_0=[1.0, 0.0], ts_length=10)
 ```
-
-
 
 It can be shown that for a long series drawn from `P`, the fraction of the
 sample that takes value 0 will be about 0.25.
@@ -492,8 +454,6 @@ The following code illustrates this
 X = mc_sample_path(P, ψ_0=[0.1, 0.9], ts_length=1_000_000)
 np.mean(X == 0)
 ```
-
-
 
 You can try changing the initial distribution to confirm that the output is
 always close to 0.25 (for the `P` matrix above).
@@ -511,8 +471,6 @@ X = mc.simulate(ts_length=1_000_000)
 np.mean(X == 0)
 ```
 
-
-
 The `simulate` routine is faster (because it is [JIT compiled](https://python-programming.quantecon.org/numba.html#numba-link)).
 
 ```{code-cell} ipython3
@@ -522,8 +480,6 @@ The `simulate` routine is faster (because it is [JIT compiled](https://python-pr
 ```{code-cell} ipython3
 %time mc.simulate(ts_length=1_000_000) # qe code version
 ```
-
-
 
 #### Adding state values and initial conditions
 
@@ -546,15 +502,11 @@ mc.simulate(ts_length=4, init='unemployed')
 mc.simulate(ts_length=4)  # Start at randomly chosen initial state
 ```
 
-
-
 If we want to see indices rather than state values as outputs as  we can use
 
 ```{code-cell} ipython3
 mc.simulate_indices(ts_length=4)
 ```
-
-
 
 (mc_md)=
 ## Distributions over time
@@ -730,8 +682,6 @@ P = np.array([[0.4, 0.6],
 ψ @ P
 ```
 
-
-
 Notice that `ψ @ P` is the same as `ψ`
 
 
@@ -845,8 +795,6 @@ P = np.array([[0.971, 0.029, 0.000],
               [0.000, 0.508, 0.492]])
 P @ P
 ```
-
-
 
 Let's pick an initial distribution $\psi_0$ and trace out the sequence of distributions $\psi_0 P^t$ for $t = 0, 1, 2, \ldots$
 
@@ -1128,29 +1076,12 @@ Compare your solution to the paper.
 
 Solution 1:
 
-```{code-cell} ipython3
-:tags: [hide-output]
+```{image} /_static/lecture_specific/markov_chains_I/Temple.png
+:name: mc_temple
 
-dot = Digraph(comment='Graph')
-dot.attr(rankdir='LR')
-dot.node("Growth")
-dot.node("Stagnation")
-dot.node("Collapse")
-
-dot.edge("Growth", "Growth", label="0.68")
-dot.edge("Growth", "Stagnation", label="0.12")
-dot.edge("Growth", "Collapse", label="0.20")
-
-dot.edge("Stagnation", "Stagnation", label="0.24")
-dot.edge("Stagnation", "Growth", label="0.50")
-dot.edge("Stagnation", "Collapse", label="0.26")
-
-dot.edge("Collapse", "Collapse", label="0.46")
-dot.edge("Collapse", "Stagnation", label="0.18")
-dot.edge("Collapse", "Growth", label="0.36")
-
-dot
 ```
+
++++
 
 Since the matrix is everywhere positive, there is a unique stationary distribution.
 
