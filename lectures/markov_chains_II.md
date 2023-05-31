@@ -71,8 +71,8 @@ from matplotlib import cm
 import matplotlib as mpl
 ```
 
+(mc_irreducible)=
 ## Irreducibility
-
 
 To explain irreducibility, let's take $P$ to be a fixed stochastic matrix.
 
