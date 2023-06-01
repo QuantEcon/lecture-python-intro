@@ -1,6 +1,7 @@
 <!-- #region -->
-## Present Values
+# Present Values
 
+## Overview for present value calculations
 
 This lecture describes the  **present value model** that is a starting point
 of much asset pricing theory.
@@ -106,7 +107,7 @@ c \equiv \delta^{T+1}p_{T+1}^*
 $$
 
 
-#### More about bubbles
+## More about bubbles
 
 For a few moments, let's focus on  the special case of an asset that  will never pay dividends, in which case
 
@@ -157,7 +158,7 @@ p_t = c \delta^{-t}
 $$ (eq:bubble)
 
 
-#### Gross rate of return
+## Gross rate of return
 
 Define the gross rate of return on holding the asset from period $t$ to period $t+1$
 as 
