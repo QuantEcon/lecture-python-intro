@@ -167,19 +167,17 @@ where the states are
 * "mr" = "mild recession"
 * "sr" = "severe recession"
 
-Let's examine the following figure.
+Let's examine the following figure
 
 ```{image} /_static/lecture_specific/networks/mc.png
 :name: mc_networks
-
+:align: center
 ```
-
-+++
 
 This is an example of a network, where the set of nodes $V$ equals the states:
 
 $$
-    V = \{ \text{``ng", ``mr", ``sr"} \}
+    V = \{ \text{"ng", "mr", "sr"} \}
 $$
 
 The edges between the nodes show the one month transition probabilities.
