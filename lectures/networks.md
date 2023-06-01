@@ -409,9 +409,9 @@ mystnb:
     name: financial_network
 tags: [hide-input]
 ---
-Z = ch1_data["adjacency_matrix_2019"]["Z"]
-Z_visual= ch1_data["adjacency_matrix_2019"]["Z_visual"]
-countries = ch1_data["adjacency_matrix_2019"]["countries"]
+Z = ch1_data["adjacency_matrix_2022"]["Z"]
+Z_visual= ch1_data["adjacency_matrix_2022"]["Z_visual"]
+countries = ch1_data["adjacency_matrix_2022"]["countries"]
 
 G = qbn_io.adjacency_matrix_to_graph(Z_visual, countries, tol=0.03)
 
