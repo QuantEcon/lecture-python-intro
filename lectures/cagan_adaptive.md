@@ -79,10 +79,7 @@ As endogenous outputs of our model we want to find sequences $\vec \pi = \{\pi_t
 We'll do some mental experiments by studying how the model outputs vary as we vary
 the model inputs.
 
-<!-- #endregion -->
-
-<!-- #region -->
-### Representing key equations with linear algebra
+## Representing key equations with linear algebra
 
 We begin by writing the equation {eq}`eq:adaptexpn`  adaptive expectations model for $\pi_t^*$ for $t=0, \ldots, T$ as
 
@@ -120,9 +117,7 @@ $$ (eq:eq1)
 
 where the $(T+2) \times (T+2) $matrix $A$, the $(T+2)\times (T+1)$ matrix $B$, and the vectors $\vec \pi^* , \vec \pi_0, \pi_0^*$
 are defined implicitly by aligning these two equations.
-<!-- #endregion -->
 
-<!-- #region -->
 Next we write the key equation {eq}`eq:eqpipi` in matrix notation as
 
 $$ \begin{bmatrix}
