@@ -1,11 +1,10 @@
-## Adaptive expectations version of Cagan model
+# Adaptive expectations version of Cagan model
 
 ```python
 import numpy as np
 import matplotlib.pyplot as plt
 ```
 
-<!-- #region -->
 We'll use linear algebra to do some experiments with  a "fiscal theory of the price level".
 
 According to this model, when the government persistently spends more than it collects in taxes and prints money to finance the shortfall (called the "government deficit"), it puts upward pressure on the price level and generates
@@ -155,7 +154,7 @@ equation system.
 
 
 
-### Harvesting payoffs from our matrix formulation
+## Harvesting payoffs from our matrix formulation
 
 
 We now have all of the ingredients we need to solve for $\vec \pi$ as
@@ -260,7 +259,7 @@ which is just $\vec \pi^*$ with the last element dropped.
  
 
 
-### Expectational Error  Gap 
+## Expectational Error Gap 
 
 Our computations will verify that 
 
@@ -347,7 +346,7 @@ def solve_and_plot(α, m0, Eπ0, μ_seq, T, λ):
     return π_seq, Eπ_seq, m_seq, p_seq
 ```
 
-### Experiment 1
+## Experiment 1
 
 Jiacheng: 
 $$
