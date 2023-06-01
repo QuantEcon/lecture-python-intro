@@ -61,7 +61,7 @@ We denote this as $A \geq 0$.
 (irreducible)=
 ### Irreducible matrices
 
-We have introduced irreducible matrices in the [Markov chain lecture](mc_irreducible).
+We introduced irreducible matrices in the [Markov chain lecture](mc_irreducible).
 
 Here we generalize this concept:
 
@@ -90,7 +90,7 @@ We can see that if a matrix is primitive, then it implies the matrix is irreduci
 
 ### Left eigenvectors
 
-We have previously discussed right (ordinary) eigenvectors $Av = \lambda v$.
+We previously discussed right (ordinary) eigenvectors $Av = \lambda v$.
 
 Here we introduce left eigenvectors.
 
