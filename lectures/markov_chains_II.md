@@ -283,7 +283,14 @@ Therefore, we can see the sample path averages for each state (the fraction of
 time spent in each state) converges to the stationary distribution regardless of
 the starting state
 
-Let's denote the fraction of time spent in state $x$ at time $t$ in our sample path as $\hat p_t(x)$ and compare it with the stationary distribution $\psi^* (x)$
+Let's denote the fraction of time spent in state $x$ at time $t$ in our sample path as $\hat p_t(x)$ where
+
+$$
+\hat p_t(x) := \frac{1}{t} \sum_{t = 1}^t \mathbf{1}\{X_t = x\}
+$$
+
+
+Here we compare $\hat p_t(x)$ with the stationary distribution $\psi^* (x)$ for different starting points $x_0$.
 
 ```{code-cell} ipython3
 P = np.array([[0.971, 0.029, 0.000],
@@ -398,7 +405,6 @@ dot.edge("1", "0", label="1.0", color='red')
 
 dot
 ```
-
 
 In fact it has a periodic cycle --- the state cycles between the two states in a regular way.
 
