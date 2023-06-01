@@ -11,9 +11,7 @@ kernelspec:
   name: python3
 ---
 
-+++ {"user_expressions": []}
-
-## Some dynamic models with matrices
+# Some dynamic models with matrices
 
 In this notebook, we'll present  some useful models of economic dynamics using only linear algebra -- matrix multiplication and matrix inversion.
 
@@ -23,8 +21,6 @@ In this notebook, we'll present  some useful models of economic dynamics using o
 import numpy as np
 import matplotlib.pyplot as plt
 ```
-
-+++ {"user_expressions": []}
 
 ## Consumption smoothing
 
@@ -78,16 +74,16 @@ where $g_1 > 0, g_2 > 0$.
 
 We shall see that when $\beta R = 1$ (a condition assumed by Milton Friedman and Robert Hall), this criterion assigns higher welfare to **smoother** consumption paths.
 
-+++ {"user_expressions": []}
 
-## Difference equations with linear algebra ##
+
+## Difference equations with linear algebra
 
 As a warmup, we'll describe a useful way of representing and "solving" linear difference equations. 
 
 To generate some $y$ vectors, we'll just write down a linear difference equation
 with appropriate initial conditions and then   use linear algebra to solve it.
 
-#### First-order difference equation
+### First-order difference equation
 
 We'll start with a first-order linear difference equation for $\{y_t\}_{t=0}^T$:
 
@@ -140,7 +136,7 @@ y_1 \cr y_2 \cr y_3 \cr \vdots \cr y_T
 $$
 
 
-#### Second order difference equation
+### Second order difference equation
 
 
 $$
@@ -162,12 +158,12 @@ $$
 
 Multiplying both sides by  inverse of the matrix on the left again provides the solution.
 
-#### Extensions
+### Extensions
 
 As an exercise, we ask you to represent and solve a **third order linear difference equation**.
 How many initial conditions must you specify?
 
-+++ {"user_expressions": []}
+
 
 ## Friedman-Hall consumption-smoothing model
 
@@ -211,7 +207,6 @@ This is the consumption-smoothing model in a nutshell.
 
 We'll put the model through some paces with Python code below.
 
-+++ {"user_expressions": []}
 
 ## Permanent income model of consumption 
 
@@ -222,7 +217,7 @@ in Python, to solve the consumption smoothing model.
 
 In the calculations below, please we'll  set default values of  $R > 1$, e.g., $R = 1.05$, and $\beta = R^{-1}$.
 
-#### Step 1 ####
+### Step 1
 
 For some $T+1 \times 1$ $y$ vector, use matrix algebra to compute 
 
@@ -231,7 +226,7 @@ $$
 \begin{bmatrix} y_0 \cr y_1  \cr \vdots \cr y_T \end{bmatrix}
 $$
 
-#### Step 2 ####
+### Step 2
 
 Compute
 
@@ -241,7 +236,7 @@ $$
 
 **Jiacheng:** The same for $R^t$ here.
 
-#### Step 3 ####
+### Step 3
 
 Formulate system
 
@@ -276,9 +271,7 @@ $$
 Let's verify this with our Python code.
 
 
-
-
-### Feasible consumption variations ###
+### Feasible consumption variations
 
 To explore what types of consumption paths are welfare-improving, we shall create an **admissible consumption path variation sequence** $\{v_t\}_{t=0}^T$
 that satisfies
@@ -395,7 +388,6 @@ class Consumption_smoothing:
         return cvar_seq
 ```
 
-+++ {"user_expressions": []}
 
 Below is an example where the consumer inherits $a_0<0$ (which can be interpreted as a student debt).
 
@@ -434,7 +426,7 @@ plt.ylabel(r'$c_t,y_t,a_t$')
 plt.show()
 ```
 
-+++ {"user_expressions": []}
+
 
 We can visualize how $\xi_1$ and $\phi$ controls **budget-feasible variations**.
 
@@ -481,8 +473,4 @@ plt.plot(ξ1_arr, welfare_φ(mc, ξ1=ξ1_arr , ϕ=1.02))
 plt.ylabel('welfare')
 plt.xlabel(r'$\xi_1$')
 plt.show()
-```
-
-```{code-cell} ipython3
-
 ```
