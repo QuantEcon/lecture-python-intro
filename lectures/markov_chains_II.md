@@ -71,6 +71,7 @@ from matplotlib import cm
 import matplotlib as mpl
 ```
 
+(mc_irreducible)=
 ## Irreducibility
 
 
