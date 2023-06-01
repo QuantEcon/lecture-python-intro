@@ -102,7 +102,8 @@ will become clear.
 From  US unemployment data, Hamilton {cite}`Hamilton2005` estimated the following dynamics.
 
 ```{image} /_static/lecture_specific/markov_chains_I/Hamilton.png
-:name: mc_temple
+:name: mc_hamilton
+:align: center
 
 ```
 
@@ -1078,6 +1079,7 @@ Solution 1:
 
 ```{image} /_static/lecture_specific/markov_chains_I/Temple.png
 :name: mc_temple
+:align: center
 
 ```
 
