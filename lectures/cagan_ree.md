@@ -1,11 +1,10 @@
-## A fiscal theory of the price level
+# A fiscal theory of the price level
 
 ```python
 import numpy as np
 import matplotlib.pyplot as plt
 ```
 
-<!-- #region -->
 We'll use linear algebra to do some experiments with  a "fiscal theory of the price level".
 
 According to this model, when the government persistently spends more than it collects in taxes and prints money to finance the shortfall (called the "government deficit"), it puts upward pressure on the price level and generates
@@ -151,7 +150,7 @@ Equation {eq}`eq:mcum` shows that the log of the money supply at $t$ equals the 
 plus accumulation of rates of money growth between times $0$ and $t$.
 
 
-### Continuation values
+## Continuation values
 
 
 To determine the continuation inflation rate $\pi_{T+1}^*$ we shall proceed by applying the following infinite-horizon
@@ -183,7 +182,7 @@ In the experiments below, we'll use formula {eq}`eq:piterm` as our terminal cond
 In devising these experiments, we'll  make assumptions about $\{\mu_t\}$ that are consistent with formula
 {eq}`eq:piterm`.
 
-#### Note to Jiacheng
+### Note to Jiacheng
 
 Hi. You did a great job -- much better than I did.
 
@@ -192,7 +191,7 @@ It will involve some changes in your code for the experiments, but not big ones 
 
 Below I'll describe the changes.
 
-#### End of Note to Jiacheng
+### End of Note to Jiacheng
 
 
 We now describe three such experiments.
@@ -205,7 +204,7 @@ $$
 
 so that, in terms of our notation and formula for $\theta_{T+1}^*$ above, $\tilde \gamma = 1$. 
 
-#### Experiment 1
+### Experiment 1
 
 **A foreseen stabilization**
 
@@ -218,7 +217,7 @@ $$
      \end{cases}
 $$
 
-#### Experiment 2
+### Experiment 2
 
 **Gradual stabilization**
 
@@ -231,7 +230,7 @@ $$
 $$ 
 
 
-#### Experiment 3
+### Experiment 3
 
 **An MIT shock**
 
@@ -259,7 +258,7 @@ $\mu_t = \mu^*$ for all $t \geq 0$.
 
 
 
-#### Experiment 4
+### Experiment 4
 
 Eventually, we might want to perform the following experiment right after we do experiment 3.
 
@@ -274,7 +273,7 @@ $$
 $$
 
 
-#### The Log Price Level
+### The Log Price Level
 
 
 We can use equations {eq}`eq:caganmd` and {eq}`eq:ree`
@@ -294,7 +293,7 @@ At time $T_1$ when the "surprise" regime change occurs, the log of real balances
 equation {eq}`eq:pformula2`.
 
 
-#### Jump in $p_{T_1}$ or jump in $m_{T_1}$?
+### Jump in $p_{T_1}$ or jump in $m_{T_1}$?
 
 
 If we insist that the money supply $m_{T_1}$ is locked at its value $m_{T_1}^1$ inherited from the past, then formula {eq}`eq:pformula2` implies  that the price level jumps downward  at time $T_1$, to coincide with the downward jump in 
@@ -313,13 +312,13 @@ from **falling** at the moment that the unanticipated stabilization arrives.
 In various research papers about stabilizations of high inflations, the jump in the money supply described by equation {eq}`eq:eqnmoneyjump` has been called
 "the velocity dividend" that a government reaps from implementin a regime change that sustains a permanently lower inflation rate.
 
-#### Another note to Jiacheng
+### Another note to Jiacheng
 
 I apologize that you'll have to change the code -- actually simplify it -- to do the revised experiments.
 
 I recommend setting  $\mu_0 = .2$ and $\mu^* =0 $ to start our three experiments.
 
-#### End of another note to Jiacheng
+### End of another note to Jiacheng
 
 <!-- #endregion -->
 
