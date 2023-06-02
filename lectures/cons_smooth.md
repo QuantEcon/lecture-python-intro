@@ -128,8 +128,6 @@ y_1 \cr y_2 \cr y_3 \cr \vdots \cr y_T
 $$
 
 
-
-
 Multiplying both sides by  inverse of the matrix on the left provides the solution
 
 $$
@@ -331,9 +329,7 @@ plt.ylabel(r'$c_t,y_t,a_t$')
 plt.show()
 ```
 
-
-
-We can evaluate the welfare using the formula {numref}`welfare`
+We can evaluate the welfare using the formula {eq}`welfare`
 
 ```{code-cell} ipython3
 def welfare(model, c_seq):
