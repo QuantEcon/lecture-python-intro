@@ -19,9 +19,9 @@ kernelspec:
 
 This lecture looks at different growth trajectories across countries over the long term. 
 
-While some countries have experienced long term rapid growth across that has last a hundred years, others have not. 
+While some countries have experienced long term rapid growth across that has lasted a hundred years, others have not. 
 
-First let us import the packages needed to explore what the data says about long run growth.
+First let's import the packages needed to explore what the data says about long run growth.
 
 ```{code-cell} ipython3
 import pandas as pd
@@ -29,6 +29,7 @@ import os
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 import numpy as np
+from collections import namedtuple
 from matplotlib.lines import Line2D
 ```
 
@@ -151,7 +152,7 @@ _ = gdppc[cntry].plot(
 
 +++ {"user_expressions": []}
 
-We can see that the data is non-continuous for longer periods in early part of this milenium so we could choose to interpolate to get a continuous line plot.
+We can see that the data is non-continuous for longer periods in the early part of this millennium, so we could choose to interpolate to get a continuous line plot.
 
 Here we use dashed lines to indicate interpolated trends
 
@@ -215,16 +216,18 @@ def draw_interp_plots(series, xlabel, ylabel, color_mapping, code_to_name, lw, l
 +++ {"user_expressions": []}
 
 :::{note}
-[International Dollars](https://en.wikipedia.org/wiki/International_dollar) are a hypothetical unit of currency that has the same purchasing power parity that the U.S. Dollar has in the United States and any given time. They are also known as Geary–Khamis dollar (GK Dollars).
+[International Dollars](https://en.wikipedia.org/wiki/International_dollar) are a hypothetical unit of currency that has the same purchasing power parity that the U.S. Dollar has in the United States at any given time. They are also known as Geary–Khamis dollars (GK Dollars).
 :::
 
-As you can see from this chart economic growth started in earnest in the 18th Century and continued for the next two hundred years. 
+As you can see from this chart economic growth started in earnest in the 18th century and continued for the next two hundred years. 
 
-How does this compare with other countries growth trajectories? 
+How does this compare with other countries' growth trajectories? 
 
 Let's look at the United States (USA), United Kingdom (GBR), and China (CHN)
 
 ```{code-cell} ipython3
+Event = namedtuple('Event', ['year_range', 'y_text', 'text', 'color', 'ymax'])
+
 fig, ax = plt.subplots(dpi=300)
 
 cntry = ['CHN', 'GBR', 'USA']
@@ -232,180 +235,94 @@ ax = draw_interp_plots(gdppc[cntry].loc[1200:],
     'International $\'s','Year',
     color_mapping, code_to_name, 2, True, ax)
 
+ylim = ax.get_ylim()[1]
 b_params = {'color':'grey', 'alpha': 0.2}
 t_params = {'fontsize': 5, 
             'va':'center', 'ha':'center'}
 
-ylim = ax.get_ylim()[1]
-ax.text(1320, ylim + ylim*0.2,
-        'the Great Famine\n(1315-1321)', 
-        color=color_mapping['GBR'], **t_params) 
-ax.axvspan(1315, 1321, color=color_mapping['GBR'], alpha=0.2)
+events = [
+Event((1315, 1321), ylim + ylim*0.1, 'the Great Famine\n(1315-1321)', color_mapping['GBR'], 1),
+Event((1348, 1375), ylim + ylim*0.4, 'the Black Death\n(1348-1375)', color_mapping['GBR'], 1.05),
+Event((1650, 1652), ylim + ylim*0.1, 'the Navigation Act\n(1651)', color_mapping['GBR'], 1),
+Event((1848, 1850), ylim + ylim*0.8, 'the Repeal of Navigation Act\n(1849)', color_mapping['GBR'], 1.1),
+Event((1655, 1684), ylim + ylim*0.4, 'Closed-door Policy\n(1655-1684)', color_mapping['CHN'], 1.05),
+Event((1760, 1840), ylim + ylim*0.4, 'Industrial Revolution\n(1760-1840)', 'grey', 1.05),
+Event((1788, 1790), ylim + ylim*0.1, 'US Federation\n(1789)', color_mapping['USA'], 1),
+Event((1929, 1939), ylim + ylim*0.1, 'the Great Depression\n(1929–1939)', 'grey', 1),
+Event((1978, 1979), ylim + ylim*0.4, 'Reform and Opening-up\n(1978-1979)', color_mapping['CHN'], 1.05)
+]
 
-ax.text(1360, ylim + ylim*0.5,
-        'the Black Death\n(1348-1375)', 
-        color=color_mapping['GBR'], **t_params) 
-ax.axvspan(1348, 1375, color=color_mapping['GBR'], alpha=0.2)
-
-ax.text(1651, ylim + ylim*0.2,
-        'the Navigation Act\n(1651)',
-        color=color_mapping['GBR'], **t_params) 
-ax.axvspan(1651, 1651, color=color_mapping['GBR'], alpha=0.2)
-
-ax.text(1849, ylim + ylim*0.8,
-        'the Repeal of Navigation Act\n(1849)',
-        color=color_mapping['GBR'], **t_params) 
-ax.axvspan(1849, 1849, color=color_mapping['GBR'], alpha=0.2)
-
-ax.text(1665, ylim + ylim*0.5,
-        'Closed-door Policy\n(1655-1684)',
-        color=color_mapping['CHN'], **t_params) 
-
-ax.axvspan(1655, 1684, color=color_mapping['CHN'], alpha=0.2)
-ax.text(1800, ylim + ylim*0.5,
-        'Industrial Revolution\n(1740-1860)', 
-        color='grey', **t_params) 
-ax.axvspan(1760, 1840, color='grey', alpha=0.2)
-
-ax.text(1789, ylim + ylim*0.2,
-        'US Federation\n(1789)',
-        color=color_mapping['USA'], **t_params) 
-ax.axvspan(1789, 1780, color=color_mapping['USA'], alpha=0.2)
-
-ax.text(1933, ylim + ylim*0.2,
-        'the Great Depression\n(1929–1939)', 
-        color='grey', **t_params)
-ax.axvspan(1929, 1938.5, color='grey', alpha=0.2)
-
-ax.text(1978, ylim + ylim*0.5,
-        'Reform and Opening-up\n(1978-1979)', 
-        color=color_mapping['CHN'], **t_params)
-ax.axvspan(1978, 1979, color=color_mapping['CHN'], alpha=0.2)
+def draw_events(events, ax):
+    # Iterate over events and add annotations and vertical lines
+    for event in events:
+        event_mid = sum(event.year_range)/2
+        ax.text(event_mid, 
+                event.y_text, event.text, 
+                color=event.color, **t_params)
+        ax.axvspan(*event.year_range, color=event.color, alpha=0.2)
+        ax.axvline(event_mid, ymin=1, ymax=event.ymax, color=event.color, linestyle='-', clip_on=False, alpha=0.15)
+        
+# Draw events
+draw_events(events, ax)
 plt.show()
 ```
 
-```{code-cell} ipython3
----
-mystnb:
-  figure:
-    caption: GDP per Capita
-    name: gdppc_usa_gbr_chn
----
-fig, ax = plt.subplots(dpi=300)
+(TODO: Finalize trend)
+We can see some interesting trends:
 
-cntry = ['CHN', 'GBR', 'USA']
-ax = draw_interp_plots(gdppc[cntry].loc[1200:],
-    'International $\'s','Year',
-    color_mapping, code_to_name, 2, False, ax)
+- Most of the growth happened in the past 150 years after the industrial revolution.
+- There was a divergence between the West and the East during the process of industrialization (from 1820 to 1940).
+- The gap is rapidly closing in the modern era.
+- The shift in the paradigm in policy is usually intertwined with the technological and political.
 
-b_params = {'color':'grey', 'alpha': 0.2}
-t_params = {'fontsize': 5, 
-            'va':'center', 'ha':'center'}
-ylim = ax.get_ylim()[1]
++++ {"user_expressions": []}
 
-ax.text(1320, ylim + ylim*0.03,
-        'the Great Famine\n(1315-1321)', 
-        color=color_mapping['GBR'], **t_params) 
-ax.axvspan(1315, 1321, color=color_mapping['GBR'], alpha=0.2)
+Looking at China's GDP per capita levels from 1500 through to the 1970s showed a long period of declining GDP per capital levels from the 1700s to the early 20th century.
 
-ax.text(1360, ylim + ylim*0.08,
-        'the Black Death\n(1348-1375)', 
-        color=color_mapping['GBR'], **t_params) 
-ax.axvspan(1348, 1375, color=color_mapping['GBR'], alpha=0.2)
-
-ax.text(1651, ylim + ylim*0.03,
-        'the Navigation Act\n(1651)',
-        color=color_mapping['GBR'], **t_params) 
-ax.axvspan(1651, 1651, color=color_mapping['GBR'], alpha=0.2)
-
-ax.text(1849, ylim + ylim*0.13,
-        'the Repeal of Navigation Act\n(1849)',
-        color=color_mapping['GBR'], **t_params) 
-ax.axvspan(1848, 1850, color=color_mapping['GBR'], alpha=0.2)
-
-ax.text(1670, ylim + ylim*0.08,
-        'Closed-door Policy\n(1655-1684)',
-        color=color_mapping['CHN'], **t_params) 
-ax.axvspan(1655, 1684, color=color_mapping['CHN'], alpha=0.2)
-
-ax.text(1800, ylim + ylim*0.08,
-        'Industrial Revolution\n(1740-1860)', 
-        color='grey', **t_params) 
-ax.axvspan(1760, 1840, color='grey', alpha=0.2)
-
-ax.text(1789, ylim + ylim*0.03,
-        'US Federation\n(1789)',
-        color=color_mapping['USA'], **t_params) 
-ax.axvspan(1789, 1780, color=color_mapping['USA'], alpha=0.2)
-
-ax.text(1933, ylim + ylim*0.03,
-        'the Great Depression\n(1929–1939)', 
-        color='grey', **t_params)
-ax.axvspan(1929, 1938.5, color='grey', alpha=0.2)
-
-ax.text(1978, ylim + ylim*0.08,
-        'Reform and Opening-up\n(1978-1979)', 
-        color=color_mapping['CHN'], **t_params)
-ax.axvspan(1978, 1979, color=color_mapping['CHN'], alpha=0.2)
-
-plt.show()
-```
-
-Looking at China GDP per capita levels from 1500 through to the 1970's showed a long period of declining GDP per capital levels from 1700's to early 20th century. (Closed Border / Inward Looking Domestic Focused Policies?)
+(TODO: Finalize trend)
+Trends to note:
+- Period of economic downturn after the Closed-door Policy by the Qing government
+- Missing out on the industrial revolution
+- Self-Strengthening Movement may help the growth but in a very mild way
+- Modern Chinese economic policies and the growth after the founding of the PRC (political stability) and after the Reform and Opening-up 
 
 ```{code-cell} ipython3
 fig, ax = plt.subplots(dpi=300)
-
 cntry = ['CHN']
 ax = draw_interp_plots(gdppc[cntry].loc[1600:2000],
     'International $\'s','Year',
     color_mapping, code_to_name, 2, True, ax)
 
+# Define the namedtuple for the data points
 ylim = ax.get_ylim()[1]
-ax.text(1670, ylim + ylim*0.05,
-        'Closed-door Policy\n(1655-1684)',
-        color='tab:orange', **t_params) 
-ax.axvspan(1655, 1684, color='tab:orange', alpha=0.2)
 
-ax.text(1800, ylim + ylim*0.05,
-        'Industrial Revolution\n(1740-1860)', 
-        color='grey', **t_params) 
-ax.axvspan(1760, 1840, color='grey', alpha=0.2)
+events = [
+Event((1655, 1684), ylim + ylim*0.05, 'Closed-door Policy\n(1655-1684)', 'tab:orange', 1),
+Event((1760, 1840), ylim + ylim*0.05, 'Industrial Revolution\n(1760-1840)', 'grey', 1),
+Event((1839, 1842), ylim + ylim*0.15, 'First Opium War\n(1839–1842)', 'tab:red', 1.05),
+Event((1861, 1895), ylim + ylim*0.25, 'Self-Strengthening Movement\n(1861–1895)', 'tab:blue', 1.09),
+Event((1939, 1945), ylim + ylim*0.05, 'WW 2\n(1939-1945)', 'tab:red', 1),
+Event((1948, 1950), ylim + ylim*0.2, 'Founding of PRC\n(1949)', color_mapping['CHN'], 1.07),
+Event((1958, 1962), ylim + ylim*0.35, 'Great Leap Forward\n(1958-1962)', 'tab:orange', 1.13),
+Event((1978, 1979), ylim + ylim*0.5, 'Reform and Opening-up\n(1978-1979)', 'tab:blue', 1.18)
+]
 
-ax.text(1841, ylim + ylim*0.15,
-        'First Opium War\n(1839–1842)', 
-        color='tab:red', **t_params) 
-ax.axvspan(1839, 1842, color='tab:red', alpha=0.2)
-
-ax.text(1880, ylim + ylim*0.25,
-        'Self-Strengthening Movement\n(1861–1895)', 
-        color='tab:blue', **t_params) 
-ax.axvspan(1861, 1895, color='tab:blue', alpha=0.2)
-
-ax.text(1942, ylim + ylim*0.05,
-        'WW 2\n(1939-1945)', 
-        color='tab:red', **t_params) 
-ax.axvspan(1939, 1945, color='tab:red', alpha=0.2)
-
-ax.text(1949, ylim + ylim*0.15,
-        'Founding of PRC\n(1949)', 
-        color=color_mapping['CHN'], **t_params) 
-ax.axvspan(1948, 1950, color=color_mapping['CHN'], alpha=0.2)
-
-ax.text(1960, ylim + ylim*0.25,
-        'Great Leap Forward\n(1958-1962)', 
-        color='tab:orange', **t_params)
-ax.axvspan(1958, 1962, color='tab:orange', alpha=0.2)
-
-ax.text(1978, ylim + ylim*0.35,
-        'Reform and Opening-up\n(1978-1979)', 
-        color='tab:blue', **t_params)
-ax.axvspan(1978, 1979, color='tab:blue', alpha=0.2)
-
+# Draw events
+draw_events(events, ax)
 plt.show()
 ```
 
++++ {"user_expressions": []}
+
+(TODO: Finalize trend)
+Trends to note:
+- The impact of trade policy (Navigation Act)
+- The productivity change created by the industrial revolution
+- US surpasses UK -- any specific event?
+- Wars and business cycles (link to business cycles lecture)
+
 ```{code-cell} ipython3
+# Create the plot
 fig, ax = plt.subplots(dpi=300)
 
 cntry = ['GBR', 'USA']
@@ -415,64 +332,26 @@ ax = draw_interp_plots(gdppc[cntry].loc[1500:2000],
 
 ylim = ax.get_ylim()[1]
 
-ax.text(1651, ylim + ylim*0.1,
-        'Navigation Act (UK)\n(1651)',
-        color='tab:orange', **t_params) 
-ax.axvspan(1651, 1651, color='tab:orange', alpha=0.2)
+# Create a list of data points=
+events = [
+    Event((1651, 1651), ylim + ylim*0.1, 'Navigation Act (UK)\n(1651)', 'tab:orange', 1),
+    Event((1788, 1790), ylim + ylim*0.4, 'Federation (US)\n(1789)', color_mapping['USA'], 1.055),
+    Event((1760, 1840), ylim + ylim*0.1, 'Industrial Revolution\n(1760-1840)', 'grey', 1),
+    Event((1848, 1850), ylim + ylim*0.6, 'Repeal of Navigation Act (UK)\n(1849)', 'tab:blue', 1.085),
+    Event((1861, 1865), ylim + ylim*1, 'American Civil War (US)\n(1861-1865)', color_mapping['USA'], 1.14),
+    Event((1914, 1918), ylim + ylim*0.1, 'WW 1\n(1914-1918)', 'tab:red', 1),
+    Event((1929, 1939), ylim + ylim*0.4, 'the Great Depression\n(1929–1939)', 'grey', 1.06),
+    Event((1939, 1945), ylim + ylim*0.8, 'WW 2\n(1939-1945)', 'tab:red', 1.11)
+]
 
-ax.text(1849, ylim + ylim*0.50,
-        'Repeal of Navigation Act (UK)\n(1849)',
-        color='tab:blue', **t_params) 
-ax.axvspan(1848, 1850, color='tab:blue', alpha=0.2)
-
-ax.text(1800, ylim + ylim*0.1,
-        'Industrial Revolution\n(1740-1860)', 
-        color='grey', **t_params) 
-ax.axvspan(1760, 1840, color='grey', alpha=0.2)
-
-ax.text(1789, ylim + ylim*0.35,
-        'Federation (US)\n(1789)',
-        color=color_mapping['USA'], **t_params) 
-ax.axvspan(1788, 1790, color=color_mapping['USA'], alpha=0.2)
-
-ax.text(1863, ylim + ylim*0.8,
-        'American Civil War (US)\n(1861-1865)',
-        color=color_mapping['USA'], **t_params) 
-ax.axvspan(1861, 1865, color=color_mapping['USA'], alpha=0.2)
-
-ax.text(1916, ylim + ylim*0.1,
-        'WW 1\n(1939-1945)', 
-        color='tab:red', **t_params) 
-ax.axvspan(1914, 1918, color='tab:red', alpha=0.2)
-
-
-ax.text(1933, ylim + ylim*0.35,
-        'the Great Depression\n(1929–1939)', 
-        color='grey', **t_params)
-ax.axvspan(1929, 1938.5, color='grey', alpha=0.2)
-
-ax.text(1942, ylim + ylim*0.65,
-        'WW 2\n(1939-1945)', 
-        color='tab:red', **t_params) 
-ax.axvspan(1939, 1945, color='tab:red', alpha=0.2)
-
-
-
+# Draw events
+draw_events(events, ax)
 plt.show()
 ```
 
-+++ {"user_expressions": []}
-
-We can see some interesting trends:
-
-- Most of the growth happened in the past 150 years after the industrial revolution.
-- There is a divergence in the west and east during the process of industralization (from 1820 to 1940).
-- The gap is repeatly closing in the modern era.
-- The shift in the paradigm in policy is usually intertwined with the technological and political.
-
-We will look into these trends in more details
-
 ## The Industrialized World
+
+(TODO: Write description for this section)
 
 Now we can look at total Gross Domestic Product (GDP) rather than focusing on GDP per capita (as a proxy for living standards).
 
@@ -570,23 +449,8 @@ ax = draw_interp_plots(gdppc[cntry].loc[start_year:end_year],
 
 +++ {"user_expressions": []}
 
-## Other Interesting Plots
-
-Here are a collection of interesting plots that could be linked to interesting stories
-
-+++ {"user_expressions": []}
-
-China (CHN) then followed a very similar growth story from the 1980s through to current day China.
-
-```{code-cell} ipython3
-fig = plt.figure(dpi=300)
-gdppc[['CHN', 'GBR']].interpolate().plot(ax = fig.gca())
-plt.show()
-```
-
-+++ {"user_expressions": []}
-
 ## Regional Analysis
+(TODO: Write descriptions for this section)
 
 The [Maddison Historical Statistics](https://www.rug.nl/ggdc/historicaldevelopment/maddison/) dataset also includes regional aggregations
 
