@@ -34,7 +34,7 @@ from matplotlib.patches import Polygon
 ```
 
 The following figure illustrates a network of linkages among 15 sectors
-obtained from the US Bureau of Economic Analysis’s 2019 Input-Output Accounts
+obtained from the US Bureau of Economic Analysis’s 2021 Input-Output Accounts
 Data.
 
 ```{code-cell} ipython3
@@ -87,6 +87,10 @@ mystnb:
 tags: [hide-input]
 ---
 centrality = qbn_io.eigenvector_centrality(A)
+
+# Remove self-loops
+for i in range(A.shape[0]):
+    A[i][i] = 0
 
 fig, ax = plt.subplots(figsize=(8, 10))
 plt.axis("off")
@@ -237,11 +241,11 @@ More generally,   constraints on production are
 $$
 \begin{aligned}
 (I - A) x &  \geq d \cr
-a_0' x & \leq x_0
+a_0^\top x & \leq x_0
 \end{aligned}
 $$ (eq:inout_1)
 
-where $A$ is the $n \times n$ matrix with typical element $a_{ij}$ and $a_0' = \begin{bmatrix} a_{01} & \cdots & a_{02} \end{bmatrix}$.
+where $A$ is the $n \times n$ matrix with typical element $a_{ij}$ and $a_0^\top = \begin{bmatrix} a_{01} & \cdots & a_{02} \end{bmatrix}$.
 
 
 
@@ -322,19 +326,19 @@ x
 The second equation of {eq}`eq:inout_1` can be written
 
 $$
-a_0' x = x_0
+a_0^\top x = x_0
 $$
 
 or
 
 $$
-A_0' d = x_0
+A_0^\top d = x_0
 $$ (eq:inout_frontier)
 
 where
 
 $$
-A_0' = a_0' (I - A)^{-1}
+A_0^\top = a_0^\top (I - A)^{-1}
 $$
 
  For $i \in \{1, \ldots , n\}$, the $i$th component  of $A_0$ is the amount of labor that is required to produce one unit of final output of good $i$.
@@ -346,12 +350,12 @@ Consider the example in {eq}`eq:inout_ex`.
 Suppose we are now given
 
 $$
-a_0' = \begin{bmatrix}
+a_0^\top = \begin{bmatrix}
 4 & 100
 \end{bmatrix}
 $$
 
-Then we can find $A_0'$ by
+Then we can find $A_0^\top$ by
 
 ```{code-cell} ipython3
 a0 = np.array([4, 100])
@@ -383,23 +387,23 @@ $$
 More generally,
 
 $$
-p = A' p + a_0 w
+p = A^\top p + a_0 w
 $$
 
 which states that the price of each final good equals the total cost
-of production, which consists of costs of intermediate inputs $A' p$
+of production, which consists of costs of intermediate inputs $A^\top p$
 plus costs of labor $a_0 w$.
 
 This equation can be written as
 
 $$
-(I - A') p = a_0 w
+(I - A^\top) p = a_0 w
 $$ (eq:inout_price)
 
 which implies
 
 $$
-p = (I - A')^{-1} a_0 w
+p = (I - A^\top)^{-1} a_0 w
 $$
 
 Notice how  {eq}`eq:inout_price` with {eq}`eq:inout_1` forms a
@@ -414,7 +418,7 @@ This connection surfaces again in a classic linear program and its dual.
 A **primal** problem is
 
 $$
-\min_{x} w a_0' x
+\min_{x} w a_0^\top x
 $$
 
 subject to
@@ -427,13 +431,13 @@ $$
 The associated **dual** problem is
 
 $$
-\max_{p} p' d
+\max_{p} p^\top d
 $$
 
 subject to
 
 $$
-(I -A)' p \leq a_0 w
+(I -A)^\top p \leq a_0 w
 $$
 
 The primal problem chooses a feasible production plan to minimize costs for delivering a pre-assigned vector of final goods consumption $d$.
@@ -444,7 +448,7 @@ By the [strong duality theorem](https://en.wikipedia.org/wiki/Dual_linear_progra
 optimal value of the primal and dual problems coincide:
 
 $$
-w a_0' x^* = p^* d
+w a_0^\top x^* = p^* d
 $$
 
 where $^*$'s denote optimal choices for the primal and dual problems.
@@ -569,11 +573,13 @@ $$
 \mu_j = \sum_{j=1}^n l_{ij}
 $$
 
-This can be written as $\mu' = \mathbf{1}'L$ or
+This can be written as $\mu^\top = \mathbb{1}^\top L$ or
 
 $$
-\mu' = \mathbf{1}' (I-A)^{-1}
+\mu^\top = \mathbb{1}^\top (I-A)^{-1}
 $$
+
+Please note that here we use $\mathbb{1}$ to represent a vector of ones.
 
 High ranking sectors within this measure are important buyers of intermediate goods.
 
