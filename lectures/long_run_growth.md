@@ -4,12 +4,14 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.14.4
+    jupytext_version: 1.14.5
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
   name: python3
 ---
+
++++ {"user_expressions": []}
 
 # Long Run Growth
 
@@ -30,9 +32,11 @@ import numpy as np
 from matplotlib.lines import Line2D
 ```
 
-## Setting up 
++++ {"user_expressions": []}
 
-+++
+## Setting up
+
++++ {"user_expressions": []}
 
 A project initiated by [Angus Maddison](https://en.wikipedia.org/wiki/Angus_Maddison) has collected many historical time series that study economic growth. 
 
@@ -49,6 +53,8 @@ data = pd.read_excel("datasets/mpd2020.xlsx", sheet_name='Full data')
 data
 ```
 
++++ {"user_expressions": []}
+
 We can see that this dataset contains GDP per capita (gdppc) and population (pop) for many countries and years.
 
 Let's look at how many and which countries are available in this dataset
@@ -56,6 +62,8 @@ Let's look at how many and which countries are available in this dataset
 ```{code-cell} ipython3
 len(data.country.unique())
 ```
+
++++ {"user_expressions": []}
 
 We can now explore some of the 169 countries that are available. 
 
@@ -71,11 +79,15 @@ cntry_years = pd.DataFrame(cntry_years, columns=['country', 'Min Year', 'Max Yea
 cntry_years
 ```
 
++++ {"user_expressions": []}
+
 You can query this dataframe for each country of interest such as `Australia` by using `.loc`
 
 ```{code-cell} ipython3
 cntry_years.loc['Australia']
 ```
+
++++ {"user_expressions": []}
 
 Let us now reshape the original data into some convenient variables to enable quicker access to countries time series data.
 
@@ -84,6 +96,8 @@ We can build a useful mapping between country code's and country names in this d
 ```{code-cell} ipython3
 code_to_name = data[['countrycode','country']].drop_duplicates().reset_index(drop=True).set_index(['countrycode'])
 ```
+
++++ {"user_expressions": []}
 
 Then we can quickly focus on GDP per capita (gdp)
 
@@ -99,7 +113,7 @@ import numpy as np
 country_names = data['countrycode']
 
 # Generate a colormap with the number of colors matching the number of countries
-colors = cm.Dark2(np.linspace(0, 1, len(country_names)))
+colors = cm.Dark2(np.linspace(0, 0.8, len(country_names)))
 
 # Create a dictionary to map each country to its corresponding color
 color_mapping = {country: color for country, color in zip(country_names, colors)}
@@ -113,6 +127,8 @@ gdppc = gdppc.unstack('countrycode')
 ```{code-cell} ipython3
 gdppc
 ```
+
++++ {"user_expressions": []}
 
 Looking at the United Kingdom we can first confirm we are using the correct country code
 
@@ -132,6 +148,8 @@ _ = gdppc[cntry].plot(
     linestyle='-',
     color=color_mapping['GBR'])
 ```
+
++++ {"user_expressions": []}
 
 We can see that the data is non-continuous for longer periods in early part of this milenium so we could choose to interpolate to get a continuous line plot.
 
@@ -159,6 +177,8 @@ ax.set_ylabel('International $\'s')
 ax.set_xlabel('Year')
 plt.show()
 ```
+
++++ {"user_expressions": []}
 
 We can now put this into a function to generate plots for a list of countries
 
@@ -192,6 +212,8 @@ def draw_interp_plots(series, xlabel, ylabel, color_mapping, code_to_name, lw, l
     return ax
 ```
 
++++ {"user_expressions": []}
+
 :::{note}
 [International Dollars](https://en.wikipedia.org/wiki/International_dollar) are a hypothetical unit of currency that has the same purchasing power parity that the U.S. Dollar has in the United States and any given time. They are also known as Geary–Khamis dollar (GK Dollars).
 :::
@@ -217,32 +239,93 @@ ax = draw_interp_plots(gdppc[cntry].loc[1200:],
 b_params = {'color':'grey', 'alpha': 0.2}
 t_params = {'fontsize': 5, 
             'va':'center', 'ha':'center'}
-ax.axvspan(1337, 1453, color=color_mapping['GBR'], alpha=0.2)
+ylim = ax.get_ylim()[1]
+ax.text(1320, ylim + ylim*0.2,
+        'the Great Famine\n(1315-1321)', 
+        color=color_mapping['GBR'], **t_params) 
+ax.axvspan(1315, 1321, color=color_mapping['GBR'], alpha=0.2)
+
+ax.text(1360, ylim + ylim*0.5,
+        'the Black Death\n(1348-1375)', 
+        color=color_mapping['GBR'], **t_params) 
+ax.axvspan(1348, 1375, color=color_mapping['GBR'], alpha=0.2)
+
+ax.text(1670, ylim + ylim*.2,
+        'the Navigation Act\n(1651-1696)',
+        color=color_mapping['GBR'], **t_params) 
+ax.axvspan(1651, 1696, color=color_mapping['GBR'], alpha=0.2)
+ax.text(1665, ylim + ylim*.5,
+        'Closed-door Policy\n(1655-1684)',
+        color=color_mapping['CHN'], **t_params) 
 ax.axvspan(1655, 1684, color=color_mapping['CHN'], alpha=0.2)
 ax.axvspan(1760, 1840, color='grey', alpha=0.2)
+
+ax.text(1789, ylim + ylim*0.6,
+        'US Federation\n(1789)',
+        color=color_mapping['USA'], **t_params) 
 ax.axvspan(1861, 1865, color=color_mapping['USA'], alpha=0.2)
 ax.axvspan(1939, 1945, color='grey', alpha=0.2)
 ax.axvspan(1978, 1979, color=color_mapping['CHN'], alpha=0.2)
-ylim = ax.get_ylim()[1]
-ax.text(1395, ylim + ylim*0.2,
-        'Hundred Years\' War\n(1337-1453)', 
-        color=color_mapping['GBR'], **t_params) 
+
 ax.text(1800, ylim + ylim*0.2,
         'Industrial Revolution\n(1740-1860)', 
         color='grey', **t_params) 
-ax.text(1665, ylim + ylim*.2,
-        'Closed-door Policy\n(1655-1684)',
-        color=color_mapping['CHN'], **t_params) 
-ax.text(1863, ylim + ylim*0.6,
-        'American Civil War\n(1861-1865)',
-        color=color_mapping['USA'], **t_params) 
 ax.text(1941, ylim + ylim*0.2,
         'World War II\n(1939-1945)', 
         color='grey', **t_params)
 ax.text(1978, ylim + ylim*0.8,
         'Reform and Opening-up\n(1978-1979)', 
         color=color_mapping['CHN'], **t_params)
+
+
+# fig, ax = plt.subplots(dpi=300)
+
+# cntry = ['CHN', 'GBR', 'USA']
+# gdppc_change = gdppc[cntry].pct_change(periods=1) * 100
+# ax = draw_interp_plots(gdppc_change.loc[1200:],
+#     'International $\'s','Year',
+#     color_mapping, code_to_name, 2, False, ax)
+
+# b_params = {'color':'grey', 'alpha': 0.2}
+# t_params = {'fontsize': 5, 
+#             'va':'center', 'ha':'center'}
+# ylim = ax.get_ylim()[1]
+# ax.text(1320, ylim + ylim*0.2,
+#         'the Great Famine\n(1315-1321)', 
+#         color=color_mapping['GBR'], **t_params) 
+# ax.axvspan(1315, 1321, color=color_mapping['GBR'], alpha=0.2)
+
+# ax.text(1360, ylim + ylim*0.5,
+#         'the Black Death\n(1348-1375)', 
+#         color=color_mapping['GBR'], **t_params) 
+# ax.axvspan(1348, 1375, color=color_mapping['GBR'], alpha=0.2)
+
+# ax.text(1670, ylim + ylim*.2,
+#         'Closed-door Policy\n(1651-1696)',
+#         color=color_mapping['CHN'], **t_params) 
+# ax.axvspan(1651, 1696, color=color_mapping['GBR'], alpha=0.2)
+
+# ax.axvspan(1655, 1684, color=color_mapping['CHN'], alpha=0.2)
+# ax.axvspan(1760, 1840, color='grey', alpha=0.2)
+# ax.axvspan(1861, 1865, color=color_mapping['USA'], alpha=0.2)
+# ax.axvspan(1939, 1945, color='grey', alpha=0.2)
+# ax.axvspan(1978, 1979, color=color_mapping['CHN'], alpha=0.2)
+
+# ax.text(1800, ylim + ylim*0.2,
+#         'Industrial Revolution\n(1740-1860)', 
+#         color='grey', **t_params) 
+# ax.text(1863, ylim + ylim*0.6,
+#         'Act of Union\n(1861-1865)',
+#         color=color_mapping['USA'], **t_params) 
+# ax.text(1941, ylim + ylim*0.2,
+#         'World War II\n(1939-1945)', 
+#         color='grey', **t_params)
+# ax.text(1978, ylim + ylim*0.8,
+#         'Reform and Opening-up\n(1978-1979)', 
+#         color=color_mapping['CHN'], **t_params)
 ```
+
++++ {"user_expressions": []}
 
 As you can see the countries had similar GDP per capita levels with divergence starting around 1940. Australia's growth experience is both more continuous and less volatile post 1940.
 
@@ -257,6 +340,8 @@ data.set_index(['countrycode', 'year'], inplace=True)
 data['gdp'] = data['gdppc'] * data['pop']
 gdp = data['gdp'].unstack('countrycode')
 ```
+
++++ {"user_expressions": []}
 
 ### Early Industralization (1820 to 1940)
 
@@ -291,6 +376,8 @@ ax.legend(handles=legend_elements, loc='lower center', ncol=4, bbox_to_anchor=[0
 plt.show()
 ```
 
++++ {"user_expressions": []}
+
 GDP per Capita
 
 ```{code-cell} ipython3
@@ -320,6 +407,8 @@ for i,c in enumerate(cntry):
 ax.legend(handles=legend_elements, loc='lower center', ncol=4, bbox_to_anchor=[0.5, -0.25])
 plt.show()
 ```
+
++++ {"user_expressions": []}
 
 ## The Modern Era (1970 to 2018)
 
@@ -353,6 +442,8 @@ ax.legend(handles=legend_elements, loc='lower center', ncol=4, bbox_to_anchor=[0
 plt.show()
 ```
 
++++ {"user_expressions": []}
+
 GDP per Capita
 
 ```{code-cell} ipython3
@@ -383,6 +474,8 @@ ax.legend(handles=legend_elements, loc='lower center', ncol=3, bbox_to_anchor=[0
 plt.show()
 ```
 
++++ {"user_expressions": []}
+
 ## Other Interesting Plots
 
 Here are a collection of interesting plots that could be linked to interesting stories
@@ -395,6 +488,8 @@ gdppc['CHN'].loc[1500:1980].interpolate().plot(ax=fig.gca())
 plt.show()
 ```
 
++++ {"user_expressions": []}
+
 China (CHN) then followed a very similar growth story from the 1980s through to current day China.
 
 ```{code-cell} ipython3
@@ -402,6 +497,8 @@ fig = plt.figure(dpi=300)
 gdppc[['CHN', 'GBR']].interpolate().plot(ax = fig.gca())
 plt.show()
 ```
+
++++ {"user_expressions": []}
 
 ## Regional Analysis
 
@@ -412,6 +509,8 @@ data = pd.read_excel("datasets/mpd2020.xlsx", sheet_name='Regional data', header
 data.columns = data.columns.droplevel(level=2)
 ```
 
++++ {"user_expressions": []}
+
 We can save the raw data in a more convenient format to build a single table of regional GDP per capita
 
 ```{code-cell} ipython3
@@ -419,11 +518,15 @@ regionalgdppc = data['gdppc_2011'].copy()
 regionalgdppc.index = pd.to_datetime(regionalgdppc.index, format='%Y')
 ```
 
++++ {"user_expressions": []}
+
 Let us interpolate based on time to fill in any gaps in the dataset for the purpose of plotting
 
 ```{code-cell} ipython3
 regionalgdppc.interpolate(method='time', inplace=True)
 ```
+
++++ {"user_expressions": []}
 
 and record a dataset of world GDP per capita
 
@@ -442,9 +545,11 @@ ax = worldgdppc.plot(
 )
 ```
 
++++ {"user_expressions": []}
+
 Looking more closely, let us compare the time series for `Western Offshoots` and `Sub-Saharan Africa`
 
-+++
++++ {"user_expressions": []}
 
 and more broadly at a number of different regions around the world
 
