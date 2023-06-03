@@ -375,7 +375,7 @@ $$
 $$
 
 $$
-    p = i_s(q) := s_0 + s_1 q^{1.2} 
+    p = i_s(q) := s_0 + s_1 q^{1.8} 
 $$
 
 All parameters are positive, as before.
@@ -476,7 +476,7 @@ assumption that the price is the same for buyers and sellers:
 
 $$
     W(q)
-    = \int_0^q i_d(x) dx - \int_0^q i_q(x) dx  
+    = \int_0^q i_d(x) dx - \int_0^q i_s(x) dx  
 $$
 
 Solve the integrals and write a function to compute this quantity numerically
@@ -593,7 +593,7 @@ from scipy.optimize import newton
 def excess_demand(q):
     return market.inverse_demand(q) - market.inverse_supply(q)
 
-equilibrium_q = newton(excess_demand, 0.1)
+equilibrium_q = newton(excess_demand, 0.99)
 print(f"{equilibrium_q: .5f}")
 ```
 
