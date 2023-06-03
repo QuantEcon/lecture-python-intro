@@ -30,7 +30,6 @@ import numpy as np
 import pandas as pd
 import networkx as nx
 import matplotlib.pyplot as plt
-from matplotlib.patches import Polygon
 ```
 
 The following figure illustrates a network of linkages among 15 sectors
@@ -44,14 +43,13 @@ import quantecon_book_networks
 import quantecon_book_networks.input_output as qbn_io
 import quantecon_book_networks.plotting as qbn_plt
 import quantecon_book_networks.data as qbn_data
-import matplotlib as mpl
 
-mpl.rcParams.update(mpl.rcParamsDefault)
-quantecon_book_networks.config("matplotlib")
-```
-
-```{code-cell} ipython3
 ch2_data = qbn_data.production()
+
+quantecon_book_networks.config("matplotlib")
+import matplotlib as mpl
+mpl.rcParams.update(mpl.rcParamsDefault)
+from matplotlib.patches import Polygon
 ```
 
 ```{code-cell} ipython3
