@@ -128,7 +128,6 @@ The class will include a test to make sure that $b  > > \Pi e $ and raise an exc
     * **producer surplus**
 
 Now let's proceed to code.
-<!-- #endregion -->
 
 ```{code-cell} ipython3
 # import some packages
@@ -138,7 +137,6 @@ import matplotlib.pyplot as plt
 from scipy.linalg import inv
 ```
 
-<!-- #region -->
 ### Pure Exchange Economy
 
 Let's first explore a pure exchange economy with $n$ goods and $m$ people.
@@ -238,7 +236,6 @@ p=\tilde{\mu}^{-1}(\Pi^{\top}b-\Pi^{\top}\Pi e)
 $$
 
 Thus, we have  verified that, up to choice of a numeraire in which to express absolute prices,  the price vector in our representative consumer economy is the same as that in an underlying  economy with multiple consumers.
-<!-- #endregion -->
 
 ```{code-cell} ipython3
 class ExchangeEconomy:
