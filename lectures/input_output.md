@@ -45,11 +45,12 @@ import quantecon_book_networks.input_output as qbn_io
 import quantecon_book_networks.plotting as qbn_plt
 import quantecon_book_networks.data as qbn_data
 
-quantecon_book_networks.config("matplotlib")
-```
-
-```{code-cell} ipython3
 ch2_data = qbn_data.production()
+
+quantecon_book_networks.config("matplotlib")
+import matplotlib as mpl
+mpl.rcParams.update(mpl.rcParamsDefault)
+from matplotlib.patches import Polygon
 ```
 
 ```{code-cell} ipython3
@@ -575,6 +576,7 @@ $$
 
 This can be written as $\mu^\top = \mathbb{1}^\top L$ or
 
+
 $$
 \mu^\top = \mathbb{1}^\top (I-A)^{-1}
 $$
@@ -650,6 +652,7 @@ where $z_0$ is a vector of labor services used in each industry.
 :class: dropdown
 ```
 For each i = 0,1,2 and j = 1,2
+
 $$
 a_{ij} = \frac{z_{ij}}{x_j}
 $$
