@@ -380,7 +380,7 @@ Trends to note:
 mystnb:
   figure:
     caption: GDP per Capita (UK and US)
-    name: gdppc_china
+    name: gdppc_ukus
 ---
 
 
