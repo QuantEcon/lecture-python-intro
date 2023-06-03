@@ -139,6 +139,7 @@ mystnb:
   figure:
     caption: GDP per Capita (GBR)
     name: gdppc_gbr1
+    width: 500px
 ---
 fig, ax = plt.subplots(dpi=300)
 cntry = 'GBR'
@@ -187,15 +188,18 @@ We can now put this into a function to generate plots for a list of countries
 def draw_interp_plots(series, xlabel, ylabel, color_mapping, code_to_name, lw, logscale, ax):
 
     for i, c in enumerate(cntry):
-        
+        # Get the interpolated data
         df_interpolated = series[c].interpolate(limit_area='inside')
         interpolated_data = df_interpolated[series[c].isnull()]
+
+        # Plot the interpolated data with dashed lines
         ax.plot(interpolated_data,
                 linestyle='--',
                 lw=lw,
                 alpha=0.7,
                 color=color_mapping[c])
 
+        # Plot the non-interpolated data with solid lines
         ax.plot(series[c],
                 linestyle='-',
                 lw=lw,
@@ -205,7 +209,8 @@ def draw_interp_plots(series, xlabel, ylabel, color_mapping, code_to_name, lw, l
         
         if logscale == True:
             ax.set_yscale('log')
-            
+    
+    # Draw the legend outside the plot
     ax.legend(loc='lower center', ncol=5, bbox_to_anchor=[0.5, -0.25])
     ax.set_xlabel(xlabel)
     ax.set_ylabel(ylabel)
@@ -226,30 +231,52 @@ How does this compare with other countries' growth trajectories?
 Let's look at the United States (USA), United Kingdom (GBR), and China (CHN)
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: GDP per Capita (China, UK, USA)
+    name: gdppc_comparison
+---
+
+# Define the namedtuple for the events
 Event = namedtuple('Event', ['year_range', 'y_text', 'text', 'color', 'ymax'])
 
-fig, ax = plt.subplots(dpi=300)
+fig, ax = plt.subplots(dpi=300, figsize=(10, 6))
 
 cntry = ['CHN', 'GBR', 'USA']
-ax = draw_interp_plots(gdppc[cntry].loc[1200:],
+ax = draw_interp_plots(gdppc[cntry].loc[1500:],
     'International $\'s','Year',
-    color_mapping, code_to_name, 2, True, ax)
+    color_mapping, code_to_name, 2, False, ax)
 
+# Define the parameters for the events and the text
 ylim = ax.get_ylim()[1]
 b_params = {'color':'grey', 'alpha': 0.2}
-t_params = {'fontsize': 5, 
+t_params = {'fontsize': 9, 
             'va':'center', 'ha':'center'}
 
+# Create a list of events to annotate
 events = [
-Event((1315, 1321), ylim + ylim*0.1, 'the Great Famine\n(1315-1321)', color_mapping['GBR'], 1),
-Event((1348, 1375), ylim + ylim*0.4, 'the Black Death\n(1348-1375)', color_mapping['GBR'], 1.05),
-Event((1650, 1652), ylim + ylim*0.1, 'the Navigation Act\n(1651)', color_mapping['GBR'], 1),
-Event((1848, 1850), ylim + ylim*0.8, 'the Repeal of Navigation Act\n(1849)', color_mapping['GBR'], 1.1),
-Event((1655, 1684), ylim + ylim*0.4, 'Closed-door Policy\n(1655-1684)', color_mapping['CHN'], 1.05),
-Event((1760, 1840), ylim + ylim*0.4, 'Industrial Revolution\n(1760-1840)', 'grey', 1.05),
-Event((1788, 1790), ylim + ylim*0.1, 'US Federation\n(1789)', color_mapping['USA'], 1),
-Event((1929, 1939), ylim + ylim*0.1, 'the Great Depression\n(1929–1939)', 'grey', 1),
-Event((1978, 1979), ylim + ylim*0.4, 'Reform and Opening-up\n(1978-1979)', color_mapping['CHN'], 1.05)
+    Event((1650, 1652), ylim + ylim*0.04, 
+          'the Navigation Act\n(1651)',
+          color_mapping['GBR'], 1),
+    Event((1655, 1684), ylim + ylim*0.13, 
+          'Closed-door Policy\n(1655-1684)', 
+          color_mapping['CHN'], 1.1),
+    Event((1848, 1850), ylim + ylim*0.22,
+          'the Repeal of Navigation Act\n(1849)', 
+          color_mapping['GBR'], 1.18),
+    Event((1765, 1791), ylim + ylim*0.04, 
+          'American Revolution\n(1765-1791)', 
+          color_mapping['USA'], 1),
+    Event((1760, 1840), ylim + ylim*0.13, 
+          'Industrial Revolution\n(1760-1840)', 
+          'grey', 1.1),
+    Event((1929, 1939), ylim + ylim*0.04, 
+          'the Great Depression\n(1929–1939)', 
+          'grey', 1),
+    Event((1978, 1979), ylim + ylim*0.13, 
+          'Reform and Opening-up\n(1978-1979)', 
+          color_mapping['CHN'], 1.1)
 ]
 
 def draw_events(events, ax):
@@ -260,12 +287,16 @@ def draw_events(events, ax):
                 event.y_text, event.text, 
                 color=event.color, **t_params)
         ax.axvspan(*event.year_range, color=event.color, alpha=0.2)
-        ax.axvline(event_mid, ymin=1, ymax=event.ymax, color=event.color, linestyle='-', clip_on=False, alpha=0.15)
+        ax.axvline(event_mid, ymin=1, 
+        ymax=event.ymax, color=event.color, 
+        linestyle='-', clip_on=False, alpha=0.15)
         
 # Draw events
 draw_events(events, ax)
 plt.show()
 ```
+
++++ {"user_expressions": []}
 
 (TODO: Finalize trend)
 We can see some interesting trends:
@@ -284,27 +315,50 @@ Trends to note:
 - Period of economic downturn after the Closed-door Policy by the Qing government
 - Missing out on the industrial revolution
 - Self-Strengthening Movement may help the growth but in a very mild way
-- Modern Chinese economic policies and the growth after the founding of the PRC (political stability) and after the Reform and Opening-up 
+- Modern Chinese economic policies and the growth after the founding of the PRC (political stability) and after the Reform and Opening-up
 
 ```{code-cell} ipython3
-fig, ax = plt.subplots(dpi=300)
+---
+mystnb:
+  figure:
+    caption: GDP per Capita (China)
+    name: gdppc_china
+---
+
+fig, ax = plt.subplots(dpi=300, figsize=(10, 6))
+
 cntry = ['CHN']
 ax = draw_interp_plots(gdppc[cntry].loc[1600:2000],
     'International $\'s','Year',
     color_mapping, code_to_name, 2, True, ax)
 
-# Define the namedtuple for the data points
 ylim = ax.get_ylim()[1]
 
 events = [
-Event((1655, 1684), ylim + ylim*0.05, 'Closed-door Policy\n(1655-1684)', 'tab:orange', 1),
-Event((1760, 1840), ylim + ylim*0.05, 'Industrial Revolution\n(1760-1840)', 'grey', 1),
-Event((1839, 1842), ylim + ylim*0.15, 'First Opium War\n(1839–1842)', 'tab:red', 1.05),
-Event((1861, 1895), ylim + ylim*0.25, 'Self-Strengthening Movement\n(1861–1895)', 'tab:blue', 1.09),
-Event((1939, 1945), ylim + ylim*0.05, 'WW 2\n(1939-1945)', 'tab:red', 1),
-Event((1948, 1950), ylim + ylim*0.2, 'Founding of PRC\n(1949)', color_mapping['CHN'], 1.07),
-Event((1958, 1962), ylim + ylim*0.35, 'Great Leap Forward\n(1958-1962)', 'tab:orange', 1.13),
-Event((1978, 1979), ylim + ylim*0.5, 'Reform and Opening-up\n(1978-1979)', 'tab:blue', 1.18)
+Event((1655, 1684), ylim + ylim*0.06, 
+      'Closed-door Policy\n(1655-1684)', 
+      'tab:orange', 1),
+Event((1760, 1840), ylim + ylim*0.06, 
+      'Industrial Revolution\n(1760-1840)', 
+      'grey', 1),
+Event((1839, 1842), ylim + ylim*0.2, 
+      'First Opium War\n(1839–1842)', 
+      'tab:red', 1.07),
+Event((1861, 1895), ylim + ylim*0.4, 
+      'Self-Strengthening Movement\n(1861–1895)', 
+      'tab:blue', 1.14),
+Event((1939, 1945), ylim + ylim*0.06, 
+      'WW 2\n(1939-1945)', 
+      'tab:red', 1),
+Event((1948, 1950), ylim + ylim*0.23, 
+      'Founding of PRC\n(1949)', 
+      color_mapping['CHN'], 1.08),
+Event((1958, 1962), ylim + ylim*0.5, 
+      'Great Leap Forward\n(1958-1962)', 
+      'tab:orange', 1.18),
+Event((1978, 1979), ylim + ylim*0.7, 
+      'Reform and Opening-up\n(1978-1979)', 
+      'tab:blue', 1.24)
 ]
 
 # Draw events
@@ -322,8 +376,15 @@ Trends to note:
 - Wars and business cycles (link to business cycles lecture)
 
 ```{code-cell} ipython3
-# Create the plot
-fig, ax = plt.subplots(dpi=300)
+---
+mystnb:
+  figure:
+    caption: GDP per Capita (UK and US)
+    name: gdppc_china
+---
+
+
+fig, ax = plt.subplots(dpi=300, figsize=(10, 6))
 
 cntry = ['GBR', 'USA']
 ax = draw_interp_plots(gdppc[cntry].loc[1500:2000],
@@ -334,20 +395,38 @@ ylim = ax.get_ylim()[1]
 
 # Create a list of data points=
 events = [
-    Event((1651, 1651), ylim + ylim*0.1, 'Navigation Act (UK)\n(1651)', 'tab:orange', 1),
-    Event((1788, 1790), ylim + ylim*0.4, 'Federation (US)\n(1789)', color_mapping['USA'], 1.055),
-    Event((1760, 1840), ylim + ylim*0.1, 'Industrial Revolution\n(1760-1840)', 'grey', 1),
-    Event((1848, 1850), ylim + ylim*0.6, 'Repeal of Navigation Act (UK)\n(1849)', 'tab:blue', 1.085),
-    Event((1861, 1865), ylim + ylim*1, 'American Civil War (US)\n(1861-1865)', color_mapping['USA'], 1.14),
-    Event((1914, 1918), ylim + ylim*0.1, 'WW 1\n(1914-1918)', 'tab:red', 1),
-    Event((1929, 1939), ylim + ylim*0.4, 'the Great Depression\n(1929–1939)', 'grey', 1.06),
-    Event((1939, 1945), ylim + ylim*0.8, 'WW 2\n(1939-1945)', 'tab:red', 1.11)
+    Event((1651, 1651), ylim + ylim*0.15, 
+          'Navigation Act (UK)\n(1651)', 
+          'tab:orange', 1),
+    Event((1765, 1791), ylim + ylim*0.15, 
+          'American Revolution\n(1765-1791)',
+          color_mapping['USA'], 1),
+    Event((1760, 1840), ylim + ylim*0.6, 
+          'Industrial Revolution\n(1760-1840)', 
+          'grey', 1.08),
+    Event((1848, 1850), ylim + ylim*1.1, 
+          'Repeal of Navigation Act (UK)\n(1849)', 
+          'tab:blue', 1.14),
+    Event((1861, 1865), ylim + ylim*1.8, 
+          'American Civil War\n(1861-1865)', 
+          color_mapping['USA'], 1.21),
+    Event((1914, 1918), ylim + ylim*0.15, 
+          'WW 1\n(1914-1918)', 
+          'tab:red', 1),
+    Event((1929, 1939), ylim + ylim*0.6, 
+          'the Great Depression\n(1929–1939)', 
+          'grey', 1.08),
+    Event((1939, 1945), ylim + ylim*1.1, 
+          'WW 2\n(1939-1945)', 
+          'tab:red', 1.14)
 ]
 
 # Draw events
 draw_events(events, ax)
 plt.show()
 ```
+
++++ {"user_expressions": []}
 
 ## The Industrialized World
 
@@ -509,6 +588,7 @@ ax = fig.gca()
 line_styles = ['-', '--', ':', '-.', '.', 'o', '-', '--', '-']
 ax = regionalgdppc.plot(ax = ax, style=line_styles)
 ax.set_yscale('log')
-plt.legend(loc='lower center', ncol=3, bbox_to_anchor=[0.5, -0.4])
+plt.legend(loc='lower center', 
+ncol=3, bbox_to_anchor=[0.5, -0.4])
 plt.show()
 ```
