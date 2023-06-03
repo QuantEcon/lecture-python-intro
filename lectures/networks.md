@@ -98,8 +98,8 @@ tags: [hide-input]
 ch1_data = qbn_data.introduction()
 export_figures = False
 
-DG = ch1_data['aircraft_network_2019']
-pos = ch1_data['aircraft_network_2019_pos']
+DG = ch1_data['aircraft_network']
+pos = ch1_data['aircraft_network_pos']
 
 centrality = nx.eigenvector_centrality(DG)
 node_total_exports = qbn_io.node_total_exports(DG)
@@ -407,9 +407,9 @@ mystnb:
     name: financial_network
 tags: [hide-input]
 ---
-Z = ch1_data["adjacency_matrix_2022"]["Z"]
-Z_visual= ch1_data["adjacency_matrix_2022"]["Z_visual"]
-countries = ch1_data["adjacency_matrix_2022"]["countries"]
+Z = ch1_data["adjacency_matrix"]["Z"]
+Z_visual= ch1_data["adjacency_matrix"]["Z_visual"]
+countries = ch1_data["adjacency_matrix"]["countries"]
 
 G = qbn_io.adjacency_matrix_to_graph(Z_visual, countries, tol=0.03)
 
