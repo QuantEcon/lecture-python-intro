@@ -350,7 +350,7 @@ The diagram of the Markov chain shows that it is **irreducible**
 
 In fact it has a periodic cycle --- the state cycles between the two states in a regular way.
 
-This is called [periodicity](https://www.randomservices.org/random/markov/Periodicity.html).
+This is called [periodicity](https://stats.libretexts.org/Bookshelves/Probability_Theory/Probability_Mathematical_Statistics_and_Stochastic_Processes_(Siegrist)/16%3A_Markov_Processes/16.05%3A_Periodicity_of_Discrete-Time_Chains#:~:text=A%20state%20in%20a%20discrete,limiting%20behavior%20of%20the%20chain.).
 
 It is still irreducible so ergodicity holds.
 
