@@ -486,7 +486,7 @@ ax = draw_interp_plots(gdppc[cntry].loc[start_year:end_year],
 
 +++ {"user_expressions": []}
 
-## The Modern Era (1970 to 2018)
+### The Modern Era (1970 to 2018)
 
 Gross Domestic Product (GDP)
 
