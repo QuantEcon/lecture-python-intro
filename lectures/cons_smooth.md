@@ -29,11 +29,11 @@ Let
 
  * $T \geq 2$  be a positive integer that constitutes a time-horizon
 
- * $\vec y = \{y_t\}_{t=0}^T$ be an exogenous  sequence of non-negative financial incomes $y_t$
+ * $y = \{y_t\}_{t=0}^T$ be an exogenous  sequence of non-negative financial incomes $y_t$
 
- * $\vec a = \{a_t\}_{t=0}^{T+1}$ be a sequence of financial wealth
+ * $a = \{a_t\}_{t=0}^{T+1}$ be a sequence of financial wealth
  
- * $\vec c = \{c_t\}_{t=0}^T$ be a sequence of non-negative consumption rates
+ * $c = \{c_t\}_{t=0}^T$ be a sequence of non-negative consumption rates
 
  * $R \geq 1$ be a fixed gross one period rate of return on financial assets
  
@@ -43,7 +43,7 @@ Let
 
  * $a_{T+1} \geq 0$  be a terminal condition on final assets
 
-A sequence of budget constraints constrains the triple of sequences $\vec y, \vec c, \vec a$
+A sequence of budget constraints constrains the triple of sequences $y, c, a$
 
 $$
 a_{t+1} = R (a_t+ y_t - c_t), \quad t =0, 1, \ldots T
@@ -51,10 +51,10 @@ $$
 
 Our model has the following logical flow
 
- * start with an exogenous income sequence $\vec y$, an initial financial wealth $a_0$, and 
- a candidate consumption path $\vec c$.
+ * start with an exogenous income sequence $y$, an initial financial wealth $a_0$, and 
+ a candidate consumption path $c$.
  
- * use equation (1) to compute a path $\vec a$ of financial wealth
+ * use equation (1) to compute a path $a$ of financial wealth
  
  * verify that $a_{T+1}$ satisfies the terminal wealth constraint $a_{T+1} \geq 0$. 
     
@@ -65,7 +65,7 @@ Our model has the following logical flow
 Below, we'll describe how to execute these steps using linear algebra -- matrix inversion and multiplication.
 
 
-We shall eventually evaluate alternative budget feasible consumption paths $\vec c$ using the following **welfare criterion**
+We shall eventually evaluate alternative budget feasible consumption paths $c$ using the following **welfare criterion**
 
 ```{math}
 :label: welfare
@@ -82,12 +82,14 @@ Here we use default parameters $R = 1.05$, $g_1 = 1$, $g_2 = 1/2$, and $T = 65$.
 We create a namedtuple to store these parameters with default values.
 
 ```{code-cell} ipython3
-ConsumptionSmoothing = namedtuple("ConsumptionSmoothing", ["R", "g1", "g2", "β_seq", "T"])
+ConsumptionSmoothing = namedtuple("ConsumptionSmoothing", 
+                        ["R", "g1", "g2", "β_seq", "T"])
 
 def creat_cs_model(R=1.05, g1=1, g2=1/2, T=65):
     β = 1/R
     β_seq = np.array([β**i for i in range(T+1)])
-    return ConsumptionSmoothing(R=1.05, g1=1, g2=1/2, β_seq=β_seq, T=65)
+    return ConsumptionSmoothing(R=1.05, g1=1, g2=1/2, 
+                                β_seq=β_seq, T=65)
 ```
 
 ## Difference equations with linear algebra
@@ -128,7 +130,7 @@ y_1 \cr y_2 \cr y_3 \cr \vdots \cr y_T
 $$
 
 
-Multiplying both sides by  inverse of the matrix on the left provides the solution
+Multiplying both sides by inverse of the matrix on the left provides the solution
 
 $$
 \begin{bmatrix} 
@@ -153,7 +155,7 @@ $$
 \begin{bmatrix} 
 1 & 0 & 0 & \cdots & 0 & 0 & 0 \cr
 -\lambda_1 & 1 & 0 & \cdots & 0 & 0 & 0 \cr
--\lambda_2 & -\lambda_2 & 1 & \cdots & 0 & 0 & 0 \cr
+-\lambda_2 & -\lambda_1 & 1 & \cdots & 0 & 0 & 0 \cr
  \vdots & \vdots & \vdots & \cdots & \vdots & \vdots \cr
 0 & 0 & 0 & \cdots & \lambda_2 & -\lambda_1 & 1 
 \end{bmatrix} 
@@ -389,14 +391,11 @@ $$
 
 This is our formula for $\xi_0$.  
 
-Evidently, if $\vec c^o$ is a budget-feasible consumption path, then so is $\vec c^o + \vec v$,
-where $\vec v$ is a budget-feasible variation.
+Evidently, if $c^o$ is a budget-feasible consumption path, then so is $c^o + v$,
+where $v$ is a budget-feasible variation.
 
-Given $R$, we thus have a two parameter class of budget feasible variations $\vec v$ that we can use
+Given $R$, we thus have a two parameter class of budget feasible variations $v$ that we can use
 to compute alternative consumption paths, then evaluate their welfare.
-
-**Note to John:** We can do some fun simple experiments with these variations -- we can use
-graphs to show that, when $\beta R = 1$ and  starting from the smooth path, all nontrivial budget-feasible variations lower welfare according to the criterion above.  
 
 Now let's compute and visualize the variations
 
