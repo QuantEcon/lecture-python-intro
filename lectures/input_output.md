@@ -44,7 +44,9 @@ import quantecon_book_networks
 import quantecon_book_networks.input_output as qbn_io
 import quantecon_book_networks.plotting as qbn_plt
 import quantecon_book_networks.data as qbn_data
+import matplotlib as mpl
 
+mpl.rcParams.update(mpl.rcParamsDefault)
 quantecon_book_networks.config("matplotlib")
 ```
 
@@ -644,6 +646,7 @@ where $z_0$ is a vector of labor services used in each industry.
 :class: dropdown
 ```
 For each i = 0,1,2 and j = 1,2
+
 $$
 a_{ij} = \frac{z_{ij}}{x_j}
 $$
