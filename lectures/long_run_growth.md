@@ -223,12 +223,6 @@ As you can see from this chart economic growth started in earnest in the 18th Ce
 How does this compare with other countries growth trajectories? Let's look at the United States (USA), United Kingdom (GBR), and China (CHN)
 
 ```{code-cell} ipython3
----
-mystnb:
-  figure:
-    caption: GDP per Capita
-    name: gdppc_usa_gbr_chn
----
 fig, ax = plt.subplots(dpi=300)
 
 cntry = ['CHN', 'GBR', 'USA']
@@ -250,79 +244,107 @@ ax.text(1360, ylim + ylim*0.5,
         color=color_mapping['GBR'], **t_params) 
 ax.axvspan(1348, 1375, color=color_mapping['GBR'], alpha=0.2)
 
-ax.text(1670, ylim + ylim*.2,
-        'the Navigation Act\n(1651-1696)',
+ax.text(1651, ylim + ylim*0.2,
+        'the Navigation Act\n(1651)',
         color=color_mapping['GBR'], **t_params) 
-ax.axvspan(1651, 1696, color=color_mapping['GBR'], alpha=0.2)
-ax.text(1665, ylim + ylim*.5,
+ax.axvspan(1651, 1651, color=color_mapping['GBR'], alpha=0.2)
+
+ax.text(1849, ylim + ylim*0.8,
+        'the Repeal of Navigation Act\n(1849)',
+        color=color_mapping['GBR'], **t_params) 
+ax.axvspan(1849, 1849, color=color_mapping['GBR'], alpha=0.2)
+
+ax.text(1665, ylim + ylim*0.5,
         'Closed-door Policy\n(1655-1684)',
         color=color_mapping['CHN'], **t_params) 
+
 ax.axvspan(1655, 1684, color=color_mapping['CHN'], alpha=0.2)
-ax.axvspan(1760, 1840, color='grey', alpha=0.2)
-
-ax.text(1789, ylim + ylim*0.6,
-        'US Federation\n(1789)',
-        color=color_mapping['USA'], **t_params) 
-ax.axvspan(1861, 1865, color=color_mapping['USA'], alpha=0.2)
-ax.axvspan(1939, 1945, color='grey', alpha=0.2)
-ax.axvspan(1978, 1979, color=color_mapping['CHN'], alpha=0.2)
-
-ax.text(1800, ylim + ylim*0.2,
+ax.text(1800, ylim + ylim*0.5,
         'Industrial Revolution\n(1740-1860)', 
         color='grey', **t_params) 
-ax.text(1941, ylim + ylim*0.2,
-        'World War II\n(1939-1945)', 
+ax.axvspan(1760, 1840, color='grey', alpha=0.2)
+
+ax.text(1789, ylim + ylim*0.2,
+        'US Federation\n(1789)',
+        color=color_mapping['USA'], **t_params) 
+ax.axvspan(1789, 1780, color=color_mapping['USA'], alpha=0.2)
+
+ax.text(1933, ylim + ylim*0.2,
+        'the Great Depression\n(1929–1939)', 
         color='grey', **t_params)
-ax.text(1978, ylim + ylim*0.8,
+ax.axvspan(1929, 1938.5, color='grey', alpha=0.2)
+
+ax.text(1978, ylim + ylim*0.5,
         'Reform and Opening-up\n(1978-1979)', 
         color=color_mapping['CHN'], **t_params)
+ax.axvspan(1978, 1979, color=color_mapping['CHN'], alpha=0.2)
+plt.show()
+```
 
+```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: GDP per Capita
+    name: gdppc_usa_gbr_chn
+---
+fig, ax = plt.subplots(dpi=300)
 
-# fig, ax = plt.subplots(dpi=300)
+cntry = ['CHN', 'GBR', 'USA']
+ax = draw_interp_plots(gdppc[cntry].loc[1200:],
+    'International $\'s','Year',
+    color_mapping, code_to_name, 2, False, ax)
 
-# cntry = ['CHN', 'GBR', 'USA']
-# gdppc_change = gdppc[cntry].pct_change(periods=1) * 100
-# ax = draw_interp_plots(gdppc_change.loc[1200:],
-#     'International $\'s','Year',
-#     color_mapping, code_to_name, 2, False, ax)
+b_params = {'color':'grey', 'alpha': 0.2}
+t_params = {'fontsize': 5, 
+            'va':'center', 'ha':'center'}
+ylim = ax.get_ylim()[1]
+ax.text(1320, ylim + ylim*0.03,
+        'the Great Famine\n(1315-1321)', 
+        color=color_mapping['GBR'], **t_params) 
+ax.axvspan(1315, 1321, color=color_mapping['GBR'], alpha=0.2)
 
-# b_params = {'color':'grey', 'alpha': 0.2}
-# t_params = {'fontsize': 5, 
-#             'va':'center', 'ha':'center'}
-# ylim = ax.get_ylim()[1]
-# ax.text(1320, ylim + ylim*0.2,
-#         'the Great Famine\n(1315-1321)', 
-#         color=color_mapping['GBR'], **t_params) 
-# ax.axvspan(1315, 1321, color=color_mapping['GBR'], alpha=0.2)
+ax.text(1360, ylim + ylim*0.08,
+        'the Black Death\n(1348-1375)', 
+        color=color_mapping['GBR'], **t_params) 
+ax.axvspan(1348, 1375, color=color_mapping['GBR'], alpha=0.2)
 
-# ax.text(1360, ylim + ylim*0.5,
-#         'the Black Death\n(1348-1375)', 
-#         color=color_mapping['GBR'], **t_params) 
-# ax.axvspan(1348, 1375, color=color_mapping['GBR'], alpha=0.2)
+ax.text(1651, ylim + ylim*0.03,
+        'the Navigation Act\n(1651)',
+        color=color_mapping['GBR'], **t_params) 
+ax.axvspan(1651, 1651, color=color_mapping['GBR'], alpha=0.2)
 
-# ax.text(1670, ylim + ylim*.2,
-#         'Closed-door Policy\n(1651-1696)',
-#         color=color_mapping['CHN'], **t_params) 
-# ax.axvspan(1651, 1696, color=color_mapping['GBR'], alpha=0.2)
+ax.text(1849, ylim + ylim*0.13,
+        'the Repeal of Navigation Act\n(1849)',
+        color=color_mapping['GBR'], **t_params) 
+ax.axvspan(1848, 1850, color=color_mapping['GBR'], alpha=0.2)
 
-# ax.axvspan(1655, 1684, color=color_mapping['CHN'], alpha=0.2)
-# ax.axvspan(1760, 1840, color='grey', alpha=0.2)
-# ax.axvspan(1861, 1865, color=color_mapping['USA'], alpha=0.2)
-# ax.axvspan(1939, 1945, color='grey', alpha=0.2)
-# ax.axvspan(1978, 1979, color=color_mapping['CHN'], alpha=0.2)
+ax.text(1665, ylim + ylim*0.08,
+        'Closed-door Policy\n(1655-1684)',
+        color=color_mapping['CHN'], **t_params) 
 
-# ax.text(1800, ylim + ylim*0.2,
-#         'Industrial Revolution\n(1740-1860)', 
-#         color='grey', **t_params) 
-# ax.text(1863, ylim + ylim*0.6,
-#         'Act of Union\n(1861-1865)',
-#         color=color_mapping['USA'], **t_params) 
-# ax.text(1941, ylim + ylim*0.2,
-#         'World War II\n(1939-1945)', 
-#         color='grey', **t_params)
-# ax.text(1978, ylim + ylim*0.8,
-#         'Reform and Opening-up\n(1978-1979)', 
-#         color=color_mapping['CHN'], **t_params)
+ax.axvspan(1655, 1684, color=color_mapping['CHN'], alpha=0.2)
+ax.text(1800, ylim + ylim*0.08,
+        'Industrial Revolution\n(1740-1860)', 
+        color='grey', **t_params) 
+ax.axvspan(1760, 1840, color='grey', alpha=0.2)
+
+ax.text(1789, ylim + ylim*0.03,
+        'US Federation\n(1789)',
+        color=color_mapping['USA'], **t_params) 
+ax.axvspan(1789, 1780, color=color_mapping['USA'], alpha=0.2)
+
+ax.text(1933, ylim + ylim*0.03,
+        'the Great Depression\n(1929–1939)', 
+        color='grey', **t_params)
+ax.axvspan(1929, 1938.5, color='grey', alpha=0.2)
+
+ax.text(1978, ylim + ylim*0.08,
+        'Reform and Opening-up\n(1978-1979)', 
+        color=color_mapping['CHN'], **t_params)
+ax.axvspan(1978, 1979, color=color_mapping['CHN'], alpha=0.2)
+
+plt.show()
 ```
 
 +++ {"user_expressions": []}
