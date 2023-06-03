@@ -187,7 +187,7 @@ def draw_interp_plots(series, xlabel, ylabel, color_mapping, code_to_name, lw, l
 
     for i, c in enumerate(cntry):
         
-        df_interpolated = series[c].interpolate()
+        df_interpolated = series[c].interpolate(limit_area='inside')
         interpolated_data = df_interpolated[series[c].isnull()]
         ax.plot(interpolated_data,
                 linestyle='--',
@@ -205,7 +205,7 @@ def draw_interp_plots(series, xlabel, ylabel, color_mapping, code_to_name, lw, l
         if logscale == True:
             ax.set_yscale('log')
             
-    ax.legend(loc='lower center', ncol=3, bbox_to_anchor=[0.5, -0.25])
+    ax.legend(loc='lower center', ncol=5, bbox_to_anchor=[0.5, -0.25])
     ax.set_xlabel(xlabel)
     ax.set_ylabel(ylabel)
     
@@ -220,7 +220,9 @@ def draw_interp_plots(series, xlabel, ylabel, color_mapping, code_to_name, lw, l
 
 As you can see from this chart economic growth started in earnest in the 18th Century and continued for the next two hundred years. 
 
-How does this compare with other countries growth trajectories? Let's look at the United States (USA), United Kingdom (GBR), and China (CHN)
+How does this compare with other countries growth trajectories? 
+
+Let's look at the United States (USA), United Kingdom (GBR), and China (CHN)
 
 ```{code-cell} ipython3
 fig, ax = plt.subplots(dpi=300)
@@ -233,6 +235,7 @@ ax = draw_interp_plots(gdppc[cntry].loc[1200:],
 b_params = {'color':'grey', 'alpha': 0.2}
 t_params = {'fontsize': 5, 
             'va':'center', 'ha':'center'}
+
 ylim = ax.get_ylim()[1]
 ax.text(1320, ylim + ylim*0.2,
         'the Great Famine\n(1315-1321)', 
@@ -299,6 +302,7 @@ b_params = {'color':'grey', 'alpha': 0.2}
 t_params = {'fontsize': 5, 
             'va':'center', 'ha':'center'}
 ylim = ax.get_ylim()[1]
+
 ax.text(1320, ylim + ylim*0.03,
         'the Great Famine\n(1315-1321)', 
         color=color_mapping['GBR'], **t_params) 
@@ -319,11 +323,11 @@ ax.text(1849, ylim + ylim*0.13,
         color=color_mapping['GBR'], **t_params) 
 ax.axvspan(1848, 1850, color=color_mapping['GBR'], alpha=0.2)
 
-ax.text(1665, ylim + ylim*0.08,
+ax.text(1670, ylim + ylim*0.08,
         'Closed-door Policy\n(1655-1684)',
         color=color_mapping['CHN'], **t_params) 
-
 ax.axvspan(1655, 1684, color=color_mapping['CHN'], alpha=0.2)
+
 ax.text(1800, ylim + ylim*0.08,
         'Industrial Revolution\n(1740-1860)', 
         color='grey', **t_params) 
@@ -347,10 +351,126 @@ ax.axvspan(1978, 1979, color=color_mapping['CHN'], alpha=0.2)
 plt.show()
 ```
 
+Looking at China GDP per capita levels from 1500 through to the 1970's showed a long period of declining GDP per capital levels from 1700's to early 20th century. (Closed Border / Inward Looking Domestic Focused Policies?)
+
+```{code-cell} ipython3
+fig, ax = plt.subplots(dpi=300)
+
+cntry = ['CHN']
+ax = draw_interp_plots(gdppc[cntry].loc[1600:2000],
+    'International $\'s','Year',
+    color_mapping, code_to_name, 2, True, ax)
+
+ylim = ax.get_ylim()[1]
+ax.text(1670, ylim + ylim*0.05,
+        'Closed-door Policy\n(1655-1684)',
+        color='tab:orange', **t_params) 
+ax.axvspan(1655, 1684, color='tab:orange', alpha=0.2)
+
+ax.text(1800, ylim + ylim*0.05,
+        'Industrial Revolution\n(1740-1860)', 
+        color='grey', **t_params) 
+ax.axvspan(1760, 1840, color='grey', alpha=0.2)
+
+ax.text(1841, ylim + ylim*0.15,
+        'First Opium War\n(1839–1842)', 
+        color='tab:red', **t_params) 
+ax.axvspan(1839, 1842, color='tab:red', alpha=0.2)
+
+ax.text(1880, ylim + ylim*0.25,
+        'Self-Strengthening Movement\n(1861–1895)', 
+        color='tab:blue', **t_params) 
+ax.axvspan(1861, 1895, color='tab:blue', alpha=0.2)
+
+ax.text(1942, ylim + ylim*0.05,
+        'WW 2\n(1939-1945)', 
+        color='tab:red', **t_params) 
+ax.axvspan(1939, 1945, color='tab:red', alpha=0.2)
+
+ax.text(1949, ylim + ylim*0.15,
+        'Founding of PRC\n(1949)', 
+        color=color_mapping['CHN'], **t_params) 
+ax.axvspan(1948, 1950, color=color_mapping['CHN'], alpha=0.2)
+
+ax.text(1960, ylim + ylim*0.25,
+        'Great Leap Forward\n(1958-1962)', 
+        color='tab:orange', **t_params)
+ax.axvspan(1958, 1962, color='tab:orange', alpha=0.2)
+
+ax.text(1978, ylim + ylim*0.35,
+        'Reform and Opening-up\n(1978-1979)', 
+        color='tab:blue', **t_params)
+ax.axvspan(1978, 1979, color='tab:blue', alpha=0.2)
+
+plt.show()
+```
+
+```{code-cell} ipython3
+fig, ax = plt.subplots(dpi=300)
+
+cntry = ['GBR', 'USA']
+ax = draw_interp_plots(gdppc[cntry].loc[1500:2000],
+    'International $\'s','Year',
+    color_mapping, code_to_name, 2, True, ax)
+
+ylim = ax.get_ylim()[1]
+
+ax.text(1651, ylim + ylim*0.1,
+        'Navigation Act (UK)\n(1651)',
+        color='tab:orange', **t_params) 
+ax.axvspan(1651, 1651, color='tab:orange', alpha=0.2)
+
+ax.text(1849, ylim + ylim*0.50,
+        'Repeal of Navigation Act (UK)\n(1849)',
+        color='tab:blue', **t_params) 
+ax.axvspan(1848, 1850, color='tab:blue', alpha=0.2)
+
+ax.text(1800, ylim + ylim*0.1,
+        'Industrial Revolution\n(1740-1860)', 
+        color='grey', **t_params) 
+ax.axvspan(1760, 1840, color='grey', alpha=0.2)
+
+ax.text(1789, ylim + ylim*0.35,
+        'Federation (US)\n(1789)',
+        color=color_mapping['USA'], **t_params) 
+ax.axvspan(1788, 1790, color=color_mapping['USA'], alpha=0.2)
+
+ax.text(1863, ylim + ylim*0.8,
+        'American Civil War (US)\n(1861-1865)',
+        color=color_mapping['USA'], **t_params) 
+ax.axvspan(1861, 1865, color=color_mapping['USA'], alpha=0.2)
+
+ax.text(1916, ylim + ylim*0.1,
+        'WW 1\n(1939-1945)', 
+        color='tab:red', **t_params) 
+ax.axvspan(1914, 1918, color='tab:red', alpha=0.2)
+
+
+ax.text(1933, ylim + ylim*0.35,
+        'the Great Depression\n(1929–1939)', 
+        color='grey', **t_params)
+ax.axvspan(1929, 1938.5, color='grey', alpha=0.2)
+
+ax.text(1942, ylim + ylim*0.65,
+        'WW 2\n(1939-1945)', 
+        color='tab:red', **t_params) 
+ax.axvspan(1939, 1945, color='tab:red', alpha=0.2)
+
+
+
+plt.show()
+```
+
 +++ {"user_expressions": []}
 
-As you can see the countries had similar GDP per capita levels with divergence starting around 1940. Australia's growth experience is both more continuous and less volatile post 1940.
+We can see some interesting trends:
 
+- Most of the growth happened in the past 150 years after the industrial revolution.
+- There is a divergence in the west and east during the process of industralization (from 1820 to 1940).
+- The gap is repeatly closing in the modern era.
+- The shift in the paradigm in policy is usually intertwined with the technological and political.
+
+We will look into these trends in more details
 
 ## The Industrialized World
 
@@ -377,25 +497,13 @@ mystnb:
     caption: GDP
     name: gdp1
 ---
-fig = plt.figure(dpi=110)
+fig, ax = plt.subplots(dpi=300)
 ax = fig.gca()
-cntry = ['DEU', 'SUN', 'USA', 'GBR', 'FRA', 'JPN', 'CHN']
-start_year, end_year = (1820,1940)
-line_color = ['blue', 'orange', 'green', 'red', 'yellow', 'purple', 'slategrey']
-gdp[cntry].loc[start_year:end_year].interpolate().plot(
-    ax = ax,
-    ylabel = 'International $\'s',
-    xlabel = 'Year',
-    color = line_color
-)
-
-# Build Custom Legend
-legend_elements = []
-for i,c in enumerate(cntry):
-    line = Line2D([0], [0], color=line_color[i], lw=2, label=code_to_name.loc[c]['country'])
-    legend_elements.append(line)
-ax.legend(handles=legend_elements, loc='lower center', ncol=4, bbox_to_anchor=[0.5, -0.26])
-plt.show()
+cntry = ['CHN', 'SUN', 'JPN', 'GBR', 'USA']
+start_year, end_year = (1820, 1940)
+ax = draw_interp_plots(gdp[cntry].loc[start_year:end_year],
+    'International $\'s','Year',
+    color_mapping, code_to_name, 2, False, ax)
 ```
 
 +++ {"user_expressions": []}
@@ -409,25 +517,13 @@ mystnb:
     caption: GDP per Capita
     name: gdppc1
 ---
-fig = plt.figure(dpi=110)
+fig, ax = plt.subplots(dpi=300)
 ax = fig.gca()
-cntry = ['DEU', 'SUN', 'USA', 'GBR', 'FRA', 'JPN', 'CHN']
-start_year, end_year = (1820,1940)
-line_color = ['blue', 'orange', 'green', 'red', 'yellow', 'purple', 'slategrey']
-gdppc[cntry].loc[start_year:end_year].interpolate().plot(
-    ax = ax,
-    ylabel = 'International $\'s',
-    xlabel = 'Year',
-    color = line_color
-)
-
-# Build Custom Legend
-legend_elements = []
-for i,c in enumerate(cntry):
-    line = Line2D([0], [0], color=line_color[i], lw=2, label=code_to_name.loc[c]['country'])
-    legend_elements.append(line)
-ax.legend(handles=legend_elements, loc='lower center', ncol=4, bbox_to_anchor=[0.5, -0.25])
-plt.show()
+cntry = ['CHN', 'SUN', 'JPN', 'GBR', 'USA']
+start_year, end_year = (1820, 1940)
+ax = draw_interp_plots(gdppc[cntry].loc[start_year:end_year],
+    'International $\'s','Year',
+    color_mapping, code_to_name, 2, False, ax)
 ```
 
 +++ {"user_expressions": []}
@@ -443,25 +539,13 @@ mystnb:
     caption: GDP
     name: gdp2
 ---
-fig = plt.figure(dpi=300)
+fig, ax = plt.subplots(dpi=300)
 ax = fig.gca()
-cntry = ['DEU', 'SUN', 'USA', 'GBR', 'FRA', 'JPN', 'CHN']
-start_year, end_year = (1970, 2018)
-line_color = ['blue', 'orange', 'green', 'red', 'yellow', 'purple', 'slategrey']
-gdp[cntry].loc[start_year:end_year].interpolate().plot(
-    ax = ax,
-    ylabel = 'International $\'s',
-    xlabel = 'Year',
-    color = line_color
-)
-
-# Build Custom Legend
-legend_elements = []
-for i,c in enumerate(cntry):
-    line = Line2D([0], [0], color=line_color[i], lw=2, label=code_to_name.loc[c]['country'])
-    legend_elements.append(line)
-ax.legend(handles=legend_elements, loc='lower center', ncol=4, bbox_to_anchor=[0.5, -0.25])
-plt.show()
+cntry = ['CHN', 'SUN', 'JPN', 'USA']
+start_year, end_year = (1970, 2020)
+ax = draw_interp_plots(gdp[cntry].loc[start_year:end_year],
+    'International $\'s','Year',
+    color_mapping, code_to_name, 2, False, ax)
 ```
 
 +++ {"user_expressions": []}
@@ -475,25 +559,13 @@ mystnb:
     caption: GDP per Capita
     name: gdppc2
 ---
-fig = plt.figure(dpi=300)
+fig, ax = plt.subplots(dpi=300)
 ax = fig.gca()
-cntry = ['DEU', 'SUN', 'USA', 'GBR', 'FRA', 'JPN', 'CHN']
-start_year, end_year = (1970, 2018)
-line_color = ['blue', 'orange', 'green', 'red', 'yellow', 'purple', 'slategrey']
-gdppc[cntry].loc[start_year:end_year].interpolate().plot(
-    ax = ax,
-    ylabel = 'International $\'s',
-    xlabel = 'Year',
-    color = line_color
-)
-
-# Build Custom Legend
-legend_elements = []
-for i,c in enumerate(cntry):
-    line = Line2D([0], [0], color=line_color[i], lw=2, label=code_to_name.loc[c]['country'])
-    legend_elements.append(line)
-ax.legend(handles=legend_elements, loc='lower center', ncol=3, bbox_to_anchor=[0.5, -0.3])
-plt.show()
+cntry = ['CHN', 'SUN', 'JPN', 'USA']
+start_year, end_year = (1970, 2020)
+ax = draw_interp_plots(gdppc[cntry].loc[start_year:end_year],
+    'International $\'s','Year',
+    color_mapping, code_to_name, 2, False, ax)
 ```
 
 +++ {"user_expressions": []}
@@ -501,14 +573,6 @@ plt.show()
 ## Other Interesting Plots
 
 Here are a collection of interesting plots that could be linked to interesting stories
-
-Looking at China GDP per capita levels from 1500 through to the 1970's showed a long period of declining GDP per capital levels from 1700's to early 20th century. (Closed Border / Inward Looking Domestic Focused Policies?)
-
-```{code-cell} ipython3
-fig = plt.figure(dpi=300)
-gdppc['CHN'].loc[1500:1980].interpolate().plot(ax=fig.gca())
-plt.show()
-```
 
 +++ {"user_expressions": []}
 
