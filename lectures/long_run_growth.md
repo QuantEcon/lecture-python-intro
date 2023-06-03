@@ -428,7 +428,7 @@ plt.show()
 
 +++ {"user_expressions": []}
 
-## The Industrialized World
+## The industrialized world
 
 (TODO: Write description for this section)
 
@@ -443,7 +443,7 @@ gdp = data['gdp'].unstack('countrycode')
 
 +++ {"user_expressions": []}
 
-### Early Industralization (1820 to 1940)
+### Early industralization (1820 to 1940)
 
 
 Gross Domestic Product
@@ -486,7 +486,7 @@ ax = draw_interp_plots(gdppc[cntry].loc[start_year:end_year],
 
 +++ {"user_expressions": []}
 
-### The Modern Era (1970 to 2018)
+### The modern era (1970 to 2018)
 
 Gross Domestic Product (GDP)
 
@@ -528,7 +528,7 @@ ax = draw_interp_plots(gdppc[cntry].loc[start_year:end_year],
 
 +++ {"user_expressions": []}
 
-## Regional Analysis
+## Regional analysis
 (TODO: Write descriptions for this section)
 
 The [Maddison Historical Statistics](https://www.rug.nl/ggdc/historicaldevelopment/maddison/) dataset also includes regional aggregations
