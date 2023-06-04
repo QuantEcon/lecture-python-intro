@@ -185,7 +185,7 @@ plt.show()
 We can now put this into a function to generate plots for a list of countries
 
 ```{code-cell} ipython3
-def draw_interp_plots(series, xlabel, ylabel, color_mapping, code_to_name, lw, logscale, ax):
+def draw_interp_plots(series, ylabel, xlabel, color_mapping, code_to_name, lw, logscale, ax):
 
     for i, c in enumerate(cntry):
         # Get the interpolated data
@@ -212,8 +212,8 @@ def draw_interp_plots(series, xlabel, ylabel, color_mapping, code_to_name, lw, l
     
     # Draw the legend outside the plot
     ax.legend(loc='lower center', ncol=5, bbox_to_anchor=[0.5, -0.25])
-    ax.set_xlabel(xlabel)
     ax.set_ylabel(ylabel)
+    ax.set_xlabel(xlabel)
     
     return ax
 ```
