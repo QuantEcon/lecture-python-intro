@@ -1,14 +1,30 @@
-## A Fiscal Theory of the Price Level
+---
+jupytext:
+  text_representation:
+    extension: .md
+    format_name: myst
+    format_version: 0.13
+    jupytext_version: 1.14.5
+kernelspec:
+  display_name: Python 3 (ipykernel)
+  language: python
+  name: python3
+---
 
++++ {"user_expressions": []}
 
-### Introduction
+# A Fiscal Theory of the Price Level
+
+## Introduction
 
 As usual, we'll start by importing some Python modules.
 
-```python
+```{code-cell} ipython3
 import numpy as np
 import matplotlib.pyplot as plt
 ```
+
++++ {"user_expressions": []}
 
 <!-- #region -->
 We'll use linear algebra first to explain and then do  some experiments with  a "fiscal theory of the price level".
@@ -38,7 +54,7 @@ As in several other lectures, the only linear algebra that we'll be  using
 are matrix multplication and matrix inversion.
 
 
-### Structure of the Model
+## Structure of the Model
 
 
 The model consists of
@@ -183,7 +199,7 @@ Equation {eq}`eq:mcum` shows that the log of the money supply at $t$ equals the 
 plus accumulation of rates of money growth between times $0$ and $t$.
 
 
-### Continuation values
+## Continuation values
 
 
 To determine the continuation inflation rate $\pi_{T+1}^*$ we shall proceed by applying the following infinite-horizon
@@ -230,7 +246,7 @@ $$
 
 so that, in terms of our notation and formula for $\theta_{T+1}^*$ above, $\tilde \gamma = 1$. 
 
-#### Experiment 1:  foreseen sudden stabilization
+#### Experiment 1: foreseen sudden stabilization
 
 In this experiment, we'll study how, when $\alpha >0$, a foreseen inflation stabilization has effects on inflation that proceed it.
 
@@ -259,8 +275,6 @@ Such a  completely unanticipated shock is popularly known as an "MIT shock".
 
 The mental experiment involves switching at at time $T_1$ from an initial "continuation path" for $\{\mu_t, \pi_t\} $ to another path that involves a permanently lower inflation frate.   
 
-
-
 **Initial Path:** $\mu_t = \mu_0$ for all $t \geq 0$. So this path is for $\{\mu_t\}_{t=0}^\infty$; the associated 
 path for $\pi_t$ has $\pi_t = \mu_0$. 
 
@@ -272,17 +286,12 @@ To capture a "completely unanticipated permanent  shock to the $\{\mu\}$ process
 that emerges under path 2 for $t \geq T_1$ to the $\mu_t, \pi_t$ path that had emerged under path 1 for $ t=0, \ldots,
 T_1 -1$.
 
-
 We can do the MIT shock calculations entirely by hand. 
 
 Thus, for path 1, $\pi_t = \mu_0 $ for all $t \in  [0, T_1-1]$, while for path 2,
 $\mu_s = \mu^*$ for all $s \geq T_1$.  
 
-
-
-
-#### The log price level
-
+### The log price level
 
 We can use equations {eq}`eq:caganmd` and {eq}`eq:ree`
 to discover that the log of the price level satisfies
@@ -304,7 +313,7 @@ equation {eq}`eq:pformula2`, the log of real balances jumps
 But in order for $m_t - p_t$ to jump, which variable jumps, $m_{T_1}$ or $p_{T_1}$?
 
 
-####  What jumps?
+###  What jumps?
 
 What jumps at $T_1$?
 
@@ -328,8 +337,6 @@ In various research papers about stabilizations of high inflations, the jump in 
 "the velocity dividend" that a government reaps from implementin a regime change that sustains a permanently lower inflation rate.
 
 #### Technical Details about whether $p$ or $m$ jumps at $T_1$
-
-
 
 We have noted that  with a constant expected forward sequence $\mu_s = \bar \mu$ for $s\geq t$, $\pi_{t} =\bar{\mu}$.
 
@@ -355,9 +362,6 @@ $$ m_{T_{1}}=p_{T_{1}}-\alpha\pi_{T_{1}}=\left(m_{T_{1}-1}+\mu_{0}\right)+\alpha
 We then compute for the remaining $T-T_{1}$ periods with $\mu_{s}=\mu^{*},\forall s\geq T_{1}$ and the initial condition $m_{T_{1}}$ from above.
 
 
-
-
-
 #### Experiment 3
 
 **Foreseen gradual stabilization**
@@ -376,7 +380,7 @@ $$
 Let's prepare a Python class to perform our experiments by implementing our formulas using linear algebra
 <!-- #endregion -->
 
-```python
+```{code-cell} ipython3
 class Cagan_REE:
     " Solve the rational expectation version of Cagan model in finite time. "
     
@@ -415,7 +419,7 @@ def solve_and_plot(m0, α, T, μ_seq):
     T_seq = range(T+2)
     
     
-    fig, ax = plt.subplots(2, 3, figsize=[10,5], dpi=200)
+    fig, ax = plt.subplots(2, 3, figsize=[10, 5], dpi=200)
     ax[0,0].plot(T_seq[:-1], μ_seq)
     ax[0,1].plot(T_seq, π_seq)
     ax[0,2].plot(T_seq, m_seq - p_seq)
@@ -427,7 +431,7 @@ def solve_and_plot(m0, α, T, μ_seq):
     ax[0,1].set_ylabel(r'$\pi$')
     ax[0,1].set_xlabel(r'$t$')
     ax[0,2].set_xlabel(r'$t$')
-    ax[0,2].set_ylabel(r'$m - p}$')
+    ax[0,2].set_ylabel(r'$m - p$')
     ax[1,0].set_ylabel(r'$m$')
     ax[1,0].set_xlabel(r'$t$')
     ax[1,1].set_ylabel(r'$p$')
@@ -440,7 +444,7 @@ def solve_and_plot(m0, α, T, μ_seq):
     return π_seq, m_seq, p_seq
 ```
 
-```python
+```{code-cell} ipython3
 # parameters
 T = 80
 T1 = 60
@@ -451,18 +455,22 @@ m0 = 1
 μ_star = 0
 ```
 
++++ {"user_expressions": []}
+
 ### Experiment 1
 
 We'll start by executing a version of our "experiment 1" in which the government  implements a **foreseen** sudden permanent reduction in the rate of money creation at time $T_1$.  
 
 The following code  performs the experiment and plots outcomes.
 
-```python
+```{code-cell} ipython3
 μ_seq_1 = np.append(μ0*np.ones(T1+1), μ_star*np.ones(T-T1))
 
 # solve and plot
 π_seq_1, m_seq_1, p_seq_1 = solve_and_plot(m0=m0, α=α, T=T, μ_seq=μ_seq_1)
 ```
+
++++ {"user_expressions": []}
 
 The  plot of the money growth rate $\mu_t$ in the top level panel portrays
 a sudden reduction from $.5$ to $0$ at time $T_1 = 60$.  
@@ -491,7 +499,7 @@ are identical to those for experiment 1, the foreseen suddent stabilization.
 The following code does the calculations and plots outcomes.
 <!-- #endregion -->
 
-```python
+```{code-cell} ipython3
 # path 1
 μ_seq_3_path1 = μ0 * np.ones(T+1)
 
@@ -519,27 +527,29 @@ mc = Cagan_REE(m0=m_T1, α=α, T=T-1-T1, μ_seq=μ_seq_3_cont)
 
 m_seq_3_regime2 = np.concatenate([m_seq_3_path1[:T1+1], m_seq_3_cont2])
 p_seq_3_regime2 = np.concatenate([p_seq_3_path1[:T1+1], p_seq_3_cont2])
-```
 
-```python
 T_seq = range(T+2)
 
 # plot both regimes
 fig, ax = plt.subplots(2, 3, figsize=[10,5], dpi=200)
-ax[0,0].plot(T_seq[:-1], μ_seq_3)
-ax[0,1].plot(T_seq, π_seq_3)
-ax[0,2].plot(T_seq, m_seq_3_regime1 - p_seq_3_regime1)
-ax[1,0].plot(T_seq, m_seq_3_regime1, label='Smooth $m_{T_1}$')
-ax[1,0].plot(T_seq, m_seq_3_regime2, label='Jumpy $m_{T_1}$')
-ax[1,1].plot(T_seq, p_seq_3_regime1, label='Smooth $m_{T_1}$')
-ax[1,1].plot(T_seq, p_seq_3_regime2, label='Jumpy $m_{T_1}$')
+
+for i in range(2):
+    for i in range(3):
+        
+        ax[0,0].plot(T_seq[:-1], μ_seq_3)
+        ax[0,1].plot(T_seq, π_seq_3)
+        ax[0,2].plot(T_seq, m_seq_3_regime1 - p_seq_3_regime1)
+        ax[1,0].plot(T_seq, m_seq_3_regime1, label='Smooth $m_{T_1}$')
+        ax[1,0].plot(T_seq, m_seq_3_regime2, label='Jumpy $m_{T_1}$')
+        ax[1,1].plot(T_seq, p_seq_3_regime1, label='Smooth $m_{T_1}$')
+        ax[1,1].plot(T_seq, p_seq_3_regime2, label='Jumpy $m_{T_1}$')
 
 ax[0,0].set_ylabel(r'$\mu$')
 ax[0,0].set_xlabel(r'$t$')
 ax[0,1].set_ylabel(r'$\pi$')
 ax[0,1].set_xlabel(r'$t$')
 ax[0,2].set_xlabel(r'$t$')
-ax[0,2].set_ylabel(r'$m - p}$')
+ax[0,2].set_ylabel(r'$m - p$')
 ax[1,0].set_ylabel(r'$m$')
 ax[1,0].set_xlabel(r'$t$')
 ax[1,1].set_ylabel(r'$p$')
@@ -552,6 +562,8 @@ for i,j in zip([1,1], [0,1]):
 plt.tight_layout()
 plt.show()
 ```
+
++++ {"user_expressions": []}
 
 We invite you to compare these graphs with corresponding ones for the foreseen stabilization analyzed in experiment 1 above.  
 
@@ -575,7 +587,7 @@ The next code generates a multi-panel graph that includes outcomes of both exper
 That allows us to assess how important it is to understand whether the sudden permanent drop in $\mu_t$ at $t=T_1$ is fully unanticipated, as in experiment 1, or completely
 unanticipated, as in experiment 2.
 
-```python
+```{code-cell} ipython3
 T_seq = range(T+2)
 
 # plot both regimes
@@ -593,7 +605,7 @@ ax[0,0].set_xlabel(r'$t$')
 ax[0,1].set_ylabel(r'$\pi$')
 ax[0,1].set_xlabel(r'$t$')
 ax[0,2].set_xlabel(r'$t$')
-ax[0,2].set_ylabel(r'$m - p}$')
+ax[0,2].set_ylabel(r'$m - p$')
 ax[1,0].set_ylabel(r'$m$')
 ax[1,0].set_xlabel(r'$t$')
 ax[1,1].set_ylabel(r'$p$')
@@ -607,13 +619,15 @@ plt.tight_layout()
 plt.show()
 ```
 
++++ {"user_expressions": []}
+
 ### Experiment 3
 
 Next we perform an experiment in which there is a perfectly foreseen **gradual** decrease in the rate of growth of the money supply.
 
 The following  code does the calculations and plots the results.
 
-```python
+```{code-cell} ipython3
 # parameters
 ϕ = 0.9
 μ_seq_2 = np.array([ϕ**t * μ0 + (1-ϕ**t)*μ_star for t in range(T)])
@@ -624,7 +638,7 @@ The following  code does the calculations and plots the results.
 π_seq_2, m_seq_2, p_seq_2 = solve_and_plot(m0=m0, α=α, T=T, μ_seq=μ_seq_2)
 ```
 
-```python
+```{code-cell} ipython3
 # compare foreseen vs unforeseen shock
 fig, ax = plt.subplots(2, 3, figsize=[12,6], dpi=200)
 ax[0,0].plot(T_seq[:-1], μ_seq_3)
