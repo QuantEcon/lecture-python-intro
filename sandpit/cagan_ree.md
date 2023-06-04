@@ -1,4 +1,4 @@
-## A fiscal theory of the price level
+## A Fiscal Theory of the Price Level
 
 
 ### Introduction
@@ -210,7 +210,7 @@ $$ (eq:piterm)
 
 where we require that $\vert \gamma^* \delta \vert < 1$.
 
-### Some Quantitative Experiments
+### Some quantitative experiments
 
 In the experiments below, we'll use formula {eq}`eq:piterm` as our terminal condition for expected inflation.
 
@@ -230,9 +230,7 @@ $$
 
 so that, in terms of our notation and formula for $\theta_{T+1}^*$ above, $\tilde \gamma = 1$. 
 
-#### Experiment 1
-
-**A foreseen sudden stabilization**
+#### Experiment 1:  foreseen sudden stabilization
 
 In this experiment, we'll study how, when $\alpha >0$, a foreseen inflation stabilization has effects on inflation that proceed it.
 
@@ -251,9 +249,7 @@ $$
 $$
 
 
-#### Experiment 2
-
-**An unforeseen sudden stabilization**
+#### Experiment 2: an unforeseen sudden stabilization
 
 This experiment deviates a little bit from a pure version our "perfect foresight"
 assumption by assuming that a sudden permanent reduction in $\mu_t$ like that
@@ -285,7 +281,7 @@ $\mu_s = \mu^*$ for all $s \geq T_1$.
 
 
 
-#### The Log Price Level
+#### The log price level
 
 
 We can use equations {eq}`eq:caganmd` and {eq}`eq:ree`
@@ -308,7 +304,11 @@ equation {eq}`eq:pformula2`, the log of real balances jumps
 But in order for $m_t - p_t$ to jump, which variable jumps, $m_{T_1}$ or $p_{T_1}$?
 
 
-#### Jump in $p_{T_1}$ or jump in $m_{T_1}$?
+####  What jumps?
+
+What jumps at $T_1$?
+
+Is it $p_{T_1}$ or  $m_{T_1}$?
 
 
 If we insist that the money supply $m_{T_1}$ is locked at its value $m_{T_1}^1$ inherited from the past, then formula {eq}`eq:pformula2` implies  that the price level jumps downward  at time $T_1$, to coincide with the downward jump in 
