@@ -27,16 +27,7 @@ In addition to what's in Anaconda, this lecture will need the following librarie
 :tags: [hide-output]
 
 !pip install quantecon
-!pip install graphviz
 ```
-
-```{admonition} graphviz
-:class: warning
-If you are running this lecture locally it requires [graphviz](https://www.graphviz.org)
-to be installed on your computer. Installation instructions for graphviz can be found
-[here](https://www.graphviz.org/download/) 
-```
-
 
 ## Overview
 
@@ -65,7 +56,6 @@ import matplotlib.pyplot as plt
 plt.rcParams["figure.figsize"] = (11, 5)  # set default figure size
 import quantecon as qe
 import numpy as np
-from graphviz import Digraph
 import networkx as nx
 from matplotlib import cm
 import matplotlib as mpl
@@ -98,26 +88,12 @@ that is, if $x$ and $y$ communicate for all $(x, y)$ in $S \times S$.
 For example, consider the following transition probabilities for wealth of a
 fictitious set of households
 
-```{code-cell} ipython3
-:tags: [hide-input]
-
-dot = Digraph(comment='Graph')
-dot.attr(rankdir='LR')
-dot.node("poor")
-dot.node("middle class")
-dot.node("rich")
-
-dot.edge("poor", "poor", label="0.9")
-dot.edge("poor", "middle class", label="0.1")
-dot.edge("middle class", "poor", label="0.4")
-dot.edge("middle class", "middle class", label="0.4")
-dot.edge("middle class", "rich", label="0.2")
-dot.edge("rich", "poor", label="0.1")
-dot.edge("rich", "middle class", label="0.1")
-dot.edge("rich", "rich", label="0.8")
-
-dot
+```{image} /_static/lecture_specific/markov_chains_II/Irre_1.png
+:name: mc_irre1
+:align: center
 ```
+
+
 
 We can translate this into a stochastic matrix, putting zeros where
 there's no edge between nodes
@@ -147,23 +123,9 @@ mc.is_irreducible
 
 Here's a more pessimistic scenario in which  poor people remain poor forever
 
-```{code-cell} ipython3
-:tags: [hide-input]
-
-dot = Digraph(comment='Graph')
-dot.attr(rankdir='LR')
-dot.node("poor")
-dot.node("middle class")
-dot.node("rich")
-
-dot.edge("poor", "poor", label="1.0")
-dot.edge("middle class", "poor", label="0.1")
-dot.edge("middle class", "middle class", label="0.8")
-dot.edge("middle class", "rich", label="0.1")
-dot.edge("rich", "middle class", label="0.2")
-dot.edge("rich", "rich", label="0.8")
-
-dot
+```{image} /_static/lecture_specific/markov_chains_II/Irre_2.png
+:name: mc_irre2
+:align: center
 ```
 
 This stochastic matrix is not irreducible since, for example, rich is not
@@ -392,23 +354,14 @@ $$
 
 The diagram of the Markov chain shows that it is **irreducible**
 
-```{code-cell} ipython3
-:tags: [hide-input]
-
-dot = Digraph(comment='Graph')
-dot.attr(rankdir='LR')
-dot.node("0")
-dot.node("1")
-
-dot.edge("0", "1", label="1.0", color='red')
-dot.edge("1", "0", label="1.0", color='red')
-
-dot
+```{image} /_static/lecture_specific/markov_chains_II/example4.png
+:name: mc_example4
+:align: center
 ```
 
 In fact it has a periodic cycle --- the state cycles between the two states in a regular way.
 
-This is called [periodicity](https://www.randomservices.org/random/markov/Periodicity.html).
+This is called [periodicity](https://stats.libretexts.org/Bookshelves/Probability_Theory/Probability_Mathematical_Statistics_and_Stochastic_Processes_(Siegrist)/16%3A_Markov_Processes/16.05%3A_Periodicity_of_Discrete-Time_Chains#:~:text=A%20state%20in%20a%20discrete,limiting%20behavior%20of%20the%20chain.).
 
 It is still irreducible so ergodicity holds.
 

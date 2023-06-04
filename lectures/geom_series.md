@@ -561,7 +561,7 @@ For a reason soon to be revealed, we assume that $G < R$.
 The **present value** of the lease is
 
 $$
-\begin{aligned} p_0  & = x_0 + x_1/R + x_2/(R^2) + \ddots \\
+\begin{aligned} p_0  & = x_0 + x_1/R + x_2/(R^2) + \cdots \\
                  & = x_0 (1 + G R^{-1} + G^2 R^{-2} + \cdots ) \\
                  & = x_0 \frac{1}{1 - G R^{-1}} \end{aligned}
 $$
