@@ -4,7 +4,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.14.5
+    jupytext_version: 1.14.4
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
@@ -532,17 +532,14 @@ T_seq = range(T+2)
 
 # plot both regimes
 fig, ax = plt.subplots(2, 3, figsize=[10,5], dpi=200)
-
-for i in range(2):
-    for i in range(3):
-        
-        ax[0,0].plot(T_seq[:-1], μ_seq_3)
-        ax[0,1].plot(T_seq, π_seq_3)
-        ax[0,2].plot(T_seq, m_seq_3_regime1 - p_seq_3_regime1)
-        ax[1,0].plot(T_seq, m_seq_3_regime1, label='Smooth $m_{T_1}$')
-        ax[1,0].plot(T_seq, m_seq_3_regime2, label='Jumpy $m_{T_1}$')
-        ax[1,1].plot(T_seq, p_seq_3_regime1, label='Smooth $m_{T_1}$')
-        ax[1,1].plot(T_seq, p_seq_3_regime2, label='Jumpy $m_{T_1}$')
+ 
+ax[0,0].plot(T_seq[:-1], μ_seq_3)
+ax[0,1].plot(T_seq, π_seq_3)
+ax[0,2].plot(T_seq, m_seq_3_regime1 - p_seq_3_regime1)
+ax[1,0].plot(T_seq, m_seq_3_regime1, label='Smooth $m_{T_1}$')
+ax[1,0].plot(T_seq, m_seq_3_regime2, label='Jumpy $m_{T_1}$')
+ax[1,1].plot(T_seq, p_seq_3_regime1, label='Smooth $m_{T_1}$')
+ax[1,1].plot(T_seq, p_seq_3_regime2, label='Jumpy $m_{T_1}$')
 
 ax[0,0].set_ylabel(r'$\mu$')
 ax[0,0].set_xlabel(r'$t$')
