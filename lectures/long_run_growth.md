@@ -4,7 +4,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.14.5
+    jupytext_version: 1.14.4
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
@@ -237,7 +237,6 @@ mystnb:
     caption: GDP per Capita (China, UK, USA)
     name: gdppc_comparison
 ---
-
 # Define the namedtuple for the events
 Event = namedtuple('Event', ['year_range', 'y_text', 'text', 'color', 'ymax'])
 
@@ -324,7 +323,6 @@ mystnb:
     caption: GDP per Capita (China)
     name: gdppc_china
 ---
-
 fig, ax = plt.subplots(dpi=300, figsize=(10, 6))
 
 cntry = ['CHN']
@@ -382,7 +380,6 @@ mystnb:
     caption: GDP per Capita (UK and US)
     name: gdppc_ukus
 ---
-
 
 fig, ax = plt.subplots(dpi=300, figsize=(10, 6))
 
