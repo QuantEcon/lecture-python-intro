@@ -152,7 +152,7 @@ Below we shall construct a Python class with the following attributes:
      * a scalar "wealth" $W$ with default value $0$
 
 
-The class will include a test to make sure that $b  > > \Pi e $ and raise an exception if it is violated
+The class will include a test to make sure that $b \gg \Pi e $ and raise an exception if it is violated
 (at some threshold level we'd have to specify).
 
  * **A Person** in the form of a pair that consists of
@@ -167,7 +167,7 @@ The class will include a test to make sure that $b  > > \Pi e $ and raise an exc
        * $m=2$ for our illustrations of a pure exchange economy
 
     * an equilibrium price vector $p$ (normalized somehow)
-    * an equilibrium allocation $c^1, c^2, \ldots, c^m$ -- a collection of $m$ vectors of dimension $n \times 1$
+    * an equilibrium allocation $c_1, c_2, \ldots, c_m$ -- a collection of $m$ vectors of dimension $n \times 1$
 
 Now let's proceed to code.
 
@@ -250,7 +250,7 @@ Next we use the class ``ExchangeEconomy`` defined above to study
 
 ### Two-person economy without production
 
-Here we tudy how competitive equilibrium $p, c^1, c^2$ respond to different $b^i$ and $e^i$, $i \in \{1, 2\}.
+Here we study how competitive equilibrium $p, c_1, c_2$ respond to different $b_i$ and $e_i$, $i \in \{1, 2\}$.
 
 ```{code-cell} ipython3
 Π = np.array([[1, 0],
