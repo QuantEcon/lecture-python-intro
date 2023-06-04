@@ -331,7 +331,7 @@ In fact we have already seen the theorem in action before in {ref}`the markov ch
 
 We are now prepared to bridge the languages spoken in the two lectures.
 
-A primitive matrix is both irreducible (or strongly connected in the language of {ref}`graph theory`<strongly_connected>) and aperiodic.
+A primitive matrix is both irreducible (or strongly connected in the language of {ref}`graph theory<strongly_connected>` and aperiodic.
 
 So Perron-Frobenius Theorem explains why both Imam and Temple matrix and Hamilton matrix converge to a stationary distribution, which is the Perron projection of the two matrices
 
