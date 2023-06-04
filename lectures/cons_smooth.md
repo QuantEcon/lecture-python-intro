@@ -4,7 +4,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.14.4
+    jupytext_version: 1.14.5
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
@@ -13,7 +13,9 @@ kernelspec:
 
 +++ {"user_expressions": []}
 
-## Some dynamic models with matrices
+# Consumption smoothing
+
+## Overview
 
 In this notebook, we'll present  some useful models of economic dynamics using only linear algebra -- matrix multiplication and matrix inversion.
 
@@ -22,21 +24,20 @@ In this notebook, we'll present  some useful models of economic dynamics using o
 ```{code-cell} ipython3
 import numpy as np
 import matplotlib.pyplot as plt
+from collections import namedtuple
 ```
 
 +++ {"user_expressions": []}
-
-## Consumption smoothing
 
 Let 
 
  * $T \geq 2$  be a positive integer that constitutes a time-horizon
 
- * $\vec y = \{y_t\}_{t=0}^T$ be an exogenous  sequence of non-negative financial incomes $y_t$
+ * $y = \{y_t\}_{t=0}^T$ be an exogenous  sequence of non-negative financial incomes $y_t$
 
- * $\vec a = \{a_t\}_{t=0}^{T+1}$ be a sequence of financial wealth
+ * $a = \{a_t\}_{t=0}^{T+1}$ be a sequence of financial wealth
  
- * $\vec c = \{c_t\}_{t=0}^T$ be a sequence of non-negative consumption rates
+ * $c = \{c_t\}_{t=0}^T$ be a sequence of non-negative consumption rates
 
  * $R \geq 1$ be a fixed gross one period rate of return on financial assets
  
@@ -46,7 +47,7 @@ Let
 
  * $a_{T+1} \geq 0$  be a terminal condition on final assets
 
-A sequence of budget constraints constrains the triple of sequences $\vec y, \vec c, \vec a$
+A sequence of budget constraints constrains the triple of sequences $y, c, a$
 
 $$
 a_{t+1} = R (a_t+ y_t - c_t), \quad t =0, 1, \ldots T
@@ -54,10 +55,10 @@ $$
 
 Our model has the following logical flow
 
- * start with an exogenous income sequence $\vec y$, an initial financial wealth $a_0$, and 
- a candidate consumption path $\vec c$.
+ * start with an exogenous income sequence $y$, an initial financial wealth $a_0$, and 
+ a candidate consumption path $c$.
  
- * use equation (1) to compute a path $\vec a$ of financial wealth
+ * use equation (1) to compute a path $a$ of financial wealth
  
  * verify that $a_{T+1}$ satisfies the terminal wealth constraint $a_{T+1} \geq 0$. 
     
@@ -68,26 +69,43 @@ Our model has the following logical flow
 Below, we'll describe how to execute these steps using linear algebra -- matrix inversion and multiplication.
 
 
-We shall eventually evaluate alternative budget feasible consumption paths $\vec c$ using the following **welfare criterion**
+We shall eventually evaluate alternative budget feasible consumption paths $c$ using the following **welfare criterion**
 
-$$
+```{math}
+:label: welfare
+
 W = \sum_{t=0}^T \beta^t (g_1 c_t - \frac{g_2}{2} c_t^2 )
-$$
+```
 
 where $g_1 > 0, g_2 > 0$.  
 
 We shall see that when $\beta R = 1$ (a condition assumed by Milton Friedman and Robert Hall), this criterion assigns higher welfare to **smoother** consumption paths.
 
+Here we use default parameters $R = 1.05$, $g_1 = 1$, $g_2 = 1/2$, and $T = 65$. 
+
+We create a namedtuple to store these parameters with default values.
+
+```{code-cell} ipython3
+ConsumptionSmoothing = namedtuple("ConsumptionSmoothing", 
+                        ["R", "g1", "g2", "β_seq", "T"])
+
+def creat_cs_model(R=1.05, g1=1, g2=1/2, T=65):
+    β = 1/R
+    β_seq = np.array([β**i for i in range(T+1)])
+    return ConsumptionSmoothing(R=1.05, g1=1, g2=1/2, 
+                                β_seq=β_seq, T=65)
+```
+
 +++ {"user_expressions": []}
 
-## Difference equations with linear algebra ##
+## Difference equations with linear algebra
 
 As a warmup, we'll describe a useful way of representing and "solving" linear difference equations. 
 
 To generate some $y$ vectors, we'll just write down a linear difference equation
 with appropriate initial conditions and then   use linear algebra to solve it.
 
-#### First-order difference equation
+### First-order difference equation
 
 We'll start with a first-order linear difference equation for $\{y_t\}_{t=0}^T$:
 
@@ -118,11 +136,11 @@ y_1 \cr y_2 \cr y_3 \cr \vdots \cr y_T
 $$
 
 
+Multiplying both sides by inverse of the matrix on the left provides the solution
 
+```{math}
+:label: fst_ord_inverse
 
-Multiplying both sides by  inverse of the matrix on the left provides the solution
-
-$$
 \begin{bmatrix} 
 y_1 \cr y_2 \cr y_3 \cr \vdots \cr y_T 
 \end{bmatrix} 
@@ -132,24 +150,49 @@ y_1 \cr y_2 \cr y_3 \cr \vdots \cr y_T
 \lambda & 1 & 0 & \cdots & 0 & 0 \cr
 \lambda^2 & \lambda & 1 & \cdots & 0 & 0 \cr
  \vdots & \vdots & \vdots & \cdots & \vdots & \vdots \cr
-\lambda^{T-1} & \lambda^{T-2} & \lambda^{T-3} & \cdots & -\lambda & 1 
+\lambda^{T-1} & \lambda^{T-2} & \lambda^{T-3} & \cdots & \lambda & 1 
 \end{bmatrix}
 \begin{bmatrix} 
 \lambda y_0 \cr 0 \cr 0 \cr \vdots \cr 0 
 \end{bmatrix}
+```
+
+```{exercise}
+:label: consmooth_ex1
+
+In the {eq}`fst_ord_inverse`, we multiply the inverse of the matrix on the left ($A$). In this exercise, please confirm that 
+
+$$
+\begin{bmatrix} 
+1 & 0 & 0 & \cdots & 0 & 0 \cr
+\lambda & 1 & 0 & \cdots & 0 & 0 \cr
+\lambda^2 & \lambda & 1 & \cdots & 0 & 0 \cr
+ \vdots & \vdots & \vdots & \cdots & \vdots & \vdots \cr
+\lambda^{T-1} & \lambda^{T-2} & \lambda^{T-3} & \cdots & \lambda & 1 
+\end{bmatrix}
 $$
 
+is the inverse of $A$ and check that $A A^{-1} = I$
 
-#### Second order difference equation
+```
 
+### Second order difference equation
+
+The second-order linear difference equation for $\{y_t\}_{t=0}^T$ is
+
+$$
+y_{t} = \lambda_1 y_{t-1} + \lambda_2 y_{t-2}, \quad t = 1, 2, \ldots, T
+$$
+
+Similarly, we can cast this set of $T$ equations as a single matrix equation
 
 $$
 \begin{bmatrix} 
 1 & 0 & 0 & \cdots & 0 & 0 & 0 \cr
 -\lambda_1 & 1 & 0 & \cdots & 0 & 0 & 0 \cr
--\lambda_2 & -\lambda_2 & 1 & \cdots & 0 & 0 & 0 \cr
+-\lambda_2 & -\lambda_1 & 1 & \cdots & 0 & 0 & 0 \cr
  \vdots & \vdots & \vdots & \cdots & \vdots & \vdots \cr
-0 & 0 & 0 & \cdots & \lambda_2 & -\lambda_1 & 1 
+0 & 0 & 0 & \cdots & -\lambda_2 & -\lambda_1 & 1 
 \end{bmatrix} 
 \begin{bmatrix} 
 y_1 \cr y_2 \cr y_3 \cr \vdots \cr y_T 
@@ -162,15 +205,14 @@ $$
 
 Multiplying both sides by  inverse of the matrix on the left again provides the solution.
 
-#### Extensions
+```{exercise}
+:label: consmooth_ex2
 
 As an exercise, we ask you to represent and solve a **third order linear difference equation**.
 How many initial conditions must you specify?
-
-+++ {"user_expressions": []}
+```
 
 ## Friedman-Hall consumption-smoothing model
-
 
 A key object is what Milton Friedman called "non-human" or "non-financial" wealth at time $0$:
 
@@ -209,7 +251,29 @@ $$
 
 This is the consumption-smoothing model in a nutshell.
 
-We'll put the model through some paces with Python code below.
+We implement this model in `compute_optimal`
+
+```{code-cell} ipython3
+def compute_optimal(model, a0, y_seq):
+    R, T = model.R, model.T
+
+    # non-financial wealth
+    h0 = model.β_seq @ y_seq     # since β = 1/R
+
+    # c0
+    c0 = (1 - 1/R) / (1 - (1/R)**(T+1)) * (a0 + h0)
+    c_seq = c0*np.ones(T+1)
+
+    # verify
+    A = np.diag(-R*np.ones(T), k=-1) + np.eye(T+1)
+    b = y_seq - c_seq
+    b[0] = b[0] + a0
+
+    a_seq = np.linalg.inv(A) @ b
+    a_seq = np.concatenate([[a0], a_seq])
+
+    return c_seq, a_seq
+```
 
 +++ {"user_expressions": []}
 
@@ -218,20 +282,18 @@ We'll put the model through some paces with Python code below.
 As promised, we'll provide step by step instructions on how to use linear algebra, readily implemented
 in Python, to solve the consumption smoothing model.
 
-**Note to programmer teammate:**
-
 In the calculations below, please we'll  set default values of  $R > 1$, e.g., $R = 1.05$, and $\beta = R^{-1}$.
 
-#### Step 1 ####
+### Step 1
 
-For some $T+1 \times 1$ $y$ vector, use matrix algebra to compute 
+For some $(T+1) \times 1$ $y$ vector, use matrix algebra to compute 
 
 $$
 \sum_{t=0}^T R^{-t} y_t = \begin{bmatrix} 1 & R^{-1} & \cdots & R^{-T} \end{bmatrix}
 \begin{bmatrix} y_0 \cr y_1  \cr \vdots \cr y_T \end{bmatrix}
 $$
 
-#### Step 2 ####
+### Step 2
 
 Compute
 
@@ -239,9 +301,7 @@ $$
 c_0 = \left( \frac{1 - R^{-1}}{1 - R^{-(T+1)}} \right) (a_0 + \sum_{t=0}^T R^t y_t )
 $$
 
-**Jiacheng:** The same for $R^t$ here.
-
-#### Step 3 ####
+### Step 3
 
 Formulate system
 
@@ -275,8 +335,54 @@ $$
 
 Let's verify this with our Python code.
 
+We use an example where the consumer inherits $a_0<0$ (which can be interpreted as a student debt).
 
+The income process $\{y_t\}_{t=0}^{T}$ is constant and positive up to $t=45$ and then becomes zero afterward.
 
+```{code-cell} ipython3
+# Financial wealth
+a0 = -2     # such as "student debt"
+
+# Income process
+y_seq = np.concatenate([np.ones(46), np.zeros(20)])
+
+cs_model = creat_cs_model()
+c_seq, a_seq = compute_optimal(cs_model, a0, y_seq)
+
+print('check a_T+1=0:', 
+      np.abs(a_seq[-1] - 0) <= 1e-8)
+```
+
+```{code-cell} ipython3
+# Sequence Length
+T = cs_model.T
+
+plt.plot(range(T+1), y_seq, label='income')
+plt.plot(range(T+1), c_seq, label='consumption')
+plt.plot(range(T+2), a_seq, label='asset')
+plt.plot(range(T+2), np.zeros(T+2), '--')
+
+plt.legend()
+plt.xlabel(r'$t$')
+plt.ylabel(r'$c_t,y_t,a_t$')
+plt.show()
+```
+
++++ {"user_expressions": []}
+
+We can evaluate the welfare using the formula {eq}`welfare`
+
+```{code-cell} ipython3
+def welfare(model, c_seq):
+    β_seq, g1, g2 = model.β_seq, model.g1, model.g2
+
+    u_seq = g1 * c_seq - g2/2 * c_seq**2
+    return β_seq @ u_seq
+
+print('Welfare:', welfare(cs_model, c_seq))
+```
+
++++ {"user_expressions": []}
 
 ### Feasible consumption variations ###
 
@@ -324,143 +430,61 @@ $$
 
 This is our formula for $\xi_0$.  
 
-Evidently, if $\vec c^o$ is a budget-feasible consumption path, then so is $\vec c^o + \vec v$,
-where $\vec v$ is a budget-feasible variation.
+Evidently, if $c^o$ is a budget-feasible consumption path, then so is $c^o + v$,
+where $v$ is a budget-feasible variation.
 
-Given $R$, we thus have a two parameter class of budget feasible variations $\vec v$ that we can use
+Given $R$, we thus have a two parameter class of budget feasible variations $v$ that we can use
 to compute alternative consumption paths, then evaluate their welfare.
 
-**Note to John:** We can do some fun simple experiments with these variations -- we can use
-graphs to show that, when $\beta R =1$ and  starting from the smooth path, all nontrivial budget-feasible variations lower welfare according to the criterion above.  
-
-We can even use the Python numpy grad command to compute derivatives of welfare with respect to our two parameters.  
-
-We are teaching the key idea beneath the **calculus of variations**.
+Now let's compute and visualize the variations
 
 ```{code-cell} ipython3
-class Consumption_smoothing:
-    "A class of the Permanent Income model of consumption"
+def compute_variation(model, ξ1, ϕ, a0, y_seq, verbose=1):
+    R, T, β_seq = model.R, model.T, model.β_seq
+
+    ξ0 = ξ1*((1 - 1/R) / (1 - (1/R)**(T+1))) * ((1 - (ϕ/R)**(T+1)) / (1 - ϕ/R))
+    v_seq = np.array([(ξ1*ϕ**t - ξ0) for t in range(T+1)])
     
-    def __init__(self, R, y_seq, a0, g1, g2, T):
-        self.a0, self.y_seq, self.R, self.β = a0, y_seq, R, 1/R    # set β = 1/R
-        self.g1, self.g2 = g1, g2       # welfare parameter
-        self.T = T
-        
-        self.β_seq = np.array([self.β**i for i in range(T+1)])
-        
-    def compute_optimal(self, verbose=1):
-        R, y_seq, a0, T = self.R, self.y_seq, self.a0, self.T
-        
-        # non-financial wealth
-        h0 = self.β_seq @ y_seq     # since β = 1/R
-        
-        # c0
-        c0 = (1 - 1/R) / (1 - (1/R)**(T+1)) * (a0 + h0)
-        c_seq = c0*np.ones(T+1)
-        
-        # verify
-        A = np.diag(-R*np.ones(T), k=-1) + np.eye(T+1)
-        b = y_seq - c_seq
-        b[0] = b[0] + a0
-        
-        a_seq = np.linalg.inv(A) @ b
-        a_seq = np.concatenate([[a0], a_seq])
-        
-        # check that a_T+1 = 0
-        if verbose==1:
-            print('check a_T+1=0:', np.abs(a_seq[-1] - 0) <= 1e-8)
-        
-        return c_seq, a_seq
-    
-    def welfare(self, c_seq):
-        β_seq, g1, g2 = self.β_seq, self.g1, self.g2
-        
-        u_seq = g1 * c_seq - g2/2 * c_seq**2
-        return β_seq @ u_seq
-        
-    
-    def compute_variation(self, ξ1, ϕ, verbose=1):
-        R, T, β_seq = self.R, self.T, self.β_seq
-        
-        ξ0 = ξ1*((1 - 1/R) / (1 - (1/R)**(T+1))) * ((1 - (ϕ/R)**(T+1)) / (1 - ϕ/R))
-        v_seq = np.array([(ξ1*ϕ**t - ξ0) for t in range(T+1)])
-        
-        # check if it is feasible
-        if verbose==1:
-            print('check feasible:', np.round(β_seq @ v_seq, 7)==0)     # since β = 1/R
-        
-        c_opt, _ = self.compute_optimal(verbose=verbose)
-        cvar_seq = c_opt + v_seq
-        
-        return cvar_seq
+    if verbose == 1:
+        print('check feasible:', np.isclose(β_seq @ v_seq, 0))     # since β = 1/R
+
+    c_opt, _ = compute_optimal(model, a0, y_seq)
+    cvar_seq = c_opt + v_seq
+
+    return cvar_seq
 ```
 
 +++ {"user_expressions": []}
 
-Below is an example where the consumer inherits $a_0<0$ (which can be interpreted as a student debt).
-
-The income process $\{y_t\}_{t=0}^{T}$ is constant and positive up to $t=45$ and then becomes zero afterward.
+We visualize variations with $\xi_1 \in \{.01, .05\}$ and $\phi \in \{.95, 1.02\}$
 
 ```{code-cell} ipython3
-# parameters
-T=65
-R = 1.05
-g1 = 1
-g2 = 1/2
+fig, ax = plt.subplots()
 
-# financial wealth
-a0 = -2     # such as "student debt"
+ξ1s = [.01, .05]
+ϕs= [.95, 1.02]
+colors = {.01: 'tab:blue', .05: 'tab:green'}
 
-# income process
-y_seq = np.concatenate([np.ones(46), np.zeros(20)])
+params = np.array(np.meshgrid(ξ1s, ϕs)).T.reshape(-1, 2)
 
-# create an instance
-mc = Consumption_smoothing(R=R, y_seq=y_seq, a0=a0, g1=g1, g2=g2, T=T)
-c_seq, a_seq = mc.compute_optimal()
+for i, param in enumerate(params):
+    ξ1, ϕ = param
+    print(f'variation {i}: ξ1={ξ1}, ϕ={ϕ}')
+    cvar_seq = compute_variation(model=cs_model, 
+                                 ξ1=ξ1, ϕ=ϕ, a0=a0, 
+                                 y_seq=y_seq)
+    print(f'welfare={welfare(cs_model, cvar_seq)}')
+    print('-'*64)
+    if i % 2 == 0:
+        ls = '-.'
+    else: 
+        ls = '-'  
+    ax.plot(range(T+1), cvar_seq, ls=ls, 
+            color=colors[ξ1], 
+            label=fr'$\xi_1 = {ξ1}, \phi = {ϕ}$')
 
-# compute welfare 
-print('Welfare:', mc.welfare(c_seq))
-```
-
-```{code-cell} ipython3
-plt.plot(range(T+1), y_seq, label='income')
-plt.plot(range(T+1), c_seq, label='consumption')
-plt.plot(range(T+2), a_seq, label='asset')
-plt.plot(range(T+2), np.zeros(T+2), '--')
-
-plt.legend()
-plt.xlabel(r'$t$')
-plt.ylabel(r'$c_t,y_t,a_t$')
-plt.show()
-```
-
-+++ {"user_expressions": []}
-
-We can visualize how $\xi_1$ and $\phi$ controls **budget-feasible variations**.
-
-```{code-cell} ipython3
-# visualize variational paths
-cvar_seq1 = mc.compute_variation(ξ1=.01, ϕ=.95)
-cvar_seq2 = mc.compute_variation(ξ1=.05, ϕ=.95)
-cvar_seq3 = mc.compute_variation(ξ1=.01, ϕ=1.02)
-cvar_seq4 = mc.compute_variation(ξ1=.05, ϕ=1.02)
-```
-
-```{code-cell} ipython3
-print('welfare of optimal c: ', mc.welfare(c_seq))
-print('variation 1: ', mc.welfare(cvar_seq1))
-print('variation 2:', mc.welfare(cvar_seq2))
-print('variation 3: ', mc.welfare(cvar_seq3))
-print('variation 4:', mc.welfare(cvar_seq4))
-```
-
-```{code-cell} ipython3
-plt.plot(range(T+1), c_seq, color='orange', label=r'Optimal $\vec{c}$ ')
-plt.plot(range(T+1), cvar_seq1, color='tab:blue', label=r'$\xi_1 = 0.01, \phi = 0.95$')
-plt.plot(range(T+1), cvar_seq2, color='tab:blue', ls='-.', label=r'$\xi_1 = 0.05, \phi = 0.95$')
-plt.plot(range(T+1), cvar_seq3, color='tab:green', label=r'$\xi_1 = 0.01, \phi = 1.02$')
-plt.plot(range(T+1), cvar_seq4, color='tab:green', ls='-.', label=r'$\xi_1 = 0.05, \phi = 1.02$')
-
+plt.plot(range(T+1), c_seq, 
+         color='orange', label=r'Optimal $\vec{c}$ ')
 
 plt.legend()
 plt.xlabel(r'$t$')
@@ -468,21 +492,67 @@ plt.ylabel(r'$c_t$')
 plt.show()
 ```
 
-```{code-cell} ipython3
-def welfare_ϕ(mc, ξ1, ϕ):
-    "Compute welfare of variation sequence for given ϕ, ξ1 with an instance of our model mc"
-    cvar_seq = mc.compute_variation(ξ1=ξ1, ϕ=ϕ, verbose=0)
-    return mc.welfare(cvar_seq)
++++ {"user_expressions": []}
 
-welfare_φ = np.vectorize(welfare_φ)
+We can even use the Python `np.gradient` command to compute derivatives of welfare with respect to our two parameters.  
+
+We are teaching the key idea beneath the **calculus of variations**.
+
+First, we define the welfare with respect to $\xi_1$ and $\phi$
+
+```{code-cell} ipython3
+def welfare_rel(ξ1, ϕ):
+    """
+    Compute welfare of variation sequence 
+    for given ϕ, ξ1 with a consumption smoothing model
+    """
+    
+    cvar_seq = compute_variation(cs_model, ξ1=ξ1, 
+                                 ϕ=ϕ, a0=a0, 
+                                 y_seq=y_seq, 
+                                 verbose=0)
+    return welfare(cs_model, cvar_seq)
+
+# Vectorize the function to allow array input
+welfare_vec = np.vectorize(welfare_rel)
+```
+
++++ {"user_expressions": []}
+
+Then we can visualize the relationship between welfare and $\xi_1$ and compute its derivatives
+
+```{code-cell} ipython3
 ξ1_arr = np.linspace(-0.5, 0.5, 20)
 
-plt.plot(ξ1_arr, welfare_φ(mc, ξ1=ξ1_arr , ϕ=1.02))
+plt.plot(ξ1_arr, welfare_vec(ξ1_arr, 1.02))
 plt.ylabel('welfare')
+plt.xlabel(r'$\xi_1$')
+plt.show()
+
+welfare_grad = welfare_vec(ξ1_arr, 1.02)
+welfare_grad = np.gradient(welfare_grad)
+plt.plot(ξ1_arr, welfare_grad)
+plt.ylabel('derivatives of welfare')
 plt.xlabel(r'$\xi_1$')
 plt.show()
 ```
 
-```{code-cell} ipython3
++++ {"user_expressions": []}
 
+The same can be done on $\phi$
+
+```{code-cell} ipython3
+ϕ_arr = np.linspace(-0.5, 0.5, 20)
+
+plt.plot(ξ1_arr, welfare_vec(0.05, ϕ_arr))
+plt.ylabel('welfare')
+plt.xlabel(r'$\phi$')
+plt.show()
+
+welfare_grad = welfare_vec(0.05, ϕ_arr)
+welfare_grad = np.gradient(welfare_grad)
+plt.plot(ξ1_arr, welfare_grad)
+plt.ylabel('derivatives of welfare')
+plt.xlabel(r'$\phi$')
+plt.show()
 ```
