@@ -3,12 +3,15 @@ jupytext:
   text_representation:
     extension: .md
     format_name: myst
+    format_version: 0.13
+    jupytext_version: 1.14.5
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
   name: python3
 ---
 
+(supply_demand_multiple_goods)=
 # Supply and Demand with Many Goods
 
 ## Overview
@@ -32,7 +35,7 @@ import matplotlib.pyplot as plt
 from scipy.linalg import inv
 ```
 
-## Formulas from Linear Algebra
+## Formulas from linear algebra
 
 We shall apply formulas from linear algebra that
 
@@ -54,7 +57,7 @@ $$
 \frac{\partial x^\top A x}{\partial x} = (A + A^\top)x
 $$
 
-## From Utility Function to Demand Curve
+## From utility function to demand curve
 
 Our study of consumers will use the following primitives
 
@@ -107,7 +110,7 @@ The deviation in {eq}`eq:bversusc` will ultimately assure us that competitive eq
 
 +++
 
-### Demand Curve Implied by Constrained Utility Maximization
+### Demand curve implied by constrained utility maximization
 
 For now, we assume that the budget constraint is {eq}`eq:old2`.
 
@@ -152,7 +155,7 @@ We could instead take $\mu$ as a parameter and use {eq}`eq:old3` and the budget 
 Which way we proceed determines whether we are constructing a **Marshallian** or **Hicksian** demand curve.
 ```
 
-## Endowment Economy
+## Endowment economy
 
 We now study a pure-exchange economy, or what is sometimes called an endowment economy.
 
@@ -191,50 +194,47 @@ Verify that setting  $\mu=2$ in {eq}`eq:old3` also implies that formula
 
 ```
 
+Here is a class that computes competitive equilibria for our economy.
+
 ```{code-cell} ipython3
 class ExchangeEconomy:
     
     def __init__(self, 
-                 Pi, 
+                 Π, 
                  b, 
-                 e, 
-                 W=None):
+                 e,
+                 thres=1.5):
         """
         Set up the environment for an exchange economy
 
         Args:
-            Pi (np.array): shared matrix of substitution
+            Π (np.array): shared matrix of substitution
             b (list):  the consumer's bliss point
             e (list):  the consumer's endowment
-            W (list):  the consumer's wealth
+            thres (float): a threshold to check p >> Π e condition
         """
 
         # check non-satiation
-        if np.min(b / np.max(Pi @ e)) <= 1.5:
+        if np.min(b / np.max(Π @ e)) <= thres:
             raise Exception('set bliss points further away')
 
-        if W == None:
-            W = 0
-        else:
-            if W != 0:
-                raise Exception('invalid wealth distribution')
 
-        self.Pi, self.b, self.e, self.W = Pi, b, e, W
+        self.Π, self.b, self.e = Π, b, e
 
     
     def competitive_equilibrium(self):
         """
         Compute the competitive equilibrium prices and allocation
         """
-        Pi, b, e, W = self.Pi, self.b, self.e, self.W
+        Π, b, e = self.Π, self.b, self.e
 
         # compute price vector with μ=1
-        p = Pi.T @ b - Pi.T @ Pi @ e
+        p = Π.T @ b - Π.T @ Π @ e
         
         # compute consumption vector
-        slope_dc = inv(Pi.T @ Pi)
-        Pi_inv = inv(Pi)
-        c = Pi_inv @ b - slope_dc @ p
+        slope_dc = inv(Π.T @ Π)
+        Π_inv = inv(Π)
+        c = Π_inv @ b - slope_dc @ p
 
         if any(c < 0):
             print('allocation: ', c)
@@ -243,7 +243,7 @@ class ExchangeEconomy:
         return p, c
 ```
 
-## Digression: Marshallian and Hicksian Demand Curves
+## Digression: Marshallian and Hicksian demand curves
 
 Sometimes we'll use budget constraint {eq}`eq:old2` in situations in which a consumer's endowment vector $e$ is his **only** source of income.
 
@@ -278,7 +278,7 @@ We'll discuss these distinct demand curves more below.
 
 +++
 
-## Dynamics and Risk as Special Cases
+## Dynamics and risk as special cases
 
 Special cases of our $n$-good pure exchange model can be created to represent
 
@@ -340,22 +340,21 @@ Here is an example.
 ```{code-cell} ipython3
 beta = 0.95
 
-Pi = np.array([[1, 0],
-               [0, np.sqrt(beta)]])
+Π = np.array([[1, 0],
+              [0, np.sqrt(beta)]])
 
 b = np.array([5, np.sqrt(beta) * 5])
 
 e = np.array([1, 1])
 
-dynamics = ExchangeEconomy(Pi, b, e)
+dynamics = ExchangeEconomy(Π, b, e)
 p, c = dynamics.competitive_equilibrium()
 
 print('Competitive equilibrium price vector:', p)
 print('Competitive equilibrium allocation:', c)
 ```
 
-
-### Risk and State-Contingent Claims
+### Risk and state-contingent claims
 
 We study risk in the context of a **static** environment, meaning that there is only one period.
 
@@ -428,14 +427,14 @@ Here is an instance of the risk economy:
 ```{code-cell} ipython3
 prob = 0.2
 
-Pi = np.array([[np.sqrt(prob), 0],
-               [0, np.sqrt(1 - prob)]])
+Π = np.array([[np.sqrt(prob), 0],
+              [0, np.sqrt(1 - prob)]])
 
 b = np.array([np.sqrt(prob) * 5, np.sqrt(1 - prob) * 5])
 
 e = np.array([1, 1])
 
-risk = ExchangeEconomy(Pi, b, e)
+risk = ExchangeEconomy(Π, b, e)
 p, c = risk.competitive_equilibrium()
 
 print('Competitive equilibrium price vector:', p)
@@ -491,14 +490,14 @@ Increase the probability that state $1$ occurs.
 ```{code-cell} ipython3
 prob = 0.8
 
-Pi = np.array([[np.sqrt(prob), 0],
-               [0, np.sqrt(1 - prob)]])
+Π = np.array([[np.sqrt(prob), 0],
+              [0, np.sqrt(1 - prob)]])
 
 b = np.array([np.sqrt(prob) * 5, np.sqrt(1 - prob) * 5])
 
 e = np.array([1, 1])
 
-risk = ExchangeEconomy(Pi, b, e)
+risk = ExchangeEconomy(Π, b, e)
 p, c = risk.competitive_equilibrium()
 
 print('Competitive equilibrium price vector:', p)
@@ -510,11 +509,11 @@ print('Competitive equilibrium allocation:', c)
 
 +++
 
-## Economies with Endogenous Supplies of Goods
+## Economies with endogenous supplies of goods
 
 Up to now we have described a pure exchange economy in which endowments of goods are exogenous, meaning that they are taken as given from outside the model.
 
-### Supply Curve of a Competitive Firm
+### Supply curve of a competitive firm
 
 A competitive firm that can produce goods takes a price vector $p$ as given and chooses a quantity $q$
 to maximize total revenue minus total costs.
@@ -566,14 +565,14 @@ $$
 
 
 
-### Competitive Equilibrium
+### Competitive equilibrium
 
 
 To compute a competitive equilibrium for a production economy where demand curve is pinned down by the marginal utility of wealth $\mu$, we first compute an allocation by solving a planning problem.
 
 Then we compute the equilibrium price vector using the inverse demand or supply curve.
 
-#### $\mu=1$ Warmup
+#### $\mu=1$ warmup
 
 As a special case, let's pin down a demand curve by setting the marginal utility of wealth $\mu =1$.
 
@@ -591,7 +590,7 @@ $$ (eq:old5)
 
 This equation is the counterpart of equilibrium quantity {eq}`eq:old1` for the scalar $n=1$ model with which we began.
 
-#### General $\mu\neq 1$ Case
+#### General $\mu\neq 1$ case
 
 Now let's extend the preceding analysis to a more
 general case by allowing $\mu \neq 1$.
@@ -611,66 +610,60 @@ $$ (eq:old5p)
 
 +++
 
+### Implementation
+
+A Production Economy will consist of
+
+* a single **person** that we'll interpret as a representative consumer
+* a single set of **production costs**
+* a multiplier $\mu$ that weights "consumers" versus "producers" in a planner's welfare function, as described above in the main text
+* an $n \times 1$ vector $p$ of competitive equilibrium prices
+* an $n \times 1$ vector $c$ of competitive equilibrium quantities
+* **consumer surplus**
+* **producer surplus**
+
 Here we define a class ``ProductionEconomy``.
 
 ```{code-cell} ipython3
 class ProductionEconomy:
     
     def __init__(self, 
-                 Pi, 
+                 Π, 
                  b, 
                  h, 
                  J, 
-                 mu):
+                 μ):
         """
         Set up the environment for a production economy
 
         Args:
-            Pi (np.ndarray): matrix of substitution
+            Π (np.ndarray): matrix of substitution
             b (np.array): bliss points
             h (np.array): h in cost func
             J (np.ndarray): J in cost func
-            mu (float): welfare weight of the corresponding planning problem
+            μ (float): welfare weight of the corresponding planning problem
         """
         self.n = len(b)
-        self.Pi, self.b, self.h, self.J, self.mu = Pi, b, h, J, mu
-
+        self.Π, self.b, self.h, self.J, self.μ = Π, b, h, J, μ
+        
     def competitive_equilibrium(self):
         """
         Compute a competitive equilibrium of the production economy
         """
-        Pi, b, h, mu, J = self.Pi, self.b, self.h, self.mu, self.J
+        Π, b, h, μ, J = self.Π, self.b, self.h, self.μ, self.J
         H = .5 * (J + J.T)
 
         # allocation
-        c = inv(Pi.T @ Pi + mu * H) @ (Pi.T @ b - mu * h)
+        c = inv(Π.T @ Π + μ * H) @ (Π.T @ b - μ * h)
 
         # price
-        p = 1 / mu * (Pi.T @ b - Pi.T @ Pi @ c)
+        p = 1 / μ * (Π.T @ b - Π.T @ Π @ c)
 
         # check non-satiation
-        if any(Pi @ c - b >= 0):
+        if any(Π @ c - b >= 0):
             raise Exception('invalid result: set bliss points further away')
 
         return c, p
-
-    def equilibrium_with_monopoly(self):
-        """
-        Compute the equilibrium price and allocation when there is a monopolist supplier
-        """
-        Pi, b, h, mu, J = self.Pi, self.b, self.h, self.mu, self.J
-        H = .5 * (J + J.T)
-
-        # allocation
-        q = inv(mu * H + 2 * Pi.T @ Pi) @ (Pi.T @ b - mu * h)
-
-        # price
-        p = 1 / mu * (Pi.T @ b - Pi.T @ Pi @ q)
-
-        if any(Pi @ q - b >= 0):
-            raise Exception('invalid result: set bliss points further away')
-
-        return q, p
 
     def compute_surplus(self):
         """
@@ -678,12 +671,12 @@ class ProductionEconomy:
         """
         if self.n != 1:
             raise Exception('not single good')
-        h, J, Pi, b, mu = self.h.item(), self.J.item(), self.Pi.item(), self.b.item(), self.mu
+        h, J, Π, b, μ = self.h.item(), self.J.item(), self.Π.item(), self.b.item(), self.μ
         H = J
 
         # supply/demand curve coefficients
         s0, s1 = h, H
-        d0, d1 = 1 / mu * Pi * b, 1 / mu * Pi**2
+        d0, d1 = 1 / μ * Π * b, 1 / μ * Π**2
 
         # competitive equilibrium
         c, p = self.competitive_equilibrium()
@@ -698,6 +691,8 @@ class ProductionEconomy:
 Then define a function that plots demand and supply curves and labels surpluses and equilibrium.
 
 ```{code-cell} ipython3
+:tags: [hide-input]
+
 def plot_competitive_equilibrium(PE):
     """
     Plot demand and supply curves, producer/consumer surpluses, and equilibrium for
@@ -707,7 +702,7 @@ def plot_competitive_equilibrium(PE):
         PE (class): A initialized production economy class
     """
     # get singleton value
-    J, h, Pi, b, mu = PE.J.item(), PE.h.item(), PE.Pi.item(), PE.b.item(), PE.mu
+    J, h, Π, b, μ = PE.J.item(), PE.h.item(), PE.Π.item(), PE.b.item(), PE.μ
     H = J
 
     # compute competitive equilibrium
@@ -716,7 +711,7 @@ def plot_competitive_equilibrium(PE):
 
     # inverse supply/demand curve
     supply_inv = lambda x: h + H * x
-    demand_inv = lambda x: 1 / mu * (Pi * b - Pi * Pi * x)
+    demand_inv = lambda x: 1 / μ * (Π * b - Π * Π * x)
 
     xs = np.linspace(0, 2 * c, 100)
     ps = np.ones(100) * p
@@ -743,7 +738,7 @@ def plot_competitive_equilibrium(PE):
     plt.show()
 ```
 
-#### Example: Single Agent with One Good and with Production
+#### Example: single agent with one good and production
 
 Now let's construct an example of a production economy with one good.
 
@@ -758,13 +753,13 @@ To do this we
   * do experiments in which we shift $b$ and watch what happens to $p, c$.
 
 ```{code-cell} ipython3
-Pi = np.array([[1]])  # the matrix now is a singleton
+Π = np.array([[1]])  # the matrix now is a singleton
 b = np.array([10])
 h = np.array([0.5])
 J = np.array([[1]])
-mu = 1
+μ = 1
 
-PE = ProductionEconomy(Pi, b, h, J, mu)
+PE = ProductionEconomy(Π, b, h, J, μ)
 c, p = PE.competitive_equilibrium()
 
 print('Competitive equilibrium price:', p.item())
@@ -781,10 +776,10 @@ print('Consumer surplus:', c_surplus.item())
 print('Producer surplus:', p_surplus.item())
 ```
 
-Let's give consumer a lower welfare weight by raising $\mu$.
+Let's give the consumer a lower welfare weight by raising $\mu$.
 
 ```{code-cell} ipython3
-PE.mu = 2
+PE.μ = 2
 c, p = PE.competitive_equilibrium()
 
 print('Competitive equilibrium price:', p.item())
@@ -804,7 +799,7 @@ print('Producer surplus:', p_surplus.item())
 Now we change the bliss point so that the consumer derives more utility from consumption.
 
 ```{code-cell} ipython3
-PE.mu = 1
+PE.μ = 1
 PE.b = PE.b * 1.5
 c, p = PE.competitive_equilibrium()
 
@@ -818,23 +813,25 @@ plot_competitive_equilibrium(PE)
 This raises both the equilibrium price and quantity.
 
 
-#### Example: Single Agent Two-Good Economy **with** Production
+#### Example: single agent two-good economy with production
 
   * we'll do some experiments like those above
 
   * we can do experiments with a **diagonal** $\Pi$ and also with a **non-diagonal** $\Pi$ matrices to study how cross-slopes affect responses of $p$ and $c$ to various shifts in $b$ (TODO)
 
 ```{code-cell} ipython3
-Pi = np.array([[1, 0],
-               [0, 1]])
+Π = np.array([[1, 0],
+              [0, 1]])
+
 b = np.array([10, 10])
 
 h = np.array([0.5, 0.5])
+
 J = np.array([[1, 0.5],
               [0.5, 1]])
-mu = 1
+μ = 1
 
-PE = ProductionEconomy(Pi, b, h, J, mu)
+PE = ProductionEconomy(Π, b, h, J, μ)
 c, p = PE.competitive_equilibrium()
 
 print('Competitive equilibrium price:', p)
@@ -851,8 +848,9 @@ print('Competitive equilibrium allocation:', c)
 ```
 
 ```{code-cell} ipython3
-PE.Pi = np.array([[1, 0.5],
-                [0.5, 1]])
+PE.Π = np.array([[1, 0.5],
+                 [0.5, 1]])
+
 PE.b = np.array([10, 10])
 
 c, p = PE.competitive_equilibrium()
@@ -869,8 +867,7 @@ print('Competitive equilibrium price:', p)
 print('Competitive equilibrium allocation:', c)
 ```
 
-
-### Digression: A Supplier Who is a Monopolist
+### Digression: a supplier who is a monopolist
 
 A competitive firm is a **price-taker** who regards the price and therefore its marginal revenue as being beyond its control.
 
@@ -913,7 +910,7 @@ Please  verify the monopolist's supply curve {eq}`eq:qmonop`.
 
 +++
 
-### A Monopolist
+### A monopolist
 
 Let's consider a monopolist supplier.
 
@@ -944,34 +941,68 @@ The plot indicates that the monopolist's sets output  lower than either the comp
 
 In a single good case, this equilibrium is associated with a higher price of the good.
 
-+++
+```{code-cell} ipython3
+class Monopoly(ProductionEconomy):
+    
+    def __init__(self, 
+                 Π, 
+                 b, 
+                 h, 
+                 J, 
+                 μ):
+        """
+        Inherit all properties and methods from class ProductionEconomy
+        """
+        super().__init__(Π, b, h, J, μ)
+        
 
-Here is a function that plots the demand, marginal cost and marginal revenue curves with surpluses and equilibrium labelled.
+    def equilibrium_with_monopoly(self):
+        """
+        Compute the equilibrium price and allocation when there is a monopolist supplier
+        """
+        Π, b, h, μ, J = self.Π, self.b, self.h, self.μ, self.J
+        H = .5 * (J + J.T)
+
+        # allocation
+        q = inv(μ * H + 2 * Π.T @ Π) @ (Π.T @ b - μ * h)
+
+        # price
+        p = 1 / μ * (Π.T @ b - Π.T @ Π @ q)
+
+        if any(Π @ q - b >= 0):
+            raise Exception('invalid result: set bliss points further away')
+
+        return q, p
+```
+
+Define a function that plots the demand, marginal cost and marginal revenue curves with surpluses and equilibrium labelled.
 
 ```{code-cell} ipython3
-def plot_monopoly(PE):
+:tags: [hide-input]
+
+def plot_monopoly(M):
     """
     Plot demand curve, marginal production cost and revenue, surpluses and the
     equilibrium in a monopolist supplier economy with a single good
 
     Args:
-        PE (class): A initialized production economy class
+        M (class): A class inherits class ProductionEconomy with monopoly
     """
     # get singleton value
-    J, h, Pi, b, mu = PE.J.item(), PE.h.item(), PE.Pi.item(), PE.b.item(), PE.mu
+    J, h, Π, b, μ = M.J.item(), M.h.item(), M.Π.item(), M.b.item(), M.μ
     H = J
 
     # compute competitive equilibrium
-    c, p = PE.competitive_equilibrium()
-    q, pm = PE.equilibrium_with_monopoly()
+    c, p = M.competitive_equilibrium()
+    q, pm = M.equilibrium_with_monopoly()
     c, p, q, pm = c.item(), p.item(), q.item(), pm.item()
 
     # compute
 
     # inverse supply/demand curve
     marg_cost = lambda x: h + H * x
-    marg_rev = lambda x: -2 * 1 / mu * Pi * Pi * x + 1 / mu * Pi * b
-    demand_inv = lambda x: 1 / mu * (Pi * b - Pi * Pi * x)
+    marg_rev = lambda x: -2 * 1 / μ * Π * Π * x + 1 / μ * Π * b
+    demand_inv = lambda x: 1 / μ * (Π * b - Π * Π * x)
 
     xs = np.linspace(0, 2 * c, 100)
     pms = np.ones(100) * pm
@@ -1004,23 +1035,25 @@ def plot_monopoly(PE):
     plt.show()
 ```
 
-#### A Multiple Good Example
+#### A multiple good example
 
 Let's compare competitive equilibrium and monopoly outcomes in a multiple goods economy.
 
 ```{code-cell} ipython3
-Pi = np.array([[1, 0],
-               [0, 1.2]])
+Π = np.array([[1, 0],
+              [0, 1.2]])
+
 b = np.array([10, 10])
 
 h = np.array([0.5, 0.5])
+
 J = np.array([[1, 0.5],
               [0.5, 1]])
-mu = 1
+μ = 1
 
-PE = ProductionEconomy(Pi, b, h, J, mu)
-c, p = PE.competitive_equilibrium()
-q, pm = PE.equilibrium_with_monopoly()
+M = Monopoly(Π, b, h, J, μ)
+c, p = M.competitive_equilibrium()
+q, pm = M.equilibrium_with_monopoly()
 
 print('Competitive equilibrium price:', p)
 print('Competitive equilibrium allocation:', c)
@@ -1029,18 +1062,18 @@ print('Equilibrium with monopolist supplier price:', pm)
 print('Equilibrium with monopolist supplier allocation:', q)
 ```
 
-#### A Single-Good Example
+#### A single-good example
 
 ```{code-cell} ipython3
-Pi = np.array([[1]])  # the matrix now is a singleton
+Π = np.array([[1]])  # the matrix now is a singleton
 b = np.array([10])
 h = np.array([0.5])
 J = np.array([[1]])
-mu = 1
+μ = 1
 
-PE = ProductionEconomy(Pi, b, h, J, mu)
-c, p = PE.competitive_equilibrium()
-q, pm = PE.equilibrium_with_monopoly()
+M = Monopoly(Π, b, h, J, μ)
+c, p = M.competitive_equilibrium()
+q, pm = M.equilibrium_with_monopoly()
 
 print('Competitive equilibrium price:', p.item())
 print('Competitive equilibrium allocation:', c.item())
@@ -1049,10 +1082,10 @@ print('Equilibrium with monopolist supplier price:', pm.item())
 print('Equilibrium with monopolist supplier allocation:', q.item())
 
 # plot
-plot_monopoly(PE)
+plot_monopoly(M)
 ```
 
-## Multi-Good Welfare Maximization Problem
+## Multi-good welfare maximization problem
 
 Our welfare maximization problem -- also sometimes called a social planning problem  -- is to choose $c$ to maximize
 
@@ -1092,4 +1125,3 @@ We can deduce a competitive equilibrium price vector from either
   * the inverse demand curve, or
 
   * the inverse supply curve
-
