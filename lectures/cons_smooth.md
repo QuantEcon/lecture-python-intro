@@ -11,6 +11,8 @@ kernelspec:
   name: python3
 ---
 
++++ {"user_expressions": []}
+
 # Consumption smoothing
 
 ## Overview
@@ -24,6 +26,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 from collections import namedtuple
 ```
+
++++ {"user_expressions": []}
 
 Let 
 
@@ -92,6 +96,8 @@ def creat_cs_model(R=1.05, g1=1, g2=1/2, T=65):
                                 β_seq=β_seq, T=65)
 ```
 
++++ {"user_expressions": []}
+
 ## Difference equations with linear algebra
 
 As a warmup, we'll describe a useful way of representing and "solving" linear difference equations. 
@@ -132,7 +138,9 @@ $$
 
 Multiplying both sides by inverse of the matrix on the left provides the solution
 
-$$
+```{math}
+:label: fst_ord_inverse
+
 \begin{bmatrix} 
 y_1 \cr y_2 \cr y_3 \cr \vdots \cr y_T 
 \end{bmatrix} 
@@ -142,14 +150,41 @@ y_1 \cr y_2 \cr y_3 \cr \vdots \cr y_T
 \lambda & 1 & 0 & \cdots & 0 & 0 \cr
 \lambda^2 & \lambda & 1 & \cdots & 0 & 0 \cr
  \vdots & \vdots & \vdots & \cdots & \vdots & \vdots \cr
-\lambda^{T-1} & \lambda^{T-2} & \lambda^{T-3} & \cdots & -\lambda & 1 
+\lambda^{T-1} & \lambda^{T-2} & \lambda^{T-3} & \cdots & \lambda & 1 
 \end{bmatrix}
 \begin{bmatrix} 
 \lambda y_0 \cr 0 \cr 0 \cr \vdots \cr 0 
 \end{bmatrix}
+```
+
+```{exercise}
+:label: consmooth_ex1
+
+In the {numref}`fst_ord_inverse`, we multiply the inverse of the matrix on the left ($A$). In this exercise, please confirm that 
+
+$$
+\begin{bmatrix} 
+1 & 0 & 0 & \cdots & 0 & 0 \cr
+\lambda & 1 & 0 & \cdots & 0 & 0 \cr
+\lambda^2 & \lambda & 1 & \cdots & 0 & 0 \cr
+ \vdots & \vdots & \vdots & \cdots & \vdots & \vdots \cr
+\lambda^{T-1} & \lambda^{T-2} & \lambda^{T-3} & \cdots & \lambda & 1 
+\end{bmatrix}
 $$
 
+is indeed the inverse of $A$ and check that $A A^{-1} = I$
+
+```
+
 ### Second order difference equation
+
+The second-order linear difference equation for $\{y_t\}_{t=0}^T$ is
+
+$$
+y_{t} = \lambda_1 y_{t-1} + \lambda_2 y_{t-2}, \quad t = 1, 2, \ldots, T
+$$
+
+Similarly, we can cast this set of $T$ equations as a single matrix equation
 
 $$
 \begin{bmatrix} 
@@ -157,7 +192,7 @@ $$
 -\lambda_1 & 1 & 0 & \cdots & 0 & 0 & 0 \cr
 -\lambda_2 & -\lambda_1 & 1 & \cdots & 0 & 0 & 0 \cr
  \vdots & \vdots & \vdots & \cdots & \vdots & \vdots \cr
-0 & 0 & 0 & \cdots & \lambda_2 & -\lambda_1 & 1 
+0 & 0 & 0 & \cdots & -\lambda_2 & -\lambda_1 & 1 
 \end{bmatrix} 
 \begin{bmatrix} 
 y_1 \cr y_2 \cr y_3 \cr \vdots \cr y_T 
@@ -170,10 +205,12 @@ $$
 
 Multiplying both sides by  inverse of the matrix on the left again provides the solution.
 
-### Extensions
+```{exercise}
+:label: consmooth_ex2
 
 As an exercise, we ask you to represent and solve a **third order linear difference equation**.
 How many initial conditions must you specify?
+```
 
 ## Friedman-Hall consumption-smoothing model
 
@@ -238,6 +275,7 @@ def compute_optimal(model, a0, y_seq):
     return c_seq, a_seq
 ```
 
++++ {"user_expressions": []}
 
 ## Permanent income model of consumption 
 
@@ -313,7 +351,8 @@ y_seq = np.concatenate([np.ones(46), np.zeros(20)])
 cs_model = creat_cs_model()
 c_seq, a_seq = compute_optimal(cs_model, a0, y_seq)
 
-print('check a_T+1=0:', np.abs(a_seq[-1] - 0) <= 1e-8)
+print('check a_T+1=0:', 
+      np.abs(a_seq[-1] - 0) <= 1e-8)
 ```
 
 ```{code-cell} ipython3
@@ -331,6 +370,8 @@ plt.ylabel(r'$c_t,y_t,a_t$')
 plt.show()
 ```
 
++++ {"user_expressions": []}
+
 We can evaluate the welfare using the formula {eq}`welfare`
 
 ```{code-cell} ipython3
@@ -343,7 +384,7 @@ def welfare(model, c_seq):
 print('Welfare:', welfare(cs_model, c_seq))
 ```
 
-
++++ {"user_expressions": []}
 
 ### Feasible consumption variations ###
 
@@ -415,6 +456,7 @@ def compute_variation(model, ξ1, ϕ, a0, y_seq, verbose=1):
     return cvar_seq
 ```
 
++++ {"user_expressions": []}
 
 We visualize variations with $\xi_1 \in \{.01, .05\}$ and $\phi \in \{.95, 1.02\}$
 
@@ -439,9 +481,12 @@ for i, param in enumerate(params):
         ls = '-.'
     else: 
         ls = '-'  
-    ax.plot(range(T+1), cvar_seq, ls=ls, color=colors[ξ1], label=fr'$\xi_1 = {ξ1}, \phi = {ϕ}$')
+    ax.plot(range(T+1), cvar_seq, ls=ls, 
+            color=colors[ξ1], 
+            label=fr'$\xi_1 = {ξ1}, \phi = {ϕ}$')
 
-plt.plot(range(T+1), c_seq, color='orange', label=r'Optimal $\vec{c}$ ')
+plt.plot(range(T+1), c_seq, 
+         color='orange', label=r'Optimal $\vec{c}$ ')
 
 plt.legend()
 plt.xlabel(r'$t$')
@@ -449,7 +494,7 @@ plt.ylabel(r'$c_t$')
 plt.show()
 ```
 
-
++++ {"user_expressions": []}
 
 We can even use the Python `np.gradient` command to compute derivatives of welfare with respect to our two parameters.  
 
@@ -459,16 +504,22 @@ First, we define the welfare with respect to $\xi_1$ and $\phi$
 
 ```{code-cell} ipython3
 def welfare_rel(ξ1, ϕ):
-    "Compute welfare of variation sequence for given ϕ, ξ1 with a consumption smoothing model"
-    cvar_seq = compute_variation(cs_model, ξ1=ξ1, ϕ=ϕ, a0=a0, 
-                                 y_seq=y_seq, verbose=0)
+    """
+    Compute welfare of variation sequence 
+    for given ϕ, ξ1 with a consumption smoothing model
+    """
+    
+    cvar_seq = compute_variation(cs_model, ξ1=ξ1, 
+                                 ϕ=ϕ, a0=a0, 
+                                 y_seq=y_seq, 
+                                 verbose=0)
     return welfare(cs_model, cvar_seq)
 
 # Vectorize the function to allow array input
 welfare_vec = np.vectorize(welfare_rel)
 ```
 
-
++++ {"user_expressions": []}
 
 Then we can visualize the relationship between welfare and $\xi_1$ and compute its derivatives
 
@@ -487,6 +538,8 @@ plt.ylabel('derivatives of welfare')
 plt.xlabel(r'$\xi_1$')
 plt.show()
 ```
+
++++ {"user_expressions": []}
 
 The same can be done on $\phi$
 
