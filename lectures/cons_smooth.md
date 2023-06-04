@@ -160,7 +160,7 @@ y_1 \cr y_2 \cr y_3 \cr \vdots \cr y_T
 ```{exercise}
 :label: consmooth_ex1
 
-In the {numref}`fst_ord_inverse`, we multiply the inverse of the matrix on the left ($A$). In this exercise, please confirm that 
+In the {eq}`fst_ord_inverse`, we multiply the inverse of the matrix on the left ($A$). In this exercise, please confirm that 
 
 $$
 \begin{bmatrix} 
@@ -172,7 +172,7 @@ $$
 \end{bmatrix}
 $$
 
-is indeed the inverse of $A$ and check that $A A^{-1} = I$
+is the inverse of $A$ and check that $A A^{-1} = I$
 
 ```
 
@@ -300,8 +300,6 @@ Compute
 $$
 c_0 = \left( \frac{1 - R^{-1}}{1 - R^{-(T+1)}} \right) (a_0 + \sum_{t=0}^T R^t y_t )
 $$
-
-**Jiacheng:** The same for $R^t$ here.
 
 ### Step 3
 
