@@ -4,7 +4,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.14.4
+    jupytext_version: 1.14.5
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
@@ -21,6 +21,7 @@ As usual, we'll start by importing some Python modules.
 
 ```{code-cell} ipython3
 import numpy as np
+from collections import namedtuple
 import matplotlib.pyplot as plt
 ```
 
@@ -76,8 +77,7 @@ To represent the model formally, let
  * $\pi_t^*$  be the public's expected rate of inflation between  $t$ and $t+1$;
  * $T$ the horizon -- i.e., the last period for which the model will determine $p_t$
  * $\pi_{T+1}^*$ the terminal rate of inflation between times $T$ and $T+1$.
-  
-  
+
 The demand for real balances $\exp\left(\frac{m_t^d}{p_t}\right)$ is governed by the following  version of the Cagan demand function
   
 $$  
@@ -94,14 +94,13 @@ problem.
 
 This lets us set
 
-
 $$ 
 \pi_t^* = \pi_t , % \forall t 
 $$ (eq:ree)
 
 while equating demand for money to  supply lets us set $m_t^d = m_t$ for all $t \geq 0$. 
 
-The preceding equations  then   imply
+The preceding equations then  imply
 
 $$
 m_t - p_t = -\alpha(p_{t+1} - p_t) \: , \: \alpha > 0 
@@ -198,13 +197,10 @@ $$ (eq:mcum)
 Equation {eq}`eq:mcum` shows that the log of the money supply at $t$ equals the log $m_0$ of the initial money supply 
 plus accumulation of rates of money growth between times $0$ and $t$.
 
-
 ## Continuation values
-
 
 To determine the continuation inflation rate $\pi_{T+1}^*$ we shall proceed by applying the following infinite-horizon
 version of equation {eq}`eq:fisctheory1` at time $t = T+1$:
-
 
 $$
 \pi_t = (1-\delta) \sum_{s=t}^\infty \delta^{s-t} \mu_s , 
@@ -218,13 +214,68 @@ $$
 
 Plugging the preceding equation into equation {eq}`eq:fisctheory2` at $t = T+1$ and rearranging we can deduce that
 
-
-
 $$ 
 \pi_{T+1}^* = \frac{1 - \delta}{1 - \delta \gamma^*} \gamma^* \mu_T
 $$ (eq:piterm)
 
 where we require that $\vert \gamma^* \delta \vert < 1$.
+
+Let's implement and solve this model.
+
+First, we store parameters in a `namedtuple`:
+
+```{code-cell} ipython3
+# Create the rational expectation version of Cagan model in finite time
+CagamREE = namedtuple("ConsumptionSmoothing", 
+                        ["m0", "T", "μ_seq", "α", "δ", "π_end"])
+
+def create_cagan_model(m0, α, T, μ_seq):
+    δ = α/(1 + α)
+    π_end = μ_seq[-1]    # compute terminal expected inflation
+    return CagamREE(m0, T, μ_seq, α, δ, π_end)
+```
+
++++ {"user_expressions": []}
+
+Here we use the following parameter values:
+
+```{code-cell} ipython3
+# parameters
+T = 80
+T1 = 60
+α = 5
+m0 = 1
+
+μ0 = 0.5
+μ_star = 0
+```
+
++++ {"user_expressions": []}
+
+Now we can solve the model and plot $\pi_t$, $m_t$ and $p_t$ for $t =1, \ldots, T+1$
+
+```{code-cell} ipython3
+def solve(model):
+    m0, T, π_end, μ_seq, α, δ = model.m0, model.T, model.π_end, model.μ_seq, model.α, model.δ
+
+    A1 = np.eye(T+1, T+1) - δ * np.eye(T+1, T+1, k=1)
+    A2 = np.eye(T+1, T+1) - np.eye(T+1, T+1, k=-1)
+
+    b1 = (1-δ) * μ_seq + np.concatenate([np.zeros(T), [δ * π_end]])
+    b2 = μ_seq + np.concatenate([[m0], np.zeros(T)])
+
+    π_seq = np.linalg.inv(A1) @ b1
+    m_seq = np.linalg.inv(A2) @ b2
+
+    π_seq = np.append(π_seq, π_end)
+    m_seq = np.append(m0, m_seq)
+
+    p_seq = m_seq + α * π_seq
+
+    return π_seq, m_seq, p_seq
+```
+
++++ {"user_expressions": []}
 
 ### Some quantitative experiments
 
@@ -232,9 +283,6 @@ In the experiments below, we'll use formula {eq}`eq:piterm` as our terminal cond
 
 In devising these experiments, we'll  make assumptions about $\{\mu_t\}$ that are consistent with formula
 {eq}`eq:piterm`.
-
-
-
 
 We  describe several such experiments.
 
@@ -264,6 +312,66 @@ $$
      \end{cases}
 $$
 
+We'll start by executing a version of our "experiment 1" in which the government  implements a **foreseen** sudden permanent reduction in the rate of money creation at time $T_1$.  
+
+The following code performs the experiment and plots outcomes.
+
+```{code-cell} ipython3
+def solve_and_plot(m0, α, T, μ_seq):
+    model_params = create_cagan_model(m0=m0, α=α, T=T, μ_seq=μ_seq)
+    π_seq, m_seq, p_seq = solve(model_params)
+    T_seq = range(T + 2)
+    
+    fig, ax = plt.subplots(2, 3, figsize=[10, 5], dpi=200)
+    
+    ax[0,0].plot(T_seq[:-1], μ_seq)
+    ax[0,0].set_ylabel(r'$\mu$')
+
+    ax[0,1].plot(T_seq, π_seq)
+    ax[0,1].set_ylabel(r'$\pi$')
+
+    ax[0,2].plot(T_seq, m_seq - p_seq)
+    ax[0,2].set_ylabel(r'$m - p$')
+
+    ax[1,0].plot(T_seq, m_seq)
+    ax[1,0].set_ylabel(r'$m$')
+
+    ax[1,1].plot(T_seq, p_seq)
+    ax[1,1].set_ylabel(r'$p$')
+    
+    for i in range(2):
+        for j in range(3):
+                ax[i, j].set_xlabel(r'$t$')
+                
+    ax[1,2].set_axis_off()
+    plt.tight_layout()
+    plt.show()
+    
+    return π_seq, m_seq, p_seq
+
+μ_seq_1 = np.append(μ0*np.ones(T1+1), μ_star*np.ones(T-T1))
+
+# solve and plot
+π_seq_1, m_seq_1, p_seq_1 = solve_and_plot(m0=m0, α=α, 
+                                           T=T, μ_seq=μ_seq_1)
+```
+
++++ {"user_expressions": []}
+
+The  plot of the money growth rate $\mu_t$ in the top level panel portrays
+a sudden reduction from $.5$ to $0$ at time $T_1 = 60$.  
+
+This brings about a gradual reduction of the inflation rate $\pi_t$ that precedes the
+money supply growth rate reduction at time $T_1$.
+
+Notice how the inflation rate declines smoothly (i.e., continuously) to $0$ at $T_1$ -- 
+unlike the money growth rate, it does not suddenly "jump" downward at $T_1$.
+
+This is because the reduction in $\mu$ at $T_1$ has been foreseen from the start.  
+
+While the log money supply portrayed in the bottom panel has a kink at $T_1$, the log  price level does not -- it is "smooth" -- once again a consequence of the fact that the
+reduction in $\mu$ has been foreseen.
+
 
 #### Experiment 2: an unforeseen sudden stabilization
 
@@ -290,6 +398,156 @@ We can do the MIT shock calculations entirely by hand.
 
 Thus, for path 1, $\pi_t = \mu_0 $ for all $t \in  [0, T_1-1]$, while for path 2,
 $\mu_s = \mu^*$ for all $s \geq T_1$.  
+
+We now move on to experiment 2, our "MIT shock", completely unforeseen 
+sudden stabilization.
+
+We set this up so that the $\{\mu_t\}$ sequences that describe the sudden stabilization
+are identical to those for experiment 1, the foreseen suddent stabilization.
+
+The following code does the calculations and plots outcomes.
+<!-- #endregion -->
+
+```{code-cell} ipython3
+# path 1
+μ_seq_3_path1 = μ0 * np.ones(T+1)
+
+mc1 = create_cagan_model(m0=m0, α=α, T=T, μ_seq=μ_seq_3_path1)
+π_seq_3_path1, m_seq_3_path1, p_seq_3_path1 = solve(mc1)
+
+# continuation path
+μ_seq_3_cont = μ_star * np.ones(T-T1)
+
+mc2 = create_cagan_model(m0=m_seq_3_path1[T1+1], α=α, T=T-1-T1, μ_seq=μ_seq_3_cont)
+π_seq_3_cont, m_seq_3_cont1, p_seq_3_cont1 = solve(mc2)
+
+
+# regime 1 - simply glue π_seq, μ_seq
+μ_seq_3 = np.concatenate([μ_seq_3_path1[:T1+1], μ_seq_3_cont])
+π_seq_3 = np.concatenate([π_seq_3_path1[:T1+1], π_seq_3_cont])
+m_seq_3_regime1 = np.concatenate([m_seq_3_path1[:T1+1], m_seq_3_cont1])
+p_seq_3_regime1 = np.concatenate([p_seq_3_path1[:T1+1], p_seq_3_cont1])
+
+# regime 2 - reset m_T1
+m_T1 = (m_seq_3_path1[T1] + μ0) + α*(μ0 - μ_star)
+
+mc = create_cagan_model(m0=m_T1, α=α, T=T-1-T1, μ_seq=μ_seq_3_cont)
+π_seq_3_cont2, m_seq_3_cont2, p_seq_3_cont2 = solve(mc)
+
+m_seq_3_regime2 = np.concatenate([m_seq_3_path1[:T1+1], m_seq_3_cont2])
+p_seq_3_regime2 = np.concatenate([p_seq_3_path1[:T1+1], p_seq_3_cont2])
+
+T_seq = range(T+2)
+
+# plot both regimes
+fig, ax = plt.subplots(2, 3, figsize=[10,5], dpi=200)
+ 
+ax[0,0].plot(T_seq[:-1], μ_seq_3)
+ax[0,1].plot(T_seq, π_seq_3)
+ax[0,2].plot(T_seq, m_seq_3_regime1 - p_seq_3_regime1)
+ax[1,0].plot(T_seq, m_seq_3_regime1, 
+             label='Smooth $m_{T_1}$')
+ax[1,0].plot(T_seq, m_seq_3_regime2, 
+             label='Jumpy $m_{T_1}$')
+ax[1,1].plot(T_seq, p_seq_3_regime1,
+             label='Smooth $m_{T_1}$')
+ax[1,1].plot(T_seq, p_seq_3_regime2, 
+             label='Jumpy $m_{T_1}$')
+
+
+ax[0,0].set_ylabel(r'$\mu$')
+ax[0,1].set_ylabel(r'$\pi$')
+ax[0,2].set_ylabel(r'$m - p$')
+ax[1,0].set_ylabel(r'$m$')
+ax[1,1].set_ylabel(r'$p$')
+
+for i in range(2):
+    for j in range(3):
+        ax[i, j].set_xlabel(r'$t$')
+                
+ax[1,2].set_axis_off()
+
+for i,j in zip([1,1], [0,1]):
+    ax[i,j].legend()
+
+plt.tight_layout()
+plt.show()
+```
+
++++ {"user_expressions": []}
+
+We invite you to compare these graphs with corresponding ones for the foreseen stabilization analyzed in experiment 1 above.  
+
+Note how the inflation graph in the top middle panel is now identical to the 
+money growth graph in the top left panel, and how now the log of real balances portrayed in the top right panel jumps upward at time $T_1$.
+
+The bottom panels plot $m$ and $p$ under two possible ways that $m_{T_1}$ might adjust
+as required by the upward jump in $m - p$ at $T_1$.  
+
+  * the orange line lets $m_{T_1}$ jump upward in order to make sure that the log price level $p_{T_1}$ does not fall.
+  
+  * the blue line lets $p_{T_1}$ fall while stopping the money supply from jumping.
+  
+Here is a way to interpret what the government is doing when the orange line policy is in place.
+
+The government  prints money to finance expenditure with  the "velocity dividend" that it reaps from the increased demand for real balances brought about by the permanent decrease in the rate of growth of the money supply.
+
+
+The next code generates a multi-panel graph that includes outcomes of both experiments 1 and 2.
+
+That allows us to assess how important it is to understand whether the sudden permanent drop in $\mu_t$ at $t=T_1$ is fully unanticipated, as in experiment 1, or completely
+unanticipated, as in experiment 2.
+
+```{code-cell} ipython3
+# compare foreseen vs unforeseen shock
+fig, ax = plt.subplots(2, 3, figsize=[12,6], dpi=200)
+
+ax[0,0].plot(T_seq[:-1], μ_seq_3)
+ax[0,0].set_ylabel(r'$\mu$')
+
+ax[0,1].plot(T_seq, π_seq_3, 
+             label='Unforeseen')
+ax[0,1].plot(T_seq, π_seq_1, 
+             label='Foreseen', color='tab:green')
+ax[0,1].set_ylabel(r'$\pi$')
+
+ax[0,2].plot(T_seq,
+             m_seq_3_regime1 - p_seq_3_regime1, 
+             label='Unforeseen')
+ax[0,2].plot(T_seq, m_seq_1 - p_seq_1, 
+             label='Foreseen', color='tab:green')
+ax[0,2].set_ylabel(r'$m - p$')
+
+ax[1,0].plot(T_seq, m_seq_3_regime1, 
+             label=r'Unforseen (Insist on $m_{T_1}$)')
+ax[1,0].plot(T_seq, m_seq_3_regime2, 
+             label=r'Unforseen (Reset $m_{T_1}$)')
+ax[1,0].plot(T_seq, m_seq_1, 
+             label='Foreseen shock')
+ax[1,0].set_ylabel(r'$m$')
+
+ax[1,1].plot(T_seq, p_seq_3_regime1, 
+             label=r'Unforseen (Insist on $m_{T_1}$)')
+ax[1,1].plot(T_seq, p_seq_3_regime2, 
+             label=r'Unforseen (Reset $m_{T_1}$)')
+ax[1,1].plot(T_seq, p_seq_1, 
+             label='Foreseen')
+ax[1,1].set_ylabel(r'$p$')
+
+for i in range(2):
+    for j in range(3):
+        ax[i, j].set_xlabel(r'$t$')
+        
+ax[1,2].set_axis_off()
+
+for i,j in zip([0,0,1,1], [1,2,0,1]):
+    ax[i,j].legend()
+
+plt.tight_layout()
+plt.show()
+```
+
++++ {"user_expressions": []}
 
 ### The log price level
 
@@ -375,256 +633,6 @@ $$
 \mu_t = \phi^t \mu_0 + (1 - \phi^t) \mu^* .
 $$ 
 
-#### Python Code
-
-Let's prepare a Python class to perform our experiments by implementing our formulas using linear algebra
-<!-- #endregion -->
-
-```{code-cell} ipython3
-class Cagan_REE:
-    " Solve the rational expectation version of Cagan model in finite time. "
-    
-    def __init__(self, m0, α, T, μ_seq):
-        self.m0, self.T, self.μ_seq, self.α = m0, T, μ_seq, α
-        
-        δ = α/(1 + α)
-        π_end = μ_seq[-1]    # compute terminal expected inflation
-        
-        self.δ, self.π_end = δ, π_end
-        
-    def solve(self):
-        m0, T, π_end, μ_seq, α, δ = self.m0, self.T, self.π_end, self.μ_seq, self.α, self.δ
-        
-        A1 = np.eye(T+1, T+1) - δ * np.eye(T+1, T+1, k=1)
-        A2 = np.eye(T+1, T+1) - np.eye(T+1, T+1, k=-1)
-        
-        b1 = (1-δ) * μ_seq + np.concatenate([np.zeros(T), [δ * π_end]])
-        b2 = μ_seq + np.concatenate([[m0], np.zeros(T)])
-        
-        π_seq = np.linalg.inv(A1) @ b1
-        m_seq = np.linalg.inv(A2) @ b2
-        
-        π_seq = np.append(π_seq, π_end)
-        m_seq = np.append(m0, m_seq)
-        
-        p_seq = m_seq + α * π_seq
-
-        return π_seq, m_seq, p_seq
-
-
-def solve_and_plot(m0, α, T, μ_seq):
-    
-    mc = Cagan_REE(m0=m0, α=α, T=T, μ_seq=μ_seq)
-    π_seq, m_seq, p_seq = mc.solve()
-    T_seq = range(T+2)
-    
-    
-    fig, ax = plt.subplots(2, 3, figsize=[10, 5], dpi=200)
-    ax[0,0].plot(T_seq[:-1], μ_seq)
-    ax[0,1].plot(T_seq, π_seq)
-    ax[0,2].plot(T_seq, m_seq - p_seq)
-    ax[1,0].plot(T_seq, m_seq)
-    ax[1,1].plot(T_seq, p_seq)
-    
-    ax[0,0].set_ylabel(r'$\mu$')
-    ax[0,0].set_xlabel(r'$t$')
-    ax[0,1].set_ylabel(r'$\pi$')
-    ax[0,1].set_xlabel(r'$t$')
-    ax[0,2].set_xlabel(r'$t$')
-    ax[0,2].set_ylabel(r'$m - p$')
-    ax[1,0].set_ylabel(r'$m$')
-    ax[1,0].set_xlabel(r'$t$')
-    ax[1,1].set_ylabel(r'$p$')
-    ax[1,1].set_xlabel(r'$t$')
-
-    ax[1,2].set_axis_off()
-    plt.tight_layout()
-    plt.show()
-    
-    return π_seq, m_seq, p_seq
-```
-
-```{code-cell} ipython3
-# parameters
-T = 80
-T1 = 60
-α = 5
-m0 = 1
-
-μ0 = 0.5
-μ_star = 0
-```
-
-+++ {"user_expressions": []}
-
-### Experiment 1
-
-We'll start by executing a version of our "experiment 1" in which the government  implements a **foreseen** sudden permanent reduction in the rate of money creation at time $T_1$.  
-
-The following code  performs the experiment and plots outcomes.
-
-```{code-cell} ipython3
-μ_seq_1 = np.append(μ0*np.ones(T1+1), μ_star*np.ones(T-T1))
-
-# solve and plot
-π_seq_1, m_seq_1, p_seq_1 = solve_and_plot(m0=m0, α=α, T=T, μ_seq=μ_seq_1)
-```
-
-+++ {"user_expressions": []}
-
-The  plot of the money growth rate $\mu_t$ in the top level panel portrays
-a sudden reduction from $.5$ to $0$ at time $T_1 = 60$.  
-
-This brings about a gradual reduction of the inflation rate $\pi_t$ that precedes the
-money supply growth rate reduction at time $T_1$.
-
-Notice how the inflation rate declines smoothly (i.e., continuously) to $0$ at $T_1$ -- 
-unlike the money growth rate, it does not suddenly "jump" downward at $T_1$.
-
-This is because the reduction in $\mu$ at $T_1$ has been foreseen from the start.  
-
-While the log money supply portrayed in the bottom panel has a kink at $T_1$, the log  price level does not -- it is "smooth" -- once again a consequence of the fact that the
-reduction in $\mu$ has been foreseen.
-
-<!-- #region -->
-#### Experiment 2
-
-
-We now move on to experiment 2, our "MIT shock", completely unforeseen 
-sudden stabilization.
-
-We set this up so that the $\{\mu_t\}$ sequences that describe the sudden stabilization
-are identical to those for experiment 1, the foreseen suddent stabilization.
-
-The following code does the calculations and plots outcomes.
-<!-- #endregion -->
-
-```{code-cell} ipython3
-# path 1
-μ_seq_3_path1 = μ0 * np.ones(T+1)
-
-mc1 = Cagan_REE(m0=m0, α=α, T=T, μ_seq=μ_seq_3_path1)
-π_seq_3_path1, m_seq_3_path1, p_seq_3_path1 = mc1.solve()
-
-# continuation path
-μ_seq_3_cont = μ_star * np.ones(T-T1)
-
-mc2 = Cagan_REE(m0=m_seq_3_path1[T1+1], α=α, T=T-1-T1, μ_seq=μ_seq_3_cont)
-π_seq_3_cont, m_seq_3_cont1, p_seq_3_cont1 = mc2.solve()
-
-
-# regime 1 - simply glue π_seq, μ_seq
-μ_seq_3 = np.concatenate([μ_seq_3_path1[:T1+1], μ_seq_3_cont])
-π_seq_3 = np.concatenate([π_seq_3_path1[:T1+1], π_seq_3_cont])
-m_seq_3_regime1 = np.concatenate([m_seq_3_path1[:T1+1], m_seq_3_cont1])
-p_seq_3_regime1 = np.concatenate([p_seq_3_path1[:T1+1], p_seq_3_cont1])
-
-# regime 2 - reset m_T1
-m_T1 = (m_seq_3_path1[T1] + μ0) + α*(μ0 - μ_star)
-
-mc = Cagan_REE(m0=m_T1, α=α, T=T-1-T1, μ_seq=μ_seq_3_cont)
-π_seq_3_cont2, m_seq_3_cont2, p_seq_3_cont2 = mc.solve()
-
-m_seq_3_regime2 = np.concatenate([m_seq_3_path1[:T1+1], m_seq_3_cont2])
-p_seq_3_regime2 = np.concatenate([p_seq_3_path1[:T1+1], p_seq_3_cont2])
-
-T_seq = range(T+2)
-
-# plot both regimes
-fig, ax = plt.subplots(2, 3, figsize=[10,5], dpi=200)
- 
-ax[0,0].plot(T_seq[:-1], μ_seq_3)
-ax[0,1].plot(T_seq, π_seq_3)
-ax[0,2].plot(T_seq, m_seq_3_regime1 - p_seq_3_regime1)
-ax[1,0].plot(T_seq, m_seq_3_regime1, label='Smooth $m_{T_1}$')
-ax[1,0].plot(T_seq, m_seq_3_regime2, label='Jumpy $m_{T_1}$')
-ax[1,1].plot(T_seq, p_seq_3_regime1, label='Smooth $m_{T_1}$')
-ax[1,1].plot(T_seq, p_seq_3_regime2, label='Jumpy $m_{T_1}$')
-
-ax[0,0].set_ylabel(r'$\mu$')
-ax[0,0].set_xlabel(r'$t$')
-ax[0,1].set_ylabel(r'$\pi$')
-ax[0,1].set_xlabel(r'$t$')
-ax[0,2].set_xlabel(r'$t$')
-ax[0,2].set_ylabel(r'$m - p$')
-ax[1,0].set_ylabel(r'$m$')
-ax[1,0].set_xlabel(r'$t$')
-ax[1,1].set_ylabel(r'$p$')
-ax[1,1].set_xlabel(r'$t$')
-ax[1,2].set_axis_off()
-
-for i,j in zip([1,1], [0,1]):
-    ax[i,j].legend()
-
-plt.tight_layout()
-plt.show()
-```
-
-+++ {"user_expressions": []}
-
-We invite you to compare these graphs with corresponding ones for the foreseen stabilization analyzed in experiment 1 above.  
-
-Note how the inflation graph in the top middle panel is now identical to the 
-money growth graph in the top left panel, and how now the log of real balances portrayed in the top right panel jumps upward at time $T_1$.
-
-The bottom panels plot $m$ and $p$ under two possible ways that $m_{T_1}$ might adjust
-as required by the upward jump in $m - p$ at $T_1$.  
-
-  * the orange line lets $m_{T_1}$ jump upward in order to make sure that the log price level $p_{T_1}$ does not fall.
-  
-  * the blue line lets $p_{T_1}$ fall while stopping the money supply from jumping.
-  
-Here is a way to interpret what the government is doing when the orange line policy is in place.
-
-The government  prints money to finance expenditure with  the "velocity dividend" that it reaps from the increased demand for real balances brought about by the permanent decrease in the rate of growth of the money supply.
-
-
-The next code generates a multi-panel graph that includes outcomes of both experiments 1 and 2.
-
-That allows us to assess how important it is to understand whether the sudden permanent drop in $\mu_t$ at $t=T_1$ is fully unanticipated, as in experiment 1, or completely
-unanticipated, as in experiment 2.
-
-```{code-cell} ipython3
-# compare foreseen vs unforeseen shock
-fig, ax = plt.subplots(2, 3, figsize=[12,6], dpi=200)
-ax[0,0].plot(T_seq[:-1], μ_seq_3)
-
-ax[0,1].plot(T_seq, π_seq_3, label='Unforeseen')
-ax[0,1].plot(T_seq, π_seq_1, label='Foreseen', color='tab:green')
-
-ax[0,2].plot(T_seq, m_seq_3_regime1 - p_seq_3_regime1, label='Unforeseen')
-ax[0,2].plot(T_seq, m_seq_1 - p_seq_1, label='Foreseen', color='tab:green')
-
-ax[1,0].plot(T_seq, m_seq_3_regime1, label=r'Unforseen (Insist on $m_{T_1}$)')
-ax[1,0].plot(T_seq, m_seq_3_regime2, label=r'Unforseen (Reset $m_{T_1}$)')
-ax[1,0].plot(T_seq, m_seq_1, label='Foreseen shock')
-
-ax[1,1].plot(T_seq, p_seq_3_regime1, label=r'Unforseen (Insist on $m_{T_1}$)')
-ax[1,1].plot(T_seq, p_seq_3_regime2, label=r'Unforseen (Reset $m_{T_1}$)')
-ax[1,1].plot(T_seq, p_seq_1, label='Foreseen')
-
-ax[0,0].set_ylabel(r'$\mu$')
-ax[0,0].set_xlabel(r'$t$')
-ax[0,1].set_ylabel(r'$\pi$')
-ax[0,1].set_xlabel(r'$t$')
-ax[0,2].set_xlabel(r'$t$')
-ax[0,2].set_ylabel(r'$m - p}$')
-ax[1,0].set_ylabel(r'$m$')
-ax[1,0].set_xlabel(r'$t$')
-ax[1,1].set_ylabel(r'$p$')
-ax[1,1].set_xlabel(r'$t$')
-ax[1,2].set_axis_off()
-
-for i,j in zip([0,0,1,1], [1,2,0,1]):
-    ax[i,j].legend()
-
-plt.tight_layout()
-plt.show()
-```
-
-+++ {"user_expressions": []}
-
-### Experiment 3
 
 Next we perform an experiment in which there is a perfectly foreseen **gradual** decrease in the rate of growth of the money supply.
 
@@ -639,42 +647,4 @@ The following  code does the calculations and plots the results.
 
 # solve and plot
 π_seq_2, m_seq_2, p_seq_2 = solve_and_plot(m0=m0, α=α, T=T, μ_seq=μ_seq_2)
-```
-
-```{code-cell} ipython3
-# compare foreseen vs unforeseen shock
-fig, ax = plt.subplots(2, 3, figsize=[12,6], dpi=200)
-ax[0,0].plot(T_seq[:-1], μ_seq_3)
-
-ax[0,1].plot(T_seq, π_seq_3, label='Unforeseen')
-ax[0,1].plot(T_seq, π_seq_1, label='Foreseen', color='tab:green')
-
-ax[0,2].plot(T_seq, m_seq_3_regime1 - p_seq_3_regime1, label='Unforeseen')
-ax[0,2].plot(T_seq, m_seq_1 - p_seq_1, label='Foreseen', color='tab:green')
-
-ax[1,0].plot(T_seq, m_seq_3_regime1, label=r'Unforseen (Insist on $m_{T_1}$)')
-ax[1,0].plot(T_seq, m_seq_3_regime2, label=r'Unforseen (Reset $m_{T_1}$)')
-ax[1,0].plot(T_seq, m_seq_1, label='Foreseen shock')
-
-ax[1,1].plot(T_seq, p_seq_3_regime1, label=r'Unforseen (Insist on $m_{T_1}$)')
-ax[1,1].plot(T_seq, p_seq_3_regime2, label=r'Unforseen (Reset $m_{T_1}$)')
-ax[1,1].plot(T_seq, p_seq_1, label='Foreseen')
-
-ax[0,0].set_ylabel(r'$\mu$')
-ax[0,0].set_xlabel(r'$t$')
-ax[0,1].set_ylabel(r'$\pi$')
-ax[0,1].set_xlabel(r'$t$')
-ax[0,2].set_xlabel(r'$t$')
-ax[0,2].set_ylabel(r'$m - p}$')
-ax[1,0].set_ylabel(r'$m$')
-ax[1,0].set_xlabel(r'$t$')
-ax[1,1].set_ylabel(r'$p$')
-ax[1,1].set_xlabel(r'$t$')
-ax[1,2].set_axis_off()
-
-for i,j in zip([0,0,1,1], [1,2,0,1]):
-    ax[i,j].legend()
-
-plt.tight_layout()
-plt.show()
 ```
