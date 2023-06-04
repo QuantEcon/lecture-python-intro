@@ -13,11 +13,15 @@ kernelspec:
 
 +++ {"user_expressions": []}
 
-# Long Run Growth
+# Economic Growth Evidence
 
 ## Overview
 
-This lecture looks at different growth trajectories across countries over the long term. 
+Adam Tooze's account of the geopolitical precedents and antecedents of World War I  includes a comparison of how  National Gross National Products of European Great Powers had evolved during the 70 years preceding 1914 (see chapter 1 of {cite}`Tooze_2014`).
+
+
+
+This lecture  growth trajectories of various  countries over long time periods. 
 
 While some countries have experienced long term rapid growth across that has lasted a hundred years, others have not. 
 
@@ -380,7 +384,6 @@ mystnb:
     caption: GDP per Capita (UK and US)
     name: gdppc_ukus
 ---
-
 fig, ax = plt.subplots(dpi=300, figsize=(10, 6))
 
 cntry = ['GBR', 'USA']
