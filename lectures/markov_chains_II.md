@@ -27,16 +27,7 @@ In addition to what's in Anaconda, this lecture will need the following librarie
 :tags: [hide-output]
 
 !pip install quantecon
-!pip install graphviz
 ```
-
-```{admonition} graphviz
-:class: warning
-If you are running this lecture locally it requires [graphviz](https://www.graphviz.org)
-to be installed on your computer. Installation instructions for graphviz can be found
-[here](https://www.graphviz.org/download/) 
-```
-
 
 ## Overview
 
@@ -65,12 +56,12 @@ import matplotlib.pyplot as plt
 plt.rcParams["figure.figsize"] = (11, 5)  # set default figure size
 import quantecon as qe
 import numpy as np
-from graphviz import Digraph
 import networkx as nx
 from matplotlib import cm
 import matplotlib as mpl
 ```
 
+(mc_irreducible)=
 ## Irreducibility
 
 
@@ -97,26 +88,12 @@ that is, if $x$ and $y$ communicate for all $(x, y)$ in $S \times S$.
 For example, consider the following transition probabilities for wealth of a
 fictitious set of households
 
-```{code-cell} ipython3
-:tags: [hide-input]
-
-dot = Digraph(comment='Graph')
-dot.attr(rankdir='LR')
-dot.node("poor")
-dot.node("middle class")
-dot.node("rich")
-
-dot.edge("poor", "poor", label="0.9")
-dot.edge("poor", "middle class", label="0.1")
-dot.edge("middle class", "poor", label="0.4")
-dot.edge("middle class", "middle class", label="0.4")
-dot.edge("middle class", "rich", label="0.2")
-dot.edge("rich", "poor", label="0.1")
-dot.edge("rich", "middle class", label="0.1")
-dot.edge("rich", "rich", label="0.8")
-
-dot
+```{image} /_static/lecture_specific/markov_chains_II/Irre_1.png
+:name: mc_irre1
+:align: center
 ```
+
+
 
 We can translate this into a stochastic matrix, putting zeros where
 there's no edge between nodes
@@ -146,23 +123,9 @@ mc.is_irreducible
 
 Here's a more pessimistic scenario in which  poor people remain poor forever
 
-```{code-cell} ipython3
-:tags: [hide-input]
-
-dot = Digraph(comment='Graph')
-dot.attr(rankdir='LR')
-dot.node("poor")
-dot.node("middle class")
-dot.node("rich")
-
-dot.edge("poor", "poor", label="1.0")
-dot.edge("middle class", "poor", label="0.1")
-dot.edge("middle class", "middle class", label="0.8")
-dot.edge("middle class", "rich", label="0.1")
-dot.edge("rich", "middle class", label="0.2")
-dot.edge("rich", "rich", label="0.8")
-
-dot
+```{image} /_static/lecture_specific/markov_chains_II/Irre_2.png
+:name: mc_irre2
+:align: center
 ```
 
 This stochastic matrix is not irreducible since, for example, rich is not
@@ -178,8 +141,6 @@ P = [[1.0, 0.0, 0.0],
 mc = qe.MarkovChain(P, ('poor', 'middle', 'rich'))
 mc.is_irreducible
 ```
-
-+++ {"user_expressions": []}
 
 It might be clear to you already that irreducibility is going to be important
 in terms of long-run outcomes.
@@ -284,6 +245,15 @@ Therefore, we can see the sample path averages for each state (the fraction of
 time spent in each state) converges to the stationary distribution regardless of
 the starting state
 
+Let's denote the fraction of time spent in state $x$ at time $t$ in our sample path as $\hat p_t(x)$ where
+
+$$
+\hat p_t(x) := \frac{1}{t} \sum_{t = 1}^t \mathbf{1}\{X_t = x\}
+$$
+
+
+Here we compare $\hat p_t(x)$ with the stationary distribution $\psi^* (x)$ for different starting points $x_0$.
+
 ```{code-cell} ipython3
 P = np.array([[0.971, 0.029, 0.000],
               [0.145, 0.778, 0.077],
@@ -291,26 +261,27 @@ P = np.array([[0.971, 0.029, 0.000],
 ts_length = 10_000
 mc = qe.MarkovChain(P)
 n = len(P)
-fig, axes = plt.subplots(nrows=1, ncols=n)
+fig, axes = plt.subplots(nrows=1, ncols=n, figsize=(15, 6))
 ψ_star = mc.stationary_distributions[0]
 plt.subplots_adjust(wspace=0.35)
 
 for i in range(n):
-    axes[i].grid()
-    axes[i].axhline(ψ_star[i], linestyle='dashed', lw=2, color = 'black', 
+    axes[i].axhline(ψ_star[i], linestyle='dashed', lw=2, color='black', 
                     label = fr'$\psi^*({i})$')
     axes[i].set_xlabel('t')
-    axes[i].set_ylabel(f'fraction of time spent at {i}')
+    axes[i].set_ylabel(fr'$\hat p_t({i})$')
 
     # Compute the fraction of time spent, starting from different x_0s
     for x0, col in ((0, 'blue'), (1, 'green'), (2, 'red')):
         # Generate time series that starts at different x0
         X = mc.simulate(ts_length, init=x0)
-        X_bar = (X == i).cumsum() / (1 + np.arange(ts_length, dtype=float))
-        axes[i].plot(X_bar, color=col, label=f'$x_0 = \, {x0} $')
+        p_hat = (X == i).cumsum() / (1 + np.arange(ts_length, dtype=float))
+        axes[i].plot(p_hat, color=col, label=f'$x_0 = \, {x0} $')
     axes[i].legend()
 plt.show()
 ```
+
+Note the convergence to the stationary distribution regardless of the starting point $x_0$.
 
 ### Example 3
 
@@ -333,8 +304,7 @@ $$
 The {ref}`graph <mc_eg3>` for the chain shows all states are reachable,
 indicating that this chain is irreducible.
 
-Similar to previous examples, the sample path averages for each state converge
-to the stationary distribution.
+Here we visualize the difference between $\hat p_t(x)$ and the stationary distribution $\psi^* (x)$ for each state $x$
 
 ```{code-cell} ipython3
 P = [[0.86, 0.11, 0.03, 0.00, 0.00, 0.00],
@@ -351,19 +321,22 @@ fig, ax = plt.subplots(figsize=(9, 6))
 X = mc.simulate(ts_length)
 # Center the plot at 0
 ax.set_ylim(-0.25, 0.25)
-ax.axhline(0, linestyle='dashed', lw=2, color = 'black', alpha=0.4)
+ax.axhline(0, linestyle='dashed', lw=2, color='black', alpha=0.4)
 
 
 for x0 in range(6):
     # Calculate the fraction of time for each state
-    X_bar = (X == x0).cumsum() / (1 + np.arange(ts_length, dtype=float))
-    ax.plot(X_bar - ψ_star[x0], label=f'$X = {x0+1} $')
+    p_hat = (X == x0).cumsum() / (1 + np.arange(ts_length, dtype=float))
+    ax.plot(p_hat - ψ_star[x0], label=f'$x = {x0+1} $')
     ax.set_xlabel('t')
-    ax.set_ylabel(r'fraction of time spent in a state $- \psi^* (x)$')
+    ax.set_ylabel(r'$\hat p_t(x) - \psi^* (x)$')
 
 ax.legend()
 plt.show()
 ```
+
+Similar to previous examples, the sample path averages for each state converge
+to the stationary distribution.
 
 ### Example 4
 
@@ -381,24 +354,14 @@ $$
 
 The diagram of the Markov chain shows that it is **irreducible**
 
-```{code-cell} ipython3
-:tags: [hide-input]
-
-dot = Digraph(comment='Graph')
-dot.attr(rankdir='LR')
-dot.node("0")
-dot.node("1")
-
-dot.edge("0", "1", label="1.0", color='red')
-dot.edge("1", "0", label="1.0", color='red')
-
-dot
+```{image} /_static/lecture_specific/markov_chains_II/example4.png
+:name: mc_example4
+:align: center
 ```
-
 
 In fact it has a periodic cycle --- the state cycles between the two states in a regular way.
 
-This is called [periodicity](https://www.randomservices.org/random/markov/Periodicity.html).
+This is called [periodicity](https://stats.libretexts.org/Bookshelves/Probability_Theory/Probability_Mathematical_Statistics_and_Stochastic_Processes_(Siegrist)/16%3A_Markov_Processes/16.05%3A_Periodicity_of_Discrete-Time_Chains#:~:text=A%20state%20in%20a%20discrete,limiting%20behavior%20of%20the%20chain.).
 
 It is still irreducible so ergodicity holds.
 
@@ -412,19 +375,18 @@ fig, axes = plt.subplots(nrows=1, ncols=n)
 ψ_star = mc.stationary_distributions[0]
 
 for i in range(n):
-    axes[i].grid()
     axes[i].set_ylim(0.45, 0.55)
-    axes[i].axhline(ψ_star[i], linestyle='dashed', lw=2, color = 'black', 
+    axes[i].axhline(ψ_star[i], linestyle='dashed', lw=2, color='black', 
                     label = fr'$\psi^*({i})$')
     axes[i].set_xlabel('t')
-    axes[i].set_ylabel(f'fraction of time spent at {i}')
+    axes[i].set_ylabel(fr'$\hat p_t({i})$')
 
     # Compute the fraction of time spent, for each x
     for x0 in range(n):
         # Generate time series starting at different x_0
         X = mc.simulate(ts_length, init=x0)
-        X_bar = (X == i).cumsum() / (1 + np.arange(ts_length, dtype=float))
-        axes[i].plot(X_bar, label=f'$x_0 = \, {x0} $')
+        p_hat = (X == i).cumsum() / (1 + np.arange(ts_length, dtype=float))
+        axes[i].plot(p_hat, label=f'$x_0 = \, {x0} $')
 
     axes[i].legend()
 plt.show()
@@ -435,8 +397,6 @@ This example helps to emphasize that asymptotic stationarity is about the distri
 The proportion of time spent in a state can converge to the stationary distribution with periodic chains.
 
 However, the distribution at each state does not.
-
-+++ {"user_expressions": []}
 
 ### Expectations of geometric sums
 
@@ -553,14 +513,14 @@ mc = qe.MarkovChain(P)
 fig, ax = plt.subplots(figsize=(9, 6))
 X = mc.simulate(ts_length)
 ax.set_ylim(-0.25, 0.25)
-ax.axhline(0, linestyle='dashed', lw=2, color = 'black', alpha=0.4)
+ax.axhline(0, linestyle='dashed', lw=2, color='black', alpha=0.4)
 
 for x0 in range(8):
     # Calculate the fraction of time for each worker
-    X_bar = (X == x0).cumsum() / (1 + np.arange(ts_length, dtype=float))
-    ax.plot(X_bar - ψ_star[x0], label=f'$X = {x0+1} $')
+    p_hat = (X == x0).cumsum() / (1 + np.arange(ts_length, dtype=float))
+    ax.plot(p_hat - ψ_star[x0], label=f'$x = {x0+1} $')
     ax.set_xlabel('t')
-    ax.set_ylabel(r'fraction of time spent in a state $- \psi^* (x)$')
+    ax.set_ylabel(r'$\hat p_t(x) - \psi^* (x)$')
 
 ax.legend()
 plt.show()
@@ -632,8 +592,7 @@ mc = qe.MarkovChain(P)
 
 fig, ax = plt.subplots(figsize=(9, 6))
 ax.set_ylim(-0.25, 0.25)
-ax.grid()
-ax.hlines(0, 0, ts_length, lw=2, alpha=0.6)   # Horizonal line at zero
+ax.axhline(0, linestyle='dashed', lw=2, color='black', alpha=0.4)
 
 for x0, col in ((0, 'blue'), (1, 'green')):
     # Generate time series for worker that starts at x0
@@ -642,10 +601,12 @@ for x0, col in ((0, 'blue'), (1, 'green')):
     X_bar = (X == 0).cumsum() / (1 + np.arange(ts_length, dtype=float))
     # Plot
     ax.fill_between(range(ts_length), np.zeros(ts_length), X_bar - p, color=col, alpha=0.1)
-    ax.plot(X_bar - p, color=col, label=f'$X_0 = \, {x0} $')
+    ax.plot(X_bar - p, color=col, label=f'$x_0 = \, {x0} $')
     # Overlay in black--make lines clearer
     ax.plot(X_bar - p, 'k-', alpha=0.6)
-
+    ax.set_xlabel('t')
+    ax.set_ylabel(r'$\bar X_m - \psi^* (x)$')
+    
 ax.legend(loc='upper right')
 plt.show()
 ```
