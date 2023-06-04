@@ -174,7 +174,7 @@ Now let's proceed to code.
 ```{code-cell} ipython3
 class ExchangeEconomy:
     def __init__(self, 
-                 Pi, 
+                 Π, 
                  bs, 
                  es, 
                  Ws=None, 
@@ -183,17 +183,17 @@ class ExchangeEconomy:
         Set up the environment for an exchange economy
 
         Args:
-            Pis (np.array): shared matrix of substitution
+            Π (np.array): shared matrix of substitution
             bs (list): all consumers' bliss points
             es (list): all consumers' endowments
             Ws (list): all consumers' wealth
             thres (float): a threshold set to test b >> Pi e violated
         """
-        n, m = Pi.shape[0], len(bs)
+        n, m = Π.shape[0], len(bs)
 
         # check non-satiation
         for b, e in zip(bs, es):
-            if np.min(b / np.max(Pi @ e)) <= thres:
+            if np.min(b / np.max(Π @ e)) <= thres:
                 raise Exception('set bliss points further away')
 
         if Ws == None:
@@ -202,34 +202,34 @@ class ExchangeEconomy:
             if sum(Ws) != 0:
                 raise Exception('invalid wealth distribution')
 
-        self.Pi, self.bs, self.es, self.Ws, self.n, self.m = Pi, bs, es, Ws, n, m
+        self.Π, self.bs, self.es, self.Ws, self.n, self.m = Π, bs, es, Ws, n, m
 
     def competitive_equilibrium(self):
         """
         Compute the competitive equilibrium prices and allocation
         """
-        Pi, bs, es, Ws = self.Pi, self.bs, self.es, self.Ws
+        Π, bs, es, Ws = self.Π, self.bs, self.es, self.Ws
         n, m = self.n, self.m
-        slope_dc = inv(Pi.T @ Pi)
-        Pi_inv = inv(Pi)
+        slope_dc = inv(Π.T @ Π)
+        Π_inv = inv(Π)
 
         # aggregate
         b = sum(bs)
         e = sum(es)
 
         # compute price vector with mu=1 and renormalize
-        p = Pi.T @ b - Pi.T @ Pi @ e
+        p = Π.T @ b - Π.T @ Π @ e
         p = p / p[0]
 
         # compute marginal utility of wealth
-        mu_s = []
+        μ_s = []
         c_s = []
         A = p.T @ slope_dc @ p
 
         for i in range(m):
-            mu_i = (-Ws[i] + p.T @ (Pi_inv @ bs[i] - es[i])) / A
-            c_i = Pi_inv @ bs[i] - mu_i * slope_dc @ p
-            mu_s.append(mu_i)
+            μ_i = (-Ws[i] + p.T @ (Π_inv @ bs[i] - es[i])) / A
+            c_i = Π_inv @ bs[i] - μ_i * slope_dc @ p
+            μ_s.append(μ_i)
             c_s.append(c_i)
 
         for c_i in c_s:
@@ -237,7 +237,7 @@ class ExchangeEconomy:
                 print('allocation: ', c_s)
                 raise Exception('negative allocation: equilibrium does not exist')
 
-        return p, c_s, mu_s
+        return p, c_s, μ_s
 ```
 
 ## Implementation
@@ -253,8 +253,8 @@ Next we use the class ``ExchangeEconomy`` defined above to study
 Here we tudy how competitive equilibrium $p, c^1, c^2$ respond to different $b^i$ and $e^i$, $i \in \{1, 2\}.
 
 ```{code-cell} ipython3
-Pi = np.array([[1, 0],
-               [0, 1]])
+Π = np.array([[1, 0],
+              [0, 1]])
 
 bs = [np.array([5, 5]),  # first consumer's bliss points
       np.array([5, 5])]  # second consumer's bliss points
@@ -262,8 +262,8 @@ bs = [np.array([5, 5]),  # first consumer's bliss points
 es = [np.array([0, 2]),  # first consumer's endowment
       np.array([2, 0])]  # second consumer's endowment
 
-EE = ExchangeEconomy(Pi, bs, es)
-p, c_s, mu_s = EE.competitive_equilibrium()
+EE = ExchangeEconomy(Π, bs, es)
+p, c_s, μ_s = EE.competitive_equilibrium()
 
 print('Competitive equilibrium price vector:', p)
 print('Competitive equilibrium allocation:', c_s)
@@ -275,7 +275,7 @@ What happens if the first consumer likes the first good more and the second cons
 EE.bs = [np.array([6, 5]),  # first consumer's bliss points
          np.array([5, 6])]  # second consumer's bliss points
 
-p, c_s, mu_s = EE.competitive_equilibrium()
+p, c_s, μ_s = EE.competitive_equilibrium()
 
 print('Competitive equilibrium price vector:', p)
 print('Competitive equilibrium allocation:', c_s)
@@ -287,7 +287,7 @@ Let the first consumer be poorer.
 EE.es = [np.array([0.5, 0.5]),  # first consumer's endowment
          np.array([1, 1])]  # second consumer's endowment
 
-p, c_s, mu_s = EE.competitive_equilibrium()
+p, c_s, μ_s = EE.competitive_equilibrium()
 
 print('Competitive equilibrium price vector:', p)
 print('Competitive equilibrium allocation:', c_s)
@@ -302,7 +302,7 @@ EE.bs = [np.array([4, 6]),  # first consumer's bliss points
 EE.es = [np.array([0, 2]),  # first consumer's endowment
       np.array([2, 0])]  # second consumer's endowment
 
-p, c_s, mu_s = EE.competitive_equilibrium()
+p, c_s, μ_s = EE.competitive_equilibrium()
 
 print('Competitive equilibrium price vector:', p)
 print('Competitive equilibrium allocation:', c_s)
@@ -318,8 +318,8 @@ es = [np.array([1, 1]),  # first consumer's endowment
       np.array([1, 1])]  # second consumer's endowment
 
 Ws = [0.5, -0.5]
-EE_new = ExchangeEconomy(Pi, bs, es, Ws)
-p, c_s, mu_s = EE_new.competitive_equilibrium()
+EE_new = ExchangeEconomy(Π, bs, es, Ws)
+p, c_s, μ_s = EE_new.competitive_equilibrium()
 
 print('Competitive equilibrium price vector:', p)
 print('Competitive equilibrium allocation:', c_s)
@@ -332,15 +332,15 @@ Now let's use the tricks described above to study a dynamic economy, one with tw
 ```{code-cell} ipython3
 beta = 0.95
 
-Pi = np.array([[1, 0],
-               [0, np.sqrt(beta)]])
+Π = np.array([[1, 0],
+              [0, np.sqrt(beta)]])
 
 bs = [np.array([5, np.sqrt(beta) * 5])]
 
 es = [np.array([1, 1])]
 
-EE_DE = ExchangeEconomy(Pi, bs, es)
-p, c_s, mu_s = EE_DE.competitive_equilibrium()
+EE_DE = ExchangeEconomy(Π, bs, es)
+p, c_s, μ_s = EE_DE.competitive_equilibrium()
 
 print('Competitive equilibrium price vector:', p)
 print('Competitive equilibrium allocation:', c_s)
@@ -353,8 +353,8 @@ We use the tricks described above to interpret  $c_1, c_2$ as "Arrow securities"
 ```{code-cell} ipython3
 prob = 0.7
 
-Pi = np.array([[np.sqrt(prob), 0],
-               [0, np.sqrt(1 - prob)]])
+Π = np.array([[np.sqrt(prob), 0],
+              [0, np.sqrt(1 - prob)]])
 
 bs = [np.array([np.sqrt(prob) * 5, np.sqrt(1 - prob) * 5]),
       np.array([np.sqrt(prob) * 5, np.sqrt(1 - prob) * 5])]
@@ -362,8 +362,8 @@ bs = [np.array([np.sqrt(prob) * 5, np.sqrt(1 - prob) * 5]),
 es = [np.array([1, 0]),
       np.array([0, 1])]
 
-EE_AS = ExchangeEconomy(Pi, bs, es)
-p, c_s, mu_s = EE_AS.competitive_equilibrium()
+EE_AS = ExchangeEconomy(Π, bs, es)
+p, c_s, μ_s = EE_AS.competitive_equilibrium()
 
 print('Competitive equilibrium price vector:', p)
 print('Competitive equilibrium allocation:', c_s)
