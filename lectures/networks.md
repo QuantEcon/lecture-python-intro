@@ -329,7 +329,7 @@ For example,
 ```{code-cell} ipython3
 G_p.in_degree('p')
 ```
-
+(strongly_connected)=
 ### Communication
 
 Next, we study communication and connectedness, which have important

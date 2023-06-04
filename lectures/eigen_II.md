@@ -65,7 +65,7 @@ We introduced irreducible matrices in the [Markov chain lecture](mc_irreducible)
 
 Here we generalize this concept:
 
-$A$ is called **irreducible** if for *each* $(i,j)$ there is an integer $k \geq 0$ such that $a^{k}_{ij} > 0$.
+An $n \times n$ matrix $A$ is called irreducible if, for each $i,j$ with $1 \leq i, j \leq n$, there exists a $k \geq 0$ such that $a^{k}_{ij} > 0$.
 
 A matrix $A$ that is not irreducible is called reducible.
 
@@ -82,7 +82,7 @@ Here are some examples to illustrate this further.
 
 Let $A$ be a square nonnegative matrix and let $A^k$ be the $k^{th}$ power of $A$.
 
-A matrix is considered **primitive** if there exists a $k \in \mathbb{N}$ such that $A^k$ is everywhere positive.
+A matrix is called **primitive** if there exists a $k \in \mathbb{N}$ such that $A^k$ is everywhere positive.
 
 It means that $A$ is called primitive if there is an integer $k \geq 0$ such that $a^{k}_{ij} > 0$ for *all* $(i,j)$.
 
@@ -148,10 +148,10 @@ This is a more common expression and where the name left eigenvectors originates
 (perron-frobe)=
 ### The Perron-Frobenius Theorem
 
-For a nonnegative matrix $A$ the behavior of $A^k$ as $k \to \infty$ is controlled by the eigenvalue with the largest
+For a square nonnegative matrix $A$, the behavior of $A^k$ as $k \to \infty$ is controlled by the eigenvalue with the largest
 absolute value, often called the **dominant eigenvalue**.
 
-For a matrix nonnegative square matrix $A$, the Perron-Frobenius Theorem characterizes certain
+For any such matrix $A$, the Perron-Frobenius Theorem characterizes certain
 properties of the dominant eigenvalue and its corresponding eigenvector.
 
 ```{prf:Theorem} Perron-Frobenius Theorem
@@ -172,7 +172,7 @@ If $A$ is primitive then,
 
 6. the inequality $|\lambda| \leq r(A)$ is **strict** for all eigenvalues $\lambda$ of $A$ distinct from $r(A)$, and
 7. with $v$ and $w$ normalized so that the inner product of $w$ and  $v = 1$, we have
-$ r(A)^{-m} A^m$ converges to $v w^{\top}$ when $m \rightarrow \infty$. $v w^{\top}$ is called the **Perron projection** of $A$
+$ r(A)^{-m} A^m$ converges to $v w^{\top}$ when $m \rightarrow \infty$. The matrix $v w^{\top}$ is called the **Perron projection** of $A$
 ```
 
 (This is a relatively simple version of the theorem --- for more details see
@@ -331,7 +331,7 @@ In fact we have already seen the theorem in action before in {ref}`the markov ch
 
 We are now prepared to bridge the languages spoken in the two lectures.
 
-A primitive matrix is both irreducible (or strongly connected in the language of graph) and aperiodic.
+A primitive matrix is both irreducible (or strongly connected in the language of {ref}`graph theory`<strongly_connected>) and aperiodic.
 
 So Perron-Frobenius Theorem explains why both Imam and Temple matrix and Hamilton matrix converge to a stationary distribution, which is the Perron projection of the two matrices
 
