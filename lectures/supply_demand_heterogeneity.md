@@ -27,7 +27,7 @@ While the results of the study were informative, we used a strong simplifying as
 
 In the real world, households, firms and other economic agents differ from one another along many dimensions.
 
-In this lecture, we introduce heterogeneity across consumers by allowing their preferences and endownments to differ.
+In this lecture, we introduce heterogeneity across consumers by allowing their preferences and endowments to differ.
 
 We will examine competitive equilibrium in this setting.
 
@@ -69,7 +69,7 @@ e_1 + e_2 =
     (\Pi^\top \Pi)^{-1}(\Pi^\top (b_1 + b_2) - (\mu_1 + \mu_2) p )
 $$
 
-which after a line or two of linear algebra implies that
+which, after a line or two of linear algebra, implies that
 
 $$
 (\mu_1 + \mu_2) p = \Pi^\top(b_1+ b_2) - \Pi^\top \Pi (e_1 + e_2)
@@ -122,7 +122,7 @@ To compute a competitive equilibrium of a pure exchange economy, we use the fact
 
 We can use the following steps to compute a competitive equilibrium:
 
-- First we solve the single representative consumer economy by normalizing $\mu = 1$. Then, we renormalize the price vector by using the first consumption good as numeraire.
+- First we solve the single representative consumer economy by normalizing $\mu = 1$. Then, we renormalize the price vector by using the first consumption good as a numeraire.
 
 - Next we use the competitive equilibrium prices to compute each consumer's marginal utility of wealth:
 
@@ -221,7 +221,7 @@ class ExchangeEconomy:
         p = Pi.T @ b - Pi.T @ Pi @ e
         p = p / p[0]
 
-        # compute marg util of wealth
+        # compute marginal utility of wealth
         mu_s = []
         c_s = []
         A = p.T @ slope_dc @ p
@@ -372,7 +372,7 @@ print('Competitive equilibrium allocation:', c_s)
 ## Deducing a Representative Consumer
 
 In the class of multiple consumer economies that we are studying here, it turns out that there
-exists a single **representative consumer** whose preferences and endowments can be deduced from lists of preferences and endowments for the separate individual consumers.
+exists a single **representative consumer** whose preferences and endowments can be deduced from lists of preferences and endowments for separate individual consumers.
 
 Consider a multiple consumer economy with initial distribution of wealth $W_i$ satisfying $\sum_i W_{i}=0$
 
@@ -440,4 +440,5 @@ $$
 p=\tilde{\mu}^{-1}(\Pi^{\top}b-\Pi^{\top}\Pi e)
 $$
 
-Thus, we have  verified that, up to choice of a numeraire in which to express absolute prices,  the price vector in our representative consumer economy is the same as that in an underlying  economy with multiple consumers.
+Thus, we have  verified that, up to the choice of a numeraire in which to express absolute prices, the price 
+vector in our representative consumer economy is the same as that in an underlying  economy with multiple consumers.
