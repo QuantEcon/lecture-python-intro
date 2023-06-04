@@ -252,7 +252,7 @@ m0 = 1
 
 +++ {"user_expressions": []}
 
-Now we can solve the model and plot $\pi_t$, $m_t$ and $p_t$ for $t =1, \ldots, T+1$
+Now we can solve the model to compute $\pi_t$, $m_t$ and $p_t$ for $t =1, \ldots, T+1$
 
 ```{code-cell} ipython3
 def solve(model):
@@ -410,48 +410,57 @@ The following code does the calculations and plots outcomes.
 
 ```{code-cell} ipython3
 # path 1
-μ_seq_3_path1 = μ0 * np.ones(T+1)
+μ_seq_2_path1 = μ0 * np.ones(T+1)
 
-mc1 = create_cagan_model(m0=m0, α=α, T=T, μ_seq=μ_seq_3_path1)
-π_seq_3_path1, m_seq_3_path1, p_seq_3_path1 = solve(mc1)
+mc1 = create_cagan_model(m0=m0, α=α, 
+                         T=T, μ_seq=μ_seq_2_path1)
+π_seq_2_path1, m_seq_2_path1, p_seq_2_path1 = solve(mc1)
 
 # continuation path
-μ_seq_3_cont = μ_star * np.ones(T-T1)
+μ_seq_2_cont = μ_star * np.ones(T-T1)
 
-mc2 = create_cagan_model(m0=m_seq_3_path1[T1+1], α=α, T=T-1-T1, μ_seq=μ_seq_3_cont)
-π_seq_3_cont, m_seq_3_cont1, p_seq_3_cont1 = solve(mc2)
+mc2 = create_cagan_model(m0=m_seq_2_path1[T1+1], 
+                         α=α, T=T-1-T1, μ_seq=μ_seq_2_cont)
+π_seq_2_cont, m_seq_2_cont1, p_seq_2_cont1 = solve(mc2)
 
 
 # regime 1 - simply glue π_seq, μ_seq
-μ_seq_3 = np.concatenate([μ_seq_3_path1[:T1+1], μ_seq_3_cont])
-π_seq_3 = np.concatenate([π_seq_3_path1[:T1+1], π_seq_3_cont])
-m_seq_3_regime1 = np.concatenate([m_seq_3_path1[:T1+1], m_seq_3_cont1])
-p_seq_3_regime1 = np.concatenate([p_seq_3_path1[:T1+1], p_seq_3_cont1])
+μ_seq_2 = np.concatenate([μ_seq_2_path1[:T1+1],
+                          μ_seq_2_cont])
+π_seq_2 = np.concatenate([π_seq_2_path1[:T1+1], 
+                          π_seq_2_cont])
+m_seq_2_regime1 = np.concatenate([m_seq_2_path1[:T1+1], 
+                                  m_seq_2_cont1])
+p_seq_2_regime1 = np.concatenate([p_seq_2_path1[:T1+1], 
+                                  p_seq_2_cont1])
 
 # regime 2 - reset m_T1
-m_T1 = (m_seq_3_path1[T1] + μ0) + α*(μ0 - μ_star)
+m_T1 = (m_seq_2_path1[T1] + μ0) + α*(μ0 - μ_star)
 
-mc = create_cagan_model(m0=m_T1, α=α, T=T-1-T1, μ_seq=μ_seq_3_cont)
-π_seq_3_cont2, m_seq_3_cont2, p_seq_3_cont2 = solve(mc)
+mc = create_cagan_model(m0=m_T1, α=α,
+                        T=T-1-T1, μ_seq=μ_seq_2_cont)
+π_seq_2_cont2, m_seq_2_cont2, p_seq_2_cont2 = solve(mc)
 
-m_seq_3_regime2 = np.concatenate([m_seq_3_path1[:T1+1], m_seq_3_cont2])
-p_seq_3_regime2 = np.concatenate([p_seq_3_path1[:T1+1], p_seq_3_cont2])
+m_seq_2_regime2 = np.concatenate([m_seq_2_path1[:T1+1], 
+                                  m_seq_2_cont2])
+p_seq_2_regime2 = np.concatenate([p_seq_2_path1[:T1+1],
+                                  p_seq_2_cont2])
 
 T_seq = range(T+2)
 
 # plot both regimes
 fig, ax = plt.subplots(2, 3, figsize=[10,5], dpi=200)
  
-ax[0,0].plot(T_seq[:-1], μ_seq_3)
-ax[0,1].plot(T_seq, π_seq_3)
-ax[0,2].plot(T_seq, m_seq_3_regime1 - p_seq_3_regime1)
-ax[1,0].plot(T_seq, m_seq_3_regime1, 
+ax[0,0].plot(T_seq[:-1], μ_seq_2)
+ax[0,1].plot(T_seq, π_seq_2)
+ax[0,2].plot(T_seq, m_seq_2_regime1 - p_seq_2_regime1)
+ax[1,0].plot(T_seq, m_seq_2_regime1, 
              label='Smooth $m_{T_1}$')
-ax[1,0].plot(T_seq, m_seq_3_regime2, 
+ax[1,0].plot(T_seq, m_seq_2_regime2, 
              label='Jumpy $m_{T_1}$')
-ax[1,1].plot(T_seq, p_seq_3_regime1,
+ax[1,1].plot(T_seq, p_seq_2_regime1,
              label='Smooth $m_{T_1}$')
-ax[1,1].plot(T_seq, p_seq_3_regime2, 
+ax[1,1].plot(T_seq, p_seq_2_regime2, 
              label='Jumpy $m_{T_1}$')
 
 
@@ -502,33 +511,33 @@ unanticipated, as in experiment 2.
 # compare foreseen vs unforeseen shock
 fig, ax = plt.subplots(2, 3, figsize=[12,6], dpi=200)
 
-ax[0,0].plot(T_seq[:-1], μ_seq_3)
+ax[0,0].plot(T_seq[:-1], μ_seq_2)
 ax[0,0].set_ylabel(r'$\mu$')
 
-ax[0,1].plot(T_seq, π_seq_3, 
+ax[0,1].plot(T_seq, π_seq_2, 
              label='Unforeseen')
 ax[0,1].plot(T_seq, π_seq_1, 
              label='Foreseen', color='tab:green')
 ax[0,1].set_ylabel(r'$\pi$')
 
 ax[0,2].plot(T_seq,
-             m_seq_3_regime1 - p_seq_3_regime1, 
+             m_seq_2_regime1 - p_seq_2_regime1, 
              label='Unforeseen')
 ax[0,2].plot(T_seq, m_seq_1 - p_seq_1, 
              label='Foreseen', color='tab:green')
 ax[0,2].set_ylabel(r'$m - p$')
 
-ax[1,0].plot(T_seq, m_seq_3_regime1, 
+ax[1,0].plot(T_seq, m_seq_2_regime1, 
              label=r'Unforseen (Insist on $m_{T_1}$)')
-ax[1,0].plot(T_seq, m_seq_3_regime2, 
+ax[1,0].plot(T_seq, m_seq_2_regime2, 
              label=r'Unforseen (Reset $m_{T_1}$)')
 ax[1,0].plot(T_seq, m_seq_1, 
              label='Foreseen shock')
 ax[1,0].set_ylabel(r'$m$')
 
-ax[1,1].plot(T_seq, p_seq_3_regime1, 
+ax[1,1].plot(T_seq, p_seq_2_regime1, 
              label=r'Unforseen (Insist on $m_{T_1}$)')
-ax[1,1].plot(T_seq, p_seq_3_regime2, 
+ax[1,1].plot(T_seq, p_seq_2_regime2, 
              label=r'Unforseen (Reset $m_{T_1}$)')
 ax[1,1].plot(T_seq, p_seq_1, 
              label='Foreseen')
@@ -641,10 +650,10 @@ The following  code does the calculations and plots the results.
 ```{code-cell} ipython3
 # parameters
 ϕ = 0.9
-μ_seq_2 = np.array([ϕ**t * μ0 + (1-ϕ**t)*μ_star for t in range(T)])
-μ_seq_2 = np.append(μ_seq_2, μ_star)
+μ_seq = np.array([ϕ**t * μ0 + (1-ϕ**t)*μ_star for t in range(T)])
+μ_seq = np.append(μ_seq, μ_star)
 
 
 # solve and plot
-π_seq_2, m_seq_2, p_seq_2 = solve_and_plot(m0=m0, α=α, T=T, μ_seq=μ_seq_2)
+π_seq, m_seq, p_seq = solve_and_plot(m0=m0, α=α, T=T, μ_seq=μ_seq)
 ```
