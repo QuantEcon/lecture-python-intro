@@ -241,6 +241,7 @@ mystnb:
   figure:
     caption: GDP per Capita, 1500- (China, UK, USA)
     name: gdppc_comparison
+tags: [hide-input]
 ---
 # Define the namedtuple for the events
 Event = namedtuple('Event', ['year_range', 'y_text', 'text', 'color', 'ymax'])
@@ -329,6 +330,7 @@ mystnb:
   figure:
     caption: GDP per Capita, 1500-2000 (China)
     name: gdppc_china
+tags: [hide-input]
 ---
 fig, ax = plt.subplots(dpi=300, figsize=(10, 6))
 
@@ -386,6 +388,7 @@ mystnb:
   figure:
     caption: GDP per Capita, 1500-2000 (UK and US)
     name: gdppc_ukus
+tags: [hide-input]
 ---
 fig, ax = plt.subplots(dpi=300, figsize=(10, 6))
 
