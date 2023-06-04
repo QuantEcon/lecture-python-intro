@@ -585,31 +585,37 @@ That allows us to assess how important it is to understand whether the sudden pe
 unanticipated, as in experiment 2.
 
 ```{code-cell} ipython3
-T_seq = range(T+2)
-
-# plot both regimes
-fig, ax = plt.subplots(2, 3, figsize=[10,5], dpi=200)
+# compare foreseen vs unforeseen shock
+fig, ax = plt.subplots(2, 3, figsize=[12,6], dpi=200)
 ax[0,0].plot(T_seq[:-1], μ_seq_3)
-ax[0,1].plot(T_seq, π_seq_3)
-ax[0,2].plot(T_seq, m_seq_3_regime1 - p_seq_3_regime1)
-ax[1,0].plot(T_seq, m_seq_3_regime1, label='Smooth $m_{T_1}$')
-ax[1,0].plot(T_seq, m_seq_3_regime2, label='Jumpy  $m_{T_1}$')
-ax[1,1].plot(T_seq, p_seq_3_regime1, label='Smooth $m_{T_1}$')
-ax[1,1].plot(T_seq, p_seq_3_regime2, label='Jumpy $m_{T_1}$')
+
+ax[0,1].plot(T_seq, π_seq_3, label='Unforeseen')
+ax[0,1].plot(T_seq, π_seq_1, label='Foreseen', color='tab:green')
+
+ax[0,2].plot(T_seq, m_seq_3_regime1 - p_seq_3_regime1, label='Unforeseen')
+ax[0,2].plot(T_seq, m_seq_1 - p_seq_1, label='Foreseen', color='tab:green')
+
+ax[1,0].plot(T_seq, m_seq_3_regime1, label=r'Unforseen (Insist on $m_{T_1}$)')
+ax[1,0].plot(T_seq, m_seq_3_regime2, label=r'Unforseen (Reset $m_{T_1}$)')
+ax[1,0].plot(T_seq, m_seq_1, label='Foreseen shock')
+
+ax[1,1].plot(T_seq, p_seq_3_regime1, label=r'Unforseen (Insist on $m_{T_1}$)')
+ax[1,1].plot(T_seq, p_seq_3_regime2, label=r'Unforseen (Reset $m_{T_1}$)')
+ax[1,1].plot(T_seq, p_seq_1, label='Foreseen')
 
 ax[0,0].set_ylabel(r'$\mu$')
 ax[0,0].set_xlabel(r'$t$')
 ax[0,1].set_ylabel(r'$\pi$')
 ax[0,1].set_xlabel(r'$t$')
 ax[0,2].set_xlabel(r'$t$')
-ax[0,2].set_ylabel(r'$m - p$')
+ax[0,2].set_ylabel(r'$m - p}$')
 ax[1,0].set_ylabel(r'$m$')
 ax[1,0].set_xlabel(r'$t$')
 ax[1,1].set_ylabel(r'$p$')
 ax[1,1].set_xlabel(r'$t$')
 ax[1,2].set_axis_off()
 
-for i,j in zip([1,1], [0,1]):
+for i,j in zip([0,0,1,1], [1,2,0,1]):
     ax[i,j].legend()
 
 plt.tight_layout()
