@@ -98,9 +98,9 @@ Left eigenvectors will play important roles in what follows, including that of s
 
 We will talk more about this later, but for now, let's define left eigenvectors.
 
-A vector $w$ is called a left eigenvector of $A$ if $w$ is an eigenvector of $A^T$.
+A vector $w$ is called a left eigenvector of $A$ if $w$ is an eigenvector of $A^\top$.
 
-In other words, if $w$ is a left eigenvector of matrix A, then $A^T w = \lambda w$, where $\lambda$ is the eigenvalue associated with the left eigenvector $v$.
+In other words, if $w$ is a left eigenvector of matrix $A$, then $A^\top w = \lambda w$, where $\lambda$ is the eigenvalue associated with the left eigenvector $v$.
 
 This hints at how to compute left eigenvectors
 
@@ -141,7 +141,7 @@ print(w)
 
 Note that the eigenvalues for both left and right eigenvectors are the same, but the eigenvectors themselves are different.
 
-We can then take transpose to obtain $A^T w = \lambda w$ and obtain $w^T A= \lambda w^T$.
+We can then take transpose to obtain $A^\top w = \lambda w$ and obtain $w^\top A= \lambda w^\top$.
 
 This is a more common expression and where the name left eigenvectors originates.
 
@@ -186,7 +186,7 @@ Now let's consider examples for each case.
 
 #### Example 1: irreducible matrix
 
-Consider the following irreducible matrix A:
+Consider the following irreducible matrix $A$:
 
 ```{code-cell} ipython3
 A = np.array([[0, 1, 0],
@@ -200,7 +200,7 @@ We can compute the dominant eigenvalue and the corresponding eigenvector
 eig(A)
 ```
 
-Now we can go through our checklist to verify the claims of the Perron-Frobenius Theorem for the irreducible matrix A:
+Now we can go through our checklist to verify the claims of the Perron-Frobenius Theorem for the irreducible matrix $A$:
 
 1. The dominant eigenvalue is real-valued and non-negative.
 2. All other eigenvalues have absolute values less than or equal to the dominant eigenvalue.
@@ -210,7 +210,7 @@ Now we can go through our checklist to verify the claims of the Perron-Frobenius
 
 #### Example 2: primitive matrix
 
-Consider the following primitive matrix B:
+Consider the following primitive matrix $B$:
 
 ```{code-cell} ipython3
 B = np.array([[0, 1, 1],
@@ -226,7 +226,7 @@ We compute the dominant eigenvalue and the corresponding eigenvector
 eig(B)
 ```
 
-Now let's verify the claims of the Perron-Frobenius Theorem for the primitive matrix B:
+Now let's verify the claims of the Perron-Frobenius Theorem for the primitive matrix $B$:
 
 1. The dominant eigenvalue is real-valued and non-negative.
 2. All other eigenvalues have absolute values strictly less than the dominant eigenvalue.
