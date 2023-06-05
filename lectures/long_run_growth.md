@@ -4,7 +4,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.14.5
+    jupytext_version: 1.14.4
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
@@ -50,11 +50,7 @@ from collections import namedtuple
 from matplotlib.lines import Line2D
 ```
 
-+++ {"user_expressions": []}
-
 ## Setting up
-
-+++ {"user_expressions": []}
 
 A project initiated by [Angus Maddison](https://en.wikipedia.org/wiki/Angus_Maddison) has collected many historical time series that study economic growth. 
 
@@ -455,7 +451,6 @@ gdp = data['gdp'].unstack('countrycode')
 
 ### Early industralization (1820 to 1940)
 
-
 We first visualize the trend of China, the Former Soviet Union, Japan, the UK and the US.
 
 The most notable trend is the rise of the US, surpassing the UK in the 1860s and China in the 1880s.
@@ -480,7 +475,6 @@ ax = draw_interp_plots(gdp[cntry].loc[start_year:end_year],
     color_mapping, code_to_name, 2, False, ax)
 ```
 
-+++ {"user_expressions": []}
 
 ### The modern era (1950 to 2020)
 
@@ -502,8 +496,6 @@ ax = draw_interp_plots(gdp[cntry].loc[start_year:end_year],
     color_mapping, code_to_name, 2, False, ax)
 ```
 
-+++ {"user_expressions": []}
-
 ## Regional Analysis
 
 We often want to study historical experiences of countries outside the club of "World Powers".
@@ -515,8 +507,6 @@ data = pd.read_excel("datasets/mpd2020.xlsx", sheet_name='Regional data', header
 data.columns = data.columns.droplevel(level=2)
 ```
 
-+++ {"user_expressions": []}
-
 We can save the raw data in a more convenient format to build a single table of regional GDP per capita
 
 ```{code-cell} ipython3
@@ -524,15 +514,11 @@ regionalgdppc = data['gdppc_2011'].copy()
 regionalgdppc.index = pd.to_datetime(regionalgdppc.index, format='%Y')
 ```
 
-+++ {"user_expressions": []}
-
 Let's interpolate based on time to fill in any gaps in the dataset for the purpose of plotting
 
 ```{code-cell} ipython3
 regionalgdppc.interpolate(method='time', inplace=True)
 ```
-
-+++ {"user_expressions": []}
 
 and record a dataset of world GDP per capita
 
@@ -556,8 +542,6 @@ ax = worldgdppc.plot(
     ylabel='2011 US$',
 )
 ```
-
-+++ {"user_expressions": []}
 
 Looking more closely, let's compare the time series for `Western Offshoots` and `Sub-Saharan Africa` and more broadly at a number of different regions around the world
 
