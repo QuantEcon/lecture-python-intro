@@ -225,7 +225,7 @@ First, we store parameters in a `namedtuple`:
 
 ```{code-cell} ipython3
 # Create the rational expectation version of Cagan model in finite time
-CaganREE = namedtuple("ConsumptionSmoothing", 
+CaganREE = namedtuple("CaganREE", 
                         ["m0", "T", "μ_seq", "α", "δ", "π_end"])
 
 def create_cagan_model(m0, α, T, μ_seq):
@@ -255,8 +255,8 @@ Now we can solve the model to compute $\pi_t$, $m_t$ and $p_t$ for $t =1, \ldots
 
 ```{code-cell} ipython3
 def solve(model):
-    m0, T, π_end, μ_seq, α, δ = model.m0, model.T, model.π_end, model.μ_seq, model.α, model.δ
-
+    model_params = model.m0, model.T, model.π_end, model.μ_seq, model.α, model.δ
+    m0, T, π_end, μ_seq, α, δ = model_params
     A1 = np.eye(T+1, T+1) - δ * np.eye(T+1, T+1, k=1)
     A2 = np.eye(T+1, T+1) - np.eye(T+1, T+1, k=-1)
 
@@ -451,22 +451,24 @@ T_seq = range(T+2)
 fig, ax = plt.subplots(2, 3, figsize=[10,5], dpi=200)
  
 ax[0,0].plot(T_seq[:-1], μ_seq_2)
+ax[0,0].set_ylabel(r'$\mu$')
+
 ax[0,1].plot(T_seq, π_seq_2)
+ax[0,1].set_ylabel(r'$\pi$')
+
 ax[0,2].plot(T_seq, m_seq_2_regime1 - p_seq_2_regime1)
+ax[0,2].set_ylabel(r'$m - p$')
+
 ax[1,0].plot(T_seq, m_seq_2_regime1, 
              label='Smooth $m_{T_1}$')
 ax[1,0].plot(T_seq, m_seq_2_regime2, 
              label='Jumpy $m_{T_1}$')
+ax[1,0].set_ylabel(r'$m$')
+
 ax[1,1].plot(T_seq, p_seq_2_regime1,
              label='Smooth $m_{T_1}$')
 ax[1,1].plot(T_seq, p_seq_2_regime2, 
              label='Jumpy $m_{T_1}$')
-
-
-ax[0,0].set_ylabel(r'$\mu$')
-ax[0,1].set_ylabel(r'$\pi$')
-ax[0,2].set_ylabel(r'$m - p$')
-ax[1,0].set_ylabel(r'$m$')
 ax[1,1].set_ylabel(r'$p$')
 
 for i in range(2):
