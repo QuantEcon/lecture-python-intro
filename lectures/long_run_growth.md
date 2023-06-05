@@ -4,7 +4,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.14.5
+    jupytext_version: 1.14.4
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
@@ -39,7 +39,6 @@ import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib.lines import Line2D
 ```
-
 
 A project initiated by [Angus Maddison](https://en.wikipedia.org/wiki/Angus_Maddison) has collected many historical time series that study economic growth. 
 
@@ -230,7 +229,6 @@ data['gdp'] = data['gdppc'] * data['pop']
 gdp = data['gdp'].unstack('countrycode')
 ```
 
-
 ### Early Industralization (1820 to 1940)
 
 
@@ -356,7 +354,6 @@ ax.legend(handles=legend_elements, loc='lower center', ncol=3, bbox_to_anchor=[0
 plt.show()
 ```
 
-
 ## Other Interesting Plots
 
 Here are a collection of interesting plots that could be linked to interesting stories
@@ -369,7 +366,6 @@ gdppc['CHN'].loc[1500:1980].interpolate().plot(ax=fig.gca())
 plt.show()
 ```
 
-
 China (CHN) then followed a very similar growth story from the 1980s through to current day China.
 
 ```{code-cell} ipython3
@@ -377,7 +373,6 @@ fig = plt.figure(dpi=300)
 gdppc[['CHN', 'GBR']].interpolate().plot(ax = fig.gca())
 plt.show()
 ```
-
 
 ## Regional Analysis
 
@@ -388,7 +383,6 @@ data = pd.read_excel("datasets/mpd2020.xlsx", sheet_name='Regional data', header
 data.columns = data.columns.droplevel(level=2)
 ```
 
-
 We can save the raw data in a more convenient format to build a single table of regional GDP per capita
 
 ```{code-cell} ipython3
@@ -396,13 +390,11 @@ regionalgdppc = data['gdppc_2011'].copy()
 regionalgdppc.index = pd.to_datetime(regionalgdppc.index, format='%Y')
 ```
 
-
 Let us interpolate based on time to fill in any gaps in the dataset for the purpose of plotting
 
 ```{code-cell} ipython3
 regionalgdppc.interpolate(method='time', inplace=True)
 ```
-
 
 and record a dataset of world GDP per capita
 
@@ -421,7 +413,6 @@ ax = worldgdppc.plot(
 )
 ```
 
-
 Looking more closely, let us compare the time series for `Western Offshoots` and `Sub-Saharan Africa`
 
 ```{code-cell} ipython3
@@ -431,7 +422,6 @@ regionalgdppc[['Western Offshoots', 'Sub-Sahara Africa']].plot(ax = ax)
 ax.legend(loc='lower center', ncol=2, bbox_to_anchor=[0.5, -0.26])
 plt.show()
 ```
-
 
 and more broadly at a number of different regions around the world
 
