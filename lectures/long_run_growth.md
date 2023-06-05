@@ -61,7 +61,9 @@ A project initiated by [Angus Maddison](https://en.wikipedia.org/wiki/Angus_Madd
 We can use the [Maddison Historical Statistics](https://www.rug.nl/ggdc/historicaldevelopment/maddison/) to look at many different countries, including some countries dating back to the first century. 
 
 ```{tip}
-The data can be downloaded from [this webpage](https://www.rug.nl/ggdc/historicaldevelopment/maddison/) and clicking on the `Latest Maddison Project Release`. In this lecture we use the [Maddison Project Database 2020](https://www.rug.nl/ggdc/historicaldevelopment/maddison/releases/maddison-project-database-2020) using the `Excel` Format.
+The data can be downloaded from [this webpage](https://www.rug.nl/ggdc/historicaldevelopment/maddison/) by clicking on the `Latest Maddison Project Release`. 
+
+Here we use the [Maddison Project Database 2020](https://www.rug.nl/ggdc/historicaldevelopment/maddison/releases/maddison-project-database-2020) in `Excel` format.
 ```
 
 If you don't want to fetch the data file from [Maddison Historical Statistics](https://www.rug.nl/ggdc/historicaldevelopment/maddison/) you can download the file directly {download}`datasets/mpd2020.xlsx`.
@@ -438,7 +440,7 @@ plt.show()
 
 Now we'll construct some graphs of interest to geopolitical historians like Adam Tooze.
 
-We'll focus on  total Gross Domestic Product (GDP)  (as a proxy for ``national geopolitical-military power'') rather than focusing on GDP per capita (as a proxy for living standards).
+We'll focus on  total Gross Domestic Product (GDP)  (as a proxy for ''national geopolitical-military power'') rather than focusing on GDP per capita (as a proxy for living standards).
 
 ```{code-cell} ipython3
 data = pd.read_excel("datasets/mpd2020.xlsx", sheet_name='Full data')
