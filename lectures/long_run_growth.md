@@ -17,7 +17,7 @@ kernelspec:
 
 ## Overview
 
-Adam Tooze's account of the geopolitical precedents and antecedents of World War I  includes a comparison of how  National Gross National Products of European Great Powers had evolved during the 70 years preceding 1914 (see chapter 1 of {cite}`Tooze_2014`).
+Adam Tooze's account of the geopolitical precedents and antecedents of World War I  includes a comparison of how Gross National Products of European Great Powers had evolved during the 70 years preceding 1914 (see chapter 1 of {cite}`Tooze_2014`).
 
 We report a version of Tooze's graph later in this lecture.
 
@@ -35,7 +35,7 @@ In a nutshell, this  lecture records  growth trajectories of various  countries 
 While some countries have experienced long term rapid growth across that has lasted a hundred years, others have not. 
 
 Since populations differ across country and within a country vary over time, it will
-be interesting to describe both total GNP and GNP per capita as it evolves within a country.
+be interesting to describe both total GDP and GDP per capita as it evolves within a country.
 
 First let's import the packages needed to explore what the data says about long run growth
 
@@ -118,6 +118,17 @@ data
 ```
 
 ```{code-cell} ipython3
+gdppc = data.set_index(['countrycode','year'])['gdppc']
+gdppc = gdppc.unstack('countrycode')
+```
+
+```{code-cell} ipython3
+gdppc
+```
+
+Now we create a color mapping between country codes and colors for consistency
+
+```{code-cell} ipython3
 country_names = data['countrycode']
 
 # Generate a colormap with the number of colors matching the number of countries
@@ -125,15 +136,6 @@ colors = cm.Dark2(np.linspace(0, 0.8, len(country_names)))
 
 # Create a dictionary to map each country to its corresponding color
 color_mapping = {country: color for country, color in zip(country_names, colors)}
-```
-
-```{code-cell} ipython3
-gdppc = data.set_index(['countrycode','year'])['gdppc']
-gdppc = gdppc.unstack('countrycode')
-```
-
-```{code-cell} ipython3
-gdppc
 ```
 
 +++ {"user_expressions": []}
@@ -375,7 +377,7 @@ draw_events(events, ax)
 plt.show()
 ```
 
-+++ {"user_expressions": []}
+We can also look at the United States (USA) and United Kingdom (GBR) in more detail
 
 In the following graph, please watch for 
 - impact of trade policy (Navigation Act)
@@ -482,7 +484,7 @@ ax = draw_interp_plots(gdp[cntry].loc[start_year:end_year],
 
 ### The modern era (1950 to 2020)
 
-As history repeats itself, the rapid growth in modern China is now challenging the economic hegemony of the US
+As history repeats itself, the rapid growth in modern China is now challenging the economic hegemony of the US 
 
 ```{code-cell} ipython3
 ---
@@ -524,7 +526,7 @@ regionalgdppc.index = pd.to_datetime(regionalgdppc.index, format='%Y')
 
 +++ {"user_expressions": []}
 
-Let us interpolate based on time to fill in any gaps in the dataset for the purpose of plotting
+Let's interpolate based on time to fill in any gaps in the dataset for the purpose of plotting
 
 ```{code-cell} ipython3
 regionalgdppc.interpolate(method='time', inplace=True)
@@ -557,11 +559,9 @@ ax = worldgdppc.plot(
 
 +++ {"user_expressions": []}
 
-Looking more closely, let us compare the time series for `Western Offshoots` and `Sub-Saharan Africa`
+Looking more closely, let's compare the time series for `Western Offshoots` and `Sub-Saharan Africa` and more broadly at a number of different regions around the world
 
-+++ {"user_expressions": []}
-
-and more broadly at a number of different regions around the world
+Again we see the divergence of the West from the rest of the world after the industrial revolution and the convergence of the world after the 1950s
 
 ```{code-cell} ipython3
 ---
