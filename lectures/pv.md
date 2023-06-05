@@ -95,7 +95,7 @@ $$
     + \begin{bmatrix} 
     0 \cr 0 \cr 0 \cr \vdots \cr 0 \cr \delta p_{T+1}^*
     \end{bmatrix}
-$$ (eq:pieq)
+$$ (eq:pvpieq)
 
 +++
 
@@ -103,19 +103,19 @@ $$ (eq:pieq)
 :label: pv_ex_1
 ```
 
-Carry out the matrix multiplication in [](eq:pieq) by hand and confirm that you
+Carry out the matrix multiplication in [](eq:pvpieq) by hand and confirm that you
 recover the equations in [](eq:Euler_stack).
 
 ```{exercise-end}
 ```
 
-In vector-matrix notation, we can write the system [](eq:pieq) as 
+In vector-matrix notation, we can write the system [](eq:pvpieq) as 
 
 $$
     A p = d + b
 $$ (eq:apdb)
 
-Here $A$ is the matrix on the left side of equation {eq}`eq:pieq`, while
+Here $A$ is the matrix on the left side of equation {eq}`eq:pvpieq`, while
 
 $$
     p = 
@@ -273,7 +273,7 @@ eliminates the cycles.
 
 ## Analytical Expressions
 
-It can be verified that the  inverse of the matrix $A$ in {eq}`eq:pieq` is
+It can be verified that the  inverse of the matrix $A$ in {eq}`eq:pvpieq` is
 
 
 $$ A^{-1} = 
@@ -304,9 +304,9 @@ If we use the expression [](eq:Ainv) in [](eq:apdb_sol) and perform the indicate
 
 $$
     p_t =  \sum_{s=t}^T \delta^{s-t} d_s +  \delta^{T+1-t} p_{T+1}^*
-$$ (eq:fisctheory1)
+$$ (eq:ptpveq)
 
-Pricing formula {eq}`eq:fisctheory1` asserts that  two components sum to the asset price 
+Pricing formula {eq}`eq:ptpveq` asserts that  two components sum to the asset price 
 $p_t$:
 
   * a **fundamental component** $\sum_{s=t}^T \delta^{s-t} d_s$ that equals the discounted present value of prospective dividends
@@ -367,7 +367,7 @@ $$ (eq:pieq2)
 
 Evidently, if $p_{T+1}^* = 0$, a price vector $\vec p$ of with all entries zero
 solves this equation and the only the **fundamental** component of our pricing 
-formula {eq}`eq:fisctheory1` is present. 
+formula {eq}`eq:ptpveq` is present. 
 
 But let's activate the **bubble**  component by setting 
 
