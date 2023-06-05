@@ -11,7 +11,6 @@ kernelspec:
   name: python3
 ---
 
-+++ {"user_expressions": []}
 
 # Economic Growth Evidence
 
@@ -52,24 +51,19 @@ from matplotlib.lines import Line2D
 
 ## Setting up
 
-A project initiated by [Angus Maddison](https://en.wikipedia.org/wiki/Angus_Maddison) has collected many historical time series that study economic growth. 
+A project initiated by [Angus Maddison](https://en.wikipedia.org/wiki/Angus_Maddison) has collected many historical time series related to economic growth,
+some dating back to the first century.
 
-We can use the [Maddison Historical Statistics](https://www.rug.nl/ggdc/historicaldevelopment/maddison/) to look at many different countries, including some countries dating back to the first century. 
+The data can be downloaded from the [Maddison Historical Statistics webpage](https://www.rug.nl/ggdc/historicaldevelopment/maddison/) by clicking on the "Latest Maddison Project Release". 
 
-```{tip}
-The data can be downloaded from [this webpage](https://www.rug.nl/ggdc/historicaldevelopment/maddison/) by clicking on the `Latest Maddison Project Release`. 
+For convenience, here is a copy of the 2020 data {download}`in Excel format <datasets/mpd2020.xlsx>`.
 
-Here we use the [Maddison Project Database 2020](https://www.rug.nl/ggdc/historicaldevelopment/maddison/releases/maddison-project-database-2020) in `Excel` format.
-```
-
-If you don't want to fetch the data file from [Maddison Historical Statistics](https://www.rug.nl/ggdc/historicaldevelopment/maddison/) you can download the file directly {download}`datasets/mpd2020.xlsx`.
+Let's read it into a pandas dataframe:
 
 ```{code-cell} ipython3
 data = pd.read_excel("datasets/mpd2020.xlsx", sheet_name='Full data')
 data
 ```
-
-+++ {"user_expressions": []}
 
 We can see that this dataset contains GDP per capita (gdppc) and population (pop) for many countries and years.
 
@@ -79,7 +73,6 @@ Let's look at how many and which countries are available in this dataset
 len(data.country.unique())
 ```
 
-+++ {"user_expressions": []}
 
 We can now explore some of the 169 countries that are available. 
 
@@ -95,7 +88,6 @@ cntry_years = pd.DataFrame(cntry_years, columns=['country', 'Min Year', 'Max Yea
 cntry_years
 ```
 
-+++ {"user_expressions": []}
 
 Let's now reshape the original data into some convenient variables to enable quicker access to countries time series data.
 
@@ -105,7 +97,6 @@ We can build a useful mapping between country code's and country names in this d
 code_to_name = data[['countrycode','country']].drop_duplicates().reset_index(drop=True).set_index(['countrycode'])
 ```
 
-+++ {"user_expressions": []}
 
 Then we can quickly focus on GDP per capita (gdp)
 
@@ -122,9 +113,10 @@ gdppc = gdppc.unstack('countrycode')
 gdppc
 ```
 
-Now we create a color mapping between country codes and colors for consistency
+We create a color mapping between country codes and colors for consistency
 
 ```{code-cell} ipython3
+:tags: [hide-input]
 country_names = data['countrycode']
 
 # Generate a colormap with the number of colors matching the number of countries
@@ -134,7 +126,7 @@ colors = cm.Dark2(np.linspace(0, 0.8, len(country_names)))
 color_mapping = {country: color for country, color in zip(country_names, colors)}
 ```
 
-+++ {"user_expressions": []}
+## GPD Plots
 
 Looking at the United Kingdom we can first confirm we are using the correct country code
 
@@ -156,7 +148,6 @@ _ = gdppc[cntry].plot(
     color=color_mapping['GBR'])
 ```
 
-+++ {"user_expressions": []}
 
 :::{note}
 [International Dollars](https://en.wikipedia.org/wiki/International_dollar) are a hypothetical unit of currency that has the same purchasing power parity that the U.S. Dollar has in the United States at any given time. They are also known as Geary–Khamis dollars (GK Dollars).
@@ -189,7 +180,6 @@ ax.set_xlabel('Year')
 plt.show()
 ```
 
-+++ {"user_expressions": []}
 
 We can now put this into a function to generate plots for a list of countries
 
@@ -227,9 +217,8 @@ def draw_interp_plots(series, ylabel, xlabel, color_mapping, code_to_name, lw, l
     return ax
 ```
 
-+++ {"user_expressions": []}
 
-As you can see from this chart economic growth started in earnest in the 18th century and continued for the next two hundred years. 
+As you can see from this chart, economic growth started in earnest in the 18th century and continued for the next two hundred years. 
 
 How does this compare with other countries' growth trajectories? 
 
@@ -301,7 +290,6 @@ draw_events(events, ax)
 plt.show()
 ```
 
-+++ {"user_expressions": []}
 
 The preceding graph of percapita GDP strikingly reveals how the spread of the industrial revolution has over time gradually lifted the living standards of substantial
 groups of people  
@@ -311,7 +299,6 @@ groups of people
 - The gap has closed  rapidly after 1950 and especially after the late 1970s.
 - These outcomes reflect complicated combinations of technological and economic-policy factors that students of economic growth try to understand and quantify
 
-+++ {"user_expressions": []}
 
 It is fascinating to see  China's GDP per capita levels from 1500 through to the 1970s.
 
@@ -432,7 +419,6 @@ draw_events(events, ax)
 plt.show()
 ```
 
-+++ {"user_expressions": []}
 
 ## The industrialized world
 
@@ -446,8 +432,6 @@ data.set_index(['countrycode', 'year'], inplace=True)
 data['gdp'] = data['gdppc'] * data['pop']
 gdp = data['gdp'].unstack('countrycode')
 ```
-
-+++ {"user_expressions": []}
 
 ### Early industralization (1820 to 1940)
 
