@@ -34,7 +34,7 @@ We'll use linear algebra first to explain and then do  some experiments with  a 
 According to this model, when the government persistently spends more than it collects in taxes and prints money to finance the shortfall (the "shortfall is called the "government deficit"), it puts upward pressure on the price level and generates
 persistent inflation.
 
-The "fiscal theory of the price level" asserts that 
+The "fiscal theory of the price level" asserts that  
 
   * to **start** a persistent inflation the government simply persistently runs a money-financed government deficit
   
@@ -46,8 +46,7 @@ While Cagan didn't use that  "rational expectations" version of the model, Thoma
 
 Some of our quantitative experiments with the model are designed to illustrate how the fiscal theory explains the abrupt end of those big inflations.
 
-In those experiments, we'll encounter an instance of a ''velocity dividend'' that has sometimes accompanied successful inflation stabilization programs.
-principles 
+In those experiments, we'll encounter an instance of a ''velocity dividend'' that has sometimes accompanied successful inflation stabilization programs. 
 
 To facilitate using  linear matrix algebra as our main mathematical tool, we'll use a finite horizon version of the model.
 
