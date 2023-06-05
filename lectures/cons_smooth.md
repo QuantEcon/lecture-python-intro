@@ -19,7 +19,7 @@ kernelspec:
 
 In this notebook, we'll present  some useful models of economic dynamics using only linear algebra -- matrix multiplication and matrix inversion.
 
-**Present value formulas** are at the core of the models.
+{doc}`Present value formulas<pv>` are at the core of the models.
 
 ```{code-cell} ipython3
 import numpy as np

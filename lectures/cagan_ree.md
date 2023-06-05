@@ -31,7 +31,7 @@ import matplotlib.pyplot as plt
 We'll use linear algebra first to explain and then do  some experiments with  a "fiscal theory of the price level".
 
 
-According to this model, when the government persistently spends more than it collects in taxes and prints money to finance the shortfall (the "shortfall is called the "government deficit"), it puts upward pressure on the price level and generates
+According to this model, when the government persistently spends more than it collects in taxes and prints money to finance the shortfall (the "shortfall" is called the "government deficit"), it puts upward pressure on the price level and generates
 persistent inflation.
 
 The "fiscal theory of the price level" asserts that  
@@ -50,7 +50,7 @@ In those experiments, we'll encounter an instance of a ''velocity dividend'' tha
 
 To facilitate using  linear matrix algebra as our main mathematical tool, we'll use a finite horizon version of the model.
 
-As in several other lectures, the only linear algebra that we'll be  using
+As in the {doc}`present values <pv>` and {doc}`consumption smoothing<cons_smooth>` lectures, the only linear algebra that we'll be  using
 are matrix multplication and matrix inversion.
 
 
@@ -626,7 +626,11 @@ Simply glue the sequences $t\leq T_1$ and $t > T_1$.
 We reset $m_{T_{1}}$  so that $p_{T_{1}}=\left(m_{T_{1}-1}+\mu_{0}\right)+\alpha\mu_{0}$, with $\pi_{T_{1}}=\mu^{*}$.
 
 Then, 
-$$ m_{T_{1}}=p_{T_{1}}-\alpha\pi_{T_{1}}=\left(m_{T_{1}-1}+\mu_{0}\right)+\alpha\left(\mu_{0}-\mu^{*}\right) $$
+
+$$ 
+m_{T_{1}}=p_{T_{1}}-\alpha\pi_{T_{1}}=\left(m_{T_{1}-1}+\mu_{0}\right)+\alpha\left(\mu_{0}-\mu^{*}\right) 
+$$
+
 We then compute for the remaining $T-T_{1}$ periods with $\mu_{s}=\mu^{*},\forall s\geq T_{1}$ and the initial condition $m_{T_{1}}$ from above.
 
 
