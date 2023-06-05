@@ -46,7 +46,7 @@ While Cagan didn't use that  "rational expectations" version of the model, Thoma
 
 Some of our quantitative experiments with the model are designed to illustrate how the fiscal theory explains the abrupt end of those big inflations.
 
-In those experiments, we'll encounter an instance of a ``velocity dividend'' that has sometimes accompanied successful inflation stabilization programs.
+In those experiments, we'll encounter an instance of a ''velocity dividend'' that has sometimes accompanied successful inflation stabilization programs.
 principles 
 
 To facilitate using  linear matrix algebra as our main mathematical tool, we'll use a finite horizon version of the model.
@@ -226,13 +226,13 @@ First, we store parameters in a `namedtuple`:
 
 ```{code-cell} ipython3
 # Create the rational expectation version of Cagan model in finite time
-CagamREE = namedtuple("ConsumptionSmoothing", 
+CaganREE = namedtuple("ConsumptionSmoothing", 
                         ["m0", "T", "μ_seq", "α", "δ", "π_end"])
 
 def create_cagan_model(m0, α, T, μ_seq):
     δ = α/(1 + α)
     π_end = μ_seq[-1]    # compute terminal expected inflation
-    return CagamREE(m0, T, μ_seq, α, δ, π_end)
+    return CaganREE(m0, T, μ_seq, α, δ, π_end)
 ```
 
 +++ {"user_expressions": []}
