@@ -152,7 +152,6 @@ $$ (eq:apdb_sol)
 
 Here is a small example, where the dividend stream is given by
 
-+++
 
 ```{code-cell} ipython3
 T = 6
@@ -202,18 +201,80 @@ b = np.zeros(T+1)
 b[-1] = δ * p_star
 p = np.linalg.solve(A, d + b)
 fig, ax = plt.subplots()
-ax.plot(p)
+ax.plot(p, 'o', label='asset price')
+ax.legend()
+ax.set_xlabel('time')
 plt.show()
 ```
 
-+++
 
+We can also consider a cyclically growing dividend sequence, such as
+
+
+```{code-cell} ipython3
+T = 100
+current_d = 1.0
+d = []
+for t in range(T+1):
+    d.append(current_d)
+    current_d = current_d * 1.01 + 0.1 * np.sin(t)
+
+fig, ax = plt.subplots()
+ax.plot(d, 'o-', ms=4, alpha=0.8, label='dividends')
+ax.legend()
+ax.set_xlabel('time')
+plt.show()
+```
+
+```{exercise-start} 
+:label: pv_ex_cyc
+```
+
+Compute the corresponding asset price sequence when $p^*_{T+1} = 0$ and $\delta
+= 0.98$.
+
+```{exercise-end}
+```
+
+```{solution-start} pv_ex_cyc
+:class: dropdown
+```
+
+We proceed as above after modifying parameters and $A$.
+
+```{code-cell} ipython3
+δ = 0.98
+p_star = 0.0
+A = np.zeros((T+1, T+1))
+for i in range(T+1):
+    for j in range(T+1):
+        if i == j:
+            A[i, j] = 1
+            if j < T:
+                A[i, j+1] = -δ
+
+b = np.zeros(T+1)
+b[-1] = δ * p_star
+p = np.linalg.solve(A, d + b)
+fig, ax = plt.subplots()
+ax.plot(p, 'o-', ms=4, alpha=0.8, label='asset price')
+ax.legend()
+ax.set_xlabel('time')
+plt.show()
+
+```
+
+The weighted averaging associated with the present value calculation largely
+eliminates the cycles.
+
+
+```{solution-end} 
+```
 
 ## Analytical Expressions
 
 It can be verified that the  inverse of the matrix $A$ in {eq}`eq:pieq` is
 
-+++
 
 $$ A^{-1} = 
     \begin{bmatrix}
@@ -323,7 +384,6 @@ $$
 p_t = c \delta^{-t}
 $$ (eq:bubble)
 
-+++
 
 ## Gross rate of return
 
@@ -341,18 +401,22 @@ $$
 R_t = \delta^{-1} > 1 .
 $$
 
-+++
 
-<!-- #endregion -->
+## Exercises
 
-## Experiments
 
-We'll try various settings for $\vec d, p_{T+1}^*$:
+```{exercise-start} 
+:label: pv_ex_a
+```
 
-  * $p_{T+1}^* = 0, d_t = g^t d_0$ to get a modified version of the Gordon growth formula
-  
-  * $p_{T+1}^* = g^{T+1} d_0,  d_t = g^t d_0$ to get the plain vanilla  Gordon growth formula
-  
-  * $p_{T+1}^* = 0, d_t = 0$ to get a worthless stock
-  
-  * $p_{T+1}^* = c \delta^{-(T+1)}, d_t = 0$ to get a bubble stock
+Give analytical expressions for the asset price $p_t$ under the 
+following settings for $d$ and $p_{T+1}^*$:
+
+1. $p_{T+1}^* = 0, d_t = g^t d_0$ (a modified version of the Gordon growth formula)
+1. $p_{T+1}^* = g^{T+1} d_0,  d_t = g^t d_0$ (the plain vanilla  Gordon growth formula)
+1. $p_{T+1}^* = 0, d_t = 0$ (price of a worthless stock)
+1. $p_{T+1}^* = c \delta^{-(T+1)}, d_t = 0$ (price of a pure bubble stock)
+
+
+```{exercise-end} 
+```
