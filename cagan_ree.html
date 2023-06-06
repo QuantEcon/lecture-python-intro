@@ -1,0 +1,1313 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>10. A Fiscal Theory of the Price Level &#8212; A First Course in Quantitative Economics with Python</title>
+    <script src="https://unpkg.com/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://unpkg.com/tippy.js@6.3.1/dist/tippy-bundle.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    
+        <script>
+            MathJax = {
+            loader: {load: ['[tex]/boldsymbol', '[tex]/textmacros']},
+            tex: {
+                packages: {'[+]': ['boldsymbol', 'textmacros']},
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                processEscapes: true,
+                macros: {
+                    "argmax" : "arg\\,max",
+                    "argmin" : "arg\\,min",
+                    "col"    : "col",
+                    "Span"   :  "span",
+                    "epsilon": "\\varepsilon",
+                    "EE": "\\mathbb{E}",
+                    "PP": "\\mathbb{P}",
+                    "RR": "\\mathbb{R}",
+                    "NN": "\\mathbb{N}",
+                    "ZZ": "\\mathbb{Z}",
+                    "aA": "\\mathcal{A}",
+                    "bB": "\\mathcal{B}",
+                    "cC": "\\mathcal{C}",
+                    "dD": "\\mathcal{D}",
+                    "eE": "\\mathcal{E}",
+                    "fF": "\\mathcal{F}",
+                    "gG": "\\mathcal{G}",
+                    "hH": "\\mathcal{H}",
+                }
+            },
+            svg: {
+                fontCache: 'global',
+                scale: 0.92,
+                displayAlign: "center",
+            },
+            };
+        </script>
+    
+    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/quantecon-book-theme.3e777eaae0c95b0b775aa300baed123e.css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/exercise.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script src="_static/quantecon-book-theme.15b0c36fffe88f468997fa7b698991d3.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-QDS1YRJNGM"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-QDS1YRJNGM');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'cagan_ree';</script>
+    <link rel="canonical" href="https://intro.quantecon.org/cagan_ree.html" />
+    <link rel="shortcut icon" href="_static/lectures-favicon.ico"/>
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="11. Geometric Series for Elementary Economics" href="geom_series.html" />
+    <link rel="prev" title="9. Consumption smoothing" href="cons_smooth.html" />
+
+<!-- Normal Meta Tags -->
+<meta name="author" context="Thomas J. Sargent &amp; John Stachurski" />
+<meta name="keywords" content="Python, QuantEcon, Quantitative Economics, Economics, Sloan, Alfred P. Sloan Foundation, Tom J. Sargent, John Stachurski" />
+<meta name="description" content=This website presents introductory lectures on computational economics, designed and written by Thomas J. Sargent and John Stachurski. />
+
+<!-- Twitter tags -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@quantecon" />
+<meta name="twitter:title" content="A Fiscal Theory of the Price Level"/>
+<meta name="twitter:description" content="This website presents introductory lectures on computational economics, designed and written by Thomas J. Sargent and John Stachurski.">
+<meta name="twitter:creator" content="@quantecon">
+<meta name="twitter:image" content="https://assets.quantecon.org/img/qe-twitter-logo.png">
+
+<!-- Opengraph tags -->
+<meta property="og:title" content="A Fiscal Theory of the Price Level" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://intro.quantecon.org/cagan_ree.html" />
+<meta property="og:image" content="https://assets.quantecon.org/img/qe-og-logo.png" />
+<meta property="og:description" content="This website presents introductory lectures on computational economics, designed and written by Thomas J. Sargent and John Stachurski." />
+<meta property="og:site_name" content="A First Course in Quantitative Economics with Python" />
+<meta name="theme-color" content="#ffffff" />
+
+  </head>
+<body>
+
+
+    <span id="top"></span>
+
+    <div class="qe-wrapper">
+
+        <div class="qe-main">
+
+            <div class="qe-page" id=cagan_ree>
+
+                <div class="qe-page__toc">
+
+                    <div class="inner">
+
+                        
+                        <div class="qe-page__toc-header">
+                            On this page
+                        </div>
+
+
+                        <nav id="bd-toc-nav" class="qe-page__toc-nav">
+                            <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">10.1. Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#structure-of-the-model">10.2. Structure of the Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#continuation-values">10.3. Continuation values</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#some-quantitative-experiments">10.3.1. Some quantitative experiments</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#experiment-1-foreseen-sudden-stabilization">10.3.1.1. Experiment 1: foreseen sudden stabilization</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#experiment-2-an-unforeseen-sudden-stabilization">10.3.1.2. Experiment 2: an unforeseen sudden stabilization</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-log-price-level">10.3.2. The log price level</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-jumps">10.3.3. What jumps?</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details-about-whether-p-or-m-jumps-at-t-1">10.3.3.1. Technical Details about whether <span class="math notranslate nohighlight">\(p\)</span> or <span class="math notranslate nohighlight">\(m\)</span> jumps at <span class="math notranslate nohighlight">\(T_1\)</span></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#m-t-1-does-not-jump">10.3.3.2. <span class="math notranslate nohighlight">\(m_{T_{1}}\)</span> does not jump.</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#m-t-1-jumps">10.3.3.3. <span class="math notranslate nohighlight">\(m_{T_{1}}\)</span> jumps.</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#experiment-3">10.3.3.4. Experiment 3</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+                            <p class="logo">
+                                
+                                    
+                                    <a href=https://quantecon.org><img src="_static/qe-logo.png" class="logo" alt="logo"></a>
+                                    
+                                
+                            </p>
+
+                            <p class="powered">Powered by <a href="https://jupyterbook.org/">Jupyter Book</a></p>
+
+                        </nav>
+
+                        <div class="qe-page__toc-footer">
+                            
+                            
+                            <p><a href="#top"><strong>Back to top</strong></a></p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="qe-page__header">
+
+                    <div class="qe-page__header-copy">
+
+                        <p class="qe-page__header-heading"><a href="intro.html">A First Course in Quantitative Economics with Python</a></p>
+
+                        <p class="qe-page__header-subheading">A Fiscal Theory of the Price Level</p>
+
+                    </div>
+
+                    <p class="qe-page__header-authors">Thomas J. Sargent & John Stachurski</p>
+
+                </div> <!-- .page__header -->
+
+
+
+                
+                <main class="qe-page__content" role="main">
+                    
+                    <div>
+                        
+  <section class="tex2jax_ignore mathjax_ignore" id="a-fiscal-theory-of-the-price-level">
+<h1><span class="section-number">10. </span>A Fiscal Theory of the Price Level<a class="headerlink" href="#a-fiscal-theory-of-the-price-level" title="Permalink to this heading">#</a></h1>
+<section id="introduction">
+<h2><span class="section-number">10.1. </span>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
+<p>As usual, we’ll start by importing some Python modules.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">namedtuple</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<!-- #region -->
+<p>We’ll use linear algebra first to explain and then do  some experiments with  a “fiscal theory of the price level”.</p>
+<p>According to this model, when the government persistently spends more than it collects in taxes and prints money to finance the shortfall (the “shortfall” is called the “government deficit”), it puts upward pressure on the price level and generates
+persistent inflation.</p>
+<p>The “fiscal theory of the price level” asserts that</p>
+<ul class="simple">
+<li><p>to <strong>start</strong> a persistent inflation the government simply persistently runs a money-financed government deficit</p></li>
+<li><p>to <strong>stop</strong> a persistent inflation the government simply  stops persistently running  a money-financed government deficit</p></li>
+</ul>
+<p>Our model is a “rational expectations” (or “perfect foresight”) version of a model that Philip Cagan  used to study the monetary dynamics of hyperinflations.</p>
+<p>While Cagan didn’t use that  “rational expectations” version of the model, Thomas Sargent did when he studied the Ends of Four Big Inflations.</p>
+<p>Some of our quantitative experiments with the model are designed to illustrate how the fiscal theory explains the abrupt end of those big inflations.</p>
+<p>In those experiments, we’ll encounter an instance of a ‘‘velocity dividend’’ that has sometimes accompanied successful inflation stabilization programs.</p>
+<p>To facilitate using  linear matrix algebra as our main mathematical tool, we’ll use a finite horizon version of the model.</p>
+<p>As in the <a class="reference internal" href="pv.html"><span class="doc">present values</span></a> and <a class="reference internal" href="cons_smooth.html"><span class="doc">consumption smoothing</span></a> lectures, the only linear algebra that we’ll be  using
+are matrix multplication and matrix inversion.</p>
+</section>
+<section id="structure-of-the-model">
+<h2><span class="section-number">10.2. </span>Structure of the Model<a class="headerlink" href="#structure-of-the-model" title="Permalink to this heading">#</a></h2>
+<p>The model consists of</p>
+<ul class="simple">
+<li><p>a function that expresses the demand for real balances of government printed money as an inverse function of the public’s expected rate of inflation</p></li>
+<li><p>an exogenous sequence of rates of growth of the money supply.  The money supply grows because the government is printing it to finance some of its expenditures</p></li>
+<li><p>an equilibrium condition that equates the demand for money to the supply</p></li>
+<li><p>a “perfect foresight”  assumption that the public’s expected rate of inflation equals the actual rate of inflation.</p></li>
+</ul>
+<p>To represent the model formally, let</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\( m_t \)</span> be the log of the supply of  nominal money balances;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mu_t = m_{t+1} - m_t \)</span> be the net rate of growth of  nominal balances;</p></li>
+<li><p><span class="math notranslate nohighlight">\(p_t \)</span> be the log of the price level;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\pi_t = p_{t+1} - p_t \)</span> be the net rate of inflation  between <span class="math notranslate nohighlight">\(t\)</span> and <span class="math notranslate nohighlight">\( t+1\)</span>;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\pi_t^*\)</span>  be the public’s expected rate of inflation between  <span class="math notranslate nohighlight">\(t\)</span> and <span class="math notranslate nohighlight">\(t+1\)</span>;</p></li>
+<li><p><span class="math notranslate nohighlight">\(T\)</span> the horizon – i.e., the last period for which the model will determine <span class="math notranslate nohighlight">\(p_t\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\pi_{T+1}^*\)</span> the terminal rate of inflation between times <span class="math notranslate nohighlight">\(T\)</span> and <span class="math notranslate nohighlight">\(T+1\)</span>.</p></li>
+</ul>
+<p>The demand for real balances <span class="math notranslate nohighlight">\(\exp\left(\frac{m_t^d}{p_t}\right)\)</span> is governed by the following  version of the Cagan demand function</p>
+<div class="math notranslate nohighlight" id="equation-eq-caganmd">
+<span class="eqno">(10.1)<a class="headerlink" href="#equation-eq-caganmd" title="Permalink to this equation">#</a></span>\[  
+m_t^d - p_t = -\alpha \pi_t^* \: , \: \alpha &gt; 0 ; \quad t = 0, 1, \ldots, T .
+\]</div>
+<p>This equation  asserts that the demand for real balances
+is inversely related to the public’s expected rate of inflation.</p>
+<p>People somehow  acquire <strong>perfect foresight</strong> by their having solved a forecasting
+problem.</p>
+<p>This lets us set</p>
+<div class="math notranslate nohighlight" id="equation-eq-ree">
+<span class="eqno">(10.2)<a class="headerlink" href="#equation-eq-ree" title="Permalink to this equation">#</a></span>\[ 
+\pi_t^* = \pi_t , % \forall t 
+\]</div>
+<p>while equating demand for money to  supply lets us set <span class="math notranslate nohighlight">\(m_t^d = m_t\)</span> for all <span class="math notranslate nohighlight">\(t \geq 0\)</span>.</p>
+<p>The preceding equations then  imply</p>
+<div class="math notranslate nohighlight" id="equation-eq-cagan">
+<span class="eqno">(10.3)<a class="headerlink" href="#equation-eq-cagan" title="Permalink to this equation">#</a></span>\[
+m_t - p_t = -\alpha(p_{t+1} - p_t) \: , \: \alpha &gt; 0 
+\]</div>
+<p>To fill in details about what it means for private agents
+to have perfect foresight,  we subtract equation <a class="reference internal" href="#equation-eq-cagan">(10.3)</a>  at time <span class="math notranslate nohighlight">\( t \)</span> from the same equation at <span class="math notranslate nohighlight">\( t+1\)</span> to get</p>
+<div class="math notranslate nohighlight">
+\[
+\mu_t - \pi_t = -\alpha \pi_{t+1} + \alpha \pi_t  ,
+\]</div>
+<p>which we rewrite as a forward-looking first-order linear difference
+equation in <span class="math notranslate nohighlight">\(\pi_s\)</span> with <span class="math notranslate nohighlight">\(\mu_s\)</span>  as a “forcing variable”:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-f8227756-c186-4cc9-b7f1-481052508b5d">
+<span class="eqno">(10.4)<a class="headerlink" href="#equation-f8227756-c186-4cc9-b7f1-481052508b5d" title="Permalink to this equation">#</a></span>\[\begin{equation}  
+\pi_t = \frac{\alpha}{1+\alpha} \pi_{t+1} + \frac{1}{1+\alpha} \mu_t , \quad t= 0, 1, \ldots , T 
+\end{equation}\]</div>
+<p>where <span class="math notranslate nohighlight">\( 0&lt; \frac{\alpha}{1+\alpha} &lt;1 \)</span>.</p>
+<p>Setting <span class="math notranslate nohighlight">\(\delta =\frac{\alpha}{1+\alpha}\)</span> let’s us represent the preceding equation as</p>
+<div class="amsmath math notranslate nohighlight" id="equation-0481965e-ebdf-46c6-aede-c43c78f28a9c">
+<span class="eqno">(10.5)<a class="headerlink" href="#equation-0481965e-ebdf-46c6-aede-c43c78f28a9c" title="Permalink to this equation">#</a></span>\[\begin{equation}
+\pi_t = \delta \pi_{t+1} + (1-\delta) \mu_t , \quad t =0, 1, \ldots, T
+\end{equation}\]</div>
+<p>Write this system of <span class="math notranslate nohighlight">\(T+1\)</span> equations as the single matrix equation</p>
+<div class="math notranslate nohighlight" id="equation-eq-pieq">
+<span class="eqno">(10.6)<a class="headerlink" href="#equation-eq-pieq" title="Permalink to this equation">#</a></span>\[
+\begin{bmatrix} 1 &amp; -\delta &amp; 0 &amp; 0 &amp; \cdots &amp; 0 &amp; 0 \cr
+                0 &amp; 1 &amp; -\delta &amp; 0 &amp; \cdots &amp; 0 &amp; 0 \cr
+                0 &amp; 0 &amp; 1 &amp; -\delta &amp; \cdots &amp; 0 &amp; 0 \cr
+                \vdots &amp; \vdots &amp; \vdots &amp; \vdots &amp; \vdots &amp; 0 &amp; 0 \cr
+                0 &amp; 0 &amp; 0 &amp; 0 &amp; \cdots &amp; 1 &amp; -\delta \cr
+                0 &amp; 0 &amp; 0 &amp; 0 &amp; \cdots &amp; 0 &amp; 1 \end{bmatrix}
+\begin{bmatrix} \pi_0 \cr \pi_1 \cr \pi_2 \cr \vdots \cr \pi_{T-1} \cr \pi_T 
+\end{bmatrix} 
+= (1 - \delta) \begin{bmatrix}  
+\mu_0 \cr \mu_1 \cr \mu_2 \cr \vdots \cr \mu_{T-1} \cr \mu_T
+\end{bmatrix}
++ \begin{bmatrix} 
+0 \cr 0 \cr 0 \cr \vdots \cr 0 \cr \delta \pi_{T+1}^*
+\end{bmatrix}
+\]</div>
+<p>By multiplying both sides of equation <a class="reference internal" href="#equation-eq-pieq">(10.6)</a> by the inverse of the matrix on the left side, we can calculate</p>
+<div class="math notranslate nohighlight">
+\[
+\vec \pi \equiv \begin{bmatrix} \pi_0 \cr \pi_1 \cr \pi_2 \cr \vdots \cr \pi_{T-1} \cr \pi_T 
+\end{bmatrix} 
+\]</div>
+<p>It turns out that</p>
+<div class="math notranslate nohighlight" id="equation-eq-fisctheory1">
+<span class="eqno">(10.7)<a class="headerlink" href="#equation-eq-fisctheory1" title="Permalink to this equation">#</a></span>\[
+\pi_t = (1-\delta) \sum_{s=t}^T \delta^{s-t} \mu_s +  \delta^{T+1-t} \pi_{T+1}^*
+\]</div>
+<p>We can represent the equations</p>
+<div class="math notranslate nohighlight">
+\[ 
+m_{t+1} = m_t + \mu_t , \quad t = 0, 1, \ldots, T
+\]</div>
+<p>as the matrix equation</p>
+<div class="math notranslate nohighlight" id="equation-eq-eq101">
+<span class="eqno">(10.8)<a class="headerlink" href="#equation-eq-eq101" title="Permalink to this equation">#</a></span>\[
+\begin{bmatrix}
+1 &amp; 0 &amp; 0 &amp; \cdots &amp; 0 &amp; 0 \cr
+-1 &amp; 1 &amp; 0 &amp; \cdots &amp; 0 &amp; 0 \cr
+0  &amp; -1 &amp; 1 &amp; \cdots &amp; 0 &amp; 0 \cr
+\vdots  &amp; \vdots &amp; \vdots &amp; \vdots &amp; 0 &amp; 0 \cr
+0  &amp; 0 &amp; 0 &amp; \cdots &amp; 1 &amp; 0 \cr
+0  &amp; 0 &amp; 0 &amp; \cdots &amp; -1 &amp; 1 
+\end{bmatrix}
+\begin{bmatrix}  
+m_1 \cr m_2 \cr m_3 \cr \vdots \cr m_T \cr m_{T+1}
+\end{bmatrix}
+= \begin{bmatrix}  
+\mu_0 \cr \mu_1 \cr \mu_2 \cr \vdots \cr \mu_{T-1} \cr \mu_T
+\end{bmatrix}
++ \begin{bmatrix}  
+m_0 \cr 0 \cr 0 \cr \vdots \cr 0 \cr 0
+\end{bmatrix}
+\]</div>
+<p>Multiplying both sides of equation <a class="reference internal" href="#equation-eq-eq101">(10.8)</a>  with the inverse of the matrix on the left will give</p>
+<div class="math notranslate nohighlight" id="equation-eq-mcum">
+<span class="eqno">(10.9)<a class="headerlink" href="#equation-eq-mcum" title="Permalink to this equation">#</a></span>\[
+m_t = m_0 + \sum_{s=0}^{t-1} \mu_s, \quad t =1, \ldots, T+1
+\]</div>
+<p>Equation <a class="reference internal" href="#equation-eq-mcum">(10.9)</a> shows that the log of the money supply at <span class="math notranslate nohighlight">\(t\)</span> equals the log <span class="math notranslate nohighlight">\(m_0\)</span> of the initial money supply
+plus accumulation of rates of money growth between times <span class="math notranslate nohighlight">\(0\)</span> and <span class="math notranslate nohighlight">\(t\)</span>.</p>
+</section>
+<section id="continuation-values">
+<h2><span class="section-number">10.3. </span>Continuation values<a class="headerlink" href="#continuation-values" title="Permalink to this heading">#</a></h2>
+<p>To determine the continuation inflation rate <span class="math notranslate nohighlight">\(\pi_{T+1}^*\)</span> we shall proceed by applying the following infinite-horizon
+version of equation <a class="reference internal" href="#equation-eq-fisctheory1">(10.7)</a> at time <span class="math notranslate nohighlight">\(t = T+1\)</span>:</p>
+<div class="math notranslate nohighlight" id="equation-eq-fisctheory2">
+<span class="eqno">(10.10)<a class="headerlink" href="#equation-eq-fisctheory2" title="Permalink to this equation">#</a></span>\[
+\pi_t = (1-\delta) \sum_{s=t}^\infty \delta^{s-t} \mu_s , 
+\]</div>
+<p>and by also assuming the following continuation path for <span class="math notranslate nohighlight">\(\mu_t\)</span> beyond <span class="math notranslate nohighlight">\(T\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+\mu_{t+1} = \gamma^* \mu_t, \quad t \geq T .
+\]</div>
+<p>Plugging the preceding equation into equation <a class="reference internal" href="#equation-eq-fisctheory2">(10.10)</a> at <span class="math notranslate nohighlight">\(t = T+1\)</span> and rearranging we can deduce that</p>
+<div class="math notranslate nohighlight" id="equation-eq-piterm">
+<span class="eqno">(10.11)<a class="headerlink" href="#equation-eq-piterm" title="Permalink to this equation">#</a></span>\[ 
+\pi_{T+1}^* = \frac{1 - \delta}{1 - \delta \gamma^*} \gamma^* \mu_T
+\]</div>
+<p>where we require that <span class="math notranslate nohighlight">\(\vert \gamma^* \delta \vert &lt; 1\)</span>.</p>
+<p>Let’s implement and solve this model.</p>
+<p>First, we store parameters in a <code class="docutils literal notranslate"><span class="pre">namedtuple</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create the rational expectation version of Cagan model in finite time</span>
+<span class="n">CaganREE</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s2">&quot;CaganREE&quot;</span><span class="p">,</span> 
+                        <span class="p">[</span><span class="s2">&quot;m0&quot;</span><span class="p">,</span> <span class="s2">&quot;T&quot;</span><span class="p">,</span> <span class="s2">&quot;μ_seq&quot;</span><span class="p">,</span> <span class="s2">&quot;α&quot;</span><span class="p">,</span> <span class="s2">&quot;δ&quot;</span><span class="p">,</span> <span class="s2">&quot;π_end&quot;</span><span class="p">])</span>
+
+<span class="k">def</span> <span class="nf">create_cagan_model</span><span class="p">(</span><span class="n">m0</span><span class="p">,</span> <span class="n">α</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">μ_seq</span><span class="p">):</span>
+    <span class="n">δ</span> <span class="o">=</span> <span class="n">α</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">α</span><span class="p">)</span>
+    <span class="n">π_end</span> <span class="o">=</span> <span class="n">μ_seq</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>    <span class="c1"># compute terminal expected inflation</span>
+    <span class="k">return</span> <span class="n">CaganREE</span><span class="p">(</span><span class="n">m0</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">μ_seq</span><span class="p">,</span> <span class="n">α</span><span class="p">,</span> <span class="n">δ</span><span class="p">,</span> <span class="n">π_end</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here we use the following parameter values:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># parameters</span>
+<span class="n">T</span> <span class="o">=</span> <span class="mi">80</span>
+<span class="n">T1</span> <span class="o">=</span> <span class="mi">60</span>
+<span class="n">α</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">m0</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="n">μ0</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">μ_star</span> <span class="o">=</span> <span class="mi">0</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we can solve the model to compute <span class="math notranslate nohighlight">\(\pi_t\)</span>, <span class="math notranslate nohighlight">\(m_t\)</span> and <span class="math notranslate nohighlight">\(p_t\)</span> for <span class="math notranslate nohighlight">\(t =1, \ldots, T+1\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">solve</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
+    <span class="n">model_params</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">m0</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">π_end</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">μ_seq</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">α</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">δ</span>
+    <span class="n">m0</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">π_end</span><span class="p">,</span> <span class="n">μ_seq</span><span class="p">,</span> <span class="n">α</span><span class="p">,</span> <span class="n">δ</span> <span class="o">=</span> <span class="n">model_params</span>
+    <span class="n">A1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="n">δ</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">A2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">k</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">b1</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">δ</span><span class="p">)</span> <span class="o">*</span> <span class="n">μ_seq</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">T</span><span class="p">),</span> <span class="p">[</span><span class="n">δ</span> <span class="o">*</span> <span class="n">π_end</span><span class="p">]])</span>
+    <span class="n">b2</span> <span class="o">=</span> <span class="n">μ_seq</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([[</span><span class="n">m0</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">T</span><span class="p">)])</span>
+
+    <span class="n">π_seq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">A1</span><span class="p">)</span> <span class="o">@</span> <span class="n">b1</span>
+    <span class="n">m_seq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">A2</span><span class="p">)</span> <span class="o">@</span> <span class="n">b2</span>
+
+    <span class="n">π_seq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">π_seq</span><span class="p">,</span> <span class="n">π_end</span><span class="p">)</span>
+    <span class="n">m_seq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">m0</span><span class="p">,</span> <span class="n">m_seq</span><span class="p">)</span>
+
+    <span class="n">p_seq</span> <span class="o">=</span> <span class="n">m_seq</span> <span class="o">+</span> <span class="n">α</span> <span class="o">*</span> <span class="n">π_seq</span>
+
+    <span class="k">return</span> <span class="n">π_seq</span><span class="p">,</span> <span class="n">m_seq</span><span class="p">,</span> <span class="n">p_seq</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="some-quantitative-experiments">
+<h3><span class="section-number">10.3.1. </span>Some quantitative experiments<a class="headerlink" href="#some-quantitative-experiments" title="Permalink to this heading">#</a></h3>
+<p>In the experiments below, we’ll use formula <a class="reference internal" href="#equation-eq-piterm">(10.11)</a> as our terminal condition for expected inflation.</p>
+<p>In devising these experiments, we’ll  make assumptions about <span class="math notranslate nohighlight">\(\{\mu_t\}\)</span> that are consistent with formula
+<a class="reference internal" href="#equation-eq-piterm">(10.11)</a>.</p>
+<p>We  describe several such experiments.</p>
+<p>In all of them,</p>
+<div class="math notranslate nohighlight">
+\[ 
+\mu_t = \mu^* , \quad t \geq T_1
+\]</div>
+<p>so that, in terms of our notation and formula for <span class="math notranslate nohighlight">\(\theta_{T+1}^*\)</span> above, <span class="math notranslate nohighlight">\(\tilde \gamma = 1\)</span>.</p>
+<section id="experiment-1-foreseen-sudden-stabilization">
+<h4><span class="section-number">10.3.1.1. </span>Experiment 1: foreseen sudden stabilization<a class="headerlink" href="#experiment-1-foreseen-sudden-stabilization" title="Permalink to this heading">#</a></h4>
+<p>In this experiment, we’ll study how, when <span class="math notranslate nohighlight">\(\alpha &gt;0\)</span>, a foreseen inflation stabilization has effects on inflation that proceed it.</p>
+<p>We’ll study a situation in which the rate of growth of the money supply is <span class="math notranslate nohighlight">\(\mu_0\)</span>
+from <span class="math notranslate nohighlight">\(t=0\)</span> to <span class="math notranslate nohighlight">\(t= T_1\)</span> and then permanently falls to <span class="math notranslate nohighlight">\(\mu^*\)</span> at <span class="math notranslate nohighlight">\(t=T_1\)</span>.</p>
+<p>Thus, let <span class="math notranslate nohighlight">\(T_1 \in (0, T)\)</span>.</p>
+<p>So where <span class="math notranslate nohighlight">\(\mu_0 &gt; \mu^*\)</span>, we assume that</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\mu_{t+1} = \begin{cases}
+    \mu_0  , &amp; t = 0, \ldots, T_1 -1 \\
+     \mu^* , &amp; t \geq T_1
+     \end{cases}
+\end{split}\]</div>
+<p>We’ll start by executing a version of our “experiment 1” in which the government  implements a <strong>foreseen</strong> sudden permanent reduction in the rate of money creation at time <span class="math notranslate nohighlight">\(T_1\)</span>.</p>
+<p>The following code performs the experiment and plots outcomes.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">solve_and_plot</span><span class="p">(</span><span class="n">m0</span><span class="p">,</span> <span class="n">α</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">μ_seq</span><span class="p">):</span>
+    <span class="n">model_params</span> <span class="o">=</span> <span class="n">create_cagan_model</span><span class="p">(</span><span class="n">m0</span><span class="o">=</span><span class="n">m0</span><span class="p">,</span> <span class="n">α</span><span class="o">=</span><span class="n">α</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="n">T</span><span class="p">,</span> <span class="n">μ_seq</span><span class="o">=</span><span class="n">μ_seq</span><span class="p">)</span>
+    <span class="n">π_seq</span><span class="p">,</span> <span class="n">m_seq</span><span class="p">,</span> <span class="n">p_seq</span> <span class="o">=</span> <span class="n">solve</span><span class="p">(</span><span class="n">model_params</span><span class="p">)</span>
+    <span class="n">T_seq</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="n">T</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span>
+    
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+    
+    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">T_seq</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">μ_seq</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\mu$&#39;</span><span class="p">)</span>
+
+    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">T_seq</span><span class="p">,</span> <span class="n">π_seq</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\pi$&#39;</span><span class="p">)</span>
+
+    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">T_seq</span><span class="p">,</span> <span class="n">m_seq</span> <span class="o">-</span> <span class="n">p_seq</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$m - p$&#39;</span><span class="p">)</span>
+
+    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">T_seq</span><span class="p">,</span> <span class="n">m_seq</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$m$&#39;</span><span class="p">)</span>
+
+    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">T_seq</span><span class="p">,</span> <span class="n">p_seq</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$p$&#39;</span><span class="p">)</span>
+    
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+                <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$t$&#39;</span><span class="p">)</span>
+                
+    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_axis_off</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    
+    <span class="k">return</span> <span class="n">π_seq</span><span class="p">,</span> <span class="n">m_seq</span><span class="p">,</span> <span class="n">p_seq</span>
+
+<span class="n">μ_seq_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">μ0</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">T1</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">μ_star</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">T</span><span class="o">-</span><span class="n">T1</span><span class="p">))</span>
+
+<span class="c1"># solve and plot</span>
+<span class="n">π_seq_1</span><span class="p">,</span> <span class="n">m_seq_1</span><span class="p">,</span> <span class="n">p_seq_1</span> <span class="o">=</span> <span class="n">solve_and_plot</span><span class="p">(</span><span class="n">m0</span><span class="o">=</span><span class="n">m0</span><span class="p">,</span> <span class="n">α</span><span class="o">=</span><span class="n">α</span><span class="p">,</span> 
+                                           <span class="n">T</span><span class="o">=</span><span class="n">T</span><span class="p">,</span> <span class="n">μ_seq</span><span class="o">=</span><span class="n">μ_seq_1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/12f8ceff1e90bfef52985f9c144c5353d4afdcfe376c7a868b2d8ee8a9f61018.png"><img alt="_images/12f8ceff1e90bfef52985f9c144c5353d4afdcfe376c7a868b2d8ee8a9f61018.png" src="_images/12f8ceff1e90bfef52985f9c144c5353d4afdcfe376c7a868b2d8ee8a9f61018.png" style="width: 80%;" /></a>
+</div>
+</div>
+<p>The  plot of the money growth rate <span class="math notranslate nohighlight">\(\mu_t\)</span> in the top level panel portrays
+a sudden reduction from <span class="math notranslate nohighlight">\(.5\)</span> to <span class="math notranslate nohighlight">\(0\)</span> at time <span class="math notranslate nohighlight">\(T_1 = 60\)</span>.</p>
+<p>This brings about a gradual reduction of the inflation rate <span class="math notranslate nohighlight">\(\pi_t\)</span> that precedes the
+money supply growth rate reduction at time <span class="math notranslate nohighlight">\(T_1\)</span>.</p>
+<p>Notice how the inflation rate declines smoothly (i.e., continuously) to <span class="math notranslate nohighlight">\(0\)</span> at <span class="math notranslate nohighlight">\(T_1\)</span> –
+unlike the money growth rate, it does not suddenly “jump” downward at <span class="math notranslate nohighlight">\(T_1\)</span>.</p>
+<p>This is because the reduction in <span class="math notranslate nohighlight">\(\mu\)</span> at <span class="math notranslate nohighlight">\(T_1\)</span> has been foreseen from the start.</p>
+<p>While the log money supply portrayed in the bottom panel has a kink at <span class="math notranslate nohighlight">\(T_1\)</span>, the log  price level does not – it is “smooth” – once again a consequence of the fact that the
+reduction in <span class="math notranslate nohighlight">\(\mu\)</span> has been foreseen.</p>
+</section>
+<section id="experiment-2-an-unforeseen-sudden-stabilization">
+<h4><span class="section-number">10.3.1.2. </span>Experiment 2: an unforeseen sudden stabilization<a class="headerlink" href="#experiment-2-an-unforeseen-sudden-stabilization" title="Permalink to this heading">#</a></h4>
+<p>This experiment deviates a little bit from a pure version our “perfect foresight”
+assumption by assuming that a sudden permanent reduction in <span class="math notranslate nohighlight">\(\mu_t\)</span> like that
+analyzed in experiment 1 is completely unanticipated.</p>
+<p>Such a  completely unanticipated shock is popularly known as an “MIT shock”.</p>
+<p>The mental experiment involves switching at at time <span class="math notranslate nohighlight">\(T_1\)</span> from an initial “continuation path” for <span class="math notranslate nohighlight">\(\{\mu_t, \pi_t\} \)</span> to another path that involves a permanently lower inflation frate.</p>
+<p><strong>Initial Path:</strong> <span class="math notranslate nohighlight">\(\mu_t = \mu_0\)</span> for all <span class="math notranslate nohighlight">\(t \geq 0\)</span>. So this path is for <span class="math notranslate nohighlight">\(\{\mu_t\}_{t=0}^\infty\)</span>; the associated
+path for <span class="math notranslate nohighlight">\(\pi_t\)</span> has <span class="math notranslate nohighlight">\(\pi_t = \mu_0\)</span>.</p>
+<p><strong>Revised Continuation Path</strong> Where <span class="math notranslate nohighlight">\( \mu_0 &gt; \mu^*\)</span>, we construct a continuation path  <span class="math notranslate nohighlight">\(\{\mu_s\}_{s=T_1}^\infty\)</span>
+by setting <span class="math notranslate nohighlight">\(\mu_s = \mu^*\)</span> for all <span class="math notranslate nohighlight">\(s \geq T_1\)</span>.  The perfect foresight continuation path for
+<span class="math notranslate nohighlight">\(\pi\)</span> is  <span class="math notranslate nohighlight">\(\pi_s = \mu^*\)</span></p>
+<p>To capture a “completely unanticipated permanent  shock to the <span class="math notranslate nohighlight">\(\{\mu\}\)</span> process at time <span class="math notranslate nohighlight">\(T_1\)</span>, we simply  glue the <span class="math notranslate nohighlight">\(\mu_t, \pi_t\)</span>
+that emerges under path 2 for <span class="math notranslate nohighlight">\(t \geq T_1\)</span> to the <span class="math notranslate nohighlight">\(\mu_t, \pi_t\)</span> path that had emerged under path 1 for <span class="math notranslate nohighlight">\( t=0, \ldots,
+T_1 -1\)</span>.</p>
+<p>We can do the MIT shock calculations entirely by hand.</p>
+<p>Thus, for path 1, <span class="math notranslate nohighlight">\(\pi_t = \mu_0 \)</span> for all <span class="math notranslate nohighlight">\(t \in  [0, T_1-1]\)</span>, while for path 2,
+<span class="math notranslate nohighlight">\(\mu_s = \mu^*\)</span> for all <span class="math notranslate nohighlight">\(s \geq T_1\)</span>.</p>
+<p>We now move on to experiment 2, our “MIT shock”, completely unforeseen
+sudden stabilization.</p>
+<p>We set this up so that the <span class="math notranslate nohighlight">\(\{\mu_t\}\)</span> sequences that describe the sudden stabilization
+are identical to those for experiment 1, the foreseen suddent stabilization.</p>
+<p>The following code does the calculations and plots outcomes.</p>
+<!-- #endregion --><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># path 1</span>
+<span class="n">μ_seq_2_path1</span> <span class="o">=</span> <span class="n">μ0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">mc1</span> <span class="o">=</span> <span class="n">create_cagan_model</span><span class="p">(</span><span class="n">m0</span><span class="o">=</span><span class="n">m0</span><span class="p">,</span> <span class="n">α</span><span class="o">=</span><span class="n">α</span><span class="p">,</span> 
+                         <span class="n">T</span><span class="o">=</span><span class="n">T</span><span class="p">,</span> <span class="n">μ_seq</span><span class="o">=</span><span class="n">μ_seq_2_path1</span><span class="p">)</span>
+<span class="n">π_seq_2_path1</span><span class="p">,</span> <span class="n">m_seq_2_path1</span><span class="p">,</span> <span class="n">p_seq_2_path1</span> <span class="o">=</span> <span class="n">solve</span><span class="p">(</span><span class="n">mc1</span><span class="p">)</span>
+
+<span class="c1"># continuation path</span>
+<span class="n">μ_seq_2_cont</span> <span class="o">=</span> <span class="n">μ_star</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">T</span><span class="o">-</span><span class="n">T1</span><span class="p">)</span>
+
+<span class="n">mc2</span> <span class="o">=</span> <span class="n">create_cagan_model</span><span class="p">(</span><span class="n">m0</span><span class="o">=</span><span class="n">m_seq_2_path1</span><span class="p">[</span><span class="n">T1</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span> 
+                         <span class="n">α</span><span class="o">=</span><span class="n">α</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="n">T</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="n">T1</span><span class="p">,</span> <span class="n">μ_seq</span><span class="o">=</span><span class="n">μ_seq_2_cont</span><span class="p">)</span>
+<span class="n">π_seq_2_cont</span><span class="p">,</span> <span class="n">m_seq_2_cont1</span><span class="p">,</span> <span class="n">p_seq_2_cont1</span> <span class="o">=</span> <span class="n">solve</span><span class="p">(</span><span class="n">mc2</span><span class="p">)</span>
+
+
+<span class="c1"># regime 1 - simply glue π_seq, μ_seq</span>
+<span class="n">μ_seq_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">μ_seq_2_path1</span><span class="p">[:</span><span class="n">T1</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span>
+                          <span class="n">μ_seq_2_cont</span><span class="p">])</span>
+<span class="n">π_seq_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">π_seq_2_path1</span><span class="p">[:</span><span class="n">T1</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span> 
+                          <span class="n">π_seq_2_cont</span><span class="p">])</span>
+<span class="n">m_seq_2_regime1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">m_seq_2_path1</span><span class="p">[:</span><span class="n">T1</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span> 
+                                  <span class="n">m_seq_2_cont1</span><span class="p">])</span>
+<span class="n">p_seq_2_regime1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">p_seq_2_path1</span><span class="p">[:</span><span class="n">T1</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span> 
+                                  <span class="n">p_seq_2_cont1</span><span class="p">])</span>
+
+<span class="c1"># regime 2 - reset m_T1</span>
+<span class="n">m_T1</span> <span class="o">=</span> <span class="p">(</span><span class="n">m_seq_2_path1</span><span class="p">[</span><span class="n">T1</span><span class="p">]</span> <span class="o">+</span> <span class="n">μ0</span><span class="p">)</span> <span class="o">+</span> <span class="n">α</span><span class="o">*</span><span class="p">(</span><span class="n">μ0</span> <span class="o">-</span> <span class="n">μ_star</span><span class="p">)</span>
+
+<span class="n">mc</span> <span class="o">=</span> <span class="n">create_cagan_model</span><span class="p">(</span><span class="n">m0</span><span class="o">=</span><span class="n">m_T1</span><span class="p">,</span> <span class="n">α</span><span class="o">=</span><span class="n">α</span><span class="p">,</span>
+                        <span class="n">T</span><span class="o">=</span><span class="n">T</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="n">T1</span><span class="p">,</span> <span class="n">μ_seq</span><span class="o">=</span><span class="n">μ_seq_2_cont</span><span class="p">)</span>
+<span class="n">π_seq_2_cont2</span><span class="p">,</span> <span class="n">m_seq_2_cont2</span><span class="p">,</span> <span class="n">p_seq_2_cont2</span> <span class="o">=</span> <span class="n">solve</span><span class="p">(</span><span class="n">mc</span><span class="p">)</span>
+
+<span class="n">m_seq_2_regime2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">m_seq_2_path1</span><span class="p">[:</span><span class="n">T1</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span> 
+                                  <span class="n">m_seq_2_cont2</span><span class="p">])</span>
+<span class="n">p_seq_2_regime2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">p_seq_2_path1</span><span class="p">[:</span><span class="n">T1</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span>
+                                  <span class="n">p_seq_2_cont2</span><span class="p">])</span>
+
+<span class="n">T_seq</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># plot both regimes</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">],</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+ 
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">T_seq</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">μ_seq_2</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\mu$&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">T_seq</span><span class="p">,</span> <span class="n">π_seq_2</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\pi$&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">T_seq</span><span class="p">,</span> <span class="n">m_seq_2_regime1</span> <span class="o">-</span> <span class="n">p_seq_2_regime1</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$m - p$&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">T_seq</span><span class="p">,</span> <span class="n">m_seq_2_regime1</span><span class="p">,</span> 
+             <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Smooth $m_</span><span class="si">{T_1}</span><span class="s1">$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">T_seq</span><span class="p">,</span> <span class="n">m_seq_2_regime2</span><span class="p">,</span> 
+             <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Jumpy $m_</span><span class="si">{T_1}</span><span class="s1">$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$m$&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">T_seq</span><span class="p">,</span> <span class="n">p_seq_2_regime1</span><span class="p">,</span>
+             <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Smooth $m_</span><span class="si">{T_1}</span><span class="s1">$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">T_seq</span><span class="p">,</span> <span class="n">p_seq_2_regime2</span><span class="p">,</span> 
+             <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Jumpy $m_</span><span class="si">{T_1}</span><span class="s1">$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$p$&#39;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+        <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$t$&#39;</span><span class="p">)</span>
+                
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_axis_off</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">j</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]):</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/b44b85c23c66b5dabc853f42478555fd6875a1a7ef85120317e556ef4a39a07e.png"><img alt="_images/b44b85c23c66b5dabc853f42478555fd6875a1a7ef85120317e556ef4a39a07e.png" src="_images/b44b85c23c66b5dabc853f42478555fd6875a1a7ef85120317e556ef4a39a07e.png" style="width: 80%;" /></a>
+</div>
+</div>
+<p>We invite you to compare these graphs with corresponding ones for the foreseen stabilization analyzed in experiment 1 above.</p>
+<p>Note how the inflation graph in the top middle panel is now identical to the
+money growth graph in the top left panel, and how now the log of real balances portrayed in the top right panel jumps upward at time <span class="math notranslate nohighlight">\(T_1\)</span>.</p>
+<p>The bottom panels plot <span class="math notranslate nohighlight">\(m\)</span> and <span class="math notranslate nohighlight">\(p\)</span> under two possible ways that <span class="math notranslate nohighlight">\(m_{T_1}\)</span> might adjust
+as required by the upward jump in <span class="math notranslate nohighlight">\(m - p\)</span> at <span class="math notranslate nohighlight">\(T_1\)</span>.</p>
+<ul class="simple">
+<li><p>the orange line lets <span class="math notranslate nohighlight">\(m_{T_1}\)</span> jump upward in order to make sure that the log price level <span class="math notranslate nohighlight">\(p_{T_1}\)</span> does not fall.</p></li>
+<li><p>the blue line lets <span class="math notranslate nohighlight">\(p_{T_1}\)</span> fall while stopping the money supply from jumping.</p></li>
+</ul>
+<p>Here is a way to interpret what the government is doing when the orange line policy is in place.</p>
+<p>The government  prints money to finance expenditure with  the “velocity dividend” that it reaps from the increased demand for real balances brought about by the permanent decrease in the rate of growth of the money supply.</p>
+<p>The next code generates a multi-panel graph that includes outcomes of both experiments 1 and 2.</p>
+<p>That allows us to assess how important it is to understand whether the sudden permanent drop in <span class="math notranslate nohighlight">\(\mu_t\)</span> at <span class="math notranslate nohighlight">\(t=T_1\)</span> is fully unanticipated, as in experiment 1, or completely
+unanticipated, as in experiment 2.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># compare foreseen vs unforeseen shock</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">12</span><span class="p">,</span><span class="mi">6</span><span class="p">],</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">T_seq</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">μ_seq_2</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\mu$&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">T_seq</span><span class="p">,</span> <span class="n">π_seq_2</span><span class="p">,</span> 
+             <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Unforeseen&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">T_seq</span><span class="p">,</span> <span class="n">π_seq_1</span><span class="p">,</span> 
+             <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Foreseen&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;tab:green&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\pi$&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">T_seq</span><span class="p">,</span>
+             <span class="n">m_seq_2_regime1</span> <span class="o">-</span> <span class="n">p_seq_2_regime1</span><span class="p">,</span> 
+             <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Unforeseen&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">T_seq</span><span class="p">,</span> <span class="n">m_seq_1</span> <span class="o">-</span> <span class="n">p_seq_1</span><span class="p">,</span> 
+             <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Foreseen&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;tab:green&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$m - p$&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">T_seq</span><span class="p">,</span> <span class="n">m_seq_2_regime1</span><span class="p">,</span> 
+             <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;Unforseen (Insist on $m_</span><span class="si">{T_1}</span><span class="s1">$)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">T_seq</span><span class="p">,</span> <span class="n">m_seq_2_regime2</span><span class="p">,</span> 
+             <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;Unforseen (Reset $m_</span><span class="si">{T_1}</span><span class="s1">$)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">T_seq</span><span class="p">,</span> <span class="n">m_seq_1</span><span class="p">,</span> 
+             <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Foreseen shock&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$m$&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">T_seq</span><span class="p">,</span> <span class="n">p_seq_2_regime1</span><span class="p">,</span> 
+             <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;Unforseen (Insist on $m_</span><span class="si">{T_1}</span><span class="s1">$)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">T_seq</span><span class="p">,</span> <span class="n">p_seq_2_regime2</span><span class="p">,</span> 
+             <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;Unforseen (Reset $m_</span><span class="si">{T_1}</span><span class="s1">$)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">T_seq</span><span class="p">,</span> <span class="n">p_seq_1</span><span class="p">,</span> 
+             <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Foreseen&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$p$&#39;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+        <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$t$&#39;</span><span class="p">)</span>
+        
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_axis_off</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">j</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]):</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/d08de5e579879c1a748555dc092d1f8927080ab1c781038d1830f46b95dbabf9.png"><img alt="_images/d08de5e579879c1a748555dc092d1f8927080ab1c781038d1830f46b95dbabf9.png" src="_images/d08de5e579879c1a748555dc092d1f8927080ab1c781038d1830f46b95dbabf9.png" style="width: 80%;" /></a>
+</div>
+</div>
+</section>
+</section>
+<section id="the-log-price-level">
+<h3><span class="section-number">10.3.2. </span>The log price level<a class="headerlink" href="#the-log-price-level" title="Permalink to this heading">#</a></h3>
+<p>We can use equations <a class="reference internal" href="#equation-eq-caganmd">(10.1)</a> and <a class="reference internal" href="#equation-eq-ree">(10.2)</a>
+to discover that the log of the price level satisfies</p>
+<div class="math notranslate nohighlight" id="equation-eq-pformula2">
+<span class="eqno">(10.12)<a class="headerlink" href="#equation-eq-pformula2" title="Permalink to this equation">#</a></span>\[
+p_t = m_t + \alpha \pi_t
+\]</div>
+<p>or, by using equation  <a class="reference internal" href="#equation-eq-fisctheory1">(10.7)</a>,</p>
+<div class="math notranslate nohighlight" id="equation-eq-pfiscaltheory2">
+<span class="eqno">(10.13)<a class="headerlink" href="#equation-eq-pfiscaltheory2" title="Permalink to this equation">#</a></span>\[ 
+p_t = m_t + \alpha \left[ (1-\delta) \sum_{s=t}^T \delta^{s-t} \mu_s +  \delta^{T+1-t} \pi_{T+1}^*  \right] 
+\]</div>
+<p>At time <span class="math notranslate nohighlight">\(T_1\)</span> when the “surprise” regime change occurs,  to satisfy
+equation <a class="reference internal" href="#equation-eq-pformula2">(10.12)</a>, the log of real balances jumps
+*<em>upward</em> as  <span class="math notranslate nohighlight">\(\pi_t\)</span> jumps <strong>downward</strong>.</p>
+<p>But in order for <span class="math notranslate nohighlight">\(m_t - p_t\)</span> to jump, which variable jumps, <span class="math notranslate nohighlight">\(m_{T_1}\)</span> or <span class="math notranslate nohighlight">\(p_{T_1}\)</span>?</p>
+</section>
+<section id="what-jumps">
+<h3><span class="section-number">10.3.3. </span>What jumps?<a class="headerlink" href="#what-jumps" title="Permalink to this heading">#</a></h3>
+<p>What jumps at <span class="math notranslate nohighlight">\(T_1\)</span>?</p>
+<p>Is it <span class="math notranslate nohighlight">\(p_{T_1}\)</span> or  <span class="math notranslate nohighlight">\(m_{T_1}\)</span>?</p>
+<p>If we insist that the money supply <span class="math notranslate nohighlight">\(m_{T_1}\)</span> is locked at its value <span class="math notranslate nohighlight">\(m_{T_1}^1\)</span> inherited from the past, then formula <a class="reference internal" href="#equation-eq-pformula2">(10.12)</a> implies  that the price level jumps downward  at time <span class="math notranslate nohighlight">\(T_1\)</span>, to coincide with the downward jump in
+<span class="math notranslate nohighlight">\(\pi_{T_1}\)</span></p>
+<p>An alternative assumption about the money supply level is that as part of the “inflation stabilization”,
+the government resets <span class="math notranslate nohighlight">\(m_{T_1}\)</span> according to</p>
+<div class="math notranslate nohighlight" id="equation-eq-eqnmoneyjump">
+<span class="eqno">(10.14)<a class="headerlink" href="#equation-eq-eqnmoneyjump" title="Permalink to this equation">#</a></span>\[
+ m_{T_1}^2 - m_{T_1}^1 = \alpha (\pi^1 - \pi^2)
+\]</div>
+<p>By letting money jump according to equation <a class="reference internal" href="#equation-eq-eqnmoneyjump">(10.14)</a> the monetary authority  prevents  the price level
+from <strong>falling</strong> at the moment that the unanticipated stabilization arrives.</p>
+<p>In various research papers about stabilizations of high inflations, the jump in the money supply described by equation <a class="reference internal" href="#equation-eq-eqnmoneyjump">(10.14)</a> has been called
+“the velocity dividend” that a government reaps from implementin a regime change that sustains a permanently lower inflation rate.</p>
+<section id="technical-details-about-whether-p-or-m-jumps-at-t-1">
+<h4><span class="section-number">10.3.3.1. </span>Technical Details about whether <span class="math notranslate nohighlight">\(p\)</span> or <span class="math notranslate nohighlight">\(m\)</span> jumps at <span class="math notranslate nohighlight">\(T_1\)</span><a class="headerlink" href="#technical-details-about-whether-p-or-m-jumps-at-t-1" title="Permalink to this heading">#</a></h4>
+<p>We have noted that  with a constant expected forward sequence <span class="math notranslate nohighlight">\(\mu_s = \bar \mu\)</span> for <span class="math notranslate nohighlight">\(s\geq t\)</span>, <span class="math notranslate nohighlight">\(\pi_{t} =\bar{\mu}\)</span>.</p>
+<p>A consequence is that at <span class="math notranslate nohighlight">\(T_1\)</span>, either <span class="math notranslate nohighlight">\(m\)</span> or <span class="math notranslate nohighlight">\(p\)</span> must “jump” at <span class="math notranslate nohighlight">\(T_1\)</span>.</p>
+<p>We’ll study both cases.</p>
+</section>
+<section id="m-t-1-does-not-jump">
+<h4><span class="section-number">10.3.3.2. </span><span class="math notranslate nohighlight">\(m_{T_{1}}\)</span> does not jump.<a class="headerlink" href="#m-t-1-does-not-jump" title="Permalink to this heading">#</a></h4>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+m_{T_{1}}&amp;=m_{T_{1}-1}+\mu_{0}\\\pi_{T_{1}}&amp;=\mu^{*}\\p_{T_{1}}&amp;=m_{T_{1}}+\alpha\pi_{T_{1}}
+\end{align*}
+\end{split}\]</div>
+<p>Simply glue the sequences <span class="math notranslate nohighlight">\(t\leq T_1\)</span> and <span class="math notranslate nohighlight">\(t &gt; T_1\)</span>.</p>
+</section>
+<section id="m-t-1-jumps">
+<h4><span class="section-number">10.3.3.3. </span><span class="math notranslate nohighlight">\(m_{T_{1}}\)</span> jumps.<a class="headerlink" href="#m-t-1-jumps" title="Permalink to this heading">#</a></h4>
+<p>We reset <span class="math notranslate nohighlight">\(m_{T_{1}}\)</span>  so that <span class="math notranslate nohighlight">\(p_{T_{1}}=\left(m_{T_{1}-1}+\mu_{0}\right)+\alpha\mu_{0}\)</span>, with <span class="math notranslate nohighlight">\(\pi_{T_{1}}=\mu^{*}\)</span>.</p>
+<p>Then,</p>
+<div class="math notranslate nohighlight">
+\[ 
+m_{T_{1}}=p_{T_{1}}-\alpha\pi_{T_{1}}=\left(m_{T_{1}-1}+\mu_{0}\right)+\alpha\left(\mu_{0}-\mu^{*}\right) 
+\]</div>
+<p>We then compute for the remaining <span class="math notranslate nohighlight">\(T-T_{1}\)</span> periods with <span class="math notranslate nohighlight">\(\mu_{s}=\mu^{*},\forall s\geq T_{1}\)</span> and the initial condition <span class="math notranslate nohighlight">\(m_{T_{1}}\)</span> from above.</p>
+</section>
+<section id="experiment-3">
+<h4><span class="section-number">10.3.3.4. </span>Experiment 3<a class="headerlink" href="#experiment-3" title="Permalink to this heading">#</a></h4>
+<p><strong>Foreseen gradual stabilization</strong></p>
+<p>Instead of a foreseen sudden stabilization of the type studied with experiment 1,
+it is also interesting to study the consequences of a foreseen gradual stabilization.</p>
+<p>Thus, suppose that <span class="math notranslate nohighlight">\(\phi \in (0,1)\)</span>, that  <span class="math notranslate nohighlight">\(\mu_0 &gt; \mu^*\)</span>,  and that for <span class="math notranslate nohighlight">\(t = 0, \ldots, T-1\)</span></p>
+<div class="math notranslate nohighlight">
+\[
+\mu_t = \phi^t \mu_0 + (1 - \phi^t) \mu^* .
+\]</div>
+<p>Next we perform an experiment in which there is a perfectly foreseen <strong>gradual</strong> decrease in the rate of growth of the money supply.</p>
+<p>The following  code does the calculations and plots the results.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># parameters</span>
+<span class="n">ϕ</span> <span class="o">=</span> <span class="mf">0.9</span>
+<span class="n">μ_seq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">ϕ</span><span class="o">**</span><span class="n">t</span> <span class="o">*</span> <span class="n">μ0</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">ϕ</span><span class="o">**</span><span class="n">t</span><span class="p">)</span><span class="o">*</span><span class="n">μ_star</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">T</span><span class="p">)])</span>
+<span class="n">μ_seq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">μ_seq</span><span class="p">,</span> <span class="n">μ_star</span><span class="p">)</span>
+
+
+<span class="c1"># solve and plot</span>
+<span class="n">π_seq</span><span class="p">,</span> <span class="n">m_seq</span><span class="p">,</span> <span class="n">p_seq</span> <span class="o">=</span> <span class="n">solve_and_plot</span><span class="p">(</span><span class="n">m0</span><span class="o">=</span><span class="n">m0</span><span class="p">,</span> <span class="n">α</span><span class="o">=</span><span class="n">α</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="n">T</span><span class="p">,</span> <span class="n">μ_seq</span><span class="o">=</span><span class="n">μ_seq</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/2f3abc2a6ace06a3e644c7112bc613e3506e722dd433c03f561400cf215100b0.png"><img alt="_images/2f3abc2a6ace06a3e644c7112bc613e3506e722dd433c03f561400cf215100b0.png" src="_images/2f3abc2a6ace06a3e644c7112bc613e3506e722dd433c03f561400cf215100b0.png" style="width: 80%;" /></a>
+</div>
+</div>
+</section>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                    </div>
+                    
+                </main> <!-- .page__content -->
+                
+
+
+                <footer class="qe-page__footer">
+
+                    <p><a href="https://creativecommons.org/licenses/by-sa/4.0/"><img src="https://licensebuttons.net/l/by-sa/4.0/80x15.png"></a></p>
+
+                    <p>Creative Commons License &ndash; This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International.</p>
+
+                </footer> <!-- .page__footer -->
+
+            </div> <!-- .page -->
+
+            
+
+            
+            <div class="qe-sidebar bd-sidebar inactive" id="site-navigation">
+
+                <div class="qe-sidebar__header">
+
+
+                    Contents
+
+                </div>
+
+                <nav class="qe-sidebar__nav" id="qe-sidebar-nav" aria-label="Main navigation">
+                    <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Introduction
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="about.html">
+   1. About these Lectures
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Economic Data
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="long_run_growth.html">
+   2. Economic Growth Evidence
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="business_cycle.html">
+   3. Business Cycles
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="inequality.html">
+   4. Income and Wealth Inequality
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Essential Tools
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="linear_equations.html">
+   5. Linear Equations and Matrix Algebra
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="eigen_I.html">
+   6. Eigenvalues and Eigenvectors
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro_supply_demand.html">
+   7. Introduction to Supply and Demand
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Linear Dynamics
+ </span>
+</p>
+<ul class="current nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="pv.html">
+   8. Present Values
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cons_smooth.html">
+   9. Consumption smoothing
+  </a>
+ </li>
+ <li class="toctree-l1 current active active">
+  <a class="current reference internal" href="#">
+   10. A Fiscal Theory of the Price Level
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="geom_series.html">
+   11. Geometric Series for Elementary Economics
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Probability and Distributions
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="prob_dist.html">
+   12. Distributions and Probabilities
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lln_clt.html">
+   13. LLN and CLT
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="monte_carlo.html">
+   14. Monte Carlo and Option Pricing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="heavy_tails.html">
+   15. Heavy-Tailed Distributions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="schelling.html">
+   16. Racial Segregation
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Nonlinear Dynamics
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="solow.html">
+   17. The Solow-Swan Growth Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="scalar_dynam.html">
+   18. Dynamics in One Dimension
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cobweb.html">
+   19. The Cobweb Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="olg.html">
+   20. The Overlapping Generations Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="commod_price.html">
+   21. Commodity Prices
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Stochastic Dynamics
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="markov_chains_I.html">
+   22. Markov Chains: Basic Concepts
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="markov_chains_II.html">
+   23. Markov Chains: Irreducibility and Ergodicity
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="time_series_with_matrices.html">
+   24. Univariate Time Series with Matrix Algebra
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Optimization
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="lp_intro.html">
+   25. Linear Programming
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="comparative_adv.html">
+   26. Comparative Advantage
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nonlinear.html">
+   27. Nonlinear Problems
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="short_path.html">
+   28. Shortest Paths
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Modeling in Higher Dimensions
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="eigen_II.html">
+   29. Spectral Theory
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="input_output.html">
+   30. Input-Output Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lake_model.html">
+   31. A Lake Model of Employment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="networks.html">
+   32. Networks
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Markets and Competitive Equilibrium
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="supply_demand_multiple_goods.html">
+   33. Supply and Demand with Many Goods
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="supply_demand_heterogeneity.html">
+   34. Market Equilibrium with Heterogeneity
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Estimation
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="simple_linear_regression.html">
+   35. Simple Linear Regression Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lr_with_matrices.html">
+   36. Linear Regression with Matrices
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="mle.html">
+   37. Maximum Likelihood Estimation
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Other
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="troubleshooting.html">
+   38. Troubleshooting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="zreferences.html">
+   39. References
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="status.html">
+   40. Execution Statistics
+  </a>
+ </li>
+</ul>
+
+                </nav>
+
+                <div class="qe-sidebar__footer">
+
+                </div>
+
+            </div> <!-- .sidebar -->
+            
+        </div> <!-- .main -->
+
+        <div class="qe-toolbar">
+
+            <div class="qe-toolbar__inner">
+
+                <ul class="qe-toolbar__main">
+                    <li data-tippy-content="Table of Contents" class="btn__sidebar"><i data-feather="menu"></i></li>
+                    <li data-tippy-content="Home"><a href="intro.html"><i data-feather="home"></i></a></li>
+                    <li class="btn__qelogo"><a href="https://quantecon.org" title=""><span class="show-for-sr">QuantEcon</span></a></li>
+                    <!-- <li class="btn__search">
+                        <form action="search.html" method="get">
+                            <input type="search" class="form-control" name="q" id="search-input" placeholder="Search..." aria-label="Search..." autocomplete="off">
+                            <i data-feather="search"></i>
+                        </form>
+                    </li> -->
+                </ul>
+
+                <ul class="qe-toolbar__links">
+                    <li data-tippy-content="Fullscreen" class="btn__fullscreen"><i data-feather="maximize"></i></li>
+                    <li data-tippy-content="Increase font size" class="btn__plus"><i data-feather="plus-circle"></i></li>
+                    <li data-tippy-content="Decrease font size" class="btn__minus"><i data-feather="minus-circle"></i></li>
+                    <li data-tippy-content="Change contrast" class="btn__contrast"><i data-feather="sunset"></i></li>
+                    <li data-tippy-content="Download Notebook"><a href="/_notebooks/cagan_ree.ipynb" download><i data-feather="download-cloud"></i></a></li>
+                    <li class="settings-button" id="settingsButton"><div data-tippy-content="Launch Notebook"><i data-feather="play-circle"></i></div></li>
+                        <li data-tippy-content="Download PDF" onClick="window.print()"><i data-feather="file"></i></li>
+                    <li data-tippy-content="View Source"><a target="_blank" href="https://github.com/QuantEcon/lecture-python-intro/blob/main/lectures/cagan_ree.md" download><i data-feather="github"></i></a></li>
+                </ul>
+
+            </div>
+
+        </div> <!-- .toolbar -->
+        <div id="downloadPDFModal" style="display: none;">
+            <ul class="pdf-options" style="display: block;">
+                <li class="download-pdf-book" onClick="window.print()">
+                    <p>Lecture (PDF)</p>
+                </li>
+                <li class="download-pdf-file">
+                    <a href="" download><p>Book (PDF)</p></a>
+                </li>
+            </ul>
+        </div>
+        <div id="settingsModal" style="display: none;">
+            <p class="modal-title"> Notebook Launcher </p>
+            <div class="modal-desc">
+            <p>
+                Choose public or private cloud service for "Launch" button.
+            </p>
+            </div>
+            <p class="modal-subtitle">Select a server</p>
+            <ul class="modal-servers">
+            <li class="active launcher-public">
+                <span class="label">Public</span>
+                <select id="launcher-public-input">
+                
+                    <option value="https://mybinder.org/v2/gh/QuantEcon/lecture-python-intro.notebooks/master?urlpath=tree/cagan_ree.ipynb">BinderHub</option>
+                
+                    <option value="https://colab.research.google.com/github/QuantEcon/lecture-python-intro.notebooks/blob/master/cagan_ree.ipynb">Colab</option>
+                
+                </select>
+                <i class="fas fa-check-circle"></i>
+            </li>
+            <li class="launcher-private">
+                <span class="label">Private</span>
+                <input type="text" id="launcher-private-input" data-repourl="https://github.com/QuantEcon/lecture-python-intro.notebooks" data-urlpath="tree/lecture-python-intro.notebooks/cagan_ree.ipynb" data-branch=master>
+                <i class="fas fa-check-circle"></i>
+            </li>
+            </ul>
+            <p class="launch"><a href="https://mybinder.org/v2/gh/QuantEcon/lecture-python-intro.notebooks/master?urlpath=tree/cagan_ree.ipynb" id="advancedLaunchButton" target="_blank">Launch Notebook</a></p>
+            <script>
+                // QuantEcon Notebook Launcher
+                const launcherTypeElements = document.querySelectorAll('#settingsModal .modal-servers li');
+                // Highlight the server type if previous selection exists
+                if (typeof localStorage.launcherType !== 'undefined') {
+                  for (var i = 0; i < launcherTypeElements.length; i++) {
+                    launcherTypeElements[i].classList.remove('active');
+                    if ( launcherTypeElements[i].classList.contains(localStorage.launcherType) ) {
+                      launcherTypeElements[i].classList.add('active');
+                    }
+                  }
+                }
+                // Highlight server type on click and set local storage value
+                for (var i = 0; i < launcherTypeElements.length; i++) {
+                  launcherTypeElements[i].addEventListener('click', function() {
+                    for (var j = 0; j < launcherTypeElements.length; j++) {
+                      launcherTypeElements[j].classList.remove('active');
+                    }
+                    this.classList.add('active');
+                    if ( this.classList.contains('launcher-private') ) {
+                      localStorage.launcherType = 'launcher-private';
+                    } else if ( this.classList.contains('launcher-public') ) {
+                      localStorage.launcherType = 'launcher-public';
+                    }
+                    setLaunchServer();
+                  })
+                }
+                const launcherPublic = document.getElementById('launcher-public-input');
+                const launcherPrivate = document.getElementById('launcher-private-input');
+                const pageName = "cagan_ree";
+                const repoURL = "https://github.com/QuantEcon/lecture-python-intro.notebooks";
+                const urlPath = "tree/lecture-python-intro.notebooks/cagan_ree.ipynb";
+                const branch = "master"
+                const launchNotebookLink = document.getElementById('advancedLaunchButton');
+
+                // Highlight public server option if previous selection exists
+                if (typeof localStorage.launcherPublic !== 'undefined') {
+                  launcherPublic.value = localStorage.launcherPublic;
+                }
+                // Update local storage upon public server selection
+                launcherPublic.addEventListener('change', (event) => {
+                  setLaunchServer();
+                });
+                // Populate private server input if previous entry exists
+                if (typeof localStorage.launcherPrivate !== 'undefined') {
+                  launcherPrivate.value = localStorage.launcherPrivate;
+                }
+                // Update local storage when a private server is entered
+                launcherPrivate.addEventListener('input', (event) => {
+                  setLaunchServer();
+                });
+
+                // Function to update the "Launch Notebook" link href
+                function setLaunchServer() {
+                  launchNotebookLink.removeAttribute("style")
+                  if ( localStorage.launcherType == 'launcher-private' ) {
+                    let repoPrefix = "/jupyter/hub/user-redirect/git-pull?repo=" + repoURL + "&branch=" + branch + "&urlpath=" + urlPath;
+                    launcherPrivateValue = launcherPrivate.value
+                    if (!launcherPrivateValue) {
+                        launchNotebookLink.removeAttribute("href")
+                        launchNotebookLink.style.background = "grey"
+                        return
+                    }
+                    localStorage.launcherPrivate = launcherPrivateValue;
+                    privateServer = localStorage.launcherPrivate.replace(/\/$/, "")
+                    if (!privateServer.includes("http")) {
+                        privateServer = "http://" + privateServer
+                    }
+                    launchNotebookLinkURL = privateServer + repoPrefix;
+                  } else if ( localStorage.launcherType == 'launcher-public' ) {
+                    launcherPublicValue = launcherPublic.options[launcherPublic.selectedIndex].value;
+                    localStorage.launcherPublic = launcherPublicValue;
+                    launchNotebookLinkURL = localStorage.launcherPublic;
+                  }
+                  if (launchNotebookLinkURL) launchNotebookLink.href = launchNotebookLinkURL;
+                }
+                // Check if user has previously selected a server
+                if ( (typeof localStorage.launcherPrivate !== 'undefined') || (typeof localStorage.launcherPublic !== 'undefined') ) {
+                  setLaunchServer();
+                }
+                </script>
+
+        </div>
+
+    </div> <!-- .wrapper-->
+  </body>
+</html>

@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>3. Business Cycles &#8212; An Introduction to Quantitative Economics and Finance</title>
+    <title>3. Business Cycles &#8212; A First Course in Quantitative Economics with Python</title>
     <script src="https://unpkg.com/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://unpkg.com/tippy.js@6.3.1/dist/tippy-bundle.umd.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
@@ -100,6 +100,13 @@
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="_static/design-tabs.js"></script>
     <script src="_static/quantecon-book-theme.15b0c36fffe88f468997fa7b698991d3.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-QDS1YRJNGM"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-QDS1YRJNGM');
+            </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -113,7 +120,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="4. Income and Wealth Inequality" href="inequality.html" />
-    <link rel="prev" title="2. Long Run Growth" href="long_run_growth.html" />
+    <link rel="prev" title="2. Economic Growth Evidence" href="long_run_growth.html" />
 
 <!-- Normal Meta Tags -->
 <meta name="author" context="Thomas J. Sargent &amp; John Stachurski" />
@@ -134,7 +141,7 @@ const thebe_selector_output = ".output, .cell_output"
 <meta property="og:url" content="https://intro.quantecon.org/business_cycle.html" />
 <meta property="og:image" content="https://assets.quantecon.org/img/qe-og-logo.png" />
 <meta property="og:description" content="This website presents introductory lectures on computational economics, designed and written by Thomas J. Sargent and John Stachurski." />
-<meta property="og:site_name" content="An Introduction to Quantitative Economics and Finance" />
+<meta property="og:site_name" content="A First Course in Quantitative Economics with Python" />
 <meta name="theme-color" content="#ffffff" />
 
   </head>
@@ -166,7 +173,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gdp-growth-rate">3.3. GDP growth rate</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unemployment">3.4. Unemployment</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#synchronization">3.5. Synchronization</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#leading-indicators-and-correlated-factors-for-business-cycles">3.6. Leading indicators and correlated factors for business cycles</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#leading-indicators-and-correlated-factors">3.6. Leading indicators and correlated factors</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#consumption">3.6.1. Consumption</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#production">3.6.2. Production</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#credit-level">3.6.3. Credit level</a></li>
@@ -199,7 +206,7 @@ const thebe_selector_output = ".output, .cell_output"
 
                     <div class="qe-page__header-copy">
 
-                        <p class="qe-page__header-heading"><a href="intro.html">An Introduction to Quantitative Economics and Finance</a></p>
+                        <p class="qe-page__header-heading"><a href="intro.html">A First Course in Quantitative Economics with Python</a></p>
 
                         <p class="qe-page__header-subheading">Business Cycles</p>
 
@@ -220,12 +227,11 @@ const thebe_selector_output = ".output, .cell_output"
 <h1><span class="section-number">3. </span>Business Cycles<a class="headerlink" href="#business-cycles" title="Permalink to this heading">#</a></h1>
 <section id="overview">
 <h2><span class="section-number">3.1. </span>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
-<p>In this lecture we study business cycles</p>
+<p>In this lecture we review some empirical aspects of business cycles.</p>
 <p>Business cycles are fluctuations in economic activity over time.</p>
-<p>These fluctuations are in the form of expansions (booms), contractions (recessions), and recoveries.</p>
-<p>We will look into a series of economic indicators to visualize the expansions and contractions of economies using <a class="reference external" href="https://documents.worldbank.org/en/publication/documents-reports/api">World Bank</a> and <a class="reference external" href="https://fred.stlouisfed.org/">FRED</a> data.</p>
-<p>In addition to those installed by Anaconda, this lecture requires
-libraries to obtain World Bank and FRED data:</p>
+<p>The include expansions (also called booms) and contractions (also called recessions).</p>
+<p>For our study, we will use economic indicators from the <a class="reference external" href="https://documents.worldbank.org/en/publication/documents-reports/api">World Bank</a> and <a class="reference external" href="https://fred.stlouisfed.org/">FRED</a>.</p>
+<p>In addition to those installed by Anaconda, this lecture requires</p>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input above-output-prompt docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip install wbgapi
@@ -240,16 +246,18 @@ libraries to obtain World Bank and FRED data:</p>
 </summary>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting wbgapi
-  Downloading wbgapi-1.0.12-py3-none-any.whl (36 kB)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: requests in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from wbgapi) (2.28.1)
-Requirement already satisfied: PyYAML in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from wbgapi) (6.0)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Downloading wbgapi-1.0.12-py3-none-any.whl (36 kB)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: PyYAML in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from wbgapi) (6.0)
+Requirement already satisfied: requests in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from wbgapi) (2.28.1)
 Requirement already satisfied: tabulate in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from wbgapi) (0.8.10)
-Requirement already satisfied: urllib3&lt;1.27,&gt;=1.21.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests-&gt;wbgapi) (1.26.14)
 Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests-&gt;wbgapi) (2022.12.7)
-Requirement already satisfied: charset-normalizer&lt;3,&gt;=2 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests-&gt;wbgapi) (2.0.4)
 Requirement already satisfied: idna&lt;4,&gt;=2.5 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests-&gt;wbgapi) (3.4)
+Requirement already satisfied: urllib3&lt;1.27,&gt;=1.21.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests-&gt;wbgapi) (1.26.14)
+Requirement already satisfied: charset-normalizer&lt;3,&gt;=2 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests-&gt;wbgapi) (2.0.4)
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Installing collected packages: wbgapi
@@ -263,17 +271,19 @@ Requirement already satisfied: idna&lt;4,&gt;=2.5 in /usr/share/miniconda3/envs/
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Downloading pandas_datareader-0.10.0-py3-none-any.whl (109 kB)
 ?25l     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/109.5 kB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">109.5/109.5 kB</span> <span class=" -Color -Color-Red">12.6 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">109.5/109.5 kB</span> <span class=" -Color -Color-Red">4.0 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
 ?25hRequirement already satisfied: lxml in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from pandas-datareader) (4.9.1)
 Requirement already satisfied: pandas&gt;=0.23 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from pandas-datareader) (1.5.3)
 Requirement already satisfied: requests&gt;=2.19.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from pandas-datareader) (2.28.1)
 Requirement already satisfied: python-dateutil&gt;=2.8.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from pandas&gt;=0.23-&gt;pandas-datareader) (2.8.2)
 Requirement already satisfied: pytz&gt;=2020.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from pandas&gt;=0.23-&gt;pandas-datareader) (2022.7)
 Requirement already satisfied: numpy&gt;=1.21.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from pandas&gt;=0.23-&gt;pandas-datareader) (1.23.5)
-Requirement already satisfied: idna&lt;4,&gt;=2.5 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests&gt;=2.19.0-&gt;pandas-datareader) (3.4)
-Requirement already satisfied: urllib3&lt;1.27,&gt;=1.21.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests&gt;=2.19.0-&gt;pandas-datareader) (1.26.14)
-Requirement already satisfied: charset-normalizer&lt;3,&gt;=2 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests&gt;=2.19.0-&gt;pandas-datareader) (2.0.4)
 Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests&gt;=2.19.0-&gt;pandas-datareader) (2022.12.7)
+Requirement already satisfied: idna&lt;4,&gt;=2.5 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests&gt;=2.19.0-&gt;pandas-datareader) (3.4)
+Requirement already satisfied: charset-normalizer&lt;3,&gt;=2 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests&gt;=2.19.0-&gt;pandas-datareader) (2.0.4)
+Requirement already satisfied: urllib3&lt;1.27,&gt;=1.21.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests&gt;=2.19.0-&gt;pandas-datareader) (1.26.14)
 Requirement already satisfied: six&gt;=1.5 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from python-dateutil&gt;=2.8.1-&gt;pandas&gt;=0.23-&gt;pandas-datareader) (1.16.0)
 </pre></div>
 </div>
@@ -300,6 +310,7 @@ Requirement already satisfied: six&gt;=1.5 in /usr/share/miniconda3/envs/quantec
 </div>
 </div>
 </div>
+<p>Here’s some minor code to help with colors in our plots.</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -319,9 +330,7 @@ Requirement already satisfied: six&gt;=1.5 in /usr/share/miniconda3/envs/quantec
 </section>
 <section id="data-acquisition">
 <h2><span class="section-number">3.2. </span>Data acquisition<a class="headerlink" href="#data-acquisition" title="Permalink to this heading">#</a></h2>
-<p>We will use <code class="docutils literal notranslate"><span class="pre">wbgapi</span></code> and <code class="docutils literal notranslate"><span class="pre">pandas_datareader</span></code> to retrieve data throughout this
-lecture.</p>
-<p>Let’s explore how to query data first.</p>
+<p>We will use <code class="docutils literal notranslate"><span class="pre">wbgapi</span></code> and <code class="docutils literal notranslate"><span class="pre">pandas_datareader</span></code> to retrieve data.</p>
 <p>We can use <code class="docutils literal notranslate"><span class="pre">wb.series.info</span></code> with the argument <code class="docutils literal notranslate"><span class="pre">q</span></code> to query available data from
 the <a class="reference external" href="https://www.worldbank.org/en/home">World Bank</a>.</p>
 <p>For example, let’s retrieve the ID to query GDP growth data.</p>
@@ -343,8 +352,8 @@ the <a class="reference external" href="https://www.worldbank.org/en/home">World
 </table></div></div></div>
 </div>
 <p>Now we use this series ID to obtain the data.</p>
-<div class="cell tag_hide-output docutils container">
-<div class="cell_input above-output-prompt docutils container">
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gdp_growth</span> <span class="o">=</span> <span class="n">wb</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="s1">&#39;NY.GDP.MKTP.KD.ZG&#39;</span><span class="p">,</span>
             <span class="p">[</span><span class="s1">&#39;USA&#39;</span><span class="p">,</span> <span class="s1">&#39;ARG&#39;</span><span class="p">,</span> <span class="s1">&#39;GBR&#39;</span><span class="p">,</span> <span class="s1">&#39;GRC&#39;</span><span class="p">,</span> <span class="s1">&#39;JPN&#39;</span><span class="p">],</span> 
             <span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -352,11 +361,6 @@ the <a class="reference external" href="https://www.worldbank.org/en/home">World
 </pre></div>
 </div>
 </div>
-<details class="hide below-input">
-<summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell output</span>
-<span class="expanded">Hide code cell output</span>
-</summary>
 <div class="cell_output docutils container">
 <div class="output text_html"><div>
 <style scoped>
@@ -548,9 +552,8 @@ the <a class="reference external" href="https://www.worldbank.org/en/home">World
 </table>
 <p>5 rows × 64 columns</p>
 </div></div></div>
-</details>
 </div>
-<p>We can the metadata to learn more about the series.</p>
+<p>We can the metadata to learn more about the series (click to expand).</p>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input above-output-prompt docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wb</span><span class="o">.</span><span class="n">series</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;NY.GDP.MKTP.KD.ZG&#39;</span><span class="p">)</span>
@@ -595,11 +598,10 @@ Growth rates of GDP and its components are calculated using the least squares me
 </table></div></div></div>
 </details>
 </div>
-<p>Let’s dive into the data with the tools we have.</p>
 </section>
 <section id="gdp-growth-rate">
 <span id="gdp-growth"></span><h2><span class="section-number">3.3. </span>GDP growth rate<a class="headerlink" href="#gdp-growth-rate" title="Permalink to this heading">#</a></h2>
-<p>First we look at the GDP growth rate.</p>
+<p>First we look at GDP growth.</p>
 <p>Let’s source our data from the World Bank and clean it.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -812,7 +814,7 @@ Growth rates of GDP and its components are calculated using the least squares me
 <p>5 rows × 63 columns</p>
 </div></div></div>
 </div>
-<p>Now we can write a function to generate plots for individual countries taking into account the recessions.</p>
+<p>We write a function to generate plots for individual countries taking into account the recessions.</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -894,7 +896,6 @@ Growth rates of GDP and its components are calculated using the least squares me
 </div>
 </details>
 </div>
-<p>Now we can plot the data as a time series.</p>
 <p>Let’s start with the United States.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -992,7 +993,7 @@ GFC and the Covid-19 pandemic.</p>
 </figure>
 </div>
 </div>
-<p>Greece had a significant drop in GDP growth around 2010-2011, during the peak
+<p>Greece experienced a very large drop in GDP growth around 2010-2011, during the peak
 of the Greek debt crisis.</p>
 <p>Next let’s consider Argentina.</p>
 <div class="cell docutils container">
@@ -1016,17 +1017,15 @@ of the Greek debt crisis.</p>
 </figure>
 </div>
 </div>
-<p>The figure shows that Argentina has experienced more volatile cycles than
-the economies mentioned above.</p>
+<p>Notice that Argentina has experienced far more volatile cycles than
+the economies examined above.</p>
 <p>At the same time, growth of Argentina did not fall during the two developed
 economy recessions in the 1970s and 1990s.</p>
 </section>
 <section id="unemployment">
 <h2><span class="section-number">3.4. </span>Unemployment<a class="headerlink" href="#unemployment" title="Permalink to this heading">#</a></h2>
 <p>Another important measure of business cycles is the unemployment rate.</p>
-<p>During a recession, it is more likely that a larger proportion of the working
-population will be laid off.</p>
-<p>We demonstrate this using a long-run unemployment rate from FRED spanning from <a class="reference external" href="https://fred.stlouisfed.org/series/M0892AUSM156SNBR">1929-1942</a> to <a class="reference external" href="https://fred.stlouisfed.org/series/UNRATE">1948-2022</a> with the unemployment rate between 1942 and 1948 estimated by the <a class="reference external" href="https://www.census.gov/library/publications/1975/compendia/hist_stats_colonial-1970.html">Census Bureau</a>.</p>
+<p>We study unemployment using rate data from FRED spanning from <a class="reference external" href="https://fred.stlouisfed.org/series/M0892AUSM156SNBR">1929-1942</a> to <a class="reference external" href="https://fred.stlouisfed.org/series/UNRATE">1948-2022</a>, combined unemployment rate data over 1942-1948 estimated by the <a class="reference external" href="https://www.census.gov/library/publications/1975/compendia/hist_stats_colonial-1970.html">Census Bureau</a>.</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -1052,7 +1051,8 @@ population will be laid off.</p>
 </div>
 </details>
 </div>
-<p>Now we plot the long-run unemployment rate in the US from 1929 to 2022 with recession defined by NBER</p>
+<p>Let’s plot the unemployment rate in the US from 1929 to 2022 with recessions
+defined by the NBER.</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -1113,16 +1113,16 @@ population will be laid off.</p>
 </figure>
 </div>
 </div>
-<p>In the plot, we can see that the expansions and contractions of the labor
-market have been highly correlated with recessions.</p>
-<p>However, there is often a delay in the recovery of the labor market after
-recessions.</p>
-<p>This trend is clearly visible in the 1930s, as well as in recessions in the
-1980s.</p>
-<p>It also shows us how unique labor market conditions have been during the
+<p>The plot shows that</p>
+<ul class="simple">
+<li><p>expansions and contractions of the labor market have been highly correlated
+with recessions.</p></li>
+<li><p>cycles are, in general, asymmetric: sharp rises in unemployment are followed
+by slow recoveries.</p></li>
+</ul>
+<p>It also shows us how unique labor market conditions were in the US during the
 post-pandemic recovery.</p>
-<p>The labor market has recovered at an unprecedented rate, leading to the
-tightest point in the past decades after the shock in 2020-2021.</p>
+<p>The labor market recovered at an unprecedented rate after the shock in 2020-2021.</p>
 </section>
 <section id="synchronization">
 <span id="id1"></span><h2><span class="section-number">3.5. </span>Synchronization<a class="headerlink" href="#synchronization" title="Permalink to this heading">#</a></h2>
@@ -1289,7 +1289,7 @@ that includes many countries</p>
 </figure>
 </div>
 </div>
-<p>The comparison of GDP growth rates above shows that
+<p>The comparison of GDP growth rates above suggests that
 business cycles are becoming more synchronized in 21st-century recessions.</p>
 <p>However, emerging and less developed economies often experience more volatile
 changes throughout the economic cycles.</p>
@@ -1332,13 +1332,12 @@ United Kingdom, Japan, and France</p>
 </figure>
 </div>
 </div>
-<p>France, with its strong labor unions, has a prolonged labor market recovery
-compared to the US and UK.</p>
-<p>However, Japan has a history of very low and stable unemployment rates due to
-a constellation of social, demographic, and cultural factors.</p>
+<p>We see that France, with its strong labor unions, typically experiences
+relatively slow labor market recoveries after negative shocks.</p>
+<p>We also notice that, Japan has a history of very low and stable unemployment rates.</p>
 </section>
-<section id="leading-indicators-and-correlated-factors-for-business-cycles">
-<h2><span class="section-number">3.6. </span>Leading indicators and correlated factors for business cycles<a class="headerlink" href="#leading-indicators-and-correlated-factors-for-business-cycles" title="Permalink to this heading">#</a></h2>
+<section id="leading-indicators-and-correlated-factors">
+<h2><span class="section-number">3.6. </span>Leading indicators and correlated factors<a class="headerlink" href="#leading-indicators-and-correlated-factors" title="Permalink to this heading">#</a></h2>
 <p>Examining leading indicators and correlated factors helps policymakers to
 understand the causes and results of business cycles.</p>
 <p>We will discuss potential leading indicators and correlated factors from three
@@ -1349,12 +1348,10 @@ perspectives: consumption, production, and credit level.</p>
 income and the overall performance of the economy in the future.</p>
 <p>One widely cited indicator for consumer confidence is the <a class="reference external" href="https://fred.stlouisfed.org/series/UMCSENT">consumer sentiment index</a> published by the University
 of Michigan.</p>
-<p>Consumer sentiment remains high during during expansion, but there are significant drops before recession hits.</p>
-<p>There is also a clear negative correlation between consumer sentiment and <a class="reference external" href="https://fred.stlouisfed.org/series/CPILFESL">core consumer price index</a>.</p>
-<p>This trend is more significant in the during <a class="reference external" href="https://en.wikipedia.org/wiki/Stagflation">stagflation</a>.</p>
-<p>When the price of consumer commodities rises, consumer confidence diminishes.</p>
-<p>We plot the University of Michigan Consumer Sentiment Index and
-Year-over-year Consumer Price Index Change from 1978-2022 in the US to show this trend</p>
+<p>Here we plot the University of Michigan Consumer Sentiment Index and
+year-on-year
+<a class="reference external" href="https://fred.stlouisfed.org/series/CPILFESL">core consumer price index</a>
+(CPI) change from 1978-2022 in the US.</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -1424,17 +1421,22 @@ Year-over-year Consumer Price Index Change from 1978-2022 in the US to show this
 </figure>
 </div>
 </div>
+<p>We see that</p>
+<ul class="simple">
+<li><p>consumer sentiment often remains high during during expansion and
+drops before a recession.</p></li>
+<li><p>there is a clear negative correlation between consumer sentiment and the CPI.</p></li>
+</ul>
+<p>When the price of consumer commodities rises, consumer confidence diminishes.</p>
+<p>This trend is more significant in the during <a class="reference external" href="https://en.wikipedia.org/wiki/Stagflation">stagflation</a>.</p>
 </section>
 <section id="production">
 <h3><span class="section-number">3.6.2. </span>Production<a class="headerlink" href="#production" title="Permalink to this heading">#</a></h3>
-<p>Consumers’ confidence often influences their consumption pattern.</p>
-<p>This often manifests on the production side.</p>
-<p>The real industrial output is highly correlated with
-recessions in the economy.</p>
+<p>Real industrial output is highly correlated with recessions in the economy.</p>
 <p>However, it is not a leading indicator, as the peak of contraction in production
-delays compared to consumer confidence and inflation.</p>
+is delayed relative to consumer confidence and inflation.</p>
 <p>We plot the real industrial output change from the previous year
-from 1919 to 2022 in the US to show this trend</p>
+from 1919 to 2022 in the US to show this trend.</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -1482,11 +1484,11 @@ from 1919 to 2022 in the US to show this trend</p>
 <h3><span class="section-number">3.6.3. </span>Credit level<a class="headerlink" href="#credit-level" title="Permalink to this heading">#</a></h3>
 <p>Credit contractions often occur during recessions, as lenders become more
 cautious and borrowers become more hesitant to take on additional debt.</p>
-<p>This can be due to several factors such as a decrease in overall economic
-activity, rising unemployment, and gloomy expectations for the future.</p>
+<p>This is due to factors such as a decrease in overall economic
+activity and gloomy expectations for the future.</p>
 <p>One example is domestic credit to the private sector by banks in the UK.</p>
-<p>The following graph shows the domestic credit to the private sector
-as a percentage of GDP by banks from 1970 to 2022 in the UK</p>
+<p>The following graph shows the domestic credit to the private sector as a
+percentage of GDP by banks from 1970 to 2022 in the UK</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -1595,7 +1597,7 @@ and stagnates or even contracts after recessions.</p>
 <ul class="current nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="long_run_growth.html">
-   2. Long Run Growth
+   2. Economic Growth Evidence
   </a>
  </li>
  <li class="toctree-l1 current active active">
@@ -1630,9 +1632,31 @@ and stagnates or even contracts after recessions.</p>
    7. Introduction to Supply and Demand
   </a>
  </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Linear Dynamics
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="pv.html">
+   8. Present Values
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cons_smooth.html">
+   9. Consumption smoothing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cagan_ree.html">
+   10. A Fiscal Theory of the Price Level
+  </a>
+ </li>
  <li class="toctree-l1">
   <a class="reference internal" href="geom_series.html">
-   8. Geometric Series for Elementary Economics
+   11. Geometric Series for Elementary Economics
   </a>
  </li>
 </ul>
@@ -1644,69 +1668,81 @@ and stagnates or even contracts after recessions.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="prob_dist.html">
-   9. Distributions and Probabilities
+   12. Distributions and Probabilities
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="lln_clt.html">
-   10. LLN and CLT
+   13. LLN and CLT
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="monte_carlo.html">
-   11. Monte Carlo and Option Pricing
+   14. Monte Carlo and Option Pricing
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="heavy_tails.html">
-   12. Heavy-Tailed Distributions
+   15. Heavy-Tailed Distributions
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="schelling.html">
-   13. Racial Segregation
+   16. Racial Segregation
   </a>
  </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
-  Dynamics
+  Nonlinear Dynamics
  </span>
 </p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="solow.html">
-   14. The Solow-Swan Growth Model
+   17. The Solow-Swan Growth Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="scalar_dynam.html">
-   15. Dynamics in One Dimension
+   18. Dynamics in One Dimension
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cobweb.html">
-   16. The Cobweb Model
+   19. The Cobweb Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="olg.html">
-   17. The Overlapping Generations Model
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="markov_chains_I.html">
-   18. Markov Chains: Basic Concepts and Stationarity
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="markov_chains_II.html">
-   19. Markov Chains: Irreducibility and Ergodicity
+   20. The Overlapping Generations Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="commod_price.html">
-   20. Commodity Prices
+   21. Commodity Prices
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Stochastic Dynamics
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="markov_chains_I.html">
+   22. Markov Chains: Basic Concepts
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="markov_chains_II.html">
+   23. Markov Chains: Irreducibility and Ergodicity
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="time_series_with_matrices.html">
+   24. Univariate Time Series with Matrix Algebra
   </a>
  </li>
 </ul>
@@ -1718,22 +1754,22 @@ and stagnates or even contracts after recessions.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="lp_intro.html">
-   21. Linear Programming
+   25. Linear Programming
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="comparative_adv.html">
-   22. Comparative Advantage
+   26. Comparative Advantage
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="nonlinear.html">
-   23. Nonlinear Problems
+   27. Nonlinear Problems
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="short_path.html">
-   24. Shortest Paths
+   28. Shortest Paths
   </a>
  </li>
 </ul>
@@ -1745,27 +1781,22 @@ and stagnates or even contracts after recessions.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="eigen_II.html">
-   25. Spectral Theory
+   29. Spectral Theory
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="input_output.html">
-   26. Input-Output Models
+   30. Input-Output Models
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="lake_model.html">
-   27. A Lake Model of Employment
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="asset_pricing.html">
-   28. Introduction to Asset Pricing
+   31. A Lake Model of Employment
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="networks.html">
-   29. Networks
+   32. Networks
   </a>
  </li>
 </ul>
@@ -1777,12 +1808,12 @@ and stagnates or even contracts after recessions.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="supply_demand_multiple_goods.html">
-   30. Supply and Demand with Many Goods
+   33. Supply and Demand with Many Goods
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="supply_demand_heterogeneity.html">
-   31. Market Equilibrium with Heterogeneity
+   34. Market Equilibrium with Heterogeneity
   </a>
  </li>
 </ul>
@@ -1794,17 +1825,17 @@ and stagnates or even contracts after recessions.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="simple_linear_regression.html">
-   32. Simple Linear Regression Model
+   35. Simple Linear Regression Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="lr_with_matrices.html">
-   33. Linear Regression with Matrices
+   36. Linear Regression with Matrices
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="mle.html">
-   34. Maximum Likelihood Estimation
+   37. Maximum Likelihood Estimation
   </a>
  </li>
 </ul>
@@ -1816,17 +1847,17 @@ and stagnates or even contracts after recessions.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="troubleshooting.html">
-   35. Troubleshooting
+   38. Troubleshooting
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="zreferences.html">
-   36. References
+   39. References
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="status.html">
-   37. Execution Statistics
+   40. Execution Statistics
   </a>
  </li>
 </ul>

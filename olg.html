@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>17. The Overlapping Generations Model &#8212; An Introduction to Quantitative Economics and Finance</title>
+    <title>20. The Overlapping Generations Model &#8212; A First Course in Quantitative Economics with Python</title>
     <script src="https://unpkg.com/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://unpkg.com/tippy.js@6.3.1/dist/tippy-bundle.umd.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
@@ -100,6 +100,13 @@
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="_static/design-tabs.js"></script>
     <script src="_static/quantecon-book-theme.15b0c36fffe88f468997fa7b698991d3.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-QDS1YRJNGM"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-QDS1YRJNGM');
+            </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -114,8 +121,8 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="18. Markov Chains: Basic Concepts and Stationarity" href="markov_chains_I.html" />
-    <link rel="prev" title="16. The Cobweb Model" href="cobweb.html" />
+    <link rel="next" title="21. Commodity Prices" href="commod_price.html" />
+    <link rel="prev" title="19. The Cobweb Model" href="cobweb.html" />
 
 <!-- Normal Meta Tags -->
 <meta name="author" context="Thomas J. Sargent &amp; John Stachurski" />
@@ -136,7 +143,7 @@ const thebe_selector_output = ".output, .cell_output"
 <meta property="og:url" content="https://intro.quantecon.org/olg.html" />
 <meta property="og:image" content="https://assets.quantecon.org/img/qe-og-logo.png" />
 <meta property="og:description" content="This website presents introductory lectures on computational economics, designed and written by Thomas J. Sargent and John Stachurski." />
-<meta property="og:site_name" content="An Introduction to Quantitative Economics and Finance" />
+<meta property="og:site_name" content="A First Course in Quantitative Economics with Python" />
 <meta name="theme-color" content="#ffffff" />
 
   </head>
@@ -163,36 +170,36 @@ const thebe_selector_output = ".output, .cell_output"
 
                         <nav id="bd-toc-nav" class="qe-page__toc-nav">
                             <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">17.1. Overview</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#environment">17.2. Environment</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#supply-of-capital">17.3. Supply of capital</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#consumers-problem">17.3.1. Consumer’s problem</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-log-preferences">17.3.2. Example: log preferences</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#savings-and-investment">17.3.3. Savings and investment</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">20.1. Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#environment">20.2. Environment</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#supply-of-capital">20.3. Supply of capital</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#consumers-problem">20.3.1. Consumer’s problem</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-log-preferences">20.3.2. Example: log preferences</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#savings-and-investment">20.3.3. Savings and investment</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#demand-for-capital">17.4. Demand for capital</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#firms-problem">17.4.1. Firm’s problem</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#demand">17.4.2. Demand</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#demand-for-capital">20.4. Demand for capital</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#firms-problem">20.4.1. Firm’s problem</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#demand">20.4.2. Demand</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#equilibrium">17.5. Equilibrium</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#equilibrium-conditions">17.5.1. Equilibrium conditions</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-log-utility">17.5.2. Example: log utility</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#equilibrium">20.5. Equilibrium</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#equilibrium-conditions">20.5.1. Equilibrium conditions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-log-utility">20.5.2. Example: log utility</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dynamics">17.6. Dynamics</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evolution-of-capital">17.6.1. Evolution of capital</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#steady-state-log-case">17.6.2. Steady state (log case)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#time-series">17.6.3. Time series</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dynamics">20.6. Dynamics</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evolution-of-capital">20.6.1. Evolution of capital</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#steady-state-log-case">20.6.2. Steady state (log case)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#time-series">20.6.3. Time series</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#crra-preferences">17.7. CRRA preferences</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#supply">17.7.1. Supply</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">17.7.2. Equilibrium</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#crra-preferences">20.7. CRRA preferences</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#supply">20.7.1. Supply</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">20.7.2. Equilibrium</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">17.8. Exercises</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">20.8. Exercises</a></li>
 </ul>
                             <p class="logo">
                                 
@@ -220,7 +227,7 @@ const thebe_selector_output = ".output, .cell_output"
 
                     <div class="qe-page__header-copy">
 
-                        <p class="qe-page__header-heading"><a href="intro.html">An Introduction to Quantitative Economics and Finance</a></p>
+                        <p class="qe-page__header-heading"><a href="intro.html">A First Course in Quantitative Economics with Python</a></p>
 
                         <p class="qe-page__header-subheading">The Overlapping Generations Model</p>
 
@@ -238,7 +245,7 @@ const thebe_selector_output = ".output, .cell_output"
                     <div>
                         
   <section class="tex2jax_ignore mathjax_ignore" id="the-overlapping-generations-model">
-<h1><span class="section-number">17. </span>The Overlapping Generations Model<a class="headerlink" href="#the-overlapping-generations-model" title="Permalink to this heading">#</a></h1>
+<h1><span class="section-number">20. </span>The Overlapping Generations Model<a class="headerlink" href="#the-overlapping-generations-model" title="Permalink to this heading">#</a></h1>
 <p>In this lecture we study the famous overlapping generations (OLG) model, which
 is used by policy makers and researchers to examine</p>
 <ul class="simple">
@@ -248,11 +255,11 @@ is used by policy makers and researchers to examine</p>
 </ul>
 <p>and many other topics.</p>
 <p>The first rigorous version of the OLG model was developed by Paul Samuelson
-<span id="id1">[<a class="reference internal" href="zreferences.html#id9" title="Paul A Samuelson. An exact consumption-loan model of interest with or without the social contrivance of money. Journal of political economy, 66(6):467–482, 1958.">Sam58</a>]</span>.</p>
+<span id="id1">[<a class="reference internal" href="zreferences.html#id10" title="Paul A Samuelson. An exact consumption-loan model of interest with or without the social contrivance of money. Journal of political economy, 66(6):467–482, 1958.">Sam58</a>]</span>.</p>
 <p>Our aim is to gain a good understanding of a simple version of the OLG
 model.</p>
 <section id="overview">
-<h2><span class="section-number">17.1. </span>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">20.1. </span>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
 <p>The dynamics of the OLG model are quite similar to those of the Solow-Swan
 growth model.</p>
 <p>At the same time, the OLG model adds an important new feature: the choice of
@@ -286,7 +293,7 @@ problem of households and studies the implications for long run growth.</p>
 </div>
 </section>
 <section id="environment">
-<h2><span class="section-number">17.2. </span>Environment<a class="headerlink" href="#environment" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">20.2. </span>Environment<a class="headerlink" href="#environment" title="Permalink to this heading">#</a></h2>
 <p>We assume that time is discrete, so that <span class="math notranslate nohighlight">\(t=0, 1, \ldots\)</span>,</p>
 <p>An individual born at time <span class="math notranslate nohighlight">\(t\)</span> lives for two periods, <span class="math notranslate nohighlight">\(t\)</span> and <span class="math notranslate nohighlight">\(t + 1\)</span>.</p>
 <p>We call an agent</p>
@@ -308,13 +315,13 @@ population size.</p>
 labor supply is 1.</p>
 </section>
 <section id="supply-of-capital">
-<h2><span class="section-number">17.3. </span>Supply of capital<a class="headerlink" href="#supply-of-capital" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">20.3. </span>Supply of capital<a class="headerlink" href="#supply-of-capital" title="Permalink to this heading">#</a></h2>
 <p>First let’s consider the household side.</p>
 <section id="consumers-problem">
-<h3><span class="section-number">17.3.1. </span>Consumer’s problem<a class="headerlink" href="#consumers-problem" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">20.3.1. </span>Consumer’s problem<a class="headerlink" href="#consumers-problem" title="Permalink to this heading">#</a></h3>
 <p>Suppose that utility for individuals born at time <span class="math notranslate nohighlight">\(t\)</span> takes the form</p>
 <div class="math notranslate nohighlight" id="equation-eq-crra">
-<span class="eqno">(17.1)<a class="headerlink" href="#equation-eq-crra" title="Permalink to this equation">#</a></span>\[    U_t = u(c_t) + \beta u(c_{t+1})\]</div>
+<span class="eqno">(20.1)<a class="headerlink" href="#equation-eq-crra" title="Permalink to this equation">#</a></span>\[    U_t = u(c_t) + \beta u(c_{t+1})\]</div>
 <p>Here</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(u: \mathbb R_+ \to \mathbb R\)</span> is called the “flow” utility function</p></li>
@@ -325,7 +332,7 @@ labor supply is 1.</p>
 <p>We assume that <span class="math notranslate nohighlight">\(u\)</span> is strictly increasing.</p>
 <p>Savings behavior is determined by the optimization problem</p>
 <div class="math notranslate nohighlight" id="equation-max-sav-olg">
-<span class="eqno">(17.2)<a class="headerlink" href="#equation-max-sav-olg" title="Permalink to this equation">#</a></span>\[    \max_{c_t, c_{t+1}} 
+<span class="eqno">(20.2)<a class="headerlink" href="#equation-max-sav-olg" title="Permalink to this equation">#</a></span>\[    \max_{c_t, c_{t+1}} 
     \,  \left \{ u(c_t) + \beta u(c_{t+1}) \right \} \]</div>
 <p>subject to</p>
 <div class="math notranslate nohighlight">
@@ -348,34 +355,34 @@ by plugging <span class="math notranslate nohighlight">\(c_{t+1}\)</span> into t
 with respect to <span class="math notranslate nohighlight">\(c_t\)</span>, and setting it to zero.</p>
 <p>This leads to the <strong>Euler equation</strong> of the OLG model, which is</p>
 <div class="math notranslate nohighlight" id="equation-euler-1-olg">
-<span class="eqno">(17.3)<a class="headerlink" href="#equation-euler-1-olg" title="Permalink to this equation">#</a></span>\[    u'(c_t) = \beta R_{t+1}  u'( R_{t+1} (w_t - c_t))\]</div>
+<span class="eqno">(20.3)<a class="headerlink" href="#equation-euler-1-olg" title="Permalink to this equation">#</a></span>\[    u'(c_t) = \beta R_{t+1}  u'( R_{t+1} (w_t - c_t))\]</div>
 <p>From the first constraint we get <span class="math notranslate nohighlight">\(c_t = w_t - s_t\)</span>, so the Euler equation
 can also be expressed as</p>
 <div class="math notranslate nohighlight" id="equation-euler-2-olg">
-<span class="eqno">(17.4)<a class="headerlink" href="#equation-euler-2-olg" title="Permalink to this equation">#</a></span>\[    u'(w_t - s_t) = \beta R_{t+1}  u'( R_{t+1} s_t)\]</div>
+<span class="eqno">(20.4)<a class="headerlink" href="#equation-euler-2-olg" title="Permalink to this equation">#</a></span>\[    u'(w_t - s_t) = \beta R_{t+1}  u'( R_{t+1} s_t)\]</div>
 <p>Suppose that, for each <span class="math notranslate nohighlight">\(w_t\)</span> and <span class="math notranslate nohighlight">\(R_{t+1}\)</span>, there is exactly one <span class="math notranslate nohighlight">\(s_t\)</span> that
-solves <a class="reference internal" href="#equation-euler-2-olg">(17.4)</a>.</p>
+solves <a class="reference internal" href="#equation-euler-2-olg">(20.4)</a>.</p>
 <p>Then savings can be written as a fixed function of <span class="math notranslate nohighlight">\(w_t\)</span> and <span class="math notranslate nohighlight">\(R_{t+1}\)</span>.</p>
 <p>We write this as</p>
 <div class="math notranslate nohighlight" id="equation-saving-1-olg">
-<span class="eqno">(17.5)<a class="headerlink" href="#equation-saving-1-olg" title="Permalink to this equation">#</a></span>\[    s_t = s(w_t, R_{t+1})\]</div>
+<span class="eqno">(20.5)<a class="headerlink" href="#equation-saving-1-olg" title="Permalink to this equation">#</a></span>\[    s_t = s(w_t, R_{t+1})\]</div>
 <p>The precise form of the function <span class="math notranslate nohighlight">\(s\)</span> will depend on the choice of flow utility
 function <span class="math notranslate nohighlight">\(u\)</span>.</p>
 <p>Together, <span class="math notranslate nohighlight">\(w_t\)</span> and <span class="math notranslate nohighlight">\(R_{t+1}\)</span> represent the <em>prices</em> in the economy (price of
 labor and rental rate of capital).</p>
-<p>Thus, <a class="reference internal" href="#equation-saving-1-olg">(17.5)</a> states the quantity of savings given prices.</p>
+<p>Thus, <a class="reference internal" href="#equation-saving-1-olg">(20.5)</a> states the quantity of savings given prices.</p>
 </section>
 <section id="example-log-preferences">
-<h3><span class="section-number">17.3.2. </span>Example: log preferences<a class="headerlink" href="#example-log-preferences" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">20.3.2. </span>Example: log preferences<a class="headerlink" href="#example-log-preferences" title="Permalink to this heading">#</a></h3>
 <p>In the special case <span class="math notranslate nohighlight">\(u(c) = \log c\)</span>, the Euler equation simplifies to
 <span class="math notranslate nohighlight">\(s_t= \beta (w_t - s_t)\)</span>.</p>
 <p>Solving for saving, we get</p>
 <div class="math notranslate nohighlight" id="equation-saving-log-2-olg">
-<span class="eqno">(17.6)<a class="headerlink" href="#equation-saving-log-2-olg" title="Permalink to this equation">#</a></span>\[    s_t = s(w_t, R_{t+1}) = \frac{\beta}{1+\beta} w_t\]</div>
+<span class="eqno">(20.6)<a class="headerlink" href="#equation-saving-log-2-olg" title="Permalink to this equation">#</a></span>\[    s_t = s(w_t, R_{t+1}) = \frac{\beta}{1+\beta} w_t\]</div>
 <p>In this special case, savings does not depend on the interest rate.</p>
 </section>
 <section id="savings-and-investment">
-<h3><span class="section-number">17.3.3. </span>Savings and investment<a class="headerlink" href="#savings-and-investment" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">20.3.3. </span>Savings and investment<a class="headerlink" href="#savings-and-investment" title="Permalink to this heading">#</a></h3>
 <p>Since the population size is normalized to 1, <span class="math notranslate nohighlight">\(s_t\)</span> is also total savings in
 the economy at time <span class="math notranslate nohighlight">\(t\)</span>.</p>
 <p>In our closed economy, there is no foreign investment, so net savings equals
@@ -386,20 +393,20 @@ economy.</p>
 </section>
 </section>
 <section id="demand-for-capital">
-<h2><span class="section-number">17.4. </span>Demand for capital<a class="headerlink" href="#demand-for-capital" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">20.4. </span>Demand for capital<a class="headerlink" href="#demand-for-capital" title="Permalink to this heading">#</a></h2>
 <p>First we describe the firm problem and then we write down an equation
 describing demand for capital given prices.</p>
 <section id="firms-problem">
-<h3><span class="section-number">17.4.1. </span>Firm’s problem<a class="headerlink" href="#firms-problem" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">20.4.1. </span>Firm’s problem<a class="headerlink" href="#firms-problem" title="Permalink to this heading">#</a></h3>
 <p>For each integer <span class="math notranslate nohighlight">\(t \geq 0\)</span>, output <span class="math notranslate nohighlight">\(y_t\)</span> in period <span class="math notranslate nohighlight">\(t\)</span> is given by
 the <strong>Cobb-Douglas production function</strong></p>
 <div class="math notranslate nohighlight" id="equation-cobb-douglas">
-<span class="eqno">(17.7)<a class="headerlink" href="#equation-cobb-douglas" title="Permalink to this equation">#</a></span>\[    y_t = k_t^{\alpha} \ell_t^{1-\alpha}\]</div>
+<span class="eqno">(20.7)<a class="headerlink" href="#equation-cobb-douglas" title="Permalink to this equation">#</a></span>\[    y_t = k_t^{\alpha} \ell_t^{1-\alpha}\]</div>
 <p>Here <span class="math notranslate nohighlight">\(k_t\)</span> is capital, <span class="math notranslate nohighlight">\(\ell_t\)</span> is labor, and  <span class="math notranslate nohighlight">\(\alpha\)</span> is a parameter
 (sometimes called the “output elasticity of capital”).</p>
 <p>The profit maximization problem of the firm is</p>
 <div class="math notranslate nohighlight" id="equation-opt-profit-olg">
-<span class="eqno">(17.8)<a class="headerlink" href="#equation-opt-profit-olg" title="Permalink to this equation">#</a></span>\[    \max_{k_t, \ell_t} \{ k^{\alpha}_t \ell_t^{1-\alpha} - R_t k_t - \ell_t w_t   \}\]</div>
+<span class="eqno">(20.8)<a class="headerlink" href="#equation-opt-profit-olg" title="Permalink to this equation">#</a></span>\[    \max_{k_t, \ell_t} \{ k^{\alpha}_t \ell_t^{1-\alpha} - R_t k_t - \ell_t w_t   \}\]</div>
 <p>The first-order conditions are obtained by taking the derivative of the
 objective function with respect to capital and labor respectively and setting
 them to zero:</p>
@@ -409,18 +416,18 @@ them to zero:</p>
     \alpha (k_t / \ell_t)^{\alpha - 1} = R_t\]</div>
 </section>
 <section id="demand">
-<h3><span class="section-number">17.4.2. </span>Demand<a class="headerlink" href="#demand" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">20.4.2. </span>Demand<a class="headerlink" href="#demand" title="Permalink to this heading">#</a></h3>
 <p>Using our assumption <span class="math notranslate nohighlight">\(\ell_t = 1\)</span> allows us to write</p>
 <div class="math notranslate nohighlight" id="equation-wage-one">
-<span class="eqno">(17.9)<a class="headerlink" href="#equation-wage-one" title="Permalink to this equation">#</a></span>\[    w_t = (1-\alpha)k_t^\alpha \]</div>
+<span class="eqno">(20.9)<a class="headerlink" href="#equation-wage-one" title="Permalink to this equation">#</a></span>\[    w_t = (1-\alpha)k_t^\alpha \]</div>
 <p>and</p>
 <div class="math notranslate nohighlight" id="equation-interest-rate-one">
-<span class="eqno">(17.10)<a class="headerlink" href="#equation-interest-rate-one" title="Permalink to this equation">#</a></span>\[    R_t =
+<span class="eqno">(20.10)<a class="headerlink" href="#equation-interest-rate-one" title="Permalink to this equation">#</a></span>\[    R_t =
     \alpha k_t^{\alpha - 1} \]</div>
-<p>Rearranging <a class="reference internal" href="#equation-interest-rate-one">(17.10)</a> gives the aggregate demand for capital
+<p>Rearranging <a class="reference internal" href="#equation-interest-rate-one">(20.10)</a> gives the aggregate demand for capital
 at time <span class="math notranslate nohighlight">\(t+1\)</span></p>
 <div class="math notranslate nohighlight" id="equation-aggregate-demand-capital-olg">
-<span class="eqno">(17.11)<a class="headerlink" href="#equation-aggregate-demand-capital-olg" title="Permalink to this equation">#</a></span>\[    k^d (R_{t+1}) 
+<span class="eqno">(20.11)<a class="headerlink" href="#equation-aggregate-demand-capital-olg" title="Permalink to this equation">#</a></span>\[    k^d (R_{t+1}) 
     := \left (\frac{\alpha}{R_{t+1}} \right )^{1/(1-\alpha)}\]</div>
 <p>In Python code this is</p>
 <div class="cell docutils container">
@@ -431,7 +438,7 @@ at time <span class="math notranslate nohighlight">\(t+1\)</span></p>
 </div>
 </div>
 </div>
-<p>The next figure plots the supply of capital, as in <a class="reference internal" href="#equation-saving-log-2-olg">(17.6)</a>, as well as the demand for capital, as in <a class="reference internal" href="#equation-aggregate-demand-capital-olg">(17.11)</a>, as functions of the interest rate <span class="math notranslate nohighlight">\(R_{t+1}\)</span>.</p>
+<p>The next figure plots the supply of capital, as in <a class="reference internal" href="#equation-saving-log-2-olg">(20.6)</a>, as well as the demand for capital, as in <a class="reference internal" href="#equation-aggregate-demand-capital-olg">(20.11)</a>, as functions of the interest rate <span class="math notranslate nohighlight">\(R_{t+1}\)</span>.</p>
 <p>(For the special case of log utility, supply does not depend on the interest rate, so we have a constant function.)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -460,33 +467,33 @@ at time <span class="math notranslate nohighlight">\(t+1\)</span></p>
 </section>
 </section>
 <section id="equilibrium">
-<h2><span class="section-number">17.5. </span>Equilibrium<a class="headerlink" href="#equilibrium" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">20.5. </span>Equilibrium<a class="headerlink" href="#equilibrium" title="Permalink to this heading">#</a></h2>
 <p>In this section we derive equilibrium conditions and investigate an example.</p>
 <section id="equilibrium-conditions">
-<h3><span class="section-number">17.5.1. </span>Equilibrium conditions<a class="headerlink" href="#equilibrium-conditions" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">20.5.1. </span>Equilibrium conditions<a class="headerlink" href="#equilibrium-conditions" title="Permalink to this heading">#</a></h3>
 <p>In equilibrium, savings at time <span class="math notranslate nohighlight">\(t\)</span> equals investment at time <span class="math notranslate nohighlight">\(t\)</span>, which
 equals capital supply at time <span class="math notranslate nohighlight">\(t+1\)</span>.</p>
 <p>Equilibrium is computed by equating these quantities, setting</p>
 <div class="math notranslate nohighlight" id="equation-equilibrium-1">
-<span class="eqno">(17.12)<a class="headerlink" href="#equation-equilibrium-1" title="Permalink to this equation">#</a></span>\[    s(w_t, R_{t+1}) 
+<span class="eqno">(20.12)<a class="headerlink" href="#equation-equilibrium-1" title="Permalink to this equation">#</a></span>\[    s(w_t, R_{t+1}) 
     = k^d(R_{t+1})
     = \left (\frac{\alpha}{R_{t+1}} \right )^{1/(1-\alpha)}\]</div>
 <p>In principle, we can now solve for the equilibrium price <span class="math notranslate nohighlight">\(R_{t+1}\)</span> given <span class="math notranslate nohighlight">\(w_t\)</span>.</p>
 <p>(In practice, we first need to specify the function <span class="math notranslate nohighlight">\(u\)</span> and hence <span class="math notranslate nohighlight">\(s\)</span>.)</p>
 <p>When we solve this equation, which concerns time <span class="math notranslate nohighlight">\(t+1\)</span> outcomes, time
 <span class="math notranslate nohighlight">\(t\)</span> quantities are already determined, so we can treat <span class="math notranslate nohighlight">\(w_t\)</span> as a constant.</p>
-<p>From equilibrium <span class="math notranslate nohighlight">\(R_{t+1}\)</span> and <a class="reference internal" href="#equation-aggregate-demand-capital-olg">(17.11)</a>, we can obtain
+<p>From equilibrium <span class="math notranslate nohighlight">\(R_{t+1}\)</span> and <a class="reference internal" href="#equation-aggregate-demand-capital-olg">(20.11)</a>, we can obtain
 the equilibrium quantity <span class="math notranslate nohighlight">\(k_{t+1}\)</span>.</p>
 </section>
 <section id="example-log-utility">
-<h3><span class="section-number">17.5.2. </span>Example: log utility<a class="headerlink" href="#example-log-utility" title="Permalink to this heading">#</a></h3>
-<p>In the case of log utility, we can use <a class="reference internal" href="#equation-equilibrium-1">(17.12)</a> and <a class="reference internal" href="#equation-saving-log-2-olg">(17.6)</a> to obtain</p>
+<h3><span class="section-number">20.5.2. </span>Example: log utility<a class="headerlink" href="#example-log-utility" title="Permalink to this heading">#</a></h3>
+<p>In the case of log utility, we can use <a class="reference internal" href="#equation-equilibrium-1">(20.12)</a> and <a class="reference internal" href="#equation-saving-log-2-olg">(20.6)</a> to obtain</p>
 <div class="math notranslate nohighlight" id="equation-equilibrium-2">
-<span class="eqno">(17.13)<a class="headerlink" href="#equation-equilibrium-2" title="Permalink to this equation">#</a></span>\[    \frac{\beta}{1+\beta} w_t
+<span class="eqno">(20.13)<a class="headerlink" href="#equation-equilibrium-2" title="Permalink to this equation">#</a></span>\[    \frac{\beta}{1+\beta} w_t
     = \left( \frac{\alpha}{R_{t+1}} \right)^{1/(1-\alpha)}\]</div>
 <p>Solving for the equilibrium interest rate gives</p>
 <div class="math notranslate nohighlight" id="equation-equilibrium-price">
-<span class="eqno">(17.14)<a class="headerlink" href="#equation-equilibrium-price" title="Permalink to this equation">#</a></span>\[    R_{t+1} = 
+<span class="eqno">(20.14)<a class="headerlink" href="#equation-equilibrium-price" title="Permalink to this equation">#</a></span>\[    R_{t+1} = 
     \alpha 
     \left( 
         \frac{\beta}{1+\beta} w_t
@@ -504,7 +511,7 @@ the equilibrium quantity <span class="math notranslate nohighlight">\(k_{t+1}\)<
 <p>In the case of log utility, since capital supply does not depend on the interest rate, the equilibrium quantity is fixed by supply.</p>
 <p>That is,</p>
 <div class="math notranslate nohighlight" id="equation-equilibrium-quantity">
-<span class="eqno">(17.15)<a class="headerlink" href="#equation-equilibrium-quantity" title="Permalink to this equation">#</a></span>\[    k_{t+1} = s(w_t, R_{t+1}) = \frac{\beta }{1+\beta} w_t\]</div>
+<span class="eqno">(20.15)<a class="headerlink" href="#equation-equilibrium-quantity" title="Permalink to this equation">#</a></span>\[    k_{t+1} = s(w_t, R_{t+1}) = \frac{\beta }{1+\beta} w_t\]</div>
 <p>Let’s redo our plot above but now inserting the equilibrium quantity and price.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -546,16 +553,16 @@ the equilibrium quantity <span class="math notranslate nohighlight">\(k_{t+1}\)<
 </section>
 </section>
 <section id="dynamics">
-<h2><span class="section-number">17.6. </span>Dynamics<a class="headerlink" href="#dynamics" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">20.6. </span>Dynamics<a class="headerlink" href="#dynamics" title="Permalink to this heading">#</a></h2>
 <p>In this section we discuss dynamics.</p>
-<p>For now we will focus on the case of log utility, so that the equilibrium is determined by <a class="reference internal" href="#equation-equilibrium-quantity">(17.15)</a>.</p>
+<p>For now we will focus on the case of log utility, so that the equilibrium is determined by <a class="reference internal" href="#equation-equilibrium-quantity">(20.15)</a>.</p>
 <section id="evolution-of-capital">
-<h3><span class="section-number">17.6.1. </span>Evolution of capital<a class="headerlink" href="#evolution-of-capital" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">20.6.1. </span>Evolution of capital<a class="headerlink" href="#evolution-of-capital" title="Permalink to this heading">#</a></h3>
 <p>The discussion above shows how equilibrium <span class="math notranslate nohighlight">\(k_{t+1}\)</span> is obtained given <span class="math notranslate nohighlight">\(w_t\)</span>.</p>
-<p>From <a class="reference internal" href="#equation-wage-one">(17.9)</a> we can translate this into <span class="math notranslate nohighlight">\(k_{t+1}\)</span> as a function of <span class="math notranslate nohighlight">\(k_t\)</span></p>
+<p>From <a class="reference internal" href="#equation-wage-one">(20.9)</a> we can translate this into <span class="math notranslate nohighlight">\(k_{t+1}\)</span> as a function of <span class="math notranslate nohighlight">\(k_t\)</span></p>
 <p>In particular, since <span class="math notranslate nohighlight">\(w_t = (1-\alpha)k_t^\alpha\)</span>, we have</p>
 <div class="math notranslate nohighlight" id="equation-law-of-motion-capital">
-<span class="eqno">(17.16)<a class="headerlink" href="#equation-law-of-motion-capital" title="Permalink to this equation">#</a></span>\[    k_{t+1} = \frac{\beta}{1+\beta} (1-\alpha)(k_t)^{\alpha}\]</div>
+<span class="eqno">(20.16)<a class="headerlink" href="#equation-law-of-motion-capital" title="Permalink to this equation">#</a></span>\[    k_{t+1} = \frac{\beta}{1+\beta} (1-\alpha)(k_t)^{\alpha}\]</div>
 <p>If we iterate on this equation, we get a sequence for capital stock.</p>
 <p>Let’s plot the 45 degree diagram of these dynamics, which we write as</p>
 <div class="math notranslate nohighlight">
@@ -605,16 +612,16 @@ the equilibrium quantity <span class="math notranslate nohighlight">\(k_{t+1}\)<
 </div>
 </section>
 <section id="steady-state-log-case">
-<h3><span class="section-number">17.6.2. </span>Steady state (log case)<a class="headerlink" href="#steady-state-log-case" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">20.6.2. </span>Steady state (log case)<a class="headerlink" href="#steady-state-log-case" title="Permalink to this heading">#</a></h3>
 <p>The diagram shows that the model has a unique positive steady state, which we
 denote by <span class="math notranslate nohighlight">\(k^*\)</span>.</p>
 <p>We can solve for <span class="math notranslate nohighlight">\(k^*\)</span> by setting <span class="math notranslate nohighlight">\(k^* = g(k^*)\)</span>, or</p>
 <div class="math notranslate nohighlight" id="equation-steady-state-1">
-<span class="eqno">(17.17)<a class="headerlink" href="#equation-steady-state-1" title="Permalink to this equation">#</a></span>\[    k^* = \frac{\beta (1-\alpha) (k^*)^{\alpha}}{(1+\beta)}\]</div>
+<span class="eqno">(20.17)<a class="headerlink" href="#equation-steady-state-1" title="Permalink to this equation">#</a></span>\[    k^* = \frac{\beta (1-\alpha) (k^*)^{\alpha}}{(1+\beta)}\]</div>
 <p>Solving this equation yields</p>
 <div class="math notranslate nohighlight" id="equation-steady-state-2">
-<span class="eqno">(17.18)<a class="headerlink" href="#equation-steady-state-2" title="Permalink to this equation">#</a></span>\[    k^* = \left (\frac{\beta (1-\alpha)}{1+\beta} \right )^{1/(1-\alpha)}\]</div>
-<p>We can get the steady state interest rate from <a class="reference internal" href="#equation-interest-rate-one">(17.10)</a>, which yields</p>
+<span class="eqno">(20.18)<a class="headerlink" href="#equation-steady-state-2" title="Permalink to this equation">#</a></span>\[    k^* = \left (\frac{\beta (1-\alpha)}{1+\beta} \right )^{1/(1-\alpha)}\]</div>
+<p>We can get the steady state interest rate from <a class="reference internal" href="#equation-interest-rate-one">(20.10)</a>, which yields</p>
 <div class="math notranslate nohighlight">
 \[
     R^* = \alpha (k^*)^{\alpha - 1} 
@@ -631,7 +638,7 @@ denote by <span class="math notranslate nohighlight">\(k^*\)</span>.</p>
 </div>
 </section>
 <section id="time-series">
-<h3><span class="section-number">17.6.3. </span>Time series<a class="headerlink" href="#time-series" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">20.6.3. </span>Time series<a class="headerlink" href="#time-series" title="Permalink to this heading">#</a></h3>
 <p>The 45 degree diagram above shows that time series of capital with positive initial conditions converge to this steady state.</p>
 <p>Let’s plot some time series that visualize this.</p>
 <div class="cell docutils container">
@@ -681,7 +688,7 @@ denote by <span class="math notranslate nohighlight">\(k^*\)</span>.</p>
 </section>
 </section>
 <section id="crra-preferences">
-<h2><span class="section-number">17.7. </span>CRRA preferences<a class="headerlink" href="#crra-preferences" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">20.7. </span>CRRA preferences<a class="headerlink" href="#crra-preferences" title="Permalink to this heading">#</a></h2>
 <p>Previously, in our examples, we looked at the case of log utility.</p>
 <p>Log utility is a rather special case.</p>
 <p>In this section, we are going to assume that <span class="math notranslate nohighlight">\(u(c) = \frac{ c^{1-
@@ -715,13 +722,13 @@ denote by <span class="math notranslate nohighlight">\(k^*\)</span>.</p>
 </div>
 </div>
 <section id="supply">
-<h3><span class="section-number">17.7.1. </span>Supply<a class="headerlink" href="#supply" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">20.7.1. </span>Supply<a class="headerlink" href="#supply" title="Permalink to this heading">#</a></h3>
 <p>For households, the Euler equation becomes</p>
 <div class="math notranslate nohighlight" id="equation-euler-crra">
-<span class="eqno">(17.19)<a class="headerlink" href="#equation-euler-crra" title="Permalink to this equation">#</a></span>\[    (w_t - s_t)^{-\gamma} = \beta R^{1-\gamma}_{t+1}  (s_t)^{-\gamma}\]</div>
+<span class="eqno">(20.19)<a class="headerlink" href="#equation-euler-crra" title="Permalink to this equation">#</a></span>\[    (w_t - s_t)^{-\gamma} = \beta R^{1-\gamma}_{t+1}  (s_t)^{-\gamma}\]</div>
 <p>Solving for savings, we have</p>
 <div class="math notranslate nohighlight" id="equation-saving-crra">
-<span class="eqno">(17.20)<a class="headerlink" href="#equation-saving-crra" title="Permalink to this equation">#</a></span>\[    s_t 
+<span class="eqno">(20.20)<a class="headerlink" href="#equation-saving-crra" title="Permalink to this equation">#</a></span>\[    s_t 
     = s(w_t, R_{t+1}) 
     = w_t \left [ 
         1 + \beta^{-1/\gamma} R_{t+1}^{(\gamma-1)/\gamma} 
@@ -762,39 +769,39 @@ denote by <span class="math notranslate nohighlight">\(k^*\)</span>.</p>
 </div>
 </section>
 <section id="id2">
-<h3><span class="section-number">17.7.2. </span>Equilibrium<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
-<p>Equating aggregate demand for capital  (see <a class="reference internal" href="#equation-aggregate-demand-capital-olg">(17.11)</a>)
+<h3><span class="section-number">20.7.2. </span>Equilibrium<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
+<p>Equating aggregate demand for capital  (see <a class="reference internal" href="#equation-aggregate-demand-capital-olg">(20.11)</a>)
 with our new aggregate supply function yields equilibrium capital.</p>
 <p>Thus, we set</p>
 <div class="math notranslate nohighlight" id="equation-equilibrium-crra-2">
-<span class="eqno">(17.21)<a class="headerlink" href="#equation-equilibrium-crra-2" title="Permalink to this equation">#</a></span>\[    w_t \left [ 1 + \beta^{-1/\gamma} R_{t+1}^{(\gamma-1)/\gamma} \right ]^{-1} 
+<span class="eqno">(20.21)<a class="headerlink" href="#equation-equilibrium-crra-2" title="Permalink to this equation">#</a></span>\[    w_t \left [ 1 + \beta^{-1/\gamma} R_{t+1}^{(\gamma-1)/\gamma} \right ]^{-1} 
     = \left (\frac{R_{t+1}}{\alpha} \right )^{1/(\alpha - 1)}\]</div>
 <p>This expression is quite complex and we cannot solve for <span class="math notranslate nohighlight">\(R_{t+1}\)</span> analytically.</p>
-<p>Combining <a class="reference internal" href="#equation-interest-rate-one">(17.10)</a> and <a class="reference internal" href="#equation-equilibrium-crra-2">(17.21)</a> yields</p>
+<p>Combining <a class="reference internal" href="#equation-interest-rate-one">(20.10)</a> and <a class="reference internal" href="#equation-equilibrium-crra-2">(20.21)</a> yields</p>
 <div class="math notranslate nohighlight" id="equation-law-of-motion-capital-crra">
-<span class="eqno">(17.22)<a class="headerlink" href="#equation-law-of-motion-capital-crra" title="Permalink to this equation">#</a></span>\[    k_{t+1} = \left [ 1 + \beta^{-1/\gamma} (\alpha k^{\alpha - 1}_{t+1})^{(\gamma-1)/\gamma} \right ]^{-1} (1-\alpha)(k_t)^{\alpha}\]</div>
+<span class="eqno">(20.22)<a class="headerlink" href="#equation-law-of-motion-capital-crra" title="Permalink to this equation">#</a></span>\[    k_{t+1} = \left [ 1 + \beta^{-1/\gamma} (\alpha k^{\alpha - 1}_{t+1})^{(\gamma-1)/\gamma} \right ]^{-1} (1-\alpha)(k_t)^{\alpha}\]</div>
 <p>Again, with this equation and <span class="math notranslate nohighlight">\(k_t\)</span> as given, we cannot solve for <span class="math notranslate nohighlight">\(k_{t+1}\)</span> by pencil and paper.</p>
 <p>In the exercise below, you will be asked to solve these equations numerically.</p>
 </section>
 </section>
 <section id="exercises">
-<h2><span class="section-number">17.8. </span>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">20.8. </span>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h2>
 <div class="exercise admonition" id="olg_ex1">
 
-<p class="admonition-title"><span class="caption-number">Exercise 17.1 </span></p>
+<p class="admonition-title"><span class="caption-number">Exercise 20.1 </span></p>
 <section id="exercise-content">
-<p>Solve for the dynamics of equilibrium capital stock in the CRRA case numerically using <a class="reference internal" href="#equation-law-of-motion-capital-crra">(17.22)</a>.</p>
+<p>Solve for the dynamics of equilibrium capital stock in the CRRA case numerically using <a class="reference internal" href="#equation-law-of-motion-capital-crra">(20.22)</a>.</p>
 <p>Visualize the dynamics using a 45 degree diagram.</p>
 </section>
 </div>
 <div class="solution dropdown admonition" id="olg-solution-1">
 
-<p class="admonition-title">Solution to<a class="reference internal" href="#olg_ex1"> Exercise 17.1</a></p>
+<p class="admonition-title">Solution to<a class="reference internal" href="#olg_ex1"> Exercise 20.1</a></p>
 <section id="solution-content">
 <p>To solve for <span class="math notranslate nohighlight">\(k_{t+1}\)</span> given <span class="math notranslate nohighlight">\(k_t\)</span> we use Newton’s method.</p>
 <p>Let</p>
 <div class="math notranslate nohighlight" id="equation-crra-newton-1">
-<span class="eqno">(17.23)<a class="headerlink" href="#equation-crra-newton-1" title="Permalink to this equation">#</a></span>\[    f(k_{t+1}, k_t)
+<span class="eqno">(20.23)<a class="headerlink" href="#equation-crra-newton-1" title="Permalink to this equation">#</a></span>\[    f(k_{t+1}, k_t)
     =
     k_{t+1} 
     \left[ 
@@ -863,11 +870,11 @@ with our new aggregate supply function yields equilibrium capital.</p>
 </div>
 <div class="exercise admonition" id="olg_ex2">
 
-<p class="admonition-title"><span class="caption-number">Exercise 17.2 </span></p>
+<p class="admonition-title"><span class="caption-number">Exercise 20.2 </span></p>
 <section id="exercise-content">
 <p>The 45 degree diagram from the last exercise shows that there is a unique
 positive steady state.</p>
-<p>The positive steady state can be obtained by setting  <span class="math notranslate nohighlight">\(k_{t+1} = k_t = k^*\)</span> in <a class="reference internal" href="#equation-law-of-motion-capital-crra">(17.22)</a>, which yields</p>
+<p>The positive steady state can be obtained by setting  <span class="math notranslate nohighlight">\(k_{t+1} = k_t = k^*\)</span> in <a class="reference internal" href="#equation-law-of-motion-capital-crra">(20.22)</a>, which yields</p>
 <div class="math notranslate nohighlight">
 \[
     k^* = 
@@ -881,12 +888,12 @@ cannot be obtained analytically.</p>
 </div>
 <div class="solution dropdown admonition" id="olg-solution-3">
 
-<p class="admonition-title">Solution to<a class="reference internal" href="#olg_ex2"> Exercise 17.2</a></p>
+<p class="admonition-title">Solution to<a class="reference internal" href="#olg_ex2"> Exercise 20.2</a></p>
 <section id="solution-content">
 <p>We introduce a function <span class="math notranslate nohighlight">\(h\)</span> such that
 positive steady state is the root of <span class="math notranslate nohighlight">\(h\)</span>.</p>
 <div class="math notranslate nohighlight" id="equation-crra-newton-2">
-<span class="eqno">(17.24)<a class="headerlink" href="#equation-crra-newton-2" title="Permalink to this equation">#</a></span>\[    h(k^*) = k^*  
+<span class="eqno">(20.24)<a class="headerlink" href="#equation-crra-newton-2" title="Permalink to this equation">#</a></span>\[    h(k^*) = k^*  
     \left [ 
         1 + \beta^{-1/\gamma} (\alpha (k^*)^{\alpha-1})^{(\gamma-1)/\gamma} 
     \right ] - (1-\alpha)(k^*)^{\alpha}\]</div>
@@ -922,7 +929,7 @@ positive steady state is the root of <span class="math notranslate nohighlight">
 </div>
 <div class="exercise admonition" id="olg_ex3">
 
-<p class="admonition-title"><span class="caption-number">Exercise 17.3 </span></p>
+<p class="admonition-title"><span class="caption-number">Exercise 20.3 </span></p>
 <section id="exercise-content">
 <p>Generate three time paths for capital, from
 three distinct initial conditions, under the parameterization listed above.</p>
@@ -931,7 +938,7 @@ three distinct initial conditions, under the parameterization listed above.</p>
 </div>
 <div class="solution dropdown admonition" id="olg-solution-5">
 
-<p class="admonition-title">Solution to<a class="reference internal" href="#olg_ex3"> Exercise 17.3</a></p>
+<p class="admonition-title">Solution to<a class="reference internal" href="#olg_ex3"> Exercise 20.3</a></p>
 <section id="solution-content">
 <p>Let’s define the constants and three distinct intital conditions</p>
 <div class="cell docutils container">
@@ -1053,7 +1060,7 @@ three distinct initial conditions, under the parameterization listed above.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="long_run_growth.html">
-   2. Long Run Growth
+   2. Economic Growth Evidence
   </a>
  </li>
  <li class="toctree-l1">
@@ -1088,9 +1095,31 @@ three distinct initial conditions, under the parameterization listed above.</p>
    7. Introduction to Supply and Demand
   </a>
  </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Linear Dynamics
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="pv.html">
+   8. Present Values
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cons_smooth.html">
+   9. Consumption smoothing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cagan_ree.html">
+   10. A Fiscal Theory of the Price Level
+  </a>
+ </li>
  <li class="toctree-l1">
   <a class="reference internal" href="geom_series.html">
-   8. Geometric Series for Elementary Economics
+   11. Geometric Series for Elementary Economics
   </a>
  </li>
 </ul>
@@ -1102,69 +1131,81 @@ three distinct initial conditions, under the parameterization listed above.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="prob_dist.html">
-   9. Distributions and Probabilities
+   12. Distributions and Probabilities
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="lln_clt.html">
-   10. LLN and CLT
+   13. LLN and CLT
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="monte_carlo.html">
-   11. Monte Carlo and Option Pricing
+   14. Monte Carlo and Option Pricing
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="heavy_tails.html">
-   12. Heavy-Tailed Distributions
+   15. Heavy-Tailed Distributions
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="schelling.html">
-   13. Racial Segregation
+   16. Racial Segregation
   </a>
  </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
-  Dynamics
+  Nonlinear Dynamics
  </span>
 </p>
 <ul class="current nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="solow.html">
-   14. The Solow-Swan Growth Model
+   17. The Solow-Swan Growth Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="scalar_dynam.html">
-   15. Dynamics in One Dimension
+   18. Dynamics in One Dimension
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cobweb.html">
-   16. The Cobweb Model
+   19. The Cobweb Model
   </a>
  </li>
  <li class="toctree-l1 current active active">
   <a class="current reference internal" href="#">
-   17. The Overlapping Generations Model
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="markov_chains_I.html">
-   18. Markov Chains: Basic Concepts and Stationarity
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="markov_chains_II.html">
-   19. Markov Chains: Irreducibility and Ergodicity
+   20. The Overlapping Generations Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="commod_price.html">
-   20. Commodity Prices
+   21. Commodity Prices
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Stochastic Dynamics
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="markov_chains_I.html">
+   22. Markov Chains: Basic Concepts
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="markov_chains_II.html">
+   23. Markov Chains: Irreducibility and Ergodicity
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="time_series_with_matrices.html">
+   24. Univariate Time Series with Matrix Algebra
   </a>
  </li>
 </ul>
@@ -1176,22 +1217,22 @@ three distinct initial conditions, under the parameterization listed above.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="lp_intro.html">
-   21. Linear Programming
+   25. Linear Programming
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="comparative_adv.html">
-   22. Comparative Advantage
+   26. Comparative Advantage
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="nonlinear.html">
-   23. Nonlinear Problems
+   27. Nonlinear Problems
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="short_path.html">
-   24. Shortest Paths
+   28. Shortest Paths
   </a>
  </li>
 </ul>
@@ -1203,27 +1244,22 @@ three distinct initial conditions, under the parameterization listed above.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="eigen_II.html">
-   25. Spectral Theory
+   29. Spectral Theory
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="input_output.html">
-   26. Input-Output Models
+   30. Input-Output Models
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="lake_model.html">
-   27. A Lake Model of Employment
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="asset_pricing.html">
-   28. Introduction to Asset Pricing
+   31. A Lake Model of Employment
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="networks.html">
-   29. Networks
+   32. Networks
   </a>
  </li>
 </ul>
@@ -1235,12 +1271,12 @@ three distinct initial conditions, under the parameterization listed above.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="supply_demand_multiple_goods.html">
-   30. Supply and Demand with Many Goods
+   33. Supply and Demand with Many Goods
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="supply_demand_heterogeneity.html">
-   31. Market Equilibrium with Heterogeneity
+   34. Market Equilibrium with Heterogeneity
   </a>
  </li>
 </ul>
@@ -1252,17 +1288,17 @@ three distinct initial conditions, under the parameterization listed above.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="simple_linear_regression.html">
-   32. Simple Linear Regression Model
+   35. Simple Linear Regression Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="lr_with_matrices.html">
-   33. Linear Regression with Matrices
+   36. Linear Regression with Matrices
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="mle.html">
-   34. Maximum Likelihood Estimation
+   37. Maximum Likelihood Estimation
   </a>
  </li>
 </ul>
@@ -1274,17 +1310,17 @@ three distinct initial conditions, under the parameterization listed above.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="troubleshooting.html">
-   35. Troubleshooting
+   38. Troubleshooting
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="zreferences.html">
-   36. References
+   39. References
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="status.html">
-   37. Execution Statistics
+   40. Execution Statistics
   </a>
  </li>
 </ul>

@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>26. Input-Output Models &#8212; An Introduction to Quantitative Economics and Finance</title>
+    <title>30. Input-Output Models &#8212; A First Course in Quantitative Economics with Python</title>
     <script src="https://unpkg.com/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://unpkg.com/tippy.js@6.3.1/dist/tippy-bundle.umd.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
@@ -100,6 +100,13 @@
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="_static/design-tabs.js"></script>
     <script src="_static/quantecon-book-theme.15b0c36fffe88f468997fa7b698991d3.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-QDS1YRJNGM"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-QDS1YRJNGM');
+            </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -114,8 +121,8 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="27. A Lake Model of Employment" href="lake_model.html" />
-    <link rel="prev" title="25. Spectral Theory" href="eigen_II.html" />
+    <link rel="next" title="31. A Lake Model of Employment" href="lake_model.html" />
+    <link rel="prev" title="29. Spectral Theory" href="eigen_II.html" />
 
 <!-- Normal Meta Tags -->
 <meta name="author" context="Thomas J. Sargent &amp; John Stachurski" />
@@ -136,7 +143,7 @@ const thebe_selector_output = ".output, .cell_output"
 <meta property="og:url" content="https://intro.quantecon.org/input_output.html" />
 <meta property="og:image" content="https://assets.quantecon.org/img/qe-og-logo.png" />
 <meta property="og:description" content="This website presents introductory lectures on computational economics, designed and written by Thomas J. Sargent and John Stachurski." />
-<meta property="og:site_name" content="An Introduction to Quantitative Economics and Finance" />
+<meta property="og:site_name" content="A First Course in Quantitative Economics with Python" />
 <meta name="theme-color" content="#ffffff" />
 
   </head>
@@ -163,24 +170,24 @@ const thebe_selector_output = ".output, .cell_output"
 
                         <nav id="bd-toc-nav" class="qe-page__toc-nav">
                             <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">26.1. Overview</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#input-output-analysis">26.2. Input output analysis</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#two-goods">26.2.1. Two goods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">30.1. Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#input-output-analysis">30.2. Input output analysis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#two-goods">30.2.1. Two goods</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#production-possibility-frontier">26.3. Production possibility frontier</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prices">26.4. Prices</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-programs">26.5. Linear programs</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#leontief-inverse">26.6. Leontief Inverse</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#demand-shocks">26.6.1. Demand shocks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#production-possibility-frontier">30.3. Production possibility frontier</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prices">30.4. Prices</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-programs">30.5. Linear programs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#leontief-inverse">30.6. Leontief Inverse</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#demand-shocks">30.6.1. Demand shocks</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#applications-of-graph-theory">26.7. Applications of Graph Theory</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eigenvector-centrality">26.7.1. Eigenvector centrality</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#output-multipliers">26.7.2. Output multipliers</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#applications-of-graph-theory">30.7. Applications of Graph Theory</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eigenvector-centrality">30.7.1. Eigenvector centrality</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#output-multipliers">30.7.2. Output multipliers</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">26.8. Exercises</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">30.8. Exercises</a></li>
 </ul>
                             <p class="logo">
                                 
@@ -208,7 +215,7 @@ const thebe_selector_output = ".output, .cell_output"
 
                     <div class="qe-page__header-copy">
 
-                        <p class="qe-page__header-heading"><a href="intro.html">An Introduction to Quantitative Economics and Finance</a></p>
+                        <p class="qe-page__header-heading"><a href="intro.html">A First Course in Quantitative Economics with Python</a></p>
 
                         <p class="qe-page__header-subheading">Input-Output Models</p>
 
@@ -226,9 +233,9 @@ const thebe_selector_output = ".output, .cell_output"
                     <div>
                         
   <section class="tex2jax_ignore mathjax_ignore" id="input-output-models">
-<h1><span class="section-number">26. </span>Input-Output Models<a class="headerlink" href="#input-output-models" title="Permalink to this heading">#</a></h1>
+<h1><span class="section-number">30. </span>Input-Output Models<a class="headerlink" href="#input-output-models" title="Permalink to this heading">#</a></h1>
 <section id="overview">
-<h2><span class="section-number">26.1. </span>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">30.1. </span>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
 <p>This lecture requires the following imports and installs before we proceed.</p>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input above-output-prompt docutils container">
@@ -247,44 +254,72 @@ const thebe_selector_output = ".output, .cell_output"
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting quantecon_book_networks
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Downloading quantecon_book_networks-0.4-py2.py3-none-any.whl (383 kB)
-?25l     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/383.7 kB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">383.7/383.7 kB</span> <span class=" -Color -Color-Red">18.8 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
-?25h
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Downloading quantecon_book_networks-0.5.1-py2.py3-none-any.whl (364 kB)
+?25l     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/364.7 kB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     ━━━━━━━━━━━━━━━━━━━━━━━━╺━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">225.3/364.7 kB</span> <span class=" -Color -Color-Red">6.9 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">364.7/364.7 kB</span> <span class=" -Color -Color-Red">8.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hRequirement already satisfied: networkx in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from quantecon_book_networks) (2.8.4)
+Requirement already satisfied: matplotlib in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from quantecon_book_networks) (3.7.0)
+Requirement already satisfied: numpy in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from quantecon_book_networks) (1.23.5)
+Requirement already satisfied: pandas-datareader in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from quantecon_book_networks) (0.10.0)
+Requirement already satisfied: scipy in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from quantecon_book_networks) (1.10.0)
+Requirement already satisfied: pandas in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from quantecon_book_networks) (1.5.3)
+Requirement already satisfied: contourpy&gt;=1.0.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from matplotlib-&gt;quantecon_book_networks) (1.0.5)
+Requirement already satisfied: python-dateutil&gt;=2.7 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from matplotlib-&gt;quantecon_book_networks) (2.8.2)
+Requirement already satisfied: fonttools&gt;=4.22.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from matplotlib-&gt;quantecon_book_networks) (4.25.0)
+Requirement already satisfied: packaging&gt;=20.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from matplotlib-&gt;quantecon_book_networks) (21.3)
+Requirement already satisfied: kiwisolver&gt;=1.0.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from matplotlib-&gt;quantecon_book_networks) (1.4.4)
+Requirement already satisfied: cycler&gt;=0.10 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from matplotlib-&gt;quantecon_book_networks) (0.11.0)
+Requirement already satisfied: pyparsing&gt;=2.3.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from matplotlib-&gt;quantecon_book_networks) (3.0.9)
+Requirement already satisfied: pillow&gt;=6.2.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from matplotlib-&gt;quantecon_book_networks) (9.4.0)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: pytz&gt;=2020.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from pandas-&gt;quantecon_book_networks) (2022.7)
+Requirement already satisfied: requests&gt;=2.19.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from pandas-datareader-&gt;quantecon_book_networks) (2.28.1)
+Requirement already satisfied: lxml in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from pandas-datareader-&gt;quantecon_book_networks) (4.9.1)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: six&gt;=1.5 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from python-dateutil&gt;=2.7-&gt;matplotlib-&gt;quantecon_book_networks) (1.16.0)
+Requirement already satisfied: charset-normalizer&lt;3,&gt;=2 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests&gt;=2.19.0-&gt;pandas-datareader-&gt;quantecon_book_networks) (2.0.4)
+Requirement already satisfied: urllib3&lt;1.27,&gt;=1.21.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests&gt;=2.19.0-&gt;pandas-datareader-&gt;quantecon_book_networks) (1.26.14)
+Requirement already satisfied: idna&lt;4,&gt;=2.5 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests&gt;=2.19.0-&gt;pandas-datareader-&gt;quantecon_book_networks) (3.4)
+Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests&gt;=2.19.0-&gt;pandas-datareader-&gt;quantecon_book_networks) (2022.12.7)
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Installing collected packages: quantecon_book_networks
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Successfully installed quantecon_book_networks-0.4
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Successfully installed quantecon_book_networks-0.5.1
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: quantecon in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (0.7.0)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: quantecon in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (0.7.1)
 Requirement already satisfied: sympy in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from quantecon) (1.11.1)
 Requirement already satisfied: requests in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from quantecon) (2.28.1)
-Requirement already satisfied: scipy&gt;=1.5.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from quantecon) (1.10.0)
 Requirement already satisfied: numpy&gt;=1.17.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from quantecon) (1.23.5)
+Requirement already satisfied: scipy&gt;=1.5.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from quantecon) (1.10.0)
 Requirement already satisfied: numba&gt;=0.49.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from quantecon) (0.56.4)
 Requirement already satisfied: llvmlite&lt;0.40,&gt;=0.39.0dev0 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from numba&gt;=0.49.0-&gt;quantecon) (0.39.1)
 Requirement already satisfied: setuptools in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from numba&gt;=0.49.0-&gt;quantecon) (65.6.3)
-Requirement already satisfied: charset-normalizer&lt;3,&gt;=2 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests-&gt;quantecon) (2.0.4)
-Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests-&gt;quantecon) (2022.12.7)
 Requirement already satisfied: urllib3&lt;1.27,&gt;=1.21.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests-&gt;quantecon) (1.26.14)
+Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests-&gt;quantecon) (2022.12.7)
 Requirement already satisfied: idna&lt;4,&gt;=2.5 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests-&gt;quantecon) (3.4)
+Requirement already satisfied: charset-normalizer&lt;3,&gt;=2 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests-&gt;quantecon) (2.0.4)
 Requirement already satisfied: mpmath&gt;=0.19 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages/mpmath-1.2.1-py3.10.egg (from sympy-&gt;quantecon) (1.2.1)
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: pandas-datareader in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (0.10.0)
 Requirement already satisfied: pandas&gt;=0.23 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from pandas-datareader) (1.5.3)
-Requirement already satisfied: requests&gt;=2.19.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from pandas-datareader) (2.28.1)
 Requirement already satisfied: lxml in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from pandas-datareader) (4.9.1)
+Requirement already satisfied: requests&gt;=2.19.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from pandas-datareader) (2.28.1)
 Requirement already satisfied: python-dateutil&gt;=2.8.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from pandas&gt;=0.23-&gt;pandas-datareader) (2.8.2)
 Requirement already satisfied: pytz&gt;=2020.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from pandas&gt;=0.23-&gt;pandas-datareader) (2022.7)
 Requirement already satisfied: numpy&gt;=1.21.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from pandas&gt;=0.23-&gt;pandas-datareader) (1.23.5)
 Requirement already satisfied: urllib3&lt;1.27,&gt;=1.21.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests&gt;=2.19.0-&gt;pandas-datareader) (1.26.14)
-Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests&gt;=2.19.0-&gt;pandas-datareader) (2022.12.7)
-Requirement already satisfied: charset-normalizer&lt;3,&gt;=2 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests&gt;=2.19.0-&gt;pandas-datareader) (2.0.4)
 Requirement already satisfied: idna&lt;4,&gt;=2.5 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests&gt;=2.19.0-&gt;pandas-datareader) (3.4)
+Requirement already satisfied: charset-normalizer&lt;3,&gt;=2 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests&gt;=2.19.0-&gt;pandas-datareader) (2.0.4)
+Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests&gt;=2.19.0-&gt;pandas-datareader) (2022.12.7)
 Requirement already satisfied: six&gt;=1.5 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from python-dateutil&gt;=2.8.1-&gt;pandas&gt;=0.23-&gt;pandas-datareader) (1.16.0)
 </pre></div>
 </div>
@@ -297,12 +332,13 @@ Requirement already satisfied: six&gt;=1.5 in /usr/share/miniconda3/envs/quantec
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">matplotlib.patches</span> <span class="kn">import</span> <span class="n">Polygon</span>
 </pre></div>
 </div>
 </div>
 </div>
 <p>The following figure illustrates a network of linkages among 15 sectors
-obtained from the US Bureau of Economic Analysis’s 2019 Input-Output Accounts
+obtained from the US Bureau of Economic Analysis’s 2021 Input-Output Accounts
 Data.</p>
 <div class="cell tag_hide-cell docutils container">
 <details class="hide above-input">
@@ -311,18 +347,17 @@ Data.</p>
 <span class="expanded">Hide code cell content</span>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">quantecon</span> <span class="k">as</span> <span class="nn">qe</span>
-<span class="kn">import</span> <span class="nn">quantecon_book_networks</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">quantecon_book_networks</span>
 <span class="kn">import</span> <span class="nn">quantecon_book_networks.input_output</span> <span class="k">as</span> <span class="nn">qbn_io</span>
 <span class="kn">import</span> <span class="nn">quantecon_book_networks.plotting</span> <span class="k">as</span> <span class="nn">qbn_plt</span>
 <span class="kn">import</span> <span class="nn">quantecon_book_networks.data</span> <span class="k">as</span> <span class="nn">qbn_data</span>
+
 <span class="n">ch2_data</span> <span class="o">=</span> <span class="n">qbn_data</span><span class="o">.</span><span class="n">production</span><span class="p">()</span>
-<span class="kn">import</span> <span class="nn">matplotlib.cm</span> <span class="k">as</span> <span class="nn">cm</span>
-<span class="kn">import</span> <span class="nn">matplotlib.colors</span> <span class="k">as</span> <span class="nn">plc</span>
-<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">cm</span>
+
 <span class="n">quantecon_book_networks</span><span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="s2">&quot;matplotlib&quot;</span><span class="p">)</span>
 <span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
 <span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">mpl</span><span class="o">.</span><span class="n">rcParamsDefault</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">matplotlib.patches</span> <span class="kn">import</span> <span class="n">Polygon</span>
 </pre></div>
 </div>
 </div>
@@ -337,11 +372,11 @@ Data.</p>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">build_coefficient_matrices</span><span class="p">(</span><span class="n">Z</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Build coefficient matrices A and F from Z and X via </span>
-<span class="sd">    </span>
-<span class="sd">        A[i, j] = Z[i, j] / X[j] </span>
+<span class="sd">    Build coefficient matrices A and F from Z and X via</span>
+
+<span class="sd">        A[i, j] = Z[i, j] / X[j]</span>
 <span class="sd">        F[i, j] = Z[i, j] / X[i]</span>
-<span class="sd">    </span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">A</span><span class="p">,</span> <span class="n">F</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty_like</span><span class="p">(</span><span class="n">Z</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">empty_like</span><span class="p">(</span><span class="n">Z</span><span class="p">)</span>
     <span class="n">n</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
@@ -370,15 +405,19 @@ Data.</p>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">centrality</span> <span class="o">=</span> <span class="n">qbn_io</span><span class="o">.</span><span class="n">eigenvector_centrality</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
 
+<span class="c1"># Remove self-loops</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+    <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
-<span class="n">color_list</span> <span class="o">=</span> <span class="n">qbn_io</span><span class="o">.</span><span class="n">colorise_weights</span><span class="p">(</span><span class="n">centrality</span><span class="p">,</span><span class="n">beta</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> 
+<span class="n">color_list</span> <span class="o">=</span> <span class="n">qbn_io</span><span class="o">.</span><span class="n">colorise_weights</span><span class="p">(</span><span class="n">centrality</span><span class="p">,</span><span class="n">beta</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
-<span class="n">qbn_plt</span><span class="o">.</span><span class="n">plot_graph</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="n">codes</span><span class="p">,</span> 
+<span class="n">qbn_plt</span><span class="o">.</span><span class="n">plot_graph</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="n">codes</span><span class="p">,</span>
               <span class="n">layout_type</span><span class="o">=</span><span class="s1">&#39;spring&#39;</span><span class="p">,</span>
               <span class="n">layout_seed</span><span class="o">=</span><span class="mi">5432167</span><span class="p">,</span>
               <span class="n">tol</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
-              <span class="n">node_color_list</span><span class="o">=</span><span class="n">color_list</span><span class="p">)</span> 
+              <span class="n">node_color_list</span><span class="o">=</span><span class="n">color_list</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
@@ -387,9 +426,9 @@ Data.</p>
 </details>
 <div class="cell_output docutils container">
 <figure class="align-default" id="us-15sectors">
-<a class="reference internal image-reference" href="_images/e593c5d7e2113ead5e695757097440bb20d6d47ec942b3a05af73c4799acdf8c.png"><img alt="_images/e593c5d7e2113ead5e695757097440bb20d6d47ec942b3a05af73c4799acdf8c.png" src="_images/e593c5d7e2113ead5e695757097440bb20d6d47ec942b3a05af73c4799acdf8c.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/53ad305a0bbd9551853b554802f6b0e1e09121364445ae86d9b8a1079f673fba.png"><img alt="_images/53ad305a0bbd9551853b554802f6b0e1e09121364445ae86d9b8a1079f673fba.png" src="_images/53ad305a0bbd9551853b554802f6b0e1e09121364445ae86d9b8a1079f673fba.png" style="width: 80%;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 26.1 </span><span class="caption-text">US 15 sector production network</span><a class="headerlink" href="#us-15sectors" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 30.1 </span><span class="caption-text">US 15 sector production network</span><a class="headerlink" href="#us-15sectors" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </div>
@@ -446,11 +485,10 @@ Data.</p>
 <p>Economies are characterised by many such links.</p>
 <p>A basic framework for their analysis is
 <a class="reference external" href="https://en.wikipedia.org/wiki/Wassily_Leontief">Leontief’s</a> input-output model.</p>
-<p>After  introducing the input-ouput model, we describe some of its connections to linear programming.</p>
-<p>(XXXX TODO add link to lpp lecture)</p>
+<p>After  introducing the input-ouput model, we describe some of its connections to <a class="reference internal" href="lp_intro.html"><span class="doc">linear programming lecture</span></a>.</p>
 </section>
 <section id="input-output-analysis">
-<h2><span class="section-number">26.2. </span>Input output analysis<a class="headerlink" href="#input-output-analysis" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">30.2. </span>Input output analysis<a class="headerlink" href="#input-output-analysis" title="Permalink to this heading">#</a></h2>
 <p>Let</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(x_0\)</span> be the amount of a single exogenous input to production, say labor</p></li>
@@ -465,10 +503,10 @@ Data.</p>
 <p>The technology for producing  good <span class="math notranslate nohighlight">\(j \in \{1, \ldots , n\}\)</span> is  described by the <strong>Leontief</strong> function</p>
 <div class="math notranslate nohighlight">
 \[
-    x_j = \min_{i \in \{0, \ldots , n \}} \left( \frac{z_{ij}}{a_{ij}}\right) 
+    x_j = \min_{i \in \{0, \ldots , n \}} \left( \frac{z_{ij}}{a_{ij}}\right)
 \]</div>
 <section id="two-goods">
-<h3><span class="section-number">26.2.1. </span>Two goods<a class="headerlink" href="#two-goods" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">30.2.1. </span>Two goods<a class="headerlink" href="#two-goods" title="Permalink to this heading">#</a></h3>
 <p>To illustrate, we begin by setting <span class="math notranslate nohighlight">\(n =2\)</span> and formulating
 the following network.</p>
 <div class="cell tag_hide-input docutils container">
@@ -480,31 +518,36 @@ the following network.</p>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">DiGraph</span><span class="p">()</span>
 
-<span class="n">nodes</span><span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="s1">&#39;c&#39;</span><span class="p">)</span>
-<span class="n">edges</span> <span class="o">=</span> <span class="p">((</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">),(</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;c&#39;</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="s1">&#39;c&#39;</span><span class="p">))</span>
-<span class="n">edges1</span> <span class="o">=</span> <span class="p">((</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">),(</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;c&#39;</span><span class="p">))</span>
-<span class="n">edges2</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">2</span><span class="p">,</span><span class="s1">&#39;c&#39;</span><span class="p">)]</span>                                         
+<span class="n">nodes</span><span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">)</span>
+<span class="n">edges</span> <span class="o">=</span> <span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">))</span>
+<span class="n">edges1</span> <span class="o">=</span> <span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">))</span>
+<span class="n">edges2</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">2</span><span class="p">,</span><span class="s1">&#39;c&#39;</span><span class="p">)]</span>
 <span class="n">G</span><span class="o">.</span><span class="n">add_nodes_from</span><span class="p">(</span><span class="n">nodes</span><span class="p">)</span>
 <span class="n">G</span><span class="o">.</span><span class="n">add_edges_from</span><span class="p">(</span><span class="n">edges</span><span class="p">)</span>
 
-<span class="n">pos_list</span> <span class="o">=</span> <span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">pos_list</span> <span class="o">=</span> <span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">])</span>
 <span class="n">pos</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">(),</span> <span class="n">pos_list</span><span class="p">))</span>
 
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
 
-<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_nodes</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">pos</span><span class="p">,</span><span class="n">node_size</span><span class="o">=</span><span class="mi">800</span><span class="p">,</span><span class="n">node_color</span> <span class="o">=</span> <span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="n">edgecolors</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_nodes</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">pos</span><span class="p">,</span> <span class="n">node_size</span><span class="o">=</span><span class="mi">800</span><span class="p">,</span>
+                       <span class="n">node_color</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="n">edgecolors</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
 <span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_labels</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">pos</span><span class="p">)</span>
-<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edges</span><span class="p">(</span><span class="n">G</span><span class="p">,</span><span class="n">pos</span> <span class="o">=</span> <span class="n">pos</span><span class="p">,</span> <span class="n">edgelist</span> <span class="o">=</span> <span class="n">edges1</span><span class="p">,</span> <span class="n">node_size</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span><span class="n">connectionstyle</span><span class="o">=</span><span class="s1">&#39;arc3,rad=0.2&#39;</span><span class="p">,</span><span class="n">arrowsize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span><span class="n">min_target_margin</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
-<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edges</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span> <span class="o">=</span> <span class="n">pos</span><span class="p">,</span> <span class="n">edgelist</span><span class="o">=</span><span class="n">edges2</span> <span class="p">,</span><span class="n">node_size</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span><span class="n">connectionstyle</span><span class="o">=</span><span class="s1">&#39;arc3,rad=-0.2&#39;</span><span class="p">,</span><span class="n">arrowsize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span><span class="n">min_target_margin</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.055</span><span class="p">,</span><span class="mf">0.125</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$z_</span><span class="si">{11}</span><span class="s1">$&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">1.825</span><span class="p">,</span><span class="mf">0.125</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$z_</span><span class="si">{22}</span><span class="s1">$&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.955</span><span class="p">,</span><span class="mf">0.1</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$z_</span><span class="si">{21}</span><span class="s1">$&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.955</span><span class="p">,</span><span class="o">-</span><span class="mf">0.125</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$z_</span><span class="si">{12}</span><span class="s1">$&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.325</span><span class="p">,</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$d_</span><span class="si">{1}</span><span class="s1">$&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">1.6</span><span class="p">,</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$d_</span><span class="si">{2}</span><span class="s1">$&#39;</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edges</span><span class="p">(</span><span class="n">G</span><span class="p">,</span><span class="n">pos</span><span class="o">=</span><span class="n">pos</span><span class="p">,</span> <span class="n">edgelist</span><span class="o">=</span><span class="n">edges1</span><span class="p">,</span>
+                       <span class="n">node_size</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">connectionstyle</span><span class="o">=</span><span class="s1">&#39;arc3,rad=0.2&#39;</span><span class="p">,</span>
+                       <span class="n">arrowsize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">min_target_margin</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edges</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">pos</span><span class="p">,</span> <span class="n">edgelist</span><span class="o">=</span><span class="n">edges2</span><span class="p">,</span>
+                       <span class="n">node_size</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">connectionstyle</span><span class="o">=</span><span class="s1">&#39;arc3,rad=-0.2&#39;</span><span class="p">,</span>
+                       <span class="n">arrowsize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">min_target_margin</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
 
-        
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.055</span><span class="p">,</span> <span class="mf">0.125</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$z_</span><span class="si">{11}</span><span class="s1">$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">1.825</span><span class="p">,</span> <span class="mf">0.125</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$z_</span><span class="si">{22}</span><span class="s1">$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.955</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$z_</span><span class="si">{21}</span><span class="s1">$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.955</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.125</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$z_</span><span class="si">{12}</span><span class="s1">$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.325</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$d_</span><span class="si">{1}</span><span class="s1">$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">1.6</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$d_</span><span class="si">{2}</span><span class="s1">$&#39;</span><span class="p">)</span>
+
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -518,9 +561,9 @@ the following network.</p>
 <div class="math notranslate nohighlight">
 \[
 \begin{aligned}
-(1 - a_{11}) x_1 - a_{12} x_2 &amp; \geq d_1 \cr 
--a_{21} x_1 + (1 - a_{22}) x_2 &amp; \geq d_2 \cr 
-a_{01} x_1 + a_{02} x_2 &amp; \leq x_0 
+(1 - a_{11}) x_1 - a_{12} x_2 &amp; \geq d_1 \cr
+-a_{21} x_1 + (1 - a_{22}) x_2 &amp; \geq d_2 \cr
+a_{01} x_1 + a_{02} x_2 &amp; \leq x_0
 \end{aligned}
 \]</div>
 <p>This can be graphically represented as follows.</p>
@@ -531,17 +574,17 @@ a_{01} x_1 + a_{02} x_2 &amp; \leq x_0
 <span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">matplotlib.patches</span> <span class="kn">import</span> <span class="n">Polygon</span>
-
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
 
 <span class="c1"># Draw constraint lines</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">400</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">55</span><span class="p">,</span> <span class="mi">380</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="p">(</span><span class="mi">50</span><span class="o">-</span><span class="mf">0.9</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">55</span><span class="p">,</span> <span class="mi">380</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="o">-</span><span class="mf">1.46</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;r&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="p">(</span><span class="mi">60</span><span class="o">+</span><span class="mf">0.16</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span><span class="o">/</span><span class="mf">0.83</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;r&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">250</span><span class="p">,</span> <span class="mi">395</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="p">(</span><span class="mi">62</span><span class="o">-</span><span class="mf">0.04</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">250</span><span class="p">,</span> <span class="mi">395</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span><span class="o">/</span><span class="mf">0.33</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;b&quot;</span><span class="p">)</span>
+
 <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">130</span><span class="p">,</span> <span class="mi">38</span><span class="p">,</span> <span class="s2">&quot;$(1-a_</span><span class="si">{11}</span><span class="s2">)x_1 + a_</span><span class="si">{12}</span><span class="s2">x_2 \geq d_1$&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">105</span><span class="p">,</span> <span class="s2">&quot;$-a_</span><span class="si">{21}</span><span class="s2">x_1 + (1-a_</span><span class="si">{22}</span><span class="s2">)x_2 \geq d_2$&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">150</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="s2">&quot;$a_</span><span class="si">{01}</span><span class="s2">x_1 +a_</span><span class="si">{02}</span><span class="s2">x_2 \leq x_0$&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
@@ -568,20 +611,20 @@ a_{01} x_1 + a_{02} x_2 &amp; \leq x_0
 </div>
 <p>More generally,   constraints on production are</p>
 <div class="math notranslate nohighlight" id="equation-eq-inout-1">
-<span class="eqno">(26.1)<a class="headerlink" href="#equation-eq-inout-1" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(30.1)<a class="headerlink" href="#equation-eq-inout-1" title="Permalink to this equation">#</a></span>\[
 \begin{aligned}
-(I - A) x &amp;  \geq d \cr 
-a_0' x &amp; \leq x_0
+(I - A) x &amp;  \geq d \cr
+a_0^\top x &amp; \leq x_0
 \end{aligned}
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(A\)</span> is the <span class="math notranslate nohighlight">\(n \times n\)</span> matrix with typical element <span class="math notranslate nohighlight">\(a_{ij}\)</span> and <span class="math notranslate nohighlight">\(a_0' = \begin{bmatrix} a_{01} &amp; \cdots &amp; a_{02} \end{bmatrix}\)</span>.</p>
-<p>If we solve the first block of equations of <a class="reference internal" href="#equation-eq-inout-1">(26.1)</a> for gross output <span class="math notranslate nohighlight">\(x\)</span> we get</p>
+<p>where <span class="math notranslate nohighlight">\(A\)</span> is the <span class="math notranslate nohighlight">\(n \times n\)</span> matrix with typical element <span class="math notranslate nohighlight">\(a_{ij}\)</span> and <span class="math notranslate nohighlight">\(a_0^\top = \begin{bmatrix} a_{01} &amp; \cdots &amp; a_{02} \end{bmatrix}\)</span>.</p>
+<p>If we solve the first block of equations of <a class="reference internal" href="#equation-eq-inout-1">(30.1)</a> for gross output <span class="math notranslate nohighlight">\(x\)</span> we get</p>
 <div class="math notranslate nohighlight" id="equation-eq-inout-2">
-<span class="eqno">(26.2)<a class="headerlink" href="#equation-eq-inout-2" title="Permalink to this equation">#</a></span>\[ 
-x = (I -A)^{-1} d \equiv L d 
+<span class="eqno">(30.2)<a class="headerlink" href="#equation-eq-inout-2" title="Permalink to this equation">#</a></span>\[
+x = (I -A)^{-1} d \equiv L d
 \]</div>
 <p>where the matrix <span class="math notranslate nohighlight">\(L = (I-A)^{-1}\)</span> is sometimes called  a <strong>Leontief Inverse</strong>.</p>
-<p>To assure that the solution <span class="math notranslate nohighlight">\(X\)</span> of <a class="reference internal" href="#equation-eq-inout-2">(26.2)</a> is a positive vector, the  following <strong>Hawkins-Simon conditions</strong> suffice:</p>
+<p>To assure that the solution <span class="math notranslate nohighlight">\(X\)</span> of <a class="reference internal" href="#equation-eq-inout-2">(30.2)</a> is a positive vector, the  following <strong>Hawkins-Simon conditions</strong> suffice:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{aligned}
@@ -591,7 +634,7 @@ x = (I -A)^{-1} d \equiv L d
 \end{split}\]</div>
 <p>For example a two good economy described by</p>
 <div class="math notranslate nohighlight" id="equation-eq-inout-ex">
-<span class="eqno">(26.3)<a class="headerlink" href="#equation-eq-inout-ex" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(30.3)<a class="headerlink" href="#equation-eq-inout-ex" title="Permalink to this equation">#</a></span>\[\begin{split}
 A =
 \begin{bmatrix}
     0.1 &amp; 40 \\
@@ -608,8 +651,7 @@ d =
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mi">40</span><span class="p">],</span>
              <span class="p">[</span><span class="mf">0.01</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
-<span class="n">d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">50</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
-<span class="n">d</span><span class="o">.</span><span class="n">shape</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">50</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -629,9 +671,10 @@ d =
 </div>
 </div>
 </div>
+<p>Let’s check the <strong>Hawkins-Simon conditions</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">det</span><span class="p">(</span><span class="n">B</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="c1">#checking Hawkins-Simon conditions</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">det</span><span class="p">(</span><span class="n">B</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="c1"># checking Hawkins-Simon conditions</span>
 </pre></div>
 </div>
 </div>
@@ -641,13 +684,14 @@ d =
 </div>
 </div>
 </div>
+<p>Now, let’s compute the <strong>Leontieff inverse</strong> matrix</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">I</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">identity</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">B</span> <span class="o">=</span> <span class="n">I</span> <span class="o">-</span> <span class="n">A</span>
 
-<span class="n">L</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
-<span class="n">L</span>  <span class="c1">#obtaining Leontieff inverse matrix</span>
+<span class="n">L</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">B</span><span class="p">)</span> <span class="c1"># obtaining Leontieff inverse matrix</span>
+<span class="n">L</span>
 </pre></div>
 </div>
 </div>
@@ -660,8 +704,8 @@ d =
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">L</span> <span class="o">@</span> <span class="n">d</span>
-<span class="n">x</span>  <span class="c1">#solving for gross ouput</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">L</span> <span class="o">@</span> <span class="n">d</span>   <span class="c1"># solving for gross ouput</span>
+<span class="n">x</span>
 </pre></div>
 </div>
 </div>
@@ -675,33 +719,33 @@ d =
 </section>
 </section>
 <section id="production-possibility-frontier">
-<h2><span class="section-number">26.3. </span>Production possibility frontier<a class="headerlink" href="#production-possibility-frontier" title="Permalink to this heading">#</a></h2>
-<p>The second equation of <a class="reference internal" href="#equation-eq-inout-1">(26.1)</a> can be written</p>
+<h2><span class="section-number">30.3. </span>Production possibility frontier<a class="headerlink" href="#production-possibility-frontier" title="Permalink to this heading">#</a></h2>
+<p>The second equation of <a class="reference internal" href="#equation-eq-inout-1">(30.1)</a> can be written</p>
 <div class="math notranslate nohighlight">
 \[
-a_0' x = x_0 
+a_0^\top x = x_0
 \]</div>
 <p>or</p>
 <div class="math notranslate nohighlight" id="equation-eq-inout-frontier">
-<span class="eqno">(26.4)<a class="headerlink" href="#equation-eq-inout-frontier" title="Permalink to this equation">#</a></span>\[
-A_0' d = x_0
+<span class="eqno">(30.4)<a class="headerlink" href="#equation-eq-inout-frontier" title="Permalink to this equation">#</a></span>\[
+A_0^\top d = x_0
 \]</div>
 <p>where</p>
 <div class="math notranslate nohighlight">
 \[
-A_0' = a_0' (I - A)^{-1}
+A_0^\top = a_0^\top (I - A)^{-1}
 \]</div>
 <p>For <span class="math notranslate nohighlight">\(i \in \{1, \ldots , n\}\)</span>, the <span class="math notranslate nohighlight">\(i\)</span>th component  of <span class="math notranslate nohighlight">\(A_0\)</span> is the amount of labor that is required to produce one unit of final output of good <span class="math notranslate nohighlight">\(i\)</span>.</p>
-<p>Equation <a class="reference internal" href="#equation-eq-inout-frontier">(26.4)</a> sweeps out a  <strong>production possibility frontier</strong> of final consumption bundles <span class="math notranslate nohighlight">\(d\)</span> that can be produced with exogenous labor input <span class="math notranslate nohighlight">\(x_0\)</span>.</p>
-<p>Consider the example in <a class="reference internal" href="#equation-eq-inout-ex">(26.3)</a>.</p>
+<p>Equation <a class="reference internal" href="#equation-eq-inout-frontier">(30.4)</a> sweeps out a  <strong>production possibility frontier</strong> of final consumption bundles <span class="math notranslate nohighlight">\(d\)</span> that can be produced with exogenous labor input <span class="math notranslate nohighlight">\(x_0\)</span>.</p>
+<p>Consider the example in <a class="reference internal" href="#equation-eq-inout-ex">(30.3)</a>.</p>
 <p>Suppose we are now given</p>
 <div class="math notranslate nohighlight">
 \[
-a_0' = \begin{bmatrix}
+a_0^\top = \begin{bmatrix}
 4 &amp; 100
 \end{bmatrix}
 \]</div>
-<p>Then we can find <span class="math notranslate nohighlight">\(A_0'\)</span> by</p>
+<p>Then we can find <span class="math notranslate nohighlight">\(A_0^\top\)</span> by</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span> <span class="mi">100</span><span class="p">])</span>
@@ -723,8 +767,8 @@ a_0' = \begin{bmatrix}
 \]</div>
 </section>
 <section id="prices">
-<h2><span class="section-number">26.4. </span>Prices<a class="headerlink" href="#prices" title="Permalink to this heading">#</a></h2>
-<p><span id="id1">[<a class="reference internal" href="zreferences.html#id45" title="Robert Dorfman, Paul A. Samuelson, and Robert M. Solow. Linear Programming and Economic Analysis: Revised Edition. McGraw Hill, New York, 1958.">DSS58</a>]</span> argue that relative prices of the <span class="math notranslate nohighlight">\(n\)</span> produced goods must satisfy</p>
+<h2><span class="section-number">30.4. </span>Prices<a class="headerlink" href="#prices" title="Permalink to this heading">#</a></h2>
+<p><span id="id1">[<a class="reference internal" href="zreferences.html#id46" title="Robert Dorfman, Paul A. Samuelson, and Robert M. Solow. Linear Programming and Economic Analysis: Revised Edition. McGraw Hill, New York, 1958.">DSS58</a>]</span> argue that relative prices of the <span class="math notranslate nohighlight">\(n\)</span> produced goods must satisfy</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{aligned}
@@ -734,33 +778,33 @@ p_2 = a_{12}p_1 + a_{22}p_2 + a_{02}w
 \end{split}\]</div>
 <p>More generally,</p>
 <div class="math notranslate nohighlight">
-\[ 
-p = A' p + a_0 w
+\[
+p = A^\top p + a_0 w
 \]</div>
 <p>which states that the price of each final good equals the total cost
-of production, which consists of costs of intermediate inputs <span class="math notranslate nohighlight">\(A' p\)</span>
+of production, which consists of costs of intermediate inputs <span class="math notranslate nohighlight">\(A^\top p\)</span>
 plus costs of labor <span class="math notranslate nohighlight">\(a_0 w\)</span>.</p>
 <p>This equation can be written as</p>
 <div class="math notranslate nohighlight" id="equation-eq-inout-price">
-<span class="eqno">(26.5)<a class="headerlink" href="#equation-eq-inout-price" title="Permalink to this equation">#</a></span>\[
-(I - A') p = a_0 w
+<span class="eqno">(30.5)<a class="headerlink" href="#equation-eq-inout-price" title="Permalink to this equation">#</a></span>\[
+(I - A^\top) p = a_0 w
 \]</div>
 <p>which implies</p>
 <div class="math notranslate nohighlight">
 \[
-p = (I - A')^{-1} a_0 w
+p = (I - A^\top)^{-1} a_0 w
 \]</div>
-<p>Notice how  <a class="reference internal" href="#equation-eq-inout-price">(26.5)</a> with <a class="reference internal" href="#equation-eq-inout-1">(26.1)</a> forms a
+<p>Notice how  <a class="reference internal" href="#equation-eq-inout-price">(30.5)</a> with <a class="reference internal" href="#equation-eq-inout-1">(30.1)</a> forms a
 <strong>conjugate pair</strong>  through the appearance of operators
 that are transposes of one another.</p>
 <p>This connection surfaces again in a classic linear program and its dual.</p>
 </section>
 <section id="linear-programs">
-<h2><span class="section-number">26.5. </span>Linear programs<a class="headerlink" href="#linear-programs" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">30.5. </span>Linear programs<a class="headerlink" href="#linear-programs" title="Permalink to this heading">#</a></h2>
 <p>A <strong>primal</strong> problem is</p>
 <div class="math notranslate nohighlight">
 \[
-\min_{x} w a_0' x 
+\min_{x} w a_0^\top x
 \]</div>
 <p>subject to</p>
 <div class="math notranslate nohighlight">
@@ -770,12 +814,12 @@ that are transposes of one another.</p>
 <p>The associated <strong>dual</strong> problem is</p>
 <div class="math notranslate nohighlight">
 \[
-\max_{p} p' d
+\max_{p} p^\top d
 \]</div>
 <p>subject to</p>
 <div class="math notranslate nohighlight">
 \[
-(I -A)' p \leq a_0 w 
+(I -A)^\top p \leq a_0 w
 \]</div>
 <p>The primal problem chooses a feasible production plan to minimize costs for delivering a pre-assigned vector of final goods consumption <span class="math notranslate nohighlight">\(d\)</span>.</p>
 <p>The dual problem chooses prices to maxmize the value of a pre-assigned vector of final goods <span class="math notranslate nohighlight">\(d\)</span> subject to prices covering costs of production.</p>
@@ -783,7 +827,7 @@ that are transposes of one another.</p>
 optimal value of the primal and dual problems coincide:</p>
 <div class="math notranslate nohighlight">
 \[
-w a_0' x^* = p^* d
+w a_0^\top x^* = p^* d
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(^*\)</span>’s denote optimal choices for the primal and dual problems.</p>
 <p>The dual problem can be graphically represented as follows.</p>
@@ -794,16 +838,16 @@ w a_0' x^* = p^* d
 <span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">matplotlib.patches</span> <span class="kn">import</span> <span class="n">Polygon</span>
-
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
 
 <span class="c1"># Draw constraint lines</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">250</span><span class="p">)</span>
+
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">4.75</span><span class="p">,</span> <span class="mi">49</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="o">-</span><span class="mf">0.9</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">4.75</span><span class="p">,</span> <span class="mi">49</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="o">-</span><span class="mf">0.16</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;r&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="p">(</span><span class="mi">33</span><span class="o">+</span><span class="mf">1.46</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span><span class="o">/</span><span class="mf">0.83</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;r&quot;</span><span class="p">)</span>
+
 <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">175</span><span class="p">,</span> <span class="s2">&quot;$(1-a_</span><span class="si">{11}</span><span class="s2">)p_1 - a_</span><span class="si">{21}</span><span class="s2">p_2 \leq a_</span><span class="si">{01}</span><span class="s2">w$&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">85</span><span class="p">,</span> <span class="s2">&quot;$-a_</span><span class="si">{12}</span><span class="s2">p_1 + (1-a_</span><span class="si">{22}</span><span class="s2">)p_2 \leq a_</span><span class="si">{02}</span><span class="s2">w$&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 
@@ -830,16 +874,16 @@ w a_0' x^* = p^* d
 </div>
 </section>
 <section id="leontief-inverse">
-<h2><span class="section-number">26.6. </span>Leontief Inverse<a class="headerlink" href="#leontief-inverse" title="Permalink to this heading">#</a></h2>
-<p>We have discussed that gross ouput <span class="math notranslate nohighlight">\(x\)</span> is given by <a class="reference internal" href="#equation-eq-inout-2">(26.2)</a>, where <span class="math notranslate nohighlight">\(L\)</span> is called the Leontief Inverse.</p>
-<p>Recall the [Neumann Series Lemma](link to eigenvalues lecture) which states that <span class="math notranslate nohighlight">\(L\)</span> exists if the spectral radius <span class="math notranslate nohighlight">\(r(A)&lt;1\)</span>.</p>
+<h2><span class="section-number">30.6. </span>Leontief Inverse<a class="headerlink" href="#leontief-inverse" title="Permalink to this heading">#</a></h2>
+<p>We have discussed that gross ouput <span class="math notranslate nohighlight">\(x\)</span> is given by <a class="reference internal" href="#equation-eq-inout-2">(30.2)</a>, where <span class="math notranslate nohighlight">\(L\)</span> is called the Leontief Inverse.</p>
+<p>Recall the <a class="reference internal" href="eigen_II.html"><span class="doc">Neumann Series Lemma</span></a> which states that <span class="math notranslate nohighlight">\(L\)</span> exists if the spectral radius <span class="math notranslate nohighlight">\(r(A)&lt;1\)</span>.</p>
 <p>In fact</p>
 <div class="math notranslate nohighlight">
 \[
 L = \sum_{i=0}^{\infty} A^i
 \]</div>
 <section id="demand-shocks">
-<h3><span class="section-number">26.6.1. </span>Demand shocks<a class="headerlink" href="#demand-shocks" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">30.6.1. </span>Demand shocks<a class="headerlink" href="#demand-shocks" title="Permalink to this heading">#</a></h3>
 <p>Consider the impact of a demand shock <span class="math notranslate nohighlight">\(\Delta d\)</span> which shifts demand from <span class="math notranslate nohighlight">\(d_0\)</span> to <span class="math notranslate nohighlight">\(d_1 = d_0 + \Delta d\)</span>.</p>
 <p>Gross output shifts from <span class="math notranslate nohighlight">\(x_0 = Ld_0\)</span> to <span class="math notranslate nohighlight">\(x_1 = Ld_1\)</span>.</p>
 <p>If <span class="math notranslate nohighlight">\(r(A) &lt; 1\)</span> then a solution exists and</p>
@@ -851,17 +895,18 @@ L = \sum_{i=0}^{\infty} A^i
 </section>
 </section>
 <section id="applications-of-graph-theory">
-<h2><span class="section-number">26.7. </span>Applications of Graph Theory<a class="headerlink" href="#applications-of-graph-theory" title="Permalink to this heading">#</a></h2>
-<p>We can further study input output networks through applications of [graph theory](link to networks lecture).</p>
+<h2><span class="section-number">30.7. </span>Applications of Graph Theory<a class="headerlink" href="#applications-of-graph-theory" title="Permalink to this heading">#</a></h2>
+<p>We can further study input output networks through applications of <a class="reference internal" href="networks.html"><span class="doc">graph theory</span></a>.</p>
 <p>An input output network can be represented by a weighted directed graph induced by the adjacency matrix <span class="math notranslate nohighlight">\(A\)</span>.</p>
-<p>The set of nodes <span class="math notranslate nohighlight">\(V = [n]\)</span> is the list of sectors and the set of edges is given by
-$<span class="math notranslate nohighlight">\(
+<p>The set of nodes <span class="math notranslate nohighlight">\(V = [n]\)</span> is the list of sectors and the set of edges is given by</p>
+<div class="math notranslate nohighlight">
+\[
 E = \{(i,j) \in V \times V : a_{ij}&gt;0\}
-\)</span>$</p>
-<p>In <a class="reference internal" href="#us-15sectors"><span class="std std-numref">Fig. 26.1</span></a> weights are indicated by the widths of the arrows, which are proportional to the corresponding input-output coefficients.</p>
+\]</div>
+<p>In <a class="reference internal" href="#us-15sectors"><span class="std std-numref">Fig. 30.1</span></a> weights are indicated by the widths of the arrows, which are proportional to the corresponding input-output coefficients.</p>
 <p>We can now use centrality measures to rank sectors and discuss their importance relative to the other sectors.</p>
 <section id="eigenvector-centrality">
-<h3><span class="section-number">26.7.1. </span>Eigenvector centrality<a class="headerlink" href="#eigenvector-centrality" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">30.7.1. </span>Eigenvector centrality<a class="headerlink" href="#eigenvector-centrality" title="Permalink to this heading">#</a></h3>
 <p>Eigenvector centrality of a node <span class="math notranslate nohighlight">\(i\)</span> is measured by</p>
 <div class="math notranslate nohighlight">
 \[
@@ -869,7 +914,7 @@ E = \{(i,j) \in V \times V : a_{ij}&gt;0\}
     e_i = \frac{1}{r(A)} \sum_{1 \leq j \leq n} a_{ij} e_j
 \end{aligned}
 \]</div>
-<p>We plot a bar graph of hub-based eigenvector centrality for the sectors represented in <a class="reference internal" href="#us-15sectors"><span class="std std-numref">Fig. 26.1</span></a>.</p>
+<p>We plot a bar graph of hub-based eigenvector centrality for the sectors represented in <a class="reference internal" href="#us-15sectors"><span class="std std-numref">Fig. 30.1</span></a>.</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -886,7 +931,7 @@ E = \{(i,j) \in V \times V : a_{ij}&gt;0\}
 </div>
 </details>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/7941c3ba26b8fdbcaa87c772bd66729ae2d99c6bc4bcdfbdf23dbc292c917367.png"><img alt="_images/7941c3ba26b8fdbcaa87c772bd66729ae2d99c6bc4bcdfbdf23dbc292c917367.png" src="_images/7941c3ba26b8fdbcaa87c772bd66729ae2d99c6bc4bcdfbdf23dbc292c917367.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/4ade114a9e64f3d9f23e38754412523b17855148990dbac0a3e5505148700640.png"><img alt="_images/4ade114a9e64f3d9f23e38754412523b17855148990dbac0a3e5505148700640.png" src="_images/4ade114a9e64f3d9f23e38754412523b17855148990dbac0a3e5505148700640.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>A higher measure indicates higher importance as a supplier.</p>
@@ -894,24 +939,27 @@ E = \{(i,j) \in V \times V : a_{ij}&gt;0\}
 <p>The above figure indicates that manufacturing is the most dominant sector in the US economy.</p>
 </section>
 <section id="output-multipliers">
-<h3><span class="section-number">26.7.2. </span>Output multipliers<a class="headerlink" href="#output-multipliers" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">30.7.2. </span>Output multipliers<a class="headerlink" href="#output-multipliers" title="Permalink to this heading">#</a></h3>
 <p>Another way to rank sectors in input output networks is via outuput multipliers.</p>
 <p>The <strong>output multiplier</strong> of sector <span class="math notranslate nohighlight">\(j\)</span> denoted by <span class="math notranslate nohighlight">\(\mu_j\)</span> is usually defined as the
 total sector-wide impact of a unit change of demand in sector <span class="math notranslate nohighlight">\(j\)</span>.</p>
 <p>Earlier when disussing demand shocks we concluded that for <span class="math notranslate nohighlight">\(L = (l_{ij})\)</span> the element
 <span class="math notranslate nohighlight">\(l_{ij}\)</span> represents the impact on sector <span class="math notranslate nohighlight">\(i\)</span> of a unit change in demand in sector <span class="math notranslate nohighlight">\(j\)</span>.</p>
-<p>Thus,
-$<span class="math notranslate nohighlight">\(
+<p>Thus,</p>
+<div class="math notranslate nohighlight">
+\[
 \mu_j = \sum_{j=1}^n l_{ij}
-\)</span>$</p>
-<p>This can be written as <span class="math notranslate nohighlight">\(\mu' = \mathbf{1}'L\)</span> or
-$<span class="math notranslate nohighlight">\(
-\mu' = \mathbf{1}' (I-A)^{-1}
-\)</span>$</p>
+\]</div>
+<p>This can be written as <span class="math notranslate nohighlight">\(\mu^\top = \mathbb{1}^\top L\)</span> or</p>
+<div class="math notranslate nohighlight">
+\[
+\mu^\top = \mathbb{1}^\top (I-A)^{-1}
+\]</div>
+<p>Please note that here we use <span class="math notranslate nohighlight">\(\mathbb{1}\)</span> to represent a vector of ones.</p>
 <p>High ranking sectors within this measure are important buyers of intermediate goods.</p>
 <p>A demand shock in such sectors will cause a large impact on the whole production network.</p>
 <p>The following figure displays the output multipliers for the sectors represented
-in <a class="reference internal" href="#us-15sectors"><span class="std std-numref">Fig. 26.1</span></a>.</p>
+in <a class="reference internal" href="#us-15sectors"><span class="std std-numref">Fig. 30.1</span></a>.</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -932,31 +980,31 @@ in <a class="reference internal" href="#us-15sectors"><span class="std std-numre
 </div>
 </details>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/172f5e2522d2bd32fd8b8ccf64d46cf6ca7c1e6666ac1e51662a4f33f8dea2ff.png"><img alt="_images/172f5e2522d2bd32fd8b8ccf64d46cf6ca7c1e6666ac1e51662a4f33f8dea2ff.png" src="_images/172f5e2522d2bd32fd8b8ccf64d46cf6ca7c1e6666ac1e51662a4f33f8dea2ff.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/4ded7ce7532ffbc8edefba23142cff869628604a72b7957fa7c3393a56fa4080.png"><img alt="_images/4ded7ce7532ffbc8edefba23142cff869628604a72b7957fa7c3393a56fa4080.png" src="_images/4ded7ce7532ffbc8edefba23142cff869628604a72b7957fa7c3393a56fa4080.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>We observe that manufacturing and agriculture are highest ranking sectors.</p>
 </section>
 </section>
 <section id="exercises">
-<h2><span class="section-number">26.8. </span>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">30.8. </span>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h2>
 <div class="exercise admonition" id="io_ex1">
 
-<p class="admonition-title"><span class="caption-number">Exercise 26.1 </span></p>
+<p class="admonition-title"><span class="caption-number">Exercise 30.1 </span></p>
 <section id="exercise-content">
-<p><span id="id2">[<a class="reference internal" href="zreferences.html#id45" title="Robert Dorfman, Paul A. Samuelson, and Robert M. Solow. Linear Programming and Economic Analysis: Revised Edition. McGraw Hill, New York, 1958.">DSS58</a>]</span> Chapter 9 discusses an example with the following
+<p><span id="id2">[<a class="reference internal" href="zreferences.html#id46" title="Robert Dorfman, Paul A. Samuelson, and Robert M. Solow. Linear Programming and Economic Analysis: Revised Edition. McGraw Hill, New York, 1958.">DSS58</a>]</span> Chapter 9 discusses an example with the following
 parameter settings:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split} 
+\[\begin{split}
 A = \begin{bmatrix}
      0.1 &amp; 1.46 \\
-     0.16 &amp; 0.17 
+     0.16 &amp; 0.17
     \end{bmatrix}
-\text{ and } 
+\text{ and }
 a_0 = \begin{bmatrix} .04 &amp; .33 \end{bmatrix}
 \end{split}\]</div>
 <div class="math notranslate nohighlight">
-\[\begin{split} 
+\[\begin{split}
 x = \begin{bmatrix} 250 \\ 120 \end{bmatrix}
 \text{ and }
 x_0 = 50
@@ -971,31 +1019,32 @@ d = \begin{bmatrix} 50 \\ 60 \end{bmatrix}
 z = \begin{bmatrix} 25 &amp; 175 \\
          40 &amp;   20 \end{bmatrix}
 \text{ and }
-z_0 = \begin{bmatrix} 10 &amp; 40 \end{bmatrix} 
+z_0 = \begin{bmatrix} 10 &amp; 40 \end{bmatrix}
 \end{split}\]</div>
 <p>where <span class="math notranslate nohighlight">\(z_0\)</span> is a vector of labor services used in each industry.</p>
 </section>
 </div>
 <div class="solution dropdown admonition" id="input_output-solution-1">
 
-<p class="admonition-title">Solution to<a class="reference internal" href="#io_ex1"> Exercise 26.1</a></p>
+<p class="admonition-title">Solution to<a class="reference internal" href="#io_ex1"> Exercise 30.1</a></p>
 <section id="solution-content">
-<p>For each i = 0,1,2 and j = 1,2
-$<span class="math notranslate nohighlight">\(
+<p>For each i = 0,1,2 and j = 1,2</p>
+<div class="math notranslate nohighlight">
+\[
 a_{ij} = \frac{z_{ij}}{x_j}
-\)</span>$</p>
+\]</div>
 </section>
 </div>
 <div class="exercise admonition" id="io_ex2">
 
-<p class="admonition-title"><span class="caption-number">Exercise 26.2 </span></p>
+<p class="admonition-title"><span class="caption-number">Exercise 30.2 </span></p>
 <section id="exercise-content">
 <p>Derive the production possibility frontier for the economy characterized in the previous exercise.</p>
 </section>
 </div>
 <div class="solution dropdown admonition" id="input_output-solution-3">
 
-<p class="admonition-title">Solution to<a class="reference internal" href="#io_ex2"> Exercise 26.2</a></p>
+<p class="admonition-title">Solution to<a class="reference internal" href="#io_ex2"> Exercise 30.2</a></p>
 <section id="solution-content">
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1028,10 +1077,11 @@ a_{ij} = \frac{z_{ij}}{x_j}
 </div>
 </div>
 </div>
-<p>Thus the production possibility frontier is given by
-$<span class="math notranslate nohighlight">\(
+<p>Thus the production possibility frontier is given by</p>
+<div class="math notranslate nohighlight">
+\[
 0.17 d_1 + 0.69 d_2 = 50
-\)</span>$</p>
+\]</div>
 </section>
 </div>
 </section>
@@ -1106,7 +1156,7 @@ $<span class="math notranslate nohighlight">\(
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="long_run_growth.html">
-   2. Long Run Growth
+   2. Economic Growth Evidence
   </a>
  </li>
  <li class="toctree-l1">
@@ -1141,9 +1191,31 @@ $<span class="math notranslate nohighlight">\(
    7. Introduction to Supply and Demand
   </a>
  </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Linear Dynamics
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="pv.html">
+   8. Present Values
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cons_smooth.html">
+   9. Consumption smoothing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cagan_ree.html">
+   10. A Fiscal Theory of the Price Level
+  </a>
+ </li>
  <li class="toctree-l1">
   <a class="reference internal" href="geom_series.html">
-   8. Geometric Series for Elementary Economics
+   11. Geometric Series for Elementary Economics
   </a>
  </li>
 </ul>
@@ -1155,69 +1227,81 @@ $<span class="math notranslate nohighlight">\(
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="prob_dist.html">
-   9. Distributions and Probabilities
+   12. Distributions and Probabilities
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="lln_clt.html">
-   10. LLN and CLT
+   13. LLN and CLT
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="monte_carlo.html">
-   11. Monte Carlo and Option Pricing
+   14. Monte Carlo and Option Pricing
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="heavy_tails.html">
-   12. Heavy-Tailed Distributions
+   15. Heavy-Tailed Distributions
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="schelling.html">
-   13. Racial Segregation
+   16. Racial Segregation
   </a>
  </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
-  Dynamics
+  Nonlinear Dynamics
  </span>
 </p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="solow.html">
-   14. The Solow-Swan Growth Model
+   17. The Solow-Swan Growth Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="scalar_dynam.html">
-   15. Dynamics in One Dimension
+   18. Dynamics in One Dimension
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cobweb.html">
-   16. The Cobweb Model
+   19. The Cobweb Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="olg.html">
-   17. The Overlapping Generations Model
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="markov_chains_I.html">
-   18. Markov Chains: Basic Concepts and Stationarity
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="markov_chains_II.html">
-   19. Markov Chains: Irreducibility and Ergodicity
+   20. The Overlapping Generations Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="commod_price.html">
-   20. Commodity Prices
+   21. Commodity Prices
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Stochastic Dynamics
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="markov_chains_I.html">
+   22. Markov Chains: Basic Concepts
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="markov_chains_II.html">
+   23. Markov Chains: Irreducibility and Ergodicity
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="time_series_with_matrices.html">
+   24. Univariate Time Series with Matrix Algebra
   </a>
  </li>
 </ul>
@@ -1229,22 +1313,22 @@ $<span class="math notranslate nohighlight">\(
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="lp_intro.html">
-   21. Linear Programming
+   25. Linear Programming
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="comparative_adv.html">
-   22. Comparative Advantage
+   26. Comparative Advantage
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="nonlinear.html">
-   23. Nonlinear Problems
+   27. Nonlinear Problems
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="short_path.html">
-   24. Shortest Paths
+   28. Shortest Paths
   </a>
  </li>
 </ul>
@@ -1256,27 +1340,22 @@ $<span class="math notranslate nohighlight">\(
 <ul class="current nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="eigen_II.html">
-   25. Spectral Theory
+   29. Spectral Theory
   </a>
  </li>
  <li class="toctree-l1 current active active">
   <a class="current reference internal" href="#">
-   26. Input-Output Models
+   30. Input-Output Models
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="lake_model.html">
-   27. A Lake Model of Employment
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="asset_pricing.html">
-   28. Introduction to Asset Pricing
+   31. A Lake Model of Employment
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="networks.html">
-   29. Networks
+   32. Networks
   </a>
  </li>
 </ul>
@@ -1288,12 +1367,12 @@ $<span class="math notranslate nohighlight">\(
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="supply_demand_multiple_goods.html">
-   30. Supply and Demand with Many Goods
+   33. Supply and Demand with Many Goods
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="supply_demand_heterogeneity.html">
-   31. Market Equilibrium with Heterogeneity
+   34. Market Equilibrium with Heterogeneity
   </a>
  </li>
 </ul>
@@ -1305,17 +1384,17 @@ $<span class="math notranslate nohighlight">\(
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="simple_linear_regression.html">
-   32. Simple Linear Regression Model
+   35. Simple Linear Regression Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="lr_with_matrices.html">
-   33. Linear Regression with Matrices
+   36. Linear Regression with Matrices
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="mle.html">
-   34. Maximum Likelihood Estimation
+   37. Maximum Likelihood Estimation
   </a>
  </li>
 </ul>
@@ -1327,17 +1406,17 @@ $<span class="math notranslate nohighlight">\(
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="troubleshooting.html">
-   35. Troubleshooting
+   38. Troubleshooting
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="zreferences.html">
-   36. References
+   39. References
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="status.html">
-   37. Execution Statistics
+   40. Execution Statistics
   </a>
  </li>
 </ul>

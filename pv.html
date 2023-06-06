@@ -1,0 +1,1111 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>8. Present Values &#8212; A First Course in Quantitative Economics with Python</title>
+    <script src="https://unpkg.com/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://unpkg.com/tippy.js@6.3.1/dist/tippy-bundle.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    
+        <script>
+            MathJax = {
+            loader: {load: ['[tex]/boldsymbol', '[tex]/textmacros']},
+            tex: {
+                packages: {'[+]': ['boldsymbol', 'textmacros']},
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                processEscapes: true,
+                macros: {
+                    "argmax" : "arg\\,max",
+                    "argmin" : "arg\\,min",
+                    "col"    : "col",
+                    "Span"   :  "span",
+                    "epsilon": "\\varepsilon",
+                    "EE": "\\mathbb{E}",
+                    "PP": "\\mathbb{P}",
+                    "RR": "\\mathbb{R}",
+                    "NN": "\\mathbb{N}",
+                    "ZZ": "\\mathbb{Z}",
+                    "aA": "\\mathcal{A}",
+                    "bB": "\\mathcal{B}",
+                    "cC": "\\mathcal{C}",
+                    "dD": "\\mathcal{D}",
+                    "eE": "\\mathcal{E}",
+                    "fF": "\\mathcal{F}",
+                    "gG": "\\mathcal{G}",
+                    "hH": "\\mathcal{H}",
+                }
+            },
+            svg: {
+                fontCache: 'global',
+                scale: 0.92,
+                displayAlign: "center",
+            },
+            };
+        </script>
+    
+    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/quantecon-book-theme.3e777eaae0c95b0b775aa300baed123e.css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/exercise.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script src="_static/quantecon-book-theme.15b0c36fffe88f468997fa7b698991d3.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-QDS1YRJNGM"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-QDS1YRJNGM');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'pv';</script>
+    <link rel="canonical" href="https://intro.quantecon.org/pv.html" />
+    <link rel="shortcut icon" href="_static/lectures-favicon.ico"/>
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="9. Consumption smoothing" href="cons_smooth.html" />
+    <link rel="prev" title="7. Introduction to Supply and Demand" href="intro_supply_demand.html" />
+
+<!-- Normal Meta Tags -->
+<meta name="author" context="Thomas J. Sargent &amp; John Stachurski" />
+<meta name="keywords" content="Python, QuantEcon, Quantitative Economics, Economics, Sloan, Alfred P. Sloan Foundation, Tom J. Sargent, John Stachurski" />
+<meta name="description" content=This website presents introductory lectures on computational economics, designed and written by Thomas J. Sargent and John Stachurski. />
+
+<!-- Twitter tags -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@quantecon" />
+<meta name="twitter:title" content="Present Values"/>
+<meta name="twitter:description" content="This website presents introductory lectures on computational economics, designed and written by Thomas J. Sargent and John Stachurski.">
+<meta name="twitter:creator" content="@quantecon">
+<meta name="twitter:image" content="https://assets.quantecon.org/img/qe-twitter-logo.png">
+
+<!-- Opengraph tags -->
+<meta property="og:title" content="Present Values" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://intro.quantecon.org/pv.html" />
+<meta property="og:image" content="https://assets.quantecon.org/img/qe-og-logo.png" />
+<meta property="og:description" content="This website presents introductory lectures on computational economics, designed and written by Thomas J. Sargent and John Stachurski." />
+<meta property="og:site_name" content="A First Course in Quantitative Economics with Python" />
+<meta name="theme-color" content="#ffffff" />
+
+  </head>
+<body>
+
+
+    <span id="top"></span>
+
+    <div class="qe-wrapper">
+
+        <div class="qe-main">
+
+            <div class="qe-page" id=pv>
+
+                <div class="qe-page__toc">
+
+                    <div class="inner">
+
+                        
+                        <div class="qe-page__toc-header">
+                            On this page
+                        </div>
+
+
+                        <nav id="bd-toc-nav" class="qe-page__toc-nav">
+                            <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">8.1. Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#present-value-calculations">8.2. Present value calculations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analytical-expressions">8.3. Analytical Expressions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#more-about-bubbles">8.4. More about bubbles</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gross-rate-of-return">8.5. Gross rate of return</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">8.6. Exercises</a></li>
+</ul>
+                            <p class="logo">
+                                
+                                    
+                                    <a href=https://quantecon.org><img src="_static/qe-logo.png" class="logo" alt="logo"></a>
+                                    
+                                
+                            </p>
+
+                            <p class="powered">Powered by <a href="https://jupyterbook.org/">Jupyter Book</a></p>
+
+                        </nav>
+
+                        <div class="qe-page__toc-footer">
+                            
+                            
+                            <p><a href="#top"><strong>Back to top</strong></a></p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="qe-page__header">
+
+                    <div class="qe-page__header-copy">
+
+                        <p class="qe-page__header-heading"><a href="intro.html">A First Course in Quantitative Economics with Python</a></p>
+
+                        <p class="qe-page__header-subheading">Present Values</p>
+
+                    </div>
+
+                    <p class="qe-page__header-authors">Thomas J. Sargent & John Stachurski</p>
+
+                </div> <!-- .page__header -->
+
+
+
+                
+                <main class="qe-page__content" role="main">
+                    
+                    <div>
+                        
+  <section class="tex2jax_ignore mathjax_ignore" id="present-values">
+<h1><span class="section-number">8. </span>Present Values<a class="headerlink" href="#present-values" title="Permalink to this heading">#</a></h1>
+<section id="overview">
+<h2><span class="section-number">8.1. </span>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
+<p>This lecture describes the  <strong>present value model</strong> that is a starting point
+of much asset pricing theory.</p>
+<p>We’ll use the calculations described here in several subsequent lectures.</p>
+<p>Our only tool is some elementary linear algebra operations, namely, matrix multiplication and matrix inversion.</p>
+<p>Let’s dive in.</p>
+<p>Let</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\{d_t\}_{t=0}^T \)</span> be a sequence of dividends or “payouts”</p></li>
+<li><p><span class="math notranslate nohighlight">\(\{p_t\}_{t=0}^T \)</span> be a sequence of prices of a claim on the continuation of
+the asset stream from date <span class="math notranslate nohighlight">\(t\)</span> on, namely, <span class="math notranslate nohighlight">\(\{d_s\}_{s=t}^T \)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\( \delta  \in (0,1) \)</span> be a one-period “discount rate”</p></li>
+<li><p><span class="math notranslate nohighlight">\(p_{T+1}^*\)</span> be a terminal price of the asset at time <span class="math notranslate nohighlight">\(T+1\)</span></p></li>
+</ul>
+<p>We  assume that the dividend stream <span class="math notranslate nohighlight">\(\{d_t\}_{t=0}^T \)</span> and the terminal price
+<span class="math notranslate nohighlight">\(p_{T+1}^*\)</span> are both exogenous.</p>
+<p>Assume the sequence of asset pricing equations</p>
+<div class="math notranslate nohighlight" id="equation-eq-euler1">
+<span class="eqno">(8.1)<a class="headerlink" href="#equation-eq-euler1" title="Permalink to this equation">#</a></span>\[
+    p_t = d_t + \delta p_{t+1}, \quad t = 0, 1, \ldots , T
+\]</div>
+<p>This is a “cost equals benefits” formula.</p>
+<p>It says that the cost of buying the asset today equals the reward for holding it
+for one period (which is the dividend <span class="math notranslate nohighlight">\(d_t\)</span>)and then selling it, at <span class="math notranslate nohighlight">\(t+1\)</span>.</p>
+<p>The future value <span class="math notranslate nohighlight">\(p_{t+1}\)</span> is discounted using <span class="math notranslate nohighlight">\(\delta\)</span> to shift it to a present value, so it is comparable with <span class="math notranslate nohighlight">\(d_t\)</span> and <span class="math notranslate nohighlight">\(p_t\)</span>.</p>
+<p>We want to solve for the asset price sequence  <span class="math notranslate nohighlight">\(\{p_t\}_{t=0}^T \)</span> as a function
+of <span class="math notranslate nohighlight">\(\{d_t\}_{t=0}^T \)</span> and <span class="math notranslate nohighlight">\(p_{T+1}^*\)</span>.</p>
+<p>In this lecture we show how this can be done using matrix algebra.</p>
+<p>We will use the following imports</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="present-value-calculations">
+<h2><span class="section-number">8.2. </span>Present value calculations<a class="headerlink" href="#present-value-calculations" title="Permalink to this heading">#</a></h2>
+<p>The equations in <a class="reference internal" href="#equation-eq-euler1">(8.1)</a> can be stacked, as in</p>
+<div class="math notranslate nohighlight" id="equation-eq-euler-stack">
+<span class="eqno">(8.2)<a class="headerlink" href="#equation-eq-euler-stack" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{aligned}
+    p_0 &amp; = d_0 + \delta p_1 \\
+    p_1 &amp; = d_1 + \delta p_2 \\
+    \vdots \\
+    p_{T-1} &amp; = d_{T-1} + \delta p_T \\
+    p_T &amp; = d_T + \delta p^*_{T+1}
+\end{aligned}
+\end{split}\]</div>
+<p>Write the system <a class="reference internal" href="#equation-eq-euler-stack">(8.2)</a> of <span class="math notranslate nohighlight">\(T+1\)</span> asset pricing  equations as the single matrix equation</p>
+<div class="math notranslate nohighlight" id="equation-eq-pvpieq">
+<span class="eqno">(8.3)<a class="headerlink" href="#equation-eq-pvpieq" title="Permalink to this equation">#</a></span>\[
+    \begin{bmatrix} 1 &amp; -\delta &amp; 0 &amp; 0 &amp; \cdots &amp; 0 &amp; 0 \cr
+                    0 &amp; 1 &amp; -\delta &amp; 0 &amp; \cdots &amp; 0 &amp; 0 \cr
+                    0 &amp; 0 &amp; 1 &amp; -\delta &amp; \cdots &amp; 0 &amp; 0 \cr
+                    \vdots &amp; \vdots &amp; \vdots &amp; \vdots &amp; \vdots &amp; 0 &amp; 0 \cr
+                    0 &amp; 0 &amp; 0 &amp; 0 &amp; \cdots &amp; 1 &amp; -\delta \cr
+                    0 &amp; 0 &amp; 0 &amp; 0 &amp; \cdots &amp; 0 &amp; 1 \end{bmatrix}
+    \begin{bmatrix} p_0 \cr p_1 \cr p_2 \cr \vdots \cr p_{T-1} \cr p_T 
+    \end{bmatrix} 
+    =  \begin{bmatrix}  
+    d_0 \cr d_1 \cr d_2 \cr \vdots \cr d_{T-1} \cr d_T
+    \end{bmatrix}
+    + \begin{bmatrix} 
+    0 \cr 0 \cr 0 \cr \vdots \cr 0 \cr \delta p_{T+1}^*
+    \end{bmatrix}
+\]</div>
+<div class="exercise admonition" id="pv_ex_1">
+
+<p class="admonition-title"><span class="caption-number">Exercise 8.1 </span></p>
+<section id="exercise-content">
+<p>Carry out the matrix multiplication in <a class="reference internal" href="#equation-eq-pvpieq">(8.3)</a> by hand and confirm that you
+recover the equations in <a class="reference internal" href="#equation-eq-euler-stack">(8.2)</a>.</p>
+</section>
+</div>
+<p>In vector-matrix notation, we can write the system <a class="reference internal" href="#equation-eq-pvpieq">(8.3)</a> as</p>
+<div class="math notranslate nohighlight" id="equation-eq-apdb">
+<span class="eqno">(8.4)<a class="headerlink" href="#equation-eq-apdb" title="Permalink to this equation">#</a></span>\[
+    A p = d + b
+\]</div>
+<p>Here <span class="math notranslate nohighlight">\(A\)</span> is the matrix on the left side of equation <a class="reference internal" href="#equation-eq-pvpieq">(8.3)</a>, while</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    p = 
+    \begin{bmatrix}
+        p_0 \\
+        p_1 \\
+        \vdots \\
+        p_T
+    \end{bmatrix},
+    \quad
+    d = 
+    \begin{bmatrix}
+        d_0 \\
+        d_1 \\
+        \vdots \\
+        d_T
+    \end{bmatrix},
+    \quad \text{and} \quad
+    b = 
+    \begin{bmatrix}
+        0 \\
+        0 \\
+        \vdots \\
+        p^*_{T+1}
+    \end{bmatrix}
+\end{split}\]</div>
+<p>The solution for prices is given by</p>
+<div class="math notranslate nohighlight" id="equation-eq-apdb-sol">
+<span class="eqno">(8.5)<a class="headerlink" href="#equation-eq-apdb-sol" title="Permalink to this equation">#</a></span>\[
+    p = A^{-1}(d + b)
+\]</div>
+<p>Here is a small example, where the dividend stream is given by</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">T</span> <span class="o">=</span> <span class="mi">6</span>
+<span class="n">current_d</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="n">d</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">d</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">current_d</span><span class="p">)</span>
+    <span class="n">current_d</span> <span class="o">=</span> <span class="n">current_d</span> <span class="o">*</span> <span class="mf">1.05</span> 
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;dividends&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/682612910b757ceae33872882f4120044f9866ba361f41f77175d1c85599b672.png"><img alt="_images/682612910b757ceae33872882f4120044f9866ba361f41f77175d1c85599b672.png" src="_images/682612910b757ceae33872882f4120044f9866ba361f41f77175d1c85599b672.png" style="width: 80%;" /></a>
+</div>
+</div>
+<p>We set <span class="math notranslate nohighlight">\(\delta\)</span> and <span class="math notranslate nohighlight">\(p_{T+1}^*\)</span> to</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">δ</span> <span class="o">=</span> <span class="mf">0.99</span>
+<span class="n">p_star</span> <span class="o">=</span> <span class="mf">10.0</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s build the matrix <span class="math notranslate nohighlight">\(A\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="n">j</span><span class="p">:</span>
+            <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="k">if</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">T</span><span class="p">:</span>
+                <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">δ</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s inspect <span class="math notranslate nohighlight">\(A\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 1.  , -0.99,  0.  ,  0.  ,  0.  ,  0.  ,  0.  ],
+       [ 0.  ,  1.  , -0.99,  0.  ,  0.  ,  0.  ,  0.  ],
+       [ 0.  ,  0.  ,  1.  , -0.99,  0.  ,  0.  ,  0.  ],
+       [ 0.  ,  0.  ,  0.  ,  1.  , -0.99,  0.  ,  0.  ],
+       [ 0.  ,  0.  ,  0.  ,  0.  ,  1.  , -0.99,  0.  ],
+       [ 0.  ,  0.  ,  0.  ,  0.  ,  0.  ,  1.  , -0.99],
+       [ 0.  ,  0.  ,  0.  ,  0.  ,  0.  ,  0.  ,  1.  ]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now let’s solve for prices using <a class="reference internal" href="#equation-eq-apdb-sol">(8.5)</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">b</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">δ</span> <span class="o">*</span> <span class="n">p_star</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">d</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;asset price&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/bc6b6599659594890265fd19b50622501d5412c9423d5004b7e4a3fe9ee8775f.png"><img alt="_images/bc6b6599659594890265fd19b50622501d5412c9423d5004b7e4a3fe9ee8775f.png" src="_images/bc6b6599659594890265fd19b50622501d5412c9423d5004b7e4a3fe9ee8775f.png" style="width: 80%;" /></a>
+</div>
+</div>
+<p>We can also consider a cyclically growing dividend sequence, such as</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">T</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">current_d</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="n">d</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">d</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">current_d</span><span class="p">)</span>
+    <span class="n">current_d</span> <span class="o">=</span> <span class="n">current_d</span> <span class="o">*</span> <span class="mf">1.01</span> <span class="o">+</span> <span class="mf">0.1</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="s1">&#39;o-&#39;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;dividends&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/70b9e32229892cc22b768a5b6d77b288b39131cb0f4aa86bc731fc022bcbad41.png"><img alt="_images/70b9e32229892cc22b768a5b6d77b288b39131cb0f4aa86bc731fc022bcbad41.png" src="_images/70b9e32229892cc22b768a5b6d77b288b39131cb0f4aa86bc731fc022bcbad41.png" style="width: 80%;" /></a>
+</div>
+</div>
+<div class="exercise admonition" id="pv_ex_cyc">
+
+<p class="admonition-title"><span class="caption-number">Exercise 8.2 </span></p>
+<section id="exercise-content">
+<p>Compute the corresponding asset price sequence when <span class="math notranslate nohighlight">\(p^*_{T+1} = 0\)</span> and <span class="math notranslate nohighlight">\(\delta
+= 0.98\)</span>.</p>
+</section>
+</div>
+<div class="solution dropdown admonition" id="pv-solution-2">
+
+<p class="admonition-title">Solution to<a class="reference internal" href="#pv_ex_cyc"> Exercise 8.2</a></p>
+<section id="solution-content">
+<p>We proceed as above after modifying parameters and <span class="math notranslate nohighlight">\(A\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">δ</span> <span class="o">=</span> <span class="mf">0.98</span>
+<span class="n">p_star</span> <span class="o">=</span> <span class="mf">0.0</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="n">j</span><span class="p">:</span>
+            <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="k">if</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">T</span><span class="p">:</span>
+                <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">δ</span>
+
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">b</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">δ</span> <span class="o">*</span> <span class="n">p_star</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">d</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="s1">&#39;o-&#39;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;asset price&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/d02dc312941269dba4f3117885b6fbf5215dbff500a6e226f1874719d03f429e.png"><img alt="_images/d02dc312941269dba4f3117885b6fbf5215dbff500a6e226f1874719d03f429e.png" src="_images/d02dc312941269dba4f3117885b6fbf5215dbff500a6e226f1874719d03f429e.png" style="width: 80%;" /></a>
+</div>
+</div>
+<p>The weighted averaging associated with the present value calculation largely
+eliminates the cycles.</p>
+</section>
+</div>
+</section>
+<section id="analytical-expressions">
+<h2><span class="section-number">8.3. </span>Analytical Expressions<a class="headerlink" href="#analytical-expressions" title="Permalink to this heading">#</a></h2>
+<p>It can be verified that the  inverse of the matrix <span class="math notranslate nohighlight">\(A\)</span> in <a class="reference internal" href="#equation-eq-pvpieq">(8.3)</a> is</p>
+<div class="math notranslate nohighlight" id="equation-eq-ainv">
+<span class="eqno">(8.6)<a class="headerlink" href="#equation-eq-ainv" title="Permalink to this equation">#</a></span>\[ A^{-1} = 
+    \begin{bmatrix}
+        1 &amp; \delta &amp; \delta^2 &amp; \cdots &amp; \delta^{T-1} &amp; \delta^T \cr
+        0 &amp; 1 &amp; \delta &amp; \cdots &amp; \delta^{T-2} &amp; \delta^{T-1} \cr
+        \vdots &amp; \vdots &amp; \vdots &amp; \cdots &amp; \vdots &amp; \vdots \cr
+        0 &amp; 0 &amp; 0 &amp; \cdots &amp; 1  &amp; \delta \cr
+        0 &amp; 0 &amp; 0 &amp; \cdots &amp; 0 &amp; 1 \cr
+    \end{bmatrix}
+\]</div>
+<div class="exercise admonition" id="pv_ex_2">
+
+<p class="admonition-title"><span class="caption-number">Exercise 8.3 </span></p>
+<section id="exercise-content">
+<p>Check this by showing that <span class="math notranslate nohighlight">\(A A^{-1}\)</span> is equal to the identity matrix.</p>
+<p>(By the <a class="reference external" href="https://en.wikipedia.org/wiki/Invertible_matrix">inverse matrix theorem</a>, a matrix <span class="math notranslate nohighlight">\(B\)</span> is the inverse of <span class="math notranslate nohighlight">\(A\)</span> whenever <span class="math notranslate nohighlight">\(A B\)</span> is the identity.)</p>
+</section>
+</div>
+<p>If we use the expression <a class="reference internal" href="#equation-eq-ainv">(8.6)</a> in <a class="reference internal" href="#equation-eq-apdb-sol">(8.5)</a> and perform the indicated matrix multiplication, we shall find  that</p>
+<div class="math notranslate nohighlight" id="equation-eq-ptpveq">
+<span class="eqno">(8.7)<a class="headerlink" href="#equation-eq-ptpveq" title="Permalink to this equation">#</a></span>\[
+    p_t =  \sum_{s=t}^T \delta^{s-t} d_s +  \delta^{T+1-t} p_{T+1}^*
+\]</div>
+<p>Pricing formula <a class="reference internal" href="#equation-eq-ptpveq">(8.7)</a> asserts that  two components sum to the asset price
+<span class="math notranslate nohighlight">\(p_t\)</span>:</p>
+<ul class="simple">
+<li><p>a <strong>fundamental component</strong> <span class="math notranslate nohighlight">\(\sum_{s=t}^T \delta^{s-t} d_s\)</span> that equals the discounted present value of prospective dividends</p></li>
+<li><p>a <strong>bubble component</strong> <span class="math notranslate nohighlight">\(\delta^{T+1-t} p_{T+1}^*\)</span></p></li>
+</ul>
+<p>The fundamental component is pinned down by the discount rate <span class="math notranslate nohighlight">\(\delta\)</span> and the
+“fundaments” of the asset (in this case, the dividends).</p>
+<p>The bubble component is the part of the price that is not pinned down by
+fundaments.</p>
+<p>It is sometimes convenient to rewrite the bubble component as</p>
+<div class="math notranslate nohighlight">
+\[ 
+c \delta^{-t}
+\]</div>
+<p>where</p>
+<div class="math notranslate nohighlight">
+\[ 
+c \equiv \delta^{T+1}p_{T+1}^*
+\]</div>
+</section>
+<section id="more-about-bubbles">
+<h2><span class="section-number">8.4. </span>More about bubbles<a class="headerlink" href="#more-about-bubbles" title="Permalink to this heading">#</a></h2>
+<p>For a few moments, let’s focus on  the special case of an asset that  will never pay dividends, in which case</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{bmatrix}  
+d_0 \cr d_1 \cr d_2 \cr \vdots \cr d_{T-1} \cr d_T
+\end{bmatrix} = 
+\begin{bmatrix}  
+0 \cr 0 \cr 0 \cr \vdots \cr 0 \cr 0
+\end{bmatrix}
+\]</div>
+<p>In this case  system <a class="reference internal" href="#equation-eq-euler1">(8.1)</a> of our <span class="math notranslate nohighlight">\(T+1\)</span> asset pricing  equations takes the
+form of the single matrix equation</p>
+<div class="math notranslate nohighlight" id="equation-eq-pieq2">
+<span class="eqno">(8.8)<a class="headerlink" href="#equation-eq-pieq2" title="Permalink to this equation">#</a></span>\[
+\begin{bmatrix} 1 &amp; -\delta &amp; 0 &amp; 0 &amp; \cdots &amp; 0 &amp; 0 \cr
+                0 &amp; 1 &amp; -\delta &amp; 0 &amp; \cdots &amp; 0 &amp; 0 \cr
+                0 &amp; 0 &amp; 1 &amp; -\delta &amp; \cdots &amp; 0 &amp; 0 \cr
+                \vdots &amp; \vdots &amp; \vdots &amp; \vdots &amp; \vdots &amp; 0 &amp; 0 \cr
+                0 &amp; 0 &amp; 0 &amp; 0 &amp; \cdots &amp; 1 &amp; -\delta \cr
+                0 &amp; 0 &amp; 0 &amp; 0 &amp; \cdots &amp; 0 &amp; 1 \end{bmatrix}
+\begin{bmatrix} p_0 \cr p_1 \cr p_2 \cr \vdots \cr p_{T-1} \cr p_T 
+\end{bmatrix}  =
+\begin{bmatrix} 
+0 \cr 0 \cr 0 \cr \vdots \cr 0 \cr \delta p_{T+1}^*
+\end{bmatrix}
+\]</div>
+<p>Evidently, if <span class="math notranslate nohighlight">\(p_{T+1}^* = 0\)</span>, a price vector <span class="math notranslate nohighlight">\(\vec p\)</span> of with all entries zero
+solves this equation and the only the <strong>fundamental</strong> component of our pricing
+formula <a class="reference internal" href="#equation-eq-ptpveq">(8.7)</a> is present.</p>
+<p>But let’s activate the <strong>bubble</strong>  component by setting</p>
+<div class="math notranslate nohighlight" id="equation-eq-eqbubbleterm">
+<span class="eqno">(8.9)<a class="headerlink" href="#equation-eq-eqbubbleterm" title="Permalink to this equation">#</a></span>\[
+p_{T+1}^* = c \delta^{-(T+1)} 
+\]</div>
+<p>for some positive constant <span class="math notranslate nohighlight">\(c\)</span>.</p>
+<p>In this case, it can be verified that when we multiply both sides of <a class="reference internal" href="#equation-eq-pieq2">(8.8)</a> by
+the matrix <span class="math notranslate nohighlight">\(A^{-1}\)</span> presented in equation <a class="reference internal" href="#equation-eq-ainv">(8.6)</a>, we shall find that</p>
+<div class="math notranslate nohighlight" id="equation-eq-bubble">
+<span class="eqno">(8.10)<a class="headerlink" href="#equation-eq-bubble" title="Permalink to this equation">#</a></span>\[
+p_t = c \delta^{-t}
+\]</div>
+</section>
+<section id="gross-rate-of-return">
+<h2><span class="section-number">8.5. </span>Gross rate of return<a class="headerlink" href="#gross-rate-of-return" title="Permalink to this heading">#</a></h2>
+<p>Define the gross rate of return on holding the asset from period <span class="math notranslate nohighlight">\(t\)</span> to period <span class="math notranslate nohighlight">\(t+1\)</span>
+as</p>
+<div class="math notranslate nohighlight" id="equation-eq-rateofreturn">
+<span class="eqno">(8.11)<a class="headerlink" href="#equation-eq-rateofreturn" title="Permalink to this equation">#</a></span>\[
+R_t = \frac{p_{t+1}}{p_t}
+\]</div>
+<p>Equation <a class="reference internal" href="#equation-eq-bubble">(8.10)</a> confirms that an asset whose  sole source of value is a bubble
+earns a  gross rate of return of</p>
+<div class="math notranslate nohighlight">
+\[
+R_t = \delta^{-1} &gt; 1 .
+\]</div>
+</section>
+<section id="exercises">
+<h2><span class="section-number">8.6. </span>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h2>
+<div class="exercise admonition" id="pv_ex_a">
+
+<p class="admonition-title"><span class="caption-number">Exercise 8.4 </span></p>
+<section id="exercise-content">
+<p>Give analytical expressions for the asset price <span class="math notranslate nohighlight">\(p_t\)</span> under the
+following settings for <span class="math notranslate nohighlight">\(d\)</span> and <span class="math notranslate nohighlight">\(p_{T+1}^*\)</span>:</p>
+<ol class="arabic simple">
+<li><p><span class="math notranslate nohighlight">\(p_{T+1}^* = 0, d_t = g^t d_0\)</span> (a modified version of the Gordon growth formula)</p></li>
+<li><p><span class="math notranslate nohighlight">\(p_{T+1}^* = g^{T+1} d_0,  d_t = g^t d_0\)</span> (the plain vanilla  Gordon growth formula)</p></li>
+<li><p><span class="math notranslate nohighlight">\(p_{T+1}^* = 0, d_t = 0\)</span> (price of a worthless stock)</p></li>
+<li><p><span class="math notranslate nohighlight">\(p_{T+1}^* = c \delta^{-(T+1)}, d_t = 0\)</span> (price of a pure bubble stock)</p></li>
+</ol>
+</section>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                    </div>
+                    
+                </main> <!-- .page__content -->
+                
+
+
+                <footer class="qe-page__footer">
+
+                    <p><a href="https://creativecommons.org/licenses/by-sa/4.0/"><img src="https://licensebuttons.net/l/by-sa/4.0/80x15.png"></a></p>
+
+                    <p>Creative Commons License &ndash; This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International.</p>
+
+                </footer> <!-- .page__footer -->
+
+            </div> <!-- .page -->
+
+            
+
+            
+            <div class="qe-sidebar bd-sidebar inactive" id="site-navigation">
+
+                <div class="qe-sidebar__header">
+
+
+                    Contents
+
+                </div>
+
+                <nav class="qe-sidebar__nav" id="qe-sidebar-nav" aria-label="Main navigation">
+                    <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Introduction
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="about.html">
+   1. About these Lectures
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Economic Data
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="long_run_growth.html">
+   2. Economic Growth Evidence
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="business_cycle.html">
+   3. Business Cycles
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="inequality.html">
+   4. Income and Wealth Inequality
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Essential Tools
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="linear_equations.html">
+   5. Linear Equations and Matrix Algebra
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="eigen_I.html">
+   6. Eigenvalues and Eigenvectors
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro_supply_demand.html">
+   7. Introduction to Supply and Demand
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Linear Dynamics
+ </span>
+</p>
+<ul class="current nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1 current active active">
+  <a class="current reference internal" href="#">
+   8. Present Values
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cons_smooth.html">
+   9. Consumption smoothing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cagan_ree.html">
+   10. A Fiscal Theory of the Price Level
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="geom_series.html">
+   11. Geometric Series for Elementary Economics
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Probability and Distributions
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="prob_dist.html">
+   12. Distributions and Probabilities
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lln_clt.html">
+   13. LLN and CLT
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="monte_carlo.html">
+   14. Monte Carlo and Option Pricing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="heavy_tails.html">
+   15. Heavy-Tailed Distributions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="schelling.html">
+   16. Racial Segregation
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Nonlinear Dynamics
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="solow.html">
+   17. The Solow-Swan Growth Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="scalar_dynam.html">
+   18. Dynamics in One Dimension
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cobweb.html">
+   19. The Cobweb Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="olg.html">
+   20. The Overlapping Generations Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="commod_price.html">
+   21. Commodity Prices
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Stochastic Dynamics
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="markov_chains_I.html">
+   22. Markov Chains: Basic Concepts
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="markov_chains_II.html">
+   23. Markov Chains: Irreducibility and Ergodicity
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="time_series_with_matrices.html">
+   24. Univariate Time Series with Matrix Algebra
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Optimization
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="lp_intro.html">
+   25. Linear Programming
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="comparative_adv.html">
+   26. Comparative Advantage
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nonlinear.html">
+   27. Nonlinear Problems
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="short_path.html">
+   28. Shortest Paths
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Modeling in Higher Dimensions
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="eigen_II.html">
+   29. Spectral Theory
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="input_output.html">
+   30. Input-Output Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lake_model.html">
+   31. A Lake Model of Employment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="networks.html">
+   32. Networks
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Markets and Competitive Equilibrium
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="supply_demand_multiple_goods.html">
+   33. Supply and Demand with Many Goods
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="supply_demand_heterogeneity.html">
+   34. Market Equilibrium with Heterogeneity
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Estimation
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="simple_linear_regression.html">
+   35. Simple Linear Regression Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lr_with_matrices.html">
+   36. Linear Regression with Matrices
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="mle.html">
+   37. Maximum Likelihood Estimation
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Other
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="troubleshooting.html">
+   38. Troubleshooting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="zreferences.html">
+   39. References
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="status.html">
+   40. Execution Statistics
+  </a>
+ </li>
+</ul>
+
+                </nav>
+
+                <div class="qe-sidebar__footer">
+
+                </div>
+
+            </div> <!-- .sidebar -->
+            
+        </div> <!-- .main -->
+
+        <div class="qe-toolbar">
+
+            <div class="qe-toolbar__inner">
+
+                <ul class="qe-toolbar__main">
+                    <li data-tippy-content="Table of Contents" class="btn__sidebar"><i data-feather="menu"></i></li>
+                    <li data-tippy-content="Home"><a href="intro.html"><i data-feather="home"></i></a></li>
+                    <li class="btn__qelogo"><a href="https://quantecon.org" title=""><span class="show-for-sr">QuantEcon</span></a></li>
+                    <!-- <li class="btn__search">
+                        <form action="search.html" method="get">
+                            <input type="search" class="form-control" name="q" id="search-input" placeholder="Search..." aria-label="Search..." autocomplete="off">
+                            <i data-feather="search"></i>
+                        </form>
+                    </li> -->
+                </ul>
+
+                <ul class="qe-toolbar__links">
+                    <li data-tippy-content="Fullscreen" class="btn__fullscreen"><i data-feather="maximize"></i></li>
+                    <li data-tippy-content="Increase font size" class="btn__plus"><i data-feather="plus-circle"></i></li>
+                    <li data-tippy-content="Decrease font size" class="btn__minus"><i data-feather="minus-circle"></i></li>
+                    <li data-tippy-content="Change contrast" class="btn__contrast"><i data-feather="sunset"></i></li>
+                    <li data-tippy-content="Download Notebook"><a href="/_notebooks/pv.ipynb" download><i data-feather="download-cloud"></i></a></li>
+                    <li class="settings-button" id="settingsButton"><div data-tippy-content="Launch Notebook"><i data-feather="play-circle"></i></div></li>
+                        <li data-tippy-content="Download PDF" onClick="window.print()"><i data-feather="file"></i></li>
+                    <li data-tippy-content="View Source"><a target="_blank" href="https://github.com/QuantEcon/lecture-python-intro/blob/main/lectures/pv.md" download><i data-feather="github"></i></a></li>
+                </ul>
+
+            </div>
+
+        </div> <!-- .toolbar -->
+        <div id="downloadPDFModal" style="display: none;">
+            <ul class="pdf-options" style="display: block;">
+                <li class="download-pdf-book" onClick="window.print()">
+                    <p>Lecture (PDF)</p>
+                </li>
+                <li class="download-pdf-file">
+                    <a href="" download><p>Book (PDF)</p></a>
+                </li>
+            </ul>
+        </div>
+        <div id="settingsModal" style="display: none;">
+            <p class="modal-title"> Notebook Launcher </p>
+            <div class="modal-desc">
+            <p>
+                Choose public or private cloud service for "Launch" button.
+            </p>
+            </div>
+            <p class="modal-subtitle">Select a server</p>
+            <ul class="modal-servers">
+            <li class="active launcher-public">
+                <span class="label">Public</span>
+                <select id="launcher-public-input">
+                
+                    <option value="https://mybinder.org/v2/gh/QuantEcon/lecture-python-intro.notebooks/master?urlpath=tree/pv.ipynb">BinderHub</option>
+                
+                    <option value="https://colab.research.google.com/github/QuantEcon/lecture-python-intro.notebooks/blob/master/pv.ipynb">Colab</option>
+                
+                </select>
+                <i class="fas fa-check-circle"></i>
+            </li>
+            <li class="launcher-private">
+                <span class="label">Private</span>
+                <input type="text" id="launcher-private-input" data-repourl="https://github.com/QuantEcon/lecture-python-intro.notebooks" data-urlpath="tree/lecture-python-intro.notebooks/pv.ipynb" data-branch=master>
+                <i class="fas fa-check-circle"></i>
+            </li>
+            </ul>
+            <p class="launch"><a href="https://mybinder.org/v2/gh/QuantEcon/lecture-python-intro.notebooks/master?urlpath=tree/pv.ipynb" id="advancedLaunchButton" target="_blank">Launch Notebook</a></p>
+            <script>
+                // QuantEcon Notebook Launcher
+                const launcherTypeElements = document.querySelectorAll('#settingsModal .modal-servers li');
+                // Highlight the server type if previous selection exists
+                if (typeof localStorage.launcherType !== 'undefined') {
+                  for (var i = 0; i < launcherTypeElements.length; i++) {
+                    launcherTypeElements[i].classList.remove('active');
+                    if ( launcherTypeElements[i].classList.contains(localStorage.launcherType) ) {
+                      launcherTypeElements[i].classList.add('active');
+                    }
+                  }
+                }
+                // Highlight server type on click and set local storage value
+                for (var i = 0; i < launcherTypeElements.length; i++) {
+                  launcherTypeElements[i].addEventListener('click', function() {
+                    for (var j = 0; j < launcherTypeElements.length; j++) {
+                      launcherTypeElements[j].classList.remove('active');
+                    }
+                    this.classList.add('active');
+                    if ( this.classList.contains('launcher-private') ) {
+                      localStorage.launcherType = 'launcher-private';
+                    } else if ( this.classList.contains('launcher-public') ) {
+                      localStorage.launcherType = 'launcher-public';
+                    }
+                    setLaunchServer();
+                  })
+                }
+                const launcherPublic = document.getElementById('launcher-public-input');
+                const launcherPrivate = document.getElementById('launcher-private-input');
+                const pageName = "pv";
+                const repoURL = "https://github.com/QuantEcon/lecture-python-intro.notebooks";
+                const urlPath = "tree/lecture-python-intro.notebooks/pv.ipynb";
+                const branch = "master"
+                const launchNotebookLink = document.getElementById('advancedLaunchButton');
+
+                // Highlight public server option if previous selection exists
+                if (typeof localStorage.launcherPublic !== 'undefined') {
+                  launcherPublic.value = localStorage.launcherPublic;
+                }
+                // Update local storage upon public server selection
+                launcherPublic.addEventListener('change', (event) => {
+                  setLaunchServer();
+                });
+                // Populate private server input if previous entry exists
+                if (typeof localStorage.launcherPrivate !== 'undefined') {
+                  launcherPrivate.value = localStorage.launcherPrivate;
+                }
+                // Update local storage when a private server is entered
+                launcherPrivate.addEventListener('input', (event) => {
+                  setLaunchServer();
+                });
+
+                // Function to update the "Launch Notebook" link href
+                function setLaunchServer() {
+                  launchNotebookLink.removeAttribute("style")
+                  if ( localStorage.launcherType == 'launcher-private' ) {
+                    let repoPrefix = "/jupyter/hub/user-redirect/git-pull?repo=" + repoURL + "&branch=" + branch + "&urlpath=" + urlPath;
+                    launcherPrivateValue = launcherPrivate.value
+                    if (!launcherPrivateValue) {
+                        launchNotebookLink.removeAttribute("href")
+                        launchNotebookLink.style.background = "grey"
+                        return
+                    }
+                    localStorage.launcherPrivate = launcherPrivateValue;
+                    privateServer = localStorage.launcherPrivate.replace(/\/$/, "")
+                    if (!privateServer.includes("http")) {
+                        privateServer = "http://" + privateServer
+                    }
+                    launchNotebookLinkURL = privateServer + repoPrefix;
+                  } else if ( localStorage.launcherType == 'launcher-public' ) {
+                    launcherPublicValue = launcherPublic.options[launcherPublic.selectedIndex].value;
+                    localStorage.launcherPublic = launcherPublicValue;
+                    launchNotebookLinkURL = localStorage.launcherPublic;
+                  }
+                  if (launchNotebookLinkURL) launchNotebookLink.href = launchNotebookLinkURL;
+                }
+                // Check if user has previously selected a server
+                if ( (typeof localStorage.launcherPrivate !== 'undefined') || (typeof localStorage.launcherPublic !== 'undefined') ) {
+                  setLaunchServer();
+                }
+                </script>
+
+        </div>
+
+    </div> <!-- .wrapper-->
+  </body>
+</html>

@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>12. Heavy-Tailed Distributions &#8212; An Introduction to Quantitative Economics and Finance</title>
+    <title>15. Heavy-Tailed Distributions &#8212; A First Course in Quantitative Economics with Python</title>
     <script src="https://unpkg.com/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://unpkg.com/tippy.js@6.3.1/dist/tippy-bundle.umd.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
@@ -100,6 +100,13 @@
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="_static/design-tabs.js"></script>
     <script src="_static/quantecon-book-theme.15b0c36fffe88f468997fa7b698991d3.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-QDS1YRJNGM"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-QDS1YRJNGM');
+            </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -114,8 +121,8 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="13. Racial Segregation" href="schelling.html" />
-    <link rel="prev" title="11. Monte Carlo and Option Pricing" href="monte_carlo.html" />
+    <link rel="next" title="16. Racial Segregation" href="schelling.html" />
+    <link rel="prev" title="14. Monte Carlo and Option Pricing" href="monte_carlo.html" />
 
 <!-- Normal Meta Tags -->
 <meta name="author" context="Thomas J. Sargent &amp; John Stachurski" />
@@ -136,7 +143,7 @@ const thebe_selector_output = ".output, .cell_output"
 <meta property="og:url" content="https://intro.quantecon.org/heavy_tails.html" />
 <meta property="og:image" content="https://assets.quantecon.org/img/qe-og-logo.png" />
 <meta property="og:description" content="This website presents introductory lectures on computational economics, designed and written by Thomas J. Sargent and John Stachurski." />
-<meta property="og:site_name" content="An Introduction to Quantitative Economics and Finance" />
+<meta property="og:site_name" content="A First Course in Quantitative Economics with Python" />
 <meta name="theme-color" content="#ffffff" />
 
   </head>
@@ -163,41 +170,41 @@ const thebe_selector_output = ".output, .cell_output"
 
                         <nav id="bd-toc-nav" class="qe-page__toc-nav">
                             <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">12.1. Overview</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-light-tails">12.1.1. Introduction: light tails</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#when-are-light-tails-valid">12.1.2. When are light tails valid?</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#returns-on-assets">12.1.3. Returns on assets</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#other-data">12.1.4. Other data</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-should-we-care">12.1.5. Why should we care?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">15.1. Overview</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-light-tails">15.1.1. Introduction: light tails</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#when-are-light-tails-valid">15.1.2. When are light tails valid?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#returns-on-assets">15.1.3. Returns on assets</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#other-data">15.1.4. Other data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-should-we-care">15.1.5. Why should we care?</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visual-comparisons">12.2. Visual comparisons</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulations">12.2.1. Simulations</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nonnegative-distributions">12.2.2. Nonnegative distributions</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#counter-cdfs">12.2.3. Counter CDFs</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#empirical-ccdfs">12.2.4. Empirical CCDFs</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#power-laws">12.2.5. Power laws</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visual-comparisons">15.2. Visual comparisons</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulations">15.2.1. Simulations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nonnegative-distributions">15.2.2. Nonnegative distributions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#counter-cdfs">15.2.3. Counter CDFs</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#empirical-ccdfs">15.2.4. Empirical CCDFs</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#power-laws">15.2.5. Power laws</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#heavy-tails-in-economic-cross-sections">12.3. Heavy tails in economic cross-sections</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#firm-size">12.3.1. Firm size</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#city-size">12.3.2. City size</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#wealth">12.3.3. Wealth</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gdp">12.3.4. GDP</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#heavy-tails-in-economic-cross-sections">15.3. Heavy tails in economic cross-sections</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#firm-size">15.3.1. Firm size</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#city-size">15.3.2. City size</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#wealth">15.3.3. Wealth</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gdp">15.3.4. GDP</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#failure-of-the-lln">12.4. Failure of the LLN</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-do-heavy-tails-matter">12.5. Why do heavy tails matter?</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diversification">12.5.1. Diversification</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fiscal-policy">12.5.2. Fiscal policy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#failure-of-the-lln">15.4. Failure of the LLN</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-do-heavy-tails-matter">15.5. Why do heavy tails matter?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diversification">15.5.1. Diversification</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fiscal-policy">15.5.2. Fiscal policy</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#classifying-tail-properties">12.6. Classifying tail properties</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#light-and-heavy-tails">12.6.1. Light and heavy tails</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#classifying-tail-properties">15.6. Classifying tail properties</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#light-and-heavy-tails">15.6.1. Light and heavy tails</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#further-reading">12.7. Further reading</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">12.8. Exercises</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#further-reading">15.7. Further reading</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">15.8. Exercises</a></li>
 </ul>
                             <p class="logo">
                                 
@@ -225,7 +232,7 @@ const thebe_selector_output = ".output, .cell_output"
 
                     <div class="qe-page__header-copy">
 
-                        <p class="qe-page__header-heading"><a href="intro.html">An Introduction to Quantitative Economics and Finance</a></p>
+                        <p class="qe-page__header-heading"><a href="intro.html">A First Course in Quantitative Economics with Python</a></p>
 
                         <p class="qe-page__header-subheading">Heavy-Tailed Distributions</p>
 
@@ -243,7 +250,7 @@ const thebe_selector_output = ".output, .cell_output"
                     <div>
                         
   <section class="tex2jax_ignore mathjax_ignore" id="heavy-tailed-distributions">
-<span id="heavy-tail"></span><h1><a class="toc-backref" href="#id17"><span class="section-number">12. </span>Heavy-Tailed Distributions</a><a class="headerlink" href="#heavy-tailed-distributions" title="Permalink to this heading">#</a></h1>
+<span id="heavy-tail"></span><h1><a class="toc-backref" href="#id17"><span class="section-number">15. </span>Heavy-Tailed Distributions</a><a class="headerlink" href="#heavy-tailed-distributions" title="Permalink to this heading">#</a></h1>
 <div class="contents topic" id="contents">
 <p class="topic-title">Contents</p>
 <ul class="simple">
@@ -277,8 +284,10 @@ const thebe_selector_output = ".output, .cell_output"
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: yfinance in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (0.2.18)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: quantecon in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (0.7.0)
-Requirement already satisfied: pandas_datareader in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (0.10.0)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: quantecon in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (0.7.1)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: pandas_datareader in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (0.10.0)
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting interpolation
@@ -286,49 +295,53 @@ Requirement already satisfied: pandas_datareader in /usr/share/miniconda3/envs/q
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Downloading interpolation-2.2.4-py3-none-any.whl (69 kB)
 ?25l     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/69.0 kB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">69.0/69.0 kB</span> <span class=" -Color -Color-Red">7.9 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
-?25hRequirement already satisfied: lxml&gt;=4.9.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from yfinance) (4.9.1)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">69.0/69.0 kB</span> <span class=" -Color -Color-Red">3.3 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25h
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: requests&gt;=2.26 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from yfinance) (2.28.1)
 Requirement already satisfied: numpy&gt;=1.16.5 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from yfinance) (1.23.5)
-Requirement already satisfied: html5lib&gt;=1.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from yfinance) (1.1)
+Requirement already satisfied: cryptography&gt;=3.3.2 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from yfinance) (39.0.1)
 Requirement already satisfied: frozendict&gt;=2.3.4 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from yfinance) (2.3.8)
+Requirement already satisfied: lxml&gt;=4.9.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from yfinance) (4.9.1)
+Requirement already satisfied: html5lib&gt;=1.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from yfinance) (1.1)
 Requirement already satisfied: multitasking&gt;=0.0.7 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from yfinance) (0.0.11)
 Requirement already satisfied: pytz&gt;=2022.5 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from yfinance) (2022.7)
 Requirement already satisfied: beautifulsoup4&gt;=4.11.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from yfinance) (4.11.1)
-Requirement already satisfied: requests&gt;=2.26 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from yfinance) (2.28.1)
-Requirement already satisfied: appdirs&gt;=1.4.4 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from yfinance) (1.4.4)
 Requirement already satisfied: pandas&gt;=1.3.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from yfinance) (1.5.3)
-Requirement already satisfied: cryptography&gt;=3.3.2 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from yfinance) (39.0.1)
+Requirement already satisfied: appdirs&gt;=1.4.4 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from yfinance) (1.4.4)
+Requirement already satisfied: sympy in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from quantecon) (1.11.1)
 Requirement already satisfied: scipy&gt;=1.5.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from quantecon) (1.10.0)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: sympy in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from quantecon) (1.11.1)
 Requirement already satisfied: numba&gt;=0.49.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from quantecon) (0.56.4)
-Collecting tempita&lt;0.6.0,&gt;=0.5.2
-  Downloading Tempita-0.5.2-py3-none-any.whl (12 kB)
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting packaging&lt;22.0,&gt;=21.3
   Downloading packaging-21.3-py3-none-any.whl (40 kB)
 ?25l     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/40.8 kB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">40.8/40.8 kB</span> <span class=" -Color -Color-Red">19.5 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
-?25hRequirement already satisfied: soupsieve&gt;1.2 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from beautifulsoup4&gt;=4.11.1-&gt;yfinance) (2.3.2.post1)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">40.8/40.8 kB</span> <span class=" -Color -Color-Red">18.5 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25h
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting tempita&lt;0.6.0,&gt;=0.5.2
+  Downloading Tempita-0.5.2-py3-none-any.whl (12 kB)
+Requirement already satisfied: soupsieve&gt;1.2 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from beautifulsoup4&gt;=4.11.1-&gt;yfinance) (2.3.2.post1)
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: cffi&gt;=1.12 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from cryptography&gt;=3.3.2-&gt;yfinance) (1.15.1)
-Requirement already satisfied: six&gt;=1.9 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from html5lib&gt;=1.1-&gt;yfinance) (1.16.0)
 Requirement already satisfied: webencodings in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from html5lib&gt;=1.1-&gt;yfinance) (0.5.1)
+Requirement already satisfied: six&gt;=1.9 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from html5lib&gt;=1.1-&gt;yfinance) (1.16.0)
 Requirement already satisfied: llvmlite&lt;0.40,&gt;=0.39.0dev0 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from numba&gt;=0.49.0-&gt;quantecon) (0.39.1)
 Requirement already satisfied: setuptools in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from numba&gt;=0.49.0-&gt;quantecon) (65.6.3)
 Requirement already satisfied: pyparsing!=3.0.5,&gt;=2.0.2 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from packaging&lt;22.0,&gt;=21.3-&gt;interpolation) (3.0.9)
 Requirement already satisfied: python-dateutil&gt;=2.8.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from pandas&gt;=1.3.0-&gt;yfinance) (2.8.2)
 Requirement already satisfied: idna&lt;4,&gt;=2.5 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests&gt;=2.26-&gt;yfinance) (3.4)
 Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests&gt;=2.26-&gt;yfinance) (2022.12.7)
-Requirement already satisfied: urllib3&lt;1.27,&gt;=1.21.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests&gt;=2.26-&gt;yfinance) (1.26.14)
 Requirement already satisfied: charset-normalizer&lt;3,&gt;=2 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests&gt;=2.26-&gt;yfinance) (2.0.4)
-Requirement already satisfied: mpmath&gt;=0.19 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages/mpmath-1.2.1-py3.10.egg (from sympy-&gt;quantecon) (1.2.1)
+Requirement already satisfied: urllib3&lt;1.27,&gt;=1.21.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests&gt;=2.26-&gt;yfinance) (1.26.14)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: pycparser in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from cffi&gt;=1.12-&gt;cryptography&gt;=3.3.2-&gt;yfinance) (2.21)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: mpmath&gt;=0.19 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages/mpmath-1.2.1-py3.10.egg (from sympy-&gt;quantecon) (1.2.1)
+Requirement already satisfied: pycparser in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from cffi&gt;=1.12-&gt;cryptography&gt;=3.3.2-&gt;yfinance) (2.21)
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Installing collected packages: tempita, packaging, interpolation
@@ -367,10 +380,10 @@ Successfully installed interpolation-2.2.4 packaging-21.3 tempita-0.5.2
 </div>
 </div>
 <section id="overview">
-<h2><a class="toc-backref" href="#id18"><span class="section-number">12.1. </span>Overview</a><a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id18"><span class="section-number">15.1. </span>Overview</a><a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
 <p>In this section we give some motivation for the lecture.</p>
 <section id="introduction-light-tails">
-<h3><span class="section-number">12.1.1. </span>Introduction: light tails<a class="headerlink" href="#introduction-light-tails" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">15.1.1. </span>Introduction: light tails<a class="headerlink" href="#introduction-light-tails" title="Permalink to this heading">#</a></h3>
 <p>Most commonly used probability distributions in classical statistics and
 the natural sciences have “light tails.”</p>
 <p>To explain this concept, let’s look first at examples.</p>
@@ -401,7 +414,7 @@ as with the following code (which assumes <span class="math notranslate nohighli
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/ce2a1fc31d91ae7cd95d6ae3b908c5adfdffaefdfd7947e87a0207968846693b.png"><img alt="_images/ce2a1fc31d91ae7cd95d6ae3b908c5adfdffaefdfd7947e87a0207968846693b.png" src="_images/ce2a1fc31d91ae7cd95d6ae3b908c5adfdffaefdfd7947e87a0207968846693b.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/f8e67a6aa3caa9ce32856524c5548c6463aeceb72b21dd43259ed52a45ef379d.png"><img alt="_images/f8e67a6aa3caa9ce32856524c5548c6463aeceb72b21dd43259ed52a45ef379d.png" src="_images/f8e67a6aa3caa9ce32856524c5548c6463aeceb72b21dd43259ed52a45ef379d.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>Notice how</p>
@@ -417,7 +430,7 @@ as with the following code (which assumes <span class="math notranslate nohighli
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-5.213213193567191, 4.665129239321617)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-4.925720011106632, 4.786103155171787)
 </pre></div>
 </div>
 </div>
@@ -438,7 +451,7 @@ as with the following code (which assumes <span class="math notranslate nohighli
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/84cb5ac2613a76de8453e71f7b08006d1ec6f62db572ebc1cd044276d7bc20d3.png"><img alt="_images/84cb5ac2613a76de8453e71f7b08006d1ec6f62db572ebc1cd044276d7bc20d3.png" src="_images/84cb5ac2613a76de8453e71f7b08006d1ec6f62db572ebc1cd044276d7bc20d3.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/43898e4b5414d3b96fb69e23d2056047fd7ce960a43c61dc1668e9f4d7e5c054.png"><img alt="_images/43898e4b5414d3b96fb69e23d2056047fd7ce960a43c61dc1668e9f4d7e5c054.png" src="_images/43898e4b5414d3b96fb69e23d2056047fd7ce960a43c61dc1668e9f4d7e5c054.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>We have plotted each individual draw <span class="math notranslate nohighlight">\(X_i\)</span> against <span class="math notranslate nohighlight">\(i\)</span>.</p>
@@ -454,7 +467,7 @@ standard deviations from the mean can safely be ignored.”</p>
 <p>But this is only true when distributions have light tails.</p>
 </section>
 <section id="when-are-light-tails-valid">
-<h3><span class="section-number">12.1.2. </span>When are light tails valid?<a class="headerlink" href="#when-are-light-tails-valid" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">15.1.2. </span>When are light tails valid?<a class="headerlink" href="#when-are-light-tails-valid" title="Permalink to this heading">#</a></h3>
 <p>In probability theory and in the real world, many distributions are
 light-tailed.</p>
 <p>For example, human height is light-tailed.</p>
@@ -470,7 +483,7 @@ human high has very light tails.</p>
 <p>In fact human height is approximately normally distributed.</p>
 </section>
 <section id="returns-on-assets">
-<h3><span class="section-number">12.1.3. </span>Returns on assets<a class="headerlink" href="#returns-on-assets" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">15.1.3. </span>Returns on assets<a class="headerlink" href="#returns-on-assets" title="Permalink to this heading">#</a></h3>
 <p>But now we have to ask: does economic data always look like this?</p>
 <p>Let’s look at some financial data first.</p>
 <p>Our aim is to plot the daily change in the price of Amazon (AMZN) stock for
@@ -549,10 +562,10 @@ distribution:</p>
 </div>
 <p>If we look at higher frequency returns data (e.g., tick-by-tick), we often see
 even more extreme observations.</p>
-<p>See, for example, <span id="id1">[<a class="reference internal" href="zreferences.html#id72" title="Benoit Mandelbrot. The variation of certain speculative prices. The Journal of Business, 36(4):394–419, 1963.">Man63</a>]</span> or <span id="id2">[<a class="reference internal" href="zreferences.html#id71" title="Svetlozar Todorov Rachev. Handbook of heavy tailed distributions in finance: Handbooks in finance. Volume 1. Elsevier, 2003.">Rac03</a>]</span>.</p>
+<p>See, for example, <span id="id1">[<a class="reference internal" href="zreferences.html#id73" title="Benoit Mandelbrot. The variation of certain speculative prices. The Journal of Business, 36(4):394–419, 1963.">Man63</a>]</span> or <span id="id2">[<a class="reference internal" href="zreferences.html#id72" title="Svetlozar Todorov Rachev. Handbook of heavy tailed distributions in finance: Handbooks in finance. Volume 1. Elsevier, 2003.">Rac03</a>]</span>.</p>
 </section>
 <section id="other-data">
-<h3><span class="section-number">12.1.4. </span>Other data<a class="headerlink" href="#other-data" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">15.1.4. </span>Other data<a class="headerlink" href="#other-data" title="Permalink to this heading">#</a></h3>
 <p>The data we have just seen is said to be “heavy-tailed”.</p>
 <p>With heavy-tailed distributions, extreme outcomes occur relatively
 frequently.</p>
@@ -574,7 +587,7 @@ are extremely rich.</p></li>
 <p>Later in this lecture, we examine heavy tails in these distributions.</p>
 </section>
 <section id="why-should-we-care">
-<h3><span class="section-number">12.1.5. </span>Why should we care?<a class="headerlink" href="#why-should-we-care" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">15.1.5. </span>Why should we care?<a class="headerlink" href="#why-should-we-care" title="Permalink to this heading">#</a></h3>
 <p>Heavy tails are common in economic data but does that mean they are important?</p>
 <p>The answer to this question is affirmative!</p>
 <p>When distributions are heavy-tailed, we need to think carefully about issues
@@ -588,13 +601,13 @@ like</p>
 </section>
 </section>
 <section id="visual-comparisons">
-<h2><a class="toc-backref" href="#id19"><span class="section-number">12.2. </span>Visual comparisons</a><a class="headerlink" href="#visual-comparisons" title="Permalink to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id19"><span class="section-number">15.2. </span>Visual comparisons</a><a class="headerlink" href="#visual-comparisons" title="Permalink to this heading">#</a></h2>
 <p>Later we will provide a mathematical definition of the difference between
 light and heavy tails.</p>
 <p>But for now let’s do some visual comparisons to help us build intuition on the
 difference between these two types of distributions.</p>
 <section id="simulations">
-<h3><span class="section-number">12.2.1. </span>Simulations<a class="headerlink" href="#simulations" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">15.2.1. </span>Simulations<a class="headerlink" href="#simulations" title="Permalink to this heading">#</a></h3>
 <p>The figure below shows a simulation.</p>
 <p>The top two subfigures each show 120 independent draws from the normal
 distribution, which is light-tailed.</p>
@@ -646,7 +659,7 @@ with a few sudden large deviations from the mean.</p>
 <p>This is typical of a heavy-tailed distribution.</p>
 </section>
 <section id="nonnegative-distributions">
-<h3><span class="section-number">12.2.2. </span>Nonnegative distributions<a class="headerlink" href="#nonnegative-distributions" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">15.2.2. </span>Nonnegative distributions<a class="headerlink" href="#nonnegative-distributions" title="Permalink to this heading">#</a></h3>
 <p>Let’s compare some distributions that only take nonnegative values.</p>
 <p>One is the exponential distribution, which we discussed in <a class="reference internal" href="prob_dist.html"><span class="doc">our lecture on probability and distributions</span></a>.</p>
 <p>The exponential distribution is a light-tailed distribution.</p>
@@ -675,7 +688,7 @@ with a few sudden large deviations from the mean.</p>
 <p>If <span class="math notranslate nohighlight">\(X\)</span> has the Pareto distribution, then there are positive constants <span class="math notranslate nohighlight">\(\bar x\)</span>
 and <span class="math notranslate nohighlight">\(\alpha\)</span> such that</p>
 <div class="math notranslate nohighlight" id="equation-pareto">
-<span class="eqno">(12.1)<a class="headerlink" href="#equation-pareto" title="Permalink to this equation">#</a></span>\[\begin{split}\mathbb P\{X &gt; x\} =
+<span class="eqno">(15.1)<a class="headerlink" href="#equation-pareto" title="Permalink to this equation">#</a></span>\[\begin{split}\mathbb P\{X &gt; x\} =
 \begin{cases}
     \left( \bar x/x \right)^{\alpha}
         &amp; \text{ if } x \geq \bar x
@@ -717,7 +730,7 @@ exponential random variable.</p>
 <p>Notice how extreme outcomes are more common.</p>
 </section>
 <section id="counter-cdfs">
-<h3><span class="section-number">12.2.3. </span>Counter CDFs<a class="headerlink" href="#counter-cdfs" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">15.2.3. </span>Counter CDFs<a class="headerlink" href="#counter-cdfs" title="Permalink to this heading">#</a></h3>
 <p>For nonnegative random variables, one way to visualize the difference between
 light and heavy tails is to look at the
 <strong>counter CDF</strong> (CCDF).</p>
@@ -736,14 +749,14 @@ light and heavy tails is to look at the
 <p>This function goes to zero as <span class="math notranslate nohighlight">\(x \to \infty\)</span>, but much slower than <span class="math notranslate nohighlight">\(G_E\)</span>.</p>
 <div class="exercise admonition" id="ht_ex_x1">
 
-<p class="admonition-title"><span class="caption-number">Exercise 12.1 </span></p>
+<p class="admonition-title"><span class="caption-number">Exercise 15.1 </span></p>
 <section id="exercise-content">
 <p>Show how the CCDF of the Pareto distribution can be derived from the CCDF of the exponential distribution.</p>
 </section>
 </div>
 <div class="solution dropdown admonition" id="heavy_tails-solution-1">
 
-<p class="admonition-title">Solution to<a class="reference internal" href="#ht_ex_x1"> Exercise 12.1</a></p>
+<p class="admonition-title">Solution to<a class="reference internal" href="#ht_ex_x1"> Exercise 15.1</a></p>
 <section id="solution-content">
 <p>Letting <span class="math notranslate nohighlight">\(G_E\)</span> and <span class="math notranslate nohighlight">\(G_P\)</span> be defined as above yields</p>
 <div class="math notranslate nohighlight">
@@ -799,7 +812,7 @@ concave.</p>
 visualisations — we return to this point below.</p>
 </section>
 <section id="empirical-ccdfs">
-<h3><span class="section-number">12.2.4. </span>Empirical CCDFs<a class="headerlink" href="#empirical-ccdfs" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">15.2.4. </span>Empirical CCDFs<a class="headerlink" href="#empirical-ccdfs" title="Permalink to this heading">#</a></h3>
 <p>The sample counterpart of the CCDF function is the <strong>empirical CCDF</strong>.</p>
 <p>Given a sample <span class="math notranslate nohighlight">\(x_1, \ldots, x_n\)</span>, the empirical CCDF is given by</p>
 <div class="math notranslate nohighlight">
@@ -851,7 +864,7 @@ approximately linear in a log-log plot.</p>
 <p>We will use this idea below when we look at real data.</p>
 </section>
 <section id="power-laws">
-<h3><span class="section-number">12.2.5. </span>Power laws<a class="headerlink" href="#power-laws" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">15.2.5. </span>Power laws<a class="headerlink" href="#power-laws" title="Permalink to this heading">#</a></h3>
 <p>One specific class of heavy-tailed distributions has been found repeatedly in
 economic and social phenomena: the class of so-called power laws.</p>
 <p>A random variable <span class="math notranslate nohighlight">\(X\)</span> is said to have a <strong>power law</strong> if, for some <span class="math notranslate nohighlight">\(\alpha &gt; 0\)</span>,</p>
@@ -860,7 +873,7 @@ economic and social phenomena: the class of so-called power laws.</p>
 \quad \text{when $x$ is large}\]</div>
 <p>We can write this more mathematically as</p>
 <div class="math notranslate nohighlight" id="equation-plrt">
-<span class="eqno">(12.2)<a class="headerlink" href="#equation-plrt" title="Permalink to this equation">#</a></span>\[\lim_{x \to \infty} x^\alpha \, \mathbb P\{X &gt; x\} = c
+<span class="eqno">(15.2)<a class="headerlink" href="#equation-plrt" title="Permalink to this equation">#</a></span>\[\lim_{x \to \infty} x^\alpha \, \mathbb P\{X &gt; x\} = c
 \quad \text{for some $c &gt; 0$}\]</div>
 <p>It is also common to say that a random variable <span class="math notranslate nohighlight">\(X\)</span> with this property
 has a <strong>Pareto tail</strong> with <strong>tail index</strong> <span class="math notranslate nohighlight">\(\alpha\)</span>.</p>
@@ -874,7 +887,7 @@ kind of (very) heavy tail.</p>
 </section>
 </section>
 <section id="heavy-tails-in-economic-cross-sections">
-<h2><a class="toc-backref" href="#id20"><span class="section-number">12.3. </span>Heavy tails in economic cross-sections</a><a class="headerlink" href="#heavy-tails-in-economic-cross-sections" title="Permalink to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id20"><span class="section-number">15.3. </span>Heavy tails in economic cross-sections</a><a class="headerlink" href="#heavy-tails-in-economic-cross-sections" title="Permalink to this heading">#</a></h2>
 <p>As mentioned above, heavy tails are pervasive in economic data.</p>
 <p>In fact power laws seem to be very common as well.</p>
 <p>We now illustrate this by showing the empirical CCDF of heavy tails.</p>
@@ -981,7 +994,7 @@ readers are of course welcome to explore the code (perhaps after examining the f
 </details>
 </div>
 <section id="firm-size">
-<h3><span class="section-number">12.3.1. </span>Firm size<a class="headerlink" href="#firm-size" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">15.3.1. </span>Firm size<a class="headerlink" href="#firm-size" title="Permalink to this heading">#</a></h3>
 <p>Here is a plot of the firm size distribution for the largest 500 firms in 2020 taken from Forbes Global 2000.</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
@@ -1010,7 +1023,7 @@ readers are of course welcome to explore the code (perhaps after examining the f
 </div>
 </section>
 <section id="city-size">
-<h3><span class="section-number">12.3.2. </span>City size<a class="headerlink" href="#city-size" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">15.3.2. </span>City size<a class="headerlink" href="#city-size" title="Permalink to this heading">#</a></h3>
 <p>Here are plots of the city size distribution for the US and brazil in 2023 from world population review.</p>
 <p>The size is measured by population.</p>
 <div class="cell tag_hide-input docutils container">
@@ -1040,7 +1053,7 @@ readers are of course welcome to explore the code (perhaps after examining the f
 </div>
 </section>
 <section id="wealth">
-<h3><span class="section-number">12.3.3. </span>Wealth<a class="headerlink" href="#wealth" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">15.3.3. </span>Wealth<a class="headerlink" href="#wealth" title="Permalink to this heading">#</a></h3>
 <p>Here is a plot of the upper tail (top 500) of the wealth distribution.</p>
 <p>The data is from the Forbes Billionaires list in 2020.</p>
 <div class="cell tag_hide-input docutils container">
@@ -1083,7 +1096,7 @@ readers are of course welcome to explore the code (perhaps after examining the f
 </div>
 </section>
 <section id="gdp">
-<h3><span class="section-number">12.3.4. </span>GDP<a class="headerlink" href="#gdp" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">15.3.4. </span>GDP<a class="headerlink" href="#gdp" title="Permalink to this heading">#</a></h3>
 <p>Of course, not all cross-sectional distributions are heavy-tailed.</p>
 <p>Here we show cross-country per capita GDP.</p>
 <div class="cell tag_hide-input docutils container">
@@ -1136,7 +1149,7 @@ averaging in its definition.</p>
 </section>
 </section>
 <section id="failure-of-the-lln">
-<h2><a class="toc-backref" href="#id21"><span class="section-number">12.4. </span>Failure of the LLN</a><a class="headerlink" href="#failure-of-the-lln" title="Permalink to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id21"><span class="section-number">15.4. </span>Failure of the LLN</a><a class="headerlink" href="#failure-of-the-lln" title="Permalink to this heading">#</a></h2>
 <p>One impact of heavy tails is that sample averages can be poor estimators of
 the underlying mean of the distribution.</p>
 <p>To understand this point better, recall <a class="reference internal" href="lln_clt.html"><span class="doc">our earlier discussion</span></a>
@@ -1144,7 +1157,7 @@ of the Law of Large Numbers, which considered IID <span class="math notranslate 
 <p>If <span class="math notranslate nohighlight">\(\mathbb E |X_i|\)</span> is finite, then
 the sample mean <span class="math notranslate nohighlight">\(\bar X_n := \frac{1}{n} \sum_{i=1}^n X_i\)</span> satisfies</p>
 <div class="math notranslate nohighlight" id="equation-lln-as2">
-<span class="eqno">(12.3)<a class="headerlink" href="#equation-lln-as2" title="Permalink to this equation">#</a></span>\[\mathbb P \left\{ \bar X_n \to \mu \text{ as } n \to \infty \right\} = 1\]</div>
+<span class="eqno">(15.3)<a class="headerlink" href="#equation-lln-as2" title="Permalink to this equation">#</a></span>\[\mathbb P \left\{ \bar X_n \to \mu \text{ as } n \to \infty \right\} = 1\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mu := \mathbb E X_i = \int x F(dx)\)</span> is the common mean of the sample.</p>
 <p>The condition <span class="math notranslate nohighlight">\(\mathbb E | X_i | = \int |x| F(dx) &lt; \infty\)</span> holds
 in most cases but can fail if the distribution <span class="math notranslate nohighlight">\(F\)</span> is very heavy tailed.</p>
@@ -1186,7 +1199,7 @@ whether or not the LLN is still valid.</p>
 <p>We return to this point in the exercises.</p>
 </section>
 <section id="why-do-heavy-tails-matter">
-<h2><a class="toc-backref" href="#id22"><span class="section-number">12.5. </span>Why do heavy tails matter?</a><a class="headerlink" href="#why-do-heavy-tails-matter" title="Permalink to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id22"><span class="section-number">15.5. </span>Why do heavy tails matter?</a><a class="headerlink" href="#why-do-heavy-tails-matter" title="Permalink to this heading">#</a></h2>
 <p>We have now seen that</p>
 <ol class="arabic simple">
 <li><p>heavy tails are frequent in economics and</p></li>
@@ -1195,7 +1208,7 @@ whether or not the LLN is still valid.</p>
 <p>But what about in the real world?  Do heavy tails matter?</p>
 <p>Let’s briefly discuss why they do.</p>
 <section id="diversification">
-<h3><span class="section-number">12.5.1. </span>Diversification<a class="headerlink" href="#diversification" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">15.5.1. </span>Diversification<a class="headerlink" href="#diversification" title="Permalink to this heading">#</a></h3>
 <p>One of the most important ideas in investing is using diversification to
 reduce risk.</p>
 <p>This is a very old idea — consider, for example, the expression “don’t put all your eggs in one basket”.</p>
@@ -1222,7 +1235,7 @@ logic is incorrect.</p>
 <p>This means that diversification doesn’t help at all!</p>
 </section>
 <section id="fiscal-policy">
-<h3><span class="section-number">12.5.2. </span>Fiscal policy<a class="headerlink" href="#fiscal-policy" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">15.5.2. </span>Fiscal policy<a class="headerlink" href="#fiscal-policy" title="Permalink to this heading">#</a></h3>
 <p>The heaviness of the tail in the wealth distribution matters for taxation and redistribution policies.</p>
 <p>The same is true for the income distribution.</p>
 <p>For example, the heaviness of the tail of the income distribution helps
@@ -1230,7 +1243,7 @@ determine how much revenue a given tax policy will raise.</p>
 </section>
 </section>
 <section id="classifying-tail-properties">
-<span id="cltail"></span><h2><a class="toc-backref" href="#id23"><span class="section-number">12.6. </span>Classifying tail properties</a><a class="headerlink" href="#classifying-tail-properties" title="Permalink to this heading">#</a></h2>
+<span id="cltail"></span><h2><a class="toc-backref" href="#id23"><span class="section-number">15.6. </span>Classifying tail properties</a><a class="headerlink" href="#classifying-tail-properties" title="Permalink to this heading">#</a></h2>
 <p>Up until now we have discussed light and heavy tails without any mathematical
 definitions.</p>
 <p>Let’s now rectify this.</p>
@@ -1239,10 +1252,10 @@ nonnegative random variables and their distributions.</p>
 <p>The definitions for
 left hand tails are very similar and we omit them to simplify the exposition.</p>
 <section id="light-and-heavy-tails">
-<h3><span class="section-number">12.6.1. </span>Light and heavy tails<a class="headerlink" href="#light-and-heavy-tails" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">15.6.1. </span>Light and heavy tails<a class="headerlink" href="#light-and-heavy-tails" title="Permalink to this heading">#</a></h3>
 <p>A distribution <span class="math notranslate nohighlight">\(F\)</span> with density <span class="math notranslate nohighlight">\(f\)</span> on <span class="math notranslate nohighlight">\(\mathbb R_+\)</span> is called <strong>heavy-tailed</strong> if</p>
 <div class="math notranslate nohighlight" id="equation-defht">
-<span class="eqno">(12.4)<a class="headerlink" href="#equation-defht" title="Permalink to this equation">#</a></span>\[\int_0^\infty \exp(tx) f(x) dx = \infty \; \text{ for all } t &gt; 0.\]</div>
+<span class="eqno">(15.4)<a class="headerlink" href="#equation-defht" title="Permalink to this equation">#</a></span>\[\int_0^\infty \exp(tx) f(x) dx = \infty \; \text{ for all } t &gt; 0.\]</div>
 <p>We say that a nonnegative random variable <span class="math notranslate nohighlight">\(X\)</span> is <strong>heavy-tailed</strong> if its density is heavy-tailed.</p>
 <p>This is equivalent to stating that its <strong>moment generating function</strong> <span class="math notranslate nohighlight">\(m(t) :=
 \mathbb E \exp(t X)\)</span> is infinite for all <span class="math notranslate nohighlight">\(t &gt; 0\)</span>.</p>
@@ -1251,7 +1264,7 @@ distribution</a> is
 heavy-tailed because its moment generating function is infinite everywhere on
 <span class="math notranslate nohighlight">\((0, \infty)\)</span>.</p>
 <p>As claimed above, the Pareto distribution is also heavy-tailed.</p>
-<p>It is easy to see that, under the Pareto law,  <span class="math notranslate nohighlight">\(\mathbb P\{X &gt; x\}\)</span> satisfies <a class="reference internal" href="#equation-plrt">(12.2)</a>.</p>
+<p>It is easy to see that, under the Pareto law,  <span class="math notranslate nohighlight">\(\mathbb P\{X &gt; x\}\)</span> satisfies <a class="reference internal" href="#equation-plrt">(15.2)</a>.</p>
 <p>A distribution <span class="math notranslate nohighlight">\(F\)</span> on <span class="math notranslate nohighlight">\(\mathbb R_+\)</span> is called <strong>light-tailed</strong> if it is not heavy-tailed.</p>
 <p>A nonnegative random variable <span class="math notranslate nohighlight">\(X\)</span> is <strong>light-tailed</strong> if its distribution <span class="math notranslate nohighlight">\(F\)</span> is light-tailed.</p>
 <p>For example, every random variable with bounded support is light-tailed. (Why?)</p>
@@ -1267,20 +1280,20 @@ heavy-tailed because its moment generating function is infinite everywhere on
 </section>
 </section>
 <section id="further-reading">
-<h2><a class="toc-backref" href="#id24"><span class="section-number">12.7. </span>Further reading</a><a class="headerlink" href="#further-reading" title="Permalink to this heading">#</a></h2>
-<p>For more on heavy tails in the wealth distribution, see e.g., <span id="id3">[<a class="reference internal" href="zreferences.html#id76" title="Pareto Vilfredo. Cours d'économie politique. Rouge, Lausanne, 1896.">Vil96</a>]</span> and <span id="id4">[<a class="reference internal" href="zreferences.html#id75" title="Jess Benhabib and Alberto Bisin. Skewed wealth distributions: theory and empirics. Journal of Economic Literature, 56(4):1261–91, 2018.">BB18</a>]</span>.</p>
-<p>For more on heavy tails in the firm size distribution, see e.g., <span id="id5">[<a class="reference internal" href="zreferences.html#id74" title="Robert L Axtell. Zipf distribution of us firm sizes. science, 293(5536):1818–1820, 2001.">Axt01</a>]</span>, <span id="id6">[<a class="reference internal" href="zreferences.html#id73" title="Xavier Gabaix. Power laws in economics: an introduction. Journal of Economic Perspectives, 30(1):185–206, 2016.">Gab16</a>]</span>.</p>
-<p>For more on heavy tails in the city size distribution, see e.g., <span id="id7">[<a class="reference internal" href="zreferences.html#id70" title="Hernán D Rozenfeld, Diego Rybski, Xavier Gabaix, and Hernán A Makse. The area and population of cities: new insights from a different perspective on cities. American Economic Review, 101(5):2205–25, 2011.">RRGM11</a>]</span>, <span id="id8">[<a class="reference internal" href="zreferences.html#id73" title="Xavier Gabaix. Power laws in economics: an introduction. Journal of Economic Perspectives, 30(1):185–206, 2016.">Gab16</a>]</span>.</p>
+<h2><a class="toc-backref" href="#id24"><span class="section-number">15.7. </span>Further reading</a><a class="headerlink" href="#further-reading" title="Permalink to this heading">#</a></h2>
+<p>For more on heavy tails in the wealth distribution, see e.g., <span id="id3">[<a class="reference internal" href="zreferences.html#id77" title="Pareto Vilfredo. Cours d'économie politique. Rouge, Lausanne, 1896.">Vil96</a>]</span> and <span id="id4">[<a class="reference internal" href="zreferences.html#id76" title="Jess Benhabib and Alberto Bisin. Skewed wealth distributions: theory and empirics. Journal of Economic Literature, 56(4):1261–91, 2018.">BB18</a>]</span>.</p>
+<p>For more on heavy tails in the firm size distribution, see e.g., <span id="id5">[<a class="reference internal" href="zreferences.html#id75" title="Robert L Axtell. Zipf distribution of us firm sizes. science, 293(5536):1818–1820, 2001.">Axt01</a>]</span>, <span id="id6">[<a class="reference internal" href="zreferences.html#id74" title="Xavier Gabaix. Power laws in economics: an introduction. Journal of Economic Perspectives, 30(1):185–206, 2016.">Gab16</a>]</span>.</p>
+<p>For more on heavy tails in the city size distribution, see e.g., <span id="id7">[<a class="reference internal" href="zreferences.html#id71" title="Hernán D Rozenfeld, Diego Rybski, Xavier Gabaix, and Hernán A Makse. The area and population of cities: new insights from a different perspective on cities. American Economic Review, 101(5):2205–25, 2011.">RRGM11</a>]</span>, <span id="id8">[<a class="reference internal" href="zreferences.html#id74" title="Xavier Gabaix. Power laws in economics: an introduction. Journal of Economic Perspectives, 30(1):185–206, 2016.">Gab16</a>]</span>.</p>
 <p>There are other important implications of heavy tails, aside from those
 discussed above.</p>
 <p>For example, heavy tails in income and wealth affect productivity growth, business cycles, and political economy.</p>
-<p>For further reading, see, for example, <span id="id9">[<a class="reference internal" href="zreferences.html#id69" title="Daron Acemoglu and James A. Robinson. The political economy of the Kuznets curve. Review of Development Economics, 6(2):183–203, 2002.">AR02</a>]</span>, <span id="id10">[<a class="reference internal" href="zreferences.html#id68" title="Edward Glaeser, Jose Scheinkman, and Andrei Shleifer. The injustice of inequality. Journal of Monetary Economics, 50(1):199–222, 2003.">GSS03</a>]</span>, <span id="id11">[<a class="reference internal" href="zreferences.html#id67" title="Anmol Bhandari, David Evans, Mikhail Golosov, and Thomas J Sargent. Inequality, business cycles, and monetary-fiscal policy. Technical Report, National Bureau of Economic Research, 2018.">BEGS18</a>]</span> or <span id="id12">[<a class="reference internal" href="zreferences.html#id66" title="SeHyoun Ahn, Greg Kaplan, Benjamin Moll, Thomas Winberry, and Christian Wolf. When inequality matters for macro and macro matters for inequality. NBER Macroeconomics Annual, 32(1):1–75, 2018.">AKM+18</a>]</span>.</p>
+<p>For further reading, see, for example, <span id="id9">[<a class="reference internal" href="zreferences.html#id70" title="Daron Acemoglu and James A. Robinson. The political economy of the Kuznets curve. Review of Development Economics, 6(2):183–203, 2002.">AR02</a>]</span>, <span id="id10">[<a class="reference internal" href="zreferences.html#id69" title="Edward Glaeser, Jose Scheinkman, and Andrei Shleifer. The injustice of inequality. Journal of Monetary Economics, 50(1):199–222, 2003.">GSS03</a>]</span>, <span id="id11">[<a class="reference internal" href="zreferences.html#id68" title="Anmol Bhandari, David Evans, Mikhail Golosov, and Thomas J Sargent. Inequality, business cycles, and monetary-fiscal policy. Technical Report, National Bureau of Economic Research, 2018.">BEGS18</a>]</span> or <span id="id12">[<a class="reference internal" href="zreferences.html#id67" title="SeHyoun Ahn, Greg Kaplan, Benjamin Moll, Thomas Winberry, and Christian Wolf. When inequality matters for macro and macro matters for inequality. NBER Macroeconomics Annual, 32(1):1–75, 2018.">AKM+18</a>]</span>.</p>
 </section>
 <section id="exercises">
-<h2><a class="toc-backref" href="#id25"><span class="section-number">12.8. </span>Exercises</a><a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id25"><span class="section-number">15.8. </span>Exercises</a><a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h2>
 <div class="exercise admonition" id="ht_ex2">
 
-<p class="admonition-title"><span class="caption-number">Exercise 12.2 </span></p>
+<p class="admonition-title"><span class="caption-number">Exercise 15.2 </span></p>
 <section id="exercise-content">
 <p>Prove: If <span class="math notranslate nohighlight">\(X\)</span> has a Pareto tail with tail index <span class="math notranslate nohighlight">\(\alpha\)</span>, then
 <span class="math notranslate nohighlight">\(\mathbb E[X^r] = \infty\)</span> for all <span class="math notranslate nohighlight">\(r \geq \alpha\)</span>.</p>
@@ -1288,11 +1301,11 @@ discussed above.</p>
 </div>
 <div class="solution dropdown admonition" id="heavy_tails-solution-3">
 
-<p class="admonition-title">Solution to<a class="reference internal" href="#ht_ex2"> Exercise 12.2</a></p>
+<p class="admonition-title">Solution to<a class="reference internal" href="#ht_ex2"> Exercise 15.2</a></p>
 <section id="solution-content">
 <p>Let <span class="math notranslate nohighlight">\(X\)</span> have a Pareto tail with tail index <span class="math notranslate nohighlight">\(\alpha\)</span> and let <span class="math notranslate nohighlight">\(F\)</span> be its cdf.</p>
 <p>Fix <span class="math notranslate nohighlight">\(r \geq \alpha\)</span>.</p>
-<p>As discussed after <a class="reference internal" href="#equation-plrt">(12.2)</a>, we can take positive constants <span class="math notranslate nohighlight">\(b\)</span> and <span class="math notranslate nohighlight">\(\bar x\)</span> such that</p>
+<p>As discussed after <a class="reference internal" href="#equation-plrt">(15.2)</a>, we can take positive constants <span class="math notranslate nohighlight">\(b\)</span> and <span class="math notranslate nohighlight">\(\bar x\)</span> such that</p>
 <div class="math notranslate nohighlight">
 \[
 \mathbb P\{X &gt; x\} \geq b x^{- \alpha} \text{ whenever } x \geq \bar x
@@ -1311,7 +1324,7 @@ r \int_0^{\bar x} x^{r-1} \mathbb P\{ X &gt; x \} x
 </div>
 <div class="exercise admonition" id="ht_ex3">
 
-<p class="admonition-title"><span class="caption-number">Exercise 12.3 </span></p>
+<p class="admonition-title"><span class="caption-number">Exercise 15.3 </span></p>
 <section id="exercise-content">
 <p>Repeat exercise 1, but replace the three distributions (two normal, one
 Cauchy) with three Pareto distributions using different choices of
@@ -1322,7 +1335,7 @@ Cauchy) with three Pareto distributions using different choices of
 </div>
 <div class="solution dropdown admonition" id="heavy_tails-solution-5">
 
-<p class="admonition-title">Solution to<a class="reference internal" href="#ht_ex3"> Exercise 12.3</a></p>
+<p class="admonition-title">Solution to<a class="reference internal" href="#ht_ex3"> Exercise 15.3</a></p>
 <section id="solution-content">
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1356,11 +1369,11 @@ Cauchy) with three Pareto distributions using different choices of
 </div>
 <div class="exercise admonition" id="ht_ex5">
 
-<p class="admonition-title"><span class="caption-number">Exercise 12.4 </span></p>
+<p class="admonition-title"><span class="caption-number">Exercise 15.4 </span></p>
 <section id="exercise-content">
 <p>There is an ongoing argument about whether the firm size distribution should
 be modeled as a Pareto distribution or a lognormal distribution (see, e.g.,
-<span id="id13">[<a class="reference internal" href="zreferences.html#id59" title="Yoshi Fujiwara, Corrado Di Guilmi, Hideaki Aoyama, Mauro Gallegati, and Wataru Souma. Do pareto–zipf and gibrat laws hold true? an analysis with european firms. Physica A: Statistical Mechanics and its Applications, 335(1-2):197–216, 2004.">FDGA+04</a>]</span>, <span id="id14">[<a class="reference internal" href="zreferences.html#id57" title="Illenin Kondo, Logan T Lewis, and Andrea Stella. On the us firm and establishment size distributions. Technical Report, SSRN, 2018.">KLS18</a>]</span> or <span id="id15">[<a class="reference internal" href="zreferences.html#id58" title="Christian Schluter and Mark Trede. Size distributions reconsidered. Econometric Reviews, 38(6):695–710, 2019.">ST19</a>]</span>).</p>
+<span id="id13">[<a class="reference internal" href="zreferences.html#id60" title="Yoshi Fujiwara, Corrado Di Guilmi, Hideaki Aoyama, Mauro Gallegati, and Wataru Souma. Do pareto–zipf and gibrat laws hold true? an analysis with european firms. Physica A: Statistical Mechanics and its Applications, 335(1-2):197–216, 2004.">FDGA+04</a>]</span>, <span id="id14">[<a class="reference internal" href="zreferences.html#id58" title="Illenin Kondo, Logan T Lewis, and Andrea Stella. On the us firm and establishment size distributions. Technical Report, SSRN, 2018.">KLS18</a>]</span> or <span id="id15">[<a class="reference internal" href="zreferences.html#id59" title="Christian Schluter and Mark Trede. Size distributions reconsidered. Econometric Reviews, 38(6):695–710, 2019.">ST19</a>]</span>).</p>
 <p>This sounds esoteric but has real implications for a variety of economic
 phenomena.</p>
 <p>To illustrate this fact in a simple way, let us consider an economy with
@@ -1380,8 +1393,8 @@ tax revenue over the next 10 years.</p>
 <li><p>multiplying by the tax rate, and</p></li>
 <li><p>summing the results with discounting to obtain present value.</p></li>
 </ol>
-<p>The Pareto distribution is assumed to take the form <a class="reference internal" href="#equation-pareto">(12.1)</a> with <span class="math notranslate nohighlight">\(\bar x = 1\)</span> and <span class="math notranslate nohighlight">\(\alpha = 1.05\)</span>.</p>
-<p>(The value the tail index <span class="math notranslate nohighlight">\(\alpha\)</span> is plausible given the data <span id="id16">[<a class="reference internal" href="zreferences.html#id73" title="Xavier Gabaix. Power laws in economics: an introduction. Journal of Economic Perspectives, 30(1):185–206, 2016.">Gab16</a>]</span>.)</p>
+<p>The Pareto distribution is assumed to take the form <a class="reference internal" href="#equation-pareto">(15.1)</a> with <span class="math notranslate nohighlight">\(\bar x = 1\)</span> and <span class="math notranslate nohighlight">\(\alpha = 1.05\)</span>.</p>
+<p>(The value the tail index <span class="math notranslate nohighlight">\(\alpha\)</span> is plausible given the data <span id="id16">[<a class="reference internal" href="zreferences.html#id74" title="Xavier Gabaix. Power laws in economics: an introduction. Journal of Economic Perspectives, 30(1):185–206, 2016.">Gab16</a>]</span>.)</p>
 <p>To make the lognormal option as similar as possible to the Pareto option, choose
 its parameters such that the mean and median of both distributions are the same.</p>
 <p>Note that, for each distribution, your estimate of tax revenue will be random
@@ -1401,14 +1414,14 @@ firm dynamics in later lectures.)</p>
 </div>
 <div class="solution dropdown admonition" id="heavy_tails-solution-7">
 
-<p class="admonition-title">Solution to<a class="reference internal" href="#ht_ex5"> Exercise 12.4</a></p>
+<p class="admonition-title">Solution to<a class="reference internal" href="#ht_ex5"> Exercise 15.4</a></p>
 <section id="solution-content">
 <p>To do the exercise, we need to choose the parameters <span class="math notranslate nohighlight">\(\mu\)</span>
 and <span class="math notranslate nohighlight">\(\sigma\)</span> of the lognormal distribution to match the mean and median
 of the Pareto distribution.</p>
 <p>Here we understand the lognormal distribution as that of the random variable
 <span class="math notranslate nohighlight">\(\exp(\mu + \sigma Z)\)</span> when <span class="math notranslate nohighlight">\(Z\)</span> is standard normal.</p>
-<p>The mean and median of the Pareto distribution <a class="reference internal" href="#equation-pareto">(12.1)</a> with
+<p>The mean and median of the Pareto distribution <a class="reference internal" href="#equation-pareto">(15.1)</a> with
 <span class="math notranslate nohighlight">\(\bar x = 1\)</span> are</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1533,11 +1546,11 @@ assumption leads to a lower mean and greater dispersion.</p>
 </div>
 <div class="exercise admonition" id="ht_ex_cauchy">
 
-<p class="admonition-title"><span class="caption-number">Exercise 12.5 </span></p>
+<p class="admonition-title"><span class="caption-number">Exercise 15.5 </span></p>
 <section id="exercise-content">
 <p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Characteristic_function_%28probability_theory%29">characteristic function</a> of the Cauchy distribution is</p>
 <div class="math notranslate nohighlight" id="equation-lln-cch">
-<span class="eqno">(12.5)<a class="headerlink" href="#equation-lln-cch" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(15.5)<a class="headerlink" href="#equation-lln-cch" title="Permalink to this equation">#</a></span>\[
     \phi(t) = \mathbb E e^{itX} = \int e^{i t x} f(x) dx = e^{-|t|}
 \]</div>
 <p>Prove that the sample mean <span class="math notranslate nohighlight">\(\bar X_n\)</span> of <span class="math notranslate nohighlight">\(n\)</span> independent draws <span class="math notranslate nohighlight">\(X_1, \ldots,
@@ -1548,7 +1561,7 @@ X_n\)</span> from the Cauchy distribution has the same characteristic function a
 </div>
 <div class="solution dropdown admonition" id="heavy_tails-solution-9">
 
-<p class="admonition-title">Solution to<a class="reference internal" href="#ht_ex_cauchy"> Exercise 12.5</a></p>
+<p class="admonition-title">Solution to<a class="reference internal" href="#ht_ex_cauchy"> Exercise 15.5</a></p>
 <section id="solution-content">
 <p>By independence, the characteristic function of the sample mean becomes</p>
 <div class="math notranslate nohighlight">
@@ -1563,7 +1576,7 @@ X_n\)</span> from the Cauchy distribution has the same characteristic function a
     = [\phi(t/n)]^n
 \end{aligned}
 \end{split}\]</div>
-<p>In view of <a class="reference internal" href="#equation-lln-cch">(12.5)</a>, this is just <span class="math notranslate nohighlight">\(e^{-|t|}\)</span>.</p>
+<p>In view of <a class="reference internal" href="#equation-lln-cch">(15.5)</a>, this is just <span class="math notranslate nohighlight">\(e^{-|t|}\)</span>.</p>
 <p>Thus, in the case of the Cauchy distribution, the sample mean itself has the very same Cauchy distribution, regardless of <span class="math notranslate nohighlight">\(n\)</span>!</p>
 </section>
 </div>
@@ -1639,7 +1652,7 @@ X_n\)</span> from the Cauchy distribution has the same characteristic function a
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="long_run_growth.html">
-   2. Long Run Growth
+   2. Economic Growth Evidence
   </a>
  </li>
  <li class="toctree-l1">
@@ -1674,9 +1687,31 @@ X_n\)</span> from the Cauchy distribution has the same characteristic function a
    7. Introduction to Supply and Demand
   </a>
  </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Linear Dynamics
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="pv.html">
+   8. Present Values
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cons_smooth.html">
+   9. Consumption smoothing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cagan_ree.html">
+   10. A Fiscal Theory of the Price Level
+  </a>
+ </li>
  <li class="toctree-l1">
   <a class="reference internal" href="geom_series.html">
-   8. Geometric Series for Elementary Economics
+   11. Geometric Series for Elementary Economics
   </a>
  </li>
 </ul>
@@ -1688,69 +1723,81 @@ X_n\)</span> from the Cauchy distribution has the same characteristic function a
 <ul class="current nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="prob_dist.html">
-   9. Distributions and Probabilities
+   12. Distributions and Probabilities
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="lln_clt.html">
-   10. LLN and CLT
+   13. LLN and CLT
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="monte_carlo.html">
-   11. Monte Carlo and Option Pricing
+   14. Monte Carlo and Option Pricing
   </a>
  </li>
  <li class="toctree-l1 current active active">
   <a class="current reference internal" href="#">
-   12. Heavy-Tailed Distributions
+   15. Heavy-Tailed Distributions
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="schelling.html">
-   13. Racial Segregation
+   16. Racial Segregation
   </a>
  </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
-  Dynamics
+  Nonlinear Dynamics
  </span>
 </p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="solow.html">
-   14. The Solow-Swan Growth Model
+   17. The Solow-Swan Growth Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="scalar_dynam.html">
-   15. Dynamics in One Dimension
+   18. Dynamics in One Dimension
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cobweb.html">
-   16. The Cobweb Model
+   19. The Cobweb Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="olg.html">
-   17. The Overlapping Generations Model
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="markov_chains_I.html">
-   18. Markov Chains: Basic Concepts and Stationarity
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="markov_chains_II.html">
-   19. Markov Chains: Irreducibility and Ergodicity
+   20. The Overlapping Generations Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="commod_price.html">
-   20. Commodity Prices
+   21. Commodity Prices
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Stochastic Dynamics
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="markov_chains_I.html">
+   22. Markov Chains: Basic Concepts
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="markov_chains_II.html">
+   23. Markov Chains: Irreducibility and Ergodicity
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="time_series_with_matrices.html">
+   24. Univariate Time Series with Matrix Algebra
   </a>
  </li>
 </ul>
@@ -1762,22 +1809,22 @@ X_n\)</span> from the Cauchy distribution has the same characteristic function a
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="lp_intro.html">
-   21. Linear Programming
+   25. Linear Programming
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="comparative_adv.html">
-   22. Comparative Advantage
+   26. Comparative Advantage
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="nonlinear.html">
-   23. Nonlinear Problems
+   27. Nonlinear Problems
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="short_path.html">
-   24. Shortest Paths
+   28. Shortest Paths
   </a>
  </li>
 </ul>
@@ -1789,27 +1836,22 @@ X_n\)</span> from the Cauchy distribution has the same characteristic function a
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="eigen_II.html">
-   25. Spectral Theory
+   29. Spectral Theory
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="input_output.html">
-   26. Input-Output Models
+   30. Input-Output Models
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="lake_model.html">
-   27. A Lake Model of Employment
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="asset_pricing.html">
-   28. Introduction to Asset Pricing
+   31. A Lake Model of Employment
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="networks.html">
-   29. Networks
+   32. Networks
   </a>
  </li>
 </ul>
@@ -1821,12 +1863,12 @@ X_n\)</span> from the Cauchy distribution has the same characteristic function a
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="supply_demand_multiple_goods.html">
-   30. Supply and Demand with Many Goods
+   33. Supply and Demand with Many Goods
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="supply_demand_heterogeneity.html">
-   31. Market Equilibrium with Heterogeneity
+   34. Market Equilibrium with Heterogeneity
   </a>
  </li>
 </ul>
@@ -1838,17 +1880,17 @@ X_n\)</span> from the Cauchy distribution has the same characteristic function a
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="simple_linear_regression.html">
-   32. Simple Linear Regression Model
+   35. Simple Linear Regression Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="lr_with_matrices.html">
-   33. Linear Regression with Matrices
+   36. Linear Regression with Matrices
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="mle.html">
-   34. Maximum Likelihood Estimation
+   37. Maximum Likelihood Estimation
   </a>
  </li>
 </ul>
@@ -1860,17 +1902,17 @@ X_n\)</span> from the Cauchy distribution has the same characteristic function a
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="troubleshooting.html">
-   35. Troubleshooting
+   38. Troubleshooting
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="zreferences.html">
-   36. References
+   39. References
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="status.html">
-   37. Execution Statistics
+   40. Execution Statistics
   </a>
  </li>
 </ul>

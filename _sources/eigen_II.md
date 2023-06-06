@@ -11,8 +11,6 @@ kernelspec:
   name: python3
 ---
 
-
-
 # Spectral Theory
 
 ```{index} single: Spectral Theory
@@ -50,7 +48,7 @@ Often, in economics, the matrix that we are dealing with is nonnegative.
 
 Nonnegative matrices have several special and useful properties.
 
-In this section we discuss some of them --- in particular, the connection
+In this section we will discuss some of them --- in particular, the connection
 between nonnegativity and eigenvalues.
 
 Let $a^{k}_{ij}$ be element $(i,j)$ of $A^k$.
@@ -63,11 +61,11 @@ We denote this as $A \geq 0$.
 (irreducible)=
 ### Irreducible matrices
 
-We have (informally) introduced irreducible matrices in the Markov chain lecture (TODO: link to Markov chain lecture).
+We introduced irreducible matrices in the [Markov chain lecture](mc_irreducible).
 
-Here we will introduce this concept formally.
+Here we generalize this concept:
 
-$A$ is called **irreducible** if for *each* $(i,j)$ there is an integer $k \geq 0$ such that $a^{k}_{ij} > 0$.
+An $n \times n$ matrix $A$ is called irreducible if, for each $i,j$ with $1 \leq i, j \leq n$, there exists a $k \geq 0$ such that $a^{k}_{ij} > 0$.
 
 A matrix $A$ that is not irreducible is called reducible.
 
@@ -84,19 +82,15 @@ Here are some examples to illustrate this further.
 
 Let $A$ be a square nonnegative matrix and let $A^k$ be the $k^{th}$ power of $A$.
 
-A matrix is considered **primitive** if there exists a $k \in \mathbb{N}$ such that $A^k$ is everywhere positive.
+A matrix is called **primitive** if there exists a $k \in \mathbb{N}$ such that $A^k$ is everywhere positive.
 
 It means that $A$ is called primitive if there is an integer $k \geq 0$ such that $a^{k}_{ij} > 0$ for *all* $(i,j)$.
 
 We can see that if a matrix is primitive, then it implies the matrix is irreducible.
 
-This is because if there exists an $A^k$ such that $a^{k}_{ij} > 0$ for all $(i,j)$, then it guarantees the same property for ${k+1}^th, {k+2}^th ... {k+n}^th$ iterations.
-
-In other words, a primitive matrix is both irreducible and aperiodic as aperiodicity requires a state to be visited with a guarantee of returning to itself after a certain amount of iterations.
-
 ### Left eigenvectors
 
-We have previously discussed right (ordinary) eigenvectors $Av = \lambda v$.
+We previously discussed right (ordinary) eigenvectors $Av = \lambda v$.
 
 Here we introduce left eigenvectors.
 
@@ -104,9 +98,9 @@ Left eigenvectors will play important roles in what follows, including that of s
 
 We will talk more about this later, but for now, let's define left eigenvectors.
 
-A vector $w$ is called a left eigenvector of $A$ if $w$ is an eigenvector of $A^T$.
+A vector $w$ is called a left eigenvector of $A$ if $w$ is an eigenvector of $A^\top$.
 
-In other words, if $w$ is a left eigenvector of matrix A, then $A^T w = \lambda w$, where $\lambda$ is the eigenvalue associated with the left eigenvector $v$.
+In other words, if $w$ is a left eigenvector of matrix $A$, then $A^\top w = \lambda w$, where $\lambda$ is the eigenvalue associated with the left eigenvector $v$.
 
 This hints at how to compute left eigenvectors
 
@@ -147,19 +141,18 @@ print(w)
 
 Note that the eigenvalues for both left and right eigenvectors are the same, but the eigenvectors themselves are different.
 
-We can then take transpose to obtain $A^T w = \lambda w$ and obtain $w^T A= \lambda w^T$.
+We can then take transpose to obtain $A^\top w = \lambda w$ and obtain $w^\top A= \lambda w^\top$.
 
 This is a more common expression and where the name left eigenvectors originates.
 
 (perron-frobe)=
 ### The Perron-Frobenius Theorem
 
-For a nonnegative matrix $A$ the behavior of $A^k$ as $k \to \infty$ is controlled by the eigenvalue with the largest
+For a square nonnegative matrix $A$, the behavior of $A^k$ as $k \to \infty$ is controlled by the eigenvalue with the largest
 absolute value, often called the **dominant eigenvalue**.
 
-For a matrix $A$, the Perron-Frobenius Theorem characterizes certain
-properties of the dominant eigenvalue and its corresponding eigenvector when
-$A$ is a nonnegative square matrix.
+For any such matrix $A$, the Perron-Frobenius Theorem characterizes certain
+properties of the dominant eigenvalue and its corresponding eigenvector.
 
 ```{prf:Theorem} Perron-Frobenius Theorem
 :label: perron-frobenius
@@ -179,7 +172,7 @@ If $A$ is primitive then,
 
 6. the inequality $|\lambda| \leq r(A)$ is **strict** for all eigenvalues $\lambda$ of $A$ distinct from $r(A)$, and
 7. with $v$ and $w$ normalized so that the inner product of $w$ and  $v = 1$, we have
-$ r(A)^{-m} A^m$ converges to $v w^{\top}$ when $m \rightarrow \infty$. $v w^{\top}$ is called the **Perron projection** of $A$.
+$ r(A)^{-m} A^m$ converges to $v w^{\top}$ when $m \rightarrow \infty$. The matrix $v w^{\top}$ is called the **Perron projection** of $A$
 ```
 
 (This is a relatively simple version of the theorem --- for more details see
@@ -193,7 +186,7 @@ Now let's consider examples for each case.
 
 #### Example 1: irreducible matrix
 
-Consider the following irreducible matrix A:
+Consider the following irreducible matrix $A$:
 
 ```{code-cell} ipython3
 A = np.array([[0, 1, 0],
@@ -207,7 +200,7 @@ We can compute the dominant eigenvalue and the corresponding eigenvector
 eig(A)
 ```
 
-Now we can go through our checklist to verify the claims of the Perron-Frobenius Theorem for the irreducible matrix A:
+Now we can go through our checklist to verify the claims of the Perron-Frobenius Theorem for the irreducible matrix $A$:
 
 1. The dominant eigenvalue is real-valued and non-negative.
 2. All other eigenvalues have absolute values less than or equal to the dominant eigenvalue.
@@ -217,7 +210,7 @@ Now we can go through our checklist to verify the claims of the Perron-Frobenius
 
 #### Example 2: primitive matrix
 
-Consider the following primitive matrix B:
+Consider the following primitive matrix $B$:
 
 ```{code-cell} ipython3
 B = np.array([[0, 1, 1],
@@ -227,27 +220,13 @@ B = np.array([[0, 1, 1],
 np.linalg.matrix_power(B, 2)
 ```
 
-We can compute the dominant eigenvalue and the corresponding eigenvector using the power iteration method as discussed {ref}`earlier<eig1_ex1>`:
-
-```{code-cell} ipython3
-num_iters = 20
-b = np.random.rand(B.shape[1])
-
-for i in range(num_iters):
-    b = B @ b
-    b = b / np.linalg.norm(b)
-
-dominant_eigenvalue = np.dot(B @ b, b) / np.dot(b, b)
-np.round(dominant_eigenvalue, 2)
-```
+We compute the dominant eigenvalue and the corresponding eigenvector
 
 ```{code-cell} ipython3
 eig(B)
 ```
 
-
-
-Now let's verify the claims of the Perron-Frobenius Theorem for the primitive matrix B:
+Now let's verify the claims of the Perron-Frobenius Theorem for the primitive matrix $B$:
 
 1. The dominant eigenvalue is real-valued and non-negative.
 2. All other eigenvalues have absolute values strictly less than the dominant eigenvalue.
@@ -299,15 +278,15 @@ def check_convergence(M):
 
         # Calculate the norm of the difference matrix
         diff_norm = np.linalg.norm(diff, 'fro')
-        print(f"n = {n}, norm of the difference: {diff_norm:.10f}")
+        print(f"n = {n}, error = {diff_norm:.10f}")
 
 
 A1 = np.array([[1, 2],
                [1, 4]])
 
 A2 = np.array([[0, 1, 1],
-              [1, 0, 1],
-              [1, 1, 0]])
+               [1, 0, 1],
+               [1, 1, 0]])
 
 A3 = np.array([[0.971, 0.029, 0.1, 1],
                [0.145, 0.778, 0.077, 0.59],
@@ -352,7 +331,7 @@ In fact we have already seen the theorem in action before in {ref}`the markov ch
 
 We are now prepared to bridge the languages spoken in the two lectures.
 
-A primitive matrix is both irreducible (or strongly connected in the language of graph) and aperiodic.
+A primitive matrix is both irreducible (or strongly connected in the language of {ref}`graph theory<strongly_connected>` and aperiodic.
 
 So Perron-Frobenius Theorem explains why both Imam and Temple matrix and Hamilton matrix converge to a stationary distribution, which is the Perron projection of the two matrices
 
@@ -394,6 +373,8 @@ In the {ref}`exercise<mc1_ex_1>`, we stated that the convergence rate is determi
 
 This can be proven using what we have learned here.
 
+Please note that we use $\mathbb{1}$ for a vector of ones in this lecture.
+
 With Markov model $M$ with state space $S$ and transition matrix $P$, we can write $P^t$ as
 
 $$
@@ -402,7 +383,7 @@ $$
 
 This is proven in {cite}`sargent2023economic` and a nice discussion can be found [here](https://math.stackexchange.com/questions/2433997/can-all-matrices-be-decomposed-as-product-of-right-and-left-eigenvector).
 
-In the formula $\lambda_i$ is an eigenvalue of $P$ and $v_i$ and $w_i$ are the right and left eigenvectors corresponding to $\lambda_i$.
+In this formula $\lambda_i$ is an eigenvalue of $P$ with corresponding right and left eigenvectors $v_i$ and $w_i$ .
 
 Premultiplying $P^t$ by arbitrary $\psi \in \mathscr{D}(S)$ and rearranging now gives
 
@@ -485,7 +466,7 @@ The following is a fundamental result in functional analysis that generalizes
 
 Let $A$ be a square matrix and let $A^k$ be the $k$-th power of $A$.
 
-Let $r(A)$ be the dominant eigenvector or as it is commonly called the *spectral radius*, defined as $\max_i |\lambda_i|$, where
+Let $r(A)$ be the **spectral radius** of $A$, defined as $\max_i |\lambda_i|$, where
 
 * $\{\lambda_i\}_i$ is the set of eigenvalues of $A$ and
 * $|\lambda_i|$ is the modulus of the complex number $\lambda_i$

@@ -11,7 +11,6 @@ kernelspec:
   name: python3
 ---
 
-+++ {"user_expressions": []}
 
 # Distributions and Probabilities
 
@@ -27,6 +26,7 @@ kernelspec:
 In this lecture we give a quick introduction to data and probability distributions using Python
 
 ```{code-cell} ipython3
+:tags: [hide-output]
 !pip install --upgrade yfinance  
 ```
 

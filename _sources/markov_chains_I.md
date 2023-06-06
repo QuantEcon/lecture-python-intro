@@ -11,9 +11,7 @@ kernelspec:
   name: python3
 ---
 
-
-
-# Markov Chains: Basic Concepts and Stationarity
+# Markov Chains: Basic Concepts 
 
 
 ```{index} single: Markov Chains: Basic Concepts and Stationarity
@@ -29,17 +27,7 @@ In addition to what's in Anaconda, this lecture will need the following librarie
 :tags: [hide-output]
 
 !pip install quantecon
-!pip install graphviz
 ```
-
-```{admonition} graphviz
-:class: warning
-If you are running this lecture locally it requires [graphviz](https://www.graphviz.org)
-to be installed on your computer. Installation instructions for graphviz can be found
-[here](https://www.graphviz.org/download/)
-```
-
-
 
 ## Overview
 
@@ -67,14 +55,11 @@ Let's start with some standard imports:
 import matplotlib.pyplot as plt
 import quantecon as qe
 import numpy as np
-from graphviz import Digraph
 import networkx as nx
 from matplotlib import cm
 import matplotlib as mpl
 from itertools import cycle
 ```
-
-
 
 ## Definitions and examples
 
@@ -98,7 +83,7 @@ In other words,
 
 If $P$ is a stochastic matrix, then so is the $k$-th power $P^k$ for all $k \in \mathbb N$.
 
-Checking this is {ref}`one of the exercises <mc1_ex_3>` below.
+Checking this in {ref}`the first exercises <mc1_ex_3>` below.
 
 
 ### Markov chains
@@ -116,28 +101,13 @@ will become clear.
 
 From  US unemployment data, Hamilton {cite}`Hamilton2005` estimated the following dynamics.
 
-```{code-cell} ipython3
-:tags: [hide-input]
+```{image} /_static/lecture_specific/markov_chains_I/Hamilton.png
+:name: mc_hamilton
+:align: center
 
-dot = Digraph(comment='Graph')
-dot.attr(rankdir='LR')
-dot.node("ng")
-dot.node("mr")
-dot.node("sr")
-
-dot.edge("ng", "ng", label="0.971")
-dot.edge("ng", "mr", label="0.029")
-dot.edge("mr", "ng", label="0.145")
-
-dot.edge("mr", "mr", label="0.778")
-dot.edge("mr", "sr", label="0.077")
-dot.edge("sr", "mr", label="0.508")
-
-dot.edge("sr", "sr", label="0.492")
-dot
 ```
 
-
++++
 
 Here there are three **states**
 
@@ -255,15 +225,15 @@ We'll cover some of these applications below.
 (mc_eg3)=
 #### Example 3
 
-Imam and Temple {cite}`imampolitical` categorize political institutions into three types: democracy (D), autocracy (A), and an intermediate state called anocracy (N).
+Imam and Temple {cite}`imampolitical` categorize political institutions into
+three types: democracy $\text{(D)}$, autocracy $\text{(A)}$, and an intermediate
+state called anocracy $\text{(N)}$.
 
-Each institution can have two potential development regimes: collapse (C) and growth (G). This results in six possible states: DG, DC, NG, NC, AG, and AC.
+Each institution can have two potential development regimes: collapse $\text{(C)}$ and growth $\text{(G)}$. This results in six possible states: $\text{DG, DC, NG, NC, AG}$ and $\text{AC}$.
 
-The lower probability of transitioning from NC to itself indicates that collapses in anocracies quickly evolve into changes in the political institution.
+Imam and Temple {cite}`imampolitical` estimate the following transition
+probabilities:
 
-Democracies tend to have longer-lasting growth regimes compared to autocracies as indicated by the lower probability of transitioning from growth to growth in autocracies.
-
-We can also find a higher probability from collapse to growth in democratic regimes
 
 $$
 P :=
@@ -287,7 +257,11 @@ P = [[0.86, 0.11, 0.03, 0.00, 0.00, 0.00],
      [0.00, 0.00, 0.09, 0.15, 0.26, 0.50]]
 ```
 
+Here is a visualization, with darker colors indicating higher probability.
+
 ```{code-cell} ipython3
+:tags: [hide-input]
+
 G = nx.MultiDiGraph()
 edge_ls = []
 label_dict = {}
@@ -315,6 +289,13 @@ ax.set_axis_off()
 plt.colorbar(pc, ax=ax)
 plt.show()
 ```
+
+Looking at the data, we see that democracies tend to have longer-lasting growth
+regimes compared to autocracies (as indicated by the lower probability of
+transitioning from growth to growth in autocracies).
+
+We can also find a higher probability from collapse to growth in democratic regimes
+
 
 ### Defining Markov chains
 
@@ -393,7 +374,7 @@ In these exercises, we'll take the state space to be $S = 0,\ldots, n-1$.
 To simulate a Markov chain, we need
 
 1. a stochastic matrix $P$ and
-1. a probability mass function $\psi_0$ of length $n$ from which to draw a initial realization of $X_0$.
+1. a probability mass function $\psi_0$ of length $n$ from which to draw an initial realization of $X_0$.
 
 The Markov chain is then constructed as follows:
 
@@ -405,7 +386,7 @@ The Markov chain is then constructed as follows:
 To implement this simulation procedure, we need a method for generating draws
 from a discrete distribution.
 
-For this task, we'll use `random.draw` from [QuantEcon](http://quantecon.org/quantecon-py).
+For this task, we'll use `random.draw` from [QuantEcon.py](http://quantecon.org/quantecon-py).
 
 To use `random.draw`, we first need to convert the probability mass function
 to a cumulative distribution
@@ -415,8 +396,6 @@ to a cumulative distribution
 cdf = np.cumsum(ψ_0)       # convert into cumulative distribution
 qe.random.draw(cdf, 5)   # generate 5 independent draws from ψ
 ```
-
-
 
 We'll write our code as a function that accepts the following three arguments
 
@@ -449,8 +428,6 @@ def mc_sample_path(P, ψ_0=None, ts_length=1_000):
     return X
 ```
 
-
-
 Let's see how it works using the small matrix
 
 ```{code-cell} ipython3
@@ -458,15 +435,11 @@ P = [[0.4, 0.6],
      [0.2, 0.8]]
 ```
 
-
-
 Here's a short time series.
 
 ```{code-cell} ipython3
 mc_sample_path(P, ψ_0=[1.0, 0.0], ts_length=10)
 ```
-
-
 
 It can be shown that for a long series drawn from `P`, the fraction of the
 sample that takes value 0 will be about 0.25.
@@ -483,15 +456,13 @@ X = mc_sample_path(P, ψ_0=[0.1, 0.9], ts_length=1_000_000)
 np.mean(X == 0)
 ```
 
-
-
 You can try changing the initial distribution to confirm that the output is
 always close to 0.25 (for the `P` matrix above).
 
 
 ### Using QuantEcon's routines
 
-[QuantEcon.py](http://quantecon.org/quantecon-py) has routines for handling Markov chains, including simulation.
+QuantEcon.py has routines for handling Markov chains, including simulation.
 
 Here's an illustration using the same $P$ as the preceding example
 
@@ -500,8 +471,6 @@ mc = qe.MarkovChain(P)
 X = mc.simulate(ts_length=1_000_000)
 np.mean(X == 0)
 ```
-
-
 
 The `simulate` routine is faster (because it is [JIT compiled](https://python-programming.quantecon.org/numba.html#numba-link)).
 
@@ -512,8 +481,6 @@ The `simulate` routine is faster (because it is [JIT compiled](https://python-pr
 ```{code-cell} ipython3
 %time mc.simulate(ts_length=1_000_000) # qe code version
 ```
-
-
 
 #### Adding state values and initial conditions
 
@@ -536,15 +503,11 @@ mc.simulate(ts_length=4, init='unemployed')
 mc.simulate(ts_length=4)  # Start at randomly chosen initial state
 ```
 
-
-
 If we want to see indices rather than state values as outputs as  we can use
 
 ```{code-cell} ipython3
 mc.simulate_indices(ts_length=4)
 ```
-
-
 
 (mc_md)=
 ## Distributions over time
@@ -585,7 +548,7 @@ $$
 
 There are $n$ such equations, one for each $y \in S$.
 
-If we think of $\psi_{t+1}$ and $\psi_t$ as *row vectors*, these $n$ equations are summarized by the matrix expression
+If we think of $\psi_{t+1}$ and $\psi_t$ as row vectors, these $n$ equations are summarized by the matrix expression
 
 ```{math}
 :label: fin_mc_fr
@@ -593,7 +556,7 @@ If we think of $\psi_{t+1}$ and $\psi_t$ as *row vectors*, these $n$ equations a
 \psi_{t+1} = \psi_t P
 ```
 
-Thus, to move a distribution forward one unit of time, we postmultiply by $P$.
+Thus, we postmultiply by $P$ to move a distribution forward one unit of time.
 
 By postmultiplying $m$ times, we move a distribution forward $m$ steps into the future.
 
@@ -671,7 +634,7 @@ $$
 The distributions we have been studying can be viewed either
 
 1. as probabilities or
-1. as cross-sectional frequencies that a Law of Large Numbers leads us to anticipate for large samples.
+1. as cross-sectional frequencies that the Law of Large Numbers leads us to anticipate for large samples.
 
 To illustrate, recall our model of employment/unemployment dynamics for a given worker {ref}`discussed above <mc_eg1>`.
 
@@ -720,8 +683,6 @@ P = np.array([[0.4, 0.6],
 ψ @ P
 ```
 
-
-
 Notice that `ψ @ P` is the same as `ψ`
 
 
@@ -763,7 +724,7 @@ If $P$ is everywhere positive, then $P$ has exactly one stationary
 distribution.
 ```
 
-We will come back to this when we introduce irreducibility in the next lecture
+We will come back to this when we introduce irreducibility in the {doc}`next lecture <markov_chains_II>` on Markov chains.
 
 
 
@@ -788,7 +749,7 @@ Not surprisingly it tends to zero as $\beta \to 0$, and to one as $\alpha \to 0$
 
 ### Calculating stationary distributions
 
-A stable algorithm for computing stationary distributions is implemented in [QuantEcon.py](http://quantecon.org/quantecon-py).
+A stable algorithm for computing stationary distributions is implemented in QuantEcon.py.
 
 Here's an example
 
@@ -835,8 +796,6 @@ P = np.array([[0.971, 0.029, 0.000],
               [0.000, 0.508, 0.492]])
 P @ P
 ```
-
-
 
 Let's pick an initial distribution $\psi_0$ and trace out the sequence of distributions $\psi_0 P^t$ for $t = 0, 1, 2, \ldots$
 
@@ -967,7 +926,17 @@ The convergence to $\psi^*$ holds for different initial distributions.
 #### Example: Failure of convergence
 
 
-In the case of our periodic chain, we find the distribution is oscillating
+In the case of a periodic chain, with
+
+$$
+P = 
+\begin{bmatrix}
+    0 & 1 \\
+    1 & 0 \\
+\end{bmatrix}
+$$
+
+we find the distribution oscillates
 
 ```{code-cell} ipython3
 P = np.array([[0, 1],
@@ -979,6 +948,8 @@ num_distributions = 30
 plot_distribution(P, ts_length, num_distributions)
 ```
 
+Indeed, this $P$ fails our asymptotic stationarity condition, since, as you can
+verify, $P^t$ is not everywhere positive for any $t$.
 
 
 (finite_mc_expec)=
@@ -1106,29 +1077,13 @@ Compare your solution to the paper.
 
 Solution 1:
 
-```{code-cell} ipython3
-:tags: [hide-output]
+```{image} /_static/lecture_specific/markov_chains_I/Temple.png
+:name: mc_temple
+:align: center
 
-dot = Digraph(comment='Graph')
-dot.attr(rankdir='LR')
-dot.node("Growth")
-dot.node("Stagnation")
-dot.node("Collapse")
-
-dot.edge("Growth", "Growth", label="0.68")
-dot.edge("Growth", "Stagnation", label="0.12")
-dot.edge("Growth", "Collapse", label="0.20")
-
-dot.edge("Stagnation", "Stagnation", label="0.24")
-dot.edge("Stagnation", "Growth", label="0.50")
-dot.edge("Stagnation", "Collapse", label="0.26")
-
-dot.edge("Collapse", "Collapse", label="0.46")
-dot.edge("Collapse", "Stagnation", label="0.18")
-dot.edge("Collapse", "Growth", label="0.36")
-
-dot
 ```
+
++++
 
 Since the matrix is everywhere positive, there is a unique stationary distribution.
 
