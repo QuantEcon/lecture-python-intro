@@ -4,7 +4,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.14.5
+    jupytext_version: 1.14.4
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
@@ -17,29 +17,9 @@ kernelspec:
 
 In addition to what's in Anaconda, this lecture will need the following libraries:
 
-```{code-cell} ipython
----
-tags: [hide-output]
----
-!pip install graphviz
-```
-
-```{admonition} graphviz
-:class: warning
-If you are running this lecture locally it requires [graphviz](https://www.graphviz.org)
-to be installed on your computer. Installation instructions for graphviz can be found
-[here](https://www.graphviz.org/download/) 
-```
-
-This lecture studies a model of employment and unemployment flows in a large
-population called the **lake model**.
-
-We will use the following imports in this lecture.
-
 ```{code-cell} ipython3
 import numpy as np
 import matplotlib.pyplot as plt
-from graphviz import Digraph
 ```
 
 ## The Lake model
@@ -58,26 +38,10 @@ The "flows" between the two lakes are as follows:
 
 The below graph illustrates the lake model.
 
-```{code-cell} ipython3
-# Create Digraph object
-G = Digraph()
-G.attr(rankdir='LR')
+```{figure} /_static/lecture_specific/lake_model/lake_model_worker.png
+:name: lake_model_graphviz
 
-# Add nodes
-G.attr('node', shape='circle')
-G.node('1', 'New entrants', color='blue')
-G.node('2', 'Unemployed')
-G.node('3', 'Employed')
-
-# Add edges
-G.edge('1', '2', label='b')
-G.edge('2', '3', label='λ(1-d)')
-G.edge('3', '2', label='α(1-d)')
-G.edge('2', '2', label='(1-λ)(1-d)')
-G.edge('3', '3', label='(1-α)(1-d)')
-
-# Show graphviz
-G
+An illustration of the lake model
 ```
 
 ## Dynamics

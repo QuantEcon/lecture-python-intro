@@ -11,9 +11,7 @@ kernelspec:
   name: python3
 ---
 
-+++ {"user_expressions": []}
-
-### Equalizing Difference Model
+# Equalizing Difference Model
 
 This notebook presents a model of the college-high-school wage gap in which the
 "time to build" a college graduate plays a key role.
@@ -30,8 +28,6 @@ It is just one instance of an  "equalizing difference" theory of relative wage r
 import numpy as np
 import matplotlib.pyplot as plt
 ```
-
-+++ {"user_expressions": []}
 
 Let
 
@@ -114,7 +110,7 @@ $$
 $$
 
 
-#### Tweaked Model: Workers and Entrepreneurs
+## Tweaked Model: Workers and Entrepreneurs
 
 
 We can add a parameter and reinterpret variables to get a model of entrepreuneurs versus workers.
@@ -165,7 +161,7 @@ class equalizing_diff:
         return ϕ
 ```
 
-+++ {"user_expressions": []}
+
 
 We can build some functions to help do comparative statics using vectorization instead of loops.
 
@@ -216,7 +212,7 @@ gap1 = ex1.compute_gap()
 print(gap1)
 ```
 
-+++ {"user_expressions": []}
+
 
 Let us plot $\phi$ against some parameters.
 
