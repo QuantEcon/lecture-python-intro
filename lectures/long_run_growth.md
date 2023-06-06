@@ -11,44 +11,54 @@ kernelspec:
   name: python3
 ---
 
-# Long Run Growth
 
-```{admonition} Lecture IN-WORK
-:class: warning
-
-This lecture is still **under construction**
-```
-
-```{contents} Contents
-:depth: 2
-```
+# Economic Growth Evidence
 
 ## Overview
 
-This lecture looks at different growth trajectories across countries over the long term. 
+Adam Tooze's account of the geopolitical precedents and antecedents of World War I  includes a comparison of how Gross National Products of European Great Powers had evolved during the 70 years preceding 1914 (see chapter 1 of {cite}`Tooze_2014`).
 
-While some countries have experienced long term rapid growth across that has last a hundred years, others have not. 
+We report a version of Tooze's graph later in this lecture.
 
-First let us import the packages needed to explore what the data says about long run growth.
+Looking at his graph and how it set the geopolitical stage for "the American (20th) century" naturally 
+tempts one to want a counterpart to his graph for 2014 or later.
+
+As we'll see, reasoning just by analogy, this graph perhaps set the stage for an "XXX (21st) century", where you get to fill in a country for our XXX.
+
+As we gather data to construct those two graphs, we'll also study growth experiences for a number of countries for time horizons extending as far back as possible.
+
+These graphs will portray how the "Industrial Revolution" began in Britain in the late 18th century, then migrated to one country after another.  
+
+In a nutshell, this  lecture records  growth trajectories of various  countries over long time periods. 
+
+While some countries have experienced long term rapid growth across that has lasted a hundred years, others have not. 
+
+Since populations differ across country and within a country vary over time, it will
+be interesting to describe both total GDP and GDP per capita as it evolves within a country.
+
+First let's import the packages needed to explore what the data says about long run growth
 
 ```{code-cell} ipython3
 import pandas as pd
 import os
 import matplotlib as mpl
 import matplotlib.pyplot as plt
+import matplotlib.cm as cm
 import numpy as np
+from collections import namedtuple
 from matplotlib.lines import Line2D
 ```
 
-A project initiated by [Angus Maddison](https://en.wikipedia.org/wiki/Angus_Maddison) has collected many historical time series that study economic growth. 
+## Setting up
 
-We can use the [Maddison Historical Statistics](https://www.rug.nl/ggdc/historicaldevelopment/maddison/) to look at many different countries, including some countries dating back to the first century. 
+A project initiated by [Angus Maddison](https://en.wikipedia.org/wiki/Angus_Maddison) has collected many historical time series related to economic growth,
+some dating back to the first century.
 
-```{tip}
-The data can be downloaded from [this webpage](https://www.rug.nl/ggdc/historicaldevelopment/maddison/) and clicking on the `Latest Maddison Project Release`. In this lecture we use the [Maddison Project Database 2020](https://www.rug.nl/ggdc/historicaldevelopment/maddison/releases/maddison-project-database-2020) using the `Excel` Format. The code we use here assumes you have downloaded that file and will teach you how to use [pandas](https://pandas.pydata.org) to import that data into a DataFrame.
-```
+The data can be downloaded from the [Maddison Historical Statistics webpage](https://www.rug.nl/ggdc/historicaldevelopment/maddison/) by clicking on the "Latest Maddison Project Release". 
 
-If you don't want to fetch the data file from [Maddison Historical Statistics](https://www.rug.nl/ggdc/historicaldevelopment/maddison/) you can download the file directly {download}`datasets/mpd2020.xlsx`.
+For convenience, here is a copy of the 2020 data {download}`in Excel format <datasets/mpd2020.xlsx>`.
+
+Let's read it into a pandas dataframe:
 
 ```{code-cell} ipython3
 data = pd.read_excel("datasets/mpd2020.xlsx", sheet_name='Full data')
@@ -60,12 +70,9 @@ We can see that this dataset contains GDP per capita (gdppc) and population (pop
 Let's look at how many and which countries are available in this dataset
 
 ```{code-cell} ipython3
-data.country.unique()
-```
-
-```{code-cell} ipython3
 len(data.country.unique())
 ```
+
 
 We can now explore some of the 169 countries that are available. 
 
@@ -81,19 +88,15 @@ cntry_years = pd.DataFrame(cntry_years, columns=['country', 'Min Year', 'Max Yea
 cntry_years
 ```
 
-You can query this dataframe for each country of interest such as `Australia` by using `.loc`
 
-```{code-cell} ipython3
-cntry_years.loc['Australia']
-```
-
-Let us now reshape the original data into some convenient variables to enable quicker access to countries time series data.
+Let's now reshape the original data into some convenient variables to enable quicker access to countries time series data.
 
 We can build a useful mapping between country code's and country names in this dataset
 
 ```{code-cell} ipython3
 code_to_name = data[['countrycode','country']].drop_duplicates().reset_index(drop=True).set_index(['countrycode'])
 ```
+
 
 Then we can quickly focus on GDP per capita (gdp)
 
@@ -110,13 +113,22 @@ gdppc = gdppc.unstack('countrycode')
 gdppc
 ```
 
-Looking at the United Kingdom we can first confirm we are using the correct country code
+We create a color mapping between country codes and colors for consistency
 
 ```{code-cell} ipython3
-code_to_name.loc['GBR']
+:tags: [hide-input]
+country_names = data['countrycode']
+
+# Generate a colormap with the number of colors matching the number of countries
+colors = cm.Dark2(np.linspace(0, 0.8, len(country_names)))
+
+# Create a dictionary to map each country to its corresponding color
+color_mapping = {country: color for country, color in zip(country_names, colors)}
 ```
 
-and then using that code to access and plot the data
+## GPD Plots
+
+Looking at the United Kingdom we can first confirm we are using the correct country code
 
 ```{code-cell} ipython3
 ---
@@ -124,13 +136,26 @@ mystnb:
   figure:
     caption: GDP per Capita (GBR)
     name: gdppc_gbr1
+    width: 500px
 ---
-fig = plt.figure()
-gdppc['GBR'].plot(ax = fig.gca())
-plt.show()
+fig, ax = plt.subplots(dpi=300)
+cntry = 'GBR'
+_ = gdppc[cntry].plot(
+    ax = fig.gca(),
+    ylabel = 'International $\'s',
+    xlabel = 'Year',
+    linestyle='-',
+    color=color_mapping['GBR'])
 ```
 
-We can see that the data is non-continuous for longer periods in early part of this milenium so we could choose to interpolate to get a continuous line plot.
+
+:::{note}
+[International Dollars](https://en.wikipedia.org/wiki/International_dollar) are a hypothetical unit of currency that has the same purchasing power parity that the U.S. Dollar has in the United States at any given time. They are also known as Geary–Khamis dollars (GK Dollars).
+:::
+
+We can see that the data is non-continuous for longer periods in the early part of this millennium, so we could choose to interpolate to get a continuous line plot.
+
+Here we use dashed lines to indicate interpolated trends
 
 ```{code-cell} ipython3
 ---
@@ -139,88 +164,267 @@ mystnb:
     caption: GDP per Capita (GBR)
     name: gdppc_gbr2
 ---
-fig = plt.figure(dpi=300)
+fig, ax = plt.subplots(dpi=300)
 cntry = 'GBR'
-gdppc[cntry].interpolate().plot(
-    ax = fig.gca(),
-    ylabel = 'International $\'s',
-    xlabel = 'Year'
-)
+ax.plot(gdppc[cntry].interpolate(),
+        linestyle='--',
+        lw=2,
+        color=color_mapping[cntry])
+
+ax.plot(gdppc[cntry],
+        linestyle='-',
+        lw=2,
+        color=color_mapping[cntry])
+ax.set_ylabel('International $\'s')
+ax.set_xlabel('Year')
 plt.show()
 ```
 
-:::{note}
-[International Dollars](https://en.wikipedia.org/wiki/International_dollar) are a hypothetical unit of currency that has the same purchasing power parity that the U.S. Dollar has in the United States and any given time. They are also known as Geary–Khamis dollar (GK Dollars).
-:::
 
-As you can see from this chart economic growth started in earnest in the 18th Century and continued for the next two hundred years. 
+We can now put this into a function to generate plots for a list of countries
 
-How does this compare with other countries growth trajectories? Let's look at the United States (USA), United Kingdom (GBR), and China (CHN)
+```{code-cell} ipython3
+def draw_interp_plots(series, ylabel, xlabel, color_mapping, code_to_name, lw, logscale, ax):
+
+    for i, c in enumerate(cntry):
+        # Get the interpolated data
+        df_interpolated = series[c].interpolate(limit_area='inside')
+        interpolated_data = df_interpolated[series[c].isnull()]
+
+        # Plot the interpolated data with dashed lines
+        ax.plot(interpolated_data,
+                linestyle='--',
+                lw=lw,
+                alpha=0.7,
+                color=color_mapping[c])
+
+        # Plot the non-interpolated data with solid lines
+        ax.plot(series[c],
+                linestyle='-',
+                lw=lw,
+                color=color_mapping[c],
+                alpha=0.8,
+                label=code_to_name.loc[c]['country'])
+        
+        if logscale == True:
+            ax.set_yscale('log')
+    
+    # Draw the legend outside the plot
+    ax.legend(loc='lower center', ncol=5, bbox_to_anchor=[0.5, -0.25])
+    ax.set_ylabel(ylabel)
+    ax.set_xlabel(xlabel)
+    
+    return ax
+```
+
+
+As you can see from this chart, economic growth started in earnest in the 18th century and continued for the next two hundred years. 
+
+How does this compare with other countries' growth trajectories? 
+
+Let's look at the United States (USA), United Kingdom (GBR), and China (CHN)
 
 ```{code-cell} ipython3
 ---
 mystnb:
   figure:
-    caption: GDP per Capita
-    name: gdppc_usa_gbr_chn
+    caption: GDP per Capita, 1500- (China, UK, USA)
+    name: gdppc_comparison
+tags: [hide-input]
 ---
-fig = plt.figure(dpi=300)
-ax = fig.gca()
-cntry = ['USA', 'GBR', 'CHN']
-line_color = ['blue', 'orange', 'green']
-gdppc[cntry].plot(
-    ax = ax,
-    ylabel = 'International $\'s',
-    xlabel = 'Year',
-    color = line_color
-)
+# Define the namedtuple for the events
+Event = namedtuple('Event', ['year_range', 'y_text', 'text', 'color', 'ymax'])
 
-# Build Custom Legend
-legend_elements = []
-for i,c in enumerate(cntry):
-    line = Line2D([0], [0], color=line_color[i], lw=2, label=code_to_name.loc[c]['country'])
-    legend_elements.append(line)
-ax.legend(handles=legend_elements, loc='lower center', ncol=3, bbox_to_anchor=[0.5, -0.25])
+fig, ax = plt.subplots(dpi=300, figsize=(10, 6))
+
+cntry = ['CHN', 'GBR', 'USA']
+ax = draw_interp_plots(gdppc[cntry].loc[1500:],
+    'International $\'s','Year',
+    color_mapping, code_to_name, 2, False, ax)
+
+# Define the parameters for the events and the text
+ylim = ax.get_ylim()[1]
+b_params = {'color':'grey', 'alpha': 0.2}
+t_params = {'fontsize': 9, 
+            'va':'center', 'ha':'center'}
+
+# Create a list of events to annotate
+events = [
+    Event((1650, 1652), ylim + ylim*0.04, 
+          'the Navigation Act\n(1651)',
+          color_mapping['GBR'], 1),
+    Event((1655, 1684), ylim + ylim*0.13, 
+          'Closed-door Policy\n(1655-1684)', 
+          color_mapping['CHN'], 1.1),
+    Event((1848, 1850), ylim + ylim*0.22,
+          'the Repeal of Navigation Act\n(1849)', 
+          color_mapping['GBR'], 1.18),
+    Event((1765, 1791), ylim + ylim*0.04, 
+          'American Revolution\n(1765-1791)', 
+          color_mapping['USA'], 1),
+    Event((1760, 1840), ylim + ylim*0.13, 
+          'Industrial Revolution\n(1760-1840)', 
+          'grey', 1.1),
+    Event((1929, 1939), ylim + ylim*0.04, 
+          'the Great Depression\n(1929–1939)', 
+          'grey', 1),
+    Event((1978, 1979), ylim + ylim*0.13, 
+          'Reform and Opening-up\n(1978-1979)', 
+          color_mapping['CHN'], 1.1)
+]
+
+def draw_events(events, ax):
+    # Iterate over events and add annotations and vertical lines
+    for event in events:
+        event_mid = sum(event.year_range)/2
+        ax.text(event_mid, 
+                event.y_text, event.text, 
+                color=event.color, **t_params)
+        ax.axvspan(*event.year_range, color=event.color, alpha=0.2)
+        ax.axvline(event_mid, ymin=1, 
+        ymax=event.ymax, color=event.color, 
+        linestyle='-', clip_on=False, alpha=0.15)
+        
+# Draw events
+draw_events(events, ax)
 plt.show()
 ```
 
-This dataset has been carefully curated to enable cross-country comparisons.
 
-Let's compare the growth trajectories of Australia (AUS) and Argentina (ARG)
+The preceding graph of percapita GDP strikingly reveals how the spread of the industrial revolution has over time gradually lifted the living standards of substantial
+groups of people  
+
+- Most of the growth happened in the past 150 years after the industrial revolution.
+- Percapita GDP's in the  UK and the US, on the one hand, and in China, on the other, diverged  from 1820 to 1940.
+- The gap has closed  rapidly after 1950 and especially after the late 1970s.
+- These outcomes reflect complicated combinations of technological and economic-policy factors that students of economic growth try to understand and quantify
+
+
+It is fascinating to see  China's GDP per capita levels from 1500 through to the 1970s.
+
+Notice the long period of declining GDP per capital levels from the 1700s until the early 20th century.
+
+Thus, the graph indicates 
+
+- A long  economic downturn and stagnation after the Closed-door Policy by the Qing government
+- China's very different experience than the UK's after the onset of   the industrial revolution in the UK
+- How the Self-Strengthening Movement seemed mostly to help China to grow
+- How stunning have been the growth achievements of Modern Chinese economic policies by the PRC that culminated with its late 1970s Reform and Opening-up
 
 ```{code-cell} ipython3
 ---
 mystnb:
   figure:
-    caption: GDP per capita
-    name: gdppc_aus_arg
+    caption: GDP per Capita, 1500-2000 (China)
+    name: gdppc_china
+tags: [hide-input]
 ---
-fig = plt.figure(dpi=300)
-ax = fig.gca()
-cntry = ['AUS', 'ARG']
-line_color = ['blue', 'orange']
-gdppc[cntry].plot(
-    ax = ax,
-    ylabel = 'International $\'s',
-    xlabel = 'Year',
-    color = line_color
-)
+fig, ax = plt.subplots(dpi=300, figsize=(10, 6))
 
-# Build Custom Legend
-legend_elements = []
-for i,c in enumerate(cntry):
-    line = Line2D([0], [0], color=line_color[i], lw=2, label=code_to_name.loc[c]['country'])
-    legend_elements.append(line)
-ax.legend(handles=legend_elements, loc='lower center', ncol=3, bbox_to_anchor=[0.5, -0.25])
+cntry = ['CHN']
+ax = draw_interp_plots(gdppc[cntry].loc[1600:2000],
+    'International $\'s','Year',
+    color_mapping, code_to_name, 2, True, ax)
+
+ylim = ax.get_ylim()[1]
+
+events = [
+Event((1655, 1684), ylim + ylim*0.06, 
+      'Closed-door Policy\n(1655-1684)', 
+      'tab:orange', 1),
+Event((1760, 1840), ylim + ylim*0.06, 
+      'Industrial Revolution\n(1760-1840)', 
+      'grey', 1),
+Event((1839, 1842), ylim + ylim*0.2, 
+      'First Opium War\n(1839–1842)', 
+      'tab:red', 1.07),
+Event((1861, 1895), ylim + ylim*0.4, 
+      'Self-Strengthening Movement\n(1861–1895)', 
+      'tab:blue', 1.14),
+Event((1939, 1945), ylim + ylim*0.06, 
+      'WW 2\n(1939-1945)', 
+      'tab:red', 1),
+Event((1948, 1950), ylim + ylim*0.23, 
+      'Founding of PRC\n(1949)', 
+      color_mapping['CHN'], 1.08),
+Event((1958, 1962), ylim + ylim*0.5, 
+      'Great Leap Forward\n(1958-1962)', 
+      'tab:orange', 1.18),
+Event((1978, 1979), ylim + ylim*0.7, 
+      'Reform and Opening-up\n(1978-1979)', 
+      'tab:blue', 1.24)
+]
+
+# Draw events
+draw_events(events, ax)
 plt.show()
 ```
 
-As you can see the countries had similar GDP per capita levels with divergence starting around 1940. Australia's growth experience is both more continuous and less volatile post 1940.
+We can also look at the United States (USA) and United Kingdom (GBR) in more detail
+
+In the following graph, please watch for 
+- impact of trade policy (Navigation Act)
+- productivity changes brought by the industrial revolution
+- how the US gradually approaches and then  surpasses the UK, setting the stage for the ``American Century''
+- the  often unanticipated consequenes of wars 
+- interruptions and scars left by  {ref}`business cycle<mc1_ex_1>` recessions and depressions
+
+```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: GDP per Capita, 1500-2000 (UK and US)
+    name: gdppc_ukus
+tags: [hide-input]
+---
+fig, ax = plt.subplots(dpi=300, figsize=(10, 6))
+
+cntry = ['GBR', 'USA']
+ax = draw_interp_plots(gdppc[cntry].loc[1500:2000],
+    'International $\'s','Year',
+    color_mapping, code_to_name, 2, True, ax)
+
+ylim = ax.get_ylim()[1]
+
+# Create a list of data points=
+events = [
+    Event((1651, 1651), ylim + ylim*0.15, 
+          'Navigation Act (UK)\n(1651)', 
+          'tab:orange', 1),
+    Event((1765, 1791), ylim + ylim*0.15, 
+          'American Revolution\n(1765-1791)',
+          color_mapping['USA'], 1),
+    Event((1760, 1840), ylim + ylim*0.6, 
+          'Industrial Revolution\n(1760-1840)', 
+          'grey', 1.08),
+    Event((1848, 1850), ylim + ylim*1.1, 
+          'Repeal of Navigation Act (UK)\n(1849)', 
+          'tab:blue', 1.14),
+    Event((1861, 1865), ylim + ylim*1.8, 
+          'American Civil War\n(1861-1865)', 
+          color_mapping['USA'], 1.21),
+    Event((1914, 1918), ylim + ylim*0.15, 
+          'WW 1\n(1914-1918)', 
+          'tab:red', 1),
+    Event((1929, 1939), ylim + ylim*0.6, 
+          'the Great Depression\n(1929–1939)', 
+          'grey', 1.08),
+    Event((1939, 1945), ylim + ylim*1.1, 
+          'WW 2\n(1939-1945)', 
+          'tab:red', 1.14)
+]
+
+# Draw events
+draw_events(events, ax)
+plt.show()
+```
 
 
-## The Industrialized World
+## The industrialized world
 
-Now we can look at total Gross Domestic Product (GDP) rather than focusing on GDP per capita (as a proxy for living standards).
+Now we'll construct some graphs of interest to geopolitical historians like Adam Tooze.
+
+We'll focus on  total Gross Domestic Product (GDP)  (as a proxy for ''national geopolitical-military power'') rather than focusing on GDP per capita (as a proxy for living standards).
 
 ```{code-cell} ipython3
 data = pd.read_excel("datasets/mpd2020.xlsx", sheet_name='Full data')
@@ -229,154 +433,58 @@ data['gdp'] = data['gdppc'] * data['pop']
 gdp = data['gdp'].unstack('countrycode')
 ```
 
-### Early Industralization (1820 to 1940)
+### Early industralization (1820 to 1940)
 
+We first visualize the trend of China, the Former Soviet Union, Japan, the UK and the US.
 
-Gross Domestic Product
+The most notable trend is the rise of the US, surpassing the UK in the 1860s and China in the 1880s.
+
+The growth continued until the large dip in the 1930s when the Great Depression hit.
+
+Meanwhile, Russia experienced significant setbacks during World War I and recovered significantly after the February Revolution.
 
 ```{code-cell} ipython3
 ---
 mystnb:
   figure:
-    caption: GDP
+    caption: GDP in the early industralization era
     name: gdp1
 ---
-fig = plt.figure(dpi=110)
+fig, ax = plt.subplots(dpi=300)
 ax = fig.gca()
-cntry = ['DEU', 'SUN', 'USA', 'GBR', 'FRA', 'JPN', 'CHN']
-start_year, end_year = (1820,1940)
-line_color = ['blue', 'orange', 'green', 'red', 'yellow', 'purple', 'slategrey']
-gdp[cntry].loc[start_year:end_year].interpolate().plot(
-    ax = ax,
-    ylabel = 'International $\'s',
-    xlabel = 'Year',
-    color = line_color
-)
-
-# Build Custom Legend
-legend_elements = []
-for i,c in enumerate(cntry):
-    line = Line2D([0], [0], color=line_color[i], lw=2, label=code_to_name.loc[c]['country'])
-    legend_elements.append(line)
-ax.legend(handles=legend_elements, loc='lower center', ncol=4, bbox_to_anchor=[0.5, -0.26])
-plt.show()
+cntry = ['CHN', 'SUN', 'JPN', 'GBR', 'USA']
+start_year, end_year = (1820, 1940)
+ax = draw_interp_plots(gdp[cntry].loc[start_year:end_year],
+    'International $\'s','Year',
+    color_mapping, code_to_name, 2, False, ax)
 ```
 
-GDP per Capita
+
+### The modern era (1950 to 2020)
+
+As history repeats itself, the rapid growth in modern China is now challenging the economic hegemony of the US 
 
 ```{code-cell} ipython3
 ---
 mystnb:
   figure:
-    caption: GDP per Capita
-    name: gdppc1
----
-fig = plt.figure(dpi=110)
-ax = fig.gca()
-cntry = ['DEU', 'SUN', 'USA', 'GBR', 'FRA', 'JPN', 'CHN']
-start_year, end_year = (1820,1940)
-line_color = ['blue', 'orange', 'green', 'red', 'yellow', 'purple', 'slategrey']
-gdppc[cntry].loc[start_year:end_year].interpolate().plot(
-    ax = ax,
-    ylabel = 'International $\'s',
-    xlabel = 'Year',
-    color = line_color
-)
-
-# Build Custom Legend
-legend_elements = []
-for i,c in enumerate(cntry):
-    line = Line2D([0], [0], color=line_color[i], lw=2, label=code_to_name.loc[c]['country'])
-    legend_elements.append(line)
-ax.legend(handles=legend_elements, loc='lower center', ncol=4, bbox_to_anchor=[0.5, -0.25])
-plt.show()
-```
-
-## The Modern Era (1970 to 2018)
-
-Gross Domestic Product (GDP)
-
-```{code-cell} ipython3
----
-mystnb:
-  figure:
-    caption: GDP
+    caption: GDP in the modern era
     name: gdp2
 ---
-fig = plt.figure(dpi=300)
+fig, ax = plt.subplots(dpi=300)
 ax = fig.gca()
-cntry = ['DEU', 'SUN', 'USA', 'GBR', 'FRA', 'JPN', 'CHN']
-start_year, end_year = (1970, 2018)
-line_color = ['blue', 'orange', 'green', 'red', 'yellow', 'purple', 'slategrey']
-gdp[cntry].loc[start_year:end_year].interpolate().plot(
-    ax = ax,
-    ylabel = 'International $\'s',
-    xlabel = 'Year',
-    color = line_color
-)
-
-# Build Custom Legend
-legend_elements = []
-for i,c in enumerate(cntry):
-    line = Line2D([0], [0], color=line_color[i], lw=2, label=code_to_name.loc[c]['country'])
-    legend_elements.append(line)
-ax.legend(handles=legend_elements, loc='lower center', ncol=4, bbox_to_anchor=[0.5, -0.25])
-plt.show()
-```
-
-GDP per Capita
-
-```{code-cell} ipython3
----
-mystnb:
-  figure:
-    caption: GDP per Capita
-    name: gdppc2
----
-fig = plt.figure(dpi=300)
-ax = fig.gca()
-cntry = ['DEU', 'SUN', 'USA', 'GBR', 'FRA', 'JPN', 'CHN']
-start_year, end_year = (1970, 2018)
-line_color = ['blue', 'orange', 'green', 'red', 'yellow', 'purple', 'slategrey']
-gdppc[cntry].loc[start_year:end_year].interpolate().plot(
-    ax = ax,
-    ylabel = 'International $\'s',
-    xlabel = 'Year',
-    color = line_color
-)
-
-# Build Custom Legend
-legend_elements = []
-for i,c in enumerate(cntry):
-    line = Line2D([0], [0], color=line_color[i], lw=2, label=code_to_name.loc[c]['country'])
-    legend_elements.append(line)
-ax.legend(handles=legend_elements, loc='lower center', ncol=3, bbox_to_anchor=[0.5, -0.3])
-plt.show()
-```
-
-## Other Interesting Plots
-
-Here are a collection of interesting plots that could be linked to interesting stories
-
-Looking at China GDP per capita levels from 1500 through to the 1970's showed a long period of declining GDP per capital levels from 1700's to early 20th century. (Closed Border / Inward Looking Domestic Focused Policies?)
-
-```{code-cell} ipython3
-fig = plt.figure(dpi=300)
-gdppc['CHN'].loc[1500:1980].interpolate().plot(ax=fig.gca())
-plt.show()
-```
-
-China (CHN) then followed a very similar growth story from the 1980s through to current day China.
-
-```{code-cell} ipython3
-fig = plt.figure(dpi=300)
-gdppc[['CHN', 'GBR']].interpolate().plot(ax = fig.gca())
-plt.show()
+cntry = ['CHN', 'SUN', 'JPN', 'GBR', 'USA']
+start_year, end_year = (1950, 2020)
+ax = draw_interp_plots(gdp[cntry].loc[start_year:end_year],
+    'International $\'s','Year',
+    color_mapping, code_to_name, 2, False, ax)
 ```
 
 ## Regional Analysis
 
-The [Maddison Historical Statistics](https://www.rug.nl/ggdc/historicaldevelopment/maddison/) dataset also includes regional aggregations
+We often want to study historical experiences of countries outside the club of "World Powers".
+
+Fortunately, the [Maddison Historical Statistics](https://www.rug.nl/ggdc/historicaldevelopment/maddison/) dataset also includes regional aggregations
 
 ```{code-cell} ipython3
 data = pd.read_excel("datasets/mpd2020.xlsx", sheet_name='Regional data', header=(0,1,2), index_col=0)
@@ -390,7 +498,7 @@ regionalgdppc = data['gdppc_2011'].copy()
 regionalgdppc.index = pd.to_datetime(regionalgdppc.index, format='%Y')
 ```
 
-Let us interpolate based on time to fill in any gaps in the dataset for the purpose of plotting
+Let's interpolate based on time to fill in any gaps in the dataset for the purpose of plotting
 
 ```{code-cell} ipython3
 regionalgdppc.interpolate(method='time', inplace=True)
@@ -403,33 +511,40 @@ worldgdppc = regionalgdppc['World GDP pc']
 ```
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: World GDP per capita
+    name: world_gdppc
+---
+
 fig = plt.figure(dpi=300)
 ax = fig.gca()
 ax = worldgdppc.plot(
     ax = ax,
-    title='World GDP per capita',
     xlabel='Year',
     ylabel='2011 US$',
 )
 ```
 
-Looking more closely, let us compare the time series for `Western Offshoots` and `Sub-Saharan Africa`
+Looking more closely, let's compare the time series for `Western Offshoots` and `Sub-Saharan Africa` and more broadly at a number of different regions around the world
+
+Again we see the divergence of the West from the rest of the world after the industrial revolution and the convergence of the world after the 1950s
 
 ```{code-cell} ipython3
-fig = plt.figure(dpi=300)
-ax = fig.gca()
-regionalgdppc[['Western Offshoots', 'Sub-Sahara Africa']].plot(ax = ax)
-ax.legend(loc='lower center', ncol=2, bbox_to_anchor=[0.5, -0.26])
-plt.show()
-```
+---
+mystnb:
+  figure:
+    caption: Regional GDP per capita
+    name: region_gdppc
+---
 
-and more broadly at a number of different regions around the world
-
-```{code-cell} ipython3
 fig = plt.figure(dpi=300)
 ax = fig.gca()
 line_styles = ['-', '--', ':', '-.', '.', 'o', '-', '--', '-']
 ax = regionalgdppc.plot(ax = ax, style=line_styles)
-plt.legend(loc='lower center', ncol=3, bbox_to_anchor=[0.5, -0.4])
+ax.set_yscale('log')
+plt.legend(loc='lower center', 
+ncol=3, bbox_to_anchor=[0.5, -0.4])
 plt.show()
 ```
