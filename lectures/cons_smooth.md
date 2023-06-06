@@ -79,7 +79,7 @@ W = \sum_{t=0}^T \beta^t (g_1 c_t - \frac{g_2}{2} c_t^2 )
 
 where $g_1 > 0, g_2 > 0$.  
 
-We shall see that when $\beta R = 1$ (a condition assumed by Milton Friedman and Robert Hall), this criterion assigns higher welfare to **smoother** consumption paths.
+We shall see that when $\beta R = 1$ (a condition assumed by Milton Friedman {cite}`Friedman1956` and Robert Hall {cite}`Hall1978`), this criterion assigns higher welfare to **smoother** consumption paths.
 
 Here we use default parameters $R = 1.05$, $g_1 = 1$, $g_2 = 1/2$, and $T = 65$. 
 
@@ -236,7 +236,7 @@ $$
 
 which says that the present value of the consumption stream equals the sum of finanical and non-financial wealth.
 
-Robert Hall (1978) showed that when $\beta R = 1$, a condition Milton Friedman had assumed,
+Robert Hall {cite}`Hall1978` showed that when $\beta R = 1$, a condition Milton Friedman had assumed,
 it is "optimal" for a consumer to **smooth consumption** by setting 
 
 $$ 
