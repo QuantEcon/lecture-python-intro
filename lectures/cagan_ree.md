@@ -40,9 +40,9 @@ The "fiscal theory of the price level" asserts that
   
   * to **stop** a persistent inflation the government simply  stops persistently running  a money-financed government deficit
 
-Our model is a "rational expectations" (or "perfect foresight") version of a model that Philip Cagan  used to study the monetary dynamics of hyperinflations.  
+Our model is a "rational expectations" (or "perfect foresight") version of a model that Philip Cagan {cite}`Cagan`  used to study the monetary dynamics of hyperinflations.  
 
-While Cagan didn't use that  "rational expectations" version of the model, Thomas Sargent did when he studied the Ends of Four Big Inflations.
+While Cagan didn't use that  "rational expectations" version of the model, Thomas Sargent {cite}`sargent1982ends` did when he studied the Ends of Four Big Inflations in Europe after World War I.
 
 Some of our quantitative experiments with the model are designed to illustrate how the fiscal theory explains the abrupt end of those big inflations.
 
