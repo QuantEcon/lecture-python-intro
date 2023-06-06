@@ -321,28 +321,26 @@ def solve_and_plot(m0, α, T, μ_seq):
     π_seq, m_seq, p_seq = solve(model_params)
     T_seq = range(T + 2)
     
-    fig, ax = plt.subplots(2, 3, figsize=[10, 5], dpi=200)
+    fig, ax = plt.subplots(5, figsize=[5, 12], dpi=200)
     
-    ax[0,0].plot(T_seq[:-1], μ_seq)
-    ax[0,0].set_ylabel(r'$\mu$')
+    ax[0].plot(T_seq[:-1], μ_seq)
+    ax[0].set_ylabel(r'$\mu$')
 
-    ax[0,1].plot(T_seq, π_seq)
-    ax[0,1].set_ylabel(r'$\pi$')
+    ax[1].plot(T_seq, π_seq)
+    ax[1].set_ylabel(r'$\pi$')
 
-    ax[0,2].plot(T_seq, m_seq - p_seq)
-    ax[0,2].set_ylabel(r'$m - p$')
+    ax[2].plot(T_seq, m_seq - p_seq)
+    ax[2].set_ylabel(r'$m - p$')
 
-    ax[1,0].plot(T_seq, m_seq)
-    ax[1,0].set_ylabel(r'$m$')
+    ax[3].plot(T_seq, m_seq)
+    ax[3].set_ylabel(r'$m$')
 
-    ax[1,1].plot(T_seq, p_seq)
-    ax[1,1].set_ylabel(r'$p$')
+    ax[4].plot(T_seq, p_seq)
+    ax[4].set_ylabel(r'$p$')
     
-    for i in range(2):
-        for j in range(3):
-                ax[i, j].set_xlabel(r'$t$')
+    for i in range(5):
+        ax[i].set_xlabel(r'$t$')
                 
-    ax[1,2].set_axis_off()
     plt.tight_layout()
     plt.show()
     
@@ -448,37 +446,34 @@ p_seq_2_regime2 = np.concatenate([p_seq_2_path1[:T1+1],
 T_seq = range(T+2)
 
 # plot both regimes
-fig, ax = plt.subplots(2, 3, figsize=[10,5], dpi=200)
+fig, ax = plt.subplots(5, 1, figsize=[5, 12], dpi=200)
  
-ax[0,0].plot(T_seq[:-1], μ_seq_2)
-ax[0,0].set_ylabel(r'$\mu$')
+ax[0].plot(T_seq[:-1], μ_seq_2)
+ax[0].set_ylabel(r'$\mu$')
 
-ax[0,1].plot(T_seq, π_seq_2)
-ax[0,1].set_ylabel(r'$\pi$')
+ax[1].plot(T_seq, π_seq_2)
+ax[1].set_ylabel(r'$\pi$')
 
-ax[0,2].plot(T_seq, m_seq_2_regime1 - p_seq_2_regime1)
-ax[0,2].set_ylabel(r'$m - p$')
+ax[2].plot(T_seq, m_seq_2_regime1 - p_seq_2_regime1)
+ax[2].set_ylabel(r'$m - p$')
 
-ax[1,0].plot(T_seq, m_seq_2_regime1, 
+ax[3].plot(T_seq, m_seq_2_regime1, 
              label='Smooth $m_{T_1}$')
-ax[1,0].plot(T_seq, m_seq_2_regime2, 
+ax[3].plot(T_seq, m_seq_2_regime2, 
              label='Jumpy $m_{T_1}$')
-ax[1,0].set_ylabel(r'$m$')
+ax[3].set_ylabel(r'$m$')
 
-ax[1,1].plot(T_seq, p_seq_2_regime1,
+ax[4].plot(T_seq, p_seq_2_regime1,
              label='Smooth $m_{T_1}$')
-ax[1,1].plot(T_seq, p_seq_2_regime2, 
+ax[4].plot(T_seq, p_seq_2_regime2, 
              label='Jumpy $m_{T_1}$')
-ax[1,1].set_ylabel(r'$p$')
+ax[4].set_ylabel(r'$p$')
 
-for i in range(2):
-    for j in range(3):
-        ax[i, j].set_xlabel(r'$t$')
-                
-ax[1,2].set_axis_off()
+for i in range(5):
+    ax[i].set_xlabel(r'$t$')
 
-for i,j in zip([1,1], [0,1]):
-    ax[i,j].legend()
+for i in [3, 4]:
+    ax[i].legend()
 
 plt.tight_layout()
 plt.show()
@@ -510,48 +505,45 @@ unanticipated, as in experiment 2.
 
 ```{code-cell} ipython3
 # compare foreseen vs unforeseen shock
-fig, ax = plt.subplots(2, 3, figsize=[12,6], dpi=200)
+fig, ax = plt.subplots(5, figsize=[5, 12], dpi=200)
 
-ax[0,0].plot(T_seq[:-1], μ_seq_2)
-ax[0,0].set_ylabel(r'$\mu$')
+ax[0].plot(T_seq[:-1], μ_seq_2)
+ax[0].set_ylabel(r'$\mu$')
 
-ax[0,1].plot(T_seq, π_seq_2, 
+ax[1].plot(T_seq, π_seq_2, 
              label='Unforeseen')
-ax[0,1].plot(T_seq, π_seq_1, 
+ax[1].plot(T_seq, π_seq_1, 
              label='Foreseen', color='tab:green')
-ax[0,1].set_ylabel(r'$\pi$')
+ax[1].set_ylabel(r'$\pi$')
 
-ax[0,2].plot(T_seq,
+ax[2].plot(T_seq,
              m_seq_2_regime1 - p_seq_2_regime1, 
              label='Unforeseen')
-ax[0,2].plot(T_seq, m_seq_1 - p_seq_1, 
+ax[2].plot(T_seq, m_seq_1 - p_seq_1, 
              label='Foreseen', color='tab:green')
-ax[0,2].set_ylabel(r'$m - p$')
+ax[2].set_ylabel(r'$m - p$')
 
-ax[1,0].plot(T_seq, m_seq_2_regime1, 
+ax[3].plot(T_seq, m_seq_2_regime1, 
              label=r'Unforseen (Insist on $m_{T_1}$)')
-ax[1,0].plot(T_seq, m_seq_2_regime2, 
+ax[3].plot(T_seq, m_seq_2_regime2, 
              label=r'Unforseen (Reset $m_{T_1}$)')
-ax[1,0].plot(T_seq, m_seq_1, 
+ax[3].plot(T_seq, m_seq_1, 
              label='Foreseen shock')
-ax[1,0].set_ylabel(r'$m$')
+ax[3].set_ylabel(r'$m$')
 
-ax[1,1].plot(T_seq, p_seq_2_regime1, 
+ax[4].plot(T_seq, p_seq_2_regime1, 
              label=r'Unforseen (Insist on $m_{T_1}$)')
-ax[1,1].plot(T_seq, p_seq_2_regime2, 
+ax[4].plot(T_seq, p_seq_2_regime2, 
              label=r'Unforseen (Reset $m_{T_1}$)')
-ax[1,1].plot(T_seq, p_seq_1, 
+ax[4].plot(T_seq, p_seq_1, 
              label='Foreseen')
-ax[1,1].set_ylabel(r'$p$')
+ax[4].set_ylabel(r'$p$')
 
-for i in range(2):
-    for j in range(3):
-        ax[i, j].set_xlabel(r'$t$')
-        
-ax[1,2].set_axis_off()
+for i in range(5):
+    ax[i].set_xlabel(r'$t$')
 
-for i,j in zip([0,0,1,1], [1,2,0,1]):
-    ax[i,j].legend()
+for i in range(1, 5):
+    ax[i].legend()
 
 plt.tight_layout()
 plt.show()
