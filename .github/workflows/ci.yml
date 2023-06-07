@@ -44,6 +44,12 @@ jobs:
           branch: main
           name: build-cache
           path: _build
+      - name: Test Code Quality
+        shell: bash -l {0}
+        run: |
+          pip install flake8
+          python test/test_code_quality.py
+
       # Build Assets (Download Notebooks and PDF via LaTeX)
       # - name: Build PDF from LaTeX
       #   shell: bash -l {0}
