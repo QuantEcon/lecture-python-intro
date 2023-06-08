@@ -50,8 +50,7 @@ In those experiments, we'll encounter an instance of a ''velocity dividend'' tha
 
 To facilitate using  linear matrix algebra as our main mathematical tool, we'll use a finite horizon version of the model.
 
-As in the {doc}`present values <pv>` and {doc}`consumption smoothing<cons_smooth>` lectures, the only linear algebra that we'll be  using
-are matrix multplication and matrix inversion.
+As in the {doc}`present values <pv>` and {doc}`consumption smoothing<cons_smooth>` lectures, the only linear algebra that we'll be  using are matrix multplication and matrix inversion.
 
 
 ## Structure of the Model
@@ -293,7 +292,7 @@ $$
 
 so that, in terms of our notation and formula for $\theta_{T+1}^*$ above, $\tilde \gamma = 1$. 
 
-#### Experiment 1: foreseen sudden stabilization
+#### Experiment 1: Foreseen sudden stabilization
 
 In this experiment, we'll study how, when $\alpha >0$, a foreseen inflation stabilization has effects on inflation that proceed it.
 
