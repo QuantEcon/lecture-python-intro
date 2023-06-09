@@ -62,7 +62,7 @@ Our model has the following logical flow
  
  * verify that $a_{T+1}$ satisfies the terminal wealth constraint $a_{T+1} \geq 0$. 
     
-     * If it does, declare that the candiate path is budget feasible. 
+     * If it does, declare that the candidate path is budget feasible. 
  
      * if the candidate consumption path is not budget feasible, propose a path with less consumption sometimes and start over
      
@@ -400,7 +400,7 @@ $$
 v_t = \xi_1 \phi^t - \xi_0
 $$
 
-We say two and not three-parameter class because $\xi_0$ will be a function of $(\phi, \xi_1; R)$ that guarantees that the variation is feasibile. 
+We say two and not three-parameter class because $\xi_0$ will be a function of $(\phi, \xi_1; R)$ that guarantees that the variation is feasible. 
 
 Let's compute that function.
 
