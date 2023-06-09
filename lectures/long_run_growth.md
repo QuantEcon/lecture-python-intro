@@ -126,7 +126,7 @@ colors = cm.Dark2(np.linspace(0, 0.8, len(country_names)))
 color_mapping = {country: color for country, color in zip(country_names, colors)}
 ```
 
-## GPD Plots
+## GPD plots
 
 Looking at the United Kingdom we can first confirm we are using the correct country code
 
@@ -147,7 +147,7 @@ _ = gdppc[cntry].plot(
     linestyle='-',
     color=color_mapping['GBR'])
 ```
-
+ll
 
 :::{note}
 [International Dollars](https://en.wikipedia.org/wiki/International_dollar) are a hypothetical unit of currency that has the same purchasing power parity that the U.S. Dollar has in the United States at any given time. They are also known as Geary–Khamis dollars (GK Dollars).
@@ -480,7 +480,7 @@ ax = draw_interp_plots(gdp[cntry].loc[start_year:end_year],
     color_mapping, code_to_name, 2, False, ax)
 ```
 
-## Regional Analysis
+## Regional analysis
 
 We often want to study historical experiences of countries outside the club of "World Powers".
 
