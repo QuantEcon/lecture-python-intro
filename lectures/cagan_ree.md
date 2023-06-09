@@ -371,13 +371,13 @@ reduction in $\mu$ has been foreseen.
 
 #### Experiment 2: an unforeseen sudden stabilization
 
-This experiment deviates a little bit from a pure version our "perfect foresight"
+This experiment deviates a little bit from a pure version of our "perfect foresight"
 assumption by assuming that a sudden permanent reduction in $\mu_t$ like that
 analyzed in experiment 1 is completely unanticipated.  
 
 Such a  completely unanticipated shock is popularly known as an "MIT shock".
 
-The mental experiment involves switching at at time $T_1$ from an initial "continuation path" for $\{\mu_t, \pi_t\} $ to another path that involves a permanently lower inflation frate.   
+The mental experiment involves switching at time $T_1$ from an initial "continuation path" for $\{\mu_t, \pi_t\} $ to another path that involves a permanently lower inflation rate.   
 
 **Initial Path:** $\mu_t = \mu_0$ for all $t \geq 0$. So this path is for $\{\mu_t\}_{t=0}^\infty$; the associated 
 path for $\pi_t$ has $\pi_t = \mu_0$. 
