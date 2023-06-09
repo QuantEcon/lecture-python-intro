@@ -147,7 +147,7 @@ _ = gdppc[cntry].plot(
     linestyle='-',
     color=color_mapping['GBR'])
 ```
-ll
+
 
 :::{note}
 [International Dollars](https://en.wikipedia.org/wiki/International_dollar) are a hypothetical unit of currency that has the same purchasing power parity that the U.S. Dollar has in the United States at any given time. They are also known as Geary–Khamis dollars (GK Dollars).
