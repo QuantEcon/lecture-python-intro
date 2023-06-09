@@ -121,7 +121,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="12. Geometric Series for Elementary Economics" href="geom_series.html" />
+    <link rel="next" title="12. A Fiscal Theory of Price Level with Adaptive Expectations" href="cagan_adaptive.html" />
     <link rel="prev" title="10. Equalizing Difference Model" href="equalizing_difference.html" />
 
 <!-- Normal Meta Tags -->
@@ -174,7 +174,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#structure-of-the-model">11.2. Structure of the Model</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#continuation-values">11.3. Continuation values</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#some-quantitative-experiments">11.3.1. Some quantitative experiments</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#experiment-1-foreseen-sudden-stabilization">11.3.1.1. Experiment 1: foreseen sudden stabilization</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#experiment-1-foreseen-sudden-stabilization">11.3.1.1. Experiment 1: Foreseen sudden stabilization</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#experiment-2-an-unforeseen-sudden-stabilization">11.3.1.2. Experiment 2: an unforeseen sudden stabilization</a></li>
 </ul>
 </li>
@@ -260,8 +260,7 @@ persistent inflation.</p>
 <p>Some of our quantitative experiments with the model are designed to illustrate how the fiscal theory explains the abrupt end of those big inflations.</p>
 <p>In those experiments, we’ll encounter an instance of a ‘‘velocity dividend’’ that has sometimes accompanied successful inflation stabilization programs.</p>
 <p>To facilitate using  linear matrix algebra as our main mathematical tool, we’ll use a finite horizon version of the model.</p>
-<p>As in the <a class="reference internal" href="pv.html"><span class="doc">present values</span></a> and <a class="reference internal" href="cons_smooth.html"><span class="doc">consumption smoothing</span></a> lectures, the only linear algebra that we’ll be  using
-are matrix multplication and matrix inversion.</p>
+<p>As in the <a class="reference internal" href="pv.html"><span class="doc">present values</span></a> and <a class="reference internal" href="cons_smooth.html"><span class="doc">consumption smoothing</span></a> lectures, the only linear algebra that we’ll be  using are matrix multplication and matrix inversion.</p>
 </section>
 <section id="structure-of-the-model">
 <h2><span class="section-number">11.2. </span>Structure of the Model<a class="headerlink" href="#structure-of-the-model" title="Permalink to this heading">#</a></h2>
@@ -310,14 +309,14 @@ to have perfect foresight,  we subtract equation <a class="reference internal" h
 \]</div>
 <p>which we rewrite as a forward-looking first-order linear difference
 equation in <span class="math notranslate nohighlight">\(\pi_s\)</span> with <span class="math notranslate nohighlight">\(\mu_s\)</span>  as a “forcing variable”:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-84c5ba8f-9b4f-4b82-ae1d-5b9ea1c746e0">
-<span class="eqno">(11.4)<a class="headerlink" href="#equation-84c5ba8f-9b4f-4b82-ae1d-5b9ea1c746e0" title="Permalink to this equation">#</a></span>\[\begin{equation}  
+<div class="amsmath math notranslate nohighlight" id="equation-61172833-6a35-450d-acda-c19dfbeb821a">
+<span class="eqno">(11.4)<a class="headerlink" href="#equation-61172833-6a35-450d-acda-c19dfbeb821a" title="Permalink to this equation">#</a></span>\[\begin{equation}  
 \pi_t = \frac{\alpha}{1+\alpha} \pi_{t+1} + \frac{1}{1+\alpha} \mu_t , \quad t= 0, 1, \ldots , T 
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\( 0&lt; \frac{\alpha}{1+\alpha} &lt;1 \)</span>.</p>
 <p>Setting <span class="math notranslate nohighlight">\(\delta =\frac{\alpha}{1+\alpha}\)</span> let’s us represent the preceding equation as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ffb0e7c0-3660-48c4-a75f-308feeca3303">
-<span class="eqno">(11.5)<a class="headerlink" href="#equation-ffb0e7c0-3660-48c4-a75f-308feeca3303" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-3b95702c-daa8-4890-ba51-fef6df80a337">
+<span class="eqno">(11.5)<a class="headerlink" href="#equation-3b95702c-daa8-4890-ba51-fef6df80a337" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \pi_t = \delta \pi_{t+1} + (1-\delta) \mu_t , \quad t =0, 1, \ldots, T
 \end{equation}\]</div>
 <p>Write this system of <span class="math notranslate nohighlight">\(T+1\)</span> equations as the single matrix equation</p>
@@ -471,7 +470,7 @@ version of equation <a class="reference internal" href="#equation-eq-fisctheory1
 \]</div>
 <p>so that, in terms of our notation and formula for <span class="math notranslate nohighlight">\(\theta_{T+1}^*\)</span> above, <span class="math notranslate nohighlight">\(\tilde \gamma = 1\)</span>.</p>
 <section id="experiment-1-foreseen-sudden-stabilization">
-<h4><span class="section-number">11.3.1.1. </span>Experiment 1: foreseen sudden stabilization<a class="headerlink" href="#experiment-1-foreseen-sudden-stabilization" title="Permalink to this heading">#</a></h4>
+<h4><span class="section-number">11.3.1.1. </span>Experiment 1: Foreseen sudden stabilization<a class="headerlink" href="#experiment-1-foreseen-sudden-stabilization" title="Permalink to this heading">#</a></h4>
 <p>In this experiment, we’ll study how, when <span class="math notranslate nohighlight">\(\alpha &gt;0\)</span>, a foreseen inflation stabilization has effects on inflation that proceed it.</p>
 <p>We’ll study a situation in which the rate of growth of the money supply is <span class="math notranslate nohighlight">\(\mu_0\)</span>
 from <span class="math notranslate nohighlight">\(t=0\)</span> to <span class="math notranslate nohighlight">\(t= T_1\)</span> and then permanently falls to <span class="math notranslate nohighlight">\(\mu^*\)</span> at <span class="math notranslate nohighlight">\(t=T_1\)</span>.</p>
@@ -937,8 +936,13 @@ it is also interesting to study the consequences of a foreseen gradual stabiliza
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="cagan_adaptive.html">
+   12. A Fiscal Theory of Price Level with Adaptive Expectations
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="geom_series.html">
-   12. Geometric Series for Elementary Economics
+   13. Geometric Series for Elementary Economics
   </a>
  </li>
 </ul>
@@ -950,27 +954,27 @@ it is also interesting to study the consequences of a foreseen gradual stabiliza
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="prob_dist.html">
-   13. Distributions and Probabilities
+   14. Distributions and Probabilities
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="lln_clt.html">
-   14. LLN and CLT
+   15. LLN and CLT
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="monte_carlo.html">
-   15. Monte Carlo and Option Pricing
+   16. Monte Carlo and Option Pricing
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="heavy_tails.html">
-   16. Heavy-Tailed Distributions
+   17. Heavy-Tailed Distributions
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="schelling.html">
-   17. Racial Segregation
+   18. Racial Segregation
   </a>
  </li>
 </ul>
@@ -982,27 +986,27 @@ it is also interesting to study the consequences of a foreseen gradual stabiliza
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="solow.html">
-   18. The Solow-Swan Growth Model
+   19. The Solow-Swan Growth Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="scalar_dynam.html">
-   19. Dynamics in One Dimension
+   20. Dynamics in One Dimension
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cobweb.html">
-   20. The Cobweb Model
+   21. The Cobweb Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="olg.html">
-   21. The Overlapping Generations Model
+   22. The Overlapping Generations Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="commod_price.html">
-   22. Commodity Prices
+   23. Commodity Prices
   </a>
  </li>
 </ul>
@@ -1014,17 +1018,17 @@ it is also interesting to study the consequences of a foreseen gradual stabiliza
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="markov_chains_I.html">
-   23. Markov Chains: Basic Concepts
+   24. Markov Chains: Basic Concepts
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="markov_chains_II.html">
-   24. Markov Chains: Irreducibility and Ergodicity
+   25. Markov Chains: Irreducibility and Ergodicity
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="time_series_with_matrices.html">
-   25. Univariate Time Series with Matrix Algebra
+   26. Univariate Time Series with Matrix Algebra
   </a>
  </li>
 </ul>
@@ -1036,12 +1040,12 @@ it is also interesting to study the consequences of a foreseen gradual stabiliza
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="lp_intro.html">
-   26. Linear Programming
+   27. Linear Programming
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="short_path.html">
-   27. Shortest Paths
+   28. Shortest Paths
   </a>
  </li>
 </ul>
@@ -1053,22 +1057,22 @@ it is also interesting to study the consequences of a foreseen gradual stabiliza
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="eigen_II.html">
-   28. Spectral Theory
+   29. Spectral Theory
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="input_output.html">
-   29. Input-Output Models
+   30. Input-Output Models
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="lake_model.html">
-   30. A Lake Model of Employment
+   31. A Lake Model of Employment
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="networks.html">
-   31. Networks
+   32. Networks
   </a>
  </li>
 </ul>
@@ -1080,12 +1084,12 @@ it is also interesting to study the consequences of a foreseen gradual stabiliza
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="supply_demand_multiple_goods.html">
-   32. Supply and Demand with Many Goods
+   33. Supply and Demand with Many Goods
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="supply_demand_heterogeneity.html">
-   33. Market Equilibrium with Heterogeneity
+   34. Market Equilibrium with Heterogeneity
   </a>
  </li>
 </ul>
@@ -1097,12 +1101,12 @@ it is also interesting to study the consequences of a foreseen gradual stabiliza
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="simple_linear_regression.html">
-   34. Simple Linear Regression Model
+   35. Simple Linear Regression Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="mle.html">
-   35. Maximum Likelihood Estimation
+   36. Maximum Likelihood Estimation
   </a>
  </li>
 </ul>
@@ -1114,17 +1118,17 @@ it is also interesting to study the consequences of a foreseen gradual stabiliza
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="troubleshooting.html">
-   36. Troubleshooting
+   37. Troubleshooting
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="zreferences.html">
-   37. References
+   38. References
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="status.html">
-   38. Execution Statistics
+   39. Execution Statistics
   </a>
  </li>
 </ul>
