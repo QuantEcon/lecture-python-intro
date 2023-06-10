@@ -53,7 +53,7 @@ To facilitate using  linear matrix algebra as our main mathematical tool, we'll 
 As in the {doc}`present values <pv>` and {doc}`consumption smoothing<cons_smooth>` lectures, the only linear algebra that we'll be  using are matrix multiplication and matrix inversion.
 
 
-## Structure of the Model
+## Structure of the model
 
 
 The model consists of
@@ -148,7 +148,7 @@ $$ (eq:pieq)
 By multiplying both sides of equation {eq}`eq:pieq` by the inverse of the matrix on the left side, we can calculate
 
 $$
-\vec \pi \equiv \begin{bmatrix} \pi_0 \cr \pi_1 \cr \pi_2 \cr \vdots \cr \pi_{T-1} \cr \pi_T 
+\pi \equiv \begin{bmatrix} \pi_0 \cr \pi_1 \cr \pi_2 \cr \vdots \cr \pi_{T-1} \cr \pi_T 
 \end{bmatrix} 
 $$
 
@@ -192,8 +192,8 @@ $$
 m_t = m_0 + \sum_{s=0}^{t-1} \mu_s, \quad t =1, \ldots, T+1
 $$ (eq:mcum)
 
-Equation {eq}`eq:mcum` shows that the log of the money supply at $t$ equals the log $m_0$ of the initial money supply 
-plus accumulation of rates of money growth between times $0$ and $t$.
+Equation {eq}`eq:mcum` shows that the log of the money supply at $t$ equals the log of the initial money supply $m_0$
+plus accumulation of rates of money growth between times $0$ and $T$.
 
 ## Continuation values
 
@@ -250,7 +250,7 @@ m0 = 1
 
 +++ {"user_expressions": []}
 
-Now we can solve the model to compute $\pi_t$, $m_t$ and $p_t$ for $t =1, \ldots, T+1$
+Now we can solve the model to compute $\pi_t$, $m_t$ and $p_t$ for $t =1, \ldots, T+1$ using the matrix equation above
 
 ```{code-cell} ipython3
 def solve(model):
