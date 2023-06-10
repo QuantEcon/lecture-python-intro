@@ -44,7 +44,7 @@ $$ (eq:Euler1)
 This is a "cost equals benefits" formula.
 
 It says that the cost of buying the asset today equals the reward for holding it
-for one period (which is the dividend $d_t$)and then selling it, at $t+1$.
+for one period (which is the dividend $d_t$) and then selling it, at $t+1$.
 
 The future value $p_{t+1}$ is discounted using $\delta$ to shift it to a present value, so it is comparable with $d_t$ and $p_t$.
 
@@ -365,7 +365,7 @@ $$
 \end{bmatrix}
 $$ (eq:pieq2)
 
-Evidently, if $p_{T+1}^* = 0$, a price vector $\vec p$ of with all entries zero
+Evidently, if $p_{T+1}^* = 0$, a price vector $p$ of with all entries zero
 solves this equation and the only the **fundamental** component of our pricing 
 formula {eq}`eq:ptpveq` is present. 
 
