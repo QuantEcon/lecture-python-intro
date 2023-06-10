@@ -51,14 +51,14 @@ A sequence of budget constraints constrains the triple of sequences $y, c, a$
 
 $$
 a_{t+1} = R (a_t+ y_t - c_t), \quad t =0, 1, \ldots T
-$$
+$$ (eq:a_t)
 
 Our model has the following logical flow
 
  * start with an exogenous income sequence $y$, an initial financial wealth $a_0$, and 
  a candidate consumption path $c$.
  
- * use equation (1) to compute a path $a$ of financial wealth
+ * use equation {eq}`eq:a_t` to compute a path $a$ of financial wealth
  
  * verify that $a_{T+1}$ satisfies the terminal wealth constraint $a_{T+1} \geq 0$. 
     
@@ -160,7 +160,7 @@ y_1 \cr y_2 \cr y_3 \cr \vdots \cr y_T
 ```{exercise}
 :label: consmooth_ex1
 
-In the {eq}`fst_ord_inverse`, we multiply the inverse of the matrix on the left ($A$). In this exercise, please confirm that 
+In the {eq}`fst_ord_inverse`, we multiply the inverse of the matrix $A$. In this exercise, please confirm that 
 
 $$
 \begin{bmatrix} 
@@ -222,7 +222,7 @@ h_0 \equiv \sum_{t=0}^T R^{-t} y_t = \begin{bmatrix} 1 & R^{-1} & \cdots & R^{-T
 \begin{bmatrix} y_0 \cr y_1  \cr \vdots \cr y_T \end{bmatrix}
 $$
 
-By iterating on equation (1) and imposing the terminal condition 
+By iterating on equation {eq}`eq:a_t` and imposing the terminal condition 
 
 $$
 a_{T+1} = 0,
@@ -251,30 +251,6 @@ $$
 
 This is the consumption-smoothing model in a nutshell.
 
-We implement this model in `compute_optimal`
-
-```{code-cell} ipython3
-def compute_optimal(model, a0, y_seq):
-    R, T = model.R, model.T
-
-    # non-financial wealth
-    h0 = model.β_seq @ y_seq     # since β = 1/R
-
-    # c0
-    c0 = (1 - 1/R) / (1 - (1/R)**(T+1)) * (a0 + h0)
-    c_seq = c0*np.ones(T+1)
-
-    # verify
-    A = np.diag(-R*np.ones(T), k=-1) + np.eye(T+1)
-    b = y_seq - c_seq
-    b[0] = b[0] + a0
-
-    a_seq = np.linalg.inv(A) @ b
-    a_seq = np.concatenate([[a0], a_seq])
-
-    return c_seq, a_seq
-```
-
 +++ {"user_expressions": []}
 
 ## Permanent income model of consumption 
@@ -286,7 +262,7 @@ In the calculations below, please we'll  set default values of  $R > 1$, e.g., $
 
 ### Step 1
 
-For some $(T+1) \times 1$ $y$ vector, use matrix algebra to compute 
+For some $(T+1) \times 1$ $y$ vector, use matrix algebra to compute $h_0$
 
 $$
 \sum_{t=0}^T R^{-t} y_t = \begin{bmatrix} 1 & R^{-1} & \cdots & R^{-T} \end{bmatrix}
@@ -335,6 +311,30 @@ $$
 
 Let's verify this with our Python code.
 
+First we implement this model in `compute_optimal`
+
+```{code-cell} ipython3
+def compute_optimal(model, a0, y_seq):
+    R, T = model.R, model.T
+
+    # non-financial wealth
+    h0 = model.β_seq @ y_seq     # since β = 1/R
+
+    # c0
+    c0 = (1 - 1/R) / (1 - (1/R)**(T+1)) * (a0 + h0)
+    c_seq = c0*np.ones(T+1)
+
+    # verify
+    A = np.diag(-R*np.ones(T), k=-1) + np.eye(T+1)
+    b = y_seq - c_seq
+    b[0] = b[0] + a0
+
+    a_seq = np.linalg.inv(A) @ b
+    a_seq = np.concatenate([[a0], a_seq])
+
+    return c_seq, a_seq
+```
+
 We use an example where the consumer inherits $a_0<0$ (which can be interpreted as a student debt).
 
 The income process $\{y_t\}_{t=0}^{T}$ is constant and positive up to $t=45$ and then becomes zero afterward.
@@ -353,6 +353,8 @@ print('check a_T+1=0:',
       np.abs(a_seq[-1] - 0) <= 1e-8)
 ```
 
+The visualization shows the path of income, consumption, and financial assets.
+
 ```{code-cell} ipython3
 # Sequence Length
 T = cs_model.T
@@ -368,9 +370,9 @@ plt.ylabel(r'$c_t,y_t,a_t$')
 plt.show()
 ```
 
-+++ {"user_expressions": []}
+Note that $a_{T+1} = 0$ is satisfied.
 
-We can evaluate the welfare using the formula {eq}`welfare`
+We can further evaluate the welfare using the formula {eq}`welfare`
 
 ```{code-cell} ipython3
 def welfare(model, c_seq):
@@ -384,7 +386,7 @@ print('Welfare:', welfare(cs_model, c_seq))
 
 +++ {"user_expressions": []}
 
-### Feasible consumption variations ###
+### Feasible consumption variations
 
 To explore what types of consumption paths are welfare-improving, we shall create an **admissible consumption path variation sequence** $\{v_t\}_{t=0}^T$
 that satisfies
