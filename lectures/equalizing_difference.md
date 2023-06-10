@@ -50,6 +50,7 @@ Let
 
 
 If someone goes to work immediately after high school  and  works for $T+1$ years, she earns present value
+
 $$
 h_0 = \sum_{t=0}^T R^{-t} w_t^h = w_0^h \left[ \frac{1 - (R^{-1} \gamma_h)^{T+1} }{1 - R^{-1} \gamma_h } \right] \equiv w_0^h A_h 
 $$
