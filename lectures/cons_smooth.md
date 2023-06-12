@@ -17,7 +17,7 @@ kernelspec:
 
 ## Overview
 
-In this notebook, we'll present  some useful models of economic dynamics using only linear algebra -- matrix multiplication and matrix inversion.
+In this lecture, we'll present  some useful models of economic dynamics using only linear algebra -- matrix multiplication and matrix inversion.
 
 {doc}`Present value formulas<pv>` are at the core of the models.
 
