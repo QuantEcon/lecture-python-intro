@@ -61,7 +61,7 @@ from matplotlib import cm
 from mpl_toolkits.mplot3d import Axes3D
 ```
 
-## Key Formulas
+## Key formulas
 
 To start, let $c$ be a real number that lies strictly between
 $-1$ and $1$.
@@ -73,7 +73,7 @@ $-1$ and $1$.
 
 We want to evaluate geometric series of two types -- infinite and finite.
 
-### Infinite Geometric Series
+### Infinite geometric series
 
 The first type of geometric that interests us is the infinite series
 
@@ -95,7 +95,7 @@ To prove key formula {eq}`infinite`, multiply both sides  by $(1-c)$ and verify
 that if $c \in (-1,1)$, then the outcome is the
 equation $1 = 1$.
 
-### Finite Geometric Series
+### Finite geometric series
 
 The second series that interests us is the finite geometric series
 
@@ -148,7 +148,7 @@ money (i.e., deposits) in a fractional reserve system.
 The geometric series formula {eq}`infinite` is at the heart of the classic model of the money creation process -- one that leads us to the celebrated
 **money multiplier**.
 
-### A Simple Model
+### A simple model
 
 There is a set of banks named $i = 0, 1, 2, \ldots$.
 
@@ -254,7 +254,7 @@ $i=0, 1, 2, \ldots$ is
 \sum_{i=0}^\infty (1-r)^i D_0 =  \frac{D_0}{1 - (1-r)} = \frac{D_0}{r}
 ```
 
-### Money Multiplier
+### Money multiplier
 
 The **money multiplier** is a number that tells the multiplicative
 factor by which an exogenous injection of cash into bank $0$ leads
@@ -280,7 +280,7 @@ circumstances in which
   equal demand** (e.g., prices and interest rates are frozen)
 - national income is entirely determined by aggregate demand
 
-### Static Version
+### Static version
 
 An elementary Keynesian model of national income determination consists
 of three equations that describe aggregate demand for $y$ and its
@@ -342,7 +342,7 @@ The expression $\sum_{t=0}^\infty b^t$ motivates an interpretation
 of the multiplier as the outcome of a dynamic process that we describe
 next.
 
-### Dynamic Version
+### Dynamic version
 
 We arrive at a dynamic version by interpreting the nonnegative integer
 $t$ as indexing time and changing our specification of the
@@ -543,7 +543,7 @@ It follows that
 So if someone has a claim on $x$ dollars at time $t+j$, it
 is worth $x R^{-j}$ dollars at time $t$ (e.g., today).
 
-### Application to Asset Pricing
+### Application to asset pricing
 
 A **lease** requires a payments stream of $x_t$ dollars at
 times $t = 0, 1, 2, \ldots$ where
@@ -855,7 +855,7 @@ so $\frac{\partial p_0}{\partial r}$ will always be negative.
 Similarly, $\frac{\partial p_0}{\partial g}>0$ as long as $r>g$, $r>0$ and $g>0$ and $x_0$ is positive, so $\frac{\partial p_0}{\partial g}$
 will always be positive.
 
-## Back to the Keynesian Multiplier
+## Back to the Keynesian multiplier
 
 We will now go back to the case of the Keynesian multiplier and plot the
 time path of $y_t$, given that consumption is a constant fraction

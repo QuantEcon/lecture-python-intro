@@ -50,12 +50,12 @@ from numpy.random import randn
 
 
 
-## An Introduction to Monte Carlo
+## An introduction to Monte Carlo
 
 In this section we describe how Monte Carlo can be used to compute
 expectations.
 
-### Share Price with Known Distribution
+### Share price with known distribution
 
 Suppose that we are considering buying a share in some company.
 
@@ -107,7 +107,7 @@ So far we have no need for a computer.
 
 
 
-### Share Price with Unknown Distribution
+### Share price with unknown distribution
 
 But now suppose that we study the distribution of $S$ more carefully.
 
@@ -154,7 +154,7 @@ p = 0.5
 
 
 
-#### A Routine using Loops in Python
+#### A routine using loops in python
 
 
 Here's a routine using native Python loops to calculate the desired mean
@@ -201,7 +201,7 @@ compute_mean()
 
 
 
-### A Vectorized Routine
+### A vectorized routine
 
 If we want a more accurate estimate we should increase $n$.
 
@@ -238,7 +238,7 @@ compute_mean_vectorized(n=10_000_000)
 
 
 
-## Pricing a European Call Option under Risk Neutrality
+## Pricing a european call option under risk neutrality
 
 Next we are going to price a European call option under risk neutrality.
 
@@ -285,7 +285,7 @@ $$
 
 
 
-### A Comment on Risk
+### A comment on risk
 
 As suggested by the name, the risk-neutral price ignores risk.
 
@@ -337,7 +337,7 @@ $$
 
 
 
-### European Call Options
+### European call options
 
 Now let's price a European call option.
 
@@ -408,7 +408,7 @@ print(f"The Monte Carlo option price is approximately {P:3f}")
 
 
 
-## Pricing Via a Dynamic Model
+## Pricing via a dynamic model
 
 In this exercise we investigate a more realistic model for the share price $S_n$.
 
@@ -418,7 +418,7 @@ First we specify the dynamics.
 
 Then we'll compute the price of the option using Monte Carlo.
 
-### Simple Dynamics
+### Simple dynamics
 
 One simple model for $\{S_t\}$ is
 
@@ -448,7 +448,7 @@ Continuing in this way shows that $s_n$ is normally distributed.
 Hence $S_n = \exp(s_n)$ is lognormal.
 
 
-### Problems with Simple Dynamics
+### Problems with simple dynamics
 
 The simple dynamic model we studied above is convenient, since we can work out
 the distribution of $S_n$.
@@ -462,7 +462,7 @@ Instead it rather changes over time, sometimes high (like during the GFC) and so
 In terms of our model above, this means that $\sigma$ should not be constant.
 
 
-### More Realistic Dynamics
+### More realistic dynamics
 
 This leads us to study the improved version:
 
@@ -480,7 +480,7 @@ Here $\{\eta_t\}$ is also IID and standard normal.
 
 
 
-### Default Parameters
+### Default parameters
 
 For the dynamic model, we adopt the following parameter values.
 
@@ -548,7 +548,7 @@ plt.show()
 
 
 
-### Computing the Price
+### Computing the price
 
 Now that our model is more complicated, we cannot easily determine the
 distribution of $S_n$.

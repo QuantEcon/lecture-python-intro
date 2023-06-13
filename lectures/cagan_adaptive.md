@@ -58,7 +58,7 @@ As in the {doc}`present values <pv>` and {doc}`consumption smoothing<cons_smooth
 To facilitate using  linear matrix algebra as our principal mathematical tool, we'll use a finite horizon version of
 the model.
 
-## Structure of the Model
+## Structure of the model
 
 Let 
 
@@ -187,7 +187,7 @@ equation system.
 
 
 
-## Harvesting Returns from our Matrix Formulation
+## Harvesting returns from our matrix formulation
 
 
 We now have all of the ingredients we need to solve for $\vec \pi$ as
@@ -292,7 +292,7 @@ which is just $\vec \pi^*$ with the last element dropped.
  
 
 
-## Forecast  Errors  
+## Forecast  errors  
 
 Our computations will verify that 
 

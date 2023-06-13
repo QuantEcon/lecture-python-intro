@@ -146,7 +146,7 @@ We can then take transpose to obtain $A^\top w = \lambda w$ and obtain $w^\top A
 This is a more common expression and where the name left eigenvectors originates.
 
 (perron-frobe)=
-### The Perron-Frobenius Theorem
+### The Perron-Frobenius theorem
 
 For a square nonnegative matrix $A$, the behavior of $A^k$ as $k \to \infty$ is controlled by the eigenvalue with the largest
 absolute value, often called the **dominant eigenvalue**.
@@ -411,7 +411,7 @@ Thus, the rate of convergence is governed by the modulus of the second largest e
 
 
 (la_neumann)=
-## The Neumann Series Lemma
+## The Neumann series lemma
 
 ```{index} single: Neumann's Lemma
 ```

@@ -353,7 +353,7 @@ OR-Tools tells us that  the best investment strategy is:
 
 
 
-## Standard Form
+## Standard form
 
 For purposes of
 
@@ -404,7 +404,7 @@ Here, $Ax = b$ means that  the $i$-th entry of $Ax$  equals the $i$-th entry of 
 
 Similarly, $x \geq 0$ means that  $x_j$ is greater than equal to $0$ for every $j$.
 
-### Useful Transformations
+### Useful transformations
 
 It is useful to know how to transform a problem that initially is not stated in the standard form into one that is.
 

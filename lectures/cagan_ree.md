@@ -53,7 +53,7 @@ To facilitate using  linear matrix algebra as our main mathematical tool, we'll 
 As in the {doc}`present values <pv>` and {doc}`consumption smoothing<cons_smooth>` lectures, the only linear algebra that we'll be  using are matrix multplication and matrix inversion.
 
 
-## Structure of the Model
+## Structure of the model
 
 
 The model consists of
@@ -595,7 +595,7 @@ from **falling** at the moment that the unanticipated stabilization arrives.
 In various research papers about stabilizations of high inflations, the jump in the money supply described by equation {eq}`eq:eqnmoneyjump` has been called
 "the velocity dividend" that a government reaps from implementin a regime change that sustains a permanently lower inflation rate.
 
-#### Technical Details about whether $p$ or $m$ jumps at $T_1$
+#### Technical details about whether $p$ or $m$ jumps at $T_1$
 
 We have noted that  with a constant expected forward sequence $\mu_s = \bar \mu$ for $s\geq t$, $\pi_{t} =\bar{\mu}$.
 

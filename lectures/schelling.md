@@ -77,7 +77,7 @@ from math import sqrt
 import numpy as np
 ```
 
-## The Model
+## The model
 
 In this section we will build a version of Schelling's model.
 

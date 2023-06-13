@@ -27,7 +27,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 ```
 
-## The Model
+## The model
 
 In a Solow--Swan economy, agents save a fixed fraction of their current
 incomes.
@@ -98,7 +98,7 @@ Our aim is to learn about the evolution of $k_t$ over time,
 given an exogenous initial capital stock  $k_0$.
 
 
-## A Graphical Perspective
+## A graphical perspective
 
 To understand the dynamics of the sequence $(k_t)_{t \geq 0}$ we use a 45
 degree diagram.
@@ -261,7 +261,7 @@ simulate_ts(x0, ts_length)
 
 As expected, the time paths in the figure both converge to this value.
 
-## Growth in Continuous Time
+## Growth in continuous time
 
 In this section we investigate a continuous time version of the Solow--Swan
 growth model.
