@@ -1,4 +1,4 @@
-# About these Lectures
+# About These Lectures
 
 
 ## About
