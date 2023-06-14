@@ -75,13 +75,13 @@ The demand for real balances $\exp\left(\frac{m_t^d}{p_t}\right)$ is governed by
   
 $$  
 m_t^d - p_t = -\alpha \pi_t^* \: , \: \alpha > 0 ; \quad t = 0, 1, \ldots, T .
-$$ (eq:caganmd)
+$$ (eq:caganmd_ad)
 
 
 This equation  asserts that the demand for real balances
 is inversely related to the public's expected rate of inflation.
 
-Equating the logarithm $m_t^d$ of the demand for money  to the logarithm  $m_t$ of the supply of money in equation {eq}`eq:caganmd` and solving for the logarithm $p_t$
+Equating the logarithm $m_t^d$ of the demand for money  to the logarithm  $m_t$ of the supply of money in equation {eq}`eq:caganmd_ad` and solving for the logarithm $p_t$
 of the price level gives
 
 $$
@@ -258,15 +258,15 @@ m_1 \cr m_2 \cr m_3 \cr \vdots \cr m_T \cr m_{T+1}
 + \begin{bmatrix}  
 m_0 \cr 0 \cr 0 \cr \vdots \cr 0 \cr 0
 \end{bmatrix}
-$$ (eq:eq101)
+$$ (eq:eq101_ad)
 
-Multiplying both sides of equation {eq}`eq:eq101`  with the inverse of the matrix on the left will give 
+Multiplying both sides of equation {eq}`eq:eq101_ad`  with the inverse of the matrix on the left will give 
 
 $$
 m_t = m_0 + \sum_{s=0}^{t-1} \mu_s, \quad t =1, \ldots, T+1
-$$ (eq:mcum)
+$$ (eq:mcum_ad)
 
-Equation {eq}`eq:mcum` shows that the log of the money supply at $t$ equals the log $m_0$ of the initial money supply 
+Equation {eq}`eq:mcum_ad` shows that the log of the money supply at $t$ equals the log $m_0$ of the initial money supply 
 plus accumulation of rates of money growth between times $0$ and $t$.
 
 We can then compute $p_t$ for each $t$ from equation {eq}`eq:eqfiscth1`.
