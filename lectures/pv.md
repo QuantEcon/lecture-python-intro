@@ -152,6 +152,10 @@ $$ (eq:apdb_sol)
 
 Here is a small example, where the dividend stream is given by
 
+$$
+    d_{t+1} = 1.05 d_t, \quad t = 0, 1, \ldots , T-1.
+$$
+
 
 ```{code-cell} ipython3
 T = 6
@@ -209,6 +213,10 @@ plt.show()
 
 
 We can also consider a cyclically growing dividend sequence, such as
+
+$$
+    d_{t+1} = 1.01 d_t + 0.1 \sin t, \quad t = 0, 1, \ldots , T-1.
+$$
 
 
 ```{code-cell} ipython3
@@ -365,7 +373,7 @@ $$
 \end{bmatrix}
 $$ (eq:pieq2)
 
-Evidently, if $p_{T+1}^* = 0$, a price vector $p$ of with all entries zero
+Evidently, if $p_{T+1}^* = 0$, a price vector $p$ of all entries zero
 solves this equation and the only the **fundamental** component of our pricing 
 formula {eq}`eq:ptpveq` is present. 
 
@@ -395,7 +403,7 @@ R_t = \frac{p_{t+1}}{p_t}
 $$ (eq:rateofreturn)
 
 Equation {eq}`eq:bubble` confirms that an asset whose  sole source of value is a bubble 
-earns a  gross rate of return of
+that earns a  gross rate of return
 
 $$
 R_t = \delta^{-1} > 1 .
