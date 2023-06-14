@@ -29,7 +29,7 @@ Let
  * $\{d_t\}_{t=0}^T $ be a sequence of dividends or "payouts"
  * $\{p_t\}_{t=0}^T $ be a sequence of prices of a claim on the continuation of
     the asset stream from date $t$ on, namely, $\{d_s\}_{s=t}^T $ 
- * $ \delta  \in (0,1) $ be a one-period "discount rate" 
+ * $ \delta  \in (0,1) $ be a one-period "discount factor" 
  * $p_{T+1}^*$ be a terminal price of the asset at time $T+1$
  
 We  assume that the dividend stream $\{d_t\}_{t=0}^T $ and the terminal price 
@@ -313,7 +313,7 @@ $p_t$:
   
   * a **bubble component** $\delta^{T+1-t} p_{T+1}^*$
   
-The fundamental component is pinned down by the discount rate $\delta$ and the
+The fundamental component is pinned down by the discount factor $\delta$ and the
 "fundaments" of the asset (in this case, the dividends).
 
 The bubble component is the part of the price that is not pinned down by
