@@ -405,7 +405,7 @@ Now let's look at Gini coefficients for US data derived from the SCF.
 
 The following code creates a list called ``Ginis``.
 
-It stores data of Gini coefficients  generated from the dataframe ``df_income_wealth`` and method [gini_coefficient](https://quanteconpy.readthedocs.io/en/latest/tools/inequality.html#quantecon.inequality.gini_coefficient), from [QuantEcon](https://quantecon.org/quantecon-py/) library.
+ It stores data of Gini coefficients generated from the dataframe ``df_income_wealth`` and method [gini_coefficient](https://quanteconpy.readthedocs.io/en/latest/tools/inequality.html#quantecon.inequality.gini_coefficient), from [QuantEcon](https://quantecon.org/quantecon-py/) library.
 
 ```{code-cell} ipython3
 :tags: [hide_input]
