@@ -433,7 +433,7 @@ data['gdp'] = data['gdppc'] * data['pop']
 gdp = data['gdp'].unstack('countrycode')
 ```
 
-### Early industralization (1820 to 1940)
+### Early industrialization (1820 to 1940)
 
 We first visualize the trend of China, the Former Soviet Union, Japan, the UK and the US.
 
