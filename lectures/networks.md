@@ -266,7 +266,7 @@ Also,  for $v \in V$,
 * the **out-degree** is $o_d(v) = $ the number of direct successors of $v$.
 
 
-### Digraphs in networkx
+### Digraphs in Networkx
 
 The Python package [Networkx](https://networkx.org/) provides a convenient
 data structure for representing directed graphs and implements many common
