@@ -37,7 +37,6 @@ and understand key concepts.
 Let's start with some standard imports:
 
 ```{code-cell} ipython
-%matplotlib inline
 import matplotlib.pyplot as plt
 import numpy as np
 ```
@@ -50,27 +49,27 @@ This section sets out the objects of interest and the kinds of properties we stu
 
 For this lecture you should know the following.
 
-If 
+If
 
 * $g$ is a function from $A$ to $B$ and
-* $f$ is a function from $B$ to $C$, 
+* $f$ is a function from $B$ to $C$,
 
 then the **composition** $f \circ g$ of $f$ and $g$ is defined by
 
-$$ 
+$$
     (f \circ g)(x) = f(g(x))
 $$
 
-For example, if 
+For example, if
 
-* $A=B=C=\mathbb R$, the set of real numbers, 
+* $A=B=C=\mathbb R$, the set of real numbers,
 * $g(x)=x^2$ and $f(x)=\sqrt{x}$, then $(f \circ g)(x) = \sqrt{x^2} = |x|$.
 
 If $f$ is a function from $A$ to itself, then $f^2$ is the composition of $f$
 with itself.
 
 For example, if $A = (0, \infty)$, the set of positive numbers, and $f(x) =
-\sqrt{x}$, then 
+\sqrt{x}$, then
 
 $$
     f^2(x) = \sqrt{\sqrt{x}} = x^{1/4}
@@ -113,7 +112,7 @@ a sequence $\{x_t\}$ of points in $S$ by setting
 ```{math}
 :label: sdsod
     x_{t+1} = g(x_t)
-    \quad \text{ with } 
+    \quad \text{ with }
     x_0 \text{ given}.
 ```
 
@@ -131,8 +130,8 @@ This sequence $\{x_t\}$ is called the **trajectory** of $x_0$ under $g$.
 In this setting, $S$ is called the **state space** and $x_t$ is called the
 **state variable**.
 
-Recalling that $g^n$ is the $n$ compositions of $g$ with itself, 
-we can write the trajectory more simply as 
+Recalling that $g^n$ is the $n$ compositions of $g$ with itself,
+we can write the trajectory more simply as
 
 $$
     x_t = g^t(x_0) \quad \text{ for } t \geq 0.
@@ -155,13 +154,13 @@ b$, where $a, b$ are fixed constants.
 This leads to the **linear difference equation**
 
 $$
-    x_{t+1} = a x_t + b 
-    \quad \text{ with } 
+    x_{t+1} = a x_t + b
+    \quad \text{ with }
     x_0 \text{ given}.
 $$
 
 
-The trajectory of $x_0$ is 
+The trajectory of $x_0$ is
 
 ```{math}
 :label: sdslinmodpath

@@ -70,7 +70,6 @@ awarded the 2005 Nobel Prize in Economic Sciences (joint with Robert Aumann).
 Let's start with some imports:
 
 ```{code-cell} ipython3
-%matplotlib inline
 import matplotlib.pyplot as plt
 from random import uniform, seed
 from math import sqrt

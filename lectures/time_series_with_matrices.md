@@ -50,7 +50,6 @@ We will use the following imports:
 
 ```{code-cell} ipython
 import numpy as np
-%matplotlib inline
 import matplotlib.pyplot as plt
 from matplotlib import cm
 plt.rcParams["figure.figsize"] = (11, 5)  #set default figure size
@@ -180,7 +179,7 @@ Now let’s solve for the path of $y$.
 If $y_t$ is GNP at time $t$, then we have a version of
 Samuelson’s model of the dynamics for GNP.
 
-To solve $y = A^{-1} b$ we can either invert $A$ directly, as in 
+To solve $y = A^{-1} b$ we can either invert $A$ directly, as in
 
 ```{code-cell} python3
 A_inv = np.linalg.inv(A)
@@ -188,7 +187,7 @@ A_inv = np.linalg.inv(A)
 y = A_inv @ b
 ```
 
-or we can use `np.linalg.solve`: 
+or we can use `np.linalg.solve`:
 
 
 ```{code-cell} python3
@@ -204,7 +203,7 @@ np.allclose(y, y_second_method)
 
 ```{note}
 In general, `np.linalg.solve` is more numerically stable than using
-`np.linalg.inv` directly. 
+`np.linalg.inv` directly.
 However, stability is not an issue for this small example. Moreover, we will
 repeatedly use `A_inv` in what follows, so there is added value in computing
 it directly.
@@ -366,9 +365,9 @@ $$
 
 You can read about multivariate normal distributions in this lecture [Multivariate Normal Distribution](https://python.quantecon.org/multivariate_normal.html).
 
-Let's write our  model as 
+Let's write our  model as
 
-$$ 
+$$
 y = \tilde A (b + u)
 $$
 
@@ -382,11 +381,11 @@ $$
 
 where
 
-$$ 
+$$
 \mu_y = \tilde A b
 $$
 
-and 
+and
 
 $$
 \Sigma_y = \tilde A (\sigma_u^2 I_{T \times T} ) \tilde A^T
@@ -425,7 +424,7 @@ class population_moments:
         A_inv = np.linalg.inv(A)
 
         self.A, self.b, self.A_inv, self.sigma_u, self.T = A, b, A_inv, sigma_u, T
-    
+
     def sample_y(self, n):
         """
         Give a sample of size n of y.
@@ -451,14 +450,14 @@ class population_moments:
 
 my_process = population_moments(
     alpha0=10.0, alpha1=1.53, alpha2=-.9, T=80, y_1=28., y0=24., sigma_u=1)
-    
+
 mu_y, Sigma_y = my_process.get_moments()
 A_inv = my_process.A_inv
 ```
 
 It is enlightening  to study the $\mu_y, \Sigma_y$'s implied by  various parameter values.
 
-Among other things, we can use the class to exhibit how  **statistical stationarity** of $y$ prevails only for very special initial conditions. 
+Among other things, we can use the class to exhibit how  **statistical stationarity** of $y$ prevails only for very special initial conditions.
 
 Let's begin by generating $N$ time realizations of $y$ plotting them together with  population  mean $\mu_y$ .
 
@@ -496,7 +495,7 @@ Let's print out the covariance matrix $\Sigma_y$ for a  time series $y$
 
 ```{code-cell} ipython3
 my_process = population_moments(alpha0=0, alpha1=.8, alpha2=0, T=6, y_1=0., y0=0., sigma_u=1)
-    
+
 mu_y, Sigma_y = my_process.get_moments()
 print("mu_y = ",mu_y)
 print("Sigma_y = ", Sigma_y)
@@ -504,7 +503,7 @@ print("Sigma_y = ", Sigma_y)
 
 Notice that  the covariance between $y_t$ and $y_{t-1}$ -- the elements on the superdiagonal -- are **not** identical.
 
-This is is an indication that the time series respresented by our $y$ vector is not **stationary**.  
+This is is an indication that the time series respresented by our $y$ vector is not **stationary**.
 
 To make it stationary, we'd have to alter our system so that our **initial conditions** $(y_1, y_0)$ are not fixed numbers but instead a jointly normally distributed random vector with a particular mean and  covariance matrix.
 
@@ -530,7 +529,7 @@ There is a lot to be learned about the process by staring at the off diagonal el
 
 ## Moving Average Representation
 
-Let's print out  $A^{-1}$ and stare at  its structure 
+Let's print out  $A^{-1}$ and stare at  its structure
 
   *  is it triangular or almost triangular or $\ldots$ ?
 
@@ -546,7 +545,7 @@ with np.printoptions(precision=3, suppress=True):
 
 
 
-Evidently, $A^{-1}$ is a lower triangular matrix. 
+Evidently, $A^{-1}$ is a lower triangular matrix.
 
 
 Let's print out the lower right hand corner of $A^{-1}$ and stare at it.
@@ -561,13 +560,13 @@ Notice how  every row ends with the previous row's pre-diagonal entries.
 
 
 
- 
 
-Since $A^{-1}$ is lower triangular,  each  row represents  $ y_t$ for a particular $t$ as the sum of 
-- a time-dependent function $A^{-1} b$ of the initial conditions incorporated in $b$, and 
+
+Since $A^{-1}$ is lower triangular,  each  row represents  $ y_t$ for a particular $t$ as the sum of
+- a time-dependent function $A^{-1} b$ of the initial conditions incorporated in $b$, and
 - a weighted sum of  current and past values of the IID shocks $\{u_t\}$
 
-Thus,  let $\tilde{A}=A^{-1}$. 
+Thus,  let $\tilde{A}=A^{-1}$.
 
 Evidently,  for $t\geq0$,
 
@@ -577,7 +576,7 @@ $$
 
 This is  a **moving average** representation with time-varying coefficients.
 
-Just as system {eq}`eq:eqma` constitutes  a 
+Just as system {eq}`eq:eqma` constitutes  a
 **moving average** representation for $y$, system  {eq}`eq:eqar` constitutes  an **autoregressive** representation for $y$.
 
 
@@ -692,4 +691,3 @@ plt.legend()
 
 plt.show()
 ```
-
