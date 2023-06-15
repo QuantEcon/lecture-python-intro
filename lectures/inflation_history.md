@@ -11,7 +11,7 @@ kernelspec:
   name: python3
 ---
 
-+++ {"user_expressions": []}
+
 
 # Price Level Histories 
 
@@ -24,7 +24,8 @@ We want to construct four graphs from "The Ends of Four Big Inflations" from cha
 This is chapter 3 of the book **Rational Expectations and Inflation** that I shared with you a couple of days ago.
 
 
-```python
+
+```{code-cell} ipython3
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -32,8 +33,10 @@ import matplotlib.dates as mdates
 import datetime
 ```
 
-```python
-!pip install xlrd
+
+```{code-cell} ipython3
+:tags: [hide-output]
+!pip install xlrd 
 ```
 
 The graphs depict logarithms of price levels during the early post World War I years for four countries:
@@ -72,7 +75,7 @@ The spreadsheet refers to the tables that I now describe for each of our four co
 
 
 
-```python
+```{code-cell} ipython3
 def process_entry(entry):
     "Clean each entry of a dataframe."
     
@@ -146,7 +149,7 @@ def create_plot(p_seq, e_seq, index, labs, ax):
     return ax1
 ```
 
-```python
+```{code-cell} ipython3
 # import data
 xls = pd.ExcelFile('datasets/chapter_3.xlsx')
 
@@ -174,11 +177,11 @@ df_Aus, df_Hung, df_Pol, df_Germ = df_list
 * Table 3.3, rdf_Aus.indexetail prices, $\exp p$
 * Table 3.4, exchange rate with US
 
-```python
+```{code-cell} ipython3
 df_Aus.head(5)
 ```
 
-```python
+```{code-cell} ipython3
 p_seq = df_Aus['Retail price index, 52 commodities']
 e_seq = df_Aus['Exchange Rate']
 
@@ -199,11 +202,11 @@ plt.show()
 * Table 3.10, price level $\exp p$ and exchange rate
 
 
-```python
+```{code-cell} ipython3
 df_Hung.head(5)
 ```
 
-```python
+```{code-cell} ipython3
 m_seq = df_Hung['Notes in circulation']
 p_seq = df_Hung['Hungarian index of prices']
 e_seq = 1/df_Hung['Cents per crown in New York']
@@ -232,11 +235,11 @@ I spliced the three series - Wholesale price index, Wholesale Price Index: On pa
 
 I dropped the exchange rate after June 1924, when zloty was adopted, because we don't have the price measured in zloty and old currency in June to compute the exchange rate adjustment.
 
-```python
+```{code-cell} ipython3
 df_Pol.head(5)
 ```
 
-```python
+```{code-cell} ipython3
 # splice three price series in different units
 p_seq1 = df_Pol['Wholesale price index'].copy()
 p_seq2 = df_Pol['Wholesale Price Index: On paper currency basis'].copy()
@@ -260,7 +263,7 @@ e_seq = 1/df_Pol['Cents per Polish mark (zloty after May 1924)']
 e_seq[e_seq.index > '05-01-1924'] = np.nan
 ```
 
-```python
+```{code-cell} ipython3
 lab = ['Wholesale Price Index', '1/Cents per Polish Mark']
 
 # create plot
@@ -277,12 +280,11 @@ plt.show()
 * Table 3.18, wholesale price level $\exp p$ 
 * Table 3.19, exchange rate
 
-```python
+```{code-cell} ipython3
 df_Germ.head(5)
 ```
 
-
-```python
+```{code-cell} ipython3
 p_seq = df_Germ['Price index (on basis of marks before July 1924,  reichsmarks after)'].copy()
 e_seq = 1/df_Germ['Cents per mark']
 
@@ -298,7 +300,7 @@ plt.show()
 
 Jiacheng: I add the new graph here.
 
-```python
+```{code-cell} ipython3
 p_seq = df_Germ['Price index (on basis of marks before July 1924,  reichsmarks after)'].copy()
 e_seq = 1/df_Germ['Cents per mark'].copy()
 
@@ -325,7 +327,7 @@ There might be some ambiguity about exactly which column in the "balance sheets"
 **Seecond Steps:** There are some fun additonal things we can plot to set the stage for our  cagan_ree and cagan_adaptive notebooks.  For example, we have the data to plot logs of real balances around the times of the stabilizations. We can hunt for instances of "velocity dividends".
 
 
-```python
+```{code-cell} ipython3
 # import data
 df_fig5 = pd.read_excel('datasets/longprices.xls', sheet_name='all', header=2, index_col=0).iloc[1:]
 df_fig5.index = df_fig5.index.astype(int) 
@@ -333,7 +335,7 @@ df_fig5.index = df_fig5.index.astype(int)
 df_fig5.head(5)
 ```
 
-```python
+```{code-cell} ipython3
 # create plot
 cols = ['UK', 'US', 'France', 'Castile']
 
