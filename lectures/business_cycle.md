@@ -99,7 +99,7 @@ First we look at GDP growth.
 Let's source our data from the World Bank and clean it.
 
 ```{code-cell} ipython3
-# Use the series ID retrived before
+# Use the series ID retrieved before
 gdp_growth = wb.data.DataFrame('NY.GDP.MKTP.KD.ZG',
             ['USA', 'ARG', 'GBR', 'GRC', 'JPN'], 
             labels=True)
@@ -709,7 +709,7 @@ from 1919 to 2022 in the US to show this trend.
 ---
 mystnb:
   figure:
-    caption: "YoY real ouput change, US (%)"
+    caption: "YoY real output change, US (%)"
     name: roc
 tags: [hide-input]
 ---
@@ -733,7 +733,7 @@ ax.fill_between(nber.index, 0, 1,
                 transform=ax.get_xaxis_transform(), 
                 label='NBER recession indicators')
 ax.set_ylim([ax.get_ylim()[0], ax.get_ylim()[1]])
-ax.set_ylabel('YoY real ouput change (%)')
+ax.set_ylabel('YoY real output change (%)')
 plt.show()
 ```
 

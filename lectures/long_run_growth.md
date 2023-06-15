@@ -16,7 +16,7 @@ kernelspec:
 
 ## Overview
 
-Adam Tooze's account of the geopolitical precedents and antecedents of World War I  includes a comparison of how Gross National Products of European Great Powers had evolved during the 70 years preceding 1914 (see chapter 1 of {cite}`Tooze_2014`).
+Adam Tooze's account of the geopolitical precedents and antecedents of World War I includes a comparison of how Gross National Products of European Great Powers had evolved during the 70 years preceding 1914 (see chapter 1 of {cite}`Tooze_2014`).
 
 We report a version of Tooze's graph later in this lecture.
 
@@ -29,7 +29,7 @@ As we gather data to construct those two graphs, we'll also study growth experie
 
 These graphs will portray how the "Industrial Revolution" began in Britain in the late 18th century, then migrated to one country after another.  
 
-In a nutshell, this  lecture records  growth trajectories of various  countries over long time periods. 
+In a nutshell, this lecture records growth trajectories of various countries over long time periods. 
 
 While some countries have experienced long term rapid growth across that has lasted a hundred years, others have not. 
 
@@ -295,19 +295,19 @@ The preceding graph of percapita GDP strikingly reveals how the spread of the in
 groups of people  
 
 - Most of the growth happened in the past 150 years after the industrial revolution.
-- Percapita GDP's in the  UK and the US, on the one hand, and in China, on the other, diverged  from 1820 to 1940.
-- The gap has closed  rapidly after 1950 and especially after the late 1970s.
+- Percapita GDP's in the UK and the US, on the one hand, and in China, on the other, diverged from 1820 to 1940.
+- The gap has closed rapidly after 1950 and especially after the late 1970s.
 - These outcomes reflect complicated combinations of technological and economic-policy factors that students of economic growth try to understand and quantify
 
 
-It is fascinating to see  China's GDP per capita levels from 1500 through to the 1970s.
+It is fascinating to see China's GDP per capita levels from 1500 through to the 1970s.
 
 Notice the long period of declining GDP per capital levels from the 1700s until the early 20th century.
 
 Thus, the graph indicates 
 
-- A long  economic downturn and stagnation after the Closed-door Policy by the Qing government
-- China's very different experience than the UK's after the onset of   the industrial revolution in the UK
+- A long economic downturn and stagnation after the Closed-door Policy by the Qing government
+- China's very different experience than the UK's after the onset of the industrial revolution in the UK
 - How the Self-Strengthening Movement seemed mostly to help China to grow
 - How stunning have been the growth achievements of Modern Chinese economic policies by the PRC that culminated with its late 1970s Reform and Opening-up
 
@@ -365,9 +365,9 @@ We can also look at the United States (USA) and United Kingdom (GBR) in more det
 In the following graph, please watch for 
 - impact of trade policy (Navigation Act)
 - productivity changes brought by the industrial revolution
-- how the US gradually approaches and then  surpasses the UK, setting the stage for the ``American Century''
-- the  often unanticipated consequenes of wars 
-- interruptions and scars left by  {ref}`business cycle<mc1_ex_1>` recessions and depressions
+- how the US gradually approaches and then surpasses the UK, setting the stage for the ``American Century''
+- the often unanticipated consequences of wars 
+- interruptions and scars left by {ref}`business cycle<mc1_ex_1>` recessions and depressions
 
 ```{code-cell} ipython3
 ---
@@ -424,7 +424,7 @@ plt.show()
 
 Now we'll construct some graphs of interest to geopolitical historians like Adam Tooze.
 
-We'll focus on  total Gross Domestic Product (GDP)  (as a proxy for ''national geopolitical-military power'') rather than focusing on GDP per capita (as a proxy for living standards).
+We'll focus on total Gross Domestic Product (GDP) (as a proxy for ''national geopolitical-military power'') rather than focusing on GDP per capita (as a proxy for living standards).
 
 ```{code-cell} ipython3
 data = pd.read_excel("datasets/mpd2020.xlsx", sheet_name='Full data')
@@ -447,7 +447,7 @@ Meanwhile, Russia experienced significant setbacks during World War I and recove
 ---
 mystnb:
   figure:
-    caption: GDP in the early industralization era
+    caption: GDP in the early industrialization era
     name: gdp1
 ---
 fig, ax = plt.subplots(dpi=300)
