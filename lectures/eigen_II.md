@@ -411,7 +411,7 @@ Thus, the rate of convergence is governed by the modulus of the second largest e
 
 
 (la_neumann)=
-## The Neumann series lemma
+## The Neumann Series Lemma
 
 ```{index} single: Neumann's Lemma
 ```
