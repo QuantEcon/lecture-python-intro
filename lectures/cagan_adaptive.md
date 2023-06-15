@@ -43,7 +43,7 @@ Instead of the "perfect foresight" or "rational expectations" version of the mod
 
 It combines these components:
 
- * a demand function for real money balances that says asserts that the logarithm of the quantity of real balances demanded depends inversely on the public's expected rate of inflation
+ * a demand function for real money balances that asserts that the logarithm of the quantity of real balances demanded depends inversely on the public's expected rate of inflation
  
  * an **adaptive expectations** model that describes how the public's anticipated rate of inflation responds to past values of actual inflation
  
@@ -53,7 +53,7 @@ It combines these components:
 
 Our model stays quite close to Cagan's original specification.  
 
-As in the {doc}`present values <pv>` and {doc}`consumption smoothing<cons_smooth>` lectures, the only linear algebra operations that we'll be  using are matrix multplication and matrix inversion.
+As in the {doc}`present values <pv>` and {doc}`consumption smoothing<cons_smooth>` lectures, the only linear algebra operations that we'll be  using are matrix multiplication and matrix inversion.
 
 To facilitate using  linear matrix algebra as our principal mathematical tool, we'll use a finite horizon version of
 the model.
@@ -105,9 +105,9 @@ $$
 $$ (eq:adaptexpn)
 
 As exogenous inputs into the model, we take initial conditions $m_0, \pi_0^*$
-and a money growth sequence $\vec \mu = \{\mu_t\}_{t=0}^T$.  
+and a money growth sequence $\mu = \{\mu_t\}_{t=0}^T$.  
 
-As endogenous outputs of our model we want to find sequences $\vec \pi = \{\pi_t\}_{t=0}^T, \vec p = \{p_t\}_{t=0}^T$ as functions of the endogenous inputs.
+As endogenous outputs of our model we want to find sequences $\pi = \{\pi_t\}_{t=0}^T, p = \{p_t\}_{t=0}^T$ as functions of the endogenous inputs.
 
 We'll do some mental experiments by studying how the model outputs vary as we vary
 the model inputs.
@@ -148,10 +148,10 @@ $$
 Write this equation as
 
 $$
-A \vec \pi^* = (1-\lambda) B \vec \pi + \vec \pi_0^*
+A \pi^* = (1-\lambda) B \pi + \pi_0^*
 $$ (eq:eq1)
 
-where the $(T+2) \times (T+2) $matrix $A$, the $(T+2)\times (T+1)$ matrix $B$, and the vectors $\vec \pi^* , \vec \pi_0, \pi_0^*$
+where the $(T+2) \times (T+2) $matrix $A$, the $(T+2)\times (T+1)$ matrix $B$, and the vectors $\pi^* , \pi_0, \pi_0^*$
 are defined implicitly by aligning these two equations.
 <!-- #endregion -->
 
@@ -179,7 +179,7 @@ $$
 Represent the previous equation system in terms of vectors and matrices as
 
 $$
-\vec \pi = \vec \mu + C \vec \pi^*
+\pi = \mu + C \pi^*
 $$ (eq:eq2)
 
 where the $(T+1) \times (T+2)$ matrix $C$ is defined implicitly to align this equation with the preceding
@@ -190,47 +190,47 @@ equation system.
 ## Harvesting returns from our matrix formulation
 
 
-We now have all of the ingredients we need to solve for $\vec \pi$ as
-a function of $\vec \mu, \pi_0, \pi_0^*$.  
+We now have all of the ingredients we need to solve for $\pi$ as
+a function of $\mu, \pi_0, \pi_0^*$.  
 
 Combine equations {eq}`eq:eq1`and {eq}`eq:eq2`  to get
 
 $$
 \begin{align*}
-A \vec \pi^* & = (1-\lambda) B \vec \pi + \vec \pi_0^* \cr
- & = (1-\lambda) B \left[ \vec \mu + C \vec \pi^* \right] + \vec \pi_0^*
+A \pi^* & = (1-\lambda) B \pi + \pi_0^* \cr
+ & = (1-\lambda) B \left[ \mu + C \pi^* \right] + \pi_0^*
 \end{align*}
 $$
 
 which implies that
 
 $$
-\left[ A - (1-\lambda) B C \right] \vec \pi^* = (1-\lambda) B \vec \mu+ \vec \pi_0^*
+\left[ A - (1-\lambda) B C \right] \pi^* = (1-\lambda) B \mu+ \pi_0^*
 $$
 
 Multiplying both sides of the above equation by the inverse of the matrix on the left side gives
 
 $$
-\vec \pi^* = \left[ A - (1-\lambda) B C \right]^{-1} \left[ (1-\lambda) B \vec \mu+ \vec \pi_0^* \right]
+\pi^* = \left[ A - (1-\lambda) B C \right]^{-1} \left[ (1-\lambda) B \mu+ \pi_0^* \right]
 $$ (eq:eq4)
 
-Having solved equation {eq}`eq:eq4` for $\vec \pi^*$, we can use  equation {eq}`eq:eq2`  to solve for $\vec \pi$:
+Having solved equation {eq}`eq:eq4` for $\pi^*$, we can use  equation {eq}`eq:eq2`  to solve for $\pi$:
 
 $$
-\vec \pi = \vec \mu + C \vec \pi^*
+\pi = \mu + C \pi^*
 $$
 
 
-We have thus solved for two of the key endogenous time series determined by our model, namely, the sequence $\vec \pi^*$
-of expected inflation rates and the sequence $\vec \pi$ of actual inflation rates.  
+We have thus solved for two of the key endogenous time series determined by our model, namely, the sequence $\pi^*$
+of expected inflation rates and the sequence $\pi$ of actual inflation rates.  
 
-Knowing these, we can then quickly calculate the associated sequence $\vec p$  of the logarithm of the  price level
+Knowing these, we can then quickly calculate the associated sequence $p$  of the logarithm of the  price level
 from equation {eq}`eq:eqfiscth1`. 
 
 Let's fill in the details for this step.
 <!-- #endregion -->
 
-Since we now know $\vec \mu$  it is easy to compute $\vec m$.
+Since we now know $\mu$  it is easy to compute $m$.
 
 Thus, notice that we can represent the equations 
 
@@ -271,10 +271,10 @@ plus accumulation of rates of money growth between times $0$ and $t$.
 
 We can then compute $p_t$ for each $t$ from equation {eq}`eq:eqfiscth1`.
 
-We can write a compact formula for $\vec p $ as
+We can write a compact formula for $p $ as
 
 $$ 
-\vec p = \vec m + \alpha \hat \pi^*
+p = m + \alpha \hat \pi^*
 $$
 
 where 
@@ -288,7 +288,7 @@ $$
   \end{bmatrix},
  $$
 
-which is just $\vec \pi^*$ with the last element dropped.
+which is just $\pi^*$ with the last element dropped.
  
 
 
@@ -297,7 +297,7 @@ which is just $\vec \pi^*$ with the last element dropped.
 Our computations will verify that 
 
 $$
-\hat \pi^* \neq \vec  \pi,
+\hat \pi^* \neq  \pi,
 $$
 
 so that in general
@@ -380,25 +380,21 @@ def solve_and_plot(model, μ_seq):
     
     T_seq = range(model.T+2)
     
-    fig, ax = plt.subplots(2, 3, figsize=[10,5], dpi=200)
-    ax[0,0].plot(T_seq[:-1], μ_seq)
-    ax[0,1].plot(T_seq[:-1], π_seq, label=r'$\pi_t$')
-    ax[0,1].plot(T_seq, Eπ_seq, label=r'$\pi^{*}_{t}$')
-    ax[0,2].plot(T_seq, m_seq - p_seq)
-    ax[1,0].plot(T_seq, m_seq)
-    ax[1,1].plot(T_seq, p_seq)
+    fig, ax = plt.subplots(5, 1, figsize=[5, 12], dpi=200)
+    ax[0].plot(T_seq[:-1], μ_seq)
+    ax[1].plot(T_seq[:-1], π_seq, label=r'$\pi_t$')
+    ax[1].plot(T_seq, Eπ_seq, label=r'$\pi^{*}_{t}$')
+    ax[2].plot(T_seq, m_seq - p_seq)
+    ax[3].plot(T_seq, m_seq)
+    ax[4].plot(T_seq, p_seq)
     
-    x_lab = r'$t$'
     y_labs = [r'$\mu$', r'$\pi$', r'$m - p$', r'$m$', r'$p$']
 
-    k = 0
-    for i,j in zip([0, 0, 0, 1, 1], [0, 1, 2, 0, 1]):
-        ax[i,j].set_xlabel(x_lab)
-        ax[i,j].set_ylabel(y_labs[k])
-        k = k + 1
+    for i in range(5):
+        ax[i].set_xlabel(r'$t$')
+        ax[i].set_ylabel(y_labs[i])
 
-    ax[0,1].legend()
-    ax[1,2].set_axis_off()
+    ax[1].legend()
     plt.tight_layout()
     plt.show()
     
@@ -425,7 +421,7 @@ $$
 \end{align*}
 $$
 
-By assuring that the coefficient on $\pi_t$ is less than one in absolulte value, condition {eq}`eq:suffcond` assures stability of the dynamics of $\{\pi_t\}$ described by the last line of our string of deductions. 
+By assuring that the coefficient on $\pi_t$ is less than one in absolute value, condition {eq}`eq:suffcond` assures stability of the dynamics of $\{\pi_t\}$ described by the last line of our string of deductions. 
 
 The reader is free to study outcomes in examples that violate condition {eq}`eq:suffcond`.
 <!-- #endregion -->

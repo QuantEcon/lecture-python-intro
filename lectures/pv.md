@@ -29,7 +29,7 @@ Let
  * $\{d_t\}_{t=0}^T $ be a sequence of dividends or "payouts"
  * $\{p_t\}_{t=0}^T $ be a sequence of prices of a claim on the continuation of
     the asset stream from date $t$ on, namely, $\{d_s\}_{s=t}^T $ 
- * $ \delta  \in (0,1) $ be a one-period "discount rate" 
+ * $ \delta  \in (0,1) $ be a one-period "discount factor" 
  * $p_{T+1}^*$ be a terminal price of the asset at time $T+1$
  
 We  assume that the dividend stream $\{d_t\}_{t=0}^T $ and the terminal price 
@@ -44,7 +44,7 @@ $$ (eq:Euler1)
 This is a "cost equals benefits" formula.
 
 It says that the cost of buying the asset today equals the reward for holding it
-for one period (which is the dividend $d_t$)and then selling it, at $t+1$.
+for one period (which is the dividend $d_t$) and then selling it, at $t+1$.
 
 The future value $p_{t+1}$ is discounted using $\delta$ to shift it to a present value, so it is comparable with $d_t$ and $p_t$.
 
@@ -152,6 +152,10 @@ $$ (eq:apdb_sol)
 
 Here is a small example, where the dividend stream is given by
 
+$$
+    d_{t+1} = 1.05 d_t, \quad t = 0, 1, \ldots , T-1.
+$$
+
 
 ```{code-cell} ipython3
 T = 6
@@ -209,6 +213,10 @@ plt.show()
 
 
 We can also consider a cyclically growing dividend sequence, such as
+
+$$
+    d_{t+1} = 1.01 d_t + 0.1 \sin t, \quad t = 0, 1, \ldots , T-1.
+$$
 
 
 ```{code-cell} ipython3
@@ -313,7 +321,7 @@ $p_t$:
   
   * a **bubble component** $\delta^{T+1-t} p_{T+1}^*$
   
-The fundamental component is pinned down by the discount rate $\delta$ and the
+The fundamental component is pinned down by the discount factor $\delta$ and the
 "fundaments" of the asset (in this case, the dividends).
 
 The bubble component is the part of the price that is not pinned down by
@@ -365,7 +373,7 @@ $$
 \end{bmatrix}
 $$ (eq:pieq2)
 
-Evidently, if $p_{T+1}^* = 0$, a price vector $\vec p$ of with all entries zero
+Evidently, if $p_{T+1}^* = 0$, a price vector $p$ of all entries zero
 solves this equation and the only the **fundamental** component of our pricing 
 formula {eq}`eq:ptpveq` is present. 
 
@@ -395,7 +403,7 @@ R_t = \frac{p_{t+1}}{p_t}
 $$ (eq:rateofreturn)
 
 Equation {eq}`eq:bubble` confirms that an asset whose  sole source of value is a bubble 
-earns a  gross rate of return of
+that earns a  gross rate of return
 
 $$
 R_t = \delta^{-1} > 1 .
