@@ -260,7 +260,7 @@ which is just $\vec \pi^*$ with the last element dropped.
  
 
 
-### Expectational error  gap 
+### Expectational error gap 
 
 Our computations will verify that 
 
