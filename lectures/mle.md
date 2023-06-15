@@ -134,7 +134,7 @@ $$ (eq:est_rev)
 The problem now is: how do we estimate $f$?
 
 
-## Maximum Likelihood Estimation
+## Maximum likelihood estimation
 
 [Maximum likelihood estimation](https://en.wikipedia.org/wiki/Maximum_likelihood_estimation) 
 is a method of estimating an unknown distribution.

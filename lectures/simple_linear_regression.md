@@ -196,7 +196,7 @@ plt.axvline(α_optimal, color='r');
 ```
 
 (slr:optimal-values)=
-## Calculating Optimal Values
+## Calculating optimal values
 
 Now let us use calculus to solve the optimization problem and compute the optimal values for $\alpha$ and $\beta$ to find the ordinary least squares solution.
 

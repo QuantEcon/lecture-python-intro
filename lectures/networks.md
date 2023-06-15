@@ -64,7 +64,7 @@ import quantecon_book_networks.data as qbn_data
 import matplotlib.patches as mpatches
 ```
 
-## Economic and Financial Networks
+## Economic and financial networks
 
 Within economics, important examples of networks include
 
@@ -183,7 +183,7 @@ $$
 The edges between the nodes show the one month transition probabilities.
 
 
-## An Introduction to Graph Theory
+## An introduction to graph theory
 
 Now we've looked at some examples, let's move on to theory.
 
@@ -211,7 +211,7 @@ case of directed graphs --- we just need to insist that each arrow pointing
 from $A$ to $B$ is paired with another arrow pointing from $B$ to $A$.)
 
 
-### Key Definitions
+### Key definitions
 
 A **directed graph** consists of two things:
 
@@ -388,13 +388,13 @@ nx.draw_networkx(G2, with_labels = True)
 nx.is_strongly_connected(G2)    #checking if above graph is strongly connected
 ```
 
-## Weighted Graphs
+## Weighted graphs
 
 We now introduce weighted graphs, where weights (numbers) are attached to each
 edge.
 
 
-### International Private Credit Flows by Country
+### International private credit flows by country
 
 To motivate the idea, consider the following figure which shows flows of funds (i.e.,
 loans) between private banks, grouped by country of origin.
@@ -520,7 +520,7 @@ probabilities for a household over, say, one year.
 We see that a rich household has a 10\% chance of becoming poor in one year.
 
 
-## Adjacency Matrices
+## Adjacency matrices
 
 Another way that we can represent weights, which turns out to be very
 convenient for numerical work, is via a matrix.
@@ -760,7 +760,7 @@ is_irreducible(A)      # check irreducibility of A
 nx.is_strongly_connected(G6)      # check connectedness of graph
 ```
 
-## Network Centrality
+## Network centrality
 
 When studying networks of all varieties, a recurring topic is the relative
 "centrality" or "importance" of different nodes.
@@ -776,7 +776,7 @@ In what follows, a **centrality measure** associates to each weighted directed
 graph a vector $m$ where the $m_i$ is interpreted as the centrality (or rank)
 of node $v_i$.
 
-### Degree Centrality
+### Degree centrality
 
 Two elementary measures of "importance" of a node in a given directed
 graph are its in-degree and out-degree.
@@ -894,7 +894,7 @@ node depends on the importance of other nodes that *it links to*.
 The next centrality measures will have these recursive features.
 
 
-### Eigenvector Centrality
+### Eigenvector centrality
 
 Suppose we have a weighted directed graph with adjacency matrix $A$.
 
@@ -1016,7 +1016,7 @@ A variant of eigenvector centrality is at the core of Google's PageRank algorith
 The main principle is that links from important nodes (as measured by degree centrality) are worth more than links from unimportant nodes.
 
 
-### Katz Centrality
+### Katz centrality
 
 One problem with eigenvector centrality is that $r(A)$ might be zero, in which
 case $1/r(A)$ is not defined.
@@ -1066,7 +1066,7 @@ The parameter $\beta$ is used to ensure that $\kappa$ is finite
 When $r(A)<1$, we use $\beta=1$ as the default for Katz centrality computations.
 
 
-### Authorities vs Hubs
+### Authorities vs hubs
 
 Search engine designers recognize that web pages can be important in two
 different ways.
@@ -1148,7 +1148,7 @@ credit inflows from other major players.
 In this case the US clearly dominates the rankings as a target of interbank credit.
 
 
-## Further Reading
+## Further reading
 
 We apply the ideas discussed in this lecture to:
 

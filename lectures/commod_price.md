@@ -103,7 +103,7 @@ from scipy.stats import beta
 ```
 
 
-## The Model
+## The model
 
 Consider a market for a single commodity, whose price is given at $t$ by
 $p_t$.

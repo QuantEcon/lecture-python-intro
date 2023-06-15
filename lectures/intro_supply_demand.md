@@ -55,7 +55,7 @@ import matplotlib.pyplot as plt
 ```
 
 
-## Supply and Demand
+## Supply and demand
 
 We study a market for a single good in which buyers and sellers exchange a quantity $q$ for a price $p$.
 
@@ -130,7 +130,7 @@ plt.show()
 
 
 
-### Consumer Surplus
+### Consumer surplus
 
 Let a quantity $q$ be given and let $p := d_0 - d_1 q$ be the
 corresponding price on the inverse demand curve.
@@ -195,7 +195,7 @@ $$
 
 
 
-### Producer Surplus
+### Producer surplus
 
 Let a quantity $q$ be given and let $p := s_0 + s_1 q$ be the
 corresponding price on the inverse supply curve.
@@ -256,7 +256,7 @@ $$
 $$
 
 
-### Social Welfare
+### Social welfare
 
 Sometimes economists measure social welfare by a **welfare criterion** that
 equals consumer surplus plus producer surplus, assuming that consumers and
@@ -318,7 +318,7 @@ We'll compare it to the quantity that emerges in a competitive equilibrium that 
 
 
 
-### Competitive Equilibrium
+### Competitive equilibrium
 
 Instead of equating quantities supplied and demanded, we can accomplish the
 same thing by equating demand price to supply price:

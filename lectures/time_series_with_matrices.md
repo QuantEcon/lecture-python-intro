@@ -252,7 +252,7 @@ plt.ylabel('y')
 plt.show()
 ```
 
-## Adding a Random Term
+## Adding a random term
 
 To generate some excitement, we'll follow in the spirit of the great economists
 Eugen Slutsky and Ragnar Frisch and replace our original second-order difference
@@ -354,7 +354,7 @@ plt.show()
 
 
 
-## Computing Population Moments
+## Computing population moments
 
 
 We can apply standard formulas for multivariate normal distributions to compute the mean vector and covariance matrix
@@ -528,7 +528,7 @@ There is a lot to be learned about the process by staring at the off diagonal el
 +++
 
 
-## Moving Average Representation
+## Moving average representation
 
 Let's print out  $A^{-1}$ and stare at  its structure 
 
@@ -583,7 +583,7 @@ Just as system {eq}`eq:eqma` constitutes  a
 
 
 
-## A Forward Looking Model
+## A forward looking model
 
 Samuelson’s model is **backwards looking** in the sense that we give it **initial conditions** and let it
 run.
