@@ -292,7 +292,7 @@ which is just $\vec \pi^*$ with the last element dropped.
  
 
 
-## Forecast  errors  
+## Forecast errors  
 
 Our computations will verify that 
 
