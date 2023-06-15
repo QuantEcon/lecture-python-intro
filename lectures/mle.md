@@ -14,12 +14,12 @@ kernelspec:
 # Maximum Likelihood Estimation
 
 ```{code-cell} ipython3
-from scipy.stats import lognorm, pareto, expon, norm
+from scipy.stats import lognorm, pareto, expon
 import numpy as np
 from scipy.integrate import quad
 import matplotlib.pyplot as plt
 import pandas as pd
-from math import exp, log
+from math import exp
 ```
 
 ## Introduction
@@ -27,22 +27,22 @@ from math import exp, log
 Consider a situation where a policymaker is trying to estimate how much revenue
 a proposed wealth tax will raise.
 
-The proposed tax is 
+The proposed tax is
 
 $$
-    h(w) = 
+    h(w) =
     \begin{cases}
     a w                       & \text{if } w \leq \bar w  \\
-    a \bar{w} + b (w-\bar{w}) & \text{if } w > \bar w  
+    a \bar{w} + b (w-\bar{w}) & \text{if } w > \bar w
     \end{cases}
-$$ 
+$$
 
 where $w$ is wealth.
 
 
-For example, if $a = 0.05$, $b = 0.1$, and $\bar w = 2.5$, this means 
+For example, if $a = 0.05$, $b = 0.1$, and $\bar w = 2.5$, this means
 
-* a 5% tax on wealth up to 2.5 and 
+* a 5% tax on wealth up to 2.5 and
 * a 10% tax on wealth in excess of 2.5.
 
 The unit is 100,000, so $w= 2.5$ means 250,000 dollars.
@@ -57,8 +57,8 @@ def h(w, a=0.05, b=0.1, w_bar=2.5):
         return a * w_bar + b * (w - w_bar)
 ```
 
-For a population of size $N$, where individual $i$ has wealth $w_i$, total revenue raised by 
-the tax will be 
+For a population of size $N$, where individual $i$ has wealth $w_i$, total revenue raised by
+the tax will be
 
 $$
     T = \sum_{i=1}^{N} h(w_i)
@@ -124,8 +124,8 @@ Our plan is to assume that wealth of each individual is a draw from a distributi
 If we obtain an estimate of $f$ we can then approximate $T$ as follows:
 
 $$
-    T = \sum_{i=1}^{N} h(w_i) 
-      = N \frac{1}{N} \sum_{i=1}^{N} h(w_i) 
+    T = \sum_{i=1}^{N} h(w_i)
+      = N \frac{1}{N} \sum_{i=1}^{N} h(w_i)
       \approx N \int_{0}^{\infty} h(w)f(w) dw
 $$ (eq:est_rev)
 
@@ -136,7 +136,7 @@ The problem now is: how do we estimate $f$?
 
 ## Maximum Likelihood Estimation
 
-[Maximum likelihood estimation](https://en.wikipedia.org/wiki/Maximum_likelihood_estimation) 
+[Maximum likelihood estimation](https://en.wikipedia.org/wiki/Maximum_likelihood_estimation)
 is a method of estimating an unknown distribution.
 
 Maximum likelihood estimation has two steps:
@@ -172,8 +172,8 @@ data.
 The pdf of a lognormally distributed random variable $X$ is given by:
 
 $$
-    f(x, \mu, \sigma) 
-    = \frac{1}{x}\frac{1}{\sigma \sqrt{2\pi}} 
+    f(x, \mu, \sigma)
+    = \frac{1}{x}\frac{1}{\sigma \sqrt{2\pi}}
     \exp\left(\frac{-1}{2}\left(\frac{\ln x-\mu}{\sigma}\right)\right)^2
 $$
 
@@ -192,9 +192,9 @@ Taking logs on both sides gives us the log likelihood function, which is
 
 $$
 \begin{aligned}
-    \ell(\mu, \sigma | w_i) 
+    \ell(\mu, \sigma | w_i)
     & = \ln \left[ \prod_{i=1}^{n} f(w_i, \mu, \sigma) \right] \\
-    & = -\sum_{i=1}^{n} \ln w_i 
+    & = -\sum_{i=1}^{n} \ln w_i
         - \frac{n}{2} \ln(2\pi) - \frac{n}{2} \ln \sigma^2 - \frac{1}{2\sigma^2}
             \sum_{i=1}^n (\ln w_i - \mu)^2
 \end{aligned}
@@ -205,7 +205,7 @@ To find where this function is maximised we find its partial derivatives wrt $\m
 Let's first find the maximum likelihood estimate (MLE) of $\mu$
 
 $$
-\frac{\delta \ell}{\delta \mu} 
+\frac{\delta \ell}{\delta \mu}
     = - \frac{1}{2\sigma^2} \times 2 \sum_{i=1}^n (\ln w_i - \mu) = 0 \\
 \implies \sum_{i=1}^n \ln w_i - n \mu = 0 \\
 \implies \hat{\mu} = \frac{\sum_{i=1}^n \ln w_i}{n}
@@ -214,12 +214,12 @@ $$
 Now let's find the MLE of $\sigma$
 
 $$
-\frac{\delta \ell}{\delta \sigma^2} 
-    = - \frac{n}{2\sigma^2} + \frac{1}{2\sigma^4} 
+\frac{\delta \ell}{\delta \sigma^2}
+    = - \frac{n}{2\sigma^2} + \frac{1}{2\sigma^4}
     \sum_{i=1}^n (\ln w_i - \mu)^2 = 0 \\
-    \implies \frac{n}{2\sigma^2} = 
+    \implies \frac{n}{2\sigma^2} =
     \frac{1}{2\sigma^4} \sum_{i=1}^n (\ln w_i - \mu)^2 \\
-    \implies \hat{\sigma} = 
+    \implies \hat{\sigma} =
     \left( \frac{\sum_{i=1}^{n}(\ln w_i - \hat{\mu})^2}{n} \right)^{1/2}
 $$
 
@@ -283,7 +283,7 @@ a prior assumption of the underlying distribution.
 
 Previously we assumed that the distribution is lognormal.
 
-Suppose instead we assume that $w_i$ are drawn from the 
+Suppose instead we assume that $w_i$ are drawn from the
 [Pareto Distribution](https://en.wikipedia.org/wiki/Pareto_distribution)
 with parameters $b$ and $x_m$.
 
@@ -312,7 +312,7 @@ Now let's recompute total revenue.
 
 ```{code-cell} ipython3
 dist_pareto = pareto(b = b_hat, scale = xm_hat)
-tr_pareto = total_revenue(dist_pareto) 
+tr_pareto = total_revenue(dist_pareto)
 tr_pareto
 ```
 
@@ -455,7 +455,7 @@ $$
 $$
 
 1. Compute $\hat{\lambda}$ for our initial sample.
-2. Use $\hat{\lambda}$ to find the total revenue 
+2. Use $\hat{\lambda}$ to find the total revenue
 
 ```{exercise-end}
 ```
@@ -471,7 +471,7 @@ $$
 
 ```{code-cell} ipython3
 dist_exp = expon(scale = 1/λ_hat)
-tr_expo = total_revenue(dist_exp) 
+tr_expo = total_revenue(dist_exp)
 tr_expo
 ```
 

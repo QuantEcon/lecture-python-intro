@@ -30,7 +30,6 @@ We shall describe two classic welfare theorems:
 ```{code-cell} ipython3
 # import some packages
 import numpy as np
-import pandas as pd
 import matplotlib.pyplot as plt
 from scipy.linalg import inv
 ```
@@ -148,9 +147,9 @@ $$ (eq:old4)
 Equation {eq}`eq:old4` tells how marginal utility of wealth depends on the endowment vector $e$ and the price vector $p$.
 
 ```{note}
-Equation {eq}`eq:old4` is a consequence of imposing that $p^\top (c - e) = 0$.  
+Equation {eq}`eq:old4` is a consequence of imposing that $p^\top (c - e) = 0$.
 
-We could instead take $\mu$ as a parameter and use {eq}`eq:old3` and the budget constraint {eq}`eq:old2p` to solve for wealth. 
+We could instead take $\mu$ as a parameter and use {eq}`eq:old3` and the budget constraint {eq}`eq:old2p` to solve for wealth.
 
 Which way we proceed determines whether we are constructing a **Marshallian** or **Hicksian** demand curve.
 ```
@@ -198,10 +197,10 @@ Here is a class that computes competitive equilibria for our economy.
 
 ```{code-cell} ipython3
 class ExchangeEconomy:
-    
-    def __init__(self, 
-                 Π, 
-                 b, 
+
+    def __init__(self,
+                 Π,
+                 b,
                  e,
                  thres=1.5):
         """
@@ -221,7 +220,7 @@ class ExchangeEconomy:
 
         self.Π, self.b, self.e = Π, b, e
 
-    
+
     def competitive_equilibrium(self):
         """
         Compute the competitive equilibrium prices and allocation
@@ -230,7 +229,7 @@ class ExchangeEconomy:
 
         # compute price vector with μ=1
         p = Π.T @ b - Π.T @ Π @ e
-        
+
         # compute consumption vector
         slope_dc = inv(Π.T @ Π)
         Π_inv = inv(Π)
@@ -327,11 +326,11 @@ The right side is the **discounted present value** of the consumer's endowment.
 
 The relative price  $\frac{p_1}{p_2}$ has units of time $2$ goods per unit of time $1$ goods.
 
-Consequently, 
+Consequently,
 
 $$
     (1+r) := R := \frac{p_1}{p_2}
-$$ 
+$$
 
 is the **gross interest rate** and $r$ is the **net interest rate**.
 
@@ -626,12 +625,12 @@ Here we define a class ``ProductionEconomy``.
 
 ```{code-cell} ipython3
 class ProductionEconomy:
-    
-    def __init__(self, 
-                 Π, 
-                 b, 
-                 h, 
-                 J, 
+
+    def __init__(self,
+                 Π,
+                 b,
+                 h,
+                 J,
                  μ):
         """
         Set up the environment for a production economy
@@ -645,7 +644,7 @@ class ProductionEconomy:
         """
         self.n = len(b)
         self.Π, self.b, self.h, self.J, self.μ = Π, b, h, J, μ
-        
+
     def competitive_equilibrium(self):
         """
         Compute a competitive equilibrium of the production economy
@@ -943,18 +942,18 @@ In a single good case, this equilibrium is associated with a higher price of the
 
 ```{code-cell} ipython3
 class Monopoly(ProductionEconomy):
-    
-    def __init__(self, 
-                 Π, 
-                 b, 
-                 h, 
-                 J, 
+
+    def __init__(self,
+                 Π,
+                 b,
+                 h,
+                 J,
                  μ):
         """
         Inherit all properties and methods from class ProductionEconomy
         """
         super().__init__(Π, b, h, J, μ)
-        
+
 
     def equilibrium_with_monopoly(self):
         """
@@ -1096,13 +1095,13 @@ $$
 minus the area under the inverse supply curve, namely,
 
 $$
-    h c +  \frac{1}{2} c^\top J c  
+    h c +  \frac{1}{2} c^\top J c
 $$
 
 So the welfare criterion is
 
 $$
-    - \frac{1}{2} \mu^{-1}(\Pi c -b)^\top (\Pi c -b ) -h c 
+    - \frac{1}{2} \mu^{-1}(\Pi c -b)^\top (\Pi c -b ) -h c
         -  \frac{1}{2} c^\top J c
 $$
 

@@ -14,10 +14,10 @@ kernelspec:
 # The Overlapping Generations Model
 
 In this lecture we study the famous overlapping generations (OLG) model, which
-is used by policy makers and researchers to examine 
+is used by policy makers and researchers to examine
 
 * fiscal policy
-* monetary policy 
+* monetary policy
 * long run growth
 
 and many other topics.
@@ -65,7 +65,6 @@ Let's start with some imports.
 import numpy as np
 from scipy import optimize
 from collections import namedtuple
-from functools import partial
 import matplotlib.pyplot as plt
 ```
 
@@ -120,7 +119,7 @@ Here
 - $u: \mathbb R_+ \to \mathbb R$ is called the "flow" utility function
 - $\beta \in (0, 1)$ is the discount factor
 - $c_t$ is time $t$ consumption of the individual born at time $t$
-- $c_{t+1}$ is time $t+1$ consumption of the same individual 
+- $c_{t+1}$ is time $t+1$ consumption of the same individual
 
 We assume that $u$ is strictly increasing.
 
@@ -129,21 +128,21 @@ Savings behavior is determined by the optimization problem
 
 ```{math}
 :label: max_sav_olg
-    \max_{c_t, c_{t+1}} 
-    \,  \left \{ u(c_t) + \beta u(c_{t+1}) \right \} 
+    \max_{c_t, c_{t+1}}
+    \,  \left \{ u(c_t) + \beta u(c_{t+1}) \right \}
 ```
 
 subject to
 
 $$
-     c_t + s_t \le w_t 
+     c_t + s_t \le w_t
      \quad \text{and} \quad
      c_{t+1}   \le R_{t+1} s_t
 $$
 
 Here
 
-- $s_t$ is savings by an individual born at time $t$ 
+- $s_t$ is savings by an individual born at time $t$
 - $w_t$ is the wage rate at time $t$
 - $R_{t+1}$ is the interest rate on savings invested at time $t$, paid at time $t+1$
 
@@ -261,13 +260,13 @@ them to zero:
 ```
 
 
-### Demand 
+### Demand
 
-Using our assumption $\ell_t = 1$ allows us to write 
+Using our assumption $\ell_t = 1$ allows us to write
 
 ```{math}
 :label: wage_one
-    w_t = (1-\alpha)k_t^\alpha 
+    w_t = (1-\alpha)k_t^\alpha
 ```
 
 and
@@ -275,7 +274,7 @@ and
 ```{math}
 :label: interest_rate_one
     R_t =
-    \alpha k_t^{\alpha - 1} 
+    \alpha k_t^{\alpha - 1}
 ```
 
 Rearranging [](interest_rate_one) gives the aggregate demand for capital
@@ -283,7 +282,7 @@ at time $t+1$
 
 ```{math}
 :label: aggregate_demand_capital_olg
-    k^d (R_{t+1}) 
+    k^d (R_{t+1})
     := \left (\frac{\alpha}{R_{t+1}} \right )^{1/(1-\alpha)}
 ```
 
@@ -291,7 +290,7 @@ In Python code this is
 
 ```{code-cell} ipython3
 def capital_demand(R, α):
-    return (α/R)**(1/(1-α)) 
+    return (α/R)**(1/(1-α))
 ```
 
 The next figure plots the supply of capital, as in [](saving_log_2_olg), as well as the demand for capital, as in [](aggregate_demand_capital_olg), as functions of the interest rate $R_{t+1}$.
@@ -306,9 +305,9 @@ w = 2.0
 
 fig, ax = plt.subplots()
 
-ax.plot(R_vals, capital_demand(R_vals, α), 
+ax.plot(R_vals, capital_demand(R_vals, α),
         label="aggregate demand")
-ax.plot(R_vals, np.ones_like(R_vals) * (β / (1 + β)) * w, 
+ax.plot(R_vals, np.ones_like(R_vals) * (β / (1 + β)) * w,
         label="aggregate supply")
 
 ax.set_xlabel("$R_{t+1}$")
@@ -332,7 +331,7 @@ Equilibrium is computed by equating these quantities, setting
 
 ```{math}
 :label: equilibrium_1
-    s(w_t, R_{t+1}) 
+    s(w_t, R_{t+1})
     = k^d(R_{t+1})
     = \left (\frac{\alpha}{R_{t+1}} \right )^{1/(1-\alpha)}
 ```
@@ -364,9 +363,9 @@ Solving for the equilibrium interest rate gives
 
 ```{math}
 :label: equilibrium_price
-    R_{t+1} = 
-    \alpha 
-    \left( 
+    R_{t+1} =
+    \alpha
+    \left(
         \frac{\beta}{1+\beta} w_t
     \right)^{\alpha-1}
 ```
@@ -398,9 +397,9 @@ w = 2.0
 
 fig, ax = plt.subplots()
 
-ax.plot(R_vals, capital_demand(R_vals, α), 
+ax.plot(R_vals, capital_demand(R_vals, α),
         label="aggregate demand")
-ax.plot(R_vals, np.ones_like(R_vals) * (β / (1 + β)) * w, 
+ax.plot(R_vals, np.ones_like(R_vals) * (β / (1 + β)) * w,
         label="aggregate supply")
 
 R_e = equilibrium_R_log_utility(α, β, w)
@@ -422,7 +421,7 @@ ax.legend()
 plt.show()
 ```
 
-## Dynamics 
+## Dynamics
 
 In this section we discuss dynamics.
 
@@ -505,7 +504,7 @@ Solving this equation yields
 We can get the steady state interest rate from [](interest_rate_one), which yields
 
 $$
-    R^* = \alpha (k^*)^{\alpha - 1} 
+    R^* = \alpha (k^*)^{\alpha - 1}
         = \frac{\alpha}{1 - \alpha} \frac{1 + \beta}{\beta}
 $$
 
@@ -593,7 +592,7 @@ Let's also redefine the capital demand function to work with this `namedtuple`.
 
 ```{code-cell} ipython3
 def capital_demand(R, model):
-    return (α/R)**(1/(1-model.α)) 
+    return (α/R)**(1/(1-model.α))
 ```
 
 ### Supply
@@ -610,10 +609,10 @@ Solving for savings, we have
 
 ```{math}
 :label: saving_crra
-    s_t 
-    = s(w_t, R_{t+1}) 
-    = w_t \left [ 
-        1 + \beta^{-1/\gamma} R_{t+1}^{(\gamma-1)/\gamma} 
+    s_t
+    = s(w_t, R_{t+1})
+    = w_t \left [
+        1 + \beta^{-1/\gamma} R_{t+1}^{(\gamma-1)/\gamma}
       \right ]^{-1}
 ```
 
@@ -623,7 +622,7 @@ Notice how, unlike the log case, savings now depends on the interest rate.
 ```{code-cell} ipython3
 def savings_crra(w, R, model):
     α, β, γ = model
-    return w / (1 + β**(-1/γ) * R**((γ-1)/γ)) 
+    return w / (1 + β**(-1/γ) * R**((γ-1)/γ))
 ```
 
 ```{code-cell} ipython3
@@ -634,9 +633,9 @@ w = 2.0
 
 fig, ax = plt.subplots()
 
-ax.plot(R_vals, capital_demand(R_vals, model), 
+ax.plot(R_vals, capital_demand(R_vals, model),
         label="aggregate demand")
-ax.plot(R_vals, savings_crra(w, R_vals, model), 
+ax.plot(R_vals, savings_crra(w, R_vals, model),
         label="aggregate supply")
 
 ax.set_xlabel("$R_{t+1}$")
@@ -655,14 +654,14 @@ Thus, we set
 
 ```{math}
 :label: equilibrium_crra_2
-    w_t \left [ 1 + \beta^{-1/\gamma} R_{t+1}^{(\gamma-1)/\gamma} \right ]^{-1} 
+    w_t \left [ 1 + \beta^{-1/\gamma} R_{t+1}^{(\gamma-1)/\gamma} \right ]^{-1}
     = \left (\frac{R_{t+1}}{\alpha} \right )^{1/(\alpha - 1)}
 ```
 
 This expression is quite complex and we cannot solve for $R_{t+1}$ analytically.
 
 
-Combining [](interest_rate_one) and [](equilibrium_crra_2) yields 
+Combining [](interest_rate_one) and [](equilibrium_crra_2) yields
 
 ```{math}
 :label: law_of_motion_capital_crra
@@ -702,12 +701,12 @@ Let
 :label: crra_newton_1
     f(k_{t+1}, k_t)
     =
-    k_{t+1} 
-    \left[ 
-        1 + \beta^{-1/\gamma} 
-        \left ( 
-            \alpha k^{\alpha-1}_{t+1} 
-        \right )^{(\gamma-1)/\gamma} 
+    k_{t+1}
+    \left[
+        1 + \beta^{-1/\gamma}
+        \left (
+            \alpha k^{\alpha-1}_{t+1}
+        \right )^{(\gamma-1)/\gamma}
     \right] - (1-\alpha) k^{\alpha}_t =0
 ```
 
@@ -774,12 +773,12 @@ positive steady state.
 The positive steady state can be obtained by setting  $k_{t+1} = k_t = k^*$ in [](law_of_motion_capital_crra), which yields
 
 $$
-    k^* = 
+    k^* =
     \frac{(1-\alpha)(k^*)^{\alpha}}
     {1 + \beta^{-1/\gamma} (\alpha (k^*)^{\alpha-1})^{(\gamma-1)/\gamma}}
 $$
 
-Unlike the log preference case, the CRRA utility steady state $k^*$ 
+Unlike the log preference case, the CRRA utility steady state $k^*$
 cannot be obtained analytically.
 
 Instead, we solve for $k^*$ using Newton's method.
@@ -796,9 +795,9 @@ positive steady state is the root of $h$.
 
 ```{math}
 :label: crra_newton_2
-    h(k^*) = k^*  
-    \left [ 
-        1 + \beta^{-1/\gamma} (\alpha (k^*)^{\alpha-1})^{(\gamma-1)/\gamma} 
+    h(k^*) = k^*
+    \left [
+        1 + \beta^{-1/\gamma} (\alpha (k^*)^{\alpha-1})^{(\gamma-1)/\gamma}
     \right ] - (1-\alpha)(k^*)^{\alpha}
 ```
 

@@ -11,7 +11,7 @@ kernelspec:
   name: python3
 ---
 
-# Markov Chains: Basic Concepts 
+# Markov Chains: Basic Concepts
 
 
 ```{index} single: Markov Chains: Basic Concepts and Stationarity
@@ -58,7 +58,6 @@ import numpy as np
 import networkx as nx
 from matplotlib import cm
 import matplotlib as mpl
-from itertools import cycle
 ```
 
 ## Definitions and examples
@@ -929,7 +928,7 @@ The convergence to $\psi^*$ holds for different initial distributions.
 In the case of a periodic chain, with
 
 $$
-P = 
+P =
 \begin{bmatrix}
     0 & 1 \\
     1 & 0 \\

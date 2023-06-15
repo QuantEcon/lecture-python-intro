@@ -23,7 +23,7 @@ In addition to what's in Anaconda, this lecture will need the following librarie
 ```{code-cell} ipython3
 :tags: [hide-output]
 
-!pip install --upgrade yfinance quantecon pandas_datareader interpolation
+!pip install --upgrade yfinance pandas_datareader interpolation
 ```
 
 We use the following imports.
@@ -31,10 +31,8 @@ We use the following imports.
 ```{code-cell} ipython3
 import matplotlib.pyplot as plt
 import numpy as np
-import quantecon as qe
 import yfinance as yf
 import pandas as pd
-import pandas_datareader.data as web
 import statsmodels.api as sm
 
 from interpolation import interp
@@ -57,8 +55,8 @@ To explain this concept, let's look first at examples.
 
 The classic example is the [normal distribution](https://en.wikipedia.org/wiki/Normal_distribution), which has density
 
-$$ 
-    f(x) = \frac{1}{\sqrt{2\pi}\sigma} 
+$$
+    f(x) = \frac{1}{\sqrt{2\pi}\sigma}
     \exp\left( -\frac{(x-\mu)^2}{2 \sigma^2} \right)
     \qquad
     (-\infty < x < \infty)
@@ -84,7 +82,7 @@ ax.legend()
 plt.show()
 ```
 
-Notice how 
+Notice how
 
 * the density's tails converge quickly to zero in both directions and
 * even with 1,000,000 draws, we get no very large or very small observations.
@@ -121,7 +119,7 @@ rarely generate extreme values.
 
 (A more formal definition is given below.)
 
-Many statisticians and econometricians 
+Many statisticians and econometricians
 use rules of thumb such as "outcomes more than four or five
 standard deviations from the mean can safely be ignored."
 
@@ -139,9 +137,9 @@ Yes, it's true that we see some very tall people.
 
 * For example, basketballer [Sun Mingming](https://en.wikipedia.org/wiki/Sun_Mingming) is 2.32 meters tall
 
-But have you ever heard of someone who is 20 meters tall?  Or 200?  Or 2000? 
+But have you ever heard of someone who is 20 meters tall?  Or 200?  Or 2000?
 
-Have you ever wondered why not? 
+Have you ever wondered why not?
 
 After all, there are 8 billion people in the world!
 
@@ -209,7 +207,7 @@ ax.set_xlabel('returns', fontsize=12)
 plt.show()
 ```
 
-If we look at higher frequency returns data (e.g., tick-by-tick), we often see 
+If we look at higher frequency returns data (e.g., tick-by-tick), we often see
 even more extreme observations.
 
 See, for example, {cite}`mandelbrot1963variation` or {cite}`rachev2003handbook`.
@@ -225,16 +223,16 @@ frequently.
 Importantly, there are many examples of heavy-tailed distributions
 observed in economic and financial settings!
 
-For example, the income and the wealth distributions are heavy-tailed 
+For example, the income and the wealth distributions are heavy-tailed
 
 * You can imagine this: most people have low or modest wealth but some people
   are extremely rich.
 
-The firm size distribution is also heavy-tailed 
+The firm size distribution is also heavy-tailed
 
 * You can imagine this too: most firms are small but some firms are enormous.
 
-The distribution of town and city sizes is heavy-tailed 
+The distribution of town and city sizes is heavy-tailed
 
 * Most towns and cities are small but some are very large.
 
@@ -271,7 +269,7 @@ difference between these two types of distributions.
 
 ### Simulations
 
-The figure below shows a simulation.  
+The figure below shows a simulation.
 
 The top two subfigures each show 120 independent draws from the normal
 distribution, which is light-tailed.
@@ -347,7 +345,7 @@ ax.vlines(list(range(n)), 0, data, lw=0.2)
 plt.show()
 ```
 
-Another nonnegative distribution is the [Pareto distribution](https://en.wikipedia.org/wiki/Pareto_distribution). 
+Another nonnegative distribution is the [Pareto distribution](https://en.wikipedia.org/wiki/Pareto_distribution).
 
 If $X$ has the Pareto distribution, then there are positive constants $\bar x$
 and $\alpha$ such that
@@ -377,7 +375,7 @@ In particular, if $X$ is exponentially distributed with rate parameter $\alpha$,
 
 $$   Y = \bar x \exp(X) $$
 
-is Pareto-distributed with minimum $\bar x$ and tail index $\alpha$. 
+is Pareto-distributed with minimum $\bar x$ and tail index $\alpha$.
 
 Here are some draws from the Pareto distribution with tail index $1$ and minimum
 $1$.
@@ -401,10 +399,10 @@ Notice how extreme outcomes are more common.
 ### Counter CDFs
 
 For nonnegative random variables, one way to visualize the difference between
-light and heavy tails is to look at the 
+light and heavy tails is to look at the
 **counter CDF** (CCDF).
 
-For a random variable $X$ with CDF $F$, the CCDF is the function 
+For a random variable $X$ with CDF $F$, the CCDF is the function
 
 $$ G(x) := 1 - F(x) = \mathbb P\{X > x\} $$
 
@@ -513,7 +511,7 @@ labels = ['exponential', 'lognormal', 'Pareto']
 
 for data, label, ax in zip(data_list, labels, axes):
 
-    ax.loglog(x_grid, [eccdf(x, data) for x in x_grid], 
+    ax.loglog(x_grid, [eccdf(x, data) for x in x_grid],
         'o', markersize=3.0, alpha=0.5, label=label)
     ax.set_xlabel("log rank")
     ax.set_ylabel("log size")
@@ -525,13 +523,13 @@ fig.subplots_adjust(hspace=0.4)
 plt.show()
 ```
 
-As with the CCDF, the empirical CCDF from the Pareto distributions is 
+As with the CCDF, the empirical CCDF from the Pareto distributions is
 approximately linear in a log-log plot.
 
 We will use this idea below when we look at real data.
 
 
-### Power laws 
+### Power laws
 
 
 One specific class of heavy-tailed distributions has been found repeatedly in
@@ -555,7 +553,7 @@ We can write this more mathematically as
 It is also common to say that a random variable $X$ with this property
 has a **Pareto tail** with **tail index** $\alpha$.
 
-Notice that every Pareto distribution with tail index $\alpha$ 
+Notice that every Pareto distribution with tail index $\alpha$
 has a **Pareto tail** with **tail index** $\alpha$.
 
 We can think of power laws as a generalization of Pareto distributions.
@@ -583,12 +581,12 @@ readers are of course welcome to explore the code (perhaps after examining the f
 ```{code-cell} ipython3
 :tags: [hide-input]
 
-def empirical_ccdf(data, 
-                   ax, 
+def empirical_ccdf(data,
+                   ax,
                    aw=None,   # weights
                    label=None,
                    xlabel=None,
-                   add_reg_line=False, 
+                   add_reg_line=False,
                    title=None):
     """
     Take data vector and return prob values for plotting.
@@ -614,10 +612,10 @@ def empirical_ccdf(data,
             y_vals[i] = 1- j
 
     x, y = np.log(data), np.log(y_vals)
-    
+
     results = sm.OLS(y, sm.add_constant(x)).fit()
     b, a = results.params
-    
+
     kwargs = [('alpha', 0.3)]
     if label:
         kwargs.append(('label', label))
@@ -630,36 +628,36 @@ def empirical_ccdf(data,
         xlabel='log value'
     ax.set_xlabel(xlabel, fontsize=12)
     ax.set_ylabel("log prob.", fontsize=12)
-        
+
     if label:
         ax.legend(loc='lower left', fontsize=12)
-        
+
     if title:
         ax.set_title(title)
-        
+
     return np.log(data), y_vals, p_vals
 ```
 
 ```{code-cell} ipython3
 :tags: [hide-input]
 
-def extract_wb(varlist=['NY.GDP.MKTP.CD'], 
-               c='all_countries', 
-               s=1900, 
-               e=2021, 
+def extract_wb(varlist=['NY.GDP.MKTP.CD'],
+               c='all_countries',
+               s=1900,
+               e=2021,
                varnames=None):
     if c == "all_countries":
         # Keep countries only (no aggregated regions)
         countries = wb.get_countries()
         countries_name = countries[countries['region'] != 'Aggregates']['name'].values
         c = "all"
-    
+
     df = wb.download(indicator=varlist, country=c, start=s, end=e).stack().unstack(0).reset_index()
     df = df.drop(['level_1'], axis=1).transpose()
     if varnames is not None:
         df.columns = varnames
         df = df[1:]
-    
+
     df1 =df[df.index.isin(countries_name)]
     return df1
 ```
@@ -717,7 +715,7 @@ df_w = pd.read_csv('https://media.githubusercontent.com/media/QuantEcon/high_dim
 df_w = df_w[['country', 'realTimeWorth', 'realTimeRank']].dropna()
 df_w = df_w.astype({'realTimeRank': int})
 df_w = df_w.sort_values('realTimeRank', ascending=True).copy()
-countries = ['United States', 'Japan', 'India', 'Italy']  
+countries = ['United States', 'Japan', 'India', 'Italy']
 N = len(countries)
 
 fig, axs = plt.subplots(2, 2, figsize=(8, 6))
@@ -728,11 +726,11 @@ for i, c in enumerate(countries):
     z = np.asarray(df_w_c['realTimeWorth'])
     # print('number of the global richest 2000 from '+ c, len(z))
     top = 500           # cut-off number: top 500
-    if len(z) <= top:    
+    if len(z) <= top:
         z = z[:top]
 
     empirical_ccdf(z[:top], axs[i], label=c, xlabel='log wealth', add_reg_line=True)
-    
+
 fig.tight_layout()
 
 plt.show()
@@ -752,10 +750,10 @@ Here we show cross-country per capita GDP.
 variable_code = ['NY.GDP.MKTP.CD', 'NY.GDP.PCAP.CD']
 variable_names = ['GDP', 'GDP per capita']
 
-df_gdp1 = extract_wb(varlist=variable_code, 
-                     c="all_countries", 
-                     s="2021", 
-                     e="2021", 
+df_gdp1 = extract_wb(varlist=variable_code,
+                     c="all_countries",
+                     s="2021",
+                     e="2021",
                      varnames=variable_names)
 ```
 
@@ -783,7 +781,7 @@ Averaging tends to eliminate extreme outcomes.
 One impact of heavy tails is that sample averages can be poor estimators of
 the underlying mean of the distribution.
 
-To understand this point better, recall {doc}`our earlier discussion <lln_clt>` 
+To understand this point better, recall {doc}`our earlier discussion <lln_clt>`
 of the Law of Large Numbers, which considered IID $X_1, \ldots, X_n$ with common distribution $F$
 
 If $\mathbb E |X_i|$ is finite, then
@@ -837,7 +835,7 @@ We return to this point in the exercises.
 
 ## Why do heavy tails matter?
 
-We have now seen that 
+We have now seen that
 
 1. heavy tails are frequent in economics and
 2. the Law of Large Numbers fails when tails are very heavy.
@@ -855,23 +853,23 @@ reduce risk.
 This is a very old idea --- consider, for example, the expression "don't put all your eggs in one basket".
 
 To illustrate, consider an investor with one dollar of wealth and a choice over
-$n$ assets with payoffs $X_1, \ldots, X_n$.  
+$n$ assets with payoffs $X_1, \ldots, X_n$.
 
 Suppose that returns on distinct  assets are
 independent and each return has  mean $\mu$ and variance $\sigma^2$.
 
 If the investor puts all wealth in one asset, say, then the expected payoff of the
-portfolio is $\mu$ and the variance is $\sigma^2$.  
+portfolio is $\mu$ and the variance is $\sigma^2$.
 
 If instead the investor puts share $1/n$ of her wealth in each asset, then the portfolio payoff is
 
-$$ Y_n = \sum_{i=1}^n \frac{X_i}{n} = \frac{1}{n} \sum_{i=1}^n X_i. $$  
+$$ Y_n = \sum_{i=1}^n \frac{X_i}{n} = \frac{1}{n} \sum_{i=1}^n X_i. $$
 
 Try computing the mean and variance.
 
 You will find that
 
-* The mean is unchanged at $\mu$, while 
+* The mean is unchanged at $\mu$, while
 * the variance of the portfolio has fallen to $\sigma^2 / n$.
 
 Diversification reduces risk, as expected.
@@ -943,7 +941,7 @@ A nonnegative random variable $X$ is **light-tailed** if its distribution $F$ is
 
 For example, every random variable with bounded support is light-tailed. (Why?)
 
-As another example, if $X$ has the [exponential distribution](https://en.wikipedia.org/wiki/Exponential_distribution), with cdf $F(x) = 1 - \exp(-\lambda x)$ for some $\lambda > 0$, then its moment generating function is 
+As another example, if $X$ has the [exponential distribution](https://en.wikipedia.org/wiki/Exponential_distribution), with cdf $F(x) = 1 - \exp(-\lambda x)$ for some $\lambda > 0$, then its moment generating function is
 
 $$ m(t) = \frac{\lambda}{\lambda - t} \quad \text{when } t < \lambda $$
 
@@ -1095,13 +1093,13 @@ The Pareto distribution is assumed to take the form {eq}`pareto` with $\bar x = 
 
 (The value the tail index $\alpha$ is plausible given the data {cite}`gabaix2016power`.)
 
-To make the lognormal option as similar as possible to the Pareto option, choose 
+To make the lognormal option as similar as possible to the Pareto option, choose
 its parameters such that the mean and median of both distributions are the same.
 
-Note that, for each distribution, your estimate of tax revenue will be random 
+Note that, for each distribution, your estimate of tax revenue will be random
 because it is based on a finite number of draws.
 
-To take this into account, generate 100 replications (evaluations of tax revenue) 
+To take this into account, generate 100 replications (evaluations of tax revenue)
 for each of the two distributions and compare the two samples by
 
 * producing a [violin plot](https://en.wikipedia.org/wiki/Violin_plot) visualizing the two samples side-by-side and

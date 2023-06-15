@@ -38,8 +38,6 @@ We use the following imports
 ```{code-cell} ipython3
 import matplotlib.pyplot as plt
 import pandas as pd
-import numpy as np
-import scipy.stats as st
 import datetime
 import wbgapi as wb
 import pandas_datareader.data as web
@@ -51,7 +49,7 @@ Here's some minor code to help with colors in our plots.
 :tags: [hide-input]
 
 # Set Graphical Parameters
-cycler = plt.cycler(linestyle=['-', '-.', '--', ':'], 
+cycler = plt.cycler(linestyle=['-', '-.', '--', ':'],
         color=['#377eb8', '#ff7f00', '#4daf4a', '#ff334f'])
 plt.rc('axes', prop_cycle=cycler)
 ```
@@ -75,7 +73,7 @@ Now we use this series ID to obtain the data.
 
 ```{code-cell} ipython3
 gdp_growth = wb.data.DataFrame('NY.GDP.MKTP.KD.ZG',
-            ['USA', 'ARG', 'GBR', 'GRC', 'JPN'], 
+            ['USA', 'ARG', 'GBR', 'GRC', 'JPN'],
             labels=True)
 gdp_growth
 ```
@@ -94,14 +92,14 @@ wb.series.metadata.get('NY.GDP.MKTP.KD.ZG')
 (gdp_growth)=
 ## GDP growth rate
 
-First we look at GDP growth. 
+First we look at GDP growth.
 
 Let's source our data from the World Bank and clean it.
 
 ```{code-cell} ipython3
 # Use the series ID retrived before
 gdp_growth = wb.data.DataFrame('NY.GDP.MKTP.KD.ZG',
-            ['USA', 'ARG', 'GBR', 'GRC', 'JPN'], 
+            ['USA', 'ARG', 'GBR', 'GRC', 'JPN'],
             labels=True)
 gdp_growth = gdp_growth.set_index('Country')
 gdp_growth.columns = gdp_growth.columns.str.replace('YR', '').astype(int)
@@ -118,11 +116,11 @@ We write a function to generate plots for individual countries taking into accou
 ```{code-cell} ipython3
 :tags: [hide-input]
 
-def plot_series(data, country, ylabel, 
+def plot_series(data, country, ylabel,
                 txt_pos, ax, g_params,
                 b_params, t_params, ylim=15, baseline=0):
     """
-    Plots a time series with recessions highlighted. 
+    Plots a time series with recessions highlighted.
 
     Parameters
     ----------
@@ -146,7 +144,7 @@ def plot_series(data, country, ylabel,
         Parameters for the recession labels
     baseline : float, optional
         Dashed baseline on the plot, by default 0
-    
+
     Returns
     -------
     ax : matplotlib.axes.Axes
@@ -154,7 +152,7 @@ def plot_series(data, country, ylabel,
     """
 
     ax.plot(data.loc[country], label=country, **g_params)
-    
+
     # Highlight Recessions
     ax.axvspan(1973, 1975, **b_params)
     ax.axvspan(1990, 1992, **b_params)
@@ -165,27 +163,27 @@ def plot_series(data, country, ylabel,
     else:
         ylim = ax.get_ylim()[1]
     ax.text(1974, ylim + ylim*txt_pos,
-            'Oil Crisis\n(1974)', **t_params) 
+            'Oil Crisis\n(1974)', **t_params)
     ax.text(1991, ylim + ylim*txt_pos,
-            '1990s recession\n(1991)', **t_params) 
+            '1990s recession\n(1991)', **t_params)
     ax.text(2008, ylim + ylim*txt_pos,
-            'GFC\n(2008)', **t_params) 
+            'GFC\n(2008)', **t_params)
     ax.text(2020, ylim + ylim*txt_pos,
             'Covid-19\n(2020)', **t_params)
 
     # Add a baseline for reference
     if baseline != None:
-        ax.axhline(y=baseline, 
-                   color='black', 
+        ax.axhline(y=baseline,
+                   color='black',
                    linestyle='--')
     ax.set_ylabel(ylabel)
     ax.legend()
     return ax
 
-# Define graphical parameters 
+# Define graphical parameters
 g_params = {'alpha': 0.7}
 b_params = {'color':'grey', 'alpha': 0.2}
-t_params = {'color':'grey', 'fontsize': 9, 
+t_params = {'color':'grey', 'fontsize': 9,
             'va':'center', 'ha':'center'}
 ```
 
@@ -204,8 +202,8 @@ fig, ax = plt.subplots()
 
 country = 'United States'
 ylabel = 'GDP growth rate (%)'
-plot_series(gdp_growth, country, 
-            ylabel, 0.1, ax, 
+plot_series(gdp_growth, country,
+            ylabel, 0.1, ax,
             g_params, b_params, t_params)
 plt.show()
 ```
@@ -236,8 +234,8 @@ mystnb:
 fig, ax = plt.subplots()
 
 country = 'United Kingdom'
-plot_series(gdp_growth, country, 
-            ylabel, 0.1, ax, 
+plot_series(gdp_growth, country,
+            ylabel, 0.1, ax,
             g_params, b_params, t_params)
 plt.show()
 ```
@@ -261,8 +259,8 @@ mystnb:
 fig, ax = plt.subplots()
 
 country = 'Japan'
-plot_series(gdp_growth, country, 
-            ylabel, 0.1, ax, 
+plot_series(gdp_growth, country,
+            ylabel, 0.1, ax,
             g_params, b_params, t_params)
 plt.show()
 ```
@@ -280,8 +278,8 @@ mystnb:
 fig, ax = plt.subplots()
 
 country = 'Greece'
-plot_series(gdp_growth, country, 
-            ylabel, 0.1, ax, 
+plot_series(gdp_growth, country,
+            ylabel, 0.1, ax,
             g_params, b_params, t_params)
 plt.show()
 ```
@@ -302,8 +300,8 @@ mystnb:
 fig, ax = plt.subplots()
 
 country = 'Argentina'
-plot_series(gdp_growth, country, 
-            ylabel, 0.1, ax, 
+plot_series(gdp_growth, country,
+            ylabel, 0.1, ax,
             g_params, b_params, t_params)
 plt.show()
 ```
@@ -327,15 +325,15 @@ We study unemployment using rate data from FRED spanning from [1929-1942](https:
 start_date = datetime.datetime(1929, 1, 1)
 end_date = datetime.datetime(1942, 6, 1)
 
-unrate_history = web.DataReader('M0892AUSM156SNBR', 
+unrate_history = web.DataReader('M0892AUSM156SNBR',
                     'fred', start_date,end_date)
-unrate_history.rename(columns={'M0892AUSM156SNBR': 'UNRATE'}, 
+unrate_history.rename(columns={'M0892AUSM156SNBR': 'UNRATE'},
                 inplace=True)
 
 start_date = datetime.datetime(1948, 1, 1)
 end_date = datetime.datetime(2022, 12, 31)
 
-unrate = web.DataReader('UNRATE', 'fred', 
+unrate = web.DataReader('UNRATE', 'fred',
                     start_date, end_date)
 ```
 
@@ -351,7 +349,7 @@ mystnb:
 tags: [hide-input]
 ---
 
-# We use the census bureau's estimate for the unemployment rate 
+# We use the census bureau's estimate for the unemployment rate
 # between 1942 and 1948
 years = [datetime.datetime(year, 6, 1) for year in range(1942, 1948)]
 unrate_census = [4.7, 1.9, 1.2, 1.9, 3.9, 3.9]
@@ -368,24 +366,24 @@ nber = web.DataReader('USREC', 'fred', start_date, end_date)
 
 fig, ax = plt.subplots()
 
-ax.plot(unrate_history, **g_params, 
-        color='#377eb8', 
+ax.plot(unrate_history, **g_params,
+        color='#377eb8',
         linestyle='-', linewidth=2)
-ax.plot(unrate_census, **g_params, 
-        color='black', linestyle='--', 
+ax.plot(unrate_census, **g_params,
+        color='black', linestyle='--',
         label='Census estimates', linewidth=2)
-ax.plot(unrate, **g_params, color='#377eb8', 
+ax.plot(unrate, **g_params, color='#377eb8',
         linestyle='-', linewidth=2)
 
 # Draw gray boxes according to NBER recession indicators
 ax.fill_between(nber.index, 0, 1,
-                where=nber['USREC']==1, 
+                where=nber['USREC']==1,
                 color='grey', edgecolor='none',
-                alpha=0.3, 
-                transform=ax.get_xaxis_transform(), 
+                alpha=0.3,
+                transform=ax.get_xaxis_transform(),
                 label='NBER recession indicators')
 ax.set_ylim([0, ax.get_ylim()[1]])
-ax.legend(loc='upper center', 
+ax.legend(loc='upper center',
           bbox_to_anchor=(0.5, 1.1),
           ncol=3, fancybox=True, shadow=True)
 ax.set_ylabel('unemployment rate (%)')
@@ -394,15 +392,15 @@ plt.show()
 ```
 
 
-The plot shows that 
+The plot shows that
 
 * expansions and contractions of the labor market have been highly correlated
-  with recessions. 
+  with recessions.
 * cycles are, in general, asymmetric: sharp rises in unemployment are followed
   by slow recoveries.
 
 It also shows us how unique labor market conditions were in the US during the
-post-pandemic recovery. 
+post-pandemic recovery.
 
 The labor market recovered at an unprecedented rate after the shock in 2020-2021.
 
@@ -411,11 +409,11 @@ The labor market recovered at an unprecedented rate after the shock in 2020-2021
 ## Synchronization
 
 In our {ref}`previous discussion<gdp_growth>`, we found that developed economies have had
-relatively synchronized periods of recession. 
+relatively synchronized periods of recession.
 
-At the same time, this synchronization does not appear in Argentina until the 2000s. 
+At the same time, this synchronization does not appear in Argentina until the 2000s.
 
-Let's examine this trend further. 
+Let's examine this trend further.
 
 With slight modifications, we can use our previous function to draw a plot
 that includes many countries
@@ -426,9 +424,9 @@ tags: [hide-input]
 ---
 
 
-def plot_comparison(data, countries, 
-                        ylabel, txt_pos, y_lim, ax, 
-                        g_params, b_params, t_params, 
+def plot_comparison(data, countries,
+                        ylabel, txt_pos, y_lim, ax,
+                        g_params, b_params, t_params,
                         baseline=0):
     """
     Plot multiple series on the same graph
@@ -455,17 +453,17 @@ def plot_comparison(data, countries,
         Parameters for the recession labels
     baseline : float, optional
         Dashed baseline on the plot, by default 0
-    
+
     Returns
     -------
     ax : matplotlib.axes.Axes
         Axes with the plot.
     """
-    
+
     # Allow the function to go through more than one series
     for country in countries:
         ax.plot(data.loc[country], label=country, **g_params)
-    
+
     # Highlight Recessions
     ax.axvspan(1973, 1975, **b_params)
     ax.axvspan(1990, 1992, **b_params)
@@ -474,26 +472,26 @@ def plot_comparison(data, countries,
     if y_lim != None:
         ax.set_ylim([-y_lim, y_lim])
     ylim = ax.get_ylim()[1]
-    ax.text(1974, ylim + ylim*txt_pos, 
-            'Oil Crisis\n(1974)', **t_params) 
-    ax.text(1991, ylim + ylim*txt_pos, 
-            '1990s recession\n(1991)', **t_params) 
-    ax.text(2008, ylim + ylim*txt_pos, 
-            'GFC\n(2008)', **t_params) 
-    ax.text(2020, ylim + ylim*txt_pos, 
-            'Covid-19\n(2020)', **t_params) 
+    ax.text(1974, ylim + ylim*txt_pos,
+            'Oil Crisis\n(1974)', **t_params)
+    ax.text(1991, ylim + ylim*txt_pos,
+            '1990s recession\n(1991)', **t_params)
+    ax.text(2008, ylim + ylim*txt_pos,
+            'GFC\n(2008)', **t_params)
+    ax.text(2020, ylim + ylim*txt_pos,
+            'Covid-19\n(2020)', **t_params)
     if baseline != None:
-        ax.hlines(y=baseline, xmin=ax.get_xlim()[0], 
-                  xmax=ax.get_xlim()[1], color='black', 
+        ax.hlines(y=baseline, xmin=ax.get_xlim()[0],
+                  xmax=ax.get_xlim()[1], color='black',
                   linestyle='--')
     ax.set_ylabel(ylabel)
     ax.legend()
     return ax
 
-# Define graphical parameters 
+# Define graphical parameters
 g_params = {'alpha': 0.7}
 b_params = {'color':'grey', 'alpha': 0.2}
-t_params = {'color':'grey', 'fontsize': 9, 
+t_params = {'color':'grey', 'fontsize': 9,
             'va':'center', 'ha':'center'}
 ```
 
@@ -506,7 +504,7 @@ tags: [hide-input]
 
 # Obtain GDP growth rate for a list of countries
 gdp_growth = wb.data.DataFrame('NY.GDP.MKTP.KD.ZG',
-            ['CHN', 'USA', 'DEU', 'BRA', 'ARG', 'GBR', 'JPN', 'MEX'], 
+            ['CHN', 'USA', 'DEU', 'BRA', 'ARG', 'GBR', 'JPN', 'MEX'],
             labels=True)
 gdp_growth = gdp_growth.set_index('Country')
 gdp_growth.columns = gdp_growth.columns.str.replace('YR', '').astype(int)
@@ -527,9 +525,9 @@ tags: [hide-input]
 fig, ax = plt.subplots()
 countries = ['United Kingdom', 'United States', 'Germany', 'Japan']
 ylabel = 'GDP growth rate (%)'
-plot_comparison(gdp_growth.loc[countries, 1962:], 
+plot_comparison(gdp_growth.loc[countries, 1962:],
                 countries, ylabel,
-                0.1, 20, ax, 
+                0.1, 20, ax,
                 g_params, b_params, t_params)
 plt.show()
 ```
@@ -547,27 +545,27 @@ tags: [hide-input]
 
 fig, ax = plt.subplots()
 countries = ['Brazil', 'China', 'Argentina', 'Mexico']
-plot_comparison(gdp_growth.loc[countries, 1962:], 
-                countries, ylabel, 
-                0.1, 20, ax, 
+plot_comparison(gdp_growth.loc[countries, 1962:],
+                countries, ylabel,
+                0.1, 20, ax,
                 g_params, b_params, t_params)
 plt.show()
 ```
 
 
-The comparison of GDP growth rates above suggests that 
+The comparison of GDP growth rates above suggests that
 business cycles are becoming more synchronized in 21st-century recessions.
 
 However, emerging and less developed economies often experience more volatile
-changes throughout the economic cycles. 
+changes throughout the economic cycles.
 
 Despite of the synchronization in GDP growth, the experience of individual countries during
-the recession often differs. 
+the recession often differs.
 
 We use unemployment rate and the recovery of labor market conditions
 as another example.
 
-Here we compare the unemployment rate of the United States, 
+Here we compare the unemployment rate of the United States,
 United Kingdom, Japan, and France
 
 ```{code-cell} ipython3
@@ -588,8 +586,8 @@ fig, ax = plt.subplots()
 
 countries = ['United Kingdom', 'United States', 'Japan', 'France']
 ylabel = 'unemployment rate (national estimate) (%)'
-plot_comparison(unempl_rate, countries, 
-                ylabel, 0.05, None, ax, g_params, 
+plot_comparison(unempl_rate, countries,
+                ylabel, 0.05, None, ax, g_params,
                 b_params, t_params, baseline=None)
 plt.show()
 ```
@@ -600,10 +598,10 @@ relatively slow labor market recoveries after negative shocks.
 We also notice that, Japan has a history of very low and stable unemployment rates.
 
 
-## Leading indicators and correlated factors 
+## Leading indicators and correlated factors
 
 Examining leading indicators and correlated factors helps policymakers to
-understand the causes and results of business cycles. 
+understand the causes and results of business cycles.
 
 We will discuss potential leading indicators and correlated factors from three
 perspectives: consumption, production, and credit level.
@@ -612,13 +610,13 @@ perspectives: consumption, production, and credit level.
 ### Consumption
 
 Consumption depends on consumers' confidence towards their
-income and the overall performance of the economy in the future. 
+income and the overall performance of the economy in the future.
 
 One widely cited indicator for consumer confidence is the [consumer sentiment index](https://fred.stlouisfed.org/series/UMCSENT) published by the University
 of Michigan.
 
 Here we plot the University of Michigan Consumer Sentiment Index and
-year-on-year 
+year-on-year
 [core consumer price index](https://fred.stlouisfed.org/series/CPILFESL)
 (CPI) change from 1978-2022 in the US.
 
@@ -639,39 +637,39 @@ start_date_graph = datetime.datetime(1977, 1, 1)
 end_date_graph = datetime.datetime(2023, 12, 31)
 
 nber = web.DataReader('USREC', 'fred', start_date, end_date)
-consumer_confidence = web.DataReader('UMCSENT', 'fred', 
+consumer_confidence = web.DataReader('UMCSENT', 'fred',
                                 start_date, end_date)
 
 fig, ax = plt.subplots()
-ax.plot(consumer_confidence, **g_params, 
-        color='#377eb8', linestyle='-', 
+ax.plot(consumer_confidence, **g_params,
+        color='#377eb8', linestyle='-',
         linewidth=2)
-ax.fill_between(nber.index, 0, 1, 
-            where=nber['USREC']==1, 
+ax.fill_between(nber.index, 0, 1,
+            where=nber['USREC']==1,
             color='grey', edgecolor='none',
-            alpha=0.3, 
-            transform=ax.get_xaxis_transform(), 
+            alpha=0.3,
+            transform=ax.get_xaxis_transform(),
             label='NBER recession indicators')
 ax.set_ylim([0, ax.get_ylim()[1]])
 ax.set_ylabel('consumer sentiment index')
 
 # Plot CPI on another y-axis
 ax_t = ax.twinx()
-inflation = web.DataReader('CPILFESL', 'fred', 
+inflation = web.DataReader('CPILFESL', 'fred',
                 start_date, end_date).pct_change(12)*100
 
 # Add CPI on the legend without drawing the line again
-ax_t.plot(2020, 0, **g_params, linestyle='-', 
+ax_t.plot(2020, 0, **g_params, linestyle='-',
           linewidth=2, label='consumer sentiment index')
-ax_t.plot(inflation, **g_params, 
-          color='#ff7f00', linestyle='--', 
+ax_t.plot(inflation, **g_params,
+          color='#ff7f00', linestyle='--',
           linewidth=2, label='CPI YoY change (%)')
 
 ax_t.fill_between(nber.index, 0, 1,
-                  where=nber['USREC']==1, 
+                  where=nber['USREC']==1,
                   color='grey', edgecolor='none',
-                  alpha=0.3, 
-                  transform=ax.get_xaxis_transform(), 
+                  alpha=0.3,
+                  transform=ax.get_xaxis_transform(),
                   label='NBER recession indicators')
 ax_t.set_ylim([0, ax_t.get_ylim()[1]])
 ax_t.set_xlim([start_date_graph, end_date_graph])
@@ -682,7 +680,7 @@ ax_t.set_ylabel('CPI YoY change (%)')
 plt.show()
 ```
 
-We see that 
+We see that
 
 * consumer sentiment often remains high during during expansion and
 drops before a recession.
@@ -697,12 +695,12 @@ This trend is more significant in the during [stagflation](https://en.wikipedia.
 ### Production
 
 
-Real industrial output is highly correlated with recessions in the economy. 
+Real industrial output is highly correlated with recessions in the economy.
 
-However, it is not a leading indicator, as the peak of contraction in production 
+However, it is not a leading indicator, as the peak of contraction in production
 is delayed relative to consumer confidence and inflation.
 
-We plot the real industrial output change from the previous year 
+We plot the real industrial output change from the previous year
 from 1919 to 2022 in the US to show this trend.
 
 ```{code-cell} ipython3
@@ -717,20 +715,20 @@ tags: [hide-input]
 start_date = datetime.datetime(1919, 1, 1)
 end_date = datetime.datetime(2022, 12, 31)
 
-nber = web.DataReader('USREC', 'fred', 
+nber = web.DataReader('USREC', 'fred',
                     start_date, end_date)
-consumer_confidence = web.DataReader('INDPRO', 'fred', 
+consumer_confidence = web.DataReader('INDPRO', 'fred',
                     start_date, end_date).pct_change(12)*100
 
 fig, ax = plt.subplots()
-ax.plot(consumer_confidence, **g_params, 
-        color='#377eb8', linestyle='-', 
+ax.plot(consumer_confidence, **g_params,
+        color='#377eb8', linestyle='-',
         linewidth=2, label='Consumer price index')
 ax.fill_between(nber.index, 0, 1,
-                where=nber['USREC']==1, 
+                where=nber['USREC']==1,
                 color='grey', edgecolor='none',
-                alpha=0.3, 
-                transform=ax.get_xaxis_transform(), 
+                alpha=0.3,
+                transform=ax.get_xaxis_transform(),
                 label='NBER recession indicators')
 ax.set_ylim([ax.get_ylim()[0], ax.get_ylim()[1]])
 ax.set_ylabel('YoY real ouput change (%)')
@@ -762,7 +760,7 @@ mystnb:
 tags: [hide-input]
 ---
 
-private_credit = wb.data.DataFrame('FS.AST.PRVT.GD.ZS', 
+private_credit = wb.data.DataFrame('FS.AST.PRVT.GD.ZS',
                 ['GBR'], labels=True)
 private_credit = private_credit.set_index('Country')
 private_credit.columns = private_credit.columns.str.replace('YR', '').astype(int)
@@ -771,8 +769,8 @@ fig, ax = plt.subplots()
 
 countries = 'United Kingdom'
 ylabel = 'credit level (% of GDP)'
-ax = plot_series(private_credit, countries, 
-                 ylabel, 0.05, ax, g_params, b_params, 
+ax = plot_series(private_credit, countries,
+                 ylabel, 0.05, ax, g_params, b_params,
                  t_params, ylim=None, baseline=None)
 plt.show()
 ```
@@ -780,4 +778,3 @@ plt.show()
 
 Note that the credit rises during economic expansion
 and stagnates or even contracts after recessions.
-

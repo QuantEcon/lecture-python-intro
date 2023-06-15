@@ -98,7 +98,7 @@ We begin with the following imports
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.interpolate import interp1d
-from scipy.optimize import minimize_scalar, brentq
+from scipy.optimize import brentq
 from scipy.stats import beta
 ```
 

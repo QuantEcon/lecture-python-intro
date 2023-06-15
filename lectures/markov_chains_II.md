@@ -39,13 +39,13 @@ Specifically, we will introduce the concepts of irreducibility and ergodicity, a
 
 Irreducibility describes the ability of a Markov chain to move between any two states in the system.
 
-Ergodicity is a sample path property that describes the behavior of the system over long periods of time. 
+Ergodicity is a sample path property that describes the behavior of the system over long periods of time.
 
-As we will see, 
+As we will see,
 
-* an irreducible Markov chain guarantees the existence of a unique stationary distribution, while 
+* an irreducible Markov chain guarantees the existence of a unique stationary distribution, while
 * an ergodic Markov chain generates time series that satisfy a version of the
-  law of large numbers. 
+  law of large numbers.
 
 Together, these concepts provide a foundation for understanding the long-term behavior of Markov chains.
 
@@ -53,12 +53,8 @@ Let's start with some standard imports:
 
 ```{code-cell} ipython3
 import matplotlib.pyplot as plt
-plt.rcParams["figure.figsize"] = (11, 5)  # set default figure size
 import quantecon as qe
 import numpy as np
-import networkx as nx
-from matplotlib import cm
-import matplotlib as mpl
 ```
 
 (mc_irreducible)=
@@ -100,11 +96,11 @@ there's no edge between nodes
 
 $$
 P :=
-\begin{bmatrix} 
+\begin{bmatrix}
      0.9 & 0.1 & 0 \\
      0.4 & 0.4 & 0.2 \\
      0.1 & 0.1 & 0.8
-\end{bmatrix} 
+\end{bmatrix}
 $$
 
 It's clear from the graph that this stochastic matrix is irreducible: we can  eventually
@@ -266,7 +262,7 @@ fig, axes = plt.subplots(nrows=1, ncols=n, figsize=(15, 6))
 plt.subplots_adjust(wspace=0.35)
 
 for i in range(n):
-    axes[i].axhline(ψ_star[i], linestyle='dashed', lw=2, color='black', 
+    axes[i].axhline(ψ_star[i], linestyle='dashed', lw=2, color='black',
                     label = fr'$\psi^*({i})$')
     axes[i].set_xlabel('t')
     axes[i].set_ylabel(fr'$\hat p_t({i})$')
@@ -290,14 +286,14 @@ Let's look at one more example with six states {ref}`discussed before <mc_eg3>`.
 
 $$
 P :=
-\begin{bmatrix} 
+\begin{bmatrix}
 0.86 & 0.11 & 0.03 & 0.00 & 0.00 & 0.00 \\
 0.52 & 0.33 & 0.13 & 0.02 & 0.00 & 0.00 \\
 0.12 & 0.03 & 0.70 & 0.11 & 0.03 & 0.01 \\
 0.13 & 0.02 & 0.35 & 0.36 & 0.10 & 0.04 \\
 0.00 & 0.00 & 0.09 & 0.11 & 0.55 & 0.25 \\
 0.00 & 0.00 & 0.09 & 0.15 & 0.26 & 0.50
-\end{bmatrix} 
+\end{bmatrix}
 $$
 
 
@@ -345,10 +341,10 @@ Let's look at another example with two states: 0 and 1.
 
 $$
 P :=
-\begin{bmatrix} 
+\begin{bmatrix}
      0 & 1\\
      1 & 0\\
-\end{bmatrix} 
+\end{bmatrix}
 $$
 
 
@@ -376,7 +372,7 @@ fig, axes = plt.subplots(nrows=1, ncols=n)
 
 for i in range(n):
     axes[i].set_ylim(0.45, 0.55)
-    axes[i].axhline(ψ_star[i], linestyle='dashed', lw=2, color='black', 
+    axes[i].axhline(ψ_star[i], linestyle='dashed', lw=2, color='black',
                     label = fr'$\psi^*({i})$')
     axes[i].set_xlabel('t')
     axes[i].set_ylabel(fr'$\hat p_t({i})$')
@@ -406,15 +402,15 @@ $\sum_t \beta^t h(X_t)$.
 In view of the preceding discussion, this is
 
 $$
-\mathbb{E} 
+\mathbb{E}
     \left[
-        \sum_{j=0}^\infty \beta^j h(X_{t+j}) \mid X_t 
+        \sum_{j=0}^\infty \beta^j h(X_{t+j}) \mid X_t
         = x
     \right]
     = x + \beta (Ph)(x) + \beta^2 (P^2 h)(x) + \cdots
 $$
 
-By the {ref}`Neumann series lemma <la_neumann>`, this sum can be calculated using 
+By the {ref}`Neumann series lemma <la_neumann>`, this sum can be calculated using
 
 $$
     I + \beta P + \beta^2 P^2 + \cdots = (I - \beta P)^{-1}
@@ -430,16 +426,16 @@ Benhabib el al. {cite}`benhabib_wealth_2019` estimated that the transition matri
 
 $$
 P:=
-\begin{bmatrix} 
+\begin{bmatrix}
 0.222 & 0.222 & 0.215 & 0.187 & 0.081 & 0.038 & 0.029 & 0.006 \\
 0.221 & 0.22 & 0.215 & 0.188 & 0.082 & 0.039 & 0.029 & 0.006 \\
-0.207 & 0.209 & 0.21 & 0.194 & 0.09 & 0.046 & 0.036 & 0.008 \\ 
-0.198 & 0.201 & 0.207 & 0.198 & 0.095 & 0.052 & 0.04 & 0.009 \\ 
-0.175 & 0.178 & 0.197 & 0.207 & 0.11 & 0.067 & 0.054 & 0.012 \\ 
-0.182 & 0.184 & 0.2 & 0.205 & 0.106 & 0.062 & 0.05 & 0.011 \\ 
-0.123 & 0.125 & 0.166 & 0.216 & 0.141 & 0.114 & 0.094 & 0.021 \\ 
+0.207 & 0.209 & 0.21 & 0.194 & 0.09 & 0.046 & 0.036 & 0.008 \\
+0.198 & 0.201 & 0.207 & 0.198 & 0.095 & 0.052 & 0.04 & 0.009 \\
+0.175 & 0.178 & 0.197 & 0.207 & 0.11 & 0.067 & 0.054 & 0.012 \\
+0.182 & 0.184 & 0.2 & 0.205 & 0.106 & 0.062 & 0.05 & 0.011 \\
+0.123 & 0.125 & 0.166 & 0.216 & 0.141 & 0.114 & 0.094 & 0.021 \\
 0.084 & 0.084 & 0.142 & 0.228 & 0.17 & 0.143 & 0.121 & 0.028
-\end{bmatrix} 
+\end{bmatrix}
 $$
 
 where each state 1 to 8 corresponds to a  percentile of wealth shares
@@ -538,11 +534,11 @@ Note that the fraction of time spent at each state quickly converges to the prob
 According to the discussion {ref}`above <mc_eg1-2>`, if a worker's employment dynamics obey the stochastic matrix
 
 $$
-P := 
-\begin{bmatrix} 
+P :=
+\begin{bmatrix}
 1 - \alpha & \alpha \\
 \beta & 1 - \beta
-\end{bmatrix} 
+\end{bmatrix}
 $$
 
 with $\alpha \in (0,1)$ and $\beta \in (0,1)$, then, in the long run, the fraction
@@ -606,7 +602,7 @@ for x0, col in ((0, 'blue'), (1, 'green')):
     ax.plot(X_bar - p, 'k-', alpha=0.6)
     ax.set_xlabel('t')
     ax.set_ylabel(r'$\bar X_m - \psi^* (x)$')
-    
+
 ax.legend(loc='upper right')
 plt.show()
 ```

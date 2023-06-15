@@ -37,8 +37,6 @@ Here are some imports:
 
 ```{code-cell} ipython3
 import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
 from scipy.linalg import inv
 ```
 
@@ -130,9 +128,9 @@ $$
 \mu_{i}=\frac{-W_{i}+p^{\top}\left(\Pi^{-1}b_{i}-e_{i}\right)}{p^{\top}(\Pi^{\top}\Pi)^{-1}p}$$
 
 - Finally we compute a competitive equilibrium allocation by using the demand curves:
-  
+
 $$
-c_{i}=\Pi^{-1}b_{i}-(\Pi^{\top}\Pi)^{-1}\mu_{i}p 
+c_{i}=\Pi^{-1}b_{i}-(\Pi^{\top}\Pi)^{-1}\mu_{i}p
 $$
 
 
@@ -173,11 +171,11 @@ Now let's proceed to code.
 
 ```{code-cell} ipython3
 class ExchangeEconomy:
-    def __init__(self, 
-                 Π, 
-                 bs, 
-                 es, 
-                 Ws=None, 
+    def __init__(self,
+                 Π,
+                 bs,
+                 es,
+                 Ws=None,
                  thres=1.5):
         """
         Set up the environment for an exchange economy
@@ -242,7 +240,7 @@ class ExchangeEconomy:
 
 ## Implementation
 
-Next we use the class ``ExchangeEconomy`` defined above to study 
+Next we use the class ``ExchangeEconomy`` defined above to study
 
 * a two-person economy without production,
 * a dynamic economy, and
@@ -382,20 +380,20 @@ We have the following objects
 
 
 - The demand curve:
-  
-$$ 
-c_{i}=\Pi^{-1}b_{i}-(\Pi^{\top}\Pi)^{-1}\mu_{i}p 
+
+$$
+c_{i}=\Pi^{-1}b_{i}-(\Pi^{\top}\Pi)^{-1}\mu_{i}p
 $$
 
 - The marginal utility of wealth:
-  
-$$ 
+
+$$
 \mu_{i}=\frac{-W_{i}+p^{\top}\left(\Pi^{-1}b_{i}-e_{i}\right)}{p^{\top}(\Pi^{\top}\Pi)^{-1}p}
 $$
 
 - Market clearing:
-  
-$$ 
+
+$$
 \sum c_{i}=\sum e_{i}
 $$
 
@@ -403,7 +401,7 @@ Denote aggregate consumption $\sum_i c_{i}=c$ and $\sum_i \mu_i = \mu$.
 
 Market clearing requires
 
-$$ 
+$$
 \Pi^{-1}\left(\sum_{i}b_{i}\right)-(\Pi^{\top}\Pi)^{-1}p\left(\sum_{i}\mu_{i}\right)=\sum_{i}e_{i}
 $$
 which, after a few steps, leads to
@@ -414,7 +412,7 @@ $$
 
 where
 
-$$ 
+$$
 \mu = \sum_i\mu_{i}=\frac{0 + p^{\top}\left(\Pi^{-1}b-e\right)}{p^{\top}(\Pi^{\top}\Pi)^{-1}p}.
 $$
 
@@ -440,5 +438,5 @@ $$
 p=\tilde{\mu}^{-1}(\Pi^{\top}b-\Pi^{\top}\Pi e)
 $$
 
-Thus, we have  verified that, up to the choice of a numeraire in which to express absolute prices, the price 
+Thus, we have  verified that, up to the choice of a numeraire in which to express absolute prices, the price
 vector in our representative consumer economy is the same as that in an underlying  economy with multiple consumers.

@@ -14,7 +14,7 @@ kernelspec:
 +++ {"user_expressions": []}
 
 (eigen)=
-# Eigenvalues and Eigenvectors 
+# Eigenvalues and Eigenvectors
 
 ```{index} single: Eigenvalues and Eigenvectors
 ```
@@ -27,7 +27,7 @@ kernelspec:
 
 Eigenvalues and eigenvectors are a relatively advanced topic in linear algebra.
 
-At the same time, these concepts are extremely useful for 
+At the same time, these concepts are extremely useful for
 
 * economic modeling (especially dynamics!)
 * statistics
@@ -46,9 +46,7 @@ We will use the following imports:
 import matplotlib.pyplot as plt
 import numpy as np
 from numpy.linalg import matrix_power
-from matplotlib import cm
 from matplotlib.lines import Line2D
-from mpl_toolkits.mplot3d import Axes3D
 from matplotlib.patches import FancyArrowPatch
 from mpl_toolkits.mplot3d import proj3d
 ```
@@ -82,7 +80,7 @@ Because $A$ is $n \times m$, it transforms $m$-vectors into $n$-vectors.
 
 We can write this formally as $A \colon \mathbb{R}^m \rightarrow \mathbb{R}^n$.
 
-You might argue that if $A$ is a function then we should write 
+You might argue that if $A$ is a function then we should write
 $A(x) = y$ rather than $Ax = y$ but the second notation is more conventional.
 
 ### Square matrices
@@ -116,8 +114,8 @@ $$
 Here, the matrix
 
 $$
-    A = \begin{bmatrix} 2 & 1 \\ 
-                        -1 & 1 
+    A = \begin{bmatrix} 2 & 1 \\
+                        -1 & 1
         \end{bmatrix}
 $$
 
@@ -127,7 +125,7 @@ $y = \begin{bmatrix} 5 \\ 2 \end{bmatrix}$.
 Let's visualize this using Python:
 
 ```{code-cell} ipython3
-A = np.array([[2,  1], 
+A = np.array([[2,  1],
               [-1, 1]])
 ```
 
@@ -152,10 +150,10 @@ for i, v in enumerate(vecs):
                 shrink=0,
                 alpha=0.7,
                 width=0.5))
-    
+
 ax.text(0.2 + 1 , 0.2 + 3, 'x=$(1,3)$')
 ax.text(0.2 + 5 , 0.2 + 2, 'Ax=$(5,2)$')
-    
+
 ax.annotate('', xy=(sqrt(10/29)* 5, sqrt(10/29) *2), xytext=(0, 0),
                 arrowprops=dict(color='purple',
                 shrink=0,
@@ -172,7 +170,7 @@ plt.show()
 
 +++ {"user_expressions": []}
 
-One way to understand this transformation is that $A$ 
+One way to understand this transformation is that $A$
 
 * first rotates $x$ by some angle $\theta$ and
 * then scales it by some scalar $\gamma$ to obtain the image $y$ of $x$.
@@ -186,9 +184,9 @@ Let's examine some standard transformations we can perform with matrices.
 Below we visualize transformations by thinking of vectors as points
 instead of arrows.
 
-We consider how a given matrix transforms 
+We consider how a given matrix transforms
 
-* a grid of points and 
+* a grid of points and
 * a set of points located on the unit circle in $\mathbb{R}^2$.
 
 To build the transformations we will use two functions, called `grid_transform` and `circle_transform`.
@@ -209,11 +207,11 @@ def grid_transform(A = np.array([[1, -1], [1, 1]])):
     yvals = np.linspace(-3, 3, 7)
     xygrid = np.column_stack([[x, y] for x in xvals for y in yvals])
     uvgrid = A @ xygrid
-    
+
     colors = list(map(colorizer, xygrid[0], xygrid[1]))
-    
+
     figure, ax = plt.subplots(1,2, figsize = (10,5))
-    
+
     for axes in ax:
         axes.set(xlim=(-11, 11), ylim=(-11, 11))
         axes.set_xticks([])
@@ -222,25 +220,25 @@ def grid_transform(A = np.array([[1, -1], [1, 1]])):
             axes.spines[spine].set_position('zero')
         for spine in ['right', 'top']:
             axes.spines[spine].set_color('none')
-    
+
     # Plot x-y grid points
     ax[0].scatter(xygrid[0], xygrid[1], s=36, c=colors, edgecolor="none")
     #ax[0].grid(True)
     #ax[0].axis("equal")
     ax[0].set_title("points $x_1, x_2, \cdots, x_k$")
-    
+
     # Plot transformed grid points
     ax[1].scatter(uvgrid[0], uvgrid[1], s=36, c=colors, edgecolor="none")
     #ax[1].grid(True)
     #ax[1].axis("equal")
     ax[1].set_title("points $Ax_1, Ax_2, \cdots, Ax_k$")
-    
+
     plt.show()
 
 def circle_transform(A = np.array([[-1, 2], [0, 1]])):
-    
+
     figure, ax = plt.subplots(1,2, figsize = (10,5))
-    
+
     for axes in ax:
         axes.set(xlim=(-4, 4), ylim=(-4, 4))
         axes.set_xticks([])
@@ -249,15 +247,15 @@ def circle_transform(A = np.array([[-1, 2], [0, 1]])):
             axes.spines[spine].set_position('zero')
         for spine in ['right', 'top']:
             axes.spines[spine].set_color('none')
-    
-    θ = np.linspace( 0 , 2 * np.pi , 150) 
+
+    θ = np.linspace( 0 , 2 * np.pi , 150)
     r = 1
-    
+
     θ_1 = np.empty(12)
     for i in range(12):
         θ_1[i] = 2 * np.pi * (i/12)
-    
-    x = r * np.cos(θ) 
+
+    x = r * np.cos(θ)
     y = r * np.sin(θ)
     a = r * np.cos(θ_1)
     b = r * np.sin(θ_1)
@@ -267,17 +265,17 @@ def circle_transform(A = np.array([[-1, 2], [0, 1]])):
     ax[0].plot(x, y, color = 'black', zorder=1)
     ax[0].scatter(a_1,b_1, c = colors, alpha = 1, s = 60, edgecolors = 'black', zorder =2)
     ax[0].set_title("unit circle in $\mathbb{R}^2$")
-    
+
     x1= x.reshape(1,-1)
     y1 = y.reshape(1, -1)
     ab = np.concatenate((a_1,b_1), axis=0)
     transformed_ab = A @ ab
     transformed_circle_input = np.concatenate((x1,y1), axis=0)
     transformed_circle = A @ transformed_circle_input
-    ax[1].plot(transformed_circle[0,:], transformed_circle[1,:], color = 'black', zorder= 1) 
+    ax[1].plot(transformed_circle[0,:], transformed_circle[1,:], color = 'black', zorder= 1)
     ax[1].scatter(transformed_ab[0,:],transformed_ab[1:,], color = colors, alpha = 1, s = 60, edgecolors = 'black', zorder =2)
     ax[1].set_title("transformed circle")
-   
+
     plt.show()
 ```
 
@@ -285,12 +283,12 @@ def circle_transform(A = np.array([[-1, 2], [0, 1]])):
 
 ### Scaling
 
-A matrix of the form 
+A matrix of the form
 
 $$
-    \begin{bmatrix} 
-        \alpha & 0 
-        \\ 0 & \beta 
+    \begin{bmatrix}
+        \alpha & 0
+        \\ 0 & \beta
     \end{bmatrix}
 $$
 
@@ -310,14 +308,14 @@ circle_transform(A)
 
 ### Shearing
 
-A "shear" matrix of the form 
+A "shear" matrix of the form
 
 $$
-    \begin{bmatrix} 
-        1 & \lambda \\ 
-        0 & 1 
+    \begin{bmatrix}
+        1 & \lambda \\
+        0 & 1
     \end{bmatrix}
-$$ 
+$$
 
 stretches vectors along the x-axis by an amount proportional to the
 y-coordinate of a point.
@@ -333,12 +331,12 @@ circle_transform(A)
 
 ### Rotation
 
-A matrix of the form 
+A matrix of the form
 
 $$
-    \begin{bmatrix} 
-        \cos \theta & \sin \theta 
-        \\ - \sin \theta & \cos \theta 
+    \begin{bmatrix}
+        \cos \theta & \sin \theta
+        \\ - \sin \theta & \cos \theta
     \end{bmatrix}
 $$
 is called a _rotation matrix_.
@@ -356,14 +354,14 @@ grid_transform(A)
 
 ### Permutation
 
-The permutation matrix 
+The permutation matrix
 
 $$
-    \begin{bmatrix} 
-        0 & 1 \\ 
-        1 & 0 
+    \begin{bmatrix}
+        0 & 1 \\
+        1 & 0
     \end{bmatrix}
-$$ 
+$$
 interchanges the coordinates of a vector.
 
 ```{code-cell} ipython3
@@ -378,26 +376,26 @@ More examples of common transition matrices can be found [here](https://en.wikip
 ## Matrix multiplication as composition
 
 Since matrices act as functions that transform one vector to another, we can
-apply the concept of function composition to matrices as well. 
+apply the concept of function composition to matrices as well.
 
 
 ### Linear compositions
 
-Consider the two matrices 
+Consider the two matrices
 
 $$
-    A = 
-        \begin{bmatrix} 
-            0 & 1 \\ 
-            -1 & 0 
+    A =
+        \begin{bmatrix}
+            0 & 1 \\
+            -1 & 0
         \end{bmatrix}
         \quad \text{and} \quad
-    B = 
-        \begin{bmatrix} 
-            1 & 2 \\ 
-            0 & 1 
+    B =
+        \begin{bmatrix}
+            1 & 2 \\
+            0 & 1
         \end{bmatrix}
-$$ 
+$$
 
 What will the output be when we try to obtain $ABx$ for some $2 \times 1$
 vector $x$?
@@ -522,11 +520,11 @@ def grid_composition_transform(A = np.array([[1, -1], [1, 1]]), B = np.array([[1
     xygrid = np.column_stack([[x, y] for x in xvals for y in yvals])
     uvgrid = B @ xygrid
     abgrid = A @ uvgrid
-    
+
     colors = list(map(colorizer, xygrid[0], xygrid[1]))
-    
+
     figure, ax = plt.subplots(1,3, figsize = (15,5))
-    
+
     for axes in ax:
         axes.set(xlim=(-12, 12), ylim=(-12, 12))
         axes.set_xticks([])
@@ -535,15 +533,15 @@ def grid_composition_transform(A = np.array([[1, -1], [1, 1]]), B = np.array([[1
             axes.spines[spine].set_position('zero')
         for spine in ['right', 'top']:
             axes.spines[spine].set_color('none')
-            
+
     # Plot grid points
     ax[0].scatter(xygrid[0], xygrid[1], s=36, c=colors, edgecolor="none")
     ax[0].set_title("points $x_1, x_2, \cdots, x_k$")
-    
+
     # Plot intermediate grid points
     ax[1].scatter(uvgrid[0], uvgrid[1], s=36, c=colors, edgecolor="none")
     ax[1].set_title("points $Bx_1, Bx_2, \cdots, Bx_k$")
-    
+
     #Plot transformed grid points
     ax[2].scatter(abgrid[0], abgrid[1], s=36, c=colors, edgecolor="none")
     ax[2].set_title("points $ABx_1, ABx_2, \cdots, ABx_k$")
@@ -552,7 +550,7 @@ def grid_composition_transform(A = np.array([[1, -1], [1, 1]]), B = np.array([[1
 ```
 
 ```{code-cell} ipython3
-θ = np.pi/2 
+θ = np.pi/2
 #B = np.array([[np.cos(θ), np.sin(θ)],
 #              [-np.sin(θ), np.cos(θ)]])
 A = np.array([[0, 1],     # 90 degree clockwise rotation
@@ -589,7 +587,7 @@ analyzing behavior where we repeatedly apply a fixed matrix.
 For example, given a vector $v$ and a matrix $A$, we are interested in
 studying the sequence
 
-$$ 
+$$
     v, \quad
     Av, \quad
     AAv = A^2v, \quad \ldots
@@ -602,12 +600,12 @@ different maps $A$.
 
 ```{code-cell} ipython3
 def plot_series(B, v, n):
-    
+
     A = np.array([[1, -1],
                   [1, 0]])
-    
+
     figure, ax = plt.subplots()
-    
+
     ax.set(xlim=(-4, 4), ylim=(-4, 4))
     ax.set_xticks([])
     ax.set_yticks([])
@@ -615,20 +613,20 @@ def plot_series(B, v, n):
         ax.spines[spine].set_position('zero')
     for spine in ['right', 'top']:
         ax.spines[spine].set_color('none')
-        
-    θ = np.linspace( 0 , 2 * np.pi , 150) 
+
+    θ = np.linspace( 0 , 2 * np.pi , 150)
     r = 2.5
-    x = r * np.cos(θ) 
+    x = r * np.cos(θ)
     y = r * np.sin(θ)
     x1 = x.reshape(1,-1)
     y1 = y.reshape(1, -1)
     xy = np.concatenate((x1,y1), axis=0)
-    
+
     ellipse = A @ xy
     ax.plot(ellipse[0,:], ellipse[1,:], color = 'black', linestyle = (0, (5,10)), linewidth = 0.5)
-    
+
     colors = plt.cm.rainbow(np.linspace(0,1,20))# Initialize holder for trajectories
-    
+
     for i in range(n):
         iteration = matrix_power(B, i) @ v
         v1 = iteration[0]
@@ -640,7 +638,7 @@ def plot_series(B, v, n):
             ax.text(v1+0.25, v2, f'$Av$')
         if 1< i < 4:
             ax.text(v1+0.25, v2, f'$A^{i}v$')
-            
+
     plt.show()
 ```
 
@@ -672,7 +670,7 @@ plot_series(B, v, n)
 
 +++ {"user_expressions": []}
 
-Here with each iteration vectors do not tend to get longer or shorter. 
+Here with each iteration vectors do not tend to get longer or shorter.
 
 In this case, repeatedly multiplying a vector by $A$ simply "rotates it around
 an ellipse".
@@ -690,7 +688,7 @@ plot_series(B, v, n)
 +++ {"user_expressions": []}
 
 Here with each iteration vectors tend to get longer, i.e., farther from the
-origin. 
+origin.
 
 In this case, repeatedly multiplying a vector by $A$ makes the vector "spiral out".
 
@@ -699,7 +697,7 @@ We thus observe that the sequence $(A^kv)_{k \geq 0}$ behaves differently depend
 We now discuss the property of A that determines this behavior.
 
 (la_eigenvalues)=
-## Eigenvalues 
+## Eigenvalues
 
 ```{index} single: Linear Algebra; Eigenvalues
 ```
@@ -784,7 +782,7 @@ So far our definition of eigenvalues and eigenvectors seems straightforward.
 
 There is one complication we haven't mentioned yet:
 
-When solving $Av = \lambda v$, 
+When solving $Av = \lambda v$,
 
 * $\lambda$ is allowed to be a complex number and
 * $v$ is allowed to be an $n$-vector of complex numbers.
@@ -798,7 +796,7 @@ We note some mathematical details for more advanced readers.
 
 (Other readers can skip to the next section.)
 
-The eigenvalue equation is equivalent to $(A - \lambda I) v = 0$. 
+The eigenvalue equation is equivalent to $(A - \lambda I) v = 0$.
 
 This equation has a nonzero solution $v$ only when the columns of $A - \lambda I$ are linearly dependent.
 
@@ -815,7 +813,7 @@ plane, although some might be repeated.
 
 
 
-### Facts 
+### Facts
 
 Some nice facts about the eigenvalues of a square matrix $A$ are as follows:
 
@@ -893,8 +891,8 @@ mystnb:
     name: pow-dist
 ---
 # Define a matrix A
-A = np.array([[1, 0, 3], 
-              [0, 2, 0], 
+A = np.array([[1, 0, 3],
+              [0, 2, 0],
               [3, 0, 1]])
 
 num_iters = 20
@@ -916,7 +914,7 @@ for i in range(num_iters):
     b = b / np.linalg.norm(b)
     # Append b to the list of eigenvector approximations
     res.append(b)
-    norm = np.linalg.norm(np.array(b) 
+    norm = np.linalg.norm(np.array(b)
                           - eigenvector)
     norm_ls.append(norm)
 
@@ -947,15 +945,15 @@ fig = plt.figure()
 ax = fig.add_subplot(111, projection='3d')
 
 # Plot the eigenvectors
-ax.scatter(eigenvector[0], 
-           eigenvector[1], 
-           eigenvector[2], 
+ax.scatter(eigenvector[0],
+           eigenvector[1],
+           eigenvector[2],
            color='r', s = 80)
 
 for i, vec in enumerate(res):
-    ax.scatter(vec[0], vec[1], vec[2], 
-               color='b', 
-               alpha=(i+1)/(num_iters+1), 
+    ax.scatter(vec[0], vec[1], vec[2],
+               color='b',
+               alpha=(i+1)/(num_iters+1),
                s = 80)
 
 ax.set_xlabel('x')
@@ -963,9 +961,9 @@ ax.set_ylabel('y')
 ax.set_zlabel('z')
 ax.tick_params(axis='both', which='major', labelsize=7)
 
-points = [plt.Line2D([0], [0], linestyle='none', 
+points = [plt.Line2D([0], [0], linestyle='none',
                      c=i, marker='o') for i in ['r', 'b']]
-ax.legend(points, ['actual eigenvector', 
+ax.legend(points, ['actual eigenvector',
                    r'approximated eigenvector ($b_k$)'])
 ax.set_box_aspect(aspect=None, zoom=0.8)
 
@@ -994,7 +992,7 @@ Try to compute the trajectory of $v$ after being transformed by $A$ for $n=4$ it
 ```
 
 ```{code-cell} ipython3
-A = np.array([[1, 2], 
+A = np.array([[1, 2],
               [1, 1]])
 v = (0.4, -0.4)
 n = 11
@@ -1022,7 +1020,7 @@ mystnb:
     name: eigen-conv
 ---
 # Create a grid of points
-x, y = np.meshgrid(np.linspace(-5, 5, 15), 
+x, y = np.meshgrid(np.linspace(-5, 5, 15),
                 np.linspace(-5, 5, 20))
 
 # Apply the matrix A to each point in the vector field
@@ -1030,18 +1028,18 @@ vec_field = np.stack([x, y])
 u, v = np.tensordot(A, vec_field, axes=1)
 
 # Plot the transformed vector field
-c = plt.streamplot(x, y, u - x, v - y, 
+c = plt.streamplot(x, y, u - x, v - y,
                 density=1, linewidth=None, color='#A23BEC')
 c.lines.set_alpha(0.5)
 c.arrows.set_alpha(0.5)
 
 # Draw eigenvectors
 origin = np.zeros((2, len(eigenvectors)))
-parameters = {'color':['b', 'g'], 'angles':'xy', 
+parameters = {'color':['b', 'g'], 'angles':'xy',
                 'scale_units':'xy', 'scale':0.1, 'width':0.01}
-plt.quiver(*origin, eigenvectors[0], 
+plt.quiver(*origin, eigenvectors[0],
         eigenvectors[1], **parameters)
-plt.quiver(*origin, - eigenvectors[0], 
+plt.quiver(*origin, - eigenvectors[0],
         - eigenvectors[1], **parameters)
 
 colors = ['b', 'g']
@@ -1120,7 +1118,7 @@ for i, example in enumerate(examples):
     eigenvectors_real = eigenvectors.real
 
     # Create a grid of points
-    x, y = np.meshgrid(np.linspace(-20, 20, 15), 
+    x, y = np.meshgrid(np.linspace(-20, 20, 15),
                     np.linspace(-20, 20, 20))
 
     # Apply the matrix A to each point in the vector field
@@ -1132,17 +1130,17 @@ for i, example in enumerate(examples):
              density=1, linewidth=None, color='#A23BEC')
     c.lines.set_alpha(0.5)
     c.arrows.set_alpha(0.5)
-    
+
     # Draw eigenvectors
-    parameters = {'color':['b', 'g'], 'angles':'xy', 
-                'scale_units':'xy', 'scale':1, 
+    parameters = {'color':['b', 'g'], 'angles':'xy',
+                'scale_units':'xy', 'scale':1,
                 'width':0.01, 'alpha':0.5}
     origin = np.zeros((2, len(eigenvectors)))
-    ax[i].quiver(*origin, eigenvectors_real[0], 
+    ax[i].quiver(*origin, eigenvectors_real[0],
             eigenvectors_real[1], **parameters)
-    ax[i].quiver(*origin, 
-                - eigenvectors_real[0], 
-                - eigenvectors_real[1], 
+    ax[i].quiver(*origin,
+                - eigenvectors_real[0],
+                - eigenvectors_real[1],
                 **parameters)
 
     ax[i].set_xlabel("x-axis")
@@ -1183,7 +1181,7 @@ class Arrow3D(FancyArrowPatch):
 eigenvalues, eigenvectors = np.linalg.eig(A)
 
 # Create meshgrid for vector field
-x, y = np.meshgrid(np.linspace(-2, 2, 15), 
+x, y = np.meshgrid(np.linspace(-2, 2, 15),
                    np.linspace(-2, 2, 15))
 
 # Calculate vector field (real and imaginary parts)
@@ -1196,18 +1194,18 @@ v_imag = np.zeros_like(y)
 fig = plt.figure()
 ax = fig.add_subplot(111, projection='3d')
 vlength = np.linalg.norm(eigenvectors)
-ax.quiver(x, y, u_imag, u_real-x, v_real-y, v_imag-u_imag, 
-          colors = 'b', alpha=0.3, length = .2, 
+ax.quiver(x, y, u_imag, u_real-x, v_real-y, v_imag-u_imag,
+          colors = 'b', alpha=0.3, length = .2,
           arrow_length_ratio = 0.01)
 
-arrow_prop_dict = dict(mutation_scale=5, 
+arrow_prop_dict = dict(mutation_scale=5,
                 arrowstyle='-|>', shrinkA=0, shrinkB=0)
 
 # Plot 3D eigenvectors
 for c, i in zip(['b', 'g'], [0, 1]):
-    a = Arrow3D([0, eigenvectors[0][i].real], 
-                [0, eigenvectors[1][i].real], 
-                [0, eigenvectors[1][i].imag], 
+    a = Arrow3D([0, eigenvectors[0][i].real],
+                [0, eigenvectors[1][i].real],
+                [0, eigenvectors[1][i].imag],
                 color=c, **arrow_prop_dict)
     ax.add_artist(a)
 

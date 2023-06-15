@@ -57,7 +57,6 @@ import pandas as pd
 import quantecon as qe
 
 import matplotlib.cm as cm
-import quantecon_book_networks
 import quantecon_book_networks.input_output as qbn_io
 import quantecon_book_networks.data as qbn_data
 

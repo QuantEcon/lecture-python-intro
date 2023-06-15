@@ -27,7 +27,6 @@ This lecture requires the following imports and installs before we proceed.
 
 ```{code-cell} ipython3
 import numpy as np
-import pandas as pd
 import networkx as nx
 import matplotlib.pyplot as plt
 from matplotlib.patches import Polygon
