@@ -15,15 +15,7 @@ kernelspec:
 
 # Price Level Histories 
 
-## Ends of Four Big Inflations
-
-
-
-We want to construct four graphs from "The Ends of Four Big Inflations" from chapter 3 of {cite}`
-
-This is chapter 3 of the book **Rational Expectations and Inflation** that I shared with you a couple of days ago.
-
-
+As usual, we'll start by importing some Python modules.
 
 ```{code-cell} ipython3
 import numpy as np
@@ -39,6 +31,52 @@ import datetime
 !pip install xlrd 
 ```
 
+## Four Centuries of Price Levels
+
+The waste from using gold and silver as coins  prompted John Maynard Keynes to call a commodity standard a “barbarous relic.” A fiat money system disposes of all reserves behind a currency. In doing so, it also eliminates ab automatic supply mechanism constraining the price level. A low-inflation fiat money system replaces that automatic mechanism with an enlightened government that commits itself to limit the quantity of a pure token, no-cost currency.
+Because most nineteenth-century proponents of a commodity money system did not trust governments properly to manage a fiat money system, they were willing to pay the resource costs associated with setting up and maintaining a commodity money system. In light of the high inflation episodes that many countries experienced in the twentieth century after they abandoned commodity monies,  it is difficult to criticize them for that. The figure below present s price levels in Castile, France, England, and the United States. The inflationary experience of the twentieth century, the century of paper money, is unprecedented.
+
+The graph that originally appeared on page 35 of {cite}`sargent2002big`.
+
+The graph shows logarithms of price levels for four ``hard currency'' countries from 1600 to 2000.
+
+(We wouldn't need the logarithm if we had stopped in 1914 -- we used logarithms because we wanted also  to fit observations after 1914 in the same graph as the earlier observations.)
+
+
+```{code-cell} ipython3
+# import data
+df_fig5 = pd.read_excel('datasets/longprices.xls', sheet_name='all', header=2, index_col=0).iloc[1:]
+df_fig5.index = df_fig5.index.astype(int) 
+
+df_fig5.head(5)
+```
+
+```{code-cell} ipython3
+# create plot
+cols = ['UK', 'US', 'France', 'Castile']
+
+fig, ax = plt.subplots(1, 1, figsize=[8, 5], dpi=200)
+
+for col in cols:
+    ax.plot(df_fig5.index, df_fig5[col])
+    ax.text(x=df_fig5.index[-1]+2, y=df_fig5[col].iloc[-1], s=col)
+
+ax.spines[['right', 'top']].set_visible(False)
+ax.set_yscale('log')
+ax.set_ylabel('Index  1913 = 100')
+ax.set_xlim(xmin=1600)
+ax.set_ylim([10, 1e6])
+plt.tight_layout()
+plt.show()
+```
+
+
+## Ends of Four Big Inflations
+
+
+
+We present  four  graphs from "The Ends of Four Big Inflations" from chapter 3 of {cite}`sargent2013rational`.
+
 The graphs depict logarithms of price levels during the early post World War I years for four countries:
 
  * Figure 3.1, Retail prices Austria 1921-1924 (page 42)
@@ -46,32 +84,11 @@ The graphs depict logarithms of price levels during the early post World War I y
  * Figure 3.3, Wholesale prices, Poland, 1921-1924 (page 44)
  * Figure pd.dataframe(3.4, Wholesale prices, Germany, 1919-1924 (page 45)
 
-Data underlying these graphs appear in the tables in the appendix; all of the data have been organized into a spreadsheet *chapter_3.xls* that I include in our dropbox folder.
+Data underlying these graphs appear in the tables in an appendix to chapter 3 of {cite}`sargent2013rational`.
+We have transcribed all of these data  into a spreadsheet *chapter_3.xls* that we shall ask pandas to read for us.
 
-The spreadsheet refers to the tables that I now describe for each of our four countries.
 
 
-## Tweak request for Jiacheng
-
-* for each of the four countries, please delete the graphs of the "money supplies" and "real balances" in the right panels. So now we'll just have your excellent graphs of the price level and exchange rate
-
-* for each graph please add a caption below the graph just saying the country name. Maybe Zejin can quickly tell you how to do this.
-
-* for Poland I think that there are some additional price level data in the table, but their units have changed.  Please take a look at figure 3.3. in the chapter.  I am pretty sure that to draw that graph I just made a guess about the units change -- sort of using "continuity" -- and adjusted the units of the second series and spliced the series to get the one in figure 3.3.  We can talk about this if you wish
-
-* for Germany, I'd like to do another "splicing operation" to avoid the big jump down in the price series and the exchange rate series.  What those jumps reflect is the "units change" associated with the "currency reform". It was a pure units change.
-  
-    * Here is one idea -- make two versions of the graph in two separate graphs. The first version is what you have
-    
-     * The second version does the "splicing" by converting the new units to the old so that there is no drop.  Then the graphs will be "continuous.
-     
-     * By comparing the graphs we can teach about the "currency reform"
-     
-     
-
-* Comment: I really like the way you put the exchange rate and the price level on the same graph for each country. Overall the graphs are great -- really exciting to me! And I love the "long series" graph at the end.
-
-* Thanks so much.
 
 
 
@@ -173,7 +190,7 @@ df_Aus, df_Hung, df_Pol, df_Germ = df_list
 
 ### Austria
 
-* Table 3.2, money supply, $\exp M$
+
 * Table 3.3, rdf_Aus.indexetail prices, $\exp p$
 * Table 3.4, exchange rate with US
 
@@ -198,7 +215,7 @@ plt.show()
 
 ### Hungary
 
-* Table 3.9, money supply, $\exp M$
+
 * Table 3.10, price level $\exp p$ and exchange rate
 
 
@@ -224,16 +241,15 @@ plt.show()
 
 ### Poland
 
-* Table 3.14, money supply, $\exp M$
+
 * Table 3.15, price level $\exp p$ 
 * Table 3.15, exchange rate
 
 
-Jiacheng: 
-
+````{note}
 I spliced the three series - Wholesale price index, Wholesale Price Index: On paper currency basis, and Wholesale Price Index: On zloty basis. I made the adjustment by adjusting the sequence based on the price level ratio at the last period of the available previous series and glue them to a single series.
-
 I dropped the exchange rate after June 1924, when zloty was adopted, because we don't have the price measured in zloty and old currency in June to compute the exchange rate adjustment.
+````
 
 ```{code-cell} ipython3
 df_Pol.head(5)
@@ -276,7 +292,7 @@ plt.show()
 
 ### Germany
 
-* Table 3.21, money supply, $\exp M$ (last column)
+
 * Table 3.18, wholesale price level $\exp p$ 
 * Table 3.19, exchange rate
 
@@ -326,30 +342,3 @@ There might be some ambiguity about exactly which column in the "balance sheets"
 
 **Seecond Steps:** There are some fun additonal things we can plot to set the stage for our  cagan_ree and cagan_adaptive notebooks.  For example, we have the data to plot logs of real balances around the times of the stabilizations. We can hunt for instances of "velocity dividends".
 
-
-```{code-cell} ipython3
-# import data
-df_fig5 = pd.read_excel('datasets/longprices.xls', sheet_name='all', header=2, index_col=0).iloc[1:]
-df_fig5.index = df_fig5.index.astype(int) 
-
-df_fig5.head(5)
-```
-
-```{code-cell} ipython3
-# create plot
-cols = ['UK', 'US', 'France', 'Castile']
-
-fig, ax = plt.subplots(1, 1, figsize=[8, 5], dpi=200)
-
-for col in cols:
-    ax.plot(df_fig5.index, df_fig5[col])
-    ax.text(x=df_fig5.index[-1]+2, y=df_fig5[col].iloc[-1], s=col)
-
-ax.spines[['right', 'top']].set_visible(False)
-ax.set_yscale('log')
-ax.set_ylabel('Index  1913 = 100')
-ax.set_xlim(xmin=1600)
-ax.set_ylim([10, 1e6])
-plt.tight_layout()
-plt.show()
-```
