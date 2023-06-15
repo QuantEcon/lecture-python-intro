@@ -52,7 +52,6 @@ We will use the following imports:
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib import cm
-plt.rcParams["figure.figsize"] = (11, 5)  #set default figure size
 ```
 
 ## Samuelson's model

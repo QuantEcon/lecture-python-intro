@@ -48,7 +48,6 @@ We will use the following imports:
 ```{code-cell} ipython3
 import numpy as np
 import matplotlib.pyplot as plt
-plt.rcParams["figure.figsize"] = (11, 5)  # set default figure size
 ```
 
 
@@ -65,10 +64,10 @@ The second method is more general, as we will see.
 
 ### Pencil and Paper Methods
 
-Suppose that we have two related goods, such as 
+Suppose that we have two related goods, such as
 
-* propane and ethanol 
-* rice and wheat, etc. 
+* propane and ethanol
+* rice and wheat, etc.
 
 To keep things simple, we label them as good 0 and good 1.
 
@@ -78,20 +77,20 @@ The demand for each good depends on the price of both goods:
 :label: two_eq_demand
 \begin{aligned}
     q_0^d = 100 - 10 p_0 - 5 p_1 \\
-    q_1^d = 50 - p_0 - 10 p_1 
+    q_1^d = 50 - p_0 - 10 p_1
 \end{aligned}
 ```
 
 (We are assuming demand decreases when the price of either good goes up, but
 other cases are also possible.)
 
-Let's suppose that supply is given by 
+Let's suppose that supply is given by
 
 ```{math}
 :label: two_eq_supply
 \begin{aligned}
     q_0^s = 10 p_0 + 5 p_1 \\
-    q_1^s = 5 p_0 + 10 p_1 
+    q_1^s = 5 p_0 + 10 p_1
 \end{aligned}
 ```
 
@@ -103,7 +102,7 @@ This yields the linear system
 :label: two_equilibrium
 \begin{aligned}
     100 - 10 p_0 - 5 p_1 = 10 p_0 + 5 p_1 \\
-    50 - p_0 - 10 p_1 = 5 p_0 + 10 p_1 
+    50 - p_0 - 10 p_1 = 5 p_0 + 10 p_1
 \end{aligned}
 ```
 
@@ -111,10 +110,10 @@ We can solve this with pencil and paper to get
 
 $$
     p_0 = 4.41 \quad \text{and} \quad p_1 = 1.18
-$$    
+$$
 
 Inserting these results into either {eq}`two_eq_demand` or {eq}`two_eq_supply` yields the
-equilibrium quantities 
+equilibrium quantities
 
 $$
     q_0 = 50 \quad \text{and} \quad q_1 = 33.82
@@ -148,7 +147,7 @@ column vectors.
 
 The set of all $n$-vectors is denoted by $\mathbb R^n$.
 
-For example, 
+For example,
 
 * $\mathbb R^2$ is the plane --- the set of pairs $(x_1, x_2)$
 * $\mathbb R^3$ is 3 dimensional space --- the set of vectors $(x_1, x_2, x_3)$
@@ -197,17 +196,17 @@ For example,
 $$
 \begin{bmatrix}
     4 \\
-    -2 
+    -2
 \end{bmatrix}
 +
 \begin{bmatrix}
     3 \\
-    3 
+    3
 \end{bmatrix}
 =
 \begin{bmatrix}
     4 & + & 3 \\
-    -2 & + & 3 
+    -2 & + & 3
 \end{bmatrix}
 =
 \begin{bmatrix}
@@ -286,7 +285,7 @@ $$
 -2
 \begin{bmatrix}
     3 \\
-    -7 
+    -7
 \end{bmatrix}
 =
 \begin{bmatrix}
@@ -347,10 +346,10 @@ for s in scalars:
 plt.show()
 ```
 
-In Python, a vector can be represented as a list or tuple, 
+In Python, a vector can be represented as a list or tuple,
 such as `x = [2, 4, 6]` or `x = (2, 4, 6)`.
 
-However, it is more common to represent vectors with 
+However, it is more common to represent vectors with
 [NumPy arrays](https://python-programming.quantecon.org/numpy.html#numpy-arrays).
 
 One advantage of NumPy arrays is that scalar multiplication and addition have
@@ -377,7 +376,7 @@ x + y                     # Add (element-by-element)
 The **inner product** of vectors $x,y \in \mathbb R^n$ is defined as
 
 $$
-x' y = 
+x' y =
 \begin{bmatrix}
     \color{red}{x_1} & \color{blue}{x_2} & \cdots & x_n
 \end{bmatrix}
@@ -407,7 +406,7 @@ np.sum(x*y)      # Inner product of x and y
 ```
 
 ```{code-cell} ipython3
-x @ y            # Another way to compute the inner product 
+x @ y            # Another way to compute the inner product
 ```
 
 ```{code-cell} ipython3
@@ -596,9 +595,9 @@ AB =
 \end{bmatrix}
 $$
 
-There are many tutorials to help you further visualize this operation, such as 
+There are many tutorials to help you further visualize this operation, such as
 
-* [this one](http://www.mathsisfun.com/algebra/matrix-multiplying.html), or 
+* [this one](http://www.mathsisfun.com/algebra/matrix-multiplying.html), or
 * the discussion on the [Wikipedia page](https://en.wikipedia.org/wiki/Matrix_multiplication).
 
 
@@ -609,7 +608,7 @@ Unlike number products, $A B$ and $B A$ are not generally the same thing.
 ONe important special case is the [identity matrix](https://en.wikipedia.org/wiki/Identity_matrix), which has ones on the principal diagonal and zero elsewhere:
 
 $$
-    I = 
+    I =
     \begin{bmatrix}
         1 & \cdots & 0 \\
         \vdots & \ddots & \vdots \\
@@ -692,16 +691,16 @@ First we rewrite {eq}`two_eq_demand` as
 :label: two_eq_demand_mat
     q^d = D p + h
     \quad \text{where} \quad
-    q^d = 
+    q^d =
     \begin{bmatrix}
         q_0^d \\
         q_1^d
     \end{bmatrix}
     \quad
-    D = 
+    D =
     \begin{bmatrix}
          -10 & - 5  \\
-         - 1  & - 10  
+         - 1  & - 10
     \end{bmatrix}
     \quad \text{and} \quad
     h =
@@ -717,18 +716,18 @@ We rewrite {eq}`two_eq_supply` as
 
 ```{math}
 :label: two_eq_supply_mat
-    q^s = C p 
+    q^s = C p
     \quad \text{where} \quad
-    q^s = 
+    q^s =
     \begin{bmatrix}
         q_0^s \\
         q_1^s
     \end{bmatrix}
     \quad \text{and} \quad
-    C = 
+    C =
     \begin{bmatrix}
          10 & 5  \\
-         5 & 10  
+         5 & 10
     \end{bmatrix}
 ```
 
@@ -738,7 +737,7 @@ $$
     C p = D p + h
 $$
 
-We can rearrange the terms to get 
+We can rearrange the terms to get
 
 $$
     (C - D) p = h
@@ -789,13 +788,13 @@ To find an equilibrium, we solve $Dp + h = Cp + e$, or
 
 ```{math}
 :label: n_eq_sys_la
-    (D- C)p = e - h 
+    (D- C)p = e - h
 ```
 
 The solution is
 
-$$ 
-    p = (D- C)^{-1}(e - h) 
+$$
+    p = (D- C)^{-1}(e - h)
 $$
 
 
@@ -813,7 +812,7 @@ A more general version of the problem described above looks as follows.
 \end{matrix}
 ```
 
-The objective here is to solve for the "unknowns" $x_1, \ldots, x_n$ 
+The objective here is to solve for the "unknowns" $x_1, \ldots, x_n$
 
 We take as given the coefficients $a_{11}, \ldots, a_{nn}$ and constants $b_1, \ldots, b_n$.
 
@@ -831,7 +830,7 @@ In matrix form, the system {eq}`la_se` becomes
 :label: la_gf
     A x = b
     \quad \text{where} \quad
-    A = 
+    A =
     \begin{bmatrix}
         a_{11} &  \cdots & a_{1n} \\
         \vdots & \vdots  & \vdots \\
@@ -846,10 +845,10 @@ In matrix form, the system {eq}`la_se` becomes
     \end{bmatrix}
 ```
 
-For example, {eq}`n_eq_sys_la` has this form with 
+For example, {eq}`n_eq_sys_la` has this form with
 
-$$ 
-    A = D - C, 
+$$
+    A = D - C,
     \quad
     b = e - h
     \quad \text{and} \quad
@@ -924,7 +923,7 @@ We can rewrite this system in matrix form as
     A =
     \begin{bmatrix}
         1 & 3 \\
-        2 & 6 
+        2 & 6
     \end{bmatrix}
     \quad \text{and} \quad
     b =
@@ -965,7 +964,7 @@ Any vector $v = (x,y)$ such that $x = 2y - 4$ will solve the above system.
 
 Since we can find infinite such vectors this system has infinitely many solutions.
 
-This is because the rows of the corresponding matrix 
+This is because the rows of the corresponding matrix
 
 ```{math}
 :label: many_solns
@@ -1177,7 +1176,7 @@ A =
     p_2
 \end{bmatrix}
 \quad \text{and} \quad
-b = 
+b =
 \begin{bmatrix}
     100 \\
     75 \\
@@ -1235,7 +1234,7 @@ When faced with an inconsistent system we try to find the best "approximate" sol
 
 There are various methods to do this, one such method is the **method of least squares.**
 
-Suppose we have an inconsistent system 
+Suppose we have an inconsistent system
 
 ```{math}
 :label: inconsistent
@@ -1249,11 +1248,11 @@ is less than the distance from $Ax$ to $b$.
 That is,
 
 $$
-    \|A\hat{x} - b\| \leq \|Ax - b\| 
+    \|A\hat{x} - b\| \leq \|Ax - b\|
 $$
 
 It can be shown that, for the system of equations $Ax = b$, the least squares
-solution $\hat{x}$ is 
+solution $\hat{x}$ is
 
 ```{math}
 :label: least_squares
@@ -1367,5 +1366,3 @@ plt.show()
 The documentation of the `numpy.linalg` submodule can be found [here](https://numpy.org/devdocs/reference/routines.linalg.html).
 
 More advanced topics in linear algebra can be found [here](https://python.quantecon.org/linear_algebra.html#id5).
-
-
