@@ -33,14 +33,22 @@ import datetime
 
 ## Four Centuries of Price Levels
 
-The waste from using gold and silver as coins  prompted John Maynard Keynes to call a commodity standard a “barbarous relic.” A fiat money system disposes of all reserves behind a currency. In doing so, it also eliminates ab automatic supply mechanism constraining the price level. A low-inflation fiat money system replaces that automatic mechanism with an enlightened government that commits itself to limit the quantity of a pure token, no-cost currency.
-Because most nineteenth-century proponents of a commodity money system did not trust governments properly to manage a fiat money system, they were willing to pay the resource costs associated with setting up and maintaining a commodity money system. In light of the high inflation episodes that many countries experienced in the twentieth century after they abandoned commodity monies,  it is difficult to criticize them for that. The figure below present s price levels in Castile, France, England, and the United States. The inflationary experience of the twentieth century, the century of paper money, is unprecedented.
+We begin by displaying  some  data  that originally appeared on page 35 of {cite}`sargent2002big`.
 
-The graph that originally appeared on page 35 of {cite}`sargent2002big`.
+The data  price levels for four ``hard currency'' countries from 1600 to 1914.
 
-The graph shows logarithms of price levels for four ``hard currency'' countries from 1600 to 2000.
+The four countries are
 
-(We wouldn't need the logarithm if we had stopped in 1914 -- we used logarithms because we wanted also  to fit observations after 1914 in the same graph as the earlier observations.)
+* France 
+* Spain (Castile)
+* United Kingdom
+* United States
+
+In the present context, the  phrase hard currency means that the countries were on a commodity-money standard:  money consisted of gold and silver coins that circulated at values largely determined by the weights of their gold and silver contents.
+
+The data we want to study data  originally appeared in a graph on page 35 of {cite}`sargent2002big`.
+
+We'll start by bringing these data into Pandas from a spreadsheet.
 
 
 ```{code-cell} ipython3
@@ -50,6 +58,77 @@ df_fig5.index = df_fig5.index.astype(int)
 
 df_fig5.head(5)
 ```
+
+We first plot price levels over the period 1600-1914.
+
+During most years in this time interval, the countries were on a gold or silver standard.
+
+
+
+
+```{code-cell} ipython3
+df_fig5_bef1914 = df_fig5[df_fig5.index <= 1915]
+
+# create plot
+cols = ['UK', 'US', 'France', 'Castile']
+
+fig, ax = plt.subplots(1, 1, figsize=[8, 5], dpi=200)
+
+for col in cols:
+    ax.plot(df_fig5_bef1914.index, df_fig5_bef1914[col], label=col)
+
+ax.spines[['right', 'top']].set_visible(False)
+ax.legend()
+ax.set_ylabel('Index  1913 = 100')
+ax.set_xlim(xmin=1600)
+plt.tight_layout()
+plt.show()
+````
+
+We say ``most years'' because there were temporary lapses from the gold or silver standard.
+
+By staring at the graph carefully, you might be able to guess when these temporary lapses occurred, because they were periods in which price levels rose markedly from average values during more typical years.
+
+ * 1791-1797 in France (the French revolution)
+ * 1776-1793 in the US (the US War for Independence from Great Britain)
+ * 1861-1865 in the US (the US Civil War)
+
+During each of these episodes, the gold/silver standard was temporarily abandoned as a government printed paper money to help it finance war expenditures.
+
+Despite these temporary lapses, a striking thing about the figure is that price levels hovered around roughly constant long-term levels for over three centuries.  
+
+Two other features of the figure attracted the attention of leading economists such as Irving Fisher of Yale University and John Maynard Keynes of Cambridge University in the early century.
+
+  * there was considerable year-to-year instability of the price levels despite their long begin anchored to the same average level in the long term
+  
+  * while using valuable gold and silver as coins was a time-tested way to anchor  the price level by limiting the supply of money, it cost real resources.
+     
+      * that is, society paid a high ``opportunity cost'' for using gold and silver as coins; gold and silver could instead by used as valuable jewelry and also as an industrial input
+
+Keynes and Fisher argued that there was a socially efficient way to achieve a price level that  would
+be at least as well anchored, and would also exhibit less  year-to-year short-term fluctuations.  
+
+In particular, they argued that a well-managed central bank could achieve price level stability by
+
+  * issuing a **limited supply** of paper currency
+  * guranteeing that it would  not  print money to finance government expenditures
+
+Thue, the waste from using gold and silver as coins  prompted John Maynard Keynes to call a commodity standard a “barbarous relic.”
+
+A fiat money system disposes of all reserves behind a currency. 
+
+In doing so, it also eliminates an automatic supply mechanism constraining the price level.
+
+A low-inflation fiat money system replaces that automatic mechanism with an enlightened government that commits itself to limit the quantity of a pure token, no-cost currency.
+
+Now let's see what happened to the price level in our four countries when after 1914 one after another of them 
+left the gold/silver standard.
+
+We'll show a version of the complete  graph that originally appeared on page 35 of {cite}`sargent2002big`.
+
+The graph shows logarithms of price levels for four ``hard currency'' countries from 1600 to 2000.
+
+(We did't need to take  logarithms in our earlier graphs that  had stopped in 1914 -- we use logarithms now because we want also  to fit observations after 1914 in the same graph as the earlier observations.)
 
 ```{code-cell} ipython3
 # create plot
@@ -70,6 +149,16 @@ plt.tight_layout()
 plt.show()
 ```
 
+The graph shows that achieving price level system with a well-managed fiat money system proved to be more difficult than Irving Fisher and Keynes perhaps imagined.
+
+Actually, earlier economists and statesmen knew about the possibility of fiat money systems long before
+Keynes and Fisher advocated them in the early 20th century.
+
+It was because earlier  proponents of a commodity money system did not trust governments properly to manage a fiat money system that they were willing to pay the resource costs associated with setting up and maintaining a commodity money system.
+
+In light of the high inflation episodes that many countries experienced in the twentieth century after they abandoned commodity monies,  it is difficult to criticize them for that. 
+
+The inflationary experience of the twentieth century, the century of paper money, is actually historically unprecedented.
 
 ## Ends of Four Big Inflations
 
