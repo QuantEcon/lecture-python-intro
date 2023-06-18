@@ -279,7 +279,7 @@ eliminates the cycles.
 ```{solution-end} 
 ```
 
-## Analytical Expressions
+## Analytical expressions
 
 It can be verified that the  inverse of the matrix $A$ in {eq}`eq:pvpieq` is
 

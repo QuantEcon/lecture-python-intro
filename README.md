@@ -2,7 +2,7 @@
 
 An undergraduate lecture series for the foundations of computational economics
 
-## Content Ideas 
+## Content ideas 
 
 Content ideas in no particular order.
 

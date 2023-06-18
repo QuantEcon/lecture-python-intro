@@ -13,7 +13,7 @@ kernelspec:
 
 +++ {"user_expressions": []}
 
-# Consumption smoothing
+# Consumption Smoothing
 
 ## Overview
 

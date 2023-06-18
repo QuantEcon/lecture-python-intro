@@ -92,7 +92,7 @@ plt.show()
 
 
 
-## The Model
+## The model
 
 Let's return to our discussion of a hypothetical soy bean market, where price is determined by supply and demand.
 
@@ -196,7 +196,7 @@ Combining the last two equations gives the dynamics for prices:
 The price dynamics depend on the parameter values and also on the function $f$ that determines how producers form expectations.
 
 
-## Naive Expectations
+## Naive expectations
 
 To go further in our analysis we need to specify the function $f$; that is, how expectations are formed.
 
@@ -392,7 +392,7 @@ For example,
 ts_plot_price(m, 10, ts_length=15)
 ```
 
-## Adaptive Expectations
+## Adaptive expectations
 
 Naive expectations are quite simple and also important in driving the cycle that we found.
 

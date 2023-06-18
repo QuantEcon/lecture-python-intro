@@ -111,7 +111,7 @@ $$
 $$
 
 
-## Tweaked Model: Workers and Entrepreneurs
+## Tweaked model: workers and entrepreneurs
 
 
 We can add a parameter and reinterpret variables to get a model of entrepreneurs versus workers.
