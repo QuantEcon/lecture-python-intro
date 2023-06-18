@@ -15,6 +15,44 @@ kernelspec:
 
 # Price Level Histories 
 
+This lecture offers some scraps of historical evidence about fluctuations in the level of aggregate price indexes.  
+
+The rate of growth of the price level is called **inflation** in the popular press and in discussions among central bankers and treasury officials.
+
+The price level is measured in units of domestic currency per units of a representative bundle of consumption goods.  
+
+Thus, in the US, it is measured in dollars in month $t$ or year $t$  per unit of the consumption bundle.
+
+Until the early 20th century, throughout much of the west, although price levels fluctuated year to  year,
+they didn't have much of a trend.  
+
+Thus, they tended to end a century at close to a level at which they started it.
+
+Things were different in the 20th century, as we shall see in this lecture.
+
+This lecture will set the stage for some sequel that present a particular theory that some economists use to
+think about determinants of the price level.
+
+
+
+## Four Centuries of Price Levels
+
+We begin by displaying  some  data  that originally appeared on page 35 of {cite}`sargent2002big`.
+
+The data  price levels for four "hard currency" countries from 1600 to 1914.
+
+The four countries are
+
+* France 
+* Spain (Castile)
+* United Kingdom
+* United States
+
+In the present context, the  phrase hard currency means that the countries were on a commodity-money standard:  money consisted of gold and silver coins that circulated at values largely determined by the weights of their gold and silver contents.
+
+The data we want to study data  originally appeared in a graph on page 35 of {cite}`sargent2002big`.
+
+
 As usual, we'll start by importing some Python modules.
 
 ```{code-cell} ipython3
@@ -30,23 +68,6 @@ import datetime
 :tags: [hide-output]
 !pip install xlrd 
 ```
-
-## Four Centuries of Price Levels
-
-We begin by displaying  some  data  that originally appeared on page 35 of {cite}`sargent2002big`.
-
-The data  price levels for four ``hard currency'' countries from 1600 to 1914.
-
-The four countries are
-
-* France 
-* Spain (Castile)
-* United Kingdom
-* United States
-
-In the present context, the  phrase hard currency means that the countries were on a commodity-money standard:  money consisted of gold and silver coins that circulated at values largely determined by the weights of their gold and silver contents.
-
-The data we want to study data  originally appeared in a graph on page 35 of {cite}`sargent2002big`.
 
 We'll start by bringing these data into Pandas from a spreadsheet.
 
@@ -85,7 +106,7 @@ plt.tight_layout()
 plt.show()
 ````
 
-We say ``most years'' because there were temporary lapses from the gold or silver standard.
+We say "most years" because there were temporary lapses from the gold or silver standard.
 
 By staring at the graph carefully, you might be able to guess when these temporary lapses occurred, because they were periods in which price levels rose markedly from average values during more typical years.
 
@@ -103,7 +124,7 @@ Two other features of the figure attracted the attention of leading economists s
   
   * while using valuable gold and silver as coins was a time-tested way to anchor  the price level by limiting the supply of money, it cost real resources.
      
-      * that is, society paid a high ``opportunity cost'' for using gold and silver as coins; gold and silver could instead by used as valuable jewelry and also as an industrial input
+      * that is, society paid a high "opportunity cost" for using gold and silver as coins; gold and silver could instead by used as valuable jewelry and also as an industrial input
 
 Keynes and Fisher argued that there was a socially efficient way to achieve a price level that  would
 be at least as well anchored, and would also exhibit less  year-to-year short-term fluctuations.  
@@ -115,20 +136,24 @@ In particular, they argued that a well-managed central bank could achieve price 
 
 Thue, the waste from using gold and silver as coins  prompted John Maynard Keynes to call a commodity standard a “barbarous relic.”
 
-A fiat money system disposes of all reserves behind a currency. 
+A paper fiat money system disposes of all reserves behind a currency. 
 
 In doing so, it also eliminates an automatic supply mechanism constraining the price level.
 
-A low-inflation fiat money system replaces that automatic mechanism with an enlightened government that commits itself to limit the quantity of a pure token, no-cost currency.
+A low-inflation paper fiat money system replaces that automatic mechanism with an enlightened government that commits itself to limit the quantity of a pure token, no-cost currency.
 
 Now let's see what happened to the price level in our four countries when after 1914 one after another of them 
 left the gold/silver standard.
 
 We'll show a version of the complete  graph that originally appeared on page 35 of {cite}`sargent2002big`.
 
-The graph shows logarithms of price levels for four ``hard currency'' countries from 1600 to 2000.
+The graph shows logarithms of price levels our  four "hard currency" countries from 1600 to 2000.
 
-(We did't need to take  logarithms in our earlier graphs that  had stopped in 1914 -- we use logarithms now because we want also  to fit observations after 1914 in the same graph as the earlier observations.)
+We didn't need to take  logarithms in our earlier graphs that  had stopped in 1914 -- we use logarithms now because we want also  to fit observations after 1914 in the same graph as the earlier observations.
+
+All four of the countries eventually permanently left the gold standard by modifying their monetary and fiscal policies in several ways, starting the outbreak of the Great War in 1914.
+
+
 
 ```{code-cell} ipython3
 # create plot
@@ -149,20 +174,21 @@ plt.tight_layout()
 plt.show()
 ```
 
-The graph shows that achieving price level system with a well-managed fiat money system proved to be more difficult than Irving Fisher and Keynes perhaps imagined.
+The graph shows that achieving price level system with a well-managed paper money system proved to be more challenging  than Irving Fisher and Keynes perhaps imagined.
 
 Actually, earlier economists and statesmen knew about the possibility of fiat money systems long before
 Keynes and Fisher advocated them in the early 20th century.
 
 It was because earlier  proponents of a commodity money system did not trust governments properly to manage a fiat money system that they were willing to pay the resource costs associated with setting up and maintaining a commodity money system.
 
-In light of the high inflation episodes that many countries experienced in the twentieth century after they abandoned commodity monies,  it is difficult to criticize them for that. 
+In light of the high inflation episodes that many countries experienced in the twentieth century after they abandoned commodity monies,  it is difficult to criticize them for their preference to stay on the pre-1914 gold/silver standard. 
 
-The inflationary experience of the twentieth century, the century of paper money, is actually historically unprecedented.
+The breadth and length of the inflationary experiences of the twentieth century, the century of paper money, are  historically unprecedented.
 
 ## Ends of Four Big Inflations
 
-
+Monetary and fiscal authorities' struggles to replicate  price level stability with a paper money standard
+were vividly on display in the wake of World War I, which ended in November 1918. 
 
 We present  four  graphs from "The Ends of Four Big Inflations" from chapter 3 of {cite}`sargent2013rational`.
 
@@ -173,8 +199,11 @@ The graphs depict logarithms of price levels during the early post World War I y
  * Figure 3.3, Wholesale prices, Poland, 1921-1924 (page 44)
  * Figure pd.dataframe(3.4, Wholesale prices, Germany, 1919-1924 (page 45)
 
-Data underlying these graphs appear in the tables in an appendix to chapter 3 of {cite}`sargent2013rational`.
-We have transcribed all of these data  into a spreadsheet *chapter_3.xls* that we shall ask pandas to read for us.
+We have added logarithms of the exchange rates vis a vis the US dollar to each of the four graphs
+from chapter 3 of {cite}`sargent2013rational`.
+
+Data underlying our graphs appear in the tables in an appendix to chapter 3 of {cite}`sargent2013rational`.
+We have transcribed all of these data  into a spreadsheet *chapter_3.xls* that we  read into Pandas.
 
 
 
@@ -277,10 +306,14 @@ for i in range(4):
 df_Aus, df_Hung, df_Pol, df_Germ = df_list
 ```
 
+Let's dive in and construct graphs for our four countries.
+
 ### Austria
 
+The sources of our data are:
 
-* Table 3.3, rdf_Aus.indexetail prices, $\exp p$
+
+* Table 3.3, $\exp p$
 * Table 3.4, exchange rate with US
 
 ```{code-cell} ipython3
@@ -304,6 +337,7 @@ plt.show()
 
 ### Hungary
 
+The source of our data for Hungary is:
 
 * Table 3.10, price level $\exp p$ and exchange rate
 
@@ -330,14 +364,15 @@ plt.show()
 
 ### Poland
 
+The sources of our data for Poland are:
 
 * Table 3.15, price level $\exp p$ 
 * Table 3.15, exchange rate
 
 
 ````{note}
-I spliced the three series - Wholesale price index, Wholesale Price Index: On paper currency basis, and Wholesale Price Index: On zloty basis. I made the adjustment by adjusting the sequence based on the price level ratio at the last period of the available previous series and glue them to a single series.
-I dropped the exchange rate after June 1924, when zloty was adopted, because we don't have the price measured in zloty and old currency in June to compute the exchange rate adjustment.
+To construct the price level series from the data in the spreadsheet, we instructed  Pandas to follow the same procedures implemented in chapter 3 of {cite}`sargent2013rational`. We spliced together  three series - Wholesale price index, Wholesale Price Index: On paper currency basis, and Wholesale Price Index: On zloty basis. We  adjusted the sequence based on the price level ratio at the last period of the available previous series and glued them  to construct a single series.
+We dropped the exchange rate after June 1924, when the  zloty was adopted. We did this  because we don't have the price measured in zloty. We used the  old currency in June to compute the exchange rate adjustment.
 ````
 
 ```{code-cell} ipython3
@@ -381,6 +416,7 @@ plt.show()
 
 ### Germany
 
+The sources of our data for Germany are the following tables from chapter 3 of {cite}`sargent2013rational`:
 
 * Table 3.18, wholesale price level $\exp p$ 
 * Table 3.19, exchange rate
@@ -403,7 +439,7 @@ plt.figtext(0.5, 0.0, 'Germany', horizontalalignment='center', fontsize=12)
 plt.show()
 ```
 
-Jiacheng: I add the new graph here.
+
 
 ```{code-cell} ipython3
 p_seq = df_Germ['Price index (on basis of marks before July 1924,  reichsmarks after)'].copy()
@@ -423,11 +459,24 @@ plt.figtext(0.5, 0.0, 'Germany', horizontalalignment='center', fontsize=12)
 plt.show()
 ```
 
-**Note to Jiacheng:** 
+## Starting and Stopping Big Inflations
 
-There might be some ambiguity about exactly which column in the "balance sheets" of the central bank that we want to interpret as "money".  Typically it will be something like "notes" or "total notes" on the liability sides of the balance sheets in the spreadsheet table.  We can resolve uncertainties in your mind quickly with a meeting.
+A striking thing about our four graphs is how **quickly** the (log) price levels in Austria, Hungary, Poland,
+and Germany leveled off after having been rising so quickly.
 
-**First Steps:** What I'd like you to do as  first is to use matplotlib in a Jupyter notebook to take logs of the price level and reproduce pretty versions of our four tables.
+Each of these big inflations seemed to have "stopped on a dime".
 
-**Seecond Steps:** There are some fun additonal things we can plot to set the stage for our  cagan_ree and cagan_adaptive notebooks.  For example, we have the data to plot logs of real balances around the times of the stabilizations. We can hunt for instances of "velocity dividends".
+Chapter 3 of {cite}`sargent2002big` attempts to offer an explanation for this remarkable pattern.
+
+In a nutshell, here is his story.
+
+After World War I, the United States was on the gold standard. The US government stood ready to convert a dollar into a specified amount of gold on demand. To understate things, immediately after the war, Hungary, Austria, Poland, and Germany were not on the gold standard. 
+
+In practice, their currencies were largely “fiat,” or unbacked. The governments of these countries resorted to the printing of new unbacked money to finance government deficits. (The notes were "backed" mainly by treasury bills that, in those times, could not be expected to be paid off by levying taxes, but only by printing more notes or treasury bills.) This was done on such a scale that it led to a depreciation of the currencies of spectacular proportions. In the end, the German mark stabilized at 1 trillion ($10^{12}$) paper marks to the prewar gold mark, the Polish mark at 1.8 million paper marks to the gold zloty, the Austrian crown at 14,400 paper crowns to the prewar Austro-Hungarian crown, and the Hungarian krone at 14,500 paper crowns to the prewar Austro-Hungarian crown.
+
+Chapter 3 of {cite}`sargent2002big`  focuses on the deliberate changes in policy that Hungary, Austria, Poland, and Germany made to end their hyperinflations.
+The hyperinflations were each ended by restoring or virtually restoring convertibility to the dollar or equivalently to gold. 
+
+
+
 
