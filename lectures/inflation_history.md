@@ -4,14 +4,12 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.14.5
+    jupytext_version: 1.14.4
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
   name: python3
 ---
-
-
 
 # Price Level Histories 
 
@@ -63,14 +61,13 @@ import matplotlib.dates as mdates
 import datetime
 ```
 
-
 ```{code-cell} ipython3
 :tags: [hide-output]
+
 !pip install xlrd 
 ```
 
 We'll start by bringing these data into Pandas from a spreadsheet.
-
 
 ```{code-cell} ipython3
 # import data
@@ -83,9 +80,6 @@ df_fig5.head(5)
 We first plot price levels over the period 1600-1914.
 
 During most years in this time interval, the countries were on a gold or silver standard.
-
-
-
 
 ```{code-cell} ipython3
 df_fig5_bef1914 = df_fig5[df_fig5.index <= 1915]
@@ -104,7 +98,7 @@ ax.set_ylabel('Index  1913 = 100')
 ax.set_xlim(xmin=1600)
 plt.tight_layout()
 plt.show()
-````
+```
 
 We say "most years" because there were temporary lapses from the gold or silver standard.
 
@@ -120,11 +114,11 @@ Despite these temporary lapses, a striking thing about the figure is that price 
 
 Two other features of the figure attracted the attention of leading economists such as Irving Fisher of Yale University and John Maynard Keynes of Cambridge University in the early century.
 
-  * there was considerable year-to-year instability of the price levels despite their long begin anchored to the same average level in the long term
+  * There was considerable year-to-year instability of the price levels despite their long begin anchored to the same average level in the long term
   
-  * while using valuable gold and silver as coins was a time-tested way to anchor  the price level by limiting the supply of money, it cost real resources.
+  * While using valuable gold and silver as coins was a time-tested way to anchor  the price level by limiting the supply of money, it cost real resources.
      
-      * that is, society paid a high "opportunity cost" for using gold and silver as coins; gold and silver could instead by used as valuable jewelry and also as an industrial input
+      * that is, society paid a high "opportunity cost" for using gold and silver as coins; gold and silver could instead be used as valuable jewelry and also as an industrial input
 
 Keynes and Fisher argued that there was a socially efficient way to achieve a price level that  would
 be at least as well anchored, and would also exhibit less  year-to-year short-term fluctuations.  
@@ -132,9 +126,9 @@ be at least as well anchored, and would also exhibit less  year-to-year short-te
 In particular, they argued that a well-managed central bank could achieve price level stability by
 
   * issuing a **limited supply** of paper currency
-  * guranteeing that it would  not  print money to finance government expenditures
+  * guaranteeing that it would  not  print money to finance government expenditures
 
-Thue, the waste from using gold and silver as coins  prompted John Maynard Keynes to call a commodity standard a “barbarous relic.”
+Thus, the waste from using gold and silver as coins  prompted John Maynard Keynes to call a commodity standard a “barbarous relic.”
 
 A paper fiat money system disposes of all reserves behind a currency. 
 
@@ -152,8 +146,6 @@ The graph shows logarithms of price levels our  four "hard currency" countries f
 We didn't need to take  logarithms in our earlier graphs that  had stopped in 1914 -- we use logarithms now because we want also  to fit observations after 1914 in the same graph as the earlier observations.
 
 All four of the countries eventually permanently left the gold standard by modifying their monetary and fiscal policies in several ways, starting the outbreak of the Great War in 1914.
-
-
 
 ```{code-cell} ipython3
 # create plot
@@ -174,7 +166,7 @@ plt.tight_layout()
 plt.show()
 ```
 
-The graph shows that achieving price level system with a well-managed paper money system proved to be more challenging  than Irving Fisher and Keynes perhaps imagined.
+The graph shows that achieving a price level system with a well-managed paper money system proved to be more challenging  than Irving Fisher and Keynes perhaps imagined.
 
 Actually, earlier economists and statesmen knew about the possibility of fiat money systems long before
 Keynes and Fisher advocated them in the early 20th century.
@@ -194,23 +186,20 @@ We present  four  graphs from "The Ends of Four Big Inflations" from chapter 3 o
 
 The graphs depict logarithms of price levels during the early post World War I years for four countries:
 
- * Figure 3.1, Retail prices Austria 1921-1924 (page 42)
+ * Figure 3.1, Retail prices Austria, 1921-1924 (page 42)
  * Figure 3.2, Wholesale prices Hungary, 1921-1924 (page 43)
  * Figure 3.3, Wholesale prices, Poland, 1921-1924 (page 44)
- * Figure pd.dataframe(3.4, Wholesale prices, Germany, 1919-1924 (page 45)
+ * Figure 3.4, Wholesale prices, Germany, 1919-1924 (page 45)
 
 We have added logarithms of the exchange rates vis a vis the US dollar to each of the four graphs
 from chapter 3 of {cite}`sargent2013rational`.
 
 Data underlying our graphs appear in the tables in an appendix to chapter 3 of {cite}`sargent2013rational`.
-We have transcribed all of these data  into a spreadsheet *chapter_3.xls* that we  read into Pandas.
-
-
-
-
-
+We have transcribed all of these data  into a spreadsheet `chapter_3.xls` that we  read into Pandas.
 
 ```{code-cell} ipython3
+:tags: [hide-input]
+
 def process_entry(entry):
     "Clean each entry of a dataframe."
     
@@ -331,7 +320,7 @@ fig, ax = plt.subplots(figsize=[10,7], dpi=200)
 _ = create_plot(p_seq, e_seq, df_Aus.index, lab, ax)
 
 # connect disjunct parts
-plt.figtext(0.5, 0.0, 'Austria', horizontalalignment='center', fontsize=12)
+plt.figtext(0.5, -0.02, 'Austria', horizontalalignment='center', fontsize=12)
 plt.show()
 ```
 
@@ -340,7 +329,6 @@ plt.show()
 The source of our data for Hungary is:
 
 * Table 3.10, price level $\exp p$ and exchange rate
-
 
 ```{code-cell} ipython3
 df_Hung.head(5)
@@ -358,7 +346,7 @@ lab = ['Hungarian Index of Prices', '1/Cents per Crown in New York']
 fig, ax = plt.subplots(figsize=[10,7], dpi=200)
 _ = create_plot(p_seq, e_seq, df_Hung.index, lab, ax)
 
-plt.figtext(0.5, 0.0, 'Hungary', horizontalalignment='center', fontsize=12)
+plt.figtext(0.5, -0.02, 'Hungary', horizontalalignment='center', fontsize=12)
 plt.show()
 ```
 
@@ -410,7 +398,7 @@ lab = ['Wholesale Price Index', '1/Cents per Polish Mark']
 fig, ax = plt.subplots(figsize=[10,7], dpi=200)
 ax1 = create_plot(p_seq, e_seq, df_Pol.index, lab, ax)
 
-plt.figtext(0.5, 0.0, 'Poland', horizontalalignment='center', fontsize=12)
+plt.figtext(0.5, -0.02, 'Poland', horizontalalignment='center', fontsize=12)
 plt.show()
 ```
 
@@ -435,11 +423,9 @@ lab = ['Price Index', '1/Cents per Mark']
 fig, ax = plt.subplots(figsize=[9,5], dpi=200)
 ax1 = create_plot(p_seq, e_seq, df_Germ.index, lab, ax)
 
-plt.figtext(0.5, 0.0, 'Germany', horizontalalignment='center', fontsize=12)
+plt.figtext(0.5, -0.06, 'Germany', horizontalalignment='center', fontsize=12)
 plt.show()
 ```
-
-
 
 ```{code-cell} ipython3
 p_seq = df_Germ['Price index (on basis of marks before July 1924,  reichsmarks after)'].copy()
@@ -455,7 +441,7 @@ lab = ['Price Index (Marks or converted to Marks)', '1/Cents per Mark (or Reichs
 fig, ax = plt.subplots(figsize=[10,7], dpi=200)
 ax1 = create_plot(p_seq, e_seq, df_Germ.index, lab, ax)
 
-plt.figtext(0.5, 0.0, 'Germany', horizontalalignment='center', fontsize=12)
+plt.figtext(0.5, -0.02, 'Germany', horizontalalignment='center', fontsize=12)
 plt.show()
 ```
 
@@ -475,8 +461,4 @@ After World War I, the United States was on the gold standard. The US government
 In practice, their currencies were largely “fiat,” or unbacked. The governments of these countries resorted to the printing of new unbacked money to finance government deficits. (The notes were "backed" mainly by treasury bills that, in those times, could not be expected to be paid off by levying taxes, but only by printing more notes or treasury bills.) This was done on such a scale that it led to a depreciation of the currencies of spectacular proportions. In the end, the German mark stabilized at 1 trillion ($10^{12}$) paper marks to the prewar gold mark, the Polish mark at 1.8 million paper marks to the gold zloty, the Austrian crown at 14,400 paper crowns to the prewar Austro-Hungarian crown, and the Hungarian krone at 14,500 paper crowns to the prewar Austro-Hungarian crown.
 
 Chapter 3 of {cite}`sargent2002big`  focuses on the deliberate changes in policy that Hungary, Austria, Poland, and Germany made to end their hyperinflations.
-The hyperinflations were each ended by restoring or virtually restoring convertibility to the dollar or equivalently to gold. 
-
-
-
-
+The hyperinflations were each ended by restoring or virtually restoring convertibility to the dollar or equivalently to gold.
