@@ -31,7 +31,9 @@ import matplotlib.pyplot as plt
 We'll use linear algebra first to explain and then do  some experiments with  a "fiscal theory of the price level".
 
 A fiscal theory of the price level was described by Thomas Sargent and Neil Wallace in chapter 5 of 
-a 1981 article title "Unpleasant Monetarist Arithmetic".  The theory has been extended, criticized, and applied by John Cochrane in {cite}`cochrane2023fiscal`.
+{cite}`sargent2013rational`, which reprints a  1981 article title "Unpleasant Monetarist Arithmetic".  
+
+The theory has been extended, criticized, and applied by John Cochrane in {cite}`cochrane2023fiscal`.
 
 In another lecture,  we'll describe some historical episodes in which the elemental forces at work in the fiscal theory help to explain some early twentieth century hyperinflations that occurred in the wake of World War I.
 
