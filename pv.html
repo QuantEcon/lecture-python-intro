@@ -121,7 +121,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="9. Consumption smoothing" href="cons_smooth.html" />
+    <link rel="next" title="9. Consumption Smoothing" href="cons_smooth.html" />
     <link rel="prev" title="7. Introduction to Supply and Demand" href="intro_supply_demand.html" />
 
 <!-- Normal Meta Tags -->
@@ -172,7 +172,7 @@ const thebe_selector_output = ".output, .cell_output"
                             <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">8.1. Overview</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#present-value-calculations">8.2. Present value calculations</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analytical-expressions">8.3. Analytical Expressions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analytical-expressions">8.3. Analytical expressions</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#more-about-bubbles">8.4. More about bubbles</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gross-rate-of-return">8.5. Gross rate of return</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">8.6. Exercises</a></li>
@@ -234,7 +234,7 @@ of much asset pricing theory.</p>
 <li><p><span class="math notranslate nohighlight">\(\{d_t\}_{t=0}^T \)</span> be a sequence of dividends or “payouts”</p></li>
 <li><p><span class="math notranslate nohighlight">\(\{p_t\}_{t=0}^T \)</span> be a sequence of prices of a claim on the continuation of
 the asset stream from date <span class="math notranslate nohighlight">\(t\)</span> on, namely, <span class="math notranslate nohighlight">\(\{d_s\}_{s=t}^T \)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\( \delta  \in (0,1) \)</span> be a one-period “discount rate”</p></li>
+<li><p><span class="math notranslate nohighlight">\( \delta  \in (0,1) \)</span> be a one-period “discount factor”</p></li>
 <li><p><span class="math notranslate nohighlight">\(p_{T+1}^*\)</span> be a terminal price of the asset at time <span class="math notranslate nohighlight">\(T+1\)</span></p></li>
 </ul>
 <p>We  assume that the dividend stream <span class="math notranslate nohighlight">\(\{d_t\}_{t=0}^T \)</span> and the terminal price
@@ -246,7 +246,7 @@ the asset stream from date <span class="math notranslate nohighlight">\(t\)</spa
 \]</div>
 <p>This is a “cost equals benefits” formula.</p>
 <p>It says that the cost of buying the asset today equals the reward for holding it
-for one period (which is the dividend <span class="math notranslate nohighlight">\(d_t\)</span>)and then selling it, at <span class="math notranslate nohighlight">\(t+1\)</span>.</p>
+for one period (which is the dividend <span class="math notranslate nohighlight">\(d_t\)</span>) and then selling it, at <span class="math notranslate nohighlight">\(t+1\)</span>.</p>
 <p>The future value <span class="math notranslate nohighlight">\(p_{t+1}\)</span> is discounted using <span class="math notranslate nohighlight">\(\delta\)</span> to shift it to a present value, so it is comparable with <span class="math notranslate nohighlight">\(d_t\)</span> and <span class="math notranslate nohighlight">\(p_t\)</span>.</p>
 <p>We want to solve for the asset price sequence  <span class="math notranslate nohighlight">\(\{p_t\}_{t=0}^T \)</span> as a function
 of <span class="math notranslate nohighlight">\(\{d_t\}_{t=0}^T \)</span> and <span class="math notranslate nohighlight">\(p_{T+1}^*\)</span>.</p>
@@ -338,6 +338,10 @@ recover the equations in <a class="reference internal" href="#equation-eq-euler-
     p = A^{-1}(d + b)
 \]</div>
 <p>Here is a small example, where the dividend stream is given by</p>
+<div class="math notranslate nohighlight">
+\[
+    d_{t+1} = 1.05 d_t, \quad t = 0, 1, \ldots , T-1.
+\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">T</span> <span class="o">=</span> <span class="mi">6</span>
@@ -420,6 +424,10 @@ recover the equations in <a class="reference internal" href="#equation-eq-euler-
 </div>
 </div>
 <p>We can also consider a cyclically growing dividend sequence, such as</p>
+<div class="math notranslate nohighlight">
+\[
+    d_{t+1} = 1.01 d_t + 0.1 \sin t, \quad t = 0, 1, \ldots , T-1.
+\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">T</span> <span class="o">=</span> <span class="mi">100</span>
@@ -487,7 +495,7 @@ eliminates the cycles.</p>
 </div>
 </section>
 <section id="analytical-expressions">
-<h2><span class="section-number">8.3. </span>Analytical Expressions<a class="headerlink" href="#analytical-expressions" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">8.3. </span>Analytical expressions<a class="headerlink" href="#analytical-expressions" title="Permalink to this heading">#</a></h2>
 <p>It can be verified that the  inverse of the matrix <span class="math notranslate nohighlight">\(A\)</span> in <a class="reference internal" href="#equation-eq-pvpieq">(8.3)</a> is</p>
 <div class="math notranslate nohighlight" id="equation-eq-ainv">
 <span class="eqno">(8.6)<a class="headerlink" href="#equation-eq-ainv" title="Permalink to this equation">#</a></span>\[ A^{-1} = 
@@ -518,7 +526,7 @@ eliminates the cycles.</p>
 <li><p>a <strong>fundamental component</strong> <span class="math notranslate nohighlight">\(\sum_{s=t}^T \delta^{s-t} d_s\)</span> that equals the discounted present value of prospective dividends</p></li>
 <li><p>a <strong>bubble component</strong> <span class="math notranslate nohighlight">\(\delta^{T+1-t} p_{T+1}^*\)</span></p></li>
 </ul>
-<p>The fundamental component is pinned down by the discount rate <span class="math notranslate nohighlight">\(\delta\)</span> and the
+<p>The fundamental component is pinned down by the discount factor <span class="math notranslate nohighlight">\(\delta\)</span> and the
 “fundaments” of the asset (in this case, the dividends).</p>
 <p>The bubble component is the part of the price that is not pinned down by
 fundaments.</p>
@@ -561,7 +569,7 @@ form of the single matrix equation</p>
 0 \cr 0 \cr 0 \cr \vdots \cr 0 \cr \delta p_{T+1}^*
 \end{bmatrix}
 \]</div>
-<p>Evidently, if <span class="math notranslate nohighlight">\(p_{T+1}^* = 0\)</span>, a price vector <span class="math notranslate nohighlight">\(\vec p\)</span> of with all entries zero
+<p>Evidently, if <span class="math notranslate nohighlight">\(p_{T+1}^* = 0\)</span>, a price vector <span class="math notranslate nohighlight">\(p\)</span> of all entries zero
 solves this equation and the only the <strong>fundamental</strong> component of our pricing
 formula <a class="reference internal" href="#equation-eq-ptpveq">(8.7)</a> is present.</p>
 <p>But let’s activate the <strong>bubble</strong>  component by setting</p>
@@ -586,7 +594,7 @@ as</p>
 R_t = \frac{p_{t+1}}{p_t}
 \]</div>
 <p>Equation <a class="reference internal" href="#equation-eq-bubble">(8.10)</a> confirms that an asset whose  sole source of value is a bubble
-earns a  gross rate of return of</p>
+that earns a  gross rate of return</p>
 <div class="math notranslate nohighlight">
 \[
 R_t = \delta^{-1} &gt; 1 .
@@ -668,7 +676,7 @@ following settings for <span class="math notranslate nohighlight">\(d\)</span> a
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="about.html">
-   1. About these Lectures
+   1. About These Lectures
   </a>
  </li>
 </ul>
@@ -729,7 +737,7 @@ following settings for <span class="math notranslate nohighlight">\(d\)</span> a
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cons_smooth.html">
-   9. Consumption smoothing
+   9. Consumption Smoothing
   </a>
  </li>
  <li class="toctree-l1">
@@ -738,18 +746,23 @@ following settings for <span class="math notranslate nohighlight">\(d\)</span> a
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="inflation_history.html">
+   11. Price Level Histories
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="cagan_ree.html">
-   11. A Fiscal Theory of the Price Level
+   12. A Fiscal Theory of the Price Level
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cagan_adaptive.html">
-   12. A Fiscal Theory of Price Level with Adaptive Expectations
+   13. A Fiscal Theory of Price Level with Adaptive Expectations
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="geom_series.html">
-   13. Geometric Series for Elementary Economics
+   14. Geometric Series for Elementary Economics
   </a>
  </li>
 </ul>
@@ -761,27 +774,27 @@ following settings for <span class="math notranslate nohighlight">\(d\)</span> a
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="prob_dist.html">
-   14. Distributions and Probabilities
+   15. Distributions and Probabilities
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="lln_clt.html">
-   15. LLN and CLT
+   16. LLN and CLT
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="monte_carlo.html">
-   16. Monte Carlo and Option Pricing
+   17. Monte Carlo and Option Pricing
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="heavy_tails.html">
-   17. Heavy-Tailed Distributions
+   18. Heavy-Tailed Distributions
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="schelling.html">
-   18. Racial Segregation
+   19. Racial Segregation
   </a>
  </li>
 </ul>
@@ -793,27 +806,27 @@ following settings for <span class="math notranslate nohighlight">\(d\)</span> a
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="solow.html">
-   19. The Solow-Swan Growth Model
+   20. The Solow-Swan Growth Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="scalar_dynam.html">
-   20. Dynamics in One Dimension
+   21. Dynamics in One Dimension
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cobweb.html">
-   21. The Cobweb Model
+   22. The Cobweb Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="olg.html">
-   22. The Overlapping Generations Model
+   23. The Overlapping Generations Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="commod_price.html">
-   23. Commodity Prices
+   24. Commodity Prices
   </a>
  </li>
 </ul>
@@ -825,17 +838,17 @@ following settings for <span class="math notranslate nohighlight">\(d\)</span> a
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="markov_chains_I.html">
-   24. Markov Chains: Basic Concepts
+   25. Markov Chains: Basic Concepts
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="markov_chains_II.html">
-   25. Markov Chains: Irreducibility and Ergodicity
+   26. Markov Chains: Irreducibility and Ergodicity
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="time_series_with_matrices.html">
-   26. Univariate Time Series with Matrix Algebra
+   27. Univariate Time Series with Matrix Algebra
   </a>
  </li>
 </ul>
@@ -847,12 +860,12 @@ following settings for <span class="math notranslate nohighlight">\(d\)</span> a
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="lp_intro.html">
-   27. Linear Programming
+   28. Linear Programming
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="short_path.html">
-   28. Shortest Paths
+   29. Shortest Paths
   </a>
  </li>
 </ul>
@@ -864,22 +877,22 @@ following settings for <span class="math notranslate nohighlight">\(d\)</span> a
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="eigen_II.html">
-   29. Spectral Theory
+   30. Spectral Theory
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="input_output.html">
-   30. Input-Output Models
+   31. Input-Output Models
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="lake_model.html">
-   31. A Lake Model of Employment
+   32. A Lake Model of Employment
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="networks.html">
-   32. Networks
+   33. Networks
   </a>
  </li>
 </ul>
@@ -891,12 +904,12 @@ following settings for <span class="math notranslate nohighlight">\(d\)</span> a
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="supply_demand_multiple_goods.html">
-   33. Supply and Demand with Many Goods
+   34. Supply and Demand with Many Goods
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="supply_demand_heterogeneity.html">
-   34. Market Equilibrium with Heterogeneity
+   35. Market Equilibrium with Heterogeneity
   </a>
  </li>
 </ul>
@@ -908,12 +921,12 @@ following settings for <span class="math notranslate nohighlight">\(d\)</span> a
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="simple_linear_regression.html">
-   35. Simple Linear Regression Model
+   36. Simple Linear Regression Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="mle.html">
-   36. Maximum Likelihood Estimation
+   37. Maximum Likelihood Estimation
   </a>
  </li>
 </ul>
@@ -925,17 +938,17 @@ following settings for <span class="math notranslate nohighlight">\(d\)</span> a
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="troubleshooting.html">
-   37. Troubleshooting
+   38. Troubleshooting
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="zreferences.html">
-   38. References
+   39. References
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="status.html">
-   39. Execution Statistics
+   40. Execution Statistics
   </a>
  </li>
 </ul>

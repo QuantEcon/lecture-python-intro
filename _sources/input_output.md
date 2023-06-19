@@ -489,7 +489,7 @@ plt.show()
 
 +++ {"user_expressions": []}
 
-## Leontief Inverse
+## Leontief inverse
 
 We have discussed that gross ouput $x$ is given by {eq}`eq:inout_2`, where $L$ is called the Leontief Inverse.
 
@@ -515,7 +515,7 @@ $$
 
 This illustrates that an element $l_{ij}$ of $L$ shows the total impact on sector $i$ of a unit change in demand of good $j$.
 
-## Applications of Graph Theory
+## Applications of graph theory
 
 We can further study input output networks through applications of {doc}`graph theory <networks>`.
 

@@ -19,7 +19,7 @@ This notebook presents a model of the college-high-school wage gap in which the
 The model is "incomplete" in the sense that it is just one "condition" in the form of one 
 equation that would be part of set equations comprising all of the "equilibrium conditions" of   a more fully articulated model.
 
-The condition featured in our model determies  a college, high-school wage ratio that equalizes the
+The condition featured in our model determines  a college, high-school wage ratio that equalizes the
 present values of a high school worker and a college educated worker.
 
 It is just one instance of an  "equalizing difference" theory of relative wage rates, a class dating back at least to Adam Smith's **Wealth of Nations**.
@@ -33,7 +33,7 @@ Let
 
  * $R > 0$ be the gross rate of return on a one-period bond
  
- * $0$ denote the first  period after high school that a person can go to work
+ * $0$ denotes the first period after high school that a person can go to work
  
  * $T$ denote the last period a person can work
  
@@ -49,7 +49,8 @@ Let
 
 
 
-If someone goes to work immediately after high school  and  work for $T+1$ years, she earns present value
+If someone goes to work immediately after high school  and  works for $T+1$ years, she earns present value
+
 $$
 h_0 = \sum_{t=0}^T R^{-t} w_t^h = w_0^h \left[ \frac{1 - (R^{-1} \gamma_h)^{T+1} }{1 - R^{-1} \gamma_h } \right] \equiv w_0^h A_h 
 $$
@@ -110,10 +111,10 @@ $$
 $$
 
 
-## Tweaked Model: Workers and Entrepreneurs
+## Tweaked model: workers and entrepreneurs
 
 
-We can add a parameter and reinterpret variables to get a model of entrepreuneurs versus workers.
+We can add a parameter and reinterpret variables to get a model of entrepreneurs versus workers.
 
 We now let $h$ be  the present value of a "worker".
 
@@ -128,7 +129,7 @@ where $\pi \in (0,1) $ is  the probability that an entrepreneur's "project" succ
 We set $D =0$.
 
 What we used to call the college, high school wage gap $\phi$ now becomes the ratio
-of a successful entreneur's earnings to a worker's earnings.  
+of a successful entrepreneur's earnings to a worker's earnings.  
 
 We'll find that as $\pi$ decreases, $\phi$ increases.  
 

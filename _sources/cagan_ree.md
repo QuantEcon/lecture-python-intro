@@ -30,6 +30,13 @@ import matplotlib.pyplot as plt
 <!-- #region -->
 We'll use linear algebra first to explain and then do  some experiments with  a "fiscal theory of the price level".
 
+A fiscal theory of the price level was described by Thomas Sargent and Neil Wallace in chapter 5 of 
+{cite}`sargent2013rational`, which reprints a  1981 article title "Unpleasant Monetarist Arithmetic".  
+
+The theory has been extended, criticized, and applied by John Cochrane in {cite}`cochrane2023fiscal`.
+
+In another lecture,  we'll describe some historical episodes in which the elemental forces at work in the fiscal theory help to explain some early twentieth century hyperinflations that occurred in the wake of World War I.
+
 
 According to this model, when the government persistently spends more than it collects in taxes and prints money to finance the shortfall (the "shortfall" is called the "government deficit"), it puts upward pressure on the price level and generates
 persistent inflation.
@@ -50,10 +57,10 @@ In those experiments, we'll encounter an instance of a ''velocity dividend'' tha
 
 To facilitate using  linear matrix algebra as our main mathematical tool, we'll use a finite horizon version of the model.
 
-As in the {doc}`present values <pv>` and {doc}`consumption smoothing<cons_smooth>` lectures, the only linear algebra that we'll be  using are matrix multplication and matrix inversion.
+As in the {doc}`present values <pv>` and {doc}`consumption smoothing<cons_smooth>` lectures, the only linear algebra that we'll be  using are matrix multiplication and matrix inversion.
 
 
-## Structure of the Model
+## Structure of the model
 
 
 The model consists of
@@ -148,7 +155,7 @@ $$ (eq:pieq)
 By multiplying both sides of equation {eq}`eq:pieq` by the inverse of the matrix on the left side, we can calculate
 
 $$
-\vec \pi \equiv \begin{bmatrix} \pi_0 \cr \pi_1 \cr \pi_2 \cr \vdots \cr \pi_{T-1} \cr \pi_T 
+\pi \equiv \begin{bmatrix} \pi_0 \cr \pi_1 \cr \pi_2 \cr \vdots \cr \pi_{T-1} \cr \pi_T 
 \end{bmatrix} 
 $$
 
@@ -192,8 +199,8 @@ $$
 m_t = m_0 + \sum_{s=0}^{t-1} \mu_s, \quad t =1, \ldots, T+1
 $$ (eq:mcum)
 
-Equation {eq}`eq:mcum` shows that the log of the money supply at $t$ equals the log $m_0$ of the initial money supply 
-plus accumulation of rates of money growth between times $0$ and $t$.
+Equation {eq}`eq:mcum` shows that the log of the money supply at $t$ equals the log of the initial money supply $m_0$
+plus accumulation of rates of money growth between times $0$ and $T$.
 
 ## Continuation values
 
@@ -250,7 +257,7 @@ m0 = 1
 
 +++ {"user_expressions": []}
 
-Now we can solve the model to compute $\pi_t$, $m_t$ and $p_t$ for $t =1, \ldots, T+1$
+Now we can solve the model to compute $\pi_t$, $m_t$ and $p_t$ for $t =1, \ldots, T+1$ using the matrix equation above
 
 ```{code-cell} ipython3
 def solve(model):
@@ -368,16 +375,96 @@ This is because the reduction in $\mu$ at $T_1$ has been foreseen from the start
 While the log money supply portrayed in the bottom panel has a kink at $T_1$, the log  price level does not -- it is "smooth" -- once again a consequence of the fact that the
 reduction in $\mu$ has been foreseen.
 
+To set the stage for our next experiment, we want to study the determinants of the price level a little more.
+
+
+### The log price level
+
+We can use equations {eq}`eq:caganmd` and {eq}`eq:ree`
+to discover that the log of the price level satisfies
+
+$$
+p_t = m_t + \alpha \pi_t
+$$ (eq:pformula2)
+
+or, by using equation  {eq}`eq:fisctheory1`,
+
+$$ 
+p_t = m_t + \alpha \left[ (1-\delta) \sum_{s=t}^T \delta^{s-t} \mu_s +  \delta^{T+1-t} \pi_{T+1}^*  \right] 
+$$ (eq:pfiscaltheory2)
+
+In our next experiment, we'll study a "surprise" permanent change in the money growth that beforehand 
+was completely unanticipated.  
+
+At time $T_1$ when the "surprise" money growth rate  change occurs,  to satisfy
+equation {eq}`eq:pformula2`, the log of real balances jumps 
+**upward* as  $\pi_t$ jumps **downward**.
+
+But in order for $m_t - p_t$ to jump, which variable jumps, $m_{T_1}$ or $p_{T_1}$?
+
+
+###  What jumps?
+
+What jumps at $T_1$?
+
+Is it $p_{T_1}$ or  $m_{T_1}$?
+
+
+If we insist that the money supply $m_{T_1}$ is locked at its value $m_{T_1}^1$ inherited from the past, then formula {eq}`eq:pformula2` implies  that the price level jumps downward  at time $T_1$, to coincide with the downward jump in 
+$\pi_{T_1}$ 
+
+An alternative assumption about the money supply level is that as part of the "inflation stabilization",
+the government resets $m_{T_1}$ according to
+
+$$
+ m_{T_1}^2 - m_{T_1}^1 = \alpha (\pi^1 - \pi^2)
+$$ (eq:eqnmoneyjump)
+
+By letting money jump according to equation {eq}`eq:eqnmoneyjump` the monetary authority  prevents  the price level from **falling** at the moment that the unanticipated stabilization arrives.
+
+In various research papers about stabilizations of high inflations, the jump in the money supply described by equation {eq}`eq:eqnmoneyjump` has been called
+"the velocity dividend" that a government reaps from implementing a regime change that sustains a permanently lower inflation rate.
+
+#### Technical details about whether $p$ or $m$ jumps at $T_1$
+
+We have noted that  with a constant expected forward sequence $\mu_s = \bar \mu$ for $s\geq t$, $\pi_{t} =\bar{\mu}$.
+
+A consequence is that at $T_1$, either $m$ or $p$ must "jump" at $T_1$.
+
+We'll study both cases. 
+
+#### $m_{T_{1}}$ does not jump.
+
+$$
+\begin{align*}
+m_{T_{1}}&=m_{T_{1}-1}+\mu_{0}\\\pi_{T_{1}}&=\mu^{*}\\p_{T_{1}}&=m_{T_{1}}+\alpha\pi_{T_{1}}
+\end{align*}
+$$
+Simply glue the sequences $t\leq T_1$ and $t > T_1$.
+
+####  $m_{T_{1}}$ jumps.
+
+We reset $m_{T_{1}}$  so that $p_{T_{1}}=\left(m_{T_{1}-1}+\mu_{0}\right)+\alpha\mu_{0}$, with $\pi_{T_{1}}=\mu^{*}$.
+
+Then, 
+
+$$ 
+m_{T_{1}}=p_{T_{1}}-\alpha\pi_{T_{1}}=\left(m_{T_{1}-1}+\mu_{0}\right)+\alpha\left(\mu_{0}-\mu^{*}\right) 
+$$
+
+We then compute for the remaining $T-T_{1}$ periods with $\mu_{s}=\mu^{*},\forall s\geq T_{1}$ and the initial condition $m_{T_{1}}$ from above.
+
+We are now technically equipped to discuss our next experiment.
 
 #### Experiment 2: an unforeseen sudden stabilization
 
-This experiment deviates a little bit from a pure version our "perfect foresight"
+This experiment deviates a little bit from a pure version of our "perfect foresight"
 assumption by assuming that a sudden permanent reduction in $\mu_t$ like that
 analyzed in experiment 1 is completely unanticipated.  
 
 Such a  completely unanticipated shock is popularly known as an "MIT shock".
 
-The mental experiment involves switching at at time $T_1$ from an initial "continuation path" for $\{\mu_t, \pi_t\} $ to another path that involves a permanently lower inflation frate.   
+The mental experiment involves switching at time $T_1$ from an initial "continuation path" for $\{\mu_t, \pi_t\} $ to another path that involves a permanently lower inflation rate.   
 
 **Initial Path:** $\mu_t = \mu_0$ for all $t \geq 0$. So this path is for $\{\mu_t\}_{t=0}^\infty$; the associated 
 path for $\pi_t$ has $\pi_t = \mu_0$. 
@@ -390,7 +477,7 @@ To capture a "completely unanticipated permanent  shock to the $\{\mu\}$ process
 that emerges under path 2 for $t \geq T_1$ to the $\mu_t, \pi_t$ path that had emerged under path 1 for $ t=0, \ldots,
 T_1 -1$.
 
-We can do the MIT shock calculations entirely by hand. 
+We can do the MIT shock calculations mostly by hand. 
 
 Thus, for path 1, $\pi_t = \mu_0 $ for all $t \in  [0, T_1-1]$, while for path 2,
 $\mu_s = \mu^*$ for all $s \geq T_1$.  
@@ -399,7 +486,7 @@ We now move on to experiment 2, our "MIT shock", completely unforeseen
 sudden stabilization.
 
 We set this up so that the $\{\mu_t\}$ sequences that describe the sudden stabilization
-are identical to those for experiment 1, the foreseen suddent stabilization.
+are identical to those for experiment 1, the foreseen sudden stabilization.
 
 The following code does the calculations and plots outcomes.
 <!-- #endregion -->
@@ -523,17 +610,17 @@ ax[2].plot(T_seq, m_seq_1 - p_seq_1,
 ax[2].set_ylabel(r'$m - p$')
 
 ax[3].plot(T_seq, m_seq_2_regime1, 
-             label=r'Unforseen (Insist on $m_{T_1}$)')
+             label=r'Unforeseen (Smooth $m_{T_1}$)')
 ax[3].plot(T_seq, m_seq_2_regime2, 
-             label=r'Unforseen (Reset $m_{T_1}$)')
+             label=r'Unforeseen ($m_{T_1}$ jumps)')
 ax[3].plot(T_seq, m_seq_1, 
              label='Foreseen shock')
 ax[3].set_ylabel(r'$m$')
 
 ax[4].plot(T_seq, p_seq_2_regime1, 
-             label=r'Unforseen (Insist on $m_{T_1}$)')
+             label=r'Unforeseen (Smooth $m_{T_1}$)')
 ax[4].plot(T_seq, p_seq_2_regime2, 
-             label=r'Unforseen (Reset $m_{T_1}$)')
+             label=r'Unforeseen ($m_{T_1}$ jumps)')
 ax[4].plot(T_seq, p_seq_1, 
              label='Foreseen')
 ax[4].set_ylabel(r'$p$')
@@ -550,79 +637,6 @@ plt.show()
 
 +++ {"user_expressions": []}
 
-### The log price level
-
-We can use equations {eq}`eq:caganmd` and {eq}`eq:ree`
-to discover that the log of the price level satisfies
-
-$$
-p_t = m_t + \alpha \pi_t
-$$ (eq:pformula2)
-
-or, by using equation  {eq}`eq:fisctheory1`,
-
-$$ 
-p_t = m_t + \alpha \left[ (1-\delta) \sum_{s=t}^T \delta^{s-t} \mu_s +  \delta^{T+1-t} \pi_{T+1}^*  \right] 
-$$ (eq:pfiscaltheory2)
-
-At time $T_1$ when the "surprise" regime change occurs,  to satisfy
-equation {eq}`eq:pformula2`, the log of real balances jumps 
-**upward* as  $\pi_t$ jumps **downward**.
-
-But in order for $m_t - p_t$ to jump, which variable jumps, $m_{T_1}$ or $p_{T_1}$?
-
-
-###  What jumps?
-
-What jumps at $T_1$?
-
-Is it $p_{T_1}$ or  $m_{T_1}$?
-
-
-If we insist that the money supply $m_{T_1}$ is locked at its value $m_{T_1}^1$ inherited from the past, then formula {eq}`eq:pformula2` implies  that the price level jumps downward  at time $T_1$, to coincide with the downward jump in 
-$\pi_{T_1}$ 
-
-An alternative assumption about the money supply level is that as part of the "inflation stabilization",
-the government resets $m_{T_1}$ according to
-
-$$
- m_{T_1}^2 - m_{T_1}^1 = \alpha (\pi^1 - \pi^2)
-$$ (eq:eqnmoneyjump)
-
-By letting money jump according to equation {eq}`eq:eqnmoneyjump` the monetary authority  prevents  the price level
-from **falling** at the moment that the unanticipated stabilization arrives.
-
-In various research papers about stabilizations of high inflations, the jump in the money supply described by equation {eq}`eq:eqnmoneyjump` has been called
-"the velocity dividend" that a government reaps from implementin a regime change that sustains a permanently lower inflation rate.
-
-#### Technical Details about whether $p$ or $m$ jumps at $T_1$
-
-We have noted that  with a constant expected forward sequence $\mu_s = \bar \mu$ for $s\geq t$, $\pi_{t} =\bar{\mu}$.
-
-A consequence is that at $T_1$, either $m$ or $p$ must "jump" at $T_1$.
-
-We'll study both cases. 
-
-#### $m_{T_{1}}$ does not jump.
-
-$$
-\begin{align*}
-m_{T_{1}}&=m_{T_{1}-1}+\mu_{0}\\\pi_{T_{1}}&=\mu^{*}\\p_{T_{1}}&=m_{T_{1}}+\alpha\pi_{T_{1}}
-\end{align*}
-$$
-Simply glue the sequences $t\leq T_1$ and $t > T_1$.
-
-####  $m_{T_{1}}$ jumps.
-
-We reset $m_{T_{1}}$  so that $p_{T_{1}}=\left(m_{T_{1}-1}+\mu_{0}\right)+\alpha\mu_{0}$, with $\pi_{T_{1}}=\mu^{*}$.
-
-Then, 
-
-$$ 
-m_{T_{1}}=p_{T_{1}}-\alpha\pi_{T_{1}}=\left(m_{T_{1}-1}+\mu_{0}\right)+\alpha\left(\mu_{0}-\mu^{*}\right) 
-$$
-
-We then compute for the remaining $T-T_{1}$ periods with $\mu_{s}=\mu^{*},\forall s\geq T_{1}$ and the initial condition $m_{T_{1}}$ from above.
 
 
 #### Experiment 3

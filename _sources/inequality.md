@@ -21,7 +21,7 @@ In this section we
 * provide motivation for the techniques deployed in the lecture and
 * import code libraries needed for our work.
 
-### Some History
+### Some history
 
 Many historians argue that inequality played a key role in the fall of the
 Roman republic.
@@ -82,7 +82,7 @@ import random as rd
 from interpolation import interp
 ```
 
-## The Lorenz Curve
+## The Lorenz curve
 
 One popular measure of inequality is the Lorenz curve.
 
@@ -126,7 +126,7 @@ income, consumption, etc.
 
 +++
 
-### Lorenz Curves of Simulated Data
+### Lorenz curves of simulated data
 
 Let's look at some examples and try to build understanding.
 
@@ -168,7 +168,7 @@ ax.set_xlim((0, 1))
 plt.show()
 ```
 
-### Lorenz Curves for US Data
+### Lorenz curves for US data
 
 Next let's look at the real data, focusing on income and wealth in the US in
 2016.
@@ -265,7 +265,7 @@ more extreme than income inequality.
 
 +++
 
-## The Gini Coefficient
+## The Gini coefficient
 
 The Lorenz curve is a useful visual representation of inequality in a
 distribution.
@@ -332,7 +332,7 @@ ax.text(0.04, 0.5, r'$G = 2 \times$ shaded area', fontsize=12)
 plt.show()
 ```
 
-### Gini Coefficient Dynamics of Simulated Data
+### Gini coefficient dynamics of simulated data
 
 Let's examine the Gini coefficient in some simulations.
 
@@ -399,13 +399,13 @@ coefficient.
 
 +++
 
-### Gini Coefficient Dynamics for US Data
+### Gini coefficient dynamics for US data
 
 Now let's look at Gini coefficients for US data derived from the SCF.
 
 The following code creates a list called ``Ginis``.
 
-It stores data of Gini coefficients  generated from the dataframe ``df_income_wealth`` and method [gini_coefficient](https://quanteconpy.readthedocs.io/en/latest/tools/inequality.html#quantecon.inequality.gini_coefficient), from [QuantEcon](https://quantecon.org/quantecon-py/) library.
+ It stores data of Gini coefficients generated from the dataframe ``df_income_wealth`` and method [gini_coefficient](https://quanteconpy.readthedocs.io/en/latest/tools/inequality.html#quantecon.inequality.gini_coefficient), from [QuantEcon](https://quantecon.org/quantecon-py/) library.
 
 ```{code-cell} ipython3
 :tags: [hide_input]
@@ -503,7 +503,7 @@ substantially since 1980.
 The wealth time series exhibits a strong U-shape.
 
 
-## Top Shares
+## Top shares
 
 Another popular measure of inequality is the top shares.
 

@@ -346,7 +346,7 @@ print('Competitive equilibrium price vector:', p)
 print('Competitive equilibrium allocation:', c_s)
 ```
 
-### Risk economy with Arrow securities
+### Risk economy with arrow securities
 
 We use the tricks described above to interpret  $c_1, c_2$ as "Arrow securities" that are state-contingent claims to consumption goods.
 
@@ -369,7 +369,7 @@ print('Competitive equilibrium price vector:', p)
 print('Competitive equilibrium allocation:', c_s)
 ```
 
-## Deducing a Representative Consumer
+## Deducing a representative consumer
 
 In the class of multiple consumer economies that we are studying here, it turns out that there
 exists a single **representative consumer** whose preferences and endowments can be deduced from lists of preferences and endowments for separate individual consumers.

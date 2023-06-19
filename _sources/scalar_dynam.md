@@ -42,11 +42,11 @@ import matplotlib.pyplot as plt
 import numpy as np
 ```
 
-## Some Definitions
+## Some definitions
 
 This section sets out the objects of interest and the kinds of properties we study.
 
-### Composition of Functions
+### Composition of functions
 
 For this lecture you should know the following.
 
@@ -83,7 +83,7 @@ In the example above, $f^n(x) = x^{1/(2^n)}$.
 
 
 
-### Dynamic Systems
+### Dynamic systems
 
 A **(discrete time) dynamic system** is a set $S$ and a function $g$ that sends
 set $S$ back into to itself.
@@ -103,7 +103,7 @@ form a dynamic system, since $g(1) = 2$.
 
 
 
-### Dynamic Systems
+### Dynamic systems
 
 We care about dynamic systems because we can use them to study dynamics!
 
@@ -233,7 +233,7 @@ Analyzing the dynamics of this model requires a different method (see below).
 Consider a fixed dynamic system consisting of set $S \subset \mathbb R$ and
 $g$ mapping $S$ to $S$.
 
-### Steady States
+### Steady states
 
 A **steady state** of this system is a
 point $x^*$ in $S$ such that $x^* = g(x^*)$.
@@ -252,7 +252,7 @@ definition to check that
 
 
 
-### Global Stability
+### Global stability
 
 A steady state $x^*$ of the dynamic system is called
 **globally stable** if, for all $x_0 \in S$,
@@ -270,7 +270,7 @@ For example, in the linear model $x_{t+1} = a x_t + b$ with $a
 This follows directly from {eq}`sdslinmod`.
 
 
-### Local Stability
+### Local stability
 
 A steady state $x^*$ of the dynamic system is called
 **locally stable** if there exists an $\epsilon > 0$ such that
@@ -291,7 +291,7 @@ We will see examples below where the converse is not true.
 
 
 
-## Graphical Analysis
+## Graphical analysis
 
 As we saw above, analyzing the dynamics for nonlinear models is nontrivial.
 
@@ -489,7 +489,7 @@ Here is the time series:
 ts_plot(g, xmin, xmax, k0, var='k')
 ```
 
-### Complex Dynamics
+### Complex dynamics
 
 The Solow model is nonlinear but still generates very regular dynamics.
 

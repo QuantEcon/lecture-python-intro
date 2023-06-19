@@ -146,7 +146,7 @@ We can then take transpose to obtain $A^\top w = \lambda w$ and obtain $w^\top A
 This is a more common expression and where the name left eigenvectors originates.
 
 (perron-frobe)=
-### The Perron-Frobenius Theorem
+### The Perron-Frobenius theorem
 
 For a square nonnegative matrix $A$, the behavior of $A^k$ as $k \to \infty$ is controlled by the eigenvalue with the largest
 absolute value, often called the **dominant eigenvalue**.
@@ -478,7 +478,7 @@ $$
 $$
 ```
 
-We can see the Neumann series lemma in action in the following example.
+We can see the Neumann Series Lemma in action in the following example.
 
 ```{code-cell} ipython3
 A = np.array([[0.4, 0.1],
@@ -492,7 +492,7 @@ print(r)
 
 The spectral radius $r(A)$ obtained is less than 1.
 
-Thus, we can apply the Neumann Series lemma to find $(I-A)^{-1}$.
+Thus, we can apply the Neumann Series Lemma to find $(I-A)^{-1}$.
 
 ```{code-cell} ipython3
 I = np.identity(2)      #2 x 2 identity matrix
@@ -518,7 +518,7 @@ np.allclose(A_sum, B_inverse)
 ```
 
 Although we truncate the infinite sum at $k = 50$, both methods give us the same
-result which illustrates the result of the Neumann Series lemma.
+result which illustrates the result of the Neumann Series Lemma.
 
 ## Exercises
 
@@ -583,7 +583,7 @@ The solution $x^{*}$ is given by the equation $x^{*} = (I-A)^{-1} d$
 
 1. Since $A$ is a nonnegative irreducible matrix, find the Perron-Frobenius eigenvalue of $A$.
 
-2. Use the Neumann Series lemma to find the solution $x^{*}$ if it exists.
+2. Use the Neumann Series Lemma to find the solution $x^{*}$ if it exists.
 
 ```{exercise-end}
 ```
@@ -603,7 +603,7 @@ r = max(abs(λ) for λ in evals)   #dominant eigenvalue/spectral radius
 print(r)
 ```
 
-Since we have $r(A) < 1$ we can thus find the solution using the Neumann Series lemma.
+Since we have $r(A) < 1$ we can thus find the solution using the Neumann Series Lemma.
 
 ```{code-cell} ipython3
 I = np.identity(3)

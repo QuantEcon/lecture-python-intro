@@ -40,7 +40,7 @@ import scipy.stats as st
 ```
 
 (lln_mr)=
-## The Law of Large Numbers
+## The law of large numbers
 
 ```{index} single: Law of Large Numbers
 ```
@@ -48,7 +48,7 @@ import scipy.stats as st
 We begin with the law of large numbers, which tells us when sample averages
 will converge to their population means.
 
-### The LLN in Action
+### The LLN in action
 
 Let's see an example of the LLN in action before we go further.
 
@@ -184,7 +184,7 @@ Here
 
 
 
-### Comments on the Theorem
+### Comments on the theorem
 
 What does the probability one statement in the theorem mean?
 
@@ -344,7 +344,7 @@ We have to pay attention to the assumptions in the statement of the LLN.
 
 If these assumptions do not hold, then the LLN might fail.
 
-### Infinite First Moment
+### Infinite first moment
 
 As indicated by the theorem, the LLN can break when $\mathbb E |X|$ is not finite.
 
@@ -363,7 +363,7 @@ The LLN fails to hold here because the assumption $\mathbb E|X| = \infty$ is vio
 +++
 
 
-### Failure of the IID Condition
+### Failure of the IID condition
 
 The LLN can also fail to hold when the IID assumption is violated.
 
@@ -403,7 +403,7 @@ We will show an example in the [exercise](lln_ex3).
 
 +++
 
-## Central Limit Theorem
+## Central limit theorem
 
 ```{index} single: Central Limit Theorem
 ```
@@ -412,7 +412,7 @@ Next, we turn to the central limit theorem (CLT), which tells us about the
 distribution of the deviation between sample averages and population means.
 
 
-### Statement of the Theorem
+### Statement of the theorem
 
 The central limit theorem is one of the most remarkable results in all of mathematics.
 
