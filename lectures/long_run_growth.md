@@ -153,7 +153,7 @@ _ = gdppc[cntry].plot(
 [International Dollars](https://en.wikipedia.org/wiki/International_dollar) are a hypothetical unit of currency that has the same purchasing power parity that the U.S. Dollar has in the United States at any given time. They are also known as Geary–Khamis dollars (GK Dollars).
 :::
 
-We can see that the data is non-continuous for longer periods in the early part of this millennium, so we could choose to interpolate to get a continuous line plot.
+We can see that the data is non-continuous for longer periods in the early 250 years of this millennium, so we could choose to interpolate to get a continuous line plot.
 
 Here we use dashed lines to indicate interpolated trends
 
@@ -367,7 +367,7 @@ In the following graph, please watch for
 - productivity changes brought by the industrial revolution.
 - how the US gradually approaches and then surpasses the UK, setting the stage for the ''American Century''.
 - the often unanticipated consequences of wars.
-- interruptions and scars left by {ref}`business cycle<mc1_ex_1>` recessions and depressions.
+- interruptions and scars left by [business cycle](business_cycle) recessions and depressions.
 
 ```{code-cell} ipython3
 ---
