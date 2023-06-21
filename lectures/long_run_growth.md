@@ -291,11 +291,11 @@ plt.show()
 ```
 
 
-The preceding graph of percapita GDP strikingly reveals how the spread of the industrial revolution has over time gradually lifted the living standards of substantial
+The preceding graph of per capita GDP strikingly reveals how the spread of the industrial revolution has over time gradually lifted the living standards of substantial
 groups of people  
 
 - most of the growth happened in the past 150 years after the industrial revolution.
-- percapita GDP rised in the UK and the US, and in China, on the other hand, diverged from 1820 to 1940.
+- per capita GDP in the US and UK rose and diverged from that of China from 1820 to 1940.
 - the gap has closed rapidly after 1950 and especially after the late 1970s.
 - these outcomes reflect complicated combinations of technological and economic-policy factors that students of economic growth try to understand and quantify.
 
@@ -309,7 +309,7 @@ Thus, the graph indicates
 - a long economic downturn and stagnation after the Closed-door Policy by the Qing government.
 - China's very different experience than the UK's after the onset of the industrial revolution in the UK.
 - how the Self-Strengthening Movement seemed mostly to help China to grow.
-- how stunning have been the growth achievements of Modern Chinese economic policies by the PRC that culminated with its late 1970s Reform and Opening-up.
+- how stunning have been the growth achievements of modern Chinese economic policies by the PRC that culminated with its late 1970s reform and liberalization.
 
 ```{code-cell} ipython3
 ---
