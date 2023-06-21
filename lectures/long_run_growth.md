@@ -33,7 +33,7 @@ In a nutshell, this lecture records growth trajectories of various countries ove
 
 While some countries have experienced long term rapid growth across that has lasted a hundred years, others have not. 
 
-Since populations differ across country and within a country vary over time, it will
+Since populations differ across countries and vary within a country over time, it will
 be interesting to describe both total GDP and GDP per capita as it evolves within a country.
 
 First let's import the packages needed to explore what the data says about long run growth
