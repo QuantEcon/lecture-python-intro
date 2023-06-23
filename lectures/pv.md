@@ -322,10 +322,10 @@ $p_t$:
   * a **bubble component** $\delta^{T+1-t} p_{T+1}^*$
   
 The fundamental component is pinned down by the discount factor $\delta$ and the
-"fundaments" of the asset (in this case, the dividends).
+"fundamentals" of the asset (in this case, the dividends).
 
 The bubble component is the part of the price that is not pinned down by
-fundaments.
+fundamentals.
 
 It is sometimes convenient to rewrite the bubble component as
 
