@@ -20,10 +20,14 @@ Adam Tooze's account of the geopolitical precedents and antecedents of World War
 
 We construct a version of Tooze's graph later in this lecture.
 
+(An impatient reader can jump ahead and look at figure {numref}`gdp1`.)
+
 Looking at his graph and how it set the geopolitical stage for "the American (20th) century" naturally 
 tempts one to want a counterpart to his graph for 2014 or later.
 
-As we'll see, reasoning just by analogy, this graph perhaps set the stage for an "XXX (21st) century", where you get to fill in a country for our XXX.
+(An impatient reader might now want to jump ahead and look at figure {numref}`gdp2`.)
+
+As we'll see, reasoning  by analogy, this graph perhaps set the stage for an "XXX (21st) century", where you are free to fill in your guess for country XXX.
 
 As we gather data to construct those two graphs, we'll also study growth experiences for a number of countries for time horizons extending as far back as possible.
 
@@ -464,6 +468,7 @@ ax = draw_interp_plots(gdp[cntry].loc[start_year:end_year],
 
 The following graph displays how quickly China has grown, especially since the late 1970s. 
 
+
 ```{code-cell} ipython3
 ---
 mystnb:
@@ -479,6 +484,7 @@ ax = draw_interp_plots(gdp[cntry].loc[start_year:end_year],
     'International $\'s','Year',
     color_mapping, code_to_name, 2, False, ax)
 ```
+It is tempting to compare this graph with  figure  {numref}`gdp1` that showed the US overtaking the UK near the start of the "American Century", a version of the graph featured in chapter 1 of  {cite}`Tooze_2014`.
 
 ## Regional analysis
 
