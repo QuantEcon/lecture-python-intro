@@ -13,22 +13,22 @@ kernelspec:
 
 # Price Level Histories 
 
-This lecture offers some scraps of historical evidence about fluctuations in the level of aggregate price indexes.  
+This lecture offers some scraps of historical evidence about fluctuations in  levels of aggregate price indexes.  
 
 The rate of growth of the price level is called **inflation** in the popular press and in discussions among central bankers and treasury officials.
 
 The price level is measured in units of domestic currency per units of a representative bundle of consumption goods.  
 
-Thus, in the US, it is measured in dollars in month $t$ or year $t$  per unit of the consumption bundle.
+Thus, in the US, the price level at  $t$  is measured in dollars in month $t$ or year $t$  per unit of the consumption bundle.
 
-Until the early 20th century, throughout much of the west, although price levels fluctuated year to  year,
+Until the early 20th century, throughout much of the west, although price levels fluctuated from year to  year,
 they didn't have much of a trend.  
 
 Thus, they tended to end a century at close to a level at which they started it.
 
 Things were different in the 20th century, as we shall see in this lecture.
 
-This lecture will set the stage for some sequel that present a particular theory that some economists use to
+This lecture will set the stage for some subsequent lecture about a particular theory that  economists use to
 think about determinants of the price level.
 
 
@@ -47,6 +47,8 @@ The four countries are
 * United States
 
 In the present context, the  phrase hard currency means that the countries were on a commodity-money standard:  money consisted of gold and silver coins that circulated at values largely determined by the weights of their gold and silver contents.
+
+(Under a gold or silver standard, some money also consisted of "warehouse certificates" that represented paper claims on gold or silver coins. Bank notes issued by the government or private banks can be viewed as examples of such "warehouse certificate".)
 
 The data we want to study data  originally appeared in a graph on page 35 of {cite}`sargent2002big`.
 
@@ -97,12 +99,13 @@ ax.legend()
 ax.set_ylabel('Index  1913 = 100')
 ax.set_xlim(xmin=1600)
 plt.tight_layout()
+fig.text(.5, .0001, "Price Levels", ha='center')
 plt.show()
 ```
 
 We say "most years" because there were temporary lapses from the gold or silver standard.
 
-By staring at the graph carefully, you might be able to guess when these temporary lapses occurred, because they were periods in which price levels rose markedly from average values during more typical years.
+By staring at the graph carefully, you might be able to guess when these temporary lapses occurred, because they were also times during which price levels rose markedly from what had been  average values during more typical years.
 
  * 1791-1797 in France (the French revolution)
  * 1776-1793 in the US (the US War for Independence from Great Britain)
@@ -120,8 +123,7 @@ Two other features of the figure attracted the attention of leading economists s
      
       * that is, society paid a high "opportunity cost" for using gold and silver as coins; gold and silver could instead be used as valuable jewelry and also as an industrial input
 
-Keynes and Fisher argued that there was a socially efficient way to achieve a price level that  would
-be at least as well anchored, and would also exhibit less  year-to-year short-term fluctuations.  
+Keynes and Fisher proposed what they suggested would be  a socially more  efficient way to achieve a price level that  would be at least as firmly  anchored, and would also exhibit less  year-to-year short-term fluctuations.  
 
 In particular, they argued that a well-managed central bank could achieve price level stability by
 
@@ -132,7 +134,7 @@ Thus, the waste from using gold and silver as coins  prompted John Maynard Keyne
 
 A paper fiat money system disposes of all reserves behind a currency. 
 
-In doing so, it also eliminates an automatic supply mechanism constraining the price level.
+But notice that in doing so, it also eliminates an automatic supply mechanism constraining the price level.
 
 A low-inflation paper fiat money system replaces that automatic mechanism with an enlightened government that commits itself to limit the quantity of a pure token, no-cost currency.
 
@@ -143,7 +145,7 @@ We'll show a version of the complete  graph that originally appeared on page 35 
 
 The graph shows logarithms of price levels our  four "hard currency" countries from 1600 to 2000.
 
-We didn't need to take  logarithms in our earlier graphs that  had stopped in 1914 -- we use logarithms now because we want also  to fit observations after 1914 in the same graph as the earlier observations.
+Allthough we didn't have  to use   logarithms in our earlier graphs that  had stopped in 1914 -- we use logarithms now because we want also  to fit observations after 1914 in the same graph as the earlier observations.
 
 All four of the countries eventually permanently left the gold standard by modifying their monetary and fiscal policies in several ways, starting the outbreak of the Great War in 1914.
 
@@ -163,6 +165,7 @@ ax.set_ylabel('Index  1913 = 100')
 ax.set_xlim(xmin=1600)
 ax.set_ylim([10, 1e6])
 plt.tight_layout()
+fig.text(.5, .0001, "Logs of Price Levels", ha='center')
 plt.show()
 ```
 
@@ -179,8 +182,7 @@ The breadth and length of the inflationary experiences of the twentieth century,
 
 ## Ends of Four Big Inflations
 
-Monetary and fiscal authorities' struggles to replicate  price level stability with a paper money standard
-were vividly on display in the wake of World War I, which ended in November 1918. 
+In the wake of World War I, which ended in November 1918, monetary and fiscal authorities struggled to achieve   price level stability without being on a gold or silver standard.
 
 We present  four  graphs from "The Ends of Four Big Inflations" from chapter 3 of {cite}`sargent2013rational`.
 
@@ -194,7 +196,7 @@ The graphs depict logarithms of price levels during the early post World War I y
 We have added logarithms of the exchange rates vis a vis the US dollar to each of the four graphs
 from chapter 3 of {cite}`sargent2013rational`.
 
-Data underlying our graphs appear in the tables in an appendix to chapter 3 of {cite}`sargent2013rational`.
+Data underlying our graphs appear in tables in an appendix to chapter 3 of {cite}`sargent2013rational`.
 We have transcribed all of these data  into a spreadsheet `chapter_3.xls` that we  read into Pandas.
 
 ```{code-cell} ipython3
