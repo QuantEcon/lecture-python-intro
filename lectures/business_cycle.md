@@ -20,7 +20,7 @@ In this lecture we review some empirical aspects of business cycles.
 
 Business cycles are fluctuations in economic activity over time.
 
-The include expansions (also called booms) and contractions (also called recessions).
+These include expansions (also called booms) and contractions (also called recessions).
 
 For our study, we will use economic indicators from the [World Bank](https://documents.worldbank.org/en/publication/documents-reports/api) and [FRED](https://fred.stlouisfed.org/).
 
@@ -413,12 +413,12 @@ The labor market recovered at an unprecedented rate after the shock in 2020-2021
 In our {ref}`previous discussion<gdp_growth>`, we found that developed economies have had
 relatively synchronized periods of recession. 
 
-At the same time, this synchronization does not appear in Argentina until the 2000s. 
+At the same time, this synchronization did not appear in Argentina until the 2000s. 
 
 Let's examine this trend further. 
 
 With slight modifications, we can use our previous function to draw a plot
-that includes many countries
+that includes multiple countries
 
 ```{code-cell} ipython3
 ---
@@ -561,7 +561,7 @@ business cycles are becoming more synchronized in 21st-century recessions.
 However, emerging and less developed economies often experience more volatile
 changes throughout the economic cycles. 
 
-Despite of the synchronization in GDP growth, the experience of individual countries during
+Despite the synchronization in GDP growth, the experience of individual countries during
 the recession often differs. 
 
 We use unemployment rate and the recovery of labor market conditions
@@ -597,7 +597,7 @@ plt.show()
 We see that France, with its strong labor unions, typically experiences
 relatively slow labor market recoveries after negative shocks.
 
-We also notice that, Japan has a history of very low and stable unemployment rates.
+We also notice that Japan has a history of very low and stable unemployment rates.
 
 
 ## Leading indicators and correlated factors 
@@ -684,18 +684,17 @@ plt.show()
 
 We see that 
 
-* consumer sentiment often remains high during during expansion and
+* consumer sentiment often remains high during an expansion and
 drops before a recession.
 * there is a clear negative correlation between consumer sentiment and the CPI.
 
 When the price of consumer commodities rises, consumer confidence diminishes.
 
-This trend is more significant in the during [stagflation](https://en.wikipedia.org/wiki/Stagflation).
+This trend is more significant in the [stagflation](https://en.wikipedia.org/wiki/Stagflation).
 
 
 
 ### Production
-
 
 Real industrial output is highly correlated with recessions in the economy. 
 
@@ -777,7 +776,5 @@ ax = plot_series(private_credit, countries,
 plt.show()
 ```
 
-
-Note that the credit rises during economic expansion
+Note that the credit rises during economic expansions
 and stagnates or even contracts after recessions.
-
