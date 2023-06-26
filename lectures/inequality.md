@@ -24,7 +24,7 @@ In this section we
 ### Some history
 
 Many historians argue that inequality played a key role in the fall of the
-Roman republic.
+Roman Republic.
 
 After defeating Carthage and invading Spain, money flowed into Rome and
 greatly enriched those in power.
@@ -35,7 +35,7 @@ periods, diminishing their wealth.
 The resulting growth in inequality caused political turmoil that shook the
 foundations of the republic. 
 
-Eventually the Roman republic gave way to a series of dictatorships, starting
+Eventually the Roman Republic gave way to a series of dictatorships, starting
 with Octavian (Augustus) in 27 BCE.
 
 This history is fascinating in its own right, and also because we can see some
@@ -97,8 +97,8 @@ We suppose that the sample $w_1, \ldots, w_n$ has been sorted from smallest to l
 
 To aid our interpretation, suppose that we are measuring wealth 
 
-*  $w_1$ is the wealth of the poorest member of the population
-*  $w_n$ is the wealth of the richest member of the population
+*  $w_1$ is the wealth of the poorest member of the population and
+*  $w_n$ is the wealth of the richest member of the population.
 
 The curve $L$ is just a function $y = L(x)$ that we can plot and interpret.
 
@@ -347,7 +347,7 @@ between $0.2$ and $4$.
 
 In each case we set $\mu = - \sigma^2 / 2$.
 
-This implies that the mean the distribution does not change with $\sigma$. 
+This implies that the mean of the distribution does not change with $\sigma$. 
 
 (You can check this by looking up the expression for the mean of a lognormal
 distribution.)
