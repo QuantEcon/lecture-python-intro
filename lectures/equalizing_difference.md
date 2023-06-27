@@ -13,7 +13,7 @@ kernelspec:
 
 # Equalizing Difference Model
 
-This notebook presents a model of the college-high-school wage gap in which the
+This lecture presents a model of the college-high-school wage gap in which the
 "time to build" a college graduate plays a key role.
 
 The model is "incomplete" in the sense that it is just one "condition" in the form of a single equation that would be part of set equations comprising all  "equilibrium conditions" of   a more fully articulated model.
