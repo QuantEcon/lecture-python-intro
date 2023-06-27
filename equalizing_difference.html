@@ -170,7 +170,7 @@ const thebe_selector_output = ".output, .cell_output"
 
                         <nav id="bd-toc-nav" class="qe-page__toc-nav">
                             <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tweaked-model-workers-and-entrepreneurs">10.1. Tweaked model: workers and entrepreneurs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-tweaked-model-workers-and-entrepreneurs">10.1. A tweaked model: workers and entrepreneurs</a></li>
 </ul>
                             <p class="logo">
                                 
@@ -217,13 +217,14 @@ const thebe_selector_output = ".output, .cell_output"
                         
   <section class="tex2jax_ignore mathjax_ignore" id="equalizing-difference-model">
 <h1><span class="section-number">10. </span>Equalizing Difference Model<a class="headerlink" href="#equalizing-difference-model" title="Permalink to this heading">#</a></h1>
-<p>This notebook presents a model of the college-high-school wage gap in which the
+<p>This lecture presents a model of the college-high-school wage gap in which the
 “time to build” a college graduate plays a key role.</p>
-<p>The model is “incomplete” in the sense that it is just one “condition” in the form of one
-equation that would be part of set equations comprising all of the “equilibrium conditions” of   a more fully articulated model.</p>
-<p>The condition featured in our model determines  a college, high-school wage ratio that equalizes the
-present values of a high school worker and a college educated worker.</p>
-<p>It is just one instance of an  “equalizing difference” theory of relative wage rates, a class dating back at least to Adam Smith’s <strong>Wealth of Nations</strong>.</p>
+<p>The model is “incomplete” in the sense that it is just one “condition” in the form of a single equation that would be part of set equations comprising all  “equilibrium conditions” of   a more fully articulated model.</p>
+<p>The condition featured in our model determines  a college, high-school wage ratio that equalizes the present values of a high school worker and a college educated worker.</p>
+<p>The idea behind this condition is that lifetime earnings have to adjust to make someone indifferent between going to college and not going to college.</p>
+<p>(The job of the “other equations” in a more complete model would be to fill in details about what adjusts to bring about this outcome.)</p>
+<p>It is just one instance of an  “equalizing difference” theory of relative wage rates, a class of theories dating back at least to Adam Smith’s <strong>Wealth of Nations</strong> <span id="id1">[<a class="reference internal" href="zreferences.html#id3" title="Adam Smith. The Wealth of Nations: An inquiry into the nature and causes of the Wealth of Nations. Harriman House Limited, 2010.">Smi10</a>]</span>.</p>
+<p>As usual, we’ll start by importing some Python modules.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -234,26 +235,39 @@ present values of a high school worker and a college educated worker.</p>
 </div>
 <p>Let</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(R &gt; 0\)</span> be the gross rate of return on a one-period bond</p></li>
-<li><p><span class="math notranslate nohighlight">\(0\)</span> denotes the first period after high school that a person can go to work</p></li>
-<li><p><span class="math notranslate nohighlight">\(T\)</span> denote the last period a person can work</p></li>
+<li><p><span class="math notranslate nohighlight">\(R &gt; 1\)</span> be the gross rate of return on a one-period bond</p></li>
+<li><p><span class="math notranslate nohighlight">\(t = 0, 1, 2, \ldots T\)</span> denote the years that a person either works or attends college</p></li>
+<li><p><span class="math notranslate nohighlight">\(0\)</span> denote the first period after high school that a person can go to work</p></li>
+<li><p><span class="math notranslate nohighlight">\(T\)</span> denote the last period  that a person  works</p></li>
 <li><p><span class="math notranslate nohighlight">\(w_t^h\)</span> be the wage at time <span class="math notranslate nohighlight">\(t\)</span> of a high school graduate</p></li>
 <li><p><span class="math notranslate nohighlight">\(w_t^c\)</span> be the wage at time <span class="math notranslate nohighlight">\(t\)</span> of a college graduate</p></li>
-<li><p><span class="math notranslate nohighlight">\(\gamma_h &gt; 0\)</span> be the (gross) rate of growth of wages of a  high school graduate, so that
+<li><p><span class="math notranslate nohighlight">\(\gamma_h &gt; 1\)</span> be the (gross) rate of growth of wages of a  high school graduate, so that
 <span class="math notranslate nohighlight">\( w_t^h = w_0^h \gamma_h^t\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(\gamma_c &gt; 0\)</span> be the (gross) rate of growth of wages of a  college  graduate, so that
+<li><p><span class="math notranslate nohighlight">\(\gamma_c &gt; 1\)</span> be the (gross) rate of growth of wages of a  college  graduate, so that
 <span class="math notranslate nohighlight">\( w_t^c = w_0^c \gamma_c^t\)</span></p></li>
 </ul>
-<p>If someone goes to work immediately after high school  and  works for <span class="math notranslate nohighlight">\(T+1\)</span> years, she earns present value</p>
+<p>If someone goes to work immediately after high school  and  works for the  <span class="math notranslate nohighlight">\(T+1\)</span> years <span class="math notranslate nohighlight">\(t=0, 1, 2, \ldots, T\)</span>, she earns present value</p>
 <div class="math notranslate nohighlight">
 \[
 h_0 = \sum_{t=0}^T R^{-t} w_t^h = w_0^h \left[ \frac{1 - (R^{-1} \gamma_h)^{T+1} }{1 - R^{-1} \gamma_h } \right] \equiv w_0^h A_h 
 \]</div>
-<p>If someone goes to college for four years during which she earns <span class="math notranslate nohighlight">\(0\)</span>, but then goes to work  immediately after college   and  work for <span class="math notranslate nohighlight">\(T-3\)</span> years, she earns present value</p>
+<p>where</p>
 <div class="math notranslate nohighlight">
 \[
-c_0 = \sum_{t=4}^T R^{-t} w_t^c = w_0^c (R^{-1} \gamma_c)^3  \left[ \frac{1 - (R^{-1} \gamma_c)^{T-3} }{1 - R^{-1} \gamma_c } \right] \equiv w_0^c A_c
+A_h = \left[ \frac{1 - (R^{-1} \gamma_h)^{T+1} }{1 - R^{-1} \gamma_h } \right].
 \]</div>
+<p>The present value <span class="math notranslate nohighlight">\(h_0\)</span> is the “human wealth” at the beginning of time <span class="math notranslate nohighlight">\(0\)</span> of someone who chooses not to attend college but instead to go to work immediately at the wage of a high school graduate.</p>
+<p>If someone goes to college for the four years <span class="math notranslate nohighlight">\(t=0, 1, 2, 3\)</span> during which she earns <span class="math notranslate nohighlight">\(0\)</span>, but then goes to work  immediately after college   and  works for the <span class="math notranslate nohighlight">\(T-3\)</span> years <span class="math notranslate nohighlight">\(t=4, 5, \ldots ,T\)</span>, she earns present value</p>
+<div class="math notranslate nohighlight">
+\[
+c_0 = \sum_{t=4}^T R^{-t} w_t^c = w_0^c (R^{-1} \gamma_c)^4  \left[ \frac{1 - (R^{-1} \gamma_c)^{T-3} }{1 - R^{-1} \gamma_c } \right] \equiv w_0^c A_c
+\]</div>
+<p>where</p>
+<div class="math notranslate nohighlight">
+\[
+A_c =w_0^c (R^{-1} \gamma_c)^4  \left[ \frac{1 - (R^{-1} \gamma_c)^{T-3} }{1 - R^{-1} \gamma_c } \right] 
+\]</div>
+<p>The present value <span class="math notranslate nohighlight">\(c_0\)</span>  is the “human wealth” at the beginning of time <span class="math notranslate nohighlight">\(0\)</span> of someone who chooses to attend college for four years and then start to work at time <span class="math notranslate nohighlight">\(t=4\)</span> at the wage of a college graduate.</p>
 <p>Assume that college tuition plus four years of room and board paid for up front costs <span class="math notranslate nohighlight">\(D\)</span>.</p>
 <p>So net of monetary cost of college, the present value of attending college as of the first period after high school is</p>
 <div class="math notranslate nohighlight">
@@ -267,20 +281,21 @@ c_0 - D
 w_0^c = \phi w_0^h 
 \]</div>
 <p>We suppose that <span class="math notranslate nohighlight">\(R, \gamma_h, \gamma_c, T\)</span> and also <span class="math notranslate nohighlight">\(w_0^h\)</span>  are fixed parameters.</p>
-<p>We start by noting that the pure equalizing difference model asserts that the college-high-school wage gap <span class="math notranslate nohighlight">\(\phi\)</span> solves</p>
+<p>We start by noting that the pure equalizing difference model asserts that the college-high-school wage gap <span class="math notranslate nohighlight">\(\phi\)</span> solves
+“equalizing” equation that sets the present value not going to college equal to the present value of going go college:</p>
 <div class="math notranslate nohighlight">
 \[
 h_0 = c_0 - D
 \]</div>
 <p>or</p>
-<div class="math notranslate nohighlight">
-\[ 
-w_0^h A_h  = \phi w_0^h A_c - D
+<div class="math notranslate nohighlight" id="equation-eq-equalize">
+<span class="eqno">(10.1)<a class="headerlink" href="#equation-eq-equalize" title="Permalink to this equation">#</a></span>\[ 
+w_0^h A_h  = \phi w_0^h A_c - D .
 \]</div>
-<p>or</p>
-<div class="math notranslate nohighlight">
-\[
-\phi  = \frac{A_h}{A_c} + \frac{D}{w_0^h A_c}
+<p>Solving equation <a class="reference internal" href="#equation-eq-equalize">(10.1)</a> for the college wage premium <span class="math notranslate nohighlight">\(\phi\)</span> we obtain</p>
+<div class="math notranslate nohighlight" id="equation-eq-wagepremium">
+<span class="eqno">(10.2)<a class="headerlink" href="#equation-eq-wagepremium" title="Permalink to this equation">#</a></span>\[
+\phi  = \frac{A_h}{A_c} + \frac{D}{w_0^h A_c} .
 \]</div>
 <p>In a <strong>free college</strong> special case <span class="math notranslate nohighlight">\(D =0\)</span> so that the only cost of going to college is the forgone earnings from not working as a high school worker.</p>
 <p>In that case,</p>
@@ -288,8 +303,10 @@ w_0^h A_h  = \phi w_0^h A_c - D
 \[
 \phi  = \frac{A_h}{A_c} . 
 \]</div>
-<section id="tweaked-model-workers-and-entrepreneurs">
-<h2><span class="section-number">10.1. </span>Tweaked model: workers and entrepreneurs<a class="headerlink" href="#tweaked-model-workers-and-entrepreneurs" title="Permalink to this heading">#</a></h2>
+<p>Soon we’ll write Python code to compute the gap and plot it as a function of its determinants.</p>
+<p>But first we’ll describe a possible alternative interpretation of our model.</p>
+<section id="a-tweaked-model-workers-and-entrepreneurs">
+<h2><span class="section-number">10.1. </span>A tweaked model: workers and entrepreneurs<a class="headerlink" href="#a-tweaked-model-workers-and-entrepreneurs" title="Permalink to this heading">#</a></h2>
 <p>We can add a parameter and reinterpret variables to get a model of entrepreneurs versus workers.</p>
 <p>We now let <span class="math notranslate nohighlight">\(h\)</span> be  the present value of a “worker”.</p>
 <p>We define the present value of an entrepreneur to be</p>
@@ -298,10 +315,12 @@ w_0^h A_h  = \phi w_0^h A_c - D
 c_0 = \pi \sum_{t=4}^T R^{-t} w_t^c
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(\pi \in (0,1) \)</span> is  the probability that an entrepreneur’s “project” succeeds.</p>
-<p>We set <span class="math notranslate nohighlight">\(D =0\)</span>.</p>
+<p>For our model of workers and firms, we’ll interpret <span class="math notranslate nohighlight">\(D\)</span> as the cost of becoming an entrepreneur.</p>
+<p>This cost might include costs of hiring workers, office space, and lawyers.</p>
 <p>What we used to call the college, high school wage gap <span class="math notranslate nohighlight">\(\phi\)</span> now becomes the ratio
 of a successful entrepreneur’s earnings to a worker’s earnings.</p>
 <p>We’ll find that as <span class="math notranslate nohighlight">\(\pi\)</span> decreases, <span class="math notranslate nohighlight">\(\phi\)</span> increases.</p>
+<p>Now let’s write some Python code to compute <span class="math notranslate nohighlight">\(\phi\)</span> and plot it as a function of some of its determinants.</p>
 <p>We can have some fun providing some example calculations that tweak various parameters,
 prominently including <span class="math notranslate nohighlight">\(\gamma_h, \gamma_c, R\)</span>.</p>
 <div class="cell docutils container">
@@ -321,7 +340,7 @@ prominently including <span class="math notranslate nohighlight">\(\gamma_h, \ga
         <span class="n">T</span><span class="p">,</span> <span class="n">π</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">π</span>
         
         <span class="n">A_h</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="n">γ_h</span><span class="o">/</span><span class="n">R</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">γ_h</span><span class="o">/</span><span class="n">R</span><span class="p">)</span>
-        <span class="n">A_c</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="n">γ_c</span><span class="o">/</span><span class="n">R</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="n">T</span><span class="o">-</span><span class="mi">3</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">γ_c</span><span class="o">/</span><span class="n">R</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">γ_c</span><span class="o">/</span><span class="n">R</span><span class="p">)</span><span class="o">**</span><span class="mi">3</span>
+        <span class="n">A_c</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="n">γ_c</span><span class="o">/</span><span class="n">R</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="n">T</span><span class="o">-</span><span class="mi">3</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">γ_c</span><span class="o">/</span><span class="n">R</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">γ_c</span><span class="o">/</span><span class="n">R</span><span class="p">)</span><span class="o">**</span><span class="mi">4</span>
         
         <span class="c1"># tweaked model</span>
         <span class="k">if</span> <span class="n">π</span><span class="o">!=</span><span class="kc">None</span><span class="p">:</span>
@@ -335,6 +354,7 @@ prominently including <span class="math notranslate nohighlight">\(\gamma_h, \ga
 </div>
 <p>We can build some functions to help do comparative statics using vectorization instead of loops.</p>
 <p>For a given instance of the class, we want to compute <span class="math notranslate nohighlight">\(\phi\)</span> when one parameter changes and others remain unchanged.</p>
+<p>Let’s do an example.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ϕ_R</span>
@@ -373,9 +393,9 @@ prominently including <span class="math notranslate nohighlight">\(\gamma_h, \ga
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># set benchmark parameters</span>
 <span class="n">R</span> <span class="o">=</span> <span class="mf">1.05</span>
 <span class="n">T</span> <span class="o">=</span> <span class="mi">40</span>
-<span class="n">γ_h</span><span class="p">,</span> <span class="n">γ_c</span> <span class="o">=</span> <span class="mf">1.01</span><span class="p">,</span> <span class="mf">1.02</span>
+<span class="n">γ_h</span><span class="p">,</span> <span class="n">γ_c</span> <span class="o">=</span> <span class="mf">1.01</span><span class="p">,</span> <span class="mf">1.01</span>
 <span class="n">w_h0</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="n">D</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">D</span> <span class="o">=</span> <span class="mi">10</span>
 
 <span class="c1"># create an instance</span>
 <span class="n">ex1</span> <span class="o">=</span> <span class="n">equalizing_diff</span><span class="p">(</span><span class="n">R</span><span class="o">=</span><span class="n">R</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="n">T</span><span class="p">,</span> <span class="n">γ_h</span><span class="o">=</span><span class="n">γ_h</span><span class="p">,</span> <span class="n">γ_c</span><span class="o">=</span><span class="n">γ_c</span><span class="p">,</span> <span class="n">w_h0</span><span class="o">=</span><span class="n">w_h0</span><span class="p">,</span> <span class="n">D</span><span class="o">=</span><span class="n">D</span><span class="p">)</span>
@@ -386,12 +406,30 @@ prominently including <span class="math notranslate nohighlight">\(\gamma_h, \ga
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.085398977637394
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.8041412724969135
 </pre></div>
 </div>
 </div>
 </div>
-<p>Let us plot <span class="math notranslate nohighlight">\(\phi\)</span> against some parameters.</p>
+<p>Let’s not charge for college and recompute <span class="math notranslate nohighlight">\(\phi\)</span>.</p>
+<p>The initial college wage premium should go down.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># free college</span>
+<span class="n">ex2</span> <span class="o">=</span> <span class="n">equalizing_diff</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">γ_h</span><span class="p">,</span> <span class="n">γ_c</span><span class="p">,</span> <span class="n">w_h0</span><span class="p">,</span> <span class="n">D</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">gap2</span> <span class="o">=</span> <span class="n">ex2</span><span class="o">.</span><span class="n">compute_gap</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">gap2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.2204649517903732
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let us construct some graphs that show us how the initial college-high-school wage ratio <span class="math notranslate nohighlight">\(\phi\)</span> would change if one of its determinants were to change.</p>
+<p>Let’s start with the gross interest rate <span class="math notranslate nohighlight">\(R\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">R_arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
@@ -403,9 +441,12 @@ prominently including <span class="math notranslate nohighlight">\(\gamma_h, \ga
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/0abbcdcc6b9e22d6c308d2d063e8a6c017c2b900c0fea29474ccfc637c8c0ae4.png"><img alt="_images/0abbcdcc6b9e22d6c308d2d063e8a6c017c2b900c0fea29474ccfc637c8c0ae4.png" src="_images/0abbcdcc6b9e22d6c308d2d063e8a6c017c2b900c0fea29474ccfc637c8c0ae4.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/d9c63f8985173f0e5a0fb833abb3caa5ae2511296ae8a1688e7770cdfdcb6f40.png"><img alt="_images/d9c63f8985173f0e5a0fb833abb3caa5ae2511296ae8a1688e7770cdfdcb6f40.png" src="_images/d9c63f8985173f0e5a0fb833abb3caa5ae2511296ae8a1688e7770cdfdcb6f40.png" style="width: 80%;" /></a>
 </div>
 </div>
+<p>Evidently, the initial wage ratio <span class="math notranslate nohighlight">\(\phi\)</span> must rise to compensate a prospective high school student for <strong>waiting</strong> to start receiving income – remember that while she is earning nothing in years <span class="math notranslate nohighlight">\(t=0, 1, 2, 3\)</span>, the high school worker is earning a salary.</p>
+<p>Not let’s study what happens to the initial wage ratio <span class="math notranslate nohighlight">\(\phi\)</span> if the rate of growth of college wages rises, holding constant other
+determinants of <span class="math notranslate nohighlight">\(\phi\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">γc_arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
@@ -417,9 +458,13 @@ prominently including <span class="math notranslate nohighlight">\(\gamma_h, \ga
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/3f252a407c703380dd0a09b3046d3888c18606796445a9e86b55be4074a49afa.png"><img alt="_images/3f252a407c703380dd0a09b3046d3888c18606796445a9e86b55be4074a49afa.png" src="_images/3f252a407c703380dd0a09b3046d3888c18606796445a9e86b55be4074a49afa.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/6d06e441b263497c8cbc63a7f8e8ad69afb96de392ed99ed620397746ef2da48.png"><img alt="_images/6d06e441b263497c8cbc63a7f8e8ad69afb96de392ed99ed620397746ef2da48.png" src="_images/6d06e441b263497c8cbc63a7f8e8ad69afb96de392ed99ed620397746ef2da48.png" style="width: 80%;" /></a>
 </div>
 </div>
+<p>Notice how  the intitial wage gap falls when the rate of growth <span class="math notranslate nohighlight">\(\gamma_c\)</span> of college wages rises.</p>
+<p>It falls to “equalize” the present values of the two types of career, one as a high school worker, the other as a college worker.</p>
+<p>Can you guess what happens to the initial wage ratio <span class="math notranslate nohighlight">\(\phi\)</span> when next we vary the rate of growth of high school wages, holding all other determinants of <span class="math notranslate nohighlight">\(\phi\)</span> constant?</p>
+<p>The following graph shows what happens.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">γh_arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
@@ -431,29 +476,16 @@ prominently including <span class="math notranslate nohighlight">\(\gamma_h, \ga
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/36d75ecff37ed63ec3cf1c6b5f3fa20822b34e3978de9de79c5ba59914e0fe1f.png"><img alt="_images/36d75ecff37ed63ec3cf1c6b5f3fa20822b34e3978de9de79c5ba59914e0fe1f.png" src="_images/36d75ecff37ed63ec3cf1c6b5f3fa20822b34e3978de9de79c5ba59914e0fe1f.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/f2acbdcf1b686229621c359d090b2d954e37d26e0caf476a7f0abc6822a8941f.png"><img alt="_images/f2acbdcf1b686229621c359d090b2d954e37d26e0caf476a7f0abc6822a8941f.png" src="_images/f2acbdcf1b686229621c359d090b2d954e37d26e0caf476a7f0abc6822a8941f.png" style="width: 80%;" /></a>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># free college</span>
-<span class="n">ex2</span> <span class="o">=</span> <span class="n">equalizing_diff</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">γ_h</span><span class="p">,</span> <span class="n">γ_c</span><span class="p">,</span> <span class="n">w_h0</span><span class="p">,</span> <span class="n">D</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">gap2</span> <span class="o">=</span> <span class="n">ex2</span><span class="o">.</span><span class="n">compute_gap</span><span class="p">()</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="n">gap2</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9906455257282295
-</pre></div>
-</div>
-</div>
-</div>
+<p><strong>Entrepreneur-worker interpretation</strong></p>
+<p>Now let’s adopt the entrepreneur-worker interpretation of our model.</p>
+<p>If the probability that a new business succeeds is <span class="math notranslate nohighlight">\(.2\)</span>, let’s compute the initial wage premium for successful entrepreneurs.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># a model of enterpreneur</span>
-<span class="n">ex3</span> <span class="o">=</span> <span class="n">equalizing_diff</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">γ_h</span><span class="p">,</span> <span class="n">γ_c</span><span class="p">,</span> <span class="n">w_h0</span><span class="p">,</span> <span class="n">π</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+<span class="n">ex3</span> <span class="o">=</span> <span class="n">equalizing_diff</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">γ_h</span><span class="p">,</span> <span class="n">γ_c</span><span class="p">,</span> <span class="n">w_h0</span><span class="p">,</span> <span class="n">π</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
 <span class="n">gap3</span> <span class="o">=</span> <span class="n">ex3</span><span class="o">.</span><span class="n">compute_gap</span><span class="p">()</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">gap3</span><span class="p">)</span>
@@ -461,11 +493,12 @@ prominently including <span class="math notranslate nohighlight">\(\gamma_h, \ga
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.2383069071602868
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6.102324758951866
 </pre></div>
 </div>
 </div>
 </div>
+<p>Now let’s study how the initial wage premium for successful entrepreneurs depend on the success probability.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">π_arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
@@ -477,9 +510,10 @@ prominently including <span class="math notranslate nohighlight">\(\gamma_h, \ga
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/241324fa18bf9456d60a34bb8b782f3c1791c43334e9a1f9758859d88f7b3d1c.png"><img alt="_images/241324fa18bf9456d60a34bb8b782f3c1791c43334e9a1f9758859d88f7b3d1c.png" src="_images/241324fa18bf9456d60a34bb8b782f3c1791c43334e9a1f9758859d88f7b3d1c.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/3035ffd72dfeb23d81b1c792df49425f78e35ca834631a54b1aa83fb1ad7ed31.png"><img alt="_images/3035ffd72dfeb23d81b1c792df49425f78e35ca834631a54b1aa83fb1ad7ed31.png" src="_images/3035ffd72dfeb23d81b1c792df49425f78e35ca834631a54b1aa83fb1ad7ed31.png" style="width: 80%;" /></a>
 </div>
 </div>
+<p>Does the graph make sense to you?</p>
 </section>
 </section>
 

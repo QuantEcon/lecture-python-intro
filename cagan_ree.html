@@ -249,8 +249,8 @@ const thebe_selector_output = ".output, .cell_output"
 <!-- #region -->
 <p>We’ll use linear algebra first to explain and then do  some experiments with  a “fiscal theory of the price level”.</p>
 <p>A fiscal theory of the price level was described by Thomas Sargent and Neil Wallace in chapter 5 of
-<span id="id1">[<a class="reference internal" href="zreferences.html#id4" title="Thomas J Sargent. Rational Expectations and Inflation. Princeton University Press, Princeton, New Jersey, 2013.">Sar13</a>]</span>, which reprints a  1981 article title “Unpleasant Monetarist Arithmetic”.</p>
-<p>The theory has been extended, criticized, and applied by John Cochrane in <span id="id2">[<a class="reference internal" href="zreferences.html#id5" title="John H Cochrane. The Fiscal Theory of the Price Level. Princeton University Press, Princeton, New Jersey, 2023.">Coc23</a>]</span>.</p>
+<span id="id1">[<a class="reference internal" href="zreferences.html#id5" title="Thomas J Sargent. Rational Expectations and Inflation. Princeton University Press, Princeton, New Jersey, 2013.">Sar13</a>]</span>, which reprints a  1981 article title “Unpleasant Monetarist Arithmetic”.</p>
+<p>The theory has been extended, criticized, and applied by John Cochrane in <span id="id2">[<a class="reference internal" href="zreferences.html#id6" title="John H Cochrane. The Fiscal Theory of the Price Level. Princeton University Press, Princeton, New Jersey, 2023.">Coc23</a>]</span>.</p>
 <p>In another lecture,  we’ll describe some historical episodes in which the elemental forces at work in the fiscal theory help to explain some early twentieth century hyperinflations that occurred in the wake of World War I.</p>
 <p>According to this model, when the government persistently spends more than it collects in taxes and prints money to finance the shortfall (the “shortfall” is called the “government deficit”), it puts upward pressure on the price level and generates
 persistent inflation.</p>
@@ -259,8 +259,8 @@ persistent inflation.</p>
 <li><p>to <strong>start</strong> a persistent inflation the government simply persistently runs a money-financed government deficit</p></li>
 <li><p>to <strong>stop</strong> a persistent inflation the government simply  stops persistently running  a money-financed government deficit</p></li>
 </ul>
-<p>Our model is a “rational expectations” (or “perfect foresight”) version of a model that Philip Cagan <span id="id3">[<a class="reference internal" href="zreferences.html#id103" title="Philip Cagan. The monetary dynamics of hyperinflation. In Milton Friedman, editor, Studies in the Quantity Theory of Money, pages 25–117. University of Chicago Press, Chicago, 1956.">Cag56</a>]</span>  used to study the monetary dynamics of hyperinflations.</p>
-<p>While Cagan didn’t use that  “rational expectations” version of the model, Thomas Sargent <span id="id4">[<a class="reference internal" href="zreferences.html#id6" title="Thomas J Sargent. The ends of four big inflations. In Robert E Hall, editor, Inflation: Causes and effects, pages 41–98. University of Chicago Press, 1982.">Sar82</a>]</span> did when he studied the Ends of Four Big Inflations in Europe after World War I.</p>
+<p>Our model is a “rational expectations” (or “perfect foresight”) version of a model that Philip Cagan <span id="id3">[<a class="reference internal" href="zreferences.html#id104" title="Philip Cagan. The monetary dynamics of hyperinflation. In Milton Friedman, editor, Studies in the Quantity Theory of Money, pages 25–117. University of Chicago Press, Chicago, 1956.">Cag56</a>]</span>  used to study the monetary dynamics of hyperinflations.</p>
+<p>While Cagan didn’t use that  “rational expectations” version of the model, Thomas Sargent <span id="id4">[<a class="reference internal" href="zreferences.html#id7" title="Thomas J Sargent. The ends of four big inflations. In Robert E Hall, editor, Inflation: Causes and effects, pages 41–98. University of Chicago Press, 1982.">Sar82</a>]</span> did when he studied the Ends of Four Big Inflations in Europe after World War I.</p>
 <p>Some of our quantitative experiments with the model are designed to illustrate how the fiscal theory explains the abrupt end of those big inflations.</p>
 <p>In those experiments, we’ll encounter an instance of a ‘‘velocity dividend’’ that has sometimes accompanied successful inflation stabilization programs.</p>
 <p>To facilitate using  linear matrix algebra as our main mathematical tool, we’ll use a finite horizon version of the model.</p>
@@ -313,14 +313,14 @@ to have perfect foresight,  we subtract equation <a class="reference internal" h
 \]</div>
 <p>which we rewrite as a forward-looking first-order linear difference
 equation in <span class="math notranslate nohighlight">\(\pi_s\)</span> with <span class="math notranslate nohighlight">\(\mu_s\)</span>  as a “forcing variable”:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1c03bd6f-9109-4716-bb78-fce6381c6d54">
-<span class="eqno">(12.4)<a class="headerlink" href="#equation-1c03bd6f-9109-4716-bb78-fce6381c6d54" title="Permalink to this equation">#</a></span>\[\begin{equation}  
+<div class="amsmath math notranslate nohighlight" id="equation-bdec1dc7-7960-481a-b105-b5f572f060d3">
+<span class="eqno">(12.4)<a class="headerlink" href="#equation-bdec1dc7-7960-481a-b105-b5f572f060d3" title="Permalink to this equation">#</a></span>\[\begin{equation}  
 \pi_t = \frac{\alpha}{1+\alpha} \pi_{t+1} + \frac{1}{1+\alpha} \mu_t , \quad t= 0, 1, \ldots , T 
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\( 0&lt; \frac{\alpha}{1+\alpha} &lt;1 \)</span>.</p>
 <p>Setting <span class="math notranslate nohighlight">\(\delta =\frac{\alpha}{1+\alpha}\)</span> let’s us represent the preceding equation as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5dad1f5b-3ad9-44a6-8162-2f1acac6610e">
-<span class="eqno">(12.5)<a class="headerlink" href="#equation-5dad1f5b-3ad9-44a6-8162-2f1acac6610e" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-5b2e6fc1-16fa-4739-aef0-3ce5da6b8dce">
+<span class="eqno">(12.5)<a class="headerlink" href="#equation-5b2e6fc1-16fa-4739-aef0-3ce5da6b8dce" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \pi_t = \delta \pi_{t+1} + (1-\delta) \mu_t , \quad t =0, 1, \ldots, T
 \end{equation}\]</div>
 <p>Write this system of <span class="math notranslate nohighlight">\(T+1\)</span> equations as the single matrix equation</p>

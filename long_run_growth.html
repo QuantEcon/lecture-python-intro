@@ -225,16 +225,18 @@ const thebe_selector_output = ".output, .cell_output"
 <h1><span class="section-number">2. </span>Economic Growth Evidence<a class="headerlink" href="#economic-growth-evidence" title="Permalink to this heading">#</a></h1>
 <section id="overview">
 <h2><span class="section-number">2.1. </span>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
-<p>Adam Tooze’s account of the geopolitical precedents and antecedents of World War I includes a comparison of how Gross National Products of European Great Powers had evolved during the 70 years preceding 1914 (see chapter 1 of <span id="id1">[<a class="reference internal" href="zreferences.html#id7" title="Adam Tooze. The deluge: the great war, america and the remaking of the global order, 1916–1931. 2014.">Too14</a>]</span>).</p>
-<p>We report a version of Tooze’s graph later in this lecture.</p>
+<p>Adam Tooze’s account of the geopolitical precedents and antecedents of World War I includes a comparison of how Gross National Products of European Great Powers had evolved during the 70 years preceding 1914 (see chapter 1 of <span id="id1">[<a class="reference internal" href="zreferences.html#id8" title="Adam Tooze. The deluge: the great war, america and the remaking of the global order, 1916–1931. 2014.">Too14</a>]</span>).</p>
+<p>We construct a version of Tooze’s graph later in this lecture.</p>
+<p>(An impatient reader can jump ahead and look at figure <a class="reference internal" href="#gdp1"><span class="std std-numref">Fig. 2.6</span></a>.)</p>
 <p>Looking at his graph and how it set the geopolitical stage for “the American (20th) century” naturally
 tempts one to want a counterpart to his graph for 2014 or later.</p>
-<p>As we’ll see, reasoning just by analogy, this graph perhaps set the stage for an “XXX (21st) century”, where you get to fill in a country for our XXX.</p>
+<p>(An impatient reader might now want to jump ahead and look at figure <a class="reference internal" href="#gdp2"><span class="std std-numref">Fig. 2.7</span></a>.)</p>
+<p>As we’ll see, reasoning  by analogy, this graph perhaps set the stage for an “XXX (21st) century”, where you are free to fill in your guess for country XXX.</p>
 <p>As we gather data to construct those two graphs, we’ll also study growth experiences for a number of countries for time horizons extending as far back as possible.</p>
 <p>These graphs will portray how the “Industrial Revolution” began in Britain in the late 18th century, then migrated to one country after another.</p>
 <p>In a nutshell, this lecture records growth trajectories of various countries over long time periods.</p>
 <p>While some countries have experienced long term rapid growth across that has lasted a hundred years, others have not.</p>
-<p>Since populations differ across country and within a country vary over time, it will
+<p>Since populations differ across countries and vary within a country over time, it will
 be interesting to describe both total GDP and GDP per capita as it evolves within a country.</p>
 <p>First let’s import the packages needed to explore what the data says about long run growth</p>
 <div class="cell docutils container">
@@ -257,7 +259,7 @@ be interesting to describe both total GDP and GDP per capita as it evolves withi
 <p>A project initiated by <a class="reference external" href="https://en.wikipedia.org/wiki/Angus_Maddison">Angus Maddison</a> has collected many historical time series related to economic growth,
 some dating back to the first century.</p>
 <p>The data can be downloaded from the <a class="reference external" href="https://www.rug.nl/ggdc/historicaldevelopment/maddison/">Maddison Historical Statistics webpage</a> by clicking on the “Latest Maddison Project Release”.</p>
-<p>For convenience, here is a copy of the 2020 data <a class="reference download internal" download="" href="_downloads/e6a877d92ac60529ff17d034840c0c83/mpd2020.xlsx"><code class="xref download docutils literal notranslate"><span class="pre">in</span> <span class="pre">Excel</span> <span class="pre">format</span></code></a>.</p>
+<p>For convenience, here is a copy of the <a class="reference download internal" download="" href="_downloads/e6a877d92ac60529ff17d034840c0c83/mpd2020.xlsx"><code class="xref download docutils literal notranslate"><span class="pre">2020</span> <span class="pre">data</span></code></a> in <code class="docutils literal notranslate"><span class="pre">Excel</span></code> format.</p>
 <p>Let’s read it into a pandas dataframe:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -504,7 +506,7 @@ some dating back to the first century.</p>
 </div></div></div>
 </div>
 <p>Let’s now reshape the original data into some convenient variables to enable quicker access to countries time series data.</p>
-<p>We can build a useful mapping between country code’s and country names in this dataset</p>
+<p>We can build a useful mapping between country codes and country names in this dataset</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">code_to_name</span> <span class="o">=</span> <span class="n">data</span><span class="p">[[</span><span class="s1">&#39;countrycode&#39;</span><span class="p">,</span><span class="s1">&#39;country&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="s1">&#39;countrycode&#39;</span><span class="p">])</span>
@@ -1039,7 +1041,7 @@ some dating back to the first century.</p>
 <p class="admonition-title">Note</p>
 <p><a class="reference external" href="https://en.wikipedia.org/wiki/International_dollar">International Dollars</a> are a hypothetical unit of currency that has the same purchasing power parity that the U.S. Dollar has in the United States at any given time. They are also known as Geary–Khamis dollars (GK Dollars).</p>
 </div>
-<p>We can see that the data is non-continuous for longer periods in the early part of this millennium, so we could choose to interpolate to get a continuous line plot.</p>
+<p>We can see that the data is non-continuous for longer periods in the early 250 years of this millennium, so we could choose to interpolate to get a continuous line plot.</p>
 <p>Here we use dashed lines to indicate interpolated trends</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1186,22 +1188,22 @@ some dating back to the first century.</p>
 </figure>
 </div>
 </div>
-<p>The preceding graph of percapita GDP strikingly reveals how the spread of the industrial revolution has over time gradually lifted the living standards of substantial
+<p>The preceding graph of per capita GDP strikingly reveals how the spread of the industrial revolution has over time gradually lifted the living standards of substantial
 groups of people</p>
 <ul class="simple">
-<li><p>Most of the growth happened in the past 150 years after the industrial revolution.</p></li>
-<li><p>Percapita GDP’s in the UK and the US, on the one hand, and in China, on the other, diverged from 1820 to 1940.</p></li>
-<li><p>The gap has closed rapidly after 1950 and especially after the late 1970s.</p></li>
-<li><p>These outcomes reflect complicated combinations of technological and economic-policy factors that students of economic growth try to understand and quantify</p></li>
+<li><p>most of the growth happened in the past 150 years after the industrial revolution.</p></li>
+<li><p>per capita GDP in the US and UK rose and diverged from that of China from 1820 to 1940.</p></li>
+<li><p>the gap has closed rapidly after 1950 and especially after the late 1970s.</p></li>
+<li><p>these outcomes reflect complicated combinations of technological and economic-policy factors that students of economic growth try to understand and quantify.</p></li>
 </ul>
 <p>It is fascinating to see China’s GDP per capita levels from 1500 through to the 1970s.</p>
 <p>Notice the long period of declining GDP per capital levels from the 1700s until the early 20th century.</p>
 <p>Thus, the graph indicates</p>
 <ul class="simple">
-<li><p>A long economic downturn and stagnation after the Closed-door Policy by the Qing government</p></li>
-<li><p>China’s very different experience than the UK’s after the onset of the industrial revolution in the UK</p></li>
-<li><p>How the Self-Strengthening Movement seemed mostly to help China to grow</p></li>
-<li><p>How stunning have been the growth achievements of Modern Chinese economic policies by the PRC that culminated with its late 1970s Reform and Opening-up</p></li>
+<li><p>a long economic downturn and stagnation after the Closed-door Policy by the Qing government.</p></li>
+<li><p>China’s very different experience than the UK’s after the onset of the industrial revolution in the UK.</p></li>
+<li><p>how the Self-Strengthening Movement seemed mostly to help China to grow.</p></li>
+<li><p>how stunning have been the growth achievements of modern Chinese economic policies by the PRC that culminated with its late 1970s reform and liberalization.</p></li>
 </ul>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
@@ -1265,11 +1267,11 @@ groups of people</p>
 <p>We can also look at the United States (USA) and United Kingdom (GBR) in more detail</p>
 <p>In the following graph, please watch for</p>
 <ul class="simple">
-<li><p>impact of trade policy (Navigation Act)</p></li>
-<li><p>productivity changes brought by the industrial revolution</p></li>
-<li><p>how the US gradually approaches and then surpasses the UK, setting the stage for the ``American Century’’</p></li>
-<li><p>the often unanticipated consequences of wars</p></li>
-<li><p>interruptions and scars left by <a class="reference internal" href="markov_chains_I.html#mc1_ex_1"><span class="std std-ref">business cycle</span></a> recessions and depressions</p></li>
+<li><p>impact of trade policy (Navigation Act).</p></li>
+<li><p>productivity changes brought by the industrial revolution.</p></li>
+<li><p>how the US gradually approaches and then surpasses the UK, setting the stage for the ‘‘American Century’’.</p></li>
+<li><p>the often unanticipated consequences of wars.</p></li>
+<li><p>interruptions and scars left by <a class="reference internal" href="business_cycle.html"><span class="doc std std-doc">business cycle</span></a> recessions and depressions.</p></li>
 </ul>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
@@ -1376,7 +1378,7 @@ groups of people</p>
 </section>
 <section id="the-modern-era-1950-to-2020">
 <h3><span class="section-number">2.4.2. </span>The modern era (1950 to 2020)<a class="headerlink" href="#the-modern-era-1950-to-2020" title="Permalink to this heading">#</a></h3>
-<p>As history repeats itself, the rapid growth in modern China is now challenging the economic hegemony of the US</p>
+<p>The following graph displays how quickly China has grown, especially since the late 1970s.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
@@ -1398,6 +1400,7 @@ groups of people</p>
 </figure>
 </div>
 </div>
+<p>It is tempting to compare this graph with  figure  <a class="reference internal" href="#gdp1"><span class="std std-numref">Fig. 2.6</span></a> that showed the US overtaking the UK near the start of the “American Century”, a version of the graph featured in chapter 1 of  <span id="id2">[<a class="reference internal" href="zreferences.html#id8" title="Adam Tooze. The deluge: the great war, america and the remaking of the global order, 1916–1931. 2014.">Too14</a>]</span>.</p>
 </section>
 </section>
 <section id="regional-analysis">
@@ -1458,7 +1461,7 @@ groups of people</p>
 </figure>
 </div>
 </div>
-<p>Looking more closely, let’s compare the time series for <code class="docutils literal notranslate"><span class="pre">Western</span> <span class="pre">Offshoots</span></code> and <code class="docutils literal notranslate"><span class="pre">Sub-Saharan</span> <span class="pre">Africa</span></code> and more broadly at a number of different regions around the world</p>
+<p>Looking more closely, let’s compare the time series for <code class="docutils literal notranslate"><span class="pre">Western</span> <span class="pre">Offshoots</span></code> and <code class="docutils literal notranslate"><span class="pre">Sub-Saharan</span> <span class="pre">Africa</span></code> and more broadly at a number of different regions around the world.</p>
 <p>Again we see the divergence of the West from the rest of the world after the industrial revolution and the convergence of the world after the 1950s</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">

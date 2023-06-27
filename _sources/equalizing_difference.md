@@ -13,16 +13,20 @@ kernelspec:
 
 # Equalizing Difference Model
 
-This notebook presents a model of the college-high-school wage gap in which the
+This lecture presents a model of the college-high-school wage gap in which the
 "time to build" a college graduate plays a key role.
 
-The model is "incomplete" in the sense that it is just one "condition" in the form of one 
-equation that would be part of set equations comprising all of the "equilibrium conditions" of   a more fully articulated model.
+The model is "incomplete" in the sense that it is just one "condition" in the form of a single equation that would be part of set equations comprising all  "equilibrium conditions" of   a more fully articulated model.
 
-The condition featured in our model determines  a college, high-school wage ratio that equalizes the
-present values of a high school worker and a college educated worker.
+The condition featured in our model determines  a college, high-school wage ratio that equalizes the present values of a high school worker and a college educated worker.
 
-It is just one instance of an  "equalizing difference" theory of relative wage rates, a class dating back at least to Adam Smith's **Wealth of Nations**.
+The idea behind this condition is that lifetime earnings have to adjust to make someone indifferent between going to college and not going to college.
+
+(The job of the "other equations" in a more complete model would be to fill in details about what adjusts to bring about this outcome.)
+
+It is just one instance of an  "equalizing difference" theory of relative wage rates, a class of theories dating back at least to Adam Smith's **Wealth of Nations** {cite}`smith2010wealth`.  
+
+As usual, we'll start by importing some Python modules.
 
 ```{code-cell} ipython3
 import numpy as np
@@ -31,38 +35,54 @@ import matplotlib.pyplot as plt
 
 Let
 
- * $R > 0$ be the gross rate of return on a one-period bond
+ * $R > 1$ be the gross rate of return on a one-period bond
+
+ * $t = 0, 1, 2, \ldots T$ denote the years that a person either works or attends college
  
- * $0$ denotes the first period after high school that a person can go to work
+ * $0$ denote the first period after high school that a person can go to work
  
- * $T$ denote the last period a person can work
+ * $T$ denote the last period  that a person  works
  
  * $w_t^h$ be the wage at time $t$ of a high school graduate
  
  * $w_t^c$ be the wage at time $t$ of a college graduate
  
- * $\gamma_h > 0$ be the (gross) rate of growth of wages of a  high school graduate, so that
+ * $\gamma_h > 1$ be the (gross) rate of growth of wages of a  high school graduate, so that
  $ w_t^h = w_0^h \gamma_h^t$
  
- * $\gamma_c > 0$ be the (gross) rate of growth of wages of a  college  graduate, so that
+ * $\gamma_c > 1$ be the (gross) rate of growth of wages of a  college  graduate, so that
  $ w_t^c = w_0^c \gamma_c^t$
 
 
 
-If someone goes to work immediately after high school  and  works for $T+1$ years, she earns present value
+If someone goes to work immediately after high school  and  works for the  $T+1$ years $t=0, 1, 2, \ldots, T$, she earns present value
 
 $$
 h_0 = \sum_{t=0}^T R^{-t} w_t^h = w_0^h \left[ \frac{1 - (R^{-1} \gamma_h)^{T+1} }{1 - R^{-1} \gamma_h } \right] \equiv w_0^h A_h 
 $$
 
-
-
-
-If someone goes to college for four years during which she earns $0$, but then goes to work  immediately after college   and  work for $T-3$ years, she earns present value
+where 
 
 $$
-c_0 = \sum_{t=4}^T R^{-t} w_t^c = w_0^c (R^{-1} \gamma_c)^3  \left[ \frac{1 - (R^{-1} \gamma_c)^{T-3} }{1 - R^{-1} \gamma_c } \right] \equiv w_0^c A_c
+A_h = \left[ \frac{1 - (R^{-1} \gamma_h)^{T+1} }{1 - R^{-1} \gamma_h } \right].
 $$
+
+The present value $h_0$ is the "human wealth" at the beginning of time $0$ of someone who chooses not to attend college but instead to go to work immediately at the wage of a high school graduate.
+
+
+If someone goes to college for the four years $t=0, 1, 2, 3$ during which she earns $0$, but then goes to work  immediately after college   and  works for the $T-3$ years $t=4, 5, \ldots ,T$, she earns present value
+
+$$
+c_0 = \sum_{t=4}^T R^{-t} w_t^c = w_0^c (R^{-1} \gamma_c)^4  \left[ \frac{1 - (R^{-1} \gamma_c)^{T-3} }{1 - R^{-1} \gamma_c } \right] \equiv w_0^c A_c
+$$
+
+where
+
+$$
+A_c =w_0^c (R^{-1} \gamma_c)^4  \left[ \frac{1 - (R^{-1} \gamma_c)^{T-3} }{1 - R^{-1} \gamma_c } \right] 
+$$ 
+
+The present value $c_0$  is the "human wealth" at the beginning of time $0$ of someone who chooses to attend college for four years and then start to work at time $t=4$ at the wage of a college graduate.
 
 
 Assume that college tuition plus four years of room and board paid for up front costs $D$.
@@ -83,7 +103,8 @@ $$
 
 We suppose that $R, \gamma_h, \gamma_c, T$ and also $w_0^h$  are fixed parameters. 
 
-We start by noting that the pure equalizing difference model asserts that the college-high-school wage gap $\phi$ solves
+We start by noting that the pure equalizing difference model asserts that the college-high-school wage gap $\phi$ solves 
+"equalizing" equation that sets the present value not going to college equal to the present value of going go college:
 
 
 $$
@@ -93,14 +114,14 @@ $$
 or
 
 $$ 
-w_0^h A_h  = \phi w_0^h A_c - D
-$$
+w_0^h A_h  = \phi w_0^h A_c - D .
+$$ (eq:equalize)
 
-or
+Solving equation {eq}`eq:equalize` for the college wage premium $\phi$ we obtain
 
 $$
-\phi  = \frac{A_h}{A_c} + \frac{D}{w_0^h A_c}
-$$ 
+\phi  = \frac{A_h}{A_c} + \frac{D}{w_0^h A_c} .
+$$ (eq:wagepremium)
 
 In a **free college** special case $D =0$ so that the only cost of going to college is the forgone earnings from not working as a high school worker.  
 
@@ -110,8 +131,13 @@ $$
 \phi  = \frac{A_h}{A_c} . 
 $$
 
+Soon we'll write Python code to compute the gap and plot it as a function of its determinants.
 
-## Tweaked model: workers and entrepreneurs
+But first we'll describe a possible alternative interpretation of our model.
+
+
+
+## A tweaked model: workers and entrepreneurs
 
 
 We can add a parameter and reinterpret variables to get a model of entrepreneurs versus workers.
@@ -126,12 +152,18 @@ $$
 
 where $\pi \in (0,1) $ is  the probability that an entrepreneur's "project" succeeds.
 
-We set $D =0$.
+For our model of workers and firms, we'll interpret $D$ as the cost of becoming an entrepreneur.  
+
+This cost might include costs of hiring workers, office space, and lawyers. 
+
+
 
 What we used to call the college, high school wage gap $\phi$ now becomes the ratio
 of a successful entrepreneur's earnings to a worker's earnings.  
 
 We'll find that as $\pi$ decreases, $\phi$ increases.  
+
+Now let's write some Python code to compute $\phi$ and plot it as a function of some of its determinants.
 
 We can have some fun providing some example calculations that tweak various parameters,
 prominently including $\gamma_h, \gamma_c, R$.
@@ -152,7 +184,7 @@ class equalizing_diff:
         T, π = self.T, self.π
         
         A_h = (1 - (γ_h/R)**(T+1)) / (1 - γ_h/R)
-        A_c = (1 - (γ_c/R)**(T-3)) / (1 - γ_c/R) * (γ_c/R)**3
+        A_c = (1 - (γ_c/R)**(T-3)) / (1 - γ_c/R) * (γ_c/R)**4
         
         # tweaked model
         if π!=None:
@@ -167,6 +199,8 @@ class equalizing_diff:
 We can build some functions to help do comparative statics using vectorization instead of loops.
 
 For a given instance of the class, we want to compute $\phi$ when one parameter changes and others remain unchanged.
+
+Let's do an example.
 
 ```{code-cell} ipython3
 # ϕ_R
@@ -202,9 +236,9 @@ def ϕ_π(mc, π_new):
 # set benchmark parameters
 R = 1.05
 T = 40
-γ_h, γ_c = 1.01, 1.02
+γ_h, γ_c = 1.01, 1.01
 w_h0 = 1
-D = 2
+D = 10
 
 # create an instance
 ex1 = equalizing_diff(R=R, T=T, γ_h=γ_h, γ_c=γ_c, w_h0=w_h0, D=D)
@@ -213,9 +247,27 @@ gap1 = ex1.compute_gap()
 print(gap1)
 ```
 
+Let's not charge for college and recompute $\phi$.
+
+The initial college wage premium should go down.
 
 
-Let us plot $\phi$ against some parameters.
+ 
+
+```{code-cell} ipython3
+# free college
+ex2 = equalizing_diff(R, T, γ_h, γ_c, w_h0, D=0)
+gap2 = ex2.compute_gap()
+print(gap2)
+```
+
+
+
+Let us construct some graphs that show us how the initial college-high-school wage ratio $\phi$ would change if one of its determinants were to change. 
+
+Let's start with the gross interest rate $R$.  
+
+
 
 ```{code-cell} ipython3
 R_arr = np.linspace(1, 1.2, 50)
@@ -225,6 +277,11 @@ plt.ylabel(r'wage gap')
 plt.show()
 ```
 
+Evidently, the initial wage ratio $\phi$ must rise to compensate a prospective high school student for **waiting** to start receiving income -- remember that while she is earning nothing in years $t=0, 1, 2, 3$, the high school worker is earning a salary.
+
+Not let's study what happens to the initial wage ratio $\phi$ if the rate of growth of college wages rises, holding constant other 
+determinants of $\phi$.
+
 ```{code-cell} ipython3
 γc_arr = np.linspace(1, 1.2, 50)
 plt.plot(γc_arr, φ_γc(ex1, γc_arr))
@@ -232,6 +289,13 @@ plt.xlabel(r'$\gamma_c$')
 plt.ylabel(r'wage gap')
 plt.show()
 ```
+Notice how  the intitial wage gap falls when the rate of growth $\gamma_c$ of college wages rises.  
+
+It falls to "equalize" the present values of the two types of career, one as a high school worker, the other as a college worker.
+
+Can you guess what happens to the initial wage ratio $\phi$ when next we vary the rate of growth of high school wages, holding all other determinants of $\phi$ constant?  
+
+The following graph shows what happens.
 
 ```{code-cell} ipython3
 γh_arr = np.linspace(1, 1.1, 50)
@@ -241,21 +305,23 @@ plt.ylabel(r'wage gap')
 plt.show()
 ```
 
-```{code-cell} ipython3
-# free college
-ex2 = equalizing_diff(R, T, γ_h, γ_c, w_h0, D=0)
-gap2 = ex2.compute_gap()
 
-print(gap2)
-```
+**Entrepreneur-worker interpretation**
+
+Now let's adopt the entrepreneur-worker interpretation of our model.
+
+If the probability that a new business succeeds is $.2$, let's compute the initial wage premium for successful entrepreneurs.  
 
 ```{code-cell} ipython3
 # a model of enterpreneur
-ex3 = equalizing_diff(R, T, γ_h, γ_c, w_h0, π=0.8)
+ex3 = equalizing_diff(R, T, γ_h, γ_c, w_h0, π=0.2)
 gap3 = ex3.compute_gap()
 
 print(gap3)
 ```
+
+Now let's study how the initial wage premium for successful entrepreneurs depend on the success probability.
+
 
 ```{code-cell} ipython3
 π_arr = np.linspace(0.2, 1, 50)
@@ -264,6 +330,8 @@ plt.ylabel(r'wage gap')
 plt.xlabel(r'$\pi$')
 plt.show()
 ```
+
+Does the graph make sense to you?
 
 ```{code-cell} ipython3
 

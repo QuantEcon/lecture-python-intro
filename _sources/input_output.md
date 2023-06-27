@@ -30,28 +30,21 @@ import numpy as np
 import pandas as pd
 import networkx as nx
 import matplotlib.pyplot as plt
+import quantecon_book_networks
+import quantecon_book_networks.input_output as qbn_io
+import quantecon_book_networks.plotting as qbn_plt
+import quantecon_book_networks.data as qbn_data
+import matplotlib as mpl
 from matplotlib.patches import Polygon
+
+quantecon_book_networks.config("matplotlib")
+mpl.rcParams.update(mpl.rcParamsDefault)
 ```
 
 The following figure illustrates a network of linkages among 15 sectors
 obtained from the US Bureau of Economic Analysis’s 2021 Input-Output Accounts
 Data.
 
-```{code-cell} ipython3
-:tags: [hide-cell]
-
-import quantecon_book_networks
-import quantecon_book_networks.input_output as qbn_io
-import quantecon_book_networks.plotting as qbn_plt
-import quantecon_book_networks.data as qbn_data
-
-ch2_data = qbn_data.production()
-
-quantecon_book_networks.config("matplotlib")
-import matplotlib as mpl
-mpl.rcParams.update(mpl.rcParamsDefault)
-from matplotlib.patches import Polygon
-```
 
 ```{code-cell} ipython3
 :tags: [hide-cell]
@@ -73,6 +66,7 @@ def build_coefficient_matrices(Z, X):
 
     return A, F
 
+ch2_data = qbn_data.production()
 codes = ch2_data["us_sectors_15"]["codes"]
 Z = ch2_data["us_sectors_15"]["adjacency_matrix"]
 X = ch2_data["us_sectors_15"]["total_industry_sales"]
@@ -246,7 +240,7 @@ a_0^\top x & \leq x_0
 \end{aligned}
 $$ (eq:inout_1)
 
-where $A$ is the $n \times n$ matrix with typical element $a_{ij}$ and $a_0^\top = \begin{bmatrix} a_{01} & \cdots & a_{02} \end{bmatrix}$.
+where $A$ is the $n \times n$ matrix with typical element $a_{ij}$ and $a_0^\top = \begin{bmatrix} a_{01} & \cdots & a_{0n} \end{bmatrix}$.
 
 
 
@@ -305,13 +299,10 @@ Let's check the **Hawkins-Simon conditions**
 np.linalg.det(B) > 0 # checking Hawkins-Simon conditions
 ```
 
-Now, let's compute the **Leontieff inverse** matrix
+Now, let's compute the **Leontief inverse** matrix
 
 ```{code-cell} ipython3
-I = np.identity(2)
-B = I - A
-
-L = np.linalg.inv(B) # obtaining Leontieff inverse matrix
+L = np.linalg.inv(B) # obtaining Leontief inverse matrix
 L
 ```
 
@@ -651,7 +642,7 @@ where $z_0$ is a vector of labor services used in each industry.
 ```{solution-start} io_ex1
 :class: dropdown
 ```
-For each i = 0,1,2 and j = 1,2
+For each $i = 0,1,2$ and $j = 1,2$
 
 $$
 a_{ij} = \frac{z_{ij}}{x_j}
