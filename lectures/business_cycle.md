@@ -24,7 +24,7 @@ These include expansions (also called booms) and contractions (also called reces
 
 For our study, we will use economic indicators from the [World Bank](https://documents.worldbank.org/en/publication/documents-reports/api) and [FRED](https://fred.stlouisfed.org/).
 
-In addition to those installed by Anaconda, this lecture requires
+In addition to the packages already installed by Anaconda, this lecture requires
 
 ```{code-cell} ipython3
 :tags: [hide-output]
@@ -248,7 +248,7 @@ Now let's consider Japan, which experienced rapid growth in the 1960s and
 1970s, followed by slowed expansion in the past two decades.
 
 Major dips in the growth rate coincided with the Oil Crisis of the 1970s, the
-GFC and the Covid-19 pandemic.
+Global Financial Crisis (GFC) and the Covid-19 pandemic.
 
 ```{code-cell} ipython3
 ---
@@ -587,7 +587,7 @@ unempl_rate.columns = unempl_rate.columns.str.replace('YR', '').astype(int)
 fig, ax = plt.subplots()
 
 countries = ['United Kingdom', 'United States', 'Japan', 'France']
-ylabel = 'unemployment rate (national estimate) (%)'
+ylabel = 'Unemployment rate (national estimate) (%)'
 plot_comparison(unempl_rate, countries, 
                 ylabel, 0.05, None, ax, g_params, 
                 b_params, t_params, baseline=None)
@@ -690,7 +690,7 @@ drops before a recession.
 
 When the price of consumer commodities rises, consumer confidence diminishes.
 
-This trend is more significant in the [stagflation](https://en.wikipedia.org/wiki/Stagflation).
+This trend is more significant in the times during [stagflation](https://en.wikipedia.org/wiki/Stagflation).
 
 
 
