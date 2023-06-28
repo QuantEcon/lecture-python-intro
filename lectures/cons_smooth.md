@@ -98,119 +98,6 @@ def creat_cs_model(R=1.05, g1=1, g2=1/2, T=65):
 
 +++ {"user_expressions": []}
 
-## Difference equations with linear algebra
-
-As a warmup, we'll describe a useful way of representing and "solving" linear difference equations. 
-
-To generate some $y$ vectors, we'll just write down a linear difference equation
-with appropriate initial conditions and then   use linear algebra to solve it.
-
-### First-order difference equation
-
-We'll start with a first-order linear difference equation for $\{y_t\}_{t=0}^T$:
-
-$$
-y_{t} = \lambda y_{t-1}, \quad t = 1, 2, \ldots, T
-$$
-
-where  $y_0$ is a given  initial condition.
-
-
-We can cast this set of $T$ equations as a single  matrix equation
-
-$$
-\begin{bmatrix} 
-1 & 0 & 0 & \cdots & 0 & 0 \cr
--\lambda & 1 & 0 & \cdots & 0 & 0 \cr
-0 & -\lambda & 1 & \cdots & 0 & 0 \cr
- \vdots & \vdots & \vdots & \cdots & \vdots & \vdots \cr
-0 & 0 & 0 & \cdots & -\lambda & 1 
-\end{bmatrix} 
-\begin{bmatrix}
-y_1 \cr y_2 \cr y_3 \cr \vdots \cr y_T 
-\end{bmatrix}
-= 
-\begin{bmatrix} 
-\lambda y_0 \cr 0 \cr 0 \cr \vdots \cr 0 
-\end{bmatrix}
-$$
-
-
-Multiplying both sides by inverse of the matrix on the left provides the solution
-
-```{math}
-:label: fst_ord_inverse
-
-\begin{bmatrix} 
-y_1 \cr y_2 \cr y_3 \cr \vdots \cr y_T 
-\end{bmatrix} 
-= 
-\begin{bmatrix} 
-1 & 0 & 0 & \cdots & 0 & 0 \cr
-\lambda & 1 & 0 & \cdots & 0 & 0 \cr
-\lambda^2 & \lambda & 1 & \cdots & 0 & 0 \cr
- \vdots & \vdots & \vdots & \cdots & \vdots & \vdots \cr
-\lambda^{T-1} & \lambda^{T-2} & \lambda^{T-3} & \cdots & \lambda & 1 
-\end{bmatrix}
-\begin{bmatrix} 
-\lambda y_0 \cr 0 \cr 0 \cr \vdots \cr 0 
-\end{bmatrix}
-```
-
-```{exercise}
-:label: consmooth_ex1
-
-In the {eq}`fst_ord_inverse`, we multiply the inverse of the matrix $A$. In this exercise, please confirm that 
-
-$$
-\begin{bmatrix} 
-1 & 0 & 0 & \cdots & 0 & 0 \cr
-\lambda & 1 & 0 & \cdots & 0 & 0 \cr
-\lambda^2 & \lambda & 1 & \cdots & 0 & 0 \cr
- \vdots & \vdots & \vdots & \cdots & \vdots & \vdots \cr
-\lambda^{T-1} & \lambda^{T-2} & \lambda^{T-3} & \cdots & \lambda & 1 
-\end{bmatrix}
-$$
-
-is the inverse of $A$ and check that $A A^{-1} = I$
-
-```
-
-### Second order difference equation
-
-The second-order linear difference equation for $\{y_t\}_{t=0}^T$ is
-
-$$
-y_{t} = \lambda_1 y_{t-1} + \lambda_2 y_{t-2}, \quad t = 1, 2, \ldots, T
-$$
-
-Similarly, we can cast this set of $T$ equations as a single matrix equation
-
-$$
-\begin{bmatrix} 
-1 & 0 & 0 & \cdots & 0 & 0 & 0 \cr
--\lambda_1 & 1 & 0 & \cdots & 0 & 0 & 0 \cr
--\lambda_2 & -\lambda_1 & 1 & \cdots & 0 & 0 & 0 \cr
- \vdots & \vdots & \vdots & \cdots & \vdots & \vdots \cr
-0 & 0 & 0 & \cdots & -\lambda_2 & -\lambda_1 & 1 
-\end{bmatrix} 
-\begin{bmatrix} 
-y_1 \cr y_2 \cr y_3 \cr \vdots \cr y_T 
-\end{bmatrix}
-= 
-\begin{bmatrix} 
-\lambda_1 y_0 + \lambda_2 y_{-1} \cr \lambda_2 y_0 \cr 0 \cr \vdots \cr 0 
-\end{bmatrix}
-$$
-
-Multiplying both sides by  inverse of the matrix on the left again provides the solution.
-
-```{exercise}
-:label: consmooth_ex2
-
-As an exercise, we ask you to represent and solve a **third order linear difference equation**.
-How many initial conditions must you specify?
-```
 
 ## Friedman-Hall consumption-smoothing model
 
@@ -557,4 +444,125 @@ plt.plot(ξ1_arr, welfare_grad)
 plt.ylabel('derivatives of welfare')
 plt.xlabel(r'$\phi$')
 plt.show()
+```
+
+
+## Difference equations with linear algebra
+
+In the preceding sections we have used linear algebra to solve a consumption smoothing model.  
+
+The same tools from linear algebra -- matrix multiplication and matrix inversion -- can be used  to study many other dynamic models too.
+
+We'll concluse this lecture by giving a couple of examples.
+
+In particular, we'll describe a useful way of representing and "solving" linear difference equations. 
+
+To generate some $y$ vectors, we'll just write down a linear difference equation
+with appropriate initial conditions and then   use linear algebra to solve it.
+
+### First-order difference equation
+
+We'll start with a first-order linear difference equation for $\{y_t\}_{t=0}^T$:
+
+$$
+y_{t} = \lambda y_{t-1}, \quad t = 1, 2, \ldots, T
+$$
+
+where  $y_0$ is a given  initial condition.
+
+
+We can cast this set of $T$ equations as a single  matrix equation
+
+$$
+\begin{bmatrix} 
+1 & 0 & 0 & \cdots & 0 & 0 \cr
+-\lambda & 1 & 0 & \cdots & 0 & 0 \cr
+0 & -\lambda & 1 & \cdots & 0 & 0 \cr
+ \vdots & \vdots & \vdots & \cdots & \vdots & \vdots \cr
+0 & 0 & 0 & \cdots & -\lambda & 1 
+\end{bmatrix} 
+\begin{bmatrix}
+y_1 \cr y_2 \cr y_3 \cr \vdots \cr y_T 
+\end{bmatrix}
+= 
+\begin{bmatrix} 
+\lambda y_0 \cr 0 \cr 0 \cr \vdots \cr 0 
+\end{bmatrix}
+$$
+
+
+Multiplying both sides by inverse of the matrix on the left provides the solution
+
+```{math}
+:label: fst_ord_inverse
+
+\begin{bmatrix} 
+y_1 \cr y_2 \cr y_3 \cr \vdots \cr y_T 
+\end{bmatrix} 
+= 
+\begin{bmatrix} 
+1 & 0 & 0 & \cdots & 0 & 0 \cr
+\lambda & 1 & 0 & \cdots & 0 & 0 \cr
+\lambda^2 & \lambda & 1 & \cdots & 0 & 0 \cr
+ \vdots & \vdots & \vdots & \cdots & \vdots & \vdots \cr
+\lambda^{T-1} & \lambda^{T-2} & \lambda^{T-3} & \cdots & \lambda & 1 
+\end{bmatrix}
+\begin{bmatrix} 
+\lambda y_0 \cr 0 \cr 0 \cr \vdots \cr 0 
+\end{bmatrix}
+```
+
+```{exercise}
+:label: consmooth_ex1
+
+In the {eq}`fst_ord_inverse`, we multiply the inverse of the matrix $A$. In this exercise, please confirm that 
+
+$$
+\begin{bmatrix} 
+1 & 0 & 0 & \cdots & 0 & 0 \cr
+\lambda & 1 & 0 & \cdots & 0 & 0 \cr
+\lambda^2 & \lambda & 1 & \cdots & 0 & 0 \cr
+ \vdots & \vdots & \vdots & \cdots & \vdots & \vdots \cr
+\lambda^{T-1} & \lambda^{T-2} & \lambda^{T-3} & \cdots & \lambda & 1 
+\end{bmatrix}
+$$
+
+is the inverse of $A$ and check that $A A^{-1} = I$
+
+```
+
+### Second order difference equation
+
+The second-order linear difference equation for $\{y_t\}_{t=0}^T$ is
+
+$$
+y_{t} = \lambda_1 y_{t-1} + \lambda_2 y_{t-2}, \quad t = 1, 2, \ldots, T
+$$
+
+Similarly, we can cast this set of $T$ equations as a single matrix equation
+
+$$
+\begin{bmatrix} 
+1 & 0 & 0 & \cdots & 0 & 0 & 0 \cr
+-\lambda_1 & 1 & 0 & \cdots & 0 & 0 & 0 \cr
+-\lambda_2 & -\lambda_1 & 1 & \cdots & 0 & 0 & 0 \cr
+ \vdots & \vdots & \vdots & \cdots & \vdots & \vdots \cr
+0 & 0 & 0 & \cdots & -\lambda_2 & -\lambda_1 & 1 
+\end{bmatrix} 
+\begin{bmatrix} 
+y_1 \cr y_2 \cr y_3 \cr \vdots \cr y_T 
+\end{bmatrix}
+= 
+\begin{bmatrix} 
+\lambda_1 y_0 + \lambda_2 y_{-1} \cr \lambda_2 y_0 \cr 0 \cr \vdots \cr 0 
+\end{bmatrix}
+$$
+
+Multiplying both sides by  inverse of the matrix on the left again provides the solution.
+
+```{exercise}
+:label: consmooth_ex2
+
+As an exercise, we ask you to represent and solve a **third order linear difference equation**.
+How many initial conditions must you specify?
 ```
