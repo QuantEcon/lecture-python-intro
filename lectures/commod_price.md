@@ -143,7 +143,7 @@ In this section we define the equilibrium and discuss how to compute it.
 Speculators are assumed to be risk neutral, which means that they buy the
 commodity whenever expected profits are positive.
 
-As a consequence, if expected prices are positive, then the market is not in
+As a consequence, if expected profits are positive, then the market is not in
 equilibrium.
 
 Hence, to be in equilibrium, prices must satisfy the "no-arbitrage"
