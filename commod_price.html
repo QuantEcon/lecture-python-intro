@@ -171,14 +171,16 @@ const thebe_selector_output = ".output, .cell_output"
                         <nav id="bd-toc-nav" class="qe-page__toc-nav">
                             <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#outline">24.1. Outline</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-model">24.2. The model</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#equilibrium">24.3. Equilibrium</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#equilibrium-conditions">24.3.1. Equilibrium conditions</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#an-equilibrium-function">24.3.2. An equilibrium function</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#computing-the-equilibrium">24.3.3. Computing the equilibrium</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data">24.2. Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-competitive-storage-model">24.3. The competitive storage model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-model">24.4. The model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#equilibrium">24.5. Equilibrium</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#equilibrium-conditions">24.5.1. Equilibrium conditions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#an-equilibrium-function">24.5.2. An equilibrium function</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#computing-the-equilibrium">24.5.3. Computing the equilibrium</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code">24.4. Code</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code">24.6. Code</a></li>
 </ul>
                             <p class="logo">
                                 
@@ -223,7 +225,22 @@ const thebe_selector_output = ".output, .cell_output"
                     
                     <div>
                         
-  <p>For this lecture we need the <code class="docutils literal notranslate"><span class="pre">yfinance</span></code> library.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="commodity-prices">
+<h1><span class="section-number">24. </span>Commodity Prices<a class="headerlink" href="#commodity-prices" title="Permalink to this heading">#</a></h1>
+<section id="outline">
+<h2><span class="section-number">24.1. </span>Outline<a class="headerlink" href="#outline" title="Permalink to this heading">#</a></h2>
+<p>For more than half of all countries around the globe, <a class="reference external" href="https://en.wikipedia.org/wiki/Commodity">commodities</a> account for <a class="reference external" href="https://unctad.org/publication/commodities-and-development-report-2019">the majority of total exports</a>.</p>
+<p>Examples of commodities include copper, diamonds, iron ore, lithium, cotton
+and coffee beans.</p>
+<p>In this lecture we give an introduction to the theory of commodity prices.</p>
+<p>The lecture is quite advanced relative to other lectures in this series.</p>
+<p>We need to compute an equilibrium, and that equilibrium is described by a
+price function.</p>
+<p>We will solve an equation where the price function is the unknown.</p>
+<p>This is harder than solving an equation for an unknown number, or vector.</p>
+<p>The lecture will discuss one way to solve a “functional equation” for an unknown
+function</p>
+<p>For this lecture we need the <code class="docutils literal notranslate"><span class="pre">yfinance</span></code> library.</p>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input above-output-prompt docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip install yfinance
@@ -241,42 +258,44 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Downloading yfinance-0.2.22-py2.py3-none-any.whl (63 kB)
 ?25l     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/63.2 kB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">63.2/63.2 kB</span> <span class=" -Color -Color-Red">6.2 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
-?25h
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">63.2/63.2 kB</span> <span class=" -Color -Color-Red">2.9 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hRequirement already satisfied: numpy&gt;=1.16.5 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from yfinance) (1.23.5)
+Requirement already satisfied: lxml&gt;=4.9.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from yfinance) (4.9.1)
+Requirement already satisfied: pytz&gt;=2022.5 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from yfinance) (2022.7)
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting html5lib&gt;=1.1
   Downloading html5lib-1.1-py2.py3-none-any.whl (112 kB)
 ?25l     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/112.2 kB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">112.2/112.2 kB</span> <span class=" -Color -Color-Red">18.8 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
-?25h
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">112.2/112.2 kB</span> <span class=" -Color -Color-Red">9.9 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hRequirement already satisfied: pandas&gt;=1.3.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from yfinance) (1.5.3)
+Collecting multitasking&gt;=0.0.7
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Downloading multitasking-0.0.11-py3-none-any.whl (8.5 kB)
+Requirement already satisfied: requests&gt;=2.26 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from yfinance) (2.28.1)
+Requirement already satisfied: appdirs&gt;=1.4.4 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from yfinance) (1.4.4)
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting frozendict&gt;=2.3.4
-  Downloading frozendict-2.3.8-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (115 kB)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Downloading frozendict-2.3.8-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (115 kB)
 ?25l     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/115.3 kB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">115.3/115.3 kB</span> <span class=" -Color -Color-Red">39.8 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
-?25hRequirement already satisfied: lxml&gt;=4.9.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from yfinance) (4.9.1)
-Requirement already satisfied: requests&gt;=2.26 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from yfinance) (2.28.1)
-Requirement already satisfied: appdirs&gt;=1.4.4 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from yfinance) (1.4.4)
-Requirement already satisfied: pytz&gt;=2022.5 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from yfinance) (2022.7)
-Requirement already satisfied: numpy&gt;=1.16.5 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from yfinance) (1.23.5)
-Requirement already satisfied: beautifulsoup4&gt;=4.11.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from yfinance) (4.11.1)
-Requirement already satisfied: pandas&gt;=1.3.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from yfinance) (1.5.3)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting multitasking&gt;=0.0.7
-  Downloading multitasking-0.0.11-py3-none-any.whl (8.5 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">115.3/115.3 kB</span> <span class=" -Color -Color-Red">23.5 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hRequirement already satisfied: beautifulsoup4&gt;=4.11.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from yfinance) (4.11.1)
 Requirement already satisfied: soupsieve&gt;1.2 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from beautifulsoup4&gt;=4.11.1-&gt;yfinance) (2.3.2.post1)
-Requirement already satisfied: webencodings in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from html5lib&gt;=1.1-&gt;yfinance) (0.5.1)
 Requirement already satisfied: six&gt;=1.9 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from html5lib&gt;=1.1-&gt;yfinance) (1.16.0)
-Requirement already satisfied: python-dateutil&gt;=2.8.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from pandas&gt;=1.3.0-&gt;yfinance) (2.8.2)
+Requirement already satisfied: webencodings in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from html5lib&gt;=1.1-&gt;yfinance) (0.5.1)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests&gt;=2.26-&gt;yfinance) (2022.12.7)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: python-dateutil&gt;=2.8.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from pandas&gt;=1.3.0-&gt;yfinance) (2.8.2)
+Requirement already satisfied: charset-normalizer&lt;3,&gt;=2 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests&gt;=2.26-&gt;yfinance) (2.0.4)
+Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests&gt;=2.26-&gt;yfinance) (2022.12.7)
 Requirement already satisfied: urllib3&lt;1.27,&gt;=1.21.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests&gt;=2.26-&gt;yfinance) (1.26.14)
 Requirement already satisfied: idna&lt;4,&gt;=2.5 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests&gt;=2.26-&gt;yfinance) (3.4)
-Requirement already satisfied: charset-normalizer&lt;3,&gt;=2 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests&gt;=2.26-&gt;yfinance) (2.0.4)
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Installing collected packages: multitasking, html5lib, frozendict, yfinance
@@ -288,12 +307,22 @@ Requirement already satisfied: charset-normalizer&lt;3,&gt;=2 in /usr/share/mini
 </div>
 </details>
 </div>
-<section class="tex2jax_ignore mathjax_ignore" id="commodity-prices">
-<h1><span class="section-number">24. </span>Commodity Prices<a class="headerlink" href="#commodity-prices" title="Permalink to this heading">#</a></h1>
-<p>For more than half of all countries around the globe, <a class="reference external" href="https://en.wikipedia.org/wiki/Commodity">commodities</a> account for <a class="reference external" href="https://unctad.org/publication/commodities-and-development-report-2019">the majority of total exports</a>.</p>
-<p>Examples of commodities include copper, diamonds, iron ore, lithium, cotton
-and coffee beans.</p>
-<p>In this lecture we give an introduction to the theory of commodity prices.</p>
+<p>We will use the following imports</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">yfinance</span> <span class="k">as</span> <span class="nn">yf</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">scipy.interpolate</span> <span class="kn">import</span> <span class="n">interp1d</span>
+<span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">minimize_scalar</span><span class="p">,</span> <span class="n">brentq</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">beta</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="data">
+<h2><span class="section-number">24.2. </span>Data<a class="headerlink" href="#data" title="Permalink to this heading">#</a></h2>
 <p>The figure below shows the price of cotton in USD since the start of 2016.</p>
 <div class="cell tag_hide-input tag_hide-output docutils container">
 <details class="hide above-input">
@@ -302,9 +331,7 @@ and coffee beans.</p>
 <span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input above-output-prompt docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">yfinance</span> <span class="k">as</span> <span class="nn">yf</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="n">s</span> <span class="o">=</span> <span class="n">yf</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;CT=F&#39;</span><span class="p">,</span> <span class="s1">&#39;2016-1-1&#39;</span><span class="p">,</span> <span class="s1">&#39;2023-4-1&#39;</span><span class="p">)[</span><span class="s1">&#39;Adj Close&#39;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="n">yf</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;CT=F&#39;</span><span class="p">,</span> <span class="s1">&#39;2016-1-1&#39;</span><span class="p">,</span> <span class="s1">&#39;2023-4-1&#39;</span><span class="p">)[</span><span class="s1">&#39;Adj Close&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -347,17 +374,24 @@ and coffee beans.</p>
 </div>
 </div>
 <p>The figure shows surprisingly large movements in the price of cotton.</p>
-<p>In general, prices depend on the choices and actions of suppliers, consumers and
-speculators.</p>
-<p>Our focus will be on the interaction between these parties, viewed through the
-lens of the standard competitive storage model</p>
+<p>What causes these movements?</p>
+<p>In general, prices depend on the choices and actions of</p>
+<ol class="arabic simple">
+<li><p>suppliers,</p></li>
+<li><p>consumers, and</p></li>
+<li><p>speculators.</p></li>
+</ol>
+<p>Our focus will be on the interaction between these parties.</p>
+<p>We will connect them together in a dynamic model of supply and demand, called
+the <em>competitive storage model</em>.</p>
 <p>This model was developed by
 <span id="id1">[<a class="reference internal" href="zreferences.html#id14" title="Paul A Samuelson. Stochastic speculative price. Proceedings of the National Academy of Sciences, 68(2):335–337, 1971.">Sam71</a>]</span>,
 <span id="id2">[<a class="reference internal" href="zreferences.html#id13" title="Brian D Wright and Jeffrey C Williams. The economic role of commodity storage. The Economic Journal, 92(367):596–614, 1982.">WW82</a>]</span>, <span id="id3">[<a class="reference internal" href="zreferences.html#id12" title="Jose A Scheinkman and Jack Schechtman. A simple competitive model with production and storage. The Review of Economic Studies, 50(3):427–441, 1983.">SS83</a>]</span>,
 <span id="id4">[<a class="reference internal" href="zreferences.html#id11" title="Angus Deaton and Guy Laroque. On the behavior of commodity prices. The Review of Economic Studies, 59:1–23, 1992.">DL92</a>]</span>, <span id="id5">[<a class="reference internal" href="zreferences.html#id10" title="Angus Deaton and Guy Laroque. Competitive storage and commodity price dynamics. Journal of Political Economy, 104(5):896–923, 1996.">DL96</a>]</span>, and
 <span id="id6">[<a class="reference internal" href="zreferences.html#id9" title="Marcus J Chambers and Roy E Bailey. A theory of commodity price fluctuations. Journal of Political Economy, 104(5):924–957, 1996.">CB96</a>]</span>.</p>
-<section id="outline">
-<h2><span class="section-number">24.1. </span>Outline<a class="headerlink" href="#outline" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="the-competitive-storage-model">
+<h2><span class="section-number">24.3. </span>The competitive storage model<a class="headerlink" href="#the-competitive-storage-model" title="Permalink to this heading">#</a></h2>
 <p>In the competitive storage model, commodities are assets that</p>
 <ol class="arabic simple">
 <li><p>can be traded by speculators and</p></li>
@@ -376,27 +410,14 @@ appropriate.</p>
 <p>The equilibrium price is determined competitively.</p>
 <p>It is a function of the current state (which determines
 current harvests and predicts future harvests).</p>
-<p>We begin with the following imports</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">from</span> <span class="nn">scipy.interpolate</span> <span class="kn">import</span> <span class="n">interp1d</span>
-<span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">minimize_scalar</span><span class="p">,</span> <span class="n">brentq</span>
-<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">beta</span>
-</pre></div>
-</div>
-</div>
-</div>
 </section>
 <section id="the-model">
-<h2><span class="section-number">24.2. </span>The model<a class="headerlink" href="#the-model" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">24.4. </span>The model<a class="headerlink" href="#the-model" title="Permalink to this heading">#</a></h2>
 <p>Consider a market for a single commodity, whose price is given at <span class="math notranslate nohighlight">\(t\)</span> by
 <span class="math notranslate nohighlight">\(p_t\)</span>.</p>
 <p>The harvest of the commodity at time <span class="math notranslate nohighlight">\(t\)</span> is <span class="math notranslate nohighlight">\(Z_t\)</span>.</p>
 <p>We assume that the sequence <span class="math notranslate nohighlight">\(\{ Z_t \}_{t \geq 1}\)</span> is IID with common
 density function <span class="math notranslate nohighlight">\(\phi\)</span>.</p>
-<p>The harvests take values in <span class="math notranslate nohighlight">\(S\)</span>, a subset of the nonnegative numbers.</p>
 <p>Speculators can store the commodity between periods, with <span class="math notranslate nohighlight">\(I_t\)</span> units
 purchased in the current period yielding <span class="math notranslate nohighlight">\(\alpha I_t\)</span> units in the next.</p>
 <p>Here <span class="math notranslate nohighlight">\(\alpha \in (0,1)\)</span> is a depreciation rate for the commodity.</p>
@@ -411,10 +432,10 @@ zero, so expected profit on purchasing <span class="math notranslate nohighlight
 <span class="math notranslate nohighlight">\(t\)</span>.</p>
 </section>
 <section id="equilibrium">
-<h2><span class="section-number">24.3. </span>Equilibrium<a class="headerlink" href="#equilibrium" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">24.5. </span>Equilibrium<a class="headerlink" href="#equilibrium" title="Permalink to this heading">#</a></h2>
 <p>In this section we define the equilibrium and discuss how to compute it.</p>
 <section id="equilibrium-conditions">
-<h3><span class="section-number">24.3.1. </span>Equilibrium conditions<a class="headerlink" href="#equilibrium-conditions" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">24.5.1. </span>Equilibrium conditions<a class="headerlink" href="#equilibrium-conditions" title="Permalink to this heading">#</a></h3>
 <p>Speculators are assumed to be risk neutral, which means that they buy the
 commodity whenever expected profits are positive.</p>
 <p>As a consequence, if expected profits are positive, then the market is not in
@@ -441,7 +462,7 @@ price <span class="math notranslate nohighlight">\(p\)</span>.</p>
 </ul>
 <p>Mathematically,</p>
 <ul class="simple">
-<li><p>supply <span class="math notranslate nohighlight">\( = X_t = \alpha I_{t-1} + Z_t\)</span></p></li>
+<li><p>supply <span class="math notranslate nohighlight">\( = X_t = \alpha I_{t-1} + Z_t\)</span>, which takes values in <span class="math notranslate nohighlight">\(S := \mathbb R_+\)</span>, while</p></li>
 <li><p>demand <span class="math notranslate nohighlight">\( = D(p_t) + I_t\)</span></p></li>
 </ul>
 <p>Thus, the market equilibrium condition is</p>
@@ -452,8 +473,8 @@ price <span class="math notranslate nohighlight">\(p\)</span>.</p>
 <p>The initial condition <span class="math notranslate nohighlight">\(X_0 \in S\)</span> is treated as given.</p>
 </section>
 <section id="an-equilibrium-function">
-<h3><span class="section-number">24.3.2. </span>An equilibrium function<a class="headerlink" href="#an-equilibrium-function" title="Permalink to this heading">#</a></h3>
-<p>Now to find an equilibrium?</p>
+<h3><span class="section-number">24.5.2. </span>An equilibrium function<a class="headerlink" href="#an-equilibrium-function" title="Permalink to this heading">#</a></h3>
+<p>How can we find an equilibrium?</p>
 <p>Our path of attack will be to seek a system of prices that depend only on the
 current state.</p>
 <p>In other words, we take a function <span class="math notranslate nohighlight">\(p\)</span> on <span class="math notranslate nohighlight">\(S\)</span> and set <span class="math notranslate nohighlight">\(p_t = p(X_t)\)</span> for every <span class="math notranslate nohighlight">\(t\)</span>.</p>
@@ -509,7 +530,7 @@ and <a class="reference internal" href="#equation-eq-pmco">(24.2)</a> hold for t
 <p>We have found an equilibrium.</p>
 </section>
 <section id="computing-the-equilibrium">
-<h3><span class="section-number">24.3.3. </span>Computing the equilibrium<a class="headerlink" href="#computing-the-equilibrium" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">24.5.3. </span>Computing the equilibrium<a class="headerlink" href="#computing-the-equilibrium" title="Permalink to this heading">#</a></h3>
 <p>We now know that an equilibrium can be obtained by finding a function <span class="math notranslate nohighlight">\(p^*\)</span>
 that satisfies <a class="reference internal" href="#equation-eq-dopf">(24.5)</a>.</p>
 <p>It can be shown that, under mild conditions there is exactly one function on
@@ -548,7 +569,7 @@ the values <span class="math notranslate nohighlight">\(q_1, \ldots, q_n\)</span
 </section>
 </section>
 <section id="code">
-<h2><span class="section-number">24.4. </span>Code<a class="headerlink" href="#code" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">24.6. </span>Code<a class="headerlink" href="#code" title="Permalink to this heading">#</a></h2>
 <p>The code below implements this iterative process, starting from <span class="math notranslate nohighlight">\(p_0 = P\)</span>.</p>
 <p>The distribution <span class="math notranslate nohighlight">\(\phi\)</span> is set to a shifted Beta distribution (although many
 other choices are possible).</p>
@@ -606,7 +627,7 @@ other choices are possible).</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/6fc15447328906f21be3bf6ac209b85dd161cf876fd29e51ad643072d003a426.png"><img alt="_images/6fc15447328906f21be3bf6ac209b85dd161cf876fd29e51ad643072d003a426.png" src="_images/6fc15447328906f21be3bf6ac209b85dd161cf876fd29e51ad643072d003a426.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/c22632a5d8709cb3b4e475f9119887f77bf7fb0a9c2f83d31d50e8f4fd21d473.png"><img alt="_images/c22632a5d8709cb3b4e475f9119887f77bf7fb0a9c2f83d31d50e8f4fd21d473.png" src="_images/c22632a5d8709cb3b4e475f9119887f77bf7fb0a9c2f83d31d50e8f4fd21d473.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>The figure above shows the inverse demand curve <span class="math notranslate nohighlight">\(P\)</span>, which is also <span class="math notranslate nohighlight">\(p_0\)</span>, as
@@ -641,7 +662,7 @@ prices.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/34d51033d28b50a8a03e693eab5baa9a364e1f592b3db9bbcfc851d1ff88f3b1.png"><img alt="_images/34d51033d28b50a8a03e693eab5baa9a364e1f592b3db9bbcfc851d1ff88f3b1.png" src="_images/34d51033d28b50a8a03e693eab5baa9a364e1f592b3db9bbcfc851d1ff88f3b1.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/13ad1e89aa897d662e74810dffeff83494aef7aca3fbfd69dfa11bd8dfae7985.png"><img alt="_images/13ad1e89aa897d662e74810dffeff83494aef7aca3fbfd69dfa11bd8dfae7985.png" src="_images/13ad1e89aa897d662e74810dffeff83494aef7aca3fbfd69dfa11bd8dfae7985.png" style="width: 80%;" /></a>
 </div>
 </div>
 </section>
