@@ -9,6 +9,32 @@ kernelspec:
   name: python3
 ---
 
+
+
+
+# Commodity Prices
+
+## Outline
+
+For more than half of all countries around the globe, [commodities](https://en.wikipedia.org/wiki/Commodity) account for [the majority of total exports](https://unctad.org/publication/commodities-and-development-report-2019).
+
+Examples of commodities include copper, diamonds, iron ore, lithium, cotton
+and coffee beans.
+
+In this lecture we give an introduction to the theory of commodity prices.
+
+The lecture is quite advanced relative to other lectures in this series.
+
+We need to compute an equilibrium, and that equilibrium is described by a
+price function.
+
+We will solve an equation where the price function is the unknown.
+
+This is harder than solving an equation for an unknown number, or vector.
+
+The lecture will discuss one way to solve a "functional equation" for an unknown
+function 
+
 For this lecture we need the `yfinance` library.
 
 ```{code-cell} ipython3
@@ -16,24 +42,25 @@ For this lecture we need the `yfinance` library.
 !pip install yfinance
 ```
 
-
-# Commodity Prices
-
-For more than half of all countries around the globe, [commodities](https://en.wikipedia.org/wiki/Commodity) account for [the majority of total exports](https://unctad.org/publication/commodities-and-development-report-2019).
+We will use the following imports
 
 
-Examples of commodities include copper, diamonds, iron ore, lithium, cotton
-and coffee beans.
+```{code-cell} ipython3
+import numpy as np
+import yfinance as yf
+import matplotlib.pyplot as plt
+from scipy.interpolate import interp1d
+from scipy.optimize import minimize_scalar, brentq
+from scipy.stats import beta
+```
 
-In this lecture we give an introduction to the theory of commodity prices.
+## Data
 
 The figure below shows the price of cotton in USD since the start of 2016.
 
 ```{code-cell} ipython3
 :tags: [hide-input, hide-output]
 
-import yfinance as yf
-import matplotlib.pyplot as plt
 s = yf.download('CT=F', '2016-1-1', '2023-4-1')['Adj Close']
 ```
 
@@ -51,11 +78,18 @@ plt.show()
 
 The figure shows surprisingly large movements in the price of cotton.
 
-In general, prices depend on the choices and actions of suppliers, consumers and
-speculators.
+What causes these movements?
 
-Our focus will be on the interaction between these parties, viewed through the
-lens of the standard competitive storage model
+In general, prices depend on the choices and actions of 
+
+1. suppliers, 
+2. consumers, and
+3. speculators.
+
+Our focus will be on the interaction between these parties. 
+
+We will connect them together in a dynamic model of supply and demand, called
+the *competitive storage model*.
 
 This model was developed by
 {cite}`samuelson1971stochastic`,
@@ -65,8 +99,8 @@ This model was developed by
 
 
 
-## Outline
 
+## The competitive storage model
 
 In the competitive storage model, commodities are assets that
 
@@ -91,16 +125,6 @@ The equilibrium price is determined competitively.
 It is a function of the current state (which determines
 current harvests and predicts future harvests).
 
-We begin with the following imports
-
-
-```{code-cell} ipython3
-import numpy as np
-import matplotlib.pyplot as plt
-from scipy.interpolate import interp1d
-from scipy.optimize import minimize_scalar, brentq
-from scipy.stats import beta
-```
 
 
 ## The model
@@ -112,8 +136,6 @@ The harvest of the commodity at time $t$ is $Z_t$.
 
 We assume that the sequence $\{ Z_t \}_{t \geq 1}$ is IID with common
 density function $\phi$.
-
-The harvests take values in $S$, a subset of the nonnegative numbers.
 
 Speculators can store the commodity between periods, with $I_t$ units
 purchased in the current period yielding $\alpha I_t$ units in the next.
@@ -176,7 +198,7 @@ Regarding quantities,
 
 Mathematically,
 
-* supply $ = X_t = \alpha I_{t-1} + Z_t$
+* supply $ = X_t = \alpha I_{t-1} + Z_t$, which takes values in $S := \mathbb R_+$, while
 * demand $ = D(p_t) + I_t$
 
 Thus, the market equilibrium condition is
@@ -193,7 +215,7 @@ The initial condition $X_0 \in S$ is treated as given.
 
 ### An equilibrium function
 
-Now to find an equilibrium?
+How can we find an equilibrium?
 
 Our path of attack will be to seek a system of prices that depend only on the
 current state.
