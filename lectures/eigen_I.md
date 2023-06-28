@@ -4,12 +4,14 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.14.4
+    jupytext_version: 1.14.5
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
   name: python3
 ---
+
++++ {"user_expressions": []}
 
 (eigen)=
 # Eigenvalues and Eigenvectors 
@@ -23,8 +25,7 @@ kernelspec:
 
 ## Overview
 
-Eigenvalues and eigenvectors are a somewhat advanced topic in linear and
-matrix algebra.
+Eigenvalues and eigenvectors are a relatively advanced topic in linear algebra.
 
 At the same time, these concepts are extremely useful for 
 
@@ -34,17 +35,10 @@ At the same time, these concepts are extremely useful for
 * machine learning
 * and many other fields of science.
 
-In this lecture we explain the basics of eigenvalues and eigenvectors, and
-state two very important results from linear algebra.
+In this lecture we explain the basics of eigenvalues and eigenvectors.
 
-The first is called the Neumann series theorem and the second is called the
-Perron-Frobenius theorem.
-
-We will explain what these theorems tell us and how we can use them to
-understand the predictions of economic models.
-
-We assume in this lecture that students are familiar with matrices and
-understand the basics of matrix algebra.
+We assume in this lecture that students are familiar with matrices
+ and understand {doc}`the basics of matrix algebra<linear_equations>`.
 
 We will use the following imports:
 
@@ -59,17 +53,18 @@ from matplotlib.patches import FancyArrowPatch
 from mpl_toolkits.mplot3d import proj3d
 ```
 
+
 (matrices_as_transformation)=
-## Matrices as Transformations
+## Matrices as transformations
 
 Let's start by discussing an important concept concerning matrices.
 
-### Mapping Vectors into Vectors
+### Mapping vectors into vectors
 
-One way to think about a given matrix is as a rectangular collection of
+One way to think about a matrix is as a rectangular collection of
 numbers.
 
-Another way to think about a matrix is as a **map** (i.e., as a function) that
+Another way to think about a matrix is as a *map* (i.e., as a function) that
 transforms vectors into new vectors.
 
 To understand the second point of view, suppose we multiply an $n \times m$
@@ -85,19 +80,19 @@ a map transforming $x$ into $Ax$.
 
 Because $A$ is $n \times m$, it transforms $m$-vectors into $n$-vectors.
 
-We can write this formally as $A \colon \mathbb{R}^m \rightarrow \mathbb{R}^n$ 
+We can write this formally as $A \colon \mathbb{R}^m \rightarrow \mathbb{R}^n$.
 
-(You might argue that if $A$ is a function then we should write 
-$A(x) = y$ rather than $Ax = y$ but the second notation is more conventional.)
+You might argue that if $A$ is a function then we should write 
+$A(x) = y$ rather than $Ax = y$ but the second notation is more conventional.
 
-### Square Matrices
+### Square matrices
 
 Let's restrict our discussion to square matrices.
 
 In the above discussion, this means that $m=n$ and $A$ maps $\mathbb R^n$ into
 itself.
 
-To repeat, $A$ is an $n \times n$ matrix that maps (or "transforms") a vector
+This means $A$ is an $n \times n$ matrix that maps (or "transforms") a vector
 $x$ in $\mathbb{R}^n$ into a new vector $y=Ax$ also in $\mathbb{R}^n$.
 
 Here's one example:
@@ -132,15 +127,11 @@ $y = \begin{bmatrix} 5 \\ 2 \end{bmatrix}$.
 Let's visualize this using Python:
 
 ```{code-cell} ipython3
-:tags: []
-
 A = np.array([[2,  1], 
               [-1, 1]])
 ```
 
 ```{code-cell} ipython3
-:tags: []
-
 from math import sqrt
 
 fig, ax = plt.subplots()
@@ -179,14 +170,16 @@ ax.text(0.8,0.8, f'θ',fontsize =14)
 plt.show()
 ```
 
++++ {"user_expressions": []}
+
 One way to understand this transformation is that $A$ 
 
-* first rotates $x$ by some angle $\theta$ 
-* and then scales it by some scalar $\gamma$ to obtain the image $y$ of $x$.
+* first rotates $x$ by some angle $\theta$ and
+* then scales it by some scalar $\gamma$ to obtain the image $y$ of $x$.
 
 
 
-## Types of Transformations
+## Types of transformations
 
 Let's examine some standard transformations we can perform with matrices.
 
@@ -196,7 +189,7 @@ instead of arrows.
 We consider how a given matrix transforms 
 
 * a grid of points and 
-* a set of points located on the unit circle in $\mathbb{R}^2$
+* a set of points located on the unit circle in $\mathbb{R}^2$.
 
 To build the transformations we will use two functions, called `grid_transform` and `circle_transform`.
 
@@ -288,6 +281,8 @@ def circle_transform(A = np.array([[-1, 2], [0, 1]])):
     plt.show()
 ```
 
++++ {"user_expressions": []}
+
 ### Scaling
 
 A matrix of the form 
@@ -305,13 +300,13 @@ a factor $\beta$.
 Here we illustrate a simple example where $\alpha = \beta = 3$.
 
 ```{code-cell} ipython3
-:tags: []
-
 A = np.array([[3 ,0],    #scaling by 3 in both directions
               [0, 3]])
 grid_transform(A)
 circle_transform(A)
 ```
+
++++ {"user_expressions": []}
 
 ### Shearing
 
@@ -334,6 +329,8 @@ grid_transform(A)
 circle_transform(A)
 ```
 
++++ {"user_expressions": []}
+
 ### Rotation
 
 A matrix of the form 
@@ -355,6 +352,8 @@ A = np.array([[np.cos(θ), np.sin(θ)],
 grid_transform(A)
 ```
 
++++ {"user_expressions": []}
+
 ### Permutation
 
 The permutation matrix 
@@ -372,15 +371,17 @@ A = np.column_stack([[0, 1], [1, 0]])
 grid_transform(A)
 ```
 
++++ {"user_expressions": []}
+
 More examples of common transition matrices can be found [here](https://en.wikipedia.org/wiki/Transformation_matrix#Examples_in_2_dimensions).
 
-## Matrix Multiplication as Composition
+## Matrix multiplication as composition
 
 Since matrices act as functions that transform one vector to another, we can
 apply the concept of function composition to matrices as well. 
 
 
-### Linear Compositions
+### Linear compositions
 
 Consider the two matrices 
 
@@ -488,10 +489,8 @@ same as first applying $B$ on $x$ and then applying $A$ on the vector $Bx$.
 
 Thus the matrix product $AB$ is the
 [composition](https://en.wikipedia.org/wiki/Function_composition) of the
-matrix transformations $A$ and $B$.
-
-(To compose the transformations, first apply transformation $B$ and then
-transformation $A$.)
+matrix transformations $A$ and $B$, which repersents first apply transformation $B$ and then
+transformation $A$.
 
 When we matrix multiply an $n \times m$ matrix $A$ with an $m \times k$ matrix
 $B$ the obtained matrix product is an $n \times k$ matrix $AB$.
@@ -562,23 +561,29 @@ B = np.array([[1, 2],     # shear along x-axis
               [0, 1]])
 ```
 
-#### Shear then Rotate
++++ {"user_expressions": []}
+
+#### Shear then rotate
 
 ```{code-cell} ipython3
 grid_composition_transform(A,B)        #transformation AB
 ```
 
-#### Rotate then Shear
++++ {"user_expressions": []}
+
+#### Rotate then shear
 
 ```{code-cell} ipython3
 grid_composition_transform(B,A)         #transformation BA
 ```
 
-It is quite evident that the transformation $AB$ is not the same as the transformation $BA$.
++++ {"user_expressions": []}
 
-## Iterating on a Fixed Map
+It is evident that the transformation $AB$ is not the same as the transformation $BA$.
 
-In economics (and especially in dynamic modeling), we often are interested in
+## Iterating on a fixed map
+
+In economics (and especially in dynamic modeling), we are often interested in
 analyzing behavior where we repeatedly apply a fixed matrix.
 
 For example, given a vector $v$ and a matrix $A$, we are interested in
@@ -587,7 +592,7 @@ studying the sequence
 $$ 
     v, \quad
     Av, \quad
-    AAv = A^2v, \ldots
+    AAv = A^2v, \quad \ldots
 $$
 
 Let's first see examples of a sequence of iterates $(A^k v)_{k \geq 0}$ under
@@ -649,6 +654,8 @@ n = 12
 plot_series(B, v, n)
 ```
 
++++ {"user_expressions": []}
+
 Here with each iteration the vectors get shorter, i.e., move closer to the origin.
 
 In this case, repeatedly multiplying a vector by $A$ makes the vector "spiral in".
@@ -662,6 +669,8 @@ n = 12
 
 plot_series(B, v, n)
 ```
+
++++ {"user_expressions": []}
 
 Here with each iteration vectors do not tend to get longer or shorter. 
 
@@ -677,6 +686,8 @@ n = 6
 
 plot_series(B, v, n)
 ```
+
++++ {"user_expressions": []}
 
 Here with each iteration vectors tend to get longer, i.e., farther from the
 origin. 
@@ -699,13 +710,14 @@ In this section we introduce the notions of eigenvalues and eigenvectors.
 
 Let $A$ be an $n \times n$ square matrix.
 
-If $\lambda$ is scalar and $v$ is a non-zero $n$-vector  such that
+If $\lambda$ is scalar and $v$ is a non-zero $n$-vector such that
 
 $$
-A v = \lambda v
+A v = \lambda v.
 $$
 
-then we say that $\lambda$ is an *eigenvalue* of $A$, and $v$ is an *eigenvector*.
+
+Then we say that $\lambda$ is an *eigenvalue* of $A$, and $v$ is the corresponding *eigenvector*.
 
 Thus, an eigenvector of $A$ is a nonzero vector $v$ such that when the map $A$ is
 applied, $v$ is merely scaled.
@@ -720,8 +732,8 @@ As expected, the image $Av$ of each $v$ is just a scaled version of the original
 
 from numpy.linalg import eig
 
-A = ((1, 2),
-     (2, 1))
+A = [[1, 2],
+     [2, 1]]
 A = np.array(A)
 evals, evecs = eig(A)
 evecs = evecs[:, 0], evecs[:, 1]
@@ -764,11 +776,13 @@ for v in evecs:
 plt.show()
 ```
 
-### Complex Values
++++ {"user_expressions": []}
+
+### Complex values
 
 So far our definition of eigenvalues and eigenvectors seems straightforward.
 
-There is, however, one complication we haven't mentioned yet:
+There is one complication we haven't mentioned yet:
 
 When solving $Av = \lambda v$, 
 
@@ -778,7 +792,7 @@ When solving $Av = \lambda v$,
 We will see some examples below.
 
 
-### Some Mathematical Details
+### Some mathematical details
 
 We note some mathematical details for more advanced readers.
 
@@ -788,7 +802,7 @@ The eigenvalue equation is equivalent to $(A - \lambda I) v = 0$.
 
 This equation has a nonzero solution $v$ only when the columns of $A - \lambda I$ are linearly dependent.
 
-This in turn is equivalent to stating that the determinant is zero.
+This in turn is equivalent to stating the determinant is zero.
 
 Hence, to find all eigenvalues, we can look for $\lambda$ such that the
 determinant of $A - \lambda I$ is zero.
@@ -831,10 +845,12 @@ evals   #eigenvalues
 evecs   #eigenvectors
 ```
 
++++ {"user_expressions": []}
+
 Note that the *columns* of `evecs` are the eigenvectors.
 
 Since any scalar multiple of an eigenvector is an eigenvector with the same
-eigenvalue (check it), the eig routine normalizes the length of each eigenvector
+eigenvalue (which can be verified), the `eig` routine normalizes the length of each eigenvector
 to one.
 
 The eigenvectors and eigenvalues of a map $A$ determine how a vector $v$ is transformed when we repeatedly multiply by $A$.
@@ -856,9 +872,9 @@ $$
 
 A thorough discussion of the method can be found [here](https://pythonnumericalmethods.berkeley.edu/notebooks/chapter15.02-The-Power-Method.html).
 
-In this exercise, implement the power iteration method and use it to find the largest eigenvalue of the matrix.
+In this exercise, first implement the power iteration method and use it to find the largest eigenvalue and its corresponding eigenvector.
 
-Visualize your results by plotting the eigenvalue as a function of the number of iterations.
+Then visualize the convergence.
 ```
 
 ```{solution-start} eig1_ex1
@@ -870,18 +886,25 @@ Here is one solution.
 We start by looking into the distance between the eigenvector approximation and the true eigenvector.
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: Power iteration
+    name: pow-dist
+---
 # Define a matrix A
 A = np.array([[1, 0, 3], 
               [0, 2, 0], 
               [3, 0, 1]])
 
-# Define a number of iterations
 num_iters = 20
 
 # Define a random starting vector b
 b = np.random.rand(A.shape[1])
 
-# Initialize a list to store the eigenvector approximations
+# Get the leading eigenvector of matrix A
+eigenvector = np.linalg.eig(A)[1][:, 0]
+
 norm_ls = []
 res = []
 
@@ -893,45 +916,64 @@ for i in range(num_iters):
     b = b / np.linalg.norm(b)
     # Append b to the list of eigenvector approximations
     res.append(b)
-    norm = np.linalg.norm(np.array(b) - np.linalg.eig(A)[1][:, 0])
+    norm = np.linalg.norm(np.array(b) 
+                          - eigenvector)
     norm_ls.append(norm)
-    
+
+dominant_eigenvalue = np.dot(A @ b, b) / np.dot(b, b)
+print(f'The approximated dominant eigenvalue is {dominant_eigenvalue:.2f}')
+print('The real eigenvalue is', np.linalg.eig(A)[0])
+
 # Plot the eigenvector approximations for each iteration
 plt.figure(figsize=(10, 6))
-plt.xlabel('Iterations')
-plt.ylabel('L2 Norm')
-plt.title('Distance between the Approximation and the True Eigenvector')
+plt.xlabel('iterations')
+plt.ylabel('Norm')
 _ = plt.plot(norm_ls)
 ```
+
++++ {"user_expressions": []}
 
 Then we can look at the trajectory of the eigenvector approximation
 
 ```{code-cell} ipython3
-# Get the eigenvectors of matrix A
-eigenvector = np.linalg.eig(A)[1][:, 0]
-
+---
+mystnb:
+  figure:
+    caption: Power iteration trajectory
+    name: pow-trajectory
+---
 # Set up the figure and axis for 3D plot
 fig = plt.figure()
 ax = fig.add_subplot(111, projection='3d')
 
 # Plot the eigenvectors
-ax.scatter(eigenvector[0], eigenvector[1], eigenvector[2], color='r', s = 80)
+ax.scatter(eigenvector[0], 
+           eigenvector[1], 
+           eigenvector[2], 
+           color='r', s = 80)
 
-# Plot the approximated eigenvectors (b) at each iteration
 for i, vec in enumerate(res):
-    ax.scatter(vec[0], vec[1], vec[2], color='b', alpha=(i + 1) / (num_iters+1), s = 80)
+    ax.scatter(vec[0], vec[1], vec[2], 
+               color='b', 
+               alpha=(i+1)/(num_iters+1), 
+               s = 80)
 
-ax.set_xlabel('X')
-ax.set_ylabel('Y')
-ax.set_zlabel('Z')
-ax.set_title('Power Iteration and Eigenvector Approximations')
-points = [plt.Line2D([0], [0], linestyle='none', c=i, marker='o') for i in ['r', 'b']]
-ax.legend(points, ['Actual eigenvectors', 'Approximated eigenvectors (b)'], numpoints=1)
+ax.set_xlabel('x')
+ax.set_ylabel('y')
+ax.set_zlabel('z')
+ax.tick_params(axis='both', which='major', labelsize=7)
+
+points = [plt.Line2D([0], [0], linestyle='none', 
+                     c=i, marker='o') for i in ['r', 'b']]
+ax.legend(points, ['actual eigenvector', 
+                   r'approximated eigenvector ($b_k$)'])
 ax.set_box_aspect(aspect=None, zoom=0.8)
 
 # Show the plot
 plt.show()
 ```
+
++++ {"user_expressions": []}
 
 ```{solution-end}
 ```
@@ -943,10 +985,9 @@ We have discussed the trajectory of the vector $v$ after being transformed by $A
 
 Consider the matrix $A = \begin{bmatrix} 1 & 2 \\ 1 & 1 \end{bmatrix}$ and the vector $v = \begin{bmatrix} 2 \\ -2 \end{bmatrix}$.
 
-Try to compute the trajectory of $v$ after being transformed by $A$ for $n=6$ iterations and plot the result.
+Try to compute the trajectory of $v$ after being transformed by $A$ for $n=4$ iterations and plot the result.
 
 ```
-
 
 ```{solution-start} eig1_ex2
 :class: dropdown
@@ -958,7 +999,7 @@ A = np.array([[1, 2],
 v = (0.4, -0.4)
 n = 11
 
-# Compute right eigenvectors and eigenvalues
+# Compute eigenvectors and eigenvalues
 eigenvalues, eigenvectors = np.linalg.eig(A)
 
 print(f"eigenvalues:\n {eigenvalues}")
@@ -967,43 +1008,55 @@ print(f"eigenvectors:\n {eigenvectors}")
 plot_series(A, v, n)
 ```
 
-We find the trajectory of the vector $v$ after being transformed by $A$ for $n=6$ iterations and plot the result seems to converge to the eigenvector of $A$ with the largest eigenvalue.
++++ {"user_expressions": []}
+
+The result seems to converge to the eigenvector of $A$ with the largest eigenvalue.
 
 Let's use a vector field to visualize the transformation brought by A.
 
 ```{code-cell} ipython3
-# Create a grid of points (vector field)
-x, y = np.meshgrid(np.linspace(-5, 5, 15), np.linspace(-5, 5, 20))
+---
+mystnb:
+  figure:
+    caption: Convergence towards eigenvectors
+    name: eigen-conv
+---
+# Create a grid of points
+x, y = np.meshgrid(np.linspace(-5, 5, 15), 
+                np.linspace(-5, 5, 20))
 
 # Apply the matrix A to each point in the vector field
 vec_field = np.stack([x, y])
 u, v = np.tensordot(A, vec_field, axes=1)
 
-
 # Plot the transformed vector field
-c = plt.streamplot(x, y, u - x, v - y, density=1, linewidth=None, color='#A23BEC')
+c = plt.streamplot(x, y, u - x, v - y, 
+                density=1, linewidth=None, color='#A23BEC')
 c.lines.set_alpha(0.5)
 c.arrows.set_alpha(0.5)
 
-# Plot the eigenvectors as long blue and green arrows
+# Draw eigenvectors
 origin = np.zeros((2, len(eigenvectors)))
 parameters = {'color':['b', 'g'], 'angles':'xy', 
                 'scale_units':'xy', 'scale':0.1, 'width':0.01}
-plt.quiver(*origin, eigenvectors[0], eigenvectors[1], **parameters)
-plt.quiver(*origin, - eigenvectors[0], - eigenvectors[1], **parameters)
+plt.quiver(*origin, eigenvectors[0], 
+        eigenvectors[1], **parameters)
+plt.quiver(*origin, - eigenvectors[0], 
+        - eigenvectors[1], **parameters)
 
 colors = ['b', 'g']
 lines = [Line2D([0], [0], color=c, linewidth=3) for c in colors]
 labels = ["2.4 eigenspace", "0.4 eigenspace"]
 plt.legend(lines, labels,loc='center left', bbox_to_anchor=(1, 0.5))
 
-plt.title("Convergence/Divergence towards Eigenvectors")
-plt.xlabel("x-axis")
-plt.ylabel("y-axis")
+plt.xlabel("x")
+plt.ylabel("y")
 plt.grid()
 plt.gca().set_aspect('equal', adjustable='box')
 plt.show()
 ```
+
++++ {"user_expressions": []}
 
 Note that the vector field converges to the eigenvector of $A$ with the largest eigenvalue and diverges from the eigenvector of $A$ with the smallest eigenvalue.
 
@@ -1011,7 +1064,7 @@ In fact, the eigenvectors are also the directions in which the matrix $A$ stretc
 
 Specifically, the eigenvector with the largest eigenvalue is the direction in which the matrix $A$ stretches the space the most.
 
-We will see more intriguing examples of eigenvectors in the following exercise.
+We will see more intriguing examples in the following exercise.
 
 ```{solution-end}
 ```
@@ -1021,7 +1074,7 @@ We will see more intriguing examples of eigenvectors in the following exercise.
 
 {ref}`Previously <plot_series>`, we demonstrated the trajectory of the vector $v$ after being transformed by $A$ for three different matrices.
 
-Use the visualization in the previous exercise to explain why the trajectory of the vector $v$ after being transformed by $A$ for the three different matrices.
+Use the visualization in the previous exercise to explain the trajectory of the vector $v$ after being transformed by $A$ for the three different matrices.
 
 ```
 
@@ -1033,7 +1086,13 @@ Use the visualization in the previous exercise to explain why the trajectory of 
 Here is one solution
 
 ```{code-cell} ipython3
-figure, ax = plt.subplots(1,3, figsize = (15,5))
+---
+mystnb:
+  figure:
+    caption: Vector fields of the three matrices
+    name: vector-field
+---
+figure, ax = plt.subplots(1,3, figsize = (15, 5))
 A = np.array([[sqrt(3) + 1, -2],
               [1, sqrt(3) - 1]])
 A = (1/(2*sqrt(2))) * A
@@ -1060,24 +1119,31 @@ for i, example in enumerate(examples):
     eigenvalues_real = eigenvalues.real
     eigenvectors_real = eigenvectors.real
 
-    # Create a grid of points (vector field)
-    x, y = np.meshgrid(np.linspace(-20, 20, 15), np.linspace(-20, 20, 20))
+    # Create a grid of points
+    x, y = np.meshgrid(np.linspace(-20, 20, 15), 
+                    np.linspace(-20, 20, 20))
 
     # Apply the matrix A to each point in the vector field
     vec_field = np.stack([x, y])
     u, v = np.tensordot(M, vec_field, axes=1)
 
     # Plot the transformed vector field
-    c = ax[i].streamplot(x, y, u - x, v - y, density=1, linewidth=None, color='#A23BEC')
+    c = ax[i].streamplot(x, y, u - x, v - y,
+             density=1, linewidth=None, color='#A23BEC')
     c.lines.set_alpha(0.5)
     c.arrows.set_alpha(0.5)
-
-    # Plot the eigenvectors as long blue and green arrows
+    
+    # Draw eigenvectors
     parameters = {'color':['b', 'g'], 'angles':'xy', 
-                'scale_units':'xy', 'scale':1, 'width':0.01, 'alpha':0.5}
+                'scale_units':'xy', 'scale':1, 
+                'width':0.01, 'alpha':0.5}
     origin = np.zeros((2, len(eigenvectors)))
-    ax[i].quiver(*origin, eigenvectors_real[0], eigenvectors_real[1], **parameters)
-    ax[i].quiver(*origin, - eigenvectors_real[0], - eigenvectors_real[1], **parameters)
+    ax[i].quiver(*origin, eigenvectors_real[0], 
+            eigenvectors_real[1], **parameters)
+    ax[i].quiver(*origin, 
+                - eigenvectors_real[0], 
+                - eigenvectors_real[1], 
+                **parameters)
 
     ax[i].set_xlabel("x-axis")
     ax[i].set_ylabel("y-axis")
@@ -1087,19 +1153,21 @@ for i, example in enumerate(examples):
 plt.show()
 ```
 
++++ {"user_expressions": []}
+
 The vector fields explain why we observed the trajectories of the vector $v$ multiplied by $A$ iteratively before.
 
 The pattern demonstrated here is because we have complex eigenvalues and eigenvectors.
 
-It is important to acknowledge that there is a complex plane.
-
-If we add the complex axis to the plot, the plot will be more complicated.
-
-Here we used the real part of the eigenvalues and eigenvectors.
-
-We can try to plot the complex plane for one of the matrices using `Arrow3D` class retrieved from [stackoverflow](https://stackoverflow.com/questions/22867620/putting-arrowheads-on-vectors-in-matplotlibs-3d-plot).
+We can plot the complex plane for one of the matrices using `Arrow3D` class retrieved from [stackoverflow](https://stackoverflow.com/questions/22867620/putting-arrowheads-on-vectors-in-matplotlibs-3d-plot).
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: 3D plot of the vector field
+    name: 3d-vector-field
+---
 class Arrow3D(FancyArrowPatch):
     def __init__(self, xs, ys, zs, *args, **kwargs):
         super().__init__((0,0), (0,0), *args, **kwargs)
@@ -1115,7 +1183,8 @@ class Arrow3D(FancyArrowPatch):
 eigenvalues, eigenvectors = np.linalg.eig(A)
 
 # Create meshgrid for vector field
-x, y = np.meshgrid(np.linspace(-2, 2, 15), np.linspace(-2, 2, 15))
+x, y = np.meshgrid(np.linspace(-2, 2, 15), 
+                   np.linspace(-2, 2, 15))
 
 # Calculate vector field (real and imaginary parts)
 u_real = A[0][0] * x + A[0][1] * y
@@ -1127,25 +1196,32 @@ v_imag = np.zeros_like(y)
 fig = plt.figure()
 ax = fig.add_subplot(111, projection='3d')
 vlength = np.linalg.norm(eigenvectors)
-ax.quiver(x, y, u_imag, u_real-x, v_real-y, v_imag-u_imag, colors = 'b', alpha=0.3, length = .2, arrow_length_ratio = 0.01)
+ax.quiver(x, y, u_imag, u_real-x, v_real-y, v_imag-u_imag, 
+          colors = 'b', alpha=0.3, length = .2, 
+          arrow_length_ratio = 0.01)
 
-arrow_prop_dict = dict(mutation_scale=5, arrowstyle='-|>', shrinkA=0, shrinkB=0)
+arrow_prop_dict = dict(mutation_scale=5, 
+                arrowstyle='-|>', shrinkA=0, shrinkB=0)
 
 # Plot 3D eigenvectors
 for c, i in zip(['b', 'g'], [0, 1]):
-    a = Arrow3D([0, eigenvectors[0][i].real], [0, eigenvectors[1][i].real], 
-            [0, eigenvectors[1][i].imag], color=c, **arrow_prop_dict)
+    a = Arrow3D([0, eigenvectors[0][i].real], 
+                [0, eigenvectors[1][i].real], 
+                [0, eigenvectors[1][i].imag], 
+                color=c, **arrow_prop_dict)
     ax.add_artist(a)
 
 # Set axis labels and title
-ax.set_xlabel('X')
-ax.set_ylabel('Y')
+ax.set_xlabel('x')
+ax.set_ylabel('y')
 ax.set_zlabel('Im')
 ax.set_box_aspect(aspect=None, zoom=0.8)
 
 plt.draw()
 plt.show()
 ```
+
++++ {"user_expressions": []}
 
 ```{solution-end}
 ```

@@ -52,7 +52,7 @@ The only scientific library we'll need in what follows is NumPy:
 import numpy as np
 ```
 
-## Outline of the Problem
+## Outline of the problem
 
 The shortest path problem is one of finding how to traverse a [graph](https://en.wikipedia.org/wiki/Graph_%28mathematics%29) from one specified node to another at minimum cost.
 
@@ -89,7 +89,7 @@ For this simple graph, a quick scan of the edges shows that the optimal paths ar
 
 ```
 
-## Finding Least-Cost Paths
+## Finding least-cost paths
 
 For large graphs, we need a systematic solution.
 
@@ -139,12 +139,12 @@ satisfy.
 
 What we want to do now is use this restriction to compute $J$.
 
-## Solving for Minimum Cost-to-Go
+## Solving for minimum cost-to-go
 
 Let's look at an algorithm for computing $J$ and then think about how to
 implement it.
 
-### The Algorithm
+### The algorithm
 
 The standard algorithm for finding $J$ is to start an initial guess and then iterate.
 

@@ -1,4 +1,4 @@
-# About these Lectures
+# About These Lectures
 
 
 ## About
@@ -53,13 +53,14 @@ not essential.
 ## Credits
 
 In building this lecture series, we had invaluable assistance from research
-assistants at QuantEcon, as well as our QuantEcon colleagues.  Without their
+assistants at QuantEcon, as well as our QuantEcon colleagues. Without their
 help this series would not have been possible.
 
 In particular, we sincerely thank and give credit to
 
 - [Aakash Gupta](https://github.com/AakashGfude)
 - [Shu Hu](https://github.com/shlff)
+- [Jiacheng Li](https://l10727@nyu.edu)
 - [Smit Lunagariya](https://github.com/Smit-create)
 - [Matthew McKay](https://github.com/mmcky)
 - [Maanasee Sharma](https://github.com/maanasee)

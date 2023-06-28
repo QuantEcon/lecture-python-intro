@@ -11,9 +11,15 @@ kernelspec:
   name: python3
 ---
 
-+++ {"user_expressions": []}
-
 # Markov Chains: Irreducibility and Ergodicity
+
+```{index} single: Markov Chains: Irreducibility and Ergodicity
+```
+
+```{contents} Contents
+:depth: 2
+```
+
 
 In addition to what's in Anaconda, this lecture will need the following libraries:
 
@@ -21,31 +27,25 @@ In addition to what's in Anaconda, this lecture will need the following librarie
 :tags: [hide-output]
 
 !pip install quantecon
-!pip install graphviz
 ```
-
-```{admonition} graphviz
-:class: warning
-If you are running this lecture locally it requires [graphviz](https://www.graphviz.org)
-to be installed on your computer. Installation instructions for graphviz can be found
-[here](https://www.graphviz.org/download/) 
-```
-
-+++ {"user_expressions": []}
 
 ## Overview
 
-This lecture continues the journey in Markov chain.
+This lecture continues on from our {doc}`earlier lecture on Markov chains
+<markov_chains_I>`.
 
-Specifically, we will introduce irreducibility and ergodicity, and how they connect to stationarity.
 
-Irreducibility is a concept that describes the ability of a Markov chain to move between any two states in the system.
+Specifically, we will introduce the concepts of irreducibility and ergodicity, and see how they connect to stationarity.
+
+Irreducibility describes the ability of a Markov chain to move between any two states in the system.
 
 Ergodicity is a sample path property that describes the behavior of the system over long periods of time. 
 
-The concepts of irreducibility and ergodicity are closely related to the idea of stationarity. 
+As we will see, 
 
-An irreducible Markov chain guarantees the existence of a unique stationary distribution, while an ergodic Markov chain ensures that the system eventually reaches its stationary distribution, regardless of its initial state. 
+* an irreducible Markov chain guarantees the existence of a unique stationary distribution, while 
+* an ergodic Markov chain generates time series that satisfy a version of the
+  law of large numbers. 
 
 Together, these concepts provide a foundation for understanding the long-term behavior of Markov chains.
 
@@ -56,18 +56,16 @@ import matplotlib.pyplot as plt
 plt.rcParams["figure.figsize"] = (11, 5)  # set default figure size
 import quantecon as qe
 import numpy as np
-from graphviz import Digraph
 import networkx as nx
 from matplotlib import cm
 import matplotlib as mpl
 ```
 
+(mc_irreducible)=
 ## Irreducibility
 
 
-Irreducibility is a central concept of Markov chain theory.
-
-To explain it, let's take $P$ to be a fixed stochastic matrix.
+To explain irreducibility, let's take $P$ to be a fixed stochastic matrix.
 
 Two states $x$ and $y$ are said to **communicate** with each other if
 there exist positive integers $j$ and $k$ such that
@@ -90,39 +88,23 @@ that is, if $x$ and $y$ communicate for all $(x, y)$ in $S \times S$.
 For example, consider the following transition probabilities for wealth of a
 fictitious set of households
 
-```{code-cell} ipython3
-:tags: [hide-input]
-
-dot = Digraph(comment='Graph')
-dot.attr(rankdir='LR')
-dot.node("poor")
-dot.node("middle class")
-dot.node("rich")
-
-dot.edge("poor", "poor", label="0.9")
-dot.edge("poor", "middle class", label="0.1")
-dot.edge("middle class", "poor", label="0.4")
-dot.edge("middle class", "middle class", label="0.4")
-dot.edge("middle class", "rich", label="0.2")
-dot.edge("rich", "poor", label="0.1")
-dot.edge("rich", "middle class", label="0.1")
-dot.edge("rich", "rich", label="0.8")
-
-dot
+```{image} /_static/lecture_specific/markov_chains_II/Irre_1.png
+:name: mc_irre1
+:align: center
 ```
+
+
 
 We can translate this into a stochastic matrix, putting zeros where
 there's no edge between nodes
 
 $$
 P :=
-\left(
-  \begin{array}{ccc}
+\begin{bmatrix} 
      0.9 & 0.1 & 0 \\
      0.4 & 0.4 & 0.2 \\
      0.1 & 0.1 & 0.8
-  \end{array}
-\right)
+\end{bmatrix} 
 $$
 
 It's clear from the graph that this stochastic matrix is irreducible: we can  eventually
@@ -141,23 +123,9 @@ mc.is_irreducible
 
 Here's a more pessimistic scenario in which  poor people remain poor forever
 
-```{code-cell} ipython3
-:tags: [hide-input]
-
-dot = Digraph(comment='Graph')
-dot.attr(rankdir='LR')
-dot.node("poor")
-dot.node("middle class")
-dot.node("rich")
-
-dot.edge("poor", "poor", label="1.0")
-dot.edge("middle class", "poor", label="0.1")
-dot.edge("middle class", "middle class", label="0.8")
-dot.edge("middle class", "rich", label="0.1")
-dot.edge("rich", "middle class", label="0.2")
-dot.edge("rich", "rich", label="0.8")
-
-dot
+```{image} /_static/lecture_specific/markov_chains_II/Irre_2.png
+:name: mc_irre2
+:align: center
 ```
 
 This stochastic matrix is not irreducible since, for example, rich is not
@@ -174,18 +142,16 @@ mc = qe.MarkovChain(P, ('poor', 'middle', 'rich'))
 mc.is_irreducible
 ```
 
-+++ {"user_expressions": []}
-
 It might be clear to you already that irreducibility is going to be important
-in terms of long run outcomes.
+in terms of long-run outcomes.
 
 For example, poverty is a life sentence in the second graph but not the first.
 
 We'll come back to this a bit later.
 
-### Irreducibility and Stationarity
+### Irreducibility and stationarity
 
-We discussed uniqueness of the stationary in the {ref}`previous lecture <stationary>` requires the transition matrix to be everywhere positive.
+We discussed the uniqueness of the stationary in the {ref}`previous lecture <stationary>` requires the transition matrix to be everywhere positive.
 
 In fact irreducibility is enough for the uniqueness of the stationary distribution to hold if the distribution exists.
 
@@ -204,6 +170,8 @@ Theorem 5.2 of {cite}`haggstrom2002finite`.
 
 (ergodicity)=
 ## Ergodicity
+
+Please note that we use $\mathbb{1}$ for a vector of ones in this lecture.
 
 Under irreducibility, yet another important result obtains:
 
@@ -224,9 +192,9 @@ distribution, then, for all $x \in S$,
 
 Here
 
-* $\{X_t\}$ is a Markov chain with stochastic matrix $P$ and initial
+* $\{X_t\}$ is a Markov chain with stochastic matrix $P$ and initial.
   distribution $\psi_0$
-* $\mathbf{1}\{X_t = x\} = 1$ if $X_t = x$ and zero otherwise
+* $\mathbb{1} \{X_t = x\} = 1$ if $X_t = x$ and zero otherwise.
 
 The result in [theorem 4.3](llnfmc0) is sometimes called **ergodicity**.
 
@@ -238,7 +206,7 @@ This gives us another way to interpret the stationary distribution (provided irr
 
 Importantly, the result is valid for any choice of $\psi_0$.
 
-The theorem is related to {doc}`the law of large numbers <lln_clt>`.
+The theorem is related to {doc}`the Law of Large Numbers <lln_clt>`.
 
 It tells us that, in some settings, the law of large numbers sometimes holds even when the
 sequence of random variables is [not IID](iid_violation).
@@ -261,7 +229,7 @@ In the cross-sectional interpretation, this is the fraction of people unemployed
 
 In view of our latest (ergodicity) result, it is also the fraction of time that a single worker can expect to spend unemployed.
 
-Thus, in the long-run, cross-sectional averages for a population and time-series averages for a given person coincide.
+Thus, in the long run, cross-sectional averages for a population and time-series averages for a given person coincide.
 
 This is one aspect of the concept  of ergodicity.
 
@@ -269,12 +237,22 @@ This is one aspect of the concept  of ergodicity.
 (ergo)=
 ### Example 2
 
+Another example is the Hamilton dynamics we {ref}`discussed before <mc_eg2>`.
 
-Another example is Hamilton {cite}`Hamilton2005` dynamics {ref}`discussed before <mc_eg2>`.
+The {ref}`graph <mc_eg2>` of the Markov chain shows it is irreducible
 
-The diagram of the Markov chain shows that it is **irreducible**.
+Therefore, we can see the sample path averages for each state (the fraction of
+time spent in each state) converges to the stationary distribution regardless of
+the starting state
 
-Therefore, we can see the sample path averages for each state (the fraction of time spent in each state) converges to the stationary distribution regardless of the starting state
+Let's denote the fraction of time spent in state $x$ at time $t$ in our sample path as $\hat p_t(x)$ where
+
+$$
+\hat p_t(x) := \frac{1}{t} \sum_{t = 1}^t \mathbf{1}\{X_t = x\}
+$$
+
+
+Here we compare $\hat p_t(x)$ with the stationary distribution $\psi^* (x)$ for different starting points $x_0$.
 
 ```{code-cell} ipython3
 P = np.array([[0.971, 0.029, 0.000],
@@ -283,26 +261,27 @@ P = np.array([[0.971, 0.029, 0.000],
 ts_length = 10_000
 mc = qe.MarkovChain(P)
 n = len(P)
-fig, axes = plt.subplots(nrows=1, ncols=n)
+fig, axes = plt.subplots(nrows=1, ncols=n, figsize=(15, 6))
 ψ_star = mc.stationary_distributions[0]
 plt.subplots_adjust(wspace=0.35)
 
 for i in range(n):
-    axes[i].grid()
-    axes[i].axhline(ψ_star[i], linestyle='dashed', lw=2, color = 'black', 
+    axes[i].axhline(ψ_star[i], linestyle='dashed', lw=2, color='black', 
                     label = fr'$\psi^*({i})$')
     axes[i].set_xlabel('t')
-    axes[i].set_ylabel(f'fraction of time spent at {i}')
+    axes[i].set_ylabel(fr'$\hat p_t({i})$')
 
     # Compute the fraction of time spent, starting from different x_0s
     for x0, col in ((0, 'blue'), (1, 'green'), (2, 'red')):
         # Generate time series that starts at different x0
         X = mc.simulate(ts_length, init=x0)
-        X_bar = (X == i).cumsum() / (1 + np.arange(ts_length, dtype=float))
-        axes[i].plot(X_bar, color=col, label=f'$x_0 = \, {x0} $')
+        p_hat = (X == i).cumsum() / (1 + np.arange(ts_length, dtype=float))
+        axes[i].plot(p_hat, color=col, label=f'$x_0 = \, {x0} $')
     axes[i].legend()
 plt.show()
 ```
+
+Note the convergence to the stationary distribution regardless of the starting point $x_0$.
 
 ### Example 3
 
@@ -310,25 +289,22 @@ Let's look at one more example with six states {ref}`discussed before <mc_eg3>`.
 
 
 $$
-$$
 P :=
-\left(
-  \begin{array}{cccccc}
+\begin{bmatrix} 
 0.86 & 0.11 & 0.03 & 0.00 & 0.00 & 0.00 \\
 0.52 & 0.33 & 0.13 & 0.02 & 0.00 & 0.00 \\
 0.12 & 0.03 & 0.70 & 0.11 & 0.03 & 0.01 \\
 0.13 & 0.02 & 0.35 & 0.36 & 0.10 & 0.04 \\
 0.00 & 0.00 & 0.09 & 0.11 & 0.55 & 0.25 \\
 0.00 & 0.00 & 0.09 & 0.15 & 0.26 & 0.50
-  \end{array}
-\right)
-$$
+\end{bmatrix} 
 $$
 
 
-The graph for the chain shows states are densely connected indicating that it is **irreducible**.
+The {ref}`graph <mc_eg3>` for the chain shows all states are reachable,
+indicating that this chain is irreducible.
 
-Similar to previous examples, the sample path averages for each state converges to the stationary distribution
+Here we visualize the difference between $\hat p_t(x)$ and the stationary distribution $\psi^* (x)$ for each state $x$
 
 ```{code-cell} ipython3
 P = [[0.86, 0.11, 0.03, 0.00, 0.00, 0.00],
@@ -345,19 +321,22 @@ fig, ax = plt.subplots(figsize=(9, 6))
 X = mc.simulate(ts_length)
 # Center the plot at 0
 ax.set_ylim(-0.25, 0.25)
-ax.axhline(0, linestyle='dashed', lw=2, color = 'black', alpha=0.4)
+ax.axhline(0, linestyle='dashed', lw=2, color='black', alpha=0.4)
 
 
 for x0 in range(6):
     # Calculate the fraction of time for each state
-    X_bar = (X == x0).cumsum() / (1 + np.arange(ts_length, dtype=float))
-    ax.plot(X_bar - ψ_star[x0], label=f'$X = {x0+1} $')
+    p_hat = (X == x0).cumsum() / (1 + np.arange(ts_length, dtype=float))
+    ax.plot(p_hat - ψ_star[x0], label=f'$x = {x0+1} $')
     ax.set_xlabel('t')
-    ax.set_ylabel(r'fraction of time spent in a state $- \psi^* (x)$')
+    ax.set_ylabel(r'$\hat p_t(x) - \psi^* (x)$')
 
 ax.legend()
 plt.show()
 ```
+
+Similar to previous examples, the sample path averages for each state converge
+to the stationary distribution.
 
 ### Example 4
 
@@ -366,38 +345,25 @@ Let's look at another example with two states: 0 and 1.
 
 $$
 P :=
-\left(
-  \begin{array}{cc}
+\begin{bmatrix} 
      0 & 1\\
      1 & 0\\
-  \end{array}
-\right)
+\end{bmatrix} 
 $$
 
 
 The diagram of the Markov chain shows that it is **irreducible**
 
-```{code-cell} ipython3
-:tags: [hide-input]
-
-dot = Digraph(comment='Graph')
-dot.attr(rankdir='LR')
-dot.node("0")
-dot.node("1")
-
-dot.edge("0", "1", label="1.0", color='red')
-dot.edge("1", "0", label="1.0", color='red')
-
-dot
+```{image} /_static/lecture_specific/markov_chains_II/example4.png
+:name: mc_example4
+:align: center
 ```
 
-+++ {"user_expressions": []}
+In fact it has a periodic cycle --- the state cycles between the two states in a regular way.
 
-Unlike other Markov chains we have seen before, it has a periodic cycle --- the state cycles between the two states in a regular way.
+This is called [periodicity](https://stats.libretexts.org/Bookshelves/Probability_Theory/Probability_Mathematical_Statistics_and_Stochastic_Processes_(Siegrist)/16%3A_Markov_Processes/16.05%3A_Periodicity_of_Discrete-Time_Chains#:~:text=A%20state%20in%20a%20discrete,limiting%20behavior%20of%20the%20chain.).
 
-This is called [periodicity](https://www.randomservices.org/random/markov/Periodicity.html).
-
-It is still irreducible, however, so ergodicity holds.
+It is still irreducible so ergodicity holds.
 
 ```{code-cell} ipython3
 P = np.array([[0, 1],
@@ -409,33 +375,30 @@ fig, axes = plt.subplots(nrows=1, ncols=n)
 ψ_star = mc.stationary_distributions[0]
 
 for i in range(n):
-    axes[i].grid()
     axes[i].set_ylim(0.45, 0.55)
-    axes[i].axhline(ψ_star[i], linestyle='dashed', lw=2, color = 'black', 
+    axes[i].axhline(ψ_star[i], linestyle='dashed', lw=2, color='black', 
                     label = fr'$\psi^*({i})$')
     axes[i].set_xlabel('t')
-    axes[i].set_ylabel(f'fraction of time spent at {i}')
+    axes[i].set_ylabel(fr'$\hat p_t({i})$')
 
     # Compute the fraction of time spent, for each x
     for x0 in range(n):
         # Generate time series starting at different x_0
         X = mc.simulate(ts_length, init=x0)
-        X_bar = (X == i).cumsum() / (1 + np.arange(ts_length, dtype=float))
-        axes[i].plot(X_bar, label=f'$x_0 = \, {x0} $')
+        p_hat = (X == i).cumsum() / (1 + np.arange(ts_length, dtype=float))
+        axes[i].plot(p_hat, label=f'$x_0 = \, {x0} $')
 
     axes[i].legend()
 plt.show()
 ```
 
-This example helps to emphasize the fact that asymptotic stationarity is about the distribution, while ergodicity is about the sample path.
+This example helps to emphasize that asymptotic stationarity is about the distribution, while ergodicity is about the sample path.
 
 The proportion of time spent in a state can converge to the stationary distribution with periodic chains.
 
 However, the distribution at each state does not.
 
-+++ {"user_expressions": []}
-
-### Expectations of Geometric Sums
+### Expectations of geometric sums
 
 Sometimes we want to compute the mathematical expectation of a geometric sum, such as
 $\sum_t \beta^t h(X_t)$.
@@ -465,7 +428,19 @@ $$
 
 Benhabib el al. {cite}`benhabib_wealth_2019` estimated that the transition matrix for social mobility as the following
 
-$$P:=\left(\begin{array}{cccccccc}0.222 & 0.222 & 0.215 & 0.187 & 0.081 & 0.038 & 0.029 & 0.006 \\ 0.221 & 0.22 & 0.215 & 0.188 & 0.082 & 0.039 & 0.029 & 0.006 \\ 0.207 & 0.209 & 0.21 & 0.194 & 0.09 & 0.046 & 0.036 & 0.008 \\ 0.198 & 0.201 & 0.207 & 0.198 & 0.095 & 0.052 & 0.04 & 0.009 \\ 0.175 & 0.178 & 0.197 & 0.207 & 0.11 & 0.067 & 0.054 & 0.012 \\ 0.182 & 0.184 & 0.2 & 0.205 & 0.106 & 0.062 & 0.05 & 0.011 \\ 0.123 & 0.125 & 0.166 & 0.216 & 0.141 & 0.114 & 0.094 & 0.021 \\ 0.084 & 0.084 & 0.142 & 0.228 & 0.17 & 0.143 & 0.121 & 0.028\end{array}\right)$$
+$$
+P:=
+\begin{bmatrix} 
+0.222 & 0.222 & 0.215 & 0.187 & 0.081 & 0.038 & 0.029 & 0.006 \\
+0.221 & 0.22 & 0.215 & 0.188 & 0.082 & 0.039 & 0.029 & 0.006 \\
+0.207 & 0.209 & 0.21 & 0.194 & 0.09 & 0.046 & 0.036 & 0.008 \\ 
+0.198 & 0.201 & 0.207 & 0.198 & 0.095 & 0.052 & 0.04 & 0.009 \\ 
+0.175 & 0.178 & 0.197 & 0.207 & 0.11 & 0.067 & 0.054 & 0.012 \\ 
+0.182 & 0.184 & 0.2 & 0.205 & 0.106 & 0.062 & 0.05 & 0.011 \\ 
+0.123 & 0.125 & 0.166 & 0.216 & 0.141 & 0.114 & 0.094 & 0.021 \\ 
+0.084 & 0.084 & 0.142 & 0.228 & 0.17 & 0.143 & 0.121 & 0.028
+\end{bmatrix} 
+$$
 
 where each state 1 to 8 corresponds to a  percentile of wealth shares
 
@@ -502,7 +477,7 @@ In this exercise,
 ```{solution-start} mc_ex1
 :class: dropdown
 ```
-1.
+Solution 1:
 
 Use the technique we learnt before, we can take the power of the transition matrix
 
@@ -530,7 +505,7 @@ mc = qe.MarkovChain(P)
 ψ_star
 ```
 
-2.
+Solution 2:
 
 ```{code-cell} ipython3
 ts_length = 1000
@@ -538,14 +513,14 @@ mc = qe.MarkovChain(P)
 fig, ax = plt.subplots(figsize=(9, 6))
 X = mc.simulate(ts_length)
 ax.set_ylim(-0.25, 0.25)
-ax.axhline(0, linestyle='dashed', lw=2, color = 'black', alpha=0.4)
+ax.axhline(0, linestyle='dashed', lw=2, color='black', alpha=0.4)
 
 for x0 in range(8):
     # Calculate the fraction of time for each worker
-    X_bar = (X == x0).cumsum() / (1 + np.arange(ts_length, dtype=float))
-    ax.plot(X_bar - ψ_star[x0], label=f'$X = {x0+1} $')
+    p_hat = (X == x0).cumsum() / (1 + np.arange(ts_length, dtype=float))
+    ax.plot(p_hat - ψ_star[x0], label=f'$x = {x0+1} $')
     ax.set_xlabel('t')
-    ax.set_ylabel(r'fraction of time spent in a state $- \psi^* (x)$')
+    ax.set_ylabel(r'$\hat p_t(x) - \psi^* (x)$')
 
 ax.legend()
 plt.show()
@@ -563,16 +538,14 @@ Note that the fraction of time spent at each state quickly converges to the prob
 According to the discussion {ref}`above <mc_eg1-2>`, if a worker's employment dynamics obey the stochastic matrix
 
 $$
-P
-= \left(
-\begin{array}{cc}
-    1 - \alpha & \alpha \\
-    \beta & 1 - \beta
-\end{array}
-  \right)
+P := 
+\begin{bmatrix} 
+1 - \alpha & \alpha \\
+\beta & 1 - \beta
+\end{bmatrix} 
 $$
 
-with $\alpha \in (0,1)$ and $\beta \in (0,1)$, then, in the long-run, the fraction
+with $\alpha \in (0,1)$ and $\beta \in (0,1)$, then, in the long run, the fraction
 of time spent unemployed will be
 
 $$
@@ -619,8 +592,7 @@ mc = qe.MarkovChain(P)
 
 fig, ax = plt.subplots(figsize=(9, 6))
 ax.set_ylim(-0.25, 0.25)
-ax.grid()
-ax.hlines(0, 0, ts_length, lw=2, alpha=0.6)   # Horizonal line at zero
+ax.axhline(0, linestyle='dashed', lw=2, color='black', alpha=0.4)
 
 for x0, col in ((0, 'blue'), (1, 'green')):
     # Generate time series for worker that starts at x0
@@ -629,10 +601,12 @@ for x0, col in ((0, 'blue'), (1, 'green')):
     X_bar = (X == 0).cumsum() / (1 + np.arange(ts_length, dtype=float))
     # Plot
     ax.fill_between(range(ts_length), np.zeros(ts_length), X_bar - p, color=col, alpha=0.1)
-    ax.plot(X_bar - p, color=col, label=f'$X_0 = \, {x0} $')
+    ax.plot(X_bar - p, color=col, label=f'$x_0 = \, {x0} $')
     # Overlay in black--make lines clearer
     ax.plot(X_bar - p, 'k-', alpha=0.6)
-
+    ax.set_xlabel('t')
+    ax.set_ylabel(r'$\bar X_m - \psi^* (x)$')
+    
 ax.legend(loc='upper right')
 plt.show()
 ```

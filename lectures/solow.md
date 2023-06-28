@@ -24,11 +24,10 @@ We will use the following imports
 
 ```{code-cell} ipython3
 import matplotlib.pyplot as plt
-plt.rcParams["figure.figsize"] = (11, 5)  #set default figure size
 import numpy as np
 ```
 
-## The Model
+## The model
 
 In a Solow--Swan economy, agents save a fixed fraction of their current
 incomes.
@@ -99,7 +98,7 @@ Our aim is to learn about the evolution of $k_t$ over time,
 given an exogenous initial capital stock  $k_0$.
 
 
-## A Graphical Perspective
+## A graphical perspective
 
 To understand the dynamics of the sequence $(k_t)_{t \geq 0}$ we use a 45
 degree diagram.
@@ -135,7 +134,7 @@ Let's plot the 45 degree diagram of $g$
 def plot45(kstar=None):
     xgrid = np.linspace(xmin, xmax, 12000)
 
-    fig, ax = plt.subplots(figsize=(6, 6))
+    fig, ax = plt.subplots()
 
     ax.set_xlim(xmin, xmax)
 
@@ -233,7 +232,7 @@ ymin, ymax = 0, 3.5
 def simulate_ts(x0_values, ts_length):
 
     k_star = (s * A / delta)**(1/(1-alpha))
-    fig, ax = plt.subplots()
+    fig, ax = plt.subplots(figsize=[11, 5])
     ax.set_xlim(xmin, xmax)
     ax.set_ylim(ymin, ymax)
 
@@ -262,7 +261,7 @@ simulate_ts(x0, ts_length)
 
 As expected, the time paths in the figure both converge to this value.
 
-## Growth in Continuous Time
+## Growth in continuous time
 
 In this section we investigate a continuous time version of the Solow--Swan
 growth model.
@@ -334,7 +333,7 @@ def plot_gcon(kstar=None):
 
     k_grid = np.linspace(0, 2.8, 10000)
 
-    fig, ax = plt.subplots()
+    fig, ax = plt.subplots(figsize=[11, 5])
     ax.plot(k_grid, g_con(A, s, alpha, delta, k_grid), label='$g(k)$')
     ax.plot(k_grid, 0 * k_grid, label="$k'=0$")
 
@@ -484,7 +483,7 @@ print(f"Function is maximized at s = {round(s_star_max, 4)}")
 x_s_max = np.array([s_star_max, s_star_max])
 y_s_max = np.array([0, c_star_max])
 
-fig, ax = plt.subplots()
+fig, ax = plt.subplots(figsize=[11, 5])
 
 fps = (c_star_max,)
 
@@ -597,7 +596,7 @@ def k_next(s, alpha, delta, k):
 
 ```{code-cell} ipython3
 def ts_plot(x_values, ts_length):
-    fig, ax = plt.subplots()
+    fig, ax = plt.subplots(figsize=[11, 5])
     ts = np.zeros(ts_length)
 
     # simulate and plot time series

@@ -20,7 +20,7 @@ kernelspec:
 </div>
 ```
 
-# Racial Segregation 
+# Racial Segregation
 
 ```{index} single: Schelling Segregation Model
 ```
@@ -72,13 +72,12 @@ Let's start with some imports:
 ```{code-cell} ipython3
 %matplotlib inline
 import matplotlib.pyplot as plt
-plt.rcParams["figure.figsize"] = (11, 5)  #set default figure size
 from random import uniform, seed
 from math import sqrt
 import numpy as np
 ```
 
-## The Model
+## The model
 
 In this section we will build a version of Schelling's model.
 
@@ -192,30 +191,30 @@ class Agent:
         b = (self.location[1] - other.location[1])**2
         return sqrt(a + b)
 
-    def happy(self, 
+    def happy(self,
                 agents,                # List of other agents
                 num_neighbors=10,      # No. of agents viewed as neighbors
                 require_same_type=5):  # How many neighbors must be same type
         """
             True if a sufficient number of nearest neighbors are of the same
-            type.  
+            type.
         """
 
         distances = []
-        
+
         # Distances is a list of pairs (d, agent), where d is distance from
         # agent to self
         for agent in agents:
             if self != agent:
                 distance = self.get_distance(agent)
                 distances.append((distance, agent))
-                
+
         # Sort from smallest to largest, according to distance
         distances.sort()
-        
+
         # Extract the neighboring agents
         neighbors = [agent for d, agent in distances[:num_neighbors]]
-        
+
         # Count how many neighbors have the same type as self
         num_same_type = sum(self.type == agent.type for agent in neighbors)
         return num_same_type >= require_same_type
@@ -246,12 +245,12 @@ def plot_distribution(agents, cycle_num):
         else:
             x_values_1.append(x)
             y_values_1.append(y)
-    fig, ax = plt.subplots(figsize=(8, 8))
+    fig, ax = plt.subplots()
     plot_args = {'markersize': 8, 'alpha': 0.8}
     ax.set_facecolor('azure')
-    ax.plot(x_values_0, y_values_0, 
+    ax.plot(x_values_0, y_values_0,
         'o', markerfacecolor='orange', **plot_args)
-    ax.plot(x_values_1, y_values_1, 
+    ax.plot(x_values_1, y_values_1,
         'o', markerfacecolor='green', **plot_args)
     ax.set_title(f'Cycle {cycle_num-1}')
     plt.show()
@@ -275,12 +274,12 @@ The real code is below
 ```{code-cell} ipython3
 def run_simulation(num_of_type_0=600,
                    num_of_type_1=600,
-                   max_iter=100_000,       # Maximum number of iterations 
-                   set_seed=1234):         
+                   max_iter=100_000,       # Maximum number of iterations
+                   set_seed=1234):
 
     # Set the seed for reproducibility
-    seed(set_seed)   
-    
+    seed(set_seed)
+
     # Create a list of agents of type 0
     agents = [Agent(0) for i in range(num_of_type_0)]
     # Append a list of agents of type 1
@@ -288,11 +287,11 @@ def run_simulation(num_of_type_0=600,
 
     # Initialize a counter
     count = 1
-    
+
     # Plot the initial distribution
     plot_distribution(agents, count)
-    
-    # Loop until no agent wishes to move 
+
+    # Loop until no agent wishes to move
     while count < max_iter:
         print('Entering loop ', count)
         count += 1
@@ -304,7 +303,7 @@ def run_simulation(num_of_type_0=600,
                 no_one_moved = False
         if no_one_moved:
             break
-            
+
     # Plot final distribution
     plot_distribution(agents, count)
 
@@ -312,7 +311,7 @@ def run_simulation(num_of_type_0=600,
         print(f'Converged after {count} iterations.')
     else:
         print('Hit iteration bound and terminated.')
-    
+
 ```
 
 Let's have a look at the results.
@@ -347,7 +346,7 @@ The object oriented style that we used for coding above is neat but harder to
 optimize than procedural code (i.e., code based around functions rather than
 objects and methods).
 
-Try writing a new version of the model that stores 
+Try writing a new version of the model that stores
 
 * the locations of all agents as a 2D NumPy array of floats.
 * the types of all agents as a flat NumPy array of integers.
@@ -376,7 +375,6 @@ solution here
 
 ```{code-cell} ipython3
 from numpy.random import uniform, randint
-from numba import njit
 
 n = 1000                # number of agents (agents = 0, ..., n-1)
 k = 10                  # number of agents regarded as neighbors
@@ -387,13 +385,10 @@ def initialize_state():
     types = randint(0, high=2, size=n)   # label zero or one
     return locations, types
 
-@njit  # Use Numba to accelerate computation
+
 def compute_distances_from_loc(loc, locations):
-    " Compute distance from location loc to all other points. "
-    distances = np.empty(n)
-    for j in range(n):
-        distances[j] = np.linalg.norm(loc - locations[j, :])
-    return distances
+    """ Compute distance from location loc to all other points. """
+    return np.linalg.norm(loc - locations, axis=1)
 
 def get_neighbors(loc, locations):
     " Get all neighbors of a given location. "
@@ -418,7 +413,7 @@ def count_happy(locations, types):
     for i in range(n):
         happy_sum += is_happy(i, locations, types)
     return happy_sum
-    
+
 def update_agent(i, locations, types):
     " Move agent if unhappy. "
     moved = False
@@ -429,15 +424,15 @@ def update_agent(i, locations, types):
 
 def plot_distribution(locations, types, title, savepdf=False):
     " Plot the distribution of agents after cycle_num rounds of the loop."
-    fig, ax = plt.subplots(figsize=(8, 8))
+    fig, ax = plt.subplots()
     colors = 'orange', 'green'
     for agent_type, color in zip((0, 1), colors):
         idx = (types == agent_type)
-        ax.plot(locations[idx, 0], 
-                locations[idx, 1], 
-                'o', 
+        ax.plot(locations[idx, 0],
+                locations[idx, 1],
+                'o',
                 markersize=8,
-                markerfacecolor=color, 
+                markerfacecolor=color,
                 alpha=0.8)
     ax.set_title(title)
     plt.show()
@@ -459,7 +454,7 @@ def sim_random_select(max_iter=100_000, flip_prob=0.01, test_freq=10_000):
         i = randint(0, n)
         moved = update_agent(i, locations, types)
 
-        if flip_prob > 0: 
+        if flip_prob > 0:
             # flip agent i's type with probability epsilon
             U = uniform()
             if U < flip_prob:
@@ -467,7 +462,7 @@ def sim_random_select(max_iter=100_000, flip_prob=0.01, test_freq=10_000):
                 types[i] = 0 if current_type == 1 else 1
 
         # Every so many updates, plot and test for convergence
-        if current_iter % test_freq == 0:   
+        if current_iter % test_freq == 0:
             cycle = current_iter / n
             plot_distribution(locations, types, f'iteration {current_iter}')
             if count_happy(locations, types) == n:

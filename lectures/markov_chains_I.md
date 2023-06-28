@@ -11,9 +11,15 @@ kernelspec:
   name: python3
 ---
 
-+++ {"user_expressions": []}
+# Markov Chains: Basic Concepts 
 
-# Markov Chains: Basic Concepts and Stationarity
+
+```{index} single: Markov Chains: Basic Concepts and Stationarity
+```
+
+```{contents} Contents
+:depth: 2
+```
 
 In addition to what's in Anaconda, this lecture will need the following libraries:
 
@@ -21,17 +27,7 @@ In addition to what's in Anaconda, this lecture will need the following librarie
 :tags: [hide-output]
 
 !pip install quantecon
-!pip install graphviz
 ```
-
-```{admonition} graphviz
-:class: warning
-If you are running this lecture locally it requires [graphviz](https://www.graphviz.org)
-to be installed on your computer. Installation instructions for graphviz can be found
-[here](https://www.graphviz.org/download/) 
-```
-
-+++ {"user_expressions": []}
 
 ## Overview
 
@@ -57,24 +53,20 @@ Let's start with some standard imports:
 
 ```{code-cell} ipython3
 import matplotlib.pyplot as plt
-plt.rcParams["figure.figsize"] = (11, 5)  # set default figure size
 import quantecon as qe
 import numpy as np
-from graphviz import Digraph
 import networkx as nx
 from matplotlib import cm
 import matplotlib as mpl
 from itertools import cycle
 ```
 
-+++ {"user_expressions": []}
-
-## Definitions and Examples
+## Definitions and examples
 
 In this section we provide the basic definitions and some elementary examples.
 
 (finite_dp_stoch_mat)=
-### Stochastic Matrices
+### Stochastic matrices
 
 Recall that a **probability mass function** over $n$ possible outcomes is a
 nonnegative $n$-vector $p$ that sums to one.
@@ -91,10 +83,10 @@ In other words,
 
 If $P$ is a stochastic matrix, then so is the $k$-th power $P^k$ for all $k \in \mathbb N$.
 
-Checking this is {ref}`one of the exercises <mc1_ex_3>` below.
+Checking this in {ref}`the first exercises <mc1_ex_3>` below.
 
 
-### Markov Chains
+### Markov chains
 
 Now we can introduce Markov chains.
 
@@ -109,28 +101,13 @@ will become clear.
 
 From  US unemployment data, Hamilton {cite}`Hamilton2005` estimated the following dynamics.
 
-```{code-cell} ipython3
-:tags: [hide-input]
+```{image} /_static/lecture_specific/markov_chains_I/Hamilton.png
+:name: mc_hamilton
+:align: center
 
-dot = Digraph(comment='Graph')
-dot.attr(rankdir='LR')
-dot.node("ng")
-dot.node("mr")
-dot.node("sr")
-
-dot.edge("ng", "ng", label="0.971")
-dot.edge("ng", "mr", label="0.029")
-dot.edge("mr", "ng", label="0.145")
-
-dot.edge("mr", "mr", label="0.778")
-dot.edge("mr", "sr", label="0.077")
-dot.edge("sr", "mr", label="0.508")
-
-dot.edge("sr", "sr", label="0.492")
-dot
 ```
 
-+++ {"user_expressions": []}
++++
 
 Here there are three **states**
 
@@ -172,14 +149,12 @@ $$
 We can collect all of these conditional probabilities into a matrix, as follows
 
 $$
-    P =
-    \left(
-      \begin{array}{ccc}
-         0.971 & 0.029 & 0 \\
-         0.145 & 0.778 & 0.077 \\
-         0 & 0.508 & 0.492
-      \end{array}
-    \right)
+P =
+\begin{bmatrix}
+0.971 & 0.029 & 0 \\
+0.145 & 0.778 & 0.077 \\
+0 & 0.508 & 0.492
+\end{bmatrix}
 $$
 
 Notice that $P$ is a stochastic matrix.
@@ -205,7 +180,7 @@ In particular, $P(i,j)$ is the
 Consider a worker who, at any given time $t$, is either unemployed (state 0)
 or employed (state 1).
 
-Suppose that, over a one month period,
+Suppose that, over a one-month period,
 
 1. the unemployed worker finds a job with probability $\alpha \in (0, 1)$.
 1. the employed worker loses her job and becomes unemployed with probability $\beta \in (0, 1)$.
@@ -215,13 +190,11 @@ Given the above information, we can write out the transition probabilities in ma
 ```{math}
 :label: p_unempemp
 
-P
-= \left(
-\begin{array}{cc}
+P =
+\begin{bmatrix}
     1 - \alpha & \alpha \\
     \beta & 1 - \beta
-\end{array}
-  \right)
+\end{bmatrix}
 ```
 
 For example,
@@ -252,28 +225,26 @@ We'll cover some of these applications below.
 (mc_eg3)=
 #### Example 3
 
-Imam and Temple {cite}`imampolitical` categorize political institutions into three types: democracy (D), autocracy (A), and an intermediate state called anocracy (N). 
+Imam and Temple {cite}`imampolitical` categorize political institutions into
+three types: democracy $\text{(D)}$, autocracy $\text{(A)}$, and an intermediate
+state called anocracy $\text{(N)}$.
 
-Each institution can have two potential development regimes: collapse (C) and growth (G). This results in six possible states: DG, DC, NG, NC, AG, and AC. 
+Each institution can have two potential development regimes: collapse $\text{(C)}$ and growth $\text{(G)}$. This results in six possible states: $\text{DG, DC, NG, NC, AG}$ and $\text{AC}$.
 
-The lower probability of transitioning from NC to itself indicates that collapses in anocracies quickly evolve into changes in the political institution. 
+Imam and Temple {cite}`imampolitical` estimate the following transition
+probabilities:
 
-Democracies tend to have longer-lasting growth regimes compared to autocracies as indicated by the lower probability of transitioning from growth to growth in autocracies.
-
-We can also find a higher probability from collapse to growth in democratic regimes
 
 $$
 P :=
-\left(
-  \begin{array}{cccccc}
+\begin{bmatrix}
 0.86 & 0.11 & 0.03 & 0.00 & 0.00 & 0.00 \\
 0.52 & 0.33 & 0.13 & 0.02 & 0.00 & 0.00 \\
 0.12 & 0.03 & 0.70 & 0.11 & 0.03 & 0.01 \\
 0.13 & 0.02 & 0.35 & 0.36 & 0.10 & 0.04 \\
 0.00 & 0.00 & 0.09 & 0.11 & 0.55 & 0.25 \\
 0.00 & 0.00 & 0.09 & 0.15 & 0.26 & 0.50
-  \end{array}
-\right)
+\end{bmatrix}
 $$
 
 ```{code-cell} ipython3
@@ -286,7 +257,11 @@ P = [[0.86, 0.11, 0.03, 0.00, 0.00, 0.00],
      [0.00, 0.00, 0.09, 0.15, 0.26, 0.50]]
 ```
 
+Here is a visualization, with darker colors indicating higher probability.
+
 ```{code-cell} ipython3
+:tags: [hide-input]
+
 G = nx.MultiDiGraph()
 edge_ls = []
 label_dict = {}
@@ -296,7 +271,7 @@ for start_idx, node_start in enumerate(nodes):
         value = P[start_idx][end_idx]
         if value != 0:
             G.add_edge(node_start,node_end, weight=value, len=100)
-            
+
 pos = nx.spring_layout(G, seed=10)
 fig, ax = plt.subplots()
 nx.draw_networkx_nodes(G, pos, node_size=600, edgecolors='black', node_color='white')
@@ -315,7 +290,14 @@ plt.colorbar(pc, ax=ax)
 plt.show()
 ```
 
-### Defining Markov Chains
+Looking at the data, we see that democracies tend to have longer-lasting growth
+regimes compared to autocracies (as indicated by the lower probability of
+transitioning from growth to growth in autocracies).
+
+We can also find a higher probability from collapse to growth in democratic regimes
+
+
+### Defining Markov chains
 
 So far we've given examples of Markov chains but now let's define them more
 carefully.
@@ -326,7 +308,7 @@ The set $S$ is called the **state space** and $x_1, \ldots, x_n$ are the **state
 
 A **distribution** $\psi$ on $S$ is a probability mass function of length $n$, where $\psi(i)$ is the amount of probability allocated to state $x_i$.
 
-A **Markov chain** $\{X_t\}$ on $S$ is a sequence of random variables taking values in $S$ 
+A **Markov chain** $\{X_t\}$ on $S$ is a sequence of random variables taking values in $S$
 that have the **Markov property**.
 
 This means that, for any date $t$ and any state $y \in S$,
@@ -387,12 +369,12 @@ In these exercises, we'll take the state space to be $S = 0,\ldots, n-1$.
 (We start at $0$ because Python arrays are indexed from $0$.)
 
 
-### Writing Our Own Simulation Code
+### Writing our own simulation code
 
-To simulate a Markov chain, we need 
+To simulate a Markov chain, we need
 
-1. a stochastic matrix $P$ and 
-1. a probability mass function $\psi_0$ of length $n$ from which to draw a initial realization of $X_0$.
+1. a stochastic matrix $P$ and
+1. a probability mass function $\psi_0$ of length $n$ from which to draw an initial realization of $X_0$.
 
 The Markov chain is then constructed as follows:
 
@@ -404,7 +386,7 @@ The Markov chain is then constructed as follows:
 To implement this simulation procedure, we need a method for generating draws
 from a discrete distribution.
 
-For this task, we'll use `random.draw` from [QuantEcon](http://quantecon.org/quantecon-py).
+For this task, we'll use `random.draw` from [QuantEcon.py](http://quantecon.org/quantecon-py).
 
 To use `random.draw`, we first need to convert the probability mass function
 to a cumulative distribution
@@ -415,13 +397,11 @@ cdf = np.cumsum(ψ_0)       # convert into cumulative distribution
 qe.random.draw(cdf, 5)   # generate 5 independent draws from ψ
 ```
 
-+++ {"user_expressions": []}
-
 We'll write our code as a function that accepts the following three arguments
 
-* A stochastic matrix `P`
-* An initial distribution `ψ_0`
-* A positive integer `ts_length` representing the length of the time series the function should return
+* A stochastic matrix `P`.
+* An initial distribution `ψ_0`.
+* A positive integer `ts_length` representing the length of the time series the function should return.
 
 ```{code-cell} ipython3
 def mc_sample_path(P, ψ_0=None, ts_length=1_000):
@@ -448,8 +428,6 @@ def mc_sample_path(P, ψ_0=None, ts_length=1_000):
     return X
 ```
 
-+++ {"user_expressions": []}
-
 Let's see how it works using the small matrix
 
 ```{code-cell} ipython3
@@ -457,15 +435,11 @@ P = [[0.4, 0.6],
      [0.2, 0.8]]
 ```
 
-+++ {"user_expressions": []}
-
 Here's a short time series.
 
 ```{code-cell} ipython3
 mc_sample_path(P, ψ_0=[1.0, 0.0], ts_length=10)
 ```
-
-+++ {"user_expressions": []}
 
 It can be shown that for a long series drawn from `P`, the fraction of the
 sample that takes value 0 will be about 0.25.
@@ -482,15 +456,13 @@ X = mc_sample_path(P, ψ_0=[0.1, 0.9], ts_length=1_000_000)
 np.mean(X == 0)
 ```
 
-+++ {"user_expressions": []}
-
 You can try changing the initial distribution to confirm that the output is
 always close to 0.25 (for the `P` matrix above).
 
 
-### Using QuantEcon's Routines
+### Using QuantEcon's routines
 
-[QuantEcon.py](http://quantecon.org/quantecon-py) has routines for handling Markov chains, including simulation.
+QuantEcon.py has routines for handling Markov chains, including simulation.
 
 Here's an illustration using the same $P$ as the preceding example
 
@@ -499,8 +471,6 @@ mc = qe.MarkovChain(P)
 X = mc.simulate(ts_length=1_000_000)
 np.mean(X == 0)
 ```
-
-+++ {"user_expressions": []}
 
 The `simulate` routine is faster (because it is [JIT compiled](https://python-programming.quantecon.org/numba.html#numba-link)).
 
@@ -512,9 +482,7 @@ The `simulate` routine is faster (because it is [JIT compiled](https://python-pr
 %time mc.simulate(ts_length=1_000_000) # qe code version
 ```
 
-+++ {"user_expressions": []}
-
-#### Adding State Values and Initial Conditions
+#### Adding state values and initial conditions
 
 If we wish to, we can provide a specification of state values to `MarkovChain`.
 
@@ -535,20 +503,16 @@ mc.simulate(ts_length=4, init='unemployed')
 mc.simulate(ts_length=4)  # Start at randomly chosen initial state
 ```
 
-+++ {"user_expressions": []}
-
 If we want to see indices rather than state values as outputs as  we can use
 
 ```{code-cell} ipython3
 mc.simulate_indices(ts_length=4)
 ```
 
-+++ {"user_expressions": []}
-
 (mc_md)=
-## Distributions over Time
+## Distributions over time
 
-We learnt that
+We learned that
 
 1. $\{X_t\}$ is a Markov chain with stochastic matrix $P$
 1. the distribution of $X_t$ is known to be $\psi_t$
@@ -559,7 +523,7 @@ To answer this, we let $\psi_t$ be the distribution of $X_t$ for $t = 0, 1, 2, \
 
 Our first aim is to find $\psi_{t + 1}$ given $\psi_t$ and $P$.
 
-To begin, pick any $y  \in S$.
+To begin, pick any $y \in S$.
 
 To get the probability of being at $y$ tomorrow (at $t+1$), we account for
 all ways this can happen and sum their probabilities.
@@ -584,7 +548,7 @@ $$
 
 There are $n$ such equations, one for each $y \in S$.
 
-If we think of $\psi_{t+1}$ and $\psi_t$ as *row vectors*, these $n$ equations are summarized by the matrix expression
+If we think of $\psi_{t+1}$ and $\psi_t$ as row vectors, these $n$ equations are summarized by the matrix expression
 
 ```{math}
 :label: fin_mc_fr
@@ -592,7 +556,7 @@ If we think of $\psi_{t+1}$ and $\psi_t$ as *row vectors*, these $n$ equations a
 \psi_{t+1} = \psi_t P
 ```
 
-Thus, to move a distribution forward one unit of time, we postmultiply by $P$.
+Thus, we postmultiply by $P$ to move a distribution forward one unit of time.
 
 By postmultiplying $m$ times, we move a distribution forward $m$ steps into the future.
 
@@ -620,10 +584,10 @@ Hence the following is also valid.
 X_t \sim \psi_t \quad \implies \quad X_{t+m} \sim \psi_t P^m
 ```
 
-+++ {"user_expressions": []}
+
 
 (finite_mc_mstp)=
-### Multiple Step Transition Probabilities
+### Multiple step transition probabilities
 
 We know that the probability of transitioning from $x$ to $y$ in
 one step is $P(x,y)$.
@@ -645,32 +609,32 @@ $$
 $$
 
 
-### Example: Probability of Recession
+### Example: probability of recession
 
 ```{index} single: Markov Chains; Future Probabilities
 ```
 
 Recall the stochastic matrix $P$ for recession and growth {ref}`considered above <mc_eg2>`.
 
-Suppose that the current state is unknown --- perhaps statistics are available only  at the *end* of the current month.
+Suppose that the current state is unknown --- perhaps statistics are available only at the *end* of the current month.
 
 We guess that the probability that the economy is in state $x$ is $\psi_t(x)$ at time t.
 
-The probability of being in recession (either mild or severe) in 6 months time is given by 
+The probability of being in recession (either mild or severe) in 6 months time is given by
 
 $$
 (\psi_t P^6)(1) + (\psi_t P^6)(2)
 $$
 
-+++ {"user_expressions": []}
+
 
 (mc_eg1-1)=
-### Example 2: Cross-Sectional Distributions
+### Example 2: Cross-sectional distributions
 
-The distributions we have been studying can be viewed either 
+The distributions we have been studying can be viewed either
 
-1. as probabilities or 
-1. as cross-sectional frequencies that a Law of Large Numbers leads us to anticipate for  large samples.
+1. as probabilities or
+1. as cross-sectional frequencies that the Law of Large Numbers leads us to anticipate for large samples.
 
 To illustrate, recall our model of employment/unemployment dynamics for a given worker {ref}`discussed above <mc_eg1>`.
 
@@ -704,7 +668,7 @@ each state.
 This is exactly the cross-sectional distribution.
 
 (stationary)=
-## Stationary Distributions
+## Stationary distributions
 
 
 As seen in {eq}`fin_mc_fr`, we can shift a distribution forward one
@@ -719,11 +683,9 @@ P = np.array([[0.4, 0.6],
 ψ @ P
 ```
 
-+++ {"user_expressions": []}
-
 Notice that `ψ @ P` is the same as `ψ`
 
-+++ {"user_expressions": []}
+
 
 Such distributions are called **stationary** or **invariant**.
 
@@ -762,9 +724,9 @@ If $P$ is everywhere positive, then $P$ has exactly one stationary
 distribution.
 ```
 
-We will come back to this when we introduce irreducibility in the next lecture
+We will come back to this when we introduce irreducibility in the {doc}`next lecture <markov_chains_II>` on Markov chains.
 
-+++ {"user_expressions": []}
+
 
 ### Example
 
@@ -785,9 +747,9 @@ This is, in some sense, a steady state probability of unemployment.
 
 Not surprisingly it tends to zero as $\beta \to 0$, and to one as $\alpha \to 0$.
 
-### Calculating Stationary Distributions
+### Calculating stationary distributions
 
-A stable algorithm for computing stationary distributions is implemented in [QuantEcon.py](http://quantecon.org/quantecon-py).
+A stable algorithm for computing stationary distributions is implemented in QuantEcon.py.
 
 Here's an example
 
@@ -799,9 +761,9 @@ mc = qe.MarkovChain(P)
 mc.stationary_distributions  # Show all stationary distributions
 ```
 
-### Asymptotic Stationarity
+### Asymptotic stationarity
 
-Consider a everywhere positive stochastic matrix with unique stationary distribution $\psi^*$.
+Consider an everywhere positive stochastic matrix with unique stationary distribution $\psi^*$.
 
 Sometimes the distribution $\psi_t = \psi_0 P^t$ of $X_t$ converges to $\psi^*$ regardless of $\psi_0$.
 
@@ -821,10 +783,10 @@ $$
 
 See, for example, {cite}`sargent2023economic` Chapter 4.
 
-+++ {"user_expressions": []}
+
 
 (hamilton)=
-#### Example: Hamilton's Chain
+#### Example: Hamilton's chain
 
 Hamilton's chain satisfies the conditions of the theorem because $P^2$ is everywhere positive:
 
@@ -834,8 +796,6 @@ P = np.array([[0.971, 0.029, 0.000],
               [0.000, 0.508, 0.492]])
 P @ P
 ```
-
-+++ {"user_expressions": []}
 
 Let's pick an initial distribution $\psi_0$ and trace out the sequence of distributions $\psi_0 P^t$ for $t = 0, 1, 2, \ldots$
 
@@ -857,7 +817,7 @@ Now we plot the sequence
 ```{code-cell} ipython3
 ψ_0 = (0.0, 0.2, 0.8)        # Initial condition
 
-fig = plt.figure(figsize=(8, 6))
+fig = plt.figure()
 ax = fig.add_subplot(111, projection='3d')
 
 ax.set(xlim=(0, 1), ylim=(0, 1), zlim=(0, 1),
@@ -889,7 +849,7 @@ Here
 You might like to try experimenting with different initial conditions.
 
 
-#### An Alternative Illustration
+#### An alternative illustration
 
 We can show this in a slightly different way by focusing on the probability that $\psi_t$ puts on each state.
 
@@ -899,13 +859,13 @@ First, we write a function to draw initial distributions $\psi_0$ of size `num_d
 def generate_initial_values(num_distributions):
     n = len(P)
     ψ_0s = np.empty((num_distributions, n))
-    
+
     for i in range(num_distributions):
         draws = np.random.randint(1, 10_000_000, size=n)
 
         # Scale them so that they add up into 1
         ψ_0s[i,:] = np.array(draws/sum(draws))
-        
+
     return ψ_0s
 ```
 
@@ -920,7 +880,7 @@ def plot_distribution(P, ts_length, num_distributions):
     ψ_star = mc.stationary_distributions[0]
 
     ## Draw the plot
-    fig, axes = plt.subplots(nrows=1, ncols=n)
+    fig, axes = plt.subplots(nrows=1, ncols=n, figsize=[11, 5])
     plt.subplots_adjust(wspace=0.35)
 
     ψ_0s = generate_initial_values(num_distributions)
@@ -928,14 +888,14 @@ def plot_distribution(P, ts_length, num_distributions):
     # Get the path for each starting value
     for ψ_0 in ψ_0s:
         ψ_t = iterate_ψ(ψ_0, P, ts_length)
-        
+
         # Obtain and plot distributions at each state
         for i in range(n):
             axes[i].plot(range(0, ts_length), ψ_t[:,i], alpha=0.3)
 
     # Add labels
     for i in range(n):
-        axes[i].axhline(ψ_star[i], linestyle='dashed', lw=2, color = 'black', 
+        axes[i].axhline(ψ_star[i], linestyle='dashed', lw=2, color = 'black',
                         label = fr'$\psi^*({i})$')
         axes[i].set_xlabel('t')
         axes[i].set_ylabel(fr'$\psi_t({i})$')
@@ -947,7 +907,7 @@ def plot_distribution(P, ts_length, num_distributions):
 The following figure shows
 
 ```{code-cell} ipython3
-# Define the number of iterations 
+# Define the number of iterations
 # and initial distributions
 ts_length = 50
 num_distributions = 25
@@ -961,12 +921,22 @@ plot_distribution(P, ts_length, num_distributions)
 
 The convergence to $\psi^*$ holds for different initial distributions.
 
-+++ {"user_expressions": []}
-
-#### Example: Failure of Convergence
 
 
-In the case of our periodic chain, we find the distribution is oscillating
+#### Example: Failure of convergence
+
+
+In the case of a periodic chain, with
+
+$$
+P = 
+\begin{bmatrix}
+    0 & 1 \\
+    1 & 0 \\
+\end{bmatrix}
+$$
+
+we find the distribution oscillates
 
 ```{code-cell} ipython3
 P = np.array([[0, 1],
@@ -978,10 +948,12 @@ num_distributions = 30
 plot_distribution(P, ts_length, num_distributions)
 ```
 
-+++ {"user_expressions": []}
+Indeed, this $P$ fails our asymptotic stationarity condition, since, as you can
+verify, $P^t$ is not everywhere positive for any $t$.
+
 
 (finite_mc_expec)=
-## Computing Expectations
+## Computing expectations
 
 ```{index} single: Markov Chains; Forecasting Future Values
 ```
@@ -1004,19 +976,17 @@ and conditional expectations such as
 
 where
 
-* $\{X_t\}$ is a Markov chain generated by $n \times n$ stochastic matrix $P$
+* $\{X_t\}$ is a Markov chain generated by $n \times n$ stochastic matrix $P$.
 * $h$ is a given function, which, in terms of matrix
   algebra, we'll think of as the column vector
 
 $$
-h
-= \left(
-\begin{array}{c}
+h =
+\begin{bmatrix}
     h(x_1) \\
     \vdots \\
     h(x_n)
-\end{array}
-  \right)
+\end{bmatrix}.
 $$
 
 Computing the unconditional expectation {eq}`mc_une` is easy.
@@ -1051,7 +1021,7 @@ We already know that this is $P^k(x, \cdot)$, so
 = (P^k h)(x)
 ```
 
-### Expectations of Geometric Sums
+### Expectations of geometric sums
 
 Sometimes we want to compute the mathematical expectation of a geometric sum, such as
 $\sum_t \beta^t h(X_t)$.
@@ -1059,15 +1029,15 @@ $\sum_t \beta^t h(X_t)$.
 In view of the preceding discussion, this is
 
 $$
-\mathbb{E} 
+\mathbb{E}
     \left[
-        \sum_{j=0}^\infty \beta^j h(X_{t+j}) \mid X_t 
+        \sum_{j=0}^\infty \beta^j h(X_{t+j}) \mid X_t
         = x
     \right]
     = x + \beta (Ph)(x) + \beta^2 (P^2 h)(x) + \cdots
 $$
 
-By the {ref}`Neumann series lemma <la_neumann>`, this sum can be calculated using 
+By the {ref}`Neumann series lemma <la_neumann>`, this sum can be calculated using
 
 $$
     I + \beta P + \beta^2 P^2 + \cdots = (I - \beta P)^{-1}
@@ -1083,13 +1053,11 @@ Imam and Temple {cite}`imampolitical` used a three-state transition matrix to de
 
 $$
 P :=
-\left(
-  \begin{array}{ccc}
+\begin{bmatrix}
     0.68 & 0.12 & 0.20 \\
     0.50 & 0.24 & 0.26 \\
     0.36 & 0.18 & 0.46
-  \end{array}
-\right)
+\end{bmatrix}
 $$
 
 where rows, from top to down, correspond to growth, stagnation, and collapse.
@@ -1107,42 +1075,26 @@ Compare your solution to the paper.
 :class: dropdown
 ```
 
-1.
+Solution 1:
 
-```{code-cell} ipython3
-:tags: [hide-output]
+```{image} /_static/lecture_specific/markov_chains_I/Temple.png
+:name: mc_temple
+:align: center
 
-dot = Digraph(comment='Graph')
-dot.attr(rankdir='LR')
-dot.node("Growth")
-dot.node("Stagnation")
-dot.node("Collapse")
-
-dot.edge("Growth", "Growth", label="0.68")
-dot.edge("Growth", "Stagnation", label="0.12")
-dot.edge("Growth", "Collapse", label="0.20")
-
-dot.edge("Stagnation", "Stagnation", label="0.24")
-dot.edge("Stagnation", "Growth", label="0.50")
-dot.edge("Stagnation", "Collapse", label="0.26")
-
-dot.edge("Collapse", "Collapse", label="0.46")
-dot.edge("Collapse", "Stagnation", label="0.18")
-dot.edge("Collapse", "Growth", label="0.36")
-
-dot
 ```
+
++++
 
 Since the matrix is everywhere positive, there is a unique stationary distribution.
 
-2. 
+Solution 2:
 
 One simple way to calculate the stationary distribution is to take the power of the transition matrix as we have shown before
 
 ```{code-cell} ipython3
-P = [[0.68, 0.12, 0.20],
-     [0.50, 0.24, 0.26],
-     [0.36, 0.18, 0.46]]
+P = np.array([[0.68, 0.12, 0.20],
+              [0.50, 0.24, 0.26],
+              [0.36, 0.18, 0.46]])
 P_power = np.linalg.matrix_power(P, 20)
 P_power
 ```
@@ -1160,7 +1112,7 @@ mc = qe.MarkovChain(P)
 ψ_star
 ```
 
-3.
+Solution 3:
 
 We find the distribution $\psi$ converges to the stationary distribution more quickly compared to the {ref}`hamilton's chain <hamilton>`.
 
@@ -1195,9 +1147,7 @@ sp_gap_hamilton = hamilton_eigenvals[0] - np.diff(hamilton_eigenvals)[0]
 sp_gap_P > sp_gap_hamilton
 ```
 
-We will come back to this in 
-
-TODO: add a reference to eigen II
+We will come back to this when we discuss {ref}`spectral theory<spec_markov>`.
 
 ```{solution-end}
 ```
@@ -1220,15 +1170,15 @@ P = [[0.86, 0.11, 0.03, 0.00, 0.00, 0.00],
 In this exercise,
 
 1. show this process is asymptotically stationary without simulation
-1. simulate and visualize the dynamics starting with a uniform distribution across states (each state will have a probability of 1/6)
-1. change the initial distribution to P(DG) = 1, while all other states have a probability of 0
+2. simulate and visualize the dynamics starting with a uniform distribution across states (each state will have a probability of 1/6)
+3. change the initial distribution to P(DG) = 1, while all other states have a probability of 0
 ````
 
 ```{solution-start} mc1_ex_2
 :class: dropdown
 ```
 
-1. 
+Solution 1:
 
 Although $P$ is not every positive, $P^m$ when $m=3$ is everywhere positive.
 
@@ -1245,7 +1195,7 @@ np.linalg.matrix_power(P,3)
 
 So it satisfies the requirement.
 
-2.
+Solution 2:
 
 We find the distribution $\psi$ converges to the stationary distribution quickly regardless of the initial distributions
 

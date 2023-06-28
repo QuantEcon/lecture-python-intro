@@ -9,16 +9,12 @@ kernelspec:
   name: python3
 ---
 
-# Computational Economics and Finance for Undergraduates
+# A First Course in Quantitative Economics with Python
 
-```{admonition} Writing in progress
-:class: warning
-This lecture series is currently **in-work**
-```
+This lecture series provides an introduction to quantitative economics using Python. 
 
-This website presents a set of lectures for undergraduates focusing on computational economics and finance, designed and written by [Thomas J. Sargent](http://www.tomsargent.com/) and [John Stachurski](http://johnstachurski.net/).
-
-For an overview of the series, see [this page](https://quantecon.org/python-lectures/)
+The lectures were designed and written by [Thomas J. Sargent](http://www.tomsargent.com/) and [John Stachurski](http://johnstachurski.net/), 
+with extensive help from the rest of the QuantEcon team. 
 
 ```{tableofcontents}
 ```

@@ -53,7 +53,7 @@ plt.rcParams["figure.figsize"] = (11, 5)  # set default figure size
 
 
 
-## A Two Good Example
+## A two good example
 
 In this section we discuss a simple two good example and solve it by
 
@@ -63,7 +63,7 @@ In this section we discuss a simple two good example and solve it by
 The second method is more general, as we will see.
 
 
-### Pencil and Paper Methods
+### Pencil and paper methods
 
 Suppose that we have two related goods, such as 
 
@@ -121,7 +121,7 @@ $$
 $$
 
 
-### Looking Forward
+### Looking forward
 
 Pencil and paper methods are easy in the two good case.
 
@@ -180,7 +180,7 @@ for v in vecs:
 plt.show()
 ```
 
-### Vector Operations
+### Vector operations
 
 ```{index} single: Vectors; Operations
 ```
@@ -366,7 +366,7 @@ x + y                     # Add (element-by-element)
 4 * x                     # Scalar multiply
 ```
 
-### Inner Product and Norm
+### Inner product and norm
 
 ```{index} single: Vectors; Inner Product
 ```
@@ -420,7 +420,7 @@ np.linalg.norm(x)      # Norm of x, take two
 
 
 
-## Matrix Operations
+## Matrix operations
 
 ```{index} single: Matrix; Operations
 ```
@@ -431,7 +431,7 @@ Matrix algebra is similar to algebra for numbers.
 
 Let's review some details.
 
-### Addition and Scalar Multiplication
+### Addition and scalar multiplication
 
 Just as was the case for vectors, we can add, subtract and scalar multiply
 matrices.
@@ -513,7 +513,7 @@ $$
 In the latter case, the matrices must have the same shape in order for the
 definition to make sense.
 
-### Matrix Multiplication
+### Matrix multiplication
 
 We also have a convention for *multiplying* two matrices.
 
@@ -678,7 +678,7 @@ To multiply matrices we use the `@` symbol.
 In particular, `A @ B` is matrix multiplication, whereas `A * B` is element-by-element multiplication.
 ```
 
-### Two Good Model in Matrix Form
+### Two good model in matrix form
 
 We can now revisit the two good model and solve {eq}`two_equilibrium`
 numerically via matrix algebra.
@@ -759,7 +759,7 @@ Before we implement the solution let us consider a more general setting.
 
 
 
-### More Goods
+### More goods
 
 It is natural to think about demand systems with more goods.
 
@@ -799,7 +799,7 @@ $$
 $$
 
 
-### General Linear Systems
+### General linear systems
 
 A more general version of the problem described above looks as follows.
 
@@ -865,7 +865,7 @@ the following questions
 
 
 
-## Solving Systems of Equations
+## Solving systems of equations
 
 ```{index} single: Matrix; Solving Systems of Equations
 ```
@@ -884,7 +884,7 @@ We may not always find a unique vector $x$ that solves {eq}`la_se2`.
 
 We illustrate two such cases below.
 
-### No Solution
+### No solution
 
 Consider the system of equations given by,
 
@@ -950,7 +950,7 @@ But these details are not needed in what follows.
 
 
 
-### Many Solutions
+### Many solutions
 
 Now consider,
 
@@ -981,7 +981,7 @@ are linearly dependent --- can you see why?
 We now impose conditions on $A$ in {eq}`la_se2` that rule out these problems.
 
 
-### Nonsingular Matrices
+### Nonsingular matrices
 
 To every square matrix we can assign a unique number called the
 [determinant](https://en.wikipedia.org/wiki/Determinant).
@@ -1024,7 +1024,7 @@ This is the solution to $Ax = b$ --- the solution we are looking for.
 
 
 
-### Linear Equations with NumPy
+### Linear equations with NumPy
 
 ```{index} single: Linear Algebra; SciPy
 ```
@@ -1362,7 +1362,7 @@ plt.show()
 ```
 
 
-### Further Reading
+### Further reading
 
 The documentation of the `numpy.linalg` submodule can be found [here](https://numpy.org/devdocs/reference/routines.linalg.html).
 
