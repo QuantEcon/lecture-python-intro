@@ -53,6 +53,8 @@ Let
  * $\gamma_c > 1$ be the (gross) rate of growth of wages of a  college  graduate, so that
  $ w_t^c = w_0^c \gamma_c^t$
 
+ * $D$ be the upfront monetary costs of going to college
+
 
 
 If someone goes to work immediately after high school  and  works for the  $T+1$ years $t=0, 1, 2, \ldots, T$, she earns present value
@@ -79,7 +81,7 @@ $$
 where
 
 $$
-A_c =w_0^c (R^{-1} \gamma_c)^4  \left[ \frac{1 - (R^{-1} \gamma_c)^{T-3} }{1 - R^{-1} \gamma_c } \right] 
+A_c = (R^{-1} \gamma_c)^4  \left[ \frac{1 - (R^{-1} \gamma_c)^{T-3} }{1 - R^{-1} \gamma_c } \right] 
 $$ 
 
 The present value $c_0$  is the "human wealth" at the beginning of time $0$ of someone who chooses to attend college for four years and then start to work at time $t=4$ at the wage of a college graduate.
