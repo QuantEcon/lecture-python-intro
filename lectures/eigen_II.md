@@ -28,6 +28,8 @@ In addition to what's in Anaconda, this lecture will need the following librarie
 !pip install quantecon
 ```
 
+In this lecture we will begin with the foundational concepts in spectral theory.
+
 Then we will explore the Perron-Frobenius Theorem and connect it to applications in Markov chains and networks.
 
 We will use the following imports:
