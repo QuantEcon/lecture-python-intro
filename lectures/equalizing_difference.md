@@ -13,6 +13,8 @@ kernelspec:
 
 # Equalizing Difference Model
 
+## Overview
+
 This lecture presents a model of the college-high-school wage gap in which the
 "time to build" a college graduate plays a key role.
 
@@ -26,12 +28,24 @@ The idea behind this condition is that lifetime earnings have to adjust to make 
 
 It is just one instance of an  "equalizing difference" theory of relative wage rates, a class of theories dating back at least to Adam Smith's **Wealth of Nations** {cite}`smith2010wealth`.  
 
+For most of this lecture, the only mathematical tools that we'll use are from linear algebra, in particular, matrix multiplication and matrix inversion.
+
+However, at the very end of the lecture, we'll use calculus just in case readers want to see how computing partial derivatives could let us present some findings more concisely.  
+
+(And doing that will let us show off how good Python is at doing calculus!)
+
+But if you don't know calculus, our tools from linear algebra are certainly enough.
+
 As usual, we'll start by importing some Python modules.
 
 ```{code-cell} ipython3
 import numpy as np
 import matplotlib.pyplot as plt
 ```
+
+## The indifference condition
+
+The key idea is that the initial college wage premium has to adjust to make a representative worker indifferent between going to college and not going to college.
 
 Let
 
@@ -119,6 +133,8 @@ $$
 w_0^h A_h  = \phi w_0^h A_c - D .
 $$ (eq:equalize)
 
+This is the "indifference condition" that is at the heart of the model.
+
 Solving equation {eq}`eq:equalize` for the college wage premium $\phi$ we obtain
 
 $$
@@ -139,7 +155,7 @@ But first we'll describe a possible alternative interpretation of our model.
 
 
 
-## A tweaked model: workers and entrepreneurs
+## Reinterpreting the model: workers and entrepreneurs
 
 
 We can add a parameter and reinterpret variables to get a model of entrepreneurs versus workers.
@@ -308,7 +324,7 @@ plt.show()
 ```
 
 
-**Entrepreneur-worker interpretation**
+## Entrepreneur-worker interpretation
 
 Now let's adopt the entrepreneur-worker interpretation of our model.
 
@@ -334,6 +350,158 @@ plt.show()
 ```
 
 Does the graph make sense to you?
+
+
+
+## An application of calculus
+
+So far, we have used only linear algebra and it has been a good enough tool for us to  figure out how our model works.
+
+However, someone who knows calculus might ask "Instead of plotting those graphs, why didn't you just take partial derivatives?"
+
+We'll briefly do just that,  yes, the questioner is correct and that partial derivatives are indeed a good tool for discovering the "comparative statics" properities of our model.
+
+A reader who doesn't know calculus could read no further and feel confident that applying linear algebra has taught us the main properties of the model.
+
+But for a reader interested in how we can get Python to do all the hard work involved in computing partial derivatives, we'll say a few things about that now.  
+
+We'll use the Python module 'sympy' to compute partial derivatives of $\phi$ with respect to the parameters that determine it.
+
+Let's import key functions from sympy.
+
+```{code-cell} ipython3
+from sympy import Symbol, Lambda, symbols
+```
+
+Define symbols
+
+```{code-cell} ipython3
+γ_h, γ_c, w_h0, D = symbols('\gamma_h, \gamma_h_c, w_0^h, D', real=True)
+R, T = Symbol('R', real=True), Symbol('T', integer=True)
+```
+
+Define function $A_h$
+
+```{code-cell} ipython3
+A_h = Lambda((γ_h, R, T), (1 - (γ_h/R)**(T+1)) / (1 - γ_h/R))
+A_h
+```
+
+Define function $A_c$
+
+```{code-cell} ipython3
+A_c = Lambda((γ_c, R, T), (1 - (γ_c/R)**(T-3)) / (1 - γ_c/R) * (γ_c/R)**4)
+A_c
+```
+
+Now, define $\phi$
+
+```{code-cell} ipython3
+ϕ = Lambda((D, γ_h, γ_c, R, T, w_h0), A_h(γ_h, R, T)/A_c(γ_c, R, T) + D/(w_h0*A_c(γ_c, R, T)))
+```
+
+```{code-cell} ipython3
+ϕ
+```
+
+We begin by setting  default parameter values.
+
+```{code-cell} ipython3
+R_value = 1.05
+T_value = 40
+γ_h_value, γ_c_value = 1.01, 1.01
+w_h0_value = 1
+D_value = 10
+```
+
+Now let's compute $\frac{\partial \phi}{\partial D}$ and then evaluate it at the default values
+
+```{code-cell} ipython3
+ϕ_D = ϕ(D, γ_h, γ_c, R, T, w_h0).diff(D)
+ϕ_D
+```
+
+```{code-cell} ipython3
+# Numerical value at default parameters
+ϕ_D_func = Lambda((D, γ_h, γ_c, R, T, w_h0), ϕ_D)
+ϕ_D_func(D_value, γ_h_value, γ_c_value, R_value, T_value, w_h0_value)
+```
+
+Thus, as with our graph above, we find that raising $R$ increases the initial college wage premium $\phi$.
+
++++
+
+Compute $\frac{\partial \phi}{\partial T}$ and evaluate it a default parameters
+
+```{code-cell} ipython3
+ϕ_T = ϕ(D, γ_h, γ_c, R, T, w_h0).diff(T)
+ϕ_T
+```
+
+```{code-cell} ipython3
+# Numerical value at default parameters
+ϕ_T_func = Lambda((D, γ_h, γ_c, R, T, w_h0), ϕ_T)
+ϕ_T_func(D_value, γ_h_value, γ_c_value, R_value, T_value, w_h0_value)
+```
+
+We find that raising $T$ decreases the initial college wage premium $\phi$. 
+
+This is because college graduates now have longer career lengths to "pay off" the time and other costs they paid to go to college
+
++++
+
+Let's compute $\frac{\partial \phi}{\partial γ_h}$ and evaluate it at default parameters.
+
+```{code-cell} ipython3
+ϕ_γ_h = ϕ(D, γ_h, γ_c, R, T, w_h0).diff(γ_h)
+ϕ_γ_h
+```
+
+```{code-cell} ipython3
+# Numerical value at default parameters
+ϕ_γ_h_func = Lambda((D, γ_h, γ_c, R, T, w_h0), ϕ_γ_h)
+ϕ_γ_h_func(D_value, γ_h_value, γ_c_value, R_value, T_value, w_h0_value)
+```
+
+We find that raising $\gamma_h$ increases the initial college wage premium $\phi$, as we did with our graphical analysis earlier
+
++++
+
+Compute $\frac{\partial \phi}{\partial γ_c}$ and evaluate it numerically at default parameter values
+
+```{code-cell} ipython3
+ϕ_γ_c = ϕ(D, γ_h, γ_c, R, T, w_h0).diff(γ_c)
+ϕ_γ_c
+```
+
+```{code-cell} ipython3
+# Numerical value at default parameters
+ϕ_γ_c_func = Lambda((D, γ_h, γ_c, R, T, w_h0), ϕ_γ_c)
+ϕ_γ_c_func(D_value, γ_h_value, γ_c_value, R_value, T_value, w_h0_value)
+```
+
+We find that raising $\gamma_c$ decreases the initial college wage premium $\phi$, as we did with our graphical analysis earlier
+
++++
+
+Let's compute $\frac{\partial \phi}{\partial R}$ and evaluate it numerically at default parameter values
+
+```{code-cell} ipython3
+ϕ_R = ϕ(D, γ_h, γ_c, R, T, w_h0).diff(R)
+ϕ_R
+```
+
+```{code-cell} ipython3
+# Numerical value at default parameters
+ϕ_R_func = Lambda((D, γ_h, γ_c, R, T, w_h0), ϕ_R)
+ϕ_R_func(D_value, γ_h_value, γ_c_value, R_value, T_value, w_h0_value)
+```
+
++++ {"tags": []}
+
+We find that raising the gross interest rate $R$ increases the initial college wage premium $\phi$, as we did with our graphical analysis earlier
+
+
 
 ```{code-cell} ipython3
 
