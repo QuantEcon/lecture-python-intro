@@ -11,9 +11,9 @@ kernelspec:
   name: python3
 ---
 
-# Spectral Theory
+# The Perron-Frobenius Theorem
 
-```{index} single: Spectral Theory
+```{index} single: The Perron-Frobenius Theorem
 ```
 
 ```{contents} Contents
@@ -51,8 +51,6 @@ Nonnegative matrices have several special and useful properties.
 In this section we will discuss some of them --- in particular, the connection
 between nonnegativity and eigenvalues.
 
-Let $a^{k}_{ij}$ be element $(i,j)$ of $A^k$.
-
 An $n \times m$ matrix $A$ is called **nonnegative** if every element of $A$
 is nonnegative, i.e., $a_{ij} \geq 0$ for every $i,j$.
 
@@ -65,38 +63,56 @@ We introduced irreducible matrices in the [Markov chain lecture](mc_irreducible)
 
 Here we generalize this concept:
 
-An $n \times n$ matrix $A$ is called irreducible if, for each $i,j$ with $1 \leq i, j \leq n$, there exists a $k \geq 0$ such that $a^{k}_{ij} > 0$.
+Let $a^{k}_{ij}$ be element $(i,j)$ of $A^k$.
 
-A matrix $A$ that is not irreducible is called reducible.
+An $n \times n$ nonnegative matrix $A$ is called irreducible if $A + A^2 + A^3 + \cdots \gg 0$, where $\gg 0$ denotes every element in $A$ is nonnegative.
 
-Here are some examples to illustrate this further.
+In other words, for each $i,j$ with $1 \leq i, j \leq n$, there exists a $k \geq 0$ such that $a^{k}_{ij} > 0$.
 
-1. $A = \begin{bmatrix} 0.5 & 0.1 \\ 0.2 & 0.2 \end{bmatrix}$ is irreducible since $a_{ij}>0$ for all $(i,j)$.
+Here are some examples to illustrate this further:
 
-2. $A = \begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix}$ is irreducible since $a_{12},a_{21} >0$ and $a^{2}_{11},a^{2}_{22} >0$.
+$$
+A = \begin{bmatrix} 0.5 & 0.1 \\ 
+                    0.2 & 0.2 
+\end{bmatrix}
+$$
 
-3. $A = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}$ is reducible since $A^k = A$ for all $k \geq 0$ and thus
-   $a^{k}_{12},a^{k}_{21} = 0$ for all $k \geq 0$.
+$A$ is irreducible since $a_{ij}>0$ for all $(i,j)$.
 
-### Primitive matrices
+$$
+B = \begin{bmatrix} 0 & 1 \\ 
+                    1 & 0 
+\end{bmatrix}
+, \quad
+B^2 = \begin{bmatrix} 1 & 0 \\ 
+                      0 & 1
+\end{bmatrix}
+$$
 
-Let $A$ be a square nonnegative matrix and let $A^k$ be the $k^{th}$ power of $A$.
+$B$ is irreducible since $b_{12},b_{21} >0$ and $b^{2}_{11},b^{2}_{22} >0$.
 
-A matrix is called **primitive** if there exists a $k \in \mathbb{N}$ such that $A^k$ is everywhere positive.
+$$
+C = \begin{bmatrix} 1 & 0 \\ 
+                    0 & 1 
+\end{bmatrix}
+$$
 
-It means that $A$ is called primitive if there is an integer $k \geq 0$ such that $a^{k}_{ij} > 0$ for *all* $(i,j)$.
-
-We can see that if a matrix is primitive, then it implies the matrix is irreducible.
+$C$ is reducible since $C^k = C$ for all $k \geq 0$ and thus
+   $c^{k}_{12},c^{k}_{21} = 0$ for all $k \geq 0$.
 
 ### Left eigenvectors
 
-We previously discussed right (ordinary) eigenvectors $Av = \lambda v$.
+Recall that we previously discussed eigenvectors in {ref}`Eigenvalues and Eigenvectors <la_eigenvalues>`.
 
-Here we introduce left eigenvectors.
+The eigenvalue $\lambda$ and its cooresponding eigenvecotr $v$ of matrix $A$ satisfy
+
+$$
+Av = \lambda v.
+$$
+
+In this section we will define $v$ as right eigenvectors since we will be introducing left eigenvectors now.
 
 Left eigenvectors will play important roles in what follows, including that of stochastic steady states for dynamic models under a Markov assumption.
-
-We will talk more about this later, but for now, let's define left eigenvectors.
 
 A vector $w$ is called a left eigenvector of $A$ if $w$ is an eigenvector of $A^\top$.
 
@@ -109,19 +125,16 @@ A = np.array([[3, 2],
               [1, 4]])
 
 # Compute right eigenvectors and eigenvalues
-λ_r, v = eig(A)
+λ, v = eig(A)
 
 # Compute left eigenvectors and eigenvalues
-λ_l, w = eig(A.T)
+λ, w = eig(A.T)
 
-print("Right Eigenvalues:")
-print(λ_r)
-print("\nRight Eigenvectors:")
-print(v)
-print("\nLeft Eigenvalues:")
-print(λ_l)
-print("\nLeft Eigenvectors:")
-print(w)
+np.set_printoptions(precision=5)
+
+print(f"The eigenvalues of A are:\n {λ}\n")
+print(f"The corresponding right eigenvectors are: \n {v[:,0]} and {-v[:,1]}\n")
+print(f"The corresponding left eigenvectors are: \n {w[:,0]} and {-w[:,1]}\n")
 ```
 
 We can use `scipy.linalg.eig` with argument `left=True` to find left eigenvectors directly
@@ -129,17 +142,14 @@ We can use `scipy.linalg.eig` with argument `left=True` to find left eigenvector
 ```{code-cell} ipython3
 eigenvals, ε, e = sp.linalg.eig(A, left=True)
 
-print("Right Eigenvalues:")
-print(λ_r)
-print("\nRight Eigenvectors:")
-print(v)
-print("\nLeft Eigenvalues:")
-print(λ_l)
-print("\nLeft Eigenvectors:")
-print(w)
+print(f"The eigenvalues of A are:\n {eigenvals.real}\n")
+print(f"The corresponding right eigenvectors are: \n {e[:,0]} and {-e[:,1]}\n")
+print(f"The corresponding left eigenvectors are: \n {ε[:,0]} and {-ε[:,1]}\n")
 ```
 
-Note that the eigenvalues for both left and right eigenvectors are the same, but the eigenvectors themselves are different.
+We can find that the eigenvalues are the same while the eigenvectors themselves are different.
+
+(Also note that we are taking the nonnegative value of the eigenvector of {ref}`dominant eigenvalue <perron-frobe>`, this is because `eig` automatically normalize the eigenvectors.)
 
 We can then take transpose to obtain $A^\top w = \lambda w$ and obtain $w^\top A= \lambda w^\top$.
 
@@ -168,11 +178,7 @@ Moreover if $A$ is also irreducible then,
 4. the eigenvector $v$ associated with the eigenvalue $r(A)$ is strictly positive.
 5. there exists no other positive eigenvector $v$ (except scalar multiples of $v$) associated with $r(A)$.
 
-If $A$ is primitive then,
-
-6. the inequality $|\lambda| \leq r(A)$ is **strict** for all eigenvalues $\lambda$ of $A$ distinct from $r(A)$, and
-7. with $v$ and $w$ normalized so that the inner product of $w$ and  $v = 1$, we have
-$ r(A)^{-m} A^m$ converges to $v w^{\top}$ when $m \rightarrow \infty$. The matrix $v w^{\top}$ is called the **Perron projection** of $A$
+(More of the Perron-Frobenius theorem about primitive matrices will be introduced {ref}`below <prim_matrices>`.)
 ```
 
 (This is a relatively simple version of the theorem --- for more details see
@@ -184,7 +190,7 @@ Let's build our intuition for the theorem using a simple example we have seen [b
 
 Now let's consider examples for each case.
 
-#### Example 1: irreducible matrix
+#### Example: Irreducible matrix
 
 Consider the following irreducible matrix $A$:
 
@@ -200,7 +206,7 @@ We can compute the dominant eigenvalue and the corresponding eigenvector
 eig(A)
 ```
 
-Now we can go through our checklist to verify the claims of the Perron-Frobenius Theorem for the irreducible matrix $A$:
+Now we will can see the claims of the Perron-Frobenius Theorem holds for the irreducible matrix $A$:
 
 1. The dominant eigenvalue is real-valued and non-negative.
 2. All other eigenvalues have absolute values less than or equal to the dominant eigenvalue.
@@ -208,7 +214,54 @@ Now we can go through our checklist to verify the claims of the Perron-Frobenius
 4. As the matrix is irreducible, the eigenvector associated with the dominant eigenvalue is strictly positive.
 5. There exists no other positive eigenvector associated with the dominant eigenvalue.
 
-#### Example 2: primitive matrix
+(prim_matrices)=
+### Primitive matrices
+
+We know that in real world situations it's hard for a matrix to be everywhere positive (although they have nice properties).
+
+The primitive matrices, however, can still give us helpful properties with looser definitions.
+
+Let $A$ be a square nonnegative matrix and let $A^k$ be the $k^{th}$ power of $A$.
+
+A matrix is called **primitive** if there exists a $k \in \mathbb{N}$ such that $A^k$ is everywhere positive.
+
+Recall the examples given in irreducible matrices:
+
+$$
+A = \begin{bmatrix} 0.5 & 0.1 \\ 
+                    0.2 & 0.2 
+\end{bmatrix}
+$$
+
+$A$ here is also a primitive matrix since $A^k$ is everywhere nonnegative for $k \in \mathbb{N}$.
+
+$$
+B = \begin{bmatrix} 0 & 1 \\ 
+                    1 & 0 
+\end{bmatrix}
+, \quad
+B^2 = \begin{bmatrix} 1 & 0 \\ 
+                      0 & 1
+\end{bmatrix}
+$$
+
+$B$ is irreducible but not premitive since there are always zeros in either principal diagonal or secondary diagonal.
+
+We can see that if a matrix is primitive, then it implies the matrix is irreducible but not vice versa.
+
+Now let's step back to the primitive matrices part of the Perron-Frobenius Theorem
+
+```{prf:Theorem} Continous of Perron-Frobenius Theorem
+:label: con-perron-frobenius
+
+If $A$ is primitive then,
+
+6. the inequality $|\lambda| \leq r(A)$ is **strict** for all eigenvalues $\lambda$ of $A$ distinct from $r(A)$, and
+7. with $v$ and $w$ normalized so that the inner product of $w$ and  $v = 1$, we have
+$ r(A)^{-m} A^m$ converges to $v w^{\top}$ when $m \rightarrow \infty$. The matrix $v w^{\top}$ is called the **Perron projection** of $A$.
+```
+
+#### Example 1: Primitive matrix
 
 Consider the following primitive matrix $B$:
 
@@ -226,7 +279,7 @@ We compute the dominant eigenvalue and the corresponding eigenvector
 eig(B)
 ```
 
-Now let's verify the claims of the Perron-Frobenius Theorem for the primitive matrix $B$:
+Now let's give some examples to see if the claims of the Perron-Frobenius Theorem holds for the primitive matrix $B$:
 
 1. The dominant eigenvalue is real-valued and non-negative.
 2. All other eigenvalues have absolute values strictly less than the dominant eigenvalue.
@@ -327,11 +380,11 @@ These examples show how the Perron-Frobenius Theorem relates to the eigenvalues 
 In fact we have already seen the theorem in action before in {ref}`the markov chain lecture <mc1_ex_1>`.
 
 (spec_markov)=
-#### Example 3: Connection to Markov chains
+#### Example 2: Connection to Markov chains
 
 We are now prepared to bridge the languages spoken in the two lectures.
 
-A primitive matrix is both irreducible (or strongly connected in the language of {ref}`graph theory<strongly_connected>` and aperiodic.
+A primitive matrix is both irreducible and aperiodic.
 
 So Perron-Frobenius Theorem explains why both Imam and Temple matrix and Hamilton matrix converge to a stationary distribution, which is the Perron projection of the two matrices
 
@@ -398,7 +451,7 @@ As we have seen, the largest eigenvalue for a primitive stochastic matrix is one
 This can be proven using [Gershgorin Circle Theorem](https://en.wikipedia.org/wiki/Gershgorin_circle_theorem),
 but it is out of the scope of this lecture.
 
-So by the statement (6) of Perron-Frobenius Theorem, $\lambda_i<1$ for all $i<n$, and $\lambda_n=1$ when $P$ is primitive (strongly connected and aperiodic).
+So by the statement (6) of Perron-Frobenius Theorem, $\lambda_i<1$ for all $i<n$, and $\lambda_n=1$ when $P$ is primitive.
 
 
 Hence, after taking the Euclidean norm deviation, we obtain
