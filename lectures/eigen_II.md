@@ -28,8 +28,6 @@ In addition to what's in Anaconda, this lecture will need the following librarie
 !pip install quantecon
 ```
 
-In this lecture we will begin with the foundational concepts in spectral theory.
-
 Then we will explore the Perron-Frobenius Theorem and connect it to applications in Markov chains and networks.
 
 We will use the following imports:
@@ -389,7 +387,7 @@ We are now prepared to bridge the languages spoken in the two lectures.
 
 A primitive matrix is both irreducible and aperiodic.
 
-So Perron-Frobenius Theorem explains why both Imam and Temple matrix and [Hamilton matrix](https://en.wikipedia.org/wiki/Hamiltonian_matrix) converge to a stationary distribution, which is the Perron projection of the two matrices
+So Perron-Frobenius Theorem explains why both {ref}`Imam and Temple matrix <mc_eg3>` and [Hamilton matrix](https://en.wikipedia.org/wiki/Hamiltonian_matrix) converge to a stationary distribution, which is the Perron projection of the two matrices
 
 ```{code-cell} ipython3
 P = np.array([[0.68, 0.12, 0.20],
