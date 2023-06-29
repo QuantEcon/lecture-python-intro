@@ -16,7 +16,7 @@ kernelspec:
 
 ## Overview
 
-In this lecture we review some empirical aspects of business cycles.
+In this lecture, we review some empirical aspects of business cycles.
 
 Business cycles are fluctuations in economic activity over time.
 
@@ -50,7 +50,7 @@ Here's some minor code to help with colors in our plots.
 ```{code-cell} ipython3
 :tags: [hide-input]
 
-# Set Graphical Parameters
+# Set graphical parameters
 cycler = plt.cycler(linestyle=['-', '-.', '--', ':'], 
         color=['#377eb8', '#ff7f00', '#4daf4a', '#ff334f'])
 plt.rc('axes', prop_cycle=cycler)
@@ -59,12 +59,12 @@ plt.rc('axes', prop_cycle=cycler)
 
 ## Data acquisition
 
-We will use `wbgapi` and `pandas_datareader` to retrieve data.
+We will use World Bank's data API `wbgapi` and `pandas_datareader` to retrieve data.
 
 We can use `wb.series.info` with the argument `q` to query available data from
 the [World Bank](https://www.worldbank.org/en/home).
 
-For example, let's retrieve the ID to query GDP growth data.
+For example, let's retrieve the GDP growth data ID to query GDP growth data.
 
 ```{code-cell} ipython3
 wb.series.info(q='GDP growth')
@@ -81,7 +81,7 @@ gdp_growth
 ```
 
 
-We can the metadata to learn more about the series (click to expand).
+We can look at the series' metadata to learn more about the series (click to expand).
 
 ```{code-cell} ipython3
 :tags: [hide-output]
@@ -94,7 +94,7 @@ wb.series.metadata.get('NY.GDP.MKTP.KD.ZG')
 (gdp_growth)=
 ## GDP growth rate
 
-First we look at GDP growth. 
+First, we look at GDP growth. 
 
 Let's source our data from the World Bank and clean it.
 
@@ -155,7 +155,7 @@ def plot_series(data, country, ylabel,
 
     ax.plot(data.loc[country], label=country, **g_params)
     
-    # Highlight Recessions
+    # Highlight recessions
     ax.axvspan(1973, 1975, **b_params)
     ax.axvspan(1990, 1992, **b_params)
     ax.axvspan(2007, 2009, **b_params)
@@ -289,7 +289,7 @@ plt.show()
 Greece experienced a very large drop in GDP growth around 2010-2011, during the peak
 of the Greek debt crisis.
 
-Next let's consider Argentina.
+Next, let's consider Argentina.
 
 ```{code-cell} ipython3
 ---
@@ -311,7 +311,7 @@ plt.show()
 Notice that Argentina has experienced far more volatile cycles than
 the economies examined above.
 
-At the same time, growth of Argentina did not fall during the two developed
+At the same time, the growth of Argentina did not fall during the two developed
 economy recessions in the 1970s and 1990s.
 
 
@@ -418,7 +418,7 @@ At the same time, this synchronization did not appear in Argentina until the 200
 Let's examine this trend further. 
 
 With slight modifications, we can use our previous function to draw a plot
-that includes multiple countries
+that includes multiple countries.
 
 ```{code-cell} ipython3
 ---
@@ -466,7 +466,7 @@ def plot_comparison(data, countries,
     for country in countries:
         ax.plot(data.loc[country], label=country, **g_params)
     
-    # Highlight Recessions
+    # Highlight recessions
     ax.axvspan(1973, 1975, **b_params)
     ax.axvspan(1990, 1992, **b_params)
     ax.axvspan(2007, 2009, **b_params)
@@ -513,7 +513,7 @@ gdp_growth.columns = gdp_growth.columns.str.replace('YR', '').astype(int)
 
 ```
 
-We use the United Kingdom, United States, Germany, and Japan as examples of developed economies
+We use the United Kingdom, United States, Germany, and Japan as examples of developed economies.
 
 ```{code-cell} ipython3
 ---
@@ -534,7 +534,7 @@ plot_comparison(gdp_growth.loc[countries, 1962:],
 plt.show()
 ```
 
-We choose Brazil, China, Argentina, and Mexico as representative developing economies
+We choose Brazil, China, Argentina, and Mexico as representative developing economies.
 
 ```{code-cell} ipython3
 ---
@@ -564,11 +564,11 @@ changes throughout the economic cycles.
 Despite the synchronization in GDP growth, the experience of individual countries during
 the recession often differs. 
 
-We use unemployment rate and the recovery of labor market conditions
+We use the unemployment rate and the recovery of labor market conditions
 as another example.
 
 Here we compare the unemployment rate of the United States, 
-United Kingdom, Japan, and France
+the United Kingdom, Japan, and France.
 
 ```{code-cell} ipython3
 ---
@@ -684,8 +684,8 @@ plt.show()
 
 We see that 
 
-* consumer sentiment often remains high during an expansion and
-drops before a recession.
+* consumer sentiment often remains high during expansions and
+drops before recessions.
 * there is a clear negative correlation between consumer sentiment and the CPI.
 
 When the price of consumer commodities rises, consumer confidence diminishes.
@@ -750,7 +750,7 @@ activity and gloomy expectations for the future.
 One example is domestic credit to the private sector by banks in the UK.
 
 The following graph shows the domestic credit to the private sector as a
-percentage of GDP by banks from 1970 to 2022 in the UK
+percentage of GDP by banks from 1970 to 2022 in the UK.
 
 ```{code-cell} ipython3
 ---
