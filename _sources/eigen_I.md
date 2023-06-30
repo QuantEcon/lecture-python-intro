@@ -35,7 +35,7 @@ At the same time, these concepts are extremely useful for
 * machine learning
 * and many other fields of science.
 
-In this lecture we explain the basics of eigenvalues and eigenvectors.
+In this lecture we explain the basics of eigenvalues and eigenvectors and introduce the Neumann Series Lemma.
 
 We assume in this lecture that students are familiar with matrices
  and understand {doc}`the basics of matrix algebra<linear_equations>`.
@@ -791,7 +791,6 @@ When solving $Av = \lambda v$,
 
 We will see some examples below.
 
-
 ### Some mathematical details
 
 We note some mathematical details for more advanced readers.
@@ -812,8 +811,6 @@ in $\lambda$ of degree $n$.
 
 This in turn implies the existence of $n$ solutions in the complex
 plane, although some might be repeated.
-
-
 
 ### Facts 
 
@@ -856,6 +853,118 @@ to one.
 The eigenvectors and eigenvalues of a map $A$ determine how a vector $v$ is transformed when we repeatedly multiply by $A$.
 
 This is discussed further later.
+
+
+(la_neumann)=
+## The Neumann Series Lemma
+
+```{index} single: Neumann's Lemma
+```
+
+In this section we present a famous result about series of matrices that has
+many applications in economics.
+
+### Scalar series
+
+Here's a fundamental result about series that you surely know:
+
+If $a$ is a number and $|a| < 1$, then
+
+```{math}
+:label: gp_sum
+
+    \sum_{k=0}^{\infty} a^k =\frac{1}{1-a} = (1 - a)^{-1}
+
+```
+
+For a one-dimensional linear equation $x = ax + b$ where x is unknown we can thus conclude that the solution $x^{*}$ is given by:
+
+$$
+    x^{*} = \frac{b}{1-a} = \sum_{k=0}^{\infty} a^k b
+$$
+
+### Matrix series
+
+A generalization of this idea exists in the matrix setting.
+
+Consider the system of equations $x = Ax + b$ where $A$ is an $n \times n$
+square matrix and $x$ and $b$ are both column vectors in $\mathbb{R}^n$.
+
+Using matrix algebra we can conclude that the solution to this system of equations will be given by:
+
+```{math}
+:label: neumann_eqn
+
+    x^{*} = (I-A)^{-1}b
+
+```
+
+What guarantees the existence of a unique vector $x^{*}$ that satisfies
+{eq}`neumann_eqn`?
+
+The following is a fundamental result in functional analysis that generalizes
+{eq}`gp_sum` to a multivariate case.
+
+(neumann_series_lemma)=
+```{prf:Theorem} Neumann Series Lemma
+:label: neumann_series_lemma
+
+Let $A$ be a square matrix and let $A^k$ be the $k$-th power of $A$.
+
+Let $r(A)$ be the **spectral radius** of $A$, defined as $\max_i |\lambda_i|$, where
+
+* $\{\lambda_i\}_i$ is the set of eigenvalues of $A$ and
+* $|\lambda_i|$ is the modulus of the complex number $\lambda_i$
+
+Neumann's Theorem states the following: If $r(A) < 1$, then $I - A$ is invertible, and
+
+$$
+(I - A)^{-1} = \sum_{k=0}^{\infty} A^k
+$$
+```
+
+We can see the Neumann Series Lemma in action in the following example.
+
+```{code-cell} ipython3
+A = np.array([[0.4, 0.1],
+              [0.7, 0.2]])
+
+evals, evecs = eig(A)   # finding eigenvalues and eigenvectors
+
+r = max(abs(λ) for λ in evals)    # compute spectral radius
+print(r)
+```
+
+The spectral radius $r(A)$ obtained is less than 1.
+
+Thus, we can apply the Neumann Series Lemma to find $(I-A)^{-1}$.
+
+```{code-cell} ipython3
+I = np.identity(2)      #2 x 2 identity matrix
+B = I - A
+```
+
+```{code-cell} ipython3
+B_inverse = np.linalg.inv(B)     #direct inverse method
+```
+
+```{code-cell} ipython3
+A_sum = np.zeros((2,2))        #power series sum of A
+A_power = I
+for i in range(50):
+    A_sum += A_power
+    A_power = A_power @ A
+```
+
+Let's check equality between the sum and the inverse methods.
+
+```{code-cell} ipython3
+np.allclose(A_sum, B_inverse)
+```
+
+Although we truncate the infinite sum at $k = 50$, both methods give us the same
+result which illustrates the result of the Neumann Series Lemma.
+
 
 ## Exercises
 
