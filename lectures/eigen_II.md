@@ -11,9 +11,9 @@ kernelspec:
   name: python3
 ---
 
-# Spectral Theory
+# The Perron-Frobenius Theorem
 
-```{index} single: Spectral Theory
+```{index} single: The Perron-Frobenius Theorem
 ```
 
 ```{contents} Contents
@@ -30,7 +30,7 @@ In addition to what's in Anaconda, this lecture will need the following librarie
 
 In this lecture we will begin with the foundational concepts in spectral theory.
 
-Then we will explore the Perron-Frobenius Theorem and the Neumann Series Lemma, and connect them to applications in Markov chains and networks.
+Then we will explore the Perron-Frobenius Theorem and connect it to applications in Markov chains and networks.
 
 We will use the following imports:
 
@@ -51,8 +51,6 @@ Nonnegative matrices have several special and useful properties.
 In this section we will discuss some of them --- in particular, the connection
 between nonnegativity and eigenvalues.
 
-Let $a^{k}_{ij}$ be element $(i,j)$ of $A^k$.
-
 An $n \times m$ matrix $A$ is called **nonnegative** if every element of $A$
 is nonnegative, i.e., $a_{ij} \geq 0$ for every $i,j$.
 
@@ -65,40 +63,60 @@ We introduced irreducible matrices in the [Markov chain lecture](mc_irreducible)
 
 Here we generalize this concept:
 
-An $n \times n$ matrix $A$ is called irreducible if, for each $i,j$ with $1 \leq i, j \leq n$, there exists a $k \geq 0$ such that $a^{k}_{ij} > 0$.
+Let $a^{k}_{ij}$ be element $(i,j)$ of $A^k$.
 
-A matrix $A$ that is not irreducible is called reducible.
+An $n \times n$ nonnegative matrix $A$ is called irreducible if $A + A^2 + A^3 + \cdots \gg 0$, where $\gg 0$ indicates that every element in $A$ is strictly positive.
 
-Here are some examples to illustrate this further.
+In other words, for each $i,j$ with $1 \leq i, j \leq n$, there exists a $k \geq 0$ such that $a^{k}_{ij} > 0$.
 
-1. $A = \begin{bmatrix} 0.5 & 0.1 \\ 0.2 & 0.2 \end{bmatrix}$ is irreducible since $a_{ij}>0$ for all $(i,j)$.
+Here are some examples to illustrate this further:
 
-2. $A = \begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix}$ is irreducible since $a_{12},a_{21} >0$ and $a^{2}_{11},a^{2}_{22} >0$.
+$$
+A = \begin{bmatrix} 0.5 & 0.1 \\ 
+                    0.2 & 0.2 
+\end{bmatrix}
+$$
 
-3. $A = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}$ is reducible since $A^k = A$ for all $k \geq 0$ and thus
-   $a^{k}_{12},a^{k}_{21} = 0$ for all $k \geq 0$.
+$A$ is irreducible since $a_{ij}>0$ for all $(i,j)$.
 
-### Primitive matrices
+$$
+B = \begin{bmatrix} 0 & 1 \\ 
+                    1 & 0 
+\end{bmatrix}
+, \quad
+B^2 = \begin{bmatrix} 1 & 0 \\ 
+                      0 & 1
+\end{bmatrix}
+$$
 
-Let $A$ be a square nonnegative matrix and let $A^k$ be the $k^{th}$ power of $A$.
+$B$ is irreducible since $B + B^2$ is a matrix of ones.
 
-A matrix is called **primitive** if there exists a $k \in \mathbb{N}$ such that $A^k$ is everywhere positive.
+$$
+C = \begin{bmatrix} 1 & 0 \\ 
+                    0 & 1 
+\end{bmatrix}
+$$
 
-It means that $A$ is called primitive if there is an integer $k \geq 0$ such that $a^{k}_{ij} > 0$ for *all* $(i,j)$.
-
-We can see that if a matrix is primitive, then it implies the matrix is irreducible.
+$C$ is not irreducible since $C^k = C$ for all $k \geq 0$ and thus
+   $c^{k}_{12},c^{k}_{21} = 0$ for all $k \geq 0$.
 
 ### Left eigenvectors
 
-We previously discussed right (ordinary) eigenvectors $Av = \lambda v$.
+Recall that we previously discussed eigenvectors in {ref}`Eigenvalues and Eigenvectors <la_eigenvalues>`.
 
-Here we introduce left eigenvectors.
+In particular, $\lambda$ is an eigenvalue of $A$ and $v$ is an eigenvector of $A$ if $v$ is nonzero and satisfy
+
+$$
+Av = \lambda v.
+$$
+
+In this section we introduce left eigenvectors.
+
+To avoid confusion, what we previously referred to as "eigenvectors" will be called "right eigenvectors".
 
 Left eigenvectors will play important roles in what follows, including that of stochastic steady states for dynamic models under a Markov assumption.
 
-We will talk more about this later, but for now, let's define left eigenvectors.
-
-A vector $w$ is called a left eigenvector of $A$ if $w$ is an eigenvector of $A^\top$.
+A vector $w$ is called a left eigenvector of $A$ if $w$ is a right eigenvector of $A^\top$.
 
 In other words, if $w$ is a left eigenvector of matrix $A$, then $A^\top w = \lambda w$, where $\lambda$ is the eigenvalue associated with the left eigenvector $v$.
 
@@ -108,38 +126,33 @@ This hints at how to compute left eigenvectors
 A = np.array([[3, 2],
               [1, 4]])
 
-# Compute right eigenvectors and eigenvalues
-λ_r, v = eig(A)
+# Compute eigenvalues and right eigenvectors
+λ, v = eig(A)
 
-# Compute left eigenvectors and eigenvalues
-λ_l, w = eig(A.T)
+# Compute eigenvalues and left eigenvectors
+λ, w = eig(A.T)
 
-print("Right Eigenvalues:")
-print(λ_r)
-print("\nRight Eigenvectors:")
-print(v)
-print("\nLeft Eigenvalues:")
-print(λ_l)
-print("\nLeft Eigenvectors:")
-print(w)
+# Keep 5 decimals
+np.set_printoptions(precision=5)
+
+print(f"The eigenvalues of A are:\n {λ}\n")
+print(f"The corresponding right eigenvectors are: \n {v[:,0]} and {-v[:,1]}\n")
+print(f"The corresponding left eigenvectors are: \n {w[:,0]} and {-w[:,1]}\n")
 ```
 
-We can use `scipy.linalg.eig` with argument `left=True` to find left eigenvectors directly
+We can also use `scipy.linalg.eig` with argument `left=True` to find left eigenvectors directly
 
 ```{code-cell} ipython3
 eigenvals, ε, e = sp.linalg.eig(A, left=True)
 
-print("Right Eigenvalues:")
-print(λ_r)
-print("\nRight Eigenvectors:")
-print(v)
-print("\nLeft Eigenvalues:")
-print(λ_l)
-print("\nLeft Eigenvectors:")
-print(w)
+print(f"The eigenvalues of A are:\n {eigenvals.real}\n")
+print(f"The corresponding right eigenvectors are: \n {e[:,0]} and {-e[:,1]}\n")
+print(f"The corresponding left eigenvectors are: \n {ε[:,0]} and {-ε[:,1]}\n")
 ```
 
-Note that the eigenvalues for both left and right eigenvectors are the same, but the eigenvectors themselves are different.
+The eigenvalues are the same while the eigenvectors themselves are different.
+
+(Also note that we are taking the nonnegative value of the eigenvector of {ref}`dominant eigenvalue <perron-frobe>`, this is because `eig` automatically normalizes the eigenvectors.)
 
 We can then take transpose to obtain $A^\top w = \lambda w$ and obtain $w^\top A= \lambda w^\top$.
 
@@ -168,11 +181,7 @@ Moreover if $A$ is also irreducible then,
 4. the eigenvector $v$ associated with the eigenvalue $r(A)$ is strictly positive.
 5. there exists no other positive eigenvector $v$ (except scalar multiples of $v$) associated with $r(A)$.
 
-If $A$ is primitive then,
-
-6. the inequality $|\lambda| \leq r(A)$ is **strict** for all eigenvalues $\lambda$ of $A$ distinct from $r(A)$, and
-7. with $v$ and $w$ normalized so that the inner product of $w$ and  $v = 1$, we have
-$ r(A)^{-m} A^m$ converges to $v w^{\top}$ when $m \rightarrow \infty$. The matrix $v w^{\top}$ is called the **Perron projection** of $A$
+(More of the Perron-Frobenius theorem about primitive matrices will be introduced {ref}`below <prim_matrices>`.)
 ```
 
 (This is a relatively simple version of the theorem --- for more details see
@@ -184,7 +193,7 @@ Let's build our intuition for the theorem using a simple example we have seen [b
 
 Now let's consider examples for each case.
 
-#### Example 1: irreducible matrix
+#### Example: Irreducible matrix
 
 Consider the following irreducible matrix $A$:
 
@@ -200,7 +209,7 @@ We can compute the dominant eigenvalue and the corresponding eigenvector
 eig(A)
 ```
 
-Now we can go through our checklist to verify the claims of the Perron-Frobenius Theorem for the irreducible matrix $A$:
+Now we can see the claims of the Perron-Frobenius Theorem holds for the irreducible matrix $A$:
 
 1. The dominant eigenvalue is real-valued and non-negative.
 2. All other eigenvalues have absolute values less than or equal to the dominant eigenvalue.
@@ -208,7 +217,54 @@ Now we can go through our checklist to verify the claims of the Perron-Frobenius
 4. As the matrix is irreducible, the eigenvector associated with the dominant eigenvalue is strictly positive.
 5. There exists no other positive eigenvector associated with the dominant eigenvalue.
 
-#### Example 2: primitive matrix
+(prim_matrices)=
+### Primitive matrices
+
+We know that in real world situations it's hard for a matrix to be everywhere positive (although they have nice properties).
+
+The primitive matrices, however, can still give us helpful properties with looser definitions.
+
+Let $A$ be a square nonnegative matrix and let $A^k$ be the $k^{th}$ power of $A$.
+
+A matrix is called **primitive** if there exists a $k \in \mathbb{N}$ such that $A^k$ is everywhere positive.
+
+Recall the examples given in irreducible matrices:
+
+$$
+A = \begin{bmatrix} 0.5 & 0.1 \\ 
+                    0.2 & 0.2 
+\end{bmatrix}
+$$
+
+$A$ here is also a primitive matrix since $A^k$ is everywhere nonnegative for $k \in \mathbb{N}$.
+
+$$
+B = \begin{bmatrix} 0 & 1 \\ 
+                    1 & 0 
+\end{bmatrix}
+, \quad
+B^2 = \begin{bmatrix} 1 & 0 \\ 
+                      0 & 1
+\end{bmatrix}
+$$
+
+$B$ is irreducible but not primitive since there are always zeros in either principal diagonal or secondary diagonal.
+
+We can see that if a matrix is primitive, then it implies the matrix is irreducible but not vice versa.
+
+Now let's step back to the primitive matrices part of the Perron-Frobenius Theorem
+
+```{prf:Theorem} Continous of Perron-Frobenius Theorem
+:label: con-perron-frobenius
+
+If $A$ is primitive then,
+
+6. the inequality $|\lambda| \leq r(A)$ is **strict** for all eigenvalues $\lambda$ of $A$ distinct from $r(A)$, and
+7. with $v$ and $w$ normalized so that the inner product of $w$ and  $v = 1$, we have
+$ r(A)^{-m} A^m$ converges to $v w^{\top}$ when $m \rightarrow \infty$. The matrix $v w^{\top}$ is called the **Perron projection** of $A$.
+```
+
+#### Example 1: Primitive matrix
 
 Consider the following primitive matrix $B$:
 
@@ -226,7 +282,7 @@ We compute the dominant eigenvalue and the corresponding eigenvector
 eig(B)
 ```
 
-Now let's verify the claims of the Perron-Frobenius Theorem for the primitive matrix $B$:
+Now let's give some examples to see if the claims of the Perron-Frobenius Theorem hold for the primitive matrix $B$:
 
 1. The dominant eigenvalue is real-valued and non-negative.
 2. All other eigenvalues have absolute values strictly less than the dominant eigenvalue.
@@ -324,16 +380,16 @@ The result shows that the matrix is not primitive as it is not everywhere positi
 
 These examples show how the Perron-Frobenius Theorem relates to the eigenvalues and eigenvectors of positive matrices and the convergence of the power of matrices.
 
-In fact we have already seen the theorem in action before in {ref}`the markov chain lecture <mc1_ex_1>`.
+In fact we have already seen the theorem in action before in {ref}`the Markov chain lecture <mc1_ex_1>`.
 
 (spec_markov)=
-#### Example 3: Connection to Markov chains
+#### Example 2: Connection to Markov chains
 
 We are now prepared to bridge the languages spoken in the two lectures.
 
-A primitive matrix is both irreducible (or strongly connected in the language of {ref}`graph theory<strongly_connected>` and aperiodic.
+A primitive matrix is both irreducible and aperiodic.
 
-So Perron-Frobenius Theorem explains why both Imam and Temple matrix and Hamilton matrix converge to a stationary distribution, which is the Perron projection of the two matrices
+So Perron-Frobenius Theorem explains why both {ref}`Imam and Temple matrix <mc_eg3>` and [Hamilton matrix](https://en.wikipedia.org/wiki/Hamiltonian_matrix) converge to a stationary distribution, which is the Perron projection of the two matrices
 
 ```{code-cell} ipython3
 P = np.array([[0.68, 0.12, 0.20],
@@ -398,8 +454,7 @@ As we have seen, the largest eigenvalue for a primitive stochastic matrix is one
 This can be proven using [Gershgorin Circle Theorem](https://en.wikipedia.org/wiki/Gershgorin_circle_theorem),
 but it is out of the scope of this lecture.
 
-So by the statement (6) of Perron-Frobenius Theorem, $\lambda_i<1$ for all $i<n$, and $\lambda_n=1$ when $P$ is primitive (strongly connected and aperiodic).
-
+So by the statement (6) of Perron-Frobenius Theorem, $\lambda_i<1$ for all $i<n$, and $\lambda_n=1$ when $P$ is primitive.
 
 Hence, after taking the Euclidean norm deviation, we obtain
 
@@ -409,116 +464,6 @@ $$
 
 Thus, the rate of convergence is governed by the modulus of the second largest eigenvalue.
 
-
-(la_neumann)=
-## The Neumann Series Lemma
-
-```{index} single: Neumann's Lemma
-```
-
-In this section we present a famous result about series of matrices that has
-many applications in economics.
-
-### Scalar series
-
-Here's a fundamental result about series that you surely know:
-
-If $a$ is a number and $|a| < 1$, then
-
-```{math}
-:label: gp_sum
-
-    \sum_{k=0}^{\infty} a^k =\frac{1}{1-a} = (1 - a)^{-1}
-
-```
-
-For a one-dimensional linear equation $x = ax + b$ where x is unknown we can thus conclude that the solution $x^{*}$ is given by:
-
-$$
-    x^{*} = \frac{b}{1-a} = \sum_{k=0}^{\infty} a^k b
-$$
-
-### Matrix series
-
-A generalization of this idea exists in the matrix setting.
-
-Consider the system of equations $x = Ax + b$ where $A$ is an $n \times n$
-square matrix and $x$ and $b$ are both column vectors in $\mathbb{R}^n$.
-
-Using matrix algebra we can conclude that the solution to this system of equations will be given by:
-
-```{math}
-:label: neumann_eqn
-
-    x^{*} = (I-A)^{-1}b
-
-```
-
-What guarantees the existence of a unique vector $x^{*}$ that satisfies
-{eq}`neumann_eqn`?
-
-The following is a fundamental result in functional analysis that generalizes
-{eq}`gp_sum` to a multivariate case.
-
-(neumann_series_lemma)=
-```{prf:Theorem} Neumann Series Lemma
-:label: neumann_series_lemma
-
-Let $A$ be a square matrix and let $A^k$ be the $k$-th power of $A$.
-
-Let $r(A)$ be the **spectral radius** of $A$, defined as $\max_i |\lambda_i|$, where
-
-* $\{\lambda_i\}_i$ is the set of eigenvalues of $A$ and
-* $|\lambda_i|$ is the modulus of the complex number $\lambda_i$
-
-Neumann's Theorem states the following: If $r(A) < 1$, then $I - A$ is invertible, and
-
-$$
-(I - A)^{-1} = \sum_{k=0}^{\infty} A^k
-$$
-```
-
-We can see the Neumann Series Lemma in action in the following example.
-
-```{code-cell} ipython3
-A = np.array([[0.4, 0.1],
-              [0.7, 0.2]])
-
-evals, evecs = eig(A)   # finding eigenvalues and eigenvectors
-
-r = max(abs(λ) for λ in evals)    # compute spectral radius
-print(r)
-```
-
-The spectral radius $r(A)$ obtained is less than 1.
-
-Thus, we can apply the Neumann Series Lemma to find $(I-A)^{-1}$.
-
-```{code-cell} ipython3
-I = np.identity(2)      #2 x 2 identity matrix
-B = I - A
-```
-
-```{code-cell} ipython3
-B_inverse = np.linalg.inv(B)     #direct inverse method
-```
-
-```{code-cell} ipython3
-A_sum = np.zeros((2,2))        #power series sum of A
-A_power = I
-for i in range(50):
-    A_sum += A_power
-    A_power = A_power @ A
-```
-
-Let's check equality between the sum and the inverse methods.
-
-```{code-cell} ipython3
-np.allclose(A_sum, B_inverse)
-```
-
-Although we truncate the infinite sum at $k = 50$, both methods give us the same
-result which illustrates the result of the Neumann Series Lemma.
 
 ## Exercises
 
@@ -583,7 +528,7 @@ The solution $x^{*}$ is given by the equation $x^{*} = (I-A)^{-1} d$
 
 1. Since $A$ is a nonnegative irreducible matrix, find the Perron-Frobenius eigenvalue of $A$.
 
-2. Use the Neumann Series Lemma to find the solution $x^{*}$ if it exists.
+2. Use the {ref}`Neumann Series Lemma <la_neumann>` to find the solution $x^{*}$ if it exists.
 
 ```{exercise-end}
 ```
