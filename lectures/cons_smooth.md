@@ -615,13 +615,15 @@ is the inverse of $A$ and check that $A A^{-1} = I$
 
 ### Second order difference equation
 
-The second-order linear difference equation for $\{y_t\}_{t=0}^T$ is
+A second-order linear difference equation for $\{y_t\}_{t=0}^T$ is
 
 $$
 y_{t} = \lambda_1 y_{t-1} + \lambda_2 y_{t-2}, \quad t = 1, 2, \ldots, T
 $$
 
-Similarly, we can cast this set of $T$ equations as a single matrix equation
+where now $y_0$ and $y_{-1}$ are two given initial equations determined outside the model. 
+
+As we did with the first-order difference equation, we can cast this set of $T$ equations as a single matrix equation
 
 $$
 \begin{bmatrix} 
