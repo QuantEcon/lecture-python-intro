@@ -1,0 +1,106 @@
+Traceback (most recent call last):
+  File "/usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages/nbclient/client.py", line 1204, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages/nbclient/util.py", line 84, in wrapped
+    return just_run(coro(*args, **kwargs))
+  File "/usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages/nbclient/util.py", line 62, in just_run
+    return loop.run_until_complete(coro)
+  File "/usr/share/miniconda3/envs/quantecon/lib/python3.10/asyncio/base_events.py", line 649, in run_until_complete
+    return future.result()
+  File "/usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages/nbclient/client.py", line 663, in async_execute
+    await self.async_execute_cell(
+  File "/usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages/nbclient/client.py", line 965, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages/nbclient/client.py", line 862, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+fig, axes = plt.subplots(1, 2, figsize=(8.8, 3.6))
+
+for name, ax in zip(variable_names, axes):
+    empirical_ccdf(np.asarray(df_gdp1[name]).astype("float64"), ax, add_reg_line=False, label=name)
+
+plt.show()
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mMissingDataError[0m                          Traceback (most recent call last)
+Cell [0;32mIn[21], line 4[0m
+[1;32m      1[0m fig, axes [38;5;241m=[39m plt[38;5;241m.[39msubplots([38;5;241m1[39m, [38;5;241m2[39m, figsize[38;5;241m=[39m([38;5;241m8.8[39m, [38;5;241m3.6[39m))
+[1;32m      3[0m [38;5;28;01mfor[39;00m name, ax [38;5;129;01min[39;00m [38;5;28mzip[39m(variable_names, axes):
+[0;32m----> 4[0m     [43mempirical_ccdf[49m[43m([49m[43mnp[49m[38;5;241;43m.[39;49m[43masarray[49m[43m([49m[43mdf_gdp1[49m[43m[[49m[43mname[49m[43m][49m[43m)[49m[38;5;241;43m.[39;49m[43mastype[49m[43m([49m[38;5;124;43m"[39;49m[38;5;124;43mfloat64[39;49m[38;5;124;43m"[39;49m[43m)[49m[43m,[49m[43m [49m[43max[49m[43m,[49m[43m [49m[43madd_reg_line[49m[38;5;241;43m=[39;49m[38;5;28;43;01mFalse[39;49;00m[43m,[49m[43m [49m[43mlabel[49m[38;5;241;43m=[39;49m[43mname[49m[43m)[49m
+[1;32m      6[0m plt[38;5;241m.[39mshow()
+
+Cell [0;32mIn[15], line 33[0m, in [0;36mempirical_ccdf[0;34m(data, ax, aw, label, xlabel, add_reg_line, title)[0m
+[1;32m     29[0m         y_vals[i] [38;5;241m=[39m [38;5;241m1[39m[38;5;241m-[39m j
+[1;32m     31[0m x, y [38;5;241m=[39m np[38;5;241m.[39mlog(data), np[38;5;241m.[39mlog(y_vals)
+[0;32m---> 33[0m results [38;5;241m=[39m [43msm[49m[38;5;241;43m.[39;49m[43mOLS[49m[43m([49m[43my[49m[43m,[49m[43m [49m[43msm[49m[38;5;241;43m.[39;49m[43madd_constant[49m[43m([49m[43mx[49m[43m)[49m[43m)[49m[38;5;241m.[39mfit()
+[1;32m     34[0m b, a [38;5;241m=[39m results[38;5;241m.[39mparams
+[1;32m     36[0m kwargs [38;5;241m=[39m [([38;5;124m'[39m[38;5;124malpha[39m[38;5;124m'[39m, [38;5;241m0.3[39m)]
+
+File [0;32m/usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages/statsmodels/regression/linear_model.py:906[0m, in [0;36mOLS.__init__[0;34m(self, endog, exog, missing, hasconst, **kwargs)[0m
+[1;32m    903[0m     msg [38;5;241m=[39m ([38;5;124m"[39m[38;5;124mWeights are not supported in OLS and will be ignored[39m[38;5;124m"[39m
+[1;32m    904[0m            [38;5;124m"[39m[38;5;124mAn exception will be raised in the next version.[39m[38;5;124m"[39m)
+[1;32m    905[0m     warnings[38;5;241m.[39mwarn(msg, ValueWarning)
+[0;32m--> 906[0m [38;5;28;43msuper[39;49m[43m([49m[43mOLS[49m[43m,[49m[43m [49m[38;5;28;43mself[39;49m[43m)[49m[38;5;241;43m.[39;49m[38;5;21;43m__init__[39;49m[43m([49m[43mendog[49m[43m,[49m[43m [49m[43mexog[49m[43m,[49m[43m [49m[43mmissing[49m[38;5;241;43m=[39;49m[43mmissing[49m[43m,[49m
+[1;32m    907[0m [43m                          [49m[43mhasconst[49m[38;5;241;43m=[39;49m[43mhasconst[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwargs[49m[43m)[49m
+[1;32m    908[0m [38;5;28;01mif[39;00m [38;5;124m"[39m[38;5;124mweights[39m[38;5;124m"[39m [38;5;129;01min[39;00m [38;5;28mself[39m[38;5;241m.[39m_init_keys:
+[1;32m    909[0m     [38;5;28mself[39m[38;5;241m.[39m_init_keys[38;5;241m.[39mremove([38;5;124m"[39m[38;5;124mweights[39m[38;5;124m"[39m)
+
+File [0;32m/usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages/statsmodels/regression/linear_model.py:733[0m, in [0;36mWLS.__init__[0;34m(self, endog, exog, weights, missing, hasconst, **kwargs)[0m
+[1;32m    731[0m [38;5;28;01melse[39;00m:
+[1;32m    732[0m     weights [38;5;241m=[39m weights[38;5;241m.[39msqueeze()
+[0;32m--> 733[0m [38;5;28;43msuper[39;49m[43m([49m[43mWLS[49m[43m,[49m[43m [49m[38;5;28;43mself[39;49m[43m)[49m[38;5;241;43m.[39;49m[38;5;21;43m__init__[39;49m[43m([49m[43mendog[49m[43m,[49m[43m [49m[43mexog[49m[43m,[49m[43m [49m[43mmissing[49m[38;5;241;43m=[39;49m[43mmissing[49m[43m,[49m
+[1;32m    734[0m [43m                          [49m[43mweights[49m[38;5;241;43m=[39;49m[43mweights[49m[43m,[49m[43m [49m[43mhasconst[49m[38;5;241;43m=[39;49m[43mhasconst[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwargs[49m[43m)[49m
+[1;32m    735[0m nobs [38;5;241m=[39m [38;5;28mself[39m[38;5;241m.[39mexog[38;5;241m.[39mshape[[38;5;241m0[39m]
+[1;32m    736[0m weights [38;5;241m=[39m [38;5;28mself[39m[38;5;241m.[39mweights
+
+File [0;32m/usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages/statsmodels/regression/linear_model.py:190[0m, in [0;36mRegressionModel.__init__[0;34m(self, endog, exog, **kwargs)[0m
+[1;32m    189[0m [38;5;28;01mdef[39;00m [38;5;21m__init__[39m([38;5;28mself[39m, endog, exog, [38;5;241m*[39m[38;5;241m*[39mkwargs):
+[0;32m--> 190[0m     [38;5;28;43msuper[39;49m[43m([49m[43mRegressionModel[49m[43m,[49m[43m [49m[38;5;28;43mself[39;49m[43m)[49m[38;5;241;43m.[39;49m[38;5;21;43m__init__[39;49m[43m([49m[43mendog[49m[43m,[49m[43m [49m[43mexog[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwargs[49m[43m)[49m
+[1;32m    191[0m     [38;5;28mself[39m[38;5;241m.[39m_data_attr[38;5;241m.[39mextend([[38;5;124m'[39m[38;5;124mpinv_wexog[39m[38;5;124m'[39m, [38;5;124m'[39m[38;5;124mwendog[39m[38;5;124m'[39m, [38;5;124m'[39m[38;5;124mwexog[39m[38;5;124m'[39m, [38;5;124m'[39m[38;5;124mweights[39m[38;5;124m'[39m])
+
+File [0;32m/usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages/statsmodels/base/model.py:267[0m, in [0;36mLikelihoodModel.__init__[0;34m(self, endog, exog, **kwargs)[0m
+[1;32m    266[0m [38;5;28;01mdef[39;00m [38;5;21m__init__[39m([38;5;28mself[39m, endog, exog[38;5;241m=[39m[38;5;28;01mNone[39;00m, [38;5;241m*[39m[38;5;241m*[39mkwargs):
+[0;32m--> 267[0m     [38;5;28;43msuper[39;49m[43m([49m[43m)[49m[38;5;241;43m.[39;49m[38;5;21;43m__init__[39;49m[43m([49m[43mendog[49m[43m,[49m[43m [49m[43mexog[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwargs[49m[43m)[49m
+[1;32m    268[0m     [38;5;28mself[39m[38;5;241m.[39minitialize()
+
+File [0;32m/usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages/statsmodels/base/model.py:92[0m, in [0;36mModel.__init__[0;34m(self, endog, exog, **kwargs)[0m
+[1;32m     90[0m missing [38;5;241m=[39m kwargs[38;5;241m.[39mpop([38;5;124m'[39m[38;5;124mmissing[39m[38;5;124m'[39m, [38;5;124m'[39m[38;5;124mnone[39m[38;5;124m'[39m)
+[1;32m     91[0m hasconst [38;5;241m=[39m kwargs[38;5;241m.[39mpop([38;5;124m'[39m[38;5;124mhasconst[39m[38;5;124m'[39m, [38;5;28;01mNone[39;00m)
+[0;32m---> 92[0m [38;5;28mself[39m[38;5;241m.[39mdata [38;5;241m=[39m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_handle_data[49m[43m([49m[43mendog[49m[43m,[49m[43m [49m[43mexog[49m[43m,[49m[43m [49m[43mmissing[49m[43m,[49m[43m [49m[43mhasconst[49m[43m,[49m
+[1;32m     93[0m [43m                              [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwargs[49m[43m)[49m
+[1;32m     94[0m [38;5;28mself[39m[38;5;241m.[39mk_constant [38;5;241m=[39m [38;5;28mself[39m[38;5;241m.[39mdata[38;5;241m.[39mk_constant
+[1;32m     95[0m [38;5;28mself[39m[38;5;241m.[39mexog [38;5;241m=[39m [38;5;28mself[39m[38;5;241m.[39mdata[38;5;241m.[39mexog
+
+File [0;32m/usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages/statsmodels/base/model.py:132[0m, in [0;36mModel._handle_data[0;34m(self, endog, exog, missing, hasconst, **kwargs)[0m
+[1;32m    131[0m [38;5;28;01mdef[39;00m [38;5;21m_handle_data[39m([38;5;28mself[39m, endog, exog, missing, hasconst, [38;5;241m*[39m[38;5;241m*[39mkwargs):
+[0;32m--> 132[0m     data [38;5;241m=[39m [43mhandle_data[49m[43m([49m[43mendog[49m[43m,[49m[43m [49m[43mexog[49m[43m,[49m[43m [49m[43mmissing[49m[43m,[49m[43m [49m[43mhasconst[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwargs[49m[43m)[49m
+[1;32m    133[0m     [38;5;66;03m# kwargs arrays could have changed, easier to just attach here[39;00m
+[1;32m    134[0m     [38;5;28;01mfor[39;00m key [38;5;129;01min[39;00m kwargs:
+
+File [0;32m/usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages/statsmodels/base/data.py:700[0m, in [0;36mhandle_data[0;34m(endog, exog, missing, hasconst, **kwargs)[0m
+[1;32m    697[0m     exog [38;5;241m=[39m np[38;5;241m.[39masarray(exog)
+[1;32m    699[0m klass [38;5;241m=[39m handle_data_class_factory(endog, exog)
+[0;32m--> 700[0m [38;5;28;01mreturn[39;00m [43mklass[49m[43m([49m[43mendog[49m[43m,[49m[43m [49m[43mexog[49m[38;5;241;43m=[39;49m[43mexog[49m[43m,[49m[43m [49m[43mmissing[49m[38;5;241;43m=[39;49m[43mmissing[49m[43m,[49m[43m [49m[43mhasconst[49m[38;5;241;43m=[39;49m[43mhasconst[49m[43m,[49m
+[1;32m    701[0m [43m             [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwargs[49m[43m)[49m
+
+File [0;32m/usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages/statsmodels/base/data.py:88[0m, in [0;36mModelData.__init__[0;34m(self, endog, exog, missing, hasconst, **kwargs)[0m
+[1;32m     86[0m [38;5;28mself[39m[38;5;241m.[39mconst_idx [38;5;241m=[39m [38;5;28;01mNone[39;00m
+[1;32m     87[0m [38;5;28mself[39m[38;5;241m.[39mk_constant [38;5;241m=[39m [38;5;241m0[39m
+[0;32m---> 88[0m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_handle_constant[49m[43m([49m[43mhasconst[49m[43m)[49m
+[1;32m     89[0m [38;5;28mself[39m[38;5;241m.[39m_check_integrity()
+[1;32m     90[0m [38;5;28mself[39m[38;5;241m.[39m_cache [38;5;241m=[39m {}
+
+File [0;32m/usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages/statsmodels/base/data.py:134[0m, in [0;36mModelData._handle_constant[0;34m(self, hasconst)[0m
+[1;32m    132[0m exog_max [38;5;241m=[39m np[38;5;241m.[39mmax([38;5;28mself[39m[38;5;241m.[39mexog, axis[38;5;241m=[39m[38;5;241m0[39m)
+[1;32m    133[0m [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m np[38;5;241m.[39misfinite(exog_max)[38;5;241m.[39mall():
+[0;32m--> 134[0m     [38;5;28;01mraise[39;00m MissingDataError([38;5;124m'[39m[38;5;124mexog contains inf or nans[39m[38;5;124m'[39m)
+[1;32m    135[0m exog_min [38;5;241m=[39m np[38;5;241m.[39mmin([38;5;28mself[39m[38;5;241m.[39mexog, axis[38;5;241m=[39m[38;5;241m0[39m)
+[1;32m    136[0m const_idx [38;5;241m=[39m np[38;5;241m.[39mwhere(exog_max [38;5;241m==[39m exog_min)[[38;5;241m0[39m][38;5;241m.[39msqueeze()
+
+[0;31mMissingDataError[0m: exog contains inf or nans
+MissingDataError: exog contains inf or nans
+

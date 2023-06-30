@@ -170,7 +170,11 @@ const thebe_selector_output = ".output, .cell_output"
 
                         <nav id="bd-toc-nav" class="qe-page__toc-nav">
                             <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-tweaked-model-workers-and-entrepreneurs">10.1. A tweaked model: workers and entrepreneurs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">10.1. Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-indifference-condition">10.2. The indifference condition</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reinterpreting-the-model-workers-and-entrepreneurs">10.3. Reinterpreting the model: workers and entrepreneurs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#entrepreneur-worker-interpretation">10.4. Entrepreneur-worker interpretation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#an-application-of-calculus">10.5. An application of calculus</a></li>
 </ul>
                             <p class="logo">
                                 
@@ -217,6 +221,8 @@ const thebe_selector_output = ".output, .cell_output"
                         
   <section class="tex2jax_ignore mathjax_ignore" id="equalizing-difference-model">
 <h1><span class="section-number">10. </span>Equalizing Difference Model<a class="headerlink" href="#equalizing-difference-model" title="Permalink to this heading">#</a></h1>
+<section id="overview">
+<h2><span class="section-number">10.1. </span>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
 <p>This lecture presents a model of the college-high-school wage gap in which the
 “time to build” a college graduate plays a key role.</p>
 <p>The model is “incomplete” in the sense that it is just one “condition” in the form of a single equation that would be part of set equations comprising all  “equilibrium conditions” of   a more fully articulated model.</p>
@@ -224,6 +230,10 @@ const thebe_selector_output = ".output, .cell_output"
 <p>The idea behind this condition is that lifetime earnings have to adjust to make someone indifferent between going to college and not going to college.</p>
 <p>(The job of the “other equations” in a more complete model would be to fill in details about what adjusts to bring about this outcome.)</p>
 <p>It is just one instance of an  “equalizing difference” theory of relative wage rates, a class of theories dating back at least to Adam Smith’s <strong>Wealth of Nations</strong> <span id="id1">[<a class="reference internal" href="zreferences.html#id3" title="Adam Smith. The Wealth of Nations: An inquiry into the nature and causes of the Wealth of Nations. Harriman House Limited, 2010.">Smi10</a>]</span>.</p>
+<p>For most of this lecture, the only mathematical tools that we’ll use are from linear algebra, in particular, matrix multiplication and matrix inversion.</p>
+<p>However, at the very end of the lecture, we’ll use calculus just in case readers want to see how computing partial derivatives could let us present some findings more concisely.</p>
+<p>(And doing that will let us show off how good Python is at doing calculus!)</p>
+<p>But if you don’t know calculus, our tools from linear algebra are certainly enough.</p>
 <p>As usual, we’ll start by importing some Python modules.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -233,6 +243,10 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 </div>
+</section>
+<section id="the-indifference-condition">
+<h2><span class="section-number">10.2. </span>The indifference condition<a class="headerlink" href="#the-indifference-condition" title="Permalink to this heading">#</a></h2>
+<p>The key idea is that the initial college wage premium has to adjust to make a representative worker indifferent between going to college and not going to college.</p>
 <p>Let</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(R &gt; 1\)</span> be the gross rate of return on a one-period bond</p></li>
@@ -293,6 +307,7 @@ h_0 = c_0 - D
 <span class="eqno">(10.1)<a class="headerlink" href="#equation-eq-equalize" title="Permalink to this equation">#</a></span>\[ 
 w_0^h A_h  = \phi w_0^h A_c - D .
 \]</div>
+<p>This is the “indifference condition” that is at the heart of the model.</p>
 <p>Solving equation <a class="reference internal" href="#equation-eq-equalize">(10.1)</a> for the college wage premium <span class="math notranslate nohighlight">\(\phi\)</span> we obtain</p>
 <div class="math notranslate nohighlight" id="equation-eq-wagepremium">
 <span class="eqno">(10.2)<a class="headerlink" href="#equation-eq-wagepremium" title="Permalink to this equation">#</a></span>\[
@@ -306,8 +321,9 @@ w_0^h A_h  = \phi w_0^h A_c - D .
 \]</div>
 <p>Soon we’ll write Python code to compute the gap and plot it as a function of its determinants.</p>
 <p>But first we’ll describe a possible alternative interpretation of our model.</p>
-<section id="a-tweaked-model-workers-and-entrepreneurs">
-<h2><span class="section-number">10.1. </span>A tweaked model: workers and entrepreneurs<a class="headerlink" href="#a-tweaked-model-workers-and-entrepreneurs" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="reinterpreting-the-model-workers-and-entrepreneurs">
+<h2><span class="section-number">10.3. </span>Reinterpreting the model: workers and entrepreneurs<a class="headerlink" href="#reinterpreting-the-model-workers-and-entrepreneurs" title="Permalink to this heading">#</a></h2>
 <p>We can add a parameter and reinterpret variables to get a model of entrepreneurs versus workers.</p>
 <p>We now let <span class="math notranslate nohighlight">\(h\)</span> be  the present value of a “worker”.</p>
 <p>We define the present value of an entrepreneur to be</p>
@@ -480,7 +496,9 @@ determinants of <span class="math notranslate nohighlight">\(\phi\)</span>.</p>
 <a class="reference internal image-reference" href="_images/f2acbdcf1b686229621c359d090b2d954e37d26e0caf476a7f0abc6822a8941f.png"><img alt="_images/f2acbdcf1b686229621c359d090b2d954e37d26e0caf476a7f0abc6822a8941f.png" src="_images/f2acbdcf1b686229621c359d090b2d954e37d26e0caf476a7f0abc6822a8941f.png" style="width: 80%;" /></a>
 </div>
 </div>
-<p><strong>Entrepreneur-worker interpretation</strong></p>
+</section>
+<section id="entrepreneur-worker-interpretation">
+<h2><span class="section-number">10.4. </span>Entrepreneur-worker interpretation<a class="headerlink" href="#entrepreneur-worker-interpretation" title="Permalink to this heading">#</a></h2>
 <p>Now let’s adopt the entrepreneur-worker interpretation of our model.</p>
 <p>If the probability that a new business succeeds is <span class="math notranslate nohighlight">\(.2\)</span>, let’s compute the initial wage premium for successful entrepreneurs.</p>
 <div class="cell docutils container">
@@ -515,6 +533,225 @@ determinants of <span class="math notranslate nohighlight">\(\phi\)</span>.</p>
 </div>
 </div>
 <p>Does the graph make sense to you?</p>
+</section>
+<section id="an-application-of-calculus">
+<h2><span class="section-number">10.5. </span>An application of calculus<a class="headerlink" href="#an-application-of-calculus" title="Permalink to this heading">#</a></h2>
+<p>So far, we have used only linear algebra and it has been a good enough tool for us to  figure out how our model works.</p>
+<p>However, someone who knows calculus might ask “Instead of plotting those graphs, why didn’t you just take partial derivatives?”</p>
+<p>We’ll briefly do just that,  yes, the questioner is correct and that partial derivatives are indeed a good tool for discovering the “comparative statics” properities of our model.</p>
+<p>A reader who doesn’t know calculus could read no further and feel confident that applying linear algebra has taught us the main properties of the model.</p>
+<p>But for a reader interested in how we can get Python to do all the hard work involved in computing partial derivatives, we’ll say a few things about that now.</p>
+<p>We’ll use the Python module ‘sympy’ to compute partial derivatives of <span class="math notranslate nohighlight">\(\phi\)</span> with respect to the parameters that determine it.</p>
+<p>Let’s import key functions from sympy.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">Symbol</span><span class="p">,</span> <span class="n">Lambda</span><span class="p">,</span> <span class="n">symbols</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Define symbols</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">γ_h</span><span class="p">,</span> <span class="n">γ_c</span><span class="p">,</span> <span class="n">w_h0</span><span class="p">,</span> <span class="n">D</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;\gamma_h, \gamma_h_c, w_0^h, D&#39;</span><span class="p">,</span> <span class="n">real</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">R</span><span class="p">,</span> <span class="n">T</span> <span class="o">=</span> <span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;R&#39;</span><span class="p">,</span> <span class="n">real</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> <span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;T&#39;</span><span class="p">,</span> <span class="n">integer</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Define function <span class="math notranslate nohighlight">\(A_h\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A_h</span> <span class="o">=</span> <span class="n">Lambda</span><span class="p">((</span><span class="n">γ_h</span><span class="p">,</span> <span class="n">R</span><span class="p">,</span> <span class="n">T</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="n">γ_h</span><span class="o">/</span><span class="n">R</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">γ_h</span><span class="o">/</span><span class="n">R</span><span class="p">))</span>
+<span class="n">A_h</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \left( \left( \gamma_{h}, \  R, \  T\right) \mapsto \frac{1 - \left(\frac{\gamma_{h}}{R}\right)^{T + 1}}{1 - \frac{\gamma_{h}}{R}} \right)\]</div>
+</div>
+</div>
+<p>Define function <span class="math notranslate nohighlight">\(A_c\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A_c</span> <span class="o">=</span> <span class="n">Lambda</span><span class="p">((</span><span class="n">γ_c</span><span class="p">,</span> <span class="n">R</span><span class="p">,</span> <span class="n">T</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="n">γ_c</span><span class="o">/</span><span class="n">R</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="n">T</span><span class="o">-</span><span class="mi">3</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">γ_c</span><span class="o">/</span><span class="n">R</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">γ_c</span><span class="o">/</span><span class="n">R</span><span class="p">)</span><span class="o">**</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">A_c</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \left( \left( \gamma_{h c}, \  R, \  T\right) \mapsto \frac{\gamma_{h c}^{4} \cdot \left(1 - \left(\frac{\gamma_{h c}}{R}\right)^{T - 3}\right)}{R^{4} \cdot \left(1 - \frac{\gamma_{h c}}{R}\right)} \right)\]</div>
+</div>
+</div>
+<p>Now, define <span class="math notranslate nohighlight">\(\phi\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ϕ</span> <span class="o">=</span> <span class="n">Lambda</span><span class="p">((</span><span class="n">D</span><span class="p">,</span> <span class="n">γ_h</span><span class="p">,</span> <span class="n">γ_c</span><span class="p">,</span> <span class="n">R</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">w_h0</span><span class="p">),</span> <span class="n">A_h</span><span class="p">(</span><span class="n">γ_h</span><span class="p">,</span> <span class="n">R</span><span class="p">,</span> <span class="n">T</span><span class="p">)</span><span class="o">/</span><span class="n">A_c</span><span class="p">(</span><span class="n">γ_c</span><span class="p">,</span> <span class="n">R</span><span class="p">,</span> <span class="n">T</span><span class="p">)</span> <span class="o">+</span> <span class="n">D</span><span class="o">/</span><span class="p">(</span><span class="n">w_h0</span><span class="o">*</span><span class="n">A_c</span><span class="p">(</span><span class="n">γ_c</span><span class="p">,</span> <span class="n">R</span><span class="p">,</span> <span class="n">T</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ϕ</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \left( \left( D, \  \gamma_{h}, \  \gamma_{h c}, \  R, \  T, \  w^{h}_{0}\right) \mapsto \frac{D R^{4} \cdot \left(1 - \frac{\gamma_{h c}}{R}\right)}{\gamma_{h c}^{4} w^{h}_{0} \cdot \left(1 - \left(\frac{\gamma_{h c}}{R}\right)^{T - 3}\right)} + \frac{R^{4} \cdot \left(1 - \left(\frac{\gamma_{h}}{R}\right)^{T + 1}\right) \left(1 - \frac{\gamma_{h c}}{R}\right)}{\gamma_{h c}^{4} \cdot \left(1 - \frac{\gamma_{h}}{R}\right) \left(1 - \left(\frac{\gamma_{h c}}{R}\right)^{T - 3}\right)} \right)\]</div>
+</div>
+</div>
+<p>We begin by setting  default parameter values.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">R_value</span> <span class="o">=</span> <span class="mf">1.05</span>
+<span class="n">T_value</span> <span class="o">=</span> <span class="mi">40</span>
+<span class="n">γ_h_value</span><span class="p">,</span> <span class="n">γ_c_value</span> <span class="o">=</span> <span class="mf">1.01</span><span class="p">,</span> <span class="mf">1.01</span>
+<span class="n">w_h0_value</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">D_value</span> <span class="o">=</span> <span class="mi">10</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now let’s compute <span class="math notranslate nohighlight">\(\frac{\partial \phi}{\partial D}\)</span> and then evaluate it at the default values</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ϕ_D</span> <span class="o">=</span> <span class="n">ϕ</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="n">γ_h</span><span class="p">,</span> <span class="n">γ_c</span><span class="p">,</span> <span class="n">R</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">w_h0</span><span class="p">)</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">D</span><span class="p">)</span>
+<span class="n">ϕ_D</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \frac{R^{4} \cdot \left(1 - \frac{\gamma_{h c}}{R}\right)}{\gamma_{h c}^{4} w^{h}_{0} \cdot \left(1 - \left(\frac{\gamma_{h c}}{R}\right)^{T - 3}\right)}\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Numerical value at default parameters</span>
+<span class="n">ϕ_D_func</span> <span class="o">=</span> <span class="n">Lambda</span><span class="p">((</span><span class="n">D</span><span class="p">,</span> <span class="n">γ_h</span><span class="p">,</span> <span class="n">γ_c</span><span class="p">,</span> <span class="n">R</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">w_h0</span><span class="p">),</span> <span class="n">ϕ_D</span><span class="p">)</span>
+<span class="n">ϕ_D_func</span><span class="p">(</span><span class="n">D_value</span><span class="p">,</span> <span class="n">γ_h_value</span><span class="p">,</span> <span class="n">γ_c_value</span><span class="p">,</span> <span class="n">R_value</span><span class="p">,</span> <span class="n">T_value</span><span class="p">,</span> <span class="n">w_h0_value</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle 0.058367632070654\]</div>
+</div>
+</div>
+<p>Thus, as with our graph above, we find that raising <span class="math notranslate nohighlight">\(R\)</span> increases the initial college wage premium <span class="math notranslate nohighlight">\(\phi\)</span>.</p>
+<p>Compute <span class="math notranslate nohighlight">\(\frac{\partial \phi}{\partial T}\)</span> and evaluate it a default parameters</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ϕ_T</span> <span class="o">=</span> <span class="n">ϕ</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="n">γ_h</span><span class="p">,</span> <span class="n">γ_c</span><span class="p">,</span> <span class="n">R</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">w_h0</span><span class="p">)</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
+<span class="n">ϕ_T</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \frac{D R^{4} \left(\frac{\gamma_{h c}}{R}\right)^{T - 3} \cdot \left(1 - \frac{\gamma_{h c}}{R}\right) \log{\left(\frac{\gamma_{h c}}{R} \right)}}{\gamma_{h c}^{4} w^{h}_{0} \left(1 - \left(\frac{\gamma_{h c}}{R}\right)^{T - 3}\right)^{2}} - \frac{R^{4} \left(\frac{\gamma_{h}}{R}\right)^{T + 1} \cdot \left(1 - \frac{\gamma_{h c}}{R}\right) \log{\left(\frac{\gamma_{h}}{R} \right)}}{\gamma_{h c}^{4} \cdot \left(1 - \frac{\gamma_{h}}{R}\right) \left(1 - \left(\frac{\gamma_{h c}}{R}\right)^{T - 3}\right)} + \frac{R^{4} \left(\frac{\gamma_{h c}}{R}\right)^{T - 3} \cdot \left(1 - \left(\frac{\gamma_{h}}{R}\right)^{T + 1}\right) \left(1 - \frac{\gamma_{h c}}{R}\right) \log{\left(\frac{\gamma_{h c}}{R} \right)}}{\gamma_{h c}^{4} \cdot \left(1 - \frac{\gamma_{h}}{R}\right) \left(1 - \left(\frac{\gamma_{h c}}{R}\right)^{T - 3}\right)^{2}}\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Numerical value at default parameters</span>
+<span class="n">ϕ_T_func</span> <span class="o">=</span> <span class="n">Lambda</span><span class="p">((</span><span class="n">D</span><span class="p">,</span> <span class="n">γ_h</span><span class="p">,</span> <span class="n">γ_c</span><span class="p">,</span> <span class="n">R</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">w_h0</span><span class="p">),</span> <span class="n">ϕ_T</span><span class="p">)</span>
+<span class="n">ϕ_T_func</span><span class="p">(</span><span class="n">D_value</span><span class="p">,</span> <span class="n">γ_h_value</span><span class="p">,</span> <span class="n">γ_c_value</span><span class="p">,</span> <span class="n">R_value</span><span class="p">,</span> <span class="n">T_value</span><span class="p">,</span> <span class="n">w_h0_value</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle -0.00973478032996598\]</div>
+</div>
+</div>
+<p>We find that raising <span class="math notranslate nohighlight">\(T\)</span> decreases the initial college wage premium <span class="math notranslate nohighlight">\(\phi\)</span>.</p>
+<p>This is because college graduates now have longer career lengths to “pay off” the time and other costs they paid to go to college</p>
+<p>Let’s compute <span class="math notranslate nohighlight">\(\frac{\partial \phi}{\partial γ_h}\)</span> and evaluate it at default parameters.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ϕ_γ_h</span> <span class="o">=</span> <span class="n">ϕ</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="n">γ_h</span><span class="p">,</span> <span class="n">γ_c</span><span class="p">,</span> <span class="n">R</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">w_h0</span><span class="p">)</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">γ_h</span><span class="p">)</span>
+<span class="n">ϕ_γ_h</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle - \frac{R^{4} \left(\frac{\gamma_{h}}{R}\right)^{T + 1} \cdot \left(1 - \frac{\gamma_{h c}}{R}\right) \left(T + 1\right)}{\gamma_{h} \gamma_{h c}^{4} \cdot \left(1 - \frac{\gamma_{h}}{R}\right) \left(1 - \left(\frac{\gamma_{h c}}{R}\right)^{T - 3}\right)} + \frac{R^{3} \cdot \left(1 - \left(\frac{\gamma_{h}}{R}\right)^{T + 1}\right) \left(1 - \frac{\gamma_{h c}}{R}\right)}{\gamma_{h c}^{4} \left(1 - \frac{\gamma_{h}}{R}\right)^{2} \cdot \left(1 - \left(\frac{\gamma_{h c}}{R}\right)^{T - 3}\right)}\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Numerical value at default parameters</span>
+<span class="n">ϕ_γ_h_func</span> <span class="o">=</span> <span class="n">Lambda</span><span class="p">((</span><span class="n">D</span><span class="p">,</span> <span class="n">γ_h</span><span class="p">,</span> <span class="n">γ_c</span><span class="p">,</span> <span class="n">R</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">w_h0</span><span class="p">),</span> <span class="n">ϕ_γ_h</span><span class="p">)</span>
+<span class="n">ϕ_γ_h_func</span><span class="p">(</span><span class="n">D_value</span><span class="p">,</span> <span class="n">γ_h_value</span><span class="p">,</span> <span class="n">γ_c_value</span><span class="p">,</span> <span class="n">R_value</span><span class="p">,</span> <span class="n">T_value</span><span class="p">,</span> <span class="n">w_h0_value</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle 17.8590485545256\]</div>
+</div>
+</div>
+<p>We find that raising <span class="math notranslate nohighlight">\(\gamma_h\)</span> increases the initial college wage premium <span class="math notranslate nohighlight">\(\phi\)</span>, as we did with our graphical analysis earlier</p>
+<p>Compute <span class="math notranslate nohighlight">\(\frac{\partial \phi}{\partial γ_c}\)</span> and evaluate it numerically at default parameter values</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ϕ_γ_c</span> <span class="o">=</span> <span class="n">ϕ</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="n">γ_h</span><span class="p">,</span> <span class="n">γ_c</span><span class="p">,</span> <span class="n">R</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">w_h0</span><span class="p">)</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">γ_c</span><span class="p">)</span>
+<span class="n">ϕ_γ_c</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \frac{D R^{4} \left(\frac{\gamma_{h c}}{R}\right)^{T - 3} \cdot \left(1 - \frac{\gamma_{h c}}{R}\right) \left(T - 3\right)}{\gamma_{h c}^{5} w^{h}_{0} \left(1 - \left(\frac{\gamma_{h c}}{R}\right)^{T - 3}\right)^{2}} - \frac{4 D R^{4} \cdot \left(1 - \frac{\gamma_{h c}}{R}\right)}{\gamma_{h c}^{5} w^{h}_{0} \cdot \left(1 - \left(\frac{\gamma_{h c}}{R}\right)^{T - 3}\right)} - \frac{D R^{3}}{\gamma_{h c}^{4} w^{h}_{0} \cdot \left(1 - \left(\frac{\gamma_{h c}}{R}\right)^{T - 3}\right)} + \frac{R^{4} \left(\frac{\gamma_{h c}}{R}\right)^{T - 3} \cdot \left(1 - \left(\frac{\gamma_{h}}{R}\right)^{T + 1}\right) \left(1 - \frac{\gamma_{h c}}{R}\right) \left(T - 3\right)}{\gamma_{h c}^{5} \cdot \left(1 - \frac{\gamma_{h}}{R}\right) \left(1 - \left(\frac{\gamma_{h c}}{R}\right)^{T - 3}\right)^{2}} - \frac{4 R^{4} \cdot \left(1 - \left(\frac{\gamma_{h}}{R}\right)^{T + 1}\right) \left(1 - \frac{\gamma_{h c}}{R}\right)}{\gamma_{h c}^{5} \cdot \left(1 - \frac{\gamma_{h}}{R}\right) \left(1 - \left(\frac{\gamma_{h c}}{R}\right)^{T - 3}\right)} - \frac{R^{3} \cdot \left(1 - \left(\frac{\gamma_{h}}{R}\right)^{T + 1}\right)}{\gamma_{h c}^{4} \cdot \left(1 - \frac{\gamma_{h}}{R}\right) \left(1 - \left(\frac{\gamma_{h c}}{R}\right)^{T - 3}\right)}\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Numerical value at default parameters</span>
+<span class="n">ϕ_γ_c_func</span> <span class="o">=</span> <span class="n">Lambda</span><span class="p">((</span><span class="n">D</span><span class="p">,</span> <span class="n">γ_h</span><span class="p">,</span> <span class="n">γ_c</span><span class="p">,</span> <span class="n">R</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">w_h0</span><span class="p">),</span> <span class="n">ϕ_γ_c</span><span class="p">)</span>
+<span class="n">ϕ_γ_c_func</span><span class="p">(</span><span class="n">D_value</span><span class="p">,</span> <span class="n">γ_h_value</span><span class="p">,</span> <span class="n">γ_c_value</span><span class="p">,</span> <span class="n">R_value</span><span class="p">,</span> <span class="n">T_value</span><span class="p">,</span> <span class="n">w_h0_value</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle -31.6486401973376\]</div>
+</div>
+</div>
+<p>We find that raising <span class="math notranslate nohighlight">\(\gamma_c\)</span> decreases the initial college wage premium <span class="math notranslate nohighlight">\(\phi\)</span>, as we did with our graphical analysis earlier</p>
+<p>Let’s compute <span class="math notranslate nohighlight">\(\frac{\partial \phi}{\partial R}\)</span> and evaluate it numerically at default parameter values</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ϕ_R</span> <span class="o">=</span> <span class="n">ϕ</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="n">γ_h</span><span class="p">,</span> <span class="n">γ_c</span><span class="p">,</span> <span class="n">R</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">w_h0</span><span class="p">)</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">R</span><span class="p">)</span>
+<span class="n">ϕ_R</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle - \frac{D R^{3} \left(\frac{\gamma_{h c}}{R}\right)^{T - 3} \cdot \left(1 - \frac{\gamma_{h c}}{R}\right) \left(T - 3\right)}{\gamma_{h c}^{4} w^{h}_{0} \left(1 - \left(\frac{\gamma_{h c}}{R}\right)^{T - 3}\right)^{2}} + \frac{4 D R^{3} \cdot \left(1 - \frac{\gamma_{h c}}{R}\right)}{\gamma_{h c}^{4} w^{h}_{0} \cdot \left(1 - \left(\frac{\gamma_{h c}}{R}\right)^{T - 3}\right)} + \frac{D R^{2}}{\gamma_{h c}^{3} w^{h}_{0} \cdot \left(1 - \left(\frac{\gamma_{h c}}{R}\right)^{T - 3}\right)} + \frac{R^{3} \left(\frac{\gamma_{h}}{R}\right)^{T + 1} \cdot \left(1 - \frac{\gamma_{h c}}{R}\right) \left(T + 1\right)}{\gamma_{h c}^{4} \cdot \left(1 - \frac{\gamma_{h}}{R}\right) \left(1 - \left(\frac{\gamma_{h c}}{R}\right)^{T - 3}\right)} - \frac{R^{3} \left(\frac{\gamma_{h c}}{R}\right)^{T - 3} \cdot \left(1 - \left(\frac{\gamma_{h}}{R}\right)^{T + 1}\right) \left(1 - \frac{\gamma_{h c}}{R}\right) \left(T - 3\right)}{\gamma_{h c}^{4} \cdot \left(1 - \frac{\gamma_{h}}{R}\right) \left(1 - \left(\frac{\gamma_{h c}}{R}\right)^{T - 3}\right)^{2}} + \frac{4 R^{3} \cdot \left(1 - \left(\frac{\gamma_{h}}{R}\right)^{T + 1}\right) \left(1 - \frac{\gamma_{h c}}{R}\right)}{\gamma_{h c}^{4} \cdot \left(1 - \frac{\gamma_{h}}{R}\right) \left(1 - \left(\frac{\gamma_{h c}}{R}\right)^{T - 3}\right)} - \frac{R^{2} \gamma_{h} \left(1 - \left(\frac{\gamma_{h}}{R}\right)^{T + 1}\right) \left(1 - \frac{\gamma_{h c}}{R}\right)}{\gamma_{h c}^{4} \left(1 - \frac{\gamma_{h}}{R}\right)^{2} \cdot \left(1 - \left(\frac{\gamma_{h c}}{R}\right)^{T - 3}\right)} + \frac{R^{2} \cdot \left(1 - \left(\frac{\gamma_{h}}{R}\right)^{T + 1}\right)}{\gamma_{h c}^{3} \cdot \left(1 - \frac{\gamma_{h}}{R}\right) \left(1 - \left(\frac{\gamma_{h c}}{R}\right)^{T - 3}\right)}\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Numerical value at default parameters</span>
+<span class="n">ϕ_R_func</span> <span class="o">=</span> <span class="n">Lambda</span><span class="p">((</span><span class="n">D</span><span class="p">,</span> <span class="n">γ_h</span><span class="p">,</span> <span class="n">γ_c</span><span class="p">,</span> <span class="n">R</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">w_h0</span><span class="p">),</span> <span class="n">ϕ_R</span><span class="p">)</span>
+<span class="n">ϕ_R_func</span><span class="p">(</span><span class="n">D_value</span><span class="p">,</span> <span class="n">γ_h_value</span><span class="p">,</span> <span class="n">γ_c_value</span><span class="p">,</span> <span class="n">R_value</span><span class="p">,</span> <span class="n">T_value</span><span class="p">,</span> <span class="n">w_h0_value</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle 13.2642738659429\]</div>
+</div>
+</div>
+<p>We find that raising the gross interest rate <span class="math notranslate nohighlight">\(R\)</span> increases the initial college wage premium <span class="math notranslate nohighlight">\(\phi\)</span>, as we did with our graphical analysis earlier</p>
 </section>
 </section>
 
