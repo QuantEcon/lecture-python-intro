@@ -528,18 +528,16 @@ convenient for numerical work, is via a matrix.
 The **adjacency matrix** of a weighted directed graph with nodes $\{v_1, \ldots, v_n\}$, edges $E$ and weight function $w$ is the matrix
 
 $$
-\begin{equation*}
-    A = (a_{ij})_{1 \leq i,j \leq n}
-    \quad \text{with} \quad
-    a_{ij} =
-    %
-    \begin{cases}
-        w(v_i, v_j) & \text{ if } (v_i, v_j) \in E
-        \\
-        0           & \text{ otherwise}.
-    \end{cases}
-    %
-\end{equation*}
+A = (a_{ij})_{1 \leq i,j \leq n}
+\quad \text{with} \quad
+a_{ij} =
+%
+\begin{cases}
+    w(v_i, v_j) & \text{ if } (v_i, v_j) \in E
+    \\
+    0           & \text{ otherwise}.
+\end{cases}
+%
 $$
 
 Once the nodes in $V$ are enumerated, the weight function and
@@ -679,11 +677,9 @@ The following result is useful in many applications:
 For distinct nodes $i, j$ in $V$ and any integer $k$, we have
 
 $$
-\begin{equation*}
-    a^k_{i j} > 0
-    \quad \text{if and only if} \quad
-    \text{ $j$ is accessible from $i$}.
-\end{equation*}
+a^k_{i j} > 0
+\quad \text{if and only if} \quad
+\text{ $j$ is accessible from $i$}.
 $$
 
 ````
@@ -905,12 +901,11 @@ Let $r(A)$ denote the {ref}`spectral radius<neumann_series_lemma>` of $A$.
 
 The **eigenvector centrality** of the graph is defined as the $n$-vector $e$ that solves
 
-```{math}
-:label: ev_central
+$$ 
 \begin{aligned}
     e = \frac{1}{r(A)} A e.
 \end{aligned}
-```
+$$ (ev_central)
 
 In other words, $e$ is the dominant eigenvector of $A$ (the eigenvector of the
 largest eigenvalue --- see the discussion of the {ref}`Perron-Frobenius theorem<perron-frobe>` in the eigenvalue lecture.
@@ -918,12 +913,11 @@ largest eigenvalue --- see the discussion of the {ref}`Perron-Frobenius theorem<
 To better understand {eq}`ev_central`, we write out the full expression
 for some element $e_i$
 
-```{math}
-:label: eq_eicen
+$$
 \begin{aligned}
     e_i = \frac{1}{r(A)} \sum_{1 \leq j \leq n} a_{ij} e_j
 \end{aligned}
-```
+$$ (eq_eicen)
 
 
 Note the recursive nature of the definition: the centrality obtained by node
@@ -1027,21 +1021,19 @@ centrality for networks called Katz centrality.
 Fixing $\beta$ in $(0, 1/r(A))$, the **Katz centrality** of a weighted
 directed graph with adjacency matrix $A$ is defined as the vector $\kappa$
 that solves
-
-```{math}
-:label: katz_central
-    \kappa_i =  \beta \sum_{1 \leq j 1} a_{ij} \kappa_j + 1
-    \qquad  \text{for all } i \in \{0, \ldots, n-1\}.
-```
+ 
+$$
+\kappa_i =  \beta \sum_{1 \leq j 1} a_{ij} \kappa_j + 1
+\qquad  \text{for all } i \in \{0, \ldots, n-1\}.
+$$ (katz_central)
 
 Here $\beta$ is a parameter that we can choose.
 
 In vector form we can write
 
-```{math}
-:label: katz_central_vec
-    \kappa = \mathbf 1 + \beta A \kappa
-```
+$$
+\kappa = \mathbf 1 + \beta A \kappa
+$$ (katz_central_vec)
 
 where $\mathbf 1$ is a column vector of ones.
 
@@ -1055,7 +1047,7 @@ because then $r(\beta A) < 1$.
 This means that {eq}`katz_central_vec` has the unique solution
 
 $$
-    \kappa = (I - \beta A)^{-1} \mathbf{1}
+\kappa = (I - \beta A)^{-1} \mathbf{1}
 $$
 
 
@@ -1097,10 +1089,9 @@ with high centrality.)
 For example, the **authority-based eigenvector centrality** of a weighted
 directed graph with adjacency matrix $A$ is the vector $e$ solving
 
-```{math}
-:label: eicena0
-    e = \frac{1}{r(A)} A^\top e.
-```
+$$
+e = \frac{1}{r(A)} A^\top e.
+$$ (eicena0)
 
 The only difference from the original definition is that $A$ is replaced by
 its transpose.
@@ -1109,10 +1100,9 @@ its transpose.
 
 Element-by-element, this is given by
 
-```{math}
-:label: eicena
-    e_j = \frac{1}{r(A)} \sum_{1 \leq i \leq n} a_{ij} e_i
-```
+$$
+e_j = \frac{1}{r(A)} \sum_{1 \leq i \leq n} a_{ij} e_i
+$$ (eicena)
 
 We see $e_j$ will be high if many nodes with high authority rankings link to $j$.
 

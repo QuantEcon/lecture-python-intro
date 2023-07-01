@@ -757,6 +757,7 @@ df_gdp1 = extract_wb(varlist=variable_code,
                      s="2021", 
                      e="2021", 
                      varnames=variable_names)
+df_gdp1.dropna(inplace=True)
 ```
 
 ```{code-cell} ipython3

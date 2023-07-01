@@ -11,8 +11,6 @@ kernelspec:
   name: python3
 ---
 
-+++ {"user_expressions": []}
-
 # A Fiscal Theory of the Price Level
 
 ## Introduction
@@ -25,9 +23,6 @@ from collections import namedtuple
 import matplotlib.pyplot as plt
 ```
 
-+++ {"user_expressions": []}
-
-<!-- #region -->
 We'll use linear algebra first to explain and then do  some experiments with  a "fiscal theory of the price level".
 
 A fiscal theory of the price level was described by Thomas Sargent and Neil Wallace in chapter 5 of 
@@ -43,9 +38,9 @@ persistent inflation.
 
 The "fiscal theory of the price level" asserts that  
 
-  * to **start** a persistent inflation the government simply persistently runs a money-financed government deficit
-  
-  * to **stop** a persistent inflation the government simply  stops persistently running  a money-financed government deficit
+* to **start** a persistent inflation the government simply persistently runs a money-financed government deficit
+
+* to **stop** a persistent inflation the government simply  stops persistently running  a money-financed government deficit
 
 Our model is a "rational expectations" (or "perfect foresight") version of a model that Philip Cagan {cite}`Cagan`  used to study the monetary dynamics of hyperinflations.  
 
@@ -65,23 +60,23 @@ As in the {doc}`present values <pv>` and {doc}`consumption smoothing<cons_smooth
 
 The model consists of
 
- * a function that expresses the demand for real balances of government printed money as an inverse function of the public's expected rate of inflation
- 
- * an exogenous sequence of rates of growth of the money supply.  The money supply grows because the government is printing it to finance some of its expenditures
- 
- * an equilibrium condition that equates the demand for money to the supply
- 
- * a "perfect foresight"  assumption that the public's expected rate of inflation equals the actual rate of inflation.
+* a function that expresses the demand for real balances of government printed money as an inverse function of the public's expected rate of inflation
+
+* an exogenous sequence of rates of growth of the money supply.  The money supply grows because the government is printing it to finance some of its expenditures
+
+* an equilibrium condition that equates the demand for money to the supply
+
+* a "perfect foresight"  assumption that the public's expected rate of inflation equals the actual rate of inflation.
  
 To represent the model formally, let 
 
- * $ m_t $ be the log of the supply of  nominal money balances;
- * $\mu_t = m_{t+1} - m_t $ be the net rate of growth of  nominal balances;
- * $p_t $ be the log of the price level;
- * $\pi_t = p_{t+1} - p_t $ be the net rate of inflation  between $t$ and $ t+1$;
- * $\pi_t^*$  be the public's expected rate of inflation between  $t$ and $t+1$;
- * $T$ the horizon -- i.e., the last period for which the model will determine $p_t$
- * $\pi_{T+1}^*$ the terminal rate of inflation between times $T$ and $T+1$.
+* $ m_t $ be the log of the supply of  nominal money balances;
+* $\mu_t = m_{t+1} - m_t $ be the net rate of growth of  nominal balances;
+* $p_t $ be the log of the price level;
+* $\pi_t = p_{t+1} - p_t $ be the net rate of inflation  between $t$ and $ t+1$;
+* $\pi_t^*$  be the public's expected rate of inflation between  $t$ and $t+1$;
+* $T$ the horizon -- i.e., the last period for which the model will determine $p_t$
+* $\pi_{T+1}^*$ the terminal rate of inflation between times $T$ and $T+1$.
 
 The demand for real balances $\exp\left(\frac{m_t^d}{p_t}\right)$ is governed by the following  version of the Cagan demand function
   
@@ -89,10 +84,8 @@ $$
 m_t^d - p_t = -\alpha \pi_t^* \: , \: \alpha > 0 ; \quad t = 0, 1, \ldots, T .
 $$ (eq:caganmd)
 
-
 This equation  asserts that the demand for real balances
 is inversely related to the public's expected rate of inflation.
-
 
 People somehow  acquire **perfect foresight** by their having solved a forecasting
 problem.
@@ -103,9 +96,9 @@ $$
 \pi_t^* = \pi_t , % \forall t 
 $$ (eq:ree)
 
-while equating demand for money to  supply lets us set $m_t^d = m_t$ for all $t \geq 0$. 
+while equating demand for money to supply lets us set $m_t^d = m_t$ for all $t \geq 0$. 
 
-The preceding equations then  imply
+The preceding equations then imply
 
 $$
 m_t - p_t = -\alpha(p_{t+1} - p_t) \: , \: \alpha > 0 
@@ -121,17 +114,17 @@ $$
 which we rewrite as a forward-looking first-order linear difference
 equation in $\pi_s$ with $\mu_s$  as a "forcing variable":
 
-\begin{equation}  
+$$
 \pi_t = \frac{\alpha}{1+\alpha} \pi_{t+1} + \frac{1}{1+\alpha} \mu_t , \quad t= 0, 1, \ldots , T 
-\end{equation}
+$$
 
 where $ 0< \frac{\alpha}{1+\alpha} <1 $.
 
 Setting $\delta =\frac{\alpha}{1+\alpha}$ let's us represent the preceding equation as
 
-\begin{equation}
+$$
 \pi_t = \delta \pi_{t+1} + (1-\delta) \mu_t , \quad t =0, 1, \ldots, T
-\end{equation}
+$$
 
 Write this system of $T+1$ equations as the single matrix equation
 
@@ -240,8 +233,6 @@ def create_cagan_model(m0, α, T, μ_seq):
     return CaganREE(m0, T, μ_seq, α, δ, π_end)
 ```
 
-+++ {"user_expressions": []}
-
 Here we use the following parameter values:
 
 ```{code-cell} ipython3
@@ -254,8 +245,6 @@ m0 = 1
 μ0 = 0.5
 μ_star = 0
 ```
-
-+++ {"user_expressions": []}
 
 Now we can solve the model to compute $\pi_t$, $m_t$ and $p_t$ for $t =1, \ldots, T+1$ using the matrix equation above
 
@@ -279,8 +268,6 @@ def solve(model):
 
     return π_seq, m_seq, p_seq
 ```
-
-+++ {"user_expressions": []}
 
 ### Some quantitative experiments
 
@@ -387,7 +374,7 @@ $$
 p_t = m_t + \alpha \pi_t
 $$ (eq:pformula2)
 
-or, by using equation  {eq}`eq:fisctheory1`,
+or, by using equation {eq}`eq:fisctheory1`,
 
 $$ 
 p_t = m_t + \alpha \left[ (1-\delta) \sum_{s=t}^T \delta^{s-t} \mu_s +  \delta^{T+1-t} \pi_{T+1}^*  \right] 
@@ -402,13 +389,11 @@ equation {eq}`eq:pformula2`, the log of real balances jumps
 
 But in order for $m_t - p_t$ to jump, which variable jumps, $m_{T_1}$ or $p_{T_1}$?
 
-
 ###  What jumps?
 
 What jumps at $T_1$?
 
 Is it $p_{T_1}$ or  $m_{T_1}$?
-
 
 If we insist that the money supply $m_{T_1}$ is locked at its value $m_{T_1}^1$ inherited from the past, then formula {eq}`eq:pformula2` implies  that the price level jumps downward  at time $T_1$, to coincide with the downward jump in 
 $\pi_{T_1}$ 
@@ -417,7 +402,7 @@ An alternative assumption about the money supply level is that as part of the "i
 the government resets $m_{T_1}$ according to
 
 $$
- m_{T_1}^2 - m_{T_1}^1 = \alpha (\pi^1 - \pi^2)
+m_{T_1}^2 - m_{T_1}^1 = \alpha (\pi^1 - \pi^2)
 $$ (eq:eqnmoneyjump)
 
 By letting money jump according to equation {eq}`eq:eqnmoneyjump` the monetary authority  prevents  the price level from **falling** at the moment that the unanticipated stabilization arrives.
@@ -436,10 +421,11 @@ We'll study both cases.
 #### $m_{T_{1}}$ does not jump.
 
 $$
-\begin{align*}
+\begin{aligned}
 m_{T_{1}}&=m_{T_{1}-1}+\mu_{0}\\\pi_{T_{1}}&=\mu^{*}\\p_{T_{1}}&=m_{T_{1}}+\alpha\pi_{T_{1}}
-\end{align*}
+\end{aligned}
 $$
+
 Simply glue the sequences $t\leq T_1$ and $t > T_1$.
 
 ####  $m_{T_{1}}$ jumps.
@@ -489,7 +475,6 @@ We set this up so that the $\{\mu_t\}$ sequences that describe the sudden stabil
 are identical to those for experiment 1, the foreseen sudden stabilization.
 
 The following code does the calculations and plots outcomes.
-<!-- #endregion -->
 
 ```{code-cell} ipython3
 # path 1
@@ -565,8 +550,6 @@ plt.tight_layout()
 plt.show()
 ```
 
-+++ {"user_expressions": []}
-
 We invite you to compare these graphs with corresponding ones for the foreseen stabilization analyzed in experiment 1 above.  
 
 Note how the inflation graph in the top middle panel is now identical to the 
@@ -575,14 +558,13 @@ money growth graph in the top left panel, and how now the log of real balances p
 The bottom panels plot $m$ and $p$ under two possible ways that $m_{T_1}$ might adjust
 as required by the upward jump in $m - p$ at $T_1$.  
 
-  * the orange line lets $m_{T_1}$ jump upward in order to make sure that the log price level $p_{T_1}$ does not fall.
-  
-  * the blue line lets $p_{T_1}$ fall while stopping the money supply from jumping.
+* the orange line lets $m_{T_1}$ jump upward in order to make sure that the log price level $p_{T_1}$ does not fall.
+
+* the blue line lets $p_{T_1}$ fall while stopping the money supply from jumping.
   
 Here is a way to interpret what the government is doing when the orange line policy is in place.
 
 The government  prints money to finance expenditure with  the "velocity dividend" that it reaps from the increased demand for real balances brought about by the permanent decrease in the rate of growth of the money supply.
-
 
 The next code generates a multi-panel graph that includes outcomes of both experiments 1 and 2.
 
@@ -635,10 +617,6 @@ plt.tight_layout()
 plt.show()
 ```
 
-+++ {"user_expressions": []}
-
-
-
 #### Experiment 3
 
 **Foreseen gradual stabilization**
@@ -651,7 +629,6 @@ Thus, suppose that $\phi \in (0,1)$, that  $\mu_0 > \mu^*$,  and that for $t = 0
 $$
 \mu_t = \phi^t \mu_0 + (1 - \phi^t) \mu^* .
 $$ 
-
 
 Next we perform an experiment in which there is a perfectly foreseen **gradual** decrease in the rate of growth of the money supply.
 
