@@ -113,7 +113,7 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script>window.MathJax = {"tex": {"macros": {"argmax": "arg\\,max", "argmin": "arg\\,min"}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'networks';</script>
     <link rel="canonical" href="https://intro.quantecon.org/networks.html" />
@@ -258,28 +258,28 @@ const thebe_selector_output = ".output, .cell_output"
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: quantecon-book-networks in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (0.5.1)
 Requirement already satisfied: pandas-datareader in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (0.10.0)
+Requirement already satisfied: networkx in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from quantecon-book-networks) (2.8.4)
 Requirement already satisfied: matplotlib in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from quantecon-book-networks) (3.7.0)
 Requirement already satisfied: numpy in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from quantecon-book-networks) (1.23.5)
-Requirement already satisfied: scipy in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from quantecon-book-networks) (1.10.0)
-Requirement already satisfied: networkx in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from quantecon-book-networks) (2.8.4)
 Requirement already satisfied: pandas in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from quantecon-book-networks) (1.5.3)
+Requirement already satisfied: scipy in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from quantecon-book-networks) (1.10.0)
 Requirement already satisfied: lxml in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from pandas-datareader) (4.9.1)
 Requirement already satisfied: requests&gt;=2.19.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from pandas-datareader) (2.28.1)
-Requirement already satisfied: python-dateutil&gt;=2.8.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from pandas-&gt;quantecon-book-networks) (2.8.2)
-Requirement already satisfied: pytz&gt;=2020.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from pandas-&gt;quantecon-book-networks) (2022.7)
-Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests&gt;=2.19.0-&gt;pandas-datareader) (2022.12.7)
-Requirement already satisfied: charset-normalizer&lt;3,&gt;=2 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests&gt;=2.19.0-&gt;pandas-datareader) (2.0.4)
-Requirement already satisfied: urllib3&lt;1.27,&gt;=1.21.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests&gt;=2.19.0-&gt;pandas-datareader) (1.26.14)
-Requirement already satisfied: idna&lt;4,&gt;=2.5 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests&gt;=2.19.0-&gt;pandas-datareader) (3.4)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: cycler&gt;=0.10 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from matplotlib-&gt;quantecon-book-networks) (0.11.0)
-Requirement already satisfied: pyparsing&gt;=2.3.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from matplotlib-&gt;quantecon-book-networks) (3.0.9)
-Requirement already satisfied: pillow&gt;=6.2.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from matplotlib-&gt;quantecon-book-networks) (9.4.0)
-Requirement already satisfied: kiwisolver&gt;=1.0.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from matplotlib-&gt;quantecon-book-networks) (1.4.4)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: python-dateutil&gt;=2.8.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from pandas-&gt;quantecon-book-networks) (2.8.2)
+Requirement already satisfied: pytz&gt;=2020.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from pandas-&gt;quantecon-book-networks) (2022.7)
+Requirement already satisfied: urllib3&lt;1.27,&gt;=1.21.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests&gt;=2.19.0-&gt;pandas-datareader) (1.26.14)
+Requirement already satisfied: charset-normalizer&lt;3,&gt;=2 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests&gt;=2.19.0-&gt;pandas-datareader) (2.0.4)
+Requirement already satisfied: idna&lt;4,&gt;=2.5 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests&gt;=2.19.0-&gt;pandas-datareader) (3.4)
+Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests&gt;=2.19.0-&gt;pandas-datareader) (2022.12.7)
 Requirement already satisfied: fonttools&gt;=4.22.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from matplotlib-&gt;quantecon-book-networks) (4.25.0)
 Requirement already satisfied: packaging&gt;=20.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from matplotlib-&gt;quantecon-book-networks) (21.3)
+Requirement already satisfied: pyparsing&gt;=2.3.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from matplotlib-&gt;quantecon-book-networks) (3.0.9)
 Requirement already satisfied: contourpy&gt;=1.0.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from matplotlib-&gt;quantecon-book-networks) (1.0.5)
+Requirement already satisfied: cycler&gt;=0.10 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from matplotlib-&gt;quantecon-book-networks) (0.11.0)
+Requirement already satisfied: kiwisolver&gt;=1.0.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from matplotlib-&gt;quantecon-book-networks) (1.4.4)
+Requirement already satisfied: pillow&gt;=6.2.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from matplotlib-&gt;quantecon-book-networks) (9.4.0)
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: six&gt;=1.5 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from python-dateutil&gt;=2.8.1-&gt;pandas-&gt;quantecon-book-networks) (1.16.0)
@@ -558,7 +558,7 @@ correct representation of our graph.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/085f70e566c7bee9653d9e0e2ac6ed2c82f33fa1cba3b9d1f2b085fe5938165a.png"><img alt="_images/085f70e566c7bee9653d9e0e2ac6ed2c82f33fa1cba3b9d1f2b085fe5938165a.png" src="_images/085f70e566c7bee9653d9e0e2ac6ed2c82f33fa1cba3b9d1f2b085fe5938165a.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/e97a6f9ee012abefcb3eaf80878ec22394e206d1f4c214c28bd2d15b62b31e8c.png"><img alt="_images/e97a6f9ee012abefcb3eaf80878ec22394e206d1f4c214c28bd2d15b62b31e8c.png" src="_images/e97a6f9ee012abefcb3eaf80878ec22394e206d1f4c214c28bd2d15b62b31e8c.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>The figure obtained above matches the original directed graph in <a class="reference internal" href="#poverty-trap-2"><span class="std std-numref">Fig. 33.3</span></a>.</p>
@@ -613,7 +613,7 @@ however in <a class="reference internal" href="#poverty-trap-2"><span class="std
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/8b2efa34b50cc45bd677565f56c4798df2bd44a0ff6701cc455f3ffae79f0f42.png"><img alt="_images/8b2efa34b50cc45bd677565f56c4798df2bd44a0ff6701cc455f3ffae79f0f42.png" src="_images/8b2efa34b50cc45bd677565f56c4798df2bd44a0ff6701cc455f3ffae79f0f42.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/000281198cb106ab37e48f8cf96b288dd6961e8d42d7b0757a6a6c3018da0218.png"><img alt="_images/000281198cb106ab37e48f8cf96b288dd6961e8d42d7b0757a6a6c3018da0218.png" src="_images/000281198cb106ab37e48f8cf96b288dd6961e8d42d7b0757a6a6c3018da0218.png" style="width: 80%;" /></a>
 </div>
 </div>
 <div class="cell docutils container">
@@ -642,7 +642,7 @@ however in <a class="reference internal" href="#poverty-trap-2"><span class="std
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/ca200eb06a576edac500653ce0e45657aa94440a3256f02cd67c7b52a04dbe75.png"><img alt="_images/ca200eb06a576edac500653ce0e45657aa94440a3256f02cd67c7b52a04dbe75.png" src="_images/ca200eb06a576edac500653ce0e45657aa94440a3256f02cd67c7b52a04dbe75.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/a773c9f92dfb44e033be2bbe842e5d5e1ed3e919bfbc3210ee85f576fcc8b500.png"><img alt="_images/a773c9f92dfb44e033be2bbe842e5d5e1ed3e919bfbc3210ee85f576fcc8b500.png" src="_images/a773c9f92dfb44e033be2bbe842e5d5e1ed3e919bfbc3210ee85f576fcc8b500.png" style="width: 80%;" /></a>
 </div>
 </div>
 <div class="cell docutils container">
@@ -832,18 +832,16 @@ convenient for numerical work, is via a matrix.</p>
 <p>The <strong>adjacency matrix</strong> of a weighted directed graph with nodes <span class="math notranslate nohighlight">\(\{v_1, \ldots, v_n\}\)</span>, edges <span class="math notranslate nohighlight">\(E\)</span> and weight function <span class="math notranslate nohighlight">\(w\)</span> is the matrix</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-\begin{equation*}
-    A = (a_{ij})_{1 \leq i,j \leq n}
-    \quad \text{with} \quad
-    a_{ij} =
-    %
-    \begin{cases}
-        w(v_i, v_j) &amp; \text{ if } (v_i, v_j) \in E
-        \\
-        0           &amp; \text{ otherwise}.
-    \end{cases}
-    %
-\end{equation*}
+A = (a_{ij})_{1 \leq i,j \leq n}
+\quad \text{with} \quad
+a_{ij} =
+%
+\begin{cases}
+    w(v_i, v_j) &amp; \text{ if } (v_i, v_j) \in E
+    \\
+    0           &amp; \text{ otherwise}.
+\end{cases}
+%
 \end{split}\]</div>
 <p>Once the nodes in <span class="math notranslate nohighlight">\(V\)</span> are enumerated, the weight function and
 adjacency matrix provide essentially the same information.</p>
@@ -979,11 +977,9 @@ all <span class="math notranslate nohighlight">\((i,j)\)</span> such that <span 
 <p>For distinct nodes <span class="math notranslate nohighlight">\(i, j\)</span> in <span class="math notranslate nohighlight">\(V\)</span> and any integer <span class="math notranslate nohighlight">\(k\)</span>, we have</p>
 <div class="math notranslate nohighlight">
 \[
-\begin{equation*}
-    a^k_{i j} &gt; 0
-    \quad \text{if and only if} \quad
-    \text{ $j$ is accessible from $i$}.
-\end{equation*}
+a^k_{i j} &gt; 0
+\quad \text{if and only if} \quad
+\text{ $j$ is accessible from $i$}.
 \]</div>
 </section>
 </div><p>The above result is obvious when <span class="math notranslate nohighlight">\(k=1\)</span> and a proof of the general case can be
@@ -1219,17 +1215,21 @@ integers <span class="math notranslate nohighlight">\(1, \ldots, n\)</span>.</p>
 <p>Let <span class="math notranslate nohighlight">\(r(A)\)</span> denote the <a class="reference internal" href="eigen_I.html#neumann-series-lemma"><span class="std std-ref">spectral radius</span></a> of <span class="math notranslate nohighlight">\(A\)</span>.</p>
 <p>The <strong>eigenvector centrality</strong> of the graph is defined as the <span class="math notranslate nohighlight">\(n\)</span>-vector <span class="math notranslate nohighlight">\(e\)</span> that solves</p>
 <div class="math notranslate nohighlight" id="equation-ev-central">
-<span class="eqno">(33.1)<a class="headerlink" href="#equation-ev-central" title="Permalink to this equation">#</a></span>\[\begin{aligned}
+<span class="eqno">(33.1)<a class="headerlink" href="#equation-ev-central" title="Permalink to this equation">#</a></span>\[ 
+\begin{aligned}
     e = \frac{1}{r(A)} A e.
-\end{aligned}\]</div>
+\end{aligned}
+\]</div>
 <p>In other words, <span class="math notranslate nohighlight">\(e\)</span> is the dominant eigenvector of <span class="math notranslate nohighlight">\(A\)</span> (the eigenvector of the
 largest eigenvalue — see the discussion of the <a class="reference internal" href="eigen_II.html#perron-frobe"><span class="std std-ref">Perron-Frobenius theorem</span></a> in the eigenvalue lecture.</p>
 <p>To better understand <a class="reference internal" href="#equation-ev-central">(33.1)</a>, we write out the full expression
 for some element <span class="math notranslate nohighlight">\(e_i\)</span></p>
 <div class="math notranslate nohighlight" id="equation-eq-eicen">
-<span class="eqno">(33.2)<a class="headerlink" href="#equation-eq-eicen" title="Permalink to this equation">#</a></span>\[\begin{aligned}
+<span class="eqno">(33.2)<a class="headerlink" href="#equation-eq-eicen" title="Permalink to this equation">#</a></span>\[
+\begin{aligned}
     e_i = \frac{1}{r(A)} \sum_{1 \leq j \leq n} a_{ij} e_j
-\end{aligned}\]</div>
+\end{aligned}
+\]</div>
 <p>Note the recursive nature of the definition: the centrality obtained by node
 <span class="math notranslate nohighlight">\(i\)</span> is proportional to a sum of the centrality of all nodes, weighted by
 the <em>rates of flow</em> from <span class="math notranslate nohighlight">\(i\)</span> into these nodes.</p>
@@ -1346,12 +1346,16 @@ centrality for networks called Katz centrality.</p>
 directed graph with adjacency matrix <span class="math notranslate nohighlight">\(A\)</span> is defined as the vector <span class="math notranslate nohighlight">\(\kappa\)</span>
 that solves</p>
 <div class="math notranslate nohighlight" id="equation-katz-central">
-<span class="eqno">(33.3)<a class="headerlink" href="#equation-katz-central" title="Permalink to this equation">#</a></span>\[    \kappa_i =  \beta \sum_{1 \leq j 1} a_{ij} \kappa_j + 1
-    \qquad  \text{for all } i \in \{0, \ldots, n-1\}.\]</div>
+<span class="eqno">(33.3)<a class="headerlink" href="#equation-katz-central" title="Permalink to this equation">#</a></span>\[
+\kappa_i =  \beta \sum_{1 \leq j 1} a_{ij} \kappa_j + 1
+\qquad  \text{for all } i \in \{0, \ldots, n-1\}.
+\]</div>
 <p>Here <span class="math notranslate nohighlight">\(\beta\)</span> is a parameter that we can choose.</p>
 <p>In vector form we can write</p>
 <div class="math notranslate nohighlight" id="equation-katz-central-vec">
-<span class="eqno">(33.4)<a class="headerlink" href="#equation-katz-central-vec" title="Permalink to this equation">#</a></span>\[    \kappa = \mathbf 1 + \beta A \kappa\]</div>
+<span class="eqno">(33.4)<a class="headerlink" href="#equation-katz-central-vec" title="Permalink to this equation">#</a></span>\[
+\kappa = \mathbf 1 + \beta A \kappa
+\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mathbf 1\)</span> is a column vector of ones.</p>
 <p>The intuition behind this centrality measure is similar to that provided for
 eigenvector centrality: high centrality is conferred on <span class="math notranslate nohighlight">\(i\)</span> when it is linked
@@ -1361,7 +1365,7 @@ because then <span class="math notranslate nohighlight">\(r(\beta A) &lt; 1\)</s
 <p>This means that <a class="reference internal" href="#equation-katz-central-vec">(33.4)</a> has the unique solution</p>
 <div class="math notranslate nohighlight">
 \[
-    \kappa = (I - \beta A)^{-1} \mathbf{1}
+\kappa = (I - \beta A)^{-1} \mathbf{1}
 \]</div>
 <p>This follows from the <a class="reference internal" href="eigen_I.html#neumann-series-lemma"><span class="std std-ref">Neumann series theorem</span></a>.</p>
 <p>The parameter <span class="math notranslate nohighlight">\(\beta\)</span> is used to ensure that <span class="math notranslate nohighlight">\(\kappa\)</span> is finite</p>
@@ -1389,13 +1393,17 @@ with high centrality.)</p>
 <p>For example, the <strong>authority-based eigenvector centrality</strong> of a weighted
 directed graph with adjacency matrix <span class="math notranslate nohighlight">\(A\)</span> is the vector <span class="math notranslate nohighlight">\(e\)</span> solving</p>
 <div class="math notranslate nohighlight" id="equation-eicena0">
-<span class="eqno">(33.5)<a class="headerlink" href="#equation-eicena0" title="Permalink to this equation">#</a></span>\[    e = \frac{1}{r(A)} A^\top e.\]</div>
+<span class="eqno">(33.5)<a class="headerlink" href="#equation-eicena0" title="Permalink to this equation">#</a></span>\[
+e = \frac{1}{r(A)} A^\top e.
+\]</div>
 <p>The only difference from the original definition is that <span class="math notranslate nohighlight">\(A\)</span> is replaced by
 its transpose.</p>
 <p>(Transposes do not affect the spectral radius of a matrix so we wrote <span class="math notranslate nohighlight">\(r(A)\)</span> instead of <span class="math notranslate nohighlight">\(r(A^\top)\)</span>.)</p>
 <p>Element-by-element, this is given by</p>
 <div class="math notranslate nohighlight" id="equation-eicena">
-<span class="eqno">(33.6)<a class="headerlink" href="#equation-eicena" title="Permalink to this equation">#</a></span>\[    e_j = \frac{1}{r(A)} \sum_{1 \leq i \leq n} a_{ij} e_i\]</div>
+<span class="eqno">(33.6)<a class="headerlink" href="#equation-eicena" title="Permalink to this equation">#</a></span>\[
+e_j = \frac{1}{r(A)} \sum_{1 \leq i \leq n} a_{ij} e_i
+\]</div>
 <p>We see <span class="math notranslate nohighlight">\(e_j\)</span> will be high if many nodes with high authority rankings link to <span class="math notranslate nohighlight">\(j\)</span>.</p>
 <p>The following figurenshows the authority-based eigenvector centrality ranking for the international
 credit network shown in <a class="reference internal" href="#financial-network"><span class="std std-numref">Fig. 33.4</span></a>.</p>
@@ -2045,7 +2053,7 @@ of G.</p></li>
                     <li data-tippy-content="Change contrast" class="btn__contrast"><i data-feather="sunset"></i></li>
                     <li data-tippy-content="Download Notebook"><a href="/_notebooks/networks.ipynb" download><i data-feather="download-cloud"></i></a></li>
                     <li class="settings-button" id="settingsButton"><div data-tippy-content="Launch Notebook"><i data-feather="play-circle"></i></div></li>
-                        <li data-tippy-content="Download PDF" onClick="window.print()"><i data-feather="file"></i></li>
+                        <li class="download-pdf" id="downloadButton"><i data-feather="file"></i></li>
                     <li data-tippy-content="View Source"><a target="_blank" href="https://github.com/QuantEcon/lecture-python-intro/blob/main/lectures/networks.md" download><i data-feather="github"></i></a></li>
                 </ul>
 
@@ -2058,7 +2066,7 @@ of G.</p></li>
                     <p>Lecture (PDF)</p>
                 </li>
                 <li class="download-pdf-file">
-                    <a href="" download><p>Book (PDF)</p></a>
+                    <a href="/_pdf/quantecon-python-intro.pdf" download><p>Book (PDF)</p></a>
                 </li>
             </ul>
         </div>

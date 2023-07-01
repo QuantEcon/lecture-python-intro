@@ -113,7 +113,7 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script>window.MathJax = {"tex": {"macros": {"argmax": "arg\\,max", "argmin": "arg\\,min"}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'cagan_adaptive';</script>
     <link rel="canonical" href="https://intro.quantecon.org/cagan_adaptive.html" />
@@ -238,11 +238,10 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 </div>
-<!-- #region -->
 <p>This lecture is a sequel or prequel to this lecture <a class="reference internal" href="cagan_ree.html"><span class="doc">fiscal theory of the price level</span></a>.</p>
 <p>We’ll use linear algebra to do some experiments with  an alternative  “fiscal theory of the price level”.</p>
 <p>Like the model in this lecture <a class="reference internal" href="cagan_ree.html"><span class="doc">fiscal theory of the price level</span></a>, the model asserts that when a government persistently spends more than it collects in taxes and prints money to finance the shortfall, it puts upward pressure on the price level and generates persistent inflation.</p>
-<p>Instead of the “perfect foresight” or “rational expectations” version of the model in this lecture <a class="reference internal" href="cagan_ree.html"><span class="doc">fiscal theory of the price level</span></a>, our model in the present lecture is an “adaptive expectations”  version of a model that   Philip Cagan <span id="id1">[<a class="reference internal" href="zreferences.html#id104" title="Philip Cagan. The monetary dynamics of hyperinflation. In Milton Friedman, editor, Studies in the Quantity Theory of Money, pages 25–117. University of Chicago Press, Chicago, 1956.">Cag56</a>]</span>  used to study the monetary dynamics of hyperinflations.</p>
+<p>Instead of the “perfect foresight” or “rational expectations” version of the model in this lecture <a class="reference internal" href="cagan_ree.html"><span class="doc">fiscal theory of the price level</span></a>, our model in the present lecture is an “adaptive expectations”  version of a model that Philip Cagan <span id="id1">[<a class="reference internal" href="zreferences.html#id104" title="Philip Cagan. The monetary dynamics of hyperinflation. In Milton Friedman, editor, Studies in the Quantity Theory of Money, pages 25–117. University of Chicago Press, Chicago, 1956.">Cag56</a>]</span>  used to study the monetary dynamics of hyperinflations.</p>
 <p>It combines these components:</p>
 <ul class="simple">
 <li><p>a demand function for real money balances that asserts that the logarithm of the quantity of real balances demanded depends inversely on the public’s expected rate of inflation</p></li>
@@ -297,8 +296,6 @@ and a money growth sequence <span class="math notranslate nohighlight">\(\mu = \
 <p>As endogenous outputs of our model we want to find sequences <span class="math notranslate nohighlight">\(\pi = \{\pi_t\}_{t=0}^T, p = \{p_t\}_{t=0}^T\)</span> as functions of the endogenous inputs.</p>
 <p>We’ll do some mental experiments by studying how the model outputs vary as we vary
 the model inputs.</p>
-<!-- #endregion -->
-<!-- #region -->
 </section>
 <section id="representing-key-equations-with-linear-algebra">
 <h2><span class="section-number">13.3. </span>Representing key equations with linear algebra<a class="headerlink" href="#representing-key-equations-with-linear-algebra" title="Permalink to this heading">#</a></h2>
@@ -334,11 +331,10 @@ A \pi^* = (1-\lambda) B \pi + \pi_0^*
 \]</div>
 <p>where the <span class="math notranslate nohighlight">\((T+2) \times (T+2) \)</span>matrix <span class="math notranslate nohighlight">\(A\)</span>, the <span class="math notranslate nohighlight">\((T+2)\times (T+1)\)</span> matrix <span class="math notranslate nohighlight">\(B\)</span>, and the vectors <span class="math notranslate nohighlight">\(\pi^* , \pi_0, \pi_0^*\)</span>
 are defined implicitly by aligning these two equations.</p>
-<!-- #endregion -->
-<!-- #region -->
 <p>Next we write the key equation <a class="reference internal" href="#equation-eq-eqpipi">(13.3)</a> in matrix notation as</p>
 <div class="math notranslate nohighlight">
-\[ \begin{bmatrix}
+\[ 
+\begin{bmatrix}
 \pi_0 \cr \pi_1 \cr \pi_1 \cr \vdots \cr \pi_T \end{bmatrix}
 = \begin{bmatrix}
 \mu_0 \cr \mu_1 \cr \mu_2 \cr  \vdots \cr \mu_T \end{bmatrix}
@@ -370,10 +366,10 @@ a function of <span class="math notranslate nohighlight">\(\mu, \pi_0, \pi_0^*\)
 <p>Combine equations <a class="reference internal" href="#equation-eq-eq1">(13.5)</a>and <a class="reference internal" href="#equation-eq-eq2">(13.6)</a>  to get</p>
 <div class="math notranslate nohighlight">
 \[
-\begin{align*}
+\begin{aligned}
 A \pi^* &amp; = (1-\lambda) B \pi + \pi_0^* \cr
  &amp; = (1-\lambda) B \left[ \mu + C \pi^* \right] + \pi_0^*
-\end{align*}
+\end{aligned}
 \]</div>
 <p>which implies that</p>
 <div class="math notranslate nohighlight">
@@ -395,7 +391,6 @@ of expected inflation rates and the sequence <span class="math notranslate nohig
 <p>Knowing these, we can then quickly calculate the associated sequence <span class="math notranslate nohighlight">\(p\)</span>  of the logarithm of the  price level
 from equation <a class="reference internal" href="#equation-eq-eqfiscth1">(13.2)</a>.</p>
 <p>Let’s fill in the details for this step.</p>
-<!-- #endregion -->
 <p>Since we now know <span class="math notranslate nohighlight">\(\mu\)</span>  it is easy to compute <span class="math notranslate nohighlight">\(m\)</span>.</p>
 <p>Thus, notice that we can represent the equations</p>
 <div class="math notranslate nohighlight">
@@ -570,13 +565,13 @@ a “perfect foresight” or “rational expectations” hypothesis.</p>
 <p>The  source of this condition is the following string of deductions:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-\begin{align*}
+\begin{aligned}
 \pi_{t}&amp;=\mu_{t}+\alpha\pi_{t+1}^{*}-\alpha\pi_{t}^{*}\\\pi_{t+1}^{*}&amp;=\lambda\pi_{t}^{*}+(1-\lambda)\pi_{t}\\\pi_{t}&amp;=\frac{\mu_{t}}{1-\alpha(1-\lambda)}-\frac{\alpha(1-\lambda)}{1-\alpha(1-\lambda)}\pi_{t}^{*}\\\implies\pi_{t}^{*}&amp;=\frac{1}{\alpha(1-\lambda)}\mu_{t}-\frac{1-\alpha(1-\lambda)}{\alpha(1-\lambda)}\pi_{t}\\\pi_{t+1}&amp;=\frac{\mu_{t+1}}{1-\alpha(1-\lambda)}-\frac{\alpha(1-\lambda)}{1-\alpha(1-\lambda)}\left(\lambda\pi_{t}^{*}+(1-\lambda)\pi_{t}\right)\\&amp;=\frac{\mu_{t+1}}{1-\alpha(1-\lambda)}-\frac{\lambda}{1-\alpha(1-\lambda)}\mu_{t}+\frac{\lambda-\alpha(1-\lambda)}{1-\alpha(1-\lambda)}\pi_{t}
-\end{align*}
+\end{aligned}
 \end{split}\]</div>
 <p>By assuring that the coefficient on <span class="math notranslate nohighlight">\(\pi_t\)</span> is less than one in absolute value, condition <a class="reference internal" href="#equation-eq-suffcond">(13.11)</a> assures stability of the dynamics of <span class="math notranslate nohighlight">\(\{\pi_t\}\)</span> described by the last line of our string of deductions.</p>
 <p>The reader is free to study outcomes in examples that violate condition <a class="reference internal" href="#equation-eq-suffcond">(13.11)</a>.</p>
-<!-- #endregion --><div class="cell docutils container">
+<div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">((</span><span class="n">λ</span> <span class="o">-</span> <span class="n">α</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">λ</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">α</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">λ</span><span class="p">))))</span>
 </pre></div>
@@ -601,7 +596,6 @@ a “perfect foresight” or “rational expectations” hypothesis.</p>
 </div>
 </div>
 <p>Now we’ll turn to some experiments.</p>
-<!-- #region -->
 <section id="experiment-1">
 <h3><span class="section-number">13.6.1. </span>Experiment 1<a class="headerlink" href="#experiment-1" title="Permalink to this heading">#</a></h3>
 <p>We’ll study a situation in which the rate of growth of the money supply is <span class="math notranslate nohighlight">\(\mu_0\)</span>
@@ -1028,7 +1022,7 @@ decline from a high value to a persistently low value.</p>
                     <li data-tippy-content="Change contrast" class="btn__contrast"><i data-feather="sunset"></i></li>
                     <li data-tippy-content="Download Notebook"><a href="/_notebooks/cagan_adaptive.ipynb" download><i data-feather="download-cloud"></i></a></li>
                     <li class="settings-button" id="settingsButton"><div data-tippy-content="Launch Notebook"><i data-feather="play-circle"></i></div></li>
-                        <li data-tippy-content="Download PDF" onClick="window.print()"><i data-feather="file"></i></li>
+                        <li class="download-pdf" id="downloadButton"><i data-feather="file"></i></li>
                     <li data-tippy-content="View Source"><a target="_blank" href="https://github.com/QuantEcon/lecture-python-intro/blob/main/lectures/cagan_adaptive.md" download><i data-feather="github"></i></a></li>
                 </ul>
 
@@ -1041,7 +1035,7 @@ decline from a high value to a persistently low value.</p>
                     <p>Lecture (PDF)</p>
                 </li>
                 <li class="download-pdf-file">
-                    <a href="" download><p>Book (PDF)</p></a>
+                    <a href="/_pdf/quantecon-python-intro.pdf" download><p>Book (PDF)</p></a>
                 </li>
             </ul>
         </div>

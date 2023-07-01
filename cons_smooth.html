@@ -113,7 +113,7 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script>window.MathJax = {"tex": {"macros": {"argmax": "arg\\,max", "argmin": "arg\\,min"}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'cons_smooth';</script>
     <link rel="canonical" href="https://intro.quantecon.org/cons_smooth.html" />
@@ -783,12 +783,13 @@ y_1 \cr y_2 \cr y_3 \cr \vdots \cr y_T
 </section>
 <section id="second-order-difference-equation">
 <h3><span class="section-number">9.5.2. </span>Second order difference equation<a class="headerlink" href="#second-order-difference-equation" title="Permalink to this heading">#</a></h3>
-<p>The second-order linear difference equation for <span class="math notranslate nohighlight">\(\{y_t\}_{t=0}^T\)</span> is</p>
+<p>A second-order linear difference equation for <span class="math notranslate nohighlight">\(\{y_t\}_{t=0}^T\)</span> is</p>
 <div class="math notranslate nohighlight">
 \[
 y_{t} = \lambda_1 y_{t-1} + \lambda_2 y_{t-2}, \quad t = 1, 2, \ldots, T
 \]</div>
-<p>Similarly, we can cast this set of <span class="math notranslate nohighlight">\(T\)</span> equations as a single matrix equation</p>
+<p>where now <span class="math notranslate nohighlight">\(y_0\)</span> and <span class="math notranslate nohighlight">\(y_{-1}\)</span> are two given initial equations determined outside the model.</p>
+<p>As we did with the first-order difference equation, we can cast this set of <span class="math notranslate nohighlight">\(T\)</span> equations as a single matrix equation</p>
 <div class="math notranslate nohighlight">
 \[
 \begin{bmatrix} 
@@ -1186,7 +1187,7 @@ How many initial conditions must you specify?</p>
                     <li data-tippy-content="Change contrast" class="btn__contrast"><i data-feather="sunset"></i></li>
                     <li data-tippy-content="Download Notebook"><a href="/_notebooks/cons_smooth.ipynb" download><i data-feather="download-cloud"></i></a></li>
                     <li class="settings-button" id="settingsButton"><div data-tippy-content="Launch Notebook"><i data-feather="play-circle"></i></div></li>
-                        <li data-tippy-content="Download PDF" onClick="window.print()"><i data-feather="file"></i></li>
+                        <li class="download-pdf" id="downloadButton"><i data-feather="file"></i></li>
                     <li data-tippy-content="View Source"><a target="_blank" href="https://github.com/QuantEcon/lecture-python-intro/blob/main/lectures/cons_smooth.md" download><i data-feather="github"></i></a></li>
                 </ul>
 
@@ -1199,7 +1200,7 @@ How many initial conditions must you specify?</p>
                     <p>Lecture (PDF)</p>
                 </li>
                 <li class="download-pdf-file">
-                    <a href="" download><p>Book (PDF)</p></a>
+                    <a href="/_pdf/quantecon-python-intro.pdf" download><p>Book (PDF)</p></a>
                 </li>
             </ul>
         </div>

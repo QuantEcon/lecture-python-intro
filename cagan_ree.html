@@ -113,7 +113,7 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script>window.MathJax = {"tex": {"macros": {"argmax": "arg\\,max", "argmin": "arg\\,min"}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'cagan_ree';</script>
     <link rel="canonical" href="https://intro.quantecon.org/cagan_ree.html" />
@@ -246,7 +246,6 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 </div>
-<!-- #region -->
 <p>We’ll use linear algebra first to explain and then do  some experiments with  a “fiscal theory of the price level”.</p>
 <p>A fiscal theory of the price level was described by Thomas Sargent and Neil Wallace in chapter 5 of
 <span id="id1">[<a class="reference internal" href="zreferences.html#id5" title="Thomas J Sargent. Rational Expectations and Inflation. Princeton University Press, Princeton, New Jersey, 2013.">Sar13</a>]</span>, which reprints a  1981 article title “Unpleasant Monetarist Arithmetic”.</p>
@@ -299,8 +298,8 @@ problem.</p>
 <span class="eqno">(12.2)<a class="headerlink" href="#equation-eq-ree" title="Permalink to this equation">#</a></span>\[ 
 \pi_t^* = \pi_t , % \forall t 
 \]</div>
-<p>while equating demand for money to  supply lets us set <span class="math notranslate nohighlight">\(m_t^d = m_t\)</span> for all <span class="math notranslate nohighlight">\(t \geq 0\)</span>.</p>
-<p>The preceding equations then  imply</p>
+<p>while equating demand for money to supply lets us set <span class="math notranslate nohighlight">\(m_t^d = m_t\)</span> for all <span class="math notranslate nohighlight">\(t \geq 0\)</span>.</p>
+<p>The preceding equations then imply</p>
 <div class="math notranslate nohighlight" id="equation-eq-cagan">
 <span class="eqno">(12.3)<a class="headerlink" href="#equation-eq-cagan" title="Permalink to this equation">#</a></span>\[
 m_t - p_t = -\alpha(p_{t+1} - p_t) \: , \: \alpha &gt; 0 
@@ -313,19 +312,19 @@ to have perfect foresight,  we subtract equation <a class="reference internal" h
 \]</div>
 <p>which we rewrite as a forward-looking first-order linear difference
 equation in <span class="math notranslate nohighlight">\(\pi_s\)</span> with <span class="math notranslate nohighlight">\(\mu_s\)</span>  as a “forcing variable”:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1ea3edea-58bd-4d5c-a5a6-efa32a6feb1a">
-<span class="eqno">(12.4)<a class="headerlink" href="#equation-1ea3edea-58bd-4d5c-a5a6-efa32a6feb1a" title="Permalink to this equation">#</a></span>\[\begin{equation}  
+<div class="math notranslate nohighlight">
+\[
 \pi_t = \frac{\alpha}{1+\alpha} \pi_{t+1} + \frac{1}{1+\alpha} \mu_t , \quad t= 0, 1, \ldots , T 
-\end{equation}\]</div>
+\]</div>
 <p>where <span class="math notranslate nohighlight">\( 0&lt; \frac{\alpha}{1+\alpha} &lt;1 \)</span>.</p>
 <p>Setting <span class="math notranslate nohighlight">\(\delta =\frac{\alpha}{1+\alpha}\)</span> let’s us represent the preceding equation as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-33d38d90-1c68-4b39-9adc-ff6438437073">
-<span class="eqno">(12.5)<a class="headerlink" href="#equation-33d38d90-1c68-4b39-9adc-ff6438437073" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="math notranslate nohighlight">
+\[
 \pi_t = \delta \pi_{t+1} + (1-\delta) \mu_t , \quad t =0, 1, \ldots, T
-\end{equation}\]</div>
+\]</div>
 <p>Write this system of <span class="math notranslate nohighlight">\(T+1\)</span> equations as the single matrix equation</p>
 <div class="math notranslate nohighlight" id="equation-eq-pieq">
-<span class="eqno">(12.6)<a class="headerlink" href="#equation-eq-pieq" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(12.4)<a class="headerlink" href="#equation-eq-pieq" title="Permalink to this equation">#</a></span>\[
 \begin{bmatrix} 1 &amp; -\delta &amp; 0 &amp; 0 &amp; \cdots &amp; 0 &amp; 0 \cr
                 0 &amp; 1 &amp; -\delta &amp; 0 &amp; \cdots &amp; 0 &amp; 0 \cr
                 0 &amp; 0 &amp; 1 &amp; -\delta &amp; \cdots &amp; 0 &amp; 0 \cr
@@ -341,7 +340,7 @@ equation in <span class="math notranslate nohighlight">\(\pi_s\)</span> with <sp
 0 \cr 0 \cr 0 \cr \vdots \cr 0 \cr \delta \pi_{T+1}^*
 \end{bmatrix}
 \]</div>
-<p>By multiplying both sides of equation <a class="reference internal" href="#equation-eq-pieq">(12.6)</a> by the inverse of the matrix on the left side, we can calculate</p>
+<p>By multiplying both sides of equation <a class="reference internal" href="#equation-eq-pieq">(12.4)</a> by the inverse of the matrix on the left side, we can calculate</p>
 <div class="math notranslate nohighlight">
 \[
 \pi \equiv \begin{bmatrix} \pi_0 \cr \pi_1 \cr \pi_2 \cr \vdots \cr \pi_{T-1} \cr \pi_T 
@@ -349,7 +348,7 @@ equation in <span class="math notranslate nohighlight">\(\pi_s\)</span> with <sp
 \]</div>
 <p>It turns out that</p>
 <div class="math notranslate nohighlight" id="equation-eq-fisctheory1">
-<span class="eqno">(12.7)<a class="headerlink" href="#equation-eq-fisctheory1" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(12.5)<a class="headerlink" href="#equation-eq-fisctheory1" title="Permalink to this equation">#</a></span>\[
 \pi_t = (1-\delta) \sum_{s=t}^T \delta^{s-t} \mu_s +  \delta^{T+1-t} \pi_{T+1}^*
 \]</div>
 <p>We can represent the equations</p>
@@ -359,7 +358,7 @@ m_{t+1} = m_t + \mu_t , \quad t = 0, 1, \ldots, T
 \]</div>
 <p>as the matrix equation</p>
 <div class="math notranslate nohighlight" id="equation-eq-eq101">
-<span class="eqno">(12.8)<a class="headerlink" href="#equation-eq-eq101" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(12.6)<a class="headerlink" href="#equation-eq-eq101" title="Permalink to this equation">#</a></span>\[
 \begin{bmatrix}
 1 &amp; 0 &amp; 0 &amp; \cdots &amp; 0 &amp; 0 \cr
 -1 &amp; 1 &amp; 0 &amp; \cdots &amp; 0 &amp; 0 \cr
@@ -378,20 +377,20 @@ m_1 \cr m_2 \cr m_3 \cr \vdots \cr m_T \cr m_{T+1}
 m_0 \cr 0 \cr 0 \cr \vdots \cr 0 \cr 0
 \end{bmatrix}
 \]</div>
-<p>Multiplying both sides of equation <a class="reference internal" href="#equation-eq-eq101">(12.8)</a>  with the inverse of the matrix on the left will give</p>
+<p>Multiplying both sides of equation <a class="reference internal" href="#equation-eq-eq101">(12.6)</a>  with the inverse of the matrix on the left will give</p>
 <div class="math notranslate nohighlight" id="equation-eq-mcum">
-<span class="eqno">(12.9)<a class="headerlink" href="#equation-eq-mcum" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(12.7)<a class="headerlink" href="#equation-eq-mcum" title="Permalink to this equation">#</a></span>\[
 m_t = m_0 + \sum_{s=0}^{t-1} \mu_s, \quad t =1, \ldots, T+1
 \]</div>
-<p>Equation <a class="reference internal" href="#equation-eq-mcum">(12.9)</a> shows that the log of the money supply at <span class="math notranslate nohighlight">\(t\)</span> equals the log of the initial money supply <span class="math notranslate nohighlight">\(m_0\)</span>
+<p>Equation <a class="reference internal" href="#equation-eq-mcum">(12.7)</a> shows that the log of the money supply at <span class="math notranslate nohighlight">\(t\)</span> equals the log of the initial money supply <span class="math notranslate nohighlight">\(m_0\)</span>
 plus accumulation of rates of money growth between times <span class="math notranslate nohighlight">\(0\)</span> and <span class="math notranslate nohighlight">\(T\)</span>.</p>
 </section>
 <section id="continuation-values">
 <h2><span class="section-number">12.3. </span>Continuation values<a class="headerlink" href="#continuation-values" title="Permalink to this heading">#</a></h2>
 <p>To determine the continuation inflation rate <span class="math notranslate nohighlight">\(\pi_{T+1}^*\)</span> we shall proceed by applying the following infinite-horizon
-version of equation <a class="reference internal" href="#equation-eq-fisctheory1">(12.7)</a> at time <span class="math notranslate nohighlight">\(t = T+1\)</span>:</p>
+version of equation <a class="reference internal" href="#equation-eq-fisctheory1">(12.5)</a> at time <span class="math notranslate nohighlight">\(t = T+1\)</span>:</p>
 <div class="math notranslate nohighlight" id="equation-eq-fisctheory2">
-<span class="eqno">(12.10)<a class="headerlink" href="#equation-eq-fisctheory2" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(12.8)<a class="headerlink" href="#equation-eq-fisctheory2" title="Permalink to this equation">#</a></span>\[
 \pi_t = (1-\delta) \sum_{s=t}^\infty \delta^{s-t} \mu_s , 
 \]</div>
 <p>and by also assuming the following continuation path for <span class="math notranslate nohighlight">\(\mu_t\)</span> beyond <span class="math notranslate nohighlight">\(T\)</span>:</p>
@@ -399,9 +398,9 @@ version of equation <a class="reference internal" href="#equation-eq-fisctheory1
 \[
 \mu_{t+1} = \gamma^* \mu_t, \quad t \geq T .
 \]</div>
-<p>Plugging the preceding equation into equation <a class="reference internal" href="#equation-eq-fisctheory2">(12.10)</a> at <span class="math notranslate nohighlight">\(t = T+1\)</span> and rearranging we can deduce that</p>
+<p>Plugging the preceding equation into equation <a class="reference internal" href="#equation-eq-fisctheory2">(12.8)</a> at <span class="math notranslate nohighlight">\(t = T+1\)</span> and rearranging we can deduce that</p>
 <div class="math notranslate nohighlight" id="equation-eq-piterm">
-<span class="eqno">(12.11)<a class="headerlink" href="#equation-eq-piterm" title="Permalink to this equation">#</a></span>\[ 
+<span class="eqno">(12.9)<a class="headerlink" href="#equation-eq-piterm" title="Permalink to this equation">#</a></span>\[ 
 \pi_{T+1}^* = \frac{1 - \delta}{1 - \delta \gamma^*} \gamma^* \mu_T
 \]</div>
 <p>where we require that <span class="math notranslate nohighlight">\(\vert \gamma^* \delta \vert &lt; 1\)</span>.</p>
@@ -463,9 +462,9 @@ version of equation <a class="reference internal" href="#equation-eq-fisctheory1
 </div>
 <section id="some-quantitative-experiments">
 <h3><span class="section-number">12.3.1. </span>Some quantitative experiments<a class="headerlink" href="#some-quantitative-experiments" title="Permalink to this heading">#</a></h3>
-<p>In the experiments below, we’ll use formula <a class="reference internal" href="#equation-eq-piterm">(12.11)</a> as our terminal condition for expected inflation.</p>
+<p>In the experiments below, we’ll use formula <a class="reference internal" href="#equation-eq-piterm">(12.9)</a> as our terminal condition for expected inflation.</p>
 <p>In devising these experiments, we’ll  make assumptions about <span class="math notranslate nohighlight">\(\{\mu_t\}\)</span> that are consistent with formula
-<a class="reference internal" href="#equation-eq-piterm">(12.11)</a>.</p>
+<a class="reference internal" href="#equation-eq-piterm">(12.9)</a>.</p>
 <p>We  describe several such experiments.</p>
 <p>In all of them,</p>
 <div class="math notranslate nohighlight">
@@ -550,18 +549,18 @@ reduction in <span class="math notranslate nohighlight">\(\mu\)</span> has been 
 <p>We can use equations <a class="reference internal" href="#equation-eq-caganmd">(12.1)</a> and <a class="reference internal" href="#equation-eq-ree">(12.2)</a>
 to discover that the log of the price level satisfies</p>
 <div class="math notranslate nohighlight" id="equation-eq-pformula2">
-<span class="eqno">(12.12)<a class="headerlink" href="#equation-eq-pformula2" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(12.10)<a class="headerlink" href="#equation-eq-pformula2" title="Permalink to this equation">#</a></span>\[
 p_t = m_t + \alpha \pi_t
 \]</div>
-<p>or, by using equation  <a class="reference internal" href="#equation-eq-fisctheory1">(12.7)</a>,</p>
+<p>or, by using equation <a class="reference internal" href="#equation-eq-fisctheory1">(12.5)</a>,</p>
 <div class="math notranslate nohighlight" id="equation-eq-pfiscaltheory2">
-<span class="eqno">(12.13)<a class="headerlink" href="#equation-eq-pfiscaltheory2" title="Permalink to this equation">#</a></span>\[ 
+<span class="eqno">(12.11)<a class="headerlink" href="#equation-eq-pfiscaltheory2" title="Permalink to this equation">#</a></span>\[ 
 p_t = m_t + \alpha \left[ (1-\delta) \sum_{s=t}^T \delta^{s-t} \mu_s +  \delta^{T+1-t} \pi_{T+1}^*  \right] 
 \]</div>
 <p>In our next experiment, we’ll study a “surprise” permanent change in the money growth that beforehand
 was completely unanticipated.</p>
 <p>At time <span class="math notranslate nohighlight">\(T_1\)</span> when the “surprise” money growth rate  change occurs,  to satisfy
-equation <a class="reference internal" href="#equation-eq-pformula2">(12.12)</a>, the log of real balances jumps
+equation <a class="reference internal" href="#equation-eq-pformula2">(12.10)</a>, the log of real balances jumps
 *<em>upward</em> as  <span class="math notranslate nohighlight">\(\pi_t\)</span> jumps <strong>downward</strong>.</p>
 <p>But in order for <span class="math notranslate nohighlight">\(m_t - p_t\)</span> to jump, which variable jumps, <span class="math notranslate nohighlight">\(m_{T_1}\)</span> or <span class="math notranslate nohighlight">\(p_{T_1}\)</span>?</p>
 </section>
@@ -569,16 +568,16 @@ equation <a class="reference internal" href="#equation-eq-pformula2">(12.12)</a>
 <h3><span class="section-number">12.3.3. </span>What jumps?<a class="headerlink" href="#what-jumps" title="Permalink to this heading">#</a></h3>
 <p>What jumps at <span class="math notranslate nohighlight">\(T_1\)</span>?</p>
 <p>Is it <span class="math notranslate nohighlight">\(p_{T_1}\)</span> or  <span class="math notranslate nohighlight">\(m_{T_1}\)</span>?</p>
-<p>If we insist that the money supply <span class="math notranslate nohighlight">\(m_{T_1}\)</span> is locked at its value <span class="math notranslate nohighlight">\(m_{T_1}^1\)</span> inherited from the past, then formula <a class="reference internal" href="#equation-eq-pformula2">(12.12)</a> implies  that the price level jumps downward  at time <span class="math notranslate nohighlight">\(T_1\)</span>, to coincide with the downward jump in
+<p>If we insist that the money supply <span class="math notranslate nohighlight">\(m_{T_1}\)</span> is locked at its value <span class="math notranslate nohighlight">\(m_{T_1}^1\)</span> inherited from the past, then formula <a class="reference internal" href="#equation-eq-pformula2">(12.10)</a> implies  that the price level jumps downward  at time <span class="math notranslate nohighlight">\(T_1\)</span>, to coincide with the downward jump in
 <span class="math notranslate nohighlight">\(\pi_{T_1}\)</span></p>
 <p>An alternative assumption about the money supply level is that as part of the “inflation stabilization”,
 the government resets <span class="math notranslate nohighlight">\(m_{T_1}\)</span> according to</p>
 <div class="math notranslate nohighlight" id="equation-eq-eqnmoneyjump">
-<span class="eqno">(12.14)<a class="headerlink" href="#equation-eq-eqnmoneyjump" title="Permalink to this equation">#</a></span>\[
- m_{T_1}^2 - m_{T_1}^1 = \alpha (\pi^1 - \pi^2)
+<span class="eqno">(12.12)<a class="headerlink" href="#equation-eq-eqnmoneyjump" title="Permalink to this equation">#</a></span>\[
+m_{T_1}^2 - m_{T_1}^1 = \alpha (\pi^1 - \pi^2)
 \]</div>
-<p>By letting money jump according to equation <a class="reference internal" href="#equation-eq-eqnmoneyjump">(12.14)</a> the monetary authority  prevents  the price level from <strong>falling</strong> at the moment that the unanticipated stabilization arrives.</p>
-<p>In various research papers about stabilizations of high inflations, the jump in the money supply described by equation <a class="reference internal" href="#equation-eq-eqnmoneyjump">(12.14)</a> has been called
+<p>By letting money jump according to equation <a class="reference internal" href="#equation-eq-eqnmoneyjump">(12.12)</a> the monetary authority  prevents  the price level from <strong>falling</strong> at the moment that the unanticipated stabilization arrives.</p>
+<p>In various research papers about stabilizations of high inflations, the jump in the money supply described by equation <a class="reference internal" href="#equation-eq-eqnmoneyjump">(12.12)</a> has been called
 “the velocity dividend” that a government reaps from implementing a regime change that sustains a permanently lower inflation rate.</p>
 <section id="technical-details-about-whether-p-or-m-jumps-at-t-1">
 <h4><span class="section-number">12.3.3.1. </span>Technical details about whether <span class="math notranslate nohighlight">\(p\)</span> or <span class="math notranslate nohighlight">\(m\)</span> jumps at <span class="math notranslate nohighlight">\(T_1\)</span><a class="headerlink" href="#technical-details-about-whether-p-or-m-jumps-at-t-1" title="Permalink to this heading">#</a></h4>
@@ -590,9 +589,9 @@ the government resets <span class="math notranslate nohighlight">\(m_{T_1}\)</sp
 <h4><span class="section-number">12.3.3.2. </span><span class="math notranslate nohighlight">\(m_{T_{1}}\)</span> does not jump.<a class="headerlink" href="#m-t-1-does-not-jump" title="Permalink to this heading">#</a></h4>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-\begin{align*}
+\begin{aligned}
 m_{T_{1}}&amp;=m_{T_{1}-1}+\mu_{0}\\\pi_{T_{1}}&amp;=\mu^{*}\\p_{T_{1}}&amp;=m_{T_{1}}+\alpha\pi_{T_{1}}
-\end{align*}
+\end{aligned}
 \end{split}\]</div>
 <p>Simply glue the sequences <span class="math notranslate nohighlight">\(t\leq T_1\)</span> and <span class="math notranslate nohighlight">\(t &gt; T_1\)</span>.</p>
 </section>
@@ -630,7 +629,7 @@ sudden stabilization.</p>
 <p>We set this up so that the <span class="math notranslate nohighlight">\(\{\mu_t\}\)</span> sequences that describe the sudden stabilization
 are identical to those for experiment 1, the foreseen sudden stabilization.</p>
 <p>The following code does the calculations and plots outcomes.</p>
-<!-- #endregion --><div class="cell docutils container">
+<div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># path 1</span>
 <span class="n">μ_seq_2_path1</span> <span class="o">=</span> <span class="n">μ0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
@@ -1178,7 +1177,7 @@ it is also interesting to study the consequences of a foreseen gradual stabiliza
                     <li data-tippy-content="Change contrast" class="btn__contrast"><i data-feather="sunset"></i></li>
                     <li data-tippy-content="Download Notebook"><a href="/_notebooks/cagan_ree.ipynb" download><i data-feather="download-cloud"></i></a></li>
                     <li class="settings-button" id="settingsButton"><div data-tippy-content="Launch Notebook"><i data-feather="play-circle"></i></div></li>
-                        <li data-tippy-content="Download PDF" onClick="window.print()"><i data-feather="file"></i></li>
+                        <li class="download-pdf" id="downloadButton"><i data-feather="file"></i></li>
                     <li data-tippy-content="View Source"><a target="_blank" href="https://github.com/QuantEcon/lecture-python-intro/blob/main/lectures/cagan_ree.md" download><i data-feather="github"></i></a></li>
                 </ul>
 
@@ -1191,7 +1190,7 @@ it is also interesting to study the consequences of a foreseen gradual stabiliza
                     <p>Lecture (PDF)</p>
                 </li>
                 <li class="download-pdf-file">
-                    <a href="" download><p>Book (PDF)</p></a>
+                    <a href="/_pdf/quantecon-python-intro.pdf" download><p>Book (PDF)</p></a>
                 </li>
             </ul>
         </div>
