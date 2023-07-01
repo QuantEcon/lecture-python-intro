@@ -11,10 +11,6 @@ kernelspec:
   name: python3
 ---
 
-+++ {"user_expressions": []}
-
-
-
 # A Fiscal Theory of Price Level with Adaptive Expectations
 
 ## Introduction
@@ -27,29 +23,23 @@ from collections import namedtuple
 import matplotlib.pyplot as plt
 ```
 
-+++ {"user_expressions": []}
-
-<!-- #region -->
-
 This lecture is a sequel or prequel to this lecture {doc}`fiscal theory of the price level <cagan_ree>`.
 
 We'll use linear algebra to do some experiments with  an alternative  "fiscal theory of the price level".
 
 Like the model in this lecture {doc}`fiscal theory of the price level <cagan_ree>`, the model asserts that when a government persistently spends more than it collects in taxes and prints money to finance the shortfall, it puts upward pressure on the price level and generates persistent inflation.
 
-
-
-Instead of the "perfect foresight" or "rational expectations" version of the model in this lecture {doc}`fiscal theory of the price level <cagan_ree>`, our model in the present lecture is an "adaptive expectations"  version of a model that   Philip Cagan {cite}`Cagan`  used to study the monetary dynamics of hyperinflations.  
+Instead of the "perfect foresight" or "rational expectations" version of the model in this lecture {doc}`fiscal theory of the price level <cagan_ree>`, our model in the present lecture is an "adaptive expectations"  version of a model that Philip Cagan {cite}`Cagan`  used to study the monetary dynamics of hyperinflations.  
 
 It combines these components:
 
- * a demand function for real money balances that asserts that the logarithm of the quantity of real balances demanded depends inversely on the public's expected rate of inflation
- 
- * an **adaptive expectations** model that describes how the public's anticipated rate of inflation responds to past values of actual inflation
- 
- * an equilibrium condition that equates the demand for money to the supply
- 
- * an exogenous sequence of rates of growth of the money supply
+* a demand function for real money balances that asserts that the logarithm of the quantity of real balances demanded depends inversely on the public's expected rate of inflation
+
+* an **adaptive expectations** model that describes how the public's anticipated rate of inflation responds to past values of actual inflation
+
+* an equilibrium condition that equates the demand for money to the supply
+
+* an exogenous sequence of rates of growth of the money supply
 
 Our model stays quite close to Cagan's original specification.  
 
@@ -62,13 +52,13 @@ the model.
 
 Let 
 
- * $ m_t $ be the log of the supply of  nominal money balances;
- * $\mu_t = m_{t+1} - m_t $ be the net rate of growth of  nominal balances;
- * $p_t $ be the log of the price level;
- * $\pi_t = p_{t+1} - p_t $ be the net rate of inflation  between $t$ and $ t+1$;
- * $\pi_t^*$  be the public's expected rate of inflation between  $t$ and $t+1$;
- * $T$ the horizon -- i.e., the last period for which the model will determine $p_t$
- * $\pi_0^*$ public's initial expected rate of inflation between time $0$ and time $1$.
+* $ m_t $ be the log of the supply of  nominal money balances;
+* $\mu_t = m_{t+1} - m_t $ be the net rate of growth of  nominal balances;
+* $p_t $ be the log of the price level;
+* $\pi_t = p_{t+1} - p_t $ be the net rate of inflation  between $t$ and $ t+1$;
+* $\pi_t^*$  be the public's expected rate of inflation between  $t$ and $t+1$;
+* $T$ the horizon -- i.e., the last period for which the model will determine $p_t$
+* $\pi_0^*$ public's initial expected rate of inflation between time $0$ and time $1$.
   
   
 The demand for real balances $\exp\left(\frac{m_t^d}{p_t}\right)$ is governed by the following  version of the Cagan demand function
@@ -91,8 +81,6 @@ $$ (eq:eqfiscth1)
 Taking the difference between equation {eq}`eq:eqfiscth1` at time $t+1$ and at time 
 $t$ gives
 
-
-
 $$
 \pi_t = \mu_t + \alpha \pi_{t+1}^* - \alpha \pi_t^*
 $$ (eq:eqpipi)
@@ -112,14 +100,9 @@ As endogenous outputs of our model we want to find sequences $\pi = \{\pi_t\}_{t
 We'll do some mental experiments by studying how the model outputs vary as we vary
 the model inputs.
 
-<!-- #endregion -->
-
-<!-- #region -->
 ## Representing key equations with linear algebra
 
 We begin by writing the equation {eq}`eq:adaptexpn`  adaptive expectations model for $\pi_t^*$ for $t=0, \ldots, T$ as
-
-
 
 $$
 \begin{bmatrix} 1 & 0 & 0 & \cdots & 0 & 0 \cr
@@ -153,12 +136,11 @@ $$ (eq:eq1)
 
 where the $(T+2) \times (T+2) $matrix $A$, the $(T+2)\times (T+1)$ matrix $B$, and the vectors $\pi^* , \pi_0, \pi_0^*$
 are defined implicitly by aligning these two equations.
-<!-- #endregion -->
 
-<!-- #region -->
 Next we write the key equation {eq}`eq:eqpipi` in matrix notation as
 
-$$ \begin{bmatrix}
+$$ 
+\begin{bmatrix}
 \pi_0 \cr \pi_1 \cr \pi_1 \cr \vdots \cr \pi_T \end{bmatrix}
 = \begin{bmatrix}
 \mu_0 \cr \mu_1 \cr \mu_2 \cr  \vdots \cr \mu_T \end{bmatrix}
@@ -185,10 +167,7 @@ $$ (eq:eq2)
 where the $(T+1) \times (T+2)$ matrix $C$ is defined implicitly to align this equation with the preceding
 equation system.
 
-
-
 ## Harvesting returns from our matrix formulation
-
 
 We now have all of the ingredients we need to solve for $\pi$ as
 a function of $\mu, \pi_0, \pi_0^*$.  
@@ -196,10 +175,10 @@ a function of $\mu, \pi_0, \pi_0^*$.
 Combine equations {eq}`eq:eq1`and {eq}`eq:eq2`  to get
 
 $$
-\begin{align*}
+\begin{aligned}
 A \pi^* & = (1-\lambda) B \pi + \pi_0^* \cr
  & = (1-\lambda) B \left[ \mu + C \pi^* \right] + \pi_0^*
-\end{align*}
+\end{aligned}
 $$
 
 which implies that
@@ -228,7 +207,6 @@ Knowing these, we can then quickly calculate the associated sequence $p$  of the
 from equation {eq}`eq:eqfiscth1`. 
 
 Let's fill in the details for this step.
-<!-- #endregion -->
 
 Since we now know $\mu$  it is easy to compute $m$.
 
@@ -290,8 +268,6 @@ $$
 
 which is just $\pi^*$ with the last element dropped.
  
-
-
 ## Forecast errors  
 
 Our computations will verify that 
@@ -416,29 +392,24 @@ $$ (eq:suffcond)
 The  source of this condition is the following string of deductions:
 
 $$
-\begin{align*}
+\begin{aligned}
 \pi_{t}&=\mu_{t}+\alpha\pi_{t+1}^{*}-\alpha\pi_{t}^{*}\\\pi_{t+1}^{*}&=\lambda\pi_{t}^{*}+(1-\lambda)\pi_{t}\\\pi_{t}&=\frac{\mu_{t}}{1-\alpha(1-\lambda)}-\frac{\alpha(1-\lambda)}{1-\alpha(1-\lambda)}\pi_{t}^{*}\\\implies\pi_{t}^{*}&=\frac{1}{\alpha(1-\lambda)}\mu_{t}-\frac{1-\alpha(1-\lambda)}{\alpha(1-\lambda)}\pi_{t}\\\pi_{t+1}&=\frac{\mu_{t+1}}{1-\alpha(1-\lambda)}-\frac{\alpha(1-\lambda)}{1-\alpha(1-\lambda)}\left(\lambda\pi_{t}^{*}+(1-\lambda)\pi_{t}\right)\\&=\frac{\mu_{t+1}}{1-\alpha(1-\lambda)}-\frac{\lambda}{1-\alpha(1-\lambda)}\mu_{t}+\frac{\lambda-\alpha(1-\lambda)}{1-\alpha(1-\lambda)}\pi_{t}
-\end{align*}
+\end{aligned}
 $$
 
 By assuring that the coefficient on $\pi_t$ is less than one in absolute value, condition {eq}`eq:suffcond` assures stability of the dynamics of $\{\pi_t\}$ described by the last line of our string of deductions. 
 
 The reader is free to study outcomes in examples that violate condition {eq}`eq:suffcond`.
-<!-- #endregion -->
 
 ```{code-cell} ipython3
 print(np.abs((λ - α*(1-λ))/(1 - α*(1-λ))))
 ```
-+++ {"user_expressions": []}
 
 ```{code-cell} ipython3
 print(λ - α*(1-λ))
 ```
-+++ {"user_expressions": []}
 
 Now we'll turn to some experiments.
-
-<!-- #region -->
 
 ### Experiment 1
 
@@ -460,14 +431,12 @@ Notice that  we studied exactly this experiment  in a rational expectations vers
 
 So by comparing outcomes across the two lectures, we can learn about consequences of assuming adaptive expectations, as we do here, instead of  rational expectations as we assumed in that other lecture.
 
-
 ```{code-cell} ipython3
 μ_seq_1 = np.append(μ0*np.ones(T1), μ_star*np.ones(T+1-T1))
 
 # solve and plot
 π_seq_1, Eπ_seq_1, m_seq_1, p_seq_1 = solve_and_plot(md, μ_seq_1)
 ```
-+++ {"user_expressions": []}
 
 We invite the reader to compare outcomes with those under rational expectations studied in this lecture {doc}`fiscal theory of the price level <cagan_ree>`.
 
@@ -494,4 +463,3 @@ The sluggish fall in inflation is explained by how anticipated  inflation $\pi_t
 # solve and plot
 π_seq_2, Eπ_seq_2, m_seq_2, p_seq_2 = solve_and_plot(md, μ_seq_2)
 ```
-+++ {"user_expressions": []}
