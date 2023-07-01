@@ -15,7 +15,7 @@ jobs:
           python-version: "3.10"
           environment-file: environment.yml
           activate-environment: quantecon
-      - name: Graphics Support
+      - name: Graphics Support #TODO: Review if graphviz is needed
         run: |
           sudo apt-get -qq update && sudo apt-get install -y graphviz
       - name: Install latex dependencies
