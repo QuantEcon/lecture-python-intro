@@ -59,7 +59,7 @@ shape our findings reduces objectivity.
 To bring a truly scientific perspective to the topic of inequality we must
 start with careful definitions.
 
-In this lecture, we discuss standard measures of inequality used in economic research.
+In this lecture we discuss standard measures of inequality used in economic research.
 
 For each of these measures, we will look at both simulated and real data.
 
@@ -86,7 +86,7 @@ from interpolation import interp
 
 One popular measure of inequality is the Lorenz curve.
 
-In this section, we define the Lorenz curve and examine its properties.
+In this section we define the Lorenz curve and examine its properties.
 
 
 ### Definition
@@ -274,7 +274,7 @@ Another popular measure of income and wealth inequality is the Gini coefficient.
 
 The Gini coefficient is just a number, rather than a curve.
 
-In this section, we discuss the Gini coefficient and its relationship to the
+In this section we discuss the Gini coefficient and its relationship to the
 Lorenz curve.
 
 
@@ -345,7 +345,7 @@ lognormal distribution with parameters $\mu$ (mean) and $\sigma$ (standard devia
 To create the five populations, we vary $\sigma$ over a grid of length $5$
 between $0.2$ and $4$.
 
-In each case, we set $\mu = - \sigma^2 / 2$.
+In each case we set $\mu = - \sigma^2 / 2$.
 
 This implies that the mean of the distribution does not change with $\sigma$. 
 

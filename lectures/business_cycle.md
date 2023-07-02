@@ -16,7 +16,7 @@ kernelspec:
 
 ## Overview
 
-In this lecture, we review some empirical aspects of business cycles.
+In this lecture we review some empirical aspects of business cycles.
 
 Business cycles are fluctuations in economic activity over time.
 
@@ -94,7 +94,7 @@ wb.series.metadata.get('NY.GDP.MKTP.KD.ZG')
 (gdp_growth)=
 ## GDP growth rate
 
-First, we look at GDP growth. 
+First we look at GDP growth. 
 
 Let's source our data from the World Bank and clean it.
 
@@ -289,7 +289,7 @@ plt.show()
 Greece experienced a very large drop in GDP growth around 2010-2011, during the peak
 of the Greek debt crisis.
 
-Next, let's consider Argentina.
+Next let's consider Argentina.
 
 ```{code-cell} ipython3
 ---
@@ -587,7 +587,7 @@ unempl_rate.columns = unempl_rate.columns.str.replace('YR', '').astype(int)
 fig, ax = plt.subplots()
 
 countries = ['United Kingdom', 'United States', 'Japan', 'France']
-ylabel = 'Unemployment rate (national estimate) (%)'
+ylabel = 'unemployment rate (national estimate) (%)'
 plot_comparison(unempl_rate, countries, 
                 ylabel, 0.05, None, ax, g_params, 
                 b_params, t_params, baseline=None)
