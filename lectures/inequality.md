@@ -354,7 +354,7 @@ distribution.)
 
 ```{code-cell} ipython3
 k = 5
-σ_vals = np.linspace(0.2, 2.5, k)
+σ_vals = np.linspace(0.2, 4, k)
 n = 2_000
 
 ginis = []
@@ -387,7 +387,7 @@ mystnb:
   image:
     alt: gini_simulated
 ---
-plot_inequality_measures(range(k), 
+plot_inequality_measures(σ_vals, 
                          ginis, 
                          'simulated', 
                          '$\sigma$', 
@@ -411,7 +411,7 @@ The following code creates a list called ``Ginis``.
 :tags: [hide_input]
 
 varlist = ['n_wealth',   # net wealth 
-           't_income',    # total income
+           't_income',   # total income
            'l_income']   # labor income
 
 df = df_income_wealth  
@@ -646,14 +646,21 @@ def calculate_top_share(s, p=0.1):
 
 ```{code-cell} ipython3
 k = 5
-σ_vals = np.linspace(0.2, 2.5, k)
+σ_vals = np.linspace(0.2, 4, k)
 n = 2_000
 
 topshares = []
+ginis = []
+f_vals = []
+l_vals = []
 
 for σ in σ_vals:
     μ = -σ ** 2 / 2
     y = np.exp(μ + σ * np.random.randn(n))
+    f_val, l_val = qe._inequality.lorenz_curve(y)
+    f_vals.append(f_val)
+    l_vals.append(l_val)
+    ginis.append(qe._inequality.gini_coefficient(y))
     topshares.append(calculate_top_share(y))
 ```
 
@@ -666,23 +673,54 @@ mystnb:
   image:
     alt: top_shares_simulated
 ---
-plot_inequality_measures(range(len(topshares)), 
+plot_inequality_measures(σ_vals, 
                          topshares, 
                          "simulated data", 
-                         "year", 
+                         "$\sigma$", 
                          "top $10\%$ share") 
+```
+
+```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: "Gini coefficients of simulated data"
+    name: gini_coef_simulated
+  image:
+    alt: gini_coef_simulated
+---
+plot_inequality_measures(σ_vals, 
+                         ginis, 
+                         "simulated data", 
+                         "$\sigma$", 
+                         "gini coefficient") 
+```
+
+```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: "Lorenz curves for simulated data"
+    name: lorenz_curve_simulated
+  image:
+    alt: lorenz_curve_simulated
+---
+fig, ax = plt.subplots()
+ax.plot([0,1],[0,1], label=f"equality")
+for i in range(len(f_vals)):
+    ax.plot(f_vals[i], l_vals[i], label=f"$\sigma$ = {σ_vals[i]}")
+plt.legend()
+plt.show()
 ```
 
 ```{solution-end}
 ```
 
 
-
 ```{exercise}
 :label: inequality_ex2
 
 According to the definition of the top shares {eq}`topshares` we can also calculate the top percentile shares using the Lorenz curve.
-
 
 Compute the top shares of US net wealth using the corresponding Lorenz curves data: ``f_vals_nw, l_vals_nw`` and linear interpolation.
 
