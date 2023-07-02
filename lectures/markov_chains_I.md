@@ -775,7 +775,7 @@ Theorem: If there exists an integer $m$ such that all entries of $P^m$ are
 strictly positive, with unique stationary distribution $\psi^*$, and
 
 $$
-    \psi_0 P^t \to \psi
+    \psi_0 P^t \to \psi^*
     \quad \text{as } t \to \infty
 $$
 ```
