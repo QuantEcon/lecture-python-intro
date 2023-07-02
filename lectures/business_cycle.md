@@ -59,7 +59,7 @@ plt.rc('axes', prop_cycle=cycler)
 
 ## Data acquisition
 
-We will use World Bank's data API `wbgapi` and `pandas_datareader` to retrieve data.
+We will use the World Bank's data API `wbgapi` and `pandas_datareader` to retrieve data.
 
 We can use `wb.series.info` with the argument `q` to query available data from
 the [World Bank](https://www.worldbank.org/en/home).
@@ -311,7 +311,7 @@ plt.show()
 Notice that Argentina has experienced far more volatile cycles than
 the economies examined above.
 
-At the same time, the growth of Argentina did not fall during the two developed
+At the same time, Argentina's growth rate did not fall during the two developed
 economy recessions in the 1970s and 1990s.
 
 
@@ -690,7 +690,7 @@ drops before recessions.
 
 When the price of consumer commodities rises, consumer confidence diminishes.
 
-This trend is more significant in the times during [stagflation](https://en.wikipedia.org/wiki/Stagflation).
+This trend is more significant during [stagflation](https://en.wikipedia.org/wiki/Stagflation).
 
 
 
