@@ -193,7 +193,7 @@ The following code block uses data stored in dataframe ``df_income_wealth`` to g
 population weights supplied by the SCF.)
 
 ```{code-cell} ipython3
-:tags: [hide_input]
+:tags: [hide-input]
 
 df = df_income_wealth 
 
@@ -408,7 +408,7 @@ The following code creates a list called ``Ginis``.
  It stores data of Gini coefficients generated from the dataframe ``df_income_wealth`` and method [gini_coefficient](https://quanteconpy.readthedocs.io/en/latest/tools/inequality.html#quantecon.inequality.gini_coefficient), from [QuantEcon](https://quantecon.org/quantecon-py/) library.
 
 ```{code-cell} ipython3
-:tags: [hide_input]
+:tags: [hide-input]
 
 varlist = ['n_wealth',   # net wealth 
            't_income',   # total income
@@ -535,11 +535,11 @@ The following code uses the data from dataframe ``df_income_wealth`` to generate
 ``df_topshares`` stores the top 10 percent shares for the total income, the labor income and net wealth from 1950 to 2016 in US.
 
 ```{code-cell} ipython3
-:tags: [hide_input]
+:tags: [hide-input]
 
 # transfer the survey weights from absolute into relative values
 df1 = df_income_wealth
-df2 = df1.groupby('year').sum(numeric_only=True).reset_index()       # group
+df2 = df1.groupby('year').sum(numeric_only=True).reset_index()
 df3 = df2[['year', 'weights']]                    
 df3.columns = 'year', 'r_weights'                          
 df4 = pd.merge(df3, df1, how="left", on=["year"])   
@@ -556,7 +556,8 @@ df4['weighted_l_income'] = df4['l_income'] * df4['r_weights']
 df6 = df4[df4['nw_groups'] == 'Top 10%']
 df7 = df4[df4['ti_groups'] == 'Top 10%']
 
-# calculate the sum of weighted top 10% by net wealth, total income and labor income.
+# calculate the sum of weighted top 10% by net wealth,
+#   total income and labor income.
 
 df5 = df4.groupby('year').sum(numeric_only=True).reset_index()  
 df8 = df6.groupby('year').sum(numeric_only=True).reset_index()
@@ -568,12 +569,16 @@ df5['weighted_l_income_top10'] = df9['weighted_l_income']
 
 # calculate the top 10% shares of the three variables.
 
-df5['topshare_n_wealth'] = df5['weighted_n_wealth_top10'] / df5['weighted_n_wealth']
-df5['topshare_t_income'] = df5['weighted_t_income_top10'] / df5['weighted_t_income']
-df5['topshare_l_income'] = df5['weighted_l_income_top10'] / df5['weighted_l_income']
+df5['topshare_n_wealth'] = df5['weighted_n_wealth_top10'] / \
+    df5['weighted_n_wealth']
+df5['topshare_t_income'] = df5['weighted_t_income_top10'] / \
+    df5['weighted_t_income']
+df5['topshare_l_income'] = df5['weighted_l_income_top10'] / \
+    df5['weighted_l_income']
 
 # we only need these vars for top 10 percent shares
-df_topshares = df5[['year', 'topshare_n_wealth', 'topshare_t_income', 'topshare_l_income']]  
+df_topshares = df5[['year', 'topshare_n_wealth',
+                    'topshare_t_income', 'topshare_l_income']]  
 ```
 
 Then let's plot the top shares.
@@ -592,9 +597,12 @@ ylabel = "top $10\%$ share"
 
 fig, ax = plt.subplots()
 
-ax.plot(years, df_topshares["topshare_l_income"], marker='o', label="labor income")
-ax.plot(years, df_topshares["topshare_n_wealth"], marker='o', label="net wealth")
-ax.plot(years, df_topshares["topshare_t_income"], marker='o', label="total income")
+ax.plot(years, df_topshares["topshare_l_income"],
+        marker='o', label="labor income")
+ax.plot(years, df_topshares["topshare_n_wealth"],
+        marker='o', label="net wealth")
+ax.plot(years, df_topshares["topshare_t_income"],
+        marker='o', label="total income")
 
 ax.set_xlabel(xlabel, fontsize=12)
 ax.set_ylabel(ylabel, fontsize=12)
@@ -762,7 +770,8 @@ ylabel = "top $10\%$ share"
 
 fig, ax = plt.subplots()
 
-ax.plot(years, df_topshares["topshare_n_wealth"], marker='o', label="net wealth-approx")
+ax.plot(years, df_topshares["topshare_n_wealth"], marker='o',\
+   label="net wealth-approx")
 ax.plot(years, top_shares_nw, marker='o', label="net wealth-lorenz")
 
 ax.set_xlabel(xlabel, fontsize=12)
