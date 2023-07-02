@@ -37,6 +37,8 @@ latex:
 sphinx:
   extra_extensions: [sphinx_multitoc_numbering, sphinxext.rediraffe, sphinx_exercise, sphinx_togglebutton, sphinx_proof, sphinx_tojupyter] 
   config:
+    # false-positive links
+    linkcheck_ignore: ['https://doi.org/https://doi.org/10.2307/1235116']
     # myst-nb config
     nb_render_image_options:
       width: 80%
