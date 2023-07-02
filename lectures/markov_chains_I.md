@@ -462,7 +462,7 @@ always close to 0.25 (for the `P` matrix above).
 
 ### Using QuantEcon's routines
 
-QuantEcon.py has routines for handling Markov chains, including simulation.
+The [quantecon package](https://github.com/quantecon/QuantEcon.py) has routines for handling Markov chains, including simulation.
 
 Here's an illustration using the same $P$ as the preceding example
 
