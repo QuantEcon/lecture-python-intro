@@ -60,7 +60,7 @@ In particular, we sincerely thank and give credit to
 
 - [Aakash Gupta](https://github.com/AakashGfude)
 - [Shu Hu](https://github.com/shlff)
-- [Jiacheng Li](https://l10727@nyu.edu)
+- Jiacheng Li
 - [Smit Lunagariya](https://github.com/Smit-create)
 - [Matthew McKay](https://github.com/mmcky)
 - [Maanasee Sharma](https://github.com/maanasee)

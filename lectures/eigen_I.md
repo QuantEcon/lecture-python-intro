@@ -1268,7 +1268,7 @@ The vector fields explain why we observed the trajectories of the vector $v$ mul
 
 The pattern demonstrated here is because we have complex eigenvalues and eigenvectors.
 
-We can plot the complex plane for one of the matrices using `Arrow3D` class retrieved from [stackoverflow](https://stackoverflow.com/questions/22867620/putting-arrowheads-on-vectors-in-matplotlibs-3d-plot).
+We can plot the complex plane for one of the matrices using `Arrow3D` class retrieved from [stackoverflow](https://stackoverflow.com/questions/22867620/putting-arrowheads-on-vectors-in-a-3d-plot).
 
 ```{code-cell} ipython3
 ---
