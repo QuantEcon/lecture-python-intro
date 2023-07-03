@@ -39,7 +39,6 @@ import scipy.stats
 import seaborn as sns
 ```
 
-+++ {"user_expressions": []}
 
 ## Common distributions
 
@@ -100,7 +99,6 @@ n = 10
 u = scipy.stats.randint(1, n+1)
 ```
 
-+++ {"user_expressions": []}
 
 Here's the mean and variance
 
@@ -110,7 +108,6 @@ u.mean(), u.var()
 
 The formula for the mean is $(n+1)/2$, and the formula for the variance is $(n^2 - 1)/12$.
 
-+++ {"user_expressions": []}
 
 Now let's evaluate the PMF
 
@@ -122,7 +119,6 @@ u.pmf(1)
 u.pmf(2)
 ```
 
-+++ {"user_expressions": []}
 
 Here's a plot of the probability mass function:
 
@@ -135,7 +131,6 @@ ax.set_xticks(S)
 plt.show()
 ```
 
-+++ {"user_expressions": []}
 
 Here's a plot of the CDF:
 
@@ -148,19 +143,20 @@ ax.set_xticks(S)
 plt.show()
 ```
 
-+++ {"user_expressions": []}
 
 The CDF jumps up by $p(x_i)$ and $x_i$.
 
-+++ {"user_expressions": []}
 
 ```{exercise}
 :label: prob_ex1
 
-Calculate the mean and variance directly from the PMF, using the expressions given above.
+Calculate the mean and variance for this parameterization (i.e., $n=10$)
+directly from the PMF, using the expressions given above.
 
-Check that your answers agree with `u.mean()` and `u.var()`.
+Check that your answers agree with `u.mean()` and `u.var()`. 
 ```
+
+
 
 #### Binomial distribution
 
@@ -205,7 +201,6 @@ ax.set_xticks(S)
 plt.show()
 ```
 
-+++ {"user_expressions": []}
 
 Here's the CDF
 
@@ -218,7 +213,6 @@ ax.set_xticks(S)
 plt.show()
 ```
 
-+++ {"user_expressions": []}
 
 ```{exercise}
 :label: prob_ex2
@@ -289,11 +283,9 @@ ax.set_xticks(S)
 plt.show()
 ```
 
-+++ {"user_expressions": []}
 
 ### Continuous distributions
 
-+++ {"user_expressions": []}
 
 Continuous distributions are represented by a **density function**, which is a function $p$ over $\mathbb R$ (the set of all numbers) such that $p(x) \geq 0$ for all $x$ and
 
@@ -322,7 +314,6 @@ $$
          = \int_{-\infty}^x p(x) dx
 $$
 
-+++ {"user_expressions": []}
 
 #### Normal distribution
 
@@ -366,7 +357,6 @@ plt.legend()
 plt.show()
 ```
 
-+++ {"user_expressions": []}
 
 Here's a plot of the CDF:
 
@@ -382,7 +372,6 @@ plt.legend()
 plt.show()
 ```
 
-+++ {"user_expressions": []}
 
 #### Lognormal distribution
 
@@ -495,22 +484,19 @@ plt.show()
 
 #### Beta distribution
 
-The **beta distribution** is a distribution on $\left(0, 1\right)$ with density
+The **beta distribution** is a distribution on $(0, 1)$ with density
 
 $$
     p(x) = \frac{\Gamma(\alpha + \beta)}{\Gamma(\alpha) \Gamma(\beta)}
         x^{\alpha - 1} (1 - x)^{\beta - 1}
 $$
 
-where $\Gamma$ is the gamma function ($\Gamma(n) = (n - 1)!$ for $n \in \mathbb{N}$).
+where $\Gamma$ is the [gamma function](https://en.wikipedia.org/wiki/Gamma_function).
 
-This distribution has two parameters, $\alpha$ and $\beta$.
+(The role of the gamma function is just to normalize the density, so that it
+integrates to one.)
 
-It has a nice interpretation: if $X$ is beta distributed, then $X$ is the probability of success in a Bernoulli trial with a number of successes $\alpha$ and a number of failures $\beta$.
-
-For example, if $\alpha = \beta = 1$, then the beta distribution is uniform on $\left(0, 1\right)$ as the number of successes and failures are both 1.
-
-While, if $\alpha = 3$ and $\beta = 2$, then the beta distribution is located more towards 1 as there are more successes than failures.
+This distribution has two parameters, $\alpha > 0$ and $\beta > 0$.
 
 It can be shown that, for this distribution, the mean is $\alpha / (\alpha + \beta)$ and 
 the variance is $\alpha \beta / (\alpha + \beta)^2 (\alpha + \beta + 1)$.
@@ -553,6 +539,7 @@ plt.legend()
 plt.show()
 ```
 
+
 #### Gamma distribution
 
 The **gamma distribution** is a distribution on $\left(0, \infty\right)$ with density
@@ -562,11 +549,14 @@ $$
         x^{\alpha - 1} \exp(-\beta x)
 $$
 
-This distribution has two parameters, $\alpha$ and $\beta$.
+This distribution has two parameters, $\alpha > 0$ and $\beta > 0$.
 
-It can be shown that, for this distribution, the mean is $\alpha / \beta$ and the variance is $\alpha / \beta^2$.
+It can be shown that, for this distribution, the mean is $\alpha / \beta$ and
+the variance is $\alpha / \beta^2$.
 
-One interpretation is that if $X$ is gamma distributed, then $X$ is the sum of $\alpha$ independent exponentially distributed random variables with mean $1/\beta$.
+One interpretation is that if $X$ is gamma distributed and $\alpha$ is an
+integer, then $X$ is the sum of $\alpha$ independent exponentially distributed
+random variables with mean $1/\beta$.
 
 We can obtain the moments, PDF, and CDF of the normal density as follows:
 
@@ -608,7 +598,6 @@ plt.show()
 
 ## Observed distributions
 
-+++ {"user_expressions": []}
 
 Sometimes we refer to observed data or measurements as "distributions".
 
@@ -630,17 +619,17 @@ df = pd.DataFrame(data, columns=['name', 'income'])
 df
 ```
 
-+++ {"user_expressions": []}
 
 In this situation, we might refer to the set of their incomes as the "income distribution."
 
-The terminology is confusing because this is not the same thing as a probability distribution --- it's just a collection of numbers.
+The terminology is confusing because this set is not a probability distribution
+--- it's just a collection of numbers.
+
+However, as we will see, there are connections between observed distributions (i.e., sets of
+numbers like the income distribution above) and probability distributions.
 
 Below we explore some observed distributions.
 
-We will see that there are connections between observed distributions---like the income distribution above---and probability distributions, as we'll see below.
-
-+++ {"user_expressions": []}
 
 ### Summary statistics
 
@@ -658,8 +647,6 @@ $$
     \frac{1}{n} \sum_{i=1}^n (x_i - \bar x)^2
 $$
 
-+++ {"user_expressions": []}
-
 For the income distribution given above, we can calculate these numbers via
 
 ```{code-cell} ipython3
@@ -670,7 +657,6 @@ x = np.asarray(df['income'])
 x.mean(), x.var()
 ```
 
-+++ {"user_expressions": []}
 
 ```{exercise}
 :label: prob_ex3
