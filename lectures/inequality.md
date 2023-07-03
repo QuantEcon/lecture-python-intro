@@ -414,7 +414,7 @@ varlist = ['n_wealth',   # net wealth
            't_income',   # total income
            'l_income']   # labor income
 
-df = df_income_wealth  
+df = df_income_wealth
 
 # create lists to store Gini for each inequality measure
 
@@ -426,7 +426,7 @@ for var in varlist:
     
     for year in years:
         # repeat the observations according to their weights
-        counts = list(round(df[df['year'] == year]['weights'] ))  
+        counts = list(round(df[df['year'] == year]['weights'] ))
         y = df[df['year'] == year][var].repeat(counts)
         y = np.asarray(y)
         
@@ -448,7 +448,7 @@ Let's plot the Gini coefficients for net wealth, labor income and total income.
 ```{code-cell} ipython3
 # use an average to replace an outlier in labor income gini
 ginis_li_new = ginis_li
-ginis_li_new[5] = (ginis_li[4] + ginis_li[6]) / 2    
+ginis_li_new[5] = (ginis_li[4] + ginis_li[6]) / 2
 ```
 
 ```{code-cell} ipython3
@@ -493,7 +493,7 @@ ax.plot(years, ginis_ti, marker='o', label="total income")
 ax.set_xlabel(xlabel, fontsize=12)
 ax.set_ylabel(ylabel, fontsize=12)
 
-ax.legend(fontsize=12)     
+ax.legend(fontsize=12)
 plt.show()
 ```
 
@@ -540,16 +540,16 @@ The following code uses the data from dataframe ``df_income_wealth`` to generate
 # transfer the survey weights from absolute into relative values
 df1 = df_income_wealth
 df2 = df1.groupby('year').sum(numeric_only=True).reset_index()
-df3 = df2[['year', 'weights']]                    
-df3.columns = 'year', 'r_weights'                          
-df4 = pd.merge(df3, df1, how="left", on=["year"])   
-df4['r_weights'] = df4['weights'] / df4['r_weights']                 
+df3 = df2[['year', 'weights']]
+df3.columns = 'year', 'r_weights'
+df4 = pd.merge(df3, df1, how="left", on=["year"])
+df4['r_weights'] = df4['weights'] / df4['r_weights']
 
 # create weighted nw, ti, li
 
-df4['weighted_n_wealth'] = df4['n_wealth'] * df4['r_weights']                   
-df4['weighted_t_income'] = df4['t_income'] * df4['r_weights']                    
-df4['weighted_l_income'] = df4['l_income'] * df4['r_weights']                   
+df4['weighted_n_wealth'] = df4['n_wealth'] * df4['r_weights']
+df4['weighted_t_income'] = df4['t_income'] * df4['r_weights']
+df4['weighted_l_income'] = df4['l_income'] * df4['r_weights']
 
 # extract two top 10% groups by net wealth and total income.
 
@@ -559,7 +559,7 @@ df7 = df4[df4['ti_groups'] == 'Top 10%']
 # calculate the sum of weighted top 10% by net wealth,
 #   total income and labor income.
 
-df5 = df4.groupby('year').sum(numeric_only=True).reset_index()  
+df5 = df4.groupby('year').sum(numeric_only=True).reset_index()
 df8 = df6.groupby('year').sum(numeric_only=True).reset_index()
 df9 = df7.groupby('year').sum(numeric_only=True).reset_index()
 
@@ -578,7 +578,7 @@ df5['topshare_l_income'] = df5['weighted_l_income_top10'] / \
 
 # we only need these vars for top 10 percent shares
 df_topshares = df5[['year', 'topshare_n_wealth',
-                    'topshare_t_income', 'topshare_l_income']]  
+                    'topshare_t_income', 'topshare_l_income']]
 ```
 
 Then let's plot the top shares.
