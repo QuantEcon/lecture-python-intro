@@ -229,9 +229,9 @@ const thebe_selector_output = ".output, .cell_output"
 <h2><span class="section-number">3.1. </span>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
 <p>In this lecture we review some empirical aspects of business cycles.</p>
 <p>Business cycles are fluctuations in economic activity over time.</p>
-<p>The include expansions (also called booms) and contractions (also called recessions).</p>
+<p>These include expansions (also called booms) and contractions (also called recessions).</p>
 <p>For our study, we will use economic indicators from the <a class="reference external" href="https://documents.worldbank.org/en/publication/documents-reports/api">World Bank</a> and <a class="reference external" href="https://fred.stlouisfed.org/">FRED</a>.</p>
-<p>In addition to those installed by Anaconda, this lecture requires</p>
+<p>In addition to the packages already installed by Anaconda, this lecture requires</p>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input above-output-prompt docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip install wbgapi
@@ -249,13 +249,13 @@ const thebe_selector_output = ".output, .cell_output"
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Downloading wbgapi-1.0.12-py3-none-any.whl (36 kB)
+Requirement already satisfied: PyYAML in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from wbgapi) (6.0)
 Requirement already satisfied: tabulate in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from wbgapi) (0.8.10)
 Requirement already satisfied: requests in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from wbgapi) (2.28.1)
-Requirement already satisfied: PyYAML in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from wbgapi) (6.0)
-Requirement already satisfied: charset-normalizer&lt;3,&gt;=2 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests-&gt;wbgapi) (2.0.4)
-Requirement already satisfied: idna&lt;4,&gt;=2.5 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests-&gt;wbgapi) (3.4)
 Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests-&gt;wbgapi) (2022.12.7)
 Requirement already satisfied: urllib3&lt;1.27,&gt;=1.21.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests-&gt;wbgapi) (1.26.14)
+Requirement already satisfied: idna&lt;4,&gt;=2.5 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests-&gt;wbgapi) (3.4)
+Requirement already satisfied: charset-normalizer&lt;3,&gt;=2 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests-&gt;wbgapi) (2.0.4)
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Installing collected packages: wbgapi
@@ -265,16 +265,15 @@ Requirement already satisfied: urllib3&lt;1.27,&gt;=1.21.1 in /usr/share/minicon
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting pandas-datareader
+  Downloading pandas_datareader-0.10.0-py3-none-any.whl (109 kB)
+?25l
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Downloading pandas_datareader-0.10.0-py3-none-any.whl (109 kB)
-?25l     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/109.5 kB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">109.5/109.5 kB</span> <span class=" -Color -Color-Red">11.2 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
-?25hRequirement already satisfied: lxml in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from pandas-datareader) (4.9.1)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: requests&gt;=2.19.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from pandas-datareader) (2.28.1)
-Requirement already satisfied: pandas&gt;=0.23 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from pandas-datareader) (1.5.3)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/109.5 kB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">109.5/109.5 kB</span> <span class=" -Color -Color-Red">16.6 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hRequirement already satisfied: pandas&gt;=0.23 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from pandas-datareader) (1.5.3)
+Requirement already satisfied: requests&gt;=2.19.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from pandas-datareader) (2.28.1)
+Requirement already satisfied: lxml in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from pandas-datareader) (4.9.1)
 Requirement already satisfied: python-dateutil&gt;=2.8.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from pandas&gt;=0.23-&gt;pandas-datareader) (2.8.2)
 Requirement already satisfied: pytz&gt;=2020.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from pandas&gt;=0.23-&gt;pandas-datareader) (2022.7)
 Requirement already satisfied: numpy&gt;=1.21.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from pandas&gt;=0.23-&gt;pandas-datareader) (1.23.5)
@@ -316,7 +315,7 @@ Requirement already satisfied: six&gt;=1.5 in /usr/share/miniconda3/envs/quantec
 <span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set Graphical Parameters</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set graphical parameters</span>
 <span class="n">cycler</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">cycler</span><span class="p">(</span><span class="n">linestyle</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;-.&#39;</span><span class="p">,</span> <span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="s1">&#39;:&#39;</span><span class="p">],</span> 
         <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;#377eb8&#39;</span><span class="p">,</span> <span class="s1">&#39;#ff7f00&#39;</span><span class="p">,</span> <span class="s1">&#39;#4daf4a&#39;</span><span class="p">,</span> <span class="s1">&#39;#ff334f&#39;</span><span class="p">])</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s1">&#39;axes&#39;</span><span class="p">,</span> <span class="n">prop_cycle</span><span class="o">=</span><span class="n">cycler</span><span class="p">)</span>
@@ -328,10 +327,10 @@ Requirement already satisfied: six&gt;=1.5 in /usr/share/miniconda3/envs/quantec
 </section>
 <section id="data-acquisition">
 <h2><span class="section-number">3.2. </span>Data acquisition<a class="headerlink" href="#data-acquisition" title="Permalink to this heading">#</a></h2>
-<p>We will use <code class="docutils literal notranslate"><span class="pre">wbgapi</span></code> and <code class="docutils literal notranslate"><span class="pre">pandas_datareader</span></code> to retrieve data.</p>
+<p>We will use the World Bank’s data API <code class="docutils literal notranslate"><span class="pre">wbgapi</span></code> and <code class="docutils literal notranslate"><span class="pre">pandas_datareader</span></code> to retrieve data.</p>
 <p>We can use <code class="docutils literal notranslate"><span class="pre">wb.series.info</span></code> with the argument <code class="docutils literal notranslate"><span class="pre">q</span></code> to query available data from
 the <a class="reference external" href="https://www.worldbank.org/en/home">World Bank</a>.</p>
-<p>For example, let’s retrieve the ID to query GDP growth data.</p>
+<p>For example, let’s retrieve the GDP growth data ID to query GDP growth data.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wb</span><span class="o">.</span><span class="n">series</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">q</span><span class="o">=</span><span class="s1">&#39;GDP growth&#39;</span><span class="p">)</span>
@@ -551,7 +550,7 @@ the <a class="reference external" href="https://www.worldbank.org/en/home">World
 <p>5 rows × 64 columns</p>
 </div></div></div>
 </div>
-<p>We can the metadata to learn more about the series (click to expand).</p>
+<p>We can look at the series’ metadata to learn more about the series (click to expand).</p>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input above-output-prompt docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wb</span><span class="o">.</span><span class="n">series</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;NY.GDP.MKTP.KD.ZG&#39;</span><span class="p">)</span>
@@ -857,7 +856,7 @@ Growth rates of GDP and its components are calculated using the least squares me
 
     <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">country</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="n">country</span><span class="p">,</span> <span class="o">**</span><span class="n">g_params</span><span class="p">)</span>
     
-    <span class="c1"># Highlight Recessions</span>
+    <span class="c1"># Highlight recessions</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">axvspan</span><span class="p">(</span><span class="mi">1973</span><span class="p">,</span> <span class="mi">1975</span><span class="p">,</span> <span class="o">**</span><span class="n">b_params</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">axvspan</span><span class="p">(</span><span class="mi">1990</span><span class="p">,</span> <span class="mi">1992</span><span class="p">,</span> <span class="o">**</span><span class="n">b_params</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">axvspan</span><span class="p">(</span><span class="mi">2007</span><span class="p">,</span> <span class="mi">2009</span><span class="p">,</span> <span class="o">**</span><span class="n">b_params</span><span class="p">)</span>
@@ -947,7 +946,7 @@ in the growth rate and significant fluctuations.</p>
 <p>Now let’s consider Japan, which experienced rapid growth in the 1960s and
 1970s, followed by slowed expansion in the past two decades.</p>
 <p>Major dips in the growth rate coincided with the Oil Crisis of the 1970s, the
-GFC and the Covid-19 pandemic.</p>
+Global Financial Crisis (GFC) and the Covid-19 pandemic.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
@@ -1017,7 +1016,7 @@ of the Greek debt crisis.</p>
 </div>
 <p>Notice that Argentina has experienced far more volatile cycles than
 the economies examined above.</p>
-<p>At the same time, growth of Argentina did not fall during the two developed
+<p>At the same time, Argentina’s growth rate did not fall during the two developed
 economy recessions in the 1970s and 1990s.</p>
 </section>
 <section id="unemployment">
@@ -1126,10 +1125,10 @@ post-pandemic recovery.</p>
 <span id="id1"></span><h2><span class="section-number">3.5. </span>Synchronization<a class="headerlink" href="#synchronization" title="Permalink to this heading">#</a></h2>
 <p>In our <a class="reference internal" href="#gdp-growth"><span class="std std-ref">previous discussion</span></a>, we found that developed economies have had
 relatively synchronized periods of recession.</p>
-<p>At the same time, this synchronization does not appear in Argentina until the 2000s.</p>
+<p>At the same time, this synchronization did not appear in Argentina until the 2000s.</p>
 <p>Let’s examine this trend further.</p>
 <p>With slight modifications, we can use our previous function to draw a plot
-that includes many countries</p>
+that includes multiple countries.</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -1177,7 +1176,7 @@ that includes many countries</p>
     <span class="k">for</span> <span class="n">country</span> <span class="ow">in</span> <span class="n">countries</span><span class="p">:</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">country</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="n">country</span><span class="p">,</span> <span class="o">**</span><span class="n">g_params</span><span class="p">)</span>
     
-    <span class="c1"># Highlight Recessions</span>
+    <span class="c1"># Highlight recessions</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">axvspan</span><span class="p">(</span><span class="mi">1973</span><span class="p">,</span> <span class="mi">1975</span><span class="p">,</span> <span class="o">**</span><span class="n">b_params</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">axvspan</span><span class="p">(</span><span class="mi">1990</span><span class="p">,</span> <span class="mi">1992</span><span class="p">,</span> <span class="o">**</span><span class="n">b_params</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">axvspan</span><span class="p">(</span><span class="mi">2007</span><span class="p">,</span> <span class="mi">2009</span><span class="p">,</span> <span class="o">**</span><span class="n">b_params</span><span class="p">)</span>
@@ -1230,7 +1229,7 @@ that includes many countries</p>
 </div>
 </details>
 </div>
-<p>We use the United Kingdom, United States, Germany, and Japan as examples of developed economies</p>
+<p>We use the United Kingdom, United States, Germany, and Japan as examples of developed economies.</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -1259,7 +1258,7 @@ that includes many countries</p>
 </figure>
 </div>
 </div>
-<p>We choose Brazil, China, Argentina, and Mexico as representative developing economies</p>
+<p>We choose Brazil, China, Argentina, and Mexico as representative developing economies.</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -1291,12 +1290,12 @@ that includes many countries</p>
 business cycles are becoming more synchronized in 21st-century recessions.</p>
 <p>However, emerging and less developed economies often experience more volatile
 changes throughout the economic cycles.</p>
-<p>Despite of the synchronization in GDP growth, the experience of individual countries during
+<p>Despite the synchronization in GDP growth, the experience of individual countries during
 the recession often differs.</p>
-<p>We use unemployment rate and the recovery of labor market conditions
+<p>We use the unemployment rate and the recovery of labor market conditions
 as another example.</p>
 <p>Here we compare the unemployment rate of the United States,
-United Kingdom, Japan, and France</p>
+the United Kingdom, Japan, and France.</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -1332,7 +1331,7 @@ United Kingdom, Japan, and France</p>
 </div>
 <p>We see that France, with its strong labor unions, typically experiences
 relatively slow labor market recoveries after negative shocks.</p>
-<p>We also notice that, Japan has a history of very low and stable unemployment rates.</p>
+<p>We also notice that Japan has a history of very low and stable unemployment rates.</p>
 </section>
 <section id="leading-indicators-and-correlated-factors">
 <h2><span class="section-number">3.6. </span>Leading indicators and correlated factors<a class="headerlink" href="#leading-indicators-and-correlated-factors" title="Permalink to this heading">#</a></h2>
@@ -1421,12 +1420,12 @@ year-on-year
 </div>
 <p>We see that</p>
 <ul class="simple">
-<li><p>consumer sentiment often remains high during during expansion and
-drops before a recession.</p></li>
+<li><p>consumer sentiment often remains high during expansions and
+drops before recessions.</p></li>
 <li><p>there is a clear negative correlation between consumer sentiment and the CPI.</p></li>
 </ul>
 <p>When the price of consumer commodities rises, consumer confidence diminishes.</p>
-<p>This trend is more significant in the during <a class="reference external" href="https://en.wikipedia.org/wiki/Stagflation">stagflation</a>.</p>
+<p>This trend is more significant during <a class="reference external" href="https://en.wikipedia.org/wiki/Stagflation">stagflation</a>.</p>
 </section>
 <section id="production">
 <h3><span class="section-number">3.6.2. </span>Production<a class="headerlink" href="#production" title="Permalink to this heading">#</a></h3>
@@ -1486,7 +1485,7 @@ cautious and borrowers become more hesitant to take on additional debt.</p>
 activity and gloomy expectations for the future.</p>
 <p>One example is domestic credit to the private sector by banks in the UK.</p>
 <p>The following graph shows the domestic credit to the private sector as a
-percentage of GDP by banks from 1970 to 2022 in the UK</p>
+percentage of GDP by banks from 1970 to 2022 in the UK.</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -1520,7 +1519,7 @@ percentage of GDP by banks from 1970 to 2022 in the UK</p>
 </figure>
 </div>
 </div>
-<p>Note that the credit rises during economic expansion
+<p>Note that the credit rises during economic expansions
 and stagnates or even contracts after recessions.</p>
 </section>
 </section>

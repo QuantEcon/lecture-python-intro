@@ -248,16 +248,16 @@ const thebe_selector_output = ".output, .cell_output"
 <section id="some-history">
 <h3><span class="section-number">4.1.1. </span>Some history<a class="headerlink" href="#some-history" title="Permalink to this heading">#</a></h3>
 <p>Many historians argue that inequality played a key role in the fall of the
-Roman republic.</p>
+Roman Republic.</p>
 <p>After defeating Carthage and invading Spain, money flowed into Rome and
 greatly enriched those in power.</p>
 <p>Meanwhile, ordinary citizens were taken from their farms to fight for long
 periods, diminishing their wealth.</p>
 <p>The resulting growth in inequality caused political turmoil that shook the
 foundations of the republic.</p>
-<p>Eventually the Roman republic gave way to a series of dictatorships, starting
+<p>Eventually, the Roman Republic gave way to a series of dictatorships, starting
 with Octavian (Augustus) in 27 BCE.</p>
-<p>This history is fascinating in its own right, and also because we can see some
+<p>This history is fascinating in its own right, and we can see some
 parallels with certain countries in the modern world.</p>
 <p>Many recent political debates revolve around inequality.</p>
 <p>Many economic policies, from taxation to the welfare state, are
@@ -272,7 +272,7 @@ shape our findings reduces objectivity.</p>
 <p>To bring a truly scientific perspective to the topic of inequality we must
 start with careful definitions.</p>
 <p>In this lecture we discuss standard measures of inequality used in economic research.</p>
-<p>For each of these measures we will look at both simulated and real data.</p>
+<p>For each of these measures, we will look at both simulated and real data.</p>
 <p>We will install the following libraries.</p>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input above-output-prompt docutils container">
@@ -292,19 +292,17 @@ start with careful definitions.</p>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: interpolation in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (2.2.4)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: numpy&gt;=1.17.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from quantecon) (1.23.5)
-Requirement already satisfied: scipy&gt;=1.5.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from quantecon) (1.10.0)
-Requirement already satisfied: numba&gt;=0.49.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from quantecon) (0.56.4)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: scipy&gt;=1.5.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from quantecon) (1.10.0)
+Requirement already satisfied: numpy&gt;=1.17.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from quantecon) (1.23.5)
 Requirement already satisfied: requests in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from quantecon) (2.28.1)
 Requirement already satisfied: sympy in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from quantecon) (1.11.1)
-Requirement already satisfied: tempita&lt;0.6.0,&gt;=0.5.2 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from interpolation) (0.5.2)
+Requirement already satisfied: numba&gt;=0.49.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from quantecon) (0.56.4)
 Requirement already satisfied: packaging&lt;22.0,&gt;=21.3 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from interpolation) (21.3)
-Requirement already satisfied: llvmlite&lt;0.40,&gt;=0.39.0dev0 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from numba&gt;=0.49.0-&gt;quantecon) (0.39.1)
+Requirement already satisfied: tempita&lt;0.6.0,&gt;=0.5.2 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from interpolation) (0.5.2)
 Requirement already satisfied: setuptools in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from numba&gt;=0.49.0-&gt;quantecon) (65.6.3)
+Requirement already satisfied: llvmlite&lt;0.40,&gt;=0.39.0dev0 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from numba&gt;=0.49.0-&gt;quantecon) (0.39.1)
 Requirement already satisfied: pyparsing!=3.0.5,&gt;=2.0.2 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from packaging&lt;22.0,&gt;=21.3-&gt;interpolation) (3.0.9)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests-&gt;quantecon) (2022.12.7)
+Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests-&gt;quantecon) (2022.12.7)
 Requirement already satisfied: charset-normalizer&lt;3,&gt;=2 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests-&gt;quantecon) (2.0.4)
 Requirement already satisfied: urllib3&lt;1.27,&gt;=1.21.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests-&gt;quantecon) (1.26.14)
 Requirement already satisfied: idna&lt;4,&gt;=2.5 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests-&gt;quantecon) (3.4)
@@ -339,8 +337,8 @@ Requirement already satisfied: mpmath&gt;=0.19 in /usr/share/miniconda3/envs/qua
 <p>We suppose that the sample <span class="math notranslate nohighlight">\(w_1, \ldots, w_n\)</span> has been sorted from smallest to largest.</p>
 <p>To aid our interpretation, suppose that we are measuring wealth</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(w_1\)</span> is the wealth of the poorest member of the population</p></li>
-<li><p><span class="math notranslate nohighlight">\(w_n\)</span> is the wealth of the richest member of the population</p></li>
+<li><p><span class="math notranslate nohighlight">\(w_1\)</span> is the wealth of the poorest member of the population and</p></li>
+<li><p><span class="math notranslate nohighlight">\(w_n\)</span> is the wealth of the richest member of the population.</p></li>
 </ul>
 <p>The curve <span class="math notranslate nohighlight">\(L\)</span> is just a function <span class="math notranslate nohighlight">\(y = L(x)\)</span> that we can plot and interpret.</p>
 <p>To create it we first generate data points <span class="math notranslate nohighlight">\((x_i, y_i)\)</span>  according to</p>
@@ -397,7 +395,7 @@ households own just over 40% of total wealth.</p>
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="lorenz-simulated">
-<a class="reference internal image-reference" href="_images/b6ee03f0e51cd29c4133be03ce52d0d072ddd5993b2baf1e129e3642fca276b9.png"><img alt="_images/b6ee03f0e51cd29c4133be03ce52d0d072ddd5993b2baf1e129e3642fca276b9.png" src="_images/b6ee03f0e51cd29c4133be03ce52d0d072ddd5993b2baf1e129e3642fca276b9.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/ed9c473edab2619550998a770db1608400cb17bd2b1c9b0c2f7eaa33c21683e7.png"><img alt="_images/ed9c473edab2619550998a770db1608400cb17bd2b1c9b0c2f7eaa33c21683e7.png" src="_images/ed9c473edab2619550998a770db1608400cb17bd2b1c9b0c2f7eaa33c21683e7.png" style="width: 80%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 4.1 </span><span class="caption-text">Lorenz curve of simulated data</span><a class="headerlink" href="#lorenz-simulated" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -513,7 +511,12 @@ which is derived from the <a class="reference external" href="https://en.wikiped
 <p>The following code block uses data stored in dataframe <code class="docutils literal notranslate"><span class="pre">df_income_wealth</span></code> to generate the Lorenz curves.</p>
 <p>(The code is somewhat complex because we need to adjust the data according to
 population weights supplied by the SCF.)</p>
-<div class="cell tag_hide_input docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df_income_wealth</span> 
 
@@ -528,7 +531,7 @@ population weights supplied by the SCF.)</p>
 <span class="n">F_vals</span><span class="p">,</span> <span class="n">L_vals</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
 
 <span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">varlist</span><span class="p">:</span>
-    <span class="c1"># create lists to store Lorenz, Ginis</span>
+    <span class="c1"># create lists to store Lorenz curve data</span>
     <span class="n">f_vals</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">l_vals</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="n">years</span><span class="p">:</span>
@@ -554,6 +557,7 @@ population weights supplied by the SCF.)</p>
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <p>Now we plot Lorenz curves for net wealth, total income and labor income in the
 US in 2016.</p>
@@ -597,10 +601,10 @@ Lorenz curve.</p>
 <section id="id1">
 <h3><span class="section-number">4.3.1. </span>Definition<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
 <p>As before, suppose that the sample <span class="math notranslate nohighlight">\(w_1, \ldots, w_n\)</span> has been sorted from
-smallest to largest</p>
+smallest to largest.</p>
 <p>The Gini coefficient is defined for the sample above as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-062d4816-d75a-4fdd-ac1f-013ed44f6079">
-<span class="eqno">(4.1)<a class="headerlink" href="#equation-062d4816-d75a-4fdd-ac1f-013ed44f6079" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ee26718f-374b-4c27-b8e6-ba9b1f278000">
+<span class="eqno">(4.1)<a class="headerlink" href="#equation-ee26718f-374b-4c27-b8e6-ba9b1f278000" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \label{eq:gini}
     G :=
     \frac
@@ -637,7 +641,7 @@ equality and the Lorenz curve (e.g., the shaded area in the following Figure bel
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="lorenz-gini">
-<img alt="lorenz_gini" src="_images/e7537c1b8392cd67a60484ce4347902afe40b85e48e2554915c2b81e1bde9349.png" />
+<img alt="lorenz_gini" src="_images/4beff3fc6c898132362663c40a0e9c229c90f83c5b8271520a62cb67692e6504.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 4.3 </span><span class="caption-text">Shaded Lorenz curve of simulated data</span><a class="headerlink" href="#lorenz-gini" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -649,19 +653,19 @@ equality and the Lorenz curve (e.g., the shaded area in the following Figure bel
 <h3><span class="section-number">4.3.2. </span>Gini coefficient dynamics of simulated data<a class="headerlink" href="#gini-coefficient-dynamics-of-simulated-data" title="Permalink to this heading">#</a></h3>
 <p>Let’s examine the Gini coefficient in some simulations.</p>
 <p>The following code computes the Gini coefficients for five different
-population.</p>
+populations.</p>
 <p>Each of these populations is generated by drawing from a
-lognormal distribution with parameters <span class="math notranslate nohighlight">\(\mu\)</span> and <span class="math notranslate nohighlight">\(\sigma\)</span>.</p>
+lognormal distribution with parameters <span class="math notranslate nohighlight">\(\mu\)</span> (mean) and <span class="math notranslate nohighlight">\(\sigma\)</span> (standard deviation).</p>
 <p>To create the five populations, we vary <span class="math notranslate nohighlight">\(\sigma\)</span> over a grid of length <span class="math notranslate nohighlight">\(5\)</span>
 between <span class="math notranslate nohighlight">\(0.2\)</span> and <span class="math notranslate nohighlight">\(4\)</span>.</p>
 <p>In each case we set <span class="math notranslate nohighlight">\(\mu = - \sigma^2 / 2\)</span>.</p>
-<p>This implies that the mean the distribution does not change with <span class="math notranslate nohighlight">\(\sigma\)</span>.</p>
+<p>This implies that the mean of the distribution does not change with <span class="math notranslate nohighlight">\(\sigma\)</span>.</p>
 <p>(You can check this by looking up the expression for the mean of a lognormal
 distribution.)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">k</span> <span class="o">=</span> <span class="mi">5</span>
-<span class="n">σ_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
+<span class="n">σ_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
 <span class="n">n</span> <span class="o">=</span> <span class="mi">2_000</span>
 
 <span class="n">ginis</span> <span class="o">=</span> <span class="p">[]</span>
@@ -692,7 +696,7 @@ distribution.)</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_inequality_measures</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">),</span> 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_inequality_measures</span><span class="p">(</span><span class="n">σ_vals</span><span class="p">,</span> 
                          <span class="n">ginis</span><span class="p">,</span> 
                          <span class="s1">&#39;simulated&#39;</span><span class="p">,</span> 
                          <span class="s1">&#39;$\sigma$&#39;</span><span class="p">,</span> 
@@ -702,7 +706,7 @@ distribution.)</p>
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="gini-simulated">
-<img alt="gini_simulated" src="_images/5d7b899167b44e91d23d3ff9259bd16039b52bd3ee9726d30bba4c75caccecf5.png" />
+<img alt="gini_simulated" src="_images/a40d5c5c08f5572cb53ce95da799cbc4d671a59574709401ec8dca1fb253091f.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 4.4 </span><span class="caption-text">Gini coefficients of simulated data</span><a class="headerlink" href="#gini-simulated" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -717,31 +721,36 @@ coefficient.</p>
 <p>Now let’s look at Gini coefficients for US data derived from the SCF.</p>
 <p>The following code creates a list called <code class="docutils literal notranslate"><span class="pre">Ginis</span></code>.</p>
 <p>It stores data of Gini coefficients generated from the dataframe <code class="docutils literal notranslate"><span class="pre">df_income_wealth</span></code> and method <a class="reference external" href="https://quanteconpy.readthedocs.io/en/latest/tools/inequality.html#quantecon.inequality.gini_coefficient">gini_coefficient</a>, from <a class="reference external" href="https://quantecon.org/quantecon-py/">QuantEcon</a> library.</p>
-<div class="cell tag_hide_input docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">varlist</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;n_wealth&#39;</span><span class="p">,</span>   <span class="c1"># net wealth </span>
-           <span class="s1">&#39;t_income&#39;</span><span class="p">,</span>    <span class="c1"># total income</span>
+           <span class="s1">&#39;t_income&#39;</span><span class="p">,</span>   <span class="c1"># total income</span>
            <span class="s1">&#39;l_income&#39;</span><span class="p">]</span>   <span class="c1"># labor income</span>
 
-<span class="n">df</span> <span class="o">=</span> <span class="n">df_income_wealth</span>  
+<span class="n">df</span> <span class="o">=</span> <span class="n">df_income_wealth</span>
 
-<span class="c1"># create lists to store Lorenz, Gini for each inequality measure</span>
+<span class="c1"># create lists to store Gini for each inequality measure</span>
 
 <span class="n">Ginis</span> <span class="o">=</span> <span class="p">[]</span>
 
 <span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">varlist</span><span class="p">:</span>
-    <span class="c1"># create lists to store Lorenz, Ginis</span>
+    <span class="c1"># create lists to store Gini</span>
     <span class="n">ginis</span> <span class="o">=</span> <span class="p">[]</span>
     
     <span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="n">years</span><span class="p">:</span>
         <span class="c1"># repeat the observations according to their weights</span>
-        <span class="n">counts</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">year</span><span class="p">][</span><span class="s1">&#39;weights&#39;</span><span class="p">]</span> <span class="p">))</span>  
+        <span class="n">counts</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">year</span><span class="p">][</span><span class="s1">&#39;weights&#39;</span><span class="p">]</span> <span class="p">))</span>
         <span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">year</span><span class="p">][</span><span class="n">var</span><span class="p">]</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">counts</span><span class="p">)</span>
         <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
         
         <span class="n">rd</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>    <span class="c1"># shuffle the sequence</span>
         
-        <span class="c1"># calculate and store ginis</span>
+        <span class="c1"># calculate and store Gini</span>
         <span class="n">gini</span> <span class="o">=</span> <span class="n">qe</span><span class="o">.</span><span class="n">gini_coefficient</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
         <span class="n">ginis</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">gini</span><span class="p">)</span>
         
@@ -749,6 +758,7 @@ coefficient.</p>
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -762,7 +772,7 @@ coefficient.</p>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># use an average to replace an outlier in labor income gini</span>
 <span class="n">ginis_li_new</span> <span class="o">=</span> <span class="n">ginis_li</span>
-<span class="n">ginis_li_new</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">ginis_li</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">+</span> <span class="n">ginis_li</span><span class="p">[</span><span class="mi">6</span><span class="p">])</span> <span class="o">/</span> <span class="mi">2</span>    
+<span class="n">ginis_li_new</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">ginis_li</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">+</span> <span class="n">ginis_li</span><span class="p">[</span><span class="mi">6</span><span class="p">])</span> <span class="o">/</span> <span class="mi">2</span>
 </pre></div>
 </div>
 </div>
@@ -805,7 +815,7 @@ coefficient.</p>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">xlabel</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">ylabel</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
 
-<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>     
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -832,7 +842,7 @@ coefficient.</p>
 <p>In this section we show how to compute top shares.</p>
 <section id="id2">
 <h3><span class="section-number">4.4.1. </span>Definition<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
-<p>As before, suppose that the sample <span class="math notranslate nohighlight">\(w_1, \ldots, w_n\)</span> has been sorted from smallest to largest</p>
+<p>As before, suppose that the sample <span class="math notranslate nohighlight">\(w_1, \ldots, w_n\)</span> has been sorted from smallest to largest.</p>
 <p>Given the Lorenz curve <span class="math notranslate nohighlight">\(y = L(x)\)</span> defined above, the top <span class="math notranslate nohighlight">\(100 \times p \%\)</span>
 share is defined as</p>
 <div class="math notranslate nohighlight" id="equation-topshares">
@@ -844,30 +854,36 @@ T(p) = 1 - L (1-p)
 number down to the integer less than or equal to that number.</p>
 <p>The following code uses the data from dataframe <code class="docutils literal notranslate"><span class="pre">df_income_wealth</span></code> to generate another dataframe <code class="docutils literal notranslate"><span class="pre">df_topshares</span></code>.</p>
 <p><code class="docutils literal notranslate"><span class="pre">df_topshares</span></code> stores the top 10 percent shares for the total income, the labor income and net wealth from 1950 to 2016 in US.</p>
-<div class="cell tag_hide_input docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># transfer the survey weights from absolute into relative values</span>
 <span class="n">df1</span> <span class="o">=</span> <span class="n">df_income_wealth</span>
-<span class="n">df2</span> <span class="o">=</span> <span class="n">df1</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;year&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">numeric_only</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>       <span class="c1"># group</span>
-<span class="n">df3</span> <span class="o">=</span> <span class="n">df2</span><span class="p">[[</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="s1">&#39;weights&#39;</span><span class="p">]]</span>                    
-<span class="n">df3</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="s1">&#39;r_weights&#39;</span>                          
-<span class="n">df4</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df3</span><span class="p">,</span> <span class="n">df1</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">])</span>   
-<span class="n">df4</span><span class="p">[</span><span class="s1">&#39;r_weights&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df4</span><span class="p">[</span><span class="s1">&#39;weights&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">df4</span><span class="p">[</span><span class="s1">&#39;r_weights&#39;</span><span class="p">]</span>                 
+<span class="n">df2</span> <span class="o">=</span> <span class="n">df1</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;year&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">numeric_only</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">df3</span> <span class="o">=</span> <span class="n">df2</span><span class="p">[[</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="s1">&#39;weights&#39;</span><span class="p">]]</span>
+<span class="n">df3</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="s1">&#39;r_weights&#39;</span>
+<span class="n">df4</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df3</span><span class="p">,</span> <span class="n">df1</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">])</span>
+<span class="n">df4</span><span class="p">[</span><span class="s1">&#39;r_weights&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df4</span><span class="p">[</span><span class="s1">&#39;weights&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">df4</span><span class="p">[</span><span class="s1">&#39;r_weights&#39;</span><span class="p">]</span>
 
 <span class="c1"># create weighted nw, ti, li</span>
 
-<span class="n">df4</span><span class="p">[</span><span class="s1">&#39;weighted_n_wealth&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df4</span><span class="p">[</span><span class="s1">&#39;n_wealth&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">df4</span><span class="p">[</span><span class="s1">&#39;r_weights&#39;</span><span class="p">]</span>                   
-<span class="n">df4</span><span class="p">[</span><span class="s1">&#39;weighted_t_income&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df4</span><span class="p">[</span><span class="s1">&#39;t_income&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">df4</span><span class="p">[</span><span class="s1">&#39;r_weights&#39;</span><span class="p">]</span>                    
-<span class="n">df4</span><span class="p">[</span><span class="s1">&#39;weighted_l_income&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df4</span><span class="p">[</span><span class="s1">&#39;l_income&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">df4</span><span class="p">[</span><span class="s1">&#39;r_weights&#39;</span><span class="p">]</span>                   
+<span class="n">df4</span><span class="p">[</span><span class="s1">&#39;weighted_n_wealth&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df4</span><span class="p">[</span><span class="s1">&#39;n_wealth&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">df4</span><span class="p">[</span><span class="s1">&#39;r_weights&#39;</span><span class="p">]</span>
+<span class="n">df4</span><span class="p">[</span><span class="s1">&#39;weighted_t_income&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df4</span><span class="p">[</span><span class="s1">&#39;t_income&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">df4</span><span class="p">[</span><span class="s1">&#39;r_weights&#39;</span><span class="p">]</span>
+<span class="n">df4</span><span class="p">[</span><span class="s1">&#39;weighted_l_income&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df4</span><span class="p">[</span><span class="s1">&#39;l_income&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">df4</span><span class="p">[</span><span class="s1">&#39;r_weights&#39;</span><span class="p">]</span>
 
 <span class="c1"># extract two top 10% groups by net wealth and total income.</span>
 
 <span class="n">df6</span> <span class="o">=</span> <span class="n">df4</span><span class="p">[</span><span class="n">df4</span><span class="p">[</span><span class="s1">&#39;nw_groups&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Top 10%&#39;</span><span class="p">]</span>
 <span class="n">df7</span> <span class="o">=</span> <span class="n">df4</span><span class="p">[</span><span class="n">df4</span><span class="p">[</span><span class="s1">&#39;ti_groups&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Top 10%&#39;</span><span class="p">]</span>
 
-<span class="c1"># calculate the sum of weighted top 10% by net wealth, total income and labor income.</span>
+<span class="c1"># calculate the sum of weighted top 10% by net wealth,</span>
+<span class="c1">#   total income and labor income.</span>
 
-<span class="n">df5</span> <span class="o">=</span> <span class="n">df4</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;year&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">numeric_only</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>  
+<span class="n">df5</span> <span class="o">=</span> <span class="n">df4</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;year&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">numeric_only</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
 <span class="n">df8</span> <span class="o">=</span> <span class="n">df6</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;year&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">numeric_only</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
 <span class="n">df9</span> <span class="o">=</span> <span class="n">df7</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;year&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">numeric_only</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
 
@@ -877,15 +893,20 @@ number down to the integer less than or equal to that number.</p>
 
 <span class="c1"># calculate the top 10% shares of the three variables.</span>
 
-<span class="n">df5</span><span class="p">[</span><span class="s1">&#39;topshare_n_wealth&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df5</span><span class="p">[</span><span class="s1">&#39;weighted_n_wealth_top10&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">df5</span><span class="p">[</span><span class="s1">&#39;weighted_n_wealth&#39;</span><span class="p">]</span>
-<span class="n">df5</span><span class="p">[</span><span class="s1">&#39;topshare_t_income&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df5</span><span class="p">[</span><span class="s1">&#39;weighted_t_income_top10&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">df5</span><span class="p">[</span><span class="s1">&#39;weighted_t_income&#39;</span><span class="p">]</span>
-<span class="n">df5</span><span class="p">[</span><span class="s1">&#39;topshare_l_income&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df5</span><span class="p">[</span><span class="s1">&#39;weighted_l_income_top10&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">df5</span><span class="p">[</span><span class="s1">&#39;weighted_l_income&#39;</span><span class="p">]</span>
+<span class="n">df5</span><span class="p">[</span><span class="s1">&#39;topshare_n_wealth&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df5</span><span class="p">[</span><span class="s1">&#39;weighted_n_wealth_top10&#39;</span><span class="p">]</span> <span class="o">/</span> \
+    <span class="n">df5</span><span class="p">[</span><span class="s1">&#39;weighted_n_wealth&#39;</span><span class="p">]</span>
+<span class="n">df5</span><span class="p">[</span><span class="s1">&#39;topshare_t_income&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df5</span><span class="p">[</span><span class="s1">&#39;weighted_t_income_top10&#39;</span><span class="p">]</span> <span class="o">/</span> \
+    <span class="n">df5</span><span class="p">[</span><span class="s1">&#39;weighted_t_income&#39;</span><span class="p">]</span>
+<span class="n">df5</span><span class="p">[</span><span class="s1">&#39;topshare_l_income&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df5</span><span class="p">[</span><span class="s1">&#39;weighted_l_income_top10&#39;</span><span class="p">]</span> <span class="o">/</span> \
+    <span class="n">df5</span><span class="p">[</span><span class="s1">&#39;weighted_l_income&#39;</span><span class="p">]</span>
 
 <span class="c1"># we only need these vars for top 10 percent shares</span>
-<span class="n">df_topshares</span> <span class="o">=</span> <span class="n">df5</span><span class="p">[[</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="s1">&#39;topshare_n_wealth&#39;</span><span class="p">,</span> <span class="s1">&#39;topshare_t_income&#39;</span><span class="p">,</span> <span class="s1">&#39;topshare_l_income&#39;</span><span class="p">]]</span>  
+<span class="n">df_topshares</span> <span class="o">=</span> <span class="n">df5</span><span class="p">[[</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="s1">&#39;topshare_n_wealth&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;topshare_t_income&#39;</span><span class="p">,</span> <span class="s1">&#39;topshare_l_income&#39;</span><span class="p">]]</span>
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <p>Then let’s plot the top shares.</p>
 <div class="cell docutils container">
@@ -895,9 +916,12 @@ number down to the integer less than or equal to that number.</p>
 
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">years</span><span class="p">,</span> <span class="n">df_topshares</span><span class="p">[</span><span class="s2">&quot;topshare_l_income&quot;</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;labor income&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">years</span><span class="p">,</span> <span class="n">df_topshares</span><span class="p">[</span><span class="s2">&quot;topshare_n_wealth&quot;</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;net wealth&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">years</span><span class="p">,</span> <span class="n">df_topshares</span><span class="p">[</span><span class="s2">&quot;topshare_t_income&quot;</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;total income&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">years</span><span class="p">,</span> <span class="n">df_topshares</span><span class="p">[</span><span class="s2">&quot;topshare_l_income&quot;</span><span class="p">],</span>
+        <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;labor income&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">years</span><span class="p">,</span> <span class="n">df_topshares</span><span class="p">[</span><span class="s2">&quot;topshare_n_wealth&quot;</span><span class="p">],</span>
+        <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;net wealth&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">years</span><span class="p">,</span> <span class="n">df_topshares</span><span class="p">[</span><span class="s2">&quot;topshare_t_income&quot;</span><span class="p">],</span>
+        <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;total income&quot;</span><span class="p">)</span>
 
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">xlabel</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">ylabel</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
@@ -957,14 +981,21 @@ generates more dispersion in the sample, and hence greater inequality.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">k</span> <span class="o">=</span> <span class="mi">5</span>
-<span class="n">σ_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
+<span class="n">σ_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
 <span class="n">n</span> <span class="o">=</span> <span class="mi">2_000</span>
 
 <span class="n">topshares</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">ginis</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">f_vals</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">l_vals</span> <span class="o">=</span> <span class="p">[]</span>
 
 <span class="k">for</span> <span class="n">σ</span> <span class="ow">in</span> <span class="n">σ_vals</span><span class="p">:</span>
     <span class="n">μ</span> <span class="o">=</span> <span class="o">-</span><span class="n">σ</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">/</span> <span class="mi">2</span>
     <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">μ</span> <span class="o">+</span> <span class="n">σ</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+    <span class="n">f_val</span><span class="p">,</span> <span class="n">l_val</span> <span class="o">=</span> <span class="n">qe</span><span class="o">.</span><span class="n">_inequality</span><span class="o">.</span><span class="n">lorenz_curve</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+    <span class="n">f_vals</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">f_val</span><span class="p">)</span>
+    <span class="n">l_vals</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">l_val</span><span class="p">)</span>
+    <span class="n">ginis</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">qe</span><span class="o">.</span><span class="n">_inequality</span><span class="o">.</span><span class="n">gini_coefficient</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
     <span class="n">topshares</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">calculate_top_share</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
 </pre></div>
 </div>
@@ -972,19 +1003,58 @@ generates more dispersion in the sample, and hence greater inequality.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_inequality_measures</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">topshares</span><span class="p">)),</span> 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_inequality_measures</span><span class="p">(</span><span class="n">σ_vals</span><span class="p">,</span> 
                          <span class="n">topshares</span><span class="p">,</span> 
                          <span class="s2">&quot;simulated data&quot;</span><span class="p">,</span> 
-                         <span class="s2">&quot;year&quot;</span><span class="p">,</span> 
+                         <span class="s2">&quot;$\sigma$&quot;</span><span class="p">,</span> 
                          <span class="s2">&quot;top $10\%$ share&quot;</span><span class="p">)</span> 
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="top-shares-simulated">
-<img alt="top_shares_simulated" src="_images/1650fb2ca8d24d6970d6fee5851f9ce73f2bafd26e03f9052f99e7a7924a7430.png" />
+<img alt="top_shares_simulated" src="_images/8f624f9359f5f4ece618860b33affca63e79ca1e2e634cd2dd1fe1daa426e183.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 4.8 </span><span class="caption-text">Top shares of simulated data</span><a class="headerlink" href="#top-shares-simulated" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_inequality_measures</span><span class="p">(</span><span class="n">σ_vals</span><span class="p">,</span> 
+                         <span class="n">ginis</span><span class="p">,</span> 
+                         <span class="s2">&quot;simulated data&quot;</span><span class="p">,</span> 
+                         <span class="s2">&quot;$\sigma$&quot;</span><span class="p">,</span> 
+                         <span class="s2">&quot;gini coefficient&quot;</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<figure class="align-default" id="gini-coef-simulated">
+<img alt="gini_coef_simulated" src="_images/05d1908700371d49af20483b853a7d74c7c1473674eb758487d149bde895ba96.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 4.9 </span><span class="caption-text">Gini coefficients of simulated data</span><a class="headerlink" href="#gini-coef-simulated" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;equality&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">f_vals</span><span class="p">)):</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f_vals</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">l_vals</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;$\sigma$ = </span><span class="si">{</span><span class="n">σ_vals</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<figure class="align-default" id="lorenz-curve-simulated">
+<img alt="lorenz_curve_simulated" src="_images/72dbf1166f5f9915c13c1c6db69ebc2af0e2d3976994491adfae9920735d2d80.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 4.10 </span><span class="caption-text">Lorenz curves for simulated data</span><a class="headerlink" href="#lorenz-curve-simulated" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </div>
@@ -1030,7 +1100,8 @@ generates more dispersion in the sample, and hence greater inequality.</p>
 
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">years</span><span class="p">,</span> <span class="n">df_topshares</span><span class="p">[</span><span class="s2">&quot;topshare_n_wealth&quot;</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;net wealth-approx&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">years</span><span class="p">,</span> <span class="n">df_topshares</span><span class="p">[</span><span class="s2">&quot;topshare_n_wealth&quot;</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span>\
+   <span class="n">label</span><span class="o">=</span><span class="s2">&quot;net wealth-approx&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">years</span><span class="p">,</span> <span class="n">top_shares_nw</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;net wealth-lorenz&quot;</span><span class="p">)</span>
 
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">xlabel</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
@@ -1045,7 +1116,7 @@ generates more dispersion in the sample, and hence greater inequality.</p>
 <figure class="align-default" id="top-shares-us-al">
 <img alt="top_shares_us_al" src="_images/8a47eda9ad4023cf4539de1e534d41b143e25e4491bb5cfa424895fcfa8633e6.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 4.9 </span><span class="caption-text">US top shares: approximation vs Lorenz</span><a class="headerlink" href="#top-shares-us-al" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 4.11 </span><span class="caption-text">US top shares: approximation vs Lorenz</span><a class="headerlink" href="#top-shares-us-al" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </div>

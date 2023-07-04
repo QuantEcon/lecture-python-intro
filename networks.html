@@ -260,8 +260,8 @@ const thebe_selector_output = ".output, .cell_output"
 Requirement already satisfied: pandas-datareader in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (0.10.0)
 Requirement already satisfied: scipy in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from quantecon-book-networks) (1.10.0)
 Requirement already satisfied: matplotlib in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from quantecon-book-networks) (3.7.0)
-Requirement already satisfied: networkx in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from quantecon-book-networks) (2.8.4)
 Requirement already satisfied: numpy in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from quantecon-book-networks) (1.23.5)
+Requirement already satisfied: networkx in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from quantecon-book-networks) (2.8.4)
 Requirement already satisfied: pandas in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from quantecon-book-networks) (1.5.3)
 </pre></div>
 </div>
@@ -269,17 +269,17 @@ Requirement already satisfied: pandas in /usr/share/miniconda3/envs/quantecon/li
 Requirement already satisfied: requests&gt;=2.19.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from pandas-datareader) (2.28.1)
 Requirement already satisfied: python-dateutil&gt;=2.8.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from pandas-&gt;quantecon-book-networks) (2.8.2)
 Requirement already satisfied: pytz&gt;=2020.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from pandas-&gt;quantecon-book-networks) (2022.7)
+Requirement already satisfied: urllib3&lt;1.27,&gt;=1.21.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests&gt;=2.19.0-&gt;pandas-datareader) (1.26.14)
 Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests&gt;=2.19.0-&gt;pandas-datareader) (2022.12.7)
 Requirement already satisfied: idna&lt;4,&gt;=2.5 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests&gt;=2.19.0-&gt;pandas-datareader) (3.4)
 Requirement already satisfied: charset-normalizer&lt;3,&gt;=2 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests&gt;=2.19.0-&gt;pandas-datareader) (2.0.4)
-Requirement already satisfied: urllib3&lt;1.27,&gt;=1.21.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests&gt;=2.19.0-&gt;pandas-datareader) (1.26.14)
-Requirement already satisfied: cycler&gt;=0.10 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from matplotlib-&gt;quantecon-book-networks) (0.11.0)
 Requirement already satisfied: fonttools&gt;=4.22.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from matplotlib-&gt;quantecon-book-networks) (4.25.0)
-Requirement already satisfied: pyparsing&gt;=2.3.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from matplotlib-&gt;quantecon-book-networks) (3.0.9)
-Requirement already satisfied: contourpy&gt;=1.0.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from matplotlib-&gt;quantecon-book-networks) (1.0.5)
-Requirement already satisfied: kiwisolver&gt;=1.0.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from matplotlib-&gt;quantecon-book-networks) (1.4.4)
-Requirement already satisfied: packaging&gt;=20.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from matplotlib-&gt;quantecon-book-networks) (21.3)
 Requirement already satisfied: pillow&gt;=6.2.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from matplotlib-&gt;quantecon-book-networks) (9.4.0)
+Requirement already satisfied: contourpy&gt;=1.0.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from matplotlib-&gt;quantecon-book-networks) (1.0.5)
+Requirement already satisfied: cycler&gt;=0.10 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from matplotlib-&gt;quantecon-book-networks) (0.11.0)
+Requirement already satisfied: kiwisolver&gt;=1.0.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from matplotlib-&gt;quantecon-book-networks) (1.4.4)
+Requirement already satisfied: pyparsing&gt;=2.3.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from matplotlib-&gt;quantecon-book-networks) (3.0.9)
+Requirement already satisfied: packaging&gt;=20.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from matplotlib-&gt;quantecon-book-networks) (21.3)
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: six&gt;=1.5 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from python-dateutil&gt;=2.8.1-&gt;pandas-&gt;quantecon-book-networks) (1.16.0)
@@ -558,7 +558,7 @@ correct representation of our graph.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/9af25d1180c12bd395fe24661838e4e2f2f66128e05c59420e06efcbcdee9f81.png"><img alt="_images/9af25d1180c12bd395fe24661838e4e2f2f66128e05c59420e06efcbcdee9f81.png" src="_images/9af25d1180c12bd395fe24661838e4e2f2f66128e05c59420e06efcbcdee9f81.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/ca014573a28dcb453f35038e8639805a05a3b26589fb5e40a1c68fbd966e9224.png"><img alt="_images/ca014573a28dcb453f35038e8639805a05a3b26589fb5e40a1c68fbd966e9224.png" src="_images/ca014573a28dcb453f35038e8639805a05a3b26589fb5e40a1c68fbd966e9224.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>The figure obtained above matches the original directed graph in <a class="reference internal" href="#poverty-trap-2"><span class="std std-numref">Fig. 33.3</span></a>.</p>
@@ -613,7 +613,7 @@ however in <a class="reference internal" href="#poverty-trap-2"><span class="std
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/c196efb69f82f77e414f448580379a1f748361533b3c436b9376177c51b3364a.png"><img alt="_images/c196efb69f82f77e414f448580379a1f748361533b3c436b9376177c51b3364a.png" src="_images/c196efb69f82f77e414f448580379a1f748361533b3c436b9376177c51b3364a.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/5deda2c353c475b427b78cf7f2fd97ac868141a549f0ebd17766fd4f2ca0c1a3.png"><img alt="_images/5deda2c353c475b427b78cf7f2fd97ac868141a549f0ebd17766fd4f2ca0c1a3.png" src="_images/5deda2c353c475b427b78cf7f2fd97ac868141a549f0ebd17766fd4f2ca0c1a3.png" style="width: 80%;" /></a>
 </div>
 </div>
 <div class="cell docutils container">
@@ -642,7 +642,7 @@ however in <a class="reference internal" href="#poverty-trap-2"><span class="std
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/2001940964660b3edaae4ddf7cad84cd5fdccda985d00fe56ebabb32b7da5134.png"><img alt="_images/2001940964660b3edaae4ddf7cad84cd5fdccda985d00fe56ebabb32b7da5134.png" src="_images/2001940964660b3edaae4ddf7cad84cd5fdccda985d00fe56ebabb32b7da5134.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/5d546d522d216979d49670df446cac412c2554af5f13e92891caa05260d4f508.png"><img alt="_images/5d546d522d216979d49670df446cac412c2554af5f13e92891caa05260d4f508.png" src="_images/5d546d522d216979d49670df446cac412c2554af5f13e92891caa05260d4f508.png" style="width: 80%;" /></a>
 </div>
 </div>
 <div class="cell docutils container">
