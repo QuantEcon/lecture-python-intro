@@ -16,10 +16,6 @@ kernelspec:
 ```{index} single: Linear Equations and Matrix Algebra
 ```
 
-```{contents} Contents
-:depth: 2
-```
-
 ## Overview
 
 Many problems in economics and finance require solving linear equations.
@@ -64,7 +60,7 @@ The second method is more general, as we will see.
 
 Suppose that we have two related goods, such as 
 
-* propane and ethanol 
+* propane and ethanol.
 * rice and wheat, etc. 
 
 To keep things simple, we label them as good 0 and good 1.
@@ -147,8 +143,8 @@ The set of all $n$-vectors is denoted by $\mathbb R^n$.
 
 For example, 
 
-* $\mathbb R^2$ is the plane --- the set of pairs $(x_1, x_2)$
-* $\mathbb R^3$ is 3 dimensional space --- the set of vectors $(x_1, x_2, x_3)$
+* $\mathbb R^2$ is the plane --- the set of pairs $(x_1, x_2)$.
+* $\mathbb R^3$ is 3 dimensional space --- the set of vectors $(x_1, x_2, x_3)$.
 
 Often vectors are represented visually as arrows from the origin to the point.
 
@@ -210,7 +206,7 @@ $$
 \begin{bmatrix}
     7 \\
     1
-\end{bmatrix}
+\end{bmatrix}.
 $$
 
 In general,
@@ -234,7 +230,7 @@ x + y =
     x_2 + y_2 \\
     \vdots \\
     x_n + y_n
-\end{bmatrix}
+\end{bmatrix}.
 $$
 
 We can visualise vector addition in $\mathbb{R}^2$ as follows.
@@ -294,7 +290,7 @@ $$
 \begin{bmatrix}
     -6 \\
     14
-\end{bmatrix}
+\end{bmatrix}.
 $$
 
 More generally, it takes a number $\gamma$ and a vector $x$ and produces
@@ -306,7 +302,7 @@ $$
     \gamma x_2 \\
     \vdots \\
     \gamma x_n
-\end{bmatrix}
+\end{bmatrix}.
 $$
 
 Scalar multiplication is illustrated in the next figure.
@@ -385,14 +381,14 @@ x^\top y =
     y_n
 \end{bmatrix}
 = {\color{red}{x_1 y_1}} + {\color{blue}{x_2 y_2}} + \cdots + x_n y_n
-:= \sum_{i=1}^n x_i y_i
+:= \sum_{i=1}^n x_i y_i.
 $$
 
 The **norm** of a vector $x$ represents its "length" (i.e., its distance from
 the zero vector) and is defined as
 
 $$
-    \| x \| := \sqrt{x^\top x} := \left( \sum_{i=1}^n x_i^2 \right)^{1/2}
+    \| x \| := \sqrt{x^\top x} := \left( \sum_{i=1}^n x_i^2 \right)^{1/2}.
 $$
 
 The expression $\| x - y\|$ can be thought of as the "distance" between $x$ and $y$.
@@ -445,7 +441,7 @@ $$
 \begin{bmatrix}
     6 & -39 \\
     0 & 15
-\end{bmatrix}
+\end{bmatrix}.
 $$
 
 In general for a number $\gamma$ and any matrix $A$,
@@ -462,7 +458,7 @@ $$
     \gamma a_{11} & \cdots & \gamma a_{1k} \\
     \vdots & \vdots & \vdots \\
     \gamma a_{n1} & \cdots & \gamma a_{nk}
-\end{bmatrix}
+\end{bmatrix}.
 $$
 
 Consider this example of matrix addition,
@@ -481,7 +477,7 @@ $$
 \begin{bmatrix}
     13 & 4 \\
     7 & 12
-\end{bmatrix}
+\end{bmatrix}.
 $$
 
 In general,
@@ -502,7 +498,7 @@ A + B =
     a_{11} + b_{11} &  \cdots & a_{1k} + b_{1k} \\
     \vdots & \vdots & \vdots \\
     a_{n1} + b_{n1} &  \cdots & a_{nk} + b_{nk}
-\end{bmatrix}
+\end{bmatrix}.
 $$
 
 In the latter case, the matrices must have the same shape in order for the
@@ -593,7 +589,7 @@ $$
 
 There are many tutorials to help you further visualize this operation, such as 
 
-* [this one](http://www.mathsisfun.com/algebra/matrix-multiplying.html), or 
+* [this one](http://www.mathsisfun.com/algebra/matrix-multiplying.html), or
 * the discussion on the [Wikipedia page](https://en.wikipedia.org/wiki/Matrix_multiplication).
 
 
@@ -614,8 +610,8 @@ $$
 
 It is a useful exercise to check the following:
 
-* If $A$ is $n \times k$ and $I$ is the $k \times k$ identity matrix, then $AI = A$.
-* If $I$ is the $n \times n$ identity matrix, then $IA = A$.
+* if $A$ is $n \times k$ and $I$ is the $k \times k$ identity matrix, then $AI = A$.
+* if $I$ is the $n \times n$ identity matrix, then $IA = A$.
 
 
 
@@ -703,7 +699,7 @@ First we rewrite {eq}`two_eq_demand` as
     \begin{bmatrix}
         100 \\
         50
-    \end{bmatrix}
+    \end{bmatrix}.
 ```
 
 Recall that $p \in \mathbb{R}^{2}$ is the price of two goods.
@@ -726,19 +722,19 @@ We rewrite {eq}`two_eq_supply` as
     \begin{bmatrix}
          10 & 5  \\
          5 & 10  
-    \end{bmatrix}
+    \end{bmatrix}.
 ```
 
 Now equality of supply and demand can be expressed as $q^s = q^d$, or
 
 $$
-    C p = D p + h
+    C p = D p + h.
 $$
 
 We can rearrange the terms to get 
 
 $$
-    (C - D) p = h
+    (C - D) p = h.
 $$
 
 If all of the terms were numbers, we could solve for prices as $p = h /
@@ -749,7 +745,7 @@ prices using the inverse of $C - D$:
 
 ```{math}
 :label: two_matrix
-    p = (C - D)^{-1} h
+    p = (C - D)^{-1} h.
 ```
 
 Before we implement the solution let us consider a more general setting.
@@ -786,13 +782,13 @@ To find an equilibrium, we solve $Dp + h = Cp + e$, or
 
 ```{math}
 :label: n_eq_sys_la
-    (D- C)p = e - h 
+    (D- C)p = e - h.
 ```
 
 The solution is
 
 $$ 
-    p = (D- C)^{-1}(e - h) 
+    p = (D- C)^{-1}(e - h).
 $$
 
 
@@ -810,7 +806,7 @@ A more general version of the problem described above looks as follows.
 \end{matrix}
 ```
 
-The objective here is to solve for the "unknowns" $x_1, \ldots, x_n$ 
+The objective here is to solve for the "unknowns" $x_1, \ldots, x_n$.
 
 We take as given the coefficients $a_{11}, \ldots, a_{nn}$ and constants $b_1, \ldots, b_n$.
 
@@ -840,7 +836,7 @@ In matrix form, the system {eq}`la_se` becomes
         b_1 \\
         \vdots \\
         b_n
-    \end{bmatrix}
+    \end{bmatrix}.
 ```
 
 For example, {eq}`n_eq_sys_la` has this form with 
@@ -850,7 +846,7 @@ $$
     \quad
     b = e - h
     \quad \text{and} \quad
-    x = p
+    x = p.
 $$
 
 
@@ -871,7 +867,7 @@ Recall again the system of equations {eq}`la_se`, which we write here again as
 
 ```{math}
 :label: la_se2
-    A x = b
+    A x = b.
 ```
 
 The problem we face is to find a vector $x \in \mathbb R^n$ that solves
@@ -887,8 +883,8 @@ Consider the system of equations given by,
 
 $$
 \begin{aligned}
-    x + 3y = 3 \\
-    2x + 6y = -8
+    x + 3y &= 3 \\
+    2x + 6y &= -8.
 \end{aligned}
 $$
 
@@ -928,7 +924,7 @@ We can rewrite this system in matrix form as
     \begin{bmatrix}
         3 \\
         -8
-    \end{bmatrix}
+    \end{bmatrix}.
 ```
 
 It can be noted that the $2^{nd}$ row of matrix $A = (2, 6)$ is just a scalar multiple of the $1^{st}$ row of matrix $A = (1, 3)$.
@@ -953,8 +949,8 @@ Now consider,
 
 $$
 \begin{aligned}
-    x - 2y = -4 \\
-    -2x + 4y = 8
+    x - 2y &= -4 \\
+    -2x + 4y &= 8.
 \end{aligned}
 $$
 
@@ -970,7 +966,7 @@ This is because the rows of the corresponding matrix
     \begin{bmatrix}
         1 & -2 \\
         -2 & 4
-    \end{bmatrix}
+    \end{bmatrix}.
 ```
 
 are linearly dependent --- can you see why?
@@ -991,7 +987,7 @@ $$
     \color{blue}{c} & \color{red}{d}
 \end{bmatrix}
 =
-{\color{red}{ad}} - {\color{blue}{bc}}
+{\color{red}{ad}} - {\color{blue}{bc}}.
 $$
 
 If the determinant of $A$ is not zero, then we say that $A$ is *nonsingular*.
@@ -1031,7 +1027,7 @@ This is the solution to $Ax = b$ --- the solution we are looking for.
 In the two goods example we obtained the matrix equation,
 
 $$
-p = (C-D)^{-1} h
+p = (C-D)^{-1} h.
 $$
 
 where $C$, $D$ and $h$ are given by {eq}`two_eq_demand_mat` and {eq}`two_eq_supply_mat`.
