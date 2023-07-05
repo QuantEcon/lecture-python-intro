@@ -26,14 +26,14 @@ Many problems in economics and finance require solving linear equations.
 
 In this lecture we discuss linear equations and their applications.
 
-To illustrate the importance of linear equations, we begin with a two good
+To illustrate the importance of linear equations, we begin with a two goods
 model of supply and demand.
 
-The two good case is so simple that solutions can be calculated by hand.
+The two goods case is so simple that solutions can be calculated by hand.
 
 But often we need to consider markets containing many goods.
 
-In this case we face large systems of linear equations, with many equations
+In the multiple goods case we face large systems of linear equations, with many equations
 and unknowns.
 
 To handle such systems we need two things:
@@ -52,9 +52,9 @@ import matplotlib.pyplot as plt
 
 
 
-## A two good example
+## A two goods example
 
-In this section we discuss a simple two good example and solve it by
+In this section we discuss a simple two goods example and solve it by
 
 1. pencil and paper
 2. matrix algebra
@@ -122,7 +122,7 @@ $$
 
 ### Looking forward
 
-Pencil and paper methods are easy in the two good case.
+Pencil and paper methods are easy in the two goods case.
 
 But what if there are many goods?
 
@@ -138,7 +138,7 @@ basics of vectors and matrices, in both theory and computation.
 ```{index} single: Linear Algebra; Vectors
 ```
 
-A **vector** of length $n$ is just a sequence (or array, or tuple) of $n$ numbers, which we write as $x = (x_1, \ldots, x_n)$.
+A **vector** of length $n$ is just a sequence (or array, or tuple) of $n$ numbers, which we write as $x = (x_1, \ldots, x_n)$ or $x = \begin{bmatrix}x_1, \ldots, x_n\end{bmatrix}$.
 
 We can write these sequences either horizontally or vertically.
 
@@ -157,7 +157,7 @@ Often vectors are represented visually as arrows from the origin to the point.
 Here's a visualization.
 
 ```{code-cell} ipython3
-:tags: [hide_input]
+:tags: [hide-input]
 
 fig, ax = plt.subplots()
 # Set the axes through the origin
@@ -242,7 +242,7 @@ $$
 We can visualise vector addition in $\mathbb{R}^2$ as follows.
 
 ```{code-cell} ipython3
-:tags: [hide_input]
+:tags: [hide-input]
 
 fig, ax = plt.subplots()
 # Set the axes through the origin
@@ -314,7 +314,7 @@ $$
 Scalar multiplication is illustrated in the next figure.
 
 ```{code-cell} ipython3
-:tags: [hide_input]
+:tags: [hide-input]
 
 fig, ax = plt.subplots()
 # Set the axes through the origin
@@ -376,7 +376,7 @@ x + y                     # Add (element-by-element)
 The **inner product** of vectors $x,y \in \mathbb R^n$ is defined as
 
 $$
-x' y = 
+x^\top y = 
 \begin{bmatrix}
     \color{red}{x_1} & \color{blue}{x_2} & \cdots & x_n
 \end{bmatrix}
@@ -394,7 +394,7 @@ The **norm** of a vector $x$ represents its "length" (i.e., its distance from
 the zero vector) and is defined as
 
 $$
-    \| x \| := \sqrt{x' x} := \left( \sum_{i=1}^n x_i^2 \right)^{1/2}
+    \| x \| := \sqrt{x^\top x} := \left( \sum_{i=1}^n x_i^2 \right)^{1/2}
 $$
 
 The expression $\| x - y\|$ can be thought of as the "distance" between $x$ and $y$.
@@ -658,7 +658,7 @@ To get the transpose of `A`, use `A.transpose()` or, more simply, `A.T`.
 There are many convenient functions for creating common matrices (matrices of zeros,
 ones, etc.) --- see [here](https://python-programming.quantecon.org/numpy.html#creating-arrays).
 
-Since operations are performed elementwise by default, scalar multiplication and addition have very natural syntax
+Since operations are performed elementwise by default, scalar multiplication and addition have very natural syntaxes
 
 ```{code-cell} ipython3
 A = np.identity(3)    # 3 x 3 identity matrix
@@ -677,9 +677,9 @@ To multiply matrices we use the `@` symbol.
 In particular, `A @ B` is matrix multiplication, whereas `A * B` is element-by-element multiplication.
 ```
 
-### Two good model in matrix form
+### Two goods model in matrix form
 
-We can now revisit the two good model and solve {eq}`two_equilibrium`
+We can now revisit the two goods model and solve {eq}`two_equilibrium`
 numerically via matrix algebra.
 
 This involves some extra steps but the method is widely applicable --- as we
@@ -709,6 +709,8 @@ First we rewrite {eq}`two_eq_demand` as
         50
     \end{bmatrix}
 ```
+
+Recall that $p \in \mathbb{R}^{2}$ is the price of two goods.
 
 (Please check that $q^d = D p + h$ represents the same equations as {eq}`two_eq_demand`.)
 
@@ -768,21 +770,21 @@ including crude oil, gasoline, coal, natural gas, ethanol and uranium.
 The prices of these goods are related, so it makes sense to study them
 together.
 
-Pencil and paper solutions become very time consuming with large systems.
+Pencil and paper method become very time consuming with large systems.
 
 But fortunately the matrix methods described above are essentially unchanged.
 
 In general, we can write the demand equation as $q^d = Dp + h$, where
 
-* $q^d$ is an $n \times 1$ vector of demand quantities for $n$ different goods
-* $D$ is an $n \times n$ "coefficient" matrix
-* $h$ is an $n \times 1$ vector of constant values
+* $q^d$ is an $n \times 1$ vector of demand quantities for $n$ different goods.
+* $D$ is an $n \times n$ "coefficient" matrix.
+* $h$ is an $n \times 1$ vector of constant values.
 
 Similarly, we can write the supply equation as $q^s = Cp + e$, where
 
-* $q^d$ is an $n \times 1$ vector of supply quantities for the same goods
-* $C$ is an $n \times n$ "coefficient" matrix
-* $e$ is an $n \times 1$ vector of constant values
+* $q^d$ is an $n \times 1$ vector of supply quantities for the same goods.
+* $C$ is an $n \times n$ "coefficient" matrix.
+* $e$ is an $n \times 1$ vector of constant values.
 
 To find an equilibrium, we solve $Dp + h = Cp + e$, or
 
@@ -1001,8 +1003,10 @@ If the determinant of $A$ is not zero, then we say that $A$ is *nonsingular*.
 A square matrix $A$ is nonsingular if and only if the rows and columns of $A$
 are linearly independent.
 
+A more detailed explanation of matrix inverse can be found [here](https://www.mathsisfun.com/algebra/matrix-inverse.html).
+
 You can check yourself that the in {eq}`no_soln` and {eq}`many_solns` with
-linearly dependent rows are singular matrices as well.
+linearly dependent rows are singular matrices.
 
 This gives us a useful one-number summary of whether or not a square matrix
 can be inverted.
@@ -1028,7 +1032,7 @@ This is the solution to $Ax = b$ --- the solution we are looking for.
 ```{index} single: Linear Algebra; SciPy
 ```
 
-In the two good example we obtained the matrix equation,
+In the two goods example we obtained the matrix equation,
 
 $$
 p = (C-D)^{-1} h
@@ -1334,8 +1338,13 @@ x
 
 ```{code-cell} ipython3
 #using numpy.linalg.lstsq
-x = np.linalg.lstsq(A, b, rcond = None)
-x
+x, res, _, _ = np.linalg.lstsq(A, b, rcond=None)
+```
+
+```{code-cell} ipython3
+:tags: [hide-input]
+print(f"x\u0302 = {x}")
+print(f"\u2016Ax\u0302 - b\u2016\u00B2 = {res[0]}")
 ```
 
 Here is a visualization of how the least squares method approximates the equation of a line connecting a set of points.
@@ -1347,10 +1356,10 @@ fig, ax = plt.subplots()
 p = np.array((1, 3, 8))
 q = np.array((9, 7 ,3))
 
-a, b = x[0]
+a, b = x
 
-plt.plot(q, p, 'o', label='observations', markersize=5)
-plt.plot(q, a - b*q, 'r', label='Fitted line')
+ax.plot(q, p, 'o', label='observations', markersize=5)
+ax.plot(q, a - b*q, 'r', label='Fitted line')
 plt.xlabel('quantity demanded')
 plt.ylabel('price')
 plt.legend()
