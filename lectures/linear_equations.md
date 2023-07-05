@@ -50,8 +50,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 ```
 
-
-
 ## A two goods example
 
 In this section we discuss a simple two goods example and solve it by
@@ -252,13 +250,13 @@ for spine in ['right', 'top']:
     ax.spines[spine].set_color('none')
 
 ax.set(xlim=(-2, 10), ylim=(-4, 4))
-#ax.grid()
-vecs = ((4, -2), (3, 3),(7,1))
-tags = ('(x1, x2)','(y1, y2)','(x1+x2, y1+y2)')
-colors = ('blue','green','red')
+# ax.grid()
+vecs = ((4, -2), (3, 3), (7, 1))
+tags = ('(x1, x2)', '(y1, y2)', '(x1+x2, y1+y2)')
+colors = ('blue', 'green', 'red')
 for i, v in enumerate(vecs):
     ax.annotate('', xy=v, xytext=(0, 0),
-                arrowprops=dict(color = colors[i],
+                arrowprops=dict(color=colors[i],
                 shrink=0,
                 alpha=0.7,
                 width=0.5,
@@ -266,9 +264,9 @@ for i, v in enumerate(vecs):
                 headlength=15))
     ax.text(v[0] + 0.2, v[1] + 0.1, tags[i])
 
-for i,v in enumerate(vecs):
-    ax.annotate('', xy=(7,1), xytext=v,
-                arrowprops=dict(color = 'gray',
+for i, v in enumerate(vecs):
+    ax.annotate('', xy=(7, 1), xytext=v,
+                arrowprops=dict(color='gray',
                 shrink=0,
                 alpha=0.3,
                 width=0.5,
@@ -410,14 +408,12 @@ x @ y            # Another way to compute the inner product
 ```
 
 ```{code-cell} ipython3
-np.sqrt(np.sum(x**2))  # Norm of x, take one
+np.sqrt(np.sum(x**2))  # Norm of x, method one
 ```
 
 ```{code-cell} ipython3
-np.linalg.norm(x)      # Norm of x, take two
+np.linalg.norm(x)      # Norm of x, method two
 ```
-
-
 
 ## Matrix operations
 
@@ -902,7 +898,7 @@ To illustrate why this situation arises let's plot the two lines.
 
 ```{code-cell} ipython3
 fig, ax = plt.subplots()
-x = np.linspace(-10,10)
+x = np.linspace(-10, 10)
 plt.plot(x, (3-x)/3, label=f'$x + 3y = 3$')
 plt.plot(x, (-8-2*x)/6, label=f'$2x + 6y = -8$')
 plt.legend()
@@ -1047,7 +1043,7 @@ We can now solve for equilibrium prices with NumPy's `linalg` submodule.
 All of these routines are Python front ends to time-tested and highly optimized FORTRAN code.
 
 ```{code-cell} ipython3
-C = ((10, 5),      #matrix C
+C = ((10, 5),      # Matrix C
      (5, 10))
 ```
 
@@ -1058,34 +1054,35 @@ C = np.array(C)
 ```
 
 ```{code-cell} ipython3
-D = ((-10, -5),     #matrix D
+D = ((-10, -5),     # Matrix D
      (-1, -10))
 D = np.array(D)
 ```
 
 ```{code-cell} ipython3
-h = np.array((100, 50))   #vector h
-h.shape = 2,1             #transforming h to a column vector
+h = np.array((100, 50))   # Vector h
+h.shape = 2,1             # Transforming h to a column vector
 ```
 
 ```{code-cell} ipython3
 from numpy.linalg import det, inv
 A = C - D
-det(A) # check that A is nonsingular (non-zero determinant), and hence invertible
+# Check that A is nonsingular (non-zero determinant), and hence invertible
+det(A)
 ```
 
 ```{code-cell} ipython3
-A_inv = inv(A) # Compute the inverse
+A_inv = inv(A)  # compute the inverse
 A_inv
 ```
 
 ```{code-cell} ipython3
-p = A_inv @ h # equilibrium prices
+p = A_inv @ h  # equilibrium prices
 p
 ```
 
 ```{code-cell} ipython3
-q = C @ p # equilibrium quantities
+q = C @ p  # equilibrium quantities
 q
 ```
 
@@ -1095,12 +1092,12 @@ We can also solve for $p$ using `solve(A, h)` as follows.
 
 ```{code-cell} ipython3
 from numpy.linalg import solve
-p = solve(A, h) # equilibrium prices
+p = solve(A, h)  # equilibrium prices
 p
 ```
 
 ```{code-cell} ipython3
-q = C @ p # equilibrium quantities
+q = C @ p  # equilibrium quantities
 q
 ```
 
@@ -1188,22 +1185,22 @@ b =
 \end{bmatrix}
 $$
 
-```{code-cell} ipython3
+```{code-cell}
 import numpy as np
 from numpy.linalg import det
 
-A = np.array([[35, -5, -5],        #matrix A
+A = np.array([[35, -5, -5],  # matrix A
               [-5, 25, -10],
               [-5, -5, 15]])
 
-b = np.array((100, 75, 55))        #column vector b
-b.shape = (3,1)
+b = np.array((100, 75, 55))  # column vector b
+b.shape = (3, 1)
 
-det(A)    #check if A is nonsingular
+det(A)  # check if A is nonsingular
 ```
 
-```{code-cell} ipython3
-#using inverse
+```{code-cell}
+# Using inverse
 from numpy.linalg import det
 
 A_inv = inv(A)
@@ -1212,10 +1209,10 @@ p = A_inv @ b
 p
 ```
 
-```{code-cell} ipython3
-#using numpy.linalg.solve
+```{code-cell}
+# Using numpy.linalg.solve
 from numpy.linalg import solve
-p = solve(A,b)
+p = solve(A, b)
 p
 ```
 
@@ -1322,27 +1319,28 @@ from numpy.linalg import inv
 ```
 
 ```{code-cell} ipython3
-#using matrix algebra
-A = np.array([[1, -9],    #matrix A
+# Using matrix algebra
+A = np.array([[1, -9],  # matrix A
               [1, -7],
               [1, -3]])
 
-A_T = np.transpose(A)    #transpose of matrix A
+A_T = np.transpose(A)  # transpose of matrix A
 
-b = np.array((1, 3, 8))    #column vector b
-b.shape = (3,1)
+b = np.array((1, 3, 8))  # column vector b
+b.shape = (3, 1)
 
 x = inv(A_T @ A) @ A_T @ b
 x
 ```
 
 ```{code-cell} ipython3
-#using numpy.linalg.lstsq
+# Using numpy.linalg.lstsq
 x, res, _, _ = np.linalg.lstsq(A, b, rcond=None)
 ```
 
 ```{code-cell} ipython3
 :tags: [hide-input]
+
 print(f"x\u0302 = {x}")
 print(f"\u2016Ax\u0302 - b\u2016\u00B2 = {res[0]}")
 ```
@@ -1354,7 +1352,7 @@ We can also describe this as "fitting" a line between a set of points.
 ```{code-cell} ipython3
 fig, ax = plt.subplots()
 p = np.array((1, 3, 8))
-q = np.array((9, 7 ,3))
+q = np.array((9, 7, 3))
 
 a, b = x
 
@@ -1375,5 +1373,3 @@ plt.show()
 The documentation of the `numpy.linalg` submodule can be found [here](https://numpy.org/devdocs/reference/routines.linalg.html).
 
 More advanced topics in linear algebra can be found [here](https://python.quantecon.org/linear_algebra.html#id5).
-
-
