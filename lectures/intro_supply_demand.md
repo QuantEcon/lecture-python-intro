@@ -18,34 +18,26 @@ the main topics of elementary microeconomics.
 
 Throughout the lecture, we focus on models with one good and one price.
 
-({doc}`Later <supply_demand_multiple_goods>` we will investigate settings with
-many goods.)
+
+In a {doc}`subsequent lecture <supply_demand_multiple_goods>` we will investigate settings with
+many goods.
 
 Key infrastructure concepts that we'll encounter in this lecture are
 
 * inverse demand curves
-* marginal utilities of wealth
 * inverse supply curves
 * consumer surplus
 * producer surplus
-* social welfare as a sum of consumer and producer surpluses
-* competitive equilibrium
+* social welfare as the sum of consumer and producer surpluses
+* relationship between  equilibrium quantity and social welfare optimum
 
+Throughout the lectures, we'll assume that inverse demand and supply curves are **affine** functions of output.
 
-We will provide a version of the [first fundamental welfare theorem](https://en.wikipedia.org/wiki/Fundamental_theorems_of_welfare_economics), which was formulated by 
+("Affine" means "linear plus a constant".)
 
-* [Leon Walras](https://en.wikipedia.org/wiki/L%C3%A9on_Walras)
-* [Francis Ysidro Edgeworth](https://en.wikipedia.org/wiki/Francis_Ysidro_Edgeworth)
-* [Vilfredo Pareto](https://en.wikipedia.org/wiki/Vilfredo_Pareto)
+We'll also assume affine inverse supply and demand functions when we study models with multiple consumption goods in our {doc}`subsequent lecture <supply_demand_multiple_goods>`.
 
-Important extensions to the key ideas were obtained by
-
-* [Abba Lerner](https://en.wikipedia.org/wiki/Abba_P._Lerner)
-* [Harold Hotelling](https://en.wikipedia.org/wiki/Harold_Hotelling)
-* [Paul Samuelson](https://en.wikipedia.org/wiki/Paul_Samuelson)
-* [Kenneth Arrow](https://en.wikipedia.org/wiki/Kenneth_Arrow) 
-* [Gerard Debreu](https://en.wikipedia.org/wiki/G%C3%A9rard_Debreu)
-
+We do this in order to simplify the exposition and enable us to use just a few tools from linear algebra, namely, matrix multiplication and matrix inversion.
 
 In our exposition we will use the following imports.
 
@@ -98,6 +90,8 @@ class Market:
 
 ```
 
+
+
 Let's create an instance.
 
 ```{code-cell} ipython3
@@ -128,7 +122,7 @@ ax.set_ylabel('price')
 plt.show()
 ```
 
-
+In the above graph, an **equilibrium** price, quantity pair occurs at the intersection of the supply and demand curves. 
 
 ### Consumer surplus
 
@@ -175,12 +169,12 @@ plt.show()
 ```
 
 
-Consumer surplus gives a measure of total consumer welfare at quantity $q$.
+Consumer surplus provides a measure of total consumer welfare at quantity $q$.
 
-The idea is that the inverse demand curve $d_0 - d_1 q$ shows willingness to 
-pay at a given quantity $q$.
+The idea is that the inverse demand curve $d_0 - d_1 q$ shows a consumer's willingness to 
+pay for an additional increment of the good  at a given quantity $q$.
 
-The difference between willingness to pay and the actual price is the surplus.
+The difference between willingness to pay and the actual price is consumer surplus.
 
 The value $S_c(q)$ is the "sum" (i.e., integral) of these surpluses when the total
 quantity purchased is $q$ and the purchase price is $p$.
@@ -245,7 +239,7 @@ The idea is similar to that of consumer surplus.
 The inverse supply curve $s_0 + s_1 q$ shows the price at which producers are
 prepared to sell, given quantity $q$.
 
-The difference between willingness to sell and the actual price is the surplus.
+The difference between willingness to sell and the actual price is producer surplus.
 
 The value $S_p(q)$ is the integral of these surpluses.
 
