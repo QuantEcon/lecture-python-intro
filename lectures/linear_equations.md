@@ -71,7 +71,7 @@ The demand for each good depends on the price of both goods:
 :label: two_eq_demand
 \begin{aligned}
     q_0^d = 100 - 10 p_0 - 5 p_1 \\
-    q_1^d = 50 - p_0 - 10 p_1 
+    q_1^d = 50 - p_0 - 10 p_1.
 \end{aligned}
 ```
 
@@ -84,7 +84,7 @@ Let's suppose that supply is given by
 :label: two_eq_supply
 \begin{aligned}
     q_0^s = 10 p_0 + 5 p_1 \\
-    q_1^s = 5 p_0 + 10 p_1 
+    q_1^s = 5 p_0 + 10 p_1.
 \end{aligned}
 ```
 
@@ -96,21 +96,21 @@ This yields the linear system
 :label: two_equilibrium
 \begin{aligned}
     100 - 10 p_0 - 5 p_1 = 10 p_0 + 5 p_1 \\
-    50 - p_0 - 10 p_1 = 5 p_0 + 10 p_1 
+    50 - p_0 - 10 p_1 = 5 p_0 + 10 p_1.
 \end{aligned}
 ```
 
 We can solve this with pencil and paper to get
 
 $$
-    p_0 = 4.41 \quad \text{and} \quad p_1 = 1.18
+    p_0 = 4.41 \quad \text{and} \quad p_1 = 1.18.
 $$    
 
 Inserting these results into either {eq}`two_eq_demand` or {eq}`two_eq_supply` yields the
 equilibrium quantities 
 
 $$
-    q_0 = 50 \quad \text{and} \quad q_1 = 33.82
+    q_0 = 50 \quad \text{and} \quad q_1 = 33.82.
 $$
 
 
@@ -508,7 +508,7 @@ definition to make sense.
 
 We also have a convention for *multiplying* two matrices.
 
-The rule for matrix multiplication generalizes the idea of inner products
+The rule for matrix multiplication generalizes the idea of the inner products
 discussed above.
 
 If $A$ and $B$ are two matrices, then their product $A B$ is formed by taking
@@ -597,7 +597,7 @@ There are many tutorials to help you further visualize this operation, such as
 Unlike number products, $A B$ and $B A$ are not generally the same thing.
 ```
 
-ONe important special case is the [identity matrix](https://en.wikipedia.org/wiki/Identity_matrix), which has ones on the principal diagonal and zero elsewhere:
+One important special case is the [identity matrix](https://en.wikipedia.org/wiki/Identity_matrix), which has ones on the principal diagonal and zero elsewhere:
 
 $$
     I = 
@@ -650,7 +650,7 @@ To get the transpose of `A`, use `A.transpose()` or, more simply, `A.T`.
 There are many convenient functions for creating common matrices (matrices of zeros,
 ones, etc.) --- see [here](https://python-programming.quantecon.org/numpy.html#creating-arrays).
 
-Since operations are performed elementwise by default, scalar multiplication and addition have very natural syntaxes
+Since operations are performed elementwise by default, scalar multiplication and addition have very natural syntaxes.
 
 ```{code-cell} ipython3
 A = np.identity(3)    # 3 x 3 identity matrix
@@ -785,7 +785,7 @@ To find an equilibrium, we solve $Dp + h = Cp + e$, or
     (D- C)p = e - h.
 ```
 
-The solution is
+The solution $n \times 1$ vector of prices $p$ is
 
 $$ 
     p = (D- C)^{-1}(e - h).
