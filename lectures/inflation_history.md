@@ -321,6 +321,20 @@ df_Aus, df_Hung, df_Pol, df_Germ = df_list
 
 Let's dive in and construct graphs for our four countries.
 
+For each country, we'll plot two graphs.
+
+For each country, the first graph plots  logarithms of 
+
+  * price levels
+  * exchange rates vis a vis US dollars
+
+For each country, the scale on the right side of a graph will pertain to the price level while the scale on the left side of a graph will pertain
+to the exchange rate. 
+
+For each country, the second graph plots a three-month moving average of the inflation rate defined as $p_t - p_{t-1}$.
+
+
+
 ### Austria
 
 The sources of our data are:
@@ -355,6 +369,14 @@ _ = create_pr_plot(p_seq, df_Aus.index, ax)
 plt.figtext(0.5, -0.02, 'Austria', horizontalalignment='center', fontsize=12)
 plt.show()
 ```
+
+Staring at the above  graphs conveys the following impressions to the authors of this lecture at quantecon.
+
+ * an episode of  "hyperinflation" with  rapidly rising log price level and very high monthly inflation rates
+ * a sudden stop of the hyperinflation as indicated by the abrupt flattening of the log price level and a marked permanent drop in the three-month average of inflation
+ * a US dollar exchange rate that shadows the price level.  
+  
+We'll see similar patterns in the next three episodes  that we'll study now.
 
 ### Hungary
 
@@ -506,6 +528,12 @@ plt.show()
 A striking thing about our four graphs is how **quickly** the (log) price levels in Austria, Hungary, Poland,
 and Germany leveled off after having been rising so quickly.
 
+These "sudden stops" are also revealed by the permanent drops in three-month moving averages of inflation for the four countries.
+
+In addition, the US dollar exchange rates for each of the four countries shadowed their price levels. 
+
+  * this pattern is an instance of a force modeled in the **purchasing power parity** theory of exchange rates.
+
 Each of these big inflations seemed to have "stopped on a dime".
 
 Chapter 3 of {cite}`sargent2002big` attempts to offer an explanation for this remarkable pattern.
@@ -514,7 +542,12 @@ In a nutshell, here is his story.
 
 After World War I, the United States was on the gold standard. The US government stood ready to convert a dollar into a specified amount of gold on demand. To understate things, immediately after the war, Hungary, Austria, Poland, and Germany were not on the gold standard. 
 
-In practice, their currencies were largely “fiat,” or unbacked. The governments of these countries resorted to the printing of new unbacked money to finance government deficits. (The notes were "backed" mainly by treasury bills that, in those times, could not be expected to be paid off by levying taxes, but only by printing more notes or treasury bills.) This was done on such a scale that it led to a depreciation of the currencies of spectacular proportions. In the end, the German mark stabilized at 1 trillion ($10^{12}$) paper marks to the prewar gold mark, the Polish mark at 1.8 million paper marks to the gold zloty, the Austrian crown at 14,400 paper crowns to the prewar Austro-Hungarian crown, and the Hungarian krone at 14,500 paper crowns to the prewar Austro-Hungarian crown.
+In practice, their currencies were largely “fiat” or "unbacked",  meaning that they were not backed by credible government promises to convert them into gold or silver coins on demand. The governments of these countries resorted to the printing of new unbacked money to finance government deficits. (The notes were "backed" mainly by treasury bills that, in those times, could not be expected to be paid off by levying taxes, but only by printing more notes or treasury bills.) This was done on such a scale that it led to a depreciation of the currencies of spectacular proportions. In the end, the German mark stabilized at 1 trillion ($10^{12}$) paper marks to the prewar gold mark, the Polish mark at 1.8 million paper marks to the gold zloty, the Austrian crown at 14,400 paper crowns to the prewar Austro-Hungarian crown, and the Hungarian krone at 14,500 paper crowns to the prewar Austro-Hungarian crown.
 
 Chapter 3 of {cite}`sargent2002big`  focuses on the deliberate changes in policy that Hungary, Austria, Poland, and Germany made to end their hyperinflations.
 The hyperinflations were each ended by restoring or virtually restoring convertibility to the dollar or equivalently to gold.
+
+The story told in {cite}`sargent2002big` is grounded in a "fiscal theory of the price level" described in {doc}`this lecture <cagan_ree>` and further discussed in 
+{doc}`this lecture <cagan_adaptive>`.
+
+Those lectures discuss theories about what holders of those rapidly depreciating currencies were thinking about them and how that shaped responses of inflation to government policies.
