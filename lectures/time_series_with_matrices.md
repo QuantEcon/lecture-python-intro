@@ -504,7 +504,7 @@ print("Sigma_y = ", Sigma_y)
 
 Notice that  the covariance between $y_t$ and $y_{t-1}$ -- the elements on the superdiagonal -- are **not** identical.
 
-This is is an indication that the time series respresented by our $y$ vector is not **stationary**.  
+This is is an indication that the time series represented by our $y$ vector is not **stationary**.  
 
 To make it stationary, we'd have to alter our system so that our **initial conditions** $(y_1, y_0)$ are not fixed numbers but instead a jointly normally distributed random vector with a particular mean and  covariance matrix.
 
