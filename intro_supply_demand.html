@@ -231,32 +231,21 @@ const thebe_selector_output = ".output, .cell_output"
 <p>This lecture is about some models of equilibrium prices and quantities, one of
 the main topics of elementary microeconomics.</p>
 <p>Throughout the lecture, we focus on models with one good and one price.</p>
-<p>(<a class="reference internal" href="supply_demand_multiple_goods.html"><span class="doc">Later</span></a> we will investigate settings with
-many goods.)</p>
+<p>In a <a class="reference internal" href="supply_demand_multiple_goods.html"><span class="doc">subsequent lecture</span></a> we will investigate settings with
+many goods.</p>
 <p>Key infrastructure concepts that we’ll encounter in this lecture are</p>
 <ul class="simple">
 <li><p>inverse demand curves</p></li>
-<li><p>marginal utilities of wealth</p></li>
 <li><p>inverse supply curves</p></li>
 <li><p>consumer surplus</p></li>
 <li><p>producer surplus</p></li>
-<li><p>social welfare as a sum of consumer and producer surpluses</p></li>
-<li><p>competitive equilibrium</p></li>
+<li><p>social welfare as the sum of consumer and producer surpluses</p></li>
+<li><p>relationship between  equilibrium quantity and social welfare optimum</p></li>
 </ul>
-<p>We will provide a version of the <a class="reference external" href="https://en.wikipedia.org/wiki/Fundamental_theorems_of_welfare_economics">first fundamental welfare theorem</a>, which was formulated by</p>
-<ul class="simple">
-<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/L%C3%A9on_Walras">Leon Walras</a></p></li>
-<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Francis_Ysidro_Edgeworth">Francis Ysidro Edgeworth</a></p></li>
-<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Vilfredo_Pareto">Vilfredo Pareto</a></p></li>
-</ul>
-<p>Important extensions to the key ideas were obtained by</p>
-<ul class="simple">
-<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Abba_P._Lerner">Abba Lerner</a></p></li>
-<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Harold_Hotelling">Harold Hotelling</a></p></li>
-<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Paul_Samuelson">Paul Samuelson</a></p></li>
-<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Kenneth_Arrow">Kenneth Arrow</a></p></li>
-<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/G%C3%A9rard_Debreu">Gerard Debreu</a></p></li>
-</ul>
+<p>Throughout the lectures, we’ll assume that inverse demand and supply curves are <strong>affine</strong> functions of output.</p>
+<p>(“Affine” means “linear plus a constant”.)</p>
+<p>We’ll also assume affine inverse supply and demand functions when we study models with multiple consumption goods in our <a class="reference internal" href="supply_demand_multiple_goods.html"><span class="doc">subsequent lecture</span></a>.</p>
+<p>We do this in order to simplify the exposition and enable us to use just a few tools from linear algebra, namely, matrix multiplication and matrix inversion.</p>
 <p>In our exposition we will use the following imports.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -346,6 +335,7 @@ implementing the inverse demand and supply curves.</p>
 <a class="reference internal image-reference" href="_images/b69143db7721008349b41f252d65ff8c42a57d08248ac7eb650929640096d92d.png"><img alt="_images/b69143db7721008349b41f252d65ff8c42a57d08248ac7eb650929640096d92d.png" src="_images/b69143db7721008349b41f252d65ff8c42a57d08248ac7eb650929640096d92d.png" style="width: 80%;" /></a>
 </div>
 </div>
+<p>In the above graph, an <strong>equilibrium</strong> price, quantity pair occurs at the intersection of the supply and demand curves.</p>
 <section id="consumer-surplus">
 <h3><span class="section-number">7.2.1. </span>Consumer surplus<a class="headerlink" href="#consumer-surplus" title="Permalink to this heading">#</a></h3>
 <p>Let a quantity <span class="math notranslate nohighlight">\(q\)</span> be given and let <span class="math notranslate nohighlight">\(p := d_0 - d_1 q\)</span> be the
@@ -396,10 +386,10 @@ curve minus <span class="math notranslate nohighlight">\(p q\)</span>:</p>
 <a class="reference internal image-reference" href="_images/52ab72d3a0aec9c0ee8e2320d693c9bf6753e72d8f669ab077984957894585ce.png"><img alt="_images/52ab72d3a0aec9c0ee8e2320d693c9bf6753e72d8f669ab077984957894585ce.png" src="_images/52ab72d3a0aec9c0ee8e2320d693c9bf6753e72d8f669ab077984957894585ce.png" style="width: 80%;" /></a>
 </div>
 </div>
-<p>Consumer surplus gives a measure of total consumer welfare at quantity <span class="math notranslate nohighlight">\(q\)</span>.</p>
-<p>The idea is that the inverse demand curve <span class="math notranslate nohighlight">\(d_0 - d_1 q\)</span> shows willingness to
-pay at a given quantity <span class="math notranslate nohighlight">\(q\)</span>.</p>
-<p>The difference between willingness to pay and the actual price is the surplus.</p>
+<p>Consumer surplus provides a measure of total consumer welfare at quantity <span class="math notranslate nohighlight">\(q\)</span>.</p>
+<p>The idea is that the inverse demand curve <span class="math notranslate nohighlight">\(d_0 - d_1 q\)</span> shows a consumer’s willingness to
+pay for an additional increment of the good  at a given quantity <span class="math notranslate nohighlight">\(q\)</span>.</p>
+<p>The difference between willingness to pay and the actual price is consumer surplus.</p>
 <p>The value <span class="math notranslate nohighlight">\(S_c(q)\)</span> is the “sum” (i.e., integral) of these surpluses when the total
 quantity purchased is <span class="math notranslate nohighlight">\(q\)</span> and the purchase price is <span class="math notranslate nohighlight">\(p\)</span>.</p>
 <p>Evaluating the integral in the definition of consumer surplus gives</p>
@@ -462,7 +452,7 @@ corresponding price on the inverse supply curve.</p>
 <p>The idea is similar to that of consumer surplus.</p>
 <p>The inverse supply curve <span class="math notranslate nohighlight">\(s_0 + s_1 q\)</span> shows the price at which producers are
 prepared to sell, given quantity <span class="math notranslate nohighlight">\(q\)</span>.</p>
-<p>The difference between willingness to sell and the actual price is the surplus.</p>
+<p>The difference between willingness to sell and the actual price is producer surplus.</p>
 <p>The value <span class="math notranslate nohighlight">\(S_p(q)\)</span> is the integral of these surpluses.</p>
 <p>Evaluating the integral in the definition of consumer surplus gives</p>
 <div class="math notranslate nohighlight">

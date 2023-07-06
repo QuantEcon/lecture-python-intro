@@ -253,13 +253,38 @@ const thebe_selector_output = ".output, .cell_output"
 <section id="overview">
 <h2><span class="section-number">34.1. </span>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
 <p>In a <a class="reference internal" href="intro_supply_demand.html"><span class="doc">previous lecture</span></a> we studied supply, demand
-and welfare in a market with just one good.</p>
+and welfare in a market with a single consumption good.</p>
 <p>In this lecture, we study a setting with <span class="math notranslate nohighlight">\(n\)</span> goods and <span class="math notranslate nohighlight">\(n\)</span> corresponding prices.</p>
+<p>Key infrastructure concepts that we’ll encounter in this lecture are</p>
+<ul class="simple">
+<li><p>inverse demand curves</p></li>
+<li><p>marginal utilities of wealth</p></li>
+<li><p>inverse supply curves</p></li>
+<li><p>consumer surplus</p></li>
+<li><p>producer surplus</p></li>
+<li><p>social welfare as a sum of consumer and producer surpluses</p></li>
+<li><p>competitive equilibrium</p></li>
+</ul>
+<p>We will provide a version of the <a class="reference external" href="https://en.wikipedia.org/wiki/Fundamental_theorems_of_welfare_economics">first fundamental welfare theorem</a>, which was formulated by</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/L%C3%A9on_Walras">Leon Walras</a></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Francis_Ysidro_Edgeworth">Francis Ysidro Edgeworth</a></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Vilfredo_Pareto">Vilfredo Pareto</a></p></li>
+</ul>
+<p>Important extensions to the key ideas were obtained by</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Abba_P._Lerner">Abba Lerner</a></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Harold_Hotelling">Harold Hotelling</a></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Paul_Samuelson">Paul Samuelson</a></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Kenneth_Arrow">Kenneth Arrow</a></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/G%C3%A9rard_Debreu">Gerard Debreu</a></p></li>
+</ul>
 <p>We shall describe two classic welfare theorems:</p>
 <ul class="simple">
 <li><p><strong>first welfare theorem:</strong> for a given distribution of wealth among consumers, a competitive  equilibrium  allocation of goods solves a  social planning problem.</p></li>
 <li><p><strong>second welfare theorem:</strong> An allocation of goods to consumers that solves a social planning problem can be supported by a competitive equilibrium with an appropriate initial distribution of  wealth.</p></li>
 </ul>
+<p>As usual, we start by importing some Python modules.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># import some packages</span>
