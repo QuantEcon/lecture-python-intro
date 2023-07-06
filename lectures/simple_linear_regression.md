@@ -297,7 +297,7 @@ Calculating $\beta$
 ```{code-cell} ipython3
 df = df[['X','Y']].copy()  # Original Data
 
-# Calcuate the sample means
+# Calculate the sample means
 x_bar = df['X'].mean()
 y_bar = df['Y'].mean()
 ```
@@ -393,7 +393,7 @@ df
 Sometimes it can be useful to rename your columns to make it easier to work with in the DataFrame
 
 ```{code-cell} ipython3
-df.columns = ["cntry", "year", "life_expectency", "gdppc"]
+df.columns = ["cntry", "year", "life_expectancy", "gdppc"]
 df
 ```
 
@@ -415,10 +415,10 @@ It is always a good idea to spend a bit of time understanding what data you actu
 
 For example, you may want to explore this data to see if there is consistent reporting for all countries across years
 
-Let's first look at the Life Expectency Data
+Let's first look at the Life Expectancy Data
 
 ```{code-cell} ipython3
-le_years = df[['cntry', 'year', 'life_expectency']].set_index(['cntry', 'year']).unstack()['life_expectency']
+le_years = df[['cntry', 'year', 'life_expectancy']].set_index(['cntry', 'year']).unstack()['life_expectancy']
 le_years
 ```
 
@@ -453,13 +453,13 @@ df = df[df.year == 2018].reset_index(drop=True).copy()
 ```
 
 ```{code-cell} ipython3
-df.plot(x='gdppc', y='life_expectency', kind='scatter',  xlabel="GDP per capita", ylabel="Life Expectency (Years)",);
+df.plot(x='gdppc', y='life_expectancy', kind='scatter',  xlabel="GDP per capita", ylabel="Life Expectancy (Years)",);
 ```
 
 This data shows a couple of interesting relationships.
 
 1. there are a number of countries with similar GDP per capita levels but a wide range in Life Expectancy
-2. there appears to be a positive relationship between GDP per capita and life expectancy. Countries with higher GDP per capita tend to have higher life expectency outcomes
+2. there appears to be a positive relationship between GDP per capita and life expectancy. Countries with higher GDP per capita tend to have higher life expectancy outcomes
 
 Even though OLS is solving linear equations -- one option we have is to transform the variables, such as through a log transform, and then use OLS to estimate the transformed variables
 
@@ -470,7 +470,7 @@ ln -> ln == elasticities
 By specifying `logx` you can plot the GDP per Capita data on a log scale
 
 ```{code-cell} ipython3
-df.plot(x='gdppc', y='life_expectency', kind='scatter',  xlabel="GDP per capita", ylabel="Life Expectancy (Years)", logx=True);
+df.plot(x='gdppc', y='life_expectancy', kind='scatter',  xlabel="GDP per capita", ylabel="Life Expectancy (Years)", logx=True);
 ```
 
 As you can see from this transformation -- a linear model fits the shape of the data more closely.
@@ -486,11 +486,11 @@ df
 **Q4:** Use {eq}`eq:optimal-alpha` and {eq}`eq:optimal-beta` to compute optimal values for  $\alpha$ and $\beta$
 
 ```{code-cell} ipython3
-data = df[['log_gdppc', 'life_expectency']].copy()  # Get Data from DataFrame
+data = df[['log_gdppc', 'life_expectancy']].copy()  # Get Data from DataFrame
 
 # Calculate the sample means
 x_bar = data['log_gdppc'].mean()
-y_bar = data['life_expectency'].mean()
+y_bar = data['life_expectancy'].mean()
 ```
 
 ```{code-cell} ipython3
@@ -499,7 +499,7 @@ data
 
 ```{code-cell} ipython3
 # Compute the Sums
-data['num'] = data['log_gdppc'] * data['life_expectency'] - y_bar * data['log_gdppc']
+data['num'] = data['log_gdppc'] * data['life_expectancy'] - y_bar * data['log_gdppc']
 data['den'] = pow(data['log_gdppc'],2) - x_bar * data['log_gdppc']
 β = data['num'].sum() / data['den'].sum()
 print(β)
@@ -513,13 +513,13 @@ print(α)
 **Q5:** Plot the line of best fit found using OLS
 
 ```{code-cell} ipython3
-data['life_expectency_hat'] = α + β * df['log_gdppc']
-data['error'] = data['life_expectency_hat'] - data['life_expectency']
+data['life_expectancy_hat'] = α + β * df['log_gdppc']
+data['error'] = data['life_expectancy_hat'] - data['life_expectancy']
 
 fig, ax = plt.subplots()
-data.plot(x='log_gdppc',y='life_expectency', kind='scatter', ax=ax)
-data.plot(x='log_gdppc',y='life_expectency_hat', kind='line', ax=ax, color='g')
-plt.vlines(data['log_gdppc'], data['life_expectency_hat'], data['life_expectency'], color='r')
+data.plot(x='log_gdppc',y='life_expectancy', kind='scatter', ax=ax)
+data.plot(x='log_gdppc',y='life_expectancy_hat', kind='line', ax=ax, color='g')
+plt.vlines(data['log_gdppc'], data['life_expectancy_hat'], data['life_expectancy'], color='r')
 ```
 
 :::{solution-end}
