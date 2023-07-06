@@ -250,7 +250,7 @@ def process_df(df):
 
     return df
 
-def create_plot(p_seq, e_seq, index, labs, ax):
+def create_pe_plot(p_seq, e_seq, index, labs, ax):
     
     p_lab, e_lab = labs
     
@@ -273,6 +273,28 @@ def create_plot(p_seq, e_seq, index, labs, ax):
     ax1.legend(loc='upper left')
 
     return ax1
+
+def create_pr_plot(p_seq, index, ax):
+
+    # Calculate the difference of log p_seq
+    log_diff_p_seq = np.diff(np.log(p_seq))
+    
+    # Graph for the difference of log p_seq
+    ax.scatter(index[1:], log_diff_p_seq, label='Monthly Inflation Rate', color='tab:grey')
+    diff_smooth = pd.DataFrame(log_diff_p_seq).rolling(3).mean()
+    ax.plot(index[1:], diff_smooth, alpha=0.5, color='tab:grey')
+    ax.text(-0.08, 1.03, 'Monthly Inflation Rate', transform=ax.transAxes)
+    
+    ax.xaxis.set_major_locator(mdates.MonthLocator(interval=5))
+    ax.xaxis.set_major_formatter(mdates.DateFormatter('%b %Y'))
+    
+    for label in ax.get_xticklabels():
+        label.set_rotation(45)
+    
+    ax.legend(loc='upper left')
+    
+    return ax
+    
 ```
 
 ```{code-cell} ipython3
@@ -319,9 +341,17 @@ lab = ['Retail Price Index', 'Exchange Rate']
 
 # create plot
 fig, ax = plt.subplots(figsize=[10,7], dpi=200)
-_ = create_plot(p_seq, e_seq, df_Aus.index, lab, ax)
+_ = create_pe_plot(p_seq, e_seq, df_Aus.index, lab, ax)
 
 # connect disjunct parts
+plt.figtext(0.5, -0.02, 'Austria', horizontalalignment='center', fontsize=12)
+plt.show()
+```
+
+```{code-cell} ipython3
+fig, ax = plt.subplots(figsize=[10,7], dpi=200)
+_ = create_pr_plot(p_seq, df_Aus.index, ax)
+
 plt.figtext(0.5, -0.02, 'Austria', horizontalalignment='center', fontsize=12)
 plt.show()
 ```
@@ -346,7 +376,15 @@ lab = ['Hungarian Index of Prices', '1/Cents per Crown in New York']
 
 # create plot
 fig, ax = plt.subplots(figsize=[10,7], dpi=200)
-_ = create_plot(p_seq, e_seq, df_Hung.index, lab, ax)
+_ = create_pe_plot(p_seq, e_seq, df_Hung.index, lab, ax)
+
+plt.figtext(0.5, -0.02, 'Hungary', horizontalalignment='center', fontsize=12)
+plt.show()
+```
+
+```{code-cell} ipython3
+fig, ax = plt.subplots(figsize=[10,7], dpi=200)
+_ = create_pr_plot(p_seq, df_Hung.index, ax)
 
 plt.figtext(0.5, -0.02, 'Hungary', horizontalalignment='center', fontsize=12)
 plt.show()
@@ -398,7 +436,15 @@ lab = ['Wholesale Price Index', '1/Cents per Polish Mark']
 
 # create plot
 fig, ax = plt.subplots(figsize=[10,7], dpi=200)
-ax1 = create_plot(p_seq, e_seq, df_Pol.index, lab, ax)
+ax1 = create_pe_plot(p_seq, e_seq, df_Pol.index, lab, ax)
+
+plt.figtext(0.5, -0.02, 'Poland', horizontalalignment='center', fontsize=12)
+plt.show()
+```
+
+```{code-cell} ipython3
+fig, ax = plt.subplots(figsize=[10,7], dpi=200)
+_ = create_pr_plot(p_seq, df_Pol.index, ax)
 
 plt.figtext(0.5, -0.02, 'Poland', horizontalalignment='center', fontsize=12)
 plt.show()
@@ -423,7 +469,7 @@ lab = ['Price Index', '1/Cents per Mark']
 
 # create plot
 fig, ax = plt.subplots(figsize=[9,5], dpi=200)
-ax1 = create_plot(p_seq, e_seq, df_Germ.index, lab, ax)
+ax1 = create_pe_plot(p_seq, e_seq, df_Germ.index, lab, ax)
 
 plt.figtext(0.5, -0.06, 'Germany', horizontalalignment='center', fontsize=12)
 plt.show()
@@ -441,7 +487,15 @@ lab = ['Price Index (Marks or converted to Marks)', '1/Cents per Mark (or Reichs
 
 # create plot
 fig, ax = plt.subplots(figsize=[10,7], dpi=200)
-ax1 = create_plot(p_seq, e_seq, df_Germ.index, lab, ax)
+ax1 = create_pe_plot(p_seq, e_seq, df_Germ.index, lab, ax)
+
+plt.figtext(0.5, -0.02, 'Germany', horizontalalignment='center', fontsize=12)
+plt.show()
+```
+
+```{code-cell} ipython3
+fig, ax = plt.subplots(figsize=[10,7], dpi=200)
+_ = create_pr_plot(p_seq, df_Germ.index, ax)
 
 plt.figtext(0.5, -0.02, 'Germany', horizontalalignment='center', fontsize=12)
 plt.show()
