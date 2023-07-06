@@ -28,7 +28,7 @@ Thus, they tended to end a century at close to a level at which they started it.
 
 Things were different in the 20th century, as we shall see in this lecture.
 
-This lecture will set the stage for some subsequent lecture about a particular theory that  economists use to
+This lecture will set the stage for some subsequent lectures about a particular theory that  economists use to
 think about determinants of the price level.
 
 
@@ -107,7 +107,7 @@ We say "most years" because there were temporary lapses from the gold or silver 
 
 By staring at the graph carefully, you might be able to guess when these temporary lapses occurred, because they were also times during which price levels rose markedly from what had been  average values during more typical years.
 
- * 1791-1797 in France (the French revolution)
+ * 1791-1797 in France (the French Revolution)
  * 1776-1793 in the US (the US War for Independence from Great Britain)
  * 1861-1865 in the US (the US Civil War)
 
@@ -121,7 +121,7 @@ Two other features of the figure attracted the attention of leading economists s
   
   * While using valuable gold and silver as coins was a time-tested way to anchor  the price level by limiting the supply of money, it cost real resources.
      
-      * that is, society paid a high "opportunity cost" for using gold and silver as coins; gold and silver could instead be used as valuable jewelry and also as an industrial input
+      * that is, society paid a high "opportunity cost" for using gold and silver as coins; gold and silver could instead be used as valuable jewelry and also as an industrial input.
 
 Keynes and Fisher proposed what they suggested would be  a socially more  efficient way to achieve a price level that  would be at least as firmly  anchored, and would also exhibit less  year-to-year short-term fluctuations.  
 
@@ -136,7 +136,7 @@ A paper fiat money system disposes of all reserves behind a currency.
 
 But notice that in doing so, it also eliminates an automatic supply mechanism constraining the price level.
 
-A low-inflation paper fiat money system replaces that automatic mechanism with an enlightened government that commits itself to limit the quantity of a pure token, no-cost currency.
+A low-inflation paper fiat money system replaces that automatic mechanism with an enlightened government that commits itself to limiting the quantity of a pure token, no-cost currency.
 
 Now let's see what happened to the price level in our four countries when after 1914 one after another of them 
 left the gold/silver standard.
@@ -323,7 +323,7 @@ Let's dive in and construct graphs for our four countries.
 
 For each country, we'll plot two graphs.
 
-For each country, the first graph plots  logarithms of 
+The first graph plots logarithms of 
 
   * price levels
   * exchange rates vis a vis US dollars
@@ -332,8 +332,6 @@ For each country, the scale on the right side of a graph will pertain to the pri
 to the exchange rate. 
 
 For each country, the second graph plots a three-month moving average of the inflation rate defined as $p_t - p_{t-1}$.
-
-
 
 ### Austria
 
@@ -532,7 +530,7 @@ These "sudden stops" are also revealed by the permanent drops in three-month mov
 
 In addition, the US dollar exchange rates for each of the four countries shadowed their price levels. 
 
-  * this pattern is an instance of a force modeled in the **purchasing power parity** theory of exchange rates.
+  * This pattern is an instance of a force modeled in the **purchasing power parity** theory of exchange rates.
 
 Each of these big inflations seemed to have "stopped on a dime".
 
