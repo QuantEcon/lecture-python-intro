@@ -624,7 +624,7 @@ It is instructive to compare the  preceding graphs with  graphs of log price lev
 In particular, in the above graphs, notice how a gradual fall in  inflation precedes the "sudden stop" when it has been anticipated long beforehand, but how
 inflation instead falls abruptly when the permanent drop in  money supply growth  is unanticipated.
 
-It seems to the author team at quantecon that the drops in inflation during the four hyperinflations described in {doc}`this lecture <inflation_history>`
+It seems to the author team at quantecon that the drops in inflation near the ends of the four hyperinflations described in {doc}`this lecture <inflation_history>`
 more closely resemble outcomes from the experiment 2 "unforeseen stabilization".  
 
 (It is fair to say that the preceding  informal pattern recognition exercise should  be supplemented with a more formal structural statistical analysis.)
