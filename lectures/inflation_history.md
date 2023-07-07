@@ -28,7 +28,7 @@ Thus, they tended to end a century at close to a level at which they started it.
 
 Things were different in the 20th century, as we shall see in this lecture.
 
-This lecture will set the stage for some subsequent lecture about a particular theory that  economists use to
+This lecture will set the stage for some subsequent lectures about a particular theory that  economists use to
 think about determinants of the price level.
 
 
@@ -107,7 +107,7 @@ We say "most years" because there were temporary lapses from the gold or silver 
 
 By staring at the graph carefully, you might be able to guess when these temporary lapses occurred, because they were also times during which price levels rose markedly from what had been  average values during more typical years.
 
- * 1791-1797 in France (the French revolution)
+ * 1791-1797 in France (the French Revolution)
  * 1776-1793 in the US (the US War for Independence from Great Britain)
  * 1861-1865 in the US (the US Civil War)
 
@@ -121,7 +121,7 @@ Two other features of the figure attracted the attention of leading economists s
   
   * While using valuable gold and silver as coins was a time-tested way to anchor  the price level by limiting the supply of money, it cost real resources.
      
-      * that is, society paid a high "opportunity cost" for using gold and silver as coins; gold and silver could instead be used as valuable jewelry and also as an industrial input
+      * that is, society paid a high "opportunity cost" for using gold and silver as coins; gold and silver could instead be used as valuable jewelry and also as an industrial input.
 
 Keynes and Fisher proposed what they suggested would be  a socially more  efficient way to achieve a price level that  would be at least as firmly  anchored, and would also exhibit less  year-to-year short-term fluctuations.  
 
@@ -136,7 +136,7 @@ A paper fiat money system disposes of all reserves behind a currency.
 
 But notice that in doing so, it also eliminates an automatic supply mechanism constraining the price level.
 
-A low-inflation paper fiat money system replaces that automatic mechanism with an enlightened government that commits itself to limit the quantity of a pure token, no-cost currency.
+A low-inflation paper fiat money system replaces that automatic mechanism with an enlightened government that commits itself to limiting the quantity of a pure token, no-cost currency.
 
 Now let's see what happened to the price level in our four countries when after 1914 one after another of them 
 left the gold/silver standard.
@@ -250,7 +250,7 @@ def process_df(df):
 
     return df
 
-def create_plot(p_seq, e_seq, index, labs, ax):
+def create_pe_plot(p_seq, e_seq, index, labs, ax):
     
     p_lab, e_lab = labs
     
@@ -273,6 +273,28 @@ def create_plot(p_seq, e_seq, index, labs, ax):
     ax1.legend(loc='upper left')
 
     return ax1
+
+def create_pr_plot(p_seq, index, ax):
+
+    # Calculate the difference of log p_seq
+    log_diff_p_seq = np.diff(np.log(p_seq))
+    
+    # Graph for the difference of log p_seq
+    ax.scatter(index[1:], log_diff_p_seq, label='Monthly Inflation Rate', color='tab:grey')
+    diff_smooth = pd.DataFrame(log_diff_p_seq).rolling(3).mean()
+    ax.plot(index[1:], diff_smooth, alpha=0.5, color='tab:grey')
+    ax.text(-0.08, 1.03, 'Monthly Inflation Rate', transform=ax.transAxes)
+    
+    ax.xaxis.set_major_locator(mdates.MonthLocator(interval=5))
+    ax.xaxis.set_major_formatter(mdates.DateFormatter('%b %Y'))
+    
+    for label in ax.get_xticklabels():
+        label.set_rotation(45)
+    
+    ax.legend(loc='upper left')
+    
+    return ax
+    
 ```
 
 ```{code-cell} ipython3
@@ -299,6 +321,18 @@ df_Aus, df_Hung, df_Pol, df_Germ = df_list
 
 Let's dive in and construct graphs for our four countries.
 
+For each country, we'll plot two graphs.
+
+The first graph plots logarithms of 
+
+  * price levels
+  * exchange rates vis a vis US dollars
+
+For each country, the scale on the right side of a graph will pertain to the price level while the scale on the left side of a graph will pertain
+to the exchange rate. 
+
+For each country, the second graph plots a three-month moving average of the inflation rate defined as $p_t - p_{t-1}$.
+
 ### Austria
 
 The sources of our data are:
@@ -319,12 +353,28 @@ lab = ['Retail Price Index', 'Exchange Rate']
 
 # create plot
 fig, ax = plt.subplots(figsize=[10,7], dpi=200)
-_ = create_plot(p_seq, e_seq, df_Aus.index, lab, ax)
+_ = create_pe_plot(p_seq, e_seq, df_Aus.index, lab, ax)
 
 # connect disjunct parts
 plt.figtext(0.5, -0.02, 'Austria', horizontalalignment='center', fontsize=12)
 plt.show()
 ```
+
+```{code-cell} ipython3
+fig, ax = plt.subplots(figsize=[10,7], dpi=200)
+_ = create_pr_plot(p_seq, df_Aus.index, ax)
+
+plt.figtext(0.5, -0.02, 'Austria', horizontalalignment='center', fontsize=12)
+plt.show()
+```
+
+Staring at the above  graphs conveys the following impressions to the authors of this lecture at quantecon.
+
+ * an episode of  "hyperinflation" with  rapidly rising log price level and very high monthly inflation rates
+ * a sudden stop of the hyperinflation as indicated by the abrupt flattening of the log price level and a marked permanent drop in the three-month average of inflation
+ * a US dollar exchange rate that shadows the price level.  
+  
+We'll see similar patterns in the next three episodes  that we'll study now.
 
 ### Hungary
 
@@ -346,7 +396,15 @@ lab = ['Hungarian Index of Prices', '1/Cents per Crown in New York']
 
 # create plot
 fig, ax = plt.subplots(figsize=[10,7], dpi=200)
-_ = create_plot(p_seq, e_seq, df_Hung.index, lab, ax)
+_ = create_pe_plot(p_seq, e_seq, df_Hung.index, lab, ax)
+
+plt.figtext(0.5, -0.02, 'Hungary', horizontalalignment='center', fontsize=12)
+plt.show()
+```
+
+```{code-cell} ipython3
+fig, ax = plt.subplots(figsize=[10,7], dpi=200)
+_ = create_pr_plot(p_seq, df_Hung.index, ax)
 
 plt.figtext(0.5, -0.02, 'Hungary', horizontalalignment='center', fontsize=12)
 plt.show()
@@ -398,7 +456,15 @@ lab = ['Wholesale Price Index', '1/Cents per Polish Mark']
 
 # create plot
 fig, ax = plt.subplots(figsize=[10,7], dpi=200)
-ax1 = create_plot(p_seq, e_seq, df_Pol.index, lab, ax)
+ax1 = create_pe_plot(p_seq, e_seq, df_Pol.index, lab, ax)
+
+plt.figtext(0.5, -0.02, 'Poland', horizontalalignment='center', fontsize=12)
+plt.show()
+```
+
+```{code-cell} ipython3
+fig, ax = plt.subplots(figsize=[10,7], dpi=200)
+_ = create_pr_plot(p_seq, df_Pol.index, ax)
 
 plt.figtext(0.5, -0.02, 'Poland', horizontalalignment='center', fontsize=12)
 plt.show()
@@ -423,7 +489,7 @@ lab = ['Price Index', '1/Cents per Mark']
 
 # create plot
 fig, ax = plt.subplots(figsize=[9,5], dpi=200)
-ax1 = create_plot(p_seq, e_seq, df_Germ.index, lab, ax)
+ax1 = create_pe_plot(p_seq, e_seq, df_Germ.index, lab, ax)
 
 plt.figtext(0.5, -0.06, 'Germany', horizontalalignment='center', fontsize=12)
 plt.show()
@@ -441,7 +507,15 @@ lab = ['Price Index (Marks or converted to Marks)', '1/Cents per Mark (or Reichs
 
 # create plot
 fig, ax = plt.subplots(figsize=[10,7], dpi=200)
-ax1 = create_plot(p_seq, e_seq, df_Germ.index, lab, ax)
+ax1 = create_pe_plot(p_seq, e_seq, df_Germ.index, lab, ax)
+
+plt.figtext(0.5, -0.02, 'Germany', horizontalalignment='center', fontsize=12)
+plt.show()
+```
+
+```{code-cell} ipython3
+fig, ax = plt.subplots(figsize=[10,7], dpi=200)
+_ = create_pr_plot(p_seq, df_Germ.index, ax)
 
 plt.figtext(0.5, -0.02, 'Germany', horizontalalignment='center', fontsize=12)
 plt.show()
@@ -452,6 +526,12 @@ plt.show()
 A striking thing about our four graphs is how **quickly** the (log) price levels in Austria, Hungary, Poland,
 and Germany leveled off after having been rising so quickly.
 
+These "sudden stops" are also revealed by the permanent drops in three-month moving averages of inflation for the four countries.
+
+In addition, the US dollar exchange rates for each of the four countries shadowed their price levels. 
+
+  * This pattern is an instance of a force modeled in the **purchasing power parity** theory of exchange rates.
+
 Each of these big inflations seemed to have "stopped on a dime".
 
 Chapter 3 of {cite}`sargent2002big` attempts to offer an explanation for this remarkable pattern.
@@ -460,7 +540,12 @@ In a nutshell, here is his story.
 
 After World War I, the United States was on the gold standard. The US government stood ready to convert a dollar into a specified amount of gold on demand. To understate things, immediately after the war, Hungary, Austria, Poland, and Germany were not on the gold standard. 
 
-In practice, their currencies were largely “fiat,” or unbacked. The governments of these countries resorted to the printing of new unbacked money to finance government deficits. (The notes were "backed" mainly by treasury bills that, in those times, could not be expected to be paid off by levying taxes, but only by printing more notes or treasury bills.) This was done on such a scale that it led to a depreciation of the currencies of spectacular proportions. In the end, the German mark stabilized at 1 trillion ($10^{12}$) paper marks to the prewar gold mark, the Polish mark at 1.8 million paper marks to the gold zloty, the Austrian crown at 14,400 paper crowns to the prewar Austro-Hungarian crown, and the Hungarian krone at 14,500 paper crowns to the prewar Austro-Hungarian crown.
+In practice, their currencies were largely “fiat” or "unbacked",  meaning that they were not backed by credible government promises to convert them into gold or silver coins on demand. The governments of these countries resorted to the printing of new unbacked money to finance government deficits. (The notes were "backed" mainly by treasury bills that, in those times, could not be expected to be paid off by levying taxes, but only by printing more notes or treasury bills.) This was done on such a scale that it led to a depreciation of the currencies of spectacular proportions. In the end, the German mark stabilized at 1 trillion ($10^{12}$) paper marks to the prewar gold mark, the Polish mark at 1.8 million paper marks to the gold zloty, the Austrian crown at 14,400 paper crowns to the prewar Austro-Hungarian crown, and the Hungarian krone at 14,500 paper crowns to the prewar Austro-Hungarian crown.
 
 Chapter 3 of {cite}`sargent2002big`  focuses on the deliberate changes in policy that Hungary, Austria, Poland, and Germany made to end their hyperinflations.
 The hyperinflations were each ended by restoring or virtually restoring convertibility to the dollar or equivalently to gold.
+
+The story told in {cite}`sargent2002big` is grounded in a "fiscal theory of the price level" described in {doc}`this lecture <cagan_ree>` and further discussed in 
+{doc}`this lecture <cagan_adaptive>`.
+
+Those lectures discuss theories about what holders of those rapidly depreciating currencies were thinking about them and how that shaped responses of inflation to government policies.
