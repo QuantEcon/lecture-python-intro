@@ -233,7 +233,7 @@ const thebe_selector_output = ".output, .cell_output"
 they didn’t have much of a trend.</p>
 <p>Thus, they tended to end a century at close to a level at which they started it.</p>
 <p>Things were different in the 20th century, as we shall see in this lecture.</p>
-<p>This lecture will set the stage for some subsequent lecture about a particular theory that  economists use to
+<p>This lecture will set the stage for some subsequent lectures about a particular theory that  economists use to
 think about determinants of the price level.</p>
 <section id="four-centuries-of-price-levels">
 <h2><span class="section-number">11.1. </span>Four Centuries of Price Levels<a class="headerlink" href="#four-centuries-of-price-levels" title="Permalink to this heading">#</a></h2>
@@ -278,7 +278,9 @@ think about determinants of the price level.</p>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Downloading xlrd-2.0.1-py2.py3-none-any.whl (96 kB)
 ?25l     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/96.5 kB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">96.5/96.5 kB</span> <span class=" -Color -Color-Red">19.6 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">96.5/96.5 kB</span> <span class=" -Color -Color-Red">5.9 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
 ?25h
 </pre></div>
 </div>
@@ -398,7 +400,7 @@ think about determinants of the price level.</p>
 <p>We say “most years” because there were temporary lapses from the gold or silver standard.</p>
 <p>By staring at the graph carefully, you might be able to guess when these temporary lapses occurred, because they were also times during which price levels rose markedly from what had been  average values during more typical years.</p>
 <ul class="simple">
-<li><p>1791-1797 in France (the French revolution)</p></li>
+<li><p>1791-1797 in France (the French Revolution)</p></li>
 <li><p>1776-1793 in the US (the US War for Independence from Great Britain)</p></li>
 <li><p>1861-1865 in the US (the US Civil War)</p></li>
 </ul>
@@ -409,7 +411,7 @@ think about determinants of the price level.</p>
 <li><p>There was considerable year-to-year instability of the price levels despite their long begin anchored to the same average level in the long term</p></li>
 <li><p>While using valuable gold and silver as coins was a time-tested way to anchor  the price level by limiting the supply of money, it cost real resources.</p>
 <ul>
-<li><p>that is, society paid a high “opportunity cost” for using gold and silver as coins; gold and silver could instead be used as valuable jewelry and also as an industrial input</p></li>
+<li><p>that is, society paid a high “opportunity cost” for using gold and silver as coins; gold and silver could instead be used as valuable jewelry and also as an industrial input.</p></li>
 </ul>
 </li>
 </ul>
@@ -422,7 +424,7 @@ think about determinants of the price level.</p>
 <p>Thus, the waste from using gold and silver as coins  prompted John Maynard Keynes to call a commodity standard a “barbarous relic.”</p>
 <p>A paper fiat money system disposes of all reserves behind a currency.</p>
 <p>But notice that in doing so, it also eliminates an automatic supply mechanism constraining the price level.</p>
-<p>A low-inflation paper fiat money system replaces that automatic mechanism with an enlightened government that commits itself to limit the quantity of a pure token, no-cost currency.</p>
+<p>A low-inflation paper fiat money system replaces that automatic mechanism with an enlightened government that commits itself to limiting the quantity of a pure token, no-cost currency.</p>
 <p>Now let’s see what happened to the price level in our four countries when after 1914 one after another of them
 left the gold/silver standard.</p>
 <p>We’ll show a version of the complete  graph that originally appeared on page 35 of <span id="id3">[<a class="reference internal" href="zreferences.html#id4" title="Thomas J Sargent and François R Velde. The Big Problem of Small Change. Princeton University Press, Princeton, New Jersey, 2002.">SV02</a>]</span>.</p>
@@ -532,7 +534,7 @@ We have transcribed all of these data  into a spreadsheet <code class="docutils 
 
     <span class="k">return</span> <span class="n">df</span>
 
-<span class="k">def</span> <span class="nf">create_plot</span><span class="p">(</span><span class="n">p_seq</span><span class="p">,</span> <span class="n">e_seq</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">labs</span><span class="p">,</span> <span class="n">ax</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">create_pe_plot</span><span class="p">(</span><span class="n">p_seq</span><span class="p">,</span> <span class="n">e_seq</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">labs</span><span class="p">,</span> <span class="n">ax</span><span class="p">):</span>
     
     <span class="n">p_lab</span><span class="p">,</span> <span class="n">e_lab</span> <span class="o">=</span> <span class="n">labs</span>
     
@@ -555,6 +557,28 @@ We have transcribed all of these data  into a spreadsheet <code class="docutils 
     <span class="n">ax1</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">ax1</span>
+
+<span class="k">def</span> <span class="nf">create_pr_plot</span><span class="p">(</span><span class="n">p_seq</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">ax</span><span class="p">):</span>
+
+    <span class="c1"># Calculate the difference of log p_seq</span>
+    <span class="n">log_diff_p_seq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">p_seq</span><span class="p">))</span>
+    
+    <span class="c1"># Graph for the difference of log p_seq</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">index</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="n">log_diff_p_seq</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Monthly Inflation Rate&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;tab:grey&#39;</span><span class="p">)</span>
+    <span class="n">diff_smooth</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">log_diff_p_seq</span><span class="p">)</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">index</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="n">diff_smooth</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;tab:grey&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="mf">0.08</span><span class="p">,</span> <span class="mf">1.03</span><span class="p">,</span> <span class="s1">&#39;Monthly Inflation Rate&#39;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">)</span>
+    
+    <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">mdates</span><span class="o">.</span><span class="n">MonthLocator</span><span class="p">(</span><span class="n">interval</span><span class="o">=</span><span class="mi">5</span><span class="p">))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">mdates</span><span class="o">.</span><span class="n">DateFormatter</span><span class="p">(</span><span class="s1">&#39;%b %Y&#39;</span><span class="p">))</span>
+    
+    <span class="k">for</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_xticklabels</span><span class="p">():</span>
+        <span class="n">label</span><span class="o">.</span><span class="n">set_rotation</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>
+    
+    <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">ax</span>
+    
 </pre></div>
 </div>
 </div>
@@ -586,6 +610,15 @@ We have transcribed all of these data  into a spreadsheet <code class="docutils 
 </div>
 </div>
 <p>Let’s dive in and construct graphs for our four countries.</p>
+<p>For each country, we’ll plot two graphs.</p>
+<p>The first graph plots logarithms of</p>
+<ul class="simple">
+<li><p>price levels</p></li>
+<li><p>exchange rates vis a vis US dollars</p></li>
+</ul>
+<p>For each country, the scale on the right side of a graph will pertain to the price level while the scale on the left side of a graph will pertain
+to the exchange rate.</p>
+<p>For each country, the second graph plots a three-month moving average of the inflation rate defined as <span class="math notranslate nohighlight">\(p_t - p_{t-1}\)</span>.</p>
 <section id="austria">
 <h3><span class="section-number">11.2.1. </span>Austria<a class="headerlink" href="#austria" title="Permalink to this heading">#</a></h3>
 <p>The sources of our data are:</p>
@@ -667,7 +700,7 @@ We have transcribed all of these data  into a spreadsheet <code class="docutils 
 
 <span class="c1"># create plot</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="mi">7</span><span class="p">],</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
-<span class="n">_</span> <span class="o">=</span> <span class="n">create_plot</span><span class="p">(</span><span class="n">p_seq</span><span class="p">,</span> <span class="n">e_seq</span><span class="p">,</span> <span class="n">df_Aus</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">lab</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">create_pe_plot</span><span class="p">(</span><span class="n">p_seq</span><span class="p">,</span> <span class="n">e_seq</span><span class="p">,</span> <span class="n">df_Aus</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">lab</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span>
 
 <span class="c1"># connect disjunct parts</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figtext</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.02</span><span class="p">,</span> <span class="s1">&#39;Austria&#39;</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
@@ -679,6 +712,27 @@ We have transcribed all of these data  into a spreadsheet <code class="docutils 
 <a class="reference internal image-reference" href="_images/f0e6339a7b420635edcc7932d792c2ff209caabd10c431c570c2f94d8814088e.png"><img alt="_images/f0e6339a7b420635edcc7932d792c2ff209caabd10c431c570c2f94d8814088e.png" src="_images/f0e6339a7b420635edcc7932d792c2ff209caabd10c431c570c2f94d8814088e.png" style="width: 80%;" /></a>
 </div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="mi">7</span><span class="p">],</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">create_pr_plot</span><span class="p">(</span><span class="n">p_seq</span><span class="p">,</span> <span class="n">df_Aus</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figtext</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.02</span><span class="p">,</span> <span class="s1">&#39;Austria&#39;</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/5b4947e0ce10421e10336fd3643ada95607f8e6992431ceb795410bdcc4ef1dd.png"><img alt="_images/5b4947e0ce10421e10336fd3643ada95607f8e6992431ceb795410bdcc4ef1dd.png" src="_images/5b4947e0ce10421e10336fd3643ada95607f8e6992431ceb795410bdcc4ef1dd.png" style="width: 80%;" /></a>
+</div>
+</div>
+<p>Staring at the above  graphs conveys the following impressions to the authors of this lecture at quantecon.</p>
+<ul class="simple">
+<li><p>an episode of  “hyperinflation” with  rapidly rising log price level and very high monthly inflation rates</p></li>
+<li><p>a sudden stop of the hyperinflation as indicated by the abrupt flattening of the log price level and a marked permanent drop in the three-month average of inflation</p></li>
+<li><p>a US dollar exchange rate that shadows the price level.</p></li>
+</ul>
+<p>We’ll see similar patterns in the next three episodes  that we’ll study now.</p>
 </section>
 <section id="hungary">
 <h3><span class="section-number">11.2.2. </span>Hungary<a class="headerlink" href="#hungary" title="Permalink to this heading">#</a></h3>
@@ -804,7 +858,7 @@ We have transcribed all of these data  into a spreadsheet <code class="docutils 
 
 <span class="c1"># create plot</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="mi">7</span><span class="p">],</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
-<span class="n">_</span> <span class="o">=</span> <span class="n">create_plot</span><span class="p">(</span><span class="n">p_seq</span><span class="p">,</span> <span class="n">e_seq</span><span class="p">,</span> <span class="n">df_Hung</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">lab</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">create_pe_plot</span><span class="p">(</span><span class="n">p_seq</span><span class="p">,</span> <span class="n">e_seq</span><span class="p">,</span> <span class="n">df_Hung</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">lab</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">figtext</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.02</span><span class="p">,</span> <span class="s1">&#39;Hungary&#39;</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -813,6 +867,20 @@ We have transcribed all of these data  into a spreadsheet <code class="docutils 
 </div>
 <div class="cell_output docutils container">
 <a class="reference internal image-reference" href="_images/5c2fdaabc4d957a143d265a5577b7cc5e12fb800ccc66704bd5b9a74f2108d5b.png"><img alt="_images/5c2fdaabc4d957a143d265a5577b7cc5e12fb800ccc66704bd5b9a74f2108d5b.png" src="_images/5c2fdaabc4d957a143d265a5577b7cc5e12fb800ccc66704bd5b9a74f2108d5b.png" style="width: 80%;" /></a>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="mi">7</span><span class="p">],</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">create_pr_plot</span><span class="p">(</span><span class="n">p_seq</span><span class="p">,</span> <span class="n">df_Hung</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figtext</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.02</span><span class="p">,</span> <span class="s1">&#39;Hungary&#39;</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/d95bc11ea0db6359a3893658a7476772a2268663b1e3ab5f09de8e2714e19c70.png"><img alt="_images/d95bc11ea0db6359a3893658a7476772a2268663b1e3ab5f09de8e2714e19c70.png" src="_images/d95bc11ea0db6359a3893658a7476772a2268663b1e3ab5f09de8e2714e19c70.png" style="width: 80%;" /></a>
 </div>
 </div>
 </section>
@@ -980,7 +1048,7 @@ We dropped the exchange rate after June 1924, when the  zloty was adopted. We di
 
 <span class="c1"># create plot</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="mi">7</span><span class="p">],</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
-<span class="n">ax1</span> <span class="o">=</span> <span class="n">create_plot</span><span class="p">(</span><span class="n">p_seq</span><span class="p">,</span> <span class="n">e_seq</span><span class="p">,</span> <span class="n">df_Pol</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">lab</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span>
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">create_pe_plot</span><span class="p">(</span><span class="n">p_seq</span><span class="p">,</span> <span class="n">e_seq</span><span class="p">,</span> <span class="n">df_Pol</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">lab</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">figtext</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.02</span><span class="p">,</span> <span class="s1">&#39;Poland&#39;</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -989,6 +1057,20 @@ We dropped the exchange rate after June 1924, when the  zloty was adopted. We di
 </div>
 <div class="cell_output docutils container">
 <a class="reference internal image-reference" href="_images/75c88029905b4695f8375031579c061acd2db5a05f8c02cbacee1ab9a8e76e20.png"><img alt="_images/75c88029905b4695f8375031579c061acd2db5a05f8c02cbacee1ab9a8e76e20.png" src="_images/75c88029905b4695f8375031579c061acd2db5a05f8c02cbacee1ab9a8e76e20.png" style="width: 80%;" /></a>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="mi">7</span><span class="p">],</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">create_pr_plot</span><span class="p">(</span><span class="n">p_seq</span><span class="p">,</span> <span class="n">df_Pol</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figtext</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.02</span><span class="p">,</span> <span class="s1">&#39;Poland&#39;</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/a181510987e1d223da969d96d7134c26d05bf1cc1649908b7841b53e707f2564.png"><img alt="_images/a181510987e1d223da969d96d7134c26d05bf1cc1649908b7841b53e707f2564.png" src="_images/a181510987e1d223da969d96d7134c26d05bf1cc1649908b7841b53e707f2564.png" style="width: 80%;" /></a>
 </div>
 </div>
 </section>
@@ -1182,7 +1264,7 @@ We dropped the exchange rate after June 1924, when the  zloty was adopted. We di
 
 <span class="c1"># create plot</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">9</span><span class="p">,</span><span class="mi">5</span><span class="p">],</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
-<span class="n">ax1</span> <span class="o">=</span> <span class="n">create_plot</span><span class="p">(</span><span class="n">p_seq</span><span class="p">,</span> <span class="n">e_seq</span><span class="p">,</span> <span class="n">df_Germ</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">lab</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span>
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">create_pe_plot</span><span class="p">(</span><span class="n">p_seq</span><span class="p">,</span> <span class="n">e_seq</span><span class="p">,</span> <span class="n">df_Germ</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">lab</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">figtext</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.06</span><span class="p">,</span> <span class="s1">&#39;Germany&#39;</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -1206,7 +1288,7 @@ We dropped the exchange rate after June 1924, when the  zloty was adopted. We di
 
 <span class="c1"># create plot</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="mi">7</span><span class="p">],</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
-<span class="n">ax1</span> <span class="o">=</span> <span class="n">create_plot</span><span class="p">(</span><span class="n">p_seq</span><span class="p">,</span> <span class="n">e_seq</span><span class="p">,</span> <span class="n">df_Germ</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">lab</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span>
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">create_pe_plot</span><span class="p">(</span><span class="n">p_seq</span><span class="p">,</span> <span class="n">e_seq</span><span class="p">,</span> <span class="n">df_Germ</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">lab</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">figtext</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.02</span><span class="p">,</span> <span class="s1">&#39;Germany&#39;</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -1217,19 +1299,41 @@ We dropped the exchange rate after June 1924, when the  zloty was adopted. We di
 <a class="reference internal image-reference" href="_images/bbd1c958206c1d94f5650786ad7098fa2a69f7ac2ae66222a8bcded59e943c3d.png"><img alt="_images/bbd1c958206c1d94f5650786ad7098fa2a69f7ac2ae66222a8bcded59e943c3d.png" src="_images/bbd1c958206c1d94f5650786ad7098fa2a69f7ac2ae66222a8bcded59e943c3d.png" style="width: 80%;" /></a>
 </div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="mi">7</span><span class="p">],</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">create_pr_plot</span><span class="p">(</span><span class="n">p_seq</span><span class="p">,</span> <span class="n">df_Germ</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figtext</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.02</span><span class="p">,</span> <span class="s1">&#39;Germany&#39;</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/05d7083a3d08a828c8c4713824f9d67512f7b080165a7dd59ca1caabad1f006e.png"><img alt="_images/05d7083a3d08a828c8c4713824f9d67512f7b080165a7dd59ca1caabad1f006e.png" src="_images/05d7083a3d08a828c8c4713824f9d67512f7b080165a7dd59ca1caabad1f006e.png" style="width: 80%;" /></a>
+</div>
+</div>
 </section>
 </section>
 <section id="starting-and-stopping-big-inflations">
 <h2><span class="section-number">11.3. </span>Starting and Stopping Big Inflations<a class="headerlink" href="#starting-and-stopping-big-inflations" title="Permalink to this heading">#</a></h2>
 <p>A striking thing about our four graphs is how <strong>quickly</strong> the (log) price levels in Austria, Hungary, Poland,
 and Germany leveled off after having been rising so quickly.</p>
+<p>These “sudden stops” are also revealed by the permanent drops in three-month moving averages of inflation for the four countries.</p>
+<p>In addition, the US dollar exchange rates for each of the four countries shadowed their price levels.</p>
+<ul class="simple">
+<li><p>This pattern is an instance of a force modeled in the <strong>purchasing power parity</strong> theory of exchange rates.</p></li>
+</ul>
 <p>Each of these big inflations seemed to have “stopped on a dime”.</p>
 <p>Chapter 3 of <span id="id9">[<a class="reference internal" href="zreferences.html#id4" title="Thomas J Sargent and François R Velde. The Big Problem of Small Change. Princeton University Press, Princeton, New Jersey, 2002.">SV02</a>]</span> attempts to offer an explanation for this remarkable pattern.</p>
 <p>In a nutshell, here is his story.</p>
 <p>After World War I, the United States was on the gold standard. The US government stood ready to convert a dollar into a specified amount of gold on demand. To understate things, immediately after the war, Hungary, Austria, Poland, and Germany were not on the gold standard.</p>
-<p>In practice, their currencies were largely “fiat,” or unbacked. The governments of these countries resorted to the printing of new unbacked money to finance government deficits. (The notes were “backed” mainly by treasury bills that, in those times, could not be expected to be paid off by levying taxes, but only by printing more notes or treasury bills.) This was done on such a scale that it led to a depreciation of the currencies of spectacular proportions. In the end, the German mark stabilized at 1 trillion (<span class="math notranslate nohighlight">\(10^{12}\)</span>) paper marks to the prewar gold mark, the Polish mark at 1.8 million paper marks to the gold zloty, the Austrian crown at 14,400 paper crowns to the prewar Austro-Hungarian crown, and the Hungarian krone at 14,500 paper crowns to the prewar Austro-Hungarian crown.</p>
+<p>In practice, their currencies were largely “fiat” or “unbacked”,  meaning that they were not backed by credible government promises to convert them into gold or silver coins on demand. The governments of these countries resorted to the printing of new unbacked money to finance government deficits. (The notes were “backed” mainly by treasury bills that, in those times, could not be expected to be paid off by levying taxes, but only by printing more notes or treasury bills.) This was done on such a scale that it led to a depreciation of the currencies of spectacular proportions. In the end, the German mark stabilized at 1 trillion (<span class="math notranslate nohighlight">\(10^{12}\)</span>) paper marks to the prewar gold mark, the Polish mark at 1.8 million paper marks to the gold zloty, the Austrian crown at 14,400 paper crowns to the prewar Austro-Hungarian crown, and the Hungarian krone at 14,500 paper crowns to the prewar Austro-Hungarian crown.</p>
 <p>Chapter 3 of <span id="id10">[<a class="reference internal" href="zreferences.html#id4" title="Thomas J Sargent and François R Velde. The Big Problem of Small Change. Princeton University Press, Princeton, New Jersey, 2002.">SV02</a>]</span>  focuses on the deliberate changes in policy that Hungary, Austria, Poland, and Germany made to end their hyperinflations.
 The hyperinflations were each ended by restoring or virtually restoring convertibility to the dollar or equivalently to gold.</p>
+<p>The story told in <span id="id11">[<a class="reference internal" href="zreferences.html#id4" title="Thomas J Sargent and François R Velde. The Big Problem of Small Change. Princeton University Press, Princeton, New Jersey, 2002.">SV02</a>]</span> is grounded in a “fiscal theory of the price level” described in <a class="reference internal" href="cagan_ree.html"><span class="doc">this lecture</span></a> and further discussed in
+<a class="reference internal" href="cagan_adaptive.html"><span class="doc">this lecture</span></a>.</p>
+<p>Those lectures discuss theories about what holders of those rapidly depreciating currencies were thinking about them and how that shaped responses of inflation to government policies.</p>
 </section>
 </section>
 
