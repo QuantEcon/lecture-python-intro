@@ -50,7 +50,7 @@ In this section we give some motivation for the lecture.
 
 ### Introduction: light tails
 
-Most commonly used probability distributions in classical statistics and
+Most {doc}`commonly used probability distributions <prob_dist>` in classical statistics and
 the natural sciences have "light tails."
 
 To explain this concept, let's look first at examples.
@@ -146,15 +146,15 @@ Have you ever wondered why not?
 After all, there are 8 billion people in the world!
 
 In essence, the reason we don't see such draws is that the distribution of
-human high has very light tails.
+human height has very light tails.
 
-In fact human height is approximately normally distributed.
+In fact the distribution of human height obeys a bell-shaped curve similar to the normal distribution.
 
 
 ### Returns on assets
 
 
-But now we have to ask: does economic data always look like this?
+But what about economic data?
 
 Let's look at some financial data first.
 
@@ -179,7 +179,7 @@ ax.set_xlabel('date', fontsize=12)
 plt.show()
 ```
 
-This data looks different to the draws from the normal distribution.
+This data looks different to the draws from the normal distribution we saw above.
 
 Several of observations are quite extreme.
 
@@ -418,7 +418,7 @@ $$ G_E(x) = \exp(- \alpha x) $$
 
 This function goes to zero relatively quickly as $x$ gets large.
 
-The Pareto distribution has CCDF
+The standard Pareto distribution, where $\bar x = 1$, has CCDF
 
 $$ G_P(x) = x^{- \alpha} $$
 
@@ -427,13 +427,14 @@ This function goes to zero as $x \to \infty$, but much slower than $G_E$.
 ```{exercise}
 :label: ht_ex_x1
 
-Show how the CCDF of the Pareto distribution can be derived from the CCDF of the exponential distribution.
+Show how the CCDF of the standard Pareto distribution can be derived from the CCDF of the exponential distribution.
 ```
 
 ```{solution-start} ht_ex_x1
 :class: dropdown
 ```
-Letting $G_E$ and $G_P$ be defined as above yields
+Letting $G_E$ and $G_P$ be defined as above, letting $X$ be exponentially
+distributed with rate parameter $\alpha$, and letting $Y = \exp(X)$, we have
 
 $$
 \begin{aligned}
@@ -460,8 +461,8 @@ ax.legend()
 plt.show()
 ```
 
-Here's a log-log plot of the same functions, which makes visual comparison a
-bit easier.
+Here's a log-log plot of the same functions, which makes visual comparison
+easier.
 
 ```{code-cell} ipython3
 fig, ax = plt.subplots()
@@ -685,7 +686,7 @@ plt.show()
 
 ### City size
 
-Here are plots of the city size distribution for the US and brazil in 2023 from world population review.
+Here are plots of the city size distribution for the US and Brazil in 2023 from world population review.
 
 The size is measured by population.
 
@@ -894,7 +895,7 @@ The heaviness of the tail in the wealth distribution matters for taxation and re
 The same is true for the income distribution.
 
 For example, the heaviness of the tail of the income distribution helps
-determine how much revenue a given tax policy will raise.
+determine {doc}`how much revenue a given tax policy will raise <mle>`.
 
 
 
@@ -933,10 +934,7 @@ distribution](https://en.wikipedia.org/wiki/Log-normal_distribution) is
 heavy-tailed because its moment generating function is infinite everywhere on
 $(0, \infty)$.
 
-As claimed above, the Pareto distribution is also heavy-tailed.
-
-It is easy to see that, under the Pareto law,  $\mathbb P\{X > x\}$ satisfies {eq}`plrt`.
-
+The Pareto distribution is also heavy-tailed.
 
 A distribution $F$ on $\mathbb R_+$ is called **light-tailed** if it is not heavy-tailed.
 
@@ -996,7 +994,7 @@ Let $X$ have a Pareto tail with tail index $\alpha$ and let $F$ be its cdf.
 
 Fix $r \geq \alpha$.
 
-As discussed after {eq}`plrt`, we can take positive constants $b$ and $\bar x$ such that
+In view of {eq}`plrt`, we can take positive constants $b$ and $\bar x$ such that
 
 $$
 \mathbb P\{X > x\} \geq b x^{- \alpha} \text{ whenever } x \geq \bar x
@@ -1005,13 +1003,13 @@ $$
 But then
 
 $$
-\mathbb E X^r = r \int_0^\infty x^{r-1} \mathbb P\{ X > x \} x
+    \mathbb E X^r = r \int_0^\infty x^{r-1} \mathbb P\{ X > x \} dx
 \geq
-r \int_0^{\bar x} x^{r-1} \mathbb P\{ X > x \} x
-+ r \int_{\bar x}^\infty  x^{r-1} b x^{-\alpha} x.
+r \int_0^{\bar x} x^{r-1} \mathbb P\{ X > x \} dx
++ r \int_{\bar x}^\infty  x^{r-1} b x^{-\alpha} dx.
 $$
 
-We know that $\int_{\bar x}^\infty x^{r-\alpha-1} x = \infty$ whenever $r - \alpha - 1 \geq -1$.
+We know that $\int_{\bar x}^\infty x^{r-\alpha-1} dx = \infty$ whenever $r - \alpha - 1 \geq -1$.
 
 Since $r \geq \alpha$, we have $\mathbb E X^r = \infty$.
 
