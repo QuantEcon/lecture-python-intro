@@ -22,10 +22,10 @@ Many problems in economics and finance require solving linear equations.
 
 In this lecture we discuss linear equations and their applications.
 
-To illustrate the importance of linear equations, we begin with a two goods
+To illustrate the importance of linear equations, we begin with a two good
 model of supply and demand.
 
-The two goods case is so simple that solutions can be calculated by hand.
+The two good case is so simple that solutions can be calculated by hand.
 
 But often we need to consider markets containing many goods.
 
@@ -46,9 +46,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 ```
 
-## A two goods example
+## A two good example
 
-In this section we discuss a simple two goods example and solve it by
+In this section we discuss a simple two good example and solve it by
 
 1. pencil and paper
 2. matrix algebra
@@ -60,7 +60,7 @@ The second method is more general, as we will see.
 
 Suppose that we have two related goods, such as 
 
-* propane and ethanol.
+* propane and ethanol, and
 * rice and wheat, etc. 
 
 To keep things simple, we label them as good 0 and good 1.
@@ -71,7 +71,7 @@ The demand for each good depends on the price of both goods:
 :label: two_eq_demand
 \begin{aligned}
     q_0^d = 100 - 10 p_0 - 5 p_1 \\
-    q_1^d = 50 - p_0 - 10 p_1.
+    q_1^d = 50 - p_0 - 10 p_1
 \end{aligned}
 ```
 
@@ -84,7 +84,7 @@ Let's suppose that supply is given by
 :label: two_eq_supply
 \begin{aligned}
     q_0^s = 10 p_0 + 5 p_1 \\
-    q_1^s = 5 p_0 + 10 p_1.
+    q_1^s = 5 p_0 + 10 p_1
 \end{aligned}
 ```
 
@@ -96,7 +96,7 @@ This yields the linear system
 :label: two_equilibrium
 \begin{aligned}
     100 - 10 p_0 - 5 p_1 = 10 p_0 + 5 p_1 \\
-    50 - p_0 - 10 p_1 = 5 p_0 + 10 p_1.
+    50 - p_0 - 10 p_1 = 5 p_0 + 10 p_1
 \end{aligned}
 ```
 
@@ -116,7 +116,7 @@ $$
 
 ### Looking forward
 
-Pencil and paper methods are easy in the two goods case.
+Pencil and paper methods are easy in the two good case.
 
 But what if there are many goods?
 
@@ -508,7 +508,7 @@ definition to make sense.
 
 We also have a convention for *multiplying* two matrices.
 
-The rule for matrix multiplication generalizes the idea of the inner products
+The rule for matrix multiplication generalizes the idea of inner products
 discussed above.
 
 If $A$ and $B$ are two matrices, then their product $A B$ is formed by taking
@@ -610,7 +610,7 @@ $$
 
 It is a useful exercise to check the following:
 
-* if $A$ is $n \times k$ and $I$ is the $k \times k$ identity matrix, then $AI = A$.
+* if $A$ is $n \times k$ and $I$ is the $k \times k$ identity matrix, then $AI = A$, and
 * if $I$ is the $n \times n$ identity matrix, then $IA = A$.
 
 
@@ -650,7 +650,7 @@ To get the transpose of `A`, use `A.transpose()` or, more simply, `A.T`.
 There are many convenient functions for creating common matrices (matrices of zeros,
 ones, etc.) --- see [here](https://python-programming.quantecon.org/numpy.html#creating-arrays).
 
-Since operations are performed elementwise by default, scalar multiplication and addition have very natural syntaxes.
+Since operations are performed elementwise by default, scalar multiplication and addition have very natural syntax.
 
 ```{code-cell} ipython3
 A = np.identity(3)    # 3 x 3 identity matrix
@@ -669,9 +669,9 @@ To multiply matrices we use the `@` symbol.
 In particular, `A @ B` is matrix multiplication, whereas `A * B` is element-by-element multiplication.
 ```
 
-### Two goods model in matrix form
+### Two good model in matrix form
 
-We can now revisit the two goods model and solve {eq}`two_equilibrium`
+We can now revisit the two good model and solve {eq}`two_equilibrium`
 numerically via matrix algebra.
 
 This involves some extra steps but the method is widely applicable --- as we
@@ -762,7 +762,7 @@ including crude oil, gasoline, coal, natural gas, ethanol and uranium.
 The prices of these goods are related, so it makes sense to study them
 together.
 
-Pencil and paper method become very time consuming with large systems.
+Pencil and paper methods become very time consuming with large systems.
 
 But fortunately the matrix methods described above are essentially unchanged.
 
@@ -785,7 +785,7 @@ To find an equilibrium, we solve $Dp + h = Cp + e$, or
     (D- C)p = e - h.
 ```
 
-The solution $n \times 1$ vector of prices $p$ is
+Then the price vector of the n different goods is
 
 $$ 
     p = (D- C)^{-1}(e - h).
@@ -1024,7 +1024,7 @@ This is the solution to $Ax = b$ --- the solution we are looking for.
 ```{index} single: Linear Algebra; SciPy
 ```
 
-In the two goods example we obtained the matrix equation,
+In the two good example we obtained the matrix equation,
 
 $$
 p = (C-D)^{-1} h.
@@ -1259,15 +1259,15 @@ solution $\hat{x}$ is
 Now consider the general equation of a linear demand curve of a good given by:
 
 $$
-    p = a - bq
+    p = m - nq
 $$
 
 where $p$ is the price of the good and $q$ is the quantity demanded.
 
-Suppose we are trying to *estimate* the values of $a$ and $b$.
+Suppose we are trying to *estimate* the values of $m$ and $n$.
 
 We do this by repeatedly observing the price and quantity (for example, each
-month) and then choosing $a$ and $b$ to fit the relationship between $p$ and
+month) and then choosing $m$ and $n$ to fit the relationship between $p$ and
 $q$.
 
 We have the following observations:
@@ -1279,19 +1279,19 @@ We have the following observations:
 |   8   |         3         |
 
 
-Requiring the demand curve $p = a - b q$ to pass through all these points leads to the
+Requiring the demand curve $p = m - nq$ to pass through all these points leads to the
 following three equations:
 
 $$
 \begin{aligned}
-    1 = a - 9b \\
-    3 = a - 7b \\
-    8 = a - 3b
+    1 = m - 9n \\
+    3 = m - 7n \\
+    8 = m - 3n
 \end{aligned}
 $$
 
 Thus we obtain a system of equations $Ax = b$ where $A = \begin{bmatrix} 1 & -9 \\ 1 & -7 \\ 1 & -3 \end{bmatrix}$,
-$x = \begin{bmatrix} a \\ b \end{bmatrix}$ and $b = \begin{bmatrix} 1 \\ 3 \\ 8 \end{bmatrix}$.
+$x = \begin{bmatrix} m \\ n \end{bmatrix}$ and $b = \begin{bmatrix} 1 \\ 3 \\ 8 \end{bmatrix}$.
 
 It can be verified that this system has no solutions.
 
