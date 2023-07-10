@@ -489,7 +489,7 @@ same as first applying $B$ on $x$ and then applying $A$ on the vector $Bx$.
 
 Thus the matrix product $AB$ is the
 [composition](https://en.wikipedia.org/wiki/Function_composition) of the
-matrix transformations $A$ and $B$, which repersents first apply transformation $B$ and then
+matrix transformations $A$ and $B$, which represents first apply transformation $B$ and then
 transformation $A$.
 
 When we matrix multiply an $n \times m$ matrix $A$ with an $m \times k$ matrix
