@@ -1083,10 +1083,8 @@ n = 120
 alphas = [1.15, 1.50, 1.75]
 fig, axes = plt.subplots(3, 1, figsize=(6, 8))
 
-for ax in axes:
-    ax.set_ylim((-5, 50))
-
 for ax, alpha in zip(axes, alphas):
+    ax.set_ylim((-5, 50))
     data = pareto.rvs(size=n, scale=1, b=alpha)
     ax.plot(list(range(n)), data, linestyle='', marker='o', alpha=0.5, ms=4)
     ax.vlines(list(range(n)), 0, data, lw=0.2)
@@ -1323,28 +1321,4 @@ In view of {eq}`lln_cch`, this is just $e^{-|t|}$.
 Thus, in the case of the Cauchy distribution, the sample mean itself has the very same Cauchy distribution, regardless of $n$!
 
 ```{solution-end}
-```
-
-```{code-cell} ipython3
-
-```
-
-```{code-cell} ipython3
-
-```
-
-```{code-cell} ipython3
-
-```
-
-```{code-cell} ipython3
-
-```
-
-```{code-cell} ipython3
-
-```
-
-```{code-cell} ipython3
-
 ```
