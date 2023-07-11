@@ -86,6 +86,10 @@ X = norm.rvs(size=1_000_000)
 ax.hist(X, bins=40, alpha=0.4, label='histogram', density=True)
 x_grid = np.linspace(-4, 4, 400)
 ax.plot(x_grid, norm.pdf(x_grid), label='density')
+
+ax.set_xlabel('X')
+ax.set_ylabel('Frequency')
+
 ax.legend()
 plt.show()
 ```
@@ -848,8 +852,6 @@ Let's have a look at the behavior of the sample mean in this case, and see
 whether or not the LLN is still valid.
 
 ```{code-cell} ipython3
-from scipy.stats import cauchy
-
 np.random.seed(1234)
 N = 1_000
 
@@ -868,6 +870,9 @@ ax.plot(range(N), sample_mean, alpha=0.6, label='$\\bar{X}_n$')
 
 ax.plot(range(N), np.zeros(N), 'k--', lw=0.5)
 ax.legend()
+
+ax.set_xlabel('Sample Size ($n$)')
+ax.set_ylabel('Sample Mean ($\\bar{X}_n$)')
 
 plt.show()
 ```
