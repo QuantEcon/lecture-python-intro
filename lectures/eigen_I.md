@@ -19,10 +19,6 @@ kernelspec:
 ```{index} single: Eigenvalues and Eigenvectors
 ```
 
-```{contents} Contents
-:depth: 2
-```
-
 ## Overview
 
 Eigenvalues and eigenvectors are a relatively advanced topic in linear algebra.
@@ -52,7 +48,6 @@ from mpl_toolkits.mplot3d import Axes3D
 from matplotlib.patches import FancyArrowPatch
 from mpl_toolkits.mplot3d import proj3d
 ```
-
 
 (matrices_as_transformation)=
 ## Matrices as transformations
@@ -127,7 +122,7 @@ $y = \begin{bmatrix} 5 \\ 2 \end{bmatrix}$.
 Let's visualize this using Python:
 
 ```{code-cell} ipython3
-A = np.array([[2,  1], 
+A = np.array([[2,  1],
               [-1, 1]])
 ```
 
@@ -144,28 +139,29 @@ for spine in ['right', 'top']:
 
 ax.set(xlim=(-2, 6), ylim=(-2, 4), aspect=1)
 
-vecs = ((1, 3),(5, 2))
-c = ['r','black']
+vecs = ((1, 3), (5, 2))
+c = ['r', 'black']
 for i, v in enumerate(vecs):
     ax.annotate('', xy=v, xytext=(0, 0),
                 arrowprops=dict(color=c[i],
                 shrink=0,
                 alpha=0.7,
                 width=0.5))
-    
-ax.text(0.2 + 1 , 0.2 + 3, 'x=$(1,3)$')
-ax.text(0.2 + 5 , 0.2 + 2, 'Ax=$(5,2)$')
-    
-ax.annotate('', xy=(sqrt(10/29)* 5, sqrt(10/29) *2), xytext=(0, 0),
-                arrowprops=dict(color='purple',
-                shrink=0,
-                alpha=0.7,
-                width=0.5))
 
-ax.annotate('',xy=(1,2/5),xytext=(1/3, 1),
-             arrowprops={'arrowstyle':'->', 'connectionstyle':'arc3,rad=-0.3'}
-             ,horizontalalignment='center')
-ax.text(0.8,0.8, f'θ',fontsize =14)
+ax.text(0.2 + 1, 0.2 + 3, 'x=$(1,3)$')
+ax.text(0.2 + 5, 0.2 + 2, 'Ax=$(5,2)$')
+
+ax.annotate('', xy=(sqrt(10/29) * 5, sqrt(10/29) * 2), xytext=(0, 0),
+            arrowprops=dict(color='purple',
+                            shrink=0,
+                            alpha=0.7,
+                            width=0.5))
+
+ax.annotate('', xy=(1, 2/5), xytext=(1/3, 1),
+            arrowprops={'arrowstyle': '->',
+                        'connectionstyle': 'arc3,rad=-0.3'},
+            horizontalalignment='center')
+ax.text(0.8, 0.8, f'θ', fontsize=14)
 
 plt.show()
 ```
@@ -204,16 +200,17 @@ def colorizer(x, y):
     b = 1/4 + x/16
     return (r, g, b)
 
-def grid_transform(A = np.array([[1, -1], [1, 1]])):
+
+def grid_transform(A=np.array([[1, -1], [1, 1]])):
     xvals = np.linspace(-4, 4, 9)
     yvals = np.linspace(-3, 3, 7)
     xygrid = np.column_stack([[x, y] for x in xvals for y in yvals])
     uvgrid = A @ xygrid
-    
+
     colors = list(map(colorizer, xygrid[0], xygrid[1]))
-    
-    figure, ax = plt.subplots(1,2, figsize = (10,5))
-    
+
+    fig, ax = plt.subplots(1, 2, figsize=(10, 5))
+
     for axes in ax:
         axes.set(xlim=(-11, 11), ylim=(-11, 11))
         axes.set_xticks([])
@@ -222,25 +219,26 @@ def grid_transform(A = np.array([[1, -1], [1, 1]])):
             axes.spines[spine].set_position('zero')
         for spine in ['right', 'top']:
             axes.spines[spine].set_color('none')
-    
+
     # Plot x-y grid points
     ax[0].scatter(xygrid[0], xygrid[1], s=36, c=colors, edgecolor="none")
-    #ax[0].grid(True)
-    #ax[0].axis("equal")
+    # ax[0].grid(True)
+    # ax[0].axis("equal")
     ax[0].set_title("points $x_1, x_2, \cdots, x_k$")
-    
+
     # Plot transformed grid points
     ax[1].scatter(uvgrid[0], uvgrid[1], s=36, c=colors, edgecolor="none")
-    #ax[1].grid(True)
-    #ax[1].axis("equal")
+    # ax[1].grid(True)
+    # ax[1].axis("equal")
     ax[1].set_title("points $Ax_1, Ax_2, \cdots, Ax_k$")
-    
+
     plt.show()
 
-def circle_transform(A = np.array([[-1, 2], [0, 1]])):
-    
-    figure, ax = plt.subplots(1,2, figsize = (10,5))
-    
+
+def circle_transform(A=np.array([[-1, 2], [0, 1]])):
+
+    fig, ax = plt.subplots(1, 2, figsize=(10, 5))
+
     for axes in ax:
         axes.set(xlim=(-4, 4), ylim=(-4, 4))
         axes.set_xticks([])
@@ -249,35 +247,38 @@ def circle_transform(A = np.array([[-1, 2], [0, 1]])):
             axes.spines[spine].set_position('zero')
         for spine in ['right', 'top']:
             axes.spines[spine].set_color('none')
-    
-    θ = np.linspace( 0 , 2 * np.pi , 150) 
+
+    θ = np.linspace(0, 2 * np.pi, 150)
     r = 1
-    
+
     θ_1 = np.empty(12)
     for i in range(12):
         θ_1[i] = 2 * np.pi * (i/12)
-    
-    x = r * np.cos(θ) 
+
+    x = r * np.cos(θ)
     y = r * np.sin(θ)
     a = r * np.cos(θ_1)
     b = r * np.sin(θ_1)
-    a_1 = a.reshape(1,-1)
-    b_1 = b.reshape(1,-1)
+    a_1 = a.reshape(1, -1)
+    b_1 = b.reshape(1, -1)
     colors = list(map(colorizer, a, b))
-    ax[0].plot(x, y, color = 'black', zorder=1)
-    ax[0].scatter(a_1,b_1, c = colors, alpha = 1, s = 60, edgecolors = 'black', zorder =2)
+    ax[0].plot(x, y, color='black', zorder=1)
+    ax[0].scatter(a_1, b_1, c=colors, alpha=1, s=60,
+                  edgecolors='black', zorder=2)
     ax[0].set_title("unit circle in $\mathbb{R}^2$")
-    
-    x1= x.reshape(1,-1)
+
+    x1 = x.reshape(1, -1)
     y1 = y.reshape(1, -1)
-    ab = np.concatenate((a_1,b_1), axis=0)
+    ab = np.concatenate((a_1, b_1), axis=0)
     transformed_ab = A @ ab
-    transformed_circle_input = np.concatenate((x1,y1), axis=0)
+    transformed_circle_input = np.concatenate((x1, y1), axis=0)
     transformed_circle = A @ transformed_circle_input
-    ax[1].plot(transformed_circle[0,:], transformed_circle[1,:], color = 'black', zorder= 1) 
-    ax[1].scatter(transformed_ab[0,:],transformed_ab[1:,], color = colors, alpha = 1, s = 60, edgecolors = 'black', zorder =2)
+    ax[1].plot(transformed_circle[0, :],
+               transformed_circle[1, :], color='black', zorder=1)
+    ax[1].scatter(transformed_ab[0, :], transformed_ab[1:,],
+                  color=colors, alpha=1, s=60, edgecolors='black', zorder=2)
     ax[1].set_title("transformed circle")
-   
+
     plt.show()
 ```
 
@@ -300,7 +301,7 @@ a factor $\beta$.
 Here we illustrate a simple example where $\alpha = \beta = 3$.
 
 ```{code-cell} ipython3
-A = np.array([[3 ,0],    #scaling by 3 in both directions
+A = np.array([[3, 0],  # scaling by 3 in both directions
               [0, 3]])
 grid_transform(A)
 circle_transform(A)
@@ -346,7 +347,7 @@ is called a _rotation matrix_.
 This matrix rotates vectors clockwise by an angle $\theta$.
 
 ```{code-cell} ipython3
-θ = np.pi/4      #45 degree clockwise rotation
+θ = np.pi/4  # 45 degree clockwise rotation
 A = np.array([[np.cos(θ), np.sin(θ)],
               [-np.sin(θ), np.cos(θ)]])
 grid_transform(A)
@@ -518,17 +519,17 @@ transformation $AB$ and then compare it with the transformation $BA$.
 ```{code-cell} ipython3
 :tags: [hide-input]
 
-def grid_composition_transform(A = np.array([[1, -1], [1, 1]]), B = np.array([[1, -1], [1, 1]])):
+def grid_composition_transform(A=np.array([[1, -1], [1, 1]]), B=np.array([[1, -1], [1, 1]])):
     xvals = np.linspace(-4, 4, 9)
     yvals = np.linspace(-3, 3, 7)
     xygrid = np.column_stack([[x, y] for x in xvals for y in yvals])
     uvgrid = B @ xygrid
     abgrid = A @ uvgrid
-    
+
     colors = list(map(colorizer, xygrid[0], xygrid[1]))
-    
-    figure, ax = plt.subplots(1,3, figsize = (15,5))
-    
+
+    fig, ax = plt.subplots(1, 3, figsize=(15, 5))
+
     for axes in ax:
         axes.set(xlim=(-12, 12), ylim=(-12, 12))
         axes.set_xticks([])
@@ -537,16 +538,16 @@ def grid_composition_transform(A = np.array([[1, -1], [1, 1]]), B = np.array([[1
             axes.spines[spine].set_position('zero')
         for spine in ['right', 'top']:
             axes.spines[spine].set_color('none')
-            
+
     # Plot grid points
     ax[0].scatter(xygrid[0], xygrid[1], s=36, c=colors, edgecolor="none")
     ax[0].set_title("points $x_1, x_2, \cdots, x_k$")
-    
+
     # Plot intermediate grid points
     ax[1].scatter(uvgrid[0], uvgrid[1], s=36, c=colors, edgecolor="none")
     ax[1].set_title("points $Bx_1, Bx_2, \cdots, Bx_k$")
-    
-    #Plot transformed grid points
+
+    # Plot transformed grid points
     ax[2].scatter(abgrid[0], abgrid[1], s=36, c=colors, edgecolor="none")
     ax[2].set_title("points $ABx_1, ABx_2, \cdots, ABx_k$")
 
@@ -554,9 +555,6 @@ def grid_composition_transform(A = np.array([[1, -1], [1, 1]]), B = np.array([[1
 ```
 
 ```{code-cell} ipython3
-θ = np.pi/2 
-#B = np.array([[np.cos(θ), np.sin(θ)],
-#              [-np.sin(θ), np.cos(θ)]])
 A = np.array([[0, 1],     # 90 degree clockwise rotation
               [-1, 0]])
 B = np.array([[1, 2],     # shear along x-axis
@@ -568,7 +566,7 @@ B = np.array([[1, 2],     # shear along x-axis
 #### Shear then rotate
 
 ```{code-cell} ipython3
-grid_composition_transform(A,B)        #transformation AB
+grid_composition_transform(A, B)  # transformation AB
 ```
 
 +++ {"user_expressions": []}
@@ -608,7 +606,7 @@ def plot_series(A, v, n):
     B = np.array([[1, -1],
                   [1, 0]])
 
-    figure, ax = plt.subplots()
+    fig, ax = plt.subplots()
 
     ax.set(xlim=(-4, 4), ylim=(-4, 4))
     ax.set_xticks([])
@@ -747,7 +745,7 @@ for spine in ['left', 'bottom']:
     ax.spines[spine].set_position('zero')
 for spine in ['right', 'top']:
     ax.spines[spine].set_color('none')
-#ax.grid(alpha=0.4)
+# ax.grid(alpha=0.4)
 
 xmin, xmax = -3, 3
 ymin, ymax = -3, 3
@@ -838,11 +836,11 @@ A = ((1, 2),
 
 A = np.array(A)
 evals, evecs = eig(A)
-evals   #eigenvalues
+evals  # eigenvalues
 ```
 
 ```{code-cell} ipython3
-evecs   #eigenvectors
+evecs  # eigenvectors
 ```
 
 +++ {"user_expressions": []}
@@ -943,16 +941,16 @@ The spectral radius $r(A)$ obtained is less than 1.
 Thus, we can apply the Neumann Series Lemma to find $(I-A)^{-1}$.
 
 ```{code-cell} ipython3
-I = np.identity(2)      #2 x 2 identity matrix
+I = np.identity(2)  # 2 x 2 identity matrix
 B = I - A
 ```
 
 ```{code-cell} ipython3
-B_inverse = np.linalg.inv(B)     #direct inverse method
+B_inverse = np.linalg.inv(B)  # direct inverse method
 ```
 
 ```{code-cell} ipython3
-A_sum = np.zeros((2,2))        #power series sum of A
+A_sum = np.zeros((2, 2))  # power series sum of A
 A_power = I
 for i in range(50):
     A_sum += A_power
@@ -1005,8 +1003,8 @@ mystnb:
     name: pow-dist
 ---
 # Define a matrix A
-A = np.array([[1, 0, 3], 
-              [0, 2, 0], 
+A = np.array([[1, 0, 3],
+              [0, 2, 0],
               [3, 0, 1]])
 
 num_iters = 20
@@ -1028,8 +1026,8 @@ for i in range(num_iters):
     b = b / np.linalg.norm(b)
     # Append b to the list of eigenvector approximations
     res.append(b)
-    err = np.linalg.norm(np.array(b) 
-                          - eigenvector)
+    err = np.linalg.norm(np.array(b)
+                         - eigenvector)
     errors.append(err)
 
 greatest_eigenvalue = np.dot(A @ b, b) / np.dot(b, b)
@@ -1060,25 +1058,25 @@ fig = plt.figure()
 ax = fig.add_subplot(111, projection='3d')
 
 # Plot the eigenvectors
-ax.scatter(eigenvector[0], 
-           eigenvector[1], 
-           eigenvector[2], 
-           color='r', s = 80)
+ax.scatter(eigenvector[0],
+           eigenvector[1],
+           eigenvector[2],
+           color='r', s=80)
 
 for i, vec in enumerate(res):
-    ax.scatter(vec[0], vec[1], vec[2], 
-               color='b', 
-               alpha=(i+1)/(num_iters+1), 
-               s = 80)
+    ax.scatter(vec[0], vec[1], vec[2],
+               color='b',
+               alpha=(i+1)/(num_iters+1),
+               s=80)
 
 ax.set_xlabel('x')
 ax.set_ylabel('y')
 ax.set_zlabel('z')
 ax.tick_params(axis='both', which='major', labelsize=7)
 
-points = [plt.Line2D([0], [0], linestyle='none', 
+points = [plt.Line2D([0], [0], linestyle='none',
                      c=i, marker='o') for i in ['r', 'b']]
-ax.legend(points, ['actual eigenvector', 
+ax.legend(points, ['actual eigenvector',
                    r'approximated eigenvector ($b_k$)'])
 ax.set_box_aspect(aspect=None, zoom=0.8)
 
@@ -1106,7 +1104,7 @@ Try to compute the trajectory of $v$ after being transformed by $A$ for $n=4$ it
 ```
 
 ```{code-cell} ipython3
-A = np.array([[1, 2], 
+A = np.array([[1, 2],
               [1, 1]])
 v = (0.4, -0.4)
 n = 11
@@ -1114,8 +1112,8 @@ n = 11
 # Compute eigenvectors and eigenvalues
 eigenvalues, eigenvectors = np.linalg.eig(A)
 
-print(f"eigenvalues:\n {eigenvalues}")
-print(f"eigenvectors:\n {eigenvectors}")
+print(f'eigenvalues:\n {eigenvalues}')
+print(f'eigenvectors:\n {eigenvectors}')
 
 plot_series(A, v, n)
 ```
@@ -1136,33 +1134,33 @@ mystnb:
     name: eigen-conv
 ---
 # Create a grid of points
-x, y = np.meshgrid(np.linspace(-5, 5, 15), 
-                np.linspace(-5, 5, 20))
+x, y = np.meshgrid(np.linspace(-5, 5, 15),
+                   np.linspace(-5, 5, 20))
 
 # Apply the matrix A to each point in the vector field
 vec_field = np.stack([x, y])
 u, v = np.tensordot(A, vec_field, axes=1)
 
 # Plot the transformed vector field
-c = plt.streamplot(x, y, u - x, v - y, 
-                density=1, linewidth=None, color='#A23BEC')
+c = plt.streamplot(x, y, u - x, v - y,
+                   density=1, linewidth=None, color='#A23BEC')
 c.lines.set_alpha(0.5)
 c.arrows.set_alpha(0.5)
 
 # Draw eigenvectors
 origin = np.zeros((2, len(eigenvectors)))
-parameters = {'color':['b', 'g'], 'angles':'xy', 
-                'scale_units':'xy', 'scale':0.1, 'width':0.01}
-plt.quiver(*origin, eigenvectors[0], 
-        eigenvectors[1], **parameters)
-plt.quiver(*origin, - eigenvectors[0], 
-        - eigenvectors[1], **parameters)
+parameters = {'color': ['b', 'g'], 'angles': 'xy',
+              'scale_units': 'xy', 'scale': 0.1, 'width': 0.01}
+plt.quiver(*origin, eigenvectors[0],
+           eigenvectors[1], **parameters)
+plt.quiver(*origin, - eigenvectors[0],
+           - eigenvectors[1], **parameters)
 
 colors = ['b', 'g']
 lines = [Line2D([0], [0], color=c, linewidth=3) for c in colors]
 labels = ["2.4 eigenspace", "0.4 eigenspace"]
-plt.legend(lines, labels, loc='center left',\
-             bbox_to_anchor=(1, 0.5))
+plt.legend(lines, labels, loc='center left',
+           bbox_to_anchor=(1, 0.5))
 
 plt.xlabel("x")
 plt.ylabel("y")
@@ -1207,7 +1205,7 @@ mystnb:
     caption: Vector fields of the three matrices
     name: vector-field
 ---
-figure, ax = plt.subplots(1,3, figsize = (15, 5))
+figure, ax = plt.subplots(1, 3, figsize=(15, 5))
 A = np.array([[sqrt(3) + 1, -2],
               [1, sqrt(3) - 1]])
 A = (1/(2*sqrt(2))) * A
@@ -1235,8 +1233,8 @@ for i, example in enumerate(examples):
     eigenvectors_real = eigenvectors.real
 
     # Create a grid of points
-    x, y = np.meshgrid(np.linspace(-20, 20, 15), 
-                    np.linspace(-20, 20, 20))
+    x, y = np.meshgrid(np.linspace(-20, 20, 15),
+                       np.linspace(-20, 20, 20))
 
     # Apply the matrix A to each point in the vector field
     vec_field = np.stack([x, y])
@@ -1244,21 +1242,21 @@ for i, example in enumerate(examples):
 
     # Plot the transformed vector field
     c = ax[i].streamplot(x, y, u - x, v - y,
-             density=1, linewidth=None, color='#A23BEC')
+                         density=1, linewidth=None, color='#A23BEC')
     c.lines.set_alpha(0.5)
     c.arrows.set_alpha(0.5)
-    
+
     # Draw eigenvectors
-    parameters = {'color':['b', 'g'], 'angles':'xy', 
-                'scale_units':'xy', 'scale':1, 
-                'width':0.01, 'alpha':0.5}
+    parameters = {'color': ['b', 'g'], 'angles': 'xy',
+                  'scale_units': 'xy', 'scale': 1,
+                  'width': 0.01, 'alpha': 0.5}
     origin = np.zeros((2, len(eigenvectors)))
-    ax[i].quiver(*origin, eigenvectors_real[0], 
-            eigenvectors_real[1], **parameters)
-    ax[i].quiver(*origin, 
-                - eigenvectors_real[0], 
-                - eigenvectors_real[1], 
-                **parameters)
+    ax[i].quiver(*origin, eigenvectors_real[0],
+                 eigenvectors_real[1], **parameters)
+    ax[i].quiver(*origin,
+                 - eigenvectors_real[0],
+                 - eigenvectors_real[1],
+                 **parameters)
 
     ax[i].set_xlabel("x-axis")
     ax[i].set_ylabel("y-axis")
@@ -1285,22 +1283,23 @@ mystnb:
 ---
 class Arrow3D(FancyArrowPatch):
     def __init__(self, xs, ys, zs, *args, **kwargs):
-        super().__init__((0,0), (0,0), *args, **kwargs)
+        super().__init__((0, 0), (0, 0), *args, **kwargs)
         self._verts3d = xs, ys, zs
 
-    def do_3d_projection(self, renderer=None):
+    def do_3d_projection(self):
         xs3d, ys3d, zs3d = self._verts3d
-        xs, ys, zs = proj3d.proj_transform(xs3d, ys3d, zs3d,\
-                                             self.axes.M)
-        self.set_positions((0.1*xs[0],0.1*ys[0]), \
-                            (0.1*xs[1],0.1*ys[1]))
+        xs, ys, zs = proj3d.proj_transform(xs3d, ys3d, zs3d,
+                                           self.axes.M)
+        self.set_positions((0.1*xs[0], 0.1*ys[0]),
+                           (0.1*xs[1], 0.1*ys[1]))
 
         return np.min(zs)
+
 
 eigenvalues, eigenvectors = np.linalg.eig(A)
 
 # Create meshgrid for vector field
-x, y = np.meshgrid(np.linspace(-2, 2, 15), 
+x, y = np.meshgrid(np.linspace(-2, 2, 15),
                    np.linspace(-2, 2, 15))
 
 # Calculate vector field (real and imaginary parts)
@@ -1313,18 +1312,18 @@ v_imag = np.zeros_like(y)
 fig = plt.figure()
 ax = fig.add_subplot(111, projection='3d')
 vlength = np.linalg.norm(eigenvectors)
-ax.quiver(x, y, u_imag, u_real-x, v_real-y, v_imag-u_imag, 
-          colors = 'b', alpha=0.3, length = .2, 
-          arrow_length_ratio = 0.01)
+ax.quiver(x, y, u_imag, u_real-x, v_real-y, v_imag-u_imag,
+          colors='b', alpha=0.3, length=.2,
+          arrow_length_ratio=0.01)
 
-arrow_prop_dict = dict(mutation_scale=5, 
-                arrowstyle='-|>', shrinkA=0, shrinkB=0)
+arrow_prop_dict = dict(mutation_scale=5,
+                       arrowstyle='-|>', shrinkA=0, shrinkB=0)
 
 # Plot 3D eigenvectors
 for c, i in zip(['b', 'g'], [0, 1]):
-    a = Arrow3D([0, eigenvectors[0][i].real], 
-                [0, eigenvectors[1][i].real], 
-                [0, eigenvectors[1][i].imag], 
+    a = Arrow3D([0, eigenvectors[0][i].real],
+                [0, eigenvectors[1][i].real],
+                [0, eigenvectors[1][i].imag],
                 color=c, **arrow_prop_dict)
     ax.add_artist(a)
 
