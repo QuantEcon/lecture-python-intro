@@ -42,9 +42,7 @@ We will use the following imports:
 import matplotlib.pyplot as plt
 import numpy as np
 from numpy.linalg import matrix_power
-from matplotlib import cm
 from matplotlib.lines import Line2D
-from mpl_toolkits.mplot3d import Axes3D
 from matplotlib.patches import FancyArrowPatch
 from mpl_toolkits.mplot3d import proj3d
 ```
@@ -519,7 +517,8 @@ transformation $AB$ and then compare it with the transformation $BA$.
 ```{code-cell} ipython3
 :tags: [hide-input]
 
-def grid_composition_transform(A=np.array([[1, -1], [1, 1]]), B=np.array([[1, -1], [1, 1]])):
+def grid_composition_transform(A=np.array([[1, -1], [1, 1]]),
+                               B=np.array([[1, -1], [1, 1]])):
     xvals = np.linspace(-4, 4, 9)
     yvals = np.linspace(-3, 3, 7)
     xygrid = np.column_stack([[x, y] for x in xvals for y in yvals])
@@ -574,7 +573,7 @@ grid_composition_transform(A, B)  # transformation AB
 #### Rotate then shear
 
 ```{code-cell} ipython3
-grid_composition_transform(B,A)         #transformation BA
+grid_composition_transform(B,A)         # transformation BA
 ```
 
 +++ {"user_expressions": []}
@@ -1241,8 +1240,8 @@ for i, example in enumerate(examples):
     u, v = np.tensordot(M, vec_field, axes=1)
 
     # Plot the transformed vector field
-    c = ax[i].streamplot(x, y, u - x, v - y,
-                         density=1, linewidth=None, color='#A23BEC')
+    c = ax[i].streamplot(x, y, u - x, v - y, density=1,
+                         linewidth=None, color='#A23BEC')
     c.lines.set_alpha(0.5)
     c.arrows.set_alpha(0.5)
 
