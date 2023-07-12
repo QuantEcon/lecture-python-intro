@@ -59,13 +59,13 @@ from mpl_toolkits.mplot3d import proj3d
 
 Let's start by discussing an important concept concerning matrices.
 
-### Mapping vectors into vectors
+### Mapping vectors to vectors
 
 One way to think about a matrix is as a rectangular collection of
 numbers.
 
 Another way to think about a matrix is as a *map* (i.e., as a function) that
-transforms vectors into new vectors.
+transforms vectors to new vectors.
 
 To understand the second point of view, suppose we multiply an $n \times m$
 matrix $A$ with an $m \times 1$ column vector $x$ to obtain an $n \times 1$
@@ -76,9 +76,9 @@ $$
 $$
 
 If we fix $A$ and consider different choices of $x$, we can understand $A$ as
-a map transforming $x$ into $Ax$.
+a map transforming $x$ to $Ax$.
 
-Because $A$ is $n \times m$, it transforms $m$-vectors into $n$-vectors.
+Because $A$ is $n \times m$, it transforms $m$-vectors to $n$-vectors.
 
 We can write this formally as $A \colon \mathbb{R}^m \rightarrow \mathbb{R}^n$.
 
@@ -89,11 +89,11 @@ $A(x) = y$ rather than $Ax = y$ but the second notation is more conventional.
 
 Let's restrict our discussion to square matrices.
 
-In the above discussion, this means that $m=n$ and $A$ maps $\mathbb R^n$ into
+In the above discussion, this means that $m=n$ and $A$ maps $\mathbb R^n$ to
 itself.
 
 This means $A$ is an $n \times n$ matrix that maps (or "transforms") a vector
-$x$ in $\mathbb{R}^n$ into a new vector $y=Ax$ also in $\mathbb{R}^n$.
+$x$ in $\mathbb{R}^n$ to a new vector $y=Ax$ also in $\mathbb{R}^n$.
 
 Here's one example:
 
@@ -121,7 +121,7 @@ $$
         \end{bmatrix}
 $$
 
-transforms the vector $x = \begin{bmatrix} 1 \\ 3 \end{bmatrix}$ into the vector
+transforms the vector $x = \begin{bmatrix} 1 \\ 3 \end{bmatrix}$ to the vector
 $y = \begin{bmatrix} 5 \\ 2 \end{bmatrix}$.
 
 Let's visualize this using Python:
@@ -193,7 +193,7 @@ We consider how a given matrix transforms
 
 To build the transformations we will use two functions, called `grid_transform` and `circle_transform`.
 
-Each of these functions visualizes the action of a given $2 \times 2$ matrix $A$.
+Each of these functions visualizes the actions of a given $2 \times 2$ matrix $A$.
 
 ```{code-cell} ipython3
 :tags: [hide-input]
@@ -489,7 +489,9 @@ same as first applying $B$ on $x$ and then applying $A$ on the vector $Bx$.
 
 Thus the matrix product $AB$ is the
 [composition](https://en.wikipedia.org/wiki/Function_composition) of the
-matrix transformations $A$ and $B$, which represents first apply transformation $B$ and then
+matrix transformations $A$ and $B$
+
+This means first apply transformation $B$ and then
 transformation $A$.
 
 When we matrix multiply an $n \times m$ matrix $A$ with an $m \times k$ matrix
@@ -500,7 +502,7 @@ Thus, if $A$ and $B$ are transformations such that $A \colon \mathbb{R}^m \to
 transforms $\mathbb{R}^k$ to $\mathbb{R}^n$.
 
 Viewing matrix multiplication as composition of maps helps us
-understand why, under matrix multiplication, $AB$ is not generally equal to $BA$.
+understand why, under matrix multiplication, $AB$ is generally not equal to $BA$.
 
 (After all, when we compose functions, the order usually matters.)
 
@@ -601,13 +603,13 @@ different maps $A$.
 (plot_series)=
 
 ```{code-cell} ipython3
-def plot_series(B, v, n):
-    
-    A = np.array([[1, -1],
+def plot_series(A, v, n):
+
+    B = np.array([[1, -1],
                   [1, 0]])
-    
+
     figure, ax = plt.subplots()
-    
+
     ax.set(xlim=(-4, 4), ylim=(-4, 4))
     ax.set_xticks([])
     ax.set_yticks([])
@@ -615,43 +617,44 @@ def plot_series(B, v, n):
         ax.spines[spine].set_position('zero')
     for spine in ['right', 'top']:
         ax.spines[spine].set_color('none')
-        
-    θ = np.linspace( 0 , 2 * np.pi , 150) 
+
+    θ = np.linspace(0, 2 * np.pi, 150)
     r = 2.5
-    x = r * np.cos(θ) 
+    x = r * np.cos(θ)
     y = r * np.sin(θ)
-    x1 = x.reshape(1,-1)
+    x1 = x.reshape(1, -1)
     y1 = y.reshape(1, -1)
-    xy = np.concatenate((x1,y1), axis=0)
-    
-    ellipse = A @ xy
-    ax.plot(ellipse[0,:], ellipse[1,:], color = 'black', linestyle = (0, (5,10)), linewidth = 0.5)
-    
-    colors = plt.cm.rainbow(np.linspace(0,1,20))# Initialize holder for trajectories
-    
+    xy = np.concatenate((x1, y1), axis=0)
+
+    ellipse = B @ xy
+    ax.plot(ellipse[0, :], ellipse[1, :], color='black',
+            linestyle=(0, (5, 10)), linewidth=0.5)
+
+    # Initialize holder for trajectories
+    colors = plt.cm.rainbow(np.linspace(0, 1, 20))
+
     for i in range(n):
-        iteration = matrix_power(B, i) @ v
+        iteration = matrix_power(A, i) @ v
         v1 = iteration[0]
         v2 = iteration[1]
         ax.scatter(v1, v2, color=colors[i])
         if i == 0:
             ax.text(v1+0.25, v2, f'$v$')
-        if i == 1:
+        elif i == 1:
             ax.text(v1+0.25, v2, f'$Av$')
-        if 1< i < 4:
+        elif 1 < i < 4:
             ax.text(v1+0.25, v2, f'$A^{i}v$')
-            
     plt.show()
 ```
 
 ```{code-cell} ipython3
-B = np.array([[sqrt(3) + 1, -2],
+A = np.array([[sqrt(3) + 1, -2],
               [1, sqrt(3) - 1]])
-B = (1/(2*sqrt(2))) * B
+A = (1/(2*sqrt(2))) * A
 v = (-3, -3)
 n = 12
 
-plot_series(B, v, n)
+plot_series(A, v, n)
 ```
 
 +++ {"user_expressions": []}
@@ -816,12 +819,12 @@ plane, although some might be repeated.
 
 Some nice facts about the eigenvalues of a square matrix $A$ are as follows:
 
-1. The determinant of $A$ equals  the product of the eigenvalues.
-1. The trace of $A$ (the sum of the elements on the principal diagonal) equals the sum of the eigenvalues.
-1. If $A$ is symmetric, then all of its eigenvalues are real.
-1. If $A$ is invertible and $\lambda_1, \ldots, \lambda_n$ are its eigenvalues, then the eigenvalues of $A^{-1}$ are $1/\lambda_1, \ldots, 1/\lambda_n$.
+1. the determinant of $A$ equals the product of the eigenvalues
+2. the trace of $A$ (the sum of the elements on the principal diagonal) equals the sum of the eigenvalues
+3. if $A$ is symmetric, then all of its eigenvalues are real
+4. if $A$ is invertible and $\lambda_1, \ldots, \lambda_n$ are its eigenvalues, then the eigenvalues of $A^{-1}$ are $1/\lambda_1, \ldots, 1/\lambda_n$.
 
-A corollary of the first statement is that a matrix is invertible if and only if all its eigenvalues are nonzero.
+A corollary of the last statement is that a matrix is invertible if and only if all its eigenvalues are nonzero.
 
 ### Computation
 
@@ -866,7 +869,7 @@ many applications in economics.
 
 ### Scalar series
 
-Here's a fundamental result about series that you surely know:
+Here's a fundamental result about series:
 
 If $a$ is a number and $|a| < 1$, then
 
@@ -971,7 +974,7 @@ result which illustrates the result of the Neumann Series Lemma.
 ```{exercise}
 :label: eig1_ex1
 
-Power iteration is a method for finding the largest absolute eigenvalue of a diagonalizable matrix.
+Power iteration is a method for finding the greatest absolute eigenvalue of a diagonalizable matrix.
 
 The method starts with a random vector $b_0$ and repeatedly applies the matrix $A$ to it
 
@@ -981,7 +984,7 @@ $$
 
 A thorough discussion of the method can be found [here](https://pythonnumericalmethods.berkeley.edu/notebooks/chapter15.02-The-Power-Method.html).
 
-In this exercise, first implement the power iteration method and use it to find the largest eigenvalue and its corresponding eigenvector.
+In this exercise, first implement the power iteration method and use it to find the greatest absolute eigenvalue and its corresponding eigenvector.
 
 Then visualize the convergence.
 ```
@@ -1014,7 +1017,7 @@ b = np.random.rand(A.shape[1])
 # Get the leading eigenvector of matrix A
 eigenvector = np.linalg.eig(A)[1][:, 0]
 
-norm_ls = []
+errors = []
 res = []
 
 # Power iteration loop
@@ -1025,24 +1028,25 @@ for i in range(num_iters):
     b = b / np.linalg.norm(b)
     # Append b to the list of eigenvector approximations
     res.append(b)
-    norm = np.linalg.norm(np.array(b) 
+    err = np.linalg.norm(np.array(b) 
                           - eigenvector)
-    norm_ls.append(norm)
+    errors.append(err)
 
-dominant_eigenvalue = np.dot(A @ b, b) / np.dot(b, b)
-print(f'The approximated dominant eigenvalue is {dominant_eigenvalue:.2f}')
+greatest_eigenvalue = np.dot(A @ b, b) / np.dot(b, b)
+print(f'The approximated greatest absolute eigenvalue is \
+        {greatest_eigenvalue:.2f}')
 print('The real eigenvalue is', np.linalg.eig(A)[0])
 
 # Plot the eigenvector approximations for each iteration
-plt.figure(figsize=(10, 6))
+fig, ax = plt.subplots(figsize=(10, 6))
+ax.plot(errors)
 plt.xlabel('iterations')
-plt.ylabel('Norm')
-_ = plt.plot(norm_ls)
+plt.ylabel('error')
 ```
 
 +++ {"user_expressions": []}
 
-Then we can look at the trajectory of the eigenvector approximation
+Then we can look at the trajectory of the eigenvector approximation.
 
 ```{code-cell} ipython3
 ---
@@ -1078,7 +1082,6 @@ ax.legend(points, ['actual eigenvector',
                    r'approximated eigenvector ($b_k$)'])
 ax.set_box_aspect(aspect=None, zoom=0.8)
 
-# Show the plot
 plt.show()
 ```
 
@@ -1121,7 +1124,9 @@ plot_series(A, v, n)
 
 The result seems to converge to the eigenvector of $A$ with the largest eigenvalue.
 
-Let's use a vector field to visualize the transformation brought by A.
+Let's use a [vector field](https://en.wikipedia.org/wiki/Vector_field) to visualize the transformation brought by A.
+
+(This is a more advanced topic in linear algebra, please step ahead if you are comfortable with the math.)
 
 ```{code-cell} ipython3
 ---
@@ -1156,7 +1161,8 @@ plt.quiver(*origin, - eigenvectors[0],
 colors = ['b', 'g']
 lines = [Line2D([0], [0], color=c, linewidth=3) for c in colors]
 labels = ["2.4 eigenspace", "0.4 eigenspace"]
-plt.legend(lines, labels,loc='center left', bbox_to_anchor=(1, 0.5))
+plt.legend(lines, labels, loc='center left',\
+             bbox_to_anchor=(1, 0.5))
 
 plt.xlabel("x")
 plt.ylabel("y")
@@ -1284,8 +1290,10 @@ class Arrow3D(FancyArrowPatch):
 
     def do_3d_projection(self, renderer=None):
         xs3d, ys3d, zs3d = self._verts3d
-        xs, ys, zs = proj3d.proj_transform(xs3d, ys3d, zs3d, self.axes.M)
-        self.set_positions((0.1*xs[0],0.1*ys[0]),(0.1*xs[1],0.1*ys[1]))
+        xs, ys, zs = proj3d.proj_transform(xs3d, ys3d, zs3d,\
+                                             self.axes.M)
+        self.set_positions((0.1*xs[0],0.1*ys[0]), \
+                            (0.1*xs[1],0.1*ys[1]))
 
         return np.min(zs)
 
