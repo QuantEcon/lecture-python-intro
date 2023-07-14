@@ -1035,10 +1035,10 @@ print(f'The approximated greatest absolute eigenvalue is \
 print('The real eigenvalue is', np.linalg.eig(A)[0])
 
 # Plot the eigenvector approximations for each iteration
-fig, ax = plt.subplots(figsize=(10, 6))
-ax.plot(errors)
+plt.figure(figsize=(10, 6))
 plt.xlabel('iterations')
 plt.ylabel('error')
+_ = plt.plot(errors)
 ```
 
 +++ {"user_expressions": []}
