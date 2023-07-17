@@ -1086,18 +1086,21 @@ np.random.seed(11)
 
 n = 120
 alphas = [1.15, 1.50, 1.75]
-fig, axes = plt.subplots(3, 1, figsize=(6, 8))
+fig, axes = plt.subplots(3, 1, figsize=(8, 10))  # Increased size
 
 for ax, alpha in zip(axes, alphas):
     ax.set_ylim((-5, 50))
     data = pareto.rvs(size=n, scale=1, b=alpha)
     ax.plot(list(range(n)), data, linestyle='', marker='o', alpha=0.5, ms=4)
     ax.vlines(list(range(n)), 0, data, lw=0.2)
-    ax.set_title(f"draws from Pareto($\\alpha = {alpha}$)", fontsize=11)
+    ax.set_title(f"draws from Pareto ($\\alpha = {alpha}$)", fontsize=11)
 
 plt.subplots_adjust(hspace=0.4)
-plt.suptitle('Simulation of Draws from Pareto Distributions with Different Alphas', fontsize=14)
-plt.figtext(0.5, 0.01, "Each subplot shows 120 independent draws from a Pareto distribution with a different alpha. The alpha value for each subplot is indicated in its title.", ha="center", fontsize=11, bbox={"facecolor":"orange", "alpha":0.5, "pad":5})
+plt.suptitle('Simulation of Draws from Pareto Distributions with Different Alphas', fontsize=14, y=-0.1)  # Adjusted position
+plt.figtext(0.5, -0.15, "Each subplot shows 120 independent draws from a Pareto distribution with a different alpha. The alpha value for each subplot is indicated in its title.", ha="center", fontsize=11, bbox={"facecolor":"orange", "alpha":0.5, "pad":5})  # Adjusted position
+
+# Adjust subplot parameters so that the subplot fits in to the figure area
+plt.tight_layout()
 
 plt.show()
 ```
