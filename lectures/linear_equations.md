@@ -39,7 +39,7 @@ To handle such systems we need two things:
 
 This lecture covers these steps.
 
-We will use the following imports:
+We will use the following packages:
 
 ```{code-cell} ipython3
 import numpy as np
@@ -757,7 +757,7 @@ Before we implement the solution let us consider a more general setting.
 It is natural to think about demand systems with more goods.
 
 For example, even within energy commodities there are many different goods,
-including crude oil, gasoline, coal, natural gas, ethanol and uranium.
+including crude oil, gasoline, coal, natural gas, ethanol, and uranium.
 
 The prices of these goods are related, so it makes sense to study them
 together.
