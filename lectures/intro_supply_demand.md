@@ -3,6 +3,8 @@ jupytext:
   text_representation:
     extension: .md
     format_name: myst
+    format_version: 0.13
+    jupytext_version: 1.11.5
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
@@ -46,7 +48,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 ```
 
-
 ## Supply and demand
 
 We study a market for a single good in which buyers and sellers exchange a quantity $q$ for a price $p$.
@@ -73,11 +74,11 @@ implementing the inverse demand and supply curves.
 ```{code-cell} ipython3
 class Market:
 
-    def __init__(self, 
-        d_0=1.0,      # demand intercept
-        d_1=0.6,      # demand slope
-        s_0=0.1,      # supply intercept
-        s_1=0.4):     # supply slope
+    def __init__(self,
+                 d_0=1.0,      # demand intercept
+                 d_1=0.6,      # demand slope
+                 s_0=0.1,      # supply intercept
+                 s_1=0.4):     # supply slope
 
         self.d_0, self.d_1 = d_0, d_1
         self.s_0, self.s_1 = s_0, s_1
@@ -87,10 +88,7 @@ class Market:
 
     def inverse_supply(self, q):
         return self.s_0 + self.s_1 * q
-
 ```
-
-
 
 Let's create an instance.
 
@@ -98,11 +96,11 @@ Let's create an instance.
 market = Market()
 ```
 
-
 Here is a plot of these two functions using `market`.
 
 ```{code-cell} ipython3
 :tags: [hide-input]
+
 market = Market()
 
 grid_min, grid_max, grid_size = 0, 1.5, 200
@@ -149,11 +147,11 @@ ps = np.ones_like(q_grid) * p
 
 fig, ax = plt.subplots()
 ax.plot(q_grid, demand_curve, label='demand')
-ax.fill_between(q_grid[q_grid <= q], 
-    demand_curve[q_grid<=q], 
-    ps[q_grid <= q], 
-    label='consumer surplus', 
-    color='#EED1CF')
+ax.fill_between(q_grid[q_grid <= q],
+                demand_curve[q_grid <= q],
+                ps[q_grid <= q],
+                label='consumer surplus',
+                color='#EED1CF')
 ax.vlines(q, 0, p, linestyle="dashed", color='black', alpha=0.7)
 ax.hlines(p, 0, q, linestyle="dashed", color='black', alpha=0.7)
 
@@ -167,7 +165,6 @@ ax.set_xlabel('quantity')
 ax.set_ylabel('price')
 plt.show()
 ```
-
 
 Consumer surplus provides a measure of total consumer welfare at quantity $q$.
 
@@ -213,11 +210,11 @@ ps = np.ones_like(q_grid) * p
 
 fig, ax = plt.subplots()
 ax.plot(q_grid, supply_curve, label='supply')
-ax.fill_between(q_grid[q_grid <= q], 
-    supply_curve[q_grid<=q], 
-    ps[q_grid <= q], 
-    label='producer surplus', 
-    color='#E6E6F5')
+ax.fill_between(q_grid[q_grid <= q],
+                supply_curve[q_grid <= q],
+                ps[q_grid <= q],
+                label='producer surplus',
+                color='#E6E6F5')
 ax.vlines(q, 0, p, linestyle="dashed", color='black', alpha=0.7)
 ax.hlines(p, 0, q, linestyle="dashed", color='black', alpha=0.7)
 
@@ -275,7 +272,7 @@ def W(q, market):
     # Unpack
     d_0, d_1, s_0, s_1 = market.d_0, market.d_1, market.s_0, market.s_1
     # Compute and return welfare
-    return (d_0 - s_0) * q -  0.5 * (d_1 + s_1) * q**2
+    return (d_0 - s_0) * q - 0.5 * (d_1 + s_1) * q**2
 ```
 
 The next figure plots welfare as a function of $q$.
@@ -283,6 +280,7 @@ The next figure plots welfare as a function of $q$.
 
 ```{code-cell} ipython3
 :tags: [hide-input]
+
 q_vals = np.linspace(0, 1.78, 200)
 fig, ax = plt.subplots()
 ax.plot(q_vals, W(q_vals, market), label='welfare')
@@ -394,11 +392,11 @@ Using the class, plot the inverse demand and supply curves $i_d$ and $i_s$
 ```{code-cell} ipython3
 class Market:
 
-    def __init__(self, 
-        d_0=1.0,      # demand intercept
-        d_1=0.6,      # demand slope
-        s_0=0.1,      # supply intercept
-        s_1=0.4):     # supply slope
+    def __init__(self,
+                 d_0=1.0,      # demand intercept
+                 d_1=0.6,      # demand slope
+                 s_0=0.1,      # supply intercept
+                 s_1=0.4):     # supply slope
 
         self.d_0, self.d_1 = d_0, d_1
         self.s_0, self.s_1 = s_0, s_1
@@ -408,7 +406,6 @@ class Market:
 
     def inverse_supply(self, q):
         return self.s_0 + self.s_1 * q**1.8
-
 ```
 
 Let's create an instance.
@@ -498,7 +495,8 @@ Here's a Python function that computes this value:
 ```{code-cell} ipython3
 def W(q, market):
     # Unpack
-    d_0, d_1, s_0, s_1 = market.d_0, market.d_1, market.s_0, market.s_1
+    d_0, d_1 = market.d_0, market.d_1
+    s_0, s_1 = market.s_0, market.s_1
     # Compute and return welfare
     S_c = d_0 * q - d_1 * q**1.6 / 1.6
     S_p = s_0 * q + s_1 * q**2.8 / 2.8
