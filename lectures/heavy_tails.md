@@ -1081,6 +1081,8 @@ Use `np.random.seed(11)` to set the seed.
 
 ```{code-cell} ipython3
 from scipy.stats import pareto
+import numpy as np
+import matplotlib.pyplot as plt
 
 np.random.seed(11)
 
@@ -1096,8 +1098,13 @@ for ax, alpha in zip(axes, alphas):
     ax.set_title(f"draws from Pareto ($\\alpha = {alpha}$)", fontsize=11)
 
 plt.subplots_adjust(hspace=0.4)
-plt.suptitle('Simulation of Draws from Pareto Distributions with Different Alphas', fontsize=14, y=-0.1)  # Adjusted position
-plt.figtext(0.5, -0.15, "Each subplot shows 120 independent draws from a Pareto distribution with a different alpha. The alpha value for each subplot is indicated in its title.", ha="center", fontsize=11, bbox={"facecolor":"orange", "alpha":0.5, "pad":5})  # Adjusted position
+
+suptitle_text = "Pareto Draws for Different Alphas"
+figtext_text = "Each plot shows 120 draws from a Pareto with a unique alpha."
+
+plt.suptitle(suptitle_text, fontsize=14, y=-0.1)  # Adjusted position
+plt.figtext(0.5, -0.15, figtext_text, ha="center", fontsize=11,
+            bbox={"facecolor":"orange", "alpha":0.5, "pad":5})  # Adjusted position
 
 # Adjust subplot parameters so that the subplot fits in to the figure area
 plt.tight_layout()
