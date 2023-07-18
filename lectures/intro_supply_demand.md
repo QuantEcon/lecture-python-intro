@@ -135,7 +135,7 @@ curve minus $p q$:
 $$
     S_c(q) := 
     \int_0^{q} (d_0 - d_1 x) dx - p q 
-$$
+$$ (eq:cstm_spls)
 
 The next figure illustrates
 
@@ -172,14 +172,14 @@ plt.show()
 Consumer surplus provides a measure of total consumer welfare at quantity $q$.
 
 The idea is that the inverse demand curve $d_0 - d_1 q$ shows a consumer's willingness to 
-pay for an additional increment of the good  at a given quantity $q$.
+pay for an additional increment of the good at a given quantity $q$.
 
 The difference between willingness to pay and the actual price is consumer surplus.
 
 The value $S_c(q)$ is the "sum" (i.e., integral) of these surpluses when the total
 quantity purchased is $q$ and the purchase price is $p$.
 
-Evaluating the integral in the definition of consumer surplus gives
+Evaluating the integral in the definition of consumer surplus {eq}`eq:cstm_spls` gives
 
 $$
     S_c(q) 
@@ -200,7 +200,7 @@ We define **producer surplus** as $p q$ minus the area under an inverse supply c
 $$
     S_p(q) 
     := p q - \int_0^q (s_0 + s_1 x) dx 
-$$
+$$ (eq:pdcr_spls)
 
 The next figure illustrates
 
@@ -243,7 +243,7 @@ The difference between willingness to sell and the actual price is producer surp
 
 The value $S_p(q)$ is the integral of these surpluses.
 
-Evaluating the integral in the definition of consumer surplus gives
+Evaluating the integral in the definition of producer surplus {eq}`eq:pdcr_spls` gives
 
 $$
     S_p(q) = pq - s_0 q -  \frac{1}{2} s_1 q^2
