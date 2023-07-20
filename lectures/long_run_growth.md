@@ -4,19 +4,22 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.14.4
+    jupytext_version: 1.14.5
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
   name: python3
 ---
 
-
 # Economic Growth Evidence
 
 ## Overview
 
 Adam Tooze's account of the geopolitical precedents and antecedents of World War I includes a comparison of how Gross National Products of European Great Powers had evolved during the 70 years preceding 1914 (see chapter 1 of {cite}`Tooze_2014`).
+
+```{figure} _static/lecture_specific/long_run_growth/rgdp-2011-y1820to1945-leadingeconomies.png
+:width: 75%
+```
 
 We construct a version of Tooze's graph later in this lecture.
 
@@ -77,7 +80,6 @@ Let's look at how many and which countries are available in this dataset
 len(data.country.unique())
 ```
 
-
 We can now explore some of the 169 countries that are available. 
 
 Let's loop over each country to understand which years are available for each country
@@ -92,7 +94,6 @@ cntry_years = pd.DataFrame(cntry_years, columns=['country', 'Min Year', 'Max Yea
 cntry_years
 ```
 
-
 Let's now reshape the original data into some convenient variables to enable quicker access to countries time series data.
 
 We can build a useful mapping between country codes and country names in this dataset
@@ -100,7 +101,6 @@ We can build a useful mapping between country codes and country names in this da
 ```{code-cell} ipython3
 code_to_name = data[['countrycode','country']].drop_duplicates().reset_index(drop=True).set_index(['countrycode'])
 ```
-
 
 Then we can quickly focus on GDP per capita (gdp)
 
@@ -121,6 +121,7 @@ We create a color mapping between country codes and colors for consistency
 
 ```{code-cell} ipython3
 :tags: [hide-input]
+
 country_names = data['countrycode']
 
 # Generate a colormap with the number of colors matching the number of countries
@@ -152,7 +153,6 @@ _ = gdppc[cntry].plot(
     color=color_mapping['GBR'])
 ```
 
-
 :::{note}
 [International Dollars](https://en.wikipedia.org/wiki/International_dollar) are a hypothetical unit of currency that has the same purchasing power parity that the U.S. Dollar has in the United States at any given time. They are also known as Geary–Khamis dollars (GK Dollars).
 :::
@@ -183,7 +183,6 @@ ax.set_ylabel('International $\'s')
 ax.set_xlabel('Year')
 plt.show()
 ```
-
 
 We can now put this into a function to generate plots for a list of countries
 
@@ -220,7 +219,6 @@ def draw_interp_plots(series, ylabel, xlabel, color_mapping, code_to_name, lw, l
     
     return ax
 ```
-
 
 As you can see from this chart, economic growth started in earnest in the 18th century and continued for the next two hundred years. 
 
@@ -293,7 +291,6 @@ def draw_events(events, ax):
 draw_events(events, ax)
 plt.show()
 ```
-
 
 The preceding graph of per capita GDP strikingly reveals how the spread of the industrial revolution has over time gradually lifted the living standards of substantial
 groups of people  
@@ -423,7 +420,6 @@ draw_events(events, ax)
 plt.show()
 ```
 
-
 ## The industrialized world
 
 Now we'll construct some graphs of interest to geopolitical historians like Adam Tooze.
@@ -457,17 +453,55 @@ mystnb:
 fig, ax = plt.subplots(dpi=300)
 ax = fig.gca()
 cntry = ['CHN', 'SUN', 'JPN', 'GBR', 'USA']
-start_year, end_year = (1820, 1940)
+start_year, end_year = (1820, 1945)
 ax = draw_interp_plots(gdp[cntry].loc[start_year:end_year],
     'International $\'s','Year',
     color_mapping, code_to_name, 2, False, ax)
 ```
 
+## Constructing a plot similar to Tooze's
+
+Let's first define a collection of countries that consist of the British Empire (BEM) so we can replicate that element of Tooze's chart. 
+
+```{code-cell} ipython3
+BEM = ['GBR', 'IND', 'AUS', 'NZL', 'CAN', 'ZAF']
+gdp['BEM'] = gdp[BEM].loc[start_year-1:end_year].interpolate(method='index').sum(axis=1) # Interpolate incomplete time-series
+```
+
+Let's take a look at the aggregation that represents the British Empire
+
+```{code-cell} ipython3
+gdp['BEM'].plot() # The first year is np.nan due to interpolation
+```
+
+```{code-cell} ipython3
+code_to_name
+```
+
+```{code-cell} ipython3
+# Define colour mapping and name for BEM
+color_mapping['BEM'] = color_mapping['GBR']  # Set the color to be the same as Great Britain
+# Add British Empire to code_to_name
+bem = pd.DataFrame(["British Empire"], index=["BEM"], columns=['country'])
+bem.index.name = 'countrycode'
+code_to_name = pd.concat([code_to_name, bem])
+```
+
+```{code-cell} ipython3
+fig, ax = plt.subplots(dpi=300)
+ax = fig.gca()
+cntry = ['DEU', 'USA', 'SUN', 'BEM', 'FRA', 'JPN']
+start_year, end_year = (1821, 1945)
+ax = draw_interp_plots(gdp[cntry].loc[start_year:end_year],
+    'Real GDP in 2011 $\'s','Year',
+    color_mapping, code_to_name, 2, False, ax)
+plt.savefig("./_static/lecture_specific/long_run_growth/rgdp-2011-y1820to1945-leadingeconomies.png")
+plt.show()
+```
 
 ### The modern era (1950 to 2020)
 
-The following graph displays how quickly China has grown, especially since the late 1970s. 
-
+The following graph displays how quickly China has grown, especially since the late 1970s.
 
 ```{code-cell} ipython3
 ---
@@ -484,6 +518,7 @@ ax = draw_interp_plots(gdp[cntry].loc[start_year:end_year],
     'International $\'s','Year',
     color_mapping, code_to_name, 2, False, ax)
 ```
+
 It is tempting to compare this graph with  figure  {numref}`gdp1` that showed the US overtaking the UK near the start of the "American Century", a version of the graph featured in chapter 1 of  {cite}`Tooze_2014`.
 
 ## Regional analysis
@@ -523,7 +558,6 @@ mystnb:
     caption: World GDP per capita
     name: world_gdppc
 ---
-
 fig = plt.figure(dpi=300)
 ax = fig.gca()
 ax = worldgdppc.plot(
@@ -544,7 +578,6 @@ mystnb:
     caption: Regional GDP per capita
     name: region_gdppc
 ---
-
 fig = plt.figure(dpi=300)
 ax = fig.gca()
 line_styles = ['-', '--', ':', '-.', '.', 'o', '-', '--', '-']
