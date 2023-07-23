@@ -4,19 +4,22 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.14.4
+    jupytext_version: 1.14.7
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
   name: python3
 ---
 
++++ {"user_expressions": []}
 
 # Economic Growth Evidence
 
 ## Overview
 
 Adam Tooze's account of the geopolitical precedents and antecedents of World War I includes a comparison of how Gross National Products of European Great Powers had evolved during the 70 years preceding 1914 (see chapter 1 of {cite}`Tooze_2014`).
+
+![The Deluge: The Remaking of World Order](pic-for-long-run-growth.png)
 
 We construct a version of Tooze's graph later in this lecture.
 
@@ -53,6 +56,8 @@ from collections import namedtuple
 from matplotlib.lines import Line2D
 ```
 
++++ {"user_expressions": []}
+
 ## Setting up
 
 A project initiated by [Angus Maddison](https://en.wikipedia.org/wiki/Angus_Maddison) has collected many historical time series related to economic growth,
@@ -69,6 +74,8 @@ data = pd.read_excel("datasets/mpd2020.xlsx", sheet_name='Full data')
 data
 ```
 
++++ {"user_expressions": []}
+
 We can see that this dataset contains GDP per capita (gdppc) and population (pop) for many countries and years.
 
 Let's look at how many and which countries are available in this dataset
@@ -77,6 +84,7 @@ Let's look at how many and which countries are available in this dataset
 len(data.country.unique())
 ```
 
++++ {"user_expressions": []}
 
 We can now explore some of the 169 countries that are available. 
 
@@ -92,6 +100,7 @@ cntry_years = pd.DataFrame(cntry_years, columns=['country', 'Min Year', 'Max Yea
 cntry_years
 ```
 
++++ {"user_expressions": []}
 
 Let's now reshape the original data into some convenient variables to enable quicker access to countries time series data.
 
@@ -101,6 +110,7 @@ We can build a useful mapping between country codes and country names in this da
 code_to_name = data[['countrycode','country']].drop_duplicates().reset_index(drop=True).set_index(['countrycode'])
 ```
 
++++ {"user_expressions": []}
 
 Then we can quickly focus on GDP per capita (gdp)
 
@@ -117,10 +127,13 @@ gdppc = gdppc.unstack('countrycode')
 gdppc
 ```
 
++++ {"user_expressions": []}
+
 We create a color mapping between country codes and colors for consistency
 
 ```{code-cell} ipython3
 :tags: [hide-input]
+
 country_names = data['countrycode']
 
 # Generate a colormap with the number of colors matching the number of countries
@@ -129,6 +142,8 @@ colors = cm.Dark2(np.linspace(0, 0.8, len(country_names)))
 # Create a dictionary to map each country to its corresponding color
 color_mapping = {country: color for country, color in zip(country_names, colors)}
 ```
+
++++ {"user_expressions": []}
 
 ## GPD plots
 
@@ -152,6 +167,7 @@ _ = gdppc[cntry].plot(
     color=color_mapping['GBR'])
 ```
 
++++ {"user_expressions": []}
 
 :::{note}
 [International Dollars](https://en.wikipedia.org/wiki/International_dollar) are a hypothetical unit of currency that has the same purchasing power parity that the U.S. Dollar has in the United States at any given time. They are also known as Geary–Khamis dollars (GK Dollars).
@@ -184,6 +200,7 @@ ax.set_xlabel('Year')
 plt.show()
 ```
 
++++ {"user_expressions": []}
 
 We can now put this into a function to generate plots for a list of countries
 
@@ -221,6 +238,7 @@ def draw_interp_plots(series, ylabel, xlabel, color_mapping, code_to_name, lw, l
     return ax
 ```
 
++++ {"user_expressions": []}
 
 As you can see from this chart, economic growth started in earnest in the 18th century and continued for the next two hundred years. 
 
@@ -294,6 +312,7 @@ draw_events(events, ax)
 plt.show()
 ```
 
++++ {"user_expressions": []}
 
 The preceding graph of per capita GDP strikingly reveals how the spread of the industrial revolution has over time gradually lifted the living standards of substantial
 groups of people  
@@ -364,6 +383,8 @@ draw_events(events, ax)
 plt.show()
 ```
 
++++ {"user_expressions": []}
+
 We can also look at the United States (USA) and United Kingdom (GBR) in more detail
 
 In the following graph, please watch for 
@@ -423,6 +444,7 @@ draw_events(events, ax)
 plt.show()
 ```
 
++++ {"user_expressions": []}
 
 ## The industrialized world
 
@@ -436,6 +458,8 @@ data.set_index(['countrycode', 'year'], inplace=True)
 data['gdp'] = data['gdppc'] * data['pop']
 gdp = data['gdp'].unstack('countrycode')
 ```
+
++++ {"user_expressions": []}
 
 ### Early industrialization (1820 to 1940)
 
@@ -463,11 +487,11 @@ ax = draw_interp_plots(gdp[cntry].loc[start_year:end_year],
     color_mapping, code_to_name, 2, False, ax)
 ```
 
++++ {"user_expressions": []}
 
 ### The modern era (1950 to 2020)
 
-The following graph displays how quickly China has grown, especially since the late 1970s. 
-
+The following graph displays how quickly China has grown, especially since the late 1970s.
 
 ```{code-cell} ipython3
 ---
@@ -484,6 +508,9 @@ ax = draw_interp_plots(gdp[cntry].loc[start_year:end_year],
     'International $\'s','Year',
     color_mapping, code_to_name, 2, False, ax)
 ```
+
++++ {"user_expressions": []}
+
 It is tempting to compare this graph with  figure  {numref}`gdp1` that showed the US overtaking the UK near the start of the "American Century", a version of the graph featured in chapter 1 of  {cite}`Tooze_2014`.
 
 ## Regional analysis
@@ -497,6 +524,8 @@ data = pd.read_excel("datasets/mpd2020.xlsx", sheet_name='Regional data', header
 data.columns = data.columns.droplevel(level=2)
 ```
 
++++ {"user_expressions": []}
+
 We can save the raw data in a more convenient format to build a single table of regional GDP per capita
 
 ```{code-cell} ipython3
@@ -504,11 +533,15 @@ regionalgdppc = data['gdppc_2011'].copy()
 regionalgdppc.index = pd.to_datetime(regionalgdppc.index, format='%Y')
 ```
 
++++ {"user_expressions": []}
+
 Let's interpolate based on time to fill in any gaps in the dataset for the purpose of plotting
 
 ```{code-cell} ipython3
 regionalgdppc.interpolate(method='time', inplace=True)
 ```
+
++++ {"user_expressions": []}
 
 and record a dataset of world GDP per capita
 
@@ -523,7 +556,6 @@ mystnb:
     caption: World GDP per capita
     name: world_gdppc
 ---
-
 fig = plt.figure(dpi=300)
 ax = fig.gca()
 ax = worldgdppc.plot(
@@ -532,6 +564,8 @@ ax = worldgdppc.plot(
     ylabel='2011 US$',
 )
 ```
+
++++ {"user_expressions": []}
 
 Looking more closely, let's compare the time series for `Western Offshoots` and `Sub-Saharan Africa` and more broadly at a number of different regions around the world.
 
@@ -544,7 +578,6 @@ mystnb:
     caption: Regional GDP per capita
     name: region_gdppc
 ---
-
 fig = plt.figure(dpi=300)
 ax = fig.gca()
 line_styles = ['-', '--', ':', '-.', '.', 'o', '-', '--', '-']
