@@ -587,3 +587,67 @@ plt.legend(loc='lower center',
 ncol=3, bbox_to_anchor=[0.5, -0.4])
 plt.show()
 ```
+
++++ {"user_expressions": []}
+
+## In Conclusion
+
+This comprehensive exploration of long-term economic growth underscores the profound influence of the Industrial Revolution on global GDP trajectories. 
+
+Leveraging robust historical data, the analysis reveals divergent growth paths among countries such as the United Kingdom, the United States, and China. 
+
+It particularly highlights China's remarkable economic ascent post-1970s reforms, showcasing the recent convergence of these trajectories. 
+
+The lecture provides a regional perspective and reveals critical insights into the economic interplay of global events and policy decisions. 
+
+Ultimately, this study lays a solid foundation for further exploration into historical growth patterns and their implications for future economic landscapes.
+
++++ {"user_expressions": []}
+
+## Exercise
+
+```{exercise}
+:label: long_growth_ex
+
+The aim of this exercise is to replicate the analysis performed in the lecture for a different set of countries. 
+
+We will conduct a similar analysis for Germany, Japan, and India, and compare their GDP growth trajectories.
+```
+
+```{solution-start} long_growth_ex
+:class: dropdown
+```
+
+```{code-cell} ipython3
+fig, ax = plt.subplots(dpi=300, figsize=(10, 6))
+
+cntry = ['DEU', 'JPN', 'IND']
+ax = draw_interp_plots(gdppc[cntry].loc[1900:2020],
+    'International $\'s','Year',
+    color_mapping, code_to_name, 2, False, ax)
+
+# Define the parameters for the events and the text
+ylim = ax.get_ylim()[1]
+
+events = [
+    Event((1949, 1990), ylim + ylim*0.15, 
+          'Cold War (Germany)\n(1949–1990)', 
+          color_mapping['DEU'], 1.14),
+    Event((1953, 1953), ylim + ylim*0.08, 
+          'Currency Reform and "Economic Miracle" (Germany)\n(1948-1955)', 
+          color_mapping['DEU'], 1.08),
+    Event((1945, 1952), ylim + ylim*0.01, 
+          'Post-War Economic Boom (Japan)\n(1945–1952)', 
+          color_mapping['JPN'], 1),
+    Event((1991, 1991), ylim + ylim*0.05, 
+          'Economic Liberalisation (India)\n(1991)', 
+          color_mapping['IND'], 1.05),
+]
+
+# Draw events
+draw_events(events, ax)
+plt.show()
+```
+
+```{solution-end}
+```
