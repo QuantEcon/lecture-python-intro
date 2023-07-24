@@ -4,7 +4,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.14.7
+    jupytext_version: 1.14.4
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
@@ -13,49 +13,54 @@ kernelspec:
 
 +++ {"user_expressions": []}
 
-# Introduction to Symbolic Algebra and Calculus with Sympy
-
+# SymPy
 
 ## Overview
 
-Symbolic computation, or computer algebra, involves using algorithms and software to perform exact computations and manipulate mathematical equations. 
+Unlike numerical libraries that deal with concrete values, [SymPy](https://www.sympy.org/en/index.html)  focuses on manipulating mathematical symbols and expressions directly.
 
-While **Mathematica** is a popular tool for symbolic computations, it's proprietary and can be costly. As an open-source alternative, the **[sympy](https://www.sympy.org/en/index.html)** library in Python offers a comprehensive set of functionalities for symbolic mathematics. This allows users to perform a range of operations, from algebraic manipulations to calculus, providing exact solutions instead of numerical approximations.
+SymPy provides [a wide range of functionalities](https://www.sympy.org/en/features.html) including 
 
+- Symbolic Expression
+- Equation Solving
+- Simplification
+- Calculus
+- Matrices
+- Discrete Math, etc.
+
+Unlike other popular tools for symbolic computations such as Mathematica it is an open-source library supported by an active community. 
 
 ## Getting Started
 
-Let's get started with **sympy** by installing and setting up the package.
+Let’s first import the library and initialize the printer to print the symbolic output
 
 ```{code-cell} ipython3
-:tags: [hide-output]
-
-! pip install sympy
-
-from sympy import symbols, init_printing
-from sympy import Eq, solve
-from sympy import simplify
-from sympy import limit
-from sympy import diff
-from sympy import integrate
+from sympy import *
 from sympy.plotting import plot
-```
 
-+++ {"user_expressions": []}
-
-We'll start by importing the necessary **sympy** functions and initializing our environment.
-
-```{code-cell} ipython3
 # Enable best printer available
 init_printing()
+```
 
-# Let's define some symbols to work with
+## Symbolic algebra
+
+### Symbols
+
++++
+
+Before we start manipulating the symbols, let's initialize some symbols to work with
+
+```{code-cell} ipython3
 x, y, z = symbols('x y z')
 ```
 
 +++ {"user_expressions": []}
 
-We can now use these symbols `x`, `y`, and `z` to build symbolic expressions.
+### Expressions
+
+We can now use these symbols `x`, `y`, and `z` to build expressions and equations
+
+Let's build a simple expression first
 
 ```{code-cell} ipython3
 ---
@@ -63,21 +68,83 @@ mystnb:
   image:
     width: 10%
 ---
-# An expression
 expr = (x + y) ** 2
 expr
 ```
 
+We can expand this expression with the `expand` function
+
+```{code-cell} ipython3
+expand_expr = expand(expr)
+expand_expr
+```
+
+and factorize it back to the factored form with the `factor` function
+
+```{code-cell} ipython3
+factor(expand_expr)
+```
+
+We can solve this expression
+
+```{code-cell} ipython3
+solve(expr)
+```
+
+Note this is equivalent to solving the equation
+
+$$
+(x + y)^2 = 0 
+$$
+
 +++ {"user_expressions": []}
 
-## Symbolic Algebra
+### Equations
 
+SymPy provides several functions to manipulate equations.
 
-### Algebraic Expressions
+Let's develop an equation with the expression we defined before
 
-**sympy** provides several functions to create and manipulate algebraic expressions. Let's look at a few examples.
+```{code-cell} ipython3
+eq = Eq(expr, 0)
+eq
+```
 
-Here we create a quadratic equation with variable `x`
+Solving this expression with respect to x gives the same output as solving the expression directly
+
+```{code-cell} ipython3
+solve(eq, x)
+```
+
+SymPy can easily handle equations with multiple solutions
+
+```{code-cell} ipython3
+eq = Eq(expr, 1)
+solve(eq, x)
+```
+
+`solve` function can also combine multiple equations together and solve a system of equations
+
+```{code-cell} ipython3
+eq2 = Eq(x, y)
+eq2
+```
+
+```{code-cell} ipython3
+solve([eq, eq2], [x, y])
+```
+
+We can also solve for y by simply substituting the $x$ with $y$
+
+```{code-cell} ipython3
+expr_sub = expr.subs(x, y)
+```
+
+```{code-cell} ipython3
+solve(Eq(expr_sub, 1))
+```
+
+Let's we create another equation with symbol `x` and functions `sin`, `cos`, and `tan` using the `Eq` function
 
 ```{code-cell} ipython3
 ---
@@ -86,7 +153,7 @@ mystnb:
     width: 17.5%
 ---
 # Create an equation
-eq = Eq(x**2 - 3*x + 2, 0)
+eq = Eq(cos(x) / (tan(x)/sin(x)), 0)
 eq
 ```
 
@@ -101,13 +168,11 @@ mystnb:
     width: 10%
 ---
 # Simplify an expression
-simplified_expr = simplify(expr)
+simplified_expr = simplify(eq)
 simplified_expr
 ```
 
 +++ {"user_expressions": []}
-
-### Solving Algebraic Equations
 
 We can solve equations using the **solve** function in **sympy**
 
@@ -120,6 +185,19 @@ mystnb:
 # Solve the equation
 sol = solve(eq, x)
 sol
+```
+
+SymPy can also handle more complex equations involving trignomotry and complex number.
+
+We demonstrate this using [Euler's formula](https://en.wikipedia.org/wiki/Euler%27s_formula)
+
+```{code-cell} ipython3
+euler = cos(x) + I*sin(x)
+euler
+```
+
+```{code-cell} ipython3
+simplify(euler)
 ```
 
 +++ {"user_expressions": []}
@@ -143,7 +221,7 @@ mystnb:
 f = x ** 2 / (x - 1)
 
 # Compute the limit
-lim = limit(f, x, 1)
+lim = limit(f, x, 0)
 lim
 ```
 
@@ -162,6 +240,30 @@ mystnb:
 # Differentiate a function
 df = diff(f, x)
 df
+```
+
+```{code-cell} ipython3
+limit(df, x, 0)
+```
+
+#### Example: L'Hôpital's rule
+
+```{code-cell} ipython3
+f_upper = y**x - 1
+f_lower = x
+f = f_upper/f_lower
+f
+```
+
+```{code-cell} ipython3
+lim = limit(f, x, 0)
+lim
+```
+
+```{code-cell} ipython3
+lim = limit(diff(f_upper, x)/
+            diff(f_lower, x), x, 0)
+lim
 ```
 
 +++ {"user_expressions": []}
@@ -188,7 +290,8 @@ indef_int
 sympy provides a powerful plotting feature. We'll plot a function using `sympy.plot()`
 
 ```{code-cell} ipython3
-p = plot(f, (x, -10, 10), show=False)
+f = x ** 2 / (x - 1)
+p = plot(f, (x, -1, 10), show=False)
 p.title = 'A Simple Plot'
 p.xlabel = 'x'
 p.ylabel = 'f(x)'
