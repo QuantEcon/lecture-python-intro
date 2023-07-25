@@ -625,8 +625,6 @@ In this exercise, we'll use SymPy to compute the MLE of a binomial distribution.
 :class: dropdown
 ```
 
-+++
-
 First, we define the binomial distribution
 
 ```{code-cell} ipython3
@@ -654,4 +652,7 @@ log_bino_diff
 
 ```{code-cell} ipython3
 solve(Eq(log_bino_diff, 0), θ)
+```
+
+```{solution-end}
 ```
