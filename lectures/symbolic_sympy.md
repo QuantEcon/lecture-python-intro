@@ -4,7 +4,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.14.5
+    jupytext_version: 1.14.4
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
@@ -36,8 +36,9 @@ Let’s first import the library and initialize the printer to print the symboli
 
 ```{code-cell} ipython3
 from sympy import *
-from sympy.plotting import plot, plot3d_parametric_line 
+from sympy.plotting import plot, plot3d_parametric_line, plot3d
 import numpy as np
+from sympy.solvers.inequalities import reduce_rational_inequalities
 
 # Enable best printer available
 init_printing()
@@ -107,6 +108,10 @@ Note this is equivalent to solving the equation
 $$
 (x + y)^2 = 0 
 $$
+
+```{note}
+[Solvers](https://docs.sympy.org/latest/modules/solvers/index.html) are important tools to solve different types of equations. There are more varieties of solvers available in SymPy
+```
 
 +++ {"user_expressions": []}
 
@@ -257,6 +262,18 @@ solow = Eq(s*A*k**α + (1 - δ) * k, k)
 solve(solow, k)
 ```
 
+#### Inequalities and logic
+
+SymPy also allows users to define inequalities and logic operators and provides a wide range of [operations](https://docs.sympy.org/latest/modules/solvers/inequalities.html).
+
+```{code-cell} ipython3
+reduce_inequalities([2*x + 5*y <= 30, 4*x + 2*y <= 20], [x])
+```
+
+```{code-cell} ipython3
+And(2*x + 5*y <= 30, x>0)
+```
+
 +++ {"user_expressions": []}
 
 ### Series
@@ -287,7 +304,7 @@ sum_xy(grid, grid)
 
 +++ {"user_expressions": []}
 
-#### Example: asset pricing
+#### Example: deposits
 
 Imagine a bank with $D_0$ as the deposit at time $t$, it loans $(1-r)$ of its deposits and keeps a fraction 
 $r$ as cash reserves, one can calculate the deposite at time with
@@ -365,10 +382,6 @@ df = diff(f, x)
 df
 ```
 
-```{code-cell} ipython3
-limit(df, x, 0)
-```
-
 +++ {"user_expressions": []}
 
 ### Integrals
@@ -386,6 +399,24 @@ indef_int = integrate(df, x)
 indef_int
 ```
 
+Let's use this function to compute the moment generating function of [exponential distribution](https://en.wikipedia.org/wiki/Exponential_distribution) with the probability density function:
+
+$$
+f(x) = \lambda e^{-\lambda x}, \quad x \ge 0
+$$
+
+```{code-cell} ipython3
+λ, x = symbols('lambda x')
+pdf = λ * exp(-λ*x)
+pdf
+```
+
+```{code-cell} ipython3
+t = symbols('t')
+moment_n = integrate(exp(t * x) * pdf, (x, 0, oo))
+simplify(moment_n)
+```
+
 +++ {"user_expressions": []}
 
 ## Plotting
@@ -393,23 +424,32 @@ indef_int
 sympy provides a powerful plotting feature. We'll plot a function using `sympy.plot()`
 
 ```{code-cell} ipython3
-f = x ** 2
-df = diff(f)
-p = plot(f, df, (x, -10, 10), title="Graph", legend= True, xlabel='x', ylabel='f(x)', show=False)
+f = sin(2*sin(2*sin(2*sin(x))))
+p = plot(f, (x, -10, 10), show=False)
 p.title = 'A Simple Plot'
-p.xlabel = 'x'
-p.ylabel = 'f(x)'
 p.show()
 ```
 
-+++ {"user_expressions": []}
-
-There are more plotting functions for more complicated equations
+Similar to Matplotlib, SymPy provides interface to customize the graph
 
 ```{code-cell} ipython3
-t = symbols('t')
-alpha = [cos(t), sin(t), t]
-plot3d_parametric_line(*alpha)
+plot_f = plot(f, (x, -10, 10), xlabel='', ylabel='', legend = True, show = False)
+plot_f[0].label = 'f(x)'
+df = diff(f)
+plot_df = plot(df, (x, -10, 10), legend = True, show = False)
+plot_df[0].label = 'f\'(x)'
+plot_f.append(plot_df[0])
+plot_f.show()
+```
+
+It also supports plotting implicit functions and visualizing functions in 3-dimentional space
+
+```{code-cell} ipython3
+p = plot_implicit(Eq((1/x + 1/y) ** 2, 1))
+```
+
+```{code-cell} ipython3
+p = plot3d(cos(2*x + y))
 ```
 
 +++ {"user_expressions": []}
@@ -530,7 +570,25 @@ The wage of a college graduate is approximately 0.797 times the wage of a high s
 
 +++ {"user_expressions": []}
 
-#### Example: L'Hôpital's rule
+```{exercise}
+:label: sympy_ex1
+
+L'Hôpital's rule states that for two functions $f(x)$ and $g(x)$, if $\lim_{x \to a} f(x) = \lim_{x \to a} g(x) = 0$ or $\pm \infty$, then
+
+$$
+\lim_{x \to a} \frac{f(x)}{g(x)} = \lim_{x \to a} \frac{f'(x)}{g'(x)}
+$$
+
+Use SymPy to verify L'Hôpital's rule for the following functions
+
+$$
+f(x) = \frac{y^x - 1}{x}
+$$
+```
+
+```{solution-start} sympy_ex1
+:class: dropdown
+```
 
 ```{code-cell} ipython3
 f_upper = y**x - 1
@@ -548,4 +606,52 @@ lim
 lim = limit(diff(f_upper, x)/
             diff(f_lower, x), x, 0)
 lim
+```
+
+```{solution-end}
+```
+
+```{exercise}
+:label: sympy_ex2
+
+Maximum likelihood estimation (MLE) is a method to estimate the parameters of a statistical model. 
+
+It usually involves maximizing a log likelihood function and solving the first order condition.
+
+In this exercise, we'll use SymPy to compute the MLE of a binomial distribution.
+```
+
+```{solution-start} sympy_ex2
+:class: dropdown
+```
+
++++
+
+First, we define the binomial distribution
+
+```{code-cell} ipython3
+n, x, θ = symbols('n x, θ')
+
+binomial_factor = (factorial(n))/ (factorial(x) *factorial(n-r))
+binomial_factor
+```
+
+```{code-cell} ipython3
+bino_dist = binomial_factor * ((θ**x)*(1-θ)**(n-x))
+bino_dist
+```
+
+Now we compute the log-likelihood function and solve for the result
+
+```{code-cell} ipython3
+log_bino_dist = log(bino_dist)
+```
+
+```{code-cell} ipython3
+log_bino_diff = simplify(diff(log_bino_dist, θ))
+log_bino_diff
+```
+
+```{code-cell} ipython3
+solve(Eq(log_bino_diff, 0), θ)
 ```
