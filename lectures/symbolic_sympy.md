@@ -682,6 +682,9 @@ log_bino_diff
 solve(Eq(log_bino_diff, 0), θ)
 ```
 
+```{solution-end}
+```
+
 ```{exercise}
 :label: sympy_ex3
 
@@ -700,7 +703,6 @@ $$
 where $\alpha, \beta \in (0, 1)$.
 
 Compute the Pareto optimal allocation of the economy with $\alpha = \beta = 0.5$ using SymPy
-
 ```
 
 ```{solution-start} sympy_ex3
