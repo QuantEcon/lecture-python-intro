@@ -109,6 +109,14 @@ $$
 (x + y)^2 = 0 
 $$
 
+Another way to solve equation is to use `solveset`.
+
+`solveset` allows users to define the domain of `x` the evaluation and output a set as solution
+
+```{code-cell} ipython3
+solveset(expr, x, domain=S.Naturals)
+```
+
 ```{note}
 [Solvers](https://docs.sympy.org/latest/modules/solvers/index.html) are important tools to solve different types of equations. There are more varieties of solvers available in SymPy
 ```
@@ -200,7 +208,7 @@ simplified_expr
 
 +++ {"user_expressions": []}
 
-We can solve equations using the **solve** function in **sympy**
+We can solve equations using the `solve` function in SymPy
 
 ```{code-cell} ipython3
 ---
@@ -264,14 +272,14 @@ solve(solow, k)
 
 #### Inequalities and logic
 
-SymPy also allows users to define inequalities and logic operators and provides a wide range of [operations](https://docs.sympy.org/latest/modules/solvers/inequalities.html).
+SymPy also allows users to define inequalities and set operators and provides a wide range of [operations](https://docs.sympy.org/latest/modules/solvers/inequalities.html).
 
 ```{code-cell} ipython3
 reduce_inequalities([2*x + 5*y <= 30, 4*x + 2*y <= 20], [x])
 ```
 
 ```{code-cell} ipython3
-And(2*x + 5*y <= 30, x>0)
+And(2*x + 5*y <= 30, x > 0)
 ```
 
 +++ {"user_expressions": []}
@@ -304,7 +312,7 @@ sum_xy(grid, grid)
 
 +++ {"user_expressions": []}
 
-#### Example: deposits
+#### Example: bank deposits
 
 Imagine a bank with $D_0$ as the deposit at time $t$, it loans $(1-r)$ of its deposits and keeps a fraction 
 $r$ as cash reserves, one can calculate the deposite at time with
@@ -344,7 +352,7 @@ This is consistent with the solution we provided in our lecture on [geometric se
 
 ## Symbolic Calculus
 
-**sympy** allows us to perform various calculus operations such as differentiation and integration.
+SymPy allows us to perform various calculus operations such as differentiation and integration.
 
 
 ### Limits
@@ -369,7 +377,7 @@ lim
 
 ### Derivatives
 
-We can differentiate any **sympy** expression using `diff(func, var)`
+We can differentiate any SymPy expression using `diff(func, var)`
 
 ```{code-cell} ipython3
 ---
@@ -417,14 +425,27 @@ moment_n = integrate(exp(t * x) * pdf, (x, 0, oo))
 simplify(moment_n)
 ```
 
+Using `integrate` function, we can derive the cumulative density function of the exponential distribution with $\lambda = $
+
+```{code-cell} ipython3
+lamda_pdf = pdf.subs(λ, 1/2)
+lamda_pdf
+```
+
+```{code-cell} ipython3
+integrate(lamda_pdf, (x, 0, 4))
+```
+
 +++ {"user_expressions": []}
 
 ## Plotting
 
-sympy provides a powerful plotting feature. We'll plot a function using `sympy.plot()`
+SymPy provides a powerful plotting feature. 
+
+First we plot a simple function using the `plot` function
 
 ```{code-cell} ipython3
-f = sin(2*sin(2*sin(2*sin(x))))
+f = sin(2 * sin(2 * sin(2 * sin(x))))
 p = plot(f, (x, -10, 10), show=False)
 p.title = 'A Simple Plot'
 p.show()
@@ -433,7 +454,8 @@ p.show()
 Similar to Matplotlib, SymPy provides interface to customize the graph
 
 ```{code-cell} ipython3
-plot_f = plot(f, (x, -10, 10), xlabel='', ylabel='', legend = True, show = False)
+plot_f = plot(f, (x, -10, 10), 
+              xlabel='', ylabel='', legend = True, show = False)
 plot_f[0].label = 'f(x)'
 df = diff(f)
 plot_df = plot(df, (x, -10, 10), legend = True, show = False)
@@ -442,11 +464,17 @@ plot_f.append(plot_df[0])
 plot_f.show()
 ```
 
-It also supports plotting implicit functions and visualizing functions in 3-dimentional space
+It also supports plotting implicit functions and visualizing inequalities
 
 ```{code-cell} ipython3
-p = plot_implicit(Eq((1/x + 1/y) ** 2, 1))
+p = plot_implicit(Eq((1/x + 1/y)**2, 1))
 ```
+
+```{code-cell} ipython3
+p = plot_implicit(And(2*x + 5*y <= 30, 4*x + 2*y >= 20), (x, -1, 10), (y, -10, 10))
+```
+
+It also supports visualizations in three-dimentional space
 
 ```{code-cell} ipython3
 p = plot3d(cos(2*x + y))
@@ -455,7 +483,7 @@ p = plot3d(cos(2*x + y))
 +++ {"user_expressions": []}
 
 ## Applications
-In this section, we apply sympy to an economic model that explores the wage gap between college and high school graduates. 
+In this section, we apply SymPy to an economic model that explores the wage gap between college and high school graduates. 
 
 We'll use symbolic computation to define, manipulate, and solve equations in the model, thereby deriving insights that would be challenging to obtain through numerical methods alone. 
 
@@ -652,6 +680,64 @@ log_bino_diff
 
 ```{code-cell} ipython3
 solve(Eq(log_bino_diff, 0), θ)
+```
+
+```{exercise}
+:label: sympy_ex3
+
+Imagine a pure exchange economy with two consumers ($a$ and $b$)and two goods ($x$ and $y$).
+
+Assume that the utility functions of the consumers are given by
+
+$$
+u_a(x, y) = x^{\alpha} y^{1-\alpha}
+$$
+
+$$
+u_b(x, y) = (1 - x)^{\beta} (1 - y)^{1-\beta}
+$$
+
+where $\alpha, \beta \in (0, 1)$.
+
+Compute the Pareto optimal allocation of the economy with $\alpha = \beta = 0.5$ using SymPy
+
+```
+
+```{solution-start} sympy_ex3
+:class: dropdown
+```
+
++++
+
+```{solution-end}
+```
+
+```{code-cell} ipython3
+x, y, α, β = symbols('x, y, α, β')
+a = x**α * y**(1-α)
+b = (1 - x)**β * (1 - y)**(1 - β)
+```
+
+```{code-cell} ipython3
+a
+```
+
+```{code-cell} ipython3
+b
+```
+
+```{code-cell} ipython3
+pareto = Eq(diff(a, x)/diff(a, y), diff(b, x)/diff(b, y))
+pareto
+```
+
+```{code-cell} ipython3
+sol = solve(pareto, y)[0]
+sol
+```
+
+```{code-cell} ipython3
+sol.subs({α: 0.5, β: 0.5})
 ```
 
 ```{solution-end}
