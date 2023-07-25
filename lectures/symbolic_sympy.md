@@ -707,11 +707,6 @@ Compute the Pareto optimal allocation of the economy with $\alpha = \beta = 0.5$
 :class: dropdown
 ```
 
-+++
-
-```{solution-end}
-```
-
 ```{code-cell} ipython3
 x, y, α, β = symbols('x, y, α, β')
 a = x**α * y**(1-α)
