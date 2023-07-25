@@ -15,20 +15,39 @@ kernelspec:
 
 ## Overview
 
-Adam Tooze's account of the geopolitical precedents and antecedents of World War I includes a comparison of how Gross National Products of European Great Powers had evolved during the 70 years preceding 1914 (see chapter 1 of {cite}`Tooze_2014`).
+In this lecture we use Python, Pandas,    and Matplotlib to download, organize, and visualize historical data on GDP growth.
 
-```{figure} _static/lecture_specific/long_run_growth/rgdp-2011-y1820to1945-leadingeconomies.png
+In addition to learning how to deploy these tools more generally, we'll use them to describe facts about economic growth experiences across many countries  over several  centuries.
+
+Such "growth facts" are  interesting for a variety of reasons.  
+
+Explaining them is a principal purpose of both "development economics" and "economic history".
+
+And the growth facts are important inputs into historians'  studies of  geopolitical forces and dynamics.
+
+
+Thus, Adam Tooze's account of the geopolitical precedents and antecedents of World War I begins with  a comparison of how Gross National Products of European Great Powers had evolved during the 70 years preceding 1914 (see chapter 1 of {cite}`Tooze_2014`).
+
+Using the very same data that Tooze used to construct his figure, here is our version of his chapter 1 figure.
+
+
+```{figure} _static/lecture_specific/long_run_growth/tooze_ch1_graph.png
 :width: 75%
 ```
 
-We construct a version of Tooze's graph later in this lecture.
+(This  is just a copy of  our figure {numref}`gdp1`.  We desribe how we constructed it later in this lecture.)
 
-(An impatient reader can jump ahead and look at figure {numref}`gdp1`.)
+Chapter 1  of {cite}`Tooze_2014` used his graph to show how US GDP started  the 19th century way behind the GDP of the British Empire.
 
-Looking at his graph and how it set the geopolitical stage for "the American (20th) century" naturally 
+By the end of the nineteenth century, US GDP had caught up with GDP of the British Empire, and how during the first half of the 20th century,
+US GDP surpassed that of the British Empire.
+
+For Adam Tooze, that fact was a key geopolitical underpinning for the "American century".
+
+Looking at this  graph and how it set the geopolitical stage for "the American (20th) century" naturally 
 tempts one to want a counterpart to his graph for 2014 or later.
 
-(An impatient reader might now want to jump ahead and look at figure {numref}`gdp2`.)
+(An impatient reader seeking a hint at the answer  might now want to jump ahead and look at figure {numref}`gdp2`.)
 
 As we'll see, reasoning  by analogy, this graph perhaps set the stage for an "XXX (21st) century", where you are free to fill in your guess for country XXX.
 
@@ -460,15 +479,16 @@ ax = draw_interp_plots(gdp[cntry].loc[start_year:end_year],
 ```
 
 ## Constructing a plot similar to Tooze's
+In this section we describe  how we have constructed a version of the striking figure from  chapter 1 of {cite}`Tooze_2014` that we discussed at the start of this lecture.
 
-Let's first define a collection of countries that consist of the British Empire (BEM) so we can replicate that element of Tooze's chart. 
+Let's first define a collection of countries that consist of the British Empire (BEM) so we can replicate that series in  Tooze's chart. 
 
 ```{code-cell} ipython3
 BEM = ['GBR', 'IND', 'AUS', 'NZL', 'CAN', 'ZAF']
 gdp['BEM'] = gdp[BEM].loc[start_year-1:end_year].interpolate(method='index').sum(axis=1) # Interpolate incomplete time-series
 ```
 
-Let's take a look at the aggregation that represents the British Empire
+Let's take a look at the aggregation that represents the British Empire.
 
 ```{code-cell} ipython3
 gdp['BEM'].plot() # The first year is np.nan due to interpolation
@@ -477,6 +497,9 @@ gdp['BEM'].plot() # The first year is np.nan due to interpolation
 ```{code-cell} ipython3
 code_to_name
 ```
+
+Now let's assemble our series and get ready to plot them.
+
 
 ```{code-cell} ipython3
 # Define colour mapping and name for BEM
@@ -499,6 +522,13 @@ plt.savefig("./_static/lecture_specific/long_run_growth/rgdp-2011-y1820to1945-le
 plt.show()
 ```
 
+At the start of this lecture, we noted  how US GDP came from "nowhere" at the start of the 19th century to rival and then overtake the GDP of the British Empire
+by the end of the 19th century, setting the geopolitical stage for the "American (twentieth) century".
+
+Let's move forward in time and start roughly where Tooze's graph stopped after World War II.
+
+In the spirit of Tooze's chapter 1 analysis, doing this will provide some information about geopolitical realities today.
+
 ### The modern era (1950 to 2020)
 
 The following graph displays how quickly China has grown, especially since the late 1970s.
@@ -518,6 +548,8 @@ ax = draw_interp_plots(gdp[cntry].loc[start_year:end_year],
     'International $\'s','Year',
     color_mapping, code_to_name, 2, False, ax)
 ```
+
+
 
 It is tempting to compare this graph with  figure  {numref}`gdp1` that showed the US overtaking the UK near the start of the "American Century", a version of the graph featured in chapter 1 of  {cite}`Tooze_2014`.
 
