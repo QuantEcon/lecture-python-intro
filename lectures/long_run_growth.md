@@ -144,7 +144,7 @@ We create a color mapping between country codes and colors for consistency
 country_names = data['countrycode']
 
 # Generate a colormap with the number of colors matching the number of countries
-colors = cm.Dark2(np.linspace(0, 0.8, len(country_names)))
+colors = cm.tab20(np.linspace(0, 0.95, len(country_names)))
 
 # Create a dictionary to map each country to its corresponding color
 color_mapping = {country: color for country, color in zip(country_names, colors)}
@@ -232,7 +232,7 @@ def draw_interp_plots(series, ylabel, xlabel, color_mapping, code_to_name, lw, l
             ax.set_yscale('log')
     
     # Draw the legend outside the plot
-    ax.legend(loc='lower center', ncol=5, bbox_to_anchor=[0.5, -0.25])
+    ax.legend(loc='lower center', ncol=6, bbox_to_anchor=[0.5, -0.25])
     ax.set_ylabel(ylabel)
     ax.set_xlabel(xlabel)
     
@@ -517,7 +517,7 @@ start_year, end_year = (1821, 1945)
 ax = draw_interp_plots(gdp[cntry].loc[start_year:end_year],
     'Real GDP in 2011 $\'s','Year',
     color_mapping, code_to_name, 2, False, ax)
-plt.savefig("./_static/lecture_specific/long_run_growth/tooze_ch1_graph.png", dpi=100)
+plt.savefig("./_static/lecture_specific/long_run_growth/tooze_ch1_graph.png", dpi=300, bbox_inches='tight')
 plt.show()
 ```
 
