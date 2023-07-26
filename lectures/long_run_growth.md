@@ -23,12 +23,12 @@ In addition to learning how to deploy these tools more generally, we'll use them
 
 Such "growth facts" are  interesting for a variety of reasons.  
 
-Explaining them is a principal purpose of both "development economics" and "economic history".
+Explaining growth facts is a principal purpose of both "development economics" and "economic history".
 
-And the growth facts are important inputs into historians'  studies of  geopolitical forces and dynamics.
+And  growth facts are important inputs into historians'  studies of  geopolitical forces and dynamics.
 
 
-Thus, Adam Tooze's account of the geopolitical precedents and antecedents of World War I begins with  a comparison of how Gross National Products of European Great Powers had evolved during the 70 years preceding 1914 (see chapter 1 of {cite}`Tooze_2014`).
+Thus, Adam Tooze's account of the geopolitical precedents and antecedents of World War I begins by describing how Gross National Products of European Great Powers had evolved during the 70 years preceding 1914 (see chapter 1 of {cite}`Tooze_2014`).
 
 Using the very same data that Tooze used to construct his figure, here is our version of his chapter 1 figure.
 
