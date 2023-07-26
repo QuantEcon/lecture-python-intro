@@ -481,7 +481,7 @@ ax = draw_interp_plots(gdp[cntry].loc[start_year:end_year],
 ## Constructing a plot similar to Tooze's
 In this section we describe  how we have constructed a version of the striking figure from  chapter 1 of {cite}`Tooze_2014` that we discussed at the start of this lecture.
 
-Let's first define a collection of countries that consist of the British Empire (BEM) so we can replicate that series in  Tooze's chart. 
+Let's first define a collection of countries that consist of the British Empire (BEM) so we can replicate that series in  Tooze's chart.
 
 ```{code-cell} ipython3
 BEM = ['GBR', 'IND', 'AUS', 'NZL', 'CAN', 'ZAF']
@@ -500,7 +500,6 @@ code_to_name
 
 Now let's assemble our series and get ready to plot them.
 
-
 ```{code-cell} ipython3
 # Define colour mapping and name for BEM
 color_mapping['BEM'] = color_mapping['GBR']  # Set the color to be the same as Great Britain
@@ -518,7 +517,7 @@ start_year, end_year = (1821, 1945)
 ax = draw_interp_plots(gdp[cntry].loc[start_year:end_year],
     'Real GDP in 2011 $\'s','Year',
     color_mapping, code_to_name, 2, False, ax)
-plt.savefig("./_static/lecture_specific/long_run_growth/rgdp-2011-y1820to1945-leadingeconomies.png")
+plt.savefig("./_static/lecture_specific/long_run_growth/tooze_ch1_graph.png", dpi=100)
 plt.show()
 ```
 
@@ -548,8 +547,6 @@ ax = draw_interp_plots(gdp[cntry].loc[start_year:end_year],
     'International $\'s','Year',
     color_mapping, code_to_name, 2, False, ax)
 ```
-
-
 
 It is tempting to compare this graph with  figure  {numref}`gdp1` that showed the US overtaking the UK near the start of the "American Century", a version of the graph featured in chapter 1 of  {cite}`Tooze_2014`.
 
