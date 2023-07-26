@@ -286,17 +286,19 @@ const thebe_selector_output = ".output, .cell_output"
 </summary>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: quantecon in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (0.7.1)
-Requirement already satisfied: numpy&gt;=1.17.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from quantecon) (1.23.5)
-Requirement already satisfied: sympy in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from quantecon) (1.11.1)
-Requirement already satisfied: scipy&gt;=1.5.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from quantecon) (1.10.0)
 Requirement already satisfied: numba&gt;=0.49.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from quantecon) (0.56.4)
-Requirement already satisfied: requests in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from quantecon) (2.28.1)
-Requirement already satisfied: setuptools in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from numba&gt;=0.49.0-&gt;quantecon) (65.6.3)
+Requirement already satisfied: sympy in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from quantecon) (1.11.1)
+Requirement already satisfied: numpy&gt;=1.17.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from quantecon) (1.23.5)
+Requirement already satisfied: requests in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from quantecon) (2.31.0)
+Requirement already satisfied: scipy&gt;=1.5.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from quantecon) (1.10.0)
 Requirement already satisfied: llvmlite&lt;0.40,&gt;=0.39.0dev0 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from numba&gt;=0.49.0-&gt;quantecon) (0.39.1)
-Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests-&gt;quantecon) (2022.12.7)
-Requirement already satisfied: charset-normalizer&lt;3,&gt;=2 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests-&gt;quantecon) (2.0.4)
-Requirement already satisfied: urllib3&lt;1.27,&gt;=1.21.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests-&gt;quantecon) (1.26.14)
+Requirement already satisfied: setuptools in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from numba&gt;=0.49.0-&gt;quantecon) (65.6.3)
+Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests-&gt;quantecon) (1.26.14)
 Requirement already satisfied: idna&lt;4,&gt;=2.5 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests-&gt;quantecon) (3.4)
+Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests-&gt;quantecon) (2022.12.7)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests-&gt;quantecon) (2.0.4)
 Requirement already satisfied: mpmath&gt;=0.19 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages/mpmath-1.2.1-py3.10.egg (from sympy-&gt;quantecon) (1.2.1)
 </pre></div>
 </div>
@@ -605,7 +607,7 @@ to a cumulative distribution</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1, 1, 1, 1, 1])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 1, 1, 1, 1])
 </pre></div>
 </div>
 </div>
@@ -661,7 +663,7 @@ to a cumulative distribution</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 0, 0, 1, 1, 0, 1, 1, 1, 1])
 </pre></div>
 </div>
 </div>
@@ -680,7 +682,7 @@ sample that takes value 0 will be about 0.25.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.25024
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.249714
 </pre></div>
 </div>
 </div>
@@ -701,7 +703,7 @@ always close to 0.25 (for the <code class="docutils literal notranslate"><span c
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.250495
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.250134
 </pre></div>
 </div>
 </div>
@@ -714,11 +716,11 @@ always close to 0.25 (for the <code class="docutils literal notranslate"><span c
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 1.81 s, sys: 3.41 ms, total: 1.81 s
-Wall time: 1.81 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 1.76 s, sys: 0 ns, total: 1.76 s
+Wall time: 1.76 s
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 0, 0, ..., 1, 1, 0])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 1, 1, ..., 1, 1, 1])
 </pre></div>
 </div>
 </div>
@@ -730,11 +732,11 @@ Wall time: 1.81 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 26.7 ms, sys: 131 µs, total: 26.8 ms
-Wall time: 26.6 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 25.9 ms, sys: 0 ns, total: 25.9 ms
+Wall time: 25.3 ms
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 0, 0, ..., 0, 1, 1])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1, 1, 1, ..., 1, 1, 0])
 </pre></div>
 </div>
 </div>
@@ -789,7 +791,7 @@ Wall time: 26.6 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1, 1, 0, 1])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 1, 1, 1])
 </pre></div>
 </div>
 </div>
@@ -1147,7 +1149,7 @@ strictly positive, with unique stationary distribution <span class="math notrans
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/fb71de293c1bd4864516348d5d48f175485760c5ecedaf0f4302a1d4e7ecd1ae.png"><img alt="_images/fb71de293c1bd4864516348d5d48f175485760c5ecedaf0f4302a1d4e7ecd1ae.png" src="_images/fb71de293c1bd4864516348d5d48f175485760c5ecedaf0f4302a1d4e7ecd1ae.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/9628cbc1c69ca7144296a6308290bcfff0338f84403791ff061b0886a5b804af.png"><img alt="_images/9628cbc1c69ca7144296a6308290bcfff0338f84403791ff061b0886a5b804af.png" src="_images/9628cbc1c69ca7144296a6308290bcfff0338f84403791ff061b0886a5b804af.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>The convergence to <span class="math notranslate nohighlight">\(\psi^*\)</span> holds for different initial distributions.</p>
@@ -1177,7 +1179,7 @@ P =
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/ef57afc1c00a78cc51caba5884fec9d77e7a78c4b7ecb0b156f25bc4de9859b0.png"><img alt="_images/ef57afc1c00a78cc51caba5884fec9d77e7a78c4b7ecb0b156f25bc4de9859b0.png" src="_images/ef57afc1c00a78cc51caba5884fec9d77e7a78c4b7ecb0b156f25bc4de9859b0.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/8a447348b19cea7d132735cd7e24715443fe90bd1231b645d0a02bfaddc85625.png"><img alt="_images/8a447348b19cea7d132735cd7e24715443fe90bd1231b645d0a02bfaddc85625.png" src="_images/8a447348b19cea7d132735cd7e24715443fe90bd1231b645d0a02bfaddc85625.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>Indeed, this <span class="math notranslate nohighlight">\(P\)</span> fails our asymptotic stationarity condition, since, as you can
@@ -1339,7 +1341,7 @@ P :=
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/49fc827aa24df87aec3050bbf3ffa3de03b898e84b4c07924974d7a1a8bac20a.png"><img alt="_images/49fc827aa24df87aec3050bbf3ffa3de03b898e84b4c07924974d7a1a8bac20a.png" src="_images/49fc827aa24df87aec3050bbf3ffa3de03b898e84b4c07924974d7a1a8bac20a.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/ccb125bfb3804ee6a6fe568acb0a40216f6677043d57df4ca63bf09848ec20f6.png"><img alt="_images/ccb125bfb3804ee6a6fe568acb0a40216f6677043d57df4ca63bf09848ec20f6.png" src="_images/ccb125bfb3804ee6a6fe568acb0a40216f6677043d57df4ca63bf09848ec20f6.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>In fact, the rate of convergence is governed by <a class="reference internal" href="eigen_I.html#eigen"><span class="std std-ref">eigenvalues</span></a> <span id="id7">[<a class="reference internal" href="zreferences.html#id16" title="Thomas J Sargent and John Stachurski. Economic networks: theory and computation. arXiv preprint arXiv:2203.11972, 2023.">SS23</a>]</span>.</p>

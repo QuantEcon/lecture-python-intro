@@ -118,7 +118,7 @@ A basic framework for their analysis is
 
 
 
-After  introducing the input-ouput model, we describe some of its connections to {doc}`linear programming lecture <lp_intro>`.
+After  introducing the input-output model, we describe some of its connections to {doc}`linear programming lecture <lp_intro>`.
 
 
 ## Input output analysis
@@ -307,7 +307,7 @@ L
 ```
 
 ```{code-cell} ipython3
-x = L @ d   # solving for gross ouput
+x = L @ d   # solving for gross output
 x
 ```
 
@@ -434,7 +434,7 @@ $$
 
 The primal problem chooses a feasible production plan to minimize costs for delivering a pre-assigned vector of final goods consumption $d$.
 
-The dual problem chooses prices to maxmize the value of a pre-assigned vector of final goods $d$ subject to prices covering costs of production.
+The dual problem chooses prices to maximize the value of a pre-assigned vector of final goods $d$ subject to prices covering costs of production.
 
 By the [strong duality theorem](https://en.wikipedia.org/wiki/Dual_linear_program#Strong_duality),
 optimal value of the primal and dual problems coincide:
@@ -482,7 +482,7 @@ plt.show()
 
 ## Leontief inverse
 
-We have discussed that gross ouput $x$ is given by {eq}`eq:inout_2`, where $L$ is called the Leontief Inverse.
+We have discussed that gross output $x$ is given by {eq}`eq:inout_2`, where $L$ is called the Leontief Inverse.
 
 Recall the {doc}`Neumann Series Lemma <eigen_II>` which states that $L$ exists if the spectral radius $r(A)<1$.
 
@@ -551,7 +551,7 @@ The above figure indicates that manufacturing is the most dominant sector in the
 
 ### Output multipliers
 
-Another way to rank sectors in input output networks is via outuput multipliers.
+Another way to rank sectors in input output networks is via output multipliers.
 
 The **output multiplier** of sector $j$ denoted by $\mu_j$ is usually defined as the
 total sector-wide impact of a unit change of demand in sector $j$.

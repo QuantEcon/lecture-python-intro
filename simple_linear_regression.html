@@ -757,7 +757,7 @@ C = \sum_{i=1}^{N}{(y_i - \alpha - \beta x_i)^2}
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;X&#39;</span><span class="p">,</span><span class="s1">&#39;Y&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>  <span class="c1"># Original Data</span>
 
-<span class="c1"># Calcuate the sample means</span>
+<span class="c1"># Calculate the sample means</span>
 <span class="n">x_bar</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 <span class="n">y_bar</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Y&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 </pre></div>
@@ -1123,7 +1123,7 @@ C = \sum_{i=1}^{N}{(y_i - \alpha - \beta x_i)^2}
 <p>Sometimes it can be useful to rename your columns to make it easier to work with in the DataFrame</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;cntry&quot;</span><span class="p">,</span> <span class="s2">&quot;year&quot;</span><span class="p">,</span> <span class="s2">&quot;life_expectency&quot;</span><span class="p">,</span> <span class="s2">&quot;gdppc&quot;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;cntry&quot;</span><span class="p">,</span> <span class="s2">&quot;year&quot;</span><span class="p">,</span> <span class="s2">&quot;life_expectancy&quot;</span><span class="p">,</span> <span class="s2">&quot;gdppc&quot;</span><span class="p">]</span>
 <span class="n">df</span>
 </pre></div>
 </div>
@@ -1149,7 +1149,7 @@ C = \sum_{i=1}^{N}{(y_i - \alpha - \beta x_i)^2}
       <th></th>
       <th>cntry</th>
       <th>year</th>
-      <th>life_expectency</th>
+      <th>life_expectancy</th>
       <th>gdppc</th>
     </tr>
   </thead>
@@ -1271,7 +1271,7 @@ C = \sum_{i=1}^{N}{(y_i - \alpha - \beta x_i)^2}
       <th></th>
       <th>cntry</th>
       <th>year</th>
-      <th>life_expectency</th>
+      <th>life_expectancy</th>
       <th>gdppc</th>
     </tr>
   </thead>
@@ -1362,10 +1362,10 @@ C = \sum_{i=1}^{N}{(y_i - \alpha - \beta x_i)^2}
 <p>Now we have a dataset containing life expectancy and GDP per capita for a range of years.</p>
 <p>It is always a good idea to spend a bit of time understanding what data you actually have.</p>
 <p>For example, you may want to explore this data to see if there is consistent reporting for all countries across years</p>
-<p>Let’s first look at the Life Expectency Data</p>
+<p>Let’s first look at the Life Expectancy Data</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">le_years</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;cntry&#39;</span><span class="p">,</span> <span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="s1">&#39;life_expectency&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="s1">&#39;cntry&#39;</span><span class="p">,</span> <span class="s1">&#39;year&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">unstack</span><span class="p">()[</span><span class="s1">&#39;life_expectency&#39;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">le_years</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;cntry&#39;</span><span class="p">,</span> <span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="s1">&#39;life_expectancy&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="s1">&#39;cntry&#39;</span><span class="p">,</span> <span class="s1">&#39;year&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">unstack</span><span class="p">()[</span><span class="s1">&#39;life_expectancy&#39;</span><span class="p">]</span>
 <span class="n">le_years</span>
 </pre></div>
 </div>
@@ -1847,18 +1847,18 @@ C = \sum_{i=1}^{N}{(y_i - \alpha - \beta x_i)^2}
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;gdppc&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;life_expectency&#39;</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;scatter&#39;</span><span class="p">,</span>  <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;GDP per capita&quot;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;Life Expectency (Years)&quot;</span><span class="p">,);</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;gdppc&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;life_expectancy&#39;</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;scatter&#39;</span><span class="p">,</span>  <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;GDP per capita&quot;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;Life Expectancy (Years)&quot;</span><span class="p">,);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/cad984e4cec37a8aaa7de38d3561f8656a98ebcd3e0da6f25658cc0914a6f65c.png"><img alt="_images/cad984e4cec37a8aaa7de38d3561f8656a98ebcd3e0da6f25658cc0914a6f65c.png" src="_images/cad984e4cec37a8aaa7de38d3561f8656a98ebcd3e0da6f25658cc0914a6f65c.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/db61afb48049b1b470760f69bd2ec5fbfc0e14275ce1c75c464be18584d9a540.png"><img alt="_images/db61afb48049b1b470760f69bd2ec5fbfc0e14275ce1c75c464be18584d9a540.png" src="_images/db61afb48049b1b470760f69bd2ec5fbfc0e14275ce1c75c464be18584d9a540.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>This data shows a couple of interesting relationships.</p>
 <ol class="arabic simple">
 <li><p>there are a number of countries with similar GDP per capita levels but a wide range in Life Expectancy</p></li>
-<li><p>there appears to be a positive relationship between GDP per capita and life expectancy. Countries with higher GDP per capita tend to have higher life expectency outcomes</p></li>
+<li><p>there appears to be a positive relationship between GDP per capita and life expectancy. Countries with higher GDP per capita tend to have higher life expectancy outcomes</p></li>
 </ol>
 <p>Even though OLS is solving linear equations – one option we have is to transform the variables, such as through a log transform, and then use OLS to estimate the transformed variables</p>
 <div class="admonition tip">
@@ -1868,7 +1868,7 @@ C = \sum_{i=1}^{N}{(y_i - \alpha - \beta x_i)^2}
 <p>By specifying <code class="docutils literal notranslate"><span class="pre">logx</span></code> you can plot the GDP per Capita data on a log scale</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;gdppc&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;life_expectency&#39;</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;scatter&#39;</span><span class="p">,</span>  <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;GDP per capita&quot;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;Life Expectancy (Years)&quot;</span><span class="p">,</span> <span class="n">logx</span><span class="o">=</span><span class="kc">True</span><span class="p">);</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;gdppc&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;life_expectancy&#39;</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;scatter&#39;</span><span class="p">,</span>  <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;GDP per capita&quot;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;Life Expectancy (Years)&quot;</span><span class="p">,</span> <span class="n">logx</span><span class="o">=</span><span class="kc">True</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
@@ -1911,7 +1911,7 @@ C = \sum_{i=1}^{N}{(y_i - \alpha - \beta x_i)^2}
       <th></th>
       <th>cntry</th>
       <th>year</th>
-      <th>life_expectency</th>
+      <th>life_expectancy</th>
       <th>gdppc</th>
       <th>log_gdppc</th>
     </tr>
@@ -2013,11 +2013,11 @@ C = \sum_{i=1}^{N}{(y_i - \alpha - \beta x_i)^2}
 <p><strong>Q4:</strong> Use <a class="reference internal" href="#equation-eq-optimal-alpha">(36.1)</a> and <a class="reference internal" href="#equation-eq-optimal-beta">(36.2)</a> to compute optimal values for  <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;log_gdppc&#39;</span><span class="p">,</span> <span class="s1">&#39;life_expectency&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>  <span class="c1"># Get Data from DataFrame</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;log_gdppc&#39;</span><span class="p">,</span> <span class="s1">&#39;life_expectancy&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>  <span class="c1"># Get Data from DataFrame</span>
 
 <span class="c1"># Calculate the sample means</span>
 <span class="n">x_bar</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;log_gdppc&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
-<span class="n">y_bar</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;life_expectency&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">y_bar</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;life_expectancy&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -2048,7 +2048,7 @@ C = \sum_{i=1}^{N}{(y_i - \alpha - \beta x_i)^2}
     <tr style="text-align: right;">
       <th></th>
       <th>log_gdppc</th>
-      <th>life_expectency</th>
+      <th>life_expectancy</th>
     </tr>
   </thead>
   <tbody>
@@ -2115,7 +2115,7 @@ C = \sum_{i=1}^{N}{(y_i - \alpha - \beta x_i)^2}
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute the Sums</span>
-<span class="n">data</span><span class="p">[</span><span class="s1">&#39;num&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;log_gdppc&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;life_expectency&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">y_bar</span> <span class="o">*</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;log_gdppc&#39;</span><span class="p">]</span>
+<span class="n">data</span><span class="p">[</span><span class="s1">&#39;num&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;log_gdppc&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;life_expectancy&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">y_bar</span> <span class="o">*</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;log_gdppc&#39;</span><span class="p">]</span>
 <span class="n">data</span><span class="p">[</span><span class="s1">&#39;den&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">pow</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;log_gdppc&#39;</span><span class="p">],</span><span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="n">x_bar</span> <span class="o">*</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;log_gdppc&#39;</span><span class="p">]</span>
 <span class="n">β</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;num&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;den&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">β</span><span class="p">)</span>
@@ -2123,7 +2123,7 @@ C = \sum_{i=1}^{N}{(y_i - \alpha - \beta x_i)^2}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>12.643730292819699
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>12.643730292819708
 </pre></div>
 </div>
 </div>
@@ -2136,7 +2136,7 @@ C = \sum_{i=1}^{N}{(y_i - \alpha - \beta x_i)^2}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>21.702096701389074
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>21.70209670138904
 </pre></div>
 </div>
 </div>
@@ -2144,21 +2144,21 @@ C = \sum_{i=1}^{N}{(y_i - \alpha - \beta x_i)^2}
 <p><strong>Q5:</strong> Plot the line of best fit found using OLS</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;life_expectency_hat&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">α</span> <span class="o">+</span> <span class="n">β</span> <span class="o">*</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;log_gdppc&#39;</span><span class="p">]</span>
-<span class="n">data</span><span class="p">[</span><span class="s1">&#39;error&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;life_expectency_hat&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;life_expectency&#39;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;life_expectancy_hat&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">α</span> <span class="o">+</span> <span class="n">β</span> <span class="o">*</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;log_gdppc&#39;</span><span class="p">]</span>
+<span class="n">data</span><span class="p">[</span><span class="s1">&#39;error&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;life_expectancy_hat&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;life_expectancy&#39;</span><span class="p">]</span>
 
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
-<span class="n">data</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;log_gdppc&#39;</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;life_expectency&#39;</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;scatter&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
-<span class="n">data</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;log_gdppc&#39;</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;life_expectency_hat&#39;</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;line&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;log_gdppc&#39;</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;life_expectency_hat&#39;</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;life_expectency&#39;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">data</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;log_gdppc&#39;</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;life_expectancy&#39;</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;scatter&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">data</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;log_gdppc&#39;</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;life_expectancy_hat&#39;</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;line&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;log_gdppc&#39;</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;life_expectancy_hat&#39;</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;life_expectancy&#39;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.LineCollection at 0x7f74427d06d0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.LineCollection at 0x7fe4d2c2b7c0&gt;
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="_images/b009e2790d80460c992b1b0991a27ec47f63a454f0931bdb380d30c76c8a27ea.png"><img alt="_images/b009e2790d80460c992b1b0991a27ec47f63a454f0931bdb380d30c76c8a27ea.png" src="_images/b009e2790d80460c992b1b0991a27ec47f63a454f0931bdb380d30c76c8a27ea.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/a8a76fcce2a75792a77e592c7d0c487733d77878b17b0f8c3c34a1b521f346d3.png"><img alt="_images/a8a76fcce2a75792a77e592c7d0c487733d77878b17b0f8c3c34a1b521f346d3.png" src="_images/a8a76fcce2a75792a77e592c7d0c487733d77878b17b0f8c3c34a1b521f346d3.png" style="width: 80%;" /></a>
 </div>
 </div>
 </section>
