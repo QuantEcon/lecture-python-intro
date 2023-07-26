@@ -292,7 +292,7 @@ In this case, the maximum likelihood estimates are known to be
 $$
     \hat{b} = \frac{n}{\sum_{i=1}^{n} \ln (w_i/\hat{x_m})}
     \quad \text{and} \quad
-    \hat{x_m} = \min_{i} w_i
+    \hat{x}_m = \min_{i} w_i
 $$
 
 Let's calculate them.
