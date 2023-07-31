@@ -317,14 +317,14 @@ for ax, s in zip(axes[:2], s_vals):
     data = np.random.randn(n) * s
     ax.plot(list(range(n)), data, linestyle='', marker='o', alpha=0.5, ms=4)
     ax.vlines(list(range(n)), 0, data, lw=0.2)
-    ax.set_title(f"draws from $N(0, \sigma^2)$ with $\sigma = {s}$", fontsize=11)
+    ax.set_title(f'draws from $N(0, \sigma^2)$ with $\sigma = {s}$', fontsize=11)
 
 ax = axes[2]
 distribution = cauchy()
 data = distribution.rvs(n)
 ax.plot(list(range(n)), data, linestyle='', marker='o', alpha=0.5, ms=4)
 ax.vlines(list(range(n)), 0, data, lw=0.2)
-ax.set_title(f"draws from the Cauchy distribution", fontsize=11)
+ax.set_title(f'draws from the Cauchy distribution', fontsize=11)
 
 plt.subplots_adjust(hspace=0.25)
 
@@ -548,8 +548,8 @@ for data, label, ax in zip(data_list, labels, axes):
 
     ax.loglog(x_grid, [eccdf(x, data) for x in x_grid], 
         'o', markersize=3.0, alpha=0.5, label=label)
-    ax.set_xlabel("log rank")
-    ax.set_ylabel("log size")
+    ax.set_xlabel('log rank')
+    ax.set_ylabel('log size')
 
     ax.legend()
 
@@ -660,11 +660,11 @@ def empirical_ccdf(data,
 
     ax.scatter(x, y, **kwargs)
     if add_reg_line:
-        ax.plot(x, x * a + b, 'k-', alpha=0.6, label=f"slope = ${a: 1.2f}$")
+        ax.plot(x, x * a + b, 'k-', alpha=0.6, label=f'slope = ${a: 1.2f}$')
     if not xlabel:
         xlabel='log value'
     ax.set_xlabel(xlabel, fontsize=12)
-    ax.set_ylabel("log prob.", fontsize=12)
+    ax.set_ylabel('log prob.', fontsize=12)
         
     if label:
         ax.legend(loc='lower left', fontsize=12)
@@ -683,11 +683,11 @@ def extract_wb(varlist=['NY.GDP.MKTP.CD'],
                s=1900, 
                e=2021, 
                varnames=None):
-    if c == "all_countries":
+    if c == 'all_countries':
         # Keep countries only (no aggregated regions)
         countries = wb.get_countries()
         countries_name = countries[countries['region'] != 'Aggregates']['name'].values
-        c = "all"
+        c = 'all'
     
     df = wb.download(indicator=varlist, country=c, start=s, end=e).stack().unstack(0).reset_index()
     df = df.drop(['level_1'], axis=1).transpose()
@@ -712,7 +712,7 @@ df_fs = pd.read_csv('https://media.githubusercontent.com/media/QuantEcon/high_di
 df_fs = df_fs[['Country', 'Sales', 'Profits', 'Assets', 'Market Value']]
 fig, ax = plt.subplots(figsize=(6.4, 3.5))
 
-label="firm size (market value)"
+label='firm size (market value)'
 top = 500 # set the cutting for top
 d = df_fs.sort_values('Market Value', ascending=False)
 empirical_ccdf(np.asarray(d['Market Value'])[:top], ax, label=label, add_reg_line=True)
@@ -737,8 +737,8 @@ df_cs_br = pd.read_csv('https://media.githubusercontent.com/media/QuantEcon/high
 
 fig, axes = plt.subplots(1, 2, figsize=(8.8, 3.6))
 
-empirical_ccdf(np.asarray(df_cs_us["pop2023"]), axes[0], label="US", add_reg_line=True)
-empirical_ccdf(np.asarray(df_cs_br['pop2023']), axes[1], label="Brazil", add_reg_line=True)
+empirical_ccdf(np.asarray(df_cs_us['pop2023']), axes[0], label='US', add_reg_line=True)
+empirical_ccdf(np.asarray(df_cs_br['pop2023']), axes[1], label='Brazil', add_reg_line=True)
 
 plt.show()
 ```
@@ -796,9 +796,9 @@ variable_code = ['NY.GDP.MKTP.CD', 'NY.GDP.PCAP.CD']
 variable_names = ['GDP', 'GDP per capita']
 
 df_gdp1 = extract_wb(varlist=variable_code, 
-                     c="all_countries", 
-                     s="2021", 
-                     e="2021", 
+                     c='all_countries', 
+                     s='2021', 
+                     e='2021', 
                      varnames=variable_names)
 df_gdp1.dropna(inplace=True)
 ```
@@ -809,7 +809,7 @@ df_gdp1.dropna(inplace=True)
 fig, axes = plt.subplots(1, 2, figsize=(8.8, 3.6))
 
 for name, ax in zip(variable_names, axes):
-    empirical_ccdf(np.asarray(df_gdp1[name]).astype("float64"), ax, add_reg_line=False, label=name)
+    empirical_ccdf(np.asarray(df_gdp1[name]).astype('float64'), ax, add_reg_line=False, label=name)
 
 plt.show()
 ```
@@ -1095,16 +1095,19 @@ for ax, alpha in zip(axes, alphas):
     data = pareto.rvs(size=n, scale=1, b=alpha)
     ax.plot(list(range(n)), data, linestyle='', marker='o', alpha=0.5, ms=4)
     ax.vlines(list(range(n)), 0, data, lw=0.2)
-    ax.set_title(f"draws from Pareto ($\\alpha = {alpha}$)", fontsize=11)
+    ax.set_title(f'draws from Pareto ($\\alpha = {alpha}$)', fontsize=11)
 
 plt.subplots_adjust(hspace=0.4)
 
-suptitle_text = "Pareto Draws for Different Alphas"
-figtext_text = "Each plot shows 120 draws from a Pareto with a unique alpha."
+suptitle_text = 'Pareto Draws for Different Alphas'
+# figtext_text = "Each plot shows 120 draws from a Pareto with a unique alpha."
+figtext_text = (
+'Each plot shows 120 draws from '
+'a Pareto distribution with a unique alpha')
 
 plt.suptitle(suptitle_text, fontsize=14, y=-0.1)  # Adjusted position
-plt.figtext(0.5, -0.15, figtext_text, ha="center", fontsize=11,
-            bbox={"facecolor":"orange", "alpha":0.5, "pad":5})  # Adjusted position
+plt.figtext(0.5, -0.15, figtext_text, ha='center', fontsize=11,
+            bbox={'facecolor':'orange', 'alpha':0.5, 'pad':5})  # Adjusted position
 
 # Adjust subplot parameters so that the subplot fits in to the figure area
 plt.tight_layout()
