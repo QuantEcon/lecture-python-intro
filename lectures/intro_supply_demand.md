@@ -13,7 +13,7 @@ kernelspec:
 
 # Introduction to Supply and Demand
 
-## Outline
+## Overview
 
 This lecture is about some models of equilibrium prices and quantities, one of
 the main topics of elementary microeconomics.
@@ -33,9 +33,9 @@ Key infrastructure concepts that we'll encounter in this lecture are
 * social welfare as the sum of consumer and producer surpluses
 * relationship between  equilibrium quantity and social welfare optimum
 
-Throughout the lectures, we'll assume that inverse demand and supply curves are **affine** functions of output.
+Throughout the lectures, we'll assume that inverse demand and supply curves are **affine** functions of quantity.
 
-("Affine" means "linear plus a constant".)
+("Affine" means "linear plus a constant" and [here](https://math.stackexchange.com/questions/275310/what-is-the-difference-between-linear-and-affine-function) is a nice discussion about it.)
 
 We'll also assume affine inverse supply and demand functions when we study models with multiple consumption goods in our {doc}`subsequent lecture <supply_demand_multiple_goods>`.
 
@@ -120,7 +120,7 @@ ax.set_ylabel('price')
 plt.show()
 ```
 
-In the above graph, an **equilibrium** price, quantity pair occurs at the intersection of the supply and demand curves. 
+In the above graph, an **equilibrium** price-quantity pair occurs at the intersection of the supply and demand curves. 
 
 ### Consumer surplus
 
