@@ -1100,10 +1100,9 @@ for ax, alpha in zip(axes, alphas):
 plt.subplots_adjust(hspace=0.4)
 
 suptitle_text = 'Pareto Draws for Different Alphas'
-# figtext_text = "Each plot shows 120 draws from a Pareto with a unique alpha."
-figtext_text = (
-'Each plot shows 120 draws from '
-'a Pareto distribution with a unique alpha')
+figtext_text = ' \
+Each plot shows 120 draws from a Pareto distribution \
+with a unique alpha.'
 
 plt.suptitle(suptitle_text, fontsize=14, y=-0.1)  # Adjusted position
 plt.figtext(0.5, -0.15, figtext_text, ha='center', fontsize=11,
