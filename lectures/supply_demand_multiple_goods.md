@@ -17,15 +17,43 @@ kernelspec:
 ## Overview
 
 In a {doc}`previous lecture <intro_supply_demand>` we studied supply, demand
-and welfare in a market with just one good.
+and welfare in a market with a single consumption good.
 
 In this lecture, we study a setting with $n$ goods and $n$ corresponding prices.
+
+Key infrastructure concepts that we'll encounter in this lecture are
+
+* inverse demand curves
+* marginal utilities of wealth
+* inverse supply curves
+* consumer surplus
+* producer surplus
+* social welfare as a sum of consumer and producer surpluses
+* competitive equilibrium
+
+
+We will provide a version of the [first fundamental welfare theorem](https://en.wikipedia.org/wiki/Fundamental_theorems_of_welfare_economics), which was formulated by 
+
+* [Leon Walras](https://en.wikipedia.org/wiki/L%C3%A9on_Walras)
+* [Francis Ysidro Edgeworth](https://en.wikipedia.org/wiki/Francis_Ysidro_Edgeworth)
+* [Vilfredo Pareto](https://en.wikipedia.org/wiki/Vilfredo_Pareto)
+
+Important extensions to the key ideas were obtained by
+
+* [Abba Lerner](https://en.wikipedia.org/wiki/Abba_P._Lerner)
+* [Harold Hotelling](https://en.wikipedia.org/wiki/Harold_Hotelling)
+* [Paul Samuelson](https://en.wikipedia.org/wiki/Paul_Samuelson)
+* [Kenneth Arrow](https://en.wikipedia.org/wiki/Kenneth_Arrow) 
+* [Gerard Debreu](https://en.wikipedia.org/wiki/G%C3%A9rard_Debreu)
+
 
 We shall describe two classic welfare theorems:
 
 * **first welfare theorem:** for a given distribution of wealth among consumers, a competitive  equilibrium  allocation of goods solves a  social planning problem.
 
 * **second welfare theorem:** An allocation of goods to consumers that solves a social planning problem can be supported by a competitive equilibrium with an appropriate initial distribution of  wealth.
+
+As usual, we start by importing some Python modules.
 
 ```{code-cell} ipython3
 # import some packages
