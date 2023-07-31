@@ -212,7 +212,7 @@ Hence, the growth rate of $n_t$ is fixed at $1 + b - d$.
 
 Moreover, the times series of unemployment and employment seems to grow at some stable rates in the long run.
 
-### The application of erron-Frobenius theorem
+### The application of Perron-Frobenius theorem
 
 Since by intuition if we consider unemployment pool and employment pool as a closed system, the growth should be similar to the labor force.
 
