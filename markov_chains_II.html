@@ -257,18 +257,18 @@ const thebe_selector_output = ".output, .cell_output"
 </summary>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: quantecon in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (0.7.1)
-Requirement already satisfied: numba&gt;=0.49.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from quantecon) (0.56.4)
+Requirement already satisfied: sympy in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from quantecon) (1.11.1)
+Requirement already satisfied: numpy&gt;=1.17.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from quantecon) (1.23.5)
 Requirement already satisfied: requests in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from quantecon) (2.31.0)
+Requirement already satisfied: scipy&gt;=1.5.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from quantecon) (1.10.0)
+Requirement already satisfied: numba&gt;=0.49.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from quantecon) (0.56.4)
+Requirement already satisfied: setuptools in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from numba&gt;=0.49.0-&gt;quantecon) (65.6.3)
+Requirement already satisfied: llvmlite&lt;0.40,&gt;=0.39.0dev0 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from numba&gt;=0.49.0-&gt;quantecon) (0.39.1)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: numpy&gt;=1.17.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from quantecon) (1.23.5)
-Requirement already satisfied: sympy in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from quantecon) (1.11.1)
-Requirement already satisfied: scipy&gt;=1.5.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from quantecon) (1.10.0)
-Requirement already satisfied: llvmlite&lt;0.40,&gt;=0.39.0dev0 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from numba&gt;=0.49.0-&gt;quantecon) (0.39.1)
-Requirement already satisfied: setuptools in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from numba&gt;=0.49.0-&gt;quantecon) (65.6.3)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests-&gt;quantecon) (1.26.14)
 Requirement already satisfied: idna&lt;4,&gt;=2.5 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests-&gt;quantecon) (3.4)
 Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests-&gt;quantecon) (2022.12.7)
-Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests-&gt;quantecon) (1.26.14)
 Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests-&gt;quantecon) (2.0.4)
 Requirement already satisfied: mpmath&gt;=0.19 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages/mpmath-1.2.1-py3.10.egg (from sympy-&gt;quantecon) (1.2.1)
 </pre></div>
@@ -482,7 +482,7 @@ the starting state</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/ef658f6d7b0b8d4f1ef8461f5f57a96fb9be6bc65f4bf9ae459d6b8abf6ddb5f.png"><img alt="_images/ef658f6d7b0b8d4f1ef8461f5f57a96fb9be6bc65f4bf9ae459d6b8abf6ddb5f.png" src="_images/ef658f6d7b0b8d4f1ef8461f5f57a96fb9be6bc65f4bf9ae459d6b8abf6ddb5f.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/a03cff47ceb401e89d2a7bd6087944aecb6d23a18ce212f793909419430fbcfd.png"><img alt="_images/a03cff47ceb401e89d2a7bd6087944aecb6d23a18ce212f793909419430fbcfd.png" src="_images/a03cff47ceb401e89d2a7bd6087944aecb6d23a18ce212f793909419430fbcfd.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>Note the convergence to the stationary distribution regardless of the starting point <span class="math notranslate nohighlight">\(x_0\)</span>.</p>
@@ -537,7 +537,7 @@ indicating that this chain is irreducible.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/f81f3d002f99a801db74cac2d51fa7a54f28c5228006a891cd0ad4792220448d.png"><img alt="_images/f81f3d002f99a801db74cac2d51fa7a54f28c5228006a891cd0ad4792220448d.png" src="_images/f81f3d002f99a801db74cac2d51fa7a54f28c5228006a891cd0ad4792220448d.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/0cf3ba3999756dfaa7fdf84cd7a63c5ed1c1549ed43f66751f366d3df3833573.png"><img alt="_images/0cf3ba3999756dfaa7fdf84cd7a63c5ed1c1549ed43f66751f366d3df3833573.png" src="_images/0cf3ba3999756dfaa7fdf84cd7a63c5ed1c1549ed43f66751f366d3df3833573.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>Similar to previous examples, the sample path averages for each state converge
@@ -750,7 +750,7 @@ P:=
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/86da2d0f5865a2e5332c145e15a521a082c185d763514af8359c8c30dfb497a7.png"><img alt="_images/86da2d0f5865a2e5332c145e15a521a082c185d763514af8359c8c30dfb497a7.png" src="_images/86da2d0f5865a2e5332c145e15a521a082c185d763514af8359c8c30dfb497a7.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/920bb7cf5f0e7665e52ab4d1050e6e9dca42aba497f9f89ff2d11ea4eba9ac8c.png"><img alt="_images/920bb7cf5f0e7665e52ab4d1050e6e9dca42aba497f9f89ff2d11ea4eba9ac8c.png" src="_images/920bb7cf5f0e7665e52ab4d1050e6e9dca42aba497f9f89ff2d11ea4eba9ac8c.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>Note that the fraction of time spent at each state quickly converges to the probability assigned to that state by the stationary distribution.</p>
@@ -831,7 +831,7 @@ conditions.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/e131ef169aee968a498d4b5eac4bacffddd31b98a239f92bc0404f1b123b6239.png"><img alt="_images/e131ef169aee968a498d4b5eac4bacffddd31b98a239f92bc0404f1b123b6239.png" src="_images/e131ef169aee968a498d4b5eac4bacffddd31b98a239f92bc0404f1b123b6239.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/f8c8c2265b0fe7c6eb865382d284d102759a3fcb5cb5146e269708d52a7bc77f.png"><img alt="_images/f8c8c2265b0fe7c6eb865382d284d102759a3fcb5cb5146e269708d52a7bc77f.png" src="_images/f8c8c2265b0fe7c6eb865382d284d102759a3fcb5cb5146e269708d52a7bc77f.png" style="width: 80%;" /></a>
 </div>
 </div>
 </section>
