@@ -11,23 +11,8 @@ kernelspec:
   name: python3
 ---
 
-(geom_series)=
-```{raw} html
-<div id="qe-notebook-header" style="text-align:right;">
-        <a href="https://quantecon.org/" title="quantecon.org">
-                <img style="width:250px;display:inline;" src="https://assets.quantecon.org/img/qe-menubar-logo.svg" alt="QuantEcon">
-        </a>
-</div>
-```
-
-```{index} single: python
-```
 
 # Geometric Series for Elementary Economics
-
-```{contents} Contents
-:depth: 2
-```
 
 ## Overview
 
@@ -45,7 +30,8 @@ Among these are
 These and other applications prove the truth of the wise crack that
 
 ```{epigraph}
-"in economics, a little knowledge of geometric series goes a long way "
+"in economics, a little knowledge of geometric series goes a long way."
+
 ```
 
 Below we'll use the following imports:
