@@ -428,3 +428,18 @@ following settings for $d$ and $p_{T+1}^*$:
 
 ```{exercise-end} 
 ```
+
+```{solution-start} pv_ex_a
+:class: dropdown
+```
+
+Plugging each pair of the above $p_{T+1}^*, d_t$ into Equation {eq}`eq:ptpveq` yields:
+
+1. $p_t = \sum^T_{s=t} \delta^{s-t} g^s d_0$
+1. $p_t = \sum^T_{s=t} \delta^{s-t} g^s d_0 + \delta^{T+1-t} g^{T+1} d_0$
+1. $p_t = 0$
+1. $p_t = c \delta^{-t}$
+
+
+```{solution-end}
+```
