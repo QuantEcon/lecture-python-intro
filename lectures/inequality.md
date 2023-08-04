@@ -11,6 +11,8 @@ kernelspec:
   name: python3
 ---
 
++++ {"user_expressions": []}
+
 # Income and Wealth Inequality
 
 
@@ -71,6 +73,8 @@ We will install the following libraries.
 !pip install --upgrade quantecon interpolation
 ```
 
++++ {"user_expressions": []}
+
 And we use the following imports.
 
 ```{code-cell} ipython3
@@ -81,6 +85,8 @@ import quantecon as qe
 import random as rd
 from interpolation import interp
 ```
+
++++ {"user_expressions": []}
 
 ## The Lorenz curve
 
@@ -124,7 +130,7 @@ The meaning of the statement $y = L(x)$ is that the lowest $(100
 In the discussion above we focused on wealth but the same ideas apply to
 income, consumption, etc.
 
-+++
++++ {"user_expressions": []}
 
 ### Lorenz curves of simulated data
 
@@ -145,7 +151,7 @@ households own just over 40\% of total wealth.
 ---
 mystnb:
   figure:
-    caption: "Lorenz curve of simulated data"
+    caption: Lorenz curve of simulated data
     name: lorenz_simulated
 ---
 n = 2000
@@ -168,6 +174,8 @@ ax.set_xlim((0, 1))
 plt.show()
 ```
 
++++ {"user_expressions": []}
+
 ### Lorenz curves for US data
 
 Next let's look at the real data, focusing on income and wealth in the US in
@@ -186,6 +194,8 @@ df_income_wealth = df
 ```{code-cell} ipython3
 df_income_wealth.head()
 ```
+
++++ {"user_expressions": []}
 
 The following code block uses data stored in dataframe ``df_income_wealth`` to generate the Lorenz curves.
 
@@ -233,6 +243,8 @@ f_vals_nw, f_vals_ti, f_vals_li = F_vals
 l_vals_nw, l_vals_ti, l_vals_li = L_vals
 ```
 
++++ {"user_expressions": []}
+
 Now we plot Lorenz curves for net wealth, total income and labor income in the
 US in 2016.
 
@@ -240,7 +252,7 @@ US in 2016.
 ---
 mystnb:
   figure:
-    caption: "2016 US Lorenz curves"
+    caption: 2016 US Lorenz curves
     name: lorenz_us
   image:
     alt: lorenz_us
@@ -256,6 +268,8 @@ ax.legend(fontsize=12)
 plt.show()
 ```
 
++++ {"user_expressions": []}
+
 Here all the income and wealth measures are pre-tax.
 
 Total income is the sum of households' all income sources, including labor income but excluding capital gains.
@@ -263,7 +277,7 @@ Total income is the sum of households' all income sources, including labor incom
 One key finding from this figure is that wealth inequality is significantly
 more extreme than income inequality.
 
-+++
++++ {"user_expressions": []}
 
 ## The Gini coefficient
 
@@ -306,7 +320,7 @@ The idea is that $G=0$ indicates complete equality, while $G=1$ indicates comple
 ---
 mystnb:
   figure:
-    caption: "Shaded Lorenz curve of simulated data"
+    caption: Shaded Lorenz curve of simulated data
     name: lorenz_gini
   image:
     alt: lorenz_gini
@@ -331,6 +345,8 @@ ax.text(0.04, 0.5, r'$G = 2 \times$ shaded area', fontsize=12)
   
 plt.show()
 ```
+
++++ {"user_expressions": []}
 
 ### Gini coefficient dynamics of simulated data
 
@@ -382,7 +398,7 @@ def plot_inequality_measures(x, y, legend, xlabel, ylabel):
 ---
 mystnb:
   figure:
-    caption: "Gini coefficients of simulated data"
+    caption: Gini coefficients of simulated data
     name: gini_simulated
   image:
     alt: gini_simulated
@@ -394,10 +410,12 @@ plot_inequality_measures(σ_vals,
                          'gini coefficients')
 ```
 
++++ {"user_expressions": []}
+
 The plots show that inequality rises with $\sigma$, according to the Gini
 coefficient.
 
-+++
++++ {"user_expressions": []}
 
 ### Gini coefficient dynamics for US data
 
@@ -443,6 +461,8 @@ for var in varlist:
 ginis_nw, ginis_ti, ginis_li = Ginis
 ```
 
++++ {"user_expressions": []}
+
 Let's plot the Gini coefficients for net wealth, labor income and total income.
 
 ```{code-cell} ipython3
@@ -455,7 +475,7 @@ ginis_li_new[5] = (ginis_li[4] + ginis_li[6]) / 2
 ---
 mystnb:
   figure:
-    caption: "Gini coefficients of US net wealth"
+    caption: Gini coefficients of US net wealth
     name: gini_wealth_us
   image:
     alt: gini_wealth_us
@@ -477,7 +497,7 @@ plt.show()
 ---
 mystnb:
   figure:
-    caption: "Gini coefficients of US income"
+    caption: Gini coefficients of US income
     name: gini_income_us
   image:
     alt: gini_income_us
@@ -497,11 +517,75 @@ ax.legend(fontsize=12)
 plt.show()
 ```
 
++++ {"user_expressions": []}
+
 We see that, by this measure, inequality in wealth and income has risen
 substantially since 1980.
 
 The wealth time series exhibits a strong U-shape.
 
++++ {"user_expressions": []}
+
+## Kuznets U Curve
+
+```{code-cell} ipython3
+df_gini_nw = pd.DataFrame({'year': years, 'gini_coefficient': ginis_nw, 'type': 'net wealth'})
+df_gini_ti = pd.DataFrame({'year': years, 'gini_coefficient': ginis_ti, 'type': 'total income'})
+df_gini_li = pd.DataFrame({'year': years, 'gini_coefficient': ginis_li_new, 'type': 'labor income'})
+
+df_gini = pd.concat([df_gini_nw, df_gini_ti, df_gini_li])
+```
+
+```{code-cell} ipython3
+from pandas_datareader import wb 
+
+# Define years
+years = df.year.unique()
+
+# Define start and end years
+start_year = min(years)
+end_year = max(years)
+
+# Retrieve data from world bank
+df_gdp = wb.download(indicator='NY.GDP.PCAP.CD', country='USA', start=start_year, end=end_year)
+
+# Reset index
+df_gdp.reset_index(inplace=True)
+
+# Rename column
+df_gdp.rename(columns={'NY.GDP.PCAP.CD': 'gdp_per_capita'}, inplace=True)
+
+# Ready for merge
+df_gdp['year'] = df_gdp['year'].astype(int)
+
+# Keep the cooresponding year
+df_gdp = df_gdp[df_gdp['year'].isin(years)]
+
+print(df_gdp)
+```
+
+```{code-cell} ipython3
+# Merge data
+df_gdp_gini = pd.merge(df_gini, df_gdp, on='year')
+print(df_gdp_gini)
+```
+
+```{code-cell} ipython3
+plt.figure(figsize=(10, 8))
+
+for type in df_gdp_gini['type'].unique():
+    df_type = df_gdp_gini[df_gdp_gini['type'] == type]
+    plt.plot(df_type['gdp_per_capita'], df_type['gini_coefficient'], label=type)
+
+plt.xlabel('GDP per Capita')
+plt.ylabel('Gini Coefficient')
+plt.title('Kuznets Curve')
+plt.legend()
+
+plt.show()
+```
+
++++ {"user_expressions": []}
 
 ## Top shares
 
@@ -528,7 +612,7 @@ $$(topshares)
 Here $\lfloor \cdot \rfloor$ is the floor function, which rounds any
 number down to the integer less than or equal to that number.
 
-+++
++++ {"user_expressions": []}
 
 The following code uses the data from dataframe ``df_income_wealth`` to generate another dataframe ``df_topshares``.
 
@@ -581,13 +665,15 @@ df_topshares = df5[['year', 'topshare_n_wealth',
                     'topshare_t_income', 'topshare_l_income']]
 ```
 
++++ {"user_expressions": []}
+
 Then let's plot the top shares.
 
 ```{code-cell} ipython3
 ---
 mystnb:
   figure:
-    caption: "US top shares"
+    caption: US top shares
     name: top_shares_us
   image:
     alt: top_shares_us
@@ -611,9 +697,11 @@ ax.legend(fontsize=12)
 plt.show()
 ```
 
++++ {"user_expressions": []}
+
 ## Exercises
 
-+++
++++ {"user_expressions": []}
 
 ```{exercise}
 :label: inequality_ex1
@@ -635,7 +723,7 @@ Confirm that higher variance
 generates more dispersion in the sample, and hence greater inequality.
 ```
 
-+++
++++ {"user_expressions": []}
 
 ```{solution-start} inequality_ex1
 :class: dropdown
@@ -676,7 +764,7 @@ for σ in σ_vals:
 ---
 mystnb:
   figure:
-    caption: "Top shares of simulated data"
+    caption: Top shares of simulated data
     name: top_shares_simulated
   image:
     alt: top_shares_simulated
@@ -692,7 +780,7 @@ plot_inequality_measures(σ_vals,
 ---
 mystnb:
   figure:
-    caption: "Gini coefficients of simulated data"
+    caption: Gini coefficients of simulated data
     name: gini_coef_simulated
   image:
     alt: gini_coef_simulated
@@ -708,7 +796,7 @@ plot_inequality_measures(σ_vals,
 ---
 mystnb:
   figure:
-    caption: "Lorenz curves for simulated data"
+    caption: Lorenz curves for simulated data
     name: lorenz_curve_simulated
   image:
     alt: lorenz_curve_simulated
@@ -720,6 +808,8 @@ for i in range(len(f_vals)):
 plt.legend()
 plt.show()
 ```
+
++++ {"user_expressions": []}
 
 ```{solution-end}
 ```
@@ -736,7 +826,7 @@ Plot the top shares generated from Lorenz curve and the top shares approximated 
 
 ```
 
-+++
++++ {"user_expressions": []}
 
 ```{solution-start} inequality_ex2
 :class: dropdown
@@ -760,7 +850,7 @@ for f_val, l_val in zip(f_vals_nw, l_vals_nw):
 ---
 mystnb:
   figure:
-    caption: "US top shares: approximation vs Lorenz"
+    caption: 'US top shares: approximation vs Lorenz'
     name: top_shares_us_al
   image:
     alt: top_shares_us_al
@@ -780,6 +870,8 @@ ax.set_ylabel(ylabel, fontsize=12)
 ax.legend(fontsize=12)
 plt.show()
 ```
+
++++ {"user_expressions": []}
 
 ```{solution-end}
 ```
