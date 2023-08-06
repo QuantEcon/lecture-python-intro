@@ -4,7 +4,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.14.4
+    jupytext_version: 1.14.5
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
@@ -212,8 +212,6 @@ class equalizing_diff:
         return ϕ
 ```
 
-
-
 We can build some functions to help do comparative statics using vectorization instead of loops.
 
 For a given instance of the class, we want to compute $\phi$ when one parameter changes and others remain unchanged.
@@ -269,9 +267,6 @@ Let's not charge for college and recompute $\phi$.
 
 The initial college wage premium should go down.
 
-
- 
-
 ```{code-cell} ipython3
 # free college
 ex2 = equalizing_diff(R, T, γ_h, γ_c, w_h0, D=0)
@@ -279,13 +274,9 @@ gap2 = ex2.compute_gap()
 print(gap2)
 ```
 
-
-
 Let us construct some graphs that show us how the initial college-high-school wage ratio $\phi$ would change if one of its determinants were to change. 
 
-Let's start with the gross interest rate $R$.  
-
-
+Let's start with the gross interest rate $R$.
 
 ```{code-cell} ipython3
 R_arr = np.linspace(1, 1.2, 50)
@@ -307,6 +298,7 @@ plt.xlabel(r'$\gamma_c$')
 plt.ylabel(r'wage gap')
 plt.show()
 ```
+
 Notice how  the intitial wage gap falls when the rate of growth $\gamma_c$ of college wages rises.  
 
 It falls to "equalize" the present values of the two types of career, one as a high school worker, the other as a college worker.
@@ -323,12 +315,11 @@ plt.ylabel(r'wage gap')
 plt.show()
 ```
 
-
 ## Entrepreneur-worker interpretation
 
 Now let's adopt the entrepreneur-worker interpretation of our model.
 
-If the probability that a new business succeeds is $.2$, let's compute the initial wage premium for successful entrepreneurs.  
+If the probability that a new business succeeds is $.2$, let's compute the initial wage premium for successful entrepreneurs.
 
 ```{code-cell} ipython3
 # a model of enterpreneur
@@ -339,7 +330,6 @@ print(gap3)
 ```
 
 Now let's study how the initial wage premium for successful entrepreneurs depend on the success probability.
-
 
 ```{code-cell} ipython3
 π_arr = np.linspace(0.2, 1, 50)
@@ -365,46 +355,97 @@ A reader who doesn't know calculus could read no further and feel confident that
 
 But for a reader interested in how we can get Python to do all the hard work involved in computing partial derivatives, we'll say a few things about that now.  
 
-We'll use the Python module 'sympy' to compute partial derivatives of $\phi$ with respect to the parameters that determine it.
+We'll use the Python module SymPy to compute partial derivatives of $\phi$ with respect to the parameters that determine it.
 
 Let's import key functions from sympy.
 
 ```{code-cell} ipython3
-from sympy import Symbol, Lambda, symbols
+from sympy import Symbol, Lambda, symbols, refine, \
+                  Sum, simplify, Eq, solve, Lambda, lambdify
+
+# Define the symbols
+R, w_h0, w_c0, γ_c, γ_h, ϕ, D, t, T = symbols(
+    'R w^h_0 w^c_0 gamma_c gamma_h phi D t T', positive=True)
+
+refine(γ_c, γ_c>1)
+refine(γ_h, γ_h>1)
+refine(R, R>1)
+
+# Define the wage for college 
+# and high school graduates at time t
+w_ct = w_c0 * γ_c**t
+w_ht = w_h0 * γ_h**t
 ```
 
-Define symbols
-
 ```{code-cell} ipython3
-γ_h, γ_c, w_h0, D = symbols('\gamma_h, \gamma_h_c, w_0^h, D', real=True)
-R, T = Symbol('R', real=True), Symbol('T', integer=True)
+w_ct
 ```
 
-Define function $A_h$
+```{code-cell} ipython3
+w_ht
+```
+
+### Defining the Present Value Equations
+
+The present value of the earnings after going to college is
+
+$$
+PV_{\text{{college}}} = \sum_{t=4}^T R^{-t} w_t^c
+$$
+
+It is the sum of the discounted earnings from the first year of graduation to the last year of work assuming the degree is obtained in the fourth year and no salary is earned while in the college.
+
+The present value of the earnings from going to work after high school is
+
+$$
+PV_{\text{{highschool}}} = \sum_{t=0}^T R^{-t} w_t^h
+$$
+
+It is the sum of the discounted earnings from the first year after high school to the last year of work.
 
 ```{code-cell} ipython3
-A_h = Lambda((γ_h, R, T), (1 - (γ_h/R)**(T+1)) / (1 - γ_h/R))
+PV_college = Sum(R**-t * w_ct, (t, 4, T))
+PV_college
+```
+
+```{code-cell} ipython3
+PV_highschool = Sum(R**-t * w_ht, (t, 0, T))
+PV_highschool
+```
+
+We can evaluate the sum using the `doit` method and derive $A_h$ and $A_c$ from present values
+
+```{code-cell} ipython3
+A_h = simplify(PV_highschool.doit() / w_h0)
 A_h
 ```
 
-Define function $A_c$
-
 ```{code-cell} ipython3
-A_c = Lambda((γ_c, R, T), (1 - (γ_c/R)**(T-3)) / (1 - γ_c/R) * (γ_c/R)**4)
+A_c = simplify(PV_college.doit() / w_c0)
 A_c
 ```
 
-Now, define $\phi$
-
 ```{code-cell} ipython3
-ϕ = Lambda((D, γ_h, γ_c, R, T, w_h0), A_h(γ_h, R, T)/A_c(γ_c, R, T) + D/(w_h0*A_c(γ_c, R, T)))
+A_h = simplify(A_h.args[1][0])
+A_c = simplify(A_c.args[1][0])
 ```
 
 ```{code-cell} ipython3
+A_h
+```
+
+```{code-cell} ipython3
+A_c
+```
+
+Now, we define $\phi$
+
+```{code-cell} ipython3
+ϕ = A_h/A_c + D/(w_h0*A_c)
 ϕ
 ```
 
-We begin by setting  default parameter values.
+We begin our calculation of derivatives by setting the following default parameter values
 
 ```{code-cell} ipython3
 R_value = 1.05
@@ -412,97 +453,109 @@ T_value = 40
 γ_h_value, γ_c_value = 1.01, 1.01
 w_h0_value = 1
 D_value = 10
+
+symbol_subs = {D: D_value,
+               γ_h: γ_h_value,
+               γ_c: γ_c_value,
+               R: R_value,
+               T: T_value,
+               w_h0: w_h0_value}
+```
+
+```{code-cell} ipython3
+ϕ_D, ϕ_T, ϕ_γ_h, ϕ_γ_c, ϕ_R = (ϕ.diff(D), ϕ.diff(T), 
+                               ϕ.diff(γ_h), ϕ.diff(γ_c), 
+                               ϕ.diff(R))
+```
+
+This anchors the idea to show how $\phi$ changes with different tuition fees $D$ and time $T$?
+
+```{code-cell} ipython3
+grid = np.meshgrid(np.arange(10, 60, 1), 
+                   np.arange(0, 60, 1))
+
+ϕ_TD = ϕ.subs({γ_h: γ_h_value,
+               γ_c: γ_c_value,
+               R: R_value,
+               w_h0: w_h0_value})
+```
+
+```{code-cell} ipython3
+ϕ_TD_lambda = lambdify([T, D], ϕ_TD)
+```
+
+```{code-cell} ipython3
+fig = plt.figure()
+ax = plt.axes(projection ='3d')
+ax.set_box_aspect(aspect=None, zoom=0.85)
+
+ax.plot_surface(grid[0], 
+                grid[1],
+                ϕ_TD_lambda(grid[0], grid[1]))
+ax.set_xlabel('T')
+ax.set_ylabel('D')
+ax.set_zlabel(r'$\phi$')
+plt.show()
 ```
 
 Now let's compute $\frac{\partial \phi}{\partial D}$ and then evaluate it at the default values
 
 ```{code-cell} ipython3
-ϕ_D = ϕ(D, γ_h, γ_c, R, T, w_h0).diff(D)
 ϕ_D
 ```
 
 ```{code-cell} ipython3
-# Numerical value at default parameters
-ϕ_D_func = Lambda((D, γ_h, γ_c, R, T, w_h0), ϕ_D)
-ϕ_D_func(D_value, γ_h_value, γ_c_value, R_value, T_value, w_h0_value)
+ϕ_D.subs(symbol_subs)
 ```
 
 Thus, as with our graph above, we find that raising $R$ increases the initial college wage premium $\phi$.
 
-+++
-
 Compute $\frac{\partial \phi}{\partial T}$ and evaluate it a default parameters
 
 ```{code-cell} ipython3
-ϕ_T = ϕ(D, γ_h, γ_c, R, T, w_h0).diff(T)
 ϕ_T
 ```
 
 ```{code-cell} ipython3
-# Numerical value at default parameters
-ϕ_T_func = Lambda((D, γ_h, γ_c, R, T, w_h0), ϕ_T)
-ϕ_T_func(D_value, γ_h_value, γ_c_value, R_value, T_value, w_h0_value)
+ϕ_T.subs(symbol_subs)
 ```
 
 We find that raising $T$ decreases the initial college wage premium $\phi$. 
 
 This is because college graduates now have longer career lengths to "pay off" the time and other costs they paid to go to college
 
-+++
-
 Let's compute $\frac{\partial \phi}{\partial γ_h}$ and evaluate it at default parameters.
 
 ```{code-cell} ipython3
-ϕ_γ_h = ϕ(D, γ_h, γ_c, R, T, w_h0).diff(γ_h)
 ϕ_γ_h
 ```
 
 ```{code-cell} ipython3
-# Numerical value at default parameters
-ϕ_γ_h_func = Lambda((D, γ_h, γ_c, R, T, w_h0), ϕ_γ_h)
-ϕ_γ_h_func(D_value, γ_h_value, γ_c_value, R_value, T_value, w_h0_value)
+ϕ_γ_h.subs(symbol_subs)
 ```
 
-We find that raising $\gamma_h$ increases the initial college wage premium $\phi$, as we did with our graphical analysis earlier
-
-+++
+We find that raising $\gamma_h$ increases the initial college wage premium $\phi$, as we did with our graphical analysis earlier.
 
 Compute $\frac{\partial \phi}{\partial γ_c}$ and evaluate it numerically at default parameter values
 
 ```{code-cell} ipython3
-ϕ_γ_c = ϕ(D, γ_h, γ_c, R, T, w_h0).diff(γ_c)
 ϕ_γ_c
 ```
 
 ```{code-cell} ipython3
-# Numerical value at default parameters
-ϕ_γ_c_func = Lambda((D, γ_h, γ_c, R, T, w_h0), ϕ_γ_c)
-ϕ_γ_c_func(D_value, γ_h_value, γ_c_value, R_value, T_value, w_h0_value)
+ϕ_γ_c.subs(symbol_subs)
 ```
 
 We find that raising $\gamma_c$ decreases the initial college wage premium $\phi$, as we did with our graphical analysis earlier
 
-+++
-
 Let's compute $\frac{\partial \phi}{\partial R}$ and evaluate it numerically at default parameter values
 
 ```{code-cell} ipython3
-ϕ_R = ϕ(D, γ_h, γ_c, R, T, w_h0).diff(R)
 ϕ_R
 ```
 
 ```{code-cell} ipython3
-# Numerical value at default parameters
-ϕ_R_func = Lambda((D, γ_h, γ_c, R, T, w_h0), ϕ_R)
-ϕ_R_func(D_value, γ_h_value, γ_c_value, R_value, T_value, w_h0_value)
+ϕ_R.subs(symbol_subs)
 ```
 
-+++ {"tags": []}
-
-We find that raising the gross interest rate $R$ increases the initial college wage premium $\phi$, as we did with our graphical analysis earlier
-
-
-
-```{code-cell} ipython3
-
-```
+We find that raising the gross interest rate $R$ increases the initial college wage premium $\phi$, as we did with our graphical analysis earlier.
