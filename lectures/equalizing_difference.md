@@ -341,9 +341,7 @@ plt.show()
 
 Does the graph make sense to you?
 
-
-
-## An application of calculus
+## An application of SymPy
 
 So far, we have used only linear algebra and it has been a good enough tool for us to  figure out how our model works.
 
@@ -357,7 +355,7 @@ But for a reader interested in how we can get Python to do all the hard work inv
 
 We'll use the Python module SymPy to compute partial derivatives of $\phi$ with respect to the parameters that determine it.
 
-Let's import key functions from sympy.
+Let's import key functions from SymPy.
 
 ```{code-cell} ipython3
 from sympy import Symbol, Lambda, symbols, refine, \
@@ -492,6 +490,7 @@ ax.set_box_aspect(aspect=None, zoom=0.85)
 ax.plot_surface(grid[0], 
                 grid[1],
                 ϕ_TD_lambda(grid[0], grid[1]))
+                
 ax.set_xlabel('T')
 ax.set_ylabel('D')
 ax.set_zlabel(r'$\phi$')
