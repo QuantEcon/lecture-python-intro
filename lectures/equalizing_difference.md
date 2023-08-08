@@ -11,8 +11,6 @@ kernelspec:
   name: python3
 ---
 
-+++ {"user_expressions": []}
-
 # Equalizing Difference Model
 
 ## Overview
@@ -47,8 +45,6 @@ from sympy import Symbol, Lambda, symbols, refine, \
                   Sum, simplify, Eq, solve, Lambda,\
                   lambdify, And
 ```
-
-+++ {"user_expressions": []}
 
 ## The indifference condition
 
@@ -101,8 +97,6 @@ w_ct
 w_ht
 ```
 
-+++ {"user_expressions": []}
-
 If someone goes to work immediately after high school  and  works for the  $T+1$ years $t=0, 1, 2, \ldots, T$, she earns present value
 
 $$
@@ -113,8 +107,6 @@ $$
 PV_highschool = Sum(R**-t * w_ht, (t, 0, T))
 PV_highschool
 ```
-
-+++ {"user_expressions": []}
 
 where 
 
@@ -127,8 +119,6 @@ A_h = simplify(PV_highschool.doit() / w_h0)
 A_h = simplify(A_h.args[1][0])
 A_h
 ```
-
-+++ {"user_expressions": []}
 
 The present value $h_0$ is the "human wealth" at the beginning of time $0$ of someone who chooses not to attend college but instead to go to work immediately at the wage of a high school graduate.
 
@@ -143,8 +133,6 @@ PV_college = Sum(R**-t * w_ct, (t, 4, T))
 PV_college
 ```
 
-+++ {"user_expressions": []}
-
 where
 
 $$
@@ -156,8 +144,6 @@ A_c = simplify(PV_college.doit() / w_c0)
 A_c = simplify(A_c.args[1][0])
 A_c
 ```
-
-+++ {"user_expressions": []}
 
 The present value $c_0$  is the "human wealth" at the beginning of time $0$ of someone who chooses to attend college for four years and then start to work at time $t=4$ at the wage of a college graduate.
 
@@ -206,8 +192,6 @@ $$ (eq:wagepremium)
 ϕ
 ```
 
-+++ {"user_expressions": []}
-
 Now we can compute $\phi$ using default values below
 
 ```{code-cell} ipython3
@@ -226,8 +210,6 @@ symbol_subs = {D: D_value,
 
 ϕ.subs(symbol_subs)
 ```
-
-+++ {"user_expressions": []}
 
 In a **free college** special case $D =0$ so that the only cost of going to college is the forgone earnings from not working as a high school worker.  
 
@@ -248,8 +230,6 @@ symbol_subs[D] = 0
 ϕ.subs(symbol_subs)
 ```
 
-+++ {"user_expressions": []}
-
 Let's construct some graphs that show us how the initial high-school-college wage ratio $\phi$ would change if one of its determinants were to change. 
 
 Let's start with the gross interest rate $R$.
@@ -267,8 +247,6 @@ plt.xlabel(r'$R$')
 plt.ylabel(r'wage gap ($\phi$)')
 plt.show()
 ```
-
-+++ {"user_expressions": []}
 
 Evidently, the initial wage ratio $\phi$ must rise to compensate a prospective high school student for **waiting** to start receiving income -- remember that while she is earning nothing in years $t=0, 1, 2, 3$, the high school worker is earning a salary.
 
@@ -303,8 +281,6 @@ ax.set_zlabel(r'wage gap ($\phi$)')
 plt.show()
 ```
 
-+++ {"user_expressions": []}
-
 We find wage ratio $\phi$ decreases as the expected years of work $T$ increases different values of across gross interest rate $R$.
 
 
@@ -316,8 +292,6 @@ First we define some default values for the parameters
 ```{code-cell} ipython3
 symbol_subs
 ```
-
-+++ {"user_expressions": []}
 
 We substitute these default values into the formula for $\phi$ and then plot $\phi$ as a function of $\gamma_c$ and $\gamma_h$.
 
@@ -337,8 +311,6 @@ symbol_subs_γ = {D: D_value,
 ϕ_γ_lambda = lambdify([γ_c, γ_h], ϕ_γ)
 ```
 
-+++ {"user_expressions": []}
-
 Notice how  the intitial wage gap falls when the rate of growth $\gamma_c$ of college wages rises
 
 ```{code-cell} ipython3
@@ -355,8 +327,6 @@ ax.set_ylabel(r'$\gamma_h$')
 ax.set_zlabel(r'wage gap ($\phi$)')
 plt.show()
 ```
-
-+++ {"user_expressions": []}
 
 It falls to "equalize" the present values of the two types of career, one as a high school worker, the other as a college worker.
 
@@ -399,8 +369,6 @@ A_c
 ϕ
 ```
 
-+++ {"user_expressions": []}
-
 For our model of workers and firms, we'll interpret $D$ as the cost of becoming an entrepreneur.  
 
 This cost might include costs of hiring workers, office space, and lawyers. 
@@ -435,15 +403,11 @@ plt.xlabel(r'$\pi$')
 plt.show()
 ```
 
-+++ {"user_expressions": []}
-
 When $\pi$ is small, the risk of becoming an entrepreneur is high, so only a few people become entrepreneurs.
 
 ```{code-cell} ipython3
 ϕ_π_lambda(0.2)
 ```
-
-+++ {"user_expressions": []}
 
 This gives a higher wage gap $\phi$.
 
@@ -470,8 +434,6 @@ We'll compute partial derivatives of $\phi$ with respect to the parameters that 
 symbol_subs[π] = 0.2
 ```
 
-+++ {"user_expressions": []}
-
 Now let's compute $\frac{\partial \phi}{\partial D}$ and then evaluate it at the default values
 
 ```{code-cell} ipython3
@@ -481,8 +443,6 @@ Now let's compute $\frac{\partial \phi}{\partial D}$ and then evaluate it at the
 ```{code-cell} ipython3
 ϕ_D.subs(symbol_subs)
 ```
-
-+++ {"user_expressions": []}
 
 Thus, as with our graph above, we find that raising $R$ increases the initial college wage premium $\phi$.
 
@@ -495,8 +455,6 @@ Compute $\frac{\partial \phi}{\partial T}$ and evaluate it a default parameters
 ```{code-cell} ipython3
 ϕ_T.subs(symbol_subs)
 ```
-
-+++ {"user_expressions": []}
 
 We find that raising $T$ decreases the initial college wage premium $\phi$. 
 
@@ -512,8 +470,6 @@ Let's compute $\frac{\partial \phi}{\partial γ_h}$ and evaluate it at default p
 ϕ_γ_h.subs(symbol_subs)
 ```
 
-+++ {"user_expressions": []}
-
 We find that raising $\gamma_h$ increases the initial college wage premium $\phi$, as we did with our graphical analysis earlier.
 
 Compute $\frac{\partial \phi}{\partial γ_c}$ and evaluate it numerically at default parameter values
@@ -525,8 +481,6 @@ Compute $\frac{\partial \phi}{\partial γ_c}$ and evaluate it numerically at def
 ```{code-cell} ipython3
 ϕ_γ_c.subs(symbol_subs)
 ```
-
-+++ {"user_expressions": []}
 
 We find that raising $\gamma_c$ decreases the initial college wage premium $\phi$, as we did with our graphical analysis earlier
 
@@ -540,8 +494,6 @@ Let's compute $\frac{\partial \phi}{\partial R}$ and evaluate it numerically at 
 ϕ_R.subs(symbol_subs)
 ```
 
-+++ {"user_expressions": []}
-
 We find that raising the gross interest rate $R$ increases the initial college wage premium $\phi$, as we did with our graphical analysis earlier.
 
 ```{code-cell} ipython3
@@ -551,8 +503,6 @@ We find that raising the gross interest rate $R$ increases the initial college w
 ```{code-cell} ipython3
 ϕ_π.subs(symbol_subs)
 ```
-
-+++ {"user_expressions": []}
 
 We find that raising the gross interest rate $\pi$ decreases the initial college wage premium $\phi$, as we did with our graphical analysis earlier.
 
@@ -601,8 +551,6 @@ class equalizing_diff:
         return ϕ
 ```
 
-+++ {"user_expressions": []}
-
 We vectorize the function to take a vector of $\pi$'s as an input
 
 ```{code-cell} ipython3
@@ -613,8 +561,6 @@ def ϕ_π(mc, π_new):
 
 ϕ_π = np.vectorize(ϕ_π)
 ```
-
-+++ {"user_expressions": []}
 
 Let's compute the gap for the default parameters
 
@@ -634,8 +580,6 @@ edm = equalizing_diff(R=R, T=T, γ_h=γ_h, γ_c=γ_c, w_h0=w_h0, D=D, π=0.2)
 edm.compute_gap()
 ```
 
-+++ {"user_expressions": []}
-
 Now let's generate the plot of the wage gap as a function of $\pi$.
 
 ```{code-cell} ipython3
@@ -645,8 +589,6 @@ plt.ylabel(r'wage gap')
 plt.xlabel(r'$\pi$')
 plt.show()
 ```
-
-+++ {"user_expressions": []}
 
 ```{solution-end}
 ```
