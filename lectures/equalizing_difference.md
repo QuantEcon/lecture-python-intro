@@ -104,8 +104,8 @@ h_0 = \sum_{t=0}^T R^{-t} w_t^h = w_0^h \left[ \frac{1 - (R^{-1} \gamma_h)^{T+1}
 $$
 
 ```{code-cell} ipython3
-PV_highschool = Sum(R**-t * w_ht, (t, 0, T))
-PV_highschool
+h_0 = Sum(R**-t * w_ht, (t, 0, T))
+h_0
 ```
 
 where 
@@ -115,7 +115,7 @@ A_h = \left[ \frac{1 - (R^{-1} \gamma_h)^{T+1} }{1 - R^{-1} \gamma_h } \right].
 $$
 
 ```{code-cell} ipython3
-A_h = simplify(PV_highschool.doit() / w_h0)
+A_h = simplify(h_0.doit() / w_h0)
 A_h = simplify(A_h.args[1][0])
 A_h
 ```
@@ -129,8 +129,8 @@ c_0 = \sum_{t=4}^T R^{-t} w_t^c = w_0^c (R^{-1} \gamma_c)^4  \left[ \frac{1 - (R
 $$
 
 ```{code-cell} ipython3
-PV_college = Sum(R**-t * w_ct, (t, 4, T))
-PV_college
+c_0 = Sum(R**-t * w_ct, (t, 4, T))
+c_0
 ```
 
 where
@@ -140,7 +140,7 @@ A_c = (R^{-1} \gamma_c)^4  \left[ \frac{1 - (R^{-1} \gamma_c)^{T-3} }{1 - R^{-1}
 $$
 
 ```{code-cell} ipython3
-A_c = simplify(PV_college.doit() / w_c0)
+A_c = simplify(c_0.doit() / w_c0)
 A_c = simplify(A_c.args[1][0])
 A_c
 ```
@@ -248,10 +248,10 @@ plt.ylabel(r'wage gap ($\phi$)')
 plt.show()
 ```
 
-Evidently, the initial wage ratio $\phi$ must rise to compensate a prospective high school student for **waiting** to start receiving income -- remember that while she is earning nothing in years $t=0, 1, 2, 3$, the high school worker is earning a salary.
+Evidently, the initial wage ratio $\phi$ must rise to compensate a prospective college student for **waiting** to start receiving income -- remember that while she is earning nothing in years $t=0, 1, 2, 3$, the high school worker is earning a salary.
 
 
-Let's add time horizon $T$ into the plot
+Let's introduce time horizon $T$ into the plot
 
 ```{code-cell} ipython3
 symbol_subs[T] = T
@@ -269,7 +269,7 @@ grid = np.meshgrid(np.linspace(10, 60, 100),
 ```{code-cell} ipython3
 fig = plt.figure()
 ax = plt.axes(projection ='3d')
-ax.set_box_aspect(aspect=None, zoom=0.85)
+ax.set_box_aspect(aspect=None, zoom=0.8)
 
 ax.plot_surface(grid[0], 
                 grid[1],
@@ -281,28 +281,22 @@ ax.set_zlabel(r'wage gap ($\phi$)')
 plt.show()
 ```
 
-We find wage ratio $\phi$ decreases as the expected years of work $T$ increases different values of across gross interest rate $R$.
+We find wage ratio $\phi$ decreases as the expected years of work $T$ increases across gross interest rate $R$.
 
 
 Now let's study what happens to the initial wage ratio $\phi$ if the rates of growth of wages rises ($\gamma_c$ and $\gamma_h$) change, holding constant other 
 determinants of $\phi$.
 
-First we define some default values for the parameters
-
-```{code-cell} ipython3
-symbol_subs
-```
-
-We substitute these default values into the formula for $\phi$ and then plot $\phi$ as a function of $\gamma_c$ and $\gamma_h$.
+We substitute the default values into the formula for $\phi$ and then plot $\phi$ as a function of $\gamma_c$ and $\gamma_h$.
 
 ```{code-cell} ipython3
 grid = np.meshgrid(np.linspace(1, 1.2, 50), 
                    np.linspace(1, 1.2, 50))
 
 symbol_subs_γ = {D: D_value,
-               R: R_value,
-               T: T_value,
-               w_h0: w_h0_value}
+                 R: R_value,
+                 T: T_value,
+                 w_h0: w_h0_value}
 
 # Substitute default values into formula for ϕ
 ϕ_γ = ϕ.subs(symbol_subs_γ)
@@ -333,9 +327,6 @@ It falls to "equalize" the present values of the two types of career, one as a h
 Note the pattern when we vary the rate of growth of high school wages $\gamma_h$, holding all other determinants of $\phi$ constant.
 
 What difference did you observe?
-
-
-In the next section, we'll describe a possible alternative interpretation of our model.
 
 (worker_entrepreneur)=
 ## Reinterpreting the model: workers and entrepreneurs
@@ -512,7 +503,7 @@ We find that raising the gross interest rate $\pi$ decreases the initial college
 ```{exercise-start}
 :label: edm_ex1
 ```
-Replicate the result in section {ref}`worker_entrepreneur` using NumPy and Matplotlib. 
+In this exercise, replicate the result in section {ref}`worker_entrepreneur` using NumPy and Matplotlib. 
 
 Compare your solution to SymPy's solution.
 
