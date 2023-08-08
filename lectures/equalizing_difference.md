@@ -510,7 +510,7 @@ We find that raising the gross interest rate $\pi$ decreases the initial college
 ## Exercises
 
 ```{exercise-start}
-:label: cobweb_ex1
+:label: edm_ex1
 ```
 Replicate the result in section {ref}`worker_entrepreneur` using NumPy and Matplotlib. 
 
@@ -519,7 +519,7 @@ Compare your solution to SymPy's solution.
 ```{exercise-end}
 ```
 
-```{solution-start} cobweb_ex1
+```{solution-start} edm_ex1
 :class: dropdown
 ```
 
