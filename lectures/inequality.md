@@ -541,6 +541,7 @@ from pandas_datareader import wb
 
 # Define years
 years = df.year.unique()
+print(years)
 
 # Define start and end years
 start_year = min(years)
