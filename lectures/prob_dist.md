@@ -23,11 +23,11 @@ kernelspec:
 
 ## Outline
 
-In this lecture we give a quick introduction to data and probability distributions using Python
+In this lecture we give a quick introduction to data and probability distributions using Python.
 
 ```{code-cell} ipython3
 :tags: [hide-output]
-!pip install --upgrade yfinance  
+! pip install --upgrade yfinance  
 ```
 
 ```{code-cell} ipython3
@@ -42,7 +42,7 @@ import seaborn as sns
 
 ## Common distributions
 
-In this section we recall the definitions of some well-known distributions and show how to manipulate them with SciPy.
+In this section we recall the definitions of some well-known distributions and explore how to manipulate them with SciPy.
 
 ### Discrete distributions
 
@@ -61,7 +61,7 @@ $$ \mathbb P\{X = x_i\} = p(x_i) \quad \text{for } i= 1, \ldots, n $$
 The **mean** or **expected value** of a random variable $X$ with distribution $p$ is 
 
 $$ 
-    \mathbb E X = \sum_{i=1}^n x_i p(x_i)
+    \mathbb{E}[X] = \sum_{i=1}^n x_i p(x_i)
 $$
 
 Expectation is also called the *first moment* of the distribution.
@@ -71,7 +71,7 @@ We also refer to this number as the mean of the distribution (represented by) $p
 The **variance** of $X$ is defined as 
 
 $$ 
-    \mathbb V X = \sum_{i=1}^n (x_i - \mathbb E X)^2 p(x_i)
+    \mathbb{V}[X] = \sum_{i=1}^n (x_i - \mathbb{E}[X])^2 p(x_i)
 $$
 
 Variance is also called the *second central moment* of the distribution.
@@ -79,7 +79,7 @@ Variance is also called the *second central moment* of the distribution.
 The **cumulative distribution function** (CDF) of $X$ is defined by
 
 $$
-    F(x) = \mathbb P\{X \leq x\}
+    F(x) = \mathbb{P}\{X \leq x\}
          = \sum_{i=1}^n \mathbb 1\{x_i \leq x\} p(x_i)
 $$
 
@@ -91,6 +91,75 @@ Hence the second term takes all $x_i \leq x$ and sums their probabilities.
 #### Uniform distribution
 
 One simple example is the **uniform distribution**, where $p(x_i) = 1/n$ for all $n$.
+
+We can import the uniform distribution on $S = \{1, \ldots, n\}$  from SciPy like so:
+
+```{code-cell} ipython3
+n = 10
+u = scipy.stats.randint(1, n+1)
+```
+
+
+Here's the mean and variance
+
+```{code-cell} ipython3
+u.mean(), u.var()
+```
+
+The formula for the mean is $(n+1)/2$, and the formula for the variance is $(n^2 - 1)/12$.
+
+
+Now let's evaluate the PMF
+
+```{code-cell} ipython3
+u.pmf(1)
+```
+
+```{code-cell} ipython3
+u.pmf(2)
+```
+
+
+Here's a plot of the probability mass function:
+
+```{code-cell} ipython3
+fig, ax = plt.subplots()
+S = np.arange(1, n+1)
+ax.plot(S, u.pmf(S), linestyle='', marker='o', alpha=0.8, ms=4)
+ax.vlines(S, 0, u.pmf(S), lw=0.2)
+ax.set_xticks(S)
+plt.show()
+```
+
+
+Here's a plot of the CDF:
+
+```{code-cell} ipython3
+fig, ax = plt.subplots()
+S = np.arange(1, n+1)
+ax.step(S, u.cdf(S))
+ax.vlines(S, 0, u.cdf(S), lw=0.2)
+ax.set_xticks(S)
+plt.show()
+```
+
+
+The CDF jumps up by $p(x_i)$ and $x_i$.
+
+
+```{exercise}
+:label: prob_ex1
+
+Calculate the mean and variance for this parameterization (i.e., $n=10$)
+directly from the PMF, using the expressions given above.
+
+Check that your answers agree with `u.mean()` and `u.var()`. 
+```
+
+
+#### Bernoulli distribution
+
+Another useful (and more interesting) distribution is the Bernoulli distribution
 
 We can import the uniform distribution on $S = \{1, \ldots, n\}$  from SciPy like so:
 
@@ -170,7 +239,7 @@ Here $\theta \in [0,1]$ is a parameter.
 
 The interpretation of $p(i)$ is: the number of successes in $n$ independent trials with success probability $\theta$.
 
-(If $\theta=0.5$, this is "how many heads in $n$ flips of a fair coin")
+(If $\theta=0.5$, p(i) can be "how many heads in $n$ flips of a fair coin")
 
 The mean and variance are
 
@@ -304,7 +373,7 @@ The definition of the mean and variance of a random variable $X$ with distributi
 For example, the mean of $X$ is
 
 $$
-    \mathbb E X = \int_{-\infty}^\infty x p(x) dx
+    \mathbb{E}[X] = \int_{-\infty}^\infty x p(x) dx
 $$
 
 The **cumulative distribution function** (CDF) of $X$ is defined by
@@ -328,7 +397,7 @@ This distribution has two parameters, $\mu$ and $\sigma$.
 
 It can be shown that, for this distribution, the mean is $\mu$ and the variance is $\sigma^2$.
 
-We can obtain the moments, PDF, and CDF of the normal density as follows:
+We can obtain the moments, PDF and CDF of the normal density as follows:
 
 ```{code-cell} ipython3
 μ, σ = 0.0, 1.0
@@ -700,6 +769,7 @@ The monthly return is calculated as the percent change in the share price over e
 So we will have one observation for each month.
 
 ```{code-cell} ipython3
+:tags: [hide-output]
 df = yf.download('AMZN', '2000-1-1', '2023-1-1', interval='1mo' )
 prices = df['Adj Close']
 data = prices.pct_change()[1:] * 100
@@ -777,6 +847,7 @@ Violin plots are particularly useful when we want to compare different distribut
 For example, let's compare the monthly returns on Amazon shares with the monthly return on Apple shares.
 
 ```{code-cell} ipython3
+:tags: [hide-output]
 df = yf.download('AAPL', '2000-1-1', '2023-1-1', interval='1mo' )
 prices = df['Adj Close']
 data = prices.pct_change()[1:] * 100
