@@ -4,7 +4,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.14.1
+    jupytext_version: 1.14.5
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
@@ -56,7 +56,6 @@ assumptions regarding the way that produces form expectations.
 
 Our discussion and simulations draw on [high quality lectures](https://comp-econ.org/CEF_2013/downloads/Complex%20Econ%20Systems%20Lecture%20II.pdf) by [Cars Hommes](https://www.uva.nl/en/profile/h/o/c.h.hommes/c.h.hommes.html).
 
-
 +++
 
 We will use the following imports.
@@ -89,8 +88,6 @@ ax.legend()
 ax.grid()
 plt.show()
 ```
-
-
 
 ## The model
 
@@ -610,4 +607,3 @@ ts_plot_price_blae(m,
 ```{code-cell} ipython3
 
 ```
-
