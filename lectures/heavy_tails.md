@@ -296,7 +296,6 @@ difference between these two types of distributions.
 
 ### Simulations
 
-(simulation-figure)=
 The figure below shows a simulation.  
 
 The top two subfigures each show 120 independent draws from the normal
@@ -1047,7 +1046,7 @@ Since $r \geq \alpha$, we have $\mathbb E X^r = \infty$.
 ```{exercise}
 :label: ht_ex3
 
-Refer to {ref}`simulation-figure` in the section titled "Simulations".
+Refer to {ref}`Simulations` in the section titled "Simulations".
 
 Your task is to replicate this figure, but instead of using normal and Cauchy distributions, use three Pareto distributions with different choices of $\alpha$.
 
