@@ -294,7 +294,8 @@ But for now let's do some visual comparisons to help us build intuition on the
 difference between these two types of distributions.
 
 
-### Simulations {#simulation-section}
+(simulations-section)=
+### Simulations
 
 The figure below shows a simulation.  
 
@@ -1046,7 +1047,7 @@ Since $r \geq \alpha$, we have $\mathbb E X^r = \infty$.
 ```{exercise}
 :label: ht_ex3
 
-Refer to {ref}`simulation-section` in the section titled "Simulations".
+Refer to {ref}`simulations-section` in the section titled "Simulations".
 
 Your task is to replicate this figure, but instead of using normal and Cauchy distributions, use three Pareto distributions with different choices of $\alpha$.
 
