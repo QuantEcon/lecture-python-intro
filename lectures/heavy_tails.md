@@ -10,6 +10,7 @@ kernelspec:
   language: python
   name: python3
 ---
+
  
 (heavy_tail)=
 # Heavy-Tailed Distributions
@@ -25,6 +26,9 @@ In addition to what's in Anaconda, this lecture will need the following librarie
 
 !pip install --upgrade yfinance quantecon pandas_datareader interpolation
 ```
+
++++ {"user_expressions": []}
+
  
 We use the following imports.
 
@@ -43,6 +47,9 @@ from scipy.stats import norm, cauchy
 from pandas.plotting import register_matplotlib_converters
 register_matplotlib_converters()
 ```
+
++++ {"user_expressions": []}
+
  
 ## Overview
 
@@ -86,6 +93,9 @@ ax.set_ylabel('Density')
 ax.legend()
 plt.show()
 ```
+
++++ {"user_expressions": []}
+
  
 Notice how 
 
@@ -97,6 +107,9 @@ We can see the last point more clearly by executing
 ```{code-cell} ipython3
 X.min(), X.max()
 ```
+
++++ {"user_expressions": []}
+
  
 Here's another view of draws from the same distribution:
 
@@ -111,6 +124,9 @@ ax.set_xlabel('$i$')
 ax.set_ylabel('$X_i$', rotation=0)
 plt.show()
 ```
+
++++ {"user_expressions": []}
+
  
 We have plotted each individual draw $X_i$ against $i$.
 
@@ -182,6 +198,8 @@ ax.set_xlabel('date', fontsize=12)
 plt.show()
 ```
 
++++ {"user_expressions": []}
+
 This data looks different to the draws from the normal distribution we saw above.
 
 Several of observations are quite extreme.
@@ -202,6 +220,8 @@ ax.set_xlabel('date', fontsize=12)
 plt.show()
 ```
 
++++ {"user_expressions": []}
+
 The histogram also looks different to the histogram of the normal
 distribution:
 
@@ -211,6 +231,8 @@ ax.hist(r, bins=60, alpha=0.4, label='bitcoin returns', density=True)
 ax.set_xlabel('returns', fontsize=12)
 plt.show()
 ```
+
++++ {"user_expressions": []}
 
 If we look at higher frequency returns data (e.g., tick-by-tick), we often see 
 even more extreme observations.
@@ -283,6 +305,8 @@ The bottom subfigure shows 120 independent draws from [the Cauchy
 distribution](https://en.wikipedia.org/wiki/Cauchy_distribution), which is
 heavy-tailed.
 
+<a id="simulation-figure"></a>
+
 ```{code-cell} ipython3
 n = 120
 np.random.seed(11)
@@ -311,6 +335,8 @@ plt.subplots_adjust(hspace=0.25)
 
 plt.show()
 ```
+
++++ {"user_expressions": []}
 
 In the top subfigure, the standard deviation of the normal distribution is 2,
 and the draws are clustered around the mean.
@@ -349,6 +375,8 @@ ax.vlines(list(range(n)), 0, data, lw=0.2)
 
 plt.show()
 ```
+
++++ {"user_expressions": []}
 
 Another nonnegative distribution is the [Pareto distribution](https://en.wikipedia.org/wiki/Pareto_distribution). 
 
@@ -398,6 +426,8 @@ ax.vlines(list(range(n)), 0, pareto_data, lw=0.2)
 
 plt.show()
 ```
+
++++ {"user_expressions": []}
 
 Notice how extreme outcomes are more common.
 
@@ -464,6 +494,8 @@ ax.legend()
 plt.show()
 ```
 
++++ {"user_expressions": []}
+
 Here's a log-log plot of the same functions, which makes visual comparison
 easier.
 
@@ -475,6 +507,8 @@ ax.loglog(x, x**(- alpha), label='Pareto', alpha=0.8)
 ax.legend()
 plt.show()
 ```
+
++++ {"user_expressions": []}
 
 In the log-log plot, the Pareto CCDF is linear, while the exponential one is
 concave.
@@ -528,6 +562,8 @@ fig.subplots_adjust(hspace=0.4)
 
 plt.show()
 ```
+
++++ {"user_expressions": []}
 
 As with the CCDF, the empirical CCDF from the Pareto distributions is 
 approximately linear in a log-log plot.
@@ -668,6 +704,8 @@ def extract_wb(varlist=['NY.GDP.MKTP.CD'],
     return df1
 ```
 
++++ {"user_expressions": []}
+
 ### Firm size
 
 Here is a plot of the firm size distribution for the largest 500 firms in 2020 taken from Forbes Global 2000.
@@ -686,6 +724,8 @@ empirical_ccdf(np.asarray(d['Market Value'])[:top], ax, label=label, add_reg_lin
 
 plt.show()
 ```
+
++++ {"user_expressions": []}
 
 ### City size
 
@@ -707,6 +747,8 @@ empirical_ccdf(np.asarray(df_cs_br['pop2023']), axes[1], label='Brazil', add_reg
 
 plt.show()
 ```
+
++++ {"user_expressions": []}
 
 ### Wealth
 
@@ -742,6 +784,8 @@ fig.tight_layout()
 plt.show()
 ```
 
++++ {"user_expressions": []}
+
 ### GDP
 
 Of course, not all cross-sectional distributions are heavy-tailed.
@@ -774,6 +818,8 @@ for name, ax in zip(variable_names, axes):
 
 plt.show()
 ```
+
++++ {"user_expressions": []}
 
 The plot is concave rather than linear, so the distribution has light tails.
 
@@ -835,6 +881,8 @@ ax.set_ylabel('Sample Mean ($\\bar{X}_n$)')
 
 plt.show()
 ```
+
++++ {"user_expressions": []}
 
 The sequence shows no sign of converging.
 
@@ -1024,7 +1072,7 @@ Since $r \geq \alpha$, we have $\mathbb E X^r = \infty$.
 ```{exercise}
 :label: ht_ex3
 
-Refer to the figure in the section titled "Simulations". 
+Refer to the [figure](#simulation-figure) in the section titled "Simulations". 
 
 Your task is to replicate this figure, but instead of using normal and Cauchy distributions, use three Pareto distributions with different choices of $\alpha$.
 
@@ -1071,6 +1119,8 @@ plt.tight_layout()
 
 plt.show()
 ```
+
++++ {"user_expressions": []}
 
 ```{solution-end}
 ```
@@ -1183,6 +1233,8 @@ def pareto_rvs(n):
     return y
 ```
 
++++ {"user_expressions": []}
+
 Let's compute the lognormal parameters:
 
 ```{code-cell} ipython3
@@ -1190,6 +1242,8 @@ Let's compute the lognormal parameters:
 σ_sq = 2 * (np.log(α/(α - 1)) - np.log(2)/α)
 σ = np.sqrt(σ_sq)
 ```
+
++++ {"user_expressions": []}
 
 Here's a function to compute a single estimate of tax revenue for a particular
 choice of distribution `dist`.
@@ -1205,6 +1259,8 @@ def tax_rev(dist):
         tax_raised += β**t * np.sum(π * tax_rate)
     return tax_raised
 ```
+
++++ {"user_expressions": []}
 
 Now let's generate the violin plot.
 
@@ -1227,6 +1283,8 @@ ax.violinplot(data)
 
 plt.show()
 ```
+
++++ {"user_expressions": []}
 
 Finally, let's print the means and standard deviations.
 
