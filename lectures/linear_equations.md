@@ -13,6 +13,9 @@ kernelspec:
 
 # Linear Equations and Matrix Algebra
 
+```{index} single: Linear Equations and Matrix Algebra
+```
+
 ## Overview
 
 Many problems in economics and finance require solving linear equations.
@@ -124,7 +127,10 @@ basics of vectors and matrices, in both theory and computation.
 
 
 
-## Vectors
+## {index}`Vectors <single: Vectors>`
+
+ ```{index} single: Linear Algebra; Vectors
+ ```
 
 A **vector** of length $n$ is just a sequence (or array, or tuple) of $n$ numbers, which we write as $x = (x_1, \ldots, x_n)$ or $x = \begin{bmatrix}x_1, \ldots, x_n\end{bmatrix}$.
 
@@ -168,6 +174,9 @@ plt.show()
 ```
 
 ### Vector operations
+
+```{index} single: Vectors; Operations
+```
 
 Sometimes we want to modify vectors.
 
@@ -352,6 +361,12 @@ x + y                     # Add (element-by-element)
 
 ### Inner product and norm
 
+```{index} single: Vectors; Inner Product
+```
+
+```{index} single: Vectors; Norm
+```
+
 The **inner product** of vectors $x,y \in \mathbb R^n$ is defined as
 
 $$
@@ -397,6 +412,9 @@ np.linalg.norm(x)      # Norm of x, method two
 ```
 
 ## Matrix operations
+
+```{index} single: Matrix; Operations
+```
 
 When we discussed linear price systems, we mentioned using matrix algebra.
 
@@ -598,6 +616,9 @@ It is a useful exercise to check the following:
 
 
 ### Matrices in NumPy
+
+```{index} single: Matrix; Numpy
+```
 
 NumPy arrays are also used as matrices, and have fast, efficient functions and methods for all the standard matrix operations.
 
@@ -839,6 +860,9 @@ the following questions
 
 ## Solving systems of equations
 
+```{index} single: Matrix; Solving Systems of Equations
+```
+
 Recall again the system of equations {eq}`la_se`, which we write here again as
 
 ```{math}
@@ -996,6 +1020,9 @@ This is the solution to $Ax = b$ --- the solution we are looking for.
 
 
 ### Linear equations with NumPy
+
+```{index} single: Linear Algebra; SciPy
+```
 
 In the two good example we obtained the matrix equation,
 
