@@ -84,6 +84,7 @@ import matplotlib.pyplot as plt
 import quantecon as qe
 import random as rd
 from interpolation import interp
+from pandas_datareader import wb 
 ```
 
 +++ {"user_expressions": []}
@@ -528,6 +529,12 @@ The wealth time series exhibits a strong U-shape.
 
 ## Kuznets U Curve
 
++++ {"user_expressions": []}
+
+Let's create data frames for Gini coefficients related to net wealth, total income, and labor income. 
+
+Then, we'll combine them into a single `df_gini` data frame for easier analysis.
+
 ```{code-cell} ipython3
 df_gini_nw = pd.DataFrame({'year': years, 'gini_coefficient': ginis_nw, 'type': 'net wealth'})
 df_gini_ti = pd.DataFrame({'year': years, 'gini_coefficient': ginis_ti, 'type': 'total income'})
@@ -536,9 +543,11 @@ df_gini_li = pd.DataFrame({'year': years, 'gini_coefficient': ginis_li_new, 'typ
 df_gini = pd.concat([df_gini_nw, df_gini_ti, df_gini_li])
 ```
 
-```{code-cell} ipython3
-from pandas_datareader import wb 
++++ {"user_expressions": []}
 
+Let's use the `wb` module from `pandas_datareader` to help us fetch data related to world bank indicators.
+
+```{code-cell} ipython3
 # Define years
 years = df.year.unique()
 print(years)
@@ -562,14 +571,26 @@ df_gdp['year'] = df_gdp['year'].astype(int)
 # Keep the cooresponding year
 df_gdp = df_gdp[df_gdp['year'].isin(years)]
 
-print(df_gdp)
+print(df_gdp.head())
 ```
+
++++ {"user_expressions": []}
+
+Let's merge our Gini coefficient data with GDP data based on the `year`. 
 
 ```{code-cell} ipython3
 # Merge data
 df_gdp_gini = pd.merge(df_gini, df_gdp, on='year')
-print(df_gdp_gini)
+print(df_gdp_gini.head())
 ```
+
++++ {"user_expressions": []}
+
+Now, let's visualize the Kuznets Curve. 
+
+We'll plot the Gini coefficient against GDP per capita for each financial type. 
+
+This will help us understand the relationship between income and wealth inequality as a country's GDP per capita changes.
 
 ```{code-cell} ipython3
 plt.figure(figsize=(10, 8))
