@@ -16,10 +16,6 @@ kernelspec:
 ```{index} single: Linear Equations and Matrix Algebra
 ```
 
-```{contents} Contents
-:depth: 2
-```
-
 ## Overview
 
 Many problems in economics and finance require solving linear equations.
@@ -33,7 +29,7 @@ The two good case is so simple that solutions can be calculated by hand.
 
 But often we need to consider markets containing many goods.
 
-In this case we face large systems of linear equations, with many equations
+In the multiple goods case we face large systems of linear equations, with many equations
 and unknowns.
 
 To handle such systems we need two things:
@@ -43,15 +39,12 @@ To handle such systems we need two things:
 
 This lecture covers these steps.
 
-We will use the following imports:
+We will use the following packages:
 
 ```{code-cell} ipython3
 import numpy as np
 import matplotlib.pyplot as plt
-plt.rcParams["figure.figsize"] = (11, 5)  # set default figure size
 ```
-
-
 
 ## A two good example
 
@@ -67,7 +60,7 @@ The second method is more general, as we will see.
 
 Suppose that we have two related goods, such as 
 
-* propane and ethanol 
+* propane and ethanol, and
 * rice and wheat, etc. 
 
 To keep things simple, we label them as good 0 and good 1.
@@ -78,7 +71,7 @@ The demand for each good depends on the price of both goods:
 :label: two_eq_demand
 \begin{aligned}
     q_0^d = 100 - 10 p_0 - 5 p_1 \\
-    q_1^d = 50 - p_0 - 10 p_1 
+    q_1^d = 50 - p_0 - 10 p_1
 \end{aligned}
 ```
 
@@ -91,7 +84,7 @@ Let's suppose that supply is given by
 :label: two_eq_supply
 \begin{aligned}
     q_0^s = 10 p_0 + 5 p_1 \\
-    q_1^s = 5 p_0 + 10 p_1 
+    q_1^s = 5 p_0 + 10 p_1
 \end{aligned}
 ```
 
@@ -103,21 +96,21 @@ This yields the linear system
 :label: two_equilibrium
 \begin{aligned}
     100 - 10 p_0 - 5 p_1 = 10 p_0 + 5 p_1 \\
-    50 - p_0 - 10 p_1 = 5 p_0 + 10 p_1 
+    50 - p_0 - 10 p_1 = 5 p_0 + 10 p_1
 \end{aligned}
 ```
 
 We can solve this with pencil and paper to get
 
 $$
-    p_0 = 4.41 \quad \text{and} \quad p_1 = 1.18
+    p_0 = 4.41 \quad \text{and} \quad p_1 = 1.18.
 $$    
 
 Inserting these results into either {eq}`two_eq_demand` or {eq}`two_eq_supply` yields the
 equilibrium quantities 
 
 $$
-    q_0 = 50 \quad \text{and} \quad q_1 = 33.82
+    q_0 = 50 \quad \text{and} \quad q_1 = 33.82.
 $$
 
 
@@ -136,10 +129,10 @@ basics of vectors and matrices, in both theory and computation.
 
 ## {index}`Vectors <single: Vectors>`
 
-```{index} single: Linear Algebra; Vectors
-```
+ ```{index} single: Linear Algebra; Vectors
+ ```
 
-A **vector** of length $n$ is just a sequence (or array, or tuple) of $n$ numbers, which we write as $x = (x_1, \ldots, x_n)$.
+A **vector** of length $n$ is just a sequence (or array, or tuple) of $n$ numbers, which we write as $x = (x_1, \ldots, x_n)$ or $x = \begin{bmatrix}x_1, \ldots, x_n\end{bmatrix}$.
 
 We can write these sequences either horizontally or vertically.
 
@@ -150,15 +143,15 @@ The set of all $n$-vectors is denoted by $\mathbb R^n$.
 
 For example, 
 
-* $\mathbb R^2$ is the plane --- the set of pairs $(x_1, x_2)$
-* $\mathbb R^3$ is 3 dimensional space --- the set of vectors $(x_1, x_2, x_3)$
+* $\mathbb R^2$ is the plane --- the set of pairs $(x_1, x_2)$.
+* $\mathbb R^3$ is 3 dimensional space --- the set of vectors $(x_1, x_2, x_3)$.
 
 Often vectors are represented visually as arrows from the origin to the point.
 
 Here's a visualization.
 
 ```{code-cell} ipython3
-:tags: [hide_input]
+:tags: [hide-input]
 
 fig, ax = plt.subplots()
 # Set the axes through the origin
@@ -213,7 +206,7 @@ $$
 \begin{bmatrix}
     7 \\
     1
-\end{bmatrix}
+\end{bmatrix}.
 $$
 
 In general,
@@ -237,13 +230,13 @@ x + y =
     x_2 + y_2 \\
     \vdots \\
     x_n + y_n
-\end{bmatrix}
+\end{bmatrix}.
 $$
 
 We can visualise vector addition in $\mathbb{R}^2$ as follows.
 
 ```{code-cell} ipython3
-:tags: [hide_input]
+:tags: [hide-input]
 
 fig, ax = plt.subplots()
 # Set the axes through the origin
@@ -253,13 +246,13 @@ for spine in ['right', 'top']:
     ax.spines[spine].set_color('none')
 
 ax.set(xlim=(-2, 10), ylim=(-4, 4))
-#ax.grid()
-vecs = ((4, -2), (3, 3),(7,1))
-tags = ('(x1, x2)','(y1, y2)','(x1+x2, y1+y2)')
-colors = ('blue','green','red')
+# ax.grid()
+vecs = ((4, -2), (3, 3), (7, 1))
+tags = ('(x1, x2)', '(y1, y2)', '(x1+x2, y1+y2)')
+colors = ('blue', 'green', 'red')
 for i, v in enumerate(vecs):
     ax.annotate('', xy=v, xytext=(0, 0),
-                arrowprops=dict(color = colors[i],
+                arrowprops=dict(color=colors[i],
                 shrink=0,
                 alpha=0.7,
                 width=0.5,
@@ -267,9 +260,9 @@ for i, v in enumerate(vecs):
                 headlength=15))
     ax.text(v[0] + 0.2, v[1] + 0.1, tags[i])
 
-for i,v in enumerate(vecs):
-    ax.annotate('', xy=(7,1), xytext=v,
-                arrowprops=dict(color = 'gray',
+for i, v in enumerate(vecs):
+    ax.annotate('', xy=(7, 1), xytext=v,
+                arrowprops=dict(color='gray',
                 shrink=0,
                 alpha=0.3,
                 width=0.5,
@@ -297,7 +290,7 @@ $$
 \begin{bmatrix}
     -6 \\
     14
-\end{bmatrix}
+\end{bmatrix}.
 $$
 
 More generally, it takes a number $\gamma$ and a vector $x$ and produces
@@ -309,13 +302,13 @@ $$
     \gamma x_2 \\
     \vdots \\
     \gamma x_n
-\end{bmatrix}
+\end{bmatrix}.
 $$
 
 Scalar multiplication is illustrated in the next figure.
 
 ```{code-cell} ipython3
-:tags: [hide_input]
+:tags: [hide-input]
 
 fig, ax = plt.subplots()
 # Set the axes through the origin
@@ -362,7 +355,7 @@ y = np.array((2, 4, 6))   # Converts tuple (2, 4, 6) into a NumPy array
 x + y                     # Add (element-by-element)
 ```
 
-```{code-cell} ipython3
+```{code-cell}
 4 * x                     # Scalar multiply
 ```
 
@@ -377,7 +370,7 @@ x + y                     # Add (element-by-element)
 The **inner product** of vectors $x,y \in \mathbb R^n$ is defined as
 
 $$
-x' y = 
+x^\top y = 
 \begin{bmatrix}
     \color{red}{x_1} & \color{blue}{x_2} & \cdots & x_n
 \end{bmatrix}
@@ -388,14 +381,14 @@ x' y =
     y_n
 \end{bmatrix}
 = {\color{red}{x_1 y_1}} + {\color{blue}{x_2 y_2}} + \cdots + x_n y_n
-:= \sum_{i=1}^n x_i y_i
+:= \sum_{i=1}^n x_i y_i.
 $$
 
 The **norm** of a vector $x$ represents its "length" (i.e., its distance from
 the zero vector) and is defined as
 
 $$
-    \| x \| := \sqrt{x' x} := \left( \sum_{i=1}^n x_i^2 \right)^{1/2}
+    \| x \| := \sqrt{x^\top x} := \left( \sum_{i=1}^n x_i^2 \right)^{1/2}.
 $$
 
 The expression $\| x - y\|$ can be thought of as the "distance" between $x$ and $y$.
@@ -411,14 +404,12 @@ x @ y            # Another way to compute the inner product
 ```
 
 ```{code-cell} ipython3
-np.sqrt(np.sum(x**2))  # Norm of x, take one
+np.sqrt(np.sum(x**2))  # Norm of x, method one
 ```
 
 ```{code-cell} ipython3
-np.linalg.norm(x)      # Norm of x, take two
+np.linalg.norm(x)      # Norm of x, method two
 ```
-
-
 
 ## Matrix operations
 
@@ -450,7 +441,7 @@ $$
 \begin{bmatrix}
     6 & -39 \\
     0 & 15
-\end{bmatrix}
+\end{bmatrix}.
 $$
 
 In general for a number $\gamma$ and any matrix $A$,
@@ -467,7 +458,7 @@ $$
     \gamma a_{11} & \cdots & \gamma a_{1k} \\
     \vdots & \vdots & \vdots \\
     \gamma a_{n1} & \cdots & \gamma a_{nk}
-\end{bmatrix}
+\end{bmatrix}.
 $$
 
 Consider this example of matrix addition,
@@ -486,7 +477,7 @@ $$
 \begin{bmatrix}
     13 & 4 \\
     7 & 12
-\end{bmatrix}
+\end{bmatrix}.
 $$
 
 In general,
@@ -507,7 +498,7 @@ A + B =
     a_{11} + b_{11} &  \cdots & a_{1k} + b_{1k} \\
     \vdots & \vdots & \vdots \\
     a_{n1} + b_{n1} &  \cdots & a_{nk} + b_{nk}
-\end{bmatrix}
+\end{bmatrix}.
 $$
 
 In the latter case, the matrices must have the same shape in order for the
@@ -598,7 +589,7 @@ $$
 
 There are many tutorials to help you further visualize this operation, such as 
 
-* [this one](http://www.mathsisfun.com/algebra/matrix-multiplying.html), or 
+* [this one](http://www.mathsisfun.com/algebra/matrix-multiplying.html), or
 * the discussion on the [Wikipedia page](https://en.wikipedia.org/wiki/Matrix_multiplication).
 
 
@@ -606,7 +597,7 @@ There are many tutorials to help you further visualize this operation, such as
 Unlike number products, $A B$ and $B A$ are not generally the same thing.
 ```
 
-ONe important special case is the [identity matrix](https://en.wikipedia.org/wiki/Identity_matrix), which has ones on the principal diagonal and zero elsewhere:
+One important special case is the [identity matrix](https://en.wikipedia.org/wiki/Identity_matrix), which has ones on the principal diagonal and zero elsewhere:
 
 $$
     I = 
@@ -619,8 +610,8 @@ $$
 
 It is a useful exercise to check the following:
 
-* If $A$ is $n \times k$ and $I$ is the $k \times k$ identity matrix, then $AI = A$.
-* If $I$ is the $n \times n$ identity matrix, then $IA = A$.
+* if $A$ is $n \times k$ and $I$ is the $k \times k$ identity matrix, then $AI = A$, and
+* if $I$ is the $n \times n$ identity matrix, then $IA = A$.
 
 
 
@@ -659,7 +650,7 @@ To get the transpose of `A`, use `A.transpose()` or, more simply, `A.T`.
 There are many convenient functions for creating common matrices (matrices of zeros,
 ones, etc.) --- see [here](https://python-programming.quantecon.org/numpy.html#creating-arrays).
 
-Since operations are performed elementwise by default, scalar multiplication and addition have very natural syntax
+Since operations are performed elementwise by default, scalar multiplication and addition have very natural syntax.
 
 ```{code-cell} ipython3
 A = np.identity(3)    # 3 x 3 identity matrix
@@ -708,8 +699,10 @@ First we rewrite {eq}`two_eq_demand` as
     \begin{bmatrix}
         100 \\
         50
-    \end{bmatrix}
+    \end{bmatrix}.
 ```
+
+Recall that $p \in \mathbb{R}^{2}$ is the price of two goods.
 
 (Please check that $q^d = D p + h$ represents the same equations as {eq}`two_eq_demand`.)
 
@@ -729,19 +722,19 @@ We rewrite {eq}`two_eq_supply` as
     \begin{bmatrix}
          10 & 5  \\
          5 & 10  
-    \end{bmatrix}
+    \end{bmatrix}.
 ```
 
 Now equality of supply and demand can be expressed as $q^s = q^d$, or
 
 $$
-    C p = D p + h
+    C p = D p + h.
 $$
 
 We can rearrange the terms to get 
 
 $$
-    (C - D) p = h
+    (C - D) p = h.
 $$
 
 If all of the terms were numbers, we could solve for prices as $p = h /
@@ -752,7 +745,7 @@ prices using the inverse of $C - D$:
 
 ```{math}
 :label: two_matrix
-    p = (C - D)^{-1} h
+    p = (C - D)^{-1} h.
 ```
 
 Before we implement the solution let us consider a more general setting.
@@ -764,38 +757,38 @@ Before we implement the solution let us consider a more general setting.
 It is natural to think about demand systems with more goods.
 
 For example, even within energy commodities there are many different goods,
-including crude oil, gasoline, coal, natural gas, ethanol and uranium.
+including crude oil, gasoline, coal, natural gas, ethanol, and uranium.
 
 The prices of these goods are related, so it makes sense to study them
 together.
 
-Pencil and paper solutions become very time consuming with large systems.
+Pencil and paper methods become very time consuming with large systems.
 
 But fortunately the matrix methods described above are essentially unchanged.
 
 In general, we can write the demand equation as $q^d = Dp + h$, where
 
-* $q^d$ is an $n \times 1$ vector of demand quantities for $n$ different goods
-* $D$ is an $n \times n$ "coefficient" matrix
-* $h$ is an $n \times 1$ vector of constant values
+* $q^d$ is an $n \times 1$ vector of demand quantities for $n$ different goods.
+* $D$ is an $n \times n$ "coefficient" matrix.
+* $h$ is an $n \times 1$ vector of constant values.
 
 Similarly, we can write the supply equation as $q^s = Cp + e$, where
 
-* $q^d$ is an $n \times 1$ vector of supply quantities for the same goods
-* $C$ is an $n \times n$ "coefficient" matrix
-* $e$ is an $n \times 1$ vector of constant values
+* $q^d$ is an $n \times 1$ vector of supply quantities for the same goods.
+* $C$ is an $n \times n$ "coefficient" matrix.
+* $e$ is an $n \times 1$ vector of constant values.
 
 To find an equilibrium, we solve $Dp + h = Cp + e$, or
 
 ```{math}
 :label: n_eq_sys_la
-    (D- C)p = e - h 
+    (D- C)p = e - h.
 ```
 
-The solution is
+Then the price vector of the n different goods is
 
 $$ 
-    p = (D- C)^{-1}(e - h) 
+    p = (D- C)^{-1}(e - h).
 $$
 
 
@@ -813,7 +806,7 @@ A more general version of the problem described above looks as follows.
 \end{matrix}
 ```
 
-The objective here is to solve for the "unknowns" $x_1, \ldots, x_n$ 
+The objective here is to solve for the "unknowns" $x_1, \ldots, x_n$.
 
 We take as given the coefficients $a_{11}, \ldots, a_{nn}$ and constants $b_1, \ldots, b_n$.
 
@@ -843,7 +836,7 @@ In matrix form, the system {eq}`la_se` becomes
         b_1 \\
         \vdots \\
         b_n
-    \end{bmatrix}
+    \end{bmatrix}.
 ```
 
 For example, {eq}`n_eq_sys_la` has this form with 
@@ -853,7 +846,7 @@ $$
     \quad
     b = e - h
     \quad \text{and} \quad
-    x = p
+    x = p.
 $$
 
 
@@ -874,7 +867,7 @@ Recall again the system of equations {eq}`la_se`, which we write here again as
 
 ```{math}
 :label: la_se2
-    A x = b
+    A x = b.
 ```
 
 The problem we face is to find a vector $x \in \mathbb R^n$ that solves
@@ -890,8 +883,8 @@ Consider the system of equations given by,
 
 $$
 \begin{aligned}
-    x + 3y = 3 \\
-    2x + 6y = -8
+    x + 3y &= 3 \\
+    2x + 6y &= -8.
 \end{aligned}
 $$
 
@@ -901,7 +894,7 @@ To illustrate why this situation arises let's plot the two lines.
 
 ```{code-cell} ipython3
 fig, ax = plt.subplots()
-x = np.linspace(-10,10)
+x = np.linspace(-10, 10)
 plt.plot(x, (3-x)/3, label=f'$x + 3y = 3$')
 plt.plot(x, (-8-2*x)/6, label=f'$2x + 6y = -8$')
 plt.legend()
@@ -931,7 +924,7 @@ We can rewrite this system in matrix form as
     \begin{bmatrix}
         3 \\
         -8
-    \end{bmatrix}
+    \end{bmatrix}.
 ```
 
 It can be noted that the $2^{nd}$ row of matrix $A = (2, 6)$ is just a scalar multiple of the $1^{st}$ row of matrix $A = (1, 3)$.
@@ -956,8 +949,8 @@ Now consider,
 
 $$
 \begin{aligned}
-    x - 2y = -4 \\
-    -2x + 4y = 8
+    x - 2y &= -4 \\
+    -2x + 4y &= 8.
 \end{aligned}
 $$
 
@@ -973,7 +966,7 @@ This is because the rows of the corresponding matrix
     \begin{bmatrix}
         1 & -2 \\
         -2 & 4
-    \end{bmatrix}
+    \end{bmatrix}.
 ```
 
 are linearly dependent --- can you see why?
@@ -994,7 +987,7 @@ $$
     \color{blue}{c} & \color{red}{d}
 \end{bmatrix}
 =
-{\color{red}{ad}} - {\color{blue}{bc}}
+{\color{red}{ad}} - {\color{blue}{bc}}.
 $$
 
 If the determinant of $A$ is not zero, then we say that $A$ is *nonsingular*.
@@ -1002,8 +995,10 @@ If the determinant of $A$ is not zero, then we say that $A$ is *nonsingular*.
 A square matrix $A$ is nonsingular if and only if the rows and columns of $A$
 are linearly independent.
 
+A more detailed explanation of matrix inverse can be found [here](https://www.mathsisfun.com/algebra/matrix-inverse.html).
+
 You can check yourself that the in {eq}`no_soln` and {eq}`many_solns` with
-linearly dependent rows are singular matrices as well.
+linearly dependent rows are singular matrices.
 
 This gives us a useful one-number summary of whether or not a square matrix
 can be inverted.
@@ -1032,7 +1027,7 @@ This is the solution to $Ax = b$ --- the solution we are looking for.
 In the two good example we obtained the matrix equation,
 
 $$
-p = (C-D)^{-1} h
+p = (C-D)^{-1} h.
 $$
 
 where $C$, $D$ and $h$ are given by {eq}`two_eq_demand_mat` and {eq}`two_eq_supply_mat`.
@@ -1044,7 +1039,7 @@ We can now solve for equilibrium prices with NumPy's `linalg` submodule.
 All of these routines are Python front ends to time-tested and highly optimized FORTRAN code.
 
 ```{code-cell} ipython3
-C = ((10, 5),      #matrix C
+C = ((10, 5),      # Matrix C
      (5, 10))
 ```
 
@@ -1055,34 +1050,35 @@ C = np.array(C)
 ```
 
 ```{code-cell} ipython3
-D = ((-10, -5),     #matrix D
+D = ((-10, -5),     # Matrix D
      (-1, -10))
 D = np.array(D)
 ```
 
 ```{code-cell} ipython3
-h = np.array((100, 50))   #vector h
-h.shape = 2,1             #transforming h to a column vector
+h = np.array((100, 50))   # Vector h
+h.shape = 2,1             # Transforming h to a column vector
 ```
 
 ```{code-cell} ipython3
 from numpy.linalg import det, inv
 A = C - D
-det(A) # check that A is nonsingular (non-zero determinant), and hence invertible
+# Check that A is nonsingular (non-zero determinant), and hence invertible
+det(A)
 ```
 
 ```{code-cell} ipython3
-A_inv = inv(A) # Compute the inverse
+A_inv = inv(A)  # compute the inverse
 A_inv
 ```
 
 ```{code-cell} ipython3
-p = A_inv @ h # equilibrium prices
+p = A_inv @ h  # equilibrium prices
 p
 ```
 
 ```{code-cell} ipython3
-q = C @ p # equilibrium quantities
+q = C @ p  # equilibrium quantities
 q
 ```
 
@@ -1092,12 +1088,12 @@ We can also solve for $p$ using `solve(A, h)` as follows.
 
 ```{code-cell} ipython3
 from numpy.linalg import solve
-p = solve(A, h) # equilibrium prices
+p = solve(A, h)  # equilibrium prices
 p
 ```
 
 ```{code-cell} ipython3
-q = C @ p # equilibrium quantities
+q = C @ p  # equilibrium quantities
 q
 ```
 
@@ -1185,22 +1181,22 @@ b =
 \end{bmatrix}
 $$
 
-```{code-cell} ipython3
+```{code-cell}
 import numpy as np
 from numpy.linalg import det
 
-A = np.array([[35, -5, -5],        #matrix A
+A = np.array([[35, -5, -5],  # matrix A
               [-5, 25, -10],
               [-5, -5, 15]])
 
-b = np.array((100, 75, 55))        #column vector b
-b.shape = (3,1)
+b = np.array((100, 75, 55))  # column vector b
+b.shape = (3, 1)
 
-det(A)    #check if A is nonsingular
+det(A)  # check if A is nonsingular
 ```
 
-```{code-cell} ipython3
-#using inverse
+```{code-cell}
+# Using inverse
 from numpy.linalg import det
 
 A_inv = inv(A)
@@ -1209,10 +1205,10 @@ p = A_inv @ b
 p
 ```
 
-```{code-cell} ipython3
-#using numpy.linalg.solve
+```{code-cell}
+# Using numpy.linalg.solve
 from numpy.linalg import solve
-p = solve(A,b)
+p = solve(A, b)
 p
 ```
 
@@ -1263,15 +1259,15 @@ solution $\hat{x}$ is
 Now consider the general equation of a linear demand curve of a good given by:
 
 $$
-    p = a - bq
+    p = m - nq
 $$
 
 where $p$ is the price of the good and $q$ is the quantity demanded.
 
-Suppose we are trying to *estimate* the values of $a$ and $b$.
+Suppose we are trying to *estimate* the values of $m$ and $n$.
 
 We do this by repeatedly observing the price and quantity (for example, each
-month) and then choosing $a$ and $b$ to fit the relationship between $p$ and
+month) and then choosing $m$ and $n$ to fit the relationship between $p$ and
 $q$.
 
 We have the following observations:
@@ -1283,19 +1279,19 @@ We have the following observations:
 |   8   |         3         |
 
 
-Requiring the demand curve $p = a - b q$ to pass through all these points leads to the
+Requiring the demand curve $p = m - nq$ to pass through all these points leads to the
 following three equations:
 
 $$
 \begin{aligned}
-    1 = a - 9b \\
-    3 = a - 7b \\
-    8 = a - 3b
+    1 = m - 9n \\
+    3 = m - 7n \\
+    8 = m - 3n
 \end{aligned}
 $$
 
 Thus we obtain a system of equations $Ax = b$ where $A = \begin{bmatrix} 1 & -9 \\ 1 & -7 \\ 1 & -3 \end{bmatrix}$,
-$x = \begin{bmatrix} a \\ b \end{bmatrix}$ and $b = \begin{bmatrix} 1 \\ 3 \\ 8 \end{bmatrix}$.
+$x = \begin{bmatrix} m \\ n \end{bmatrix}$ and $b = \begin{bmatrix} 1 \\ 3 \\ 8 \end{bmatrix}$.
 
 It can be verified that this system has no solutions.
 
@@ -1319,24 +1315,30 @@ from numpy.linalg import inv
 ```
 
 ```{code-cell} ipython3
-#using matrix algebra
-A = np.array([[1, -9],    #matrix A
+# Using matrix algebra
+A = np.array([[1, -9],  # matrix A
               [1, -7],
               [1, -3]])
 
-A_T = np.transpose(A)    #transpose of matrix A
+A_T = np.transpose(A)  # transpose of matrix A
 
-b = np.array((1, 3, 8))    #column vector b
-b.shape = (3,1)
+b = np.array((1, 3, 8))  # column vector b
+b.shape = (3, 1)
 
 x = inv(A_T @ A) @ A_T @ b
 x
 ```
 
 ```{code-cell} ipython3
-#using numpy.linalg.lstsq
-x = np.linalg.lstsq(A, b, rcond = None)
-x
+# Using numpy.linalg.lstsq
+x, res, _, _ = np.linalg.lstsq(A, b, rcond=None)
+```
+
+```{code-cell} ipython3
+:tags: [hide-input]
+
+print(f"x\u0302 = {x}")
+print(f"\u2016Ax\u0302 - b\u2016\u00B2 = {res[0]}")
 ```
 
 Here is a visualization of how the least squares method approximates the equation of a line connecting a set of points.
@@ -1346,12 +1348,12 @@ We can also describe this as "fitting" a line between a set of points.
 ```{code-cell} ipython3
 fig, ax = plt.subplots()
 p = np.array((1, 3, 8))
-q = np.array((9, 7 ,3))
+q = np.array((9, 7, 3))
 
-a, b = x[0]
+a, b = x
 
-plt.plot(q, p, 'o', label='observations', markersize=5)
-plt.plot(q, a - b*q, 'r', label='Fitted line')
+ax.plot(q, p, 'o', label='observations', markersize=5)
+ax.plot(q, a - b*q, 'r', label='Fitted line')
 plt.xlabel('quantity demanded')
 plt.ylabel('price')
 plt.legend()
@@ -1367,5 +1369,3 @@ plt.show()
 The documentation of the `numpy.linalg` submodule can be found [here](https://numpy.org/devdocs/reference/routines.linalg.html).
 
 More advanced topics in linear algebra can be found [here](https://python.quantecon.org/linear_algebra.html#id5).
-
-

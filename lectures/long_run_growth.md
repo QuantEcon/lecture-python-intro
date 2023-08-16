@@ -164,9 +164,7 @@ colors = cm.tab20(np.linspace(0, 0.95, len(country_names)))
 color_mapping = {country: color for country, color in zip(country_names, colors)}
 ```
 
-+++ {"user_expressions": []}
-
-## GPD plots
+## GDP plots
 
 Looking at the United Kingdom we can first confirm we are using the correct country code
 
