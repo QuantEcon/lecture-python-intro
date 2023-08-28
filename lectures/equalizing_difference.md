@@ -4,7 +4,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.14.5
+    jupytext_version: 1.14.4
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
@@ -89,14 +89,6 @@ w_ct = w_c0 * γ_c**t
 w_ht = w_h0 * γ_h**t
 ```
 
-```{code-cell} ipython3
-w_ct
-```
-
-```{code-cell} ipython3
-w_ht
-```
-
 If someone goes to work immediately after high school  and  works for the  $T+1$ years $t=0, 1, 2, \ldots, T$, she earns present value
 
 $$
@@ -130,7 +122,6 @@ $$
 
 ```{code-cell} ipython3
 c_0 = Sum(R**-t * w_ct, (t, 4, T))
-c_0
 ```
 
 where
@@ -189,7 +180,6 @@ $$ (eq:wagepremium)
 
 ```{code-cell} ipython3
 ϕ = A_h/A_c + D/(w_h0*A_c)
-ϕ
 ```
 
 Now we can compute $\phi$ using default values below
@@ -357,7 +347,6 @@ A_c
 
 ```{code-cell} ipython3
 ϕ = A_h/A_c + D/(w_h0*A_c)
-ϕ
 ```
 
 For our model of workers and firms, we'll interpret $D$ as the cost of becoming an entrepreneur.  
