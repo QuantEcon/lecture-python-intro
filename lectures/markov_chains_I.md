@@ -47,7 +47,7 @@ probability and dynamics.
 In this introductory lecture, we will
 
 * review some of the key ideas from the theory of Markov chains and
-* show how Markov chains appear in some economic applications.
+* show how Markov chains appear in some economic applications
 
 Let's start with some standard imports:
 
@@ -83,7 +83,7 @@ In other words,
 
 If $P$ is a stochastic matrix, then so is the $k$-th power $P^k$ for all $k \in \mathbb N$.
 
-Checking this in {ref}`the first exercises <mc1_ex_3>` below.
+Check this in {ref}`the first exercises <mc1_ex_3>` below.
 
 
 ### Markov chains
@@ -294,7 +294,7 @@ Looking at the data, we see that democracies tend to have longer-lasting growth
 regimes compared to autocracies (as indicated by the lower probability of
 transitioning from growth to growth in autocracies).
 
-We can also find a higher probability from collapse to growth in democratic regimes
+We can also find a higher probability from collapse to growth in democratic regimes.
 
 
 ### Defining Markov chains
@@ -411,7 +411,6 @@ def mc_sample_path(P, ψ_0=None, ts_length=1_000):
     X = np.empty(ts_length, dtype=int)
 
     # Convert each row of P into a cdf
-    n = len(P)
     P_dist = np.cumsum(P, axis=1)  # Convert rows into cdfs
 
     # draw initial state, defaulting to 0
@@ -556,9 +555,9 @@ If we think of $\psi_{t+1}$ and $\psi_t$ as row vectors, these $n$ equations are
 \psi_{t+1} = \psi_t P
 ```
 
-Thus, we postmultiply by $P$ to move a distribution forward one unit of time.
+Thus, we post-multiply by $P$ to move a distribution forward one unit of time.
 
-By postmultiplying $m$ times, we move a distribution forward $m$ steps into the future.
+By post-multiplying $m$ times, we move a distribution forward $m$ steps into the future.
 
 Hence, iterating on {eq}`fin_mc_fr`, the expression $\psi_{t+m} = \psi_t P^m$ is also valid --- here $P^m$ is the $m$-th power of $P$.
 
@@ -672,7 +671,7 @@ This is exactly the cross-sectional distribution.
 
 
 As seen in {eq}`fin_mc_fr`, we can shift a distribution forward one
-unit of time via postmultiplication by $P$.
+unit of time via post-multiplication by $P$.
 
 Some distributions are invariant under this updating process --- for example,
 
@@ -683,7 +682,7 @@ P = np.array([[0.4, 0.6],
 ψ @ P
 ```
 
-Notice that `ψ @ P` is the same as `ψ`
+Notice that `ψ @ P` is the same as `ψ`.
 
 
 
@@ -772,7 +771,7 @@ For example, we have the following result
 (strict_stationary)=
 ```{prf:theorem}
 Theorem: If there exists an integer $m$ such that all entries of $P^m$ are
-strictly positive, with unique stationary distribution $\psi^*$, and
+strictly positive, with unique stationary distribution $\psi^*$, then
 
 $$
     \psi_0 P^t \to \psi^*
