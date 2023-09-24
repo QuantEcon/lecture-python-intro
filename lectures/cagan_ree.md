@@ -28,12 +28,21 @@ We'll use linear algebra first to explain and then do  some experiments with  a 
 A fiscal theory of the price level was described by Thomas Sargent and Neil Wallace in chapter 5 of 
 {cite}`sargent2013rational`, which reprints a  1981 article title "Unpleasant Monetarist Arithmetic".  
 
+Sometimes people call it a ``monetary theory of the price level'' because fiscal effects on the price level occur
+through the effects of government fiscal policy decisions on the path of the money supply.  
+
+  * a goverment's fiscal policies determine whether it **expenditures** exceed its **tax collections**
+  * if its expenditures exceeds it tax collections, it can cover the difference by **printing money**
+  * that leads to effects on the price level as price level path adjusts to equate the supply of money to the demand for money
+
 The theory has been extended, criticized, and applied by John Cochrane in {cite}`cochrane2023fiscal`.
 
-In another lecture,  we'll describe some historical episodes in which the elemental forces at work in the fiscal theory help to explain some early twentieth century hyperinflations that occurred in the wake of World War I.
+In another lecture {doc}`price level histories <inflation_history>`,  we described some  European hyperinflations that occurred in the wake of World War I.
+
+Elemental forces at work in the fiscal theory of the price level help to understand those episodes.
 
 
-According to this model, when the government persistently spends more than it collects in taxes and prints money to finance the shortfall (the "shortfall" is called the "government deficit"), it puts upward pressure on the price level and generates
+According to this theory, when the government persistently spends more than it collects in taxes and prints money to finance the shortfall (the "shortfall" is called the "government deficit"), it puts upward pressure on the price level and generates
 persistent inflation.
 
 The "fiscal theory of the price level" asserts that  
@@ -46,7 +55,13 @@ Our model is a "rational expectations" (or "perfect foresight") version of a mod
 
 While Cagan didn't use that  "rational expectations" version of the model, Thomas Sargent {cite}`sargent1982ends` did when he studied the Ends of Four Big Inflations in Europe after World War I.
 
-Some of our quantitative experiments with the model are designed to illustrate how the fiscal theory explains the abrupt end of those big inflations.
+* this lecture {doc}`fiscal theory of the price level with adaptive expectations <cagan_adaptive>` describes  a version  of the model that does not impose "rational expectations" but instead uses 
+   what Cagan and his teacher Milton Friedman called "adaptive expectations"
+
+   * a reader of both lectures will notice that the algebra is easier and more streamlined in the present rational expectations version of the model
+   * this can be traced to the following source: the adaptive expectations version of the model has more endogenous variables and more free parameters 
+
+Some of our quantitative experiments with our rational expectations version of the  model are designed to illustrate how the fiscal theory explains the abrupt end of those big inflations.
 
 In those experiments, we'll encounter an instance of a ''velocity dividend'' that has sometimes accompanied successful inflation stabilization programs. 
 
@@ -656,3 +671,10 @@ The following  code does the calculations and plots the results.
 # solve and plot
 π_seq, m_seq, p_seq = solve_and_plot(m0=m0, α=α, T=T, μ_seq=μ_seq)
 ```
+## Sequel
+
+This lecture  {doc}`fiscal theory of the price level with adaptive expectations <cagan_adaptive>` describes an "adaptive expectations" version of Cagan's model.
+
+The dynamics become more complicated and so does the algebra.
+
+Nowadays, the "rational expectations" version of the model is more popular among central bankers and economists advising them.
