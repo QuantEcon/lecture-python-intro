@@ -60,12 +60,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=927b94d3fcb96560df09" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=927b94d3fcb96560df09" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=927b94d3fcb96560df09" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=927b94d3fcb96560df09" rel="stylesheet" />
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -81,9 +81,9 @@
     <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=927b94d3fcb96560df09" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=927b94d3fcb96560df09" />
-  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=927b94d3fcb96560df09"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
 
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
@@ -189,6 +189,7 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sequel">12.4. Sequel</a></li>
 </ul>
                             <p class="logo">
                                 
@@ -250,9 +251,17 @@ const thebe_selector_output = ".output, .cell_output"
 <p>We’ll use linear algebra first to explain and then do  some experiments with  a “fiscal theory of the price level”.</p>
 <p>A fiscal theory of the price level was described by Thomas Sargent and Neil Wallace in chapter 5 of
 <span id="id1">[<a class="reference internal" href="zreferences.html#id5" title="Thomas J Sargent. Rational Expectations and Inflation. Princeton University Press, Princeton, New Jersey, 2013.">Sar13</a>]</span>, which reprints a  1981 article title “Unpleasant Monetarist Arithmetic”.</p>
+<p>Sometimes people call it a ``monetary theory of the price level’’ because fiscal effects on the price level occur
+through the effects of government fiscal policy decisions on the path of the money supply.</p>
+<ul class="simple">
+<li><p>a goverment’s fiscal policies determine whether it <strong>expenditures</strong> exceed its <strong>tax collections</strong></p></li>
+<li><p>if its expenditures exceeds it tax collections, it can cover the difference by <strong>printing money</strong></p></li>
+<li><p>that leads to effects on the price level as price level path adjusts to equate the supply of money to the demand for money</p></li>
+</ul>
 <p>The theory has been extended, criticized, and applied by John Cochrane in <span id="id2">[<a class="reference internal" href="zreferences.html#id6" title="John H Cochrane. The Fiscal Theory of the Price Level. Princeton University Press, Princeton, New Jersey, 2023.">Coc23</a>]</span>.</p>
-<p>In another lecture,  we’ll describe some historical episodes in which the elemental forces at work in the fiscal theory help to explain some early twentieth century hyperinflations that occurred in the wake of World War I.</p>
-<p>According to this model, when the government persistently spends more than it collects in taxes and prints money to finance the shortfall (the “shortfall” is called the “government deficit”), it puts upward pressure on the price level and generates
+<p>In another lecture <a class="reference internal" href="inflation_history.html"><span class="doc">price level histories</span></a>,  we described some  European hyperinflations that occurred in the wake of World War I.</p>
+<p>Elemental forces at work in the fiscal theory of the price level help to understand those episodes.</p>
+<p>According to this theory, when the government persistently spends more than it collects in taxes and prints money to finance the shortfall (the “shortfall” is called the “government deficit”), it puts upward pressure on the price level and generates
 persistent inflation.</p>
 <p>The “fiscal theory of the price level” asserts that</p>
 <ul class="simple">
@@ -261,7 +270,16 @@ persistent inflation.</p>
 </ul>
 <p>Our model is a “rational expectations” (or “perfect foresight”) version of a model that Philip Cagan <span id="id3">[<a class="reference internal" href="zreferences.html#id104" title="Philip Cagan. The monetary dynamics of hyperinflation. In Milton Friedman, editor, Studies in the Quantity Theory of Money, pages 25–117. University of Chicago Press, Chicago, 1956.">Cag56</a>]</span>  used to study the monetary dynamics of hyperinflations.</p>
 <p>While Cagan didn’t use that  “rational expectations” version of the model, Thomas Sargent <span id="id4">[<a class="reference internal" href="zreferences.html#id7" title="Thomas J Sargent. The ends of four big inflations. In Robert E Hall, editor, Inflation: Causes and effects, pages 41–98. University of Chicago Press, 1982.">Sar82</a>]</span> did when he studied the Ends of Four Big Inflations in Europe after World War I.</p>
-<p>Some of our quantitative experiments with the model are designed to illustrate how the fiscal theory explains the abrupt end of those big inflations.</p>
+<ul class="simple">
+<li><p>this lecture <a class="reference internal" href="cagan_adaptive.html"><span class="doc">fiscal theory of the price level with adaptive expectations</span></a> describes  a version  of the model that does not impose “rational expectations” but instead uses
+what Cagan and his teacher Milton Friedman called “adaptive expectations”</p>
+<ul>
+<li><p>a reader of both lectures will notice that the algebra is easier and more streamlined in the present rational expectations version of the model</p></li>
+<li><p>this can be traced to the following source: the adaptive expectations version of the model has more endogenous variables and more free parameters</p></li>
+</ul>
+</li>
+</ul>
+<p>Some of our quantitative experiments with our rational expectations version of the  model are designed to illustrate how the fiscal theory explains the abrupt end of those big inflations.</p>
 <p>In those experiments, we’ll encounter an instance of a ‘‘velocity dividend’’ that has sometimes accompanied successful inflation stabilization programs.</p>
 <p>To facilitate using  linear matrix algebra as our main mathematical tool, we’ll use a finite horizon version of the model.</p>
 <p>As in the <a class="reference internal" href="pv.html"><span class="doc">present values</span></a> and <a class="reference internal" href="cons_smooth.html"><span class="doc">consumption smoothing</span></a> lectures, the only linear algebra that we’ll be  using are matrix multiplication and matrix inversion.</p>
@@ -815,6 +833,12 @@ it is also interesting to study the consequences of a foreseen gradual stabiliza
 </div>
 </section>
 </section>
+</section>
+<section id="sequel">
+<h2><span class="section-number">12.4. </span>Sequel<a class="headerlink" href="#sequel" title="Permalink to this heading">#</a></h2>
+<p>This lecture  <a class="reference internal" href="cagan_adaptive.html"><span class="doc">fiscal theory of the price level with adaptive expectations</span></a> describes an “adaptive expectations” version of Cagan’s model.</p>
+<p>The dynamics become more complicated and so does the algebra.</p>
+<p>Nowadays, the “rational expectations” version of the model is more popular among central bankers and economists advising them.</p>
 </section>
 </section>
 
