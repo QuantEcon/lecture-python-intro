@@ -11,24 +11,19 @@ kernelspec:
   name: python3
 ---
 
-# A Fiscal Theory of the Price Level
+# A Monetarist Theory of the Price Level
 
 ## Introduction
 
-As usual, we'll start by importing some Python modules.
 
-```{code-cell} ipython3
-import numpy as np
-from collections import namedtuple
-import matplotlib.pyplot as plt
-```
+We'll use linear algebra first to explain and then do  some experiments with  a "monetarist theory of the price level".
 
-We'll use linear algebra first to explain and then do  some experiments with  a "fiscal theory of the price level".
+Sometimes this theory is also called a "fiscal theory of the price level".
 
-A fiscal theory of the price level was described by Thomas Sargent and Neil Wallace in chapter 5 of 
+Such a of the price level was described by Thomas Sargent and Neil Wallace in chapter 5 of 
 {cite}`sargent2013rational`, which reprints a  1981 article title "Unpleasant Monetarist Arithmetic".  
 
-Sometimes people call it a ``monetary theory of the price level'' because fiscal effects on the price level occur
+Sometimes people call it a "monetary" or "monetarist" theory of the price level because fiscal effects on the price level occur
 through the effects of government fiscal policy decisions on the path of the money supply.  
 
   * a goverment's fiscal policies determine whether it **expenditures** exceed its **tax collections**
@@ -45,7 +40,7 @@ Elemental forces at work in the fiscal theory of the price level help to underst
 According to this theory, when the government persistently spends more than it collects in taxes and prints money to finance the shortfall (the "shortfall" is called the "government deficit"), it puts upward pressure on the price level and generates
 persistent inflation.
 
-The "fiscal theory of the price level" asserts that  
+The "monetarist or fiscal theory of the price level" asserts that  
 
 * to **start** a persistent inflation the government simply persistently runs a money-financed government deficit
 
@@ -234,6 +229,15 @@ $$ (eq:piterm)
 where we require that $\vert \gamma^* \delta \vert < 1$.
 
 Let's implement and solve this model.
+
+
+As usual, we'll start by importing some Python modules.
+
+```{code-cell} ipython3
+import numpy as np
+from collections import namedtuple
+import matplotlib.pyplot as plt
+```
 
 First, we store parameters in a `namedtuple`:
 
@@ -673,7 +677,7 @@ The following  code does the calculations and plots the results.
 ```
 ## Sequel
 
-This lecture  {doc}`fiscal theory of the price level with adaptive expectations <cagan_adaptive>` describes an "adaptive expectations" version of Cagan's model.
+This lecture  {doc}`monetarist theory of the price level with adaptive expectations <cagan_adaptive>` describes an "adaptive expectations" version of Cagan's model.
 
 The dynamics become more complicated and so does the algebra.
 
