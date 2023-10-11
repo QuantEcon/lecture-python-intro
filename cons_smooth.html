@@ -479,7 +479,7 @@ terminal condition that <span class="math notranslate nohighlight">\(a_{T+1} \ge
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/0af61e0c22b20268563ce558d76d4926a4f75cc9f05bedecdc6d670917754afb.png"><img alt="_images/0af61e0c22b20268563ce558d76d4926a4f75cc9f05bedecdc6d670917754afb.png" src="_images/0af61e0c22b20268563ce558d76d4926a4f75cc9f05bedecdc6d670917754afb.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/cb4be62fd5fa32a2335656ac8072b85fdb6a61f29b08dbcc997440c471453aa4.png"><img alt="_images/cb4be62fd5fa32a2335656ac8072b85fdb6a61f29b08dbcc997440c471453aa4.png" src="_images/cb4be62fd5fa32a2335656ac8072b85fdb6a61f29b08dbcc997440c471453aa4.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>Note that <span class="math notranslate nohighlight">\(a_{T+1} = 0\)</span> is satisfied.</p>
@@ -588,7 +588,7 @@ to compute alternative consumption paths, then evaluate their welfare.</p>
     <span class="n">cvar_seq</span> <span class="o">=</span> <span class="n">compute_variation</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">cs_model</span><span class="p">,</span> 
                                  <span class="n">ξ1</span><span class="o">=</span><span class="n">ξ1</span><span class="p">,</span> <span class="n">ϕ</span><span class="o">=</span><span class="n">ϕ</span><span class="p">,</span> <span class="n">a0</span><span class="o">=</span><span class="n">a0</span><span class="p">,</span> 
                                  <span class="n">y_seq</span><span class="o">=</span><span class="n">y_seq</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;welfare=</span><span class="si">{</span><span class="n">welfare</span><span class="p">(</span><span class="n">cs_model</span><span class="p">,</span> <span class="n">cvar_seq</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;welfare=</span><span class="si">{</span><span class="n">welfare</span><span class="p">(</span><span class="n">cs_model</span><span class="p">,</span><span class="w"> </span><span class="n">cvar_seq</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="o">*</span><span class="mi">64</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
         <span class="n">ls</span> <span class="o">=</span> <span class="s1">&#39;-.&#39;</span>
@@ -611,7 +611,7 @@ to compute alternative consumption paths, then evaluate their welfare.</p>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>variation 0: ξ1=0.01, ϕ=0.95
 check feasible: True
-welfare=13.285009346064836
+welfare=13.285009346064834
 ----------------------------------------------------------------
 variation 1: ξ1=0.01, ϕ=1.02
 check feasible: True
@@ -627,7 +627,7 @@ welfare=13.28156768298361
 ----------------------------------------------------------------
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="_images/96f4d22fb336890c50e1dde63c2d836b3c511e0a975131268bf26d7bf3962dad.png"><img alt="_images/96f4d22fb336890c50e1dde63c2d836b3c511e0a975131268bf26d7bf3962dad.png" src="_images/96f4d22fb336890c50e1dde63c2d836b3c511e0a975131268bf26d7bf3962dad.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/10a9799071974b565baa03e9378645984a604879028dcd81ef5e95e08dbb57c6.png"><img alt="_images/10a9799071974b565baa03e9378645984a604879028dcd81ef5e95e08dbb57c6.png" src="_images/10a9799071974b565baa03e9378645984a604879028dcd81ef5e95e08dbb57c6.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>We can even use the Python <code class="docutils literal notranslate"><span class="pre">np.gradient</span></code> command to compute derivatives of welfare with respect to our two parameters.</p>
@@ -636,7 +636,7 @@ welfare=13.28156768298361
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">welfare_rel</span><span class="p">(</span><span class="n">ξ1</span><span class="p">,</span> <span class="n">ϕ</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Compute welfare of variation sequence </span>
 <span class="sd">    for given ϕ, ξ1 with a consumption smoothing model</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -673,8 +673,8 @@ welfare=13.28156768298361
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/28fcbae0e3edd68a57d674fdbd178b5e8213fde713bb5acfab2bb5d801b0a253.png"><img alt="_images/28fcbae0e3edd68a57d674fdbd178b5e8213fde713bb5acfab2bb5d801b0a253.png" src="_images/28fcbae0e3edd68a57d674fdbd178b5e8213fde713bb5acfab2bb5d801b0a253.png" style="width: 80%;" /></a>
-<a class="reference internal image-reference" href="_images/d7fb7acfeea00715530b84246c7433dadf5cc8b816b56057e7f7ec50627b9868.png"><img alt="_images/d7fb7acfeea00715530b84246c7433dadf5cc8b816b56057e7f7ec50627b9868.png" src="_images/d7fb7acfeea00715530b84246c7433dadf5cc8b816b56057e7f7ec50627b9868.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/37afe27028469780f2a1cfd91dd89007eb43d5fd135eafbb8afb661677c998dc.png"><img alt="_images/37afe27028469780f2a1cfd91dd89007eb43d5fd135eafbb8afb661677c998dc.png" src="_images/37afe27028469780f2a1cfd91dd89007eb43d5fd135eafbb8afb661677c998dc.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/c55a24f96b003911787a69b8255d3c6664c9f397e753fadd08bd61e751c181ed.png"><img alt="_images/c55a24f96b003911787a69b8255d3c6664c9f397e753fadd08bd61e751c181ed.png" src="_images/c55a24f96b003911787a69b8255d3c6664c9f397e753fadd08bd61e751c181ed.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>The same can be done on <span class="math notranslate nohighlight">\(\phi\)</span></p>
@@ -697,8 +697,8 @@ welfare=13.28156768298361
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/ec878b329f478e1b016bfe71da9fb0425bc148ac69b301fe3780534ca59f8e8d.png"><img alt="_images/ec878b329f478e1b016bfe71da9fb0425bc148ac69b301fe3780534ca59f8e8d.png" src="_images/ec878b329f478e1b016bfe71da9fb0425bc148ac69b301fe3780534ca59f8e8d.png" style="width: 80%;" /></a>
-<a class="reference internal image-reference" href="_images/30e7682f01fd2fea9dec4a77fd38f5cad3d299f931cfb50b7d2ffa779b5e0023.png"><img alt="_images/30e7682f01fd2fea9dec4a77fd38f5cad3d299f931cfb50b7d2ffa779b5e0023.png" src="_images/30e7682f01fd2fea9dec4a77fd38f5cad3d299f931cfb50b7d2ffa779b5e0023.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/c6dcd8054054645e7a64e677ca91c3d0546d0448618f8cff68aad0e6dc60efb6.png"><img alt="_images/c6dcd8054054645e7a64e677ca91c3d0546d0448618f8cff68aad0e6dc60efb6.png" src="_images/c6dcd8054054645e7a64e677ca91c3d0546d0448618f8cff68aad0e6dc60efb6.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/6004f69acd5139d62863f051eb7345af54381cb7c7bc6332d2cbbe9464bdf2bb.png"><img alt="_images/6004f69acd5139d62863f051eb7345af54381cb7c7bc6332d2cbbe9464bdf2bb.png" src="_images/6004f69acd5139d62863f051eb7345af54381cb7c7bc6332d2cbbe9464bdf2bb.png" style="width: 80%;" /></a>
 </div>
 </div>
 </section>

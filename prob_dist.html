@@ -263,7 +263,7 @@ const thebe_selector_output = ".output, .cell_output"
 <p>In this lecture we give a quick introduction to data and probability distributions using Python</p>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input above-output-prompt docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip install --upgrade yfinance  
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>yfinance<span class="w">  </span>
 </pre></div>
 </div>
 </div>
@@ -273,30 +273,33 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="expanded">Hide code cell output</span>
 </summary>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: yfinance in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (0.2.31)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: yfinance in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (0.2.31)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: html5lib&gt;=1.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from yfinance) (1.1)
-Requirement already satisfied: numpy&gt;=1.16.5 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from yfinance) (1.23.5)
-Requirement already satisfied: beautifulsoup4&gt;=4.11.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from yfinance) (4.11.1)
-Requirement already satisfied: appdirs&gt;=1.4.4 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from yfinance) (1.4.4)
-Requirement already satisfied: requests&gt;=2.31 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from yfinance) (2.31.0)
-Requirement already satisfied: multitasking&gt;=0.0.7 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from yfinance) (0.0.11)
-Requirement already satisfied: lxml&gt;=4.9.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from yfinance) (4.9.1)
-Requirement already satisfied: pytz&gt;=2022.5 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from yfinance) (2022.7)
-Requirement already satisfied: frozendict&gt;=2.3.4 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from yfinance) (2.3.8)
-Requirement already satisfied: peewee&gt;=3.16.2 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from yfinance) (3.16.3)
-Requirement already satisfied: pandas&gt;=1.3.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from yfinance) (1.5.3)
-Requirement already satisfied: soupsieve&gt;1.2 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from beautifulsoup4&gt;=4.11.1-&gt;yfinance) (2.3.2.post1)
-Requirement already satisfied: six&gt;=1.9 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from html5lib&gt;=1.1-&gt;yfinance) (1.16.0)
-Requirement already satisfied: webencodings in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from html5lib&gt;=1.1-&gt;yfinance) (0.5.1)
-Requirement already satisfied: python-dateutil&gt;=2.8.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from pandas&gt;=1.3.0-&gt;yfinance) (2.8.2)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: pandas&gt;=1.3.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from yfinance) (2.0.3)
+Requirement already satisfied: numpy&gt;=1.16.5 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from yfinance) (1.24.3)
+Requirement already satisfied: requests&gt;=2.31 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from yfinance) (2.31.0)
+Requirement already satisfied: multitasking&gt;=0.0.7 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from yfinance) (0.0.11)
+Requirement already satisfied: lxml&gt;=4.9.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from yfinance) (4.9.3)
+Requirement already satisfied: appdirs&gt;=1.4.4 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from yfinance) (1.4.4)
+Requirement already satisfied: pytz&gt;=2022.5 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from yfinance) (2023.3.post1)
+Requirement already satisfied: frozendict&gt;=2.3.4 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from yfinance) (2.3.8)
+Requirement already satisfied: peewee&gt;=3.16.2 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from yfinance) (3.16.3)
+Requirement already satisfied: beautifulsoup4&gt;=4.11.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from yfinance) (4.12.2)
+Requirement already satisfied: html5lib&gt;=1.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from yfinance) (1.1)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests&gt;=2.31-&gt;yfinance) (2022.12.7)
-Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests&gt;=2.31-&gt;yfinance) (1.26.14)
-Requirement already satisfied: idna&lt;4,&gt;=2.5 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests&gt;=2.31-&gt;yfinance) (3.4)
-Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests&gt;=2.31-&gt;yfinance) (2.0.4)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: soupsieve&gt;1.2 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from beautifulsoup4&gt;=4.11.1-&gt;yfinance) (2.4)
+Requirement already satisfied: six&gt;=1.9 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from html5lib&gt;=1.1-&gt;yfinance) (1.16.0)
+Requirement already satisfied: webencodings in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from html5lib&gt;=1.1-&gt;yfinance) (0.5.1)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: python-dateutil&gt;=2.8.2 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from pandas&gt;=1.3.0-&gt;yfinance) (2.8.2)
+Requirement already satisfied: tzdata&gt;=2022.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from pandas&gt;=1.3.0-&gt;yfinance) (2023.3)
+Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from requests&gt;=2.31-&gt;yfinance) (2.0.4)
+Requirement already satisfied: idna&lt;4,&gt;=2.5 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from requests&gt;=2.31-&gt;yfinance) (3.4)
+Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from requests&gt;=2.31-&gt;yfinance) (1.26.16)
+Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from requests&gt;=2.31-&gt;yfinance) (2023.7.22)
 </pre></div>
 </div>
 </div>
@@ -413,7 +416,7 @@ Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in /usr/share/mini
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/07c8c97f6a3936f355f186adf7f08c7e1a8086e92bb4dc3f8d9182788baed0da.png"><img alt="_images/07c8c97f6a3936f355f186adf7f08c7e1a8086e92bb4dc3f8d9182788baed0da.png" src="_images/07c8c97f6a3936f355f186adf7f08c7e1a8086e92bb4dc3f8d9182788baed0da.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/1fe53347620dc49fe839f549e2e6c4a336a06a75ec9980ddaa904b311720d6a4.png"><img alt="_images/1fe53347620dc49fe839f549e2e6c4a336a06a75ec9980ddaa904b311720d6a4.png" src="_images/1fe53347620dc49fe839f549e2e6c4a336a06a75ec9980ddaa904b311720d6a4.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>Here’s a plot of the CDF:</p>
@@ -429,7 +432,7 @@ Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in /usr/share/mini
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/e240631f2d2e5e8d5e4a917db99681ae6de230e135b2b0af9f8d850b26a71ccf.png"><img alt="_images/e240631f2d2e5e8d5e4a917db99681ae6de230e135b2b0af9f8d850b26a71ccf.png" src="_images/e240631f2d2e5e8d5e4a917db99681ae6de230e135b2b0af9f8d850b26a71ccf.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/e34184dc464c2473fb260a5879b7b97b78f902ee825eed7272d46c743de07bc4.png"><img alt="_images/e34184dc464c2473fb260a5879b7b97b78f902ee825eed7272d46c743de07bc4.png" src="_images/e34184dc464c2473fb260a5879b7b97b78f902ee825eed7272d46c743de07bc4.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>The CDF jumps up by <span class="math notranslate nohighlight">\(p(x_i)\)</span> and <span class="math notranslate nohighlight">\(x_i\)</span>.</p>
@@ -501,7 +504,7 @@ directly from the PMF, using the expressions given above.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/6fa53cbb37aba16d62e17ad2f6b2683fad8c1fbe43a1cea0a538d3e6536111a7.png"><img alt="_images/6fa53cbb37aba16d62e17ad2f6b2683fad8c1fbe43a1cea0a538d3e6536111a7.png" src="_images/6fa53cbb37aba16d62e17ad2f6b2683fad8c1fbe43a1cea0a538d3e6536111a7.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/686eb55823a463fb91922f7015cb41fd8d6bf399f106a3acc742325cbb30a241.png"><img alt="_images/686eb55823a463fb91922f7015cb41fd8d6bf399f106a3acc742325cbb30a241.png" src="_images/686eb55823a463fb91922f7015cb41fd8d6bf399f106a3acc742325cbb30a241.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>Here’s the CDF</p>
@@ -517,7 +520,7 @@ directly from the PMF, using the expressions given above.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/70f89556bb76473183c1b3b938e259960a6a4be7d80fac4b523a4feaf2af3a78.png"><img alt="_images/70f89556bb76473183c1b3b938e259960a6a4be7d80fac4b523a4feaf2af3a78.png" src="_images/70f89556bb76473183c1b3b938e259960a6a4be7d80fac4b523a4feaf2af3a78.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/136c34fc2845d8da6367981c61ebe50ebae9b3a93857121fe990ef204cfb365e.png"><img alt="_images/136c34fc2845d8da6367981c61ebe50ebae9b3a93857121fe990ef204cfb365e.png" src="_images/136c34fc2845d8da6367981c61ebe50ebae9b3a93857121fe990ef204cfb365e.png" style="width: 80%;" /></a>
 </div>
 </div>
 <div class="exercise admonition" id="prob_ex2">
@@ -545,7 +548,7 @@ directly from the PMF, using the expressions given above.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/f978c1435ba421f0b9f00ad2b6031d75c36c48b50908cee7ce91121726341983.png"><img alt="_images/f978c1435ba421f0b9f00ad2b6031d75c36c48b50908cee7ce91121726341983.png" src="_images/f978c1435ba421f0b9f00ad2b6031d75c36c48b50908cee7ce91121726341983.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/7939d3e00a81575099d646a0fe3fbdd466dd43c802dfe1bf1aec859562ef951b.png"><img alt="_images/7939d3e00a81575099d646a0fe3fbdd466dd43c802dfe1bf1aec859562ef951b.png" src="_images/7939d3e00a81575099d646a0fe3fbdd466dd43c802dfe1bf1aec859562ef951b.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>We can see that the output graph is the same as the one above.</p>
@@ -615,7 +618,7 @@ directly from the PMF, using the expressions given above.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/990edff9434f3dddaed8d119a796f389171e68e6e366d5817c1dd68bbc7fb822.png"><img alt="_images/990edff9434f3dddaed8d119a796f389171e68e6e366d5817c1dd68bbc7fb822.png" src="_images/990edff9434f3dddaed8d119a796f389171e68e6e366d5817c1dd68bbc7fb822.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/8f30da31ffe9a56330185d86e7af93977d18b6828a34faa1f5d4763290ef776a.png"><img alt="_images/8f30da31ffe9a56330185d86e7af93977d18b6828a34faa1f5d4763290ef776a.png" src="_images/8f30da31ffe9a56330185d86e7af93977d18b6828a34faa1f5d4763290ef776a.png" style="width: 80%;" /></a>
 </div>
 </div>
 </section>
@@ -694,7 +697,7 @@ directly from the PMF, using the expressions given above.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/f9a58e81865890457eab85d14f2c45861547c8aae159db054ebb2838bccfca00.png"><img alt="_images/f9a58e81865890457eab85d14f2c45861547c8aae159db054ebb2838bccfca00.png" src="_images/f9a58e81865890457eab85d14f2c45861547c8aae159db054ebb2838bccfca00.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/841ab727d0d9e255b164fe1fcaebd5f337d96b8670c535dce9618f65298b3d0d.png"><img alt="_images/841ab727d0d9e255b164fe1fcaebd5f337d96b8670c535dce9618f65298b3d0d.png" src="_images/841ab727d0d9e255b164fe1fcaebd5f337d96b8670c535dce9618f65298b3d0d.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>Here’s a plot of the CDF:</p>
@@ -713,7 +716,7 @@ directly from the PMF, using the expressions given above.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/f9f2824147503cc130cd958544941c88cac8617711ff605ebdc54dc1d5905019.png"><img alt="_images/f9f2824147503cc130cd958544941c88cac8617711ff605ebdc54dc1d5905019.png" src="_images/f9f2824147503cc130cd958544941c88cac8617711ff605ebdc54dc1d5905019.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/81f0dc6e63526bc654f0f5cffc0e4d7f218950f6c5446014162aabe178b84c93.png"><img alt="_images/81f0dc6e63526bc654f0f5cffc0e4d7f218950f6c5446014162aabe178b84c93.png" src="_images/81f0dc6e63526bc654f0f5cffc0e4d7f218950f6c5446014162aabe178b84c93.png" style="width: 80%;" /></a>
 </div>
 </div>
 </section>
@@ -769,7 +772,7 @@ directly from the PMF, using the expressions given above.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/6ac31b016d463a4cf626e4d77e9b61754e4db4eceb742c51e85011444f9ab05e.png"><img alt="_images/6ac31b016d463a4cf626e4d77e9b61754e4db4eceb742c51e85011444f9ab05e.png" src="_images/6ac31b016d463a4cf626e4d77e9b61754e4db4eceb742c51e85011444f9ab05e.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/630745989e0834bfc3205ea467474f9ef8b07daeb614932272f0132cae9894d2.png"><img alt="_images/630745989e0834bfc3205ea467474f9ef8b07daeb614932272f0132cae9894d2.png" src="_images/630745989e0834bfc3205ea467474f9ef8b07daeb614932272f0132cae9894d2.png" style="width: 80%;" /></a>
 </div>
 </div>
 <div class="cell docutils container">
@@ -789,7 +792,7 @@ directly from the PMF, using the expressions given above.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/dbea4cf5977230ee89e3f8d8971af11dbc775e6143effc6777b3dc2f52068f3f.png"><img alt="_images/dbea4cf5977230ee89e3f8d8971af11dbc775e6143effc6777b3dc2f52068f3f.png" src="_images/dbea4cf5977230ee89e3f8d8971af11dbc775e6143effc6777b3dc2f52068f3f.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/902093670fc8a77189685a4f0f4d571e44dc993b1090c6dad2858b26060e22b7.png"><img alt="_images/902093670fc8a77189685a4f0f4d571e44dc993b1090c6dad2858b26060e22b7.png" src="_images/902093670fc8a77189685a4f0f4d571e44dc993b1090c6dad2858b26060e22b7.png" style="width: 80%;" /></a>
 </div>
 </div>
 </section>
@@ -841,7 +844,7 @@ directly from the PMF, using the expressions given above.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/da85668759cde460c15bb24823cf6c30024f47210ce2f916355888950449a287.png"><img alt="_images/da85668759cde460c15bb24823cf6c30024f47210ce2f916355888950449a287.png" src="_images/da85668759cde460c15bb24823cf6c30024f47210ce2f916355888950449a287.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/bd793db095b2c69f7039ce7f830a50ed29196a2b6b93da4bf598d9f8fb15caa2.png"><img alt="_images/bd793db095b2c69f7039ce7f830a50ed29196a2b6b93da4bf598d9f8fb15caa2.png" src="_images/bd793db095b2c69f7039ce7f830a50ed29196a2b6b93da4bf598d9f8fb15caa2.png" style="width: 80%;" /></a>
 </div>
 </div>
 <div class="cell docutils container">
@@ -859,7 +862,7 @@ directly from the PMF, using the expressions given above.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/8e75c4e48216cea2923ba8e52874619ec9c6e80bf9910dd6a2c5331d398dc916.png"><img alt="_images/8e75c4e48216cea2923ba8e52874619ec9c6e80bf9910dd6a2c5331d398dc916.png" src="_images/8e75c4e48216cea2923ba8e52874619ec9c6e80bf9910dd6a2c5331d398dc916.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/bd3bf061622aa5f71ddba90574ff782e5dd74185a947f1279636e1fb8180a8b0.png"><img alt="_images/bd3bf061622aa5f71ddba90574ff782e5dd74185a947f1279636e1fb8180a8b0.png" src="_images/bd3bf061622aa5f71ddba90574ff782e5dd74185a947f1279636e1fb8180a8b0.png" style="width: 80%;" /></a>
 </div>
 </div>
 </section>
@@ -916,7 +919,7 @@ the variance is <span class="math notranslate nohighlight">\(\alpha \beta / (\al
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/163ff86490fbd9d02ea55dd1fabdb73b5f4ff4a4d27a4e6eedafe97c7679cdd0.png"><img alt="_images/163ff86490fbd9d02ea55dd1fabdb73b5f4ff4a4d27a4e6eedafe97c7679cdd0.png" src="_images/163ff86490fbd9d02ea55dd1fabdb73b5f4ff4a4d27a4e6eedafe97c7679cdd0.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/768bb7e9f27c899f4a1e4c3e0f0328993499e65f196c8595edbbb7e9e21e955c.png"><img alt="_images/768bb7e9f27c899f4a1e4c3e0f0328993499e65f196c8595edbbb7e9e21e955c.png" src="_images/768bb7e9f27c899f4a1e4c3e0f0328993499e65f196c8595edbbb7e9e21e955c.png" style="width: 80%;" /></a>
 </div>
 </div>
 <div class="cell docutils container">
@@ -934,7 +937,7 @@ the variance is <span class="math notranslate nohighlight">\(\alpha \beta / (\al
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/2263aa32a4b9dd664b1c4db77d0b6727f78a2fcacdeca38bab15a368c1d037a6.png"><img alt="_images/2263aa32a4b9dd664b1c4db77d0b6727f78a2fcacdeca38bab15a368c1d037a6.png" src="_images/2263aa32a4b9dd664b1c4db77d0b6727f78a2fcacdeca38bab15a368c1d037a6.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/771adac6e40aa55ef30550e262f86bdb3ff813da58eee60ffff29a6b21060f9b.png"><img alt="_images/771adac6e40aa55ef30550e262f86bdb3ff813da58eee60ffff29a6b21060f9b.png" src="_images/771adac6e40aa55ef30550e262f86bdb3ff813da58eee60ffff29a6b21060f9b.png" style="width: 80%;" /></a>
 </div>
 </div>
 </section>
@@ -991,7 +994,7 @@ random variables with mean <span class="math notranslate nohighlight">\(1/\beta\
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/e53a947a6b81da51fb333b5ad10d7608b11f5948c0f2a314e1f6e069df3d646a.png"><img alt="_images/e53a947a6b81da51fb333b5ad10d7608b11f5948c0f2a314e1f6e069df3d646a.png" src="_images/e53a947a6b81da51fb333b5ad10d7608b11f5948c0f2a314e1f6e069df3d646a.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/efe8bd5e3b1db0785f95538ff9333e2b9b20e7fbd5cbdb7e08defc36f5aea2fb.png"><img alt="_images/efe8bd5e3b1db0785f95538ff9333e2b9b20e7fbd5cbdb7e08defc36f5aea2fb.png" src="_images/efe8bd5e3b1db0785f95538ff9333e2b9b20e7fbd5cbdb7e08defc36f5aea2fb.png" style="width: 80%;" /></a>
 </div>
 </div>
 <div class="cell docutils container">
@@ -1009,7 +1012,7 @@ random variables with mean <span class="math notranslate nohighlight">\(1/\beta\
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/e60b1b841e2149145d56241ae2c23f5ea2f3c2a281a4afd6234d4278240746ca.png"><img alt="_images/e60b1b841e2149145d56241ae2c23f5ea2f3c2a281a4afd6234d4278240746ca.png" src="_images/e60b1b841e2149145d56241ae2c23f5ea2f3c2a281a4afd6234d4278240746ca.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/3959f6c951517692492143c122bca1f5ada8dfd2fe6c4f7f7c41a55b870b9c31.png"><img alt="_images/3959f6c951517692492143c122bca1f5ada8dfd2fe6c4f7f7c41a55b870b9c31.png" src="_images/3959f6c951517692492143c122bca1f5ada8dfd2fe6c4f7f7c41a55b870b9c31.png" style="width: 80%;" /></a>
 </div>
 </div>
 </section>
@@ -1184,7 +1187,7 @@ numbers like the income distribution above) and probability distributions.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/6963cd20864da3dfcea022e2f30b8baa3b4a9de210d8da18660ae82b57a94b05.png"><img alt="_images/6963cd20864da3dfcea022e2f30b8baa3b4a9de210d8da18660ae82b57a94b05.png" src="_images/6963cd20864da3dfcea022e2f30b8baa3b4a9de210d8da18660ae82b57a94b05.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/f3610d61545002338fed44c6dae74445c46249174a7f2e94b185b795b02fab28.png"><img alt="_images/f3610d61545002338fed44c6dae74445c46249174a7f2e94b185b795b02fab28.png" src="_images/f3610d61545002338fed44c6dae74445c46249174a7f2e94b185b795b02fab28.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>Let’s look at a distribution from real data.</p>
@@ -1248,7 +1251,7 @@ Name: Adj Close, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/34971b7fd60cb0336f50726ac97c4b622ca039d8fdd1891ae7a86d68b667a0ef.png"><img alt="_images/34971b7fd60cb0336f50726ac97c4b622ca039d8fdd1891ae7a86d68b667a0ef.png" src="_images/34971b7fd60cb0336f50726ac97c4b622ca039d8fdd1891ae7a86d68b667a0ef.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/1b7dd447d1805b124f3042c34dd89af076908af532365e92958da5db891519a4.png"><img alt="_images/1b7dd447d1805b124f3042c34dd89af076908af532365e92958da5db891519a4.png" src="_images/1b7dd447d1805b124f3042c34dd89af076908af532365e92958da5db891519a4.png" style="width: 80%;" /></a>
 </div>
 </div>
 </section>
@@ -1265,7 +1268,7 @@ Name: Adj Close, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/3e40805fa6ffcddb706f97479b3c3eae70e0ceaea347a97433550ac8510044ad.png"><img alt="_images/3e40805fa6ffcddb706f97479b3c3eae70e0ceaea347a97433550ac8510044ad.png" src="_images/3e40805fa6ffcddb706f97479b3c3eae70e0ceaea347a97433550ac8510044ad.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/e31e0737e4bc4cd53bb5559a6581097a9587ecec846fa7e0712bc5e57361443d.png"><img alt="_images/e31e0737e4bc4cd53bb5559a6581097a9587ecec846fa7e0712bc5e57361443d.png" src="_images/e31e0737e4bc4cd53bb5559a6581097a9587ecec846fa7e0712bc5e57361443d.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>The smoothness of the KDE is dependent on how we choose the bandwidth.</p>
@@ -1281,7 +1284,7 @@ Name: Adj Close, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/85de43332e59400d73b590e2c90c1ca15d9fa7529625e5c5a5b391f847dbe8a3.png"><img alt="_images/85de43332e59400d73b590e2c90c1ca15d9fa7529625e5c5a5b391f847dbe8a3.png" src="_images/85de43332e59400d73b590e2c90c1ca15d9fa7529625e5c5a5b391f847dbe8a3.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/64582ca96b9bc3336c4d9e163891c6f934e413d791bf125a7dd624f9e0d0fcf4.png"><img alt="_images/64582ca96b9bc3336c4d9e163891c6f934e413d791bf125a7dd624f9e0d0fcf4.png" src="_images/64582ca96b9bc3336c4d9e163891c6f934e413d791bf125a7dd624f9e0d0fcf4.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>When we use a larger bandwidth, the KDE is smoother.</p>
@@ -1299,7 +1302,7 @@ Name: Adj Close, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/10d83f77bb8566ce502f277f30934b0702cfa230681fae2671e464e7839e51f1.png"><img alt="_images/10d83f77bb8566ce502f277f30934b0702cfa230681fae2671e464e7839e51f1.png" src="_images/10d83f77bb8566ce502f277f30934b0702cfa230681fae2671e464e7839e51f1.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/35c2942613b74a4930e961d1f39cd06345213ff948cb92ab3afc6953b5c886b3.png"><img alt="_images/35c2942613b74a4930e961d1f39cd06345213ff948cb92ab3afc6953b5c886b3.png" src="_images/35c2942613b74a4930e961d1f39cd06345213ff948cb92ab3afc6953b5c886b3.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>Violin plots are particularly useful when we want to compare different distributions.</p>
@@ -1331,7 +1334,7 @@ Name: Adj Close, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/c9641ce0c233827f87b814bde1c892aa45a4f80437fd3b7978c3d98987b2e003.png"><img alt="_images/c9641ce0c233827f87b814bde1c892aa45a4f80437fd3b7978c3d98987b2e003.png" src="_images/c9641ce0c233827f87b814bde1c892aa45a4f80437fd3b7978c3d98987b2e003.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/8733efb56e4d5f4d21fbf169b5f15c989b8e4efd1b091b96dc3ac43e6c5b4203.png"><img alt="_images/8733efb56e4d5f4d21fbf169b5f15c989b8e4efd1b091b96dc3ac43e6c5b4203.png" src="_images/8733efb56e4d5f4d21fbf169b5f15c989b8e4efd1b091b96dc3ac43e6c5b4203.png" style="width: 80%;" /></a>
 </div>
 </div>
 </section>
@@ -1365,7 +1368,7 @@ Name: Adj Close, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/69542c9dbd3e45f5ff30ba4d702a27b186f2a4885002d5d34efae0778c3f09fc.png"><img alt="_images/69542c9dbd3e45f5ff30ba4d702a27b186f2a4885002d5d34efae0778c3f09fc.png" src="_images/69542c9dbd3e45f5ff30ba4d702a27b186f2a4885002d5d34efae0778c3f09fc.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/77c11298eda5cbe4a9de9dbff4c2539aa0fdf68ac0c468d20179b693db8f72b8.png"><img alt="_images/77c11298eda5cbe4a9de9dbff4c2539aa0fdf68ac0c468d20179b693db8f72b8.png" src="_images/77c11298eda5cbe4a9de9dbff4c2539aa0fdf68ac0c468d20179b693db8f72b8.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>The match between the histogram and the density is not very bad but also not very good.</p>
@@ -1391,7 +1394,7 @@ Name: Adj Close, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/aeb95f099b3f2fa15b482923e6bc746215ba9c7b9ca8c8684980c13dfc738c5b.png"><img alt="_images/aeb95f099b3f2fa15b482923e6bc746215ba9c7b9ca8c8684980c13dfc738c5b.png" src="_images/aeb95f099b3f2fa15b482923e6bc746215ba9c7b9ca8c8684980c13dfc738c5b.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/7b706f9cdae63fa134033406cbd73a4d5ca610c8fc3e96878f8d43c47bd239af.png"><img alt="_images/7b706f9cdae63fa134033406cbd73a4d5ca610c8fc3e96878f8d43c47bd239af.png" src="_images/7b706f9cdae63fa134033406cbd73a4d5ca610c8fc3e96878f8d43c47bd239af.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>Note that if you keep increasing <span class="math notranslate nohighlight">\(N\)</span>, which is the number of observations, the fit will get better and better.</p>

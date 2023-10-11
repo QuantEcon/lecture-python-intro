@@ -375,7 +375,7 @@ to move.</p>
                 <span class="n">agents</span><span class="p">,</span>                <span class="c1"># List of other agents</span>
                 <span class="n">num_neighbors</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>      <span class="c1"># No. of agents viewed as neighbors</span>
                 <span class="n">require_same_type</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>  <span class="c1"># How many neighbors must be same type</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">            True if a sufficient number of nearest neighbors are of the same</span>
 <span class="sd">            type.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -503,7 +503,7 @@ plot the distribution
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/746b997a03d7e46865fb0e7811b6c91eacde2c3277f2400a6734c0cdbcd74cec.png"><img alt="_images/746b997a03d7e46865fb0e7811b6c91eacde2c3277f2400a6734c0cdbcd74cec.png" src="_images/746b997a03d7e46865fb0e7811b6c91eacde2c3277f2400a6734c0cdbcd74cec.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/d68e70fe5ec848527cd0471c4a6941d19f2a30338f644ff10651bc1cc17c38b6.png"><img alt="_images/d68e70fe5ec848527cd0471c4a6941d19f2a30338f644ff10651bc1cc17c38b6.png" src="_images/d68e70fe5ec848527cd0471c4a6941d19f2a30338f644ff10651bc1cc17c38b6.png" style="width: 80%;" /></a>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Entering loop  1
 </pre></div>
 </div>
@@ -525,7 +525,7 @@ plot the distribution
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Entering loop  7
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="_images/f8d8e61a10c430fc3590376f8d8d83bf5e588fa3b3803a8029ea333cdaa22e2f.png"><img alt="_images/f8d8e61a10c430fc3590376f8d8d83bf5e588fa3b3803a8029ea333cdaa22e2f.png" src="_images/f8d8e61a10c430fc3590376f8d8d83bf5e588fa3b3803a8029ea333cdaa22e2f.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/64ee08edea71ff95df3ac3e447ecf74a8ba661975ce4c0d3ed4452d9dc050daf.png"><img alt="_images/64ee08edea71ff95df3ac3e447ecf74a8ba661975ce4c0d3ed4452d9dc050daf.png" src="_images/64ee08edea71ff95df3ac3e447ecf74a8ba661975ce4c0d3ed4452d9dc050daf.png" style="width: 80%;" /></a>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Converged after 8 iterations.
 </pre></div>
 </div>
@@ -587,7 +587,7 @@ with small probability, is replaced by an agent of the other type.)</p>
 
 
 <span class="k">def</span> <span class="nf">compute_distances_from_loc</span><span class="p">(</span><span class="n">loc</span><span class="p">,</span> <span class="n">locations</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; Compute distance from location loc to all other points. &quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Compute distance from location loc to all other points. &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">loc</span> <span class="o">-</span> <span class="n">locations</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">get_neighbors</span><span class="p">(</span><span class="n">loc</span><span class="p">,</span> <span class="n">locations</span><span class="p">):</span>
@@ -638,7 +638,7 @@ with small probability, is replaced by an agent of the other type.)</p>
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
 <span class="k">def</span> <span class="nf">sim_random_select</span><span class="p">(</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">100_000</span><span class="p">,</span> <span class="n">flip_prob</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">test_freq</span><span class="o">=</span><span class="mi">10_000</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Simulate by randomly selecting one household at each update.</span>
 
 <span class="sd">    Flip the color of the household with probability `flip_prob`.</span>
@@ -688,12 +688,12 @@ with small probability, is replaced by an agent of the other type.)</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/232aef55b9d84e0edb363a9ebad0d268016d29a171c2a53737287a8b9c3932cb.png"><img alt="_images/232aef55b9d84e0edb363a9ebad0d268016d29a171c2a53737287a8b9c3932cb.png" src="_images/232aef55b9d84e0edb363a9ebad0d268016d29a171c2a53737287a8b9c3932cb.png" style="width: 80%;" /></a>
-<a class="reference internal image-reference" href="_images/cd2b6c220423899e5219da5c728a6c90115a6248c46fcf91c40a1a2993b58c4d.png"><img alt="_images/cd2b6c220423899e5219da5c728a6c90115a6248c46fcf91c40a1a2993b58c4d.png" src="_images/cd2b6c220423899e5219da5c728a6c90115a6248c46fcf91c40a1a2993b58c4d.png" style="width: 80%;" /></a>
-<a class="reference internal image-reference" href="_images/ae7996f1077b562df82413b29dd39c59b0ed6e6902366157c96f14a0fa073f5b.png"><img alt="_images/ae7996f1077b562df82413b29dd39c59b0ed6e6902366157c96f14a0fa073f5b.png" src="_images/ae7996f1077b562df82413b29dd39c59b0ed6e6902366157c96f14a0fa073f5b.png" style="width: 80%;" /></a>
-<a class="reference internal image-reference" href="_images/769ea4c1b2c2b835500f065930b3e7be406e50b10531ebafb32f1e1939b605ad.png"><img alt="_images/769ea4c1b2c2b835500f065930b3e7be406e50b10531ebafb32f1e1939b605ad.png" src="_images/769ea4c1b2c2b835500f065930b3e7be406e50b10531ebafb32f1e1939b605ad.png" style="width: 80%;" /></a>
-<a class="reference internal image-reference" href="_images/49c35c9ab42cc817fb89f9910f4fcf8f69595f9ca72a01ba60309ac8192bb565.png"><img alt="_images/49c35c9ab42cc817fb89f9910f4fcf8f69595f9ca72a01ba60309ac8192bb565.png" src="_images/49c35c9ab42cc817fb89f9910f4fcf8f69595f9ca72a01ba60309ac8192bb565.png" style="width: 80%;" /></a>
-<a class="reference internal image-reference" href="_images/acbf65bc1ebf66a2a6b28e10dd8a7364649cec7b2d1125e8d552583630e793d6.png"><img alt="_images/acbf65bc1ebf66a2a6b28e10dd8a7364649cec7b2d1125e8d552583630e793d6.png" src="_images/acbf65bc1ebf66a2a6b28e10dd8a7364649cec7b2d1125e8d552583630e793d6.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/6d692d9770d27e3c9d4a87b10649b72e65648cc91f1e40daebf9afa638c4c283.png"><img alt="_images/6d692d9770d27e3c9d4a87b10649b72e65648cc91f1e40daebf9afa638c4c283.png" src="_images/6d692d9770d27e3c9d4a87b10649b72e65648cc91f1e40daebf9afa638c4c283.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/77943d2f359ed72af76a774a6020dc9f61848665f0e88fe5d657d4e45130ff6e.png"><img alt="_images/77943d2f359ed72af76a774a6020dc9f61848665f0e88fe5d657d4e45130ff6e.png" src="_images/77943d2f359ed72af76a774a6020dc9f61848665f0e88fe5d657d4e45130ff6e.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/16cec14259df36c774a0c8f8701f568118cf400a91d47e3e9bb739fa005ffe8e.png"><img alt="_images/16cec14259df36c774a0c8f8701f568118cf400a91d47e3e9bb739fa005ffe8e.png" src="_images/16cec14259df36c774a0c8f8701f568118cf400a91d47e3e9bb739fa005ffe8e.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/35dcb745301857b77562b558b44bd2285714a8db997f486c77efc84e18466307.png"><img alt="_images/35dcb745301857b77562b558b44bd2285714a8db997f486c77efc84e18466307.png" src="_images/35dcb745301857b77562b558b44bd2285714a8db997f486c77efc84e18466307.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/92434d19c8b726bd702a53fd559286162647c7fbe3a6651c9612d94f31f7b268.png"><img alt="_images/92434d19c8b726bd702a53fd559286162647c7fbe3a6651c9612d94f31f7b268.png" src="_images/92434d19c8b726bd702a53fd559286162647c7fbe3a6651c9612d94f31f7b268.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/0298ce7496c4c0762a113fe68e531ec2c9f4e32ff3b116b751502d9759ef34dc.png"><img alt="_images/0298ce7496c4c0762a113fe68e531ec2c9f4e32ff3b116b751502d9759ef34dc.png" src="_images/0298ce7496c4c0762a113fe68e531ec2c9f4e32ff3b116b751502d9759ef34dc.png" style="width: 80%;" /></a>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Terminating at iteration 50001
 </pre></div>
 </div>

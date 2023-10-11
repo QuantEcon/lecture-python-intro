@@ -247,7 +247,7 @@ const thebe_selector_output = ".output, .cell_output"
 <h1><span class="section-number">33. </span>Networks<a class="headerlink" href="#networks" title="Permalink to this heading">#</a></h1>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input above-output-prompt docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip install quantecon-book-networks pandas-datareader
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>quantecon-book-networks<span class="w"> </span>pandas-datareader
 </pre></div>
 </div>
 </div>
@@ -257,33 +257,36 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="expanded">Hide code cell output</span>
 </summary>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: quantecon-book-networks in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (0.5.1)
-Requirement already satisfied: pandas-datareader in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (0.10.0)
-Requirement already satisfied: networkx in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from quantecon-book-networks) (2.8.4)
-Requirement already satisfied: numpy in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from quantecon-book-networks) (1.23.5)
-Requirement already satisfied: pandas in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from quantecon-book-networks) (1.5.3)
-Requirement already satisfied: scipy in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from quantecon-book-networks) (1.10.0)
-Requirement already satisfied: matplotlib in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from quantecon-book-networks) (3.7.0)
-Requirement already satisfied: requests&gt;=2.19.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from pandas-datareader) (2.31.0)
-Requirement already satisfied: lxml in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from pandas-datareader) (4.9.1)
-Requirement already satisfied: python-dateutil&gt;=2.8.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from pandas-&gt;quantecon-book-networks) (2.8.2)
-Requirement already satisfied: pytz&gt;=2020.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from pandas-&gt;quantecon-book-networks) (2022.7)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: quantecon-book-networks in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (0.5.1)
+Requirement already satisfied: pandas-datareader in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (0.10.0)
+Requirement already satisfied: numpy in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from quantecon-book-networks) (1.24.3)
+Requirement already satisfied: scipy in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from quantecon-book-networks) (1.11.1)
+Requirement already satisfied: pandas in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from quantecon-book-networks) (2.0.3)
+Requirement already satisfied: matplotlib in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from quantecon-book-networks) (3.7.2)
+Requirement already satisfied: networkx in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from quantecon-book-networks) (3.1)
+Requirement already satisfied: lxml in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from pandas-datareader) (4.9.3)
+Requirement already satisfied: requests&gt;=2.19.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from pandas-datareader) (2.31.0)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: idna&lt;4,&gt;=2.5 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests&gt;=2.19.0-&gt;pandas-datareader) (3.4)
-Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests&gt;=2.19.0-&gt;pandas-datareader) (2.0.4)
-Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests&gt;=2.19.0-&gt;pandas-datareader) (2022.12.7)
-Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests&gt;=2.19.0-&gt;pandas-datareader) (1.26.14)
-Requirement already satisfied: packaging&gt;=20.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from matplotlib-&gt;quantecon-book-networks) (21.3)
-Requirement already satisfied: contourpy&gt;=1.0.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from matplotlib-&gt;quantecon-book-networks) (1.0.5)
-Requirement already satisfied: pyparsing&gt;=2.3.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from matplotlib-&gt;quantecon-book-networks) (3.0.9)
-Requirement already satisfied: cycler&gt;=0.10 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from matplotlib-&gt;quantecon-book-networks) (0.11.0)
-Requirement already satisfied: fonttools&gt;=4.22.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from matplotlib-&gt;quantecon-book-networks) (4.25.0)
-Requirement already satisfied: pillow&gt;=6.2.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from matplotlib-&gt;quantecon-book-networks) (9.4.0)
-Requirement already satisfied: kiwisolver&gt;=1.0.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from matplotlib-&gt;quantecon-book-networks) (1.4.4)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: python-dateutil&gt;=2.8.2 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from pandas-&gt;quantecon-book-networks) (2.8.2)
+Requirement already satisfied: pytz&gt;=2020.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from pandas-&gt;quantecon-book-networks) (2023.3.post1)
+Requirement already satisfied: tzdata&gt;=2022.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from pandas-&gt;quantecon-book-networks) (2023.3)
+Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from requests&gt;=2.19.0-&gt;pandas-datareader) (2.0.4)
+Requirement already satisfied: idna&lt;4,&gt;=2.5 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from requests&gt;=2.19.0-&gt;pandas-datareader) (3.4)
+Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from requests&gt;=2.19.0-&gt;pandas-datareader) (1.26.16)
+Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from requests&gt;=2.19.0-&gt;pandas-datareader) (2023.7.22)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: six&gt;=1.5 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from python-dateutil&gt;=2.8.1-&gt;pandas-&gt;quantecon-book-networks) (1.16.0)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: contourpy&gt;=1.0.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from matplotlib-&gt;quantecon-book-networks) (1.0.5)
+Requirement already satisfied: cycler&gt;=0.10 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from matplotlib-&gt;quantecon-book-networks) (0.11.0)
+Requirement already satisfied: fonttools&gt;=4.22.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from matplotlib-&gt;quantecon-book-networks) (4.25.0)
+Requirement already satisfied: kiwisolver&gt;=1.0.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from matplotlib-&gt;quantecon-book-networks) (1.4.4)
+Requirement already satisfied: packaging&gt;=20.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from matplotlib-&gt;quantecon-book-networks) (23.1)
+Requirement already satisfied: pillow&gt;=6.2.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from matplotlib-&gt;quantecon-book-networks) (9.4.0)
+Requirement already satisfied: pyparsing&lt;3.1,&gt;=2.3.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from matplotlib-&gt;quantecon-book-networks) (3.0.9)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: six&gt;=1.5 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from python-dateutil&gt;=2.8.2-&gt;pandas-&gt;quantecon-book-networks) (1.16.0)
 </pre></div>
 </div>
 </div>
@@ -406,7 +409,7 @@ introductory.</p>
 </details>
 <div class="cell_output docutils container">
 <figure class="align-default" id="aircraft-network">
-<a class="reference internal image-reference" href="_images/7fc25140ac445f425564bb83b995187daa327893bf527bd681ec6c64a99a5c28.png"><img alt="_images/7fc25140ac445f425564bb83b995187daa327893bf527bd681ec6c64a99a5c28.png" src="_images/7fc25140ac445f425564bb83b995187daa327893bf527bd681ec6c64a99a5c28.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/de9a2cf010eb13ff15359adee4aaa1aa5c939755dd1845b85e20894abb8be0d1.png"><img alt="_images/de9a2cf010eb13ff15359adee4aaa1aa5c939755dd1845b85e20894abb8be0d1.png" src="_images/de9a2cf010eb13ff15359adee4aaa1aa5c939755dd1845b85e20894abb8be0d1.png" style="width: 80%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 33.1 </span><span class="caption-text">Commercial Aircraft Network</span><a class="headerlink" href="#aircraft-network" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -559,7 +562,7 @@ correct representation of our graph.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/f84049983fa398afabd71c0b6c49d99fea223d21c347d603ce3e60b2d6cd93b6.png"><img alt="_images/f84049983fa398afabd71c0b6c49d99fea223d21c347d603ce3e60b2d6cd93b6.png" src="_images/f84049983fa398afabd71c0b6c49d99fea223d21c347d603ce3e60b2d6cd93b6.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/f8f0d2bf5e5d121625ed884431292113911fb20f96da2e9ce62655b36e6bc284.png"><img alt="_images/f8f0d2bf5e5d121625ed884431292113911fb20f96da2e9ce62655b36e6bc284.png" src="_images/f8f0d2bf5e5d121625ed884431292113911fb20f96da2e9ce62655b36e6bc284.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>The figure obtained above matches the original directed graph in <a class="reference internal" href="#poverty-trap-2"><span class="std std-numref">Fig. 33.3</span></a>.</p>
@@ -614,7 +617,7 @@ however in <a class="reference internal" href="#poverty-trap-2"><span class="std
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/4db39ccb2183e136f8af49c918131755b0bc47c1bee3b43a038ec478ee423a5a.png"><img alt="_images/4db39ccb2183e136f8af49c918131755b0bc47c1bee3b43a038ec478ee423a5a.png" src="_images/4db39ccb2183e136f8af49c918131755b0bc47c1bee3b43a038ec478ee423a5a.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/9f418de8f7e0b79a7a46288feace9ac342e7a251c732d02c8c1a2f27c133ed58.png"><img alt="_images/9f418de8f7e0b79a7a46288feace9ac342e7a251c732d02c8c1a2f27c133ed58.png" src="_images/9f418de8f7e0b79a7a46288feace9ac342e7a251c732d02c8c1a2f27c133ed58.png" style="width: 80%;" /></a>
 </div>
 </div>
 <div class="cell docutils container">
@@ -643,7 +646,7 @@ however in <a class="reference internal" href="#poverty-trap-2"><span class="std
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/600b937f81d525ae4d21a04e3a74b0d85633682b4043668d0802fad19bddd7bc.png"><img alt="_images/600b937f81d525ae4d21a04e3a74b0d85633682b4043668d0802fad19bddd7bc.png" src="_images/600b937f81d525ae4d21a04e3a74b0d85633682b4043668d0802fad19bddd7bc.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/f2a7ccf7f94ba1662b7c5c9b5ff99ed3f1ca08900063d4d567758600eaa4bccc.png"><img alt="_images/f2a7ccf7f94ba1662b7c5c9b5ff99ed3f1ca08900063d4d567758600eaa4bccc.png" src="_images/f2a7ccf7f94ba1662b7c5c9b5ff99ed3f1ca08900063d4d567758600eaa4bccc.png" style="width: 80%;" /></a>
 </div>
 </div>
 <div class="cell docutils container">
@@ -733,7 +736,7 @@ loans) between private banks, grouped by country of origin.</p>
 </details>
 <div class="cell_output docutils container">
 <figure class="align-default" id="financial-network">
-<a class="reference internal image-reference" href="_images/fdc1b40ef4b55dd413dfcb4754a2b1892ec4863e055ee0cc535c554a4831e4ce.png"><img alt="_images/fdc1b40ef4b55dd413dfcb4754a2b1892ec4863e055ee0cc535c554a4831e4ce.png" src="_images/fdc1b40ef4b55dd413dfcb4754a2b1892ec4863e055ee0cc535c554a4831e4ce.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/ec777f3f41bd64e74bd85c1b5e5b75f63d708ee31a7e96741e4f4945b12394f4.png"><img alt="_images/ec777f3f41bd64e74bd85c1b5e5b75f63d708ee31a7e96741e4f4945b12394f4.png" src="_images/ec777f3f41bd64e74bd85c1b5e5b75f63d708ee31a7e96741e4f4945b12394f4.png" style="width: 80%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 33.4 </span><span class="caption-text">International Credit Network</span><a class="headerlink" href="#financial-network" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -901,7 +904,7 @@ and edges showing the flow of funds.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/f4c2ef903c6fa1f4820fa40d2c34d803dc9e3578d812b3b504bb39f36664e14e.png"><img alt="_images/f4c2ef903c6fa1f4820fa40d2c34d803dc9e3578d812b3b504bb39f36664e14e.png" src="_images/f4c2ef903c6fa1f4820fa40d2c34d803dc9e3578d812b3b504bb39f36664e14e.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/fdf8b27ddbf28cf2726edbd51f48200e8fa0c9f4227650c4d9dd2072a17f1eb5.png"><img alt="_images/fdf8b27ddbf28cf2726edbd51f48200e8fa0c9f4227650c4d9dd2072a17f1eb5.png" src="_images/fdf8b27ddbf28cf2726edbd51f48200e8fa0c9f4227650c4d9dd2072a17f1eb5.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>We see that bank 2 extends a loan of size 200 to bank 3.</p>
@@ -957,7 +960,7 @@ A^\top =
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/e122cec101390d1d13575fae410ed597c5cbebf4c7584742fb703ded87bc65de.png"><img alt="_images/e122cec101390d1d13575fae410ed597c5cbebf4c7584742fb703ded87bc65de.png" src="_images/e122cec101390d1d13575fae410ed597c5cbebf4c7584742fb703ded87bc65de.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/7c9ac95b925164ef6866e1c16b0b4d13de5b81d3c3968fa257439b98324fc0c1.png"><img alt="_images/7c9ac95b925164ef6866e1c16b0b4d13de5b81d3c3968fa257439b98324fc0c1.png" src="_images/7c9ac95b925164ef6866e1c16b0b4d13de5b81d3c3968fa257439b98324fc0c1.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>In general, every nonnegative <span class="math notranslate nohighlight">\(n \times n\)</span> matrix <span class="math notranslate nohighlight">\(A = (a_{ij})\)</span> can be
@@ -1113,7 +1116,7 @@ the graph.</p>
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="sample-gph-1">
-<a class="reference internal image-reference" href="_images/72fc665e05c77096f363dbe2ebe28dbdb830adafa58d9491947c81a2dceec0c3.png"><img alt="_images/72fc665e05c77096f363dbe2ebe28dbdb830adafa58d9491947c81a2dceec0c3.png" src="_images/72fc665e05c77096f363dbe2ebe28dbdb830adafa58d9491947c81a2dceec0c3.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/769c9158ee9afb0c767410b138ff82a6d16271e1d820dd44c5e2ac71538a8c77.png"><img alt="_images/769c9158ee9afb0c767410b138ff82a6d16271e1d820dd44c5e2ac71538a8c77.png" src="_images/769c9158ee9afb0c767410b138ff82a6d16271e1d820dd44c5e2ac71538a8c77.png" style="width: 80%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 33.6 </span><span class="caption-text">Sample Graph</span><a class="headerlink" href="#sample-gph-1" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -1182,7 +1185,7 @@ the graph.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/4d339272f939cc5a0021918d8b75e112ed89ac9a5e4540b6d152c5de48e74875.png"><img alt="_images/4d339272f939cc5a0021918d8b75e112ed89ac9a5e4540b6d152c5de48e74875.png" src="_images/4d339272f939cc5a0021918d8b75e112ed89ac9a5e4540b6d152c5de48e74875.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/e319550bdbd3a17deefc2a1bcc01c562e6714d99e0a4c4535a174d91ebea9b53.png"><img alt="_images/e319550bdbd3a17deefc2a1bcc01c562e6714d99e0a4c4535a174d91ebea9b53.png" src="_images/e319550bdbd3a17deefc2a1bcc01c562e6714d99e0a4c4535a174d91ebea9b53.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>Unfortunately, while in-degree and out-degree centrality are simple to
@@ -1250,7 +1253,7 @@ flow backwards through the network.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">eigenvector_centrality</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">authority</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Computes the dominant eigenvector of A. Assumes A is</span>
 <span class="sd">    primitive and uses the power method.</span>
 
@@ -1321,7 +1324,7 @@ highest eigenvector centrality.</p>
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="eigenvctr-centrality">
-<a class="reference internal image-reference" href="_images/cb7a8e5f11613f84a4834fd303f59c293922d23077ab6da9130360b2ba7d0f8f.png"><img alt="_images/cb7a8e5f11613f84a4834fd303f59c293922d23077ab6da9130360b2ba7d0f8f.png" src="_images/cb7a8e5f11613f84a4834fd303f59c293922d23077ab6da9130360b2ba7d0f8f.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/d29e7b2b2b7d7997679db4a46e43b815e537ea57ca6c4e3de08b50fbfe90fa5a.png"><img alt="_images/d29e7b2b2b7d7997679db4a46e43b815e537ea57ca6c4e3de08b50fbfe90fa5a.png" src="_images/d29e7b2b2b7d7997679db4a46e43b815e537ea57ca6c4e3de08b50fbfe90fa5a.png" style="width: 80%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 33.7 </span><span class="caption-text">Eigenvector centrality</span><a class="headerlink" href="#eigenvctr-centrality" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -1432,7 +1435,7 @@ credit network shown in <a class="reference internal" href="#financial-network">
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="id3">
-<a class="reference internal image-reference" href="_images/d2a4ec8184fb6d5d72232d8efb21e77d288a43b7edf358a477cdf42451bd1068.png"><img alt="_images/d2a4ec8184fb6d5d72232d8efb21e77d288a43b7edf358a477cdf42451bd1068.png" src="_images/d2a4ec8184fb6d5d72232d8efb21e77d288a43b7edf358a477cdf42451bd1068.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/b543110aff394357c393742913de47dfbf5fe5ecb9149ad443bf2b469a8e422c.png"><img alt="_images/b543110aff394357c393742913de47dfbf5fe5ecb9149ad443bf2b469a8e422c.png" src="_images/b543110aff394357c393742913de47dfbf5fe5ecb9149ad443bf2b469a8e422c.png" style="width: 80%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 33.8 </span><span class="caption-text">Eigenvector authority</span><a class="headerlink" href="#id3" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -1533,7 +1536,7 @@ of G.</p></li>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/a1686925c5a315dea4ccb9796456f434f69014f6047a96bb4959ee4c69c79a4f.png"><img alt="_images/a1686925c5a315dea4ccb9796456f434f69014f6047a96bb4959ee4c69c79a4f.png" src="_images/a1686925c5a315dea4ccb9796456f434f69014f6047a96bb4959ee4c69c79a4f.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/13e41bc991921cba081778f83148fdea5e9668cecc5adeed0531aa404f2c05d5.png"><img alt="_images/13e41bc991921cba081778f83148fdea5e9668cecc5adeed0531aa404f2c05d5.png" src="_images/13e41bc991921cba081778f83148fdea5e9668cecc5adeed0531aa404f2c05d5.png" style="width: 80%;" /></a>
 </div>
 </div>
 <div class="cell docutils container">

@@ -235,8 +235,8 @@ const thebe_selector_output = ".output, .cell_output"
 <p>In addition to the packages already installed by Anaconda, this lecture requires</p>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input above-output-prompt docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip install wbgapi
-<span class="o">!</span>pip install pandas-datareader
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>wbgapi
+<span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>pandas-datareader
 </pre></div>
 </div>
 </div>
@@ -250,13 +250,15 @@ const thebe_selector_output = ".output, .cell_output"
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Downloading wbgapi-1.0.12-py3-none-any.whl (36 kB)
-Requirement already satisfied: tabulate in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from wbgapi) (0.8.10)
-Requirement already satisfied: PyYAML in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from wbgapi) (6.0)
-Requirement already satisfied: requests in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from wbgapi) (2.28.1)
-Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests-&gt;wbgapi) (2022.12.7)
-Requirement already satisfied: charset-normalizer&lt;3,&gt;=2 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests-&gt;wbgapi) (2.0.4)
-Requirement already satisfied: urllib3&lt;1.27,&gt;=1.21.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests-&gt;wbgapi) (1.26.14)
-Requirement already satisfied: idna&lt;4,&gt;=2.5 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests-&gt;wbgapi) (3.4)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: requests in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from wbgapi) (2.31.0)
+Requirement already satisfied: PyYAML in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from wbgapi) (6.0)
+Requirement already satisfied: tabulate in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from wbgapi) (0.8.10)
+Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from requests-&gt;wbgapi) (2.0.4)
+Requirement already satisfied: idna&lt;4,&gt;=2.5 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from requests-&gt;wbgapi) (3.4)
+Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from requests-&gt;wbgapi) (1.26.16)
+Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from requests-&gt;wbgapi) (2023.7.22)
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Installing collected packages: wbgapi
@@ -270,20 +272,21 @@ Requirement already satisfied: idna&lt;4,&gt;=2.5 in /usr/share/miniconda3/envs/
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Downloading pandas_datareader-0.10.0-py3-none-any.whl (109 kB)
 ?25l     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/109.5 kB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">109.5/109.5 kB</span> <span class=" -Color -Color-Red">11.3 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
-?25hRequirement already satisfied: requests&gt;=2.19.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from pandas-datareader) (2.28.1)
-Requirement already satisfied: pandas&gt;=0.23 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from pandas-datareader) (1.5.3)
-Requirement already satisfied: lxml in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from pandas-datareader) (4.9.1)
-Requirement already satisfied: python-dateutil&gt;=2.8.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from pandas&gt;=0.23-&gt;pandas-datareader) (2.8.2)
-Requirement already satisfied: pytz&gt;=2020.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from pandas&gt;=0.23-&gt;pandas-datareader) (2022.7)
-Requirement already satisfied: numpy&gt;=1.21.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from pandas&gt;=0.23-&gt;pandas-datareader) (1.23.5)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">109.5/109.5 kB</span> <span class=" -Color -Color-Red">6.7 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hRequirement already satisfied: lxml in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from pandas-datareader) (4.9.3)
+Requirement already satisfied: pandas&gt;=0.23 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from pandas-datareader) (2.0.3)
+Requirement already satisfied: requests&gt;=2.19.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from pandas-datareader) (2.31.0)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: charset-normalizer&lt;3,&gt;=2 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests&gt;=2.19.0-&gt;pandas-datareader) (2.0.4)
-Requirement already satisfied: idna&lt;4,&gt;=2.5 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests&gt;=2.19.0-&gt;pandas-datareader) (3.4)
-Requirement already satisfied: urllib3&lt;1.27,&gt;=1.21.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests&gt;=2.19.0-&gt;pandas-datareader) (1.26.14)
-Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests&gt;=2.19.0-&gt;pandas-datareader) (2022.12.7)
-Requirement already satisfied: six&gt;=1.5 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from python-dateutil&gt;=2.8.1-&gt;pandas&gt;=0.23-&gt;pandas-datareader) (1.16.0)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: python-dateutil&gt;=2.8.2 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from pandas&gt;=0.23-&gt;pandas-datareader) (2.8.2)
+Requirement already satisfied: pytz&gt;=2020.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from pandas&gt;=0.23-&gt;pandas-datareader) (2023.3.post1)
+Requirement already satisfied: tzdata&gt;=2022.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from pandas&gt;=0.23-&gt;pandas-datareader) (2023.3)
+Requirement already satisfied: numpy&gt;=1.21.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from pandas&gt;=0.23-&gt;pandas-datareader) (1.24.3)
+Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from requests&gt;=2.19.0-&gt;pandas-datareader) (2.0.4)
+Requirement already satisfied: idna&lt;4,&gt;=2.5 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from requests&gt;=2.19.0-&gt;pandas-datareader) (3.4)
+Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from requests&gt;=2.19.0-&gt;pandas-datareader) (1.26.16)
+Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from requests&gt;=2.19.0-&gt;pandas-datareader) (2023.7.22)
+Requirement already satisfied: six&gt;=1.5 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from python-dateutil&gt;=2.8.2-&gt;pandas&gt;=0.23-&gt;pandas-datareader) (1.16.0)
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Installing collected packages: pandas-datareader
@@ -824,7 +827,7 @@ Growth rates of GDP and its components are calculated using the least squares me
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_series</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">country</span><span class="p">,</span> <span class="n">ylabel</span><span class="p">,</span> 
                 <span class="n">txt_pos</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="n">g_params</span><span class="p">,</span>
                 <span class="n">b_params</span><span class="p">,</span> <span class="n">t_params</span><span class="p">,</span> <span class="n">ylim</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">baseline</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Plots a time series with recessions highlighted. </span>
 
 <span class="sd">    Parameters</span>
@@ -911,7 +914,7 @@ Growth rates of GDP and its components are calculated using the least squares me
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="us-gdp">
-<a class="reference internal image-reference" href="_images/bfd6703a7df7c98f22a79a3f3a78db6504e814ad41df8b5667569697d0625767.png"><img alt="_images/bfd6703a7df7c98f22a79a3f3a78db6504e814ad41df8b5667569697d0625767.png" src="_images/bfd6703a7df7c98f22a79a3f3a78db6504e814ad41df8b5667569697d0625767.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/ab1e68fc3f54fd4076c3307d147c16c3ad999e4684a23a0a8997908425efbc07.png"><img alt="_images/ab1e68fc3f54fd4076c3307d147c16c3ad999e4684a23a0a8997908425efbc07.png" src="_images/ab1e68fc3f54fd4076c3307d147c16c3ad999e4684a23a0a8997908425efbc07.png" style="width: 80%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 3.1 </span><span class="caption-text">United States (GDP growth rate %)</span><a class="headerlink" href="#us-gdp" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -938,7 +941,7 @@ in the growth rate and significant fluctuations.</p>
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="uk-gdp">
-<a class="reference internal image-reference" href="_images/8b8884eea04051bbf11779f22e2b18c4bd6d1133f2b2b6e7e09fe36138911b21.png"><img alt="_images/8b8884eea04051bbf11779f22e2b18c4bd6d1133f2b2b6e7e09fe36138911b21.png" src="_images/8b8884eea04051bbf11779f22e2b18c4bd6d1133f2b2b6e7e09fe36138911b21.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/12c53c536f1313cbda3aa2700637bcb1383a2996a17d530a36d5d5bb027520cb.png"><img alt="_images/12c53c536f1313cbda3aa2700637bcb1383a2996a17d530a36d5d5bb027520cb.png" src="_images/12c53c536f1313cbda3aa2700637bcb1383a2996a17d530a36d5d5bb027520cb.png" style="width: 80%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 3.2 </span><span class="caption-text">United Kingdom (GDP growth rate %)</span><a class="headerlink" href="#uk-gdp" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -963,7 +966,7 @@ Global Financial Crisis (GFC) and the Covid-19 pandemic.</p>
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="jp-gdp">
-<a class="reference internal image-reference" href="_images/954d0143716f666b95cc5fc95d6bf99222f779f4738cc319468ffb0e49717e48.png"><img alt="_images/954d0143716f666b95cc5fc95d6bf99222f779f4738cc319468ffb0e49717e48.png" src="_images/954d0143716f666b95cc5fc95d6bf99222f779f4738cc319468ffb0e49717e48.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/cb886a36aa88dbfe1a6b35460dfa43aefad32d252c489000245a3540ddc05bce.png"><img alt="_images/cb886a36aa88dbfe1a6b35460dfa43aefad32d252c489000245a3540ddc05bce.png" src="_images/cb886a36aa88dbfe1a6b35460dfa43aefad32d252c489000245a3540ddc05bce.png" style="width: 80%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 3.3 </span><span class="caption-text">Japan (GDP growth rate %)</span><a class="headerlink" href="#jp-gdp" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -985,7 +988,7 @@ Global Financial Crisis (GFC) and the Covid-19 pandemic.</p>
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="gc-gdp">
-<a class="reference internal image-reference" href="_images/54c72ae04584e42d69b30fbebcf8d8266843384f8c68a1d6cbc55bd3f71c69c4.png"><img alt="_images/54c72ae04584e42d69b30fbebcf8d8266843384f8c68a1d6cbc55bd3f71c69c4.png" src="_images/54c72ae04584e42d69b30fbebcf8d8266843384f8c68a1d6cbc55bd3f71c69c4.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/7a7b85890a21081867520495502419ca2b10a7814fd5d3da2acaaefcb305b3fc.png"><img alt="_images/7a7b85890a21081867520495502419ca2b10a7814fd5d3da2acaaefcb305b3fc.png" src="_images/7a7b85890a21081867520495502419ca2b10a7814fd5d3da2acaaefcb305b3fc.png" style="width: 80%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 3.4 </span><span class="caption-text">Greece (GDP growth rate %)</span><a class="headerlink" href="#gc-gdp" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -1009,7 +1012,7 @@ of the Greek debt crisis.</p>
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="arg-gdp">
-<a class="reference internal image-reference" href="_images/e3f575df753be0495e662d915c22eff98ab2d057ff76df70581a0e5f8b201464.png"><img alt="_images/e3f575df753be0495e662d915c22eff98ab2d057ff76df70581a0e5f8b201464.png" src="_images/e3f575df753be0495e662d915c22eff98ab2d057ff76df70581a0e5f8b201464.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/8c27a2f39be6df5246d531ce5991e0decdb52d44fdbcedc1a804be2bf6afacaa.png"><img alt="_images/8c27a2f39be6df5246d531ce5991e0decdb52d44fdbcedc1a804be2bf6afacaa.png" src="_images/8c27a2f39be6df5246d531ce5991e0decdb52d44fdbcedc1a804be2bf6afacaa.png" style="width: 80%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 3.5 </span><span class="caption-text">Argentina (GDP growth rate %)</span><a class="headerlink" href="#arg-gdp" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -1105,7 +1108,7 @@ defined by the NBER.</p>
 </details>
 <div class="cell_output docutils container">
 <figure class="align-default" id="lrunrate">
-<a class="reference internal image-reference" href="_images/f4a35d653bcbc0c8be1d099b61bdcde0a7eeb38b63da9461847f9a1f7daa1ff1.png"><img alt="_images/f4a35d653bcbc0c8be1d099b61bdcde0a7eeb38b63da9461847f9a1f7daa1ff1.png" src="_images/f4a35d653bcbc0c8be1d099b61bdcde0a7eeb38b63da9461847f9a1f7daa1ff1.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/8f5d7a838203729ee2b64fe664317f6970b660fa56180a020fe6865e8dfb1f5d.png"><img alt="_images/8f5d7a838203729ee2b64fe664317f6970b660fa56180a020fe6865e8dfb1f5d.png" src="_images/8f5d7a838203729ee2b64fe664317f6970b660fa56180a020fe6865e8dfb1f5d.png" style="width: 80%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 3.6 </span><span class="caption-text">Long-run unemployment rate, US (%)</span><a class="headerlink" href="#lrunrate" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -1142,7 +1145,7 @@ that includes multiple countries.</p>
                         <span class="n">ylabel</span><span class="p">,</span> <span class="n">txt_pos</span><span class="p">,</span> <span class="n">y_lim</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> 
                         <span class="n">g_params</span><span class="p">,</span> <span class="n">b_params</span><span class="p">,</span> <span class="n">t_params</span><span class="p">,</span> 
                         <span class="n">baseline</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Plot multiple series on the same graph</span>
 
 <span class="sd">    Parameters</span>
@@ -1253,7 +1256,7 @@ that includes multiple countries.</p>
 </details>
 <div class="cell_output docutils container">
 <figure class="align-default" id="adv-gdp">
-<a class="reference internal image-reference" href="_images/ae414d15385b798019d55bf20991cb506dd25edad3b122d129f3cd0bad0d36a7.png"><img alt="_images/ae414d15385b798019d55bf20991cb506dd25edad3b122d129f3cd0bad0d36a7.png" src="_images/ae414d15385b798019d55bf20991cb506dd25edad3b122d129f3cd0bad0d36a7.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/88e81e4664b7a362da8b688b753501439fe7b9ebc1645ce418fcd7e3e8204256.png"><img alt="_images/88e81e4664b7a362da8b688b753501439fe7b9ebc1645ce418fcd7e3e8204256.png" src="_images/88e81e4664b7a362da8b688b753501439fe7b9ebc1645ce418fcd7e3e8204256.png" style="width: 80%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 3.7 </span><span class="caption-text">Developed economies (GDP growth rate %)</span><a class="headerlink" href="#adv-gdp" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -1281,7 +1284,7 @@ that includes multiple countries.</p>
 </details>
 <div class="cell_output docutils container">
 <figure class="align-default" id="deve-gdp">
-<a class="reference internal image-reference" href="_images/55293b4ab876babbe4d88e2d86a74aaa0dc2d7d4dda6502052e0921f122a1341.png"><img alt="_images/55293b4ab876babbe4d88e2d86a74aaa0dc2d7d4dda6502052e0921f122a1341.png" src="_images/55293b4ab876babbe4d88e2d86a74aaa0dc2d7d4dda6502052e0921f122a1341.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/a7571a6835548fa56c6887a2b1c6401b8098b32a7a0f3242853fb1fe707da011.png"><img alt="_images/a7571a6835548fa56c6887a2b1c6401b8098b32a7a0f3242853fb1fe707da011.png" src="_images/a7571a6835548fa56c6887a2b1c6401b8098b32a7a0f3242853fb1fe707da011.png" style="width: 80%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 3.8 </span><span class="caption-text">Developing economies (GDP growth rate %)</span><a class="headerlink" href="#deve-gdp" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -1324,7 +1327,7 @@ the United Kingdom, Japan, and France.</p>
 </details>
 <div class="cell_output docutils container">
 <figure class="align-default" id="adv-unemp">
-<a class="reference internal image-reference" href="_images/c4ac99d2e7ca874797ec38763e1de76694eb78d0c188c326e14a2bc782befe0e.png"><img alt="_images/c4ac99d2e7ca874797ec38763e1de76694eb78d0c188c326e14a2bc782befe0e.png" src="_images/c4ac99d2e7ca874797ec38763e1de76694eb78d0c188c326e14a2bc782befe0e.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/4585c5f2f64bd72fd1704e93f504843408613f088d63ed7c7add63c9998939b3.png"><img alt="_images/4585c5f2f64bd72fd1704e93f504843408613f088d63ed7c7add63c9998939b3.png" src="_images/4585c5f2f64bd72fd1704e93f504843408613f088d63ed7c7add63c9998939b3.png" style="width: 80%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 3.9 </span><span class="caption-text">Developed economies (unemployment rate %)</span><a class="headerlink" href="#adv-unemp" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -1413,7 +1416,7 @@ year-on-year
 </details>
 <div class="cell_output docutils container">
 <figure class="align-default" id="csicpi">
-<a class="reference internal image-reference" href="_images/44f2d399eeb4b4a47ae5c2e4acfdb1eac23747b098c0608088c36573f07a1ec7.png"><img alt="_images/44f2d399eeb4b4a47ae5c2e4acfdb1eac23747b098c0608088c36573f07a1ec7.png" src="_images/44f2d399eeb4b4a47ae5c2e4acfdb1eac23747b098c0608088c36573f07a1ec7.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/ef67eede868f9f93142f7e59908013c9a63a53ef55a4cd7fb8a1bf579a264b6e.png"><img alt="_images/ef67eede868f9f93142f7e59908013c9a63a53ef55a4cd7fb8a1bf579a264b6e.png" src="_images/ef67eede868f9f93142f7e59908013c9a63a53ef55a4cd7fb8a1bf579a264b6e.png" style="width: 80%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 3.10 </span><span class="caption-text">Consumer sentiment index and YoY CPI change, US</span><a class="headerlink" href="#csicpi" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -1470,7 +1473,7 @@ from 1919 to 2022 in the US to show this trend.</p>
 </details>
 <div class="cell_output docutils container">
 <figure class="align-default" id="roc">
-<a class="reference internal image-reference" href="_images/e85ce4237b3c86bef52bc91647fa7c1b9e425429c27d91d2764bac829a525cd3.png"><img alt="_images/e85ce4237b3c86bef52bc91647fa7c1b9e425429c27d91d2764bac829a525cd3.png" src="_images/e85ce4237b3c86bef52bc91647fa7c1b9e425429c27d91d2764bac829a525cd3.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/0d277e084caed289bb2687a391d99ef4c10517922a1feb1d34df1ce83eb28023.png"><img alt="_images/0d277e084caed289bb2687a391d99ef4c10517922a1feb1d34df1ce83eb28023.png" src="_images/0d277e084caed289bb2687a391d99ef4c10517922a1feb1d34df1ce83eb28023.png" style="width: 80%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 3.11 </span><span class="caption-text">YoY real output change, US (%)</span><a class="headerlink" href="#roc" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -1514,7 +1517,7 @@ percentage of GDP by banks from 1970 to 2022 in the UK.</p>
 </details>
 <div class="cell_output docutils container">
 <figure class="align-default" id="dcpc">
-<a class="reference internal image-reference" href="_images/3a01a5ed1692387a86d9440347c11152241d0af0a54b733ca606c1d5ccd99629.png"><img alt="_images/3a01a5ed1692387a86d9440347c11152241d0af0a54b733ca606c1d5ccd99629.png" src="_images/3a01a5ed1692387a86d9440347c11152241d0af0a54b733ca606c1d5ccd99629.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/3955feca5ed50fdd430c3d3c282fb1c62a771504557f42e108de2072bdef343f.png"><img alt="_images/3955feca5ed50fdd430c3d3c282fb1c62a771504557f42e108de2072bdef343f.png" src="_images/3955feca5ed50fdd430c3d3c282fb1c62a771504557f42e108de2072bdef343f.png" style="width: 80%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 3.12 </span><span class="caption-text">Domestic credit to private sector by banks (% of GDP)</span><a class="headerlink" href="#dcpc" title="Permalink to this image">#</a></p>
 </figcaption>

@@ -272,7 +272,7 @@ const thebe_selector_output = ".output, .cell_output"
 <p>In addition to what’s in Anaconda, this lecture will need the following libraries:</p>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input above-output-prompt docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip install --upgrade yfinance quantecon pandas_datareader interpolation
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>yfinance<span class="w"> </span>quantecon<span class="w"> </span>pandas_datareader<span class="w"> </span>interpolation
 </pre></div>
 </div>
 </div>
@@ -282,79 +282,62 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="expanded">Hide code cell output</span>
 </summary>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: yfinance in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (0.2.31)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: yfinance in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (0.2.31)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: quantecon in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (0.7.1)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: pandas_datareader in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (0.10.0)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: quantecon in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (0.7.1)
+Requirement already satisfied: pandas_datareader in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (0.10.0)
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting interpolation
-  Downloading interpolation-2.2.4-py3-none-any.whl (69 kB)
-?25l     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/69.0 kB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">69.0/69.0 kB</span> <span class=" -Color -Color-Red">15.3 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
-?25h
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: requests&gt;=2.31 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from yfinance) (2.31.0)
-Requirement already satisfied: beautifulsoup4&gt;=4.11.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from yfinance) (4.11.1)
-Requirement already satisfied: multitasking&gt;=0.0.7 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from yfinance) (0.0.11)
-Requirement already satisfied: numpy&gt;=1.16.5 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from yfinance) (1.23.5)
-Requirement already satisfied: pytz&gt;=2022.5 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from yfinance) (2022.7)
-Requirement already satisfied: pandas&gt;=1.3.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from yfinance) (1.5.3)
-Requirement already satisfied: html5lib&gt;=1.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from yfinance) (1.1)
-Requirement already satisfied: frozendict&gt;=2.3.4 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from yfinance) (2.3.8)
-Requirement already satisfied: peewee&gt;=3.16.2 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from yfinance) (3.16.3)
-Requirement already satisfied: appdirs&gt;=1.4.4 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from yfinance) (1.4.4)
-Requirement already satisfied: lxml&gt;=4.9.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from yfinance) (4.9.1)
-Requirement already satisfied: numba&gt;=0.49.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from quantecon) (0.56.4)
-Requirement already satisfied: sympy in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from quantecon) (1.11.1)
-Requirement already satisfied: scipy&gt;=1.5.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from quantecon) (1.10.0)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Downloading interpolation-2.2.1-py3-none-any.whl (56 kB)
+?25l     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/56.6 kB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting tempita&lt;0.6.0,&gt;=0.5.2
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">56.6/56.6 kB</span> <span class=" -Color -Color-Red">4.3 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hRequirement already satisfied: pandas&gt;=1.3.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from yfinance) (2.0.3)
+Requirement already satisfied: numpy&gt;=1.16.5 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from yfinance) (1.24.3)
+Requirement already satisfied: requests&gt;=2.31 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from yfinance) (2.31.0)
+Requirement already satisfied: multitasking&gt;=0.0.7 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from yfinance) (0.0.11)
+Requirement already satisfied: lxml&gt;=4.9.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from yfinance) (4.9.3)
+Requirement already satisfied: appdirs&gt;=1.4.4 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from yfinance) (1.4.4)
+Requirement already satisfied: pytz&gt;=2022.5 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from yfinance) (2023.3.post1)
+Requirement already satisfied: frozendict&gt;=2.3.4 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from yfinance) (2.3.8)
+Requirement already satisfied: peewee&gt;=3.16.2 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from yfinance) (3.16.3)
+Requirement already satisfied: beautifulsoup4&gt;=4.11.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from yfinance) (4.12.2)
+Requirement already satisfied: html5lib&gt;=1.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from yfinance) (1.1)
+Requirement already satisfied: numba&gt;=0.49.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from quantecon) (0.57.1)
+Requirement already satisfied: scipy&gt;=1.5.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from quantecon) (1.11.1)
+Requirement already satisfied: sympy in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from quantecon) (1.11.1)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting tempita&gt;=0.5.2 (from interpolation)
   Downloading Tempita-0.5.2-py3-none-any.whl (12 kB)
+Requirement already satisfied: soupsieve&gt;1.2 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from beautifulsoup4&gt;=4.11.1-&gt;yfinance) (2.4)
+Requirement already satisfied: six&gt;=1.9 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from html5lib&gt;=1.1-&gt;yfinance) (1.16.0)
+Requirement already satisfied: webencodings in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from html5lib&gt;=1.1-&gt;yfinance) (0.5.1)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting packaging&lt;22.0,&gt;=21.3
-  Downloading packaging-21.3-py3-none-any.whl (40 kB)
-?25l     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/40.8 kB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: llvmlite&lt;0.41,&gt;=0.40.0dev0 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from numba&gt;=0.49.0-&gt;quantecon) (0.40.0)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">40.8/40.8 kB</span> <span class=" -Color -Color-Red">11.6 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
-?25hRequirement already satisfied: soupsieve&gt;1.2 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from beautifulsoup4&gt;=4.11.1-&gt;yfinance) (2.3.2.post1)
-Requirement already satisfied: six&gt;=1.9 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from html5lib&gt;=1.1-&gt;yfinance) (1.16.0)
-Requirement already satisfied: webencodings in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from html5lib&gt;=1.1-&gt;yfinance) (0.5.1)
-Requirement already satisfied: setuptools in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from numba&gt;=0.49.0-&gt;quantecon) (65.6.3)
-Requirement already satisfied: llvmlite&lt;0.40,&gt;=0.39.0dev0 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from numba&gt;=0.49.0-&gt;quantecon) (0.39.1)
-Requirement already satisfied: pyparsing!=3.0.5,&gt;=2.0.2 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from packaging&lt;22.0,&gt;=21.3-&gt;interpolation) (3.0.9)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: python-dateutil&gt;=2.8.2 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from pandas&gt;=1.3.0-&gt;yfinance) (2.8.2)
+Requirement already satisfied: tzdata&gt;=2022.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from pandas&gt;=1.3.0-&gt;yfinance) (2023.3)
+Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from requests&gt;=2.31-&gt;yfinance) (2.0.4)
+Requirement already satisfied: idna&lt;4,&gt;=2.5 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from requests&gt;=2.31-&gt;yfinance) (3.4)
+Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from requests&gt;=2.31-&gt;yfinance) (1.26.16)
+Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from requests&gt;=2.31-&gt;yfinance) (2023.7.22)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: python-dateutil&gt;=2.8.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from pandas&gt;=1.3.0-&gt;yfinance) (2.8.2)
-Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests&gt;=2.31-&gt;yfinance) (2022.12.7)
-Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests&gt;=2.31-&gt;yfinance) (1.26.14)
-Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests&gt;=2.31-&gt;yfinance) (2.0.4)
-Requirement already satisfied: idna&lt;4,&gt;=2.5 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests&gt;=2.31-&gt;yfinance) (3.4)
-Requirement already satisfied: mpmath&gt;=0.19 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages/mpmath-1.2.1-py3.10.egg (from sympy-&gt;quantecon) (1.2.1)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: mpmath&gt;=0.19 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from sympy-&gt;quantecon) (1.3.0)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Installing collected packages: tempita, packaging, interpolation
-  Attempting uninstall: packaging
-    Found existing installation: packaging 22.0
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Installing collected packages: tempita, interpolation
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    Uninstalling packaging-22.0:
-      Successfully uninstalled packaging-22.0
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Red">ERROR: pip&#39;s dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.</span>
-<span class=" -Color -Color-Red">pytoolconfig 1.2.5 requires packaging&gt;=22.0, but you have packaging 21.3 which is incompatible.</span>
-
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Successfully installed interpolation-2.2.4 packaging-21.3 tempita-0.5.2
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Successfully installed interpolation-2.2.1 tempita-0.5.2
 </pre></div>
 </div>
 </div>
@@ -376,6 +359,12 @@ Requirement already satisfied: mpmath&gt;=0.19 in /usr/share/miniconda3/envs/qua
 <span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">norm</span><span class="p">,</span> <span class="n">cauchy</span>
 <span class="kn">from</span> <span class="nn">pandas.plotting</span> <span class="kn">import</span> <span class="n">register_matplotlib_converters</span>
 <span class="n">register_matplotlib_converters</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages/numba/core/decorators.py:262: NumbaDeprecationWarning: <span class=" -Color -Color-Bold">numba.generated_jit is deprecated. Please see the documentation at: https://numba.readthedocs.io/en/stable/reference/deprecation.html#deprecation-of-generated-jit for more information and advice on a suitable replacement.</span>
+  warnings.warn(msg, NumbaDeprecationWarning)
 </pre></div>
 </div>
 </div>
@@ -415,7 +404,7 @@ as with the following code (which assumes <span class="math notranslate nohighli
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/bf19b92521baed67b6352ff834bcd6395ed558aee87e3d343fa81af8f535d7ad.png"><img alt="_images/bf19b92521baed67b6352ff834bcd6395ed558aee87e3d343fa81af8f535d7ad.png" src="_images/bf19b92521baed67b6352ff834bcd6395ed558aee87e3d343fa81af8f535d7ad.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/1deba5f1561c106436e89da5d9036b8b1b319b1c63798a00001eac7de6c528d6.png"><img alt="_images/1deba5f1561c106436e89da5d9036b8b1b319b1c63798a00001eac7de6c528d6.png" src="_images/1deba5f1561c106436e89da5d9036b8b1b319b1c63798a00001eac7de6c528d6.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>Notice how</p>
@@ -431,7 +420,7 @@ as with the following code (which assumes <span class="math notranslate nohighli
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-4.555922326967079, 5.163073855990473)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-4.7806512076216565, 4.568888366413363)
 </pre></div>
 </div>
 </div>
@@ -452,7 +441,7 @@ as with the following code (which assumes <span class="math notranslate nohighli
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/41f79d87f02c8468a3fc51f843054e198654612860c468dfcfa209470b04e431.png"><img alt="_images/41f79d87f02c8468a3fc51f843054e198654612860c468dfcfa209470b04e431.png" src="_images/41f79d87f02c8468a3fc51f843054e198654612860c468dfcfa209470b04e431.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/e791ac2fe8840b1b657c33be6457c27e10fb8ad48d2071cf4b01195e88ebee86.png"><img alt="_images/e791ac2fe8840b1b657c33be6457c27e10fb8ad48d2071cf4b01195e88ebee86.png" src="_images/e791ac2fe8840b1b657c33be6457c27e10fb8ad48d2071cf4b01195e88ebee86.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>We have plotted each individual draw <span class="math notranslate nohighlight">\(X_i\)</span> against <span class="math notranslate nohighlight">\(i\)</span>.</p>
@@ -514,7 +503,7 @@ the period from 1st January 2015 to 1st July 2022.</p>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="_images/f6eb68132f1d6767ed26ced638dc895777ad27bc5c75f92077bb1a6b2cfbfca8.png"><img alt="_images/f6eb68132f1d6767ed26ced638dc895777ad27bc5c75f92077bb1a6b2cfbfca8.png" src="_images/f6eb68132f1d6767ed26ced638dc895777ad27bc5c75f92077bb1a6b2cfbfca8.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/849aa5f8c4b7db5150eb1aa0aba382305ec149e8b00f2448b1076887a21b1183.png"><img alt="_images/849aa5f8c4b7db5150eb1aa0aba382305ec149e8b00f2448b1076887a21b1183.png" src="_images/849aa5f8c4b7db5150eb1aa0aba382305ec149e8b00f2448b1076887a21b1183.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>This data looks different to the draws from the normal distribution we saw above.</p>
@@ -543,7 +532,7 @@ the period from 1st January 2015 to 1st July 2022.</p>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="_images/528c5f2fd717d6206e8433ea37e6e14a044e006d8150a4b72137ec118c455d9a.png"><img alt="_images/528c5f2fd717d6206e8433ea37e6e14a044e006d8150a4b72137ec118c455d9a.png" src="_images/528c5f2fd717d6206e8433ea37e6e14a044e006d8150a4b72137ec118c455d9a.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/3367bc6b0bb84eaf2c2693a516a5621da81525c279ecd515d4df358633d01c0e.png"><img alt="_images/3367bc6b0bb84eaf2c2693a516a5621da81525c279ecd515d4df358633d01c0e.png" src="_images/3367bc6b0bb84eaf2c2693a516a5621da81525c279ecd515d4df358633d01c0e.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>The histogram also looks different to the histogram of the normal
@@ -558,7 +547,7 @@ distribution:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/e853e8fa18cee9707a2dea684182511c0f3510c36ea633babbdb89908ae3ecc9.png"><img alt="_images/e853e8fa18cee9707a2dea684182511c0f3510c36ea633babbdb89908ae3ecc9.png" src="_images/e853e8fa18cee9707a2dea684182511c0f3510c36ea633babbdb89908ae3ecc9.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/6e2630a84933e1ee8e76154b9a5656b9b00c6d94fb6cf335cd58ca7ae3c5ff83.png"><img alt="_images/6e2630a84933e1ee8e76154b9a5656b9b00c6d94fb6cf335cd58ca7ae3c5ff83.png" src="_images/6e2630a84933e1ee8e76154b9a5656b9b00c6d94fb6cf335cd58ca7ae3c5ff83.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>If we look at higher frequency returns data (e.g., tick-by-tick), we often see
@@ -647,7 +636,7 @@ heavy-tailed.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/fb71be499512353f278141938a2f47577fe071edf081b63572c9f9ef8bbcbfd1.png"><img alt="_images/fb71be499512353f278141938a2f47577fe071edf081b63572c9f9ef8bbcbfd1.png" src="_images/fb71be499512353f278141938a2f47577fe071edf081b63572c9f9ef8bbcbfd1.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/4513eeff109e4a36ce0cf1edd358cdb537ce2e8f8efcd721cd17a36fe942a76c.png"><img alt="_images/4513eeff109e4a36ce0cf1edd358cdb537ce2e8f8efcd721cd17a36fe942a76c.png" src="_images/4513eeff109e4a36ce0cf1edd358cdb537ce2e8f8efcd721cd17a36fe942a76c.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>In the top subfigure, the standard deviation of the normal distribution is 2,
@@ -682,7 +671,7 @@ with a few sudden large deviations from the mean.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/d1f96ac2488e119798725d13fef9deb32b90653693537e84ce47d0d3c0808cca.png"><img alt="_images/d1f96ac2488e119798725d13fef9deb32b90653693537e84ce47d0d3c0808cca.png" src="_images/d1f96ac2488e119798725d13fef9deb32b90653693537e84ce47d0d3c0808cca.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/39d215126f6895952ac90f9a69ab26b18b500304bba2638615f0d46ee139cfd3.png"><img alt="_images/39d215126f6895952ac90f9a69ab26b18b500304bba2638615f0d46ee139cfd3.png" src="_images/39d215126f6895952ac90f9a69ab26b18b500304bba2638615f0d46ee139cfd3.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>Another nonnegative distribution is the <a class="reference external" href="https://en.wikipedia.org/wiki/Pareto_distribution">Pareto distribution</a>.</p>
@@ -725,7 +714,7 @@ exponential random variable.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/f8b27df0cea6e8e5504f6e5d2984d8d3c0aa67fd3324637777c6d259636a4dfe.png"><img alt="_images/f8b27df0cea6e8e5504f6e5d2984d8d3c0aa67fd3324637777c6d259636a4dfe.png" src="_images/f8b27df0cea6e8e5504f6e5d2984d8d3c0aa67fd3324637777c6d259636a4dfe.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/1f7db8646d50738f0b677aa6fd304b3d0a6f71e778ec16faf8f70a9b3c19b3d7.png"><img alt="_images/1f7db8646d50738f0b677aa6fd304b3d0a6f71e778ec16faf8f70a9b3c19b3d7.png" src="_images/1f7db8646d50738f0b677aa6fd304b3d0a6f71e778ec16faf8f70a9b3c19b3d7.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>Notice how extreme outcomes are more common.</p>
@@ -788,7 +777,7 @@ distributed with rate parameter <span class="math notranslate nohighlight">\(\al
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/2e57651f2d3a1684b98e1bfb1a7a3cb6b05279664c81ab873330aecea04d3e06.png"><img alt="_images/2e57651f2d3a1684b98e1bfb1a7a3cb6b05279664c81ab873330aecea04d3e06.png" src="_images/2e57651f2d3a1684b98e1bfb1a7a3cb6b05279664c81ab873330aecea04d3e06.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/e7c1d67b3c02f744b1130b56d2913d7ce5a91616f8069e4f95fcd0ab880c4cea.png"><img alt="_images/e7c1d67b3c02f744b1130b56d2913d7ce5a91616f8069e4f95fcd0ab880c4cea.png" src="_images/e7c1d67b3c02f744b1130b56d2913d7ce5a91616f8069e4f95fcd0ab880c4cea.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>Here’s a log-log plot of the same functions, which makes visual comparison
@@ -805,7 +794,7 @@ easier.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/786e219ab35bbe6613b7cf1ecd6168355b3d5e97aef4919a1c5b95e4b22855ca.png"><img alt="_images/786e219ab35bbe6613b7cf1ecd6168355b3d5e97aef4919a1c5b95e4b22855ca.png" src="_images/786e219ab35bbe6613b7cf1ecd6168355b3d5e97aef4919a1c5b95e4b22855ca.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/870440758ac5baad5978bb6f6ec3a8d8beae2b08cc4ff97409bbdd817e7c2228.png"><img alt="_images/870440758ac5baad5978bb6f6ec3a8d8beae2b08cc4ff97409bbdd817e7c2228.png" src="_images/870440758ac5baad5978bb6f6ec3a8d8beae2b08cc4ff97409bbdd817e7c2228.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>In the log-log plot, the Pareto CCDF is linear, while the exponential one is
@@ -858,7 +847,7 @@ visualisations — we return to this point below.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/bff4c6e01008c481219f11fa4eb65601abe08912e164579de5c6a6374c0823d8.png"><img alt="_images/bff4c6e01008c481219f11fa4eb65601abe08912e164579de5c6a6374c0823d8.png" src="_images/bff4c6e01008c481219f11fa4eb65601abe08912e164579de5c6a6374c0823d8.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/f1f67546f6555cb27d232d107c8741295ba373700e99319bff8eda8a65113bba.png"><img alt="_images/f1f67546f6555cb27d232d107c8741295ba373700e99319bff8eda8a65113bba.png" src="_images/f1f67546f6555cb27d232d107c8741295ba373700e99319bff8eda8a65113bba.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>As with the CCDF, the empirical CCDF from the Pareto distributions is
@@ -911,7 +900,7 @@ readers are of course welcome to explore the code (perhaps after examining the f
                    <span class="n">xlabel</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                    <span class="n">add_reg_line</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> 
                    <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Take data vector and return prob values for plotting.</span>
 <span class="sd">    Upgraded empirical_ccdf</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -1020,7 +1009,7 @@ readers are of course welcome to explore the code (perhaps after examining the f
 </div>
 </details>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/193776ec63bbd78d2546277ce5f4250d223ba4bc6ebcee26aefdcf8dd1a19419.png"><img alt="_images/193776ec63bbd78d2546277ce5f4250d223ba4bc6ebcee26aefdcf8dd1a19419.png" src="_images/193776ec63bbd78d2546277ce5f4250d223ba4bc6ebcee26aefdcf8dd1a19419.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/ddacafa4b699e45595bdde1b7145861d6c4aa97528880dd8e203ec4156581026.png"><img alt="_images/ddacafa4b699e45595bdde1b7145861d6c4aa97528880dd8e203ec4156581026.png" src="_images/ddacafa4b699e45595bdde1b7145861d6c4aa97528880dd8e203ec4156581026.png" style="width: 80%;" /></a>
 </div>
 </div>
 </section>
@@ -1050,7 +1039,7 @@ readers are of course welcome to explore the code (perhaps after examining the f
 </div>
 </details>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/9fe1a6e3c335ef229a4c96c28bf47f162ad54ecb393d5b5a2e769489d2d62325.png"><img alt="_images/9fe1a6e3c335ef229a4c96c28bf47f162ad54ecb393d5b5a2e769489d2d62325.png" src="_images/9fe1a6e3c335ef229a4c96c28bf47f162ad54ecb393d5b5a2e769489d2d62325.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/035b45e33284e852076673b2846e81758d393bcd6cea820528878d69574628de.png"><img alt="_images/035b45e33284e852076673b2846e81758d393bcd6cea820528878d69574628de.png" src="_images/035b45e33284e852076673b2846e81758d393bcd6cea820528878d69574628de.png" style="width: 80%;" /></a>
 </div>
 </div>
 </section>
@@ -1093,7 +1082,7 @@ readers are of course welcome to explore the code (perhaps after examining the f
 </div>
 </details>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/b19d18b4012aa23d560a83c36378e79b0755c434d0e03a56a4b75cf3d8676426.png"><img alt="_images/b19d18b4012aa23d560a83c36378e79b0755c434d0e03a56a4b75cf3d8676426.png" src="_images/b19d18b4012aa23d560a83c36378e79b0755c434d0e03a56a4b75cf3d8676426.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/9b5e37d21e101efbd086ed45b2967984e8a91b92e5251f16a4b52ca593aab799.png"><img alt="_images/9b5e37d21e101efbd086ed45b2967984e8a91b92e5251f16a4b52ca593aab799.png" src="_images/9b5e37d21e101efbd086ed45b2967984e8a91b92e5251f16a4b52ca593aab799.png" style="width: 80%;" /></a>
 </div>
 </div>
 </section>
@@ -1142,7 +1131,7 @@ readers are of course welcome to explore the code (perhaps after examining the f
 </div>
 </details>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/6b4b9445be057968c71e94fe5587e16522d3c556bd745e5ebeb2528ceae52fc1.png"><img alt="_images/6b4b9445be057968c71e94fe5587e16522d3c556bd745e5ebeb2528ceae52fc1.png" src="_images/6b4b9445be057968c71e94fe5587e16522d3c556bd745e5ebeb2528ceae52fc1.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/0889901bbfe628bdd9a8b10f62c026221c8f09195b562554dd417691c9689151.png"><img alt="_images/0889901bbfe628bdd9a8b10f62c026221c8f09195b562554dd417691c9689151.png" src="_images/0889901bbfe628bdd9a8b10f62c026221c8f09195b562554dd417691c9689151.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>The plot is concave rather than linear, so the distribution has light tails.</p>
@@ -1195,7 +1184,7 @@ whether or not the LLN is still valid.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/454d530bc1b473e4a0f70dbc0554153bbd9a635c2bea016bf5f3e85eb7f7e5c7.png"><img alt="_images/454d530bc1b473e4a0f70dbc0554153bbd9a635c2bea016bf5f3e85eb7f7e5c7.png" src="_images/454d530bc1b473e4a0f70dbc0554153bbd9a635c2bea016bf5f3e85eb7f7e5c7.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/c7b45fea34b73ec9d839074f2c07ffc4cc595c18f717d3a86d880efa52f12bf1.png"><img alt="_images/c7b45fea34b73ec9d839074f2c07ffc4cc595c18f717d3a86d880efa52f12bf1.png" src="_images/c7b45fea34b73ec9d839074f2c07ffc4cc595c18f717d3a86d880efa52f12bf1.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>The sequence shows no sign of converging.</p>
@@ -1364,7 +1353,7 @@ Cauchy) with three Pareto distributions using different choices of
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/4af8570c036a806753d5c976487638f47238bcbd8f29241404e47efc3fecffd1.png"><img alt="_images/4af8570c036a806753d5c976487638f47238bcbd8f29241404e47efc3fecffd1.png" src="_images/4af8570c036a806753d5c976487638f47238bcbd8f29241404e47efc3fecffd1.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/e6468f08bf0222907207a250ae11df7efe5334f539026ff381ab1d5af15cd5e1.png"><img alt="_images/e6468f08bf0222907207a250ae11df7efe5334f539026ff381ab1d5af15cd5e1.png" src="_images/e6468f08bf0222907207a250ae11df7efe5334f539026ff381ab1d5af15cd5e1.png" style="width: 80%;" /></a>
 </div>
 </div>
 </section>
@@ -1514,7 +1503,7 @@ choice of distribution <code class="docutils literal notranslate"><span class="p
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/779b33c6c5a518903808b829d4f79b81446d9361e386669a064ec49a36b0d08d.png"><img alt="_images/779b33c6c5a518903808b829d4f79b81446d9361e386669a064ec49a36b0d08d.png" src="_images/779b33c6c5a518903808b829d4f79b81446d9361e386669a064ec49a36b0d08d.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/cb71100dc7c9f105a66d27dc0d3fc0f7fd4542f76b745253a0a92a75ad6c2547.png"><img alt="_images/cb71100dc7c9f105a66d27dc0d3fc0f7fd4542f76b745253a0a92a75ad6c2547.png" src="_images/cb71100dc7c9f105a66d27dc0d3fc0f7fd4542f76b745253a0a92a75ad6c2547.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>Finally, let’s print the means and standard deviations.</p>
@@ -1525,7 +1514,7 @@ choice of distribution <code class="docutils literal notranslate"><span class="p
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1458729.0546623734, 406089.3613661567)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1458729.0546623734, 406089.36136615666)
 </pre></div>
 </div>
 </div>
@@ -1537,7 +1526,7 @@ choice of distribution <code class="docutils literal notranslate"><span class="p
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(2556174.8615230713, 25586.44456513965)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(2556174.8615230713, 25586.444565139616)
 </pre></div>
 </div>
 </div>
