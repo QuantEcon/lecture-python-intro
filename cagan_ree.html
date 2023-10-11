@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>12. A Fiscal Theory of the Price Level &#8212; A First Course in Quantitative Economics with Python</title>
+    <title>12. A Monetarist Theory of the Price Level &#8212; A First Course in Quantitative Economics with Python</title>
     <script src="https://unpkg.com/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://unpkg.com/tippy.js@6.3.1/dist/tippy-bundle.umd.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
@@ -71,7 +71,7 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/quantecon-book-theme.3e777eaae0c95b0b775aa300baed123e.css" />
+    <link rel="stylesheet" href="_static/styles/quantecon-book-theme.css?digest=cb2d6eee9712fbd5cbf7cbc2d6baf81f7f9a9912" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
@@ -98,9 +98,9 @@
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="_static/togglebutton.js"></script>
+    <script src="_static/scripts/quantecon-book-theme.js?digest=b7d60282c7125f74e59bac03c2323864e0e32e1c"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="_static/design-tabs.js"></script>
-    <script src="_static/quantecon-book-theme.15b0c36fffe88f468997fa7b698991d3.js"></script>
     <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-QDS1YRJNGM"></script>
     <script>
                 window.dataLayer = window.dataLayer || [];
@@ -122,7 +122,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="13. A Fiscal Theory of Price Level with Adaptive Expectations" href="cagan_adaptive.html" />
+    <link rel="next" title="13. A Monetarist Theory of Price Level with Adaptive Expectations" href="cagan_adaptive.html" />
     <link rel="prev" title="11. Price Level Histories" href="inflation_history.html" />
 
 <!-- Normal Meta Tags -->
@@ -133,13 +133,13 @@ const thebe_selector_output = ".output, .cell_output"
 <!-- Twitter tags -->
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:site" content="@quantecon" />
-<meta name="twitter:title" content="A Fiscal Theory of the Price Level"/>
+<meta name="twitter:title" content="A Monetarist Theory of the Price Level"/>
 <meta name="twitter:description" content="This website presents introductory lectures on computational economics, designed and written by Thomas J. Sargent and John Stachurski.">
 <meta name="twitter:creator" content="@quantecon">
 <meta name="twitter:image" content="https://assets.quantecon.org/img/qe-twitter-logo.png">
 
 <!-- Opengraph tags -->
-<meta property="og:title" content="A Fiscal Theory of the Price Level" />
+<meta property="og:title" content="A Monetarist Theory of the Price Level" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://intro.quantecon.org/cagan_ree.html" />
 <meta property="og:image" content="https://assets.quantecon.org/img/qe-og-logo.png" />
@@ -219,7 +219,7 @@ const thebe_selector_output = ".output, .cell_output"
 
                         <p class="qe-page__header-heading"><a href="intro.html">A First Course in Quantitative Economics with Python</a></p>
 
-                        <p class="qe-page__header-subheading">A Fiscal Theory of the Price Level</p>
+                        <p class="qe-page__header-subheading">A Monetarist Theory of the Price Level</p>
 
                     </div>
 
@@ -234,24 +234,15 @@ const thebe_selector_output = ".output, .cell_output"
                     
                     <div>
                         
-  <section class="tex2jax_ignore mathjax_ignore" id="a-fiscal-theory-of-the-price-level">
-<h1><span class="section-number">12. </span>A Fiscal Theory of the Price Level<a class="headerlink" href="#a-fiscal-theory-of-the-price-level" title="Permalink to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="a-monetarist-theory-of-the-price-level">
+<h1><span class="section-number">12. </span>A Monetarist Theory of the Price Level<a class="headerlink" href="#a-monetarist-theory-of-the-price-level" title="Permalink to this heading">#</a></h1>
 <section id="introduction">
 <h2><span class="section-number">12.1. </span>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
-<p>As usual, we’ll start by importing some Python modules.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">namedtuple</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>We’ll use linear algebra first to explain and then do  some experiments with  a “fiscal theory of the price level”.</p>
-<p>A fiscal theory of the price level was described by Thomas Sargent and Neil Wallace in chapter 5 of
+<p>We’ll use linear algebra first to explain and then do  some experiments with  a “monetarist theory of the price level”.</p>
+<p>Sometimes this theory is also called a “fiscal theory of the price level”.</p>
+<p>Such a of the price level was described by Thomas Sargent and Neil Wallace in chapter 5 of
 <span id="id1">[<a class="reference internal" href="zreferences.html#id5" title="Thomas J Sargent. Rational Expectations and Inflation. Princeton University Press, Princeton, New Jersey, 2013.">Sar13</a>]</span>, which reprints a  1981 article title “Unpleasant Monetarist Arithmetic”.</p>
-<p>Sometimes people call it a ``monetary theory of the price level’’ because fiscal effects on the price level occur
+<p>Sometimes people call it a “monetary” or “monetarist” theory of the price level because fiscal effects on the price level occur
 through the effects of government fiscal policy decisions on the path of the money supply.</p>
 <ul class="simple">
 <li><p>a goverment’s fiscal policies determine whether it <strong>expenditures</strong> exceed its <strong>tax collections</strong></p></li>
@@ -263,7 +254,7 @@ through the effects of government fiscal policy decisions on the path of the mon
 <p>Elemental forces at work in the fiscal theory of the price level help to understand those episodes.</p>
 <p>According to this theory, when the government persistently spends more than it collects in taxes and prints money to finance the shortfall (the “shortfall” is called the “government deficit”), it puts upward pressure on the price level and generates
 persistent inflation.</p>
-<p>The “fiscal theory of the price level” asserts that</p>
+<p>The “monetarist or fiscal theory of the price level” asserts that</p>
 <ul class="simple">
 <li><p>to <strong>start</strong> a persistent inflation the government simply persistently runs a money-financed government deficit</p></li>
 <li><p>to <strong>stop</strong> a persistent inflation the government simply  stops persistently running  a money-financed government deficit</p></li>
@@ -424,6 +415,16 @@ version of equation <a class="reference internal" href="#equation-eq-fisctheory1
 \]</div>
 <p>where we require that <span class="math notranslate nohighlight">\(\vert \gamma^* \delta \vert &lt; 1\)</span>.</p>
 <p>Let’s implement and solve this model.</p>
+<p>As usual, we’ll start by importing some Python modules.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">namedtuple</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
 <p>First, we store parameters in a <code class="docutils literal notranslate"><span class="pre">namedtuple</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -836,7 +837,7 @@ it is also interesting to study the consequences of a foreseen gradual stabiliza
 </section>
 <section id="sequel">
 <h2><span class="section-number">12.4. </span>Sequel<a class="headerlink" href="#sequel" title="Permalink to this heading">#</a></h2>
-<p>This lecture  <a class="reference internal" href="cagan_adaptive.html"><span class="doc">fiscal theory of the price level with adaptive expectations</span></a> describes an “adaptive expectations” version of Cagan’s model.</p>
+<p>This lecture  <a class="reference internal" href="cagan_adaptive.html"><span class="doc">monetarist theory of the price level with adaptive expectations</span></a> describes an “adaptive expectations” version of Cagan’s model.</p>
 <p>The dynamics become more complicated and so does the algebra.</p>
 <p>Nowadays, the “rational expectations” version of the model is more popular among central bankers and economists advising them.</p>
 </section>
@@ -975,12 +976,12 @@ it is also interesting to study the consequences of a foreseen gradual stabiliza
  </li>
  <li class="toctree-l1 current active active">
   <a class="current reference internal" href="#">
-   12. A Fiscal Theory of the Price Level
+   12. A Monetarist Theory of the Price Level
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cagan_adaptive.html">
-   13. A Fiscal Theory of Price Level with Adaptive Expectations
+   13. A Monetarist Theory of Price Level with Adaptive Expectations
   </a>
  </li>
  <li class="toctree-l1">
@@ -1194,15 +1195,15 @@ it is also interesting to study the consequences of a foreseen gradual stabiliza
                     <li data-tippy-content="Table of Contents" class="btn__sidebar"><i data-feather="menu"></i></li>
                     <li data-tippy-content="Home"><a href="intro.html"><i data-feather="home"></i></a></li>
                     <li class="btn__qelogo"><a href="https://quantecon.org" title=""><span class="show-for-sr">QuantEcon</span></a></li>
-                    <!-- <li class="btn__search">
-                        <form action="search.html" method="get">
-                            <input type="search" class="form-control" name="q" id="search-input" placeholder="Search..." aria-label="Search..." autocomplete="off">
-                            <i data-feather="search"></i>
-                        </form>
-                    </li> -->
                 </ul>
 
                 <ul class="qe-toolbar__links">
+                    <li class="btn__search">
+                        <form action="search.html" method="get">
+                            <input type="search" class="form-control" name="q" id="search-input" placeholder="Search..." aria-label="Search..." autocomplete="off" accesskey="k">
+                            <i data-feather="search" id="search-icon"></i>
+                        </form>
+                    </li>
                     <li data-tippy-content="Fullscreen" class="btn__fullscreen"><i data-feather="maximize"></i></li>
                     <li data-tippy-content="Increase font size" class="btn__plus"><i data-feather="plus-circle"></i></li>
                     <li data-tippy-content="Decrease font size" class="btn__minus"><i data-feather="minus-circle"></i></li>
@@ -1252,7 +1253,7 @@ it is also interesting to study the consequences of a foreseen gradual stabiliza
                 <i class="fas fa-check-circle"></i>
             </li>
             </ul>
-            <p class="launch"><a href="https://mybinder.org/v2/gh/QuantEcon/lecture-python-intro.notebooks/master?urlpath=tree/cagan_ree.ipynb" id="advancedLaunchButton" target="_blank">Launch Notebook</a></p>
+            <p class="launch"><a href="https://colab.research.google.com/github/QuantEcon/lecture-python-intro.notebooks/blob/master/cagan_ree.ipynb" id="advancedLaunchButton" target="_blank">Launch Notebook</a></p>
             <script>
                 // QuantEcon Notebook Launcher
                 const launcherTypeElements = document.querySelectorAll('#settingsModal .modal-servers li');

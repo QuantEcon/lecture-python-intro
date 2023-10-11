@@ -71,7 +71,7 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/quantecon-book-theme.3e777eaae0c95b0b775aa300baed123e.css" />
+    <link rel="stylesheet" href="_static/styles/quantecon-book-theme.css?digest=cb2d6eee9712fbd5cbf7cbc2d6baf81f7f9a9912" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
@@ -98,9 +98,9 @@
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="_static/togglebutton.js"></script>
+    <script src="_static/scripts/quantecon-book-theme.js?digest=b7d60282c7125f74e59bac03c2323864e0e32e1c"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="_static/design-tabs.js"></script>
-    <script src="_static/quantecon-book-theme.15b0c36fffe88f468997fa7b698991d3.js"></script>
     <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-QDS1YRJNGM"></script>
     <script>
                 window.dataLayer = window.dataLayer || [];
@@ -259,28 +259,28 @@ const thebe_selector_output = ".output, .cell_output"
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: quantecon-book-networks in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (0.5.1)
 Requirement already satisfied: pandas-datareader in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (0.10.0)
-Requirement already satisfied: numpy in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from quantecon-book-networks) (1.23.5)
-Requirement already satisfied: scipy in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from quantecon-book-networks) (1.10.0)
 Requirement already satisfied: networkx in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from quantecon-book-networks) (2.8.4)
+Requirement already satisfied: numpy in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from quantecon-book-networks) (1.23.5)
 Requirement already satisfied: pandas in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from quantecon-book-networks) (1.5.3)
+Requirement already satisfied: scipy in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from quantecon-book-networks) (1.10.0)
 Requirement already satisfied: matplotlib in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from quantecon-book-networks) (3.7.0)
-Requirement already satisfied: lxml in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from pandas-datareader) (4.9.1)
 Requirement already satisfied: requests&gt;=2.19.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from pandas-datareader) (2.31.0)
+Requirement already satisfied: lxml in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from pandas-datareader) (4.9.1)
 Requirement already satisfied: python-dateutil&gt;=2.8.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from pandas-&gt;quantecon-book-networks) (2.8.2)
 Requirement already satisfied: pytz&gt;=2020.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from pandas-&gt;quantecon-book-networks) (2022.7)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests&gt;=2.19.0-&gt;pandas-datareader) (2.0.4)
-Requirement already satisfied: idna&lt;4,&gt;=2.5 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests&gt;=2.19.0-&gt;pandas-datareader) (3.4)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: idna&lt;4,&gt;=2.5 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests&gt;=2.19.0-&gt;pandas-datareader) (3.4)
+Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests&gt;=2.19.0-&gt;pandas-datareader) (2.0.4)
 Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests&gt;=2.19.0-&gt;pandas-datareader) (2022.12.7)
 Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from requests&gt;=2.19.0-&gt;pandas-datareader) (1.26.14)
-Requirement already satisfied: kiwisolver&gt;=1.0.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from matplotlib-&gt;quantecon-book-networks) (1.4.4)
-Requirement already satisfied: contourpy&gt;=1.0.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from matplotlib-&gt;quantecon-book-networks) (1.0.5)
-Requirement already satisfied: pillow&gt;=6.2.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from matplotlib-&gt;quantecon-book-networks) (9.4.0)
 Requirement already satisfied: packaging&gt;=20.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from matplotlib-&gt;quantecon-book-networks) (21.3)
-Requirement already satisfied: cycler&gt;=0.10 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from matplotlib-&gt;quantecon-book-networks) (0.11.0)
+Requirement already satisfied: contourpy&gt;=1.0.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from matplotlib-&gt;quantecon-book-networks) (1.0.5)
 Requirement already satisfied: pyparsing&gt;=2.3.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from matplotlib-&gt;quantecon-book-networks) (3.0.9)
+Requirement already satisfied: cycler&gt;=0.10 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from matplotlib-&gt;quantecon-book-networks) (0.11.0)
 Requirement already satisfied: fonttools&gt;=4.22.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from matplotlib-&gt;quantecon-book-networks) (4.25.0)
+Requirement already satisfied: pillow&gt;=6.2.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from matplotlib-&gt;quantecon-book-networks) (9.4.0)
+Requirement already satisfied: kiwisolver&gt;=1.0.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from matplotlib-&gt;quantecon-book-networks) (1.4.4)
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: six&gt;=1.5 in /usr/share/miniconda3/envs/quantecon/lib/python3.10/site-packages (from python-dateutil&gt;=2.8.1-&gt;pandas-&gt;quantecon-book-networks) (1.16.0)
@@ -559,7 +559,7 @@ correct representation of our graph.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/5cce56ffdb69a3f2bfaedb6213c989c66f68d5fa5bdd4be3f0bc1514015e5b08.png"><img alt="_images/5cce56ffdb69a3f2bfaedb6213c989c66f68d5fa5bdd4be3f0bc1514015e5b08.png" src="_images/5cce56ffdb69a3f2bfaedb6213c989c66f68d5fa5bdd4be3f0bc1514015e5b08.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/f84049983fa398afabd71c0b6c49d99fea223d21c347d603ce3e60b2d6cd93b6.png"><img alt="_images/f84049983fa398afabd71c0b6c49d99fea223d21c347d603ce3e60b2d6cd93b6.png" src="_images/f84049983fa398afabd71c0b6c49d99fea223d21c347d603ce3e60b2d6cd93b6.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>The figure obtained above matches the original directed graph in <a class="reference internal" href="#poverty-trap-2"><span class="std std-numref">Fig. 33.3</span></a>.</p>
@@ -614,7 +614,7 @@ however in <a class="reference internal" href="#poverty-trap-2"><span class="std
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/7a13c903b95f6ad4373040a4c597c845fe771dfbc51c10fdfb7eb7986ea456a8.png"><img alt="_images/7a13c903b95f6ad4373040a4c597c845fe771dfbc51c10fdfb7eb7986ea456a8.png" src="_images/7a13c903b95f6ad4373040a4c597c845fe771dfbc51c10fdfb7eb7986ea456a8.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/4db39ccb2183e136f8af49c918131755b0bc47c1bee3b43a038ec478ee423a5a.png"><img alt="_images/4db39ccb2183e136f8af49c918131755b0bc47c1bee3b43a038ec478ee423a5a.png" src="_images/4db39ccb2183e136f8af49c918131755b0bc47c1bee3b43a038ec478ee423a5a.png" style="width: 80%;" /></a>
 </div>
 </div>
 <div class="cell docutils container">
@@ -643,7 +643,7 @@ however in <a class="reference internal" href="#poverty-trap-2"><span class="std
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/eff97a64973f1a33d59187f9a7e7f16c8ff5d252d462715eede1aecd9caf5636.png"><img alt="_images/eff97a64973f1a33d59187f9a7e7f16c8ff5d252d462715eede1aecd9caf5636.png" src="_images/eff97a64973f1a33d59187f9a7e7f16c8ff5d252d462715eede1aecd9caf5636.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/600b937f81d525ae4d21a04e3a74b0d85633682b4043668d0802fad19bddd7bc.png"><img alt="_images/600b937f81d525ae4d21a04e3a74b0d85633682b4043668d0802fad19bddd7bc.png" src="_images/600b937f81d525ae4d21a04e3a74b0d85633682b4043668d0802fad19bddd7bc.png" style="width: 80%;" /></a>
 </div>
 </div>
 <div class="cell docutils container">
@@ -1820,12 +1820,12 @@ of G.</p></li>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cagan_ree.html">
-   12. A Fiscal Theory of the Price Level
+   12. A Monetarist Theory of the Price Level
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cagan_adaptive.html">
-   13. A Fiscal Theory of Price Level with Adaptive Expectations
+   13. A Monetarist Theory of Price Level with Adaptive Expectations
   </a>
  </li>
  <li class="toctree-l1">
@@ -2039,15 +2039,15 @@ of G.</p></li>
                     <li data-tippy-content="Table of Contents" class="btn__sidebar"><i data-feather="menu"></i></li>
                     <li data-tippy-content="Home"><a href="intro.html"><i data-feather="home"></i></a></li>
                     <li class="btn__qelogo"><a href="https://quantecon.org" title=""><span class="show-for-sr">QuantEcon</span></a></li>
-                    <!-- <li class="btn__search">
-                        <form action="search.html" method="get">
-                            <input type="search" class="form-control" name="q" id="search-input" placeholder="Search..." aria-label="Search..." autocomplete="off">
-                            <i data-feather="search"></i>
-                        </form>
-                    </li> -->
                 </ul>
 
                 <ul class="qe-toolbar__links">
+                    <li class="btn__search">
+                        <form action="search.html" method="get">
+                            <input type="search" class="form-control" name="q" id="search-input" placeholder="Search..." aria-label="Search..." autocomplete="off" accesskey="k">
+                            <i data-feather="search" id="search-icon"></i>
+                        </form>
+                    </li>
                     <li data-tippy-content="Fullscreen" class="btn__fullscreen"><i data-feather="maximize"></i></li>
                     <li data-tippy-content="Increase font size" class="btn__plus"><i data-feather="plus-circle"></i></li>
                     <li data-tippy-content="Decrease font size" class="btn__minus"><i data-feather="minus-circle"></i></li>
@@ -2097,7 +2097,7 @@ of G.</p></li>
                 <i class="fas fa-check-circle"></i>
             </li>
             </ul>
-            <p class="launch"><a href="https://mybinder.org/v2/gh/QuantEcon/lecture-python-intro.notebooks/master?urlpath=tree/networks.ipynb" id="advancedLaunchButton" target="_blank">Launch Notebook</a></p>
+            <p class="launch"><a href="https://colab.research.google.com/github/QuantEcon/lecture-python-intro.notebooks/blob/master/networks.ipynb" id="advancedLaunchButton" target="_blank">Launch Notebook</a></p>
             <script>
                 // QuantEcon Notebook Launcher
                 const launcherTypeElements = document.querySelectorAll('#settingsModal .modal-servers li');

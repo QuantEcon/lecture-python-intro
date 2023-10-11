@@ -71,7 +71,7 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/quantecon-book-theme.3e777eaae0c95b0b775aa300baed123e.css" />
+    <link rel="stylesheet" href="_static/styles/quantecon-book-theme.css?digest=cb2d6eee9712fbd5cbf7cbc2d6baf81f7f9a9912" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
@@ -98,9 +98,9 @@
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="_static/togglebutton.js"></script>
+    <script src="_static/scripts/quantecon-book-theme.js?digest=b7d60282c7125f74e59bac03c2323864e0e32e1c"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="_static/design-tabs.js"></script>
-    <script src="_static/quantecon-book-theme.15b0c36fffe88f468997fa7b698991d3.js"></script>
     <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-QDS1YRJNGM"></script>
     <script>
                 window.dataLayer = window.dataLayer || [];
@@ -611,7 +611,7 @@ to compute alternative consumption paths, then evaluate their welfare.</p>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>variation 0: ξ1=0.01, ϕ=0.95
 check feasible: True
-welfare=13.285009346064834
+welfare=13.285009346064836
 ----------------------------------------------------------------
 variation 1: ξ1=0.01, ϕ=1.02
 check feasible: True
@@ -674,7 +674,7 @@ welfare=13.28156768298361
 </div>
 <div class="cell_output docutils container">
 <a class="reference internal image-reference" href="_images/28fcbae0e3edd68a57d674fdbd178b5e8213fde713bb5acfab2bb5d801b0a253.png"><img alt="_images/28fcbae0e3edd68a57d674fdbd178b5e8213fde713bb5acfab2bb5d801b0a253.png" src="_images/28fcbae0e3edd68a57d674fdbd178b5e8213fde713bb5acfab2bb5d801b0a253.png" style="width: 80%;" /></a>
-<a class="reference internal image-reference" href="_images/fde0962d5a31c1d1e653d387acadc9914917a04ec34b71f0249d8552c2c19b41.png"><img alt="_images/fde0962d5a31c1d1e653d387acadc9914917a04ec34b71f0249d8552c2c19b41.png" src="_images/fde0962d5a31c1d1e653d387acadc9914917a04ec34b71f0249d8552c2c19b41.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/d7fb7acfeea00715530b84246c7433dadf5cc8b816b56057e7f7ec50627b9868.png"><img alt="_images/d7fb7acfeea00715530b84246c7433dadf5cc8b816b56057e7f7ec50627b9868.png" src="_images/d7fb7acfeea00715530b84246c7433dadf5cc8b816b56057e7f7ec50627b9868.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>The same can be done on <span class="math notranslate nohighlight">\(\phi\)</span></p>
@@ -954,12 +954,12 @@ How many initial conditions must you specify?</p>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cagan_ree.html">
-   12. A Fiscal Theory of the Price Level
+   12. A Monetarist Theory of the Price Level
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cagan_adaptive.html">
-   13. A Fiscal Theory of Price Level with Adaptive Expectations
+   13. A Monetarist Theory of Price Level with Adaptive Expectations
   </a>
  </li>
  <li class="toctree-l1">
@@ -1173,15 +1173,15 @@ How many initial conditions must you specify?</p>
                     <li data-tippy-content="Table of Contents" class="btn__sidebar"><i data-feather="menu"></i></li>
                     <li data-tippy-content="Home"><a href="intro.html"><i data-feather="home"></i></a></li>
                     <li class="btn__qelogo"><a href="https://quantecon.org" title=""><span class="show-for-sr">QuantEcon</span></a></li>
-                    <!-- <li class="btn__search">
-                        <form action="search.html" method="get">
-                            <input type="search" class="form-control" name="q" id="search-input" placeholder="Search..." aria-label="Search..." autocomplete="off">
-                            <i data-feather="search"></i>
-                        </form>
-                    </li> -->
                 </ul>
 
                 <ul class="qe-toolbar__links">
+                    <li class="btn__search">
+                        <form action="search.html" method="get">
+                            <input type="search" class="form-control" name="q" id="search-input" placeholder="Search..." aria-label="Search..." autocomplete="off" accesskey="k">
+                            <i data-feather="search" id="search-icon"></i>
+                        </form>
+                    </li>
                     <li data-tippy-content="Fullscreen" class="btn__fullscreen"><i data-feather="maximize"></i></li>
                     <li data-tippy-content="Increase font size" class="btn__plus"><i data-feather="plus-circle"></i></li>
                     <li data-tippy-content="Decrease font size" class="btn__minus"><i data-feather="minus-circle"></i></li>
@@ -1231,7 +1231,7 @@ How many initial conditions must you specify?</p>
                 <i class="fas fa-check-circle"></i>
             </li>
             </ul>
-            <p class="launch"><a href="https://mybinder.org/v2/gh/QuantEcon/lecture-python-intro.notebooks/master?urlpath=tree/cons_smooth.ipynb" id="advancedLaunchButton" target="_blank">Launch Notebook</a></p>
+            <p class="launch"><a href="https://colab.research.google.com/github/QuantEcon/lecture-python-intro.notebooks/blob/master/cons_smooth.ipynb" id="advancedLaunchButton" target="_blank">Launch Notebook</a></p>
             <script>
                 // QuantEcon Notebook Launcher
                 const launcherTypeElements = document.querySelectorAll('#settingsModal .modal-servers li');
