@@ -278,7 +278,7 @@ $$ (eq:notre)
 This outcome is typical in models in which adaptive expectations hypothesis like equation {eq}`eq:adaptexpn` appear as a
 component.  
 
-In this lecture {doc}`monetaris theory of the price level <cagan_ree>`, we studied a version of the model that replaces hypothesis {eq}`eq:adaptexpn` with
+In this lecture {doc}`monetarist theory of the price level <cagan_ree>`, we studied a version of the model that replaces hypothesis {eq}`eq:adaptexpn` with
 a "perfect foresight" or "rational expectations" hypothesis.
 
 
