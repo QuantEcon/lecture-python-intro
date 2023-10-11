@@ -545,7 +545,7 @@ In practice, their currencies were largely “fiat” or "unbacked",  meaning th
 Chapter 3 of {cite}`sargent2002big`  focuses on the deliberate changes in policy that Hungary, Austria, Poland, and Germany made to end their hyperinflations.
 The hyperinflations were each ended by restoring or virtually restoring convertibility to the dollar or equivalently to gold.
 
-The story told in {cite}`sargent2002big` is grounded in a "fiscal theory of the price level" described in {doc}`this lecture <cagan_ree>` and further discussed in 
+The story told in {cite}`sargent2002big` is grounded in a "monetarist theory of the price level" described in {doc}`this lecture <cagan_ree>` and further discussed in 
 {doc}`this lecture <cagan_adaptive>`.
 
 Those lectures discuss theories about what holders of those rapidly depreciating currencies were thinking about them and how that shaped responses of inflation to government policies.

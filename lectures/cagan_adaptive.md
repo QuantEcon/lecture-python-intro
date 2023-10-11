@@ -11,25 +11,18 @@ kernelspec:
   name: python3
 ---
 
-# A Fiscal Theory of Price Level with Adaptive Expectations
+# A Monetarist Theory of Price Level with Adaptive Expectations
 
 ## Introduction
 
-As usual, we'll start by importing some Python modules.
 
-```{code-cell} ipython3
-import numpy as np
-from collections import namedtuple
-import matplotlib.pyplot as plt
-```
+This lecture is a sequel or prequel to this lecture {doc}`monetarist theory of the price level <cagan_ree>`.
 
-This lecture is a sequel or prequel to this lecture {doc}`fiscal theory of the price level <cagan_ree>`.
+We'll use linear algebra to do some experiments with  an alternative "monetarist" or  "fiscal" theory of the price level".
 
-We'll use linear algebra to do some experiments with  an alternative  "fiscal theory of the price level".
+Like the model in this lecture {doc}`monetarist theory of the price level <cagan_ree>`, the model asserts that when a government persistently spends more than it collects in taxes and prints money to finance the shortfall, it puts upward pressure on the price level and generates persistent inflation.
 
-Like the model in this lecture {doc}`fiscal theory of the price level <cagan_ree>`, the model asserts that when a government persistently spends more than it collects in taxes and prints money to finance the shortfall, it puts upward pressure on the price level and generates persistent inflation.
-
-Instead of the "perfect foresight" or "rational expectations" version of the model in this lecture {doc}`fiscal theory of the price level <cagan_ree>`, our model in the present lecture is an "adaptive expectations"  version of a model that Philip Cagan {cite}`Cagan`  used to study the monetary dynamics of hyperinflations.  
+Instead of the "perfect foresight" or "rational expectations" version of the model in this lecture {doc}`monetarist theory of the price level <cagan_ree>`, our model in the present lecture is an "adaptive expectations"  version of a model that Philip Cagan {cite}`Cagan`  used to study the monetary dynamics of hyperinflations.  
 
 It combines these components:
 
@@ -131,7 +124,7 @@ $$
 Write this equation as
 
 $$
-A \pi^* = (1-\lambda) B \pi + \pi_0^*
+ A \pi^* = (1-\lambda) B \pi + \pi_0^*
 $$ (eq:eq1)
 
 where the $(T+2) \times (T+2) $matrix $A$, the $(T+2)\times (T+1)$ matrix $B$, and the vectors $\pi^* , \pi_0, \pi_0^*$
@@ -285,8 +278,19 @@ $$ (eq:notre)
 This outcome is typical in models in which adaptive expectations hypothesis like equation {eq}`eq:adaptexpn` appear as a
 component.  
 
-In this lecture {doc}`fiscal theory of the price level <cagan_ree>`, we studied a version of the model that replaces hypothesis {eq}`eq:adaptexpn` with
+In this lecture {doc}`monetarist theory of the price level <cagan_ree>`, we studied a version of the model that replaces hypothesis {eq}`eq:adaptexpn` with
 a "perfect foresight" or "rational expectations" hypothesis.
+
+
+But now, let's dive in and do some computations with the adaptive expectations version of the model.
+
+As usual, we'll start by importing some Python modules.
+
+```{code-cell} ipython3
+import numpy as np
+from collections import namedtuple
+import matplotlib.pyplot as plt
+```
 
 ```{code-cell} ipython3
 Cagan_Adaptive = namedtuple("Cagan_Adaptive", 
@@ -427,7 +431,7 @@ $$
      \end{cases}
 $$
 
-Notice that  we studied exactly this experiment  in a rational expectations version of the model in this lecture {doc}`fiscal theory of the price level <cagan_ree>`.
+Notice that  we studied exactly this experiment  in a rational expectations version of the model in this lecture {doc}`monetarist theory of the price level <cagan_ree>`.
 
 So by comparing outcomes across the two lectures, we can learn about consequences of assuming adaptive expectations, as we do here, instead of  rational expectations as we assumed in that other lecture.
 
@@ -438,7 +442,7 @@ So by comparing outcomes across the two lectures, we can learn about consequence
 π_seq_1, Eπ_seq_1, m_seq_1, p_seq_1 = solve_and_plot(md, μ_seq_1)
 ```
 
-We invite the reader to compare outcomes with those under rational expectations studied in this lecture {doc}`fiscal theory of the price level <cagan_ree>`.
+We invite the reader to compare outcomes with those under rational expectations studied in this lecture {doc}`monetarist theory of the price level <cagan_ree>`.
 
 Please note how the actual inflation rate $\pi_t$ "overshoots" its ultimate steady-state value at the time of the sudden reduction in the rate of growth of the money supply at time $T_1$.
 
