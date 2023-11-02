@@ -30,8 +30,8 @@ model.
 
 ## Overview
 
-The dynamics of the OLG model are quite similar to those of the Solow-Swan
-growth model.
+The dynamics of the OLG model are quite similar to those of the [Solow-Swan
+growth model](https://intro.quantecon.org/solow.html).
 
 At the same time, the OLG model adds an important new feature: the choice of
 how much to save is endogenous.
@@ -78,7 +78,7 @@ An individual born at time $t$ lives for two periods, $t$ and $t + 1$.
 We call an agent
 
 - "young" during the first period of their lives and
-- "old" during the second period of their lives
+- "old" during the second period of their lives.
 
 Young agents work, supplying labor and earning labor income.
 
@@ -232,8 +232,8 @@ describing demand for capital given prices.
 
 ### Firm's problem
 
-For each integer $t \geq 0$, output $y_t$ in period $t$ is given by
-the **Cobb-Douglas production function**
+For each integer $t \geq 0$, output $y_t$ in period $t$ is given by the 
+**[Cobb-Douglas production function](https://en.wikipedia.org/wiki/Cobb%E2%80%93Douglas_production_function)**
 
 ```{math}
 :label: cobb_douglas
@@ -694,7 +694,7 @@ Visualize the dynamics using a 45 degree diagram.
 ```
 
 
-To solve for $k_{t+1}$ given $k_t$ we use Newton's method.
+To solve for $k_{t+1}$ given $k_t$ we use [Newton's method](https://python.quantecon.org/newton_method.html).
 
 Let
 
