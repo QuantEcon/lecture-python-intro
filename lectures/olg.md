@@ -4,7 +4,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.14.5
+    jupytext_version: 1.15.2
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
@@ -294,12 +294,17 @@ def capital_demand(R, α):
     return (α/R)**(1/(1-α)) 
 ```
 
+```{code-cell} ipython3
+def capital_supply(R, β, w):
+    R = np.ones_like(R)
+    return R * (β / (1 + β)) * w
+```
+
 The next figure plots the supply of capital, as in [](saving_log_2_olg), as well as the demand for capital, as in [](aggregate_demand_capital_olg), as functions of the interest rate $R_{t+1}$.
 
 (For the special case of log utility, supply does not depend on the interest rate, so we have a constant function.)
 
 ```{code-cell} ipython3
-
 R_vals = np.linspace(0.3, 1)
 α, β = 0.5, 0.9
 w = 2.0
@@ -308,7 +313,7 @@ fig, ax = plt.subplots()
 
 ax.plot(R_vals, capital_demand(R_vals, α), 
         label="aggregate demand")
-ax.plot(R_vals, np.ones_like(R_vals) * (β / (1 + β)) * w, 
+ax.plot(R_vals, capital_supply(R_vals, β, w), 
         label="aggregate supply")
 
 ax.set_xlabel("$R_{t+1}$")
@@ -391,7 +396,6 @@ That is,
 Let's redo our plot above but now inserting the equilibrium quantity and price.
 
 ```{code-cell} ipython3
-
 R_vals = np.linspace(0.3, 1)
 α, β = 0.5, 0.9
 w = 2.0
@@ -400,7 +404,7 @@ fig, ax = plt.subplots()
 
 ax.plot(R_vals, capital_demand(R_vals, α), 
         label="aggregate demand")
-ax.plot(R_vals, np.ones_like(R_vals) * (β / (1 + β)) * w, 
+ax.plot(R_vals, capital_supply(R_vals, β, w), 
         label="aggregate supply")
 
 R_e = equilibrium_R_log_utility(α, β, w)
@@ -451,7 +455,6 @@ $$
     \quad \text{where }
     g(k) := \frac{\beta}{1+\beta} (1-\alpha)(k)^{\alpha}
 $$
-
 
 ```{code-cell} ipython3
 def k_update(k, α, β):
@@ -627,7 +630,6 @@ def savings_crra(w, R, model):
 ```
 
 ```{code-cell} ipython3
-
 R_vals = np.linspace(0.3, 1)
 model = create_olg_model()
 w = 2.0
@@ -760,7 +762,6 @@ ax.set_ylabel('$k_{t+1}$', fontsize=12)
 plt.show()
 ```
 
-
 ```{solution-end}
 ```
 
@@ -821,7 +822,6 @@ k_star = optimize.newton(h, 0.2, args=(model,))
 print(f"k_star = {k_star}")
 ```
 
-
 ```{solution-end}
 ```
 
@@ -845,7 +845,6 @@ Use initial conditions for $k_0$ of $0.001, 1.2, 2.6$ and time series length 10.
 
 
 Let's define the constants and three distinct intital conditions
-
 
 ```{code-cell} ipython3
 ts_length = 10
