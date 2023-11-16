@@ -516,11 +516,12 @@ for data, label, ax in zip(data_list, labels, axes):
 
     ax.loglog(x_grid, [eccdf(x, data) for x in x_grid], 
         'o', markersize=3.0, alpha=0.5, label=label)
-    ax.set_xlabel("log rank")
-    ax.set_ylabel("log size")
-
+    ax.set_ylabel("log prob")
+    
     ax.legend()
-
+    
+ax.set_xlabel("log value")
+    
 fig.subplots_adjust(hspace=0.4)
 
 plt.show()
@@ -630,7 +631,7 @@ def empirical_ccdf(data,
     if not xlabel:
         xlabel='log value'
     ax.set_xlabel(xlabel, fontsize=12)
-    ax.set_ylabel("log prob.", fontsize=12)
+    ax.set_ylabel("log prob", fontsize=12)
         
     if label:
         ax.legend(loc='lower left', fontsize=12)
@@ -825,8 +826,8 @@ for n in range(1, N):
 
 # Plot
 ax.plot(range(N), sample_mean, alpha=0.6, label='$\\bar{X}_n$')
-
 ax.plot(range(N), np.zeros(N), 'k--', lw=0.5)
+ax.set_xlabel(r"$n$")
 ax.legend()
 
 plt.show()
