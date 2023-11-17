@@ -4,7 +4,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.14.5
+    jupytext_version: 1.15.2
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
@@ -102,8 +102,13 @@ Let's histogram this sample.
 
 ```{code-cell} ipython3
 fig, ax = plt.subplots()
-ax.set_xlim(-1,20)
-ax.hist(sample, density=True, bins=5_000, histtype='stepfilled', alpha=0.8)
+ax.set_xlim(-1, 20)
+density, edges = np.histogram(sample, bins=5000, density=True)
+prob = density * np.diff(edges)
+plt.stairs(prob, edges, fill=True, alpha=0.8, label=r"unit: $\$100,000$")
+plt.ylabel("prob")
+plt.xlabel("net wealth")
+plt.legend()
 plt.show()
 ```
 
@@ -501,7 +506,6 @@ ax.legend()
 
 plt.show()
 ```
-
 
 Clearly, this distribution is not a good fit for our data.
 
