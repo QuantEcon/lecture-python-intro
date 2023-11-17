@@ -516,11 +516,11 @@ for data, label, ax in zip(data_list, labels, axes):
 
     ax.loglog(x_grid, [eccdf(x, data) for x in x_grid], 
         'o', markersize=3.0, alpha=0.5, label=label)
+    ax.set_xlabel("log value")
     ax.set_ylabel("log prob")
     
     ax.legend()
     
-ax.set_xlabel("log value")
     
 fig.subplots_adjust(hspace=0.4)
 
