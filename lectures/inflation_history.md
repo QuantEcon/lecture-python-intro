@@ -72,7 +72,7 @@ import datetime
 We'll start by bringing these data into Pandas from a spreadsheet.
 
 ```{code-cell} ipython3
-# import data and clean up index
+# import data and clean up the index
 df_fig5 = pd.read_excel('datasets/longprices.xls', 
                         sheet_name='all', 
                         header=2, 
@@ -148,7 +148,7 @@ We'll show a version of the complete  graph that originally appeared on page 35 
 
 The graph shows logarithms of price levels our  four "hard currency" countries from 1600 to 2000.
 
-Allthough we didn't have  to use   logarithms in our earlier graphs that  had stopped in 1914 -- we use logarithms now because we want also  to fit observations after 1914 in the same graph as the earlier observations.
+Although we didn't have  to use   logarithms in our earlier graphs that  had stopped in 1914 -- we use logarithms now because we want also  to fit observations after 1914 in the same graph as the earlier observations.
 
 All four of the countries eventually permanently left the gold standard by modifying their monetary and fiscal policies in several ways, starting the outbreak of the Great War in 1914.
 
@@ -261,7 +261,8 @@ def process_df(df):
     return df
 
 def pe_plot(p_seq, e_seq, index, labs, ax):
-    
+    "Generate plots for price and exchange rates."
+
     p_lab, e_lab = labs
     
     # plot price and exchange rates
@@ -303,7 +304,8 @@ def pe_plot(p_seq, e_seq, index, labs, ax):
     return ax1
 
 def pr_plot(p_seq, index, ax):
-
+    "Generate plots for inflation rates."
+    
     #  alculate the difference of log p_seq
     log_diff_p = np.diff(np.log(p_seq))
     
@@ -359,7 +361,7 @@ for i in range(4):
     
     indices, rows = sheet_index[i], remove_row[i]
     
-    # apply process_entry on selected sheet
+    # apply process_entry on the selected sheet
     sheet_list = [
         pd.read_excel(
         xls, 
