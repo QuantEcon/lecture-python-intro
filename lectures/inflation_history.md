@@ -72,11 +72,12 @@ import datetime
 We'll start by bringing these data into Pandas from a spreadsheet.
 
 ```{code-cell} ipython3
-# import data
-df_fig5 = pd.read_excel('datasets/longprices.xls', sheet_name='all', header=2, index_col=0).iloc[1:]
-df_fig5.index = df_fig5.index.astype(int) 
-
-df_fig5.head(5)
+# import data and clean up index
+df_fig5 = pd.read_excel('datasets/longprices.xls', 
+                        sheet_name='all', 
+                        header=2, 
+                        index_col=0).iloc[1:]
+df_fig5.index = df_fig5.index.astype(int)
 ```
 
 We first plot price levels over the period 1600-1914.
@@ -89,17 +90,19 @@ df_fig5_bef1914 = df_fig5[df_fig5.index <= 1915]
 # create plot
 cols = ['UK', 'US', 'France', 'Castile']
 
-fig, ax = plt.subplots(1, 1, figsize=[8, 5], dpi=200)
+fig, ax = plt.subplots(figsize=[8, 5], dpi=200)
 
 for col in cols:
-    ax.plot(df_fig5_bef1914.index, df_fig5_bef1914[col], label=col)
+    ax.plot(df_fig5_bef1914.index, 
+            df_fig5_bef1914[col], label=col)
 
 ax.spines[['right', 'top']].set_visible(False)
 ax.legend()
 ax.set_ylabel('Index  1913 = 100')
 ax.set_xlim(xmin=1600)
 plt.tight_layout()
-fig.text(.5, .0001, "Price Levels", ha='center')
+fig.text(.5, .0001, 
+         "Price Levels", ha='center')
 plt.show()
 ```
 
@@ -150,14 +153,12 @@ Allthough we didn't have  to use   logarithms in our earlier graphs that  had st
 All four of the countries eventually permanently left the gold standard by modifying their monetary and fiscal policies in several ways, starting the outbreak of the Great War in 1914.
 
 ```{code-cell} ipython3
-# create plot
-cols = ['UK', 'US', 'France', 'Castile']
-
-fig, ax = plt.subplots(1, 1, figsize=[8, 5], dpi=200)
+fig, ax = plt.subplots(figsize=[8, 5], dpi=200)
 
 for col in cols:
     ax.plot(df_fig5.index, df_fig5[col])
-    ax.text(x=df_fig5.index[-1]+2, y=df_fig5[col].iloc[-1], s=col)
+    ax.text(x=df_fig5.index[-1]+2, 
+            y=df_fig5[col].iloc[-1], s=col)
 
 ax.spines[['right', 'top']].set_visible(False)
 ax.set_yscale('log')
@@ -165,7 +166,8 @@ ax.set_ylabel('Index  1913 = 100')
 ax.set_xlim(xmin=1600)
 ax.set_ylim([10, 1e6])
 plt.tight_layout()
-fig.text(.5, .0001, "Logs of Price Levels", ha='center')
+fig.text(.5, .0001, 
+         "Logs of Price Levels", ha='center')
 plt.show()
 ```
 
@@ -212,7 +214,8 @@ def process_entry(entry):
         entry = entry.replace(',', '')
     
         # remove HTML markers
-        item_to_remove = ['<s>a</s>', '<s>c</s>', '<s>d</s>', '<s>e</s>']
+        item_to_remove = ['<s>a</s>', '<s>c</s>', 
+                          '<s>d</s>', '<s>e</s>']
 
         # <s>b</s> represents a billion
         if '<s>b</s>' in entry:
@@ -228,65 +231,101 @@ def process_df(df):
     "Clean and reorganize the entire dataframe."
     
     # remove HTML markers from column names
-    for item in ['<s>a</s>', '<s>c</s>', '<s>d</s>', '<s>e</s>']:
+    for item in ['<s>a</s>', '<s>c</s>', 
+                 '<s>d</s>', '<s>e</s>']:
         df.columns = df.columns.str.replace(item, '')
-    
+        
+    # convert years to int
     df['Year'] = df['Year'].apply(lambda x: int(x))
     
-    # set index to date time
+    # set index to datetime with year and month
     df = df.set_index(
-            pd.to_datetime((df['Year'].astype(str) + df['Month'].astype(str)), format='%Y%B'))
+            pd.to_datetime(
+                (df['Year'].astype(str) + \
+                 df['Month'].astype(str)), 
+                format='%Y%B'))
     df = df.drop(['Year', 'Month'], axis=1)
     
     # handle duplicates by keeping the first
     df = df[~df.index.duplicated(keep='first')]
     
-    # convert to numeric
-    df = df.applymap(lambda x: float(x) if x != '—' else np.nan)
+    # convert attribute values to numeric
+    df = df.map(lambda x: float(x) \
+                if x != '—' else np.nan)
     
     # finally, we only focus on data between 1919 and 1925
-    mask = (df.index >= '1919-01-01') & (df.index < '1925-01-01')
+    mask = (df.index >= '1919-01-01') & \
+           (df.index < '1925-01-01')
     df = df.loc[mask]
 
     return df
 
-def create_pe_plot(p_seq, e_seq, index, labs, ax):
+def pe_plot(p_seq, e_seq, index, labs, ax):
     
     p_lab, e_lab = labs
     
-    # price and exchange rates
-    ax.plot(index, p_seq, label=p_lab, color='tab:blue')
+    # plot price and exchange rates
+    ax.plot(index, p_seq, 
+            label=p_lab, 
+            color='tab:blue')
+    
+    # add a new axis
     ax1 = ax.twinx()
-    ax1.plot([None], [None], label=p_lab, color='tab:blue')
-    ax1.plot(index, e_seq, label=e_lab, color='tab:orange')
+    ax1.plot([None], [None], 
+             label=p_lab, 
+             color='tab:blue')
+    ax1.plot(index, e_seq, 
+             label=e_lab, 
+             color='tab:orange')
+    
+    # set log axes
     ax.set_yscale('log')
     ax1.set_yscale('log')
     
-    ax.xaxis.set_major_locator(mdates.MonthLocator(interval=5))
-    ax.xaxis.set_major_formatter(mdates.DateFormatter('%b %Y'))
+    # define the axis label format
+    ax.xaxis.set_major_locator(
+        mdates.MonthLocator(interval=5))
+    ax.xaxis.set_major_formatter(
+        mdates.DateFormatter('%b %Y'))
     for label in ax.get_xticklabels():
         label.set_rotation(45)
     
-    ax.text(-0.08, 1.03, 'Price Level', transform=ax.transAxes)
-    ax.text(0.92, 1.03, 'Exchange Rate', transform=ax.transAxes)
+    # set labels
+    ax.text(-0.08, 1.03, 
+            'Price Level', 
+            transform=ax.transAxes)
+    ax.text(0.92, 1.03, 
+            'Exchange Rate', 
+            transform=ax.transAxes)
     
     ax1.legend(loc='upper left')
 
     return ax1
 
-def create_pr_plot(p_seq, index, ax):
+def pr_plot(p_seq, index, ax):
 
-    # Calculate the difference of log p_seq
-    log_diff_p_seq = np.diff(np.log(p_seq))
+    #  alculate the difference of log p_seq
+    log_diff_p = np.diff(np.log(p_seq))
     
-    # Graph for the difference of log p_seq
-    ax.scatter(index[1:], log_diff_p_seq, label='Monthly Inflation Rate', color='tab:grey')
-    diff_smooth = pd.DataFrame(log_diff_p_seq).rolling(3).mean()
-    ax.plot(index[1:], diff_smooth, alpha=0.5, color='tab:grey')
-    ax.text(-0.08, 1.03, 'Monthly Inflation Rate', transform=ax.transAxes)
+    # graph for the difference of log p_seq
+    ax.scatter(index[1:], log_diff_p, 
+               label='Monthly Inflation Rate', 
+               color='tab:grey')
     
-    ax.xaxis.set_major_locator(mdates.MonthLocator(interval=5))
-    ax.xaxis.set_major_formatter(mdates.DateFormatter('%b %Y'))
+    # calculate and plot moving average
+    diff_smooth = pd.DataFrame(
+                  log_diff_p).rolling(3).mean()
+    ax.plot(index[1:], diff_smooth, 
+            alpha=0.5, 
+            color='tab:grey')
+    ax.text(-0.08, 1.03, 
+            'Monthly Inflation Rate', 
+            transform=ax.transAxes)
+    
+    ax.xaxis.set_major_locator(
+        mdates.MonthLocator(interval=5))
+    ax.xaxis.set_major_formatter(
+        mdates.DateFormatter('%b %Y'))
     
     for label in ax.get_xticklabels():
         label.set_rotation(45)
@@ -301,17 +340,32 @@ def create_pr_plot(p_seq, index, ax):
 # import data
 xls = pd.ExcelFile('datasets/chapter_3.xlsx')
 
-# unpack and combine all series
-sheet_index = [(2, 3, 4), (9, 10), (14, 15, 16), (21, 18, 19)]
-remove_row = [(-2, -2, -2), (-7, -10), (-6, -4, -3), (-19, -3, -6)]
+# select relevant sheets
+sheet_index = [(2, 3, 4), 
+               (9, 10), 
+               (14, 15, 16), 
+               (21, 18, 19)]
 
+# remove redundant rows
+remove_row = [(-2, -2, -2), 
+              (-7, -10), 
+              (-6, -4, -3), 
+              (-19, -3, -6)]
+
+# unpack and combine series for each country
 df_list = []
 
 for i in range(4):
     
     indices, rows = sheet_index[i], remove_row[i]
-    sheet_list = [pd.read_excel(xls, 'Table3.' + str(ind), header=1).iloc[:row].applymap(process_entry)
-                  for ind, row in zip(indices, rows)]
+    
+    # apply process_entry on selected sheet
+    sheet_list = [
+        pd.read_excel(
+        xls, 
+        'Table3.' + str(ind), 
+        header=1).iloc[:row].map(process_entry)
+        for ind, row in zip(indices, rows)]
     
     sheet_list = [process_df(df) for df in sheet_list]
     df_list.append(pd.concat(sheet_list, axis=1))
@@ -342,29 +396,34 @@ The sources of our data are:
 * Table 3.4, exchange rate with US
 
 ```{code-cell} ipython3
-df_Aus.head(5)
-```
-
-```{code-cell} ipython3
-p_seq = df_Aus['Retail price index, 52 commodities']
+p_seq = df_Aus['Retail price index,'
+               ' 52 commodities']
 e_seq = df_Aus['Exchange Rate']
 
-lab = ['Retail Price Index', 'Exchange Rate']
+lab = ['Retail Price Index', 
+       'Exchange Rate']
 
 # create plot
 fig, ax = plt.subplots(figsize=[10,7], dpi=200)
-_ = create_pe_plot(p_seq, e_seq, df_Aus.index, lab, ax)
+_ = pe_plot(p_seq, e_seq, 
+            df_Aus.index, 
+            lab, ax)
 
 # connect disjunct parts
-plt.figtext(0.5, -0.02, 'Austria', horizontalalignment='center', fontsize=12)
+plt.figtext(0.5, -0.02, 'Austria', 
+            horizontalalignment='center', 
+            fontsize=12)
 plt.show()
 ```
 
 ```{code-cell} ipython3
+# plot moving average
 fig, ax = plt.subplots(figsize=[10,7], dpi=200)
-_ = create_pr_plot(p_seq, df_Aus.index, ax)
+_ = pr_plot(p_seq, df_Aus.index, ax)
 
-plt.figtext(0.5, -0.02, 'Austria', horizontalalignment='center', fontsize=12)
+plt.figtext(0.5, -0.02, 'Austria', 
+            horizontalalignment='center', 
+            fontsize=12)
 plt.show()
 ```
 
@@ -383,30 +442,33 @@ The source of our data for Hungary is:
 * Table 3.10, price level $\exp p$ and exchange rate
 
 ```{code-cell} ipython3
-df_Hung.head(5)
-```
-
-```{code-cell} ipython3
 m_seq = df_Hung['Notes in circulation']
 p_seq = df_Hung['Hungarian index of prices']
-e_seq = 1/df_Hung['Cents per crown in New York']
-rb_seq = np.log(m_seq) - np.log(p_seq)
+e_seq = 1 / df_Hung['Cents per crown in New York']
 
-lab = ['Hungarian Index of Prices', '1/Cents per Crown in New York']
+lab = ['Hungarian Index of Prices', 
+       '1/Cents per Crown in New York']
 
 # create plot
 fig, ax = plt.subplots(figsize=[10,7], dpi=200)
-_ = create_pe_plot(p_seq, e_seq, df_Hung.index, lab, ax)
+_ = pe_plot(p_seq, e_seq, 
+            df_Hung.index, 
+            lab, ax)
 
-plt.figtext(0.5, -0.02, 'Hungary', horizontalalignment='center', fontsize=12)
+plt.figtext(0.5, -0.02, 'Hungary', 
+            horizontalalignment='center', 
+            fontsize=12)
 plt.show()
 ```
 
 ```{code-cell} ipython3
+# plot moving average
 fig, ax = plt.subplots(figsize=[10,7], dpi=200)
-_ = create_pr_plot(p_seq, df_Hung.index, ax)
+_ = pr_plot(p_seq, df_Hung.index, ax)
 
-plt.figtext(0.5, -0.02, 'Hungary', horizontalalignment='center', fontsize=12)
+plt.figtext(0.5, -0.02, 'Hungary', 
+            horizontalalignment='center', 
+            fontsize=12)
 plt.show()
 ```
 
@@ -424,49 +486,58 @@ We dropped the exchange rate after June 1924, when the  zloty was adopted. We di
 ````
 
 ```{code-cell} ipython3
-df_Pol.head(5)
-```
-
-```{code-cell} ipython3
 # splice three price series in different units
 p_seq1 = df_Pol['Wholesale price index'].copy()
-p_seq2 = df_Pol['Wholesale Price Index: On paper currency basis'].copy()
-p_seq3 = df_Pol['Wholesale Price Index: On zloty basis'].copy()
+p_seq2 = df_Pol['Wholesale Price Index: '
+                'On paper currency basis'].copy()
+p_seq3 = df_Pol['Wholesale Price Index: ' 
+                'On zloty basis'].copy()
 
 # non-nan part
-ch_index_1 = p_seq1[~p_seq1.isna()].index[-1]
-ch_index_2 = p_seq2[~p_seq2.isna()].index[-2]
+mask_1 = p_seq1[~p_seq1.isna()].index[-1]
+mask_2 = p_seq2[~p_seq2.isna()].index[-2]
 
-adj_ratio12 = p_seq1[ch_index_1]/p_seq2[ch_index_1]
-adj_ratio23 = p_seq2[ch_index_2]/p_seq3[ch_index_2]
+adj_ratio12 = (p_seq1[mask_1] 
+               / p_seq2[mask_1])
+adj_ratio23 = (p_seq2[mask_2] 
+               / p_seq3[mask_2])
 
 # glue three series
-p_seq = pd.concat([p_seq1[:ch_index_1], 
-                   adj_ratio12 * p_seq2[ch_index_1:ch_index_2], 
-                   adj_ratio23 * p_seq3[ch_index_2:]])
+p_seq = pd.concat([p_seq1[:mask_1], 
+                   adj_ratio12 * p_seq2[mask_1:mask_2], 
+                   adj_ratio23 * p_seq3[mask_2:]])
 p_seq = p_seq[~p_seq.index.duplicated(keep='first')]
 
 # exchange rate
-e_seq = 1/df_Pol['Cents per Polish mark (zloty after May 1924)']
+e_seq = 1/df_Pol['Cents per Polish mark '
+                 '(zloty after May 1924)']
 e_seq[e_seq.index > '05-01-1924'] = np.nan
 ```
 
 ```{code-cell} ipython3
-lab = ['Wholesale Price Index', '1/Cents per Polish Mark']
+lab = ['Wholesale Price Index', 
+       '1/Cents per Polish Mark']
 
 # create plot
 fig, ax = plt.subplots(figsize=[10,7], dpi=200)
-ax1 = create_pe_plot(p_seq, e_seq, df_Pol.index, lab, ax)
+ax1 = pe_plot(p_seq, e_seq, 
+              df_Pol.index, 
+              lab, ax)
 
-plt.figtext(0.5, -0.02, 'Poland', horizontalalignment='center', fontsize=12)
+plt.figtext(0.5, -0.02, 'Poland', 
+            horizontalalignment='center', 
+            fontsize=12)
 plt.show()
 ```
 
 ```{code-cell} ipython3
+# plot moving average
 fig, ax = plt.subplots(figsize=[10,7], dpi=200)
-_ = create_pr_plot(p_seq, df_Pol.index, ax)
+_ = pr_plot(p_seq, df_Pol.index, ax)
 
-plt.figtext(0.5, -0.02, 'Poland', horizontalalignment='center', fontsize=12)
+plt.figtext(0.5, -0.02, 'Poland', 
+            horizontalalignment='center', 
+            fontsize=12)
 plt.show()
 ```
 
@@ -478,46 +549,59 @@ The sources of our data for Germany are the following tables from chapter 3 of {
 * Table 3.19, exchange rate
 
 ```{code-cell} ipython3
-df_Germ.head(5)
-```
-
-```{code-cell} ipython3
-p_seq = df_Germ['Price index (on basis of marks before July 1924,  reichsmarks after)'].copy()
+p_seq = df_Germ['Price index (on basis of marks before July 1924,'
+                '  reichsmarks after)'].copy()
 e_seq = 1/df_Germ['Cents per mark']
 
-lab = ['Price Index', '1/Cents per Mark']
+lab = ['Price Index', 
+       '1/Cents per Mark']
 
 # create plot
 fig, ax = plt.subplots(figsize=[9,5], dpi=200)
-ax1 = create_pe_plot(p_seq, e_seq, df_Germ.index, lab, ax)
+ax1 = pe_plot(p_seq, e_seq, 
+              df_Germ.index, 
+              lab, ax)
 
-plt.figtext(0.5, -0.06, 'Germany', horizontalalignment='center', fontsize=12)
+plt.figtext(0.5, -0.06, 'Germany', 
+            horizontalalignment='center', 
+            fontsize=12)
 plt.show()
 ```
 
 ```{code-cell} ipython3
-p_seq = df_Germ['Price index (on basis of marks before July 1924,  reichsmarks after)'].copy()
+p_seq = df_Germ['Price index (on basis of marks before July 1924,'
+                '  reichsmarks after)'].copy()
 e_seq = 1/df_Germ['Cents per mark'].copy()
 
 # adjust the price level/exchange rate after the currency reform
-p_seq[p_seq.index > '06-01-1924'] = p_seq[p_seq.index > '06-01-1924'] * 1e12
-e_seq[e_seq.index > '12-01-1923'] = e_seq[e_seq.index > '12-01-1923'] * 1e12
+p_seq[p_seq.index > '06-01-1924'] = p_seq[p_seq.index 
+                                          > '06-01-1924'] * 1e12
+e_seq[e_seq.index > '12-01-1923'] = e_seq[e_seq.index 
+                                          > '12-01-1923'] * 1e12
 
-lab = ['Price Index (Marks or converted to Marks)', '1/Cents per Mark (or Reichsmark converted to Mark)']
+lab = ['Price Index (Marks or converted to Marks)', 
+       '1/Cents per Mark (or Reichsmark converted to Mark)']
 
 # create plot
 fig, ax = plt.subplots(figsize=[10,7], dpi=200)
-ax1 = create_pe_plot(p_seq, e_seq, df_Germ.index, lab, ax)
+ax1 = pe_plot(p_seq, e_seq, 
+              df_Germ.index, 
+              lab, ax)
 
-plt.figtext(0.5, -0.02, 'Germany', horizontalalignment='center', fontsize=12)
+plt.figtext(0.5, -0.02, 'Germany', 
+            horizontalalignment='center', 
+            fontsize=12)
 plt.show()
 ```
 
 ```{code-cell} ipython3
+# plot moving average
 fig, ax = plt.subplots(figsize=[10,7], dpi=200)
-_ = create_pr_plot(p_seq, df_Germ.index, ax)
+_ = pr_plot(p_seq, df_Germ.index, ax)
 
-plt.figtext(0.5, -0.02, 'Germany', horizontalalignment='center', fontsize=12)
+plt.figtext(0.5, -0.02, 'Germany', 
+            horizontalalignment='center', 
+            fontsize=12)
 plt.show()
 ```
 
