@@ -231,8 +231,7 @@ def process_df(df):
     "Clean and reorganize the entire dataframe."
     
     # remove HTML markers from column names
-    for item in ['<s>a</s>', '<s>c</s>', 
-                 '<s>d</s>', '<s>e</s>']:
+    for item in ['<s>a</s>', '<s>c</s>', '<s>d</s>', '<s>e</s>']:
         df.columns = df.columns.str.replace(item, '')
         
     # convert years to int
@@ -266,18 +265,12 @@ def pe_plot(p_seq, e_seq, index, labs, ax):
     p_lab, e_lab = labs
     
     # plot price and exchange rates
-    ax.plot(index, p_seq, 
-            label=p_lab, 
-            color='tab:blue')
+    ax.plot(index, p_seq, label=p_lab, color='tab:blue')
     
     # add a new axis
     ax1 = ax.twinx()
-    ax1.plot([None], [None], 
-             label=p_lab, 
-             color='tab:blue')
-    ax1.plot(index, e_seq, 
-             label=e_lab, 
-             color='tab:orange')
+    ax1.plot([None], [None], label=p_lab, color='tab:blue')
+    ax1.plot(index, e_seq, label=e_lab, color='tab:orange')
     
     # set log axes
     ax.set_yscale('log')
@@ -292,12 +285,8 @@ def pe_plot(p_seq, e_seq, index, labs, ax):
         label.set_rotation(45)
     
     # set labels
-    ax.text(-0.08, 1.03, 
-            'Price Level', 
-            transform=ax.transAxes)
-    ax.text(0.92, 1.03, 
-            'Exchange Rate', 
-            transform=ax.transAxes)
+    ax.text(-0.08, 1.03, 'Price Level', transform=ax.transAxes)
+    ax.text(0.92, 1.03, 'Exchange Rate', transform=ax.transAxes)
     
     ax1.legend(loc='upper left')
 
@@ -305,7 +294,7 @@ def pe_plot(p_seq, e_seq, index, labs, ax):
 
 def pr_plot(p_seq, index, ax):
     "Generate plots for inflation rates."
-    
+
     #  alculate the difference of log p_seq
     log_diff_p = np.diff(np.log(p_seq))
     
@@ -315,11 +304,8 @@ def pr_plot(p_seq, index, ax):
                color='tab:grey')
     
     # calculate and plot moving average
-    diff_smooth = pd.DataFrame(
-                  log_diff_p).rolling(3).mean()
-    ax.plot(index[1:], diff_smooth, 
-            alpha=0.5, 
-            color='tab:grey')
+    diff_smooth = pd.DataFrame(log_diff_p).rolling(3).mean()
+    ax.plot(index[1:], diff_smooth, alpha=0.5, color='tab:grey')
     ax.text(-0.08, 1.03, 
             'Monthly Inflation Rate', 
             transform=ax.transAxes)
@@ -363,10 +349,8 @@ for i in range(4):
     
     # apply process_entry on the selected sheet
     sheet_list = [
-        pd.read_excel(
-        xls, 
-        'Table3.' + str(ind), 
-        header=1).iloc[:row].applymap(process_entry)
+        pd.read_excel(xls, 'Table3.' + str(ind), 
+            header=1).iloc[:row].applymap(process_entry)
         for ind, row in zip(indices, rows)]
     
     sheet_list = [process_df(df) for df in sheet_list]
@@ -398,18 +382,14 @@ The sources of our data are:
 * Table 3.4, exchange rate with US
 
 ```{code-cell} ipython3
-p_seq = df_Aus['Retail price index,'
-               ' 52 commodities']
+p_seq = df_Aus['Retail price index, 52 commodities']
 e_seq = df_Aus['Exchange Rate']
 
-lab = ['Retail Price Index', 
-       'Exchange Rate']
+lab = ['Retail Price Index', 'Exchange Rate']
 
 # create plot
 fig, ax = plt.subplots(figsize=[10,7], dpi=200)
-_ = pe_plot(p_seq, e_seq, 
-            df_Aus.index, 
-            lab, ax)
+_ = pe_plot(p_seq, e_seq, df_Aus.index, lab, ax)
 
 # connect disjunct parts
 plt.figtext(0.5, -0.02, 'Austria', 
@@ -453,9 +433,7 @@ lab = ['Hungarian Index of Prices',
 
 # create plot
 fig, ax = plt.subplots(figsize=[10,7], dpi=200)
-_ = pe_plot(p_seq, e_seq, 
-            df_Hung.index, 
-            lab, ax)
+_ = pe_plot(p_seq, e_seq, df_Hung.index, lab, ax)
 
 plt.figtext(0.5, -0.02, 'Hungary', 
             horizontalalignment='center', 
@@ -499,10 +477,8 @@ p_seq3 = df_Pol['Wholesale Price Index: '
 mask_1 = p_seq1[~p_seq1.isna()].index[-1]
 mask_2 = p_seq2[~p_seq2.isna()].index[-2]
 
-adj_ratio12 = (p_seq1[mask_1] 
-               / p_seq2[mask_1])
-adj_ratio23 = (p_seq2[mask_2] 
-               / p_seq3[mask_2])
+adj_ratio12 = (p_seq1[mask_1] / p_seq2[mask_1])
+adj_ratio23 = (p_seq2[mask_2] / p_seq3[mask_2])
 
 # glue three series
 p_seq = pd.concat([p_seq1[:mask_1], 
@@ -511,8 +487,7 @@ p_seq = pd.concat([p_seq1[:mask_1],
 p_seq = p_seq[~p_seq.index.duplicated(keep='first')]
 
 # exchange rate
-e_seq = 1/df_Pol['Cents per Polish mark '
-                 '(zloty after May 1924)']
+e_seq = 1/df_Pol['Cents per Polish mark (zloty after May 1924)']
 e_seq[e_seq.index > '05-01-1924'] = np.nan
 ```
 
@@ -522,9 +497,7 @@ lab = ['Wholesale Price Index',
 
 # create plot
 fig, ax = plt.subplots(figsize=[10,7], dpi=200)
-ax1 = pe_plot(p_seq, e_seq, 
-              df_Pol.index, 
-              lab, ax)
+ax1 = pe_plot(p_seq, e_seq, df_Pol.index, lab, ax)
 
 plt.figtext(0.5, -0.02, 'Poland', 
             horizontalalignment='center', 
@@ -560,9 +533,7 @@ lab = ['Price Index',
 
 # create plot
 fig, ax = plt.subplots(figsize=[9,5], dpi=200)
-ax1 = pe_plot(p_seq, e_seq, 
-              df_Germ.index, 
-              lab, ax)
+ax1 = pe_plot(p_seq, e_seq, df_Germ.index, lab, ax)
 
 plt.figtext(0.5, -0.06, 'Germany', 
             horizontalalignment='center', 
@@ -586,9 +557,7 @@ lab = ['Price Index (Marks or converted to Marks)',
 
 # create plot
 fig, ax = plt.subplots(figsize=[10,7], dpi=200)
-ax1 = pe_plot(p_seq, e_seq, 
-              df_Germ.index, 
-              lab, ax)
+ax1 = pe_plot(p_seq, e_seq, df_Germ.index, lab, ax)
 
 plt.figtext(0.5, -0.02, 'Germany', 
             horizontalalignment='center', 
