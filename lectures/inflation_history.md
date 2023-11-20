@@ -250,7 +250,7 @@ def process_df(df):
     df = df[~df.index.duplicated(keep='first')]
     
     # convert attribute values to numeric
-    df = df.map(lambda x: float(x) \
+    df = df.applymap(lambda x: float(x) \
                 if x != '—' else np.nan)
     
     # finally, we only focus on data between 1919 and 1925
@@ -364,7 +364,7 @@ for i in range(4):
         pd.read_excel(
         xls, 
         'Table3.' + str(ind), 
-        header=1).iloc[:row].map(process_entry)
+        header=1).iloc[:row].applymap(process_entry)
         for ind, row in zip(indices, rows)]
     
     sheet_list = [process_df(df) for df in sheet_list]
