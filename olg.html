@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html lang="en" data-content_root="" >
 
   <head>
     <meta charset="utf-8" />
@@ -60,12 +60,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -81,9 +81,9 @@
     <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
-  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
 
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
@@ -261,8 +261,8 @@ is used by policy makers and researchers to examine</p>
 model.</p>
 <section id="overview">
 <h2><span class="section-number">23.1. </span>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
-<p>The dynamics of the OLG model are quite similar to those of the Solow-Swan
-growth model.</p>
+<p>The dynamics of the OLG model are quite similar to those of the <a class="reference external" href="https://intro.quantecon.org/solow.html">Solow-Swan
+growth model</a>.</p>
 <p>At the same time, the OLG model adds an important new feature: the choice of
 how much to save is endogenous.</p>
 <p>To see why this is important, suppose, for example, that we are interested in
@@ -300,7 +300,7 @@ problem of households and studies the implications for long run growth.</p>
 <p>We call an agent</p>
 <ul class="simple">
 <li><p>“young” during the first period of their lives and</p></li>
-<li><p>“old” during the second period of their lives</p></li>
+<li><p>“old” during the second period of their lives.</p></li>
 </ul>
 <p>Young agents work, supplying labor and earning labor income.</p>
 <p>They also decide how much to save.</p>
@@ -399,8 +399,8 @@ economy.</p>
 describing demand for capital given prices.</p>
 <section id="firms-problem">
 <h3><span class="section-number">23.4.1. </span>Firm’s problem<a class="headerlink" href="#firms-problem" title="Permalink to this heading">#</a></h3>
-<p>For each integer <span class="math notranslate nohighlight">\(t \geq 0\)</span>, output <span class="math notranslate nohighlight">\(y_t\)</span> in period <span class="math notranslate nohighlight">\(t\)</span> is given by
-the <strong>Cobb-Douglas production function</strong></p>
+<p>For each integer <span class="math notranslate nohighlight">\(t \geq 0\)</span>, output <span class="math notranslate nohighlight">\(y_t\)</span> in period <span class="math notranslate nohighlight">\(t\)</span> is given by the
+<strong><a class="reference external" href="https://en.wikipedia.org/wiki/Cobb%E2%80%93Douglas_production_function">Cobb-Douglas production function</a></strong></p>
 <div class="math notranslate nohighlight" id="equation-cobb-douglas">
 <span class="eqno">(23.7)<a class="headerlink" href="#equation-cobb-douglas" title="Permalink to this equation">#</a></span>\[    y_t = k_t^{\alpha} \ell_t^{1-\alpha}\]</div>
 <p>Here <span class="math notranslate nohighlight">\(k_t\)</span> is capital, <span class="math notranslate nohighlight">\(\ell_t\)</span> is labor, and  <span class="math notranslate nohighlight">\(\alpha\)</span> is a parameter
@@ -439,6 +439,15 @@ at time <span class="math notranslate nohighlight">\(t+1\)</span></p>
 </div>
 </div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">capital_supply</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">β</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>
+    <span class="n">R</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">R</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">R</span> <span class="o">*</span> <span class="p">(</span><span class="n">β</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">β</span><span class="p">))</span> <span class="o">*</span> <span class="n">w</span>
+</pre></div>
+</div>
+</div>
+</div>
 <p>The next figure plots the supply of capital, as in <a class="reference internal" href="#equation-saving-log-2-olg">(23.6)</a>, as well as the demand for capital, as in <a class="reference internal" href="#equation-aggregate-demand-capital-olg">(23.11)</a>, as functions of the interest rate <span class="math notranslate nohighlight">\(R_{t+1}\)</span>.</p>
 <p>(For the special case of log utility, supply does not depend on the interest rate, so we have a constant function.)</p>
 <div class="cell docutils container">
@@ -451,7 +460,7 @@ at time <span class="math notranslate nohighlight">\(t+1\)</span></p>
 
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">R_vals</span><span class="p">,</span> <span class="n">capital_demand</span><span class="p">(</span><span class="n">R_vals</span><span class="p">,</span> <span class="n">α</span><span class="p">),</span> 
         <span class="n">label</span><span class="o">=</span><span class="s2">&quot;aggregate demand&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">R_vals</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">R_vals</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">β</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">β</span><span class="p">))</span> <span class="o">*</span> <span class="n">w</span><span class="p">,</span> 
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">R_vals</span><span class="p">,</span> <span class="n">capital_supply</span><span class="p">(</span><span class="n">R_vals</span><span class="p">,</span> <span class="n">β</span><span class="p">,</span> <span class="n">w</span><span class="p">),</span> 
         <span class="n">label</span><span class="o">=</span><span class="s2">&quot;aggregate supply&quot;</span><span class="p">)</span>
 
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;$R_{t+1}$&quot;</span><span class="p">)</span>
@@ -524,7 +533,7 @@ the equilibrium quantity <span class="math notranslate nohighlight">\(k_{t+1}\)<
 
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">R_vals</span><span class="p">,</span> <span class="n">capital_demand</span><span class="p">(</span><span class="n">R_vals</span><span class="p">,</span> <span class="n">α</span><span class="p">),</span> 
         <span class="n">label</span><span class="o">=</span><span class="s2">&quot;aggregate demand&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">R_vals</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">R_vals</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">β</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">β</span><span class="p">))</span> <span class="o">*</span> <span class="n">w</span><span class="p">,</span> 
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">R_vals</span><span class="p">,</span> <span class="n">capital_supply</span><span class="p">(</span><span class="n">R_vals</span><span class="p">,</span> <span class="n">β</span><span class="p">,</span> <span class="n">w</span><span class="p">),</span> 
         <span class="n">label</span><span class="o">=</span><span class="s2">&quot;aggregate supply&quot;</span><span class="p">)</span>
 
 <span class="n">R_e</span> <span class="o">=</span> <span class="n">equilibrium_R_log_utility</span><span class="p">(</span><span class="n">α</span><span class="p">,</span> <span class="n">β</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span>
@@ -799,7 +808,7 @@ with our new aggregate supply function yields equilibrium capital.</p>
 
 <p class="admonition-title">Solution to<a class="reference internal" href="#olg_ex1"> Exercise 23.1</a></p>
 <section id="solution-content">
-<p>To solve for <span class="math notranslate nohighlight">\(k_{t+1}\)</span> given <span class="math notranslate nohighlight">\(k_t\)</span> we use Newton’s method.</p>
+<p>To solve for <span class="math notranslate nohighlight">\(k_{t+1}\)</span> given <span class="math notranslate nohighlight">\(k_t\)</span> we use <a class="reference external" href="https://python.quantecon.org/newton_method.html">Newton’s method</a>.</p>
 <p>Let</p>
 <div class="math notranslate nohighlight" id="equation-crra-newton-1">
 <span class="eqno">(23.23)<a class="headerlink" href="#equation-crra-newton-1" title="Permalink to this equation">#</a></span>\[    f(k_{t+1}, k_t)
@@ -1125,12 +1134,12 @@ three distinct initial conditions, under the parameterization listed above.</p>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cagan_ree.html">
-   12. A Monetarist Theory of the Price Level
+   12. A Monetarist Theory of  Price Levels
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cagan_adaptive.html">
-   13. A Monetarist Theory of Price Level with Adaptive Expectations
+   13. A Monetarist Theory of Price Levels with Adaptive Expectations
   </a>
  </li>
  <li class="toctree-l1">

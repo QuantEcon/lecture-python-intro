@@ -11,20 +11,19 @@ kernelspec:
   name: python3
 ---
 
-# A Monetarist Theory of the Price Level
+# A Monetarist Theory of  Price Levels
 
 ## Introduction
 
 
-We'll use linear algebra first to explain and then do  some experiments with  a "monetarist theory of the price level".
+We'll use linear algebra first to explain and then do  some experiments with  a "monetarist theory of  price levels".
 
-Sometimes this theory is also called a "fiscal theory of the price level".
+Sometimes this theory is also called a "fiscal theory of  price levels".
 
-Such a of the price level was described by Thomas Sargent and Neil Wallace in chapter 5 of 
-{cite}`sargent2013rational`, which reprints a  1981 article title "Unpleasant Monetarist Arithmetic".  
+Such a theory of  price levels was described by Thomas Sargent and Neil Wallace in chapter 5 of 
+{cite}`sargent2013rational`, which reprints a  1981 Federal Reserve Bank of Minneapolis article entitled "Unpleasant Monetarist Arithmetic".  
 
-Sometimes people call it a "monetary" or "monetarist" theory of the price level because fiscal effects on the price level occur
-through the effects of government fiscal policy decisions on the path of the money supply.  
+Sometimes people call it a "monetary" or "monetarist" theory of  price levels because fiscal effects on  price levels occur through the effects of government fiscal policy decisions on the path of the money supply.  
 
   * a goverment's fiscal policies determine whether it **expenditures** exceed its **tax collections**
   * if its expenditures exceeds it tax collections, it can cover the difference by **printing money**
@@ -40,7 +39,7 @@ Elemental forces at work in the fiscal theory of the price level help to underst
 According to this theory, when the government persistently spends more than it collects in taxes and prints money to finance the shortfall (the "shortfall" is called the "government deficit"), it puts upward pressure on the price level and generates
 persistent inflation.
 
-The "monetarist or fiscal theory of the price level" asserts that  
+The "monetarist or fiscal theory of  price levels" asserts that  
 
 * to **start** a persistent inflation the government simply persistently runs a money-financed government deficit
 
@@ -142,7 +141,7 @@ $$
 \begin{bmatrix} 1 & -\delta & 0 & 0 & \cdots & 0 & 0 \cr
                 0 & 1 & -\delta & 0 & \cdots & 0 & 0 \cr
                 0 & 0 & 1 & -\delta & \cdots & 0 & 0 \cr
-                \vdots & \vdots & \vdots & \vdots & \vdots & 0 & 0 \cr
+                \vdots & \vdots & \vdots & \vdots & \vdots & -\delta & 0 \cr
                 0 & 0 & 0 & 0 & \cdots & 1 & -\delta \cr
                 0 & 0 & 0 & 0 & \cdots & 0 & 1 \end{bmatrix}
 \begin{bmatrix} \pi_0 \cr \pi_1 \cr \pi_2 \cr \vdots \cr \pi_{T-1} \cr \pi_T 
@@ -404,9 +403,11 @@ was completely unanticipated.
 
 At time $T_1$ when the "surprise" money growth rate  change occurs,  to satisfy
 equation {eq}`eq:pformula2`, the log of real balances jumps 
-**upward* as  $\pi_t$ jumps **downward**.
+**upward** as  $\pi_t$ jumps **downward**.
 
 But in order for $m_t - p_t$ to jump, which variable jumps, $m_{T_1}$ or $p_{T_1}$?
+
+We'll study that interesting question next.
 
 ###  What jumps?
 
@@ -677,7 +678,7 @@ The following  code does the calculations and plots the results.
 ```
 ## Sequel
 
-This lecture  {doc}`monetarist theory of the price level with adaptive expectations <cagan_adaptive>` describes an "adaptive expectations" version of Cagan's model.
+Another lecture  {doc}`monetarist theory of  price levels with adaptive expectations <cagan_adaptive>` describes an "adaptive expectations" version of Cagan's model.
 
 The dynamics become more complicated and so does the algebra.
 

@@ -11,18 +11,18 @@ kernelspec:
   name: python3
 ---
 
-# A Monetarist Theory of Price Level with Adaptive Expectations
+# A Monetarist Theory of Price Levels with Adaptive Expectations
 
 ## Introduction
 
 
-This lecture is a sequel or prequel to this lecture {doc}`monetarist theory of the price level <cagan_ree>`.
+This lecture is a sequel or prequel to another lecture {doc}`monetarist theory of  price levels <cagan_ree>`.
 
-We'll use linear algebra to do some experiments with  an alternative "monetarist" or  "fiscal" theory of the price level".
+We'll use linear algebra to do some experiments with  an alternative "monetarist" or  "fiscal" theory of  price levels".
 
-Like the model in this lecture {doc}`monetarist theory of the price level <cagan_ree>`, the model asserts that when a government persistently spends more than it collects in taxes and prints money to finance the shortfall, it puts upward pressure on the price level and generates persistent inflation.
+Like the model in this lecture {doc}`monetarist theory of  price levels <cagan_ree>`, the model asserts that when a government persistently spends more than it collects in taxes and prints money to finance the shortfall, it puts upward pressure on the price level and generates persistent inflation.
 
-Instead of the "perfect foresight" or "rational expectations" version of the model in this lecture {doc}`monetarist theory of the price level <cagan_ree>`, our model in the present lecture is an "adaptive expectations"  version of a model that Philip Cagan {cite}`Cagan`  used to study the monetary dynamics of hyperinflations.  
+Instead of the "perfect foresight" or "rational expectations" version of the model in this lecture {doc}`monetarist theory of  price levels <cagan_ree>`, our model in the present lecture is an "adaptive expectations"  version of a model that Philip Cagan {cite}`Cagan`  used to study the monetary dynamics of hyperinflations.  
 
 It combines these components:
 
@@ -160,7 +160,7 @@ $$ (eq:eq2)
 where the $(T+1) \times (T+2)$ matrix $C$ is defined implicitly to align this equation with the preceding
 equation system.
 
-## Harvesting returns from our matrix formulation
+## Harvesting insights from our matrix formulation
 
 We now have all of the ingredients we need to solve for $\pi$ as
 a function of $\mu, \pi_0, \pi_0^*$.  
@@ -442,7 +442,7 @@ So by comparing outcomes across the two lectures, we can learn about consequence
 π_seq_1, Eπ_seq_1, m_seq_1, p_seq_1 = solve_and_plot(md, μ_seq_1)
 ```
 
-We invite the reader to compare outcomes with those under rational expectations studied in this lecture {doc}`monetarist theory of the price level <cagan_ree>`.
+We invite the reader to compare outcomes with those under rational expectations studied in another lecture {doc}`monetarist theory of  price levels <cagan_ree>`.
 
 Please note how the actual inflation rate $\pi_t$ "overshoots" its ultimate steady-state value at the time of the sudden reduction in the rate of growth of the money supply at time $T_1$.
 
