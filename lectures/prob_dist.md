@@ -27,7 +27,7 @@ In this lecture we give a quick introduction to data and probability distributio
 
 ```{code-cell} ipython3
 :tags: [hide-output]
-! pip install --upgrade yfinance  
+!pip install --upgrade yfinance  
 ```
 
 ```{code-cell} ipython3
