@@ -217,7 +217,7 @@ The CDF jumps up by $p(x_i)$ and $x_i$.
 
 
 ```{exercise}
-:label: prob_ex1
+:label: prob_ex2
 
 Calculate the mean and variance for this parameterization (i.e., $n=10$)
 directly from the PMF, using the expressions given above.
