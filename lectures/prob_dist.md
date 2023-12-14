@@ -284,12 +284,12 @@ plt.show()
 
 
 ```{exercise}
-:label: prob_ex2
+:label: prob_ex3
 
 Using `u.pmf`, check that our definition of the CDF given above calculates the same function as `u.cdf`.
 ```
 
-```{solution-start} prob_ex2
+```{solution-start} prob_ex3
 :class: dropdown
 ```
 
@@ -728,7 +728,7 @@ x.mean(), x.var()
 
 
 ```{exercise}
-:label: prob_ex3
+:label: prob_ex4
 
 Check that the formulas given above produce the same numbers.
 ```
