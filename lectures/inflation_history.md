@@ -295,7 +295,7 @@ def pe_plot(p_seq, e_seq, index, labs, ax):
 def pr_plot(p_seq, index, ax):
     "Generate plots for inflation rates."
 
-    #  alculate the difference of log p_seq
+    #  Calculate the difference of log p_seq
     log_diff_p = np.diff(np.log(p_seq))
     
     # graph for the difference of log p_seq
