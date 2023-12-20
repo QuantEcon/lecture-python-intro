@@ -67,13 +67,10 @@ First let's import the packages needed to explore what the data says about long 
 
 ```{code-cell} ipython3
 import pandas as pd
-import os
-import matplotlib as mpl
 import matplotlib.pyplot as plt
 import matplotlib.cm as cm
 import numpy as np
 from collections import namedtuple
-from matplotlib.lines import Line2D
 ```
 
 
@@ -501,14 +498,17 @@ Let's first define a collection of countries that consist of the British Empire 
 
 ```{code-cell} ipython3
 BEM = ['GBR', 'IND', 'AUS', 'NZL', 'CAN', 'ZAF']
-gdp['BEM'] = gdp[BEM].loc[start_year-1:end_year].interpolate(method='index').sum(axis=1) # Interpolate incomplete time-series
+# Interpolate incomplete time-series
+gdp['BEM'] = gdp[BEM].loc[start_year-1:end_year].interpolate(method='index').sum(axis=1)
 ```
 
 
 Let's take a look at the aggregation that represents the British Empire.
 
 ```{code-cell} ipython3
-gdp['BEM'].plot(ylabel="International $'s") # The first year is np.nan due to interpolation
+# The first year is np.nan due to interpolation
+gdp['BEM'].plot(ylabel="International $'s")
+plt.show()
 ```
 
 ```{code-cell} ipython3
