@@ -107,8 +107,6 @@ From  US unemployment data, Hamilton {cite}`Hamilton2005` estimated the followin
 
 ```
 
-+++
-
 Here there are three **states**
 
 * "ng" represents normal growth
@@ -836,8 +834,6 @@ ax.scatter(ψ_star[0], ψ_star[1], ψ_star[2], c='k', s=60)
 plt.show()
 ```
 
-+++ {"user_expressions": [], "tags": []}
-
 Here
 
 * $P$ is the stochastic matrix for recession and growth {ref}`considered above <mc_eg2>`.
@@ -1081,8 +1077,6 @@ Solution 1:
 :align: center
 
 ```
-
-+++
 
 Since the matrix is everywhere positive, there is a unique stationary distribution.
 
