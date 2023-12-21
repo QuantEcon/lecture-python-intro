@@ -71,7 +71,7 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/quantecon-book-theme.css?digest=cb2d6eee9712fbd5cbf7cbc2d6baf81f7f9a9912" type="text/css" />
+    <link rel="stylesheet" href="_static/styles/quantecon-book-theme.css?digest=b09b2da44b9015b4fa76ea072fa2d8f7faee5492" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
@@ -98,15 +98,15 @@
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="_static/togglebutton.js"></script>
-    <script src="_static/scripts/quantecon-book-theme.js?digest=b7d60282c7125f74e59bac03c2323864e0e32e1c"></script>
+    <script src="_static/scripts/quantecon-book-theme.js?digest=eed9c059a3ee152aae2353ec732f0a6d12e6aa07"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="_static/design-tabs.js"></script>
-    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-QDS1YRJNGM"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-1P39P53YM9"></script>
     <script>
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){ dataLayer.push(arguments); }
                 gtag('js', new Date());
-                gtag('config', 'G-QDS1YRJNGM');
+                gtag('config', 'G-1P39P53YM9');
             </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
@@ -184,7 +184,10 @@ const thebe_selector_output = ".output, .cell_output"
                             <p class="logo">
                                 
                                     
-                                    <a href=https://quantecon.org><img src="_static/qe-logo.png" class="logo" alt="logo"></a>
+                                    <a href=https://quantecon.org><img src="_static/qe-logo.png" class="logo logo-img" alt="logo"></a>
+                                    
+                                    <a href=https://quantecon.org><img src="_static/quantecon-logo-transparent.png" class="dark-logo-img" alt="logo"></a>
+                                    
                                     
                                 
                             </p>
@@ -212,8 +215,19 @@ const thebe_selector_output = ".output, .cell_output"
                         <p class="qe-page__header-subheading">Price Level Histories</p>
 
                     </div>
+                    <!-- length 2, since its a string and empty dict has length 2 - {} -->
+                        <p class="qe-page__header-authors" font-size="18">
+                            
+                                
+                                    <a href="http://www.tomsargent.com/" target="_blank"><span>Thomas J. Sargent</span></a>
+                                
+                            
+                                
+                                    and <a href="https://johnstachurski.net/" target="_blank"><span>John Stachurski</span></a>
+                                
+                            
+                        </p>
 
-                    <p class="qe-page__header-authors">Thomas J. Sargent & John Stachurski</p>
 
                 </div> <!-- .page__header -->
 
@@ -279,7 +293,9 @@ think about determinants of the price level.</p>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Downloading xlrd-2.0.1-py2.py3-none-any.whl (96 kB)
 ?25l     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/96.5 kB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">96.5/96.5 kB</span> <span class=" -Color -Color-Red">6.3 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">96.5/96.5 kB</span> <span class=" -Color -Color-Red">5.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
 ?25h
 </pre></div>
 </div>
@@ -295,78 +311,15 @@ think about determinants of the price level.</p>
 <p>We’ll start by bringing these data into Pandas from a spreadsheet.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># import data</span>
-<span class="n">df_fig5</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s1">&#39;datasets/longprices.xls&#39;</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
-<span class="n">df_fig5</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">df_fig5</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span> 
-
-<span class="n">df_fig5</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># import data and clean up the index</span>
+<span class="n">df_fig5</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s1">&#39;datasets/longprices.xls&#39;</span><span class="p">,</span> 
+                        <span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">,</span> 
+                        <span class="n">header</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> 
+                        <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+<span class="n">df_fig5</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">df_fig5</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>UK</th>
-      <th>US</th>
-      <th>France</th>
-      <th>Castile</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>1600</th>
-      <td>72.455009</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>48.559223</td>
-    </tr>
-    <tr>
-      <th>1601</th>
-      <td>84.609771</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>41.760932</td>
-    </tr>
-    <tr>
-      <th>1602</th>
-      <td>74.349258</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>40.158477</td>
-    </tr>
-    <tr>
-      <th>1603</th>
-      <td>70.718615</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>40.595510</td>
-    </tr>
-    <tr>
-      <th>1604</th>
-      <td>63.773036</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>44.480248</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
 </div>
 <p>We first plot price levels over the period 1600-1914.</p>
 <p>During most years in this time interval, the countries were on a gold or silver standard.</p>
@@ -377,17 +330,19 @@ think about determinants of the price level.</p>
 <span class="c1"># create plot</span>
 <span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;UK&#39;</span><span class="p">,</span> <span class="s1">&#39;US&#39;</span><span class="p">,</span> <span class="s1">&#39;France&#39;</span><span class="p">,</span> <span class="s1">&#39;Castile&#39;</span><span class="p">]</span>
 
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
 
 <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">cols</span><span class="p">:</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df_fig5_bef1914</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">df_fig5_bef1914</span><span class="p">[</span><span class="n">col</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="n">col</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df_fig5_bef1914</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> 
+            <span class="n">df_fig5_bef1914</span><span class="p">[</span><span class="n">col</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="n">col</span><span class="p">)</span>
 
 <span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[[</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="s1">&#39;top&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Index  1913 = 100&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">xmin</span><span class="o">=</span><span class="mi">1600</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">.5</span><span class="p">,</span> <span class="mf">.0001</span><span class="p">,</span> <span class="s2">&quot;Price Levels&quot;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">.5</span><span class="p">,</span> <span class="mf">.0001</span><span class="p">,</span> 
+         <span class="s2">&quot;Price Levels&quot;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -428,18 +383,16 @@ think about determinants of the price level.</p>
 left the gold/silver standard.</p>
 <p>We’ll show a version of the complete  graph that originally appeared on page 35 of <span id="id3">[<a class="reference internal" href="zreferences.html#id4" title="Thomas J Sargent and François R Velde. The Big Problem of Small Change. Princeton University Press, Princeton, New Jersey, 2002.">SV02</a>]</span>.</p>
 <p>The graph shows logarithms of price levels our  four “hard currency” countries from 1600 to 2000.</p>
-<p>Allthough we didn’t have  to use   logarithms in our earlier graphs that  had stopped in 1914 – we use logarithms now because we want also  to fit observations after 1914 in the same graph as the earlier observations.</p>
+<p>Although we didn’t have  to use   logarithms in our earlier graphs that  had stopped in 1914 – we use logarithms now because we want also  to fit observations after 1914 in the same graph as the earlier observations.</p>
 <p>All four of the countries eventually permanently left the gold standard by modifying their monetary and fiscal policies in several ways, starting the outbreak of the Great War in 1914.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># create plot</span>
-<span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;UK&#39;</span><span class="p">,</span> <span class="s1">&#39;US&#39;</span><span class="p">,</span> <span class="s1">&#39;France&#39;</span><span class="p">,</span> <span class="s1">&#39;Castile&#39;</span><span class="p">]</span>
-
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
 
 <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">cols</span><span class="p">:</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df_fig5</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">df_fig5</span><span class="p">[</span><span class="n">col</span><span class="p">])</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">df_fig5</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mi">2</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">df_fig5</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="n">col</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">df_fig5</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mi">2</span><span class="p">,</span> 
+            <span class="n">y</span><span class="o">=</span><span class="n">df_fig5</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="n">col</span><span class="p">)</span>
 
 <span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[[</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="s1">&#39;top&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_yscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
@@ -447,7 +400,8 @@ left the gold/silver standard.</p>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">xmin</span><span class="o">=</span><span class="mi">1600</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span> <span class="mf">1e6</span><span class="p">])</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">.5</span><span class="p">,</span> <span class="mf">.0001</span><span class="p">,</span> <span class="s2">&quot;Logs of Price Levels&quot;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">.5</span><span class="p">,</span> <span class="mf">.0001</span><span class="p">,</span> 
+         <span class="s2">&quot;Logs of Price Levels&quot;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -495,7 +449,8 @@ We have transcribed all of these data  into a spreadsheet <code class="docutils 
         <span class="n">entry</span> <span class="o">=</span> <span class="n">entry</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
     
         <span class="c1"># remove HTML markers</span>
-        <span class="n">item_to_remove</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;&lt;s&gt;a&lt;/s&gt;&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;s&gt;c&lt;/s&gt;&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;s&gt;d&lt;/s&gt;&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;s&gt;e&lt;/s&gt;&#39;</span><span class="p">]</span>
+        <span class="n">item_to_remove</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;&lt;s&gt;a&lt;/s&gt;&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;s&gt;c&lt;/s&gt;&#39;</span><span class="p">,</span> 
+                          <span class="s1">&#39;&lt;s&gt;d&lt;/s&gt;&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;s&gt;e&lt;/s&gt;&#39;</span><span class="p">]</span>
 
         <span class="c1"># &lt;s&gt;b&lt;/s&gt; represents a billion</span>
         <span class="k">if</span> <span class="s1">&#39;&lt;s&gt;b&lt;/s&gt;&#39;</span> <span class="ow">in</span> <span class="n">entry</span><span class="p">:</span>
@@ -513,43 +468,58 @@ We have transcribed all of these data  into a spreadsheet <code class="docutils 
     <span class="c1"># remove HTML markers from column names</span>
     <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;&lt;s&gt;a&lt;/s&gt;&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;s&gt;c&lt;/s&gt;&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;s&gt;d&lt;/s&gt;&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;s&gt;e&lt;/s&gt;&#39;</span><span class="p">]:</span>
         <span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
-    
+        
+    <span class="c1"># convert years to int</span>
     <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Year&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Year&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
     
-    <span class="c1"># set index to date time</span>
+    <span class="c1"># set index to datetime with year and month</span>
     <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span>
-            <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">((</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Year&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span> <span class="o">+</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Month&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)),</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;%Y%B&#39;</span><span class="p">))</span>
+            <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span>
+                <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Year&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span> <span class="o">+</span> \
+                 <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Month&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)),</span> 
+                <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;%Y%B&#39;</span><span class="p">))</span>
     <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;Year&#39;</span><span class="p">,</span> <span class="s1">&#39;Month&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
     
     <span class="c1"># handle duplicates by keeping the first</span>
     <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="o">~</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">duplicated</span><span class="p">(</span><span class="n">keep</span><span class="o">=</span><span class="s1">&#39;first&#39;</span><span class="p">)]</span>
     
-    <span class="c1"># convert to numeric</span>
-    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">applymap</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">if</span> <span class="n">x</span> <span class="o">!=</span> <span class="s1">&#39;—&#39;</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+    <span class="c1"># convert attribute values to numeric</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">applymap</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> \
+                <span class="k">if</span> <span class="n">x</span> <span class="o">!=</span> <span class="s1">&#39;—&#39;</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
     
     <span class="c1"># finally, we only focus on data between 1919 and 1925</span>
-    <span class="n">mask</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span> <span class="o">&gt;=</span> <span class="s1">&#39;1919-01-01&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span> <span class="o">&lt;</span> <span class="s1">&#39;1925-01-01&#39;</span><span class="p">)</span>
+    <span class="n">mask</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span> <span class="o">&gt;=</span> <span class="s1">&#39;1919-01-01&#39;</span><span class="p">)</span> <span class="o">&amp;</span> \
+           <span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span> <span class="o">&lt;</span> <span class="s1">&#39;1925-01-01&#39;</span><span class="p">)</span>
     <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span>
 
     <span class="k">return</span> <span class="n">df</span>
 
-<span class="k">def</span> <span class="nf">create_pe_plot</span><span class="p">(</span><span class="n">p_seq</span><span class="p">,</span> <span class="n">e_seq</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">labs</span><span class="p">,</span> <span class="n">ax</span><span class="p">):</span>
-    
+<span class="k">def</span> <span class="nf">pe_plot</span><span class="p">(</span><span class="n">p_seq</span><span class="p">,</span> <span class="n">e_seq</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">labs</span><span class="p">,</span> <span class="n">ax</span><span class="p">):</span>
+    <span class="s2">&quot;Generate plots for price and exchange rates.&quot;</span>
+
     <span class="n">p_lab</span><span class="p">,</span> <span class="n">e_lab</span> <span class="o">=</span> <span class="n">labs</span>
     
-    <span class="c1"># price and exchange rates</span>
+    <span class="c1"># plot price and exchange rates</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">p_seq</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">p_lab</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;tab:blue&#39;</span><span class="p">)</span>
+    
+    <span class="c1"># add a new axis</span>
     <span class="n">ax1</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">twinx</span><span class="p">()</span>
     <span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="kc">None</span><span class="p">],</span> <span class="p">[</span><span class="kc">None</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="n">p_lab</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;tab:blue&#39;</span><span class="p">)</span>
     <span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">e_seq</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">e_lab</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;tab:orange&#39;</span><span class="p">)</span>
+    
+    <span class="c1"># set log axes</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_yscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
     <span class="n">ax1</span><span class="o">.</span><span class="n">set_yscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
     
-    <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">mdates</span><span class="o">.</span><span class="n">MonthLocator</span><span class="p">(</span><span class="n">interval</span><span class="o">=</span><span class="mi">5</span><span class="p">))</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">mdates</span><span class="o">.</span><span class="n">DateFormatter</span><span class="p">(</span><span class="s1">&#39;%b %Y&#39;</span><span class="p">))</span>
+    <span class="c1"># define the axis label format</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span>
+        <span class="n">mdates</span><span class="o">.</span><span class="n">MonthLocator</span><span class="p">(</span><span class="n">interval</span><span class="o">=</span><span class="mi">5</span><span class="p">))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span>
+        <span class="n">mdates</span><span class="o">.</span><span class="n">DateFormatter</span><span class="p">(</span><span class="s1">&#39;%b %Y&#39;</span><span class="p">))</span>
     <span class="k">for</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_xticklabels</span><span class="p">():</span>
         <span class="n">label</span><span class="o">.</span><span class="n">set_rotation</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>
     
+    <span class="c1"># set labels</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="mf">0.08</span><span class="p">,</span> <span class="mf">1.03</span><span class="p">,</span> <span class="s1">&#39;Price Level&#39;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.92</span><span class="p">,</span> <span class="mf">1.03</span><span class="p">,</span> <span class="s1">&#39;Exchange Rate&#39;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">)</span>
     
@@ -557,19 +527,28 @@ We have transcribed all of these data  into a spreadsheet <code class="docutils 
 
     <span class="k">return</span> <span class="n">ax1</span>
 
-<span class="k">def</span> <span class="nf">create_pr_plot</span><span class="p">(</span><span class="n">p_seq</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">ax</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">pr_plot</span><span class="p">(</span><span class="n">p_seq</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">ax</span><span class="p">):</span>
+    <span class="s2">&quot;Generate plots for inflation rates.&quot;</span>
 
-    <span class="c1"># Calculate the difference of log p_seq</span>
-    <span class="n">log_diff_p_seq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">p_seq</span><span class="p">))</span>
+    <span class="c1">#  Calculate the difference of log p_seq</span>
+    <span class="n">log_diff_p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">p_seq</span><span class="p">))</span>
     
-    <span class="c1"># Graph for the difference of log p_seq</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">index</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="n">log_diff_p_seq</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Monthly Inflation Rate&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;tab:grey&#39;</span><span class="p">)</span>
-    <span class="n">diff_smooth</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">log_diff_p_seq</span><span class="p">)</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+    <span class="c1"># graph for the difference of log p_seq</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">index</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="n">log_diff_p</span><span class="p">,</span> 
+               <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Monthly Inflation Rate&#39;</span><span class="p">,</span> 
+               <span class="n">color</span><span class="o">=</span><span class="s1">&#39;tab:grey&#39;</span><span class="p">)</span>
+    
+    <span class="c1"># calculate and plot moving average</span>
+    <span class="n">diff_smooth</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">log_diff_p</span><span class="p">)</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">index</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="n">diff_smooth</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;tab:grey&#39;</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="mf">0.08</span><span class="p">,</span> <span class="mf">1.03</span><span class="p">,</span> <span class="s1">&#39;Monthly Inflation Rate&#39;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="mf">0.08</span><span class="p">,</span> <span class="mf">1.03</span><span class="p">,</span> 
+            <span class="s1">&#39;Monthly Inflation Rate&#39;</span><span class="p">,</span> 
+            <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">)</span>
     
-    <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">mdates</span><span class="o">.</span><span class="n">MonthLocator</span><span class="p">(</span><span class="n">interval</span><span class="o">=</span><span class="mi">5</span><span class="p">))</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">mdates</span><span class="o">.</span><span class="n">DateFormatter</span><span class="p">(</span><span class="s1">&#39;%b %Y&#39;</span><span class="p">))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span>
+        <span class="n">mdates</span><span class="o">.</span><span class="n">MonthLocator</span><span class="p">(</span><span class="n">interval</span><span class="o">=</span><span class="mi">5</span><span class="p">))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span>
+        <span class="n">mdates</span><span class="o">.</span><span class="n">DateFormatter</span><span class="p">(</span><span class="s1">&#39;%b %Y&#39;</span><span class="p">))</span>
     
     <span class="k">for</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_xticklabels</span><span class="p">():</span>
         <span class="n">label</span><span class="o">.</span><span class="n">set_rotation</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>
@@ -588,17 +567,30 @@ We have transcribed all of these data  into a spreadsheet <code class="docutils 
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># import data</span>
 <span class="n">xls</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">ExcelFile</span><span class="p">(</span><span class="s1">&#39;datasets/chapter_3.xlsx&#39;</span><span class="p">)</span>
 
-<span class="c1"># unpack and combine all series</span>
-<span class="n">sheet_index</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">16</span><span class="p">),</span> <span class="p">(</span><span class="mi">21</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">19</span><span class="p">)]</span>
-<span class="n">remove_row</span> <span class="o">=</span> <span class="p">[(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">,</span> <span class="o">-</span><span class="mi">10</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mi">19</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">6</span><span class="p">)]</span>
+<span class="c1"># select relevant sheets</span>
+<span class="n">sheet_index</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> 
+               <span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> 
+               <span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">16</span><span class="p">),</span> 
+               <span class="p">(</span><span class="mi">21</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">19</span><span class="p">)]</span>
 
+<span class="c1"># remove redundant rows</span>
+<span class="n">remove_row</span> <span class="o">=</span> <span class="p">[(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">),</span> 
+              <span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">,</span> <span class="o">-</span><span class="mi">10</span><span class="p">),</span> 
+              <span class="p">(</span><span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">),</span> 
+              <span class="p">(</span><span class="o">-</span><span class="mi">19</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">6</span><span class="p">)]</span>
+
+<span class="c1"># unpack and combine series for each country</span>
 <span class="n">df_list</span> <span class="o">=</span> <span class="p">[]</span>
 
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
     
     <span class="n">indices</span><span class="p">,</span> <span class="n">rows</span> <span class="o">=</span> <span class="n">sheet_index</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">remove_row</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-    <span class="n">sheet_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">xls</span><span class="p">,</span> <span class="s1">&#39;Table3.&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">ind</span><span class="p">),</span> <span class="n">header</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="n">row</span><span class="p">]</span><span class="o">.</span><span class="n">applymap</span><span class="p">(</span><span class="n">process_entry</span><span class="p">)</span>
-                  <span class="k">for</span> <span class="n">ind</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">indices</span><span class="p">,</span> <span class="n">rows</span><span class="p">)]</span>
+    
+    <span class="c1"># apply process_entry on the selected sheet</span>
+    <span class="n">sheet_list</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">xls</span><span class="p">,</span> <span class="s1">&#39;Table3.&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">ind</span><span class="p">),</span> 
+            <span class="n">header</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="n">row</span><span class="p">]</span><span class="o">.</span><span class="n">applymap</span><span class="p">(</span><span class="n">process_entry</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">ind</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">indices</span><span class="p">,</span> <span class="n">rows</span><span class="p">)]</span>
     
     <span class="n">sheet_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">process_df</span><span class="p">(</span><span class="n">df</span><span class="p">)</span> <span class="k">for</span> <span class="n">df</span> <span class="ow">in</span> <span class="n">sheet_list</span><span class="p">]</span>
     <span class="n">df_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">sheet_list</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
@@ -627,71 +619,6 @@ to the exchange rate.</p>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_Aus</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Total Note Circulation</th>
-      <th>Retail price index, 52 commodities</th>
-      <th>Exchange Rate</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>1919-01-01</th>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>17.09</td>
-    </tr>
-    <tr>
-      <th>1919-02-01</th>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>20.72</td>
-    </tr>
-    <tr>
-      <th>1919-03-01</th>
-      <td>4687056.0</td>
-      <td>NaN</td>
-      <td>25.85</td>
-    </tr>
-    <tr>
-      <th>1919-04-01</th>
-      <td>5577851.0</td>
-      <td>NaN</td>
-      <td>26.03</td>
-    </tr>
-    <tr>
-      <th>1919-05-01</th>
-      <td>5960003.0</td>
-      <td>NaN</td>
-      <td>24.75</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p_seq</span> <span class="o">=</span> <span class="n">df_Aus</span><span class="p">[</span><span class="s1">&#39;Retail price index, 52 commodities&#39;</span><span class="p">]</span>
 <span class="n">e_seq</span> <span class="o">=</span> <span class="n">df_Aus</span><span class="p">[</span><span class="s1">&#39;Exchange Rate&#39;</span><span class="p">]</span>
 
@@ -699,10 +626,12 @@ to the exchange rate.</p>
 
 <span class="c1"># create plot</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="mi">7</span><span class="p">],</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
-<span class="n">_</span> <span class="o">=</span> <span class="n">create_pe_plot</span><span class="p">(</span><span class="n">p_seq</span><span class="p">,</span> <span class="n">e_seq</span><span class="p">,</span> <span class="n">df_Aus</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">lab</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">pe_plot</span><span class="p">(</span><span class="n">p_seq</span><span class="p">,</span> <span class="n">e_seq</span><span class="p">,</span> <span class="n">df_Aus</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">lab</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span>
 
 <span class="c1"># connect disjunct parts</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">figtext</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.02</span><span class="p">,</span> <span class="s1">&#39;Austria&#39;</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figtext</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.02</span><span class="p">,</span> <span class="s1">&#39;Austria&#39;</span><span class="p">,</span> 
+            <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> 
+            <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -713,10 +642,13 @@ to the exchange rate.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="mi">7</span><span class="p">],</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
-<span class="n">_</span> <span class="o">=</span> <span class="n">create_pr_plot</span><span class="p">(</span><span class="n">p_seq</span><span class="p">,</span> <span class="n">df_Aus</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot moving average</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="mi">7</span><span class="p">],</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">pr_plot</span><span class="p">(</span><span class="n">p_seq</span><span class="p">,</span> <span class="n">df_Aus</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">figtext</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.02</span><span class="p">,</span> <span class="s1">&#39;Austria&#39;</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figtext</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.02</span><span class="p">,</span> <span class="s1">&#39;Austria&#39;</span><span class="p">,</span> 
+            <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> 
+            <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -741,125 +673,20 @@ to the exchange rate.</p>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_Hung</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Gold coin and bullion</th>
-      <th>Silver coin</th>
-      <th>Foreign currency and exchange</th>
-      <th>Bills discounted</th>
-      <th>Advances on securities</th>
-      <th>Advances to treasury</th>
-      <th>Notes in circulation</th>
-      <th>Currrent accounts and deposits</th>
-      <th>Hungarian index of prices</th>
-      <th>Cents per crown in New York</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>1921-01-01</th>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>10924.0</td>
-      <td>195.0</td>
-      <td>NaN</td>
-      <td>15206.0</td>
-      <td>3851.0</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>1921-02-01</th>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>13202.0</td>
-      <td>162.0</td>
-      <td>NaN</td>
-      <td>15571.0</td>
-      <td>5531.0</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>1921-03-01</th>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>12862.0</td>
-      <td>160.0</td>
-      <td>NaN</td>
-      <td>15650.0</td>
-      <td>5246.0</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>1921-04-01</th>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>12178.0</td>
-      <td>110.0</td>
-      <td>NaN</td>
-      <td>13114.0</td>
-      <td>6802.0</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>1921-05-01</th>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>11847.0</td>
-      <td>111.0</td>
-      <td>NaN</td>
-      <td>13686.0</td>
-      <td>5760.0</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m_seq</span> <span class="o">=</span> <span class="n">df_Hung</span><span class="p">[</span><span class="s1">&#39;Notes in circulation&#39;</span><span class="p">]</span>
 <span class="n">p_seq</span> <span class="o">=</span> <span class="n">df_Hung</span><span class="p">[</span><span class="s1">&#39;Hungarian index of prices&#39;</span><span class="p">]</span>
-<span class="n">e_seq</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">df_Hung</span><span class="p">[</span><span class="s1">&#39;Cents per crown in New York&#39;</span><span class="p">]</span>
-<span class="n">rb_seq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">m_seq</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">p_seq</span><span class="p">)</span>
+<span class="n">e_seq</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">df_Hung</span><span class="p">[</span><span class="s1">&#39;Cents per crown in New York&#39;</span><span class="p">]</span>
 
-<span class="n">lab</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Hungarian Index of Prices&#39;</span><span class="p">,</span> <span class="s1">&#39;1/Cents per Crown in New York&#39;</span><span class="p">]</span>
+<span class="n">lab</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Hungarian Index of Prices&#39;</span><span class="p">,</span> 
+       <span class="s1">&#39;1/Cents per Crown in New York&#39;</span><span class="p">]</span>
 
 <span class="c1"># create plot</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="mi">7</span><span class="p">],</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
-<span class="n">_</span> <span class="o">=</span> <span class="n">create_pe_plot</span><span class="p">(</span><span class="n">p_seq</span><span class="p">,</span> <span class="n">e_seq</span><span class="p">,</span> <span class="n">df_Hung</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">lab</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">pe_plot</span><span class="p">(</span><span class="n">p_seq</span><span class="p">,</span> <span class="n">e_seq</span><span class="p">,</span> <span class="n">df_Hung</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">lab</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">figtext</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.02</span><span class="p">,</span> <span class="s1">&#39;Hungary&#39;</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figtext</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.02</span><span class="p">,</span> <span class="s1">&#39;Hungary&#39;</span><span class="p">,</span> 
+            <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> 
+            <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -870,10 +697,13 @@ to the exchange rate.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="mi">7</span><span class="p">],</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
-<span class="n">_</span> <span class="o">=</span> <span class="n">create_pr_plot</span><span class="p">(</span><span class="n">p_seq</span><span class="p">,</span> <span class="n">df_Hung</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot moving average</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="mi">7</span><span class="p">],</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">pr_plot</span><span class="p">(</span><span class="n">p_seq</span><span class="p">,</span> <span class="n">df_Hung</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">figtext</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.02</span><span class="p">,</span> <span class="s1">&#39;Hungary&#39;</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figtext</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.02</span><span class="p">,</span> <span class="s1">&#39;Hungary&#39;</span><span class="p">,</span> 
+            <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> 
+            <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -897,141 +727,24 @@ We dropped the exchange rate after June 1924, when the  zloty was adopted. We di
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_Pol</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Gold</th>
-      <th>Silver (including base coin)</th>
-      <th>Balances with foreign banks</th>
-      <th>Discounts</th>
-      <th>Advances: Commercial</th>
-      <th>Advances: Government</th>
-      <th>Note circulation</th>
-      <th>Gold and Silver (together)</th>
-      <th>Wholesale price index</th>
-      <th>Wholesale Price Index: On paper currency basis</th>
-      <th>Wholesale Price Index: On zloty basis</th>
-      <th>Cents per Polish mark (zloty after May 1924)</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>1919-01-01</th>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>5.0</td>
-      <td>194.7</td>
-      <td>209.9</td>
-      <td>1098.1</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>1919-02-01</th>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>4.2</td>
-      <td>196.4</td>
-      <td>315.0</td>
-      <td>1160.0</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>1919-03-01</th>
-      <td>3.7</td>
-      <td>4.2</td>
-      <td>3.9</td>
-      <td>3.5</td>
-      <td>189.7</td>
-      <td>400.0</td>
-      <td>1223.2</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>1919-04-01</th>
-      <td>3.7</td>
-      <td>4.4</td>
-      <td>9.4</td>
-      <td>2.5</td>
-      <td>192.8</td>
-      <td>575.0</td>
-      <td>1346.0</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>1919-05-01</th>
-      <td>3.7</td>
-      <td>8.9</td>
-      <td>5.8</td>
-      <td>1.8</td>
-      <td>193.2</td>
-      <td>925.0</td>
-      <td>1548.3</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># splice three price series in different units</span>
 <span class="n">p_seq1</span> <span class="o">=</span> <span class="n">df_Pol</span><span class="p">[</span><span class="s1">&#39;Wholesale price index&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-<span class="n">p_seq2</span> <span class="o">=</span> <span class="n">df_Pol</span><span class="p">[</span><span class="s1">&#39;Wholesale Price Index: On paper currency basis&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-<span class="n">p_seq3</span> <span class="o">=</span> <span class="n">df_Pol</span><span class="p">[</span><span class="s1">&#39;Wholesale Price Index: On zloty basis&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">p_seq2</span> <span class="o">=</span> <span class="n">df_Pol</span><span class="p">[</span><span class="s1">&#39;Wholesale Price Index: &#39;</span>
+                <span class="s1">&#39;On paper currency basis&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">p_seq3</span> <span class="o">=</span> <span class="n">df_Pol</span><span class="p">[</span><span class="s1">&#39;Wholesale Price Index: &#39;</span> 
+                <span class="s1">&#39;On zloty basis&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 
 <span class="c1"># non-nan part</span>
-<span class="n">ch_index_1</span> <span class="o">=</span> <span class="n">p_seq1</span><span class="p">[</span><span class="o">~</span><span class="n">p_seq1</span><span class="o">.</span><span class="n">isna</span><span class="p">()]</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-<span class="n">ch_index_2</span> <span class="o">=</span> <span class="n">p_seq2</span><span class="p">[</span><span class="o">~</span><span class="n">p_seq2</span><span class="o">.</span><span class="n">isna</span><span class="p">()]</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">mask_1</span> <span class="o">=</span> <span class="n">p_seq1</span><span class="p">[</span><span class="o">~</span><span class="n">p_seq1</span><span class="o">.</span><span class="n">isna</span><span class="p">()]</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">mask_2</span> <span class="o">=</span> <span class="n">p_seq2</span><span class="p">[</span><span class="o">~</span><span class="n">p_seq2</span><span class="o">.</span><span class="n">isna</span><span class="p">()]</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
 
-<span class="n">adj_ratio12</span> <span class="o">=</span> <span class="n">p_seq1</span><span class="p">[</span><span class="n">ch_index_1</span><span class="p">]</span><span class="o">/</span><span class="n">p_seq2</span><span class="p">[</span><span class="n">ch_index_1</span><span class="p">]</span>
-<span class="n">adj_ratio23</span> <span class="o">=</span> <span class="n">p_seq2</span><span class="p">[</span><span class="n">ch_index_2</span><span class="p">]</span><span class="o">/</span><span class="n">p_seq3</span><span class="p">[</span><span class="n">ch_index_2</span><span class="p">]</span>
+<span class="n">adj_ratio12</span> <span class="o">=</span> <span class="p">(</span><span class="n">p_seq1</span><span class="p">[</span><span class="n">mask_1</span><span class="p">]</span> <span class="o">/</span> <span class="n">p_seq2</span><span class="p">[</span><span class="n">mask_1</span><span class="p">])</span>
+<span class="n">adj_ratio23</span> <span class="o">=</span> <span class="p">(</span><span class="n">p_seq2</span><span class="p">[</span><span class="n">mask_2</span><span class="p">]</span> <span class="o">/</span> <span class="n">p_seq3</span><span class="p">[</span><span class="n">mask_2</span><span class="p">])</span>
 
 <span class="c1"># glue three series</span>
-<span class="n">p_seq</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">p_seq1</span><span class="p">[:</span><span class="n">ch_index_1</span><span class="p">],</span> 
-                   <span class="n">adj_ratio12</span> <span class="o">*</span> <span class="n">p_seq2</span><span class="p">[</span><span class="n">ch_index_1</span><span class="p">:</span><span class="n">ch_index_2</span><span class="p">],</span> 
-                   <span class="n">adj_ratio23</span> <span class="o">*</span> <span class="n">p_seq3</span><span class="p">[</span><span class="n">ch_index_2</span><span class="p">:]])</span>
+<span class="n">p_seq</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">p_seq1</span><span class="p">[:</span><span class="n">mask_1</span><span class="p">],</span> 
+                   <span class="n">adj_ratio12</span> <span class="o">*</span> <span class="n">p_seq2</span><span class="p">[</span><span class="n">mask_1</span><span class="p">:</span><span class="n">mask_2</span><span class="p">],</span> 
+                   <span class="n">adj_ratio23</span> <span class="o">*</span> <span class="n">p_seq3</span><span class="p">[</span><span class="n">mask_2</span><span class="p">:]])</span>
 <span class="n">p_seq</span> <span class="o">=</span> <span class="n">p_seq</span><span class="p">[</span><span class="o">~</span><span class="n">p_seq</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">duplicated</span><span class="p">(</span><span class="n">keep</span><span class="o">=</span><span class="s1">&#39;first&#39;</span><span class="p">)]</span>
 
 <span class="c1"># exchange rate</span>
@@ -1043,13 +756,16 @@ We dropped the exchange rate after June 1924, when the  zloty was adopted. We di
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lab</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Wholesale Price Index&#39;</span><span class="p">,</span> <span class="s1">&#39;1/Cents per Polish Mark&#39;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lab</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Wholesale Price Index&#39;</span><span class="p">,</span> 
+       <span class="s1">&#39;1/Cents per Polish Mark&#39;</span><span class="p">]</span>
 
 <span class="c1"># create plot</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="mi">7</span><span class="p">],</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
-<span class="n">ax1</span> <span class="o">=</span> <span class="n">create_pe_plot</span><span class="p">(</span><span class="n">p_seq</span><span class="p">,</span> <span class="n">e_seq</span><span class="p">,</span> <span class="n">df_Pol</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">lab</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span>
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">pe_plot</span><span class="p">(</span><span class="n">p_seq</span><span class="p">,</span> <span class="n">e_seq</span><span class="p">,</span> <span class="n">df_Pol</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">lab</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">figtext</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.02</span><span class="p">,</span> <span class="s1">&#39;Poland&#39;</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figtext</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.02</span><span class="p">,</span> <span class="s1">&#39;Poland&#39;</span><span class="p">,</span> 
+            <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> 
+            <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -1060,10 +776,13 @@ We dropped the exchange rate after June 1924, when the  zloty was adopted. We di
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="mi">7</span><span class="p">],</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
-<span class="n">_</span> <span class="o">=</span> <span class="n">create_pr_plot</span><span class="p">(</span><span class="n">p_seq</span><span class="p">,</span> <span class="n">df_Pol</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot moving average</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="mi">7</span><span class="p">],</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">pr_plot</span><span class="p">(</span><span class="n">p_seq</span><span class="p">,</span> <span class="n">df_Pol</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">figtext</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.02</span><span class="p">,</span> <span class="s1">&#39;Poland&#39;</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figtext</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.02</span><span class="p">,</span> <span class="s1">&#39;Poland&#39;</span><span class="p">,</span> 
+            <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> 
+            <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -1082,190 +801,20 @@ We dropped the exchange rate after June 1924, when the  zloty was adopted. We di
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_Germ</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Day</th>
-      <th>Gold Held Abroad</th>
-      <th>Gold In vault</th>
-      <th>Gold Total</th>
-      <th>Other metallic currency</th>
-      <th>Total coin and bullion</th>
-      <th>Foreign exchange</th>
-      <th>Treasury and loan bank notes</th>
-      <th>Notes of other banks</th>
-      <th>Rentenbank notes</th>
-      <th>...</th>
-      <th>Total discounted treasury and commercial bills</th>
-      <th>Advances</th>
-      <th>Securities</th>
-      <th>Notes in circulation</th>
-      <th>Public Demand deposits</th>
-      <th>Other Demand deposits</th>
-      <th>Total demand deposits</th>
-      <th>Demand deposits due to the Rentenbank</th>
-      <th>Price index (on basis of marks before July 1924,  reichsmarks after)</th>
-      <th>Cents per mark</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>1919-01-01</th>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>...</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>262.0</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>1919-02-01</th>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>...</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>270.0</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>1919-03-01</th>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>...</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>274.0</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>1919-04-01</th>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>...</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>286.0</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>1919-05-01</th>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>...</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>297.0</td>
-      <td>NaN</td>
-    </tr>
-  </tbody>
-</table>
-<p>5 rows × 22 columns</p>
-</div></div></div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p_seq</span> <span class="o">=</span> <span class="n">df_Germ</span><span class="p">[</span><span class="s1">&#39;Price index (on basis of marks before July 1924,  reichsmarks after)&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p_seq</span> <span class="o">=</span> <span class="n">df_Germ</span><span class="p">[</span><span class="s1">&#39;Price index (on basis of marks before July 1924,&#39;</span>
+                <span class="s1">&#39;  reichsmarks after)&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 <span class="n">e_seq</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">df_Germ</span><span class="p">[</span><span class="s1">&#39;Cents per mark&#39;</span><span class="p">]</span>
 
-<span class="n">lab</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Price Index&#39;</span><span class="p">,</span> <span class="s1">&#39;1/Cents per Mark&#39;</span><span class="p">]</span>
+<span class="n">lab</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Price Index&#39;</span><span class="p">,</span> 
+       <span class="s1">&#39;1/Cents per Mark&#39;</span><span class="p">]</span>
 
 <span class="c1"># create plot</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">9</span><span class="p">,</span><span class="mi">5</span><span class="p">],</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
-<span class="n">ax1</span> <span class="o">=</span> <span class="n">create_pe_plot</span><span class="p">(</span><span class="n">p_seq</span><span class="p">,</span> <span class="n">e_seq</span><span class="p">,</span> <span class="n">df_Germ</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">lab</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span>
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">pe_plot</span><span class="p">(</span><span class="n">p_seq</span><span class="p">,</span> <span class="n">e_seq</span><span class="p">,</span> <span class="n">df_Germ</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">lab</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">figtext</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.06</span><span class="p">,</span> <span class="s1">&#39;Germany&#39;</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figtext</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.06</span><span class="p">,</span> <span class="s1">&#39;Germany&#39;</span><span class="p">,</span> 
+            <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> 
+            <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -1276,20 +825,26 @@ We dropped the exchange rate after June 1924, when the  zloty was adopted. We di
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p_seq</span> <span class="o">=</span> <span class="n">df_Germ</span><span class="p">[</span><span class="s1">&#39;Price index (on basis of marks before July 1924,  reichsmarks after)&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p_seq</span> <span class="o">=</span> <span class="n">df_Germ</span><span class="p">[</span><span class="s1">&#39;Price index (on basis of marks before July 1924,&#39;</span>
+                <span class="s1">&#39;  reichsmarks after)&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 <span class="n">e_seq</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">df_Germ</span><span class="p">[</span><span class="s1">&#39;Cents per mark&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 
 <span class="c1"># adjust the price level/exchange rate after the currency reform</span>
-<span class="n">p_seq</span><span class="p">[</span><span class="n">p_seq</span><span class="o">.</span><span class="n">index</span> <span class="o">&gt;</span> <span class="s1">&#39;06-01-1924&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">p_seq</span><span class="p">[</span><span class="n">p_seq</span><span class="o">.</span><span class="n">index</span> <span class="o">&gt;</span> <span class="s1">&#39;06-01-1924&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="mf">1e12</span>
-<span class="n">e_seq</span><span class="p">[</span><span class="n">e_seq</span><span class="o">.</span><span class="n">index</span> <span class="o">&gt;</span> <span class="s1">&#39;12-01-1923&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">e_seq</span><span class="p">[</span><span class="n">e_seq</span><span class="o">.</span><span class="n">index</span> <span class="o">&gt;</span> <span class="s1">&#39;12-01-1923&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="mf">1e12</span>
+<span class="n">p_seq</span><span class="p">[</span><span class="n">p_seq</span><span class="o">.</span><span class="n">index</span> <span class="o">&gt;</span> <span class="s1">&#39;06-01-1924&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">p_seq</span><span class="p">[</span><span class="n">p_seq</span><span class="o">.</span><span class="n">index</span> 
+                                          <span class="o">&gt;</span> <span class="s1">&#39;06-01-1924&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="mf">1e12</span>
+<span class="n">e_seq</span><span class="p">[</span><span class="n">e_seq</span><span class="o">.</span><span class="n">index</span> <span class="o">&gt;</span> <span class="s1">&#39;12-01-1923&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">e_seq</span><span class="p">[</span><span class="n">e_seq</span><span class="o">.</span><span class="n">index</span> 
+                                          <span class="o">&gt;</span> <span class="s1">&#39;12-01-1923&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="mf">1e12</span>
 
-<span class="n">lab</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Price Index (Marks or converted to Marks)&#39;</span><span class="p">,</span> <span class="s1">&#39;1/Cents per Mark (or Reichsmark converted to Mark)&#39;</span><span class="p">]</span>
+<span class="n">lab</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Price Index (Marks or converted to Marks)&#39;</span><span class="p">,</span> 
+       <span class="s1">&#39;1/Cents per Mark (or Reichsmark converted to Mark)&#39;</span><span class="p">]</span>
 
 <span class="c1"># create plot</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="mi">7</span><span class="p">],</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
-<span class="n">ax1</span> <span class="o">=</span> <span class="n">create_pe_plot</span><span class="p">(</span><span class="n">p_seq</span><span class="p">,</span> <span class="n">e_seq</span><span class="p">,</span> <span class="n">df_Germ</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">lab</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span>
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">pe_plot</span><span class="p">(</span><span class="n">p_seq</span><span class="p">,</span> <span class="n">e_seq</span><span class="p">,</span> <span class="n">df_Germ</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">lab</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">figtext</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.02</span><span class="p">,</span> <span class="s1">&#39;Germany&#39;</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figtext</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.02</span><span class="p">,</span> <span class="s1">&#39;Germany&#39;</span><span class="p">,</span> 
+            <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> 
+            <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -1300,10 +855,13 @@ We dropped the exchange rate after June 1924, when the  zloty was adopted. We di
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="mi">7</span><span class="p">],</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
-<span class="n">_</span> <span class="o">=</span> <span class="n">create_pr_plot</span><span class="p">(</span><span class="n">p_seq</span><span class="p">,</span> <span class="n">df_Germ</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot moving average</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="mi">7</span><span class="p">],</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">pr_plot</span><span class="p">(</span><span class="n">p_seq</span><span class="p">,</span> <span class="n">df_Germ</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">figtext</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.02</span><span class="p">,</span> <span class="s1">&#39;Germany&#39;</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figtext</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.02</span><span class="p">,</span> <span class="s1">&#39;Germany&#39;</span><span class="p">,</span> 
+            <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> 
+            <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>

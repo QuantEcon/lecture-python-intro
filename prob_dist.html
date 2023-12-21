@@ -71,7 +71,7 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/quantecon-book-theme.css?digest=cb2d6eee9712fbd5cbf7cbc2d6baf81f7f9a9912" type="text/css" />
+    <link rel="stylesheet" href="_static/styles/quantecon-book-theme.css?digest=b09b2da44b9015b4fa76ea072fa2d8f7faee5492" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
@@ -98,15 +98,15 @@
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="_static/togglebutton.js"></script>
-    <script src="_static/scripts/quantecon-book-theme.js?digest=b7d60282c7125f74e59bac03c2323864e0e32e1c"></script>
+    <script src="_static/scripts/quantecon-book-theme.js?digest=eed9c059a3ee152aae2353ec732f0a6d12e6aa07"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="_static/design-tabs.js"></script>
-    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-QDS1YRJNGM"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-1P39P53YM9"></script>
     <script>
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){ dataLayer.push(arguments); }
                 gtag('js', new Date());
-                gtag('config', 'G-QDS1YRJNGM');
+                gtag('config', 'G-1P39P53YM9');
             </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
@@ -175,8 +175,9 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#common-distributions">15.2. Common distributions</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#discrete-distributions">15.2.1. Discrete distributions</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#uniform-distribution">15.2.1.1. Uniform distribution</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#binomial-distribution">15.2.1.2. Binomial distribution</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#poisson-distribution">15.2.1.3. Poisson distribution</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bernoulli-distribution">15.2.1.2. Bernoulli distribution</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#binomial-distribution">15.2.1.3. Binomial distribution</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#poisson-distribution">15.2.1.4. Poisson distribution</a></li>
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#continuous-distributions">15.2.2. Continuous distributions</a><ul class="nav section-nav flex-column">
@@ -204,7 +205,10 @@ const thebe_selector_output = ".output, .cell_output"
                             <p class="logo">
                                 
                                     
-                                    <a href=https://quantecon.org><img src="_static/qe-logo.png" class="logo" alt="logo"></a>
+                                    <a href=https://quantecon.org><img src="_static/qe-logo.png" class="logo logo-img" alt="logo"></a>
+                                    
+                                    <a href=https://quantecon.org><img src="_static/quantecon-logo-transparent.png" class="dark-logo-img" alt="logo"></a>
+                                    
                                     
                                 
                             </p>
@@ -232,8 +236,19 @@ const thebe_selector_output = ".output, .cell_output"
                         <p class="qe-page__header-subheading">Distributions and Probabilities</p>
 
                     </div>
+                    <!-- length 2, since its a string and empty dict has length 2 - {} -->
+                        <p class="qe-page__header-authors" font-size="18">
+                            
+                                
+                                    <a href="http://www.tomsargent.com/" target="_blank"><span>Thomas J. Sargent</span></a>
+                                
+                            
+                                
+                                    and <a href="https://johnstachurski.net/" target="_blank"><span>John Stachurski</span></a>
+                                
+                            
+                        </p>
 
-                    <p class="qe-page__header-authors">Thomas J. Sargent & John Stachurski</p>
 
                 </div> <!-- .page__header -->
 
@@ -260,7 +275,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <section id="outline">
 <h2><a class="toc-backref" href="#id2"><span class="section-number">15.1. </span>Outline</a><a class="headerlink" href="#outline" title="Permalink to this heading">#</a></h2>
-<p>In this lecture we give a quick introduction to data and probability distributions using Python</p>
+<p>In this lecture we give a quick introduction to data and probability distributions using Python.</p>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input above-output-prompt docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>yfinance<span class="w">  </span>
@@ -273,17 +288,17 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="expanded">Hide code cell output</span>
 </summary>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: yfinance in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (0.2.32)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: yfinance in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (0.2.33)
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: pandas&gt;=1.3.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from yfinance) (2.0.3)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: numpy&gt;=1.16.5 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from yfinance) (1.24.3)
+Requirement already satisfied: numpy&gt;=1.16.5 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from yfinance) (1.24.3)
 Requirement already satisfied: requests&gt;=2.31 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from yfinance) (2.31.0)
 Requirement already satisfied: multitasking&gt;=0.0.7 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from yfinance) (0.0.11)
 Requirement already satisfied: lxml&gt;=4.9.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from yfinance) (4.9.3)
-Requirement already satisfied: appdirs&gt;=1.4.4 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from yfinance) (1.4.4)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: appdirs&gt;=1.4.4 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from yfinance) (1.4.4)
 Requirement already satisfied: pytz&gt;=2022.5 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from yfinance) (2023.3.post1)
 Requirement already satisfied: frozendict&gt;=2.3.4 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from yfinance) (2.3.10)
 Requirement already satisfied: peewee&gt;=3.16.2 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from yfinance) (3.17.0)
@@ -320,7 +335,7 @@ Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/share/miniconda3/en
 </section>
 <section id="common-distributions">
 <h2><a class="toc-backref" href="#id3"><span class="section-number">15.2. </span>Common distributions</a><a class="headerlink" href="#common-distributions" title="Permalink to this heading">#</a></h2>
-<p>In this section we recall the definitions of some well-known distributions and show how to manipulate them with SciPy.</p>
+<p>In this section we recall the definitions of some well-known distributions and explore how to manipulate them with SciPy.</p>
 <section id="discrete-distributions">
 <h3><span class="section-number">15.2.1. </span>Discrete distributions<a class="headerlink" href="#discrete-distributions" title="Permalink to this heading">#</a></h3>
 <p>Let’s start with discrete distributions.</p>
@@ -334,20 +349,20 @@ Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/share/miniconda3/en
 <p>The <strong>mean</strong> or <strong>expected value</strong> of a random variable <span class="math notranslate nohighlight">\(X\)</span> with distribution <span class="math notranslate nohighlight">\(p\)</span> is</p>
 <div class="math notranslate nohighlight">
 \[ 
-    \mathbb E X = \sum_{i=1}^n x_i p(x_i)
+    \mathbb{E}[X] = \sum_{i=1}^n x_i p(x_i)
 \]</div>
 <p>Expectation is also called the <em>first moment</em> of the distribution.</p>
 <p>We also refer to this number as the mean of the distribution (represented by) <span class="math notranslate nohighlight">\(p\)</span>.</p>
 <p>The <strong>variance</strong> of <span class="math notranslate nohighlight">\(X\)</span> is defined as</p>
 <div class="math notranslate nohighlight">
 \[ 
-    \mathbb V X = \sum_{i=1}^n (x_i - \mathbb E X)^2 p(x_i)
+    \mathbb{V}[X] = \sum_{i=1}^n (x_i - \mathbb{E}[X])^2 p(x_i)
 \]</div>
 <p>Variance is also called the <em>second central moment</em> of the distribution.</p>
 <p>The <strong>cumulative distribution function</strong> (CDF) of <span class="math notranslate nohighlight">\(X\)</span> is defined by</p>
 <div class="math notranslate nohighlight">
 \[
-    F(x) = \mathbb P\{X \leq x\}
+    F(x) = \mathbb{P}\{X \leq x\}
          = \sum_{i=1}^n \mathbb 1\{x_i \leq x\} p(x_i)
 \]</div>
 <p>Here <span class="math notranslate nohighlight">\(\mathbb 1\{ \textrm{statement} \} = 1\)</span> if “statement” is true and zero otherwise.</p>
@@ -446,8 +461,102 @@ directly from the PMF, using the expressions given above.</p>
 </section>
 </div>
 </section>
+<section id="bernoulli-distribution">
+<h4><span class="section-number">15.2.1.2. </span>Bernoulli distribution<a class="headerlink" href="#bernoulli-distribution" title="Permalink to this heading">#</a></h4>
+<p>Another useful (and more interesting) distribution is the Bernoulli distribution</p>
+<p>We can import the uniform distribution on <span class="math notranslate nohighlight">\(S = \{1, \ldots, n\}\)</span>  from SciPy like so:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here’s the mean and variance</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">u</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">u</span><span class="o">.</span><span class="n">var</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(5.5, 8.25)
+</pre></div>
+</div>
+</div>
+</div>
+<p>The formula for the mean is <span class="math notranslate nohighlight">\((n+1)/2\)</span>, and the formula for the variance is <span class="math notranslate nohighlight">\((n^2 - 1)/12\)</span>.</p>
+<p>Now let’s evaluate the PMF</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">u</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.1
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">u</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.1
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here’s a plot of the probability mass function:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">S</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">u</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">S</span><span class="p">),</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">u</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">S</span><span class="p">),</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">S</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/1fe53347620dc49fe839f549e2e6c4a336a06a75ec9980ddaa904b311720d6a4.png"><img alt="_images/1fe53347620dc49fe839f549e2e6c4a336a06a75ec9980ddaa904b311720d6a4.png" src="_images/1fe53347620dc49fe839f549e2e6c4a336a06a75ec9980ddaa904b311720d6a4.png" style="width: 80%;" /></a>
+</div>
+</div>
+<p>Here’s a plot of the CDF:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">S</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">u</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">S</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">u</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">S</span><span class="p">),</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">S</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/e34184dc464c2473fb260a5879b7b97b78f902ee825eed7272d46c743de07bc4.png"><img alt="_images/e34184dc464c2473fb260a5879b7b97b78f902ee825eed7272d46c743de07bc4.png" src="_images/e34184dc464c2473fb260a5879b7b97b78f902ee825eed7272d46c743de07bc4.png" style="width: 80%;" /></a>
+</div>
+</div>
+<p>The CDF jumps up by <span class="math notranslate nohighlight">\(p(x_i)\)</span> and <span class="math notranslate nohighlight">\(x_i\)</span>.</p>
+<div class="exercise admonition" id="prob_ex2">
+
+<p class="admonition-title"><span class="caption-number">Exercise 15.2 </span></p>
+<section id="exercise-content">
+<p>Calculate the mean and variance for this parameterization (i.e., <span class="math notranslate nohighlight">\(n=10\)</span>)
+directly from the PMF, using the expressions given above.</p>
+<p>Check that your answers agree with <code class="docutils literal notranslate"><span class="pre">u.mean()</span></code> and <code class="docutils literal notranslate"><span class="pre">u.var()</span></code>.</p>
+</section>
+</div>
+</section>
 <section id="binomial-distribution">
-<h4><span class="section-number">15.2.1.2. </span>Binomial distribution<a class="headerlink" href="#binomial-distribution" title="Permalink to this heading">#</a></h4>
+<h4><span class="section-number">15.2.1.3. </span>Binomial distribution<a class="headerlink" href="#binomial-distribution" title="Permalink to this heading">#</a></h4>
 <p>Another useful (and more interesting) distribution is the <strong>binomial distribution</strong> on <span class="math notranslate nohighlight">\(S=\{0, \ldots, n\}\)</span>, which has PMF</p>
 <div class="math notranslate nohighlight">
 \[ 
@@ -455,7 +564,7 @@ directly from the PMF, using the expressions given above.</p>
 \]</div>
 <p>Here <span class="math notranslate nohighlight">\(\theta \in [0,1]\)</span> is a parameter.</p>
 <p>The interpretation of <span class="math notranslate nohighlight">\(p(i)\)</span> is: the number of successes in <span class="math notranslate nohighlight">\(n\)</span> independent trials with success probability <span class="math notranslate nohighlight">\(\theta\)</span>.</p>
-<p>(If <span class="math notranslate nohighlight">\(\theta=0.5\)</span>, this is “how many heads in <span class="math notranslate nohighlight">\(n\)</span> flips of a fair coin”)</p>
+<p>(If <span class="math notranslate nohighlight">\(\theta=0.5\)</span>, p(i) can be “how many heads in <span class="math notranslate nohighlight">\(n\)</span> flips of a fair coin”)</p>
 <p>The mean and variance are</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -523,16 +632,16 @@ directly from the PMF, using the expressions given above.</p>
 <a class="reference internal image-reference" href="_images/136c34fc2845d8da6367981c61ebe50ebae9b3a93857121fe990ef204cfb365e.png"><img alt="_images/136c34fc2845d8da6367981c61ebe50ebae9b3a93857121fe990ef204cfb365e.png" src="_images/136c34fc2845d8da6367981c61ebe50ebae9b3a93857121fe990ef204cfb365e.png" style="width: 80%;" /></a>
 </div>
 </div>
-<div class="exercise admonition" id="prob_ex2">
+<div class="exercise admonition" id="prob_ex3">
 
-<p class="admonition-title"><span class="caption-number">Exercise 15.2 </span></p>
+<p class="admonition-title"><span class="caption-number">Exercise 15.3 </span></p>
 <section id="exercise-content">
 <p>Using <code class="docutils literal notranslate"><span class="pre">u.pmf</span></code>, check that our definition of the CDF given above calculates the same function as <code class="docutils literal notranslate"><span class="pre">u.cdf</span></code>.</p>
 </section>
 </div>
-<div class="solution dropdown admonition" id="prob_dist-solution-2">
+<div class="solution dropdown admonition" id="prob_dist-solution-3">
 
-<p class="admonition-title">Solution to<a class="reference internal" href="#prob_ex2"> Exercise 15.2</a></p>
+<p class="admonition-title">Solution to<a class="reference internal" href="#prob_ex3"> Exercise 15.3</a></p>
 <section id="solution-content">
 <p>Here is one solution</p>
 <div class="cell docutils container">
@@ -556,7 +665,7 @@ directly from the PMF, using the expressions given above.</p>
 </div>
 </section>
 <section id="poisson-distribution">
-<h4><span class="section-number">15.2.1.3. </span>Poisson distribution<a class="headerlink" href="#poisson-distribution" title="Permalink to this heading">#</a></h4>
+<h4><span class="section-number">15.2.1.4. </span>Poisson distribution<a class="headerlink" href="#poisson-distribution" title="Permalink to this heading">#</a></h4>
 <p>Poisson distribution on <span class="math notranslate nohighlight">\(S = \{0, 1, \ldots\}\)</span> with parameter <span class="math notranslate nohighlight">\(\lambda &gt; 0\)</span> has PMF</p>
 <div class="math notranslate nohighlight">
 \[
@@ -638,7 +747,7 @@ directly from the PMF, using the expressions given above.</p>
 <p>For example, the mean of <span class="math notranslate nohighlight">\(X\)</span> is</p>
 <div class="math notranslate nohighlight">
 \[
-    \mathbb E X = \int_{-\infty}^\infty x p(x) dx
+    \mathbb{E}[X] = \int_{-\infty}^\infty x p(x) dx
 \]</div>
 <p>The <strong>cumulative distribution function</strong> (CDF) of <span class="math notranslate nohighlight">\(X\)</span> is defined by</p>
 <div class="math notranslate nohighlight">
@@ -656,7 +765,7 @@ directly from the PMF, using the expressions given above.</p>
 \]</div>
 <p>This distribution has two parameters, <span class="math notranslate nohighlight">\(\mu\)</span> and <span class="math notranslate nohighlight">\(\sigma\)</span>.</p>
 <p>It can be shown that, for this distribution, the mean is <span class="math notranslate nohighlight">\(\mu\)</span> and the variance is <span class="math notranslate nohighlight">\(\sigma^2\)</span>.</p>
-<p>We can obtain the moments, PDF, and CDF of the normal density as follows:</p>
+<p>We can obtain the moments, PDF and CDF of the normal density as follows:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">μ</span><span class="p">,</span> <span class="n">σ</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span>
@@ -1157,9 +1266,9 @@ numbers like the income distribution above) and probability distributions.</p>
 </div>
 </div>
 </div>
-<div class="exercise admonition" id="prob_ex3">
+<div class="exercise admonition" id="prob_ex4">
 
-<p class="admonition-title"><span class="caption-number">Exercise 15.3 </span></p>
+<p class="admonition-title"><span class="caption-number">Exercise 15.4 </span></p>
 <section id="exercise-content">
 <p>Check that the formulas given above produce the same numbers.</p>
 </section>
@@ -1194,8 +1303,8 @@ numbers like the income distribution above) and probability distributions.</p>
 <p>In particular, we will look at the monthly return on Amazon shares between 2000/1/1 and 2023/1/1.</p>
 <p>The monthly return is calculated as the percent change in the share price over each month.</p>
 <p>So we will have one observation for each month.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input above-output-prompt docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">yf</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;AMZN&#39;</span><span class="p">,</span> <span class="s1">&#39;2000-1-1&#39;</span><span class="p">,</span> <span class="s1">&#39;2023-1-1&#39;</span><span class="p">,</span> <span class="n">interval</span><span class="o">=</span><span class="s1">&#39;1mo&#39;</span> <span class="p">)</span>
 <span class="n">prices</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Adj Close&#39;</span><span class="p">]</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">prices</span><span class="o">.</span><span class="n">pct_change</span><span class="p">()[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">*</span> <span class="mi">100</span>
@@ -1203,6 +1312,11 @@ numbers like the income distribution above) and probability distributions.</p>
 </pre></div>
 </div>
 </div>
+<details class="hide below-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell output</span>
+<span class="expanded">Hide code cell output</span>
+</summary>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[*********************100%%**********************]  1 of 1 completed
 </pre></div>
@@ -1220,6 +1334,7 @@ Name: Adj Close, dtype: float64
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <p>The first observation is the monthly return (percent change) over January 2000, which was</p>
 <div class="cell docutils container">
@@ -1307,8 +1422,8 @@ Name: Adj Close, dtype: float64
 </div>
 <p>Violin plots are particularly useful when we want to compare different distributions.</p>
 <p>For example, let’s compare the monthly returns on Amazon shares with the monthly return on Apple shares.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input above-output-prompt docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">yf</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;AAPL&#39;</span><span class="p">,</span> <span class="s1">&#39;2000-1-1&#39;</span><span class="p">,</span> <span class="s1">&#39;2023-1-1&#39;</span><span class="p">,</span> <span class="n">interval</span><span class="o">=</span><span class="s1">&#39;1mo&#39;</span> <span class="p">)</span>
 <span class="n">prices</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Adj Close&#39;</span><span class="p">]</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">prices</span><span class="o">.</span><span class="n">pct_change</span><span class="p">()[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">*</span> <span class="mi">100</span>
@@ -1316,6 +1431,11 @@ Name: Adj Close, dtype: float64
 </pre></div>
 </div>
 </div>
+<details class="hide below-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell output</span>
+<span class="expanded">Hide code cell output</span>
+</summary>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[*********************100%%**********************]  1 of 1 completed
 </pre></div>
@@ -1324,6 +1444,7 @@ Name: Adj Close, dtype: float64
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1334,7 +1455,7 @@ Name: Adj Close, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/8be6bd06e37d2d7bebb781ca876efff7719231a1edf019b1bc8065e10076a426.png"><img alt="_images/8be6bd06e37d2d7bebb781ca876efff7719231a1edf019b1bc8065e10076a426.png" src="_images/8be6bd06e37d2d7bebb781ca876efff7719231a1edf019b1bc8065e10076a426.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/f170b24c808d750926bf936861b194f1c7b7c1acf7708a20cd75e7b71739a400.png"><img alt="_images/f170b24c808d750926bf936861b194f1c7b7c1acf7708a20cd75e7b71739a400.png" src="_images/f170b24c808d750926bf936861b194f1c7b7c1acf7708a20cd75e7b71739a400.png" style="width: 80%;" /></a>
 </div>
 </div>
 </section>
@@ -1394,7 +1515,7 @@ Name: Adj Close, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/7857947eec1ac7494b1a6a5f1d20c419d27d0db22852ea8e018c9ba26222c6fe.png"><img alt="_images/7857947eec1ac7494b1a6a5f1d20c419d27d0db22852ea8e018c9ba26222c6fe.png" src="_images/7857947eec1ac7494b1a6a5f1d20c419d27d0db22852ea8e018c9ba26222c6fe.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/8ae3b2264d92dda8a9c099fcf751e700f4dc89f1659908b8bc69761f0257c25d.png"><img alt="_images/8ae3b2264d92dda8a9c099fcf751e700f4dc89f1659908b8bc69761f0257c25d.png" src="_images/8ae3b2264d92dda8a9c099fcf751e700f4dc89f1659908b8bc69761f0257c25d.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>Note that if you keep increasing <span class="math notranslate nohighlight">\(N\)</span>, which is the number of observations, the fit will get better and better.</p>

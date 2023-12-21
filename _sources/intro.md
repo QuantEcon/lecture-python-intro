@@ -13,9 +13,6 @@ kernelspec:
 
 This lecture series provides an introduction to quantitative economics using Python. 
 
-The lectures were designed and written by [Thomas J. Sargent](http://www.tomsargent.com/) and [John Stachurski](http://johnstachurski.net/), 
-with extensive help from the rest of the QuantEcon team. 
-
 ```{tableofcontents}
 ```
 

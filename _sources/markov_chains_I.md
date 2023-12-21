@@ -107,8 +107,6 @@ From  US unemployment data, Hamilton {cite}`Hamilton2005` estimated the followin
 
 ```
 
-+++
-
 Here there are three **states**
 
 * "ng" represents normal growth
@@ -294,7 +292,7 @@ Looking at the data, we see that democracies tend to have longer-lasting growth
 regimes compared to autocracies (as indicated by the lower probability of
 transitioning from growth to growth in autocracies).
 
-We can also find a higher probability from collapse to growth in democratic regimes
+We can also find a higher probability from collapse to growth in democratic regimes.
 
 
 ### Defining Markov chains
@@ -411,7 +409,6 @@ def mc_sample_path(P, ψ_0=None, ts_length=1_000):
     X = np.empty(ts_length, dtype=int)
 
     # Convert each row of P into a cdf
-    n = len(P)
     P_dist = np.cumsum(P, axis=1)  # Convert rows into cdfs
 
     # draw initial state, defaulting to 0
@@ -683,7 +680,7 @@ P = np.array([[0.4, 0.6],
 ψ @ P
 ```
 
-Notice that `ψ @ P` is the same as `ψ`
+Notice that `ψ @ P` is the same as `ψ`.
 
 
 
@@ -772,11 +769,11 @@ For example, we have the following result
 (strict_stationary)=
 ```{prf:theorem}
 Theorem: If there exists an integer $m$ such that all entries of $P^m$ are
-strictly positive, with unique stationary distribution $\psi^*$, and
+strictly positive, with unique stationary distribution $\psi^*$, then
 
 $$
     \psi_0 P^t \to \psi^*
-    \quad \text{as } t \to \infty
+    \quad \text{ as } t \to \infty
 $$
 ```
 
@@ -836,8 +833,6 @@ ax.scatter(ψ_star[0], ψ_star[1], ψ_star[2], c='k', s=60)
 
 plt.show()
 ```
-
-+++ {"user_expressions": [], "tags": []}
 
 Here
 
@@ -1082,8 +1077,6 @@ Solution 1:
 :align: center
 
 ```
-
-+++
 
 Since the matrix is everywhere positive, there is a unique stationary distribution.
 

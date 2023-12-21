@@ -71,7 +71,7 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/quantecon-book-theme.css?digest=cb2d6eee9712fbd5cbf7cbc2d6baf81f7f9a9912" type="text/css" />
+    <link rel="stylesheet" href="_static/styles/quantecon-book-theme.css?digest=b09b2da44b9015b4fa76ea072fa2d8f7faee5492" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
@@ -98,15 +98,15 @@
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="_static/togglebutton.js"></script>
-    <script src="_static/scripts/quantecon-book-theme.js?digest=b7d60282c7125f74e59bac03c2323864e0e32e1c"></script>
+    <script src="_static/scripts/quantecon-book-theme.js?digest=eed9c059a3ee152aae2353ec732f0a6d12e6aa07"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="_static/design-tabs.js"></script>
-    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-QDS1YRJNGM"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-1P39P53YM9"></script>
     <script>
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){ dataLayer.push(arguments); }
                 gtag('js', new Date());
-                gtag('config', 'G-QDS1YRJNGM');
+                gtag('config', 'G-1P39P53YM9');
             </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
@@ -185,7 +185,10 @@ const thebe_selector_output = ".output, .cell_output"
                             <p class="logo">
                                 
                                     
-                                    <a href=https://quantecon.org><img src="_static/qe-logo.png" class="logo" alt="logo"></a>
+                                    <a href=https://quantecon.org><img src="_static/qe-logo.png" class="logo logo-img" alt="logo"></a>
+                                    
+                                    <a href=https://quantecon.org><img src="_static/quantecon-logo-transparent.png" class="dark-logo-img" alt="logo"></a>
+                                    
                                     
                                 
                             </p>
@@ -213,8 +216,19 @@ const thebe_selector_output = ".output, .cell_output"
                         <p class="qe-page__header-subheading">Economic Growth Evidence</p>
 
                     </div>
+                    <!-- length 2, since its a string and empty dict has length 2 - {} -->
+                        <p class="qe-page__header-authors" font-size="18">
+                            
+                                
+                                    <a href="http://www.tomsargent.com/" target="_blank"><span>Thomas J. Sargent</span></a>
+                                
+                            
+                                
+                                    and <a href="https://johnstachurski.net/" target="_blank"><span>John Stachurski</span></a>
+                                
+                            
+                        </p>
 
-                    <p class="qe-page__header-authors">Thomas J. Sargent & John Stachurski</p>
 
                 </div> <!-- .page__header -->
 
@@ -258,13 +272,10 @@ be interesting to describe both total GDP and GDP per capita as it evolves withi
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">matplotlib.cm</span> <span class="k">as</span> <span class="nn">cm</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">namedtuple</span>
-<span class="kn">from</span> <span class="nn">matplotlib.lines</span> <span class="kn">import</span> <span class="n">Line2D</span>
 </pre></div>
 </div>
 </div>
@@ -427,7 +438,8 @@ some dating back to the first century.</p>
     <span class="n">cy_data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="o">.</span><span class="n">country</span> <span class="o">==</span> <span class="n">cntry</span><span class="p">][</span><span class="s1">&#39;year&#39;</span><span class="p">]</span>
     <span class="n">ymin</span><span class="p">,</span> <span class="n">ymax</span> <span class="o">=</span> <span class="n">cy_data</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">cy_data</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
     <span class="n">cntry_years</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">cntry</span><span class="p">,</span> <span class="n">ymin</span><span class="p">,</span> <span class="n">ymax</span><span class="p">))</span>
-<span class="n">cntry_years</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">cntry_years</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;country&#39;</span><span class="p">,</span> <span class="s1">&#39;Min Year&#39;</span><span class="p">,</span> <span class="s1">&#39;Max Year&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;country&#39;</span><span class="p">)</span>
+<span class="n">cntry_years</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">cntry_years</span><span class="p">,</span>
+                           <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;country&#39;</span><span class="p">,</span> <span class="s1">&#39;Min Year&#39;</span><span class="p">,</span> <span class="s1">&#39;Max Year&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;country&#39;</span><span class="p">)</span>
 <span class="n">cntry_years</span>
 </pre></div>
 </div>
@@ -525,7 +537,7 @@ some dating back to the first century.</p>
 <p>We can build a useful mapping between country codes and country names in this dataset</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">code_to_name</span> <span class="o">=</span> <span class="n">data</span><span class="p">[[</span><span class="s1">&#39;countrycode&#39;</span><span class="p">,</span><span class="s1">&#39;country&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="s1">&#39;countrycode&#39;</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">code_to_name</span> <span class="o">=</span> <span class="n">data</span><span class="p">[[</span><span class="s1">&#39;countrycode&#39;</span><span class="p">,</span> <span class="s1">&#39;country&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="s1">&#39;countrycode&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -659,7 +671,7 @@ some dating back to the first century.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gdppc</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="s1">&#39;countrycode&#39;</span><span class="p">,</span><span class="s1">&#39;year&#39;</span><span class="p">])[</span><span class="s1">&#39;gdppc&#39;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gdppc</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="s1">&#39;countrycode&#39;</span><span class="p">,</span> <span class="s1">&#39;year&#39;</span><span class="p">])[</span><span class="s1">&#39;gdppc&#39;</span><span class="p">]</span>
 <span class="n">gdppc</span> <span class="o">=</span> <span class="n">gdppc</span><span class="o">.</span><span class="n">unstack</span><span class="p">(</span><span class="s1">&#39;countrycode&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1036,11 +1048,12 @@ some dating back to the first century.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
 <span class="n">cntry</span> <span class="o">=</span> <span class="s1">&#39;GBR&#39;</span>
 <span class="n">_</span> <span class="o">=</span> <span class="n">gdppc</span><span class="p">[</span><span class="n">cntry</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
-    <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">gca</span><span class="p">(),</span>
-    <span class="n">ylabel</span> <span class="o">=</span> <span class="s1">&#39;International $</span><span class="se">\&#39;</span><span class="s1">s&#39;</span><span class="p">,</span>
-    <span class="n">xlabel</span> <span class="o">=</span> <span class="s1">&#39;Year&#39;</span><span class="p">,</span>
-    <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span>
-    <span class="n">color</span><span class="o">=</span><span class="n">color_mapping</span><span class="p">[</span><span class="s1">&#39;GBR&#39;</span><span class="p">])</span>
+        <span class="n">ax</span><span class="o">=</span><span class="n">fig</span><span class="o">.</span><span class="n">gca</span><span class="p">(),</span>
+        <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;International $</span><span class="se">\&#39;</span><span class="s1">s&#39;</span><span class="p">,</span>
+        <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Year&#39;</span><span class="p">,</span>
+        <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span>
+        <span class="n">color</span><span class="o">=</span><span class="n">color_mapping</span><span class="p">[</span><span class="s1">&#39;GBR&#39;</span><span class="p">]</span>
+    <span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1142,8 +1155,8 @@ some dating back to the first century.</p>
 
 <span class="n">cntry</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;CHN&#39;</span><span class="p">,</span> <span class="s1">&#39;GBR&#39;</span><span class="p">,</span> <span class="s1">&#39;USA&#39;</span><span class="p">]</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">draw_interp_plots</span><span class="p">(</span><span class="n">gdppc</span><span class="p">[</span><span class="n">cntry</span><span class="p">]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">1500</span><span class="p">:],</span>
-    <span class="s1">&#39;International $</span><span class="se">\&#39;</span><span class="s1">s&#39;</span><span class="p">,</span><span class="s1">&#39;Year&#39;</span><span class="p">,</span>
-    <span class="n">color_mapping</span><span class="p">,</span> <span class="n">code_to_name</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span>
+                       <span class="s1">&#39;International $</span><span class="se">\&#39;</span><span class="s1">s&#39;</span><span class="p">,</span><span class="s1">&#39;Year&#39;</span><span class="p">,</span>
+                       <span class="n">color_mapping</span><span class="p">,</span> <span class="n">code_to_name</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span>
 
 <span class="c1"># Define the parameters for the events and the text</span>
 <span class="n">ylim</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_ylim</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
@@ -1184,10 +1197,9 @@ some dating back to the first century.</p>
                 <span class="n">event</span><span class="o">.</span><span class="n">y_text</span><span class="p">,</span> <span class="n">event</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> 
                 <span class="n">color</span><span class="o">=</span><span class="n">event</span><span class="o">.</span><span class="n">color</span><span class="p">,</span> <span class="o">**</span><span class="n">t_params</span><span class="p">)</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">axvspan</span><span class="p">(</span><span class="o">*</span><span class="n">event</span><span class="o">.</span><span class="n">year_range</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">event</span><span class="o">.</span><span class="n">color</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">event_mid</span><span class="p">,</span> <span class="n">ymin</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> 
-        <span class="n">ymax</span><span class="o">=</span><span class="n">event</span><span class="o">.</span><span class="n">ymax</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">event</span><span class="o">.</span><span class="n">color</span><span class="p">,</span> 
-        <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">clip_on</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.15</span><span class="p">)</span>
-        
+        <span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">event_mid</span><span class="p">,</span> <span class="n">ymin</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ymax</span><span class="o">=</span><span class="n">event</span><span class="o">.</span><span class="n">ymax</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">event</span><span class="o">.</span><span class="n">color</span><span class="p">,</span>
+                   <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">clip_on</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.15</span><span class="p">)</span>
+
 <span class="c1"># Draw events</span>
 <span class="n">draw_events</span><span class="p">(</span><span class="n">events</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -1232,8 +1244,8 @@ groups of people</p>
 
 <span class="n">cntry</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;CHN&#39;</span><span class="p">]</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">draw_interp_plots</span><span class="p">(</span><span class="n">gdppc</span><span class="p">[</span><span class="n">cntry</span><span class="p">]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">1600</span><span class="p">:</span><span class="mi">2000</span><span class="p">],</span>
-    <span class="s1">&#39;International $</span><span class="se">\&#39;</span><span class="s1">s&#39;</span><span class="p">,</span><span class="s1">&#39;Year&#39;</span><span class="p">,</span>
-    <span class="n">color_mapping</span><span class="p">,</span> <span class="n">code_to_name</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span>
+                       <span class="s1">&#39;International $</span><span class="se">\&#39;</span><span class="s1">s&#39;</span><span class="p">,</span><span class="s1">&#39;Year&#39;</span><span class="p">,</span>
+                       <span class="n">color_mapping</span><span class="p">,</span> <span class="n">code_to_name</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span>
 
 <span class="n">ylim</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_ylim</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
 
@@ -1300,8 +1312,8 @@ groups of people</p>
 
 <span class="n">cntry</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;GBR&#39;</span><span class="p">,</span> <span class="s1">&#39;USA&#39;</span><span class="p">]</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">draw_interp_plots</span><span class="p">(</span><span class="n">gdppc</span><span class="p">[</span><span class="n">cntry</span><span class="p">]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">1500</span><span class="p">:</span><span class="mi">2000</span><span class="p">],</span>
-    <span class="s1">&#39;International $</span><span class="se">\&#39;</span><span class="s1">s&#39;</span><span class="p">,</span><span class="s1">&#39;Year&#39;</span><span class="p">,</span>
-    <span class="n">color_mapping</span><span class="p">,</span> <span class="n">code_to_name</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span>
+                       <span class="s1">&#39;International $</span><span class="se">\&#39;</span><span class="s1">s&#39;</span><span class="p">,</span><span class="s1">&#39;Year&#39;</span><span class="p">,</span>
+                       <span class="n">color_mapping</span><span class="p">,</span> <span class="n">code_to_name</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span>
 
 <span class="n">ylim</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_ylim</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
 
@@ -1377,8 +1389,8 @@ groups of people</p>
 <span class="n">cntry</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;CHN&#39;</span><span class="p">,</span> <span class="s1">&#39;SUN&#39;</span><span class="p">,</span> <span class="s1">&#39;JPN&#39;</span><span class="p">,</span> <span class="s1">&#39;GBR&#39;</span><span class="p">,</span> <span class="s1">&#39;USA&#39;</span><span class="p">]</span>
 <span class="n">start_year</span><span class="p">,</span> <span class="n">end_year</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1820</span><span class="p">,</span> <span class="mi">1945</span><span class="p">)</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">draw_interp_plots</span><span class="p">(</span><span class="n">gdp</span><span class="p">[</span><span class="n">cntry</span><span class="p">]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">start_year</span><span class="p">:</span><span class="n">end_year</span><span class="p">],</span>
-    <span class="s1">&#39;International $</span><span class="se">\&#39;</span><span class="s1">s&#39;</span><span class="p">,</span><span class="s1">&#39;Year&#39;</span><span class="p">,</span>
-    <span class="n">color_mapping</span><span class="p">,</span> <span class="n">code_to_name</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span>
+                       <span class="s1">&#39;International $</span><span class="se">\&#39;</span><span class="s1">s&#39;</span><span class="p">,</span> <span class="s1">&#39;Year&#39;</span><span class="p">,</span>
+                       <span class="n">color_mapping</span><span class="p">,</span> <span class="n">code_to_name</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1400,7 +1412,8 @@ groups of people</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">BEM</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;GBR&#39;</span><span class="p">,</span> <span class="s1">&#39;IND&#39;</span><span class="p">,</span> <span class="s1">&#39;AUS&#39;</span><span class="p">,</span> <span class="s1">&#39;NZL&#39;</span><span class="p">,</span> <span class="s1">&#39;CAN&#39;</span><span class="p">,</span> <span class="s1">&#39;ZAF&#39;</span><span class="p">]</span>
-<span class="n">gdp</span><span class="p">[</span><span class="s1">&#39;BEM&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gdp</span><span class="p">[</span><span class="n">BEM</span><span class="p">]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">start_year</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="n">end_year</span><span class="p">]</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;index&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># Interpolate incomplete time-series</span>
+<span class="c1"># Interpolate incomplete time-series</span>
+<span class="n">gdp</span><span class="p">[</span><span class="s1">&#39;BEM&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gdp</span><span class="p">[</span><span class="n">BEM</span><span class="p">]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">start_year</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="n">end_year</span><span class="p">]</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;index&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1408,15 +1421,14 @@ groups of people</p>
 <p>Let’s take a look at the aggregation that represents the British Empire.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gdp</span><span class="p">[</span><span class="s1">&#39;BEM&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span> <span class="c1"># The first year is np.nan due to interpolation</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The first year is np.nan due to interpolation</span>
+<span class="n">gdp</span><span class="p">[</span><span class="s1">&#39;BEM&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;International $&#39;s&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;year&#39;&gt;
-</pre></div>
-</div>
-<a class="reference internal image-reference" href="_images/e88cd390ca110993e3dd255b743283dcc1e85f12369b8bd83bc69ac40b9f9078.png"><img alt="_images/e88cd390ca110993e3dd255b743283dcc1e85f12369b8bd83bc69ac40b9f9078.png" src="_images/e88cd390ca110993e3dd255b743283dcc1e85f12369b8bd83bc69ac40b9f9078.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/c1e295b225de294cbc86214cc85308c5afe42d15437f927695e43c2ab8320fb8.png"><img alt="_images/c1e295b225de294cbc86214cc85308c5afe42d15437f927695e43c2ab8320fb8.png" src="_images/c1e295b225de294cbc86214cc85308c5afe42d15437f927695e43c2ab8320fb8.png" style="width: 80%;" /></a>
 </div>
 </div>
 <div class="cell docutils container">
@@ -1521,9 +1533,11 @@ groups of people</p>
 <span class="n">cntry</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;DEU&#39;</span><span class="p">,</span> <span class="s1">&#39;USA&#39;</span><span class="p">,</span> <span class="s1">&#39;SUN&#39;</span><span class="p">,</span> <span class="s1">&#39;BEM&#39;</span><span class="p">,</span> <span class="s1">&#39;FRA&#39;</span><span class="p">,</span> <span class="s1">&#39;JPN&#39;</span><span class="p">]</span>
 <span class="n">start_year</span><span class="p">,</span> <span class="n">end_year</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1821</span><span class="p">,</span> <span class="mi">1945</span><span class="p">)</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">draw_interp_plots</span><span class="p">(</span><span class="n">gdp</span><span class="p">[</span><span class="n">cntry</span><span class="p">]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">start_year</span><span class="p">:</span><span class="n">end_year</span><span class="p">],</span>
-    <span class="s1">&#39;Real GDP in 2011 $</span><span class="se">\&#39;</span><span class="s1">s&#39;</span><span class="p">,</span><span class="s1">&#39;Year&#39;</span><span class="p">,</span>
-    <span class="n">color_mapping</span><span class="p">,</span> <span class="n">code_to_name</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;./_static/lecture_specific/long_run_growth/tooze_ch1_graph.png&quot;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">)</span>
+                       <span class="s1">&#39;Real GDP in 2011 $</span><span class="se">\&#39;</span><span class="s1">s&#39;</span><span class="p">,</span> <span class="s1">&#39;Year&#39;</span><span class="p">,</span>
+                       <span class="n">color_mapping</span><span class="p">,</span> <span class="n">code_to_name</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;./_static/lecture_specific/long_run_growth/tooze_ch1_graph.png&quot;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span>
+            <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -1546,8 +1560,8 @@ by the end of the 19th century, setting the geopolitical stage for the “Americ
 <span class="n">cntry</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;CHN&#39;</span><span class="p">,</span> <span class="s1">&#39;SUN&#39;</span><span class="p">,</span> <span class="s1">&#39;JPN&#39;</span><span class="p">,</span> <span class="s1">&#39;GBR&#39;</span><span class="p">,</span> <span class="s1">&#39;USA&#39;</span><span class="p">]</span>
 <span class="n">start_year</span><span class="p">,</span> <span class="n">end_year</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1950</span><span class="p">,</span> <span class="mi">2020</span><span class="p">)</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">draw_interp_plots</span><span class="p">(</span><span class="n">gdp</span><span class="p">[</span><span class="n">cntry</span><span class="p">]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">start_year</span><span class="p">:</span><span class="n">end_year</span><span class="p">],</span>
-    <span class="s1">&#39;International $</span><span class="se">\&#39;</span><span class="s1">s&#39;</span><span class="p">,</span><span class="s1">&#39;Year&#39;</span><span class="p">,</span>
-    <span class="n">color_mapping</span><span class="p">,</span> <span class="n">code_to_name</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span>
+                       <span class="s1">&#39;International $</span><span class="se">\&#39;</span><span class="s1">s&#39;</span><span class="p">,</span> <span class="s1">&#39;Year&#39;</span><span class="p">,</span>
+                       <span class="n">color_mapping</span><span class="p">,</span> <span class="n">code_to_name</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1569,7 +1583,8 @@ by the end of the 19th century, setting the geopolitical stage for the “Americ
 <p>Fortunately, the <a class="reference external" href="https://www.rug.nl/ggdc/historicaldevelopment/maddison/">Maddison Historical Statistics</a> dataset also includes regional aggregations</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s2">&quot;datasets/mpd2020.xlsx&quot;</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;Regional data&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s2">&quot;datasets/mpd2020.xlsx&quot;</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;Regional data&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span>
+                     <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">data</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">droplevel</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1605,7 +1620,7 @@ by the end of the 19th century, setting the geopolitical stage for the “Americ
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">worldgdppc</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
-    <span class="n">ax</span> <span class="o">=</span> <span class="n">ax</span><span class="p">,</span>
+    <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
     <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Year&#39;</span><span class="p">,</span>
     <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;2011 US$&#39;</span><span class="p">,</span>
 <span class="p">)</span>
@@ -1628,17 +1643,18 @@ by the end of the 19th century, setting the geopolitical stage for the “Americ
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
 <span class="n">line_styles</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="s1">&#39;-.&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">]</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">regionalgdppc</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span> <span class="o">=</span> <span class="n">ax</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="n">line_styles</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">regionalgdppc</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Year&#39;</span><span class="p">,</span>
+                        <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;2011 US$&#39;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="n">line_styles</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_yscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;lower center&#39;</span><span class="p">,</span> 
-<span class="n">ncol</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.4</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;lower center&#39;</span><span class="p">,</span>
+           <span class="n">ncol</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.4</span><span class="p">])</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="region-gdppc">
-<a class="reference internal image-reference" href="_images/8d8d27da977527492731ae2766dc85acdf87af564874ddf1310005ffca16b6c3.png"><img alt="_images/8d8d27da977527492731ae2766dc85acdf87af564874ddf1310005ffca16b6c3.png" src="_images/8d8d27da977527492731ae2766dc85acdf87af564874ddf1310005ffca16b6c3.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/70899d1c7bebb9a946ffb340b93bb82905cbd56cbe9f34167980567edddbf9f7.png"><img alt="_images/70899d1c7bebb9a946ffb340b93bb82905cbd56cbe9f34167980567edddbf9f7.png" src="_images/70899d1c7bebb9a946ffb340b93bb82905cbd56cbe9f34167980567edddbf9f7.png" style="width: 80%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 2.9 </span><span class="caption-text">Regional GDP per capita</span><a class="headerlink" href="#region-gdppc" title="Permalink to this image">#</a></p>
 </figcaption>
