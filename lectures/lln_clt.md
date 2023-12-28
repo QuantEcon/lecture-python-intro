@@ -34,7 +34,6 @@ We'll need the following imports:
 
 ```{code-cell} ipython3
 import matplotlib.pyplot as plt
-import random
 import numpy as np
 import scipy.stats as st
 ```

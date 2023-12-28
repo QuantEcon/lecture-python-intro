@@ -38,8 +38,6 @@ We use the following imports
 ```{code-cell} ipython3
 import matplotlib.pyplot as plt
 import pandas as pd
-import numpy as np
-import scipy.stats as st
 import datetime
 import wbgapi as wb
 import pandas_datareader.data as web

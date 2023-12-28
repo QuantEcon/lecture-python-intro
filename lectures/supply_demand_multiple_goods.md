@@ -58,7 +58,6 @@ As usual, we start by importing some Python modules.
 ```{code-cell} ipython3
 # import some packages
 import numpy as np
-import pandas as pd
 import matplotlib.pyplot as plt
 from scipy.linalg import inv
 ```

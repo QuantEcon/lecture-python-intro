@@ -56,9 +56,6 @@ import matplotlib.pyplot as plt
 plt.rcParams["figure.figsize"] = (11, 5)  # set default figure size
 import quantecon as qe
 import numpy as np
-import networkx as nx
-from matplotlib import cm
-import matplotlib as mpl
 ```
 
 (mc_irreducible)=
