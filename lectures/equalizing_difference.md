@@ -18,6 +18,12 @@ kernelspec:
 This lecture presents a model of the college-high-school wage gap in which the
 "time to build" a college graduate plays a key role.
 
+```{note}
+Milton Friedman used our   model  to study whether  differences in the earnings of US dentists and doctors were justified by competitive labor markets or whether
+they reflected entry barriers imposed by US governments working in conjunction with doctors' lobbies.  Chapter 4 of Jennifer Burns {cite}`Burns_2023` presents an 
+interesting account of Milton Friedman's joint work with Simon Kuznets that eventually  led to the publication of {cite}`kuznets1939incomes` and {cite}`friedman1954incomes`. To map  Friedman's application to our model, think of our high school students as Friedman's dentists and our college graduates as Friedman's doctors.  
+```
+
 The model is "incomplete" in the sense that it is just one "condition" in the form of a single equation that would be part of set equations comprising all  "equilibrium conditions" of   a more fully articulated model.
 
 The condition featured in our model determines  a college, high-school wage ratio that equalizes the present values of a high school worker and a college educated worker.
