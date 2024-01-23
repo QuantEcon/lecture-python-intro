@@ -60,12 +60,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
@@ -81,9 +81,9 @@
     <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=bd9e20870c6007c4c509" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=bd9e20870c6007c4c509" />
-  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=bd9e20870c6007c4c509"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
@@ -250,7 +250,7 @@ const thebe_selector_output = ".output, .cell_output"
 <h2><span class="section-number">9.1. </span>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
 <p>Technically, this lecture is a sequel to this quantecon lecture <a class="reference internal" href="pv.html"><span class="doc">present values</span></a>, although it might not seem so at first.</p>
 <p>It will take a while for a “present value” or asset price explicilty to appear in this lecture, but when it does it will be a key actor.</p>
-<p>In this lecture, we’ll study a famous model of the “consumption function” that Milton Friedman <span id="id1">[<a class="reference internal" href="zreferences.html#id175" title="M. Friedman. A Theory of the Consumption Function. Princeton University Press, 1956.">Fri56</a>]</span> and Robert Hall <span id="id2">[<a class="reference internal" href="zreferences.html#id176" title="Robert E Hall. Stochastic Implications of the Life Cycle-Permanent Income Hypothesis: Theory and Evidence. Journal of Political Economy, 86(6):971–987, 1978.">Hal78</a>]</span>)  proposed to fit some empirical data patterns that the simple Keynesian model described in this quantecon lecture <a class="reference internal" href="geom_series.html"><span class="doc">geometric series</span></a> had missed.</p>
+<p>In this lecture, we’ll study a famous model of the “consumption function” that Milton Friedman <span id="id1">[<a class="reference internal" href="zreferences.html#id178" title="M. Friedman. A Theory of the Consumption Function. Princeton University Press, 1956.">Fri56</a>]</span> and Robert Hall <span id="id2">[<a class="reference internal" href="zreferences.html#id179" title="Robert E Hall. Stochastic Implications of the Life Cycle-Permanent Income Hypothesis: Theory and Evidence. Journal of Political Economy, 86(6):971–987, 1978.">Hal78</a>]</span>)  proposed to fit some empirical data patterns that the simple Keynesian model described in this quantecon lecture <a class="reference internal" href="geom_series.html"><span class="doc">geometric series</span></a> had missed.</p>
 <p>The key insight of Friedman and Hall was that today’s consumption ought not to depend just on today’s non-financial income: it should also depend on a person’s anticipations of her <strong>future</strong> non-financial incomes at various dates.</p>
 <p>In this lecture, we’ll study what is sometimes called the “consumption-smoothing model”  using only linear algebra, in particular  matrix multiplication and matrix inversion.</p>
 <p>Formulas presented in  <a class="reference internal" href="pv.html"><span class="doc">present value formulas</span></a> are at the core of the consumption smoothing model because they are used to define a consumer’s “human wealth”.</p>
@@ -312,7 +312,7 @@ with the exogenous non-financial income stream <span class="math notranslate noh
 <span class="eqno">(9.2)<a class="headerlink" href="#equation-welfare" title="Permalink to this equation">#</a></span>\[W = \sum_{t=0}^T \beta^t (g_1 c_t - \frac{g_2}{2} c_t^2 )\]</div>
 <p>where <span class="math notranslate nohighlight">\(g_1 &gt; 0, g_2 &gt; 0\)</span>.</p>
 <p>The fact that the utility function <span class="math notranslate nohighlight">\(g_1 c_t - \frac{g_2}{2} c_t^2\)</span> has diminishing marginal utility imparts a preference for consumption that is very smooth when <span class="math notranslate nohighlight">\(\beta R \approx 1\)</span>.</p>
-<p>Indeed, we shall see that when <span class="math notranslate nohighlight">\(\beta R = 1\)</span> (a condition assumed by Milton Friedman <span id="id3">[<a class="reference internal" href="zreferences.html#id175" title="M. Friedman. A Theory of the Consumption Function. Princeton University Press, 1956.">Fri56</a>]</span> and Robert Hall <span id="id4">[<a class="reference internal" href="zreferences.html#id176" title="Robert E Hall. Stochastic Implications of the Life Cycle-Permanent Income Hypothesis: Theory and Evidence. Journal of Political Economy, 86(6):971–987, 1978.">Hal78</a>]</span>), this criterion assigns higher welfare to <strong>smoother</strong> consumption paths.</p>
+<p>Indeed, we shall see that when <span class="math notranslate nohighlight">\(\beta R = 1\)</span> (a condition assumed by Milton Friedman <span id="id3">[<a class="reference internal" href="zreferences.html#id178" title="M. Friedman. A Theory of the Consumption Function. Princeton University Press, 1956.">Fri56</a>]</span> and Robert Hall <span id="id4">[<a class="reference internal" href="zreferences.html#id179" title="Robert E Hall. Stochastic Implications of the Life Cycle-Permanent Income Hypothesis: Theory and Evidence. Journal of Political Economy, 86(6):971–987, 1978.">Hal78</a>]</span>), this criterion assigns higher welfare to <strong>smoother</strong> consumption paths.</p>
 <p>By <strong>smoother</strong> we mean as close as possible to being constant over time.</p>
 <p>The preference for smooth consumption paths that is built into the model gives it the  name “consumption smoothing model”.</p>
 <p>Let’s dive in and do some calculations that will help us understand how the model works.</p>
@@ -355,7 +355,7 @@ a_{T+1} = 0,
 \sum_{t=0}^T R^{-t} c_t = a_0 + h_0,
 \]</div>
 <p>which says that the present value of the consumption stream equals the sum of finanical and non-financial (or human) wealth.</p>
-<p>Robert Hall <span id="id5">[<a class="reference internal" href="zreferences.html#id176" title="Robert E Hall. Stochastic Implications of the Life Cycle-Permanent Income Hypothesis: Theory and Evidence. Journal of Political Economy, 86(6):971–987, 1978.">Hal78</a>]</span> showed that when <span class="math notranslate nohighlight">\(\beta R = 1\)</span>, a condition Milton Friedman had also  assumed,
+<p>Robert Hall <span id="id5">[<a class="reference internal" href="zreferences.html#id179" title="Robert E Hall. Stochastic Implications of the Life Cycle-Permanent Income Hypothesis: Theory and Evidence. Journal of Political Economy, 86(6):971–987, 1978.">Hal78</a>]</span> showed that when <span class="math notranslate nohighlight">\(\beta R = 1\)</span>, a condition Milton Friedman had also  assumed,
 it is “optimal” for a consumer to <strong>smooth consumption</strong> by setting</p>
 <div class="math notranslate nohighlight">
 \[ 
@@ -719,7 +719,7 @@ welfare=13.28156768298361
 </section>
 <section id="wrapping-up-the-consumption-smoothing-model">
 <h2><span class="section-number">9.4. </span>Wrapping up the consumption-smoothing model<a class="headerlink" href="#wrapping-up-the-consumption-smoothing-model" title="Permalink to this heading">#</a></h2>
-<p>The consumption-smoothing model of Milton Friedman <span id="id6">[<a class="reference internal" href="zreferences.html#id175" title="M. Friedman. A Theory of the Consumption Function. Princeton University Press, 1956.">Fri56</a>]</span> and Robert Hall <span id="id7">[<a class="reference internal" href="zreferences.html#id176" title="Robert E Hall. Stochastic Implications of the Life Cycle-Permanent Income Hypothesis: Theory and Evidence. Journal of Political Economy, 86(6):971–987, 1978.">Hal78</a>]</span>) is a cornerstone of modern macro
+<p>The consumption-smoothing model of Milton Friedman <span id="id6">[<a class="reference internal" href="zreferences.html#id178" title="M. Friedman. A Theory of the Consumption Function. Princeton University Press, 1956.">Fri56</a>]</span> and Robert Hall <span id="id7">[<a class="reference internal" href="zreferences.html#id179" title="Robert E Hall. Stochastic Implications of the Life Cycle-Permanent Income Hypothesis: Theory and Evidence. Journal of Political Economy, 86(6):971–987, 1978.">Hal78</a>]</span>) is a cornerstone of modern macro
 that has important ramifications about the size of the Keynesian  “fiscal policy multiplier” described briefly in
 quantecon lecture <a class="reference internal" href="geom_series.html"><span class="doc">geometric series</span></a>.</p>
 <p>In particular, Milton Friedman and others showed that it  <strong>lowered</strong> the fiscal policy  multiplier relative to the one implied by
