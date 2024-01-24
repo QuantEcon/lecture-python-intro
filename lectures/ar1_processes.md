@@ -223,7 +223,7 @@ When $|a| < 1$, these sequences converge to the respective limits
 v^* = \frac{c^2}{1 - a^2}
 ```
 
-(See our {doc}`lecture on one dimensional dynamics <intro:scalar_dynam>` for background on deterministic convergence.)
+(See our {doc}`lecture on one dimensional dynamics <scalar_dynam>` for background on deterministic convergence.)
 
 Hence
 
