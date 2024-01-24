@@ -20,6 +20,12 @@ kernelspec:
 
 # AR1 Processes
 
+```{admonition} Migrated lecture
+:class: warning
+
+We have moved this lecture from [Intermediate Quantitative Economics with Python](https://python.quantecon.org/intro.html).
+```
+
 ```{index} single: Autoregressive processes
 ```
 
