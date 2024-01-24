@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>35. Market Equilibrium with Heterogeneity &#8212; A First Course in Quantitative Economics with Python</title>
+    <title>36. Market Equilibrium with Heterogeneity &#8212; A First Course in Quantitative Economics with Python</title>
     <script src="https://unpkg.com/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://unpkg.com/tippy.js@6.3.1/dist/tippy-bundle.umd.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
@@ -122,8 +122,8 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="36. Simple Linear Regression Model" href="simple_linear_regression.html" />
-    <link rel="prev" title="34. Supply and Demand with Many Goods" href="supply_demand_multiple_goods.html" />
+    <link rel="next" title="37. Simple Linear Regression Model" href="simple_linear_regression.html" />
+    <link rel="prev" title="35. Supply and Demand with Many Goods" href="supply_demand_multiple_goods.html" />
 
 <!-- Normal Meta Tags -->
 <meta name="author" context="Thomas J. Sargent &amp; John Stachurski" />
@@ -171,20 +171,20 @@ const thebe_selector_output = ".output, .cell_output"
 
                         <nav id="bd-toc-nav" class="qe-page__toc-nav">
                             <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">35.1. Overview</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#an-simple-example">35.2. An simple example</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pure-exchange-economy">35.3. Pure exchange economy</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#competitive-equilibrium">35.3.1. Competitive equilibrium</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#designing-some-python-code">35.3.2. Designing some Python code</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">36.1. Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#an-simple-example">36.2. An simple example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pure-exchange-economy">36.3. Pure exchange economy</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#competitive-equilibrium">36.3.1. Competitive equilibrium</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#designing-some-python-code">36.3.2. Designing some Python code</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation">35.4. Implementation</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#two-person-economy-without-production">35.4.1. Two-person economy without production</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-dynamic-economy">35.4.2. A dynamic economy</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#risk-economy-with-arrow-securities">35.4.3. Risk economy with arrow securities</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation">36.4. Implementation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#two-person-economy-without-production">36.4.1. Two-person economy without production</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-dynamic-economy">36.4.2. A dynamic economy</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#risk-economy-with-arrow-securities">36.4.3. Risk economy with arrow securities</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deducing-a-representative-consumer">35.5. Deducing a representative consumer</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deducing-a-representative-consumer">36.5. Deducing a representative consumer</a></li>
 </ul>
                             <p class="logo">
                                 
@@ -244,7 +244,7 @@ const thebe_selector_output = ".output, .cell_output"
                     <div>
                         
   <section class="tex2jax_ignore mathjax_ignore" id="market-equilibrium-with-heterogeneity">
-<span id="supply-demand-heterogeneity"></span><h1><a class="toc-backref" href="#id1"><span class="section-number">35. </span>Market Equilibrium with Heterogeneity</a><a class="headerlink" href="#market-equilibrium-with-heterogeneity" title="Permalink to this heading">#</a></h1>
+<span id="supply-demand-heterogeneity"></span><h1><a class="toc-backref" href="#id1"><span class="section-number">36. </span>Market Equilibrium with Heterogeneity</a><a class="headerlink" href="#market-equilibrium-with-heterogeneity" title="Permalink to this heading">#</a></h1>
 <div class="contents topic" id="contents">
 <p class="topic-title">Contents</p>
 <ul class="simple">
@@ -260,7 +260,7 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </div>
 <section id="overview">
-<h2><a class="toc-backref" href="#id2"><span class="section-number">35.1. </span>Overview</a><a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id2"><span class="section-number">36.1. </span>Overview</a><a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
 <p>In the <a class="reference internal" href="supply_demand_multiple_goods.html"><span class="doc">previous lecture</span></a>, we studied competitive equilibria in an economy with many goods.</p>
 <p>While the results of the study were informative, we used a strong simplifying assumption: all of the agents in the economy are identical.</p>
 <p>In the real world, households, firms and other economic agents differ from one another along many dimensions.</p>
@@ -280,7 +280,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </section>
 <section id="an-simple-example">
-<h2><a class="toc-backref" href="#id3"><span class="section-number">35.2. </span>An simple example</a><a class="headerlink" href="#an-simple-example" title="Permalink to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id3"><span class="section-number">36.2. </span>An simple example</a><a class="headerlink" href="#an-simple-example" title="Permalink to this heading">#</a></h2>
 <p>Let’s study a simple example of <strong>pure exchange</strong> economy without production.</p>
 <p>There are two consumers who differ in their endowment vectors <span class="math notranslate nohighlight">\(e_i\)</span> and their bliss-point vectors <span class="math notranslate nohighlight">\(b_i\)</span> for <span class="math notranslate nohighlight">\(i=1,2\)</span>.</p>
 <p>The total endowment is <span class="math notranslate nohighlight">\(e_1 + e_2\)</span>.</p>
@@ -302,18 +302,18 @@ e_1 + e_2 =
 \]</div>
 <p>which, after a line or two of linear algebra, implies that</p>
 <div class="math notranslate nohighlight" id="equation-eq-old6">
-<span class="eqno">(35.1)<a class="headerlink" href="#equation-eq-old6" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(36.1)<a class="headerlink" href="#equation-eq-old6" title="Permalink to this equation">#</a></span>\[
 (\mu_1 + \mu_2) p = \Pi^\top(b_1+ b_2) - \Pi^\top \Pi (e_1 + e_2)
 \]</div>
 <p>We can normalize prices by setting <span class="math notranslate nohighlight">\(\mu_1 + \mu_2 =1\)</span> and then solving</p>
 <div class="math notranslate nohighlight" id="equation-eq-old7">
-<span class="eqno">(35.2)<a class="headerlink" href="#equation-eq-old7" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(36.2)<a class="headerlink" href="#equation-eq-old7" title="Permalink to this equation">#</a></span>\[
 \mu_i(p,e) = \frac{p^\top (\Pi^{-1} b_i - e_i)}{p^\top (\Pi^\top \Pi )^{-1} p}
 \]</div>
 <p>for <span class="math notranslate nohighlight">\(\mu_i, i = 1,2\)</span>.</p>
 <div class="exercise admonition" id="sdh_ex1">
 
-<p class="admonition-title"><span class="caption-number">Exercise 35.1 </span></p>
+<p class="admonition-title"><span class="caption-number">Exercise 36.1 </span></p>
 <section id="exercise-content">
 <p>Show that, up to normalization by a positive scalar, the same competitive equilibrium price vector that you computed in the preceding two-consumer economy would prevail in a single-consumer economy in which a single <strong>representative consumer</strong> has utility function</p>
 <div class="math notranslate nohighlight">
@@ -334,10 +334,10 @@ e = e_1 + e_2 .
 </div>
 </section>
 <section id="pure-exchange-economy">
-<h2><a class="toc-backref" href="#id4"><span class="section-number">35.3. </span>Pure exchange economy</a><a class="headerlink" href="#pure-exchange-economy" title="Permalink to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id4"><span class="section-number">36.3. </span>Pure exchange economy</a><a class="headerlink" href="#pure-exchange-economy" title="Permalink to this heading">#</a></h2>
 <p>Let’s further explore a pure exchange economy with <span class="math notranslate nohighlight">\(n\)</span> goods and <span class="math notranslate nohighlight">\(m\)</span> people.</p>
 <section id="competitive-equilibrium">
-<h3><span class="section-number">35.3.1. </span>Competitive equilibrium<a class="headerlink" href="#competitive-equilibrium" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">36.3.1. </span>Competitive equilibrium<a class="headerlink" href="#competitive-equilibrium" title="Permalink to this heading">#</a></h3>
 <p>We’ll compute a competitive equilibrium.</p>
 <p>To compute a competitive equilibrium of a pure exchange economy, we use the fact that</p>
 <ul class="simple">
@@ -360,7 +360,7 @@ c_{i}=\Pi^{-1}b_{i}-(\Pi^{\top}\Pi)^{-1}\mu_{i}p
 \]</div>
 </section>
 <section id="designing-some-python-code">
-<h3><span class="section-number">35.3.2. </span>Designing some Python code<a class="headerlink" href="#designing-some-python-code" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">36.3.2. </span>Designing some Python code<a class="headerlink" href="#designing-some-python-code" title="Permalink to this heading">#</a></h3>
 <p>Below we shall construct a Python class with the following attributes:</p>
 <ul class="simple">
 <li><p><strong>Preferences</strong> in the form of</p>
@@ -473,7 +473,7 @@ c_{i}=\Pi^{-1}b_{i}-(\Pi^{\top}\Pi)^{-1}\mu_{i}p
 </section>
 </section>
 <section id="implementation">
-<h2><a class="toc-backref" href="#id5"><span class="section-number">35.4. </span>Implementation</a><a class="headerlink" href="#implementation" title="Permalink to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id5"><span class="section-number">36.4. </span>Implementation</a><a class="headerlink" href="#implementation" title="Permalink to this heading">#</a></h2>
 <p>Next we use the class <code class="docutils literal notranslate"><span class="pre">ExchangeEconomy</span></code> defined above to study</p>
 <ul class="simple">
 <li><p>a two-person economy without production,</p></li>
@@ -481,7 +481,7 @@ c_{i}=\Pi^{-1}b_{i}-(\Pi^{\top}\Pi)^{-1}\mu_{i}p
 <li><p>an economy with risk and arrow securities.</p></li>
 </ul>
 <section id="two-person-economy-without-production">
-<h3><span class="section-number">35.4.1. </span>Two-person economy without production<a class="headerlink" href="#two-person-economy-without-production" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">36.4.1. </span>Two-person economy without production<a class="headerlink" href="#two-person-economy-without-production" title="Permalink to this heading">#</a></h3>
 <p>Here we study how competitive equilibrium <span class="math notranslate nohighlight">\(p, c_1, c_2\)</span> respond to different <span class="math notranslate nohighlight">\(b_i\)</span> and <span class="math notranslate nohighlight">\(e_i\)</span>, <span class="math notranslate nohighlight">\(i \in \{1, 2\}\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -599,7 +599,7 @@ Competitive equilibrium allocation: [array([1.25, 1.25]), array([0.75, 0.75])]
 </div>
 </section>
 <section id="a-dynamic-economy">
-<h3><span class="section-number">35.4.2. </span>A dynamic economy<a class="headerlink" href="#a-dynamic-economy" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">36.4.2. </span>A dynamic economy<a class="headerlink" href="#a-dynamic-economy" title="Permalink to this heading">#</a></h3>
 <p>Now let’s use the tricks described above to study a dynamic economy, one with two periods.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -629,7 +629,7 @@ Competitive equilibrium allocation: [array([1., 1.])]
 </div>
 </section>
 <section id="risk-economy-with-arrow-securities">
-<h3><span class="section-number">35.4.3. </span>Risk economy with arrow securities<a class="headerlink" href="#risk-economy-with-arrow-securities" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">36.4.3. </span>Risk economy with arrow securities<a class="headerlink" href="#risk-economy-with-arrow-securities" title="Permalink to this heading">#</a></h3>
 <p>We use the tricks described above to interpret  <span class="math notranslate nohighlight">\(c_1, c_2\)</span> as “Arrow securities” that are state-contingent claims to consumption goods.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -662,7 +662,7 @@ Competitive equilibrium allocation: [array([0.7, 0.7]), array([0.3, 0.3])]
 </section>
 </section>
 <section id="deducing-a-representative-consumer">
-<h2><a class="toc-backref" href="#id6"><span class="section-number">35.5. </span>Deducing a representative consumer</a><a class="headerlink" href="#deducing-a-representative-consumer" title="Permalink to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id6"><span class="section-number">36.5. </span>Deducing a representative consumer</a><a class="headerlink" href="#deducing-a-representative-consumer" title="Permalink to this heading">#</a></h2>
 <p>In the class of multiple consumer economies that we are studying here, it turns out that there
 exists a single <strong>representative consumer</strong> whose preferences and endowments can be deduced from lists of preferences and endowments for separate individual consumers.</p>
 <p>Consider a multiple consumer economy with initial distribution of wealth <span class="math notranslate nohighlight">\(W_i\)</span> satisfying <span class="math notranslate nohighlight">\(\sum_i W_{i}=0\)</span></p>
@@ -945,18 +945,23 @@ vector in our representative consumer economy is the same as that in an underlyi
 </p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
+  <a class="reference internal" href="ar1_processes.html">
+   25. AR1 Processes
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="markov_chains_I.html">
-   25. Markov Chains: Basic Concepts
+   26. Markov Chains: Basic Concepts
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="markov_chains_II.html">
-   26. Markov Chains: Irreducibility and Ergodicity
+   27. Markov Chains: Irreducibility and Ergodicity
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="time_series_with_matrices.html">
-   27. Univariate Time Series with Matrix Algebra
+   28. Univariate Time Series with Matrix Algebra
   </a>
  </li>
 </ul>
@@ -968,12 +973,12 @@ vector in our representative consumer economy is the same as that in an underlyi
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="lp_intro.html">
-   28. Linear Programming
+   29. Linear Programming
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="short_path.html">
-   29. Shortest Paths
+   30. Shortest Paths
   </a>
  </li>
 </ul>
@@ -985,22 +990,22 @@ vector in our representative consumer economy is the same as that in an underlyi
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="eigen_II.html">
-   30. The Perron-Frobenius Theorem
+   31. The Perron-Frobenius Theorem
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="input_output.html">
-   31. Input-Output Models
+   32. Input-Output Models
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="lake_model.html">
-   32. A Lake Model of Employment
+   33. A Lake Model of Employment
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="networks.html">
-   33. Networks
+   34. Networks
   </a>
  </li>
 </ul>
@@ -1012,12 +1017,12 @@ vector in our representative consumer economy is the same as that in an underlyi
 <ul class="current nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="supply_demand_multiple_goods.html">
-   34. Supply and Demand with Many Goods
+   35. Supply and Demand with Many Goods
   </a>
  </li>
  <li class="toctree-l1 current active active">
   <a class="current reference internal" href="#">
-   35. Market Equilibrium with Heterogeneity
+   36. Market Equilibrium with Heterogeneity
   </a>
  </li>
 </ul>
@@ -1029,12 +1034,12 @@ vector in our representative consumer economy is the same as that in an underlyi
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="simple_linear_regression.html">
-   36. Simple Linear Regression Model
+   37. Simple Linear Regression Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="mle.html">
-   37. Maximum Likelihood Estimation
+   38. Maximum Likelihood Estimation
   </a>
  </li>
 </ul>
@@ -1046,17 +1051,17 @@ vector in our representative consumer economy is the same as that in an underlyi
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="troubleshooting.html">
-   38. Troubleshooting
+   39. Troubleshooting
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="zreferences.html">
-   39. References
+   40. References
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="status.html">
-   40. Execution Statistics
+   41. Execution Statistics
   </a>
  </li>
 </ul>
