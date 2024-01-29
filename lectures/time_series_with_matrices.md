@@ -20,10 +20,6 @@ kernelspec:
 
 # Univariate Time Series with Matrix Algebra
 
-```{contents} Contents
-:depth: 2
-```
-
 ## Overview
 
 This lecture uses matrices to solve some linear difference equations.

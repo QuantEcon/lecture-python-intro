@@ -23,10 +23,6 @@ kernelspec:
 ```{index} single: Dynamic Programming; Shortest Paths
 ```
 
-```{contents} Contents
-:depth: 2
-```
-
 ## Overview
 
 The shortest path problem is a [classic problem](https://en.wikipedia.org/wiki/Shortest_path) in mathematics and computer science with applications in

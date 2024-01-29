@@ -14,10 +14,6 @@ kernelspec:
 (supply_demand_heterogeneity)=
 # Market Equilibrium with Heterogeneity
 
-```{contents} Contents
-:depth: 2
-```
-
 ## Overview
 
 In the {doc}`previous lecture

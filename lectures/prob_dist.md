@@ -17,10 +17,6 @@ kernelspec:
 ```{index} single: Distributions and Probabilities
 ```
 
-```{contents} Contents
-:depth: 2
-```
-
 ## Outline
 
 In this lecture we give a quick introduction to data and probability distributions using Python.

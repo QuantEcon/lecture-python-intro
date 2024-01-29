@@ -18,6 +18,7 @@ kernelspec:
 </div>
 ```
 
+(ar1_processes)=
 # AR1 Processes
 
 ```{admonition} Migrated lecture
@@ -27,10 +28,6 @@ This lecture has moved from our [Intermediate Quantitative Economics with Python
 ```
 
 ```{index} single: Autoregressive processes
-```
-
-```{contents} Contents
-:depth: 2
 ```
 
 ## Overview
