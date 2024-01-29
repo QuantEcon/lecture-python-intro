@@ -27,6 +27,12 @@ kernelspec:
 :depth: 2
 ```
 
+```{admonition} Migrated lecture
+:class: warning
+
+This lecture has moved from our [Intermediate Quantitative Economics with Python](https://python.quantecon.org/intro.html) lecture series and is now a part of [A First Course in Quantitative Economics](https://intro.quantecon.org/intro.html).
+```
+
 ## Overview
 
 The shortest path problem is a [classic problem](https://en.wikipedia.org/wiki/Shortest_path) in mathematics and computer science with applications in
