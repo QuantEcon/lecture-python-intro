@@ -25,10 +25,6 @@ kernelspec:
 
 # Geometric Series for Elementary Economics
 
-```{contents} Contents
-:depth: 2
-```
-
 ```{admonition} Migrated lecture
 :class: warning
 

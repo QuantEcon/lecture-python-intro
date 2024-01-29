@@ -23,10 +23,6 @@ kernelspec:
 ```{index} single: Dynamic Programming; Shortest Paths
 ```
 
-```{contents} Contents
-:depth: 2
-```
-
 ```{admonition} Migrated lecture
 :class: warning
 
