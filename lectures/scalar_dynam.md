@@ -17,11 +17,8 @@ kernelspec:
 </div>
 ```
 
-# {index}`Dynamics in One Dimension <single: Dynamics in One Dimension>`
-
-```{contents} Contents
-:depth: 2
-```
+(scalar_dynam)=
+# Dynamics in One Dimension
 
 ## Overview
 

@@ -28,10 +28,6 @@ kernelspec:
 ```{index} single: Models; Schelling's Segregation Model
 ```
 
-```{contents} Contents
-:depth: 2
-```
-
 ## Outline
 
 In 1969, Thomas C. Schelling developed a simple but striking model of racial
