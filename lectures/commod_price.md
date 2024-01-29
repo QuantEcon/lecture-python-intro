@@ -50,7 +50,7 @@ import numpy as np
 import yfinance as yf
 import matplotlib.pyplot as plt
 from scipy.interpolate import interp1d
-from scipy.optimize import minimize_scalar, brentq
+from scipy.optimize import brentq
 from scipy.stats import beta
 ```
 

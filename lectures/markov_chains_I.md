@@ -58,7 +58,6 @@ import numpy as np
 import networkx as nx
 from matplotlib import cm
 import matplotlib as mpl
-from itertools import cycle
 ```
 
 ## Definitions and examples

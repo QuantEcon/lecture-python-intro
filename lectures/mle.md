@@ -14,12 +14,12 @@ kernelspec:
 # Maximum Likelihood Estimation
 
 ```{code-cell} ipython3
-from scipy.stats import lognorm, pareto, expon, norm
+from scipy.stats import lognorm, pareto, expon
 import numpy as np
 from scipy.integrate import quad
 import matplotlib.pyplot as plt
 import pandas as pd
-from math import exp, log
+from math import exp
 ```
 
 ## Introduction
