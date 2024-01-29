@@ -35,7 +35,6 @@ Then we will explore the Perron-Frobenius Theorem and connect it to applications
 We will use the following imports:
 
 ```{code-cell} ipython3
-import matplotlib.pyplot as plt
 import numpy as np
 from numpy.linalg import eig
 import scipy as sp
