@@ -20,7 +20,6 @@ kernelspec:
 </div>
 ```
 
-(schelling)=
 # Racial Segregation
 
 ```{index} single: Schelling Segregation Model
