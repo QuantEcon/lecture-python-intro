@@ -20,16 +20,13 @@ kernelspec:
 </div>
 ```
 
+(schelling)=
 # Racial Segregation
 
 ```{index} single: Schelling Segregation Model
 ```
 
 ```{index} single: Models; Schelling's Segregation Model
-```
-
-```{contents} Contents
-:depth: 2
 ```
 
 ## Outline
