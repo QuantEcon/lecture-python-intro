@@ -225,7 +225,7 @@ def draw_interp_plots(series,        # pandas series
                       ax             # matplolib axis
                      ):
 
-    for i, c in enumerate(country):
+    for c in country:
         # Get the interpolated data
         df_interpolated = series[c].interpolate(limit_area='inside')
         interpolated_data = df_interpolated[series[c].isnull()]
@@ -604,7 +604,8 @@ mystnb:
 ---
 fig, ax = plt.subplots(dpi=300)
 ax = regionalgdp_pc.plot(ax=ax, xlabel='year',
-                        ylabel='international dollars')
+                         lw=2,
+                         ylabel='international dollars')
 ax.set_yscale('log')
 plt.legend(loc='lower center',
            ncol=3, bbox_to_anchor=[0.5, -0.5])
