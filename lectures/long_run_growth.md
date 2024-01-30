@@ -499,7 +499,7 @@ ax = draw_interp_plots(gdp[country].loc[start_year:end_year],
                        color_mapping, code_to_name, 2, False, ax)
 ```
 
-## Constructing a plot similar to Tooze's
+#### Constructing a plot similar to Tooze's
 In this section we describe  how we have constructed a version of the striking figure from  chapter 1 of {cite}`Tooze_2014` that we discussed at the start of this lecture.
 
 Let's first define a collection of countries that consist of the British Empire (BEM) so we can replicate that series in  Tooze's chart.
