@@ -39,7 +39,7 @@ by linear difference equations or linear differential equations.
 For example, these tools are keys to understanding outcomes attained by Paul
 Samuelson (1939) {cite}`Samuelson1939` in his classic paper on interactions
 between the investment accelerator and the Keynesian consumption function, our
-topic in the lecture {doc}`Samuelson Multiplier Accelerator <samuelson>`.
+topic in the lecture {doc}`Samuelson Multiplier Accelerator <dynam:samuelson>`.
 
 In addition to providing foundations for Samuelson's work and extensions of
 it, this lecture can be read as a stand-alone quick reminder of key results
