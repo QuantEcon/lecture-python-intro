@@ -82,7 +82,7 @@ A system of equations like {eq}`eq:Euler1` is an example of a linear  **differen
 There are powerful mathematical  methods available for solving such systems and they are well worth
 studying in their own right, being the foundation for the analysis of many interesting economic models.  
 
-For an example, see {doc}`Samuelson multiplier-accelerator <samuelson>`
+For an example, see {doc}`Samuelson multiplier-accelerator <dynam:samuelson>`
 
 In this lecture, we'll  solve system {eq}`eq:Euler1` using matrix multiplication and matrix inversion, basic tools from linear algebra introduced in  {doc}`linear equations and matrix algebra <linear_equations>`.
 
