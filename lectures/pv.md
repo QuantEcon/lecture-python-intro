@@ -18,22 +18,48 @@ kernelspec:
 This lecture describes the  **present value model** that is a starting point
 of much asset pricing theory.
 
-We'll use the calculations described here in several subsequent lectures.
+Asset pricing theory is a component of theories about many economic decisions including
 
-Our only tool is some elementary linear algebra operations, namely, matrix multiplication and matrix inversion.
+  * consumption
+  * labor supply
+  * education choice 
+  * demand for money
+
+In asset pricing theory, and in economic dynamics more generally, a basic topic is the relationship
+among different **time series**.
+
+A **time series** is a **sequence** indexed by time.
+
+In this lecture, we'll represent  a sequence as a vector.
+
+So our analysis will typically boil down to studying relationships among vectors.
+
+Our main  tools in this lecture will be  
+
+  * matrix multiplication,  and
+  * matrix inversion.
+
+We'll use the calculations described here in  subsequent lectures, including {doc}`consumption smoothing <cons_smooth>`, {doc}`equalizing difference model <equalizing_difference>`, and
+{doc}`monetarist theory of price levels <cagan_ree>`.
 
 Let's dive in.
+
+## Analysis 
+
+
 
 Let 
 
  * $\{d_t\}_{t=0}^T $ be a sequence of dividends or "payouts"
  * $\{p_t\}_{t=0}^T $ be a sequence of prices of a claim on the continuation of
-    the asset stream from date $t$ on, namely, $\{d_s\}_{s=t}^T $ 
+    the asset's payout  stream from date $t$ on, namely, $\{d_s\}_{s=t}^T $ 
  * $ \delta  \in (0,1) $ be a one-period "discount factor" 
  * $p_{T+1}^*$ be a terminal price of the asset at time $T+1$
  
 We  assume that the dividend stream $\{d_t\}_{t=0}^T $ and the terminal price 
 $p_{T+1}^*$ are both exogenous.
+
+This means that they are determined outside the model.
 
 Assume the sequence of asset pricing equations
 
@@ -41,17 +67,24 @@ $$
     p_t = d_t + \delta p_{t+1}, \quad t = 0, 1, \ldots , T
 $$ (eq:Euler1)
 
-This is a "cost equals benefits" formula.
+We say equation**s**, plural, because there are $T+1$ equations, one for each $t =0, 1, \ldots, T$.
 
-It says that the cost of buying the asset today equals the reward for holding it
-for one period (which is the dividend $d_t$) and then selling it, at $t+1$.
 
-The future value $p_{t+1}$ is discounted using $\delta$ to shift it to a present value, so it is comparable with $d_t$ and $p_t$.
+Equations {eq}`eq:Euler1` assert that price paid to purchase  the asset at time $t$  equals the payout $d_t$  plus the price at time  $t+1$ multiplied by a time discount factor $\delta$.
 
-We want to solve for the asset price sequence  $\{p_t\}_{t=0}^T $ as a function
-of $\{d_t\}_{t=0}^T $ and $p_{T+1}^*$.
+Discounting tomorrow's price  by multiplying it by  $\delta$ accounts for the ``value of waiting one period''.
 
-In this lecture we show how this can be done using matrix algebra.
+We want to solve the system of $T+1$ equations {eq}`eq:Euler1` for the asset price sequence  $\{p_t\}_{t=0}^T $ as a function of the divident sequence $\{d_t\}_{t=0}^T $ and the exogenous terminal
+price  $p_{T+1}^*$.
+
+A system of equations like {eq}`eq:Euler1` is an example of a linear  **difference equation**.
+
+There are powerful mathematical  methods available for solving such systems and they are well worth
+studying in their own right, being the foundation for the analysis of many interesting economic models.  
+
+For an example, see {doc}`Samuelson multiplier-accelerator <samuelson>`
+
+In this lecture, we'll  solve system {eq}`eq:Euler1` using matrix multiplication and matrix inversion, basic tools from linear algebra introduced in  {doc}`linear equations and matrix algebra <linear_equations>`.
 
 We will use the following imports
 
@@ -64,9 +97,9 @@ import matplotlib.pyplot as plt
 
 +++
 
-## Present value calculations
+## Representing sequences as vectors
 
-The equations in [](eq:Euler1) can be stacked, as in
+The equations in system {eq}`eq:Euler1` can be arranged as follows:
 
 $$
 \begin{aligned}
@@ -109,7 +142,7 @@ recover the equations in [](eq:Euler_stack).
 ```{exercise-end}
 ```
 
-In vector-matrix notation, we can write the system [](eq:pvpieq) as 
+In vector-matrix notation, we can write  system {eq}`eq:pvpieq` as 
 
 $$
     A p = d + b
@@ -143,19 +176,20 @@ $$
     \end{bmatrix}
 $$
 
-The solution for prices is given by 
+The solution for the vector of  prices is  
 
 $$
     p = A^{-1}(d + b)
 $$ (eq:apdb_sol)
 
 
-Here is a small example, where the dividend stream is given by
+For example, suppose that  the dividend stream is 
 
 $$
     d_{t+1} = 1.05 d_t, \quad t = 0, 1, \ldots , T-1.
 $$
 
+Let's write Python code to compute and plot the dividend stream.
 
 ```{code-cell} ipython3
 T = 6
@@ -171,6 +205,7 @@ ax.legend()
 ax.set_xlabel('time')
 plt.show()
 ```
+Now let's compute and plot the asset price.
 
 We set $\delta$ and $p_{T+1}^*$ to
 
@@ -198,7 +233,7 @@ Let's inspect $A$
 A
 ```
 
-Now let's solve for prices using [](eq:apdb_sol).
+Now let's solve for prices using {eq}`eq:apdb_sol`.
 
 ```{code-cell} ipython3
 b = np.zeros(T+1)
@@ -212,7 +247,7 @@ plt.show()
 ```
 
 
-We can also consider a cyclically growing dividend sequence, such as
+Now let's consider  a cyclically growing dividend sequence:
 
 $$
     d_{t+1} = 1.01 d_t + 0.1 \sin t, \quad t = 0, 1, \ldots , T-1.
@@ -248,7 +283,7 @@ Compute the corresponding asset price sequence when $p^*_{T+1} = 0$ and $\delta
 :class: dropdown
 ```
 
-We proceed as above after modifying parameters and $A$.
+We proceed as above after modifying parameters and consequently the matrix $A$.
 
 ```{code-cell} ipython3
 δ = 0.98
@@ -281,6 +316,8 @@ eliminates the cycles.
 
 ## Analytical expressions
 
+By the [inverse matrix theorem](https://en.wikipedia.org/wiki/Invertible_matrix), a matrix $B$ is the inverse of $A$ whenever $A B$ is the identity.
+
 It can be verified that the  inverse of the matrix $A$ in {eq}`eq:pvpieq` is
 
 
@@ -302,13 +339,13 @@ $$ (eq:Ainv)
 
 Check this by showing that $A A^{-1}$ is equal to the identity matrix.
 
-(By the [inverse matrix theorem](https://en.wikipedia.org/wiki/Invertible_matrix), a matrix $B$ is the inverse of $A$ whenever $A B$ is the identity.)
+
 
 ```{exercise-end}
 ```
 
 
-If we use the expression [](eq:Ainv) in [](eq:apdb_sol) and perform the indicated matrix multiplication, we shall find  that
+If we use the expression {eq}`eq:Ainv` in {eq}`eq:apdb_sol` and perform the indicated matrix multiplication, we shall find  that
 
 $$
     p_t =  \sum_{s=t}^T \delta^{s-t} d_s +  \delta^{T+1-t} p_{T+1}^*
@@ -317,12 +354,12 @@ $$ (eq:ptpveq)
 Pricing formula {eq}`eq:ptpveq` asserts that  two components sum to the asset price 
 $p_t$:
 
-  * a **fundamental component** $\sum_{s=t}^T \delta^{s-t} d_s$ that equals the discounted present value of prospective dividends
+  * a **fundamental component** $\sum_{s=t}^T \delta^{s-t} d_s$ that equals the **discounted present value** of prospective dividends
   
   * a **bubble component** $\delta^{T+1-t} p_{T+1}^*$
   
 The fundamental component is pinned down by the discount factor $\delta$ and the
-"fundamentals" of the asset (in this case, the dividends).
+payout of the asset (in this case,  dividends).
 
 The bubble component is the part of the price that is not pinned down by
 fundamentals.
@@ -343,7 +380,7 @@ $$
 
 ## More about bubbles
 
-For a few moments, let's focus on  the special case of an asset that  will never pay dividends, in which case
+For a few moments, let's focus on  the special case of an asset that   never pays dividends, in which case
 
 $$
 \begin{bmatrix}  
@@ -385,8 +422,9 @@ $$ (eq:eqbubbleterm)
 
 for some positive constant $c$.
 
-In this case, it can be verified that when we multiply both sides of {eq}`eq:pieq2` by
-the matrix $A^{-1}$ presented in equation {eq}`eq:Ainv`, we shall find that
+In this case,  when we multiply both sides of {eq}`eq:pieq2` by
+the matrix $A^{-1}$ presented in equation {eq}`eq:Ainv`, we 
+ find that
 
 $$
 p_t = c \delta^{-t}
@@ -402,11 +440,10 @@ $$
 R_t = \frac{p_{t+1}}{p_t}
 $$ (eq:rateofreturn)
 
-Equation {eq}`eq:bubble` confirms that an asset whose  sole source of value is a bubble 
-that earns a  gross rate of return
+Substituting equation {eq}`eq:bubble` into equation {eq}`eq:rateofreturn` confirms that an asset whose  sole source of value is a bubble  earns a  gross rate of return
 
 $$
-R_t = \delta^{-1} > 1 .
+R_t = \delta^{-1} > 1 , t = 0, 1, \ldots, T
 $$
 
 
@@ -417,7 +454,7 @@ $$
 :label: pv_ex_a
 ```
 
-Give analytical expressions for the asset price $p_t$ under the 
+Give analytical expressions for an asset price $p_t$ under the 
 following settings for $d$ and $p_{T+1}^*$:
 
 1. $p_{T+1}^* = 0, d_t = g^t d_0$ (a modified version of the Gordon growth formula)
