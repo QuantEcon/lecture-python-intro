@@ -15,29 +15,29 @@ kernelspec:
 
 ## Overview
 
-In this lecture we use Python, Pandas, and Matplotlib to download, organize, and visualize historical data on economic growth.
+In this lecture we use Python, [pandas](https://pandas.pydata.org/), and [Matplotlib](https://matplotlib.org/) to download, organize, and visualize historical data on economic growth.
 
-In addition to learning how to deploy these tools more generally, we'll use them to describe facts about economic growth experiences across many countries  over several  centuries.
+In addition to learning how to deploy these tools more generally, we'll use them to describe facts about economic growth experiences across many countries over several centuries.
 
-Such "growth facts" are  interesting for a variety of reasons.  
+Such "growth facts" are interesting for a variety of reasons.  
 
-Explaining growth facts is a principal purpose of both "development economics" and "economic history".
+Explaining growth facts is a principal purpose of both "development economics" and "economic history".
 
-And  growth facts are important inputs into historians'  studies of  geopolitical forces and dynamics.
+And growth facts are important inputs into historians'  studies of geopolitical forces and dynamics.
 
 
-Thus, Adam Tooze's account of the geopolitical precedents and antecedents of World War I begins by describing how Gross Domestic Products (GDP) of European Great Powers had evolved during the 70 years preceding 1914 (see chapter 1 of {cite}`Tooze_2014`).
+Thus, Adam Tooze's account of the geopolitical precedents and antecedents of World War I begins by describing how the Gross Domestic Products (GDP) of European Great Powers had evolved during the 70 years preceding 1914 (see chapter 1 of {cite}`Tooze_2014`).
 
-Using the very same data that Tooze used to construct his figure, here is our version of his chapter 1 figure.
+Using the very same data that Tooze used to construct his figure (with a slightly longer timeline), here is our version of his chapter 1 figure.
 
 
 ```{figure} _static/lecture_specific/long_run_growth/tooze_ch1_graph.png
 :width: 80%
 ```
 
-(This  is just a copy of  our figure {numref}`gdp1`.  We desribe how we constructed it later in this lecture.)
+(This is just a copy of our figure {numref}`gdp1`.  We describe how we constructed it later in this lecture.)
 
-Chapter 1  of {cite}`Tooze_2014` used his graph to show how US GDP started  the 19th century way behind the GDP of the British Empire.
+Chapter 1  of {cite}`Tooze_2014` used his graph to show how US GDP started the 19th century way behind the GDP of the British Empire.
 
 By the end of the nineteenth century, US GDP had caught up with GDP of the British Empire, and how during the first half of the 20th century,
 US GDP surpassed that of the British Empire.
@@ -49,7 +49,7 @@ tempts one to want a counterpart to his graph for 2014 or later.
 
 (An impatient reader seeking a hint at the answer  might now want to jump ahead and look at figure {numref}`gdp2`.)
 
-As we'll see, reasoning  by analogy, this graph perhaps set the stage for an "XXX (21st) century", where you are free to fill in your guess for country XXX.
+As we'll see, reasoning by analogy, this graph perhaps set the stage for an "XXX (21st) century", where you are free to fill in your guess for country XXX.
 
 As we gather data to construct those two graphs, we'll also study growth experiences for a number of countries for time horizons extending as far back as possible.
 
@@ -62,7 +62,7 @@ While some countries have experienced long term rapid growth across that has las
 Since populations differ across countries and vary within a country over time, it will
 be interesting to describe both total GDP and GDP per capita as it evolves within a country.
 
-First let's import the packages needed to explore what the data says about long run growth
+First let's import the packages needed to explore what the data says about long-run growth
 
 ```{code-cell} ipython3
 import pandas as pd
@@ -79,11 +79,11 @@ some dating back to the first century.
 
 The data can be downloaded from the [Maddison Historical Statistics webpage](https://www.rug.nl/ggdc/historicaldevelopment/maddison/) by clicking on the "Latest Maddison Project Release". 
 
-We are going to read from a QuantEcon GitHub repository.
+We are going to read the data from a QuantEcon GitHub repository.
 
-Our objective in this section is to produce a convenient `DataFrame` that contains per capita GDP for different countries.
+Our objective in this section is to produce a convenient `DataFrame` instance that contains per capita GDP for different countries.
 
-Here we read the Maddison data into a pandas dataframe:
+Here we read the Maddison data into a pandas `DataFrame`:
 
 ```{code-cell} ipython3
 data_url = "https://github.com/QuantEcon/lecture-python-intro/raw/main/lectures/datasets/mpd2020.xlsx"
@@ -92,7 +92,7 @@ data = pd.read_excel(data_url,
 data.head()
 ```
 
-We can see that this dataset contains GDP per capita (gdppc) and population (pop) for many countries and years.
+We can see that this dataset contains GDP per capita (`gdppc`) and population (pop) for many countries and years.
 
 Let's look at how many and which countries are available in this dataset
 
@@ -125,7 +125,7 @@ code_to_name = data[
     ['countrycode', 'country']].drop_duplicates().reset_index(drop=True).set_index(['countrycode'])
 ```
 
-Then we can quickly focus on GDP per capita (`gdppc`) and generate a wide data fromat
+Then we can quickly focus on GDP per capita (`gdppc`) and generate a wide data format
 
 ```{code-cell} ipython3
 gdp_pc = data.set_index(['countrycode', 'year'])['gdppc']
@@ -136,7 +136,7 @@ gdp_pc = gdp_pc.unstack('countrycode')
 gdp_pc.tail()
 ```
 
-We create a variale `color_mapping` to store a map between country codes and colors for consistency
+We create a variable `color_mapping` to store a map between country codes and colors for consistency
 
 ```{code-cell} ipython3
 :tags: [hide-input]
@@ -153,11 +153,11 @@ color_mapping = {country: color for
 
 ## GDP per capita
 
-In this section we examine GDP per capita over the long run for serveral different countries.
+In this section we examine GDP per capita over the long run for several different countries.
 
 ### United Kingdom
 
-First we examine United Kingdom GDP growth
+First we examine UK GDP growth
 
 ```{code-cell} ipython3
 ---
@@ -178,7 +178,7 @@ gdp_pc[country].plot(
 ```
 
 :::{note}
-[International dollars](https://en.wikipedia.org/wiki/international_dollar) are a hypothetical unit of currency that has the same purchasing power parity that the U.S. Dollar has in the United States at any given time. They are also known as Geary–Khamis dollars (GK Dollars).
+[International dollars](https://en.wikipedia.org/wiki/international_dollar) are a hypothetical unit of currency that has the same purchasing power parity that the U.S. Dollar has in the United States at a given point in time. They are also known as Geary–Khamis dollars (GK Dollars).
 :::
 
 We can see that the data is non-continuous for longer periods in the early 250 years of this millennium, so we could choose to interpolate to get a continuous line plot.
@@ -215,7 +215,7 @@ As a first step we create a function to generate plots for a list of countries
 
 ```{code-cell} ipython3
 def draw_interp_plots(series,        # pandas series
-                      country,       # contry code
+                      country,       # list of country codes
                       ylabel,        # label for y-axis
                       xlabel,        # label for x-axis
                       color_mapping, # code-color mapping
@@ -251,8 +251,6 @@ def draw_interp_plots(series,        # pandas series
     ax.legend(loc='upper left', frameon=False)
     ax.set_ylabel(ylabel)
     ax.set_xlabel(xlabel)
-    
-    return ax
 ```
 
 As you can see from this chart, economic growth started in earnest in the 18th century and continued for the next two hundred years. 
@@ -275,10 +273,10 @@ Event = namedtuple('Event', ['year_range', 'y_text', 'text', 'color', 'ymax'])
 fig, ax = plt.subplots(dpi=300, figsize=(10, 6))
 
 country = ['CHN', 'GBR', 'USA']
-ax = draw_interp_plots(gdp_pc[country].loc[1500:], 
-                       country,
-                       'international dollars','year',
-                       color_mapping, code_to_name, 2, False, ax)
+draw_interp_plots(gdp_pc[country].loc[1500:], 
+                  country,
+                  'international dollars','year',
+                  color_mapping, code_to_name, 2, False, ax)
 
 # Define the parameters for the events and the text
 ylim = ax.get_ylim()[1]
@@ -327,10 +325,10 @@ draw_events(events, ax)
 plt.show()
 ```
 
-The preceding graph of per capita GDP strikingly reveals how the spread of the industrial revolution has over time gradually lifted the living standards of substantial
+The preceding graph of per capita GDP strikingly reveals how the spread of the Industrial Revolution has over time gradually lifted the living standards of substantial
 groups of people  
 
-- most of the growth happened in the past 150 years after the industrial revolution.
+- most of the growth happened in the past 150 years after the Industrial Revolution.
 - per capita GDP in the US and UK rose and diverged from that of China from 1820 to 1940.
 - the gap has closed rapidly after 1950 and especially after the late 1970s.
 - these outcomes reflect complicated combinations of technological and economic-policy factors that students of economic growth try to understand and quantify.
@@ -359,10 +357,10 @@ tags: [hide-input]
 fig, ax = plt.subplots(dpi=300, figsize=(10, 6))
 
 country = ['CHN']
-ax = draw_interp_plots(gdp_pc[country].loc[1600:2000], 
-                       country,
-                       'international dollars','year',
-                       color_mapping, code_to_name, 2, True, ax)
+draw_interp_plots(gdp_pc[country].loc[1600:2000], 
+                  country,
+                  'international dollars','year',
+                  color_mapping, code_to_name, 2, True, ax)
 
 ylim = ax.get_ylim()[1]
 
@@ -404,7 +402,7 @@ Now we look at the United States (USA) and United Kingdom (GBR) in more detail.
 
 In the following graph, please watch for 
 - impact of trade policy (Navigation Act).
-- productivity changes brought by the industrial revolution.
+- productivity changes brought by the Industrial Revolution.
 - how the US gradually approaches and then surpasses the UK, setting the stage for the ''American Century''.
 - the often unanticipated consequences of wars.
 - interruptions and scars left by [business cycle](business_cycle) recessions and depressions.
@@ -420,10 +418,10 @@ tags: [hide-input]
 fig, ax = plt.subplots(dpi=300, figsize=(10, 6))
 
 country = ['GBR', 'USA']
-ax = draw_interp_plots(gdp_pc[country].loc[1500:2000],
-                       country,
-                       'international dollars','year',
-                       color_mapping, code_to_name, 2, True, ax)
+draw_interp_plots(gdp_pc[country].loc[1500:2000],
+                  country,
+                  'international dollars','year',
+                  color_mapping, code_to_name, 2, True, ax)
 
 ylim = ax.get_ylim()[1]
 
@@ -493,14 +491,14 @@ mystnb:
 fig, ax = plt.subplots(dpi=300)
 country = ['CHN', 'SUN', 'JPN', 'GBR', 'USA']
 start_year, end_year = (1820, 1945)
-ax = draw_interp_plots(gdp[country].loc[start_year:end_year], 
-                       country,
-                       'international dollars', 'year',
-                       color_mapping, code_to_name, 2, False, ax)
+draw_interp_plots(gdp[country].loc[start_year:end_year], 
+                  country,
+                  'international dollars', 'year',
+                  color_mapping, code_to_name, 2, False, ax)
 ```
 
 #### Constructing a plot similar to Tooze's
-In this section we describe  how we have constructed a version of the striking figure from  chapter 1 of {cite}`Tooze_2014` that we discussed at the start of this lecture.
+In this section we describe how we have constructed a version of the striking figure from chapter 1 of {cite}`Tooze_2014` that we discussed at the start of this lecture.
 
 Let's first define a collection of countries that consist of the British Empire (BEM) so we can replicate that series in  Tooze's chart.
 
@@ -525,10 +523,10 @@ code_to_name = pd.concat([code_to_name, bem])
 fig, ax = plt.subplots(dpi=300)
 country = ['DEU', 'USA', 'SUN', 'BEM', 'FRA', 'JPN']
 start_year, end_year = (1821, 1945)
-ax = draw_interp_plots(gdp[country].loc[start_year:end_year], 
-                       country,
-                       'international dollars', 'year',
-                       color_mapping, code_to_name, 2, False, ax)
+draw_interp_plots(gdp[country].loc[start_year:end_year], 
+                  country,
+                  'international dollars', 'year',
+                  color_mapping, code_to_name, 2, False, ax)
 
 plt.savefig("./_static/lecture_specific/long_run_growth/tooze_ch1_graph.png", dpi=300,
             bbox_inches='tight')
@@ -556,19 +554,19 @@ mystnb:
 fig, ax = plt.subplots(dpi=300)
 country = ['CHN', 'SUN', 'JPN', 'GBR', 'USA']
 start_year, end_year = (1950, 2020)
-ax = draw_interp_plots(gdp[country].loc[start_year:end_year], 
-                       country,
-                       'international dollars', 'year',
-                       color_mapping, code_to_name, 2, False, ax)
+draw_interp_plots(gdp[country].loc[start_year:end_year], 
+                  country,
+                  'international dollars', 'year',
+                  color_mapping, code_to_name, 2, False, ax)
 ```
 
 It is tempting to compare this graph with  figure  {numref}`gdp1` that showed the US overtaking the UK near the start of the "American Century", a version of the graph featured in chapter 1 of  {cite}`Tooze_2014`.
 
 ## Regional analysis
 
-We often want to study historical experiences of countries outside the club of "World Powers".
+We often want to study the historical experiences of countries outside the club of "World Powers".
 
-Fortunately, the [Maddison Historical Statistics](https://www.rug.nl/ggdc/historicaldevelopment/maddison/) dataset also includes regional aggregations
+The [Maddison Historical Statistics](https://www.rug.nl/ggdc/historicaldevelopment/maddison/) dataset also includes regional aggregations
 
 ```{code-cell} ipython3
 data = pd.read_excel(data_url, 
@@ -591,9 +589,9 @@ Let's interpolate based on time to fill in any gaps in the dataset for the purpo
 regionalgdp_pc.interpolate(method='time', inplace=True)
 ```
 
-Looking more closely, let's compare the time series for `Western Offshoots` and `Sub-Saharan Africa` and more broadly at a number of different regions around the world.
+Looking more closely, let's compare the time series for `Western Offshoots` and `Sub-Saharan Africa` with a number of different regions around the world.
 
-Again we see the divergence of the West from the rest of the world after the industrial revolution and the convergence of the world after the 1950s
+Again we see the divergence of the West from the rest of the world after the Industrial Revolution and the convergence of the world after the 1950s
 
 ```{code-cell} ipython3
 ---
@@ -603,9 +601,9 @@ mystnb:
     name: region_gdppc
 ---
 fig, ax = plt.subplots(dpi=300)
-ax = regionalgdp_pc.plot(ax=ax, xlabel='year',
-                         lw=2,
-                         ylabel='international dollars')
+regionalgdp_pc.plot(ax=ax, xlabel='year',
+                    lw=2,
+                    ylabel='international dollars')
 ax.set_yscale('log')
 plt.legend(loc='lower center',
            ncol=3, bbox_to_anchor=[0.5, -0.5])
