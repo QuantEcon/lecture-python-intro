@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>10. Equalizing Difference Model &#8212; A First Course in Quantitative Economics with Python</title>
+    <title>11. Equalizing Difference Model &#8212; A First Course in Quantitative Economics with Python</title>
     <script src="https://unpkg.com/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://unpkg.com/tippy.js@6.3.1/dist/tippy-bundle.umd.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
@@ -122,8 +122,8 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="11. Price Level Histories" href="inflation_history.html" />
-    <link rel="prev" title="9. Consumption Smoothing" href="cons_smooth.html" />
+    <link rel="next" title="12. Price Level Histories" href="inflation_history.html" />
+    <link rel="prev" title="10. Consumption Smoothing" href="cons_smooth.html" />
 
 <!-- Normal Meta Tags -->
 <meta name="author" context="Thomas J. Sargent &amp; John Stachurski" />
@@ -171,11 +171,16 @@ const thebe_selector_output = ".output, .cell_output"
 
                         <nav id="bd-toc-nav" class="qe-page__toc-nav">
                             <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">10.1. Overview</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-indifference-condition">10.2. The indifference condition</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reinterpreting-the-model-workers-and-entrepreneurs">10.3. Reinterpreting the model: workers and entrepreneurs</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#entrepreneur-worker-interpretation">10.4. Entrepreneur-worker interpretation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#an-application-of-calculus">10.5. An application of calculus</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">11.1. Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-indifference-condition">11.2. The indifference condition</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#present-value-of-a-high-school-educated-worker">11.2.1. Present value of a high school educated worker</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#present-value-of-a-college-bound-new-high-school-graduate">11.2.2. Present value of a college-bound new high school graduate</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reinterpreting-the-model-workers-and-entrepreneurs">11.3. Reinterpreting the model: workers and entrepreneurs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#computations">11.4. Computations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#entrepreneur-worker-interpretation">11.5. Entrepreneur-worker interpretation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#an-application-of-calculus">11.6. An application of calculus</a></li>
 </ul>
                             <p class="logo">
                                 
@@ -235,25 +240,23 @@ const thebe_selector_output = ".output, .cell_output"
                     <div>
                         
   <section class="tex2jax_ignore mathjax_ignore" id="equalizing-difference-model">
-<h1><span class="section-number">10. </span>Equalizing Difference Model<a class="headerlink" href="#equalizing-difference-model" title="Permalink to this heading">#</a></h1>
+<h1><span class="section-number">11. </span>Equalizing Difference Model<a class="headerlink" href="#equalizing-difference-model" title="Permalink to this heading">#</a></h1>
 <section id="overview">
-<h2><span class="section-number">10.1. </span>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">11.1. </span>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
 <p>This lecture presents a model of the college-high-school wage gap in which the
 “time to build” a college graduate plays a key role.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Milton Friedman used our   model  to study whether  differences in the earnings of US dentists and doctors were justified by competitive labor markets or whether
-they reflected entry barriers imposed by US governments working in conjunction with doctors’ lobbies.  Chapter 4 of Jennifer Burns <span id="id1">[<a class="reference internal" href="zreferences.html#id3" title="Jennifer Burns. Milton Friedman: The Last Conservative by Jennifer Burns. Farrar, Straus, and Giroux, New York, 2023.">Bur23</a>]</span> presents an
-interesting account of Milton Friedman’s joint work with Simon Kuznets that eventually  led to the publication of <span id="id2">[<a class="reference internal" href="zreferences.html#id4" title="Simon Kuznets and Milton Friedman. Incomes from independent professional practice, 1929-1936. National Bureau of Economic Research Bulletin, 1939.">KF39</a>]</span> and <span id="id3">[<a class="reference internal" href="zreferences.html#id5" title="Milton Friedman and Simon Kuznets. Income from Independent Professional Practice. National Bureau of Economic Research, New York, 1945.">FK45</a>]</span>. To map  Friedman’s application to our model, think of our high school students as Friedman’s dentists and our college graduates as Friedman’s doctors.</p>
-</div>
-<p>The model is “incomplete” in the sense that it is just one “condition” in the form of a single equation that would be part of set equations comprising all  “equilibrium conditions” of   a more fully articulated model.</p>
-<p>The condition featured in our model determines  a college, high-school wage ratio that equalizes the present values of a high school worker and a college educated worker.</p>
-<p>The idea behind this condition is that lifetime earnings have to adjust to make someone indifferent between going to college and not going to college.</p>
-<p>(The job of the “other equations” in a more complete model would be to fill in details about what adjusts to bring about this outcome.)</p>
-<p>It is just one instance of an  “equalizing difference” theory of relative wage rates, a class of theories dating back at least to Adam Smith’s <strong>Wealth of Nations</strong> <span id="id4">[<a class="reference internal" href="zreferences.html#id6" title="Adam Smith. The Wealth of Nations: An inquiry into the nature and causes of the Wealth of Nations. Harriman House Limited, 2010.">Smi10</a>]</span>.</p>
+<p>Milton Friedman invented the   model  to study whether  differences in  earnings of US dentists and doctors were outcomes of  competitive labor markets or whether
+they reflected entry barriers imposed by governments working in conjunction with doctors’ professional organizations.</p>
+<p>Chapter 4 of Jennifer Burns <span id="id1">[<a class="reference internal" href="zreferences.html#id3" title="Jennifer Burns. Milton Friedman: The Last Conservative by Jennifer Burns. Farrar, Straus, and Giroux, New York, 2023.">Bur23</a>]</span> describes  Milton Friedman’s joint work with Simon Kuznets that eventually  led to the publication of <span id="id2">[<a class="reference internal" href="zreferences.html#id4" title="Simon Kuznets and Milton Friedman. Incomes from independent professional practice, 1929-1936. National Bureau of Economic Research Bulletin, 1939.">KF39</a>]</span> and <span id="id3">[<a class="reference internal" href="zreferences.html#id5" title="Milton Friedman and Simon Kuznets. Income from Independent Professional Practice. National Bureau of Economic Research, New York, 1945.">FK45</a>]</span>.</p>
+<p>To map  Friedman’s application into our model, think of our high school students as Friedman’s dentists and our college graduates as Friedman’s doctors.</p>
+<p>Our presentation is “incomplete” in the sense that it is based on  a single equation that would be part of set equilibrium conditions of a more fully articulated model.</p>
+<p>This ‘‘equalizing difference’’ equation  determines  a college, high-school wage ratio that equalizes present values of a high school educated  worker and a college educated worker.</p>
+<p>The idea  is that lifetime earnings somehow adjust to make a new high school worker indifferent between going to college and not going to college but instead going to work immmediately.</p>
+<p>(The job of the “other equations” in a more complete model would be to describe what adjusts to bring about this outcome.)</p>
+<p>Our model is just one example  of an  “equalizing difference” theory of relative wage rates, a class of theories dating back at least to Adam Smith’s <strong>Wealth of Nations</strong> <span id="id4">[<a class="reference internal" href="zreferences.html#id6" title="Adam Smith. The Wealth of Nations: An inquiry into the nature and causes of the Wealth of Nations. Harriman House Limited, 2010.">Smi10</a>]</span>.</p>
 <p>For most of this lecture, the only mathematical tools that we’ll use are from linear algebra, in particular, matrix multiplication and matrix inversion.</p>
-<p>However, at the very end of the lecture, we’ll use calculus just in case readers want to see how computing partial derivatives could let us present some findings more concisely.</p>
-<p>(And doing that will let us show off how good Python is at doing calculus!)</p>
+<p>However, near the  end of the lecture, we’ll use calculus just in case readers want to see how computing partial derivatives could let us present some findings more concisely.</p>
+<p>And doing that will let illustrate how good Python is at doing calculus!</p>
 <p>But if you don’t know calculus, our tools from linear algebra are certainly enough.</p>
 <p>As usual, we’ll start by importing some Python modules.</p>
 <div class="cell docutils container">
@@ -266,13 +269,13 @@ interesting account of Milton Friedman’s joint work with Simon Kuznets that ev
 </div>
 </section>
 <section id="the-indifference-condition">
-<h2><span class="section-number">10.2. </span>The indifference condition<a class="headerlink" href="#the-indifference-condition" title="Permalink to this heading">#</a></h2>
-<p>The key idea is that the initial college wage premium has to adjust to make a representative worker indifferent between going to college and not going to college.</p>
+<h2><span class="section-number">11.2. </span>The indifference condition<a class="headerlink" href="#the-indifference-condition" title="Permalink to this heading">#</a></h2>
+<p>The key idea is that the entry level college wage premium has to adjust to make a representative worker indifferent between going to college and not going to college.</p>
 <p>Let</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(R &gt; 1\)</span> be the gross rate of return on a one-period bond</p></li>
 <li><p><span class="math notranslate nohighlight">\(t = 0, 1, 2, \ldots T\)</span> denote the years that a person either works or attends college</p></li>
-<li><p><span class="math notranslate nohighlight">\(0\)</span> denote the first period after high school that a person can go to work</p></li>
+<li><p><span class="math notranslate nohighlight">\(0\)</span> denote the first period after high school that a person can work if he does not go to college</p></li>
 <li><p><span class="math notranslate nohighlight">\(T\)</span> denote the last period  that a person  works</p></li>
 <li><p><span class="math notranslate nohighlight">\(w_t^h\)</span> be the wage at time <span class="math notranslate nohighlight">\(t\)</span> of a high school graduate</p></li>
 <li><p><span class="math notranslate nohighlight">\(w_t^c\)</span> be the wage at time <span class="math notranslate nohighlight">\(t\)</span> of a college graduate</p></li>
@@ -282,6 +285,13 @@ interesting account of Milton Friedman’s joint work with Simon Kuznets that ev
 <span class="math notranslate nohighlight">\( w_t^c = w_0^c \gamma_c^t\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(D\)</span> be the upfront monetary costs of going to college</p></li>
 </ul>
+<p>We now compute present values that a new high school graduate earns if</p>
+<ul class="simple">
+<li><p>he goes to work immediately and earns wages paid to someone without a college education</p></li>
+<li><p>he goes to college for four years and after graduating earns wages paid to a college graduate</p></li>
+</ul>
+<section id="present-value-of-a-high-school-educated-worker">
+<h3><span class="section-number">11.2.1. </span>Present value of a high school educated worker<a class="headerlink" href="#present-value-of-a-high-school-educated-worker" title="Permalink to this heading">#</a></h3>
 <p>If someone goes to work immediately after high school  and  works for the  <span class="math notranslate nohighlight">\(T+1\)</span> years <span class="math notranslate nohighlight">\(t=0, 1, 2, \ldots, T\)</span>, she earns present value</p>
 <div class="math notranslate nohighlight">
 \[
@@ -293,6 +303,9 @@ h_0 = \sum_{t=0}^T R^{-t} w_t^h = w_0^h \left[ \frac{1 - (R^{-1} \gamma_h)^{T+1}
 A_h = \left[ \frac{1 - (R^{-1} \gamma_h)^{T+1} }{1 - R^{-1} \gamma_h } \right].
 \]</div>
 <p>The present value <span class="math notranslate nohighlight">\(h_0\)</span> is the “human wealth” at the beginning of time <span class="math notranslate nohighlight">\(0\)</span> of someone who chooses not to attend college but instead to go to work immediately at the wage of a high school graduate.</p>
+</section>
+<section id="present-value-of-a-college-bound-new-high-school-graduate">
+<h3><span class="section-number">11.2.2. </span>Present value of a college-bound new high school graduate<a class="headerlink" href="#present-value-of-a-college-bound-new-high-school-graduate" title="Permalink to this heading">#</a></h3>
 <p>If someone goes to college for the four years <span class="math notranslate nohighlight">\(t=0, 1, 2, 3\)</span> during which she earns <span class="math notranslate nohighlight">\(0\)</span>, but then goes to work  immediately after college   and  works for the <span class="math notranslate nohighlight">\(T-3\)</span> years <span class="math notranslate nohighlight">\(t=4, 5, \ldots ,T\)</span>, she earns present value</p>
 <div class="math notranslate nohighlight">
 \[
@@ -301,23 +314,22 @@ c_0 = \sum_{t=4}^T R^{-t} w_t^c = w_0^c (R^{-1} \gamma_c)^4  \left[ \frac{1 - (R
 <p>where</p>
 <div class="math notranslate nohighlight">
 \[
-A_c = (R^{-1} \gamma_c)^4  \left[ \frac{1 - (R^{-1} \gamma_c)^{T-3} }{1 - R^{-1} \gamma_c } \right] 
+A_c = (R^{-1} \gamma_c)^4  \left[ \frac{1 - (R^{-1} \gamma_c)^{T-3} }{1 - R^{-1} \gamma_c } \right] .
 \]</div>
 <p>The present value <span class="math notranslate nohighlight">\(c_0\)</span>  is the “human wealth” at the beginning of time <span class="math notranslate nohighlight">\(0\)</span> of someone who chooses to attend college for four years and then start to work at time <span class="math notranslate nohighlight">\(t=4\)</span> at the wage of a college graduate.</p>
-<p>Assume that college tuition plus four years of room and board paid for up front costs <span class="math notranslate nohighlight">\(D\)</span>.</p>
+<p>Assume that college tuition plus four years of room and board amount to  <span class="math notranslate nohighlight">\(D\)</span> and must be paid at time <span class="math notranslate nohighlight">\(0\)</span>.</p>
 <p>So net of monetary cost of college, the present value of attending college as of the first period after high school is</p>
 <div class="math notranslate nohighlight">
 \[ 
 c_0 - D
 \]</div>
-<p>We now formulate a pure <strong>equalizing difference</strong> model of the initial college-high school wage gap <span class="math notranslate nohighlight">\(\phi\)</span> defined by</p>
-<p>Let</p>
+<p>We now formulate a pure <strong>equalizing difference</strong> model of the initial college-high school wage gap <span class="math notranslate nohighlight">\(\phi\)</span> that verifies</p>
 <div class="math notranslate nohighlight">
 \[
 w_0^c = \phi w_0^h 
 \]</div>
 <p>We suppose that <span class="math notranslate nohighlight">\(R, \gamma_h, \gamma_c, T\)</span> and also <span class="math notranslate nohighlight">\(w_0^h\)</span>  are fixed parameters.</p>
-<p>We start by noting that the pure equalizing difference model asserts that the college-high-school wage gap <span class="math notranslate nohighlight">\(\phi\)</span> solves
+<p>We start by noting that the pure equalizing difference model asserts that the college-high-school wage gap <span class="math notranslate nohighlight">\(\phi\)</span> solves an
 “equalizing” equation that sets the present value not going to college equal to the present value of going go college:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -325,26 +337,28 @@ h_0 = c_0 - D
 \]</div>
 <p>or</p>
 <div class="math notranslate nohighlight" id="equation-eq-equalize">
-<span class="eqno">(10.1)<a class="headerlink" href="#equation-eq-equalize" title="Permalink to this equation">#</a></span>\[ 
+<span class="eqno">(11.1)<a class="headerlink" href="#equation-eq-equalize" title="Permalink to this equation">#</a></span>\[ 
 w_0^h A_h  = \phi w_0^h A_c - D .
 \]</div>
-<p>This is the “indifference condition” that is at the heart of the model.</p>
-<p>Solving equation <a class="reference internal" href="#equation-eq-equalize">(10.1)</a> for the college wage premium <span class="math notranslate nohighlight">\(\phi\)</span> we obtain</p>
+<p>This “indifference condition”  is the heart of the model.</p>
+<p>Solving equation <a class="reference internal" href="#equation-eq-equalize">(11.1)</a> for the college wage premium <span class="math notranslate nohighlight">\(\phi\)</span> we obtain</p>
 <div class="math notranslate nohighlight" id="equation-eq-wagepremium">
-<span class="eqno">(10.2)<a class="headerlink" href="#equation-eq-wagepremium" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(11.2)<a class="headerlink" href="#equation-eq-wagepremium" title="Permalink to this equation">#</a></span>\[
 \phi  = \frac{A_h}{A_c} + \frac{D}{w_0^h A_c} .
 \]</div>
-<p>In a <strong>free college</strong> special case <span class="math notranslate nohighlight">\(D =0\)</span> so that the only cost of going to college is the forgone earnings from not working as a high school worker.</p>
+<p>In a <strong>free college</strong> special case <span class="math notranslate nohighlight">\(D =0\)</span>.</p>
+<p>Here  the only cost of going to college is the forgone earnings from being  a high school educated worker.</p>
 <p>In that case,</p>
 <div class="math notranslate nohighlight">
 \[
 \phi  = \frac{A_h}{A_c} . 
 \]</div>
-<p>Soon we’ll write Python code to compute the gap and plot it as a function of its determinants.</p>
-<p>But first we’ll describe a possible alternative interpretation of our model.</p>
+<p>Soon we’ll write Python code to compute <span class="math notranslate nohighlight">\(\phi\)</span>  and plot it as a function of its determinants.</p>
+<p>But first we’ll describe an  alternative interpretation of our model that mostly just relabels variables.</p>
+</section>
 </section>
 <section id="reinterpreting-the-model-workers-and-entrepreneurs">
-<h2><span class="section-number">10.3. </span>Reinterpreting the model: workers and entrepreneurs<a class="headerlink" href="#reinterpreting-the-model-workers-and-entrepreneurs" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">11.3. </span>Reinterpreting the model: workers and entrepreneurs<a class="headerlink" href="#reinterpreting-the-model-workers-and-entrepreneurs" title="Permalink to this heading">#</a></h2>
 <p>We can add a parameter and reinterpret variables to get a model of entrepreneurs versus workers.</p>
 <p>We now let <span class="math notranslate nohighlight">\(h\)</span> be  the present value of a “worker”.</p>
 <p>We define the present value of an entrepreneur to be</p>
@@ -357,10 +371,14 @@ c_0 = \pi \sum_{t=4}^T R^{-t} w_t^c
 <p>This cost might include costs of hiring workers, office space, and lawyers.</p>
 <p>What we used to call the college, high school wage gap <span class="math notranslate nohighlight">\(\phi\)</span> now becomes the ratio
 of a successful entrepreneur’s earnings to a worker’s earnings.</p>
-<p>We’ll find that as <span class="math notranslate nohighlight">\(\pi\)</span> decreases, <span class="math notranslate nohighlight">\(\phi\)</span> increases.</p>
-<p>Now let’s write some Python code to compute <span class="math notranslate nohighlight">\(\phi\)</span> and plot it as a function of some of its determinants.</p>
-<p>We can have some fun providing some example calculations that tweak various parameters,
+<p>We’ll find that as <span class="math notranslate nohighlight">\(\pi\)</span> decreases, <span class="math notranslate nohighlight">\(\phi\)</span> increases, indicating that the riskier it is to
+be an entrepreuner, the higher must be the reward for a successful project.</p>
+</section>
+<section id="computations">
+<h2><span class="section-number">11.4. </span>Computations<a class="headerlink" href="#computations" title="Permalink to this heading">#</a></h2>
+<p>We can have some fun with examples that tweak various parameters,
 prominently including <span class="math notranslate nohighlight">\(\gamma_h, \gamma_c, R\)</span>.</p>
+<p>Now let’s write some Python code to compute <span class="math notranslate nohighlight">\(\phi\)</span> and plot it as a function of some of its determinants.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">equalizing_diff</span><span class="p">:</span>
@@ -390,8 +408,9 @@ prominently including <span class="math notranslate nohighlight">\(\gamma_h, \ga
 </div>
 </div>
 </div>
-<p>We can build some functions to help do comparative statics using vectorization instead of loops.</p>
-<p>For a given instance of the class, we want to compute <span class="math notranslate nohighlight">\(\phi\)</span> when one parameter changes and others remain unchanged.</p>
+<p>Using vectorization instead of loops,
+we  build some functions to help do comparative statics .</p>
+<p>For a given instance of the class, we want to recompute <span class="math notranslate nohighlight">\(\phi\)</span> when one parameter changes and others remain fixed.</p>
 <p>Let’s do an example.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -500,7 +519,7 @@ determinants of <span class="math notranslate nohighlight">\(\phi\)</span>.</p>
 </div>
 </div>
 <p>Notice how  the intitial wage gap falls when the rate of growth <span class="math notranslate nohighlight">\(\gamma_c\)</span> of college wages rises.</p>
-<p>It falls to “equalize” the present values of the two types of career, one as a high school worker, the other as a college worker.</p>
+<p>The wage gap falls to “equalize” the present values of the two types of career, one as a high school worker, the other as a college worker.</p>
 <p>Can you guess what happens to the initial wage ratio <span class="math notranslate nohighlight">\(\phi\)</span> when next we vary the rate of growth of high school wages, holding all other determinants of <span class="math notranslate nohighlight">\(\phi\)</span> constant?</p>
 <p>The following graph shows what happens.</p>
 <div class="cell docutils container">
@@ -519,7 +538,7 @@ determinants of <span class="math notranslate nohighlight">\(\phi\)</span>.</p>
 </div>
 </section>
 <section id="entrepreneur-worker-interpretation">
-<h2><span class="section-number">10.4. </span>Entrepreneur-worker interpretation<a class="headerlink" href="#entrepreneur-worker-interpretation" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">11.5. </span>Entrepreneur-worker interpretation<a class="headerlink" href="#entrepreneur-worker-interpretation" title="Permalink to this heading">#</a></h2>
 <p>Now let’s adopt the entrepreneur-worker interpretation of our model.</p>
 <p>If the probability that a new business succeeds is <span class="math notranslate nohighlight">\(.2\)</span>, let’s compute the initial wage premium for successful entrepreneurs.</p>
 <div class="cell docutils container">
@@ -556,10 +575,10 @@ determinants of <span class="math notranslate nohighlight">\(\phi\)</span>.</p>
 <p>Does the graph make sense to you?</p>
 </section>
 <section id="an-application-of-calculus">
-<h2><span class="section-number">10.5. </span>An application of calculus<a class="headerlink" href="#an-application-of-calculus" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">11.6. </span>An application of calculus<a class="headerlink" href="#an-application-of-calculus" title="Permalink to this heading">#</a></h2>
 <p>So far, we have used only linear algebra and it has been a good enough tool for us to  figure out how our model works.</p>
-<p>However, someone who knows calculus might ask “Instead of plotting those graphs, why didn’t you just take partial derivatives?”</p>
-<p>We’ll briefly do just that,  yes, the questioner is correct and that partial derivatives are indeed a good tool for discovering the “comparative statics” properities of our model.</p>
+<p>However, someone who knows calculus might want us  just to  take partial derivatives.</p>
+<p>We’ll do that now.</p>
 <p>A reader who doesn’t know calculus could read no further and feel confident that applying linear algebra has taught us the main properties of the model.</p>
 <p>But for a reader interested in how we can get Python to do all the hard work involved in computing partial derivatives, we’ll say a few things about that now.</p>
 <p>We’ll use the Python module ‘sympy’ to compute partial derivatives of <span class="math notranslate nohighlight">\(\phi\)</span> with respect to the parameters that determine it.</p>
@@ -663,7 +682,7 @@ determinants of <span class="math notranslate nohighlight">\(\phi\)</span>.</p>
 \[\displaystyle 0.058367632070654\]</div>
 </div>
 </div>
-<p>Thus, as with our graph above, we find that raising <span class="math notranslate nohighlight">\(R\)</span> increases the initial college wage premium <span class="math notranslate nohighlight">\(\phi\)</span>.</p>
+<p>Thus, as with our earlier graph, we find that raising <span class="math notranslate nohighlight">\(R\)</span> increases the initial college wage premium <span class="math notranslate nohighlight">\(\phi\)</span>.</p>
 <p>Compute <span class="math notranslate nohighlight">\(\frac{\partial \phi}{\partial T}\)</span> and evaluate it a default parameters</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -718,7 +737,7 @@ determinants of <span class="math notranslate nohighlight">\(\phi\)</span>.</p>
 \[\displaystyle 17.8590485545256\]</div>
 </div>
 </div>
-<p>We find that raising <span class="math notranslate nohighlight">\(\gamma_h\)</span> increases the initial college wage premium <span class="math notranslate nohighlight">\(\phi\)</span>, as we did with our graphical analysis earlier</p>
+<p>We find that raising <span class="math notranslate nohighlight">\(\gamma_h\)</span> increases the initial college wage premium <span class="math notranslate nohighlight">\(\phi\)</span>, as we did with our  earlier graphical analysis.</p>
 <p>Compute <span class="math notranslate nohighlight">\(\frac{\partial \phi}{\partial γ_c}\)</span> and evaluate it numerically at default parameter values</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -866,18 +885,23 @@ determinants of <span class="math notranslate nohighlight">\(\phi\)</span>.</p>
 </p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
+  <a class="reference internal" href="complex_and_trig.html">
+   5. Complex Numbers and Trigonometry
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="linear_equations.html">
-   5. Linear Equations and Matrix Algebra
+   6. Linear Equations and Matrix Algebra
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="eigen_I.html">
-   6. Eigenvalues and Eigenvectors
+   7. Eigenvalues and Eigenvectors
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="intro_supply_demand.html">
-   7. Introduction to Supply and Demand
+   8. Introduction to Supply and Demand
   </a>
  </li>
 </ul>
@@ -889,37 +913,37 @@ determinants of <span class="math notranslate nohighlight">\(\phi\)</span>.</p>
 <ul class="current nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="pv.html">
-   8. Present Values
+   9. Present Values
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cons_smooth.html">
-   9. Consumption Smoothing
+   10. Consumption Smoothing
   </a>
  </li>
  <li class="toctree-l1 current active active">
   <a class="current reference internal" href="#">
-   10. Equalizing Difference Model
+   11. Equalizing Difference Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="inflation_history.html">
-   11. Price Level Histories
+   12. Price Level Histories
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cagan_ree.html">
-   12. A Monetarist Theory of  Price Levels
+   13. A Monetarist Theory of  Price Levels
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cagan_adaptive.html">
-   13. A Monetarist Theory of Price Levels with Adaptive Expectations
+   14. A Monetarist Theory of Price Levels with Adaptive Expectations
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="geom_series.html">
-   14. Geometric Series for Elementary Economics
+   15. Geometric Series for Elementary Economics
   </a>
  </li>
 </ul>
@@ -931,27 +955,27 @@ determinants of <span class="math notranslate nohighlight">\(\phi\)</span>.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="prob_dist.html">
-   15. Distributions and Probabilities
+   16. Distributions and Probabilities
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="lln_clt.html">
-   16. LLN and CLT
+   17. LLN and CLT
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="monte_carlo.html">
-   17. Monte Carlo and Option Pricing
+   18. Monte Carlo and Option Pricing
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="heavy_tails.html">
-   18. Heavy-Tailed Distributions
+   19. Heavy-Tailed Distributions
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="schelling.html">
-   19. Racial Segregation
+   20. Racial Segregation
   </a>
  </li>
 </ul>
@@ -963,27 +987,27 @@ determinants of <span class="math notranslate nohighlight">\(\phi\)</span>.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="solow.html">
-   20. The Solow-Swan Growth Model
+   21. The Solow-Swan Growth Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="scalar_dynam.html">
-   21. Dynamics in One Dimension
+   22. Dynamics in One Dimension
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cobweb.html">
-   22. The Cobweb Model
+   23. The Cobweb Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="olg.html">
-   23. The Overlapping Generations Model
+   24. The Overlapping Generations Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="commod_price.html">
-   24. Commodity Prices
+   25. Commodity Prices
   </a>
  </li>
 </ul>
@@ -995,22 +1019,22 @@ determinants of <span class="math notranslate nohighlight">\(\phi\)</span>.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="ar1_processes.html">
-   25. AR1 Processes
+   26. AR1 Processes
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="markov_chains_I.html">
-   26. Markov Chains: Basic Concepts
+   27. Markov Chains: Basic Concepts
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="markov_chains_II.html">
-   27. Markov Chains: Irreducibility and Ergodicity
+   28. Markov Chains: Irreducibility and Ergodicity
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="time_series_with_matrices.html">
-   28. Univariate Time Series with Matrix Algebra
+   29. Univariate Time Series with Matrix Algebra
   </a>
  </li>
 </ul>
@@ -1022,12 +1046,12 @@ determinants of <span class="math notranslate nohighlight">\(\phi\)</span>.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="lp_intro.html">
-   29. Linear Programming
+   30. Linear Programming
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="short_path.html">
-   30. Shortest Paths
+   31. Shortest Paths
   </a>
  </li>
 </ul>
@@ -1039,22 +1063,22 @@ determinants of <span class="math notranslate nohighlight">\(\phi\)</span>.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="eigen_II.html">
-   31. The Perron-Frobenius Theorem
+   32. The Perron-Frobenius Theorem
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="input_output.html">
-   32. Input-Output Models
+   33. Input-Output Models
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="lake_model.html">
-   33. A Lake Model of Employment
+   34. A Lake Model of Employment
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="networks.html">
-   34. Networks
+   35. Networks
   </a>
  </li>
 </ul>
@@ -1066,12 +1090,12 @@ determinants of <span class="math notranslate nohighlight">\(\phi\)</span>.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="supply_demand_multiple_goods.html">
-   35. Supply and Demand with Many Goods
+   36. Supply and Demand with Many Goods
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="supply_demand_heterogeneity.html">
-   36. Market Equilibrium with Heterogeneity
+   37. Market Equilibrium with Heterogeneity
   </a>
  </li>
 </ul>
@@ -1083,12 +1107,12 @@ determinants of <span class="math notranslate nohighlight">\(\phi\)</span>.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="simple_linear_regression.html">
-   37. Simple Linear Regression Model
+   38. Simple Linear Regression Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="mle.html">
-   38. Maximum Likelihood Estimation
+   39. Maximum Likelihood Estimation
   </a>
  </li>
 </ul>
@@ -1100,17 +1124,17 @@ determinants of <span class="math notranslate nohighlight">\(\phi\)</span>.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="troubleshooting.html">
-   39. Troubleshooting
+   40. Troubleshooting
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="zreferences.html">
-   40. References
+   41. References
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="status.html">
-   41. Execution Statistics
+   42. Execution Statistics
   </a>
  </li>
 </ul>

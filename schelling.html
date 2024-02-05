@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>19. Racial Segregation &#8212; A First Course in Quantitative Economics with Python</title>
+    <title>20. Racial Segregation &#8212; A First Course in Quantitative Economics with Python</title>
     <script src="https://unpkg.com/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://unpkg.com/tippy.js@6.3.1/dist/tippy-bundle.umd.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
@@ -122,8 +122,8 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="20. The Solow-Swan Growth Model" href="solow.html" />
-    <link rel="prev" title="18. Heavy-Tailed Distributions" href="heavy_tails.html" />
+    <link rel="next" title="21. The Solow-Swan Growth Model" href="solow.html" />
+    <link rel="prev" title="19. Heavy-Tailed Distributions" href="heavy_tails.html" />
 
 <!-- Normal Meta Tags -->
 <meta name="author" context="Thomas J. Sargent &amp; John Stachurski" />
@@ -171,15 +171,15 @@ const thebe_selector_output = ".output, .cell_output"
 
                         <nav id="bd-toc-nav" class="qe-page__toc-nav">
                             <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#outline">19.1. Outline</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-model">19.2. The model</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#set-up">19.2.1. Set-Up</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#preferences">19.2.2. Preferences</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#behavior">19.2.3. Behavior</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#outline">20.1. Outline</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-model">20.2. The model</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#set-up">20.2.1. Set-Up</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#preferences">20.2.2. Preferences</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#behavior">20.2.3. Behavior</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#results">19.3. Results</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">19.4. Exercises</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#results">20.3. Results</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">20.4. Exercises</a></li>
 </ul>
                             <p class="logo">
                                 
@@ -243,22 +243,13 @@ const thebe_selector_output = ".output, .cell_output"
                 <img style="width:250px;display:inline;" width="250px" src="https://assets.quantecon.org/img/qe-menubar-logo.svg" alt="QuantEcon">
         </a>
 </div><section class="tex2jax_ignore mathjax_ignore" id="racial-segregation">
-<h1><a class="toc-backref" href="#id2"><span class="section-number">19. </span>Racial Segregation</a><a class="headerlink" href="#racial-segregation" title="Permalink to this heading">#</a></h1>
-<span class="target" id="index-0"></span><div class="contents topic" id="contents">
-<span id="index-1"></span><p class="topic-title">Contents</p>
-<ul class="simple">
-<li><p><a class="reference internal" href="#racial-segregation" id="id2">Racial Segregation</a></p>
-<ul>
-<li><p><a class="reference internal" href="#outline" id="id3">Outline</a></p></li>
-<li><p><a class="reference internal" href="#the-model" id="id4">The model</a></p></li>
-<li><p><a class="reference internal" href="#results" id="id5">Results</a></p></li>
-<li><p><a class="reference internal" href="#exercises" id="id6">Exercises</a></p></li>
-</ul>
-</li>
-</ul>
+<h1><span class="section-number">20. </span>Racial Segregation<a class="headerlink" href="#racial-segregation" title="Permalink to this heading">#</a></h1>
+<span class="target" id="index-0"></span><div class="warning admonition" id="index-1">
+<p class="admonition-title">Migrated lecture</p>
+<p>This lecture has moved from our <a class="reference external" href="https://python.quantecon.org/intro.html">Intermediate Quantitative Economics with Python</a> lecture series and is now a part of <a class="reference external" href="https://intro.quantecon.org/intro.html">A First Course in Quantitative Economics</a>.</p>
 </div>
 <section id="outline">
-<h2><a class="toc-backref" href="#id3"><span class="section-number">19.1. </span>Outline</a><a class="headerlink" href="#outline" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">20.1. </span>Outline<a class="headerlink" href="#outline" title="Permalink to this heading">#</a></h2>
 <p>In 1969, Thomas C. Schelling developed a simple but striking model of racial
 segregation <span id="id1">[<a class="reference internal" href="zreferences.html#id226" title="Thomas C Schelling. Models of Segregation. American Economic Review, 59(2):488–493, 1969.">Sch69</a>]</span>.</p>
 <p>His model studies the dynamics of racially mixed neighborhoods.</p>
@@ -294,10 +285,10 @@ awarded the 2005 Nobel Prize in Economic Sciences (joint with Robert Aumann).</p
 </div>
 </section>
 <section id="the-model">
-<h2><a class="toc-backref" href="#id4"><span class="section-number">19.2. </span>The model</a><a class="headerlink" href="#the-model" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">20.2. </span>The model<a class="headerlink" href="#the-model" title="Permalink to this heading">#</a></h2>
 <p>In this section we will build a version of Schelling’s model.</p>
 <section id="set-up">
-<h3><span class="section-number">19.2.1. </span>Set-Up<a class="headerlink" href="#set-up" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">20.2.1. </span>Set-Up<a class="headerlink" href="#set-up" title="Permalink to this heading">#</a></h3>
 <p>We will cover a variation of Schelling’s model that is different from the
 original but also easy to program and, at the same time, captures his main
 idea.</p>
@@ -312,7 +303,7 @@ idea.</p>
 </ul>
 </section>
 <section id="preferences">
-<h3><span class="section-number">19.2.2. </span>Preferences<a class="headerlink" href="#preferences" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">20.2.2. </span>Preferences<a class="headerlink" href="#preferences" title="Permalink to this heading">#</a></h3>
 <p>We will say that an agent is <em>happy</em> if 5 or more of her 10 nearest neighbors are of the same type.</p>
 <p>An agent who is not happy is called <em>unhappy</em>.</p>
 <p>For example,</p>
@@ -325,7 +316,7 @@ idea.</p>
 <p>They are perfectly happy if half of their neighbors are of the other color.</p>
 </section>
 <section id="behavior">
-<h3><span class="section-number">19.2.3. </span>Behavior<a class="headerlink" href="#behavior" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">20.2.3. </span>Behavior<a class="headerlink" href="#behavior" title="Permalink to this heading">#</a></h3>
 <p>Initially, agents are mixed together (integrated).</p>
 <p>In particular, we assume that the initial location of each agent is an
 independent draw from a bivariate uniform distribution on the unit square <span class="math notranslate nohighlight">\(S\)</span>.</p>
@@ -337,7 +328,7 @@ independent draw from a bivariate uniform distribution on the unit square <span 
 <p>Each agent stays if they are happy and moves if they are unhappy.</p>
 <p>The algorithm for moving is as follows</p>
 <div class="proof algorithm admonition" id="move_algo">
-<p class="admonition-title"><span class="caption-number">Algorithm 19.1 </span> (Jump Chain Algorithm)</p>
+<p class="admonition-title"><span class="caption-number">Algorithm 20.1 </span> (Jump Chain Algorithm)</p>
 <section class="algorithm-content" id="proof-content">
 <ol class="arabic simple">
 <li><p>Draw a random location in <span class="math notranslate nohighlight">\(S\)</span></p></li>
@@ -351,7 +342,7 @@ to move.</p>
 </section>
 </section>
 <section id="results">
-<h2><a class="toc-backref" href="#id5"><span class="section-number">19.3. </span>Results</a><a class="headerlink" href="#results" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">20.3. </span>Results<a class="headerlink" href="#results" title="Permalink to this heading">#</a></h2>
 <p>Let’s now implement and run this simulation.</p>
 <p>In what follows, agents are modeled as <a class="reference external" href="https://python-programming.quantecon.org/python_oop.html">objects</a>.</p>
 <p>Here’s an indication of their structure:</p>
@@ -555,10 +546,10 @@ happiness.</p>
 <p>Even with these preferences, the outcome is a high degree of segregation.</p>
 </section>
 <section id="exercises">
-<h2><a class="toc-backref" href="#id6"><span class="section-number">19.4. </span>Exercises</a><a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">20.4. </span>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h2>
 <div class="exercise admonition" id="schelling_ex1">
 
-<p class="admonition-title"><span class="caption-number">Exercise 19.1 </span></p>
+<p class="admonition-title"><span class="caption-number">Exercise 20.1 </span></p>
 <section id="exercise-content">
 <p>The object oriented style that we used for coding above is neat but harder to
 optimize than procedural code (i.e., code based around functions rather than
@@ -583,7 +574,7 @@ with small probability, is replaced by an agent of the other type.)</p>
 </div>
 <div class="solution dropdown admonition" id="schelling-solution-2">
 
-<p class="admonition-title">Solution to<a class="reference internal" href="#schelling_ex1"> Exercise 19.1</a></p>
+<p class="admonition-title">Solution to<a class="reference internal" href="#schelling_ex1"> Exercise 20.1</a></p>
 <section id="solution-content">
 <p>solution here</p>
 <div class="cell docutils container">
@@ -702,12 +693,12 @@ with small probability, is replaced by an agent of the other type.)</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/ae233f7845d3aed6ff27e3e171282a05927703de96d56662f78a726c10d15a18.png"><img alt="_images/ae233f7845d3aed6ff27e3e171282a05927703de96d56662f78a726c10d15a18.png" src="_images/ae233f7845d3aed6ff27e3e171282a05927703de96d56662f78a726c10d15a18.png" style="width: 80%;" /></a>
-<a class="reference internal image-reference" href="_images/15a2f74d1f37fcf68adf98e9408f0ff66ce8f1dfbba8a448d1919faf2e7bea80.png"><img alt="_images/15a2f74d1f37fcf68adf98e9408f0ff66ce8f1dfbba8a448d1919faf2e7bea80.png" src="_images/15a2f74d1f37fcf68adf98e9408f0ff66ce8f1dfbba8a448d1919faf2e7bea80.png" style="width: 80%;" /></a>
-<a class="reference internal image-reference" href="_images/8418a07f52c0bef6eda360a8de99665992936985211ef12d44c6e16c05ab18df.png"><img alt="_images/8418a07f52c0bef6eda360a8de99665992936985211ef12d44c6e16c05ab18df.png" src="_images/8418a07f52c0bef6eda360a8de99665992936985211ef12d44c6e16c05ab18df.png" style="width: 80%;" /></a>
-<a class="reference internal image-reference" href="_images/9c46540cb2c4e510aa6ec0143a91b91a6b5dc8c19ac50a5020462ae3216bac7c.png"><img alt="_images/9c46540cb2c4e510aa6ec0143a91b91a6b5dc8c19ac50a5020462ae3216bac7c.png" src="_images/9c46540cb2c4e510aa6ec0143a91b91a6b5dc8c19ac50a5020462ae3216bac7c.png" style="width: 80%;" /></a>
-<a class="reference internal image-reference" href="_images/8db4acb1a88dbadfcc37fab3e002e6b6a76667a55b941221b062f523a26b3540.png"><img alt="_images/8db4acb1a88dbadfcc37fab3e002e6b6a76667a55b941221b062f523a26b3540.png" src="_images/8db4acb1a88dbadfcc37fab3e002e6b6a76667a55b941221b062f523a26b3540.png" style="width: 80%;" /></a>
-<a class="reference internal image-reference" href="_images/feb16ab8ba5bd6d83bfd7d8f18b25ed7b930a1048606daf510dd478371fb9fd6.png"><img alt="_images/feb16ab8ba5bd6d83bfd7d8f18b25ed7b930a1048606daf510dd478371fb9fd6.png" src="_images/feb16ab8ba5bd6d83bfd7d8f18b25ed7b930a1048606daf510dd478371fb9fd6.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/495b0e2768bb86c70bb49a49a5ca522fa6b8ee2e696ed0f1150f88af182ed348.png"><img alt="_images/495b0e2768bb86c70bb49a49a5ca522fa6b8ee2e696ed0f1150f88af182ed348.png" src="_images/495b0e2768bb86c70bb49a49a5ca522fa6b8ee2e696ed0f1150f88af182ed348.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/e51699523d6c9f52992313248cab4714bd6b7ab83882b15ea5c0aceb4a689508.png"><img alt="_images/e51699523d6c9f52992313248cab4714bd6b7ab83882b15ea5c0aceb4a689508.png" src="_images/e51699523d6c9f52992313248cab4714bd6b7ab83882b15ea5c0aceb4a689508.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/6af6f6ba2117d32cdea5e232d981465ba53c6b23a73ffe2e06a1e77518142af4.png"><img alt="_images/6af6f6ba2117d32cdea5e232d981465ba53c6b23a73ffe2e06a1e77518142af4.png" src="_images/6af6f6ba2117d32cdea5e232d981465ba53c6b23a73ffe2e06a1e77518142af4.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/c51a6fb00e15643cfcd20c2b8d577e4db68241e767e9ea6915296c92a9c40c2e.png"><img alt="_images/c51a6fb00e15643cfcd20c2b8d577e4db68241e767e9ea6915296c92a9c40c2e.png" src="_images/c51a6fb00e15643cfcd20c2b8d577e4db68241e767e9ea6915296c92a9c40c2e.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/c8d2559994f773896a2e4ae7b4d5ed827c0c2d369fa54e6fa77f6a5b426b70c8.png"><img alt="_images/c8d2559994f773896a2e4ae7b4d5ed827c0c2d369fa54e6fa77f6a5b426b70c8.png" src="_images/c8d2559994f773896a2e4ae7b4d5ed827c0c2d369fa54e6fa77f6a5b426b70c8.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/765c49c4914a167d4edb695d304e16af397fee987e2262232468b7bcc84d4015.png"><img alt="_images/765c49c4914a167d4edb695d304e16af397fee987e2262232468b7bcc84d4015.png" src="_images/765c49c4914a167d4edb695d304e16af397fee987e2262232468b7bcc84d4015.png" style="width: 80%;" /></a>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Terminating at iteration 50001
 </pre></div>
 </div>
@@ -806,18 +797,23 @@ with small probability, is replaced by an agent of the other type.)</p>
 </p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
+  <a class="reference internal" href="complex_and_trig.html">
+   5. Complex Numbers and Trigonometry
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="linear_equations.html">
-   5. Linear Equations and Matrix Algebra
+   6. Linear Equations and Matrix Algebra
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="eigen_I.html">
-   6. Eigenvalues and Eigenvectors
+   7. Eigenvalues and Eigenvectors
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="intro_supply_demand.html">
-   7. Introduction to Supply and Demand
+   8. Introduction to Supply and Demand
   </a>
  </li>
 </ul>
@@ -829,37 +825,37 @@ with small probability, is replaced by an agent of the other type.)</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="pv.html">
-   8. Present Values
+   9. Present Values
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cons_smooth.html">
-   9. Consumption Smoothing
+   10. Consumption Smoothing
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="equalizing_difference.html">
-   10. Equalizing Difference Model
+   11. Equalizing Difference Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="inflation_history.html">
-   11. Price Level Histories
+   12. Price Level Histories
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cagan_ree.html">
-   12. A Monetarist Theory of  Price Levels
+   13. A Monetarist Theory of  Price Levels
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cagan_adaptive.html">
-   13. A Monetarist Theory of Price Levels with Adaptive Expectations
+   14. A Monetarist Theory of Price Levels with Adaptive Expectations
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="geom_series.html">
-   14. Geometric Series for Elementary Economics
+   15. Geometric Series for Elementary Economics
   </a>
  </li>
 </ul>
@@ -871,27 +867,27 @@ with small probability, is replaced by an agent of the other type.)</p>
 <ul class="current nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="prob_dist.html">
-   15. Distributions and Probabilities
+   16. Distributions and Probabilities
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="lln_clt.html">
-   16. LLN and CLT
+   17. LLN and CLT
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="monte_carlo.html">
-   17. Monte Carlo and Option Pricing
+   18. Monte Carlo and Option Pricing
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="heavy_tails.html">
-   18. Heavy-Tailed Distributions
+   19. Heavy-Tailed Distributions
   </a>
  </li>
  <li class="toctree-l1 current active active">
   <a class="current reference internal" href="#">
-   19. Racial Segregation
+   20. Racial Segregation
   </a>
  </li>
 </ul>
@@ -903,27 +899,27 @@ with small probability, is replaced by an agent of the other type.)</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="solow.html">
-   20. The Solow-Swan Growth Model
+   21. The Solow-Swan Growth Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="scalar_dynam.html">
-   21. Dynamics in One Dimension
+   22. Dynamics in One Dimension
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cobweb.html">
-   22. The Cobweb Model
+   23. The Cobweb Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="olg.html">
-   23. The Overlapping Generations Model
+   24. The Overlapping Generations Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="commod_price.html">
-   24. Commodity Prices
+   25. Commodity Prices
   </a>
  </li>
 </ul>
@@ -935,22 +931,22 @@ with small probability, is replaced by an agent of the other type.)</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="ar1_processes.html">
-   25. AR1 Processes
+   26. AR1 Processes
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="markov_chains_I.html">
-   26. Markov Chains: Basic Concepts
+   27. Markov Chains: Basic Concepts
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="markov_chains_II.html">
-   27. Markov Chains: Irreducibility and Ergodicity
+   28. Markov Chains: Irreducibility and Ergodicity
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="time_series_with_matrices.html">
-   28. Univariate Time Series with Matrix Algebra
+   29. Univariate Time Series with Matrix Algebra
   </a>
  </li>
 </ul>
@@ -962,12 +958,12 @@ with small probability, is replaced by an agent of the other type.)</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="lp_intro.html">
-   29. Linear Programming
+   30. Linear Programming
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="short_path.html">
-   30. Shortest Paths
+   31. Shortest Paths
   </a>
  </li>
 </ul>
@@ -979,22 +975,22 @@ with small probability, is replaced by an agent of the other type.)</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="eigen_II.html">
-   31. The Perron-Frobenius Theorem
+   32. The Perron-Frobenius Theorem
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="input_output.html">
-   32. Input-Output Models
+   33. Input-Output Models
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="lake_model.html">
-   33. A Lake Model of Employment
+   34. A Lake Model of Employment
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="networks.html">
-   34. Networks
+   35. Networks
   </a>
  </li>
 </ul>
@@ -1006,12 +1002,12 @@ with small probability, is replaced by an agent of the other type.)</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="supply_demand_multiple_goods.html">
-   35. Supply and Demand with Many Goods
+   36. Supply and Demand with Many Goods
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="supply_demand_heterogeneity.html">
-   36. Market Equilibrium with Heterogeneity
+   37. Market Equilibrium with Heterogeneity
   </a>
  </li>
 </ul>
@@ -1023,12 +1019,12 @@ with small probability, is replaced by an agent of the other type.)</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="simple_linear_regression.html">
-   37. Simple Linear Regression Model
+   38. Simple Linear Regression Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="mle.html">
-   38. Maximum Likelihood Estimation
+   39. Maximum Likelihood Estimation
   </a>
  </li>
 </ul>
@@ -1040,17 +1036,17 @@ with small probability, is replaced by an agent of the other type.)</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="troubleshooting.html">
-   39. Troubleshooting
+   40. Troubleshooting
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="zreferences.html">
-   40. References
+   41. References
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="status.html">
-   41. Execution Statistics
+   42. Execution Statistics
   </a>
  </li>
 </ul>

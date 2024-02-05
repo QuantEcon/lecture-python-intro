@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>17. Monte Carlo and Option Pricing &#8212; A First Course in Quantitative Economics with Python</title>
+    <title>18. Monte Carlo and Option Pricing &#8212; A First Course in Quantitative Economics with Python</title>
     <script src="https://unpkg.com/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://unpkg.com/tippy.js@6.3.1/dist/tippy-bundle.umd.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
@@ -122,8 +122,8 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="18. Heavy-Tailed Distributions" href="heavy_tails.html" />
-    <link rel="prev" title="16. LLN and CLT" href="lln_clt.html" />
+    <link rel="next" title="19. Heavy-Tailed Distributions" href="heavy_tails.html" />
+    <link rel="prev" title="17. LLN and CLT" href="lln_clt.html" />
 
 <!-- Normal Meta Tags -->
 <meta name="author" context="Thomas J. Sargent &amp; John Stachurski" />
@@ -171,33 +171,33 @@ const thebe_selector_output = ".output, .cell_output"
 
                         <nav id="bd-toc-nav" class="qe-page__toc-nav">
                             <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">17.1. Overview</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#an-introduction-to-monte-carlo">17.2. An introduction to Monte Carlo</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#share-price-with-known-distribution">17.2.1. Share price with known distribution</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#share-price-with-unknown-distribution">17.2.2. Share price with unknown distribution</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#a-routine-using-loops-in-python">17.2.2.1. A routine using loops in python</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">18.1. Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#an-introduction-to-monte-carlo">18.2. An introduction to Monte Carlo</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#share-price-with-known-distribution">18.2.1. Share price with known distribution</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#share-price-with-unknown-distribution">18.2.2. Share price with unknown distribution</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#a-routine-using-loops-in-python">18.2.2.1. A routine using loops in python</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-vectorized-routine">17.2.3. A vectorized routine</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-vectorized-routine">18.2.3. A vectorized routine</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pricing-a-european-call-option-under-risk-neutrality">17.3. Pricing a european call option under risk neutrality</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#risk-neutral-pricing">17.3.1. Risk-Neutral Pricing</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-comment-on-risk">17.3.2. A comment on risk</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#discounting">17.3.3. Discounting</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#european-call-options">17.3.4. European call options</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pricing-a-european-call-option-under-risk-neutrality">18.3. Pricing a european call option under risk neutrality</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#risk-neutral-pricing">18.3.1. Risk-Neutral Pricing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-comment-on-risk">18.3.2. A comment on risk</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#discounting">18.3.3. Discounting</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#european-call-options">18.3.4. European call options</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pricing-via-a-dynamic-model">17.4. Pricing via a dynamic model</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simple-dynamics">17.4.1. Simple dynamics</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#problems-with-simple-dynamics">17.4.2. Problems with simple dynamics</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#more-realistic-dynamics">17.4.3. More realistic dynamics</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#default-parameters">17.4.4. Default parameters</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizations">17.4.5. Visualizations</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#computing-the-price">17.4.6. Computing the price</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pricing-via-a-dynamic-model">18.4. Pricing via a dynamic model</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simple-dynamics">18.4.1. Simple dynamics</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#problems-with-simple-dynamics">18.4.2. Problems with simple dynamics</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#more-realistic-dynamics">18.4.3. More realistic dynamics</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#default-parameters">18.4.4. Default parameters</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizations">18.4.5. Visualizations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#computing-the-price">18.4.6. Computing the price</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">17.5. Exercises</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">18.5. Exercises</a></li>
 </ul>
                             <p class="logo">
                                 
@@ -257,9 +257,9 @@ const thebe_selector_output = ".output, .cell_output"
                     <div>
                         
   <section class="tex2jax_ignore mathjax_ignore" id="monte-carlo-and-option-pricing">
-<h1><span class="section-number">17. </span>Monte Carlo and Option Pricing<a class="headerlink" href="#monte-carlo-and-option-pricing" title="Permalink to this heading">#</a></h1>
+<h1><span class="section-number">18. </span>Monte Carlo and Option Pricing<a class="headerlink" href="#monte-carlo-and-option-pricing" title="Permalink to this heading">#</a></h1>
 <section id="overview">
-<h2><span class="section-number">17.1. </span>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">18.1. </span>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
 <p>Simple probability calculations can be done either</p>
 <ul class="simple">
 <li><p>with pencil and paper, or</p></li>
@@ -291,11 +291,11 @@ with some applications in finance.</p>
 </div>
 </section>
 <section id="an-introduction-to-monte-carlo">
-<h2><span class="section-number">17.2. </span>An introduction to Monte Carlo<a class="headerlink" href="#an-introduction-to-monte-carlo" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">18.2. </span>An introduction to Monte Carlo<a class="headerlink" href="#an-introduction-to-monte-carlo" title="Permalink to this heading">#</a></h2>
 <p>In this section we describe how Monte Carlo can be used to compute
 expectations.</p>
 <section id="share-price-with-known-distribution">
-<h3><span class="section-number">17.2.1. </span>Share price with known distribution<a class="headerlink" href="#share-price-with-known-distribution" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">18.2.1. </span>Share price with known distribution<a class="headerlink" href="#share-price-with-known-distribution" title="Permalink to this heading">#</a></h3>
 <p>Suppose that we are considering buying a share in some company.</p>
 <p>Our plan is either to</p>
 <ol class="arabic simple">
@@ -335,7 +335,7 @@ us that the mean and variance are</p>
 <p>So far we have no need for a computer.</p>
 </section>
 <section id="share-price-with-unknown-distribution">
-<h3><span class="section-number">17.2.2. </span>Share price with unknown distribution<a class="headerlink" href="#share-price-with-unknown-distribution" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">18.2.2. </span>Share price with unknown distribution<a class="headerlink" href="#share-price-with-unknown-distribution" title="Permalink to this heading">#</a></h3>
 <p>But now suppose that we study the distribution of <span class="math notranslate nohighlight">\(S\)</span> more carefully.</p>
 <p>We decide that the share price depends on three variables, <span class="math notranslate nohighlight">\(X_1\)</span>, <span class="math notranslate nohighlight">\(X_2\)</span>, and
 <span class="math notranslate nohighlight">\(X_3\)</span> (e.g., sales, inflation, and interest rates).</p>
@@ -374,7 +374,7 @@ us that the mean and variance are</p>
 </div>
 </div>
 <section id="a-routine-using-loops-in-python">
-<h4><span class="section-number">17.2.2.1. </span>A routine using loops in python<a class="headerlink" href="#a-routine-using-loops-in-python" title="Permalink to this heading">#</a></h4>
+<h4><span class="section-number">18.2.2.1. </span>A routine using loops in python<a class="headerlink" href="#a-routine-using-loops-in-python" title="Permalink to this heading">#</a></h4>
 <p>Here’s a routine using native Python loops to calculate the desired mean</p>
 <div class="math notranslate nohighlight">
 \[
@@ -396,11 +396,11 @@ us that the mean and variance are</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 3.53 s, sys: 1.55 ms, total: 3.53 s
-Wall time: 3.53 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 3.54 s, sys: 4.37 ms, total: 3.54 s
+Wall time: 3.54 s
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.2297759528121435
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.2297062802573437
 </pre></div>
 </div>
 </div>
@@ -428,7 +428,7 @@ Wall time: 3.53 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.229815523467671
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.2298158907341166
 </pre></div>
 </div>
 </div>
@@ -436,7 +436,7 @@ Wall time: 3.53 s
 </section>
 </section>
 <section id="a-vectorized-routine">
-<h3><span class="section-number">17.2.3. </span>A vectorized routine<a class="headerlink" href="#a-vectorized-routine" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">18.2.3. </span>A vectorized routine<a class="headerlink" href="#a-vectorized-routine" title="Permalink to this heading">#</a></h3>
 <p>If we want a more accurate estimate we should increase <span class="math notranslate nohighlight">\(n\)</span>.</p>
 <p>But the code above runs quite slowly.</p>
 <p>To make it faster, let’s implement a vectorized routine using NumPy.</p>
@@ -461,11 +461,11 @@ Wall time: 3.53 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 82.1 ms, sys: 3.97 ms, total: 86.1 ms
-Wall time: 85.9 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 80.8 ms, sys: 4.01 ms, total: 84.8 ms
+Wall time: 84.4 ms
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.229727351931519
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.2297189780882865
 </pre></div>
 </div>
 </div>
@@ -481,11 +481,11 @@ Wall time: 85.9 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 811 ms, sys: 48 ms, total: 859 ms
-Wall time: 858 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 779 ms, sys: 56 ms, total: 835 ms
+Wall time: 835 ms
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.2297040956571283
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.2297637108033124
 </pre></div>
 </div>
 </div>
@@ -493,11 +493,11 @@ Wall time: 858 ms
 </section>
 </section>
 <section id="pricing-a-european-call-option-under-risk-neutrality">
-<h2><span class="section-number">17.3. </span>Pricing a european call option under risk neutrality<a class="headerlink" href="#pricing-a-european-call-option-under-risk-neutrality" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">18.3. </span>Pricing a european call option under risk neutrality<a class="headerlink" href="#pricing-a-european-call-option-under-risk-neutrality" title="Permalink to this heading">#</a></h2>
 <p>Next we are going to price a European call option under risk neutrality.</p>
 <p>Let’s first discuss risk neutrality and then consider European options.</p>
 <section id="risk-neutral-pricing">
-<h3><span class="section-number">17.3.1. </span>Risk-Neutral Pricing<a class="headerlink" href="#risk-neutral-pricing" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">18.3.1. </span>Risk-Neutral Pricing<a class="headerlink" href="#risk-neutral-pricing" title="Permalink to this heading">#</a></h3>
 <p>When we use risk-neutral pricing, we determine the price of a given asset
 according to its expected payoff:</p>
 <div class="math notranslate nohighlight">
@@ -530,7 +530,7 @@ asset, which is</p>
 \]</div>
 </section>
 <section id="a-comment-on-risk">
-<h3><span class="section-number">17.3.2. </span>A comment on risk<a class="headerlink" href="#a-comment-on-risk" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">18.3.2. </span>A comment on risk<a class="headerlink" href="#a-comment-on-risk" title="Permalink to this heading">#</a></h3>
 <p>As suggested by the name, the risk-neutral price ignores risk.</p>
 <p>To understand this, consider whether you would pay 500,000 dollars for such a
 promise.</p>
@@ -545,7 +545,7 @@ these promises.</p>
 and financial market participants try to calculate every day.</p>
 </section>
 <section id="discounting">
-<h3><span class="section-number">17.3.3. </span>Discounting<a class="headerlink" href="#discounting" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">18.3.3. </span>Discounting<a class="headerlink" href="#discounting" title="Permalink to this heading">#</a></h3>
 <p>Another thing we ignored in the previous discussion was time.</p>
 <p>In general, receiving <span class="math notranslate nohighlight">\(x\)</span> dollars now is preferable to receiving <span class="math notranslate nohighlight">\(x\)</span> dollars
 in <span class="math notranslate nohighlight">\(n\)</span> periods (e.g., 10 years).</p>
@@ -568,7 +568,7 @@ promise described above.</p>
 \]</div>
 </section>
 <section id="european-call-options">
-<h3><span class="section-number">17.3.4. </span>European call options<a class="headerlink" href="#european-call-options" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">18.3.4. </span>European call options<a class="headerlink" href="#european-call-options" title="Permalink to this heading">#</a></h3>
 <p>Now let’s price a European call option.</p>
 <p>The option is described by three things:</p>
 <ol class="arabic simple" start="2">
@@ -627,7 +627,7 @@ can be calculated.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The Monte Carlo option price is approximately 1.036998
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The Monte Carlo option price is approximately 1.036978
 </pre></div>
 </div>
 </div>
@@ -635,13 +635,13 @@ can be calculated.</p>
 </section>
 </section>
 <section id="pricing-via-a-dynamic-model">
-<h2><span class="section-number">17.4. </span>Pricing via a dynamic model<a class="headerlink" href="#pricing-via-a-dynamic-model" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">18.4. </span>Pricing via a dynamic model<a class="headerlink" href="#pricing-via-a-dynamic-model" title="Permalink to this heading">#</a></h2>
 <p>In this exercise we investigate a more realistic model for the share price <span class="math notranslate nohighlight">\(S_n\)</span>.</p>
 <p>This comes from specifying the underlying dynamics of the share price.</p>
 <p>First we specify the dynamics.</p>
 <p>Then we’ll compute the price of the option using Monte Carlo.</p>
 <section id="simple-dynamics">
-<h3><span class="section-number">17.4.1. </span>Simple dynamics<a class="headerlink" href="#simple-dynamics" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">18.4.1. </span>Simple dynamics<a class="headerlink" href="#simple-dynamics" title="Permalink to this heading">#</a></h3>
 <p>One simple model for <span class="math notranslate nohighlight">\(\{S_t\}\)</span> is</p>
 <div class="math notranslate nohighlight">
 \[ \ln \frac{S_{t+1}}{S_t} = \mu + \sigma \xi_{t+1} \]</div>
@@ -653,14 +653,14 @@ can be calculated.</p>
 <p>Under the stated assumptions, <span class="math notranslate nohighlight">\(S_n\)</span> is lognormally distributed.</p>
 <p>To see why, observe that, with <span class="math notranslate nohighlight">\(s_t := \ln S_t\)</span>, the price dynamics become</p>
 <div class="math notranslate nohighlight" id="equation-s-mc-dyms">
-<span class="eqno">(17.1)<a class="headerlink" href="#equation-s-mc-dyms" title="Permalink to this equation">#</a></span>\[s_{t+1} = s_t + \mu + \sigma \xi_{t+1}\]</div>
+<span class="eqno">(18.1)<a class="headerlink" href="#equation-s-mc-dyms" title="Permalink to this equation">#</a></span>\[s_{t+1} = s_t + \mu + \sigma \xi_{t+1}\]</div>
 <p>Since <span class="math notranslate nohighlight">\(s_0\)</span> is normal and <span class="math notranslate nohighlight">\(\xi_1\)</span> is normal and IID, we see that <span class="math notranslate nohighlight">\(s_1\)</span> is
 normally distributed.</p>
 <p>Continuing in this way shows that <span class="math notranslate nohighlight">\(s_n\)</span> is normally distributed.</p>
 <p>Hence <span class="math notranslate nohighlight">\(S_n = \exp(s_n)\)</span> is lognormal.</p>
 </section>
 <section id="problems-with-simple-dynamics">
-<h3><span class="section-number">17.4.2. </span>Problems with simple dynamics<a class="headerlink" href="#problems-with-simple-dynamics" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">18.4.2. </span>Problems with simple dynamics<a class="headerlink" href="#problems-with-simple-dynamics" title="Permalink to this heading">#</a></h3>
 <p>The simple dynamic model we studied above is convenient, since we can work out
 the distribution of <span class="math notranslate nohighlight">\(S_n\)</span>.</p>
 <p>However, its predictions are counterfactual because, in the real world,
@@ -669,7 +669,7 @@ volatility (measured by <span class="math notranslate nohighlight">\(\sigma\)</s
 <p>In terms of our model above, this means that <span class="math notranslate nohighlight">\(\sigma\)</span> should not be constant.</p>
 </section>
 <section id="more-realistic-dynamics">
-<h3><span class="section-number">17.4.3. </span>More realistic dynamics<a class="headerlink" href="#more-realistic-dynamics" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">18.4.3. </span>More realistic dynamics<a class="headerlink" href="#more-realistic-dynamics" title="Permalink to this heading">#</a></h3>
 <p>This leads us to study the improved version:</p>
 <div class="math notranslate nohighlight">
 \[ \ln \frac{S_{t+1}}{S_t} = \mu + \sigma_t \xi_{t+1} \]</div>
@@ -683,7 +683,7 @@ volatility (measured by <span class="math notranslate nohighlight">\(\sigma\)</s
 <p>Here <span class="math notranslate nohighlight">\(\{\eta_t\}\)</span> is also IID and standard normal.</p>
 </section>
 <section id="default-parameters">
-<h3><span class="section-number">17.4.4. </span>Default parameters<a class="headerlink" href="#default-parameters" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">18.4.4. </span>Default parameters<a class="headerlink" href="#default-parameters" title="Permalink to this heading">#</a></h3>
 <p>For the dynamic model, we adopt the following parameter values.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -709,7 +709,7 @@ volatility (measured by <span class="math notranslate nohighlight">\(\sigma\)</s
 </div>
 </section>
 <section id="visualizations">
-<h3><span class="section-number">17.4.5. </span>Visualizations<a class="headerlink" href="#visualizations" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">18.4.5. </span>Visualizations<a class="headerlink" href="#visualizations" title="Permalink to this heading">#</a></h3>
 <p>With <span class="math notranslate nohighlight">\(s_t := \ln S_t\)</span>, the price dynamics become</p>
 <div class="math notranslate nohighlight">
 \[ s_{t+1} = s_t + \mu + \exp(h_t) \xi_{t+1} \]</div>
@@ -749,12 +749,12 @@ volatility (measured by <span class="math notranslate nohighlight">\(\sigma\)</s
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/dd458fac5f778ac533f4565f28fdac87e46cda321a9a467383121c836e5a81e4.png"><img alt="_images/dd458fac5f778ac533f4565f28fdac87e46cda321a9a467383121c836e5a81e4.png" src="_images/dd458fac5f778ac533f4565f28fdac87e46cda321a9a467383121c836e5a81e4.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/1511f068e5c630fc1b881662cdb031737a95e354a0a3e1e4d656c71671925b6a.png"><img alt="_images/1511f068e5c630fc1b881662cdb031737a95e354a0a3e1e4d656c71671925b6a.png" src="_images/1511f068e5c630fc1b881662cdb031737a95e354a0a3e1e4d656c71671925b6a.png" style="width: 80%;" /></a>
 </div>
 </div>
 </section>
 <section id="computing-the-price">
-<h3><span class="section-number">17.4.6. </span>Computing the price<a class="headerlink" href="#computing-the-price" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">18.4.6. </span>Computing the price<a class="headerlink" href="#computing-the-price" title="Permalink to this heading">#</a></h3>
 <p>Now that our model is more complicated, we cannot easily determine the
 distribution of <span class="math notranslate nohighlight">\(S_n\)</span>.</p>
 <p>So to compute the price <span class="math notranslate nohighlight">\(P\)</span> of the option, we use Monte Carlo.</p>
@@ -803,11 +803,11 @@ the law of large numbers:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 187 ms, sys: 0 ns, total: 187 ms
-Wall time: 187 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 185 ms, sys: 20 µs, total: 185 ms
+Wall time: 185 ms
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>693.5122917673442
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2061.9639927043836
 </pre></div>
 </div>
 </div>
@@ -815,10 +815,10 @@ Wall time: 187 ms
 </section>
 </section>
 <section id="exercises">
-<h2><span class="section-number">17.5. </span>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">18.5. </span>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h2>
 <div class="exercise admonition" id="monte_carlo_ex1">
 
-<p class="admonition-title"><span class="caption-number">Exercise 17.1 </span></p>
+<p class="admonition-title"><span class="caption-number">Exercise 18.1 </span></p>
 <section id="exercise-content">
 <p>We would like to increase <span class="math notranslate nohighlight">\(M\)</span> in the code above to make the calculation more
 accurate.</p>
@@ -828,7 +828,7 @@ accurate.</p>
 </div>
 <div class="solution dropdown admonition" id="monte_carlo-solution-1">
 
-<p class="admonition-title">Solution to<a class="reference internal" href="#monte_carlo_ex1"> Exercise 17.1</a></p>
+<p class="admonition-title">Solution to<a class="reference internal" href="#monte_carlo_ex1"> Exercise 18.1</a></p>
 <section id="solution-content">
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -863,11 +863,11 @@ accurate.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 5.52 ms, sys: 34 µs, total: 5.56 ms
-Wall time: 5.34 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 5.66 ms, sys: 0 ns, total: 5.66 ms
+Wall time: 5.27 ms
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>586.3352341320328
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4106.455249179473
 </pre></div>
 </div>
 </div>
@@ -882,11 +882,11 @@ Wall time: 5.34 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 4.87 s, sys: 452 ms, total: 5.32 s
-Wall time: 5.32 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 4.77 s, sys: 448 ms, total: 5.22 s
+Wall time: 5.22 s
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>872.3468413630501
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>859.7168189861949
 </pre></div>
 </div>
 </div>
@@ -895,17 +895,17 @@ Wall time: 5.32 s
 </div>
 <div class="exercise admonition" id="monte_carlo_ex2">
 
-<p class="admonition-title"><span class="caption-number">Exercise 17.2 </span></p>
+<p class="admonition-title"><span class="caption-number">Exercise 18.2 </span></p>
 <section id="exercise-content">
 <p>Consider that a European call option may be written on an underlying with spot price of $100 and a knockout barrier of $120.</p>
 <p>This option behaves in every way like a vanilla European call, except if the spot price ever moves above $120, the option “knocks out” and the contract is null and void.</p>
 <p>Note that the option does not reactivate if the spot price falls below $120 again.</p>
-<p>Use the dynamics defined in <a class="reference internal" href="#equation-s-mc-dyms">(17.1)</a> to price the European call option.</p>
+<p>Use the dynamics defined in <a class="reference internal" href="#equation-s-mc-dyms">(18.1)</a> to price the European call option.</p>
 </section>
 </div>
 <div class="solution dropdown admonition" id="monte_carlo-solution-3">
 
-<p class="admonition-title">Solution to<a class="reference internal" href="#monte_carlo_ex2"> Exercise 17.2</a></p>
+<p class="admonition-title">Solution to<a class="reference internal" href="#monte_carlo_ex2"> Exercise 18.2</a></p>
 <section id="solution-content">
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -967,11 +967,11 @@ Wall time: 5.32 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 1.09 s, sys: 0 ns, total: 1.09 s
-Wall time: 1.09 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 1.06 s, sys: 80 µs, total: 1.06 s
+Wall time: 1.06 s
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.03421608592851626
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.036006983792672115
 </pre></div>
 </div>
 </div>
@@ -1014,11 +1014,11 @@ Wall time: 1.09 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 28.2 ms, sys: 10 µs, total: 28.2 ms
-Wall time: 28.1 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 27.6 ms, sys: 0 ns, total: 27.6 ms
+Wall time: 27.3 ms
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.03988520216419981
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.036579943308012786
 </pre></div>
 </div>
 </div>
@@ -1118,18 +1118,23 @@ Wall time: 28.1 ms
 </p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
+  <a class="reference internal" href="complex_and_trig.html">
+   5. Complex Numbers and Trigonometry
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="linear_equations.html">
-   5. Linear Equations and Matrix Algebra
+   6. Linear Equations and Matrix Algebra
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="eigen_I.html">
-   6. Eigenvalues and Eigenvectors
+   7. Eigenvalues and Eigenvectors
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="intro_supply_demand.html">
-   7. Introduction to Supply and Demand
+   8. Introduction to Supply and Demand
   </a>
  </li>
 </ul>
@@ -1141,37 +1146,37 @@ Wall time: 28.1 ms
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="pv.html">
-   8. Present Values
+   9. Present Values
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cons_smooth.html">
-   9. Consumption Smoothing
+   10. Consumption Smoothing
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="equalizing_difference.html">
-   10. Equalizing Difference Model
+   11. Equalizing Difference Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="inflation_history.html">
-   11. Price Level Histories
+   12. Price Level Histories
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cagan_ree.html">
-   12. A Monetarist Theory of  Price Levels
+   13. A Monetarist Theory of  Price Levels
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cagan_adaptive.html">
-   13. A Monetarist Theory of Price Levels with Adaptive Expectations
+   14. A Monetarist Theory of Price Levels with Adaptive Expectations
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="geom_series.html">
-   14. Geometric Series for Elementary Economics
+   15. Geometric Series for Elementary Economics
   </a>
  </li>
 </ul>
@@ -1183,27 +1188,27 @@ Wall time: 28.1 ms
 <ul class="current nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="prob_dist.html">
-   15. Distributions and Probabilities
+   16. Distributions and Probabilities
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="lln_clt.html">
-   16. LLN and CLT
+   17. LLN and CLT
   </a>
  </li>
  <li class="toctree-l1 current active active">
   <a class="current reference internal" href="#">
-   17. Monte Carlo and Option Pricing
+   18. Monte Carlo and Option Pricing
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="heavy_tails.html">
-   18. Heavy-Tailed Distributions
+   19. Heavy-Tailed Distributions
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="schelling.html">
-   19. Racial Segregation
+   20. Racial Segregation
   </a>
  </li>
 </ul>
@@ -1215,27 +1220,27 @@ Wall time: 28.1 ms
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="solow.html">
-   20. The Solow-Swan Growth Model
+   21. The Solow-Swan Growth Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="scalar_dynam.html">
-   21. Dynamics in One Dimension
+   22. Dynamics in One Dimension
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cobweb.html">
-   22. The Cobweb Model
+   23. The Cobweb Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="olg.html">
-   23. The Overlapping Generations Model
+   24. The Overlapping Generations Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="commod_price.html">
-   24. Commodity Prices
+   25. Commodity Prices
   </a>
  </li>
 </ul>
@@ -1247,22 +1252,22 @@ Wall time: 28.1 ms
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="ar1_processes.html">
-   25. AR1 Processes
+   26. AR1 Processes
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="markov_chains_I.html">
-   26. Markov Chains: Basic Concepts
+   27. Markov Chains: Basic Concepts
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="markov_chains_II.html">
-   27. Markov Chains: Irreducibility and Ergodicity
+   28. Markov Chains: Irreducibility and Ergodicity
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="time_series_with_matrices.html">
-   28. Univariate Time Series with Matrix Algebra
+   29. Univariate Time Series with Matrix Algebra
   </a>
  </li>
 </ul>
@@ -1274,12 +1279,12 @@ Wall time: 28.1 ms
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="lp_intro.html">
-   29. Linear Programming
+   30. Linear Programming
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="short_path.html">
-   30. Shortest Paths
+   31. Shortest Paths
   </a>
  </li>
 </ul>
@@ -1291,22 +1296,22 @@ Wall time: 28.1 ms
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="eigen_II.html">
-   31. The Perron-Frobenius Theorem
+   32. The Perron-Frobenius Theorem
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="input_output.html">
-   32. Input-Output Models
+   33. Input-Output Models
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="lake_model.html">
-   33. A Lake Model of Employment
+   34. A Lake Model of Employment
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="networks.html">
-   34. Networks
+   35. Networks
   </a>
  </li>
 </ul>
@@ -1318,12 +1323,12 @@ Wall time: 28.1 ms
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="supply_demand_multiple_goods.html">
-   35. Supply and Demand with Many Goods
+   36. Supply and Demand with Many Goods
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="supply_demand_heterogeneity.html">
-   36. Market Equilibrium with Heterogeneity
+   37. Market Equilibrium with Heterogeneity
   </a>
  </li>
 </ul>
@@ -1335,12 +1340,12 @@ Wall time: 28.1 ms
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="simple_linear_regression.html">
-   37. Simple Linear Regression Model
+   38. Simple Linear Regression Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="mle.html">
-   38. Maximum Likelihood Estimation
+   39. Maximum Likelihood Estimation
   </a>
  </li>
 </ul>
@@ -1352,17 +1357,17 @@ Wall time: 28.1 ms
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="troubleshooting.html">
-   39. Troubleshooting
+   40. Troubleshooting
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="zreferences.html">
-   40. References
+   41. References
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="status.html">
-   41. Execution Statistics
+   42. Execution Statistics
   </a>
  </li>
 </ul>

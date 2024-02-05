@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>15. Distributions and Probabilities &#8212; A First Course in Quantitative Economics with Python</title>
+    <title>16. Distributions and Probabilities &#8212; A First Course in Quantitative Economics with Python</title>
     <script src="https://unpkg.com/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://unpkg.com/tippy.js@6.3.1/dist/tippy-bundle.umd.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
@@ -122,8 +122,8 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="16. LLN and CLT" href="lln_clt.html" />
-    <link rel="prev" title="14. Geometric Series for Elementary Economics" href="geom_series.html" />
+    <link rel="next" title="17. LLN and CLT" href="lln_clt.html" />
+    <link rel="prev" title="15. Geometric Series for Elementary Economics" href="geom_series.html" />
 
 <!-- Normal Meta Tags -->
 <meta name="author" context="Thomas J. Sargent &amp; John Stachurski" />
@@ -171,34 +171,34 @@ const thebe_selector_output = ".output, .cell_output"
 
                         <nav id="bd-toc-nav" class="qe-page__toc-nav">
                             <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#outline">15.1. Outline</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#common-distributions">15.2. Common distributions</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#discrete-distributions">15.2.1. Discrete distributions</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#uniform-distribution">15.2.1.1. Uniform distribution</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bernoulli-distribution">15.2.1.2. Bernoulli distribution</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#binomial-distribution">15.2.1.3. Binomial distribution</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#poisson-distribution">15.2.1.4. Poisson distribution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#outline">16.1. Outline</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#common-distributions">16.2. Common distributions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#discrete-distributions">16.2.1. Discrete distributions</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#uniform-distribution">16.2.1.1. Uniform distribution</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bernoulli-distribution">16.2.1.2. Bernoulli distribution</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#binomial-distribution">16.2.1.3. Binomial distribution</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#poisson-distribution">16.2.1.4. Poisson distribution</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#continuous-distributions">15.2.2. Continuous distributions</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#normal-distribution">15.2.2.1. Normal distribution</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lognormal-distribution">15.2.2.2. Lognormal distribution</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#exponential-distribution">15.2.2.3. Exponential distribution</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#beta-distribution">15.2.2.4. Beta distribution</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gamma-distribution">15.2.2.5. Gamma distribution</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#continuous-distributions">16.2.2. Continuous distributions</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#normal-distribution">16.2.2.1. Normal distribution</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lognormal-distribution">16.2.2.2. Lognormal distribution</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#exponential-distribution">16.2.2.3. Exponential distribution</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#beta-distribution">16.2.2.4. Beta distribution</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gamma-distribution">16.2.2.5. Gamma distribution</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#observed-distributions">15.3. Observed distributions</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-statistics">15.3.1. Summary statistics</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualization">15.3.2. Visualization</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#histograms">15.3.2.1. Histograms</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#kernel-density-estimates">15.3.2.2. Kernel density estimates</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#violin-plots">15.3.2.3. Violin plots</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#observed-distributions">16.3. Observed distributions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-statistics">16.3.1. Summary statistics</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualization">16.3.2. Visualization</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#histograms">16.3.2.1. Histograms</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#kernel-density-estimates">16.3.2.2. Kernel density estimates</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#violin-plots">16.3.2.3. Violin plots</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#connection-to-probability-distributions">15.3.3. Connection to probability distributions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#connection-to-probability-distributions">16.3.3. Connection to probability distributions</a></li>
 </ul>
 </li>
 </ul>
@@ -260,21 +260,9 @@ const thebe_selector_output = ".output, .cell_output"
                     <div>
                         
   <section class="tex2jax_ignore mathjax_ignore" id="distributions-and-probabilities">
-<h1><a class="toc-backref" href="#id1"><span class="section-number">15. </span>Distributions and Probabilities</a><a class="headerlink" href="#distributions-and-probabilities" title="Permalink to this heading">#</a></h1>
-<div class="contents topic" id="contents">
-<span id="index-0"></span><p class="topic-title">Contents</p>
-<ul class="simple">
-<li><p><a class="reference internal" href="#distributions-and-probabilities" id="id1">Distributions and Probabilities</a></p>
-<ul>
-<li><p><a class="reference internal" href="#outline" id="id2">Outline</a></p></li>
-<li><p><a class="reference internal" href="#common-distributions" id="id3">Common distributions</a></p></li>
-<li><p><a class="reference internal" href="#observed-distributions" id="id4">Observed distributions</a></p></li>
-</ul>
-</li>
-</ul>
-</div>
+<h1><span class="section-number">16. </span>Distributions and Probabilities<a class="headerlink" href="#distributions-and-probabilities" title="Permalink to this heading">#</a></h1>
 <section id="outline">
-<h2><a class="toc-backref" href="#id2"><span class="section-number">15.1. </span>Outline</a><a class="headerlink" href="#outline" title="Permalink to this heading">#</a></h2>
+<span id="index-0"></span><h2><span class="section-number">16.1. </span>Outline<a class="headerlink" href="#outline" title="Permalink to this heading">#</a></h2>
 <p>In this lecture we give a quick introduction to data and probability distributions using Python.</p>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input above-output-prompt docutils container">
@@ -309,7 +297,9 @@ Requirement already satisfied: webencodings in /usr/share/miniconda3/envs/quante
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: python-dateutil&gt;=2.8.2 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from pandas&gt;=1.3.0-&gt;yfinance) (2.8.2)
 Requirement already satisfied: tzdata&gt;=2022.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from pandas&gt;=1.3.0-&gt;yfinance) (2023.3)
-Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from requests&gt;=2.31-&gt;yfinance) (2.0.4)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from requests&gt;=2.31-&gt;yfinance) (2.0.4)
 Requirement already satisfied: idna&lt;4,&gt;=2.5 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from requests&gt;=2.31-&gt;yfinance) (3.4)
 Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from requests&gt;=2.31-&gt;yfinance) (1.26.16)
 Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from requests&gt;=2.31-&gt;yfinance) (2023.7.22)
@@ -332,10 +322,10 @@ Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/share/miniconda3/en
 </div>
 </section>
 <section id="common-distributions">
-<h2><a class="toc-backref" href="#id3"><span class="section-number">15.2. </span>Common distributions</a><a class="headerlink" href="#common-distributions" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">16.2. </span>Common distributions<a class="headerlink" href="#common-distributions" title="Permalink to this heading">#</a></h2>
 <p>In this section we recall the definitions of some well-known distributions and explore how to manipulate them with SciPy.</p>
 <section id="discrete-distributions">
-<h3><span class="section-number">15.2.1. </span>Discrete distributions<a class="headerlink" href="#discrete-distributions" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">16.2.1. </span>Discrete distributions<a class="headerlink" href="#discrete-distributions" title="Permalink to this heading">#</a></h3>
 <p>Let’s start with discrete distributions.</p>
 <p>A discrete distribution is defined by a set of numbers <span class="math notranslate nohighlight">\(S = \{x_1, \ldots, x_n\}\)</span> and a <strong>probability mass function</strong> (PMF) on <span class="math notranslate nohighlight">\(S\)</span>, which is a function <span class="math notranslate nohighlight">\(p\)</span> from <span class="math notranslate nohighlight">\(S\)</span> to <span class="math notranslate nohighlight">\([0,1]\)</span> with the property</p>
 <div class="math notranslate nohighlight">
@@ -366,7 +356,7 @@ Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/share/miniconda3/en
 <p>Here <span class="math notranslate nohighlight">\(\mathbb 1\{ \textrm{statement} \} = 1\)</span> if “statement” is true and zero otherwise.</p>
 <p>Hence the second term takes all <span class="math notranslate nohighlight">\(x_i \leq x\)</span> and sums their probabilities.</p>
 <section id="uniform-distribution">
-<h4><span class="section-number">15.2.1.1. </span>Uniform distribution<a class="headerlink" href="#uniform-distribution" title="Permalink to this heading">#</a></h4>
+<h4><span class="section-number">16.2.1.1. </span>Uniform distribution<a class="headerlink" href="#uniform-distribution" title="Permalink to this heading">#</a></h4>
 <p>One simple example is the <strong>uniform distribution</strong>, where <span class="math notranslate nohighlight">\(p(x_i) = 1/n\)</span> for all <span class="math notranslate nohighlight">\(n\)</span>.</p>
 <p>We can import the uniform distribution on <span class="math notranslate nohighlight">\(S = \{1, \ldots, n\}\)</span>  from SciPy like so:</p>
 <div class="cell docutils container">
@@ -451,7 +441,7 @@ Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/share/miniconda3/en
 <p>The CDF jumps up by <span class="math notranslate nohighlight">\(p(x_i)\)</span> and <span class="math notranslate nohighlight">\(x_i\)</span>.</p>
 <div class="exercise admonition" id="prob_ex1">
 
-<p class="admonition-title"><span class="caption-number">Exercise 15.1 </span></p>
+<p class="admonition-title"><span class="caption-number">Exercise 16.1 </span></p>
 <section id="exercise-content">
 <p>Calculate the mean and variance for this parameterization (i.e., <span class="math notranslate nohighlight">\(n=10\)</span>)
 directly from the PMF, using the expressions given above.</p>
@@ -460,7 +450,7 @@ directly from the PMF, using the expressions given above.</p>
 </div>
 </section>
 <section id="bernoulli-distribution">
-<h4><span class="section-number">15.2.1.2. </span>Bernoulli distribution<a class="headerlink" href="#bernoulli-distribution" title="Permalink to this heading">#</a></h4>
+<h4><span class="section-number">16.2.1.2. </span>Bernoulli distribution<a class="headerlink" href="#bernoulli-distribution" title="Permalink to this heading">#</a></h4>
 <p>Another useful (and more interesting) distribution is the Bernoulli distribution</p>
 <p>We can import the uniform distribution on <span class="math notranslate nohighlight">\(S = \{1, \ldots, n\}\)</span>  from SciPy like so:</p>
 <div class="cell docutils container">
@@ -545,7 +535,7 @@ directly from the PMF, using the expressions given above.</p>
 <p>The CDF jumps up by <span class="math notranslate nohighlight">\(p(x_i)\)</span> and <span class="math notranslate nohighlight">\(x_i\)</span>.</p>
 <div class="exercise admonition" id="prob_ex2">
 
-<p class="admonition-title"><span class="caption-number">Exercise 15.2 </span></p>
+<p class="admonition-title"><span class="caption-number">Exercise 16.2 </span></p>
 <section id="exercise-content">
 <p>Calculate the mean and variance for this parameterization (i.e., <span class="math notranslate nohighlight">\(n=10\)</span>)
 directly from the PMF, using the expressions given above.</p>
@@ -554,7 +544,7 @@ directly from the PMF, using the expressions given above.</p>
 </div>
 </section>
 <section id="binomial-distribution">
-<h4><span class="section-number">15.2.1.3. </span>Binomial distribution<a class="headerlink" href="#binomial-distribution" title="Permalink to this heading">#</a></h4>
+<h4><span class="section-number">16.2.1.3. </span>Binomial distribution<a class="headerlink" href="#binomial-distribution" title="Permalink to this heading">#</a></h4>
 <p>Another useful (and more interesting) distribution is the <strong>binomial distribution</strong> on <span class="math notranslate nohighlight">\(S=\{0, \ldots, n\}\)</span>, which has PMF</p>
 <div class="math notranslate nohighlight">
 \[ 
@@ -632,14 +622,14 @@ directly from the PMF, using the expressions given above.</p>
 </div>
 <div class="exercise admonition" id="prob_ex3">
 
-<p class="admonition-title"><span class="caption-number">Exercise 15.3 </span></p>
+<p class="admonition-title"><span class="caption-number">Exercise 16.3 </span></p>
 <section id="exercise-content">
 <p>Using <code class="docutils literal notranslate"><span class="pre">u.pmf</span></code>, check that our definition of the CDF given above calculates the same function as <code class="docutils literal notranslate"><span class="pre">u.cdf</span></code>.</p>
 </section>
 </div>
 <div class="solution dropdown admonition" id="prob_dist-solution-3">
 
-<p class="admonition-title">Solution to<a class="reference internal" href="#prob_ex3"> Exercise 15.3</a></p>
+<p class="admonition-title">Solution to<a class="reference internal" href="#prob_ex3"> Exercise 16.3</a></p>
 <section id="solution-content">
 <p>Here is one solution</p>
 <div class="cell docutils container">
@@ -663,7 +653,7 @@ directly from the PMF, using the expressions given above.</p>
 </div>
 </section>
 <section id="poisson-distribution">
-<h4><span class="section-number">15.2.1.4. </span>Poisson distribution<a class="headerlink" href="#poisson-distribution" title="Permalink to this heading">#</a></h4>
+<h4><span class="section-number">16.2.1.4. </span>Poisson distribution<a class="headerlink" href="#poisson-distribution" title="Permalink to this heading">#</a></h4>
 <p>Poisson distribution on <span class="math notranslate nohighlight">\(S = \{0, 1, \ldots\}\)</span> with parameter <span class="math notranslate nohighlight">\(\lambda &gt; 0\)</span> has PMF</p>
 <div class="math notranslate nohighlight">
 \[
@@ -731,7 +721,7 @@ directly from the PMF, using the expressions given above.</p>
 </section>
 </section>
 <section id="continuous-distributions">
-<h3><span class="section-number">15.2.2. </span>Continuous distributions<a class="headerlink" href="#continuous-distributions" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">16.2.2. </span>Continuous distributions<a class="headerlink" href="#continuous-distributions" title="Permalink to this heading">#</a></h3>
 <p>Continuous distributions are represented by a <strong>density function</strong>, which is a function <span class="math notranslate nohighlight">\(p\)</span> over <span class="math notranslate nohighlight">\(\mathbb R\)</span> (the set of all numbers) such that <span class="math notranslate nohighlight">\(p(x) \geq 0\)</span> for all <span class="math notranslate nohighlight">\(x\)</span> and</p>
 <div class="math notranslate nohighlight">
 \[ \int_{-\infty}^\infty p(x) dx = 1 \]</div>
@@ -754,7 +744,7 @@ directly from the PMF, using the expressions given above.</p>
          = \int_{-\infty}^x p(x) dx
 \]</div>
 <section id="normal-distribution">
-<h4><span class="section-number">15.2.2.1. </span>Normal distribution<a class="headerlink" href="#normal-distribution" title="Permalink to this heading">#</a></h4>
+<h4><span class="section-number">16.2.2.1. </span>Normal distribution<a class="headerlink" href="#normal-distribution" title="Permalink to this heading">#</a></h4>
 <p>Perhaps the most famous distribution is the <strong>normal distribution</strong>, which has density</p>
 <div class="math notranslate nohighlight">
 \[
@@ -828,7 +818,7 @@ directly from the PMF, using the expressions given above.</p>
 </div>
 </section>
 <section id="lognormal-distribution">
-<h4><span class="section-number">15.2.2.2. </span>Lognormal distribution<a class="headerlink" href="#lognormal-distribution" title="Permalink to this heading">#</a></h4>
+<h4><span class="section-number">16.2.2.2. </span>Lognormal distribution<a class="headerlink" href="#lognormal-distribution" title="Permalink to this heading">#</a></h4>
 <p>The <strong>lognormal distribution</strong> is a distribution on <span class="math notranslate nohighlight">\(\left(0, \infty\right)\)</span> with density</p>
 <div class="math notranslate nohighlight">
 \[
@@ -904,7 +894,7 @@ directly from the PMF, using the expressions given above.</p>
 </div>
 </section>
 <section id="exponential-distribution">
-<h4><span class="section-number">15.2.2.3. </span>Exponential distribution<a class="headerlink" href="#exponential-distribution" title="Permalink to this heading">#</a></h4>
+<h4><span class="section-number">16.2.2.3. </span>Exponential distribution<a class="headerlink" href="#exponential-distribution" title="Permalink to this heading">#</a></h4>
 <p>The <strong>exponential distribution</strong> is a distribution on <span class="math notranslate nohighlight">\(\left(0, \infty\right)\)</span> with density</p>
 <div class="math notranslate nohighlight">
 \[
@@ -974,7 +964,7 @@ directly from the PMF, using the expressions given above.</p>
 </div>
 </section>
 <section id="beta-distribution">
-<h4><span class="section-number">15.2.2.4. </span>Beta distribution<a class="headerlink" href="#beta-distribution" title="Permalink to this heading">#</a></h4>
+<h4><span class="section-number">16.2.2.4. </span>Beta distribution<a class="headerlink" href="#beta-distribution" title="Permalink to this heading">#</a></h4>
 <p>The <strong>beta distribution</strong> is a distribution on <span class="math notranslate nohighlight">\((0, 1)\)</span> with density</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1049,7 +1039,7 @@ the variance is <span class="math notranslate nohighlight">\(\alpha \beta / (\al
 </div>
 </section>
 <section id="gamma-distribution">
-<h4><span class="section-number">15.2.2.5. </span>Gamma distribution<a class="headerlink" href="#gamma-distribution" title="Permalink to this heading">#</a></h4>
+<h4><span class="section-number">16.2.2.5. </span>Gamma distribution<a class="headerlink" href="#gamma-distribution" title="Permalink to this heading">#</a></h4>
 <p>The <strong>gamma distribution</strong> is a distribution on <span class="math notranslate nohighlight">\(\left(0, \infty\right)\)</span> with density</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1126,7 +1116,7 @@ random variables with mean <span class="math notranslate nohighlight">\(1/\beta\
 </section>
 </section>
 <section id="observed-distributions">
-<h2><a class="toc-backref" href="#id4"><span class="section-number">15.3. </span>Observed distributions</a><a class="headerlink" href="#observed-distributions" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">16.3. </span>Observed distributions<a class="headerlink" href="#observed-distributions" title="Permalink to this heading">#</a></h2>
 <p>Sometimes we refer to observed data or measurements as “distributions”.</p>
 <p>For example, let’s say we observe the income of 10 people over a year:</p>
 <div class="cell docutils container">
@@ -1232,7 +1222,7 @@ random variables with mean <span class="math notranslate nohighlight">\(1/\beta\
 numbers like the income distribution above) and probability distributions.</p>
 <p>Below we explore some observed distributions.</p>
 <section id="summary-statistics">
-<h3><span class="section-number">15.3.1. </span>Summary statistics<a class="headerlink" href="#summary-statistics" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">16.3.1. </span>Summary statistics<a class="headerlink" href="#summary-statistics" title="Permalink to this heading">#</a></h3>
 <p>Suppose we have an observed distribution with values <span class="math notranslate nohighlight">\(\{x_1, \ldots, x_n\}\)</span></p>
 <p>The <strong>sample mean</strong> of this distribution is defined as</p>
 <div class="math notranslate nohighlight">
@@ -1266,14 +1256,14 @@ numbers like the income distribution above) and probability distributions.</p>
 </div>
 <div class="exercise admonition" id="prob_ex4">
 
-<p class="admonition-title"><span class="caption-number">Exercise 15.4 </span></p>
+<p class="admonition-title"><span class="caption-number">Exercise 16.4 </span></p>
 <section id="exercise-content">
 <p>Check that the formulas given above produce the same numbers.</p>
 </section>
 </div>
 </section>
 <section id="visualization">
-<h3><span class="section-number">15.3.2. </span>Visualization<a class="headerlink" href="#visualization" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">16.3.2. </span>Visualization<a class="headerlink" href="#visualization" title="Permalink to this heading">#</a></h3>
 <p>Let’s look at different ways that we can visualize one or more observed distributions.</p>
 <p>We will cover</p>
 <ul class="simple">
@@ -1282,7 +1272,7 @@ numbers like the income distribution above) and probability distributions.</p>
 <li><p>violin plots</p></li>
 </ul>
 <section id="histograms">
-<h4><span class="section-number">15.3.2.1. </span>Histograms<a class="headerlink" href="#histograms" title="Permalink to this heading">#</a></h4>
+<h4><span class="section-number">16.3.2.1. </span>Histograms<a class="headerlink" href="#histograms" title="Permalink to this heading">#</a></h4>
 <p>We can histogram the income distribution we just constructed as follows</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1369,7 +1359,7 @@ Name: Adj Close, dtype: float64
 </div>
 </section>
 <section id="kernel-density-estimates">
-<h4><span class="section-number">15.3.2.2. </span>Kernel density estimates<a class="headerlink" href="#kernel-density-estimates" title="Permalink to this heading">#</a></h4>
+<h4><span class="section-number">16.3.2.2. </span>Kernel density estimates<a class="headerlink" href="#kernel-density-estimates" title="Permalink to this heading">#</a></h4>
 <p>Kernel density estimate (KDE) is a non-parametric way to estimate and visualize the PDF of a distribution.</p>
 <p>KDE will generate a smooth curve that approximates the PDF.</p>
 <div class="cell docutils container">
@@ -1404,7 +1394,7 @@ Name: Adj Close, dtype: float64
 <p>A suitable bandwidth is not too smooth (underfitting) or too wiggly (overfitting).</p>
 </section>
 <section id="violin-plots">
-<h4><span class="section-number">15.3.2.3. </span>Violin plots<a class="headerlink" href="#violin-plots" title="Permalink to this heading">#</a></h4>
+<h4><span class="section-number">16.3.2.3. </span>Violin plots<a class="headerlink" href="#violin-plots" title="Permalink to this heading">#</a></h4>
 <p>Yet another way to display an observed distribution is via a violin plot.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1453,13 +1443,13 @@ Name: Adj Close, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/e5d8e9f697e7e690bbe06ba38f8c27c57876f8fdbacb61952cef288f015b459c.png"><img alt="_images/e5d8e9f697e7e690bbe06ba38f8c27c57876f8fdbacb61952cef288f015b459c.png" src="_images/e5d8e9f697e7e690bbe06ba38f8c27c57876f8fdbacb61952cef288f015b459c.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/87c88d08e6f39331183e55dcdc29a5880dc5060a4f0937a7c6ff396cf9b6bcb3.png"><img alt="_images/87c88d08e6f39331183e55dcdc29a5880dc5060a4f0937a7c6ff396cf9b6bcb3.png" src="_images/87c88d08e6f39331183e55dcdc29a5880dc5060a4f0937a7c6ff396cf9b6bcb3.png" style="width: 80%;" /></a>
 </div>
 </div>
 </section>
 </section>
 <section id="connection-to-probability-distributions">
-<h3><span class="section-number">15.3.3. </span>Connection to probability distributions<a class="headerlink" href="#connection-to-probability-distributions" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">16.3.3. </span>Connection to probability distributions<a class="headerlink" href="#connection-to-probability-distributions" title="Permalink to this heading">#</a></h3>
 <p>Let’s discuss the connection between observed distributions and probability distributions.</p>
 <p>Sometimes it’s helpful to imagine that an observed distribution is generated by a particular probability distribution.</p>
 <p>For example, we might look at the returns from Amazon above and imagine that they were generated by a normal distribution.</p>
@@ -1513,7 +1503,7 @@ Name: Adj Close, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/e9dedf01e23129aace5642264bd7b9fd9310010cb04631c08fed0b685346bc4a.png"><img alt="_images/e9dedf01e23129aace5642264bd7b9fd9310010cb04631c08fed0b685346bc4a.png" src="_images/e9dedf01e23129aace5642264bd7b9fd9310010cb04631c08fed0b685346bc4a.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/199518f2973145f1ed66bad8c4ffd0f4b88e99069eb0784e4aab9938c5b35b95.png"><img alt="_images/199518f2973145f1ed66bad8c4ffd0f4b88e99069eb0784e4aab9938c5b35b95.png" src="_images/199518f2973145f1ed66bad8c4ffd0f4b88e99069eb0784e4aab9938c5b35b95.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>Note that if you keep increasing <span class="math notranslate nohighlight">\(N\)</span>, which is the number of observations, the fit will get better and better.</p>
@@ -1612,18 +1602,23 @@ Name: Adj Close, dtype: float64
 </p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
+  <a class="reference internal" href="complex_and_trig.html">
+   5. Complex Numbers and Trigonometry
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="linear_equations.html">
-   5. Linear Equations and Matrix Algebra
+   6. Linear Equations and Matrix Algebra
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="eigen_I.html">
-   6. Eigenvalues and Eigenvectors
+   7. Eigenvalues and Eigenvectors
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="intro_supply_demand.html">
-   7. Introduction to Supply and Demand
+   8. Introduction to Supply and Demand
   </a>
  </li>
 </ul>
@@ -1635,37 +1630,37 @@ Name: Adj Close, dtype: float64
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="pv.html">
-   8. Present Values
+   9. Present Values
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cons_smooth.html">
-   9. Consumption Smoothing
+   10. Consumption Smoothing
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="equalizing_difference.html">
-   10. Equalizing Difference Model
+   11. Equalizing Difference Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="inflation_history.html">
-   11. Price Level Histories
+   12. Price Level Histories
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cagan_ree.html">
-   12. A Monetarist Theory of  Price Levels
+   13. A Monetarist Theory of  Price Levels
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cagan_adaptive.html">
-   13. A Monetarist Theory of Price Levels with Adaptive Expectations
+   14. A Monetarist Theory of Price Levels with Adaptive Expectations
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="geom_series.html">
-   14. Geometric Series for Elementary Economics
+   15. Geometric Series for Elementary Economics
   </a>
  </li>
 </ul>
@@ -1677,27 +1672,27 @@ Name: Adj Close, dtype: float64
 <ul class="current nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1 current active active">
   <a class="current reference internal" href="#">
-   15. Distributions and Probabilities
+   16. Distributions and Probabilities
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="lln_clt.html">
-   16. LLN and CLT
+   17. LLN and CLT
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="monte_carlo.html">
-   17. Monte Carlo and Option Pricing
+   18. Monte Carlo and Option Pricing
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="heavy_tails.html">
-   18. Heavy-Tailed Distributions
+   19. Heavy-Tailed Distributions
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="schelling.html">
-   19. Racial Segregation
+   20. Racial Segregation
   </a>
  </li>
 </ul>
@@ -1709,27 +1704,27 @@ Name: Adj Close, dtype: float64
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="solow.html">
-   20. The Solow-Swan Growth Model
+   21. The Solow-Swan Growth Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="scalar_dynam.html">
-   21. Dynamics in One Dimension
+   22. Dynamics in One Dimension
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cobweb.html">
-   22. The Cobweb Model
+   23. The Cobweb Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="olg.html">
-   23. The Overlapping Generations Model
+   24. The Overlapping Generations Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="commod_price.html">
-   24. Commodity Prices
+   25. Commodity Prices
   </a>
  </li>
 </ul>
@@ -1741,22 +1736,22 @@ Name: Adj Close, dtype: float64
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="ar1_processes.html">
-   25. AR1 Processes
+   26. AR1 Processes
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="markov_chains_I.html">
-   26. Markov Chains: Basic Concepts
+   27. Markov Chains: Basic Concepts
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="markov_chains_II.html">
-   27. Markov Chains: Irreducibility and Ergodicity
+   28. Markov Chains: Irreducibility and Ergodicity
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="time_series_with_matrices.html">
-   28. Univariate Time Series with Matrix Algebra
+   29. Univariate Time Series with Matrix Algebra
   </a>
  </li>
 </ul>
@@ -1768,12 +1763,12 @@ Name: Adj Close, dtype: float64
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="lp_intro.html">
-   29. Linear Programming
+   30. Linear Programming
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="short_path.html">
-   30. Shortest Paths
+   31. Shortest Paths
   </a>
  </li>
 </ul>
@@ -1785,22 +1780,22 @@ Name: Adj Close, dtype: float64
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="eigen_II.html">
-   31. The Perron-Frobenius Theorem
+   32. The Perron-Frobenius Theorem
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="input_output.html">
-   32. Input-Output Models
+   33. Input-Output Models
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="lake_model.html">
-   33. A Lake Model of Employment
+   34. A Lake Model of Employment
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="networks.html">
-   34. Networks
+   35. Networks
   </a>
  </li>
 </ul>
@@ -1812,12 +1807,12 @@ Name: Adj Close, dtype: float64
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="supply_demand_multiple_goods.html">
-   35. Supply and Demand with Many Goods
+   36. Supply and Demand with Many Goods
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="supply_demand_heterogeneity.html">
-   36. Market Equilibrium with Heterogeneity
+   37. Market Equilibrium with Heterogeneity
   </a>
  </li>
 </ul>
@@ -1829,12 +1824,12 @@ Name: Adj Close, dtype: float64
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="simple_linear_regression.html">
-   37. Simple Linear Regression Model
+   38. Simple Linear Regression Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="mle.html">
-   38. Maximum Likelihood Estimation
+   39. Maximum Likelihood Estimation
   </a>
  </li>
 </ul>
@@ -1846,17 +1841,17 @@ Name: Adj Close, dtype: float64
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="troubleshooting.html">
-   39. Troubleshooting
+   40. Troubleshooting
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="zreferences.html">
-   40. References
+   41. References
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="status.html">
-   41. Execution Statistics
+   42. Execution Statistics
   </a>
  </li>
 </ul>

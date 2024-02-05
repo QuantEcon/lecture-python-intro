@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>8. Present Values &#8212; A First Course in Quantitative Economics with Python</title>
+    <title>9. Present Values &#8212; A First Course in Quantitative Economics with Python</title>
     <script src="https://unpkg.com/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://unpkg.com/tippy.js@6.3.1/dist/tippy-bundle.umd.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
@@ -122,8 +122,8 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="9. Consumption Smoothing" href="cons_smooth.html" />
-    <link rel="prev" title="7. Introduction to Supply and Demand" href="intro_supply_demand.html" />
+    <link rel="next" title="10. Consumption Smoothing" href="cons_smooth.html" />
+    <link rel="prev" title="8. Introduction to Supply and Demand" href="intro_supply_demand.html" />
 
 <!-- Normal Meta Tags -->
 <meta name="author" context="Thomas J. Sargent &amp; John Stachurski" />
@@ -171,12 +171,13 @@ const thebe_selector_output = ".output, .cell_output"
 
                         <nav id="bd-toc-nav" class="qe-page__toc-nav">
                             <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">8.1. Overview</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#present-value-calculations">8.2. Present value calculations</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analytical-expressions">8.3. Analytical expressions</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#more-about-bubbles">8.4. More about bubbles</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gross-rate-of-return">8.5. Gross rate of return</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">8.6. Exercises</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">9.1. Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis">9.2. Analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#representing-sequences-as-vectors">9.3. Representing sequences as vectors</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analytical-expressions">9.4. Analytical expressions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#more-about-bubbles">9.5. More about bubbles</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gross-rate-of-return">9.6. Gross rate of return</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">9.7. Exercises</a></li>
 </ul>
                             <p class="logo">
                                 
@@ -236,36 +237,60 @@ const thebe_selector_output = ".output, .cell_output"
                     <div>
                         
   <section class="tex2jax_ignore mathjax_ignore" id="present-values">
-<h1><span class="section-number">8. </span>Present Values<a class="headerlink" href="#present-values" title="Permalink to this heading">#</a></h1>
+<h1><span class="section-number">9. </span>Present Values<a class="headerlink" href="#present-values" title="Permalink to this heading">#</a></h1>
 <section id="overview">
-<h2><span class="section-number">8.1. </span>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">9.1. </span>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
 <p>This lecture describes the  <strong>present value model</strong> that is a starting point
 of much asset pricing theory.</p>
-<p>We’ll use the calculations described here in several subsequent lectures.</p>
-<p>Our only tool is some elementary linear algebra operations, namely, matrix multiplication and matrix inversion.</p>
+<p>Asset pricing theory is a component of theories about many economic decisions including</p>
+<ul class="simple">
+<li><p>consumption</p></li>
+<li><p>labor supply</p></li>
+<li><p>education choice</p></li>
+<li><p>demand for money</p></li>
+</ul>
+<p>In asset pricing theory, and in economic dynamics more generally, a basic topic is the relationship
+among different <strong>time series</strong>.</p>
+<p>A <strong>time series</strong> is a <strong>sequence</strong> indexed by time.</p>
+<p>In this lecture, we’ll represent  a sequence as a vector.</p>
+<p>So our analysis will typically boil down to studying relationships among vectors.</p>
+<p>Our main  tools in this lecture will be</p>
+<ul class="simple">
+<li><p>matrix multiplication,  and</p></li>
+<li><p>matrix inversion.</p></li>
+</ul>
+<p>We’ll use the calculations described here in  subsequent lectures, including <a class="reference internal" href="cons_smooth.html"><span class="doc">consumption smoothing</span></a>, <a class="reference internal" href="equalizing_difference.html"><span class="doc">equalizing difference model</span></a>, and
+<a class="reference internal" href="cagan_ree.html"><span class="doc">monetarist theory of price levels</span></a>.</p>
 <p>Let’s dive in.</p>
+</section>
+<section id="analysis">
+<h2><span class="section-number">9.2. </span>Analysis<a class="headerlink" href="#analysis" title="Permalink to this heading">#</a></h2>
 <p>Let</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(\{d_t\}_{t=0}^T \)</span> be a sequence of dividends or “payouts”</p></li>
 <li><p><span class="math notranslate nohighlight">\(\{p_t\}_{t=0}^T \)</span> be a sequence of prices of a claim on the continuation of
-the asset stream from date <span class="math notranslate nohighlight">\(t\)</span> on, namely, <span class="math notranslate nohighlight">\(\{d_s\}_{s=t}^T \)</span></p></li>
+the asset’s payout  stream from date <span class="math notranslate nohighlight">\(t\)</span> on, namely, <span class="math notranslate nohighlight">\(\{d_s\}_{s=t}^T \)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\( \delta  \in (0,1) \)</span> be a one-period “discount factor”</p></li>
 <li><p><span class="math notranslate nohighlight">\(p_{T+1}^*\)</span> be a terminal price of the asset at time <span class="math notranslate nohighlight">\(T+1\)</span></p></li>
 </ul>
 <p>We  assume that the dividend stream <span class="math notranslate nohighlight">\(\{d_t\}_{t=0}^T \)</span> and the terminal price
 <span class="math notranslate nohighlight">\(p_{T+1}^*\)</span> are both exogenous.</p>
+<p>This means that they are determined outside the model.</p>
 <p>Assume the sequence of asset pricing equations</p>
 <div class="math notranslate nohighlight" id="equation-eq-euler1">
-<span class="eqno">(8.1)<a class="headerlink" href="#equation-eq-euler1" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(9.1)<a class="headerlink" href="#equation-eq-euler1" title="Permalink to this equation">#</a></span>\[
     p_t = d_t + \delta p_{t+1}, \quad t = 0, 1, \ldots , T
 \]</div>
-<p>This is a “cost equals benefits” formula.</p>
-<p>It says that the cost of buying the asset today equals the reward for holding it
-for one period (which is the dividend <span class="math notranslate nohighlight">\(d_t\)</span>) and then selling it, at <span class="math notranslate nohighlight">\(t+1\)</span>.</p>
-<p>The future value <span class="math notranslate nohighlight">\(p_{t+1}\)</span> is discounted using <span class="math notranslate nohighlight">\(\delta\)</span> to shift it to a present value, so it is comparable with <span class="math notranslate nohighlight">\(d_t\)</span> and <span class="math notranslate nohighlight">\(p_t\)</span>.</p>
-<p>We want to solve for the asset price sequence  <span class="math notranslate nohighlight">\(\{p_t\}_{t=0}^T \)</span> as a function
-of <span class="math notranslate nohighlight">\(\{d_t\}_{t=0}^T \)</span> and <span class="math notranslate nohighlight">\(p_{T+1}^*\)</span>.</p>
-<p>In this lecture we show how this can be done using matrix algebra.</p>
+<p>We say equation<strong>s</strong>, plural, because there are <span class="math notranslate nohighlight">\(T+1\)</span> equations, one for each <span class="math notranslate nohighlight">\(t =0, 1, \ldots, T\)</span>.</p>
+<p>Equations <a class="reference internal" href="#equation-eq-euler1">(9.1)</a> assert that price paid to purchase  the asset at time <span class="math notranslate nohighlight">\(t\)</span>  equals the payout <span class="math notranslate nohighlight">\(d_t\)</span>  plus the price at time  <span class="math notranslate nohighlight">\(t+1\)</span> multiplied by a time discount factor <span class="math notranslate nohighlight">\(\delta\)</span>.</p>
+<p>Discounting tomorrow’s price  by multiplying it by  <span class="math notranslate nohighlight">\(\delta\)</span> accounts for the ``value of waiting one period’’.</p>
+<p>We want to solve the system of <span class="math notranslate nohighlight">\(T+1\)</span> equations <a class="reference internal" href="#equation-eq-euler1">(9.1)</a> for the asset price sequence  <span class="math notranslate nohighlight">\(\{p_t\}_{t=0}^T \)</span> as a function of the divident sequence <span class="math notranslate nohighlight">\(\{d_t\}_{t=0}^T \)</span> and the exogenous terminal
+price  <span class="math notranslate nohighlight">\(p_{T+1}^*\)</span>.</p>
+<p>A system of equations like <a class="reference internal" href="#equation-eq-euler1">(9.1)</a> is an example of a linear  <strong>difference equation</strong>.</p>
+<p>There are powerful mathematical  methods available for solving such systems and they are well worth
+studying in their own right, being the foundation for the analysis of many interesting economic models.</p>
+<p>For an example, see <a class="reference external" href="https://dynamics.quantecon.org/samuelson.html" title="(in Python)"><span class="xref std std-doc">Samuelson multiplier-accelerator</span></a></p>
+<p>In this lecture, we’ll  solve system <a class="reference internal" href="#equation-eq-euler1">(9.1)</a> using matrix multiplication and matrix inversion, basic tools from linear algebra introduced in  <a class="reference internal" href="linear_equations.html"><span class="doc">linear equations and matrix algebra</span></a>.</p>
 <p>We will use the following imports</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -276,11 +301,11 @@ of <span class="math notranslate nohighlight">\(\{d_t\}_{t=0}^T \)</span> and <s
 </div>
 </div>
 </section>
-<section id="present-value-calculations">
-<h2><span class="section-number">8.2. </span>Present value calculations<a class="headerlink" href="#present-value-calculations" title="Permalink to this heading">#</a></h2>
-<p>The equations in <a class="reference internal" href="#equation-eq-euler1">(8.1)</a> can be stacked, as in</p>
+<section id="representing-sequences-as-vectors">
+<h2><span class="section-number">9.3. </span>Representing sequences as vectors<a class="headerlink" href="#representing-sequences-as-vectors" title="Permalink to this heading">#</a></h2>
+<p>The equations in system <a class="reference internal" href="#equation-eq-euler1">(9.1)</a> can be arranged as follows:</p>
 <div class="math notranslate nohighlight" id="equation-eq-euler-stack">
-<span class="eqno">(8.2)<a class="headerlink" href="#equation-eq-euler-stack" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(9.2)<a class="headerlink" href="#equation-eq-euler-stack" title="Permalink to this equation">#</a></span>\[\begin{split}
 \begin{aligned}
     p_0 &amp; = d_0 + \delta p_1 \\
     p_1 &amp; = d_1 + \delta p_2 \\
@@ -289,9 +314,9 @@ of <span class="math notranslate nohighlight">\(\{d_t\}_{t=0}^T \)</span> and <s
     p_T &amp; = d_T + \delta p^*_{T+1}
 \end{aligned}
 \end{split}\]</div>
-<p>Write the system <a class="reference internal" href="#equation-eq-euler-stack">(8.2)</a> of <span class="math notranslate nohighlight">\(T+1\)</span> asset pricing  equations as the single matrix equation</p>
+<p>Write the system <a class="reference internal" href="#equation-eq-euler-stack">(9.2)</a> of <span class="math notranslate nohighlight">\(T+1\)</span> asset pricing  equations as the single matrix equation</p>
 <div class="math notranslate nohighlight" id="equation-eq-pvpieq">
-<span class="eqno">(8.3)<a class="headerlink" href="#equation-eq-pvpieq" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(9.3)<a class="headerlink" href="#equation-eq-pvpieq" title="Permalink to this equation">#</a></span>\[
     \begin{bmatrix} 1 &amp; -\delta &amp; 0 &amp; 0 &amp; \cdots &amp; 0 &amp; 0 \cr
                     0 &amp; 1 &amp; -\delta &amp; 0 &amp; \cdots &amp; 0 &amp; 0 \cr
                     0 &amp; 0 &amp; 1 &amp; -\delta &amp; \cdots &amp; 0 &amp; 0 \cr
@@ -309,18 +334,18 @@ of <span class="math notranslate nohighlight">\(\{d_t\}_{t=0}^T \)</span> and <s
 \]</div>
 <div class="exercise admonition" id="pv_ex_1">
 
-<p class="admonition-title"><span class="caption-number">Exercise 8.1 </span></p>
+<p class="admonition-title"><span class="caption-number">Exercise 9.1 </span></p>
 <section id="exercise-content">
-<p>Carry out the matrix multiplication in <a class="reference internal" href="#equation-eq-pvpieq">(8.3)</a> by hand and confirm that you
-recover the equations in <a class="reference internal" href="#equation-eq-euler-stack">(8.2)</a>.</p>
+<p>Carry out the matrix multiplication in <a class="reference internal" href="#equation-eq-pvpieq">(9.3)</a> by hand and confirm that you
+recover the equations in <a class="reference internal" href="#equation-eq-euler-stack">(9.2)</a>.</p>
 </section>
 </div>
-<p>In vector-matrix notation, we can write the system <a class="reference internal" href="#equation-eq-pvpieq">(8.3)</a> as</p>
+<p>In vector-matrix notation, we can write  system <a class="reference internal" href="#equation-eq-pvpieq">(9.3)</a> as</p>
 <div class="math notranslate nohighlight" id="equation-eq-apdb">
-<span class="eqno">(8.4)<a class="headerlink" href="#equation-eq-apdb" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(9.4)<a class="headerlink" href="#equation-eq-apdb" title="Permalink to this equation">#</a></span>\[
     A p = d + b
 \]</div>
-<p>Here <span class="math notranslate nohighlight">\(A\)</span> is the matrix on the left side of equation <a class="reference internal" href="#equation-eq-pvpieq">(8.3)</a>, while</p>
+<p>Here <span class="math notranslate nohighlight">\(A\)</span> is the matrix on the left side of equation <a class="reference internal" href="#equation-eq-pvpieq">(9.3)</a>, while</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
     p = 
@@ -347,16 +372,17 @@ recover the equations in <a class="reference internal" href="#equation-eq-euler-
         p^*_{T+1}
     \end{bmatrix}
 \end{split}\]</div>
-<p>The solution for prices is given by</p>
+<p>The solution for the vector of  prices is</p>
 <div class="math notranslate nohighlight" id="equation-eq-apdb-sol">
-<span class="eqno">(8.5)<a class="headerlink" href="#equation-eq-apdb-sol" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(9.5)<a class="headerlink" href="#equation-eq-apdb-sol" title="Permalink to this equation">#</a></span>\[
     p = A^{-1}(d + b)
 \]</div>
-<p>Here is a small example, where the dividend stream is given by</p>
+<p>For example, suppose that  the dividend stream is</p>
 <div class="math notranslate nohighlight">
 \[
     d_{t+1} = 1.05 d_t, \quad t = 0, 1, \ldots , T-1.
 \]</div>
+<p>Let’s write Python code to compute and plot the dividend stream.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">T</span> <span class="o">=</span> <span class="mi">6</span>
@@ -378,6 +404,7 @@ recover the equations in <a class="reference internal" href="#equation-eq-euler-
 <a class="reference internal image-reference" href="_images/8e65472284d5233fe323546d143c84c6824a6a082e4a4c7976ef0a151ae4c8dc.png"><img alt="_images/8e65472284d5233fe323546d143c84c6824a6a082e4a4c7976ef0a151ae4c8dc.png" src="_images/8e65472284d5233fe323546d143c84c6824a6a082e4a4c7976ef0a151ae4c8dc.png" style="width: 80%;" /></a>
 </div>
 </div>
+<p>Now let’s compute and plot the asset price.</p>
 <p>We set <span class="math notranslate nohighlight">\(\delta\)</span> and <span class="math notranslate nohighlight">\(p_{T+1}^*\)</span> to</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -420,7 +447,7 @@ recover the equations in <a class="reference internal" href="#equation-eq-euler-
 </div>
 </div>
 </div>
-<p>Now let’s solve for prices using <a class="reference internal" href="#equation-eq-apdb-sol">(8.5)</a>.</p>
+<p>Now let’s solve for prices using <a class="reference internal" href="#equation-eq-apdb-sol">(9.5)</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
@@ -438,7 +465,7 @@ recover the equations in <a class="reference internal" href="#equation-eq-euler-
 <a class="reference internal image-reference" href="_images/6c7b390075ebace34a1c41ffdc4041ceff1ba18f05aa0fda5152da8ad9e5ca44.png"><img alt="_images/6c7b390075ebace34a1c41ffdc4041ceff1ba18f05aa0fda5152da8ad9e5ca44.png" src="_images/6c7b390075ebace34a1c41ffdc4041ceff1ba18f05aa0fda5152da8ad9e5ca44.png" style="width: 80%;" /></a>
 </div>
 </div>
-<p>We can also consider a cyclically growing dividend sequence, such as</p>
+<p>Now let’s consider  a cyclically growing dividend sequence:</p>
 <div class="math notranslate nohighlight">
 \[
     d_{t+1} = 1.01 d_t + 0.1 \sin t, \quad t = 0, 1, \ldots , T-1.
@@ -466,7 +493,7 @@ recover the equations in <a class="reference internal" href="#equation-eq-euler-
 </div>
 <div class="exercise admonition" id="pv_ex_cyc">
 
-<p class="admonition-title"><span class="caption-number">Exercise 8.2 </span></p>
+<p class="admonition-title"><span class="caption-number">Exercise 9.2 </span></p>
 <section id="exercise-content">
 <p>Compute the corresponding asset price sequence when <span class="math notranslate nohighlight">\(p^*_{T+1} = 0\)</span> and <span class="math notranslate nohighlight">\(\delta
 = 0.98\)</span>.</p>
@@ -474,9 +501,9 @@ recover the equations in <a class="reference internal" href="#equation-eq-euler-
 </div>
 <div class="solution dropdown admonition" id="pv-solution-2">
 
-<p class="admonition-title">Solution to<a class="reference internal" href="#pv_ex_cyc"> Exercise 8.2</a></p>
+<p class="admonition-title">Solution to<a class="reference internal" href="#pv_ex_cyc"> Exercise 9.2</a></p>
 <section id="solution-content">
-<p>We proceed as above after modifying parameters and <span class="math notranslate nohighlight">\(A\)</span>.</p>
+<p>We proceed as above after modifying parameters and consequently the matrix <span class="math notranslate nohighlight">\(A\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">δ</span> <span class="o">=</span> <span class="mf">0.98</span>
@@ -510,10 +537,11 @@ eliminates the cycles.</p>
 </div>
 </section>
 <section id="analytical-expressions">
-<h2><span class="section-number">8.3. </span>Analytical expressions<a class="headerlink" href="#analytical-expressions" title="Permalink to this heading">#</a></h2>
-<p>It can be verified that the  inverse of the matrix <span class="math notranslate nohighlight">\(A\)</span> in <a class="reference internal" href="#equation-eq-pvpieq">(8.3)</a> is</p>
+<h2><span class="section-number">9.4. </span>Analytical expressions<a class="headerlink" href="#analytical-expressions" title="Permalink to this heading">#</a></h2>
+<p>By the <a class="reference external" href="https://en.wikipedia.org/wiki/Invertible_matrix">inverse matrix theorem</a>, a matrix <span class="math notranslate nohighlight">\(B\)</span> is the inverse of <span class="math notranslate nohighlight">\(A\)</span> whenever <span class="math notranslate nohighlight">\(A B\)</span> is the identity.</p>
+<p>It can be verified that the  inverse of the matrix <span class="math notranslate nohighlight">\(A\)</span> in <a class="reference internal" href="#equation-eq-pvpieq">(9.3)</a> is</p>
 <div class="math notranslate nohighlight" id="equation-eq-ainv">
-<span class="eqno">(8.6)<a class="headerlink" href="#equation-eq-ainv" title="Permalink to this equation">#</a></span>\[ A^{-1} = 
+<span class="eqno">(9.6)<a class="headerlink" href="#equation-eq-ainv" title="Permalink to this equation">#</a></span>\[ A^{-1} = 
     \begin{bmatrix}
         1 &amp; \delta &amp; \delta^2 &amp; \cdots &amp; \delta^{T-1} &amp; \delta^T \cr
         0 &amp; 1 &amp; \delta &amp; \cdots &amp; \delta^{T-2} &amp; \delta^{T-1} \cr
@@ -524,25 +552,24 @@ eliminates the cycles.</p>
 \]</div>
 <div class="exercise admonition" id="pv_ex_2">
 
-<p class="admonition-title"><span class="caption-number">Exercise 8.3 </span></p>
+<p class="admonition-title"><span class="caption-number">Exercise 9.3 </span></p>
 <section id="exercise-content">
 <p>Check this by showing that <span class="math notranslate nohighlight">\(A A^{-1}\)</span> is equal to the identity matrix.</p>
-<p>(By the <a class="reference external" href="https://en.wikipedia.org/wiki/Invertible_matrix">inverse matrix theorem</a>, a matrix <span class="math notranslate nohighlight">\(B\)</span> is the inverse of <span class="math notranslate nohighlight">\(A\)</span> whenever <span class="math notranslate nohighlight">\(A B\)</span> is the identity.)</p>
 </section>
 </div>
-<p>If we use the expression <a class="reference internal" href="#equation-eq-ainv">(8.6)</a> in <a class="reference internal" href="#equation-eq-apdb-sol">(8.5)</a> and perform the indicated matrix multiplication, we shall find  that</p>
+<p>If we use the expression <a class="reference internal" href="#equation-eq-ainv">(9.6)</a> in <a class="reference internal" href="#equation-eq-apdb-sol">(9.5)</a> and perform the indicated matrix multiplication, we shall find  that</p>
 <div class="math notranslate nohighlight" id="equation-eq-ptpveq">
-<span class="eqno">(8.7)<a class="headerlink" href="#equation-eq-ptpveq" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(9.7)<a class="headerlink" href="#equation-eq-ptpveq" title="Permalink to this equation">#</a></span>\[
     p_t =  \sum_{s=t}^T \delta^{s-t} d_s +  \delta^{T+1-t} p_{T+1}^*
 \]</div>
-<p>Pricing formula <a class="reference internal" href="#equation-eq-ptpveq">(8.7)</a> asserts that  two components sum to the asset price
+<p>Pricing formula <a class="reference internal" href="#equation-eq-ptpveq">(9.7)</a> asserts that  two components sum to the asset price
 <span class="math notranslate nohighlight">\(p_t\)</span>:</p>
 <ul class="simple">
-<li><p>a <strong>fundamental component</strong> <span class="math notranslate nohighlight">\(\sum_{s=t}^T \delta^{s-t} d_s\)</span> that equals the discounted present value of prospective dividends</p></li>
+<li><p>a <strong>fundamental component</strong> <span class="math notranslate nohighlight">\(\sum_{s=t}^T \delta^{s-t} d_s\)</span> that equals the <strong>discounted present value</strong> of prospective dividends</p></li>
 <li><p>a <strong>bubble component</strong> <span class="math notranslate nohighlight">\(\delta^{T+1-t} p_{T+1}^*\)</span></p></li>
 </ul>
 <p>The fundamental component is pinned down by the discount factor <span class="math notranslate nohighlight">\(\delta\)</span> and the
-“fundamentals” of the asset (in this case, the dividends).</p>
+payout of the asset (in this case,  dividends).</p>
 <p>The bubble component is the part of the price that is not pinned down by
 fundamentals.</p>
 <p>It is sometimes convenient to rewrite the bubble component as</p>
@@ -557,8 +584,8 @@ c \equiv \delta^{T+1}p_{T+1}^*
 \]</div>
 </section>
 <section id="more-about-bubbles">
-<h2><span class="section-number">8.4. </span>More about bubbles<a class="headerlink" href="#more-about-bubbles" title="Permalink to this heading">#</a></h2>
-<p>For a few moments, let’s focus on  the special case of an asset that  will never pay dividends, in which case</p>
+<h2><span class="section-number">9.5. </span>More about bubbles<a class="headerlink" href="#more-about-bubbles" title="Permalink to this heading">#</a></h2>
+<p>For a few moments, let’s focus on  the special case of an asset that   never pays dividends, in which case</p>
 <div class="math notranslate nohighlight">
 \[
 \begin{bmatrix}  
@@ -568,10 +595,10 @@ d_0 \cr d_1 \cr d_2 \cr \vdots \cr d_{T-1} \cr d_T
 0 \cr 0 \cr 0 \cr \vdots \cr 0 \cr 0
 \end{bmatrix}
 \]</div>
-<p>In this case  system <a class="reference internal" href="#equation-eq-euler1">(8.1)</a> of our <span class="math notranslate nohighlight">\(T+1\)</span> asset pricing  equations takes the
+<p>In this case  system <a class="reference internal" href="#equation-eq-euler1">(9.1)</a> of our <span class="math notranslate nohighlight">\(T+1\)</span> asset pricing  equations takes the
 form of the single matrix equation</p>
 <div class="math notranslate nohighlight" id="equation-eq-pieq2">
-<span class="eqno">(8.8)<a class="headerlink" href="#equation-eq-pieq2" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(9.8)<a class="headerlink" href="#equation-eq-pieq2" title="Permalink to this equation">#</a></span>\[
 \begin{bmatrix} 1 &amp; -\delta &amp; 0 &amp; 0 &amp; \cdots &amp; 0 &amp; 0 \cr
                 0 &amp; 1 &amp; -\delta &amp; 0 &amp; \cdots &amp; 0 &amp; 0 \cr
                 0 &amp; 0 &amp; 1 &amp; -\delta &amp; \cdots &amp; 0 &amp; 0 \cr
@@ -586,42 +613,42 @@ form of the single matrix equation</p>
 \]</div>
 <p>Evidently, if <span class="math notranslate nohighlight">\(p_{T+1}^* = 0\)</span>, a price vector <span class="math notranslate nohighlight">\(p\)</span> of all entries zero
 solves this equation and the only the <strong>fundamental</strong> component of our pricing
-formula <a class="reference internal" href="#equation-eq-ptpveq">(8.7)</a> is present.</p>
+formula <a class="reference internal" href="#equation-eq-ptpveq">(9.7)</a> is present.</p>
 <p>But let’s activate the <strong>bubble</strong>  component by setting</p>
 <div class="math notranslate nohighlight" id="equation-eq-eqbubbleterm">
-<span class="eqno">(8.9)<a class="headerlink" href="#equation-eq-eqbubbleterm" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(9.9)<a class="headerlink" href="#equation-eq-eqbubbleterm" title="Permalink to this equation">#</a></span>\[
 p_{T+1}^* = c \delta^{-(T+1)} 
 \]</div>
 <p>for some positive constant <span class="math notranslate nohighlight">\(c\)</span>.</p>
-<p>In this case, it can be verified that when we multiply both sides of <a class="reference internal" href="#equation-eq-pieq2">(8.8)</a> by
-the matrix <span class="math notranslate nohighlight">\(A^{-1}\)</span> presented in equation <a class="reference internal" href="#equation-eq-ainv">(8.6)</a>, we shall find that</p>
+<p>In this case,  when we multiply both sides of <a class="reference internal" href="#equation-eq-pieq2">(9.8)</a> by
+the matrix <span class="math notranslate nohighlight">\(A^{-1}\)</span> presented in equation <a class="reference internal" href="#equation-eq-ainv">(9.6)</a>, we
+find that</p>
 <div class="math notranslate nohighlight" id="equation-eq-bubble">
-<span class="eqno">(8.10)<a class="headerlink" href="#equation-eq-bubble" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(9.10)<a class="headerlink" href="#equation-eq-bubble" title="Permalink to this equation">#</a></span>\[
 p_t = c \delta^{-t}
 \]</div>
 </section>
 <section id="gross-rate-of-return">
-<h2><span class="section-number">8.5. </span>Gross rate of return<a class="headerlink" href="#gross-rate-of-return" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">9.6. </span>Gross rate of return<a class="headerlink" href="#gross-rate-of-return" title="Permalink to this heading">#</a></h2>
 <p>Define the gross rate of return on holding the asset from period <span class="math notranslate nohighlight">\(t\)</span> to period <span class="math notranslate nohighlight">\(t+1\)</span>
 as</p>
 <div class="math notranslate nohighlight" id="equation-eq-rateofreturn">
-<span class="eqno">(8.11)<a class="headerlink" href="#equation-eq-rateofreturn" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(9.11)<a class="headerlink" href="#equation-eq-rateofreturn" title="Permalink to this equation">#</a></span>\[
 R_t = \frac{p_{t+1}}{p_t}
 \]</div>
-<p>Equation <a class="reference internal" href="#equation-eq-bubble">(8.10)</a> confirms that an asset whose  sole source of value is a bubble
-that earns a  gross rate of return</p>
+<p>Substituting equation <a class="reference internal" href="#equation-eq-bubble">(9.10)</a> into equation <a class="reference internal" href="#equation-eq-rateofreturn">(9.11)</a> confirms that an asset whose  sole source of value is a bubble  earns a  gross rate of return</p>
 <div class="math notranslate nohighlight">
 \[
-R_t = \delta^{-1} &gt; 1 .
+R_t = \delta^{-1} &gt; 1 , t = 0, 1, \ldots, T
 \]</div>
 </section>
 <section id="exercises">
-<h2><span class="section-number">8.6. </span>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">9.7. </span>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h2>
 <div class="exercise admonition" id="pv_ex_a">
 
-<p class="admonition-title"><span class="caption-number">Exercise 8.4 </span></p>
+<p class="admonition-title"><span class="caption-number">Exercise 9.4 </span></p>
 <section id="exercise-content">
-<p>Give analytical expressions for the asset price <span class="math notranslate nohighlight">\(p_t\)</span> under the
+<p>Give analytical expressions for an asset price <span class="math notranslate nohighlight">\(p_t\)</span> under the
 following settings for <span class="math notranslate nohighlight">\(d\)</span> and <span class="math notranslate nohighlight">\(p_{T+1}^*\)</span>:</p>
 <ol class="arabic simple">
 <li><p><span class="math notranslate nohighlight">\(p_{T+1}^* = 0, d_t = g^t d_0\)</span> (a modified version of the Gordon growth formula)</p></li>
@@ -724,18 +751,23 @@ following settings for <span class="math notranslate nohighlight">\(d\)</span> a
 </p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
+  <a class="reference internal" href="complex_and_trig.html">
+   5. Complex Numbers and Trigonometry
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="linear_equations.html">
-   5. Linear Equations and Matrix Algebra
+   6. Linear Equations and Matrix Algebra
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="eigen_I.html">
-   6. Eigenvalues and Eigenvectors
+   7. Eigenvalues and Eigenvectors
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="intro_supply_demand.html">
-   7. Introduction to Supply and Demand
+   8. Introduction to Supply and Demand
   </a>
  </li>
 </ul>
@@ -747,37 +779,37 @@ following settings for <span class="math notranslate nohighlight">\(d\)</span> a
 <ul class="current nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1 current active active">
   <a class="current reference internal" href="#">
-   8. Present Values
+   9. Present Values
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cons_smooth.html">
-   9. Consumption Smoothing
+   10. Consumption Smoothing
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="equalizing_difference.html">
-   10. Equalizing Difference Model
+   11. Equalizing Difference Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="inflation_history.html">
-   11. Price Level Histories
+   12. Price Level Histories
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cagan_ree.html">
-   12. A Monetarist Theory of  Price Levels
+   13. A Monetarist Theory of  Price Levels
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cagan_adaptive.html">
-   13. A Monetarist Theory of Price Levels with Adaptive Expectations
+   14. A Monetarist Theory of Price Levels with Adaptive Expectations
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="geom_series.html">
-   14. Geometric Series for Elementary Economics
+   15. Geometric Series for Elementary Economics
   </a>
  </li>
 </ul>
@@ -789,27 +821,27 @@ following settings for <span class="math notranslate nohighlight">\(d\)</span> a
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="prob_dist.html">
-   15. Distributions and Probabilities
+   16. Distributions and Probabilities
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="lln_clt.html">
-   16. LLN and CLT
+   17. LLN and CLT
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="monte_carlo.html">
-   17. Monte Carlo and Option Pricing
+   18. Monte Carlo and Option Pricing
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="heavy_tails.html">
-   18. Heavy-Tailed Distributions
+   19. Heavy-Tailed Distributions
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="schelling.html">
-   19. Racial Segregation
+   20. Racial Segregation
   </a>
  </li>
 </ul>
@@ -821,27 +853,27 @@ following settings for <span class="math notranslate nohighlight">\(d\)</span> a
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="solow.html">
-   20. The Solow-Swan Growth Model
+   21. The Solow-Swan Growth Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="scalar_dynam.html">
-   21. Dynamics in One Dimension
+   22. Dynamics in One Dimension
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cobweb.html">
-   22. The Cobweb Model
+   23. The Cobweb Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="olg.html">
-   23. The Overlapping Generations Model
+   24. The Overlapping Generations Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="commod_price.html">
-   24. Commodity Prices
+   25. Commodity Prices
   </a>
  </li>
 </ul>
@@ -853,22 +885,22 @@ following settings for <span class="math notranslate nohighlight">\(d\)</span> a
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="ar1_processes.html">
-   25. AR1 Processes
+   26. AR1 Processes
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="markov_chains_I.html">
-   26. Markov Chains: Basic Concepts
+   27. Markov Chains: Basic Concepts
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="markov_chains_II.html">
-   27. Markov Chains: Irreducibility and Ergodicity
+   28. Markov Chains: Irreducibility and Ergodicity
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="time_series_with_matrices.html">
-   28. Univariate Time Series with Matrix Algebra
+   29. Univariate Time Series with Matrix Algebra
   </a>
  </li>
 </ul>
@@ -880,12 +912,12 @@ following settings for <span class="math notranslate nohighlight">\(d\)</span> a
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="lp_intro.html">
-   29. Linear Programming
+   30. Linear Programming
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="short_path.html">
-   30. Shortest Paths
+   31. Shortest Paths
   </a>
  </li>
 </ul>
@@ -897,22 +929,22 @@ following settings for <span class="math notranslate nohighlight">\(d\)</span> a
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="eigen_II.html">
-   31. The Perron-Frobenius Theorem
+   32. The Perron-Frobenius Theorem
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="input_output.html">
-   32. Input-Output Models
+   33. Input-Output Models
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="lake_model.html">
-   33. A Lake Model of Employment
+   34. A Lake Model of Employment
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="networks.html">
-   34. Networks
+   35. Networks
   </a>
  </li>
 </ul>
@@ -924,12 +956,12 @@ following settings for <span class="math notranslate nohighlight">\(d\)</span> a
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="supply_demand_multiple_goods.html">
-   35. Supply and Demand with Many Goods
+   36. Supply and Demand with Many Goods
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="supply_demand_heterogeneity.html">
-   36. Market Equilibrium with Heterogeneity
+   37. Market Equilibrium with Heterogeneity
   </a>
  </li>
 </ul>
@@ -941,12 +973,12 @@ following settings for <span class="math notranslate nohighlight">\(d\)</span> a
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="simple_linear_regression.html">
-   37. Simple Linear Regression Model
+   38. Simple Linear Regression Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="mle.html">
-   38. Maximum Likelihood Estimation
+   39. Maximum Likelihood Estimation
   </a>
  </li>
 </ul>
@@ -958,17 +990,17 @@ following settings for <span class="math notranslate nohighlight">\(d\)</span> a
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="troubleshooting.html">
-   39. Troubleshooting
+   40. Troubleshooting
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="zreferences.html">
-   40. References
+   41. References
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="status.html">
-   41. Execution Statistics
+   42. Execution Statistics
   </a>
  </li>
 </ul>

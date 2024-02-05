@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>20. The Solow-Swan Growth Model &#8212; A First Course in Quantitative Economics with Python</title>
+    <title>21. The Solow-Swan Growth Model &#8212; A First Course in Quantitative Economics with Python</title>
     <script src="https://unpkg.com/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://unpkg.com/tippy.js@6.3.1/dist/tippy-bundle.umd.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
@@ -122,8 +122,8 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="21. Dynamics in One Dimension" href="scalar_dynam.html" />
-    <link rel="prev" title="19. Racial Segregation" href="schelling.html" />
+    <link rel="next" title="22. Dynamics in One Dimension" href="scalar_dynam.html" />
+    <link rel="prev" title="20. Racial Segregation" href="schelling.html" />
 
 <!-- Normal Meta Tags -->
 <meta name="author" context="Thomas J. Sargent &amp; John Stachurski" />
@@ -171,10 +171,10 @@ const thebe_selector_output = ".output, .cell_output"
 
                         <nav id="bd-toc-nav" class="qe-page__toc-nav">
                             <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-model">20.1. The model</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-graphical-perspective">20.2. A graphical perspective</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#growth-in-continuous-time">20.3. Growth in continuous time</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">20.4. Exercises</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-model">21.1. The model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-graphical-perspective">21.2. A graphical perspective</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#growth-in-continuous-time">21.3. Growth in continuous time</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">21.4. Exercises</a></li>
 </ul>
                             <p class="logo">
                                 
@@ -234,7 +234,7 @@ const thebe_selector_output = ".output, .cell_output"
                     <div>
                         
   <section class="tex2jax_ignore mathjax_ignore" id="the-solow-swan-growth-model">
-<span id="solow"></span><h1><span class="section-number">20. </span>The Solow-Swan Growth Model<a class="headerlink" href="#the-solow-swan-growth-model" title="Permalink to this heading">#</a></h1>
+<span id="solow"></span><h1><span class="section-number">21. </span>The Solow-Swan Growth Model<a class="headerlink" href="#the-solow-swan-growth-model" title="Permalink to this heading">#</a></h1>
 <p>In this lecture we review a famous model due
 to <a class="reference external" href="https://en.wikipedia.org/wiki/Robert_Solow">Robert Solow (1925–2014)</a> and <a class="reference external" href="https://en.wikipedia.org/wiki/Trevor_Swan">Trevor Swan (1918–1989)</a>.</p>
 <p>The model is used to study growth over the long run.</p>
@@ -249,7 +249,7 @@ to <a class="reference external" href="https://en.wikipedia.org/wiki/Robert_Solo
 </div>
 </div>
 <section id="the-model">
-<h2><span class="section-number">20.1. </span>The model<a class="headerlink" href="#the-model" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">21.1. </span>The model<a class="headerlink" href="#the-model" title="Permalink to this heading">#</a></h2>
 <p>In a Solow–Swan economy, agents save a fixed fraction of their current
 incomes.</p>
 <p>Savings sustain or increase the stock of capital.</p>
@@ -295,20 +295,20 @@ becomes <span class="math notranslate nohighlight">\(1-\delta\)</span> units tom
 \]</div>
 <p>With  <span class="math notranslate nohighlight">\(f(k) := F(k, 1)\)</span>, the final expression for capital dynamics is</p>
 <div class="math notranslate nohighlight" id="equation-solow">
-<span class="eqno">(20.1)<a class="headerlink" href="#equation-solow" title="Permalink to this equation">#</a></span>\[    k_{t+1} = g(k_t)
+<span class="eqno">(21.1)<a class="headerlink" href="#equation-solow" title="Permalink to this equation">#</a></span>\[    k_{t+1} = g(k_t)
     \text{ where } g(k) := s f(k) + (1 - \delta) k\]</div>
 <p>Our aim is to learn about the evolution of <span class="math notranslate nohighlight">\(k_t\)</span> over time,
 given an exogenous initial capital stock  <span class="math notranslate nohighlight">\(k_0\)</span>.</p>
 </section>
 <section id="a-graphical-perspective">
-<h2><span class="section-number">20.2. </span>A graphical perspective<a class="headerlink" href="#a-graphical-perspective" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">21.2. </span>A graphical perspective<a class="headerlink" href="#a-graphical-perspective" title="Permalink to this heading">#</a></h2>
 <p>To understand the dynamics of the sequence <span class="math notranslate nohighlight">\((k_t)_{t \geq 0}\)</span> we use a 45
 degree diagram.</p>
 <p>To do so, we first
 need to specify the functional form for <span class="math notranslate nohighlight">\(f\)</span> and assign values to the parameters.</p>
 <p>We choose the Cobb–Douglas specification <span class="math notranslate nohighlight">\(f(k) = A k^\alpha\)</span> and set <span class="math notranslate nohighlight">\(A=2.0\)</span>,
 <span class="math notranslate nohighlight">\(\alpha=0.3\)</span>, <span class="math notranslate nohighlight">\(s=0.3\)</span> and <span class="math notranslate nohighlight">\(\delta=0.4\)</span>.</p>
-<p>The function <span class="math notranslate nohighlight">\(g\)</span> from <a class="reference internal" href="#equation-solow">(20.1)</a> is then plotted, along with the 45
+<p>The function <span class="math notranslate nohighlight">\(g\)</span> from <a class="reference internal" href="#equation-solow">(21.1)</a> is then plotted, along with the 45
 degree line.</p>
 <p>Let’s define the constants.</p>
 <div class="cell docutils container">
@@ -393,7 +393,7 @@ degree line.</p>
 there is a unique steady state in <span class="math notranslate nohighlight">\((0, \infty)\)</span>.</p>
 <p>It solves <span class="math notranslate nohighlight">\(k = s Ak^{\alpha} + (1-\delta)k\)</span> and hence is given by</p>
 <div class="math notranslate nohighlight" id="equation-kstarss">
-<span class="eqno">(20.2)<a class="headerlink" href="#equation-kstarss" title="Permalink to this equation">#</a></span>\[    k^* := \left( \frac{s A}{\delta} \right)^{1/(1 - \alpha)}\]</div>
+<span class="eqno">(21.2)<a class="headerlink" href="#equation-kstarss" title="Permalink to this equation">#</a></span>\[    k^* := \left( \frac{s A}{\delta} \right)^{1/(1 - \alpha)}\]</div>
 <p>If initial capital is below <span class="math notranslate nohighlight">\(k^*\)</span>, then capital increases over time.</p>
 <p>If initial capital is above this level, then the reverse is true.</p>
 <p>Let’s plot the 45 degree diagram to show the <span class="math notranslate nohighlight">\(k^*\)</span> in the plot</p>
@@ -470,7 +470,7 @@ three distinct initial conditions, under the parameterization listed above.</p>
 <p>As expected, the time paths in the figure both converge to this value.</p>
 </section>
 <section id="growth-in-continuous-time">
-<h2><span class="section-number">20.3. </span>Growth in continuous time<a class="headerlink" href="#growth-in-continuous-time" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">21.3. </span>Growth in continuous time<a class="headerlink" href="#growth-in-continuous-time" title="Permalink to this heading">#</a></h2>
 <p>In this section we investigate a continuous time version of the Solow–Swan
 growth model.</p>
 <p>We will see how the smoothing provided by continuous time can
@@ -486,18 +486,18 @@ given by <span class="math notranslate nohighlight">\(k_{t+1} = s f(k_t) + (1 - 
 \]</div>
 <p>Taking the time step to zero gives the continuous time limit</p>
 <div class="math notranslate nohighlight" id="equation-solowc">
-<span class="eqno">(20.3)<a class="headerlink" href="#equation-solowc" title="Permalink to this equation">#</a></span>\[    k'_t = s f(k_t) - \delta k_t
+<span class="eqno">(21.3)<a class="headerlink" href="#equation-solowc" title="Permalink to this equation">#</a></span>\[    k'_t = s f(k_t) - \delta k_t
     \qquad \text{with} \qquad
     k'_t := \frac{d}{dt} k_t\]</div>
 <p>Our aim is to learn about the evolution of <span class="math notranslate nohighlight">\(k_t\)</span> over time,
 given initial stock  <span class="math notranslate nohighlight">\(k_0\)</span>.</p>
-<p>A <strong>steady state</strong> for <a class="reference internal" href="#equation-solowc">(20.3)</a> is a value <span class="math notranslate nohighlight">\(k^*\)</span>
+<p>A <strong>steady state</strong> for <a class="reference internal" href="#equation-solowc">(21.3)</a> is a value <span class="math notranslate nohighlight">\(k^*\)</span>
 at which capital is unchanging, meaning <span class="math notranslate nohighlight">\(k'_t = 0\)</span> or, equivalently,
 <span class="math notranslate nohighlight">\(s f(k^*) = \delta k^*\)</span>.</p>
 <p>We assume
 <span class="math notranslate nohighlight">\(f(k) = Ak^\alpha\)</span>, so <span class="math notranslate nohighlight">\(k^*\)</span> solves
 <span class="math notranslate nohighlight">\(s A k^\alpha = \delta k\)</span>.</p>
-<p>The solution is the same as the discrete time case—see <a class="reference internal" href="#equation-kstarss">(20.2)</a>.</p>
+<p>The solution is the same as the discrete time case—see <a class="reference internal" href="#equation-kstarss">(21.2)</a>.</p>
 <p>The dynamics are represented in
 the next figure, maintaining the parameterization we used
 above.</p>
@@ -583,7 +583,7 @@ k'_t\)</span>.</p>
 <p>Substituting into <span class="math notranslate nohighlight">\(k'_t = sAk_t^\alpha - \delta k_t\)</span> leads to the
 linear differential equation</p>
 <div class="math notranslate nohighlight" id="equation-xsolow">
-<span class="eqno">(20.4)<a class="headerlink" href="#equation-xsolow" title="Permalink to this equation">#</a></span>\[    x'_t = (1-\alpha) (sA - \delta x_t)\]</div>
+<span class="eqno">(21.4)<a class="headerlink" href="#equation-xsolow" title="Permalink to this equation">#</a></span>\[    x'_t = (1-\alpha) (sA - \delta x_t)\]</div>
 <p>This equation has the exact solution</p>
 <div class="math notranslate nohighlight">
 \[
@@ -594,11 +594,11 @@ linear differential equation</p>
       \mathrm{e}^{-\delta (1-\alpha) t} +
     \frac{sA}{\delta}
 \]</div>
-<p>(You can confirm that this function <span class="math notranslate nohighlight">\(x_t\)</span> satisfies <a class="reference internal" href="#equation-xsolow">(20.4)</a> by
+<p>(You can confirm that this function <span class="math notranslate nohighlight">\(x_t\)</span> satisfies <a class="reference internal" href="#equation-xsolow">(21.4)</a> by
 differentiating it with respect to <span class="math notranslate nohighlight">\(t\)</span>.)</p>
 <p>Converting back to <span class="math notranslate nohighlight">\(k_t\)</span> yields</p>
 <div class="math notranslate nohighlight" id="equation-ssivs">
-<span class="eqno">(20.5)<a class="headerlink" href="#equation-ssivs" title="Permalink to this equation">#</a></span>\[    k_t
+<span class="eqno">(21.5)<a class="headerlink" href="#equation-ssivs" title="Permalink to this equation">#</a></span>\[    k_t
     =
     \left[
         \left(
@@ -612,10 +612,10 @@ k^*\)</span> as <span class="math notranslate nohighlight">\(t \to \infty\)</spa
 <p>Thus, global stability holds.</p>
 </section>
 <section id="exercises">
-<h2><span class="section-number">20.4. </span>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">21.4. </span>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h2>
 <div class="exercise admonition" id="solow_ex1">
 
-<p class="admonition-title"><span class="caption-number">Exercise 20.1 </span></p>
+<p class="admonition-title"><span class="caption-number">Exercise 21.1 </span></p>
 <section id="exercise-content">
 <p>Plot per capita consumption <span class="math notranslate nohighlight">\(c\)</span> at the steady state, as a function of the savings rate <span class="math notranslate nohighlight">\(s\)</span>, where <span class="math notranslate nohighlight">\(0 \leq s \leq 1\)</span>.</p>
 <p>Use the Cobb–Douglas specification <span class="math notranslate nohighlight">\(f(k) = A k^\alpha\)</span>.</p>
@@ -625,7 +625,7 @@ k^*\)</span> as <span class="math notranslate nohighlight">\(t \to \infty\)</spa
 </div>
 <div class="solution dropdown admonition" id="solow-solution-1">
 
-<p class="admonition-title">Solution to<a class="reference internal" href="#solow_ex1"> Exercise 20.1</a></p>
+<p class="admonition-title">Solution to<a class="reference internal" href="#solow_ex1"> Exercise 21.1</a></p>
 <section id="solution-content">
 <p>Steady state consumption at savings rate <span class="math notranslate nohighlight">\(s\)</span> is given by</p>
 <div class="math notranslate nohighlight">
@@ -753,7 +753,7 @@ We will use <span class="math notranslate nohighlight">\(-c^*(s)\)</span> since 
 </div>
 <div class="exercise admonition" id="solow_ex2">
 
-<p class="admonition-title"><span class="caption-number">Exercise 20.2 </span></p>
+<p class="admonition-title"><span class="caption-number">Exercise 21.2 </span></p>
 <section id="exercise-content">
 <p><strong>Stochastic Productivity</strong></p>
 <p>To bring the Solow–Swan model closer to data, we need to think about handling
@@ -766,7 +766,7 @@ k^\alpha_t\)</span> converges to a constant <span class="math notranslate nohigh
 stochastic sequence <span class="math notranslate nohighlight">\((A_t)_{t \geq 1}\)</span>.</p>
 <p>Dynamics are now</p>
 <div class="math notranslate nohighlight" id="equation-solowran">
-<span class="eqno">(20.6)<a class="headerlink" href="#equation-solowran" title="Permalink to this equation">#</a></span>\[    k_{t+1} = s A_{t+1} f(k_t) + (1 - \delta) k_t\]</div>
+<span class="eqno">(21.6)<a class="headerlink" href="#equation-solowran" title="Permalink to this equation">#</a></span>\[    k_{t+1} = s A_{t+1} f(k_t) + (1 - \delta) k_t\]</div>
 <p>We suppose <span class="math notranslate nohighlight">\(f\)</span> is Cobb–Douglas and <span class="math notranslate nohighlight">\((A_t)\)</span> is IID and lognormal.</p>
 <p>Now the long run convergence obtained in the deterministic case breaks
 down, since the system is hit with new shocks at each point in time.</p>
@@ -776,7 +776,7 @@ down, since the system is hit with new shocks at each point in time.</p>
 </div>
 <div class="solution dropdown admonition" id="solow-solution-3">
 
-<p class="admonition-title">Solution to<a class="reference internal" href="#solow_ex2"> Exercise 20.2</a></p>
+<p class="admonition-title">Solution to<a class="reference internal" href="#solow_ex2"> Exercise 21.2</a></p>
 <section id="solution-content">
 <p>Let’s define the constants for lognormal distribution and initial values used for simulation</p>
 <div class="cell docutils container">
@@ -837,7 +837,7 @@ down, since the system is hit with new shocks at each point in time.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/f0d5daee0f3e7686487e6c12ff236911010278c1739d6572ac29180436e8dcd3.png"><img alt="_images/f0d5daee0f3e7686487e6c12ff236911010278c1739d6572ac29180436e8dcd3.png" src="_images/f0d5daee0f3e7686487e6c12ff236911010278c1739d6572ac29180436e8dcd3.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/97a4bfbb8317484606075ece27359a475597014ee90a0c81a1b0eb32e10eda22.png"><img alt="_images/97a4bfbb8317484606075ece27359a475597014ee90a0c81a1b0eb32e10eda22.png" src="_images/97a4bfbb8317484606075ece27359a475597014ee90a0c81a1b0eb32e10eda22.png" style="width: 80%;" /></a>
 </div>
 </div>
 </section>
@@ -935,18 +935,23 @@ down, since the system is hit with new shocks at each point in time.</p>
 </p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
+  <a class="reference internal" href="complex_and_trig.html">
+   5. Complex Numbers and Trigonometry
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="linear_equations.html">
-   5. Linear Equations and Matrix Algebra
+   6. Linear Equations and Matrix Algebra
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="eigen_I.html">
-   6. Eigenvalues and Eigenvectors
+   7. Eigenvalues and Eigenvectors
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="intro_supply_demand.html">
-   7. Introduction to Supply and Demand
+   8. Introduction to Supply and Demand
   </a>
  </li>
 </ul>
@@ -958,37 +963,37 @@ down, since the system is hit with new shocks at each point in time.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="pv.html">
-   8. Present Values
+   9. Present Values
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cons_smooth.html">
-   9. Consumption Smoothing
+   10. Consumption Smoothing
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="equalizing_difference.html">
-   10. Equalizing Difference Model
+   11. Equalizing Difference Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="inflation_history.html">
-   11. Price Level Histories
+   12. Price Level Histories
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cagan_ree.html">
-   12. A Monetarist Theory of  Price Levels
+   13. A Monetarist Theory of  Price Levels
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cagan_adaptive.html">
-   13. A Monetarist Theory of Price Levels with Adaptive Expectations
+   14. A Monetarist Theory of Price Levels with Adaptive Expectations
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="geom_series.html">
-   14. Geometric Series for Elementary Economics
+   15. Geometric Series for Elementary Economics
   </a>
  </li>
 </ul>
@@ -1000,27 +1005,27 @@ down, since the system is hit with new shocks at each point in time.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="prob_dist.html">
-   15. Distributions and Probabilities
+   16. Distributions and Probabilities
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="lln_clt.html">
-   16. LLN and CLT
+   17. LLN and CLT
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="monte_carlo.html">
-   17. Monte Carlo and Option Pricing
+   18. Monte Carlo and Option Pricing
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="heavy_tails.html">
-   18. Heavy-Tailed Distributions
+   19. Heavy-Tailed Distributions
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="schelling.html">
-   19. Racial Segregation
+   20. Racial Segregation
   </a>
  </li>
 </ul>
@@ -1032,27 +1037,27 @@ down, since the system is hit with new shocks at each point in time.</p>
 <ul class="current nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1 current active active">
   <a class="current reference internal" href="#">
-   20. The Solow-Swan Growth Model
+   21. The Solow-Swan Growth Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="scalar_dynam.html">
-   21. Dynamics in One Dimension
+   22. Dynamics in One Dimension
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cobweb.html">
-   22. The Cobweb Model
+   23. The Cobweb Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="olg.html">
-   23. The Overlapping Generations Model
+   24. The Overlapping Generations Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="commod_price.html">
-   24. Commodity Prices
+   25. Commodity Prices
   </a>
  </li>
 </ul>
@@ -1064,22 +1069,22 @@ down, since the system is hit with new shocks at each point in time.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="ar1_processes.html">
-   25. AR1 Processes
+   26. AR1 Processes
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="markov_chains_I.html">
-   26. Markov Chains: Basic Concepts
+   27. Markov Chains: Basic Concepts
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="markov_chains_II.html">
-   27. Markov Chains: Irreducibility and Ergodicity
+   28. Markov Chains: Irreducibility and Ergodicity
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="time_series_with_matrices.html">
-   28. Univariate Time Series with Matrix Algebra
+   29. Univariate Time Series with Matrix Algebra
   </a>
  </li>
 </ul>
@@ -1091,12 +1096,12 @@ down, since the system is hit with new shocks at each point in time.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="lp_intro.html">
-   29. Linear Programming
+   30. Linear Programming
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="short_path.html">
-   30. Shortest Paths
+   31. Shortest Paths
   </a>
  </li>
 </ul>
@@ -1108,22 +1113,22 @@ down, since the system is hit with new shocks at each point in time.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="eigen_II.html">
-   31. The Perron-Frobenius Theorem
+   32. The Perron-Frobenius Theorem
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="input_output.html">
-   32. Input-Output Models
+   33. Input-Output Models
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="lake_model.html">
-   33. A Lake Model of Employment
+   34. A Lake Model of Employment
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="networks.html">
-   34. Networks
+   35. Networks
   </a>
  </li>
 </ul>
@@ -1135,12 +1140,12 @@ down, since the system is hit with new shocks at each point in time.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="supply_demand_multiple_goods.html">
-   35. Supply and Demand with Many Goods
+   36. Supply and Demand with Many Goods
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="supply_demand_heterogeneity.html">
-   36. Market Equilibrium with Heterogeneity
+   37. Market Equilibrium with Heterogeneity
   </a>
  </li>
 </ul>
@@ -1152,12 +1157,12 @@ down, since the system is hit with new shocks at each point in time.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="simple_linear_regression.html">
-   37. Simple Linear Regression Model
+   38. Simple Linear Regression Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="mle.html">
-   38. Maximum Likelihood Estimation
+   39. Maximum Likelihood Estimation
   </a>
  </li>
 </ul>
@@ -1169,17 +1174,17 @@ down, since the system is hit with new shocks at each point in time.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="troubleshooting.html">
-   39. Troubleshooting
+   40. Troubleshooting
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="zreferences.html">
-   40. References
+   41. References
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="status.html">
-   41. Execution Statistics
+   42. Execution Statistics
   </a>
  </li>
 </ul>
