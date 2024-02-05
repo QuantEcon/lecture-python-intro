@@ -311,7 +311,7 @@ a0 = -2     # such as "student debt"
 y_seq = np.concatenate([np.ones(46), np.zeros(20)])
 
 cs_model = creat_cs_model()
-c_seq, a_seq = compute_optimal(cs_model, a0, y_seq)
+c_seq, a_seq, h0 = compute_optimal(cs_model, a0, y_seq)
 
 print('check a_T+1=0:', 
       np.abs(a_seq[-1] - 0) <= 1e-8)
