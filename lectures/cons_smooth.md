@@ -292,7 +292,7 @@ def compute_optimal(model, a0, y_seq):
     a_seq = np.linalg.inv(A) @ b
     a_seq = np.concatenate([[a0], a_seq])
 
-    return c_seq, a_seq
+    return c_seq, a_seq, h0
 ```
 
 We use an example where the consumer inherits $a_0<0$.
