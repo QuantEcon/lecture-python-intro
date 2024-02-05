@@ -15,7 +15,7 @@ kernelspec:
 
 ## Overview
 
-In this lecture we use Python, [pandas](https://pandas.pydata.org/), and [Matplotlib](https://matplotlib.org/) to download, organize, and visualize historical data on economic growth.
+In this lecture we use Python, {doc}`pandas<pyprog:pandas>`, and {doc}`Matplotlib<pyprog:matplotlib>` to download, organize, and visualize historical data on economic growth.
 
 In addition to learning how to deploy these tools more generally, we'll use them to describe facts about economic growth experiences across many countries over several centuries.
 
@@ -23,7 +23,7 @@ Such "growth facts" are interesting for a variety of reasons.
 
 Explaining growth facts is a principal purpose of both "development economics" and "economic history".
 
-And growth facts are important inputs into historians'  studies of geopolitical forces and dynamics.
+And growth facts are important inputs into historians' studies of geopolitical forces and dynamics.
 
 
 Thus, Adam Tooze's account of the geopolitical precedents and antecedents of World War I begins by describing how the Gross Domestic Products (GDP) of European Great Powers had evolved during the 70 years preceding 1914 (see chapter 1 of {cite}`Tooze_2014`).
@@ -57,7 +57,7 @@ These graphs will portray how the "Industrial Revolution" began in Britain in th
 
 In a nutshell, this lecture records growth trajectories of various countries over long time periods. 
 
-While some countries have experienced long term rapid growth across that has lasted a hundred years, others have not. 
+While some countries have experienced long-term rapid growth across that has lasted a hundred years, others have not. 
 
 Since populations differ across countries and vary within a country over time, it will
 be interesting to describe both total GDP and GDP per capita as it evolves within a country.
@@ -77,7 +77,7 @@ from collections import namedtuple
 A project initiated by [Angus Maddison](https://en.wikipedia.org/wiki/Angus_Maddison) has collected many historical time series related to economic growth,
 some dating back to the first century.
 
-The data can be downloaded from the [Maddison Historical Statistics webpage](https://www.rug.nl/ggdc/historicaldevelopment/maddison/) by clicking on the "Latest Maddison Project Release". 
+The data can be downloaded from the [Maddison Historical Statistics](https://www.rug.nl/ggdc/historicaldevelopment/maddison/) by clicking on the "Latest Maddison Project Release". 
 
 We are going to read the data from a QuantEcon GitHub repository.
 
@@ -116,7 +116,7 @@ country_years = pd.DataFrame(country_years,
 country_years.head()
 ```
 
-Let's now reshape the original data into some convenient variables to enable quicker access to countries time series data.
+Let's now reshape the original data into some convenient variables to enable quicker access to countries' time series data.
 
 We can build a useful mapping between country codes and country names in this dataset
 
@@ -157,7 +157,7 @@ In this section we examine GDP per capita over the long run for several differen
 
 ### United Kingdom
 
-First we examine UK GDP growth
+First we examine the UK GDP growth
 
 ```{code-cell} ipython3
 ---
@@ -425,7 +425,7 @@ draw_interp_plots(gdp_pc[country].loc[1500:2000],
 
 ylim = ax.get_ylim()[1]
 
-# Create a list of data points=
+# Create a list of data points
 events = [
     Event((1651, 1651), ylim + ylim*0.15, 
           'Navigation Act (UK)\n(1651)', 
@@ -560,7 +560,7 @@ draw_interp_plots(gdp[country].loc[start_year:end_year],
                   color_mapping, code_to_name, 2, False, ax)
 ```
 
-It is tempting to compare this graph with  figure  {numref}`gdp1` that showed the US overtaking the UK near the start of the "American Century", a version of the graph featured in chapter 1 of  {cite}`Tooze_2014`.
+It is tempting to compare this graph with figure {numref}`gdp1` that showed the US overtaking the UK near the start of the "American Century", a version of the graph featured in chapter 1 of  {cite}`Tooze_2014`.
 
 ## Regional analysis
 
