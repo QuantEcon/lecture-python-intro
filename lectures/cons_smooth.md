@@ -363,7 +363,6 @@ def plot_cs(model,    # consumption smoothing model
     
     # Compute optimal consumption
     c_seq, a_seq, h0 = compute_optimal(model, a0, y_seq)
-    print('average consumption:', np.mean(c_seq))
     
     # Sequence length
     T = cs_model.T
@@ -384,49 +383,49 @@ def plot_cs(model,    # consumption smoothing model
 
 We first assume a one-time windfall of $W_0$ in year 21 of the income sequence $y$.  
 
-We'll make $W_0$ big - positive to indicate a one-time windfall, negative to indicate a one-time "disaster".
+We'll make $W_0$ big - positive to indicate a one-time windfall, and negative to indicate a one-time "disaster".
 
 ```{code-cell} ipython3
-# Windfall W_0 = 5
+# Windfall W_0 = 20
 y_seq_pos = np.concatenate(
-    [np.zeros(21), np.array([5]), np.zeros(44)])
+    [np.ones(21), np.array([20]), np.ones(44)])
 
 plot_cs(cs_model, a0, y_seq_pos)
 ```
 
 ```{code-cell} ipython3
-# Disaster W_0 = -5
+# Disaster W_0 = -20
 y_seq_neg = np.concatenate(
-    [np.zeros(21), np.array([-5]), np.zeros(44)])
+    [np.ones(21), np.array([-20]), np.ones(44)])
 
 plot_cs(cs_model, a0, y_seq_neg)
 ```
 
 #### Experiment 2: permanent wage gain/loss
 
-Now we a permanent increase in income of $W$ in year 21 of the $y$-sequence.
+Now we assume a permanent increase in income of $W$ in year 21 of the $y$-sequence.
 
 Again we can study positive and negative cases
 
 ```{code-cell} ipython3
-# Positive permenant income W_t = 1 when t >= 21
+# Positive permanent income change W = 0.5 when t >= 21
 y_seq_pos = np.concatenate(
-    [np.zeros(21), np.ones(45)])
+    [np.ones(21), np.repeat(1.5, 45)])
 
 plot_cs(cs_model, a0, y_seq_pos)
 ```
 
 ```{code-cell} ipython3
-# Negative permenant income W_t = -1 when t >= 21
-y_seq_pos = np.concatenate(
-    [np.zeros(21), -np.ones(45)])
+# Negative permanent income change W = -0.5 when t >= 21
+y_seq_neg = np.concatenate(
+    [np.ones(21), np.repeat(0.5, 45)])
 
-plot_cs(cs_model, a0, y_seq_pos)
+plot_cs(cs_model, a0, y_seq_neg)
 ```
 
 #### Experiment 3: a late starter
 
-Now we simulate a $y$ sequence in which a person gets zero for 46 years, and then works and gets 1 the last 20 years of life (a "late starter")
+Now we simulate a $y$ sequence in which a person gets zero for 46 years, and then works and gets 1 for the last 20 years of life (a "late starter")
 
 ```{code-cell} ipython3
 # Late starter
@@ -440,7 +439,7 @@ plot_cs(cs_model, a0, y_seq_late)
 
 Now we simulate a geometric $y$ sequence in which a person gets $y_t = \lambda^t y_0$ in first 46 years.
 
-We first experiemnt with $\lambda = 1.05$
+We first experiment with $\lambda = 1.05$
 
 ```{code-cell} ipython3
 # Geometric earner parameters where λ = 1.05
@@ -449,11 +448,11 @@ y_0 = 1
 t_max = 46
 
 # Generate geometric y sequence
-y_seq_geo = λ ** np.arange(t_max) * y_0 
-y_seq = np.concatenate(
-    [y_seq_geo, np.zeros(20)])
+geo_seq = λ ** np.arange(t_max) * y_0 
+y_seq_geo = np.concatenate(
+            [geo_seq, np.zeros(20)])
 
-plot_cs(cs_model, a0, y_seq)
+plot_cs(cs_model, a0, y_seq_geo)
 ```
 
 Now we show the behavior when $\lambda = 0.95$
@@ -461,11 +460,11 @@ Now we show the behavior when $\lambda = 0.95$
 ```{code-cell} ipython3
 λ = 0.95
 
-y_seq_geo = λ ** np.arange(t_max) * y_0 
-y_seq = np.concatenate(
-    [y_seq_geo, np.zeros(20)])
+geo_seq = λ ** np.arange(t_max) * y_0 
+y_seq_geo = np.concatenate(
+            [geo_seq, np.zeros(20)])
 
-plot_cs(cs_model, a0, y_seq)
+plot_cs(cs_model, a0, y_seq_geo)
 ```
 
 What happens when $\lambda$ is negative
@@ -473,11 +472,11 @@ What happens when $\lambda$ is negative
 ```{code-cell} ipython3
 λ = -0.05
 
-y_seq_geo = λ ** np.arange(t_max) * y_0
-y_seq = np.concatenate(
-    [y_seq_geo, np.zeros(20)])
+geo_seq = λ ** np.arange(t_max) * y_0 
+y_seq_geo = np.concatenate(
+            [geo_seq, np.zeros(20)])
 
-plot_cs(cs_model, a0, y_seq)
+plot_cs(cs_model, a0, y_seq_geo)
 ```
 
 +++ {"user_expressions": []}
