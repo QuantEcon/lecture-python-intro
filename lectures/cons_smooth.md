@@ -4,7 +4,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.14.5
+    jupytext_version: 1.16.1
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
@@ -158,7 +158,6 @@ def creat_cs_model(R=1.05, g1=1, g2=1/2, T=65):
 
 +++ {"user_expressions": []}
 
-
 ## Friedman-Hall consumption-smoothing model
 
 A key object is what Milton Friedman called "human" or "non-financial" wealth at time $0$:
@@ -301,7 +300,7 @@ This  can be interpreted as a student debt.
 
 The non-financial process $\{y_t\}_{t=0}^{T}$ is constant and positive up to $t=45$ and then becomes zero afterward.
 
-The drop in non-financial income late in life reflects retirement from work. 
+The drop in non-financial income late in life reflects retirement from work.
 
 ```{code-cell} ipython3
 # Financial wealth
@@ -311,7 +310,7 @@ a0 = -2     # such as "student debt"
 y_seq = np.concatenate([np.ones(46), np.zeros(20)])
 
 cs_model = creat_cs_model()
-c_seq, a_seq = compute_optimal(cs_model, a0, y_seq)
+c_seq, a_seq, h0 = compute_optimal(cs_model, a0, y_seq)
 
 print('check a_T+1=0:', 
       np.abs(a_seq[-1] - 0) <= 1e-8)
@@ -346,6 +345,139 @@ def welfare(model, c_seq):
     return β_seq @ u_seq
 
 print('Welfare:', welfare(cs_model, c_seq))
+```
+
+### Experiments
+
+In this section we experiment consumption smoothing behavior under different setups.
+
+First we write a function `plot_cs` that generate graphs above based on a consumption smoothing model `cs_model`.
+
+This helps us repeat the steps shown above
+
+```{code-cell} ipython3
+def plot_cs(model,    # consumption smoothing model      
+            a0,       # initial financial wealth
+            y_seq     # non-financial income process
+           ):
+    
+    # Compute optimal consumption
+    c_seq, a_seq, h0 = compute_optimal(model, a0, y_seq)
+    print('average consumption:', np.mean(c_seq))
+    
+    # Sequence length
+    T = cs_model.T
+    
+    # Generate plot
+    plt.plot(range(T+1), y_seq, label='non-financial income')
+    plt.plot(range(T+1), c_seq, label='consumption')
+    plt.plot(range(T+2), a_seq, label='financial wealth')
+    plt.plot(range(T+2), np.zeros(T+2), '--')
+    
+    plt.legend()
+    plt.xlabel(r'$t$')
+    plt.ylabel(r'$c_t,y_t,a_t$')
+    plt.show()
+```
+
+#### Experiment 1: one-time gain/loss
+
+We first assume a one-time windfall of $W_0$ in year 21 of the income sequence $y$.  
+
+We'll make $W_0$ big - positive to indicate a one-time windfall, negative to indicate a one-time "disaster".
+
+```{code-cell} ipython3
+# Windfall W_0 = 5
+y_seq_pos = np.concatenate(
+    [np.zeros(21), np.array([5]), np.zeros(44)])
+
+plot_cs(cs_model, a0, y_seq_pos)
+```
+
+```{code-cell} ipython3
+# Disaster W_0 = -5
+y_seq_neg = np.concatenate(
+    [np.zeros(21), np.array([-5]), np.zeros(44)])
+
+plot_cs(cs_model, a0, y_seq_neg)
+```
+
+#### Experiment 2: permanent wage gain/loss
+
+Now we a permanent increase in income of $W$ in year 21 of the $y$-sequence.
+
+Again we can study positive and negative cases
+
+```{code-cell} ipython3
+# Positive permenant income W_t = 1 when t >= 21
+y_seq_pos = np.concatenate(
+    [np.zeros(21), np.ones(45)])
+
+plot_cs(cs_model, a0, y_seq_pos)
+```
+
+```{code-cell} ipython3
+# Negative permenant income W_t = -1 when t >= 21
+y_seq_pos = np.concatenate(
+    [np.zeros(21), -np.ones(45)])
+
+plot_cs(cs_model, a0, y_seq_pos)
+```
+
+#### Experiment 3: a late starter
+
+Now we simulate a $y$ sequence in which a person gets zero for 46 years, and then works and gets 1 the last 20 years of life (a "late starter")
+
+```{code-cell} ipython3
+# Late starter
+y_seq_late = np.concatenate(
+    [np.zeros(46), np.ones(20)])
+
+plot_cs(cs_model, a0, y_seq_late)
+```
+
+#### Experiment 4: geometric earner
+
+Now we simulate a geometric $y$ sequence in which a person gets $y_t = \lambda^t y_0$ in first 46 years.
+
+We first experiemnt with $\lambda = 1.05$
+
+```{code-cell} ipython3
+# Geometric earner parameters where λ = 1.05
+λ = 1.05
+y_0 = 1
+t_max = 46
+
+# Generate geometric y sequence
+y_seq_geo = λ ** np.arange(t_max) * y_0 
+y_seq = np.concatenate(
+    [y_seq_geo, np.zeros(20)])
+
+plot_cs(cs_model, a0, y_seq)
+```
+
+Now we show the behavior when $\lambda = 0.95$
+
+```{code-cell} ipython3
+λ = 0.95
+
+y_seq_geo = λ ** np.arange(t_max) * y_0 
+y_seq = np.concatenate(
+    [y_seq_geo, np.zeros(20)])
+
+plot_cs(cs_model, a0, y_seq)
+```
+
+What happens when $\lambda$ is negative
+
+```{code-cell} ipython3
+λ = -0.05
+
+y_seq_geo = λ ** np.arange(t_max) * y_0
+y_seq = np.concatenate(
+    [y_seq_geo, np.zeros(20)])
+
+plot_cs(cs_model, a0, y_seq)
 ```
 
 +++ {"user_expressions": []}
@@ -429,7 +561,7 @@ def compute_variation(model, ξ1, ϕ, a0, y_seq, verbose=1):
     if verbose == 1:
         print('check feasible:', np.isclose(β_seq @ v_seq, 0))     # since β = 1/R
 
-    c_opt, _ = compute_optimal(model, a0, y_seq)
+    c_opt, _, _ = compute_optimal(model, a0, y_seq)
     cvar_seq = c_opt + v_seq
 
     return cvar_seq
