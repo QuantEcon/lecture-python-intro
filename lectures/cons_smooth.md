@@ -429,7 +429,7 @@ def compute_variation(model, ξ1, ϕ, a0, y_seq, verbose=1):
     if verbose == 1:
         print('check feasible:', np.isclose(β_seq @ v_seq, 0))     # since β = 1/R
 
-    c_opt, _ = compute_optimal(model, a0, y_seq)
+    c_opt, _, _ = compute_optimal(model, a0, y_seq)
     cvar_seq = c_opt + v_seq
 
     return cvar_seq
