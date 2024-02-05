@@ -28,6 +28,12 @@ kernelspec:
 ```{index} single: Models; Schelling's Segregation Model
 ```
 
+```{admonition} Migrated lecture
+:class: warning
+
+This lecture has moved from our [Intermediate Quantitative Economics with Python](https://python.quantecon.org/intro.html) lecture series and is now a part of [A First Course in Quantitative Economics](https://intro.quantecon.org/intro.html).
+```
+
 ## Outline
 
 In 1969, Thomas C. Schelling developed a simple but striking model of racial

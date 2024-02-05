@@ -18,27 +18,30 @@ kernelspec:
 This lecture presents a model of the college-high-school wage gap in which the
 "time to build" a college graduate plays a key role.
 
-```{note}
-Milton Friedman used our   model  to study whether  differences in the earnings of US dentists and doctors were justified by competitive labor markets or whether
-they reflected entry barriers imposed by US governments working in conjunction with doctors' lobbies.  Chapter 4 of Jennifer Burns {cite}`Burns_2023` presents an 
-interesting account of Milton Friedman's joint work with Simon Kuznets that eventually  led to the publication of {cite}`kuznets1939incomes` and {cite}`friedman1954incomes`. To map  Friedman's application to our model, think of our high school students as Friedman's dentists and our college graduates as Friedman's doctors.  
-```
 
-The model is "incomplete" in the sense that it is just one "condition" in the form of a single equation that would be part of set equations comprising all  "equilibrium conditions" of   a more fully articulated model.
+Milton Friedman invented the   model  to study whether  differences in  earnings of US dentists and doctors were outcomes of  competitive labor markets or whether
+they reflected entry barriers imposed by governments working in conjunction with doctors' professional organizations. 
 
-The condition featured in our model determines  a college, high-school wage ratio that equalizes the present values of a high school worker and a college educated worker.
+Chapter 4 of Jennifer Burns {cite}`Burns_2023` describes  Milton Friedman's joint work with Simon Kuznets that eventually  led to the publication of {cite}`kuznets1939incomes` and {cite}`friedman1954incomes`.
 
-The idea behind this condition is that lifetime earnings have to adjust to make someone indifferent between going to college and not going to college.
+To map  Friedman's application into our model, think of our high school students as Friedman's dentists and our college graduates as Friedman's doctors.  
 
-(The job of the "other equations" in a more complete model would be to fill in details about what adjusts to bring about this outcome.)
 
-It is just one instance of an  "equalizing difference" theory of relative wage rates, a class of theories dating back at least to Adam Smith's **Wealth of Nations** {cite}`smith2010wealth`.  
+Our presentation is "incomplete" in the sense that it is based on  a single equation that would be part of set equilibrium conditions of a more fully articulated model.
+
+This ''equalizing difference'' equation  determines  a college, high-school wage ratio that equalizes present values of a high school educated  worker and a college educated worker.
+
+The idea  is that lifetime earnings somehow adjust to make a new high school worker indifferent between going to college and not going to college but instead going to work immmediately.
+
+(The job of the "other equations" in a more complete model would be to describe what adjusts to bring about this outcome.)
+
+Our model is just one example  of an  "equalizing difference" theory of relative wage rates, a class of theories dating back at least to Adam Smith's **Wealth of Nations** {cite}`smith2010wealth`.  
 
 For most of this lecture, the only mathematical tools that we'll use are from linear algebra, in particular, matrix multiplication and matrix inversion.
 
-However, at the very end of the lecture, we'll use calculus just in case readers want to see how computing partial derivatives could let us present some findings more concisely.  
+However, near the  end of the lecture, we'll use calculus just in case readers want to see how computing partial derivatives could let us present some findings more concisely.  
 
-(And doing that will let us show off how good Python is at doing calculus!)
+And doing that will let illustrate how good Python is at doing calculus!
 
 But if you don't know calculus, our tools from linear algebra are certainly enough.
 
@@ -51,7 +54,7 @@ import matplotlib.pyplot as plt
 
 ## The indifference condition
 
-The key idea is that the initial college wage premium has to adjust to make a representative worker indifferent between going to college and not going to college.
+The key idea is that the entry level college wage premium has to adjust to make a representative worker indifferent between going to college and not going to college.
 
 Let
 
@@ -59,7 +62,7 @@ Let
 
  * $t = 0, 1, 2, \ldots T$ denote the years that a person either works or attends college
  
- * $0$ denote the first period after high school that a person can go to work
+ * $0$ denote the first period after high school that a person can work if he does not go to college
  
  * $T$ denote the last period  that a person  works
  
@@ -75,7 +78,12 @@ Let
 
  * $D$ be the upfront monetary costs of going to college
 
+We now compute present values that a new high school graduate earns if
 
+  * he goes to work immediately and earns wages paid to someone without a college education
+  * he goes to college for four years and after graduating earns wages paid to a college graduate
+
+### Present value of a high school educated worker
 
 If someone goes to work immediately after high school  and  works for the  $T+1$ years $t=0, 1, 2, \ldots, T$, she earns present value
 
@@ -91,6 +99,8 @@ $$
 
 The present value $h_0$ is the "human wealth" at the beginning of time $0$ of someone who chooses not to attend college but instead to go to work immediately at the wage of a high school graduate.
 
+### Present value of a college-bound new high school graduate
+
 
 If someone goes to college for the four years $t=0, 1, 2, 3$ during which she earns $0$, but then goes to work  immediately after college   and  works for the $T-3$ years $t=4, 5, \ldots ,T$, she earns present value
 
@@ -101,13 +111,13 @@ $$
 where
 
 $$
-A_c = (R^{-1} \gamma_c)^4  \left[ \frac{1 - (R^{-1} \gamma_c)^{T-3} }{1 - R^{-1} \gamma_c } \right] 
+A_c = (R^{-1} \gamma_c)^4  \left[ \frac{1 - (R^{-1} \gamma_c)^{T-3} }{1 - R^{-1} \gamma_c } \right] .
 $$ 
 
 The present value $c_0$  is the "human wealth" at the beginning of time $0$ of someone who chooses to attend college for four years and then start to work at time $t=4$ at the wage of a college graduate.
 
 
-Assume that college tuition plus four years of room and board paid for up front costs $D$.
+Assume that college tuition plus four years of room and board amount to  $D$ and must be paid at time $0$.
 
 So net of monetary cost of college, the present value of attending college as of the first period after high school is
 
@@ -115,9 +125,7 @@ $$
 c_0 - D
 $$
 
-We now formulate a pure **equalizing difference** model of the initial college-high school wage gap $\phi$ defined by 
-
-Let
+We now formulate a pure **equalizing difference** model of the initial college-high school wage gap $\phi$ that verifies 
 
 $$
 w_0^c = \phi w_0^h 
@@ -125,7 +133,7 @@ $$
 
 We suppose that $R, \gamma_h, \gamma_c, T$ and also $w_0^h$  are fixed parameters. 
 
-We start by noting that the pure equalizing difference model asserts that the college-high-school wage gap $\phi$ solves 
+We start by noting that the pure equalizing difference model asserts that the college-high-school wage gap $\phi$ solves an 
 "equalizing" equation that sets the present value not going to college equal to the present value of going go college:
 
 
@@ -139,7 +147,7 @@ $$
 w_0^h A_h  = \phi w_0^h A_c - D .
 $$ (eq:equalize)
 
-This is the "indifference condition" that is at the heart of the model.
+This "indifference condition"  is the heart of the model.
 
 Solving equation {eq}`eq:equalize` for the college wage premium $\phi$ we obtain
 
@@ -147,7 +155,9 @@ $$
 \phi  = \frac{A_h}{A_c} + \frac{D}{w_0^h A_c} .
 $$ (eq:wagepremium)
 
-In a **free college** special case $D =0$ so that the only cost of going to college is the forgone earnings from not working as a high school worker.  
+In a **free college** special case $D =0$.
+
+Here  the only cost of going to college is the forgone earnings from being  a high school educated worker.  
 
 In that case,
 
@@ -155,9 +165,9 @@ $$
 \phi  = \frac{A_h}{A_c} . 
 $$
 
-Soon we'll write Python code to compute the gap and plot it as a function of its determinants.
+Soon we'll write Python code to compute $\phi$  and plot it as a function of its determinants.
 
-But first we'll describe a possible alternative interpretation of our model.
+But first we'll describe an  alternative interpretation of our model that mostly just relabels variables.
 
 
 
@@ -185,12 +195,17 @@ This cost might include costs of hiring workers, office space, and lawyers.
 What we used to call the college, high school wage gap $\phi$ now becomes the ratio
 of a successful entrepreneur's earnings to a worker's earnings.  
 
-We'll find that as $\pi$ decreases, $\phi$ increases.  
+We'll find that as $\pi$ decreases, $\phi$ increases, indicating that the riskier it is to
+be an entrepreuner, the higher must be the reward for a successful project. 
+
+## Computations
+
+
+We can have some fun with examples that tweak various parameters,
+prominently including $\gamma_h, \gamma_c, R$.
 
 Now let's write some Python code to compute $\phi$ and plot it as a function of some of its determinants.
 
-We can have some fun providing some example calculations that tweak various parameters,
-prominently including $\gamma_h, \gamma_c, R$.
 
 ```{code-cell} ipython3
 class equalizing_diff:
@@ -219,10 +234,10 @@ class equalizing_diff:
 ```
 
 
+Using vectorization instead of loops,
+we  build some functions to help do comparative statics .
 
-We can build some functions to help do comparative statics using vectorization instead of loops.
-
-For a given instance of the class, we want to compute $\phi$ when one parameter changes and others remain unchanged.
+For a given instance of the class, we want to recompute $\phi$ when one parameter changes and others remain fixed.
 
 Let's do an example.
 
@@ -315,7 +330,7 @@ plt.show()
 ```
 Notice how  the intitial wage gap falls when the rate of growth $\gamma_c$ of college wages rises.  
 
-It falls to "equalize" the present values of the two types of career, one as a high school worker, the other as a college worker.
+The wage gap falls to "equalize" the present values of the two types of career, one as a high school worker, the other as a college worker.
 
 Can you guess what happens to the initial wage ratio $\phi$ when next we vary the rate of growth of high school wages, holding all other determinants of $\phi$ constant?  
 
@@ -363,9 +378,9 @@ Does the graph make sense to you?
 
 So far, we have used only linear algebra and it has been a good enough tool for us to  figure out how our model works.
 
-However, someone who knows calculus might ask "Instead of plotting those graphs, why didn't you just take partial derivatives?"
+However, someone who knows calculus might want us  just to  take partial derivatives.
 
-We'll briefly do just that,  yes, the questioner is correct and that partial derivatives are indeed a good tool for discovering the "comparative statics" properities of our model.
+We'll do that now.
 
 A reader who doesn't know calculus could read no further and feel confident that applying linear algebra has taught us the main properties of the model.
 
@@ -433,7 +448,7 @@ Now let's compute $\frac{\partial \phi}{\partial D}$ and then evaluate it at the
 ϕ_D_func(D_value, γ_h_value, γ_c_value, R_value, T_value, w_h0_value)
 ```
 
-Thus, as with our graph above, we find that raising $R$ increases the initial college wage premium $\phi$.
+Thus, as with our earlier graph, we find that raising $R$ increases the initial college wage premium $\phi$.
 
 +++
 
@@ -469,7 +484,7 @@ Let's compute $\frac{\partial \phi}{\partial γ_h}$ and evaluate it at default p
 ϕ_γ_h_func(D_value, γ_h_value, γ_c_value, R_value, T_value, w_h0_value)
 ```
 
-We find that raising $\gamma_h$ increases the initial college wage premium $\phi$, as we did with our graphical analysis earlier
+We find that raising $\gamma_h$ increases the initial college wage premium $\phi$, as we did with our  earlier graphical analysis.
 
 +++
 

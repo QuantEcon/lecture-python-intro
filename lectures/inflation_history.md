@@ -13,7 +13,7 @@ kernelspec:
 
 # Price Level Histories 
 
-This lecture offers some scraps of historical evidence about fluctuations in  levels of aggregate price indexes.  
+This lecture offers some  historical evidence about fluctuations in  levels of aggregate price indexes.  
 
 The rate of growth of the price level is called **inflation** in the popular press and in discussions among central bankers and treasury officials.
 
@@ -21,36 +21,34 @@ The price level is measured in units of domestic currency per units of a represe
 
 Thus, in the US, the price level at  $t$  is measured in dollars in month $t$ or year $t$  per unit of the consumption bundle.
 
-Until the early 20th century, throughout much of the west, although price levels fluctuated from year to  year,
-they didn't have much of a trend.  
+Until the early 20th century, throughout much of the west, although price levels fluctuated from year to  year, they didn't have much of a trend.  
 
-Thus, they tended to end a century at close to a level at which they started it.
+They tended to end a century near where  they started it.
 
 Things were different in the 20th century, as we shall see in this lecture.
 
-This lecture will set the stage for some subsequent lectures about a particular theory that  economists use to
-think about determinants of the price level.
+We'll indicater a widely believed explanation of this big difference -- countries' abandoning gold and silver standards in early twentieth century. 
+
+This lecture  sets the stage for some subsequent lectures about a theory that macroeconomists   economists use to think about determinants of the price level, namely, {doc}`this lecture <cagan_ree>` and 
+{doc}`this lecture <cagan_adaptive>`
 
 
 
 ## Four Centuries of Price Levels
 
-We begin by displaying  some  data  that originally appeared on page 35 of {cite}`sargent2002big`.
+We begin by displaying    data  that originally appeared on page 35 of {cite}`sargent2002big` and that show  price levels for four "hard currency" countries from 1600 to 1914.
 
-The data  price levels for four "hard currency" countries from 1600 to 1914.
-
-The four countries are
 
 * France 
 * Spain (Castile)
 * United Kingdom
 * United States
 
-In the present context, the  phrase hard currency means that the countries were on a commodity-money standard:  money consisted of gold and silver coins that circulated at values largely determined by the weights of their gold and silver contents.
+In the present context, the  phrase ''hard currency'' means that the countries were on a commodity-money standard:  money consisted of gold and silver coins that circulated at values largely determined by the weights of their gold and silver contents.
 
-(Under a gold or silver standard, some money also consisted of "warehouse certificates" that represented paper claims on gold or silver coins. Bank notes issued by the government or private banks can be viewed as examples of such "warehouse certificate".)
-
-The data we want to study data  originally appeared in a graph on page 35 of {cite}`sargent2002big`.
+```{note}
+Under a gold or silver standard, some money also consisted of "warehouse certificates" that represented paper claims on gold or silver coins. Bank notes issued by the government or private banks can be viewed as examples of such "warehouse certificates''.
+```
 
 
 As usual, we'll start by importing some Python modules.
@@ -107,49 +105,50 @@ plt.show()
 
 We say "most years" because there were temporary lapses from the gold or silver standard.
 
-By staring at the graph carefully, you might be able to guess when these temporary lapses occurred, because they were also times during which price levels rose markedly from what had been  average values during more typical years.
+By staring at the graph carefully, you might be able to guess when these temporary lapses occurred, because they were also times during which price levels temporarily rose markedly:
 
- * 1791-1797 in France (the French Revolution)
- * 1776-1793 in the US (the US War for Independence from Great Britain)
- * 1861-1865 in the US (the US Civil War)
+ * 1791-1797 in France (French Revolution)
+ * 1776-1790 in the US (War for Independence from Great Britain)
+ * 1861-1865 in the US (Civil War)
 
-During each of these episodes, the gold/silver standard was temporarily abandoned as a government printed paper money to help it finance war expenditures.
+During these episodes, the gold/silver standard was temporarily abandoned when a government printed paper money to pay for  war expenditures.
 
 Despite these temporary lapses, a striking thing about the figure is that price levels hovered around roughly constant long-term levels for over three centuries.  
 
-Two other features of the figure attracted the attention of leading economists such as Irving Fisher of Yale University and John Maynard Keynes of Cambridge University in the early century.
+In the early centuryTwo other features of these data  attracted the attention of  Irving Fisher of Yale University and John Maynard Keynes of Cambridge University.
 
-  * There was considerable year-to-year instability of the price levels despite their long begin anchored to the same average level in the long term
+  *  Despite beig  anchored to the same average level over long time spans, there were considerable year-to-year variations in   price levels
   
-  * While using valuable gold and silver as coins was a time-tested way to anchor  the price level by limiting the supply of money, it cost real resources.
+  * While using valuable gold and silver as coins succeeded in anchoring   the price level by limiting the supply of money, it cost real resources.
      
-      * that is, society paid a high "opportunity cost" for using gold and silver as coins; gold and silver could instead be used as valuable jewelry and also as an industrial input.
+      * a country paid  a high "opportunity cost" for using gold and silver as coins as money: that  gold and silver could instead  have been made into  valuable jewelry and other durable goods. 
 
-Keynes and Fisher proposed what they suggested would be  a socially more  efficient way to achieve a price level that  would be at least as firmly  anchored, and would also exhibit less  year-to-year short-term fluctuations.  
+Keynes and Fisher proposed what they claimed  would be  a more  efficient way to achieve a price level that 
+  *  would be at least as firmly  anchored as achieved under a gold or silver standard, and
+  *  would also exhibit less  year-to-year short-term fluctuations.  
 
-In particular, they argued that a well-managed central bank could achieve price level stability by
+They said  that central bank could achieve price level stability by
 
-  * issuing a **limited supply** of paper currency
-  * guaranteeing that it would  not  print money to finance government expenditures
+  * issuing  **limited supplies** of paper currency
+  * refusing to   print money to finance government expenditures
 
-Thus, the waste from using gold and silver as coins  prompted John Maynard Keynes to call a commodity standard a “barbarous relic.”
+This logic   prompted John Maynard Keynes to call a commodity standard a “barbarous relic.”
 
-A paper fiat money system disposes of all reserves behind a currency. 
+A paper currency or ''fiat money''  system disposes of all reserves behind a currency. 
 
-But notice that in doing so, it also eliminates an automatic supply mechanism constraining the price level.
+But adhereing to a gold or silver standard had provided  an automatic  mechanism for limiting the supply of money, thereby anchoring  the price level.
 
-A low-inflation paper fiat money system replaces that automatic mechanism with an enlightened government that commits itself to limiting the quantity of a pure token, no-cost currency.
+To anchor the price level, a  pure  paper or fiat money system replaces that automatic mechanism with a central bank with the authority and determination to limit the supply of money
+(and to deter counterfeiters!) 
 
-Now let's see what happened to the price level in our four countries when after 1914 one after another of them 
-left the gold/silver standard.
-
-We'll show a version of the complete  graph that originally appeared on page 35 of {cite}`sargent2002big`.
+Now let's see what happened to the price level in our four countries when after 1914 one after another of them left the gold/silver standard by showing the complete  graph that originally appeared on page 35 of {cite}`sargent2002big`.
 
 The graph shows logarithms of price levels our  four "hard currency" countries from 1600 to 2000.
 
-Although we didn't have  to use   logarithms in our earlier graphs that  had stopped in 1914 -- we use logarithms now because we want also  to fit observations after 1914 in the same graph as the earlier observations.
+Although we didn't have  to use   logarithms in our earlier graphs that  had stopped in 1914, now  we use logarithms  because we want also  to fit observations after 1914 in the same graph as the earlier observations.
 
-All four of the countries eventually permanently left the gold standard by modifying their monetary and fiscal policies in several ways, starting the outbreak of the Great War in 1914.
+After the outbreak of the Great War in 1914, the four countries  left the gold standard and in so doing acquired the ability to print money to finance government expenditures. 
+
 
 ```{code-cell} ipython3
 fig, ax = plt.subplots(figsize=[8, 5], dpi=200)
@@ -170,18 +169,21 @@ fig.text(.5, .0001,
 plt.show()
 ```
 
-The graph shows that achieving a price level system with a well-managed paper money system proved to be more challenging  than Irving Fisher and Keynes perhaps imagined.
+The graph shows that paper-money-printing central banks didn't do as well as the gold and standard silver standard in   anchoring   price levels.
 
-Actually, earlier economists and statesmen knew about the possibility of fiat money systems long before
-Keynes and Fisher advocated them in the early 20th century.
+That would probably have surprised or disappointed  Irving Fisher and John Maynard Keynes.
 
-It was because earlier  proponents of a commodity money system did not trust governments properly to manage a fiat money system that they were willing to pay the resource costs associated with setting up and maintaining a commodity money system.
+Actually, earlier economists and statesmen knew about the possibility of fiat money systems long before Keynes and Fisher advocated them in the early 20th century.
 
-In light of the high inflation episodes that many countries experienced in the twentieth century after they abandoned commodity monies,  it is difficult to criticize them for their preference to stay on the pre-1914 gold/silver standard. 
+Proponents of a commodity money system did not trust governments and central banks  properly to manage a fiat money system.
 
-The breadth and length of the inflationary experiences of the twentieth century, the century of paper money, are  historically unprecedented.
+They were willing to pay the resource costs associated with setting up and maintaining a commodity money system.
 
-## Ends of Four Big Inflations
+In light of the high and persistent  inflation  that many countries experienced  after they abandoned commodity monies in the twentieth century,  we hesitate to criticize advocates of a gold or silver standard  for their preference to stay on the pre-1914 gold/silver standard. 
+
+The breadth and lengths of the inflationary experiences of the twentieth century under paper money fiat standards are  historically unprecedented.
+
+## Four Big Inflations
 
 In the wake of World War I, which ended in November 1918, monetary and fiscal authorities struggled to achieve   price level stability without being on a gold or silver standard.
 
@@ -358,7 +360,7 @@ for i in range(4):
 df_Aus, df_Hung, df_Pol, df_Germ = df_list
 ```
 
-Let's dive in and construct graphs for our four countries.
+Let's  construct graphs for our four countries.
 
 For each country, we'll plot two graphs.
 
@@ -577,29 +579,43 @@ plt.show()
 
 ## Starting and Stopping Big Inflations
 
-A striking thing about our four graphs is how **quickly** the (log) price levels in Austria, Hungary, Poland,
-and Germany leveled off after having been rising so quickly.
+It is  striking  how **quickly**  (log) price levels in Austria, Hungary, Poland,
+and Germany leveled off after  rising so quickly.
 
-These "sudden stops" are also revealed by the permanent drops in three-month moving averages of inflation for the four countries.
+These "sudden stops" are also revealed by the permanent drops in three-month moving averages of inflation for the four countries plotted above.
 
 In addition, the US dollar exchange rates for each of the four countries shadowed their price levels. 
 
-  * This pattern is an instance of a force modeled in the **purchasing power parity** theory of exchange rates.
+  * This pattern is an instance of a force featured in the **purchasing power parity** theory of exchange rates (see <https://en.wikipedia.org/wiki/Purchasing_power_parity>).
 
 Each of these big inflations seemed to have "stopped on a dime".
 
-Chapter 3 of {cite}`sargent2002big` attempts to offer an explanation for this remarkable pattern.
+Chapter 3 of {cite}`sargent2002big` offers an explanation for this remarkable pattern.
 
-In a nutshell, here is his story.
+In a nutshell, here is the explanation offered there.
 
-After World War I, the United States was on the gold standard. The US government stood ready to convert a dollar into a specified amount of gold on demand. To understate things, immediately after the war, Hungary, Austria, Poland, and Germany were not on the gold standard. 
+After World War I, the United States was on a gold standard. 
 
-In practice, their currencies were largely “fiat” or "unbacked",  meaning that they were not backed by credible government promises to convert them into gold or silver coins on demand. The governments of these countries resorted to the printing of new unbacked money to finance government deficits. (The notes were "backed" mainly by treasury bills that, in those times, could not be expected to be paid off by levying taxes, but only by printing more notes or treasury bills.) This was done on such a scale that it led to a depreciation of the currencies of spectacular proportions. In the end, the German mark stabilized at 1 trillion ($10^{12}$) paper marks to the prewar gold mark, the Polish mark at 1.8 million paper marks to the gold zloty, the Austrian crown at 14,400 paper crowns to the prewar Austro-Hungarian crown, and the Hungarian krone at 14,500 paper crowns to the prewar Austro-Hungarian crown.
+The US government stood ready to convert a dollar into a specified amount of gold on demand.
 
-Chapter 3 of {cite}`sargent2002big`  focuses on the deliberate changes in policy that Hungary, Austria, Poland, and Germany made to end their hyperinflations.
-The hyperinflations were each ended by restoring or virtually restoring convertibility to the dollar or equivalently to gold.
+Immediately after World War I, Hungary, Austria, Poland, and Germany were not on the gold standard. 
 
-The story told in {cite}`sargent2002big` is grounded in a "monetarist theory of the price level" described in {doc}`this lecture <cagan_ree>` and further discussed in 
+Their currencies were  “fiat” or "unbacked",  meaning that they were not backed by credible government promises to convert them into gold or silver coins on demand.
+
+The governments  printed new paper notes to pay for goods and services. 
+
+```{note}
+Technically the notes were "backed" mainly by treasury bills. But people could not expect that those treasury bills would  be paid off by levying taxes, but instead by printing more notes or treasury bills.
+```
+ This was done on such a scale that it led to a depreciation of the currencies of spectacular proportions. 
+ 
+ In the end, the German mark stabilized at 1 trillion ($10^{12}$) paper marks to the prewar gold mark, the Polish mark at 1.8 million paper marks to the gold zloty, the Austrian crown at 14,400 paper crowns to the prewar Austro-Hungarian crown, and the Hungarian krone at 14,500 paper crowns to the prewar Austro-Hungarian crown.
+
+Chapter 3 of {cite}`sargent2002big`  described  deliberate changes in policy that Hungary, Austria, Poland, and Germany made to end their hyperinflations.
+
+Each governent  stoppped printing money to pay for goods and services once again made its currency  convertible  to the US dollar or the UK pound, thereby vitually  to gold.
+
+The story told in {cite}`sargent2002big` is grounded in a "monetarist theory of the price level" described in {doc}`this lecture <cagan_ree>` and 
 {doc}`this lecture <cagan_adaptive>`.
 
-Those lectures discuss theories about what holders of those rapidly depreciating currencies were thinking about them and how that shaped responses of inflation to government policies.
+Those lectures discuss theories about what owners  of those rapidly depreciating currencies were thinking  and how their beliefs shaped responses of inflation to government monetary and fiscal  policies.

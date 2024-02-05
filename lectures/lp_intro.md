@@ -12,6 +12,12 @@ kernelspec:
 (lp_intro)=
 # Linear Programming
 
+```{admonition} Migrated lecture
+:class: warning
+
+This lecture has moved from our [Intermediate Quantitative Economics with Python](https://python.quantecon.org/intro.html) lecture series and is now a part of [A First Course in Quantitative Economics](https://intro.quantecon.org/intro.html).
+```
+
 In this lecture, we will need the following library. Install [ortools](https://developers.google.com/optimization) using `pip`.
 
 ```{code-cell} ipython3
