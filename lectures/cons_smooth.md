@@ -11,7 +11,6 @@ kernelspec:
   name: python3
 ---
 
-+++ {"user_expressions": []}
 
 # Consumption Smoothing
 
@@ -48,7 +47,6 @@ import matplotlib.pyplot as plt
 from collections import namedtuple
 ```
 
-+++ {"user_expressions": []}
 
 The model describes  a consumer who lives from time $t=0, 1, \ldots, T$, receives a stream $\{y_t\}_{t=0}^T$ of non-financial income and chooses a consumption stream $\{c_t\}_{t=0}^T$.
 
@@ -156,7 +154,6 @@ def creat_cs_model(R=1.05, g1=1, g2=1/2, T=65):
                                 β_seq=β_seq, T=65)
 ```
 
-+++ {"user_expressions": []}
 
 ## Friedman-Hall consumption-smoothing model
 
@@ -205,7 +202,6 @@ $$ (eq:conssmoothing)
 
 Equation {eq}`eq:conssmoothing` is the consumption-smoothing model in a nutshell.
 
-+++ {"user_expressions": []}
 
 ## Mechanics of Consumption smoothing model  
 
@@ -479,7 +475,6 @@ y_seq_geo = np.concatenate(
 plot_cs(cs_model, a0, y_seq_geo)
 ```
 
-+++ {"user_expressions": []}
 
 ### Feasible consumption variations
 
@@ -566,7 +561,6 @@ def compute_variation(model, ξ1, ϕ, a0, y_seq, verbose=1):
     return cvar_seq
 ```
 
-+++ {"user_expressions": []}
 
 We visualize variations for $\xi_1 \in \{.01, .05\}$ and $\phi \in \{.95, 1.02\}$
 
@@ -604,7 +598,6 @@ plt.ylabel(r'$c_t$')
 plt.show()
 ```
 
-+++ {"user_expressions": []}
 
 We can even use the Python `np.gradient` command to compute derivatives of welfare with respect to our two parameters.  
 
@@ -629,7 +622,6 @@ def welfare_rel(ξ1, ϕ):
 welfare_vec = np.vectorize(welfare_rel)
 ```
 
-+++ {"user_expressions": []}
 
 Then we can visualize the relationship between welfare and $\xi_1$ and compute its derivatives
 
@@ -649,7 +641,6 @@ plt.xlabel(r'$\xi_1$')
 plt.show()
 ```
 
-+++ {"user_expressions": []}
 
 The same can be done on $\phi$
 
