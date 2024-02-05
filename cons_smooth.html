@@ -178,7 +178,14 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1">10.4.1. Step 1</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2">10.4.2. Step 2</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3">10.4.3. Step 3</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#feasible-consumption-variations">10.4.4. Feasible consumption variations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#experiments">10.4.4. Experiments</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#experiment-1-one-time-gain-loss">10.4.4.1. Experiment 1: one-time gain/loss</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#experiment-2-permanent-wage-gain-loss">10.4.4.2. Experiment 2: permanent wage gain/loss</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#experiment-3-a-late-starter">10.4.4.3. Experiment 3: a late starter</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#experiment-4-geometric-earner">10.4.4.4. Experiment 4: geometric earner</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#feasible-consumption-variations">10.4.5. Feasible consumption variations</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wrapping-up-the-consumption-smoothing-model">10.5. Wrapping up the consumption-smoothing model</a></li>
@@ -532,8 +539,184 @@ a_{T+1} = 0.
 </div>
 </div>
 </section>
+<section id="experiments">
+<h3><span class="section-number">10.4.4. </span>Experiments<a class="headerlink" href="#experiments" title="Permalink to this heading">#</a></h3>
+<p>In this section we experiment consumption smoothing behavior under different setups.</p>
+<p>First we write a function <code class="docutils literal notranslate"><span class="pre">plot_cs</span></code> that generate graphs above based on a consumption smoothing model <code class="docutils literal notranslate"><span class="pre">cs_model</span></code>.</p>
+<p>This helps us repeat the steps shown above</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_cs</span><span class="p">(</span><span class="n">model</span><span class="p">,</span>    <span class="c1"># consumption smoothing model      </span>
+            <span class="n">a0</span><span class="p">,</span>       <span class="c1"># initial financial wealth</span>
+            <span class="n">y_seq</span>     <span class="c1"># non-financial income process</span>
+           <span class="p">):</span>
+    
+    <span class="c1"># Compute optimal consumption</span>
+    <span class="n">c_seq</span><span class="p">,</span> <span class="n">a_seq</span><span class="p">,</span> <span class="n">h0</span> <span class="o">=</span> <span class="n">compute_optimal</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">y_seq</span><span class="p">)</span>
+    
+    <span class="c1"># Sequence length</span>
+    <span class="n">T</span> <span class="o">=</span> <span class="n">cs_model</span><span class="o">.</span><span class="n">T</span>
+    
+    <span class="c1"># Generate plot</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">y_seq</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;non-financial income&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">c_seq</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;consumption&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">2</span><span class="p">),</span> <span class="n">a_seq</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;financial wealth&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">2</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">2</span><span class="p">),</span> <span class="s1">&#39;--&#39;</span><span class="p">)</span>
+    
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$t$&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$c_t,y_t,a_t$&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="experiment-1-one-time-gain-loss">
+<h4><span class="section-number">10.4.4.1. </span>Experiment 1: one-time gain/loss<a class="headerlink" href="#experiment-1-one-time-gain-loss" title="Permalink to this heading">#</a></h4>
+<p>We first assume a one-time windfall of <span class="math notranslate nohighlight">\(W_0\)</span> in year 21 of the income sequence <span class="math notranslate nohighlight">\(y\)</span>.</p>
+<p>We’ll make <span class="math notranslate nohighlight">\(W_0\)</span> big - positive to indicate a one-time windfall, and negative to indicate a one-time “disaster”.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Windfall W_0 = 20</span>
+<span class="n">y_seq_pos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">21</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">20</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">44</span><span class="p">)])</span>
+
+<span class="n">plot_cs</span><span class="p">(</span><span class="n">cs_model</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">y_seq_pos</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/a0850b6e932ae76d0655668a371e94aa8cab1d133ce8806173e1fa92f67822d2.png"><img alt="_images/a0850b6e932ae76d0655668a371e94aa8cab1d133ce8806173e1fa92f67822d2.png" src="_images/a0850b6e932ae76d0655668a371e94aa8cab1d133ce8806173e1fa92f67822d2.png" style="width: 80%;" /></a>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Disaster W_0 = -20</span>
+<span class="n">y_seq_neg</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">21</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">20</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">44</span><span class="p">)])</span>
+
+<span class="n">plot_cs</span><span class="p">(</span><span class="n">cs_model</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">y_seq_neg</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/582800143d1272f5bf837a8182b5804f51eb14b60619eb5b2bdff8e58513c00b.png"><img alt="_images/582800143d1272f5bf837a8182b5804f51eb14b60619eb5b2bdff8e58513c00b.png" src="_images/582800143d1272f5bf837a8182b5804f51eb14b60619eb5b2bdff8e58513c00b.png" style="width: 80%;" /></a>
+</div>
+</div>
+</section>
+<section id="experiment-2-permanent-wage-gain-loss">
+<h4><span class="section-number">10.4.4.2. </span>Experiment 2: permanent wage gain/loss<a class="headerlink" href="#experiment-2-permanent-wage-gain-loss" title="Permalink to this heading">#</a></h4>
+<p>Now we assume a permanent increase in income of <span class="math notranslate nohighlight">\(W\)</span> in year 21 of the <span class="math notranslate nohighlight">\(y\)</span>-sequence.</p>
+<p>Again we can study positive and negative cases</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Positive permanent income change W = 0.5 when t &gt;= 21</span>
+<span class="n">y_seq_pos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">21</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mf">1.5</span><span class="p">,</span> <span class="mi">45</span><span class="p">)])</span>
+
+<span class="n">plot_cs</span><span class="p">(</span><span class="n">cs_model</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">y_seq_pos</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/32ea8d6f7fd1a1cd69f4e8ec8c7f6abc7e21cdb5bc675f666a7d328deb120b89.png"><img alt="_images/32ea8d6f7fd1a1cd69f4e8ec8c7f6abc7e21cdb5bc675f666a7d328deb120b89.png" src="_images/32ea8d6f7fd1a1cd69f4e8ec8c7f6abc7e21cdb5bc675f666a7d328deb120b89.png" style="width: 80%;" /></a>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Negative permanent income change W = -0.5 when t &gt;= 21</span>
+<span class="n">y_seq_neg</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">21</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">45</span><span class="p">)])</span>
+
+<span class="n">plot_cs</span><span class="p">(</span><span class="n">cs_model</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">y_seq_neg</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/ada1746da2bfdca8205b9112a440e8ffaa47ed4aac0cfc9727c212a89778f0e6.png"><img alt="_images/ada1746da2bfdca8205b9112a440e8ffaa47ed4aac0cfc9727c212a89778f0e6.png" src="_images/ada1746da2bfdca8205b9112a440e8ffaa47ed4aac0cfc9727c212a89778f0e6.png" style="width: 80%;" /></a>
+</div>
+</div>
+</section>
+<section id="experiment-3-a-late-starter">
+<h4><span class="section-number">10.4.4.3. </span>Experiment 3: a late starter<a class="headerlink" href="#experiment-3-a-late-starter" title="Permalink to this heading">#</a></h4>
+<p>Now we simulate a <span class="math notranslate nohighlight">\(y\)</span> sequence in which a person gets zero for 46 years, and then works and gets 1 for the last 20 years of life (a “late starter”)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Late starter</span>
+<span class="n">y_seq_late</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">46</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">20</span><span class="p">)])</span>
+
+<span class="n">plot_cs</span><span class="p">(</span><span class="n">cs_model</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">y_seq_late</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/e69c0e180aafccf3450f5dcf970a1962c4c0cdf89f049e1f2c0d9f209c200a0c.png"><img alt="_images/e69c0e180aafccf3450f5dcf970a1962c4c0cdf89f049e1f2c0d9f209c200a0c.png" src="_images/e69c0e180aafccf3450f5dcf970a1962c4c0cdf89f049e1f2c0d9f209c200a0c.png" style="width: 80%;" /></a>
+</div>
+</div>
+</section>
+<section id="experiment-4-geometric-earner">
+<h4><span class="section-number">10.4.4.4. </span>Experiment 4: geometric earner<a class="headerlink" href="#experiment-4-geometric-earner" title="Permalink to this heading">#</a></h4>
+<p>Now we simulate a geometric <span class="math notranslate nohighlight">\(y\)</span> sequence in which a person gets <span class="math notranslate nohighlight">\(y_t = \lambda^t y_0\)</span> in first 46 years.</p>
+<p>We first experiment with <span class="math notranslate nohighlight">\(\lambda = 1.05\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Geometric earner parameters where λ = 1.05</span>
+<span class="n">λ</span> <span class="o">=</span> <span class="mf">1.05</span>
+<span class="n">y_0</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">t_max</span> <span class="o">=</span> <span class="mi">46</span>
+
+<span class="c1"># Generate geometric y sequence</span>
+<span class="n">geo_seq</span> <span class="o">=</span> <span class="n">λ</span> <span class="o">**</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">t_max</span><span class="p">)</span> <span class="o">*</span> <span class="n">y_0</span> 
+<span class="n">y_seq_geo</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span>
+            <span class="p">[</span><span class="n">geo_seq</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">20</span><span class="p">)])</span>
+
+<span class="n">plot_cs</span><span class="p">(</span><span class="n">cs_model</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">y_seq_geo</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/edb50fe246cdfedfa402468e4fb35d9853138ebfc2e8ec8dd35a9db28c84f01f.png"><img alt="_images/edb50fe246cdfedfa402468e4fb35d9853138ebfc2e8ec8dd35a9db28c84f01f.png" src="_images/edb50fe246cdfedfa402468e4fb35d9853138ebfc2e8ec8dd35a9db28c84f01f.png" style="width: 80%;" /></a>
+</div>
+</div>
+<p>Now we show the behavior when <span class="math notranslate nohighlight">\(\lambda = 0.95\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">λ</span> <span class="o">=</span> <span class="mf">0.95</span>
+
+<span class="n">geo_seq</span> <span class="o">=</span> <span class="n">λ</span> <span class="o">**</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">t_max</span><span class="p">)</span> <span class="o">*</span> <span class="n">y_0</span> 
+<span class="n">y_seq_geo</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span>
+            <span class="p">[</span><span class="n">geo_seq</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">20</span><span class="p">)])</span>
+
+<span class="n">plot_cs</span><span class="p">(</span><span class="n">cs_model</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">y_seq_geo</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/7497b242b126c149598d4b8411c4024b67716fd50a316a2937e47837d39b1891.png"><img alt="_images/7497b242b126c149598d4b8411c4024b67716fd50a316a2937e47837d39b1891.png" src="_images/7497b242b126c149598d4b8411c4024b67716fd50a316a2937e47837d39b1891.png" style="width: 80%;" /></a>
+</div>
+</div>
+<p>What happens when <span class="math notranslate nohighlight">\(\lambda\)</span> is negative</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">λ</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.05</span>
+
+<span class="n">geo_seq</span> <span class="o">=</span> <span class="n">λ</span> <span class="o">**</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">t_max</span><span class="p">)</span> <span class="o">*</span> <span class="n">y_0</span> 
+<span class="n">y_seq_geo</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span>
+            <span class="p">[</span><span class="n">geo_seq</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">20</span><span class="p">)])</span>
+
+<span class="n">plot_cs</span><span class="p">(</span><span class="n">cs_model</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">y_seq_geo</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/0377c183cb4139c0394b2695fbac3adcd02df6b42fbb5be9e0c9593cf38b330f.png"><img alt="_images/0377c183cb4139c0394b2695fbac3adcd02df6b42fbb5be9e0c9593cf38b330f.png" src="_images/0377c183cb4139c0394b2695fbac3adcd02df6b42fbb5be9e0c9593cf38b330f.png" style="width: 80%;" /></a>
+</div>
+</div>
+</section>
+</section>
 <section id="feasible-consumption-variations">
-<h3><span class="section-number">10.4.4. </span>Feasible consumption variations<a class="headerlink" href="#feasible-consumption-variations" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">10.4.5. </span>Feasible consumption variations<a class="headerlink" href="#feasible-consumption-variations" title="Permalink to this heading">#</a></h3>
 <p>We promised to justify  our claim that a constant consumption play <span class="math notranslate nohighlight">\(c_t = c_0\)</span> for all
 <span class="math notranslate nohighlight">\(t\)</span> is optimal.</p>
 <p>Let’s do that now.</p>
