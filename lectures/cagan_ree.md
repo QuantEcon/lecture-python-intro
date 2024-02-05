@@ -13,23 +13,26 @@ kernelspec:
 
 # A Monetarist Theory of  Price Levels
 
-## Introduction
+## Overview
 
 
 We'll use linear algebra first to explain and then do  some experiments with  a "monetarist theory of  price levels".
 
-Sometimes this theory is also called a "fiscal theory of  price levels".
 
-Such a theory of  price levels was described by Thomas Sargent and Neil Wallace in chapter 5 of 
-{cite}`sargent2013rational`, which reprints a  1981 Federal Reserve Bank of Minneapolis article entitled "Unpleasant Monetarist Arithmetic".  
+ 
 
-Sometimes people call it a "monetary" or "monetarist" theory of  price levels because fiscal effects on  price levels occur through the effects of government fiscal policy decisions on the path of the money supply.  
+Economist  call it a "monetary" or "monetarist" theory of  price levels because  effects on  price levels occur via a central banks's  decisions to print  money supply.  
 
   * a goverment's fiscal policies determine whether it **expenditures** exceed its **tax collections**
-  * if its expenditures exceeds it tax collections, it can cover the difference by **printing money**
+  * if its expenditures exceeds it tax collections, the government can instruct the central bank to  cover the difference by **printing money**
   * that leads to effects on the price level as price level path adjusts to equate the supply of money to the demand for money
 
-The theory has been extended, criticized, and applied by John Cochrane in {cite}`cochrane2023fiscal`.
+Such a theory of  price levels was described by Thomas Sargent and Neil Wallace in chapter 5 of 
+{cite}`sargent2013rational`, which reprints a  1981 Federal Reserve Bank of Minneapolis article entitled "Unpleasant Monetarist Arithmetic". 
+
+Sometimes this theory is also called a "fiscal theory of  price levels" to emphasize the importance of fisal deficits in shaping changes in the money supply.  
+
+The theory has been extended, criticized, and applied by John Cochrane  {cite}`cochrane2023fiscal`.
 
 In another lecture {doc}`price level histories <inflation_history>`,  we described some  European hyperinflations that occurred in the wake of World War I.
 
@@ -39,29 +42,29 @@ Elemental forces at work in the fiscal theory of the price level help to underst
 According to this theory, when the government persistently spends more than it collects in taxes and prints money to finance the shortfall (the "shortfall" is called the "government deficit"), it puts upward pressure on the price level and generates
 persistent inflation.
 
-The "monetarist or fiscal theory of  price levels" asserts that  
+The ''monetarist'' or ''fiscal theory of  price levels" asserts that  
 
-* to **start** a persistent inflation the government simply persistently runs a money-financed government deficit
+* to **start** a persistent inflation the government beings persistently to run a money-financed government deficit
 
-* to **stop** a persistent inflation the government simply  stops persistently running  a money-financed government deficit
+* to **stop** a persistent inflation the government   stops persistently running  a money-financed government deficit
 
-Our model is a "rational expectations" (or "perfect foresight") version of a model that Philip Cagan {cite}`Cagan`  used to study the monetary dynamics of hyperinflations.  
+The  model in this lecture is a "rational expectations" (or "perfect foresight") version of a model that Philip Cagan {cite}`Cagan`  used to study the monetary dynamics of hyperinflations.  
 
 While Cagan didn't use that  "rational expectations" version of the model, Thomas Sargent {cite}`sargent1982ends` did when he studied the Ends of Four Big Inflations in Europe after World War I.
 
 * this lecture {doc}`fiscal theory of the price level with adaptive expectations <cagan_adaptive>` describes  a version  of the model that does not impose "rational expectations" but instead uses 
    what Cagan and his teacher Milton Friedman called "adaptive expectations"
 
-   * a reader of both lectures will notice that the algebra is easier and more streamlined in the present rational expectations version of the model
-   * this can be traced to the following source: the adaptive expectations version of the model has more endogenous variables and more free parameters 
+   * a reader of both lectures will notice that the algebra is less complicated in the present rational expectations version of the model
+   * the difference in algebra complications  can be traced to the following source: the adaptive expectations version of the model has more endogenous variables and more free parameters 
 
-Some of our quantitative experiments with our rational expectations version of the  model are designed to illustrate how the fiscal theory explains the abrupt end of those big inflations.
+Some of our quantitative experiments with the  rational expectations version of the  model are designed to illustrate how the fiscal theory explains the abrupt end of those big inflations.
 
 In those experiments, we'll encounter an instance of a ''velocity dividend'' that has sometimes accompanied successful inflation stabilization programs. 
 
 To facilitate using  linear matrix algebra as our main mathematical tool, we'll use a finite horizon version of the model.
 
-As in the {doc}`present values <pv>` and {doc}`consumption smoothing<cons_smooth>` lectures, the only linear algebra that we'll be  using are matrix multiplication and matrix inversion.
+As in the {doc}`present values <pv>` and {doc}`consumption smoothing<cons_smooth>` lectures, our mathematical tools  are matrix multiplication and matrix inversion.
 
 
 ## Structure of the model
@@ -71,7 +74,7 @@ The model consists of
 
 * a function that expresses the demand for real balances of government printed money as an inverse function of the public's expected rate of inflation
 
-* an exogenous sequence of rates of growth of the money supply.  The money supply grows because the government is printing it to finance some of its expenditures
+* an exogenous sequence of rates of growth of the money supply.  The money supply grows because the government  prints  it to pay for goods and services
 
 * an equilibrium condition that equates the demand for money to the supply
 
