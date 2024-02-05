@@ -11,7 +11,7 @@ kernelspec:
   name: python3
 ---
 
-# Long-run Growth
+# Long-Run Growth
 
 ## Overview
 
