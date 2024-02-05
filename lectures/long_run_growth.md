@@ -32,7 +32,7 @@ Using the very same data that Tooze used to construct his figure (with a slightl
 
 
 ```{figure} _static/lecture_specific/long_run_growth/tooze_ch1_graph.png
-:width: 80%
+:width: 100%
 ```
 
 (This is just a copy of our figure {numref}`gdp1`.  We describe how we constructed it later in this lecture.)
@@ -125,7 +125,7 @@ code_to_name = data[
     ['countrycode', 'country']].drop_duplicates().reset_index(drop=True).set_index(['countrycode'])
 ```
 
-Then we can quickly focus on GDP per capita (`gdppc`) and generate a wide data format
+Now we can focus on GDP per capita (`gdppc`) and generate a wide data format
 
 ```{code-cell} ipython3
 gdp_pc = data.set_index(['countrycode', 'year'])['gdppc']
@@ -157,7 +157,7 @@ In this section we examine GDP per capita over the long run for several differen
 
 ### United Kingdom
 
-First we examine the UK GDP growth
+First we examine UK GDP growth
 
 ```{code-cell} ipython3
 ---
@@ -498,6 +498,7 @@ draw_interp_plots(gdp[country].loc[start_year:end_year],
 ```
 
 #### Constructing a plot similar to Tooze's
+
 In this section we describe how we have constructed a version of the striking figure from chapter 1 of {cite}`Tooze_2014` that we discussed at the start of this lecture.
 
 Let's first define a collection of countries that consist of the British Empire (BEM) so we can replicate that series in  Tooze's chart.
