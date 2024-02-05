@@ -4,14 +4,13 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.14.5
+    jupytext_version: 1.16.1
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
   name: python3
 ---
 
-+++ {"user_expressions": []}
 
 # Consumption Smoothing
 
@@ -48,7 +47,6 @@ import matplotlib.pyplot as plt
 from collections import namedtuple
 ```
 
-+++ {"user_expressions": []}
 
 The model describes  a consumer who lives from time $t=0, 1, \ldots, T$, receives a stream $\{y_t\}_{t=0}^T$ of non-financial income and chooses a consumption stream $\{c_t\}_{t=0}^T$.
 
@@ -156,8 +154,6 @@ def creat_cs_model(R=1.05, g1=1, g2=1/2, T=65):
                                 β_seq=β_seq, T=65)
 ```
 
-+++ {"user_expressions": []}
-
 
 ## Friedman-Hall consumption-smoothing model
 
@@ -206,7 +202,6 @@ $$ (eq:conssmoothing)
 
 Equation {eq}`eq:conssmoothing` is the consumption-smoothing model in a nutshell.
 
-+++ {"user_expressions": []}
 
 ## Mechanics of Consumption smoothing model  
 
@@ -301,7 +296,7 @@ This  can be interpreted as a student debt.
 
 The non-financial process $\{y_t\}_{t=0}^{T}$ is constant and positive up to $t=45$ and then becomes zero afterward.
 
-The drop in non-financial income late in life reflects retirement from work. 
+The drop in non-financial income late in life reflects retirement from work.
 
 ```{code-cell} ipython3
 # Financial wealth
@@ -348,7 +343,138 @@ def welfare(model, c_seq):
 print('Welfare:', welfare(cs_model, c_seq))
 ```
 
-+++ {"user_expressions": []}
+### Experiments
+
+In this section we experiment consumption smoothing behavior under different setups.
+
+First we write a function `plot_cs` that generate graphs above based on a consumption smoothing model `cs_model`.
+
+This helps us repeat the steps shown above
+
+```{code-cell} ipython3
+def plot_cs(model,    # consumption smoothing model      
+            a0,       # initial financial wealth
+            y_seq     # non-financial income process
+           ):
+    
+    # Compute optimal consumption
+    c_seq, a_seq, h0 = compute_optimal(model, a0, y_seq)
+    
+    # Sequence length
+    T = cs_model.T
+    
+    # Generate plot
+    plt.plot(range(T+1), y_seq, label='non-financial income')
+    plt.plot(range(T+1), c_seq, label='consumption')
+    plt.plot(range(T+2), a_seq, label='financial wealth')
+    plt.plot(range(T+2), np.zeros(T+2), '--')
+    
+    plt.legend()
+    plt.xlabel(r'$t$')
+    plt.ylabel(r'$c_t,y_t,a_t$')
+    plt.show()
+```
+
+#### Experiment 1: one-time gain/loss
+
+We first assume a one-time windfall of $W_0$ in year 21 of the income sequence $y$.  
+
+We'll make $W_0$ big - positive to indicate a one-time windfall, and negative to indicate a one-time "disaster".
+
+```{code-cell} ipython3
+# Windfall W_0 = 20
+y_seq_pos = np.concatenate(
+    [np.ones(21), np.array([20]), np.ones(44)])
+
+plot_cs(cs_model, a0, y_seq_pos)
+```
+
+```{code-cell} ipython3
+# Disaster W_0 = -20
+y_seq_neg = np.concatenate(
+    [np.ones(21), np.array([-20]), np.ones(44)])
+
+plot_cs(cs_model, a0, y_seq_neg)
+```
+
+#### Experiment 2: permanent wage gain/loss
+
+Now we assume a permanent increase in income of $W$ in year 21 of the $y$-sequence.
+
+Again we can study positive and negative cases
+
+```{code-cell} ipython3
+# Positive permanent income change W = 0.5 when t >= 21
+y_seq_pos = np.concatenate(
+    [np.ones(21), np.repeat(1.5, 45)])
+
+plot_cs(cs_model, a0, y_seq_pos)
+```
+
+```{code-cell} ipython3
+# Negative permanent income change W = -0.5 when t >= 21
+y_seq_neg = np.concatenate(
+    [np.ones(21), np.repeat(0.5, 45)])
+
+plot_cs(cs_model, a0, y_seq_neg)
+```
+
+#### Experiment 3: a late starter
+
+Now we simulate a $y$ sequence in which a person gets zero for 46 years, and then works and gets 1 for the last 20 years of life (a "late starter")
+
+```{code-cell} ipython3
+# Late starter
+y_seq_late = np.concatenate(
+    [np.zeros(46), np.ones(20)])
+
+plot_cs(cs_model, a0, y_seq_late)
+```
+
+#### Experiment 4: geometric earner
+
+Now we simulate a geometric $y$ sequence in which a person gets $y_t = \lambda^t y_0$ in first 46 years.
+
+We first experiment with $\lambda = 1.05$
+
+```{code-cell} ipython3
+# Geometric earner parameters where λ = 1.05
+λ = 1.05
+y_0 = 1
+t_max = 46
+
+# Generate geometric y sequence
+geo_seq = λ ** np.arange(t_max) * y_0 
+y_seq_geo = np.concatenate(
+            [geo_seq, np.zeros(20)])
+
+plot_cs(cs_model, a0, y_seq_geo)
+```
+
+Now we show the behavior when $\lambda = 0.95$
+
+```{code-cell} ipython3
+λ = 0.95
+
+geo_seq = λ ** np.arange(t_max) * y_0 
+y_seq_geo = np.concatenate(
+            [geo_seq, np.zeros(20)])
+
+plot_cs(cs_model, a0, y_seq_geo)
+```
+
+What happens when $\lambda$ is negative
+
+```{code-cell} ipython3
+λ = -0.05
+
+geo_seq = λ ** np.arange(t_max) * y_0 
+y_seq_geo = np.concatenate(
+            [geo_seq, np.zeros(20)])
+
+plot_cs(cs_model, a0, y_seq_geo)
+```
+
 
 ### Feasible consumption variations
 
@@ -435,7 +561,6 @@ def compute_variation(model, ξ1, ϕ, a0, y_seq, verbose=1):
     return cvar_seq
 ```
 
-+++ {"user_expressions": []}
 
 We visualize variations for $\xi_1 \in \{.01, .05\}$ and $\phi \in \{.95, 1.02\}$
 
@@ -473,7 +598,6 @@ plt.ylabel(r'$c_t$')
 plt.show()
 ```
 
-+++ {"user_expressions": []}
 
 We can even use the Python `np.gradient` command to compute derivatives of welfare with respect to our two parameters.  
 
@@ -498,7 +622,6 @@ def welfare_rel(ξ1, ϕ):
 welfare_vec = np.vectorize(welfare_rel)
 ```
 
-+++ {"user_expressions": []}
 
 Then we can visualize the relationship between welfare and $\xi_1$ and compute its derivatives
 
@@ -518,7 +641,6 @@ plt.xlabel(r'$\xi_1$')
 plt.show()
 ```
 
-+++ {"user_expressions": []}
 
 The same can be done on $\phi$
 
