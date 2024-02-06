@@ -24,9 +24,9 @@ In this lecture, we'll study what is often  called the "consumption-smoothing mo
 Formulas presented in  {doc}`present value formulas<pv>` are at the core of the consumption smoothing model because we shall use them to define a consumer's "human wealth".
 
 The  key idea that inspired Milton Friedman was that a person's non-financial income, i.e., his or
-her wages from working, could be viewed as a dividend stream from that person's ``human capital''
+her wages from working, could be viewed as a dividend stream from that person's ''human capital''
 and that standard asset-pricing formulas could be applied to compute a person's
-``non-financial wealth'' that capitalizes the  earnings stream.  
+''non-financial wealth'' that capitalizes the  earnings stream.  
 
 ```{note}
 As we'll see in this quantecon lecture  {doc}`equalizing difference model <equalizing_difference>`,
@@ -345,11 +345,11 @@ print('Welfare:', welfare(cs_model, c_seq))
 
 ### Experiments
 
-In this section we experiment consumption smoothing behavior under different setups.
+In this section we decribe  how a  consumption sequence would optimally respond to different  sequences sequences of non-financial income.
 
-First we write a function `plot_cs` that generate graphs above based on a consumption smoothing model `cs_model`.
+First we create  a function `plot_cs` that generate graphs for different instances of the  consumption smoothing model `cs_model`.
 
-This helps us repeat the steps shown above
+This will  help us avoid rewriting code to plot outcomes for different non-financial income sequences.
 
 ```{code-cell} ipython3
 def plot_cs(model,    # consumption smoothing model      
@@ -375,6 +375,8 @@ def plot_cs(model,    # consumption smoothing model
     plt.show()
 ```
 
+In the experiments below, please study how consumption and financial asset sequences vary accross different sequences for non-financial income.
+
 #### Experiment 1: one-time gain/loss
 
 We first assume a one-time windfall of $W_0$ in year 21 of the income sequence $y$.  
@@ -382,24 +384,24 @@ We first assume a one-time windfall of $W_0$ in year 21 of the income sequence $
 We'll make $W_0$ big - positive to indicate a one-time windfall, and negative to indicate a one-time "disaster".
 
 ```{code-cell} ipython3
-# Windfall W_0 = 20
+# Windfall W_0 = 2.5
 y_seq_pos = np.concatenate(
-    [np.ones(21), np.array([20]), np.ones(44)])
+    [np.ones(21), np.array([2.5]), np.ones(44)])
 
 plot_cs(cs_model, a0, y_seq_pos)
 ```
 
 ```{code-cell} ipython3
-# Disaster W_0 = -20
+# Disaster W_0 = -2.5
 y_seq_neg = np.concatenate(
-    [np.ones(21), np.array([-20]), np.ones(44)])
+    [np.ones(21), np.array([-2.5]), np.ones(44)])
 
 plot_cs(cs_model, a0, y_seq_neg)
 ```
 
 #### Experiment 2: permanent wage gain/loss
 
-Now we assume a permanent increase in income of $W$ in year 21 of the $y$-sequence.
+Now we assume a **permanent**  increase in income of $W$ in year 21 of the $y$-sequence.
 
 Again we can study positive and negative cases
 
@@ -466,7 +468,7 @@ plot_cs(cs_model, a0, y_seq_geo)
 What happens when $\lambda$ is negative
 
 ```{code-cell} ipython3
-λ = -0.05
+λ = -0.95
 
 geo_seq = λ ** np.arange(t_max) * y_0 
 y_seq_geo = np.concatenate(

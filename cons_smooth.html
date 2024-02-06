@@ -260,7 +260,9 @@ const thebe_selector_output = ".output, .cell_output"
 <p>In this lecture, we’ll study what is often  called the “consumption-smoothing model”  using  matrix multiplication and matrix inversion, the same tools that we used in this quantecon lecture <a class="reference internal" href="pv.html"><span class="doc">present values</span></a>.</p>
 <p>Formulas presented in  <a class="reference internal" href="pv.html"><span class="doc">present value formulas</span></a> are at the core of the consumption smoothing model because we shall use them to define a consumer’s “human wealth”.</p>
 <p>The  key idea that inspired Milton Friedman was that a person’s non-financial income, i.e., his or
-her wages from working, could be viewed as a dividend stream from that person’s <code class="docutils literal notranslate"><span class="pre">human</span> <span class="pre">capital''</span> <span class="pre">and</span> <span class="pre">that</span> <span class="pre">standard</span> <span class="pre">asset-pricing</span> <span class="pre">formulas</span> <span class="pre">could</span> <span class="pre">be</span> <span class="pre">applied</span> <span class="pre">to</span> <span class="pre">compute</span> <span class="pre">a</span> <span class="pre">person's</span> </code>non-financial wealth’’ that capitalizes the  earnings stream.</p>
+her wages from working, could be viewed as a dividend stream from that person’s ‘‘human capital’’
+and that standard asset-pricing formulas could be applied to compute a person’s
+‘‘non-financial wealth’’ that capitalizes the  earnings stream.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>As we’ll see in this quantecon lecture  <a class="reference internal" href="equalizing_difference.html"><span class="doc">equalizing difference model</span></a>,
@@ -541,9 +543,9 @@ a_{T+1} = 0.
 </section>
 <section id="experiments">
 <h3><span class="section-number">10.4.4. </span>Experiments<a class="headerlink" href="#experiments" title="Permalink to this heading">#</a></h3>
-<p>In this section we experiment consumption smoothing behavior under different setups.</p>
-<p>First we write a function <code class="docutils literal notranslate"><span class="pre">plot_cs</span></code> that generate graphs above based on a consumption smoothing model <code class="docutils literal notranslate"><span class="pre">cs_model</span></code>.</p>
-<p>This helps us repeat the steps shown above</p>
+<p>In this section we decribe  how a  consumption sequence would optimally respond to different  sequences sequences of non-financial income.</p>
+<p>First we create  a function <code class="docutils literal notranslate"><span class="pre">plot_cs</span></code> that generate graphs for different instances of the  consumption smoothing model <code class="docutils literal notranslate"><span class="pre">cs_model</span></code>.</p>
+<p>This will  help us avoid rewriting code to plot outcomes for different non-financial income sequences.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_cs</span><span class="p">(</span><span class="n">model</span><span class="p">,</span>    <span class="c1"># consumption smoothing model      </span>
@@ -571,42 +573,43 @@ a_{T+1} = 0.
 </div>
 </div>
 </div>
+<p>In the experiments below, please study how consumption and financial asset sequences vary accross different sequences for non-financial income.</p>
 <section id="experiment-1-one-time-gain-loss">
 <h4><span class="section-number">10.4.4.1. </span>Experiment 1: one-time gain/loss<a class="headerlink" href="#experiment-1-one-time-gain-loss" title="Permalink to this heading">#</a></h4>
 <p>We first assume a one-time windfall of <span class="math notranslate nohighlight">\(W_0\)</span> in year 21 of the income sequence <span class="math notranslate nohighlight">\(y\)</span>.</p>
 <p>We’ll make <span class="math notranslate nohighlight">\(W_0\)</span> big - positive to indicate a one-time windfall, and negative to indicate a one-time “disaster”.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Windfall W_0 = 20</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Windfall W_0 = 2.5</span>
 <span class="n">y_seq_pos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span>
-    <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">21</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">20</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">44</span><span class="p">)])</span>
+    <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">21</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">2.5</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">44</span><span class="p">)])</span>
 
 <span class="n">plot_cs</span><span class="p">(</span><span class="n">cs_model</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">y_seq_pos</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/a0850b6e932ae76d0655668a371e94aa8cab1d133ce8806173e1fa92f67822d2.png"><img alt="_images/a0850b6e932ae76d0655668a371e94aa8cab1d133ce8806173e1fa92f67822d2.png" src="_images/a0850b6e932ae76d0655668a371e94aa8cab1d133ce8806173e1fa92f67822d2.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/fcc0396b658c797eaa95364e0191e6b2be9cb4f3569e3faf4607d520e78a89b2.png"><img alt="_images/fcc0396b658c797eaa95364e0191e6b2be9cb4f3569e3faf4607d520e78a89b2.png" src="_images/fcc0396b658c797eaa95364e0191e6b2be9cb4f3569e3faf4607d520e78a89b2.png" style="width: 80%;" /></a>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Disaster W_0 = -20</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Disaster W_0 = -2.5</span>
 <span class="n">y_seq_neg</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span>
-    <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">21</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">20</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">44</span><span class="p">)])</span>
+    <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">21</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mf">2.5</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">44</span><span class="p">)])</span>
 
 <span class="n">plot_cs</span><span class="p">(</span><span class="n">cs_model</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">y_seq_neg</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/582800143d1272f5bf837a8182b5804f51eb14b60619eb5b2bdff8e58513c00b.png"><img alt="_images/582800143d1272f5bf837a8182b5804f51eb14b60619eb5b2bdff8e58513c00b.png" src="_images/582800143d1272f5bf837a8182b5804f51eb14b60619eb5b2bdff8e58513c00b.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/b475c9ec84850ec1d3df4c870df4ecf6ee3ef1f66386760dcf8bbceee1f7aed1.png"><img alt="_images/b475c9ec84850ec1d3df4c870df4ecf6ee3ef1f66386760dcf8bbceee1f7aed1.png" src="_images/b475c9ec84850ec1d3df4c870df4ecf6ee3ef1f66386760dcf8bbceee1f7aed1.png" style="width: 80%;" /></a>
 </div>
 </div>
 </section>
 <section id="experiment-2-permanent-wage-gain-loss">
 <h4><span class="section-number">10.4.4.2. </span>Experiment 2: permanent wage gain/loss<a class="headerlink" href="#experiment-2-permanent-wage-gain-loss" title="Permalink to this heading">#</a></h4>
-<p>Now we assume a permanent increase in income of <span class="math notranslate nohighlight">\(W\)</span> in year 21 of the <span class="math notranslate nohighlight">\(y\)</span>-sequence.</p>
+<p>Now we assume a <strong>permanent</strong>  increase in income of <span class="math notranslate nohighlight">\(W\)</span> in year 21 of the <span class="math notranslate nohighlight">\(y\)</span>-sequence.</p>
 <p>Again we can study positive and negative cases</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -699,7 +702,7 @@ a_{T+1} = 0.
 <p>What happens when <span class="math notranslate nohighlight">\(\lambda\)</span> is negative</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">λ</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.05</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">λ</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.95</span>
 
 <span class="n">geo_seq</span> <span class="o">=</span> <span class="n">λ</span> <span class="o">**</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">t_max</span><span class="p">)</span> <span class="o">*</span> <span class="n">y_0</span> 
 <span class="n">y_seq_geo</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span>
@@ -710,7 +713,7 @@ a_{T+1} = 0.
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/0377c183cb4139c0394b2695fbac3adcd02df6b42fbb5be9e0c9593cf38b330f.png"><img alt="_images/0377c183cb4139c0394b2695fbac3adcd02df6b42fbb5be9e0c9593cf38b330f.png" src="_images/0377c183cb4139c0394b2695fbac3adcd02df6b42fbb5be9e0c9593cf38b330f.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/9432d5e3fda676ec428bd7e8bc35d401ba2784c5708676ae341fd06c6d72744b.png"><img alt="_images/9432d5e3fda676ec428bd7e8bc35d401ba2784c5708676ae341fd06c6d72744b.png" src="_images/9432d5e3fda676ec428bd7e8bc35d401ba2784c5708676ae341fd06c6d72744b.png" style="width: 80%;" /></a>
 </div>
 </div>
 </section>
