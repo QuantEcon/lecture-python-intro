@@ -385,16 +385,14 @@ We'll make $W_0$ big - positive to indicate a one-time windfall, and negative to
 
 ```{code-cell} ipython3
 # Windfall W_0 = 2.5
-y_seq_pos = np.concatenate(
-    [np.ones(21), np.array([2.5]), np.ones(44)])
+y_seq_pos = np.concatenate([np.ones(21), np.array([2.5]), np.ones(24), np.zeros(20)])
 
 plot_cs(cs_model, a0, y_seq_pos)
 ```
 
 ```{code-cell} ipython3
 # Disaster W_0 = -2.5
-y_seq_neg = np.concatenate(
-    [np.ones(21), np.array([-2.5]), np.ones(44)])
+y_seq_neg = np.concatenate([np.ones(21), np.array([-2.5]), np.ones(24), np.zeros(20)])
 
 plot_cs(cs_model, a0, y_seq_neg)
 ```
@@ -408,7 +406,7 @@ Again we can study positive and negative cases
 ```{code-cell} ipython3
 # Positive permanent income change W = 0.5 when t >= 21
 y_seq_pos = np.concatenate(
-    [np.ones(21), np.repeat(1.5, 45)])
+    [np.ones(21), 1.5*np.ones(25), np.zeros(20)])
 
 plot_cs(cs_model, a0, y_seq_pos)
 ```
@@ -416,7 +414,7 @@ plot_cs(cs_model, a0, y_seq_pos)
 ```{code-cell} ipython3
 # Negative permanent income change W = -0.5 when t >= 21
 y_seq_neg = np.concatenate(
-    [np.ones(21), np.repeat(0.5, 45)])
+    [np.ones(21), .5*np.ones(25), np.zeros(20)])
 
 plot_cs(cs_model, a0, y_seq_neg)
 ```
