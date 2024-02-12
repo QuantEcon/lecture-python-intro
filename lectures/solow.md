@@ -13,14 +13,14 @@ kernelspec:
 # The Solow-Swan Growth Model
 
 In this lecture we review a famous model due
-to [Robert Solow (1925--2014)](https://en.wikipedia.org/wiki/Robert_Solow) and [Trevor Swan (1918--1989)](https://en.wikipedia.org/wiki/Trevor_Swan).
+to [Robert Solow (1925--2023)](https://en.wikipedia.org/wiki/Robert_Solow) and [Trevor Swan (1918--1989)](https://en.wikipedia.org/wiki/Trevor_Swan).
 
 The model is used to study growth over the long run.
 
 Although the model is simple, it contains some interesting lessons.
 
 
-We will use the following imports
+We will use the following imports.
 
 ```{code-cell} ipython3
 import matplotlib.pyplot as plt
@@ -59,7 +59,7 @@ Production functions with this property include
 * the **CES** function $F(K, L) = \left\{ a K^\rho + b L^\rho \right\}^{1/\rho}$
         with $a, b, \rho > 0$.
 
-We assume a closed economy, so domestic investment equals aggregate domestic
+We assume a closed economy, so aggregate domestic investment equals aggregate domestic
 saving.
 
 The saving rate is a constant $s$ satisfying $0 \leq s \leq 1$, so that aggregate
@@ -121,14 +121,14 @@ x0 = 0.25
 xmin, xmax = 0, 3
 ```
 
-Now, we define the function $g$
+Now, we define the function $g$.
 
 ```{code-cell} ipython3
 def g(A, s, alpha, delta, k):
     return A * s * k**alpha + (1 - delta) * k
 ```
 
-Let's plot the 45 degree diagram of $g$
+Let's plot the 45 degree diagram of $g$.
 
 ```{code-cell} ipython3
 def plot45(kstar=None):
@@ -198,7 +198,7 @@ If initial capital is below $k^*$, then capital increases over time.
 
 If initial capital is above this level, then the reverse is true.
 
-Let's plot the 45 degree diagram to show the $k^*$ in the plot
+Let's plot the 45 degree diagram to show the $k^*$ in the plot.
 
 ```{code-cell} ipython3
 kstar = ((s * A) / delta)**(1/(1 - alpha))
@@ -259,15 +259,15 @@ def simulate_ts(x0_values, ts_length):
 simulate_ts(x0, ts_length)
 ```
 
-As expected, the time paths in the figure both converge to this value.
+As expected, the time paths in the figure all converge to $k^*$.
 
 ## Growth in continuous time
 
-In this section we investigate a continuous time version of the Solow--Swan
+In this section, we investigate a continuous time version of the Solow--Swan
 growth model.
 
 We will see how the smoothing provided by continuous time can
-simplify analysis.
+simplify our analysis.
 
 
 Recall  that the discrete time dynamics for capital are
@@ -291,7 +291,7 @@ Taking the time step to zero gives the continuous time limit
 ```
 
 Our aim is to learn about the evolution of $k_t$ over time,
-given initial stock  $k_0$.
+given an initial stock  $k_0$.
 
 A **steady state** for {eq}`solowc` is a value $k^*$
 at which capital is unchanging, meaning $k'_t = 0$ or, equivalently,
@@ -308,7 +308,7 @@ the next figure, maintaining the parameterization we used
 above.
 
 Writing $k'_t = g(k_t)$ with $g(k) =
-s Ak^\alpha - \delta k$, values of $k$ with $g(k) > 0$ imply that $k'_t > 0$, so
+s Ak^\alpha - \delta k$, values of $k$ with $g(k) > 0$ imply $k'_t > 0$, so
 capital is increasing.
 
 When $g(k) < 0$, the opposite occurs.  Once again, high marginal returns to
