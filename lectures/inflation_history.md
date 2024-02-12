@@ -4,7 +4,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.14.4
+    jupytext_version: 1.15.2
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
@@ -250,7 +250,7 @@ def process_df(df):
     df = df[~df.index.duplicated(keep='first')]
     
     # convert attribute values to numeric
-    df = df.applymap(lambda x: float(x) \
+    df = df.map(lambda x: float(x) \
                 if x != '—' else np.nan)
     
     # finally, we only focus on data between 1919 and 1925
@@ -351,7 +351,7 @@ for i in range(4):
     # apply process_entry on the selected sheet
     sheet_list = [
         pd.read_excel(xls, 'Table3.' + str(ind), 
-            header=1).iloc[:row].applymap(process_entry)
+            header=1).iloc[:row].map(process_entry)
         for ind, row in zip(indices, rows)]
     
     sheet_list = [process_df(df) for df in sheet_list]
