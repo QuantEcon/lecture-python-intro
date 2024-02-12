@@ -236,10 +236,10 @@ const thebe_selector_output = ".output, .cell_output"
   <section class="tex2jax_ignore mathjax_ignore" id="the-solow-swan-growth-model">
 <span id="solow"></span><h1><span class="section-number">21. </span>The Solow-Swan Growth Model<a class="headerlink" href="#the-solow-swan-growth-model" title="Permalink to this heading">#</a></h1>
 <p>In this lecture we review a famous model due
-to <a class="reference external" href="https://en.wikipedia.org/wiki/Robert_Solow">Robert Solow (1925–2014)</a> and <a class="reference external" href="https://en.wikipedia.org/wiki/Trevor_Swan">Trevor Swan (1918–1989)</a>.</p>
+to <a class="reference external" href="https://en.wikipedia.org/wiki/Robert_Solow">Robert Solow (1925–2023)</a> and <a class="reference external" href="https://en.wikipedia.org/wiki/Trevor_Swan">Trevor Swan (1918–1989)</a>.</p>
 <p>The model is used to study growth over the long run.</p>
 <p>Although the model is simple, it contains some interesting lessons.</p>
-<p>We will use the following imports</p>
+<p>We will use the following imports.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -274,7 +274,7 @@ L^{1-\alpha}\)</span> with <span class="math notranslate nohighlight">\(0 \leq \
 <li><p>the <strong>CES</strong> function <span class="math notranslate nohighlight">\(F(K, L) = \left\{ a K^\rho + b L^\rho \right\}^{1/\rho}\)</span>
 with <span class="math notranslate nohighlight">\(a, b, \rho &gt; 0\)</span>.</p></li>
 </ul>
-<p>We assume a closed economy, so domestic investment equals aggregate domestic
+<p>We assume a closed economy, so aggregate domestic investment equals aggregate domestic
 saving.</p>
 <p>The saving rate is a constant <span class="math notranslate nohighlight">\(s\)</span> satisfying <span class="math notranslate nohighlight">\(0 \leq s \leq 1\)</span>, so that aggregate
 investment and saving both equal  <span class="math notranslate nohighlight">\(s Y_t\)</span>.</p>
@@ -320,7 +320,7 @@ degree line.</p>
 </div>
 </div>
 </div>
-<p>Now, we define the function <span class="math notranslate nohighlight">\(g\)</span></p>
+<p>Now, we define the function <span class="math notranslate nohighlight">\(g\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">g</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
@@ -329,7 +329,7 @@ degree line.</p>
 </div>
 </div>
 </div>
-<p>Let’s plot the 45 degree diagram of <span class="math notranslate nohighlight">\(g\)</span></p>
+<p>Let’s plot the 45 degree diagram of <span class="math notranslate nohighlight">\(g\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot45</span><span class="p">(</span><span class="n">kstar</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
@@ -396,7 +396,7 @@ there is a unique steady state in <span class="math notranslate nohighlight">\((
 <span class="eqno">(21.2)<a class="headerlink" href="#equation-kstarss" title="Permalink to this equation">#</a></span>\[    k^* := \left( \frac{s A}{\delta} \right)^{1/(1 - \alpha)}\]</div>
 <p>If initial capital is below <span class="math notranslate nohighlight">\(k^*\)</span>, then capital increases over time.</p>
 <p>If initial capital is above this level, then the reverse is true.</p>
-<p>Let’s plot the 45 degree diagram to show the <span class="math notranslate nohighlight">\(k^*\)</span> in the plot</p>
+<p>Let’s plot the 45 degree diagram to show the <span class="math notranslate nohighlight">\(k^*\)</span> in the plot.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kstar</span> <span class="o">=</span> <span class="p">((</span><span class="n">s</span> <span class="o">*</span> <span class="n">A</span><span class="p">)</span> <span class="o">/</span> <span class="n">delta</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">alpha</span><span class="p">))</span>
@@ -467,14 +467,14 @@ three distinct initial conditions, under the parameterization listed above.</p>
 <a class="reference internal image-reference" href="_images/ec0e7fac241461ba475b8094e797713c55cea5629fda493b9c5c70bb124dce5f.png"><img alt="_images/ec0e7fac241461ba475b8094e797713c55cea5629fda493b9c5c70bb124dce5f.png" src="_images/ec0e7fac241461ba475b8094e797713c55cea5629fda493b9c5c70bb124dce5f.png" style="width: 80%;" /></a>
 </div>
 </div>
-<p>As expected, the time paths in the figure both converge to this value.</p>
+<p>As expected, the time paths in the figure all converge to <span class="math notranslate nohighlight">\(k^*\)</span>.</p>
 </section>
 <section id="growth-in-continuous-time">
 <h2><span class="section-number">21.3. </span>Growth in continuous time<a class="headerlink" href="#growth-in-continuous-time" title="Permalink to this heading">#</a></h2>
-<p>In this section we investigate a continuous time version of the Solow–Swan
+<p>In this section, we investigate a continuous time version of the Solow–Swan
 growth model.</p>
 <p>We will see how the smoothing provided by continuous time can
-simplify analysis.</p>
+simplify our analysis.</p>
 <p>Recall  that the discrete time dynamics for capital are
 given by <span class="math notranslate nohighlight">\(k_{t+1} = s f(k_t) + (1 - \delta) k_t\)</span>.</p>
 <p>A simple rearrangement gives the rate of change per unit of time:</p>
@@ -490,7 +490,7 @@ given by <span class="math notranslate nohighlight">\(k_{t+1} = s f(k_t) + (1 - 
     \qquad \text{with} \qquad
     k'_t := \frac{d}{dt} k_t\]</div>
 <p>Our aim is to learn about the evolution of <span class="math notranslate nohighlight">\(k_t\)</span> over time,
-given initial stock  <span class="math notranslate nohighlight">\(k_0\)</span>.</p>
+given an initial stock  <span class="math notranslate nohighlight">\(k_0\)</span>.</p>
 <p>A <strong>steady state</strong> for <a class="reference internal" href="#equation-solowc">(21.3)</a> is a value <span class="math notranslate nohighlight">\(k^*\)</span>
 at which capital is unchanging, meaning <span class="math notranslate nohighlight">\(k'_t = 0\)</span> or, equivalently,
 <span class="math notranslate nohighlight">\(s f(k^*) = \delta k^*\)</span>.</p>
@@ -502,7 +502,7 @@ at which capital is unchanging, meaning <span class="math notranslate nohighligh
 the next figure, maintaining the parameterization we used
 above.</p>
 <p>Writing <span class="math notranslate nohighlight">\(k'_t = g(k_t)\)</span> with <span class="math notranslate nohighlight">\(g(k) =
-s Ak^\alpha - \delta k\)</span>, values of <span class="math notranslate nohighlight">\(k\)</span> with <span class="math notranslate nohighlight">\(g(k) &gt; 0\)</span> imply that <span class="math notranslate nohighlight">\(k'_t &gt; 0\)</span>, so
+s Ak^\alpha - \delta k\)</span>, values of <span class="math notranslate nohighlight">\(k\)</span> with <span class="math notranslate nohighlight">\(g(k) &gt; 0\)</span> imply <span class="math notranslate nohighlight">\(k'_t &gt; 0\)</span>, so
 capital is increasing.</p>
 <p>When <span class="math notranslate nohighlight">\(g(k) &lt; 0\)</span>, the opposite occurs.  Once again, high marginal returns to
 savings at low levels of capital combined with low rates of return at high
@@ -837,7 +837,7 @@ down, since the system is hit with new shocks at each point in time.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/2ea0fff58da8daffbab151f986543cae51be6eee8905d23f799f331f496a4664.png"><img alt="_images/2ea0fff58da8daffbab151f986543cae51be6eee8905d23f799f331f496a4664.png" src="_images/2ea0fff58da8daffbab151f986543cae51be6eee8905d23f799f331f496a4664.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/24027e9d94e2e01b4f854ce0f4f82d048bc488a1975551f009d9dcf2d61cd9b6.png"><img alt="_images/24027e9d94e2e01b4f854ce0f4f82d048bc488a1975551f009d9dcf2d61cd9b6.png" src="_images/24027e9d94e2e01b4f854ce0f4f82d048bc488a1975551f009d9dcf2d61cd9b6.png" style="width: 80%;" /></a>
 </div>
 </div>
 </section>
@@ -914,7 +914,7 @@ down, since the system is hit with new shocks at each point in time.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="long_run_growth.html">
-   2. Economic Growth Evidence
+   2. Long-Run Growth
   </a>
  </li>
  <li class="toctree-l1">

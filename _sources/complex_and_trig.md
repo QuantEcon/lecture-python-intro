@@ -472,7 +472,7 @@ We can verify the analytical as well as numerical results using
 
 ```{code-cell} python3
 # Set initial printing
-init_printing()
+init_printing(use_latex="mathjax")
 
 ω = Symbol('ω')
 print('The analytical solution for integral of cos(ω)sin(ω) is:')
