@@ -61,7 +61,7 @@ import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 ```
 
-Let us bring the data into Pandas from a spreadsheet.
+Let us bring the data into pandas from a spreadsheet.
 
 ```{code-cell} ipython3
 # import data and clean up the index
@@ -78,6 +78,12 @@ We first plot price levels over the period 1600-1914.
 During most years in this time interval, the countries were on a gold or silver standard.
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: "Long run time series of the price level"
+    name: lrpl
+---
 df_fig5_bef1914 = df_fig5[df_fig5.index <= 1915]
 
 # create plot
@@ -144,6 +150,12 @@ Although we didn't have to use logarithms in our earlier graphs that had stopped
 After the outbreak of the Great War in 1914, the four countries left the gold standard and in so doing acquired the ability to print money to finance government expenditures.
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: "Long run time series of the price level (log)"
+    name: lrpl_lg
+---
 fig, ax = plt.subplots(figsize=[8, 5], dpi=200)
 
 for col in cols:
@@ -193,7 +205,9 @@ We have added logarithms of the exchange rates vis a vis the US dollar to each o
 from chapter 3 of {cite}`sargent2013rational`.
 
 Data underlying our graphs appear in tables in an appendix to chapter 3 of {cite}`sargent2013rational`.
-We have transcribed all of these data into a spreadsheet `chapter_3.xls` that we read into Pandas.
+We have transcribed all of these data into a spreadsheet `chapter_3.xls` that we read into pandas.
+
+In the code cell below we clean this data build a `pandas.dataframe`. 
 
 ```{code-cell} ipython3
 :tags: [hide-input]
@@ -252,6 +266,13 @@ def process_df(df):
     df = df.loc[mask]
 
     return df
+```
+
+Now we write plotting functions so we can make plots of the price level and exchange rates, 
+in addition to a plot of inflation rates, for each country of interest.
+
+```{code-cell} ipython3
+:tags: [hide-input]
 
 def pe_plot(p_seq, e_seq, index, labs, ax):
     "Generate plots for price and exchange rates."
@@ -283,7 +304,9 @@ def pe_plot(p_seq, e_seq, index, labs, ax):
     ax.text(0.92, 1.03, 'Exchange Rate', transform=ax.transAxes)
     
     ax1.legend(loc='upper left')
-
+    ax.spines[['top']].set_visible(False)
+    ax1.spines[['top']].set_visible(False)
+    
     return ax1
 
 def pr_plot(p_seq, index, ax):
@@ -299,7 +322,7 @@ def pr_plot(p_seq, index, ax):
     
     # calculate and plot moving average
     diff_smooth = pd.DataFrame(log_diff_p).rolling(3, center=True).mean()
-    ax.plot(index[1:], diff_smooth, alpha=0.5)
+    ax.plot(index[1:], diff_smooth, label='Moving average (3 period)', alpha=0.5)
     ax.text(-0.08, 1.03, 
             'Monthly Inflation Rate', 
             transform=ax.transAxes)
@@ -308,6 +331,7 @@ def pr_plot(p_seq, index, ax):
         mdates.MonthLocator(interval=5))
     ax.xaxis.set_major_formatter(
         mdates.DateFormatter('%b %Y'))
+    ax.spines[['right', 'top']].set_visible(False)
     
     for label in ax.get_xticklabels():
         label.set_rotation(45)
@@ -315,7 +339,6 @@ def pr_plot(p_seq, index, ax):
     ax.legend(loc='upper left')
     
     return ax
-    
 ```
 
 Now we can generate the plot.
@@ -377,6 +400,12 @@ The sources of our data are:
 * Table 3.4, exchange rate with US
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: "Price index and exchange rate (Austria)"
+    name: pi_xrate_austria
+---
 p_seq = df_Aus['Retail price index, 52 commodities']
 e_seq = df_Aus['Exchange Rate']
 
@@ -394,6 +423,12 @@ plt.show()
 ```
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: "Monthly inflation rate (Austria)"
+    name: inflationrate_austria
+---
 # plot moving average
 fig, ax = plt.subplots(figsize=[10,7], dpi=200)
 _ = pr_plot(p_seq, df_Aus.index, ax)
@@ -419,6 +454,12 @@ The source of our data for Hungary is:
 * Table 3.10, price level $\exp p$ and exchange rate
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: "Price index and exchange rate (Hungary)"
+    name: pi_xrate_hungary
+---
 m_seq = df_Hung['Notes in circulation']
 p_seq = df_Hung['Hungarian index of prices']
 e_seq = 1 / df_Hung['Cents per crown in New York']
@@ -437,6 +478,12 @@ plt.show()
 ```
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: "Monthly inflation rate (Hungary)"
+    name: inflationrate_hungary
+---
 # plot moving average
 fig, ax = plt.subplots(figsize=[10,7], dpi=200)
 _ = pr_plot(p_seq, df_Hung.index, ax)
@@ -460,6 +507,12 @@ We dropped the exchange rate after June 1924, when the zloty was adopted. We did
 ````
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: "Price index and exchange rate (Poland)"
+    name: pi_xrate_poland
+---
 # splice three price series in different units
 p_seq1 = df_Pol['Wholesale price index'].copy()
 p_seq2 = df_Pol['Wholesale Price Index: '
@@ -500,6 +553,12 @@ plt.show()
 ```
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: "Monthly inflation rate (Poland)"
+    name: inflationrate_poland
+---
 # plot moving average
 fig, ax = plt.subplots(figsize=[10,7], dpi=200)
 _ = pr_plot(p_seq, df_Pol.index, ax)
@@ -518,6 +577,12 @@ The sources of our data for Germany are the following tables from chapter 3 of {
 * Table 3.19, exchange rate
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: "Price index and exchange rate (Germany)"
+    name: pi_xrate_germany
+---
 p_seq = df_Germ['Price index (on basis of marks before July 1924,'
                 '  reichsmarks after)'].copy()
 e_seq = 1/df_Germ['Cents per mark']
@@ -536,6 +601,12 @@ plt.show()
 ```
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: "Price index (adjusted) and exchange rate (Germany)"
+    name: piadj_xrate_germany
+---
 p_seq = df_Germ['Price index (on basis of marks before July 1924,'
                 '  reichsmarks after)'].copy()
 e_seq = 1/df_Germ['Cents per mark'].copy()
@@ -560,6 +631,12 @@ plt.show()
 ```
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: "Monthly inflation rate (Germany)"
+    name: inflationrate_germany
+---
 # plot moving average
 fig, ax = plt.subplots(figsize=[10,7], dpi=200)
 _ = pr_plot(p_seq, df_Germ.index, ax)
@@ -578,7 +655,7 @@ These "sudden stops" are also revealed by the permanent drops in three-month mov
 
 In addition, the US dollar exchange rates for each of the four countries shadowed their price levels. 
 
-* This pattern is an instance of a force featured in the **purchasing power parity** theory of exchange rates (see [this wikipedia article](https://en.wikipedia.org/wiki/Purchasing_power_parity)).
+* This pattern is an instance of a force featured in the [purchasing power parity](https://en.wikipedia.org/wiki/Purchasing_power_parity) theory of exchange rates. 
 
 Each of these big inflations seemed to have "stopped on a dime".
 
@@ -611,3 +688,4 @@ Each government stopped printing money to pay for goods and services once again 
 The story told in {cite}`sargent2002big` is grounded in a "monetarist theory of the price level" described in {doc}`this lecture <cagan_ree>` and {doc}`this lecture <cagan_adaptive>`.
 
 Those lectures discuss theories about what owners of those rapidly depreciating currencies were thinking and how their beliefs shaped responses of inflation to government monetary and fiscal policies.
+
