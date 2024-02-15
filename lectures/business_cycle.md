@@ -11,7 +11,6 @@ kernelspec:
   name: python3
 ---
 
-
 # Business Cycles
 
 ## Overview
