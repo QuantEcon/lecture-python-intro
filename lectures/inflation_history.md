@@ -98,7 +98,7 @@ fig, ax = plt.subplots(dpi=200)
 
 for col in cols:
     ax.plot(df_fig5_bef1914.index, 
-            df_fig5_bef1914[col], label=col)
+            df_fig5_bef1914[col], label=col, lw=2)
 
 ax.legend()
 ax.set_ylabel('Index  1913 = 100')
@@ -165,7 +165,7 @@ mystnb:
 fig, ax = plt.subplots(dpi=200)
 
 for col in cols:
-    ax.plot(df_fig5.index, df_fig5[col])
+    ax.plot(df_fig5.index, df_fig5[col], lw=2)
     ax.text(x=df_fig5.index[-1]+2, 
             y=df_fig5[col].iloc[-1], s=col)
 
@@ -285,12 +285,12 @@ def pe_plot(p_seq, e_seq, index, labs, ax):
     p_lab, e_lab = labs
     
     # plot price and exchange rates
-    ax.plot(index, p_seq, label=p_lab, color='tab:blue')
+    ax.plot(index, p_seq, label=p_lab, color='tab:blue', lw=2)
     
     # add a new axis
     ax1 = ax.twinx()
-    ax1.plot([None], [None], label=p_lab, color='tab:blue')
-    ax1.plot(index, e_seq, label=e_lab, color='tab:orange')
+    ax1.plot([None], [None], label=p_lab, color='tab:blue', lw=2)
+    ax1.plot(index, e_seq, label=e_lab, color='tab:orange', lw=2)
     
     # set log axes
     ax.set_yscale('log')
@@ -325,7 +325,7 @@ def pr_plot(p_seq, index, ax):
     
     # calculate and plot moving average
     diff_smooth = pd.DataFrame(log_diff_p).rolling(3, center=True).mean()
-    ax.plot(index[1:], diff_smooth, label='Moving average (3 period)', alpha=0.5)
+    ax.plot(index[1:], diff_smooth, label='Moving average (3 period)', alpha=0.5, lw=2)
     ax.text(-0.08, 1.03, 
             'Monthly Inflation Rate', 
             transform=ax.transAxes)
