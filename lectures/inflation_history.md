@@ -15,6 +15,24 @@ kernelspec:
 
 This lecture offers some historical evidence about fluctuations in levels of aggregate price indexes.  
 
+Let's start by installing the necessary Python packages.
+
+```{code-cell} ipython3
+:tags: [hide-output]
+!pip install xlrd
+```
+
+We can then import the Python modules we will use.
+
+```{code-cell} ipython3
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+plt.matplotlib.rcParams['figure.figsize'] = (12,8)
+plt.rcParams.update({'font.size': 19})
+import matplotlib.dates as mdates
+```
+
 The rate of growth of the price level is called **inflation** in the popular press and in discussions among central bankers and treasury officials.
 
 The price level is measured in units of domestic currency per units of a representative bundle of consumption goods.  
@@ -33,7 +51,7 @@ A widely believed explanation of this big difference is that countries' abandoni
 This lecture sets the stage for some subsequent lectures about a theory that macro economists use to think about determinants of the price level, namely, {doc}`cagan_ree` and {doc}`cagan_adaptive`
 ```
 
-## Four Centuries of Price Levels
+## Four centuries of price levels
 
 We begin by displaying data that originally appeared on page 35 of {cite}`sargent2002big` that show price levels for four "hard currency" countries from 1600 to 1914.
 
@@ -46,24 +64,6 @@ In the present context, the  phrase "hard currency" means that the countries wer
 
 ```{note}
 Under a gold or silver standard, some money also consisted of "warehouse certificates" that represented paper claims on gold or silver coins. Bank notes issued by the government or private banks can be viewed as examples of such "warehouse certificates".
-```
-
-We start by installing the necessary Python packages.
-
-```{code-cell} ipython3
-:tags: [hide-output]
-!pip install xlrd
-```
-
-We then import the Python modules we need.
-
-```{code-cell} ipython3
-import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
-plt.matplotlib.rcParams['figure.figsize'] = (12,8)
-plt.rcParams.update({'font.size': 19})
-import matplotlib.dates as mdates
 ```
 
 Let us bring the data into pandas from a spreadsheet that is [hosted on github](https://github.com/QuantEcon/lecture-python-intro/lectures/datasets/longprices.xls).
@@ -100,7 +100,6 @@ for col in cols:
     ax.plot(df_fig5_bef1914.index, 
             df_fig5_bef1914[col], label=col)
 
-ax.spines[['right', 'top']].set_visible(False)
 ax.legend()
 ax.set_ylabel('Index  1913 = 100')
 ax.set_xlim(xmin=1600)
@@ -112,7 +111,7 @@ plt.show()
 
 We say "most years" because there were temporary lapses from the gold or silver standard.
 
-By staring at the graph carefully, you might be able to guess when these temporary lapses occurred, because they were also times during which price levels temporarily rose markedly:
+By staring at {numref}`lrpl` carefully, you might be able to guess when these temporary lapses occurred, because they were also times during which price levels temporarily rose markedly:
 
 * 1791-1797 in France (French Revolution)
 * 1776-1790 in the US (War for Independence from Great Britain)
@@ -170,7 +169,6 @@ for col in cols:
     ax.text(x=df_fig5.index[-1]+2, 
             y=df_fig5[col].iloc[-1], s=col)
 
-ax.spines[['right', 'top']].set_visible(False)
 ax.set_yscale('log')
 ax.set_ylabel('Index  1913 = 100')
 ax.set_xlim(xmin=1600)
@@ -181,7 +179,7 @@ fig.text(.5, .0001,
 plt.show()
 ```
 
-The graph shows that paper-money-printing central banks didn't do as well as the gold and standard silver standard in anchoring price levels.
+{numref}`lrpl_lg` that paper-money-printing central banks didn't do as well as the gold and standard silver standard in anchoring price levels.
 
 That would probably have surprised or disappointed Irving Fisher and John Maynard Keynes.
 
@@ -195,7 +193,7 @@ In light of the high and persistent inflation that many countries experienced af
 
 The breadth and lengths of the inflationary experiences of the twentieth century under paper money fiat standards are historically unprecedented.
 
-## Four Big Inflations
+## Four big inflations
 
 In the wake of World War I, which ended in November 1918, monetary and fiscal authorities struggled to achieve price level stability without being on a gold or silver standard.
 
@@ -275,7 +273,7 @@ def process_df(df):
     return df
 ```
 
-Now we write plotting functions so we can plot the price level, exchange rates, 
+Now we write plotting functions `pe_plot` and `pr_plot` that will build figures that show the price level, exchange rates, 
 and inflation rates, for each country of interest.
 
 ```{code-cell} ipython3
@@ -311,8 +309,6 @@ def pe_plot(p_seq, e_seq, index, labs, ax):
     ax.text(0.92, 1.03, 'Exchange Rate', transform=ax.transAxes)
     
     ax1.legend(loc='upper left')
-    ax.spines[['top']].set_visible(False)
-    ax1.spines[['top']].set_visible(False)
     
     return ax1
 
@@ -338,7 +334,6 @@ def pr_plot(p_seq, index, ax):
         mdates.MonthLocator(interval=5))
     ax.xaxis.set_major_formatter(
         mdates.DateFormatter('%b %Y'))
-    ax.spines[['right', 'top']].set_visible(False)
     
     for label in ax.get_xticklabels():
         label.set_rotation(45)
@@ -439,7 +434,7 @@ _ = pr_plot(p_seq, df_Aus.index, ax)
 plt.show()
 ```
 
-Staring at the above graphs conveys the following impressions to the authors of this lecture at QuantEcon.
+Staring at {numref}`pi_xrate_austria` and {numref}`inflationrate_austria` conveys the following impressions to the authors of this lecture at QuantEcon.
 
 * an episode of "hyperinflation" with rapidly rising log price level and very high monthly inflation rates
 * a sudden stop of the hyperinflation as indicated by the abrupt flattening of the log price level and a marked permanent drop in the three-month average of inflation
@@ -626,9 +621,9 @@ _ = pr_plot(p_seq, df_Germ.index, ax)
 plt.show()
 ```
 
-## Starting and Stopping Big Inflations
+## Starting and stopping big inflations
 
-It is striking how **quickly** (log) price levels in Austria, Hungary, Poland, and Germany leveled off after rising so quickly.
+It is striking how *quickly* (log) price levels in Austria, Hungary, Poland, and Germany leveled off after rising so quickly.
 
 These "sudden stops" are also revealed by the permanent drops in three-month moving averages of inflation for the four countries plotted above.
 
@@ -664,7 +659,7 @@ In the end, the German mark stabilized at 1 trillion ($10^{12}$) paper marks to 
 
 Chapter 3 of {cite}`sargent2002big`  described deliberate changes in policy that Hungary, Austria, Poland, and Germany made to end their hyperinflations.
 
-Each government stopped printing money to pay for goods and services once again which made its currency convertible to the US dollar or the UK pound.
+Each government stopped printing money to pay for goods and services once again and made its currency convertible to the US dollar or the UK pound.
 
 The story told in {cite}`sargent2002big` is grounded in a "monetarist theory of the price level" described in {doc}`cagan_ree` and {doc}`cagan_adaptive`.
 
