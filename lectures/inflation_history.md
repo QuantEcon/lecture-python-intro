@@ -48,7 +48,14 @@ In the present context, the  phrase "hard currency" means that the countries wer
 Under a gold or silver standard, some money also consisted of "warehouse certificates" that represented paper claims on gold or silver coins. Bank notes issued by the government or private banks can be viewed as examples of such "warehouse certificates".
 ```
 
-We start by importing some Python modules.
+We start by installing the necessary Python packages.
+
+```{code-cell} ipython3
+:tags: [hide-output]
+!pip install xlrd
+```
+
+We then import the Python modules we need.
 
 ```{code-cell} ipython3
 import numpy as np
