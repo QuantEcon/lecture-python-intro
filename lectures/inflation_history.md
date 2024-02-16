@@ -57,6 +57,8 @@ We start by installing a library we will use followed by importing some Python m
 ```{code-cell} ipython3
 import numpy as np
 import pandas as pd
+import matplotlib
+matplotlib.rcParams['figure.figsize'] = (12, 10)
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 ```
@@ -89,7 +91,7 @@ df_fig5_bef1914 = df_fig5[df_fig5.index <= 1915]
 # create plot
 cols = ['UK', 'US', 'France', 'Castile']
 
-fig, ax = plt.subplots(figsize=[8, 5], dpi=200)
+fig, ax = plt.subplots(dpi=200)
 
 for col in cols:
     ax.plot(df_fig5_bef1914.index, 
@@ -156,7 +158,7 @@ mystnb:
     caption: "Long run time series of the price level (log)"
     name: lrpl_lg
 ---
-fig, ax = plt.subplots(figsize=[8, 5], dpi=200)
+fig, ax = plt.subplots(dpi=200)
 
 for col in cols:
     ax.plot(df_fig5.index, df_fig5[col])
@@ -207,7 +209,7 @@ from chapter 3 of {cite}`sargent2013rational`.
 Data underlying our graphs appear in tables in an appendix to chapter 3 of {cite}`sargent2013rational`.
 We have transcribed all of these data into a spreadsheet `chapter_3.xls` that we read into pandas.
 
-In the code cell below we clean this data build a `pandas.dataframe`. 
+In the code cell below we clean the data and build a `pandas.dataframe`. 
 
 ```{code-cell} ipython3
 :tags: [hide-input]
@@ -268,8 +270,8 @@ def process_df(df):
     return df
 ```
 
-Now we write plotting functions so we can make plots of the price level and exchange rates, 
-in addition to a plot of inflation rates, for each country of interest.
+Now we write plotting functions so we can plot the price level and exchange rates, 
+and inflation rates, for each country of interest.
 
 ```{code-cell} ipython3
 :tags: [hide-input]
@@ -412,7 +414,7 @@ e_seq = df_Aus['Exchange Rate']
 lab = ['Retail Price Index', 'Exchange Rate']
 
 # create plot
-fig, ax = plt.subplots(figsize=[10,7], dpi=200)
+fig, ax = plt.subplots(dpi=200)
 _ = pe_plot(p_seq, e_seq, df_Aus.index, lab, ax)
 
 # connect disjunct parts
@@ -430,7 +432,7 @@ mystnb:
     name: inflationrate_austria
 ---
 # plot moving average
-fig, ax = plt.subplots(figsize=[10,7], dpi=200)
+fig, ax = plt.subplots(dpi=200)
 _ = pr_plot(p_seq, df_Aus.index, ax)
 
 plt.figtext(0.5, -0.02, 'Austria', 
@@ -468,7 +470,7 @@ lab = ['Hungarian Index of Prices',
        '1/Cents per Crown in New York']
 
 # create plot
-fig, ax = plt.subplots(figsize=[10,7], dpi=200)
+fig, ax = plt.subplots(dpi=200)
 _ = pe_plot(p_seq, e_seq, df_Hung.index, lab, ax)
 
 plt.figtext(0.5, -0.02, 'Hungary', 
@@ -485,7 +487,7 @@ mystnb:
     name: inflationrate_hungary
 ---
 # plot moving average
-fig, ax = plt.subplots(figsize=[10,7], dpi=200)
+fig, ax = plt.subplots(dpi=200)
 _ = pr_plot(p_seq, df_Hung.index, ax)
 
 plt.figtext(0.5, -0.02, 'Hungary', 
@@ -543,7 +545,7 @@ lab = ['Wholesale Price Index',
        '1/Cents per Polish Mark']
 
 # create plot
-fig, ax = plt.subplots(figsize=[10,7], dpi=200)
+fig, ax = plt.subplots(dpi=200)
 ax1 = pe_plot(p_seq, e_seq, df_Pol.index, lab, ax)
 
 plt.figtext(0.5, -0.02, 'Poland', 
@@ -560,7 +562,7 @@ mystnb:
     name: inflationrate_poland
 ---
 # plot moving average
-fig, ax = plt.subplots(figsize=[10,7], dpi=200)
+fig, ax = plt.subplots(dpi=200)
 _ = pr_plot(p_seq, df_Pol.index, ax)
 
 plt.figtext(0.5, -0.02, 'Poland', 
@@ -591,7 +593,7 @@ lab = ['Price Index',
        '1/Cents per Mark']
 
 # create plot
-fig, ax = plt.subplots(figsize=[9,5], dpi=200)
+fig, ax = plt.subplots(dpi=200)
 ax1 = pe_plot(p_seq, e_seq, df_Germ.index, lab, ax)
 
 plt.figtext(0.5, -0.06, 'Germany', 
@@ -621,7 +623,7 @@ lab = ['Price Index (Marks or converted to Marks)',
        '1/Cents per Mark (or Reichsmark converted to Mark)']
 
 # create plot
-fig, ax = plt.subplots(figsize=[10,7], dpi=200)
+fig, ax = plt.subplots(dpi=200)
 ax1 = pe_plot(p_seq, e_seq, df_Germ.index, lab, ax)
 
 plt.figtext(0.5, -0.02, 'Germany', 
@@ -638,7 +640,7 @@ mystnb:
     name: inflationrate_germany
 ---
 # plot moving average
-fig, ax = plt.subplots(figsize=[10,7], dpi=200)
+fig, ax = plt.subplots(dpi=200)
 _ = pr_plot(p_seq, df_Germ.index, ax)
 
 plt.figtext(0.5, -0.02, 'Germany', 
