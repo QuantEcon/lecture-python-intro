@@ -57,9 +57,9 @@ We start by installing a library we will use followed by importing some Python m
 ```{code-cell} ipython3
 import numpy as np
 import pandas as pd
-import matplotlib
-matplotlib.rcParams['figure.figsize'] = (13, 7)
 import matplotlib.pyplot as plt
+plt.matplotlib.rcParams['figure.figsize'] = (12,8)
+plt.rcParams.update({'font.size': 19})
 import matplotlib.dates as mdates
 ```
 
@@ -417,10 +417,6 @@ lab = ['Retail Price Index', 'Exchange Rate']
 fig, ax = plt.subplots(dpi=200)
 _ = pe_plot(p_seq, e_seq, df_Aus.index, lab, ax)
 
-# connect disjunct parts
-plt.figtext(0.5, -0.02, 'Austria', 
-            horizontalalignment='center', 
-            fontsize=12)
 plt.show()
 ```
 
@@ -435,9 +431,6 @@ mystnb:
 fig, ax = plt.subplots(dpi=200)
 _ = pr_plot(p_seq, df_Aus.index, ax)
 
-plt.figtext(0.5, -0.02, 'Austria', 
-            horizontalalignment='center', 
-            fontsize=12)
 plt.show()
 ```
 
@@ -473,9 +466,6 @@ lab = ['Hungarian Index of Prices',
 fig, ax = plt.subplots(dpi=200)
 _ = pe_plot(p_seq, e_seq, df_Hung.index, lab, ax)
 
-plt.figtext(0.5, -0.02, 'Hungary', 
-            horizontalalignment='center', 
-            fontsize=12)
 plt.show()
 ```
 
@@ -490,9 +480,6 @@ mystnb:
 fig, ax = plt.subplots(dpi=200)
 _ = pr_plot(p_seq, df_Hung.index, ax)
 
-plt.figtext(0.5, -0.02, 'Hungary', 
-            horizontalalignment='center', 
-            fontsize=12)
 plt.show()
 ```
 
@@ -514,6 +501,7 @@ mystnb:
   figure:
     caption: "Price index and exchange rate (Poland)"
     name: pi_xrate_poland
+    scale: 95%
 ---
 # splice three price series in different units
 p_seq1 = df_Pol['Wholesale price index'].copy()
@@ -548,9 +536,6 @@ lab = ['Wholesale Price Index',
 fig, ax = plt.subplots(dpi=200)
 ax1 = pe_plot(p_seq, e_seq, df_Pol.index, lab, ax)
 
-plt.figtext(0.5, -0.02, 'Poland', 
-            horizontalalignment='center', 
-            fontsize=12)
 plt.show()
 ```
 
@@ -560,14 +545,12 @@ mystnb:
   figure:
     caption: "Monthly inflation rate (Poland)"
     name: inflationrate_poland
+    scale: 95%
 ---
 # plot moving average
 fig, ax = plt.subplots(dpi=200)
 _ = pr_plot(p_seq, df_Pol.index, ax)
 
-plt.figtext(0.5, -0.02, 'Poland', 
-            horizontalalignment='center', 
-            fontsize=12)
 plt.show()
 ```
 
@@ -596,9 +579,6 @@ lab = ['Price Index',
 fig, ax = plt.subplots(dpi=200)
 ax1 = pe_plot(p_seq, e_seq, df_Germ.index, lab, ax)
 
-plt.figtext(0.5, -0.06, 'Germany', 
-            horizontalalignment='center', 
-            fontsize=12)
 plt.show()
 ```
 
@@ -626,9 +606,6 @@ lab = ['Price Index (Marks or converted to Marks)',
 fig, ax = plt.subplots(dpi=200)
 ax1 = pe_plot(p_seq, e_seq, df_Germ.index, lab, ax)
 
-plt.figtext(0.5, -0.02, 'Germany', 
-            horizontalalignment='center', 
-            fontsize=12)
 plt.show()
 ```
 
@@ -643,9 +620,6 @@ mystnb:
 fig, ax = plt.subplots(dpi=200)
 _ = pr_plot(p_seq, df_Germ.index, ax)
 
-plt.figtext(0.5, -0.02, 'Germany', 
-            horizontalalignment='center', 
-            fontsize=12)
 plt.show()
 ```
 
