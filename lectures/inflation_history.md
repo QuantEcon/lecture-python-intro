@@ -19,21 +19,23 @@ The rate of growth of the price level is called **inflation** in the popular pre
 
 The price level is measured in units of domestic currency per units of a representative bundle of consumption goods.  
 
-Thus, in the US, the price level at  $t$ is measured in dollars in month $t$ or year $t$ per unit of the consumption bundle.
+Thus, in the US, the price level at $t$ is measured in dollars (month $t$ or year $t$) per unit of the consumption bundle.
 
-Until the early 20th century, throughout much of the west, although price levels fluctuated from year to year, they didn't have much of a trend.  
+Until the early 20th century, in many western economies, price levels fluctuated from year to year but didn't have much of a trend.  
 
-They tended to end a century near where they started it.
+Often the price level ended a century near where they started.
 
 Things were different in the 20th century, as we shall see in this lecture.
 
-We'll look at a widely believed explanation of this big difference -- countries' abandoning gold and silver standards in early twentieth century. 
+A widely believed explanation of this big difference is that countries' abandoning gold and silver standards in the early twentieth century. 
 
-This lecture sets the stage for some subsequent lectures about a theory that macro economists use to think about determinants of the price level, namely, {doc}`this lecture <cagan_ree>` and {doc}`this lecture <cagan_adaptive>`
+```{tip}
+This lecture sets the stage for some subsequent lectures about a theory that macro economists use to think about determinants of the price level, namely, {doc}`cagan_ree` and {doc}`cagan_adaptive`
+```
 
 ## Four Centuries of Price Levels
 
-We begin by displaying data that originally appeared on page 35 of {cite}`sargent2002big` and that show price levels for four "hard currency" countries from 1600 to 1914.
+We begin by displaying data that originally appeared on page 35 of {cite}`sargent2002big` that show price levels for four "hard currency" countries from 1600 to 1914.
 
 * France 
 * Spain (Castile)
@@ -46,13 +48,7 @@ In the present context, the  phrase "hard currency" means that the countries wer
 Under a gold or silver standard, some money also consisted of "warehouse certificates" that represented paper claims on gold or silver coins. Bank notes issued by the government or private banks can be viewed as examples of such "warehouse certificates".
 ```
 
-We start by installing a library we will use followed by importing some Python modules.
-
-```{code-cell} ipython3
-:tags: [hide-output]
-
-!pip install xlrd 
-```
+We start by importing some Python modules.
 
 ```{code-cell} ipython3
 import numpy as np
@@ -63,7 +59,7 @@ plt.rcParams.update({'font.size': 19})
 import matplotlib.dates as mdates
 ```
 
-Let us bring the data into pandas from a spreadsheet.
+Let us bring the data into pandas from a spreadsheet that is [hosted on github](https://github.com/QuantEcon/lecture-python-intro/lectures/datasets/longprices.xls).
 
 ```{code-cell} ipython3
 # import data and clean up the index
@@ -111,21 +107,21 @@ We say "most years" because there were temporary lapses from the gold or silver 
 
 By staring at the graph carefully, you might be able to guess when these temporary lapses occurred, because they were also times during which price levels temporarily rose markedly:
 
- * 1791-1797 in France (French Revolution)
- * 1776-1790 in the US (War for Independence from Great Britain)
- * 1861-1865 in the US (Civil War)
+* 1791-1797 in France (French Revolution)
+* 1776-1790 in the US (War for Independence from Great Britain)
+* 1861-1865 in the US (Civil War)
 
 During these episodes, the gold/silver standard was temporarily abandoned when a government printed paper money to pay for war expenditures.
 
-Despite these temporary lapses, a striking thing about the figure is that price levels hovered around roughly constant long-term levels for over three centuries.  
+Despite these temporary lapses, a striking thing about the figure is that price levels were roughly constant over three centuries.  
 
-In the early century, two other features of this data attracted the attention of Irving Fisher of Yale University and John Maynard Keynes of Cambridge University.
+In the early century, two other features of this data attracted the attention of [Irving Fisher](https://en.wikipedia.org/wiki/Irving_Fisher) of Yale University and [John Maynard Keynes](https://en.wikipedia.org/wiki/John_Maynard_Keynes) of Cambridge University.
 
 * Despite being anchored to the same average level over long time spans, there were considerable year-to-year variations in price levels
 * While using valuable gold and silver as coins succeeded in anchoring the price level by limiting the supply of money, it cost real resources.
-* a country paid a high "opportunity cost" for using gold and silver coins as money: that gold and silver could instead have been made into valuable jewelry and other durable goods. 
+* a country paid a high "opportunity cost" for using gold and silver coins as money -- that gold and silver could instead have been made into valuable jewelry and other durable goods. 
 
-Keynes and Fisher proposed what they claimed  would be  a more  efficient way to achieve a price level that 
+Keynes and Fisher proposed what they claimed would be a more efficient way to achieve a price level that 
 
 *  would be at least as firmly anchored as achieved under a gold or silver standard, and
 *  would also exhibit less year-to-year short-term fluctuations.  
@@ -139,15 +135,17 @@ This logic prompted John Maynard Keynes to call a commodity standard a "barbarou
 
 A paper currency or "fiat money" system disposes of all reserves behind a currency. 
 
-But adhering to a gold or silver standard had provided an automatic mechanism for limiting the supply of money, thereby anchoring  the price level.
+But adhering to a gold or silver standard had provided an automatic mechanism for limiting the supply of money, thereby anchoring the price level.
 
 To anchor the price level, a pure paper or fiat money system replaces that automatic mechanism with a central bank with the authority and determination to limit the supply of money (and to deter counterfeiters!) 
 
-Now let's see what happened to the price level in our four countries when after 1914 one after another of them left the gold/silver standard by showing the complete graph that originally appeared on page 35 of {cite}`sargent2002big`.
+Now let's see what happened to the price level in the four countries after 1914, when one after another of them left the gold/silver standard by showing the complete graph that originally appeared on page 35 of {cite}`sargent2002big`.
 
-The graph shows logarithms of price levels over four "hard currency" countries from 1600 to 2000.
+Figure {eq}`lrpl_lg` shows the logarithm of price levels over four "hard currency" countries from 1600 to 2000.
 
-Although we didn't have to use logarithms in our earlier graphs that had stopped in 1914, we now choose to use logarithms because we want  to fit observations after 1914 in the same graph as the earlier observations.
+```{note}
+Although we didn't have to use logarithms in our earlier graphs that had stopped in 1914, we now choose to use logarithms because we want to fit observations after 1914 in the same graph as the earlier observations.
+```
 
 After the outbreak of the Great War in 1914, the four countries left the gold standard and in so doing acquired the ability to print money to finance government expenditures.
 
@@ -207,7 +205,7 @@ We have added logarithms of the exchange rates vis a vis the US dollar to each o
 from chapter 3 of {cite}`sargent2013rational`.
 
 Data underlying our graphs appear in tables in an appendix to chapter 3 of {cite}`sargent2013rational`.
-We have transcribed all of these data into a spreadsheet `chapter_3.xls` that we read into pandas.
+We have transcribed all of these data into a spreadsheet {download}`chapter_3.xlsx <https://github.com/QuantEcon/lecture-python-intro/raw/main/lectures/datasets/chapter_3.xlsx>` that we read into pandas.
 
 In the code cell below we clean the data and build a `pandas.dataframe`. 
 
@@ -270,7 +268,7 @@ def process_df(df):
     return df
 ```
 
-Now we write plotting functions so we can plot the price level and exchange rates, 
+Now we write plotting functions so we can plot the price level, exchange rates, 
 and inflation rates, for each country of interest.
 
 ```{code-cell} ipython3
@@ -343,7 +341,7 @@ def pr_plot(p_seq, index, ax):
     return ax
 ```
 
-Now we can generate the plot.
+We prepare the data for each country
 
 ```{code-cell} ipython3
 # import data
@@ -381,7 +379,7 @@ for i in range(4):
 df_Aus, df_Hung, df_Pol, df_Germ = df_list
 ```
 
-Let's construct graphs for our four countries.
+Now let's construct graphs for our four countries.
 
 For each country, we'll plot two graphs.
 
@@ -392,7 +390,7 @@ The first graph plots logarithms of
 
 For each country, the scale on the right side of a graph will pertain to the price level while the scale on the left side of a graph will pertain to the exchange rate. 
 
-For each country, the second graph plots a three-month moving average of the inflation rate defined as $p_t - p_{t-1}$.
+For each country, the second graph plots a centered three-month moving average of the inflation rate defined as $\frac{p_{t-1} + p_t + p_{t+1}{3}$.
 
 ### Austria
 
@@ -436,9 +434,9 @@ plt.show()
 
 Staring at the above graphs conveys the following impressions to the authors of this lecture at QuantEcon.
 
- * an episode of "hyperinflation" with rapidly rising log price level and very high monthly inflation rates
- * a sudden stop of the hyperinflation as indicated by the abrupt flattening of the log price level and a marked permanent drop in the three-month average of inflation
- * a US dollar exchange rate that shadows the price level.  
+* an episode of "hyperinflation" with rapidly rising log price level and very high monthly inflation rates
+* a sudden stop of the hyperinflation as indicated by the abrupt flattening of the log price level and a marked permanent drop in the three-month average of inflation
+* a US dollar exchange rate that shadows the price level.  
   
 We'll see similar patterns in the next three episodes that we'll study now.
 
@@ -490,10 +488,10 @@ The sources of our data for Poland are:
 * Table 3.15, price level $\exp p$ 
 * Table 3.15, exchange rate
 
-````{note}
+```{note}
 To construct the price level series from the data in the spreadsheet, we instructed Pandas to follow the same procedures implemented in chapter 3 of {cite}`sargent2013rational`. We spliced together three series - Wholesale price index, Wholesale Price Index: On paper currency basis, and Wholesale Price Index: On zloty basis. We adjusted the sequence based on the price level ratio at the last period of the available previous series and glued them  to construct a single series.
 We dropped the exchange rate after June 1924, when the zloty was adopted. We did this because we don't have the price measured in zloty. We used the old currency in June to compute the exchange rate adjustment.
-````
+```
 
 ```{code-cell} ipython3
 ---
@@ -629,7 +627,9 @@ These "sudden stops" are also revealed by the permanent drops in three-month mov
 
 In addition, the US dollar exchange rates for each of the four countries shadowed their price levels. 
 
-* This pattern is an instance of a force featured in the [purchasing power parity](https://en.wikipedia.org/wiki/Purchasing_power_parity) theory of exchange rates. 
+```{note}
+This pattern is an instance of a force featured in the [purchasing power parity](https://en.wikipedia.org/wiki/Purchasing_power_parity) theory of exchange rates. 
+```
 
 Each of these big inflations seemed to have "stopped on a dime".
 
@@ -657,9 +657,8 @@ In the end, the German mark stabilized at 1 trillion ($10^{12}$) paper marks to 
 
 Chapter 3 of {cite}`sargent2002big`  described deliberate changes in policy that Hungary, Austria, Poland, and Germany made to end their hyperinflations.
 
-Each government stopped printing money to pay for goods and services once again which made its currency convertible to the US dollar or the UK pound, thereby vitally to gold.
+Each government stopped printing money to pay for goods and services once again which made its currency convertible to the US dollar or the UK pound.
 
 The story told in {cite}`sargent2002big` is grounded in a "monetarist theory of the price level" described in {doc}`cagan_ree` and {doc}`cagan_adaptive`.
 
 Those lectures discuss theories about what owners of those rapidly depreciating currencies were thinking and how their beliefs shaped responses of inflation to government monetary and fiscal policies.
-
