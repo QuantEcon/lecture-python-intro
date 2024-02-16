@@ -179,7 +179,7 @@ fig.text(.5, .0001,
 plt.show()
 ```
 
-{numref}`lrpl_lg` that paper-money-printing central banks didn't do as well as the gold and standard silver standard in anchoring price levels.
+{numref}`lrpl_lg` shows that paper-money-printing central banks didn't do as well as the gold and standard silver standard in anchoring price levels.
 
 That would probably have surprised or disappointed Irving Fisher and John Maynard Keynes.
 
