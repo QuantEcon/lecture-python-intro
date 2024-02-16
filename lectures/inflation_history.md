@@ -141,7 +141,7 @@ To anchor the price level, a pure paper or fiat money system replaces that autom
 
 Now let's see what happened to the price level in the four countries after 1914, when one after another of them left the gold/silver standard by showing the complete graph that originally appeared on page 35 of {cite}`sargent2002big`.
 
-Figure {eq}`lrpl_lg` shows the logarithm of price levels over four "hard currency" countries from 1600 to 2000.
+{numref}`lrpl_lg` shows the logarithm of price levels over four "hard currency" countries from 1600 to 2000.
 
 ```{note}
 Although we didn't have to use logarithms in our earlier graphs that had stopped in 1914, we now choose to use logarithms because we want to fit observations after 1914 in the same graph as the earlier observations.
