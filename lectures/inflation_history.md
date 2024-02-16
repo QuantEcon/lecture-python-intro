@@ -105,7 +105,7 @@ ax.set_ylabel('Index  1913 = 100')
 ax.set_xlim(xmin=1600)
 plt.tight_layout()
 fig.text(.5, .0001, 
-         "Price Levels", ha='center')
+         "Price levels", ha='center')
 plt.show()
 ```
 
@@ -175,7 +175,7 @@ ax.set_xlim(xmin=1600)
 ax.set_ylim([10, 1e6])
 plt.tight_layout()
 fig.text(.5, .0001, 
-         "Logs of Price Levels", ha='center')
+         "Logs of price levels", ha='center')
 plt.show()
 ```
 
@@ -305,8 +305,8 @@ def pe_plot(p_seq, e_seq, index, labs, ax):
         label.set_rotation(45)
     
     # set labels
-    ax.text(-0.08, 1.03, 'Price Level', transform=ax.transAxes)
-    ax.text(0.92, 1.03, 'Exchange Rate', transform=ax.transAxes)
+    ax.text(-0.08, 1.03, 'Price level', transform=ax.transAxes)
+    ax.text(0.92, 1.03, 'Exchange rate', transform=ax.transAxes)
     
     ax1.legend(loc='upper left')
     
@@ -320,14 +320,14 @@ def pr_plot(p_seq, index, ax):
     
     # graph for the difference of log p_seq
     ax.scatter(index[1:], log_diff_p, 
-               label='Monthly Inflation Rate', 
+               label='Monthly inflation rate', 
                color='tab:grey')
     
     # calculate and plot moving average
     diff_smooth = pd.DataFrame(log_diff_p).rolling(3, center=True).mean()
     ax.plot(index[1:], diff_smooth, label='Moving average (3 period)', alpha=0.5, lw=2)
     ax.text(-0.08, 1.03, 
-            'Monthly Inflation Rate', 
+            'Monthly inflation rate', 
             transform=ax.transAxes)
     
     ax.xaxis.set_major_locator(
@@ -411,7 +411,7 @@ mystnb:
 p_seq = df_Aus['Retail price index, 52 commodities']
 e_seq = df_Aus['Exchange Rate']
 
-lab = ['Retail Price Index', 'Exchange Rate']
+lab = ['Retail price index', 'Exchange rate']
 
 # create plot
 fig, ax = plt.subplots(dpi=200)
@@ -459,8 +459,8 @@ m_seq = df_Hung['Notes in circulation']
 p_seq = df_Hung['Hungarian index of prices']
 e_seq = 1 / df_Hung['Cents per crown in New York']
 
-lab = ['Hungarian Index of Prices', 
-       '1/Cents per Crown in New York']
+lab = ['Hungarian index of prices', 
+       '1/cents per crown in New York']
 
 # create plot
 fig, ax = plt.subplots(dpi=200)
@@ -528,8 +528,8 @@ e_seq[e_seq.index > '05-01-1924'] = np.nan
 ```
 
 ```{code-cell} ipython3
-lab = ['Wholesale Price Index', 
-       '1/Cents per Polish Mark']
+lab = ['Wholesale price index', 
+       '1/cents per polish mark']
 
 # create plot
 fig, ax = plt.subplots(dpi=200)
@@ -570,8 +570,8 @@ p_seq = df_Germ['Price index (on basis of marks before July 1924,'
                 '  reichsmarks after)'].copy()
 e_seq = 1/df_Germ['Cents per mark']
 
-lab = ['Price Index', 
-       '1/Cents per Mark']
+lab = ['Price index', 
+       '1/cents per mark']
 
 # create plot
 fig, ax = plt.subplots(dpi=200)
@@ -597,8 +597,8 @@ p_seq[p_seq.index > '06-01-1924'] = p_seq[p_seq.index
 e_seq[e_seq.index > '12-01-1923'] = e_seq[e_seq.index 
                                           > '12-01-1923'] * 1e12
 
-lab = ['Price Index (Marks or converted to Marks)', 
-       '1/Cents per Mark (or Reichsmark converted to Mark)']
+lab = ['Price index (marks or converted to marks)', 
+       '1/cents per mark (or reichsmark converted to mark)']
 
 # create plot
 fig, ax = plt.subplots(dpi=200)
