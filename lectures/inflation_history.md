@@ -659,7 +659,7 @@ Chapter 3 of {cite}`sargent2002big`  described deliberate changes in policy that
 
 Each government stopped printing money to pay for goods and services once again which made its currency convertible to the US dollar or the UK pound, thereby vitally to gold.
 
-The story told in {cite}`sargent2002big` is grounded in a "monetarist theory of the price level" described in {doc}`this lecture <cagan_ree>` and {doc}`this lecture <cagan_adaptive>`.
+The story told in {cite}`sargent2002big` is grounded in a "monetarist theory of the price level" described in {doc}`cagan_ree` and {doc}`cagan_adaptive`.
 
 Those lectures discuss theories about what owners of those rapidly depreciating currencies were thinking and how their beliefs shaped responses of inflation to government monetary and fiscal policies.
 
