@@ -11,7 +11,6 @@ kernelspec:
   name: python3
 ---
 
-
 # Business Cycles
 
 ## Overview
@@ -716,13 +715,13 @@ end_date = datetime.datetime(2022, 12, 31)
 
 nber = web.DataReader('USREC', 'fred', 
                     start_date, end_date)
-consumer_confidence = web.DataReader('INDPRO', 'fred', 
+industrial_output = web.DataReader('INDPRO', 'fred', 
                     start_date, end_date).pct_change(12)*100
 
 fig, ax = plt.subplots()
-ax.plot(consumer_confidence, **g_params, 
+ax.plot(industrial_output, **g_params, 
         color='#377eb8', linestyle='-', 
-        linewidth=2, label='Consumer price index')
+        linewidth=2, label='Industrial production index')
 ax.fill_between(nber.index, 0, 1,
                 where=nber['USREC']==1, 
                 color='grey', edgecolor='none',
