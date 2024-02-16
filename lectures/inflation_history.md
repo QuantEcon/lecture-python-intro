@@ -58,7 +58,7 @@ We start by installing a library we will use followed by importing some Python m
 import numpy as np
 import pandas as pd
 import matplotlib
-matplotlib.rcParams['figure.figsize'] = (12, 10)
+matplotlib.rcParams['figure.figsize'] = (13, 7)
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 ```
