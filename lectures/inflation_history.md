@@ -390,7 +390,7 @@ The first graph plots logarithms of
 
 For each country, the scale on the right side of a graph will pertain to the price level while the scale on the left side of a graph will pertain to the exchange rate. 
 
-For each country, the second graph plots a centered three-month moving average of the inflation rate defined as $\frac{p_{t-1} + p_t + p_{t+1}{3}$.
+For each country, the second graph plots a centered three-month moving average of the inflation rate defined as $\frac{p_{t-1} + p_t + p_{t+1}}{3}$.
 
 ### Austria
 
