@@ -28,8 +28,6 @@ We can then import the Python modules we will use.
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-plt.matplotlib.rcParams['figure.figsize'] = (12,8)
-plt.rcParams.update({'font.size': 19})
 import matplotlib.dates as mdates
 ```
 
@@ -102,10 +100,9 @@ for col in cols:
 
 ax.legend()
 ax.set_ylabel('Index  1913 = 100')
+ax.set_xlabel('Year')
 ax.set_xlim(xmin=1600)
 plt.tight_layout()
-fig.text(.5, .0001, 
-         "Price levels", ha='center')
 plt.show()
 ```
 
@@ -171,11 +168,10 @@ for col in cols:
 
 ax.set_yscale('log')
 ax.set_ylabel('Index  1913 = 100')
-ax.set_xlim(xmin=1600)
 ax.set_ylim([10, 1e6])
+ax.set_xlabel('Logs of price levels')
+ax.set_xlim(xmin=1600)
 plt.tight_layout()
-fig.text(.5, .0001, 
-         "Logs of price levels", ha='center')
 plt.show()
 ```
 
@@ -305,9 +301,9 @@ def pe_plot(p_seq, e_seq, index, labs, ax):
         label.set_rotation(45)
     
     # set labels
-    ax.text(-0.08, 1.03, 'Price level', transform=ax.transAxes)
-    ax.text(0.92, 1.03, 'Exchange rate', transform=ax.transAxes)
-    
+    ax.set_ylabel('Price level')
+    ax1.set_ylabel('Exchange rate')
+  
     ax1.legend(loc='upper left')
     
     return ax1
@@ -326,9 +322,7 @@ def pr_plot(p_seq, index, ax):
     # calculate and plot moving average
     diff_smooth = pd.DataFrame(log_diff_p).rolling(3, center=True).mean()
     ax.plot(index[1:], diff_smooth, label='Moving average (3 period)', alpha=0.5, lw=2)
-    ax.text(-0.08, 1.03, 
-            'Monthly inflation rate', 
-            transform=ax.transAxes)
+    ax.set_ylabel('Inflation rate')
     
     ax.xaxis.set_major_locator(
         mdates.MonthLocator(interval=5))
