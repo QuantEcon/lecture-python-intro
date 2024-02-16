@@ -501,7 +501,6 @@ mystnb:
   figure:
     caption: "Price index and exchange rate (Poland)"
     name: pi_xrate_poland
-    scale: 95%
 ---
 # splice three price series in different units
 p_seq1 = df_Pol['Wholesale price index'].copy()
@@ -545,7 +544,6 @@ mystnb:
   figure:
     caption: "Monthly inflation rate (Poland)"
     name: inflationrate_poland
-    scale: 95%
 ---
 # plot moving average
 fig, ax = plt.subplots(dpi=200)
