@@ -20,8 +20,10 @@ the core topics of elementary microeconomics.
 
 Throughout the lecture, we focus on models with one good and one price.
 
+```{seealso}
 In a {doc}`subsequent lecture <supply_demand_multiple_goods>` we will investigate settings with
 many goods.
+```
 
 ### Why does this model matter?
 
@@ -35,12 +37,12 @@ This [zero-sum](https://en.wikipedia.org/wiki/Zero-sum_game) view of economics w
 
 There are many different expressions of this idea in economics.
 
-This lecture dicusses one of the simplest: how free adjustment of prices can maximize a measure of social welfare in the market for a single good.
+This lecture discusses one of the simplest: how free adjustment of prices can maximize a measure of social welfare in the market for a single good.
 
 
 ### Topics and infrastructure
 
-Key infrastructure concepts that we'll encounter in this lecture are
+Key infrastructure concepts that we will encounter in this lecture are:
 
 * inverse demand curves
 * inverse supply curves
@@ -50,16 +52,14 @@ Key infrastructure concepts that we'll encounter in this lecture are
 * social welfare as the sum of consumer and producer surpluses
 * the relationship between  equilibrium quantity and social welfare optimum
 
-
-
-In our exposition we will use the following imports.
+In our exposition we will use the following Python imports.
 
 ```{code-cell} ipython3
 import numpy as np
 import matplotlib.pyplot as plt
 ```
 
-## Consumer Surplus
+## Consumer surplus
 
 Before we look at the model of supply and demand, it will be helpful to have some background on (a) consumer and producer surpluses and (b) integration.
 
@@ -71,7 +71,7 @@ Regarding consumer surplus, suppose that we have a single good and 10 consumers.
 
 These 10 consumers have different preferences; in particular, the amount they would be willing to pay for one unit of the good differs.
 
-Suppose that the willingness to pay amount for each of the 10 consumers is as follows:
+Suppose that the willingness to pay for each of the 10 consumers is as follows:
 
 | consumer       | 1  | 2  | 3  | 4  | 5  | 6  | 7  | 8  | 9  | 10  |
 |----------------|----|----|----|----|----|----|----|----|----|-----|
@@ -81,7 +81,9 @@ Suppose that the willingness to pay amount for each of the 10 consumers is as fo
 
 If $p$ is the price of the good and  $w_i$ is the amount that consumer $i$ is willing to pay, then $i$ buys when $w_i \geq p$.
 
-(If $p=w_i$ the consumer is indifferent between buying and not buying; we arbitrarily assume that they buy.)
+```{note}
+If $p=w_i$ the consumer is indifferent between buying and not buying; we arbitrarily assume that they buy.
+```
 
 The **consumer surplus** of the $i$-th consumer is $\max\{w_i - p, 0\}$
 
@@ -117,8 +119,8 @@ plt.show()
 The total consumer surplus in this market is 
 
 $$ 
-  \sum_{i=1}^{10} \max\{w_i - p, 0\}
-  = \sum_{w_i \geq p} (w_i - p)
+\sum_{i=1}^{10} \max\{w_i - p, 0\}
+= \sum_{w_i \geq p} (w_i - p)
 $$
 
 Since consumer surplus $\max\{w_i-p,0\}$ of consumer $i$ is a measure of her gains from trade (i.e., extent to which the good is valued over and above the amount the consumer had to pay), it is reasonable to consider total consumer surplus as a measurement of consumer welfare.
@@ -135,8 +137,6 @@ In this example, consumers 1 to 5 buy, and the quantity sold is 5.
 
 Below we drop the assumption that sellers will provide any amount at a given price and study how this changes outcomes.
 
-+++
-
 ### A continuous approximation
 
 It is often convenient to assume that there is a "very large number" of consumers, so that willingness to pay becomes a continuous curve.
@@ -149,15 +149,19 @@ An example is provided below, showing both an inverse demand curve and a set pri
 
 The inverse demand curve is given by 
 
-$$ p = 100 e^{-q} $$
+$$
+p = 100 e^{-q} 
+$$
 
 ```{code-cell} ipython3
 def inverse_demand(q):
     return 100 * np.exp(- q)
 
+# build a grid to evaluate the function at different values of q
 q_min, q_max = 0, 5
 q_grid = np.linspace(q_min, q_max, 1000)
 
+# plot the inverse demand curve
 fig, ax = plt.subplots()
 ax.plot((q_min, q_max), (price, price), lw=2, label="price")
 ax.plot(q_grid, inverse_demand(q_grid), 
@@ -198,11 +202,9 @@ plt.show()
 
 The value $q^*$ is where the inverse demand curve meets price.
 
-+++
-
 ## Producer surplus
 
-Having dicussed demand, let's now switch over to the supply side of the market.
+Having discussed demand, let's now switch over to the supply side of the market.
 
 ### The discrete case
 
@@ -232,11 +234,9 @@ For example, a producer willing to sell at \$10 and selling at price \$20 makes 
 Total producer surplus is given by
 
 $$
-    \sum_{i=1}^{10} \max\{p - v_i, 0\}
-    = \sum_{p \geq v_i} (p - v_i)
+\sum_{i=1}^{10} \max\{p - v_i, 0\}
+= \sum_{p \geq v_i} (p - v_i)
 $$
-
-+++
 
 As for the consumer case, it can be helpful for analysis if we approximate producer willingness to sell into a continuous curve.
 
@@ -244,7 +244,9 @@ This curve is called the **inverse supply curve**
 
 We show an example below where the inverse supply curve is
 
-$$ p = 2 q^2$$
+$$
+p = 2 q^2
+$$
 
 The shaded area is the total producer surplus in this continuous model.
 
@@ -255,6 +257,7 @@ def inverse_supply(q):
 # solve for the value of q where supply meets price
 q_star = (price / 2)**(1/2)
 
+# plot the inverse supply curve
 fig, ax = plt.subplots()
 ax.plot((q_min, q_max), (price, price), lw=2, label="price")
 ax.plot(q_grid, inverse_supply(q_grid), 
@@ -313,28 +316,29 @@ We will not try to cover these ideas here, partly because the subject is too big
 
 If $f(x) = c + d x$, then 
 
-$$ \int_a^b f(x) dx = c (b - a) + \frac{d}{2}(b^2 - a^2) $$
+$$ 
+\int_a^b f(x) dx = c (b - a) + \frac{d}{2}(b^2 - a^2) 
+$$
 
 In fact this rule is so simple that it can be calculated from elementary geometry -- you might like to try by graphing $f$ and calculating the area under the curve between $a$ and $b$.
 
 We use this rule repeatedly in what follows.
 
-+++
-
 ## Supply and demand
 
 Let's now put supply and demand together.
 
-This leads us to the all important notion of market equilibrium, and from there onto a discussion of equilibra and welfare.
+This leads us to the all important notion of market equilibrium, and from there onto a discussion of equilibria and welfare.
 
 For most of this discussion, we'll assume that inverse demand and supply curves are **affine** functions of quantity.
 
-("Affine" means "linear plus a constant" and [here](https://math.stackexchange.com/questions/275310/what-is-the-difference-between-linear-and-affine-function) is a nice discussion about it.)
+```{note}
+"Affine" means "linear plus a constant" and [here](https://math.stackexchange.com/questions/275310/what-is-the-difference-between-linear-and-affine-function) is a nice discussion about it.
+```
 
 We'll also assume affine inverse supply and demand functions when we study models with multiple consumption goods in our {doc}`subsequent lecture <supply_demand_multiple_goods>`.
 
 We do this in order to simplify the exposition and enable us to use just a few tools from linear algebra, namely, matrix multiplication and matrix inversion.
-
 
 We study a market for a single good in which buyers and sellers exchange a quantity $q$ for a price $p$.
 
@@ -343,16 +347,14 @@ Quantity $q$ and price $p$ are  both scalars.
 We assume that inverse demand and supply curves for the good are:
 
 $$
-    p = d_0 - d_1 q, \quad d_0, d_1 > 0
+p = d_0 - d_1 q, \quad d_0, d_1 > 0
 $$
 
 $$
-    p = s_0 + s_1 q , \quad s_0, s_1 > 0
+p = s_0 + s_1 q , \quad s_0, s_1 > 0
 $$
 
 We call them inverse demand and supply curves because price is on the left side of the equation rather than on the right side as it would be in a direct demand or supply function.
-
-
 
 Here is a class that stores parameters for our single good market, as well as
 implementing the inverse demand and supply curves.
@@ -417,8 +419,8 @@ We define **consumer surplus** $S_c(q)$ as the area under an inverse demand
 curve minus $p q$:
 
 $$
-    S_c(q) := 
-    \int_0^{q} (d_0 - d_1 x) dx - p q 
+S_c(q) := 
+\int_0^{q} (d_0 - d_1 x) dx - p q 
 $$ (eq:cstm_spls)
 
 The next figure illustrates
@@ -464,24 +466,20 @@ quantity purchased is $q$ and the purchase price is $p$.
 Evaluating the integral in the definition of consumer surplus {eq}`eq:cstm_spls` gives
 
 $$
-    S_c(q) 
-    = d_0 q - \frac{1}{2} d_1 q^2 - p q
+S_c(q) 
+= d_0 q - \frac{1}{2} d_1 q^2 - p q
 $$
-
-
-
 
 ### Producer surplus
 
 Let a quantity $q$ be given and let $p := s_0 + s_1 q$ be the
 corresponding price on the inverse supply curve.
 
-
 We define **producer surplus** as $p q$ minus the area under an inverse supply curve
 
 $$
-    S_p(q) 
-    := p q - \int_0^q (s_0 + s_1 x) dx 
+S_p(q) 
+:= p q - \int_0^q (s_0 + s_1 x) dx 
 $$ (eq:pdcr_spls)
 
 The next figure illustrates
@@ -528,7 +526,7 @@ The value $S_p(q)$ is the integral of these surpluses.
 Evaluating the integral in the definition of producer surplus {eq}`eq:pdcr_spls` gives
 
 $$
-    S_p(q) = pq - s_0 q -  \frac{1}{2} s_1 q^2
+S_p(q) = pq - s_0 q -  \frac{1}{2} s_1 q^2
 $$
 
 
@@ -539,14 +537,14 @@ equals consumer surplus plus producer surplus, assuming that consumers and
 producers pay the same price:
 
 $$
-    W(q)
-    = \int_0^q (d_0 - d_1 x) dx - \int_0^q (s_0 + s_1 x) dx  
+W(q)
+= \int_0^q (d_0 - d_1 x) dx - \int_0^q (s_0 + s_1 x) dx  
 $$
 
 Evaluating the integrals gives
 
 $$
-    W(q) = (d_0 - s_0) q -  \frac{1}{2} (d_1 + s_1) q^2
+W(q) = (d_0 - s_0) q -  \frac{1}{2} (d_1 + s_1) q^2
 $$
 
 Here is a Python function that evaluates this social welfare at a given
@@ -579,20 +577,18 @@ To compute a quantity that  maximizes the welfare criterion, we differentiate
 $W$ with respect to $q$ and then set the derivative to zero.
 
 $$
-    \frac{d W(q)}{d q} = d_0 - s_0 - (d_1 + s_1) q  = 0
+\frac{d W(q)}{d q} = d_0 - s_0 - (d_1 + s_1) q  = 0
 $$
 
 Solving for $q$ yields
 
 $$
-    q = \frac{ d_0 - s_0}{s_1 + d_1}
+q = \frac{ d_0 - s_0}{s_1 + d_1}
 $$ (eq:old1)
 
 Let's remember the quantity $q$ given by equation {eq}`eq:old1` that a social planner would choose to maximize consumer surplus plus producer surplus.
 
 We'll compare it to the quantity that emerges in a competitive equilibrium that equates supply to demand.
-
-
 
 ### Competitive equilibrium
 
@@ -600,14 +596,14 @@ Instead of equating quantities supplied and demanded, we can accomplish the
 same thing by equating demand price to supply price:
 
 $$
-    p =  d_0 - d_1 q = s_0 + s_1 q 
+p =  d_0 - d_1 q = s_0 + s_1 q 
 $$
 
 If we solve the equation defined by the second equality in the above line for
 $q$, we obtain 
 
 $$
-    q = \frac{ d_0 - s_0}{s_1 + d_1}
+q = \frac{ d_0 - s_0}{s_1 + d_1}
 $$ (eq:equilib_q)
 
 
@@ -635,11 +631,11 @@ Our generalizations will extend the preceding analysis of a market for a single 
 
 In addition
 
- * we'll derive  **demand curves** from a consumer problem that maximizes a
-   **utility function** subject to a **budget constraint**.
+* we'll derive  **demand curves** from a consumer problem that maximizes a
+ **utility function** subject to a **budget constraint**.
 
- * we'll derive  **supply curves** from the problem of a producer who is price
-   taker and maximizes his profits minus total costs that are described by a **cost function**.
+* we'll derive  **supply curves** from the problem of a producer who is price
+ taker and maximizes his profits minus total costs that are described by a **cost function**.
 
 ## Exercises
 
@@ -647,15 +643,14 @@ Suppose now that the inverse demand and supply curves are modified to take the
 form
 
 $$
-    p = i_d(q) := d_0 - d_1 q^{0.6} 
+p = i_d(q) := d_0 - d_1 q^{0.6} 
 $$
 
 $$
-    p = i_s(q) := s_0 + s_1 q^{1.8} 
+p = i_s(q) := s_0 + s_1 q^{1.8} 
 $$
 
 All parameters are positive, as before.
-
 
 ```{exercise}
 :label: isd_ex1
@@ -731,7 +726,7 @@ As before, consumer surplus at $q$ is the area under the demand curve minus
 price times quantity:
 
 $$
-    S_c(q) = \int_0^{q} i_d(x) dx - p q 
+S_c(q) = \int_0^{q} i_d(x) dx - p q 
 $$
 
 Here $p$ is set to $i_d(q)$
@@ -740,8 +735,8 @@ Producer surplus is price times quantity minus the area under the inverse
 supply curve:
 
 $$
-    S_p(q) 
-    = p q - \int_0^q i_s(x) dx 
+S_p(q) 
+= p q - \int_0^q i_s(x) dx 
 $$
 
 Here $p$ is set to $i_s(q)$.
@@ -750,8 +745,8 @@ Social welfare is the sum of consumer and producer surplus under the
 assumption that the price is the same for buyers and sellers:
 
 $$
-    W(q)
-    = \int_0^q i_d(x) dx - \int_0^q i_s(x) dx  
+W(q)
+= \int_0^q i_d(x) dx - \int_0^q i_s(x) dx  
 $$
 
 Solve the integrals and write a function to compute this quantity numerically
@@ -769,9 +764,9 @@ Plot welfare as a function of $q$.
 Solving the integrals gives 
 
 $$
-    W(q) 
-    = d_0 q - \frac{d_1 q^{1.6}}{1.6}
-        - \left( s_0 q + \frac{s_1 q^{2.8}}{2.8} \right)
+W(q) 
+= d_0 q - \frac{d_1 q^{1.6}}{1.6}
+    - \left( s_0 q + \frac{s_1 q^{2.8}}{2.8} \right)
 $$
 
 Here's a Python function that computes this value:
@@ -804,7 +799,7 @@ plt.show()
 ```{exercise}
 :label: isd_ex3
 
-Due to nonlinearities, the new welfare function is not easy to maximize with
+Due to non-linearities, the new welfare function is not easy to maximize with
 pencil and paper.
 
 Maximize it using `scipy.optimize.minimize_scalar` instead.
@@ -844,7 +839,7 @@ and demand.
 You can do this numerically by finding the root of the excess demand function
 
 $$
-    e_d(q) := i_d(q) - i_s(q) 
+e_d(q) := i_d(q) - i_s(q) 
 $$
 
 You can use `scipy.optimize.newton` to compute the root.
