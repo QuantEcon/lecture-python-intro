@@ -4,7 +4,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.11.5
+    jupytext_version: 1.15.2
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
@@ -20,9 +20,25 @@ the main topics of elementary microeconomics.
 
 Throughout the lecture, we focus on models with one good and one price.
 
-
 In a {doc}`subsequent lecture <supply_demand_multiple_goods>` we will investigate settings with
 many goods.
+
+### Why does this model matter?
+
+In the 15th, 16th, 17th and 18th centuries, mercantilist ideas held sway among most rulers of European countries.
+
+Exports were regarded as good because they brought in bullion (gold flowed into the country).
+
+Imports were regarded as bad because bullion was required to pay for them (gold flowed out).
+
+This [zero-sum](https://en.wikipedia.org/wiki/Zero-sum_game) view of economics was eventually overturned by the work of the classical economists such as [Adam Smith](https://en.wikipedia.org/wiki/Adam_Smith) and [David Ricado](https://en.wikipedia.org/wiki/David_Ricardo), who showed how freeing domestic and international trade can enhance welfare.
+
+There are many different expressions of this idea in economics.
+
+This lecture dicusses one of the simplest: how free adjustment of prices can maximize a measure of social welfare in the market for a single good.
+
+
+### Topics and infrastructure
 
 Key infrastructure concepts that we'll encounter in this lecture are
 
@@ -30,16 +46,11 @@ Key infrastructure concepts that we'll encounter in this lecture are
 * inverse supply curves
 * consumer surplus
 * producer surplus
+* integration
 * social welfare as the sum of consumer and producer surpluses
-* relationship between  equilibrium quantity and social welfare optimum
+* the relationship between  equilibrium quantity and social welfare optimum
 
-Throughout the lectures, we'll assume that inverse demand and supply curves are **affine** functions of quantity.
 
-("Affine" means "linear plus a constant" and [here](https://math.stackexchange.com/questions/275310/what-is-the-difference-between-linear-and-affine-function) is a nice discussion about it.)
-
-We'll also assume affine inverse supply and demand functions when we study models with multiple consumption goods in our {doc}`subsequent lecture <supply_demand_multiple_goods>`.
-
-We do this in order to simplify the exposition and enable us to use just a few tools from linear algebra, namely, matrix multiplication and matrix inversion.
 
 In our exposition we will use the following imports.
 
@@ -48,7 +59,282 @@ import numpy as np
 import matplotlib.pyplot as plt
 ```
 
+## Consumer Surplus
+
+Before we look at the model of supply and demand, it will be helpful to have some background on (a) consumer and producer surpluses and (b) integration.
+
+(If you are comfortable with both topics you can jump to the next section.)
+
+### A discrete example
+
+Regarding consumer surplus, suppose that we have a single good and 10 consumers.
+
+These 10 consumers have different preferences; in particular, the amount they would be willing to pay for one unit of the good differs.
+
+Suppose that the willingness to pay amount for each of the 10 consumers is as follows:
+
+| consumer       | 1  | 2  | 3  | 4  | 5  | 6  | 7  | 8  | 9  | 10  |
+|----------------|----|----|----|----|----|----|----|----|----|-----|
+| willing to pay | 98 | 72 | 41 | 38 | 29 | 21 | 17 | 12 | 11 | 10  |
+
+(We have ordered consumers by willingness to pay, in descending order.)
+
+If $p$ is the price of the good and  $w_i$ is the amount that consumer $i$ is willing to pay, then $i$ buys when $w_i \geq p$.
+
+(If $p=w_i$ the consumer is indifferent between buying and not buying; we arbitrarily assume that they buy.)
+
+The **consumer surplus** of the $i$-th consumer is $\max\{w_i - p, 0\}$
+
+* if $w_i \geq p$, then the consumer buys and gets surplus $w_i - p$
+* if $w_i < p$, then the consumer does not buy and gets surplus $0$
+
+For example, if the price is $p=40$, then consumer 1 gets surplus $98-40=58$.
+
+The bar graph below shows the surplus of each consumer when $p=25$.
+
+The total height of each bar $i$ is willingness to pay by consumer $i$.
+
+The orange portion of some of the bars shows consumer surplus.
+
+
+```{code-cell} ipython3
+fig, ax = plt.subplots()
+consumers = range(1, 11) # consumers 1,..., 10
+# willingness to pay for each consumer
+wtp = (98, 72, 41, 38, 29, 21, 17, 12, 11, 10)
+price = 25
+ax.bar(consumers, wtp, label="consumer surplus", color="darkorange", alpha=0.8)
+ax.plot((0, 12), (price, price), lw=2, label="price $p$")
+ax.bar(consumers, [min(w, price) for w in wtp], color="black", alpha=0.6)
+ax.set_xlim(0, 12)
+ax.set_xticks(consumers)
+ax.set_ylabel("willingness to pay, price")
+ax.set_xlabel("consumer, quantity")
+ax.legend()
+plt.show()
+```
+
+The total consumer surplus in this market is 
+
+$$ 
+  \sum_{i=1}^{10} \max\{w_i - p, 0\}
+  = \sum_{w_i \geq p} (w_i - p)
+$$
+
+Since consumer surplus $\max\{w_i-p,0\}$ of consumer $i$ is a measure of her gains from trade (i.e., extent to which the good is valued over and above the amount the consumer had to pay), it is reasonable to consider total consumer surplus as a measurement of consumer welfare.
+
+Later we will pursue this idea further, considering how different prices lead to different welfare outcomes for consumers and producers.
+
+### A comment on quantity.
+
+Notice that in the figure, the horizontal axis is labeled "consumer, quantity".
+
+We have added "quantity" here because we can read the number of units sold from this axis, assuming for now that there are sellers who are willing to sell as many units as the consumers demand, given the current market price $p$.
+
+In this example, consumers 1 to 5 buy, and the quantity sold is 5.
+
+Below we drop the assumption that sellers will provide any amount at a given price and study how this changes outcomes.
+
++++
+
+### A continuous approximation
+
+It is often convenient to assume that there is a "very large number" of consumers, so that willingness to pay becomes a continuous curve.
+
+As before, the vertical axis measures willingness to pay, while the horizontal axis measures quantity.
+
+This kind of curve is called an **inverse demand curve**
+
+An example is provided below, showing both an inverse demand curve and a set price.
+
+The inverse demand curve is given by 
+
+$$ p = 100 e^{-q} $$
+
+```{code-cell} ipython3
+def inverse_demand(q):
+    return 100 * np.exp(- q)
+
+q_min, q_max = 0, 5
+q_grid = np.linspace(q_min, q_max, 1000)
+
+fig, ax = plt.subplots()
+ax.plot((q_min, q_max), (price, price), lw=2, label="price")
+ax.plot(q_grid, inverse_demand(q_grid), 
+        color="k", label="inverse demand curve")
+ax.set_ylabel("willingness to pay, price")
+ax.set_xlabel("quantity")
+ax.set_xlim(q_min, q_max)
+ax.set_ylim(0, 110)
+ax.legend()
+plt.show()
+```
+
+Reasoning by analogy with the discrete case, the area under the demand curve and above the price is called the **consumer surplus**, and is a measure of total gains from trade on the part of consumers.
+
+The consumer surplus is shaded in the figure below.
+
+```{code-cell} ipython3
+# solve for the value of q where demand meets price
+q_star = np.log(100) - np.log(price)
+
+fig, ax = plt.subplots()
+ax.plot((q_min, q_max), (price, price), lw=2, label="price")
+ax.plot(q_grid, inverse_demand(q_grid), 
+        color="k", label="inverse demand curve")
+small_grid = np.linspace(0, q_star, 500)
+ax.fill_between(small_grid, np.full(len(small_grid), price),
+                inverse_demand(small_grid), color="darkorange",
+                alpha=0.6, label="consumer surplus")
+ax.vlines(q_star, 0, price, ls="--")
+ax.set_ylabel("willingness to pay, price")
+ax.set_xlabel("quantity")
+ax.set_xlim(q_min, q_max)
+ax.set_ylim(0, 110)
+ax.text(q_star, -10, "$q^*$")
+ax.legend()
+plt.show()
+```
+
+The value $q^*$ is where the inverse demand curve meets price.
+
++++
+
+## Producer surplus
+
+Having dicussed demand, let's now switch over to the supply side of the market.
+
+### The discrete case
+
+The figure below shows the price at which a collection of producers, also numbered 1 to 10, are willing to sell one unit of the good in question
+
+```{code-cell} ipython3
+fig, ax = plt.subplots()
+producers = range(1, 11) # producers 1,..., 10
+# willingness to sell for each producer
+wts = (5, 8, 17, 22, 35, 39, 46, 57, 88, 91)
+price = 25
+ax.bar(producers, wts, label="willingness to sell", color="blue", alpha=0.8)
+ax.set_xlim(0, 12)
+ax.set_xticks(producers)
+ax.set_ylabel("willingness to sell")
+ax.set_xlabel("producer")
+ax.legend()
+plt.show()
+```
+
+Let $v_i$ be the price at which producer $i$ is willing to sell the good.
+
+When the price is $p$, producer surplus for producer $i$ is $\max\{p - v_i, 0\}$.
+
+For example, a producer willing to sell at \$10 and selling at price \$20 makes a surplus of \$10. 
+
+Total producer surplus is given by
+
+$$
+    \sum_{i=1}^{10} \max\{p - v_i, 0\}
+    = \sum_{p \geq v_i} (p - v_i)
+$$
+
++++
+
+As for the consumer case, it can be helpful for analysis if we approximate producer willingness to sell into a continuous curve.
+
+This curve is called the **inverse supply curve**
+
+We show an example below where the inverse supply curve is
+
+$$ p = 2 q^2$$
+
+The shaded area is the total producer surplus in this continuous model.
+
+```{code-cell} ipython3
+def inverse_supply(q):
+    return 2 * q**2
+
+# solve for the value of q where supply meets price
+q_star = (price / 2)**(1/2)
+
+fig, ax = plt.subplots()
+ax.plot((q_min, q_max), (price, price), lw=2, label="price")
+ax.plot(q_grid, inverse_supply(q_grid), 
+        color="k", label="inverse supply curve")
+small_grid = np.linspace(0, q_star, 500)
+ax.fill_between(small_grid, inverse_supply(small_grid), 
+                np.full(len(small_grid), price), 
+                color="darkgreen",
+                alpha=0.4, label="producer surplus")
+ax.vlines(q_star, 0, price, ls="--")
+ax.set_ylabel("willingness to sell, price")
+ax.set_xlabel("quantity")
+ax.set_xlim(q_min, q_max)
+ax.set_ylim(0, 60)
+ax.text(q_star, -10, "$q^*$")
+ax.legend()
+plt.show()
+```
+
+## Integration
+
+How can we calculate the consumer and producer surplus in the continuous case?
+
+The short answer is: by using [integration](https://en.wikipedia.org/wiki/Integral).
+
+Some readers will already be familiar with the basics of integration.
+
+For those who are not, here is a quick introduction.
+
+In general, for a function $f$, the **integral** of $f$ over the interval $[a, b]$ is the area under the curve $f$ between $a$ and $b$.
+
+This value is written as $\int_a^b f(x) dx$ and illustrated in the figure below when $f(x) = \cos(x/2) + 1$.
+
+```{code-cell} ipython3
+def f(x):
+    return np.cos(x/2) + 1
+
+xmin, xmax = 0, 5
+a, b = 1, 3
+x_grid = np.linspace(xmin, xmax, 1000)
+ab_grid = np.linspace(a, b, 400)
+
+fig, ax = plt.subplots()
+ax.plot(x_grid, f(x_grid), label="$f$", color="k")
+ax.fill_between(ab_grid, [0] * len(ab_grid), f(ab_grid), 
+                alpha=0.5, label="$\int_a^b f(x) dx$")
+ax.legend()
+plt.show()
+```
+
+There are many rules for calculating integrals, with different rules applying to different choices of $f$.
+
+Many of these rules relate to one of the most beautiful and powerful results in all of mathematics: the [fundamental theorem of calculus](https://en.wikipedia.org/wiki/Fundamental_theorem_of_calculus).
+
+We will not try to cover these ideas here, partly because the subject is too big, and partly because you only need to know one rule for this lecture, stated below.
+
+If $f(x) = c + d x$, then 
+
+$$ \int_a^b f(x) dx = c (b - a) + \frac{d}{2}(b^2 - a^2) $$
+
+In fact this rule is so simple that it can be calculated from elementary geometry -- you might like to try by graphing $f$ and calculating the area under the curve between $a$ and $b$.
+
+We use this rule repeatedly in what follows.
+
++++
+
 ## Supply and demand
+
+Let's now put supply and demand together.
+
+This leads us to the all important notion of market equilibrium, and from there onto a discussion of equilibra and welfare.
+
+For most of this discussion, we'll assume that inverse demand and supply curves are **affine** functions of quantity.
+
+("Affine" means "linear plus a constant" and [here](https://math.stackexchange.com/questions/275310/what-is-the-difference-between-linear-and-affine-function) is a nice discussion about it.)
+
+We'll also assume affine inverse supply and demand functions when we study models with multiple consumption goods in our {doc}`subsequent lecture <supply_demand_multiple_goods>`.
+
+We do this in order to simplify the exposition and enable us to use just a few tools from linear algebra, namely, matrix multiplication and matrix inversion.
+
 
 We study a market for a single good in which buyers and sellers exchange a quantity $q$ for a price $p$.
 
@@ -136,7 +422,6 @@ $$
 $$ (eq:cstm_spls)
 
 The next figure illustrates
-
 
 ```{code-cell} ipython3
 :tags: [hide-input]
@@ -276,7 +561,6 @@ def W(q, market):
 ```
 
 The next figure plots welfare as a function of $q$.
-
 
 ```{code-cell} ipython3
 :tags: [hide-input]
