@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>10. Consumption Smoothing &#8212; A First Course in Quantitative Economics with Python</title>
+    <title>11. Consumption Smoothing &#8212; A First Course in Quantitative Economics with Python</title>
     <script src="https://unpkg.com/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://unpkg.com/tippy.js@6.3.1/dist/tippy-bundle.umd.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
@@ -122,8 +122,8 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="11. Equalizing Difference Model" href="equalizing_difference.html" />
-    <link rel="prev" title="9. Present Values" href="pv.html" />
+    <link rel="next" title="12. Equalizing Difference Model" href="equalizing_difference.html" />
+    <link rel="prev" title="10. Present Values" href="pv.html" />
 
 <!-- Normal Meta Tags -->
 <meta name="author" context="Thomas J. Sargent &amp; John Stachurski" />
@@ -171,27 +171,27 @@ const thebe_selector_output = ".output, .cell_output"
 
                         <nav id="bd-toc-nav" class="qe-page__toc-nav">
                             <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">10.1. Overview</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis">10.2. Analysis</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#friedman-hall-consumption-smoothing-model">10.3. Friedman-Hall consumption-smoothing model</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mechanics-of-consumption-smoothing-model">10.4. Mechanics of Consumption smoothing model</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1">10.4.1. Step 1</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2">10.4.2. Step 2</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3">10.4.3. Step 3</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#experiments">10.4.4. Experiments</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#experiment-1-one-time-gain-loss">10.4.4.1. Experiment 1: one-time gain/loss</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#experiment-2-permanent-wage-gain-loss">10.4.4.2. Experiment 2: permanent wage gain/loss</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#experiment-3-a-late-starter">10.4.4.3. Experiment 3: a late starter</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#experiment-4-geometric-earner">10.4.4.4. Experiment 4: geometric earner</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">11.1. Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis">11.2. Analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#friedman-hall-consumption-smoothing-model">11.3. Friedman-Hall consumption-smoothing model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mechanics-of-consumption-smoothing-model">11.4. Mechanics of Consumption smoothing model</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1">11.4.1. Step 1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2">11.4.2. Step 2</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3">11.4.3. Step 3</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#experiments">11.4.4. Experiments</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#experiment-1-one-time-gain-loss">11.4.4.1. Experiment 1: one-time gain/loss</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#experiment-2-permanent-wage-gain-loss">11.4.4.2. Experiment 2: permanent wage gain/loss</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#experiment-3-a-late-starter">11.4.4.3. Experiment 3: a late starter</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#experiment-4-geometric-earner">11.4.4.4. Experiment 4: geometric earner</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#feasible-consumption-variations">10.4.5. Feasible consumption variations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#feasible-consumption-variations">11.4.5. Feasible consumption variations</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wrapping-up-the-consumption-smoothing-model">10.5. Wrapping up the consumption-smoothing model</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#appendix-solving-difference-equations-with-linear-algebra">10.6. Appendix: solving difference equations with linear algebra</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#first-order-difference-equation">10.6.1. First-order difference equation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#second-order-difference-equation">10.6.2. Second order difference equation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wrapping-up-the-consumption-smoothing-model">11.5. Wrapping up the consumption-smoothing model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#appendix-solving-difference-equations-with-linear-algebra">11.6. Appendix: solving difference equations with linear algebra</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#first-order-difference-equation">11.6.1. First-order difference equation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#second-order-difference-equation">11.6.2. Second order difference equation</a></li>
 </ul>
 </li>
 </ul>
@@ -253,9 +253,9 @@ const thebe_selector_output = ".output, .cell_output"
                     <div>
                         
   <section class="tex2jax_ignore mathjax_ignore" id="consumption-smoothing">
-<h1><span class="section-number">10. </span>Consumption Smoothing<a class="headerlink" href="#consumption-smoothing" title="Permalink to this heading">#</a></h1>
+<h1><span class="section-number">11. </span>Consumption Smoothing<a class="headerlink" href="#consumption-smoothing" title="Permalink to this heading">#</a></h1>
 <section id="overview">
-<h2><span class="section-number">10.1. </span>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">11.1. </span>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
 <p>In this lecture, we’ll study a famous model of the “consumption function” that Milton Friedman <span id="id1">[<a class="reference internal" href="zreferences.html#id178" title="M. Friedman. A Theory of the Consumption Function. Princeton University Press, 1956.">Fri56</a>]</span> and Robert Hall <span id="id2">[<a class="reference internal" href="zreferences.html#id179" title="Robert E Hall. Stochastic Implications of the Life Cycle-Permanent Income Hypothesis: Theory and Evidence. Journal of Political Economy, 86(6):971–987, 1978.">Hal78</a>]</span>)  proposed to fit some empirical data patterns that the original  Keynesian consumption function  described in this quantecon lecture <a class="reference internal" href="geom_series.html"><span class="doc">geometric series</span></a>  missed.</p>
 <p>In this lecture, we’ll study what is often  called the “consumption-smoothing model”  using  matrix multiplication and matrix inversion, the same tools that we used in this quantecon lecture <a class="reference internal" href="pv.html"><span class="doc">present values</span></a>.</p>
 <p>Formulas presented in  <a class="reference internal" href="pv.html"><span class="doc">present value formulas</span></a> are at the core of the consumption smoothing model because we shall use them to define a consumer’s “human wealth”.</p>
@@ -272,7 +272,7 @@ eventually published as <span id="id3">[<a class="reference internal" href="zref
 <p>It will take a while for a “present value” or asset price explicilty to appear in this lecture, but when it does it will be a key actor.</p>
 </section>
 <section id="analysis">
-<h2><span class="section-number">10.2. </span>Analysis<a class="headerlink" href="#analysis" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">11.2. </span>Analysis<a class="headerlink" href="#analysis" title="Permalink to this heading">#</a></h2>
 <p>As usual, we’ll start with by importing some Python modules.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -309,16 +309,16 @@ eventually published as <span id="id3">[<a class="reference internal" href="zref
 <span class="math notranslate nohighlight">\(a_{T+1} = 0\)</span>.)</p>
 <p>The consumer faces a sequence of budget constraints that  constrains   sequences <span class="math notranslate nohighlight">\((y, c, a)\)</span></p>
 <div class="math notranslate nohighlight" id="equation-eq-a-t">
-<span class="eqno">(10.1)<a class="headerlink" href="#equation-eq-a-t" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(11.1)<a class="headerlink" href="#equation-eq-a-t" title="Permalink to this equation">#</a></span>\[
 a_{t+1} = R (a_t+ y_t - c_t), \quad t =0, 1, \ldots T
 \]</div>
-<p>Equations <a class="reference internal" href="#equation-eq-a-t">(10.1)</a> constitute  <span class="math notranslate nohighlight">\(T+1\)</span> such budget constraints, one for each <span class="math notranslate nohighlight">\(t=0, 1, \ldots, T\)</span>.</p>
-<p>Given a sequence <span class="math notranslate nohighlight">\(y\)</span> of non-financial incomes, a large  set of <strong>pairs</strong> <span class="math notranslate nohighlight">\((a, c)\)</span> of (financial wealth, consumption) sequences  satisfy the sequence of budget constraints <a class="reference internal" href="#equation-eq-a-t">(10.1)</a>.</p>
+<p>Equations <a class="reference internal" href="#equation-eq-a-t">(11.1)</a> constitute  <span class="math notranslate nohighlight">\(T+1\)</span> such budget constraints, one for each <span class="math notranslate nohighlight">\(t=0, 1, \ldots, T\)</span>.</p>
+<p>Given a sequence <span class="math notranslate nohighlight">\(y\)</span> of non-financial incomes, a large  set of <strong>pairs</strong> <span class="math notranslate nohighlight">\((a, c)\)</span> of (financial wealth, consumption) sequences  satisfy the sequence of budget constraints <a class="reference internal" href="#equation-eq-a-t">(11.1)</a>.</p>
 <p>Our model has the following logical flow.</p>
 <ul class="simple">
 <li><p>start with an exogenous non-financial income sequence <span class="math notranslate nohighlight">\(y\)</span>, an initial financial wealth <span class="math notranslate nohighlight">\(a_0\)</span>, and
 a candidate consumption path <span class="math notranslate nohighlight">\(c\)</span>.</p></li>
-<li><p>use the system of equations <a class="reference internal" href="#equation-eq-a-t">(10.1)</a> for <span class="math notranslate nohighlight">\(t=0, \ldots, T\)</span> to compute a path <span class="math notranslate nohighlight">\(a\)</span> of financial wealth</p></li>
+<li><p>use the system of equations <a class="reference internal" href="#equation-eq-a-t">(11.1)</a> for <span class="math notranslate nohighlight">\(t=0, \ldots, T\)</span> to compute a path <span class="math notranslate nohighlight">\(a\)</span> of financial wealth</p></li>
 <li><p>verify that <span class="math notranslate nohighlight">\(a_{T+1}\)</span> satisfies the terminal wealth constraint <span class="math notranslate nohighlight">\(a_{T+1} \geq 0\)</span>.</p>
 <ul>
 <li><p>If it does, declare that the candidate path is <strong>budget feasible</strong>.</p></li>
@@ -333,10 +333,10 @@ with the exogenous non-financial income stream <span class="math notranslate noh
 <p>Among all budget-feasible consumption paths, which one <strong>should</strong> a consumer want?</p>
 <p>To answer this question, we shall eventually evaluate alternative budget feasible consumption paths <span class="math notranslate nohighlight">\(c\)</span> using the following utility functional or <strong>welfare criterion</strong>:</p>
 <div class="math notranslate nohighlight" id="equation-welfare">
-<span class="eqno">(10.2)<a class="headerlink" href="#equation-welfare" title="Permalink to this equation">#</a></span>\[W = \sum_{t=0}^T \beta^t (g_1 c_t - \frac{g_2}{2} c_t^2 )\]</div>
+<span class="eqno">(11.2)<a class="headerlink" href="#equation-welfare" title="Permalink to this equation">#</a></span>\[W = \sum_{t=0}^T \beta^t (g_1 c_t - \frac{g_2}{2} c_t^2 )\]</div>
 <p>where <span class="math notranslate nohighlight">\(g_1 &gt; 0, g_2 &gt; 0\)</span>.</p>
 <p>When <span class="math notranslate nohighlight">\(\beta R \approx 1\)</span>, the fact that the utility function <span class="math notranslate nohighlight">\(g_1 c_t - \frac{g_2}{2} c_t^2\)</span> has diminishing marginal utility imparts a preference for consumption that is very smooth.</p>
-<p>Indeed, we shall see that when <span class="math notranslate nohighlight">\(\beta R = 1\)</span> (a condition assumed by Milton Friedman <span id="id5">[<a class="reference internal" href="zreferences.html#id178" title="M. Friedman. A Theory of the Consumption Function. Princeton University Press, 1956.">Fri56</a>]</span> and Robert Hall <span id="id6">[<a class="reference internal" href="zreferences.html#id179" title="Robert E Hall. Stochastic Implications of the Life Cycle-Permanent Income Hypothesis: Theory and Evidence. Journal of Political Economy, 86(6):971–987, 1978.">Hal78</a>]</span>),  criterion <a class="reference internal" href="#equation-welfare">(10.2)</a> assigns higher welfare to <strong>smoother</strong> consumption paths.</p>
+<p>Indeed, we shall see that when <span class="math notranslate nohighlight">\(\beta R = 1\)</span> (a condition assumed by Milton Friedman <span id="id5">[<a class="reference internal" href="zreferences.html#id178" title="M. Friedman. A Theory of the Consumption Function. Princeton University Press, 1956.">Fri56</a>]</span> and Robert Hall <span id="id6">[<a class="reference internal" href="zreferences.html#id179" title="Robert E Hall. Stochastic Implications of the Life Cycle-Permanent Income Hypothesis: Theory and Evidence. Journal of Political Economy, 86(6):971–987, 1978.">Hal78</a>]</span>),  criterion <a class="reference internal" href="#equation-welfare">(11.2)</a> assigns higher welfare to <strong>smoother</strong> consumption paths.</p>
 <p>By <strong>smoother</strong> we mean as close as possible to being constant over time.</p>
 <p>The preference for smooth consumption paths that is built into the model gives it the  name “consumption smoothing model”.</p>
 <p>Let’s dive in and do some calculations that will help us understand how the model works.</p>
@@ -358,7 +358,7 @@ with the exogenous non-financial income stream <span class="math notranslate noh
 </div>
 </section>
 <section id="friedman-hall-consumption-smoothing-model">
-<h2><span class="section-number">10.3. </span>Friedman-Hall consumption-smoothing model<a class="headerlink" href="#friedman-hall-consumption-smoothing-model" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">11.3. </span>Friedman-Hall consumption-smoothing model<a class="headerlink" href="#friedman-hall-consumption-smoothing-model" title="Permalink to this heading">#</a></h2>
 <p>A key object is what Milton Friedman called “human” or “non-financial” wealth at time <span class="math notranslate nohighlight">\(0\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -368,37 +368,37 @@ h_0 \equiv \sum_{t=0}^T R^{-t} y_t = \begin{bmatrix} 1 &amp; R^{-1} &amp; \cdots
 <p>Human or non-financial wealth  at time <span class="math notranslate nohighlight">\(0\)</span> is evidently just the present value of the consumer’s non-financial income stream <span class="math notranslate nohighlight">\(y\)</span>.</p>
 <p>Formally it very much resembles the asset price that we computed in this quantecon lecture <a class="reference internal" href="pv.html"><span class="doc">present values</span></a>.</p>
 <p>Indeed, this is why Milton Friedman called it “human capital”.</p>
-<p>By iterating on equation <a class="reference internal" href="#equation-eq-a-t">(10.1)</a> and imposing the terminal condition</p>
+<p>By iterating on equation <a class="reference internal" href="#equation-eq-a-t">(11.1)</a> and imposing the terminal condition</p>
 <div class="math notranslate nohighlight">
 \[
 a_{T+1} = 0,
 \]</div>
-<p>it is possible to convert a sequence of budget constraints <a class="reference internal" href="#equation-eq-a-t">(10.1)</a> into a single intertemporal constraint</p>
+<p>it is possible to convert a sequence of budget constraints <a class="reference internal" href="#equation-eq-a-t">(11.1)</a> into a single intertemporal constraint</p>
 <div class="math notranslate nohighlight" id="equation-eq-budget-intertemp">
-<span class="eqno">(10.3)<a class="headerlink" href="#equation-eq-budget-intertemp" title="Permalink to this equation">#</a></span>\[ 
+<span class="eqno">(11.3)<a class="headerlink" href="#equation-eq-budget-intertemp" title="Permalink to this equation">#</a></span>\[ 
 \sum_{t=0}^T R^{-t} c_t = a_0 + h_0. 
 \]</div>
-<p>Equation <a class="reference internal" href="#equation-eq-budget-intertemp">(10.3)</a>  says that the present value of the consumption stream equals the sum of finanical and non-financial (or human) wealth.</p>
+<p>Equation <a class="reference internal" href="#equation-eq-budget-intertemp">(11.3)</a>  says that the present value of the consumption stream equals the sum of finanical and non-financial (or human) wealth.</p>
 <p>Robert Hall <span id="id7">[<a class="reference internal" href="zreferences.html#id179" title="Robert E Hall. Stochastic Implications of the Life Cycle-Permanent Income Hypothesis: Theory and Evidence. Journal of Political Economy, 86(6):971–987, 1978.">Hal78</a>]</span> showed that when <span class="math notranslate nohighlight">\(\beta R = 1\)</span>, a condition Milton Friedman had also  assumed, it is “optimal” for a consumer to <strong>smooth consumption</strong> by setting</p>
 <div class="math notranslate nohighlight">
 \[ 
 c_t = c_0 \quad t =0, 1, \ldots, T
 \]</div>
 <p>(Later we’ll present a “variational argument” that shows that this constant path maximizes
-criterion <a class="reference internal" href="#equation-welfare">(10.2)</a> when <span class="math notranslate nohighlight">\(\beta R =1\)</span>.)</p>
+criterion <a class="reference internal" href="#equation-welfare">(11.2)</a> when <span class="math notranslate nohighlight">\(\beta R =1\)</span>.)</p>
 <p>In this case, we can use the intertemporal budget constraint to write</p>
 <div class="math notranslate nohighlight" id="equation-eq-conssmoothing">
-<span class="eqno">(10.4)<a class="headerlink" href="#equation-eq-conssmoothing" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(11.4)<a class="headerlink" href="#equation-eq-conssmoothing" title="Permalink to this equation">#</a></span>\[
 c_t = c_0  = \left(\sum_{t=0}^T R^{-t}\right)^{-1} (a_0 + h_0), \quad t= 0, 1, \ldots, T.
 \]</div>
-<p>Equation <a class="reference internal" href="#equation-eq-conssmoothing">(10.4)</a> is the consumption-smoothing model in a nutshell.</p>
+<p>Equation <a class="reference internal" href="#equation-eq-conssmoothing">(11.4)</a> is the consumption-smoothing model in a nutshell.</p>
 </section>
 <section id="mechanics-of-consumption-smoothing-model">
-<h2><span class="section-number">10.4. </span>Mechanics of Consumption smoothing model<a class="headerlink" href="#mechanics-of-consumption-smoothing-model" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">11.4. </span>Mechanics of Consumption smoothing model<a class="headerlink" href="#mechanics-of-consumption-smoothing-model" title="Permalink to this heading">#</a></h2>
 <p>As promised, we’ll provide step-by-step instructions on how to use linear algebra, readily implemented in Python, to compute all  objects in play in  the consumption-smoothing model.</p>
 <p>In the calculations below,  we’ll  set default values of  <span class="math notranslate nohighlight">\(R &gt; 1\)</span>, e.g., <span class="math notranslate nohighlight">\(R = 1.05\)</span>, and <span class="math notranslate nohighlight">\(\beta = R^{-1}\)</span>.</p>
 <section id="step-1">
-<h3><span class="section-number">10.4.1. </span>Step 1<a class="headerlink" href="#step-1" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">11.4.1. </span>Step 1<a class="headerlink" href="#step-1" title="Permalink to this heading">#</a></h3>
 <p>For a <span class="math notranslate nohighlight">\((T+1) \times 1\)</span>  vector <span class="math notranslate nohighlight">\(y\)</span>, use matrix algebra to compute <span class="math notranslate nohighlight">\(h_0\)</span></p>
 <div class="math notranslate nohighlight">
 \[
@@ -407,7 +407,7 @@ h_0 = \sum_{t=0}^T R^{-t} y_t = \begin{bmatrix} 1 &amp; R^{-1} &amp; \cdots &amp
 \]</div>
 </section>
 <section id="step-2">
-<h3><span class="section-number">10.4.2. </span>Step 2<a class="headerlink" href="#step-2" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">11.4.2. </span>Step 2<a class="headerlink" href="#step-2" title="Permalink to this heading">#</a></h3>
 <p>Compute an  time <span class="math notranslate nohighlight">\(0\)</span>   consumption <span class="math notranslate nohighlight">\(c_0 \)</span> :</p>
 <div class="math notranslate nohighlight">
 \[
@@ -415,8 +415,8 @@ c_t = c_0 = \left( \frac{1 - R^{-1}}{1 - R^{-(T+1)}} \right) (a_0 + \sum_{t=0}^T
 \]</div>
 </section>
 <section id="step-3">
-<h3><span class="section-number">10.4.3. </span>Step 3<a class="headerlink" href="#step-3" title="Permalink to this heading">#</a></h3>
-<p>Use  the system of equations <a class="reference internal" href="#equation-eq-a-t">(10.1)</a> for <span class="math notranslate nohighlight">\(t=0, \ldots, T\)</span> to compute a path <span class="math notranslate nohighlight">\(a\)</span> of financial wealth.</p>
+<h3><span class="section-number">11.4.3. </span>Step 3<a class="headerlink" href="#step-3" title="Permalink to this heading">#</a></h3>
+<p>Use  the system of equations <a class="reference internal" href="#equation-eq-a-t">(11.1)</a> for <span class="math notranslate nohighlight">\(t=0, \ldots, T\)</span> to compute a path <span class="math notranslate nohighlight">\(a\)</span> of financial wealth.</p>
 <p>To do this, we translate that system of difference equations into a single matrix equation as follows:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -521,7 +521,7 @@ a_{T+1} = 0.
 </div>
 </div>
 <p>Note that <span class="math notranslate nohighlight">\(a_{T+1} = 0\)</span>, as anticipated.</p>
-<p>We can  evaluate  welfare criterion <a class="reference internal" href="#equation-welfare">(10.2)</a></p>
+<p>We can  evaluate  welfare criterion <a class="reference internal" href="#equation-welfare">(11.2)</a></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">welfare</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">c_seq</span><span class="p">):</span>
@@ -542,7 +542,7 @@ a_{T+1} = 0.
 </div>
 </section>
 <section id="experiments">
-<h3><span class="section-number">10.4.4. </span>Experiments<a class="headerlink" href="#experiments" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">11.4.4. </span>Experiments<a class="headerlink" href="#experiments" title="Permalink to this heading">#</a></h3>
 <p>In this section we decribe  how a  consumption sequence would optimally respond to different  sequences sequences of non-financial income.</p>
 <p>First we create  a function <code class="docutils literal notranslate"><span class="pre">plot_cs</span></code> that generate graphs for different instances of the  consumption smoothing model <code class="docutils literal notranslate"><span class="pre">cs_model</span></code>.</p>
 <p>This will  help us avoid rewriting code to plot outcomes for different non-financial income sequences.</p>
@@ -575,7 +575,7 @@ a_{T+1} = 0.
 </div>
 <p>In the experiments below, please study how consumption and financial asset sequences vary accross different sequences for non-financial income.</p>
 <section id="experiment-1-one-time-gain-loss">
-<h4><span class="section-number">10.4.4.1. </span>Experiment 1: one-time gain/loss<a class="headerlink" href="#experiment-1-one-time-gain-loss" title="Permalink to this heading">#</a></h4>
+<h4><span class="section-number">11.4.4.1. </span>Experiment 1: one-time gain/loss<a class="headerlink" href="#experiment-1-one-time-gain-loss" title="Permalink to this heading">#</a></h4>
 <p>We first assume a one-time windfall of <span class="math notranslate nohighlight">\(W_0\)</span> in year 21 of the income sequence <span class="math notranslate nohighlight">\(y\)</span>.</p>
 <p>We’ll make <span class="math notranslate nohighlight">\(W_0\)</span> big - positive to indicate a one-time windfall, and negative to indicate a one-time “disaster”.</p>
 <div class="cell docutils container">
@@ -606,7 +606,7 @@ a_{T+1} = 0.
 </div>
 </section>
 <section id="experiment-2-permanent-wage-gain-loss">
-<h4><span class="section-number">10.4.4.2. </span>Experiment 2: permanent wage gain/loss<a class="headerlink" href="#experiment-2-permanent-wage-gain-loss" title="Permalink to this heading">#</a></h4>
+<h4><span class="section-number">11.4.4.2. </span>Experiment 2: permanent wage gain/loss<a class="headerlink" href="#experiment-2-permanent-wage-gain-loss" title="Permalink to this heading">#</a></h4>
 <p>Now we assume a <strong>permanent</strong>  increase in income of <span class="math notranslate nohighlight">\(W\)</span> in year 21 of the <span class="math notranslate nohighlight">\(y\)</span>-sequence.</p>
 <p>Again we can study positive and negative cases</p>
 <div class="cell docutils container">
@@ -639,7 +639,7 @@ a_{T+1} = 0.
 </div>
 </section>
 <section id="experiment-3-a-late-starter">
-<h4><span class="section-number">10.4.4.3. </span>Experiment 3: a late starter<a class="headerlink" href="#experiment-3-a-late-starter" title="Permalink to this heading">#</a></h4>
+<h4><span class="section-number">11.4.4.3. </span>Experiment 3: a late starter<a class="headerlink" href="#experiment-3-a-late-starter" title="Permalink to this heading">#</a></h4>
 <p>Now we simulate a <span class="math notranslate nohighlight">\(y\)</span> sequence in which a person gets zero for 46 years, and then works and gets 1 for the last 20 years of life (a “late starter”)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -657,7 +657,7 @@ a_{T+1} = 0.
 </div>
 </section>
 <section id="experiment-4-geometric-earner">
-<h4><span class="section-number">10.4.4.4. </span>Experiment 4: geometric earner<a class="headerlink" href="#experiment-4-geometric-earner" title="Permalink to this heading">#</a></h4>
+<h4><span class="section-number">11.4.4.4. </span>Experiment 4: geometric earner<a class="headerlink" href="#experiment-4-geometric-earner" title="Permalink to this heading">#</a></h4>
 <p>Now we simulate a geometric <span class="math notranslate nohighlight">\(y\)</span> sequence in which a person gets <span class="math notranslate nohighlight">\(y_t = \lambda^t y_0\)</span> in first 46 years.</p>
 <p>We first experiment with <span class="math notranslate nohighlight">\(\lambda = 1.05\)</span></p>
 <div class="cell docutils container">
@@ -717,7 +717,7 @@ a_{T+1} = 0.
 </section>
 </section>
 <section id="feasible-consumption-variations">
-<h3><span class="section-number">10.4.5. </span>Feasible consumption variations<a class="headerlink" href="#feasible-consumption-variations" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">11.4.5. </span>Feasible consumption variations<a class="headerlink" href="#feasible-consumption-variations" title="Permalink to this heading">#</a></h3>
 <p>We promised to justify  our claim that a constant consumption play <span class="math notranslate nohighlight">\(c_t = c_0\)</span> for all
 <span class="math notranslate nohighlight">\(t\)</span> is optimal.</p>
 <p>Let’s do that now.</p>
@@ -920,7 +920,7 @@ welfare=13.28156768298361
 </section>
 </section>
 <section id="wrapping-up-the-consumption-smoothing-model">
-<h2><span class="section-number">10.5. </span>Wrapping up the consumption-smoothing model<a class="headerlink" href="#wrapping-up-the-consumption-smoothing-model" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">11.5. </span>Wrapping up the consumption-smoothing model<a class="headerlink" href="#wrapping-up-the-consumption-smoothing-model" title="Permalink to this heading">#</a></h2>
 <p>The consumption-smoothing model of Milton Friedman <span id="id8">[<a class="reference internal" href="zreferences.html#id178" title="M. Friedman. A Theory of the Consumption Function. Princeton University Press, 1956.">Fri56</a>]</span> and Robert Hall <span id="id9">[<a class="reference internal" href="zreferences.html#id179" title="Robert E Hall. Stochastic Implications of the Life Cycle-Permanent Income Hypothesis: Theory and Evidence. Journal of Political Economy, 86(6):971–987, 1978.">Hal78</a>]</span>) is a cornerstone of modern macro that has important ramifications for the size of the Keynesian  “fiscal policy multiplier” described briefly in
 quantecon lecture <a class="reference internal" href="geom_series.html"><span class="doc">geometric series</span></a>.</p>
 <p>In particular,  it  <strong>lowers</strong> the government expenditure  multiplier relative to  one implied by
@@ -929,7 +929,7 @@ the original Keynesian consumption function presented in <a class="reference int
 remains  active today.</p>
 </section>
 <section id="appendix-solving-difference-equations-with-linear-algebra">
-<h2><span class="section-number">10.6. </span>Appendix: solving difference equations with linear algebra<a class="headerlink" href="#appendix-solving-difference-equations-with-linear-algebra" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">11.6. </span>Appendix: solving difference equations with linear algebra<a class="headerlink" href="#appendix-solving-difference-equations-with-linear-algebra" title="Permalink to this heading">#</a></h2>
 <p>In the preceding sections we have used linear algebra to solve a consumption smoothing model.</p>
 <p>The same tools from linear algebra – matrix multiplication and matrix inversion – can be used  to study many other dynamic models.</p>
 <p>We’ll conclude this lecture by giving a couple of examples.</p>
@@ -937,7 +937,7 @@ remains  active today.</p>
 <p>To generate some <span class="math notranslate nohighlight">\(y\)</span> vectors, we’ll just write down a linear difference equation
 with appropriate initial conditions and then   use linear algebra to solve it.</p>
 <section id="first-order-difference-equation">
-<h3><span class="section-number">10.6.1. </span>First-order difference equation<a class="headerlink" href="#first-order-difference-equation" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">11.6.1. </span>First-order difference equation<a class="headerlink" href="#first-order-difference-equation" title="Permalink to this heading">#</a></h3>
 <p>We’ll start with a first-order linear difference equation for <span class="math notranslate nohighlight">\(\{y_t\}_{t=0}^T\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -946,7 +946,7 @@ y_{t} = \lambda y_{t-1}, \quad t = 1, 2, \ldots, T
 <p>where  <span class="math notranslate nohighlight">\(y_0\)</span> is a given  initial condition.</p>
 <p>We can cast this set of <span class="math notranslate nohighlight">\(T\)</span> equations as a single  matrix equation</p>
 <div class="math notranslate nohighlight" id="equation-eq-first-order-lin-diff">
-<span class="eqno">(10.5)<a class="headerlink" href="#equation-eq-first-order-lin-diff" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(11.5)<a class="headerlink" href="#equation-eq-first-order-lin-diff" title="Permalink to this equation">#</a></span>\[
 \begin{bmatrix} 
 1 &amp; 0 &amp; 0 &amp; \cdots &amp; 0 &amp; 0 \cr
 -\lambda &amp; 1 &amp; 0 &amp; \cdots &amp; 0 &amp; 0 \cr
@@ -962,9 +962,9 @@ y_1 \cr y_2 \cr y_3 \cr \vdots \cr y_T
 \lambda y_0 \cr 0 \cr 0 \cr \vdots \cr 0 
 \end{bmatrix}
 \]</div>
-<p>Multiplying both sides of <a class="reference internal" href="#equation-eq-first-order-lin-diff">(10.5)</a>  by the  inverse of the matrix on the left provides the solution</p>
+<p>Multiplying both sides of <a class="reference internal" href="#equation-eq-first-order-lin-diff">(11.5)</a>  by the  inverse of the matrix on the left provides the solution</p>
 <div class="math notranslate nohighlight" id="equation-fst-ord-inverse">
-<span class="eqno">(10.6)<a class="headerlink" href="#equation-fst-ord-inverse" title="Permalink to this equation">#</a></span>\[\begin{bmatrix} 
+<span class="eqno">(11.6)<a class="headerlink" href="#equation-fst-ord-inverse" title="Permalink to this equation">#</a></span>\[\begin{bmatrix} 
 y_1 \cr y_2 \cr y_3 \cr \vdots \cr y_T 
 \end{bmatrix} 
 = 
@@ -980,9 +980,9 @@ y_1 \cr y_2 \cr y_3 \cr \vdots \cr y_T
 \end{bmatrix}\]</div>
 <div class="exercise admonition" id="consmooth_ex1">
 
-<p class="admonition-title"><span class="caption-number">Exercise 10.1 </span></p>
+<p class="admonition-title"><span class="caption-number">Exercise 11.1 </span></p>
 <section id="exercise-content">
-<p>To get <a class="reference internal" href="#equation-fst-ord-inverse">(10.6)</a>, we multiplied both sides of  <a class="reference internal" href="#equation-eq-first-order-lin-diff">(10.5)</a> by  the inverse of the matrix <span class="math notranslate nohighlight">\(A\)</span>. Please confirm that</p>
+<p>To get <a class="reference internal" href="#equation-fst-ord-inverse">(11.6)</a>, we multiplied both sides of  <a class="reference internal" href="#equation-eq-first-order-lin-diff">(11.5)</a> by  the inverse of the matrix <span class="math notranslate nohighlight">\(A\)</span>. Please confirm that</p>
 <div class="math notranslate nohighlight">
 \[
 \begin{bmatrix} 
@@ -998,7 +998,7 @@ y_1 \cr y_2 \cr y_3 \cr \vdots \cr y_T
 </div>
 </section>
 <section id="second-order-difference-equation">
-<h3><span class="section-number">10.6.2. </span>Second order difference equation<a class="headerlink" href="#second-order-difference-equation" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">11.6.2. </span>Second order difference equation<a class="headerlink" href="#second-order-difference-equation" title="Permalink to this heading">#</a></h3>
 <p>A second-order linear difference equation for <span class="math notranslate nohighlight">\(\{y_t\}_{t=0}^T\)</span> is</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1026,7 +1026,7 @@ y_1 \cr y_2 \cr y_3 \cr \vdots \cr y_T
 <p>Multiplying both sides by  inverse of the matrix on the left again provides the solution.</p>
 <div class="exercise admonition" id="consmooth_ex2">
 
-<p class="admonition-title"><span class="caption-number">Exercise 10.2 </span></p>
+<p class="admonition-title"><span class="caption-number">Exercise 11.2 </span></p>
 <section id="exercise-content">
 <p>As an exercise, we ask you to represent and solve a <strong>third order linear difference equation</strong>.
 How many initial conditions must you specify?</p>
@@ -1114,8 +1114,13 @@ How many initial conditions must you specify?</p>
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="inflation_history.html">
+   4. Price Level Histories
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="inequality.html">
-   4. Income and Wealth Inequality
+   5. Income and Wealth Inequality
   </a>
  </li>
 </ul>
@@ -1127,22 +1132,22 @@ How many initial conditions must you specify?</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="complex_and_trig.html">
-   5. Complex Numbers and Trigonometry
+   6. Complex Numbers and Trigonometry
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="linear_equations.html">
-   6. Linear Equations and Matrix Algebra
+   7. Linear Equations and Matrix Algebra
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="eigen_I.html">
-   7. Eigenvalues and Eigenvectors
+   8. Eigenvalues and Eigenvectors
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="intro_supply_demand.html">
-   8. Introduction to Supply and Demand
+   9. Introduction to Supply and Demand
   </a>
  </li>
 </ul>
@@ -1154,22 +1159,17 @@ How many initial conditions must you specify?</p>
 <ul class="current nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="pv.html">
-   9. Present Values
+   10. Present Values
   </a>
  </li>
  <li class="toctree-l1 current active active">
   <a class="current reference internal" href="#">
-   10. Consumption Smoothing
+   11. Consumption Smoothing
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="equalizing_difference.html">
-   11. Equalizing Difference Model
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="inflation_history.html">
-   12. Price Level Histories
+   12. Equalizing Difference Model
   </a>
  </li>
  <li class="toctree-l1">
