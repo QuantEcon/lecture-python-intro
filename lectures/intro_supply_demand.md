@@ -16,7 +16,7 @@ kernelspec:
 ## Overview
 
 This lecture is about some models of equilibrium prices and quantities, one of
-the main topics of elementary microeconomics.
+the core topics of elementary microeconomics.
 
 Throughout the lecture, we focus on models with one good and one price.
 
