@@ -305,7 +305,7 @@ a0 = -2     # such as "student debt"
 # non-financial Income process
 y_seq = np.concatenate([np.ones(46), np.zeros(20)])
 
-cs_model = creat_cs_model()
+cs_model = create_consumption_smoothing_model()
 c_seq, a_seq, h0 = compute_optimal(cs_model, a0, y_seq)
 
 print('check a_T+1=0:', 
