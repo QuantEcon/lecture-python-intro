@@ -4,7 +4,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.15.2
+    jupytext_version: 1.15.1
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
@@ -98,7 +98,6 @@ The total height of each bar $i$ is willingness to pay by consumer $i$.
 
 The orange portion of some of the bars shows consumer surplus.
 
-
 ```{code-cell} ipython3
 fig, ax = plt.subplots()
 consumers = range(1, 11) # consumers 1,..., 10
@@ -165,7 +164,7 @@ q_grid = np.linspace(q_min, q_max, 1000)
 fig, ax = plt.subplots()
 ax.plot((q_min, q_max), (price, price), lw=2, label="price")
 ax.plot(q_grid, inverse_demand(q_grid), 
-        color="k", label="inverse demand curve")
+        color="orange", label="inverse demand curve")
 ax.set_ylabel("willingness to pay, price")
 ax.set_xlabel("quantity")
 ax.set_xlim(q_min, q_max)
@@ -185,11 +184,11 @@ q_star = np.log(100) - np.log(price)
 fig, ax = plt.subplots()
 ax.plot((q_min, q_max), (price, price), lw=2, label="price")
 ax.plot(q_grid, inverse_demand(q_grid), 
-        color="k", label="inverse demand curve")
+        color="orange", label="inverse demand curve")
 small_grid = np.linspace(0, q_star, 500)
 ax.fill_between(small_grid, np.full(len(small_grid), price),
-                inverse_demand(small_grid), color="darkorange",
-                alpha=0.6, label="consumer surplus")
+                inverse_demand(small_grid), color="orange",
+                alpha=0.5, label="consumer surplus")
 ax.vlines(q_star, 0, price, ls="--")
 ax.set_ylabel("willingness to pay, price")
 ax.set_xlabel("quantity")
@@ -261,12 +260,12 @@ q_star = (price / 2)**(1/2)
 fig, ax = plt.subplots()
 ax.plot((q_min, q_max), (price, price), lw=2, label="price")
 ax.plot(q_grid, inverse_supply(q_grid), 
-        color="k", label="inverse supply curve")
+        color="green", label="inverse supply curve")
 small_grid = np.linspace(0, q_star, 500)
 ax.fill_between(small_grid, inverse_supply(small_grid), 
                 np.full(len(small_grid), price), 
-                color="darkgreen",
-                alpha=0.4, label="producer surplus")
+                color="green",
+                alpha=0.5, label="producer surplus")
 ax.vlines(q_star, 0, price, ls="--")
 ax.set_ylabel("willingness to sell, price")
 ax.set_xlabel("quantity")
@@ -289,7 +288,7 @@ For those who are not, here is a quick introduction.
 
 In general, for a function $f$, the **integral** of $f$ over the interval $[a, b]$ is the area under the curve $f$ between $a$ and $b$.
 
-This value is written as $\int_a^b f(x) dx$ and illustrated in the figure below when $f(x) = \cos(x/2) + 1$.
+This value is written as $\int_a^b f(x) \mathrm{d} x$ and illustrated in the figure below when $f(x) = \cos(x/2) + 1$.
 
 ```{code-cell} ipython3
 def f(x):
@@ -303,7 +302,8 @@ ab_grid = np.linspace(a, b, 400)
 fig, ax = plt.subplots()
 ax.plot(x_grid, f(x_grid), label="$f$", color="k")
 ax.fill_between(ab_grid, [0] * len(ab_grid), f(ab_grid), 
-                alpha=0.5, label="$\int_a^b f(x) dx$")
+                label="$\int_a^b f(x) dx$",
+               color='grey', alpha=0.5)
 ax.legend()
 plt.show()
 ```
@@ -314,10 +314,10 @@ Many of these rules relate to one of the most beautiful and powerful results in 
 
 We will not try to cover these ideas here, partly because the subject is too big, and partly because you only need to know one rule for this lecture, stated below.
 
-If $f(x) = c + d x$, then 
+If $f(x) = c + \mathrm{d} x$, then 
 
 $$ 
-\int_a^b f(x) dx = c (b - a) + \frac{d}{2}(b^2 - a^2) 
+\int_a^b f(x) \mathrm{d} x = c (b - a) + \frac{d}{2}(b^2 - a^2) 
 $$
 
 In fact this rule is so simple that it can be calculated from elementary geometry -- you might like to try by graphing $f$ and calculating the area under the curve between $a$ and $b$.
@@ -397,8 +397,8 @@ supply_curve = market.inverse_supply(q_grid)
 demand_curve = market.inverse_demand(q_grid)
 
 fig, ax = plt.subplots()
-ax.plot(q_grid, supply_curve, label='supply')
-ax.plot(q_grid, demand_curve, label='demand')
+ax.plot(q_grid, supply_curve, label='supply', color='green')
+ax.plot(q_grid, demand_curve, label='demand', color='orange')
 ax.legend(loc='upper center', frameon=False)
 ax.set_ylim(0, 1.2)
 ax.set_xticks((0, 1))
@@ -420,7 +420,7 @@ curve minus $p q$:
 
 $$
 S_c(q) := 
-\int_0^{q} (d_0 - d_1 x) dx - p q 
+\int_0^{q} (d_0 - d_1 x) \mathrm{d} x - p q 
 $$ (eq:cstm_spls)
 
 The next figure illustrates
@@ -433,12 +433,13 @@ p = market.inverse_demand(q)
 ps = np.ones_like(q_grid) * p
 
 fig, ax = plt.subplots()
-ax.plot(q_grid, demand_curve, label='demand')
+ax.plot(q_grid, demand_curve, label='demand', color='orange')
 ax.fill_between(q_grid[q_grid <= q],
                 demand_curve[q_grid <= q],
                 ps[q_grid <= q],
                 label='consumer surplus',
-                color='#EED1CF')
+                color="orange", 
+                alpha=0.5)
 ax.vlines(q, 0, p, linestyle="dashed", color='black', alpha=0.7)
 ax.hlines(p, 0, q, linestyle="dashed", color='black', alpha=0.7)
 
@@ -479,7 +480,7 @@ We define **producer surplus** as $p q$ minus the area under an inverse supply c
 
 $$
 S_p(q) 
-:= p q - \int_0^q (s_0 + s_1 x) dx 
+:= p q - \int_0^q (s_0 + s_1 x) \mathrm{d} x 
 $$ (eq:pdcr_spls)
 
 The next figure illustrates
@@ -492,12 +493,13 @@ p = market.inverse_supply(q)
 ps = np.ones_like(q_grid) * p
 
 fig, ax = plt.subplots()
-ax.plot(q_grid, supply_curve, label='supply')
+ax.plot(q_grid, supply_curve, label='supply', color='green')
 ax.fill_between(q_grid[q_grid <= q],
                 supply_curve[q_grid <= q],
                 ps[q_grid <= q],
                 label='producer surplus',
-                color='#E6E6F5')
+                color="green",
+                alpha=0.5)
 ax.vlines(q, 0, p, linestyle="dashed", color='black', alpha=0.7)
 ax.hlines(p, 0, q, linestyle="dashed", color='black', alpha=0.7)
 
@@ -538,7 +540,7 @@ producers pay the same price:
 
 $$
 W(q)
-= \int_0^q (d_0 - d_1 x) dx - \int_0^q (s_0 + s_1 x) dx  
+= \int_0^q (d_0 - d_1 x) dx - \int_0^q (s_0 + s_1 x) \mathrm{d} x  
 $$
 
 Evaluating the integrals gives
@@ -565,7 +567,7 @@ The next figure plots welfare as a function of $q$.
 
 q_vals = np.linspace(0, 1.78, 200)
 fig, ax = plt.subplots()
-ax.plot(q_vals, W(q_vals, market), label='welfare')
+ax.plot(q_vals, W(q_vals, market), label='welfare', color='brown')
 ax.legend(frameon=False)
 ax.set_xlabel('quantity')
 plt.show()
@@ -577,7 +579,7 @@ To compute a quantity that  maximizes the welfare criterion, we differentiate
 $W$ with respect to $q$ and then set the derivative to zero.
 
 $$
-\frac{d W(q)}{d q} = d_0 - s_0 - (d_1 + s_1) q  = 0
+\frac{\mathrm{d} W(q)}{\mathrm{d} q} = d_0 - s_0 - (d_1 + s_1) q  = 0
 $$
 
 Solving for $q$ yields
@@ -704,8 +706,8 @@ supply_curve = market.inverse_supply(q_grid)
 demand_curve = market.inverse_demand(q_grid)
 
 fig, ax = plt.subplots()
-ax.plot(q_grid, supply_curve, label='supply')
-ax.plot(q_grid, demand_curve, label='demand')
+ax.plot(q_grid, supply_curve, label='supply', color='green')
+ax.plot(q_grid, demand_curve, label='demand', color='orange')
 ax.legend(loc='upper center', frameon=False)
 ax.set_ylim(0, 1.2)
 ax.set_xticks((0, 1))
@@ -736,7 +738,7 @@ supply curve:
 
 $$
 S_p(q) 
-= p q - \int_0^q i_s(x) dx 
+= p q - \int_0^q i_s(x) \mathrm{d} x 
 $$
 
 Here $p$ is set to $i_s(q)$.
@@ -746,7 +748,7 @@ assumption that the price is the same for buyers and sellers:
 
 $$
 W(q)
-= \int_0^q i_d(x) dx - \int_0^q i_s(x) dx  
+= \int_0^q i_d(x) dx - \int_0^q i_s(x) \mathrm{d} x  
 $$
 
 Solve the integrals and write a function to compute this quantity numerically
@@ -786,7 +788,7 @@ The next figure plots welfare as a function of $q$.
 
 ```{code-cell} ipython3
 fig, ax = plt.subplots()
-ax.plot(q_vals, W(q_vals, market), label='welfare')
+ax.plot(q_vals, W(q_vals, market), label='welfare', color='brown')
 ax.legend(frameon=False)
 ax.set_xlabel('quantity')
 plt.show()
