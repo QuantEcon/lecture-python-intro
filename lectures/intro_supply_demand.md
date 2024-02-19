@@ -365,12 +365,16 @@ Market = namedtuple('Market', ['d_0', # demand intercept
                                's_0', # supply intercept
                                's_1'] # supply slope
                    )
+```
 
+The function below creates an instance of a Market namedtuple with default values.
+
+```{code-cell} ipython3
 def create_market(d_0=1.0, d_1=0.6, s_0=0.1, s_1=0.4):
     return Market(d_0=d_0, d_1=d_1, s_0=s_0, s_1=s_1)
 ```
 
-This `Market` namedtuple can then be used by our `inverse_demand` and `inverse_supply` functions.
+This `market` can then be used by our `inverse_demand` and `inverse_supply` functions.
 
 ```{code-cell} ipython3
 def inverse_demand(q, model):
