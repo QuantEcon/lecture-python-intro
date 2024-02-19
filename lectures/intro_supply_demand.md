@@ -471,8 +471,8 @@ mystnb:
   figure:
     caption: "Supply and demand (consumer surplus)"
     name: supply_demand_cs
+tags: [hide-input]
 ---
-:tags: [hide-input]
 
 q = 1.25
 p = inverse_demand(q, market)
@@ -537,8 +537,8 @@ mystnb:
   figure:
     caption: "Supply and demand (producer surplus)"
     name: supply_demand_ps
+tags: [hide-input]
 ---
-:tags: [hide-input]
 
 q = 0.75
 p = inverse_supply(q, market)
@@ -618,8 +618,8 @@ mystnb:
   figure:
     caption: "Welfare"
     name: wf
+tags: [hide-input]
 ---
-:tags: [hide-input]
 
 q_vals = np.linspace(0, 1.78, 200)
 fig, ax = plt.subplots()
