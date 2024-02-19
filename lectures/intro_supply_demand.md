@@ -100,6 +100,12 @@ The total height of each bar $i$ is willingness to pay by consumer $i$.
 The orange portion of some of the bars shows consumer surplus.
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: "Willingness to pay (discrete)"
+    name: wpdisc
+---
 fig, ax = plt.subplots()
 consumers = range(1, 11) # consumers 1,..., 10
 # willingness to pay for each consumer
@@ -154,6 +160,12 @@ p = 100 e^{-q}
 $$
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: "Willingness to pay (continuous)"
+    name: wpcont
+---
 def inverse_demand(q):
     return 100 * np.exp(- q)
 
@@ -179,6 +191,12 @@ Reasoning by analogy with the discrete case, the area under the demand curve and
 The consumer surplus is shaded in the figure below.
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: "Willingness to pay (continuous) with consumer surplus"
+    name: wpcont_cs
+---
 # solve for the value of q where demand meets price
 q_star = np.log(100) - np.log(price)
 
@@ -211,12 +229,18 @@ Having discussed demand, let's now switch over to the supply side of the market.
 The figure below shows the price at which a collection of producers, also numbered 1 to 10, are willing to sell one unit of the good in question
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: "Willingness to sell (discrete)"
+    name: wsdisc
+---
 fig, ax = plt.subplots()
 producers = range(1, 11) # producers 1,..., 10
 # willingness to sell for each producer
 wts = (5, 8, 17, 22, 35, 39, 46, 57, 88, 91)
 price = 25
-ax.bar(producers, wts, label="willingness to sell", color="blue", alpha=0.8)
+ax.bar(producers, wts, label="willingness to sell", color="green", alpha=0.5)
 ax.set_xlim(0, 12)
 ax.set_xticks(producers)
 ax.set_ylabel("willingness to sell")
@@ -251,6 +275,12 @@ $$
 The shaded area is the total producer surplus in this continuous model.
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: "Willingness to sell (continuous) with producer surplus"
+    name: wscont
+---
 def inverse_supply(q):
     return 2 * q**2
 
@@ -293,6 +323,12 @@ In general, for a function $f$, the **integral** of $f$ over the interval $[a, b
 This value is written as $\int_a^b f(x) \mathrm{d} x$ and illustrated in the figure below when $f(x) = \cos(x/2) + 1$.
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: "Area under the curve"
+    name: integrate
+---
 def f(x):
     return np.cos(x/2) + 1
 
@@ -304,8 +340,7 @@ ab_grid = np.linspace(a, b, 400)
 fig, ax = plt.subplots()
 ax.plot(x_grid, f(x_grid), label="$f$", color="k")
 ax.fill_between(ab_grid, [0] * len(ab_grid), f(ab_grid), 
-                label="$\int_a^b f(x) dx$",
-               color='grey', alpha=0.5)
+                label="$\int_a^b f(x) dx$")
 ax.legend()
 plt.show()
 ```
@@ -388,6 +423,12 @@ def inverse_supply(q, model):
 Here is a plot of these two functions using `market`.
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: "Supply and demand"
+    name: supply_demand
+---
 market = create_market()
 
 grid_min, grid_max, grid_size = 0, 1.5, 200
@@ -425,6 +466,12 @@ $$ (eq:cstm_spls)
 The next figure illustrates
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: "Supply and demand (consumer surplus)"
+    name: supply_demand_cs
+---
 :tags: [hide-input]
 
 q = 1.25
@@ -485,6 +532,12 @@ $$ (eq:pdcr_spls)
 The next figure illustrates
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: "Supply and demand (producer surplus)"
+    name: supply_demand_ps
+---
 :tags: [hide-input]
 
 q = 0.75
@@ -560,6 +613,12 @@ def W(q, market):
 The next figure plots welfare as a function of $q$.
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: "Welfare"
+    name: wf
+---
 :tags: [hide-input]
 
 q_vals = np.linspace(0, 1.78, 200)
