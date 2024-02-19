@@ -17,9 +17,9 @@ kernelspec:
 ## Overview
 
 
-In this lecture, we'll study a famous model of the "consumption function" that Milton Friedman {cite}`Friedman1956` and Robert Hall {cite}`Hall1978`)  proposed to fit some empirical data patterns that the original  Keynesian consumption function  described in this quantecon lecture {doc}`geometric series <geom_series>`  missed.
+In this lecture, we'll study a famous model of the "consumption function" that Milton Friedman {cite}`Friedman1956` and Robert Hall {cite}`Hall1978`)  proposed to fit some empirical data patterns that the original  Keynesian consumption function  described in this QuantEcon lecture {doc}`geometric series <geom_series>`  missed.
 
-In this lecture, we'll study what is often  called the "consumption-smoothing model"  using  matrix multiplication and matrix inversion, the same tools that we used in this quantecon lecture {doc}`present values <pv>`. 
+In this lecture, we'll study what is often  called the "consumption-smoothing model"  using  matrix multiplication and matrix inversion, the same tools that we used in this QuantEcon lecture {doc}`present values <pv>`. 
 
 Formulas presented in  {doc}`present value formulas<pv>` are at the core of the consumption smoothing model because we shall use them to define a consumer's "human wealth".
 
@@ -29,7 +29,7 @@ and that standard asset-pricing formulas could be applied to compute a person's
 ''non-financial wealth'' that capitalizes the  earnings stream.  
 
 ```{note}
-As we'll see in this quantecon lecture  {doc}`equalizing difference model <equalizing_difference>`,
+As we'll see in this QuantEcon lecture  {doc}`equalizing difference model <equalizing_difference>`,
 Milton Friedman had used this idea  in his PhD thesis at Columbia University, 
 eventually published as {cite}`kuznets1939incomes` and {cite}`friedman1954incomes`.
 ```
@@ -58,21 +58,21 @@ The consumer faces a gross interest rate of $R >1$ that is constant over time, a
 
 To set up the model, let 
 
- * $T \geq 2$  be a positive integer that constitutes a time-horizon
+ * $T \geq 2$  be a positive integer that constitutes a time-horizon. This allows the model to analyze consumption smoothing behavior over a lifetime with multiple time periods. 
 
- * $y = \{y_t\}_{t=0}^T$ be an exogenous  sequence of non-negative non-financial incomes $y_t$
+ * $y = \{y_t\}_{t=0}^T$ be an exogenous  sequence of non-negative non-financial incomes $y_t$. This represents the exogenous non-financial income the consumer receives over their lifetime, like labor earnings. The model takes this as given rather than derived inside the model.
 
- * $a = \{a_t\}_{t=0}^{T+1}$ be a sequence of financial wealth
+ * $a = \{a_t\}_{t=0}^{T+1}$ be a sequence of financial wealth. This is the decision variable for the consumer, representing how much they save or borrow each period by consuming less or more than their income. 
  
- * $c = \{c_t\}_{t=0}^T$ be a sequence of non-negative consumption rates
+ * $c = \{c_t\}_{t=0}^T$ be a sequence of non-negative consumption rates. This is also a decision variable, representing how much the consumer chooses to consume each period out of their income and financial wealth. 
 
- * $R \geq 1$ be a fixed gross one period rate of return on financial assets
+ * $R \geq 1$ be a fixed gross one period rate of return on financial assets. This represents the interest rate at which the consumer can borrow or lend. It determines the tradeoff between consuming today vs in the future.
  
- * $\beta \in (0,1)$ be a fixed discount factor
+ * $\beta \in (0,1)$ be a fixed discount factor. This reflects the consumer's time preference for consumption today vs the future. Combined with the interest rate, it helps determine the optimal consumption smoothing.
 
  * $a_0$ be a given initial level of financial assets
 
- * $a_{T+1} \geq 0$  be a terminal condition on final assets
+ * $a_{T+1} \geq 0$  be a terminal condition on final assets. These boundary conditions anchor down the start and end of the financial wealth sequence the consumer faces over their lifetime.
 
 The sequence of financial wealth $a$ is to be determined by the model.
 
@@ -83,7 +83,7 @@ We require it to satisfy  two  **boundary conditions**:
 
 The **terminal condition** $a_{T+1} \geq 0$ requires that the consumer not leave the model in debt.
 
-(We'll soon see that a utility maximizing consumer won't **want** to die leaving positive assets, so she'll arrange her affairs to make
+(We'll soon see that a utility maximizing consumer won't want to die leaving positive assets, so she'll arrange her affairs to make
 $a_{T+1} = 0$.)
 
 The consumer faces a sequence of budget constraints that  constrains   sequences $(y, c, a)$
@@ -94,7 +94,7 @@ $$ (eq:a_t)
 
 Equations {eq}`eq:a_t` constitute  $T+1$ such budget constraints, one for each $t=0, 1, \ldots, T$. 
 
-Given a sequence $y$ of non-financial incomes, a large  set of **pairs** $(a, c)$ of (financial wealth, consumption) sequences  satisfy the sequence of budget constraints {eq}`eq:a_t`. 
+Given a sequence $y$ of non-financial incomes, a large  set of pairs $(a, c)$ of (financial wealth, consumption) sequences  satisfy the sequence of budget constraints {eq}`eq:a_t`. 
 
 Our model has the following logical flow.
 
@@ -116,7 +116,7 @@ with the exogenous non-financial income stream $y$, the initial financial  asset
 
 In general, there are **many** budget feasible consumption paths $c$.
 
-Among all budget-feasible consumption paths, which one **should** a consumer want?
+Among all budget-feasible consumption paths, which one should a consumer want?
 
 
 To answer this question, we shall eventually evaluate alternative budget feasible consumption paths $c$ using the following utility functional or **welfare criterion**:
@@ -131,7 +131,7 @@ where $g_1 > 0, g_2 > 0$.
 
 When $\beta R \approx 1$, the fact that the utility function $g_1 c_t - \frac{g_2}{2} c_t^2$ has diminishing marginal utility imparts a preference for consumption that is very smooth.  
 
-Indeed, we shall see that when $\beta R = 1$ (a condition assumed by Milton Friedman {cite}`Friedman1956` and Robert Hall {cite}`Hall1978`),  criterion {eq}`welfare` assigns higher welfare to **smoother** consumption paths.
+Indeed, we shall see that when $\beta R = 1$ (a condition assumed by Milton Friedman {cite}`Friedman1956` and Robert Hall {cite}`Hall1978`),  criterion {eq}`welfare` assigns higher welfare to smoother consumption paths.
 
 By **smoother** we mean as close as possible to being constant over time.  
 
@@ -147,11 +147,11 @@ We create a Python **namedtuple** to store these parameters with default values.
 ConsumptionSmoothing = namedtuple("ConsumptionSmoothing", 
                         ["R", "g1", "g2", "β_seq", "T"])
 
-def creat_cs_model(R=1.05, g1=1, g2=1/2, T=65):
+def create_consumption_smoothing_model(R=1.05, g1=1, g2=1/2, T=65):
     β = 1/R
     β_seq = np.array([β**i for i in range(T+1)])
-    return ConsumptionSmoothing(R=1.05, g1=1, g2=1/2, 
-                                β_seq=β_seq, T=65)
+    return ConsumptionSmoothing(R, g1, g2, 
+                                β_seq, T)
 ```
 
 
@@ -167,7 +167,7 @@ $$
 
 Human or non-financial wealth  at time $0$ is evidently just the present value of the consumer's non-financial income stream $y$. 
 
-Formally it very much resembles the asset price that we computed in this quantecon lecture {doc}`present values <pv>`.
+Formally it very much resembles the asset price that we computed in this QuantEcon lecture {doc}`present values <pv>`.
 
 Indeed, this is why Milton Friedman called it "human capital". 
 
@@ -185,7 +185,7 @@ $$ (eq:budget_intertemp)
 
 Equation {eq}`eq:budget_intertemp`  says that the present value of the consumption stream equals the sum of finanical and non-financial (or human) wealth.
 
-Robert Hall {cite}`Hall1978` showed that when $\beta R = 1$, a condition Milton Friedman had also  assumed, it is "optimal" for a consumer to **smooth consumption** by setting 
+Robert Hall {cite}`Hall1978` showed that when $\beta R = 1$, a condition Milton Friedman had also  assumed, it is "optimal" for a consumer to smooth consumption by setting 
 
 $$ 
 c_t = c_0 \quad t =0, 1, \ldots, T
@@ -223,7 +223,7 @@ $$
 Compute an  time $0$   consumption $c_0 $ :
 
 $$
-c_t = c_0 = \left( \frac{1 - R^{-1}}{1 - R^{-(T+1)}} \right) (a_0 + \sum_{t=0}^T R^t y_t ) , \quad t = 0, 1, \ldots, T
+c_t = c_0 = \left( \frac{1 - R^{-1}}{1 - R^{-(T+1)}} \right) (a_0 + \sum_{t=0}^T R^{-t} y_t ) , \quad t = 0, 1, \ldots, T
 $$
 
 ### Step 3
@@ -399,7 +399,7 @@ plot_cs(cs_model, a0, y_seq_neg)
 
 #### Experiment 2: permanent wage gain/loss
 
-Now we assume a **permanent**  increase in income of $W$ in year 21 of the $y$-sequence.
+Now we assume a permanent  increase in income of $W$ in year 21 of the $y$-sequence.
 
 Again we can study positive and negative cases
 
@@ -514,7 +514,7 @@ Let's compute that function.
 We require
 
 $$
-\sum_{t=0}^T \left[ \xi_1 \phi^t - \xi_0 \right] = 0
+\sum_{t=0}^T R^{-t}\left[ \xi_1 \phi^t - \xi_0 \right] = 0
 $$
 
 which implies that
@@ -543,7 +543,7 @@ where $v$ is a budget-feasible variation.
 Given $R$, we thus have a two parameter class of budget feasible variations $v$ that we can use
 to compute alternative consumption paths, then evaluate their welfare.
 
-Now let's compute and plot consumption path variations variations
+Now let's compute and plot consumption path variations
 
 ```{code-cell} ipython3
 def compute_variation(model, ξ1, ϕ, a0, y_seq, verbose=1):
@@ -663,7 +663,7 @@ plt.show()
 ## Wrapping up the consumption-smoothing model
 
 The consumption-smoothing model of Milton Friedman {cite}`Friedman1956` and Robert Hall {cite}`Hall1978`) is a cornerstone of modern macro that has important ramifications for the size of the Keynesian  "fiscal policy multiplier" described briefly in
-quantecon lecture {doc}`geometric series <geom_series>`.  
+QuantEcon lecture {doc}`geometric series <geom_series>`.  
 
 In particular,  it  **lowers** the government expenditure  multiplier relative to  one implied by
 the original Keynesian consumption function presented in {doc}`geometric series <geom_series>`.
