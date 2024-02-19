@@ -797,6 +797,12 @@ pencil and paper.
 
 Maximize it using `scipy.optimize.minimize_scalar` instead.
 
+```{seealso}
+Our [SciPy](https://python-programming.quantecon.org/scipy.html) lecture has
+a section on [Optimization](https://python-programming.quantecon.org/scipy.html#optimization)
+is a useful resource to find out more. 
+```
+
 ```
 
 
@@ -836,6 +842,12 @@ e_d(q) := i_d(q) - i_s(q)
 $$
 
 You can use `scipy.optimize.newton` to compute the root.
+
+```{seealso}
+Our [SciPy](https://python-programming.quantecon.org/scipy.html) lecture has
+a section on [Roots and Fixed Points](https://python-programming.quantecon.org/scipy.html#roots-and-fixed-points)
+is a useful resource to find out more. 
+```
 
 Initialize `newton` with a starting guess somewhere close to 1.0.
 
