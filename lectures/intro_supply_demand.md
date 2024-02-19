@@ -57,6 +57,7 @@ In our exposition we will use the following Python imports.
 ```{code-cell} ipython3
 import numpy as np
 import matplotlib.pyplot as plt
+from collections import namedtuple
 ```
 
 ## Consumer surplus
@@ -356,45 +357,38 @@ $$
 
 We call them inverse demand and supply curves because price is on the left side of the equation rather than on the right side as it would be in a direct demand or supply function.
 
-Here is a class that stores parameters for our single good market, as well as
-implementing the inverse demand and supply curves.
+We can use a [namedtuple](https://docs.python.org/3/library/collections.html#collections.namedtuple) to store the parameters for our single good market. 
 
 ```{code-cell} ipython3
-class Market:
+Market = namedtuple('Market', ['d_0', # demand intercept
+                               'd_1', # demand slope
+                               's_0', # supply intercept
+                               's_1'] # supply slope
+                   )
 
-    def __init__(self,
-                 d_0=1.0,      # demand intercept
-                 d_1=0.6,      # demand slope
-                 s_0=0.1,      # supply intercept
-                 s_1=0.4):     # supply slope
-
-        self.d_0, self.d_1 = d_0, d_1
-        self.s_0, self.s_1 = s_0, s_1
-
-    def inverse_demand(self, q):
-        return self.d_0 - self.d_1 * q
-
-    def inverse_supply(self, q):
-        return self.s_0 + self.s_1 * q
+def create_market(d_0=1.0, d_1=0.6, s_0=0.1, s_1=0.4):
+    return Market(d_0=d_0, d_1=d_1, s_0=s_0, s_1=s_1)
 ```
 
-Let's create an instance.
+This `Market` namedtuple can then be used by our `inverse_demand` and `inverse_supply` functions.
 
 ```{code-cell} ipython3
-market = Market()
+def inverse_demand(q, model):
+    return model.d_0 - model.d_1 * q
+
+def inverse_supply(q, model):
+    return model.s_0 + model.s_1 * q
 ```
 
 Here is a plot of these two functions using `market`.
 
 ```{code-cell} ipython3
-:tags: [hide-input]
-
-market = Market()
+market = create_market()
 
 grid_min, grid_max, grid_size = 0, 1.5, 200
 q_grid = np.linspace(grid_min, grid_max, grid_size)
-supply_curve = market.inverse_supply(q_grid)
-demand_curve = market.inverse_demand(q_grid)
+supply_curve = inverse_supply(q_grid, market)
+demand_curve = inverse_demand(q_grid, market)
 
 fig, ax = plt.subplots()
 ax.plot(q_grid, supply_curve, label='supply', color='green')
@@ -429,7 +423,7 @@ The next figure illustrates
 :tags: [hide-input]
 
 q = 1.25
-p = market.inverse_demand(q)
+p = inverse_demand(q, market)
 ps = np.ones_like(q_grid) * p
 
 fig, ax = plt.subplots()
@@ -489,7 +483,7 @@ The next figure illustrates
 :tags: [hide-input]
 
 q = 0.75
-p = market.inverse_supply(q)
+p = inverse_supply(q, market)
 ps = np.ones_like(q_grid) * p
 
 fig, ax = plt.subplots()
@@ -670,40 +664,37 @@ Using the class, plot the inverse demand and supply curves $i_d$ and $i_s$
 :class: dropdown
 ```
 
+Let us make use of a [namedtuple](https://docs.python.org/3/library/collections.html#collections.namedtuple) container provided by Python to hold the parameters of the Market. 
+
 ```{code-cell} ipython3
-class Market:
-
-    def __init__(self,
-                 d_0=1.0,      # demand intercept
-                 d_1=0.6,      # demand slope
-                 s_0=0.1,      # supply intercept
-                 s_1=0.4):     # supply slope
-
-        self.d_0, self.d_1 = d_0, d_1
-        self.s_0, self.s_1 = s_0, s_1
-
-    def inverse_demand(self, q):
-        return self.d_0 - self.d_1 * q**0.6
-
-    def inverse_supply(self, q):
-        return self.s_0 + self.s_1 * q**1.8
+Market = namedtuple('Market', ['d_0', # demand intercept
+                               'd_1', # demand slope
+                               's_0', # supply intercept
+                               's_1'] # supply slope
+                   )
 ```
 
-Let's create an instance.
+We can now define some functions that `create` and `operate` on these Market parameters. 
 
 ```{code-cell} ipython3
-market = Market()
+def create_market(d_0=1.0, d_1=0.6, s_0=0.1, s_1=0.4):
+    return Market(d_0=d_0, d_1=d_1, s_0=s_0, s_1=s_1)
+
+def inverse_demand(q, model):
+    return model.d_0 - model.d_1 * q**0.6
+
+def inverse_supply(q, model):
+    return model.s_0 + model.s_1 * q**1.8
 ```
 
 Here is a plot of inverse supply and demand.
 
 ```{code-cell} ipython3
-:tags: [hide-input]
-
 grid_min, grid_max, grid_size = 0, 1.5, 200
 q_grid = np.linspace(grid_min, grid_max, grid_size)
-supply_curve = market.inverse_supply(q_grid)
-demand_curve = market.inverse_demand(q_grid)
+market = create_market()
+supply_curve = inverse_supply(q_grid, market)
+demand_curve = inverse_demand(q_grid, market)
 
 fig, ax = plt.subplots()
 ax.plot(q_grid, supply_curve, label='supply', color='green')
@@ -864,7 +855,7 @@ price, in line with the first fundamental welfare theorem.
 from scipy.optimize import newton
 
 def excess_demand(q):
-    return market.inverse_demand(q) - market.inverse_supply(q)
+    return inverse_demand(q, market) - inverse_supply(q, market)
 
 equilibrium_q = newton(excess_demand, 0.99)
 print(f"{equilibrium_q: .5f}")
