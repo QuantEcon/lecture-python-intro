@@ -64,7 +64,7 @@ from collections import namedtuple
 
 Before we look at the model of supply and demand, it will be helpful to have some background on (a) consumer and producer surpluses and (b) integration.
 
-(If you are comfortable with both topics you can jump to the next section.)
+(If you are comfortable with both topics you can jump to the {ref}`next section <integration>`.)
 
 ### A discrete example
 
@@ -277,6 +277,7 @@ ax.legend()
 plt.show()
 ```
 
+(integration)=
 ## Integration
 
 How can we calculate the consumer and producer surplus in the continuous case?
@@ -357,7 +358,7 @@ $$
 
 We call them inverse demand and supply curves because price is on the left side of the equation rather than on the right side as it would be in a direct demand or supply function.
 
-We can use a [namedtuple](https://docs.python.org/3/library/collections.html#collections.namedtuple) to store the parameters for our single good market. 
+We can use a [namedtuple](https://docs.python.org/3/library/collections.html#collections.namedtuple) to store the parameters for our single good market.
 
 ```{code-cell} ipython3
 Market = namedtuple('Market', ['d_0', # demand intercept
@@ -552,10 +553,8 @@ quantity $q$ and a fixed set of parameters.
 
 ```{code-cell} ipython3
 def W(q, market):
-    # Unpack
-    d_0, d_1, s_0, s_1 = market.d_0, market.d_1, market.s_0, market.s_1
     # Compute and return welfare
-    return (d_0 - s_0) * q - 0.5 * (d_1 + s_1) * q**2
+    return (market.d_0 - market.s_0) * q - 0.5 * (market.d_1 + market.s_1) * q**2
 ```
 
 The next figure plots welfare as a function of $q$.
@@ -655,35 +654,20 @@ All parameters are positive, as before.
 ```{exercise}
 :label: isd_ex1
 
-Define a new `Market` class that holds the same parameter values as before by
-changing the `inverse_demand` and `inverse_supply` methods to
-match these new definitions.
+Use the same `Market` namedtuple that holds the parameter values as before but
+make new `inverse_demand` and `inverse_supply` functions to match these new definitions.
 
-Using the class, plot the inverse demand and supply curves $i_d$ and $i_s$
+Then plot the inverse demand and supply curves $i_d$ and $i_s$.
 
 ```
-
 
 ```{solution-start} isd_ex1
 :class: dropdown
 ```
 
-Let us make use of a [namedtuple](https://docs.python.org/3/library/collections.html#collections.namedtuple) container provided by Python to hold the parameters of the Market. 
+Let's update the `inverse_demand` and `inverse_supply` functions, as defined above.
 
 ```{code-cell} ipython3
-Market = namedtuple('Market', ['d_0', # demand intercept
-                               'd_1', # demand slope
-                               's_0', # supply intercept
-                               's_1'] # supply slope
-                   )
-```
-
-We can now define some functions that `create` and `operate` on these Market parameters. 
-
-```{code-cell} ipython3
-def create_market(d_0=1.0, d_1=0.6, s_0=0.1, s_1=0.4):
-    return Market(d_0=d_0, d_1=d_1, s_0=s_0, s_1=s_1)
-
 def inverse_demand(q, model):
     return model.d_0 - model.d_1 * q**0.6
 
@@ -750,7 +734,6 @@ Solve the integrals and write a function to compute this quantity numerically
 at given $q$. 
 
 Plot welfare as a function of $q$.
-
 ```
 
 
@@ -770,12 +753,9 @@ Here's a Python function that computes this value:
 
 ```{code-cell} ipython3
 def W(q, market):
-    # Unpack
-    d_0, d_1 = market.d_0, market.d_1
-    s_0, s_1 = market.s_0, market.s_1
     # Compute and return welfare
-    S_c = d_0 * q - d_1 * q**1.6 / 1.6
-    S_p = s_0 * q + s_1 * q**2.8 / 2.8
+    S_c = market.d_0 * q - market.d_1 * q**1.6 / 1.6
+    S_p = market.s_0 * q + market.s_1 * q**2.8 / 2.8
     return S_c - S_p
 ```
 
@@ -793,7 +773,7 @@ plt.show()
 ```
 
 
-```{exercise}
+````{exercise}
 :label: isd_ex3
 
 Due to non-linearities, the new welfare function is not easy to maximize with
@@ -807,7 +787,7 @@ a section on [Optimization](https://python-programming.quantecon.org/scipy.html#
 is a useful resource to find out more. 
 ```
 
-```
+````
 
 
 ```{solution-start} isd_ex3
@@ -833,7 +813,7 @@ print(f"{maximizing_q: .5f}")
 ```
 
 
-```{exercise}
+````{exercise}
 :label: isd_ex4
 
 Now compute the equilibrium quantity by finding the price that equates supply
@@ -860,7 +840,7 @@ Initialize `newton` with a starting guess somewhere close to 1.0.
 You should find that the equilibrium price agrees with the welfare maximizing
 price, in line with the first fundamental welfare theorem.
 
-```
+````
 
 
 ```{solution-start} isd_ex4
