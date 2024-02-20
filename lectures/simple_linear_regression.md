@@ -379,7 +379,7 @@ So let's built a list of the columns we want to import
 
 ```{code-cell} ipython3
 cols = ['Code', 'Year', 'Life expectancy at birth (historical)', 'GDP per capita']
-df = pd.read_csv(fl, usecols=cols)
+df = pd.read_csv(data_url, usecols=cols)
 df
 ```
 
