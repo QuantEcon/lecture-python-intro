@@ -61,8 +61,8 @@ ax = df.plot(
     x='X', 
     y='Y', 
     kind='scatter', 
-    ylabel='Ice-Cream Sales ($\'s)', 
-    xlabel='Degrees Celcius'
+    ylabel='Ice-cream sales ($\'s)', 
+    xlabel='Degrees celcius'
 )
 ```
 
@@ -114,7 +114,7 @@ df.plot(x='X',y='Y', kind='scatter', ax=ax)
 df.plot(x='X',y='Y_hat', kind='line', ax=ax, color='g')
 ```
 
-However we need to think about formalising this guessing process by thinking of this problem as an optimization problem. 
+However we need to think about formalizing this guessing process by thinking of this problem as an optimization problem. 
 
 Let's consider the error $\epsilon_i$ and define the difference between the observed values $y_i$ and the estimated values $\hat{y}_i$ which we will call the residuals
 
@@ -140,7 +140,7 @@ df.plot(x='X',y='Y_hat', kind='line', ax=ax, color='g')
 plt.vlines(df['X'], df['Y_hat'], df['Y'], color='r');
 ```
 
-The Ordinary Least Squares (OLS) method, as the name suggests, chooses $\alpha$ and $\beta$ in such a way that **minimises** the Sum of the Squared Residuals (SSR). 
+The Ordinary Least Squares (OLS) method chooses $\alpha$ and $\beta$ in such a way that **minimizes** the sum of the squared residuals (SSR). 
 
 $$
 \min_{\alpha,\beta} \sum_{i=1}^{N}{\hat{e}_i^2} = \min_{\alpha,\beta} \sum_{i=1}^{N}{(y_i - \alpha - \beta x_i)^2}
@@ -152,7 +152,7 @@ $$
 C = \sum_{i=1}^{N}{(y_i - \alpha - \beta x_i)^2}
 $$
 
-that we would like to minimise with parameters $\alpha$ and $\beta$.
+that we would like to minimize with parameters $\alpha$ and $\beta$.
 
 ## How does error change with respect to $\alpha$ and $\beta$
 
@@ -173,7 +173,7 @@ for β in np.arange(20,100,0.5):
     errors[β] = abs((α_optimal + β * df['X']) - df['Y']).sum()
 ```
 
-Ploting the error
+Plotting the error
 
 ```{code-cell} ipython3
 ax = pd.Series(errors).plot(xlabel='β', ylabel='error')
@@ -188,7 +188,7 @@ for α in np.arange(-500,500,5):
     errors[α] = abs((α + β_optimal * df['X']) - df['Y']).sum()
 ```
 
-Ploting the error
+Plotting the error
 
 ```{code-cell} ipython3
 ax = pd.Series(errors).plot(xlabel='α', ylabel='error')
@@ -331,13 +331,6 @@ df.plot(x='X',y='Y_hat', kind='line', ax=ax, color='g')
 plt.vlines(df['X'], df['Y_hat'], df['Y'], color='r');
 ```
 
-:::{admonition} Why use OLS?
-TODO
-
-1. Discuss mathematical properties for why we have chosen OLS
-:::
-
-
 :::{exercise}
 :label: slr-ex1
 
@@ -347,7 +340,7 @@ Let's consider two economic variables GDP per capita and Life Expectancy.
 
 1. What do you think their relationship would be?
 2. Gather some data [from our world in data](https://ourworldindata.org)
-3. Use `pandas` to import the `csv` formated data and plot a few different countries of interest
+3. Use `pandas` to import the `csv` formatted data and plot a few different countries of interest
 4. Use {eq}`eq:optimal-alpha` and {eq}`eq:optimal-beta` to compute optimal values for  $\alpha$ and $\beta$
 5. Plot the line of best fit found using OLS
 6. Interpret the coefficients and write a summary sentence of the relationship between GDP per capita and Life Expectancy
@@ -528,9 +521,9 @@ plt.vlines(data['log_gdppc'], data['life_expectancy_hat'], data['life_expectancy
 :::{exercise}
 :label: slr-ex2
 
-Minimising the sum of squares is not the **only** way to generate the line of best fit. 
+Minimizing the sum of squares is not the **only** way to generate the line of best fit. 
 
-For example, we could also consider minimising the sum of the **absolute values**, that would give less weight to outliers. 
+For example, we could also consider minimizing the sum of the **absolute values**, that would give less weight to outliers. 
 
 Solve for $\alpha$ and $\beta$ using the least absolute values
 :::
