@@ -57,6 +57,11 @@ df
 We can use a scatter plot of the data to see the relationship between $y_i$ (ice-cream sales in dollars (\$\'s)) and $x_i$ (degrees Celsius).
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    name: wpdisc
+---
 ax = df.plot(
     x='X', 
     y='Y', 
