@@ -356,13 +356,13 @@ Let's consider two economic variables GDP per capita and Life Expectancy.
 <iframe src="https://ourworldindata.org/grapher/life-expectancy-vs-gdp-per-capita" loading="lazy" style="width: 100%; height: 600px; border: 0px none;"></iframe>
 :::
 
-You can download {download}`a copy of the data here <_static/lecture_specific/simple_linear_regression/life-expectancy-vs-gdp-per-capita.csv>` if you get stuck
+You can download {download}`a copy of the data here <https://github.com/QuantEcon/lecture-python-intro/raw/main/lectures/_static/lecture_specific/simple_linear_regression/life-expectancy-vs-gdp-per-capita.csv>` if you get stuck
 
 **Q3:** Use `pandas` to import the `csv` formatted data and plot a few different countries of interest
 
 ```{code-cell} ipython3
-fl = "_static/lecture_specific/simple_linear_regression/life-expectancy-vs-gdp-per-capita.csv"  # TODO: Replace with GitHub link
-df = pd.read_csv(fl, nrows=10)
+data_url = "https://github.com/QuantEcon/lecture-python-intro/raw/main/lectures/_static/lecture_specific/simple_linear_regression/life-expectancy-vs-gdp-per-capita.csv"
+df = pd.read_csv(data_url, nrows=10)
 ```
 
 ```{code-cell} ipython3
@@ -446,7 +446,7 @@ df = df[df.year == 2018].reset_index(drop=True).copy()
 ```
 
 ```{code-cell} ipython3
-df.plot(x='gdppc', y='life_expectancy', kind='scatter',  xlabel="GDP per capita", ylabel="Life Expectancy (Years)",);
+df.plot(x='gdppc', y='life_expectancy', kind='scatter',  xlabel="GDP per capita", ylabel="Life expectancy (years)",);
 ```
 
 This data shows a couple of interesting relationships.
@@ -463,7 +463,7 @@ ln -> ln == elasticities
 By specifying `logx` you can plot the GDP per Capita data on a log scale
 
 ```{code-cell} ipython3
-df.plot(x='gdppc', y='life_expectancy', kind='scatter',  xlabel="GDP per capita", ylabel="Life Expectancy (Years)", logx=True);
+df.plot(x='gdppc', y='life_expectancy', kind='scatter',  xlabel="GDP per capita", ylabel="Life expectancy (years)", logx=True);
 ```
 
 As you can see from this transformation -- a linear model fits the shape of the data more closely.
