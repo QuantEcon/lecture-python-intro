@@ -37,6 +37,41 @@ latex:
 sphinx:
   extra_extensions: [sphinx_multitoc_numbering, sphinxext.rediraffe, sphinx_exercise, sphinx_togglebutton, sphinx.ext.intersphinx, sphinx_proof, sphinx_tojupyter] 
   config:
+    suppress_warnings: ["mystnb.unknown_mime_type"]
+    nb_mime_priority_overrides: [
+       # HTML
+       ['html', 'application/vnd.plotly.v1+json', 9],
+       ['html', 'application/vnd.jupyter.widget-view+json', 10],
+       ['html', 'application/javascript', 20],
+       ['html', 'text/html', 30],
+       ['html', 'text/latex', 40],
+       ['html', 'image/svg+xml', 50],
+       ['html', 'image/png', 60],
+       ['html', 'image/jpeg', 70],
+       ['html', 'text/markdown', 80],
+       ['html', 'text/plain', 90],
+       # Jupyter Notebooks
+       ['jupyter', 'application/vnd.plotly.v1+json', 9],
+       ['jupyter', 'application/vnd.jupyter.widget-view+json', 10],
+       ['jupyter', 'application/javascript', 20],
+       ['jupyter', 'text/html', 30],
+       ['jupyter', 'text/latex', 40],
+       ['jupyter', 'image/svg+xml', 50],
+       ['jupyter', 'image/png', 60],
+       ['jupyter', 'image/jpeg', 70],
+       ['jupyter', 'text/markdown', 80],
+       ['jupyter', 'text/plain', 90],
+       # LaTeX
+       ['latex', 'text/latex', 10],
+       ['latex', 'application/pdf', 20],
+       ['latex', 'image/png', 30],
+       ['latex', 'image/jpeg', 40],
+       ['latex', 'text/markdown', 50],
+       ['latex', 'text/plain', 60],
+       ['latex', 'text/html', 70],
+       # Link Checker
+       ['linkcheck', 'text/plain', 10],
+     ]
     # false-positive links
     linkcheck_ignore: ['https://doi.org/https://doi.org/10.2307/1235116']
     # myst-nb config
@@ -44,6 +79,8 @@ sphinx:
       width: 80%
     nb_code_prompt_show: "Show {type}"
     # -------------
+    html_js_files:
+    - https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js
     html_favicon: _static/lectures-favicon.ico
     html_theme: quantecon_book_theme
     html_static_path: ['_static']
