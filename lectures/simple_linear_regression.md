@@ -506,11 +506,7 @@ This data shows a couple of interesting relationships.
 1. there are a number of countries with similar GDP per capita levels but a wide range in Life Expectancy
 2. there appears to be a positive relationship between GDP per capita and life expectancy. Countries with higher GDP per capita tend to have higher life expectancy outcomes
 
-Even though OLS is solving linear equations -- one option we have is to transform the variables, such as through a log transform, and then use OLS to estimate the transformed variables
-
-:::{tip}
-ln -> ln == elasticities
-:::
+Even though OLS is solving linear equations -- one option we have is to transform the variables, such as through a log transform, and then use OLS to estimate the transformed variables.
 
 By specifying `logx` you can plot the GDP per Capita data on a log scale
 
