@@ -60,7 +60,8 @@ We can use a scatter plot of the data to see the relationship between $y_i$ (ice
 ---
 mystnb:
   figure:
-    name: wpdisc
+    caption: "Scatter plot"
+    name: sales-v-temp
 ---
 ax = df.plot(
     x='X', 
@@ -88,8 +89,14 @@ df['Y_hat'] = α + β * df['X']
 ```
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: "Scatter plot with a line of fit"
+    name: sales-v-temp2
+---
 fig, ax = plt.subplots()
-df.plot(x='X',y='Y', kind='scatter', ax=ax)
+ax = df.plot(x='X',y='Y', kind='scatter', ax=ax)
 df.plot(x='X',y='Y_hat', kind='line', ax=ax)
 ```
 
@@ -103,8 +110,14 @@ df['Y_hat'] = α + β * df['X']
 ```
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: "Scatter plot with a line of fit"
+    name: sales-v-temp3
+---
 fig, ax = plt.subplots()
-df.plot(x='X',y='Y', kind='scatter', ax=ax)
+ax = df.plot(x='X',y='Y', kind='scatter', ax=ax)
 df.plot(x='X',y='Y_hat', kind='line', ax=ax)
 ```
 
@@ -114,8 +127,14 @@ df['Y_hat'] = α + β * df['X']
 ```
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: "Scatter plot with a line of fit"
+    name: sales-v-temp4
+---
 fig, ax = plt.subplots()
-df.plot(x='X',y='Y', kind='scatter', ax=ax)
+ax = df.plot(x='X',y='Y', kind='scatter', ax=ax)
 df.plot(x='X',y='Y_hat', kind='line', ax=ax, color='g')
 ```
 
@@ -139,9 +158,15 @@ df
 ```
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: "Plot of the residuals"
+    name: plt-residuals
+---
 fig, ax = plt.subplots()
-df.plot(x='X',y='Y', kind='scatter', ax=ax)
-df.plot(x='X',y='Y_hat', kind='line', ax=ax, color='g')
+ax = df.plot(x='X',y='Y', kind='scatter', ax=ax)
+ax = df.plot(x='X',y='Y_hat', kind='line', ax=ax, color='g')
 plt.vlines(df['X'], df['Y_hat'], df['Y'], color='r');
 ```
 
@@ -181,6 +206,12 @@ for β in np.arange(20,100,0.5):
 Plotting the error
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: "Plotting the error"
+    name: plt-errors
+---
 ax = pd.Series(errors).plot(xlabel='β', ylabel='error')
 plt.axvline(β_optimal, color='r');
 ```
@@ -196,6 +227,12 @@ for α in np.arange(-500,500,5):
 Plotting the error
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: "Plotting the error (2)"
+    name: plt-errors2
+---
 ax = pd.Series(errors).plot(xlabel='α', ylabel='error')
 plt.axvline(α_optimal, color='r');
 ```
@@ -327,12 +364,18 @@ print(α)
 Now we can plot the OLS solution
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: "OLS line of best fit"
+    name: plt-ols
+---
 df['Y_hat'] = α + β * df['X']
 df['error'] = df['Y_hat'] - df['Y']
 
 fig, ax = plt.subplots()
-df.plot(x='X',y='Y', kind='scatter', ax=ax)
-df.plot(x='X',y='Y_hat', kind='line', ax=ax, color='g')
+ax = df.plot(x='X',y='Y', kind='scatter', ax=ax)
+ax = df.plot(x='X',y='Y_hat', kind='line', ax=ax, color='g')
 plt.vlines(df['X'], df['Y_hat'], df['Y'], color='r');
 ```
 
