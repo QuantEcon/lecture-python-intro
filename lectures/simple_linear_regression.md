@@ -61,7 +61,7 @@ We can use a scatter plot of the data to see the relationship between $y_i$ (ice
 mystnb:
   figure:
     caption: "Scatter plot"
-    name: sales-v-temp
+    name: sales-v-temp1
 ---
 ax = df.plot(
     x='X', 
@@ -97,7 +97,8 @@ mystnb:
 ---
 fig, ax = plt.subplots()
 ax = df.plot(x='X',y='Y', kind='scatter', ax=ax)
-df.plot(x='X',y='Y_hat', kind='line', ax=ax)
+ax = df.plot(x='X',y='Y_hat', kind='line', ax=ax)
+plt.show()
 ```
 
 We can see that this model does a poor job of estimating the relationship.
@@ -113,12 +114,13 @@ df['Y_hat'] = α + β * df['X']
 ---
 mystnb:
   figure:
-    caption: "Scatter plot with a line of fit"
+    caption: "Scatter plot with a line of fit #2"
     name: sales-v-temp3
 ---
 fig, ax = plt.subplots()
 ax = df.plot(x='X',y='Y', kind='scatter', ax=ax)
-df.plot(x='X',y='Y_hat', kind='line', ax=ax)
+ax = df.plot(x='X',y='Y_hat', kind='line', ax=ax)
+plt.show()
 ```
 
 ```{code-cell} ipython3
@@ -130,12 +132,13 @@ df['Y_hat'] = α + β * df['X']
 ---
 mystnb:
   figure:
-    caption: "Scatter plot with a line of fit"
+    caption: "Scatter plot with a line of fit #3"
     name: sales-v-temp4
 ---
 fig, ax = plt.subplots()
 ax = df.plot(x='X',y='Y', kind='scatter', ax=ax)
-df.plot(x='X',y='Y_hat', kind='line', ax=ax, color='g')
+ax = df.plot(x='X',y='Y_hat', kind='line', ax=ax, color='g')
+plt.show()
 ```
 
 However we need to think about formalizing this guessing process by thinking of this problem as an optimization problem. 
@@ -167,7 +170,8 @@ mystnb:
 fig, ax = plt.subplots()
 ax = df.plot(x='X',y='Y', kind='scatter', ax=ax)
 ax = df.plot(x='X',y='Y_hat', kind='line', ax=ax, color='g')
-plt.vlines(df['X'], df['Y_hat'], df['Y'], color='r');
+plt.vlines(df['X'], df['Y_hat'], df['Y'], color='r')
+plt.show()
 ```
 
 The Ordinary Least Squares (OLS) method chooses $\alpha$ and $\beta$ in such a way that **minimizes** the sum of the squared residuals (SSR). 
@@ -231,7 +235,7 @@ Plotting the error
 mystnb:
   figure:
     caption: "Plotting the error (2)"
-    name: plt-errors2
+    name: plt-errors-2
 ---
 ax = pd.Series(errors).plot(xlabel='α', ylabel='error')
 plt.axvline(α_optimal, color='r');
