@@ -58,21 +58,14 @@ The consumer faces a gross interest rate of $R >1$ that is constant over time, a
 
 To set up the model, let 
 
- * $T \geq 2$  be a positive integer that constitutes a time-horizon. This allows the model to analyze consumption smoothing behavior over a lifetime with multiple time periods. 
-
- * $y = \{y_t\}_{t=0}^T$ be an exogenous  sequence of non-negative non-financial incomes $y_t$. This represents the exogenous non-financial income the consumer receives over their lifetime, like labor earnings. The model takes this as given rather than derived inside the model.
-
- * $a = \{a_t\}_{t=0}^{T+1}$ be a sequence of financial wealth. This is the decision variable for the consumer, representing how much they save or borrow each period by consuming less or more than their income. 
- 
- * $c = \{c_t\}_{t=0}^T$ be a sequence of non-negative consumption rates. This is also a decision variable, representing how much the consumer chooses to consume each period out of their income and financial wealth. 
-
- * $R \geq 1$ be a fixed gross one period rate of return on financial assets. This represents the interest rate at which the consumer can borrow or lend. It determines the tradeoff between consuming today vs in the future.
- 
- * $\beta \in (0,1)$ be a fixed discount factor. This reflects the consumer's time preference for consumption today vs the future. Combined with the interest rate, it helps determine the optimal consumption smoothing.
-
+ * $T \geq 2$  be a positive integer that constitutes a time-horizon. 
+ * $y = \{y_t\}_{t=0}^T$ be an exogenous  sequence of non-negative non-financial incomes $y_t$. 
+ * $a = \{a_t\}_{t=0}^{T+1}$ be a sequence of financial wealth.  
+ * $c = \{c_t\}_{t=0}^T$ be a sequence of non-negative consumption rates. 
+ * $R \geq 1$ be a fixed gross one period rate of return on financial assets. 
+ * $\beta \in (0,1)$ be a fixed discount factor.  
  * $a_0$ be a given initial level of financial assets
-
- * $a_{T+1} \geq 0$  be a terminal condition on final assets. These boundary conditions anchor down the start and end of the financial wealth sequence the consumer faces over their lifetime.
+ * $a_{T+1} \geq 0$  be a terminal condition on final assets. 
 
 The sequence of financial wealth $a$ is to be determined by the model.
 
