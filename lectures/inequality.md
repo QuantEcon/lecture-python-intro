@@ -441,15 +441,12 @@ for σ in σ_vals:
 
 ```{code-cell} ipython3
 def plot_inequality_measures(x, y, legend, xlabel, ylabel):
-    
     fig, ax = plt.subplots()
     ax.plot(x, y, marker='o', label=legend)
-
     ax.set_xlabel(xlabel)
     ax.set_ylabel(ylabel)
-
     ax.legend()
-    plt.show()
+    return fig, ax
 ```
 
 ```{code-cell} ipython3
@@ -461,11 +458,12 @@ mystnb:
   image:
     alt: gini_simulated
 ---
-plot_inequality_measures(σ_vals, 
-                         ginis, 
-                         'simulated', 
-                         '$\sigma$', 
-                         'gini coefficients')
+fix, ax = plot_inequality_measures(σ_vals, 
+                                  ginis, 
+                                  'simulated', 
+                                  '$\sigma$', 
+                                  'gini coefficients')
+plt.show()
 ```
 
 The plots show that inequality rises with $\sigma$, according to the Gini
@@ -475,9 +473,9 @@ coefficient.
 
 Now let's look at Gini coefficients for US data derived from the SCF.
 
-The following code creates a list called `Ginis`.
+The following code creates a list called `ginis`.
 
- It stores data of Gini coefficients generated from the dataframe ``df_income_wealth`` and method [gini_coefficient](https://quanteconpy.readthedocs.io/en/latest/tools/inequality.html#quantecon.inequality.gini_coefficient), from [QuantEcon](https://quantecon.org/quantecon-py/) library.
+It stores data of Gini coefficients generated from the dataframe `df_income_wealth` and method [gini_coefficient](https://quanteconpy.readthedocs.io/en/latest/tools/inequality.html#quantecon.inequality.gini_coefficient), from [QuantEcon](https://quantecon.org/quantecon-py/) library.
 
 ```{code-cell} ipython3
 :tags: [hide-input]
@@ -489,13 +487,11 @@ varlist = ['n_wealth',   # net wealth
 df = df_income_wealth
 
 # create lists to store Gini for each inequality measure
-
-Ginis = []
+results = {}
 
 for var in varlist:
     # create lists to store Gini
-    ginis = []
-    
+    gini_yr = []
     for year in years:
         # repeat the observations according to their weights
         counts = list(round(df[df['year'] == year]['weights'] ))
@@ -503,16 +499,18 @@ for var in varlist:
         y = np.asarray(y)
         
         rd.shuffle(y)    # shuffle the sequence
-        
+      
         # calculate and store Gini
         gini = qe.gini_coefficient(y)
-        ginis.append(gini)
+        gini_yr.append(gini)
         
-    Ginis.append(ginis)
+    results[var] = gini_yr
 ```
 
 ```{code-cell} ipython3
-ginis_nw, ginis_ti, ginis_li = Ginis
+ginis_nw = results['n_wealth'] # net wealth
+ginis_ti = results['t_income'] # total income
+ginis_li = results['l_income'] # labour income
 ```
 
 Let's plot the Gini coefficients for net wealth, labor income and total income.
@@ -532,16 +530,10 @@ mystnb:
   image:
     alt: gini_wealth_us
 ---
-xlabel = "year"
-ylabel = "gini coefficient"
-
 fig, ax = plt.subplots()
-
 ax.plot(years, ginis_nw, marker='o')
-
-ax.set_xlabel(xlabel)
-ax.set_ylabel(ylabel)
-    
+ax.set_xlabel("year")
+ax.set_ylabel("gini coefficient")
 plt.show()
 ```
 
@@ -554,17 +546,11 @@ mystnb:
   image:
     alt: gini_income_us
 ---
-xlabel = "year"
-ylabel = "gini coefficient"
-
 fig, ax = plt.subplots()
-
 ax.plot(years, ginis_li_new, marker='o', label="labor income")
 ax.plot(years, ginis_ti, marker='o', label="total income")
-
-ax.set_xlabel(xlabel)
-ax.set_ylabel(ylabel)
-
+ax.set_xlabel("year")
+ax.set_ylabel("gini coefficient")
 ax.legend()
 plt.show()
 ```
@@ -573,7 +559,6 @@ We see that, by this measure, inequality in wealth and income has risen
 substantially since 1980.
 
 The wealth time series exhibits a strong U-shape.
-
 
 ## Top shares
 
@@ -658,21 +643,15 @@ mystnb:
   image:
     alt: top_shares_us
 ---
-xlabel = "year"
-ylabel = "top $10\%$ share"
-
 fig, ax = plt.subplots()
-
 ax.plot(years, df_topshares["topshare_l_income"],
         marker='o', label="labor income")
 ax.plot(years, df_topshares["topshare_n_wealth"],
         marker='o', label="net wealth")
 ax.plot(years, df_topshares["topshare_t_income"],
         marker='o', label="total income")
-
-ax.set_xlabel(xlabel)
-ax.set_ylabel(ylabel)
-
+ax.set_xlabel("year")
+ax.set_ylabel("top $10\%$ share")
 ax.legend()
 ```
 
@@ -742,11 +721,12 @@ mystnb:
   image:
     alt: top_shares_simulated
 ---
-plot_inequality_measures(σ_vals, 
-                         topshares, 
-                         "simulated data", 
-                         "$\sigma$", 
-                         "top $10\%$ share") 
+fig, ax = plot_inequality_measures(σ_vals, 
+                                  topshares, 
+                                  "simulated data", 
+                                  "$\sigma$", 
+                                  "top $10\%$ share") 
+plt.show()
 ```
 
 ```{code-cell} ipython3
@@ -758,11 +738,12 @@ mystnb:
   image:
     alt: gini_coef_simulated
 ---
-plot_inequality_measures(σ_vals, 
-                         ginis, 
-                         "simulated data", 
-                         "$\sigma$", 
-                         "gini coefficient") 
+fig, ax = plot_inequality_measures(σ_vals, 
+                                  ginis, 
+                                  "simulated data", 
+                                  "$\sigma$", 
+                                  "gini coefficient")
+plt.show()
 ```
 
 ```{code-cell} ipython3
