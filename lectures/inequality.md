@@ -4,7 +4,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.14.5
+    jupytext_version: 1.15.1
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
@@ -12,7 +12,6 @@ kernelspec:
 ---
 
 # Income and Wealth Inequality
-
 
 ## Overview
 
@@ -46,7 +45,6 @@ Many recent political debates revolve around inequality.
 Many economic policies, from taxation to the welfare state, are 
 aimed at addressing inequality.
 
-
 ### Measurement
 
 One problem with these debates is that inequality is often poorly defined.
@@ -63,23 +61,14 @@ In this lecture we discuss standard measures of inequality used in economic rese
 
 For each of these measures, we will look at both simulated and real data.
 
-We will install the following libraries.
-
-```{code-cell} ipython3
-:tags: [hide-output]
-
-!pip install --upgrade quantecon interpolation
-```
-
-And we use the following imports.
+We will use the following imports.
 
 ```{code-cell} ipython3
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-import quantecon as qe
 import random as rd
-from interpolation import interp
+import quantecon as qe
 ```
 
 ## The Lorenz curve
@@ -104,16 +93,18 @@ The curve $L$ is just a function $y = L(x)$ that we can plot and interpret.
 
 To create it we first generate data points $(x_i, y_i)$  according to
 
-\begin{equation*}
-    x_i = \frac{i}{n},
-    \qquad
-    y_i = \frac{\sum_{j \leq i} w_j}{\sum_{j \leq n} w_j},
-    \qquad i = 1, \ldots, n
-\end{equation*}
+$$
+x_i = \frac{i}{n},
+\qquad
+y_i = \frac{\sum_{j \leq i} w_j}{\sum_{j \leq n} w_j},
+\qquad i = 1, \ldots, n
+$$
 
 Now the Lorenz curve $L$ is formed from these data points using interpolation.
 
-(If we use a line plot in Matplotlib, the interpolation will be done for us.)
+```{tip}
+If we use a line plot in `matplotlib`, the interpolation will be done for us.
+```
 
 The meaning of the statement $y = L(x)$ is that the lowest $(100
 \times x)$\% of people have $(100 \times y)$\% of all wealth.
@@ -124,16 +115,71 @@ The meaning of the statement $y = L(x)$ is that the lowest $(100
 In the discussion above we focused on wealth but the same ideas apply to
 income, consumption, etc.
 
-+++
 
 ### Lorenz curves of simulated data
 
 Let's look at some examples and try to build understanding.
 
+First let us construct a `lorenz_curve` function that we can
+use in our simulations below.
+
+It is useful to construct a function that translates an array of
+income or wealth data into the cumulative share
+of people and the cumulative share of income (or wealth).
+
+```{code-cell} ipython3
+:tags: [hide-input]
+
+def lorenz_curve(y):
+    """
+    Calculates the Lorenz Curve, a graphical representation of
+    the distribution of income or wealth.
+
+    It returns the cumulative share of people (x-axis) and
+    the cumulative share of income earned.
+
+    Parameters
+    ----------
+    y : array_like(float or int, ndim=1)
+        Array of income/wealth for each individual.
+        Unordered or ordered is fine.
+
+    Returns
+    -------
+    cum_people : array_like(float, ndim=1)
+        Cumulative share of people for each person index (i/n)
+    cum_income : array_like(float, ndim=1)
+        Cumulative share of income for each person index
+
+
+    References
+    ----------
+    .. [1] https://en.wikipedia.org/wiki/Lorenz_curve
+
+    Examples
+    --------
+    >>> a_val, n = 3, 10_000
+    >>> y = np.random.pareto(a_val, size=n)
+    >>> f_vals, l_vals = lorenz(y)
+
+    """
+
+    n = len(y)
+    y = np.sort(y)
+    s = np.zeros(n + 1)
+    s[1:] = np.cumsum(y)
+    cum_people = np.zeros(n + 1)
+    cum_income = np.zeros(n + 1)
+    for i in range(1, n + 1):
+        cum_people[i] = i / n
+        cum_income[i] = s[i] / s[n]
+    return cum_people, cum_income
+```
+
 In the next figure, we generate $n=2000$ draws from a lognormal
 distribution and treat these draws as our population.  
 
-The straight line ($x=L(x)$ for all $x$) corresponds to perfect equality.  
+The straight 45-degree line ($x=L(x)$ for all $x$) corresponds to perfect equality.  
 
 The lognormal draws produce a less equal distribution.  
 
@@ -145,7 +191,7 @@ households own just over 40\% of total wealth.
 ---
 mystnb:
   figure:
-    caption: "Lorenz curve of simulated data"
+    caption: Lorenz curve of simulated data
     name: lorenz_simulated
 ---
 n = 2000
@@ -153,41 +199,41 @@ sample = np.exp(np.random.randn(n))
 
 fig, ax = plt.subplots()
 
-f_vals, l_vals = qe.lorenz_curve(sample)
+f_vals, l_vals = lorenz_curve(sample)
 ax.plot(f_vals, l_vals, label=f'lognormal sample', lw=2)
 ax.plot(f_vals, f_vals, label='equality', lw=2)
 
-ax.legend(fontsize=12)
+ax.legend()
 
 ax.vlines([0.8], [0.0], [0.43], alpha=0.5, colors='k', ls='--')
 ax.hlines([0.43], [0], [0.8], alpha=0.5, colors='k', ls='--')
 
-ax.set_ylim((0, 1))
 ax.set_xlim((0, 1))
+ax.set_xlabel("Cumulative share of households (%)")
+ax.set_ylim((0, 1))
+ax.set_ylabel("Cumulative share of income (%)")
 
 plt.show()
 ```
 
 ### Lorenz curves for US data
 
-Next let's look at the real data, focusing on income and wealth in the US in
-2016.
+Next let's look at the real data, focusing on income and wealth in the US in 2016.
 
-The following code block imports a subset of the dataset ``SCF_plus``,
+The following code block imports a subset of the dataset `SCF_plus`,
 which is derived from the [Survey of Consumer Finances](https://en.wikipedia.org/wiki/Survey_of_Consumer_Finances) (SCF).
 
 ```{code-cell} ipython3
 url = 'https://media.githubusercontent.com/media/QuantEcon/high_dim_data/main/SCF_plus/SCF_plus_mini.csv'
 df = pd.read_csv(url)
-df = df.dropna()
-df_income_wealth = df
+df_income_wealth = df.dropna()
 ```
 
 ```{code-cell} ipython3
-df_income_wealth.head()
+df_income_wealth.head(n=5)
 ```
 
-The following code block uses data stored in dataframe ``df_income_wealth`` to generate the Lorenz curves.
+The following code block uses data stored in dataframe `df_income_wealth` to generate the Lorenz curves.
 
 (The code is somewhat complex because we need to adjust the data according to
 population weights supplied by the SCF.)
@@ -222,7 +268,7 @@ for var in varlist:
         rd.shuffle(y)    
                
         # calculate and store Lorenz curve data
-        f_val, l_val = qe.lorenz_curve(y)
+        f_val, l_val = lorenz_curve(y)
         f_vals.append(f_val)
         l_vals.append(l_val)
         
@@ -240,7 +286,7 @@ US in 2016.
 ---
 mystnb:
   figure:
-    caption: "2016 US Lorenz curves"
+    caption: 2016 US Lorenz curves
     name: lorenz_us
   image:
     alt: lorenz_us
@@ -252,7 +298,7 @@ ax.plot(f_vals_ti[-1], l_vals_ti[-1], label=f'total income')
 ax.plot(f_vals_li[-1], l_vals_li[-1], label=f'labor income')
 ax.plot(f_vals_nw[-1], f_vals_nw[-1], label=f'equality')
 
-ax.legend(fontsize=12)   
+ax.legend()
 plt.show()
 ```
 
@@ -263,12 +309,9 @@ Total income is the sum of households' all income sources, including labor incom
 One key finding from this figure is that wealth inequality is significantly
 more extreme than income inequality.
 
-+++
-
 ## The Gini coefficient
 
-The Lorenz curve is a useful visual representation of inequality in a
-distribution.
+The Lorenz curve is a useful visual representation of inequality in a distribution.
 
 Another popular measure of income and wealth inequality is the Gini coefficient.
 
@@ -280,19 +323,17 @@ Lorenz curve.
 
 ### Definition
 
-
 As before, suppose that the sample $w_1, \ldots, w_n$ has been sorted from
 smallest to largest.
 
 The Gini coefficient is defined for the sample above as 
 
-\begin{equation}
-    \label{eq:gini}
-    G :=
-    \frac
-        {\sum_{i=1}^n \sum_{j = 1}^n |w_j - w_i|}
-        {2n\sum_{i=1}^n w_i}.
-\end{equation}
+$$
+G :=
+\frac
+    {\sum_{i=1}^n \sum_{j = 1}^n |w_j - w_i|}
+    {2n\sum_{i=1}^n w_i}.
+$$ (eq:gini)
 
 
 The Gini coefficient is closely related to the Lorenz curve.
@@ -306,18 +347,18 @@ The idea is that $G=0$ indicates complete equality, while $G=1$ indicates comple
 ---
 mystnb:
   figure:
-    caption: "Shaded Lorenz curve of simulated data"
+    caption: Shaded Lorenz curve of simulated data
     name: lorenz_gini
   image:
     alt: lorenz_gini
 ---
 fig, ax = plt.subplots()
 
-f_vals, l_vals = qe.lorenz_curve(sample)
+f_vals, l_vals = lorenz_curve(sample)
 ax.plot(f_vals, l_vals, label=f'lognormal sample', lw=2)
 ax.plot(f_vals, f_vals, label='equality', lw=2)
 
-ax.legend(fontsize=12)
+ax.legend()
 
 ax.vlines([0.8], [0.0], [0.43], alpha=0.5, colors='k', ls='--')
 ax.hlines([0.43], [0], [0.8], alpha=0.5, colors='k', ls='--')
@@ -327,7 +368,7 @@ ax.fill_between(f_vals, l_vals, f_vals, alpha=0.06)
 ax.set_ylim((0, 1))
 ax.set_xlim((0, 1))
 
-ax.text(0.04, 0.5, r'$G = 2 \times$ shaded area', fontsize=12)
+ax.text(0.04, 0.5, r'$G = 2 \times$ shaded area')
   
 plt.show()
 ```
@@ -335,6 +376,37 @@ plt.show()
 ### Gini coefficient dynamics of simulated data
 
 Let's examine the Gini coefficient in some simulations.
+
+```{code-cell} ipython3
+:tags: [hide-input]
+
+def gini_coefficient(y):
+    r"""
+    Implements the Gini inequality index
+
+    Parameters
+    ----------
+    y : array_like(float)
+        Array of income/wealth for each individual.
+        Ordered or unordered is fine
+
+    Returns
+    -------
+    Gini index: float
+        The gini index describing the inequality of the array of income/wealth
+
+    References
+    ----------
+
+    https://en.wikipedia.org/wiki/Gini_coefficient
+    """
+    n = len(y)
+    i_sum = np.zeros(n)
+    for i in range(n):
+        for j in range(n):
+            i_sum[i] += abs(y[i] - y[j])
+    return np.sum(i_sum) / (2 * n * np.sum(y))
+```
 
 The following code computes the Gini coefficients for five different
 populations.
@@ -349,8 +421,10 @@ In each case we set $\mu = - \sigma^2 / 2$.
 
 This implies that the mean of the distribution does not change with $\sigma$. 
 
-(You can check this by looking up the expression for the mean of a lognormal
-distribution.)
+```{note}
+You can check this by looking up the expression for the mean of a lognormal
+distribution.
+```
 
 ```{code-cell} ipython3
 k = 5
@@ -371,10 +445,10 @@ def plot_inequality_measures(x, y, legend, xlabel, ylabel):
     fig, ax = plt.subplots()
     ax.plot(x, y, marker='o', label=legend)
 
-    ax.set_xlabel(xlabel, fontsize=12)
-    ax.set_ylabel(ylabel, fontsize=12)
+    ax.set_xlabel(xlabel)
+    ax.set_ylabel(ylabel)
 
-    ax.legend(fontsize=12)
+    ax.legend()
     plt.show()
 ```
 
@@ -382,7 +456,7 @@ def plot_inequality_measures(x, y, legend, xlabel, ylabel):
 ---
 mystnb:
   figure:
-    caption: "Gini coefficients of simulated data"
+    caption: Gini coefficients of simulated data
     name: gini_simulated
   image:
     alt: gini_simulated
@@ -397,13 +471,11 @@ plot_inequality_measures(σ_vals,
 The plots show that inequality rises with $\sigma$, according to the Gini
 coefficient.
 
-+++
-
 ### Gini coefficient dynamics for US data
 
 Now let's look at Gini coefficients for US data derived from the SCF.
 
-The following code creates a list called ``Ginis``.
+The following code creates a list called `Ginis`.
 
  It stores data of Gini coefficients generated from the dataframe ``df_income_wealth`` and method [gini_coefficient](https://quanteconpy.readthedocs.io/en/latest/tools/inequality.html#quantecon.inequality.gini_coefficient), from [QuantEcon](https://quantecon.org/quantecon-py/) library.
 
@@ -455,7 +527,7 @@ ginis_li_new[5] = (ginis_li[4] + ginis_li[6]) / 2
 ---
 mystnb:
   figure:
-    caption: "Gini coefficients of US net wealth"
+    caption: Gini coefficients of US net wealth
     name: gini_wealth_us
   image:
     alt: gini_wealth_us
@@ -467,8 +539,8 @@ fig, ax = plt.subplots()
 
 ax.plot(years, ginis_nw, marker='o')
 
-ax.set_xlabel(xlabel, fontsize=12)
-ax.set_ylabel(ylabel, fontsize=12)
+ax.set_xlabel(xlabel)
+ax.set_ylabel(ylabel)
     
 plt.show()
 ```
@@ -477,7 +549,7 @@ plt.show()
 ---
 mystnb:
   figure:
-    caption: "Gini coefficients of US income"
+    caption: Gini coefficients of US income
     name: gini_income_us
   image:
     alt: gini_income_us
@@ -490,10 +562,10 @@ fig, ax = plt.subplots()
 ax.plot(years, ginis_li_new, marker='o', label="labor income")
 ax.plot(years, ginis_ti, marker='o', label="total income")
 
-ax.set_xlabel(xlabel, fontsize=12)
-ax.set_ylabel(ylabel, fontsize=12)
+ax.set_xlabel(xlabel)
+ax.set_ylabel(ylabel)
 
-ax.legend(fontsize=12)
+ax.legend()
 plt.show()
 ```
 
@@ -523,16 +595,14 @@ share is defined as
 $$
 T(p) = 1 - L (1-p) 
     \approx \frac{\sum_{j\geq i} w_j}{ \sum_{j \leq n} w_j}, \quad i = \lfloor n (1-p)\rfloor
-$$(topshares)
+$$ (topshares)
 
 Here $\lfloor \cdot \rfloor$ is the floor function, which rounds any
 number down to the integer less than or equal to that number.
 
-+++
+The following code uses the data from dataframe `df_income_wealth` to generate another dataframe `df_topshares`.
 
-The following code uses the data from dataframe ``df_income_wealth`` to generate another dataframe ``df_topshares``.
-
-``df_topshares`` stores the top 10 percent shares for the total income, the labor income and net wealth from 1950 to 2016 in US.
+`df_topshares` stores the top 10 percent shares for the total income, the labor income and net wealth from 1950 to 2016 in US.
 
 ```{code-cell} ipython3
 :tags: [hide-input]
@@ -546,19 +616,16 @@ df4 = pd.merge(df3, df1, how="left", on=["year"])
 df4['r_weights'] = df4['weights'] / df4['r_weights']
 
 # create weighted nw, ti, li
-
 df4['weighted_n_wealth'] = df4['n_wealth'] * df4['r_weights']
 df4['weighted_t_income'] = df4['t_income'] * df4['r_weights']
 df4['weighted_l_income'] = df4['l_income'] * df4['r_weights']
 
 # extract two top 10% groups by net wealth and total income.
-
 df6 = df4[df4['nw_groups'] == 'Top 10%']
 df7 = df4[df4['ti_groups'] == 'Top 10%']
 
 # calculate the sum of weighted top 10% by net wealth,
 #   total income and labor income.
-
 df5 = df4.groupby('year').sum(numeric_only=True).reset_index()
 df8 = df6.groupby('year').sum(numeric_only=True).reset_index()
 df9 = df7.groupby('year').sum(numeric_only=True).reset_index()
@@ -568,7 +635,6 @@ df5['weighted_t_income_top10'] = df9['weighted_t_income']
 df5['weighted_l_income_top10'] = df9['weighted_l_income']
 
 # calculate the top 10% shares of the three variables.
-
 df5['topshare_n_wealth'] = df5['weighted_n_wealth_top10'] / \
     df5['weighted_n_wealth']
 df5['topshare_t_income'] = df5['weighted_t_income_top10'] / \
@@ -587,7 +653,7 @@ Then let's plot the top shares.
 ---
 mystnb:
   figure:
-    caption: "US top shares"
+    caption: US top shares
     name: top_shares_us
   image:
     alt: top_shares_us
@@ -604,16 +670,13 @@ ax.plot(years, df_topshares["topshare_n_wealth"],
 ax.plot(years, df_topshares["topshare_t_income"],
         marker='o', label="total income")
 
-ax.set_xlabel(xlabel, fontsize=12)
-ax.set_ylabel(ylabel, fontsize=12)
+ax.set_xlabel(xlabel)
+ax.set_ylabel(ylabel)
 
-ax.legend(fontsize=12)
-plt.show()
+ax.legend()
 ```
 
 ## Exercises
-
-+++
 
 ```{exercise}
 :label: inequality_ex1
@@ -634,8 +697,6 @@ calculate the Lorenz curve and Gini coefficient.
 Confirm that higher variance
 generates more dispersion in the sample, and hence greater inequality.
 ```
-
-+++
 
 ```{solution-start} inequality_ex1
 :class: dropdown
@@ -665,10 +726,10 @@ l_vals = []
 for σ in σ_vals:
     μ = -σ ** 2 / 2
     y = np.exp(μ + σ * np.random.randn(n))
-    f_val, l_val = qe._inequality.lorenz_curve(y)
+    f_val, l_val = lorenz_curve(y)
     f_vals.append(f_val)
     l_vals.append(l_val)
-    ginis.append(qe._inequality.gini_coefficient(y))
+    ginis.append(qe.gini_coefficient(y))
     topshares.append(calculate_top_share(y))
 ```
 
@@ -676,7 +737,7 @@ for σ in σ_vals:
 ---
 mystnb:
   figure:
-    caption: "Top shares of simulated data"
+    caption: Top shares of simulated data
     name: top_shares_simulated
   image:
     alt: top_shares_simulated
@@ -692,7 +753,7 @@ plot_inequality_measures(σ_vals,
 ---
 mystnb:
   figure:
-    caption: "Gini coefficients of simulated data"
+    caption: Gini coefficients of simulated data
     name: gini_coef_simulated
   image:
     alt: gini_coef_simulated
@@ -708,7 +769,7 @@ plot_inequality_measures(σ_vals,
 ---
 mystnb:
   figure:
-    caption: "Lorenz curves for simulated data"
+    caption: Lorenz curves for simulated data
     name: lorenz_curve_simulated
   image:
     alt: lorenz_curve_simulated
@@ -736,10 +797,17 @@ Plot the top shares generated from Lorenz curve and the top shares approximated 
 
 ```
 
-+++
-
 ```{solution-start} inequality_ex2
 :class: dropdown
+```
+
+We will use the `interpolation` package in this solution.
+
+```{code-cell} ipython3
+:tags: [hide-output]
+
+!pip install --upgrade interpolation
+from interpolation import interp
 ```
 
 Here is one solution:
@@ -760,25 +828,20 @@ for f_val, l_val in zip(f_vals_nw, l_vals_nw):
 ---
 mystnb:
   figure:
-    caption: "US top shares: approximation vs Lorenz"
+    caption: 'US top shares: approximation vs Lorenz'
     name: top_shares_us_al
   image:
     alt: top_shares_us_al
 ---
-xlabel = "year"
-ylabel = "top $10\%$ share"
-
 fig, ax = plt.subplots()
 
 ax.plot(years, df_topshares["topshare_n_wealth"], marker='o',\
    label="net wealth-approx")
 ax.plot(years, top_shares_nw, marker='o', label="net wealth-lorenz")
 
-ax.set_xlabel(xlabel, fontsize=12)
-ax.set_ylabel(ylabel, fontsize=12)
-
-ax.legend(fontsize=12)
-plt.show()
+ax.set_xlabel("year")
+ax.set_ylabel("top $10\%$ share")
+ax.legend()
 ```
 
 ```{solution-end}
