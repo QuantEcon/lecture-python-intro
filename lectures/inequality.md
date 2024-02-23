@@ -203,16 +203,13 @@ f_vals, l_vals = lorenz_curve(sample)
 ax.plot(f_vals, l_vals, label=f'lognormal sample', lw=2)
 ax.plot(f_vals, f_vals, label='equality', lw=2)
 
-ax.legend()
-
 ax.vlines([0.8], [0.0], [0.43], alpha=0.5, colors='k', ls='--')
 ax.hlines([0.43], [0], [0.8], alpha=0.5, colors='k', ls='--')
-
 ax.set_xlim((0, 1))
 ax.set_xlabel("Cumulative share of households (%)")
 ax.set_ylim((0, 1))
 ax.set_ylabel("Cumulative share of income (%)")
-
+ax.legend()
 plt.show()
 ```
 
@@ -653,6 +650,7 @@ ax.plot(years, df_topshares["topshare_t_income"],
 ax.set_xlabel("year")
 ax.set_ylabel("top $10\%$ share")
 ax.legend()
+plt.show()
 ```
 
 ## Exercises
@@ -823,6 +821,7 @@ ax.plot(years, top_shares_nw, marker='o', label="net wealth-lorenz")
 ax.set_xlabel("year")
 ax.set_ylabel("top $10\%$ share")
 ax.legend()
+plt.show()
 ```
 
 ```{solution-end}
