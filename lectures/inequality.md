@@ -61,7 +61,13 @@ In this lecture we discuss standard measures of inequality used in economic rese
 
 For each of these measures, we will look at both simulated and real data.
 
-We will use the following imports.
+We need to install the `quantecon` package.
+
+```{code-cell} ipython3
+!pip install quantecon
+```
+
+We will also use the following imports.
 
 ```{code-cell} ipython3
 import pandas as pd
