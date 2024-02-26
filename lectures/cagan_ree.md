@@ -4,7 +4,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.14.5
+    jupytext_version: 1.16.1
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
@@ -18,13 +18,10 @@ kernelspec:
 
 We'll use linear algebra first to explain and then do  some experiments with  a "monetarist theory of  price levels".
 
+Economists call it a "monetary" or "monetarist" theory of  price levels because  effects on  price levels occur via a central banks's  decisions to print  money supply.  
 
- 
-
-Economist  call it a "monetary" or "monetarist" theory of  price levels because  effects on  price levels occur via a central banks's  decisions to print  money supply.  
-
-  * a goverment's fiscal policies determine whether it **expenditures** exceed its **tax collections**
-  * if its expenditures exceeds it tax collections, the government can instruct the central bank to  cover the difference by **printing money**
+  * a goverment's fiscal policies determine whether its *expenditures* exceed its *tax collections*
+  * if its expenditures exceed its tax collections, the government can instruct the central bank to  cover the difference by *printing money*
   * that leads to effects on the price level as price level path adjusts to equate the supply of money to the demand for money
 
 Such a theory of  price levels was described by Thomas Sargent and Neil Wallace in chapter 5 of 
@@ -42,11 +39,11 @@ Elemental forces at work in the fiscal theory of the price level help to underst
 According to this theory, when the government persistently spends more than it collects in taxes and prints money to finance the shortfall (the "shortfall" is called the "government deficit"), it puts upward pressure on the price level and generates
 persistent inflation.
 
-The ''monetarist'' or ''fiscal theory of  price levels" asserts that  
+The "monetarist" or "fiscal theory of  price levels" asserts that  
 
-* to **start** a persistent inflation the government beings persistently to run a money-financed government deficit
+* to *start* a persistent inflation the government beings persistently to run a money-financed government deficit
 
-* to **stop** a persistent inflation the government   stops persistently running  a money-financed government deficit
+* to *stop* a persistent inflation the government   stops persistently running  a money-financed government deficit
 
 The  model in this lecture is a "rational expectations" (or "perfect foresight") version of a model that Philip Cagan {cite}`Cagan`  used to study the monetary dynamics of hyperinflations.  
 
@@ -60,7 +57,7 @@ While Cagan didn't use that  "rational expectations" version of the model, Thoma
 
 Some of our quantitative experiments with the  rational expectations version of the  model are designed to illustrate how the fiscal theory explains the abrupt end of those big inflations.
 
-In those experiments, we'll encounter an instance of a ''velocity dividend'' that has sometimes accompanied successful inflation stabilization programs. 
+In those experiments, we'll encounter an instance of a "velocity dividend" that has sometimes accompanied successful inflation stabilization programs. 
 
 To facilitate using  linear matrix algebra as our main mathematical tool, we'll use a finite horizon version of the model.
 
@@ -90,7 +87,7 @@ To represent the model formally, let
 * $T$ the horizon -- i.e., the last period for which the model will determine $p_t$
 * $\pi_{T+1}^*$ the terminal rate of inflation between times $T$ and $T+1$.
 
-The demand for real balances $\exp\left(\frac{m_t^d}{p_t}\right)$ is governed by the following  version of the Cagan demand function
+The demand for real balances $\exp\left(m_t^d - p_t\right)$ is governed by the following  version of the Cagan demand function
   
 $$  
 m_t^d - p_t = -\alpha \pi_t^* \: , \: \alpha > 0 ; \quad t = 0, 1, \ldots, T .
@@ -113,7 +110,7 @@ while equating demand for money to supply lets us set $m_t^d = m_t$ for all $t \
 The preceding equations then imply
 
 $$
-m_t - p_t = -\alpha(p_{t+1} - p_t) \: , \: \alpha > 0 
+m_t - p_t = -\alpha(p_{t+1} - p_t)
 $$ (eq:cagan)
 
 To fill in details about what it means for private agents
@@ -132,7 +129,7 @@ $$
 
 where $ 0< \frac{\alpha}{1+\alpha} <1 $.
 
-Setting $\delta =\frac{\alpha}{1+\alpha}$ let's us represent the preceding equation as
+Setting $\delta =\frac{\alpha}{1+\alpha}$, let's us represent the preceding equation as
 
 $$
 \pi_t = \delta \pi_{t+1} + (1-\delta) \mu_t , \quad t =0, 1, \ldots, T
@@ -246,41 +243,33 @@ First, we store parameters in a `namedtuple`:
 ```{code-cell} ipython3
 # Create the rational expectation version of Cagan model in finite time
 CaganREE = namedtuple("CaganREE", 
-                        ["m0", "T", "μ_seq", "α", "δ", "π_end"])
+                        ["m0", "μ_seq", "α", "δ", "π_end"])
 
-def create_cagan_model(m0, α, T, μ_seq):
+def create_cagan_model(m0=1, # Initial money supply
+                       α=5,  # Sensitivity parameter
+                       μ_seq=None # Rate of growth
+                      ):
     δ = α/(1 + α)
     π_end = μ_seq[-1]    # compute terminal expected inflation
-    return CaganREE(m0, T, μ_seq, α, δ, π_end)
-```
-
-Here we use the following parameter values:
-
-```{code-cell} ipython3
-# parameters
-T = 80
-T1 = 60
-α = 5
-m0 = 1
-
-μ0 = 0.5
-μ_star = 0
+    return CaganREE(m0, μ_seq, α, δ, π_end)
 ```
 
 Now we can solve the model to compute $\pi_t$, $m_t$ and $p_t$ for $t =1, \ldots, T+1$ using the matrix equation above
 
 ```{code-cell} ipython3
-def solve(model):
-    model_params = model.m0, model.T, model.π_end, model.μ_seq, model.α, model.δ
-    m0, T, π_end, μ_seq, α, δ = model_params
+def solve(model, T):
+    m0, π_end, μ_seq, α, δ = (model.m0, model.π_end, 
+                              model.μ_seq, model.α, model.δ)
+    
+    # Create matrix representation above
     A1 = np.eye(T+1, T+1) - δ * np.eye(T+1, T+1, k=1)
     A2 = np.eye(T+1, T+1) - np.eye(T+1, T+1, k=-1)
 
     b1 = (1-δ) * μ_seq + np.concatenate([np.zeros(T), [δ * π_end]])
     b2 = μ_seq + np.concatenate([[m0], np.zeros(T)])
 
-    π_seq = np.linalg.inv(A1) @ b1
-    m_seq = np.linalg.inv(A2) @ b2
+    π_seq = np.linalg.solve(A1, b1)
+    m_seq = np.linalg.solve(A2, b2)
 
     π_seq = np.append(π_seq, π_end)
     m_seq = np.append(m0, m_seq)
@@ -325,46 +314,41 @@ $$
      \end{cases}
 $$
 
-We'll start by executing a version of our "experiment 1" in which the government  implements a **foreseen** sudden permanent reduction in the rate of money creation at time $T_1$.  
+We'll start by executing a version of our "experiment 1" in which the government  implements a *foreseen* sudden permanent reduction in the rate of money creation at time $T_1$.  
 
-The following code performs the experiment and plots outcomes.
++++
+
+Let's experiment with the following parameters
 
 ```{code-cell} ipython3
-def solve_and_plot(m0, α, T, μ_seq):
-    model_params = create_cagan_model(m0=m0, α=α, T=T, μ_seq=μ_seq)
-    π_seq, m_seq, p_seq = solve(model_params)
-    T_seq = range(T + 2)
-    
-    fig, ax = plt.subplots(5, figsize=[5, 12], dpi=200)
-    
-    ax[0].plot(T_seq[:-1], μ_seq)
-    ax[0].set_ylabel(r'$\mu$')
-
-    ax[1].plot(T_seq, π_seq)
-    ax[1].set_ylabel(r'$\pi$')
-
-    ax[2].plot(T_seq, m_seq - p_seq)
-    ax[2].set_ylabel(r'$m - p$')
-
-    ax[3].plot(T_seq, m_seq)
-    ax[3].set_ylabel(r'$m$')
-
-    ax[4].plot(T_seq, p_seq)
-    ax[4].set_ylabel(r'$p$')
-    
-    for i in range(5):
-        ax[i].set_xlabel(r'$t$')
-                
-    plt.tight_layout()
-    plt.show()
-    
-    return π_seq, m_seq, p_seq
+T1 = 60
+μ0 = 0.5
+μ_star = 0
+T = 80
 
 μ_seq_1 = np.append(μ0*np.ones(T1+1), μ_star*np.ones(T-T1))
 
-# solve and plot
-π_seq_1, m_seq_1, p_seq_1 = solve_and_plot(m0=m0, α=α, 
-                                           T=T, μ_seq=μ_seq_1)
+cm = create_cagan_model(μ_seq=μ_seq_1)
+
+# solve the model
+π_seq_1, m_seq_1, p_seq_1 = solve(cm, T)
+```
+
+Now we use the following function to plot the result
+
+```{code-cell} ipython3
+def plot_sequences(sequences, labels):
+    fig, axs = plt.subplots(len(sequences), 1, figsize=[5, 12], dpi=200)
+    for ax, seq, label in zip(axs, sequences, labels):
+        ax.plot(range(len(seq)), seq, label=label)
+        ax.set_ylabel(label)
+        ax.set_xlabel('$t$')
+        ax.legend()
+    plt.tight_layout()
+    plt.show()
+
+sequences = [μ_seq_1, π_seq_1, m_seq_1 - p_seq_1, m_seq_1, p_seq_1]
+plot_sequences(sequences, [r'$\mu$', r'$\pi$', r'$m - p$', r'$m$', r'$p$'])
 ```
 
 +++ {"user_expressions": []}
@@ -406,7 +390,7 @@ was completely unanticipated.
 
 At time $T_1$ when the "surprise" money growth rate  change occurs,  to satisfy
 equation {eq}`eq:pformula2`, the log of real balances jumps 
-**upward** as  $\pi_t$ jumps **downward**.
+*upward* as  $\pi_t$ jumps *downward*.
 
 But in order for $m_t - p_t$ to jump, which variable jumps, $m_{T_1}$ or $p_{T_1}$?
 
@@ -428,7 +412,7 @@ $$
 m_{T_1}^2 - m_{T_1}^1 = \alpha (\pi^1 - \pi^2)
 $$ (eq:eqnmoneyjump)
 
-By letting money jump according to equation {eq}`eq:eqnmoneyjump` the monetary authority  prevents  the price level from **falling** at the moment that the unanticipated stabilization arrives.
+By letting money jump according to equation {eq}`eq:eqnmoneyjump` the monetary authority  prevents  the price level from *falling* at the moment that the unanticipated stabilization arrives.
 
 In various research papers about stabilizations of high inflations, the jump in the money supply described by equation {eq}`eq:eqnmoneyjump` has been called
 "the velocity dividend" that a government reaps from implementing a regime change that sustains a permanently lower inflation rate.
@@ -503,16 +487,15 @@ The following code does the calculations and plots outcomes.
 # path 1
 μ_seq_2_path1 = μ0 * np.ones(T+1)
 
-mc1 = create_cagan_model(m0=m0, α=α, 
-                         T=T, μ_seq=μ_seq_2_path1)
-π_seq_2_path1, m_seq_2_path1, p_seq_2_path1 = solve(mc1)
+cm1 = create_cagan_model(μ_seq=μ_seq_2_path1)
+π_seq_2_path1, m_seq_2_path1, p_seq_2_path1 = solve(cm1, T)
 
 # continuation path
 μ_seq_2_cont = μ_star * np.ones(T-T1)
 
-mc2 = create_cagan_model(m0=m_seq_2_path1[T1+1], 
-                         α=α, T=T-1-T1, μ_seq=μ_seq_2_cont)
-π_seq_2_cont, m_seq_2_cont1, p_seq_2_cont1 = solve(mc2)
+cm2 = create_cagan_model(m0=m_seq_2_path1[T1+1], 
+                         μ_seq=μ_seq_2_cont)
+π_seq_2_cont, m_seq_2_cont1, p_seq_2_cont1 = solve(cm2, T-1-T1)
 
 
 # regime 1 - simply glue π_seq, μ_seq
@@ -526,11 +509,10 @@ p_seq_2_regime1 = np.concatenate([p_seq_2_path1[:T1+1],
                                   p_seq_2_cont1])
 
 # regime 2 - reset m_T1
-m_T1 = (m_seq_2_path1[T1] + μ0) + α*(μ0 - μ_star)
+m_T1 = (m_seq_2_path1[T1] + μ0) + cm2.α*(μ0 - μ_star)
 
-mc = create_cagan_model(m0=m_T1, α=α,
-                        T=T-1-T1, μ_seq=μ_seq_2_cont)
-π_seq_2_cont2, m_seq_2_cont2, p_seq_2_cont2 = solve(mc)
+cm3 = create_cagan_model(m0=m_T1, μ_seq=μ_seq_2_cont)
+π_seq_2_cont2, m_seq_2_cont2, p_seq_2_cont2 = solve(cm3, T-1-T1)
 
 m_seq_2_regime2 = np.concatenate([m_seq_2_path1[:T1+1], 
                                   m_seq_2_cont2])
@@ -541,7 +523,7 @@ T_seq = range(T+2)
 
 # plot both regimes
 fig, ax = plt.subplots(5, 1, figsize=[5, 12], dpi=200)
- 
+
 ax[0].plot(T_seq[:-1], μ_seq_2)
 ax[0].set_ylabel(r'$\mu$')
 
@@ -640,7 +622,6 @@ plt.tight_layout()
 plt.show()
 ```
 
-
 It is instructive to compare the  preceding graphs with  graphs of log price levels and inflation rates for data from four big inflations described in
 {doc}`this lecture <inflation_history>`.
 
@@ -665,20 +646,26 @@ $$
 \mu_t = \phi^t \mu_0 + (1 - \phi^t) \mu^* .
 $$ 
 
-Next we perform an experiment in which there is a perfectly foreseen **gradual** decrease in the rate of growth of the money supply.
+Next we perform an experiment in which there is a perfectly foreseen *gradual* decrease in the rate of growth of the money supply.
 
 The following  code does the calculations and plots the results.
 
 ```{code-cell} ipython3
 # parameters
 ϕ = 0.9
-μ_seq = np.array([ϕ**t * μ0 + (1-ϕ**t)*μ_star for t in range(T)])
-μ_seq = np.append(μ_seq, μ_star)
+μ_seq_stab = np.array([ϕ**t * μ0 + (1-ϕ**t)*μ_star for t in range(T)])
+μ_seq_stab = np.append(μ_seq_stab, μ_star)
 
+cm4 = create_cagan_model(μ_seq=μ_seq_stab)
 
-# solve and plot
-π_seq, m_seq, p_seq = solve_and_plot(m0=m0, α=α, T=T, μ_seq=μ_seq)
+π_seq_4, m_seq_4, p_seq_4 = solve(cm4, T)
+
+sequences = [μ_seq_stab, π_seq_4, 
+             m_seq_4 - p_seq_4, m_seq_4, p_seq_4]
+plot_sequences(sequences, [r'$\mu$', r'$\pi$', 
+                           r'$m - p$', r'$m$', r'$p$'])
 ```
+
 ## Sequel
 
 Another lecture  {doc}`monetarist theory of  price levels with adaptive expectations <cagan_adaptive>` describes an "adaptive expectations" version of Cagan's model.
