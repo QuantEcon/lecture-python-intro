@@ -316,8 +316,6 @@ $$
 
 We'll start by executing a version of our "experiment 1" in which the government  implements a *foreseen* sudden permanent reduction in the rate of money creation at time $T_1$.  
 
-+++
-
 Let's experiment with the following parameters
 
 ```{code-cell} ipython3
@@ -350,8 +348,6 @@ def plot_sequences(sequences, labels):
 sequences = [μ_seq_1, π_seq_1, m_seq_1 - p_seq_1, m_seq_1, p_seq_1]
 plot_sequences(sequences, [r'$\mu$', r'$\pi$', r'$m - p$', r'$m$', r'$p$'])
 ```
-
-+++ {"user_expressions": []}
 
 The  plot of the money growth rate $\mu_t$ in the top level panel portrays
 a sudden reduction from $.5$ to $0$ at time $T_1 = 60$.  
