@@ -11,27 +11,27 @@ kernelspec:
   name: python3
 ---
 
-# A Monetarist Theory of  Price Levels
+# A Monetarist Theory of Price Levels
 
 ## Overview
 
 
-We'll use linear algebra first to explain and then do  some experiments with  a "monetarist theory of  price levels".
+We'll use linear algebra first to explain and then do some experiments with a "monetarist theory of price levels".
 
-Economists call it a "monetary" or "monetarist" theory of  price levels because  effects on  price levels occur via a central banks's  decisions to print  money supply.  
+Economists call it a "monetary" or "monetarist" theory of price levels because effects on price levels occur via a central banks's decisions to print money supply. 
 
   * a goverment's fiscal policies determine whether its *expenditures* exceed its *tax collections*
-  * if its expenditures exceed its tax collections, the government can instruct the central bank to  cover the difference by *printing money*
+  * if its expenditures exceed its tax collections, the government can instruct the central bank to cover the difference by *printing money*
   * that leads to effects on the price level as price level path adjusts to equate the supply of money to the demand for money
 
-Such a theory of  price levels was described by Thomas Sargent and Neil Wallace in chapter 5 of 
-{cite}`sargent2013rational`, which reprints a  1981 Federal Reserve Bank of Minneapolis article entitled "Unpleasant Monetarist Arithmetic". 
+Such a theory of price levels was described by Thomas Sargent and Neil Wallace in chapter 5 of 
+{cite}`sargent2013rational`, which reprints a 1981 Federal Reserve Bank of Minneapolis article entitled "Unpleasant Monetarist Arithmetic". 
 
-Sometimes this theory is also called a "fiscal theory of  price levels" to emphasize the importance of fisal deficits in shaping changes in the money supply.  
+Sometimes this theory is also called a "fiscal theory of price levels" to emphasize the importance of fisal deficits in shaping changes in the money supply. 
 
-The theory has been extended, criticized, and applied by John Cochrane  {cite}`cochrane2023fiscal`.
+The theory has been extended, criticized, and applied by John Cochrane {cite}`cochrane2023fiscal`.
 
-In another lecture {doc}`price level histories <inflation_history>`,  we described some  European hyperinflations that occurred in the wake of World War I.
+In another lecture {doc}`price level histories <inflation_history>`, we described some European hyperinflations that occurred in the wake of World War I.
 
 Elemental forces at work in the fiscal theory of the price level help to understand those episodes.
 
@@ -39,29 +39,29 @@ Elemental forces at work in the fiscal theory of the price level help to underst
 According to this theory, when the government persistently spends more than it collects in taxes and prints money to finance the shortfall (the "shortfall" is called the "government deficit"), it puts upward pressure on the price level and generates
 persistent inflation.
 
-The "monetarist" or "fiscal theory of  price levels" asserts that  
+The "monetarist" or "fiscal theory of price levels" asserts that 
 
 * to *start* a persistent inflation the government beings persistently to run a money-financed government deficit
 
-* to *stop* a persistent inflation the government   stops persistently running  a money-financed government deficit
+* to *stop* a persistent inflation the government stops persistently running a money-financed government deficit
 
-The  model in this lecture is a "rational expectations" (or "perfect foresight") version of a model that Philip Cagan {cite}`Cagan`  used to study the monetary dynamics of hyperinflations.  
+The model in this lecture is a "rational expectations" (or "perfect foresight") version of a model that Philip Cagan {cite}`Cagan` used to study the monetary dynamics of hyperinflations. 
 
-While Cagan didn't use that  "rational expectations" version of the model, Thomas Sargent {cite}`sargent1982ends` did when he studied the Ends of Four Big Inflations in Europe after World War I.
+While Cagan didn't use that "rational expectations" version of the model, Thomas Sargent {cite}`sargent1982ends` did when he studied the Ends of Four Big Inflations in Europe after World War I.
 
-* this lecture {doc}`fiscal theory of the price level with adaptive expectations <cagan_adaptive>` describes  a version  of the model that does not impose "rational expectations" but instead uses 
-   what Cagan and his teacher Milton Friedman called "adaptive expectations"
+* this lecture {doc}`fiscal theory of the price level with adaptive expectations <cagan_adaptive>` describes a version of the model that does not impose "rational expectations" but instead uses 
+  what Cagan and his teacher Milton Friedman called "adaptive expectations"
 
    * a reader of both lectures will notice that the algebra is less complicated in the present rational expectations version of the model
-   * the difference in algebra complications  can be traced to the following source: the adaptive expectations version of the model has more endogenous variables and more free parameters 
+   * the difference in algebra complications can be traced to the following source: the adaptive expectations version of the model has more endogenous variables and more free parameters 
 
-Some of our quantitative experiments with the  rational expectations version of the  model are designed to illustrate how the fiscal theory explains the abrupt end of those big inflations.
+Some of our quantitative experiments with the rational expectations version of the model are designed to illustrate how the fiscal theory explains the abrupt end of those big inflations.
 
 In those experiments, we'll encounter an instance of a "velocity dividend" that has sometimes accompanied successful inflation stabilization programs. 
 
-To facilitate using  linear matrix algebra as our main mathematical tool, we'll use a finite horizon version of the model.
+To facilitate using linear matrix algebra as our main mathematical tool, we'll use a finite horizon version of the model.
 
-As in the {doc}`present values <pv>` and {doc}`consumption smoothing<cons_smooth>` lectures, our mathematical tools  are matrix multiplication and matrix inversion.
+As in the {doc}`present values <pv>` and {doc}`consumption smoothing<cons_smooth>` lectures, our mathematical tools are matrix multiplication and matrix inversion.
 
 
 ## Structure of the model
@@ -71,32 +71,32 @@ The model consists of
 
 * a function that expresses the demand for real balances of government printed money as an inverse function of the public's expected rate of inflation
 
-* an exogenous sequence of rates of growth of the money supply.  The money supply grows because the government  prints  it to pay for goods and services
+* an exogenous sequence of rates of growth of the money supply. The money supply grows because the government prints it to pay for goods and services
 
 * an equilibrium condition that equates the demand for money to the supply
 
-* a "perfect foresight"  assumption that the public's expected rate of inflation equals the actual rate of inflation.
+* a "perfect foresight" assumption that the public's expected rate of inflation equals the actual rate of inflation.
  
 To represent the model formally, let 
 
-* $ m_t $ be the log of the supply of  nominal money balances;
-* $\mu_t = m_{t+1} - m_t $ be the net rate of growth of  nominal balances;
+* $ m_t $ be the log of the supply of nominal money balances;
+* $\mu_t = m_{t+1} - m_t $ be the net rate of growth of nominal balances;
 * $p_t $ be the log of the price level;
-* $\pi_t = p_{t+1} - p_t $ be the net rate of inflation  between $t$ and $ t+1$;
-* $\pi_t^*$  be the public's expected rate of inflation between  $t$ and $t+1$;
+* $\pi_t = p_{t+1} - p_t $ be the net rate of inflation between $t$ and $ t+1$;
+* $\pi_t^*$ be the public's expected rate of inflation between $t$ and $t+1$;
 * $T$ the horizon -- i.e., the last period for which the model will determine $p_t$
 * $\pi_{T+1}^*$ the terminal rate of inflation between times $T$ and $T+1$.
 
-The demand for real balances $\exp\left(m_t^d - p_t\right)$ is governed by the following  version of the Cagan demand function
-  
-$$  
+The demand for real balances $\exp\left(m_t^d - p_t\right)$ is governed by the following version of the Cagan demand function
+ 
+$$ 
 m_t^d - p_t = -\alpha \pi_t^* \: , \: \alpha > 0 ; \quad t = 0, 1, \ldots, T .
 $$ (eq:caganmd)
 
-This equation  asserts that the demand for real balances
+This equation asserts that the demand for real balances
 is inversely related to the public's expected rate of inflation.
 
-People somehow  acquire **perfect foresight** by their having solved a forecasting
+People somehow acquire **perfect foresight** by their having solved a forecasting
 problem.
 
 This lets us set
@@ -114,14 +114,14 @@ m_t - p_t = -\alpha(p_{t+1} - p_t)
 $$ (eq:cagan)
 
 To fill in details about what it means for private agents
-to have perfect foresight,  we subtract equation {eq}`eq:cagan`  at time $ t $ from the same equation at $ t+1$ to get
+to have perfect foresight, we subtract equation {eq}`eq:cagan` at time $ t $ from the same equation at $ t+1$ to get
 
 $$
-\mu_t - \pi_t = -\alpha \pi_{t+1} + \alpha \pi_t  ,
+\mu_t - \pi_t = -\alpha \pi_{t+1} + \alpha \pi_t ,
 $$
 
 which we rewrite as a forward-looking first-order linear difference
-equation in $\pi_s$ with $\mu_s$  as a "forcing variable":
+equation in $\pi_s$ with $\mu_s$ as a "forcing variable":
 
 $$
 \pi_t = \frac{\alpha}{1+\alpha} \pi_{t+1} + \frac{1}{1+\alpha} \mu_t , \quad t= 0, 1, \ldots , T 
@@ -146,7 +146,7 @@ $$
                 0 & 0 & 0 & 0 & \cdots & 0 & 1 \end{bmatrix}
 \begin{bmatrix} \pi_0 \cr \pi_1 \cr \pi_2 \cr \vdots \cr \pi_{T-1} \cr \pi_T 
 \end{bmatrix} 
-= (1 - \delta) \begin{bmatrix}  
+= (1 - \delta) \begin{bmatrix} 
 \mu_0 \cr \mu_1 \cr \mu_2 \cr \vdots \cr \mu_{T-1} \cr \mu_T
 \end{bmatrix}
 + \begin{bmatrix} 
@@ -164,7 +164,7 @@ $$
 It turns out that
 
 $$
-\pi_t = (1-\delta) \sum_{s=t}^T \delta^{s-t} \mu_s +  \delta^{T+1-t} \pi_{T+1}^*
+\pi_t = (1-\delta) \sum_{s=t}^T \delta^{s-t} \mu_s + \delta^{T+1-t} \pi_{T+1}^*
 $$ (eq:fisctheory1)
 
 We can represent the equations 
@@ -179,23 +179,23 @@ $$
 \begin{bmatrix}
 1 & 0 & 0 & \cdots & 0 & 0 \cr
 -1 & 1 & 0 & \cdots & 0 & 0 \cr
-0  & -1 & 1 & \cdots & 0 & 0 \cr
-\vdots  & \vdots & \vdots & \vdots & 0 & 0 \cr
-0  & 0 & 0 & \cdots & 1 & 0 \cr
-0  & 0 & 0 & \cdots & -1 & 1 
+0 & -1 & 1 & \cdots & 0 & 0 \cr
+\vdots & \vdots & \vdots & \vdots & 0 & 0 \cr
+0 & 0 & 0 & \cdots & 1 & 0 \cr
+0 & 0 & 0 & \cdots & -1 & 1 
 \end{bmatrix}
-\begin{bmatrix}  
+\begin{bmatrix} 
 m_1 \cr m_2 \cr m_3 \cr \vdots \cr m_T \cr m_{T+1}
 \end{bmatrix}
-= \begin{bmatrix}  
+= \begin{bmatrix} 
 \mu_0 \cr \mu_1 \cr \mu_2 \cr \vdots \cr \mu_{T-1} \cr \mu_T
 \end{bmatrix}
-+ \begin{bmatrix}  
++ \begin{bmatrix} 
 m_0 \cr 0 \cr 0 \cr \vdots \cr 0 \cr 0
 \end{bmatrix}
 $$ (eq:eq101)
 
-Multiplying both sides of equation {eq}`eq:eq101`  with the inverse of the matrix on the left will give 
+Multiplying both sides of equation {eq}`eq:eq101` with the inverse of the matrix on the left will give 
 
 $$
 m_t = m_0 + \sum_{s=0}^{t-1} \mu_s, \quad t =1, \ldots, T+1
@@ -283,7 +283,7 @@ def solve(model, T):
 
 In the experiments below, we'll use formula {eq}`eq:piterm` as our terminal condition for expected inflation.
 
-In devising these experiments, we'll  make assumptions about $\{\mu_t\}$ that are consistent with formula
+In devising these experiments, we'll make assumptions about $\{\mu_t\}$ that are consistent with formula
 {eq}`eq:piterm`.
 
 We  describe several such experiments.
@@ -314,7 +314,7 @@ $$
      \end{cases}
 $$
 
-We'll start by executing a version of our "experiment 1" in which the government  implements a *foreseen* sudden permanent reduction in the rate of money creation at time $T_1$.  
+We'll start by executing a version of our "experiment 1" in which the government implements a *foreseen* sudden permanent reduction in the rate of money creation at time $T_1$. 
 
 Let's experiment with the following parameters
 
@@ -349,8 +349,8 @@ sequences = [μ_seq_1, π_seq_1, m_seq_1 - p_seq_1, m_seq_1, p_seq_1]
 plot_sequences(sequences, [r'$\mu$', r'$\pi$', r'$m - p$', r'$m$', r'$p$'])
 ```
 
-The  plot of the money growth rate $\mu_t$ in the top level panel portrays
-a sudden reduction from $.5$ to $0$ at time $T_1 = 60$.  
+The plot of the money growth rate $\mu_t$ in the top level panel portrays
+a sudden reduction from $.5$ to $0$ at time $T_1 = 60$. 
 
 This brings about a gradual reduction of the inflation rate $\pi_t$ that precedes the
 money supply growth rate reduction at time $T_1$.
@@ -358,9 +358,9 @@ money supply growth rate reduction at time $T_1$.
 Notice how the inflation rate declines smoothly (i.e., continuously) to $0$ at $T_1$ -- 
 unlike the money growth rate, it does not suddenly "jump" downward at $T_1$.
 
-This is because the reduction in $\mu$ at $T_1$ has been foreseen from the start.  
+This is because the reduction in $\mu$ at $T_1$ has been foreseen from the start. 
 
-While the log money supply portrayed in the bottom panel has a kink at $T_1$, the log  price level does not -- it is "smooth" -- once again a consequence of the fact that the
+While the log money supply portrayed in the bottom panel has a kink at $T_1$, the log price level does not -- it is "smooth" -- once again a consequence of the fact that the
 reduction in $\mu$ has been foreseen.
 
 To set the stage for our next experiment, we want to study the determinants of the price level a little more.
@@ -378,27 +378,27 @@ $$ (eq:pformula2)
 or, by using equation {eq}`eq:fisctheory1`,
 
 $$ 
-p_t = m_t + \alpha \left[ (1-\delta) \sum_{s=t}^T \delta^{s-t} \mu_s +  \delta^{T+1-t} \pi_{T+1}^*  \right] 
+p_t = m_t + \alpha \left[ (1-\delta) \sum_{s=t}^T \delta^{s-t} \mu_s + \delta^{T+1-t} \pi_{T+1}^* \right] 
 $$ (eq:pfiscaltheory2)
 
 In our next experiment, we'll study a "surprise" permanent change in the money growth that beforehand 
-was completely unanticipated.  
+was completely unanticipated. 
 
-At time $T_1$ when the "surprise" money growth rate  change occurs,  to satisfy
+At time $T_1$ when the "surprise" money growth rate change occurs, to satisfy
 equation {eq}`eq:pformula2`, the log of real balances jumps 
-*upward* as  $\pi_t$ jumps *downward*.
+*upward* as $\pi_t$ jumps *downward*.
 
 But in order for $m_t - p_t$ to jump, which variable jumps, $m_{T_1}$ or $p_{T_1}$?
 
 We'll study that interesting question next.
 
-###  What jumps?
+### What jumps?
 
 What jumps at $T_1$?
 
-Is it $p_{T_1}$ or  $m_{T_1}$?
+Is it $p_{T_1}$ or $m_{T_1}$?
 
-If we insist that the money supply $m_{T_1}$ is locked at its value $m_{T_1}^1$ inherited from the past, then formula {eq}`eq:pformula2` implies  that the price level jumps downward  at time $T_1$, to coincide with the downward jump in 
+If we insist that the money supply $m_{T_1}$ is locked at its value $m_{T_1}^1$ inherited from the past, then formula {eq}`eq:pformula2` implies that the price level jumps downward at time $T_1$, to coincide with the downward jump in 
 $\pi_{T_1}$ 
 
 An alternative assumption about the money supply level is that as part of the "inflation stabilization",
@@ -408,14 +408,14 @@ $$
 m_{T_1}^2 - m_{T_1}^1 = \alpha (\pi^1 - \pi^2)
 $$ (eq:eqnmoneyjump)
 
-By letting money jump according to equation {eq}`eq:eqnmoneyjump` the monetary authority  prevents  the price level from *falling* at the moment that the unanticipated stabilization arrives.
+By letting money jump according to equation {eq}`eq:eqnmoneyjump` the monetary authority prevents the price level from *falling* at the moment that the unanticipated stabilization arrives.
 
 In various research papers about stabilizations of high inflations, the jump in the money supply described by equation {eq}`eq:eqnmoneyjump` has been called
 "the velocity dividend" that a government reaps from implementing a regime change that sustains a permanently lower inflation rate.
 
 #### Technical details about whether $p$ or $m$ jumps at $T_1$
 
-We have noted that  with a constant expected forward sequence $\mu_s = \bar \mu$ for $s\geq t$, $\pi_{t} =\bar{\mu}$.
+We have noted that with a constant expected forward sequence $\mu_s = \bar \mu$ for $s\geq t$, $\pi_{t} =\bar{\mu}$.
 
 A consequence is that at $T_1$, either $m$ or $p$ must "jump" at $T_1$.
 
@@ -431,9 +431,9 @@ $$
 
 Simply glue the sequences $t\leq T_1$ and $t > T_1$.
 
-####  $m_{T_{1}}$ jumps.
+#### $m_{T_{1}}$ jumps.
 
-We reset $m_{T_{1}}$  so that $p_{T_{1}}=\left(m_{T_{1}-1}+\mu_{0}\right)+\alpha\mu_{0}$, with $\pi_{T_{1}}=\mu^{*}$.
+We reset $m_{T_{1}}$ so that $p_{T_{1}}=\left(m_{T_{1}-1}+\mu_{0}\right)+\alpha\mu_{0}$, with $\pi_{T_{1}}=\mu^{*}$.
 
 Then, 
 
@@ -449,27 +449,27 @@ We are now technically equipped to discuss our next experiment.
 
 This experiment deviates a little bit from a pure version of our "perfect foresight"
 assumption by assuming that a sudden permanent reduction in $\mu_t$ like that
-analyzed in experiment 1 is completely unanticipated.  
+analyzed in experiment 1 is completely unanticipated. 
 
-Such a  completely unanticipated shock is popularly known as an "MIT shock".
+Such a completely unanticipated shock is popularly known as an "MIT shock".
 
-The mental experiment involves switching at time $T_1$ from an initial "continuation path" for $\{\mu_t, \pi_t\} $ to another path that involves a permanently lower inflation rate.   
+The mental experiment involves switching at time $T_1$ from an initial "continuation path" for $\{\mu_t, \pi_t\} $ to another path that involves a permanently lower inflation rate.  
 
 **Initial Path:** $\mu_t = \mu_0$ for all $t \geq 0$. So this path is for $\{\mu_t\}_{t=0}^\infty$; the associated 
 path for $\pi_t$ has $\pi_t = \mu_0$. 
 
-**Revised Continuation Path** Where $ \mu_0 > \mu^*$, we construct a continuation path  $\{\mu_s\}_{s=T_1}^\infty$
-by setting $\mu_s = \mu^*$ for all $s \geq T_1$.  The perfect foresight continuation path for 
-$\pi$ is  $\pi_s = \mu^*$ 
+**Revised Continuation Path** Where $ \mu_0 > \mu^*$, we construct a continuation path $\{\mu_s\}_{s=T_1}^\infty$
+by setting $\mu_s = \mu^*$ for all $s \geq T_1$. The perfect foresight continuation path for 
+$\pi$ is $\pi_s = \mu^*$ 
 
-To capture a "completely unanticipated permanent  shock to the $\{\mu\}$ process at time $T_1$, we simply  glue the $\mu_t, \pi_t$
+To capture a "completely unanticipated permanent shock to the $\{\mu\}$ process at time $T_1$, we simply glue the $\mu_t, \pi_t$
 that emerges under path 2 for $t \geq T_1$ to the $\mu_t, \pi_t$ path that had emerged under path 1 for $ t=0, \ldots,
 T_1 -1$.
 
 We can do the MIT shock calculations mostly by hand. 
 
-Thus, for path 1, $\pi_t = \mu_0 $ for all $t \in  [0, T_1-1]$, while for path 2,
-$\mu_s = \mu^*$ for all $s \geq T_1$.  
+Thus, for path 1, $\pi_t = \mu_0 $ for all $t \in [0, T_1-1]$, while for path 2,
+$\mu_s = \mu^*$ for all $s \geq T_1$. 
 
 We now move on to experiment 2, our "MIT shock", completely unforeseen 
 sudden stabilization.
@@ -551,13 +551,13 @@ plt.tight_layout()
 plt.show()
 ```
 
-We invite you to compare these graphs with corresponding ones for the foreseen stabilization analyzed in experiment 1 above.  
+We invite you to compare these graphs with corresponding ones for the foreseen stabilization analyzed in experiment 1 above.
 
 Note how the inflation graph in the top middle panel is now identical to the 
 money growth graph in the top left panel, and how now the log of real balances portrayed in the top right panel jumps upward at time $T_1$.
 
 The bottom panels plot $m$ and $p$ under two possible ways that $m_{T_1}$ might adjust
-as required by the upward jump in $m - p$ at $T_1$.  
+as required by the upward jump in $m - p$ at $T_1$. 
 
 * the orange line lets $m_{T_1}$ jump upward in order to make sure that the log price level $p_{T_1}$ does not fall.
 
@@ -565,7 +565,7 @@ as required by the upward jump in $m - p$ at $T_1$.
   
 Here is a way to interpret what the government is doing when the orange line policy is in place.
 
-The government  prints money to finance expenditure with  the "velocity dividend" that it reaps from the increased demand for real balances brought about by the permanent decrease in the rate of growth of the money supply.
+The government prints money to finance expenditure with the "velocity dividend" that it reaps from the increased demand for real balances brought about by the permanent decrease in the rate of growth of the money supply.
 
 The next code generates a multi-panel graph that includes outcomes of both experiments 1 and 2.
 
@@ -618,16 +618,16 @@ plt.tight_layout()
 plt.show()
 ```
 
-It is instructive to compare the  preceding graphs with  graphs of log price levels and inflation rates for data from four big inflations described in
+It is instructive to compare the preceding graphs with graphs of log price levels and inflation rates for data from four big inflations described in
 {doc}`this lecture <inflation_history>`.
 
-In particular, in the above graphs, notice how a gradual fall in  inflation precedes the "sudden stop" when it has been anticipated long beforehand, but how
-inflation instead falls abruptly when the permanent drop in  money supply growth  is unanticipated.
+In particular, in the above graphs, notice how a gradual fall in inflation precedes the "sudden stop" when it has been anticipated long beforehand, but how
+inflation instead falls abruptly when the permanent drop in money supply growth is unanticipated.
 
 It seems to the author team at quantecon that the drops in inflation near the ends of the four hyperinflations described in {doc}`this lecture <inflation_history>`
-more closely resemble outcomes from the experiment 2 "unforeseen stabilization".  
+more closely resemble outcomes from the experiment 2 "unforeseen stabilization". 
 
-(It is fair to say that the preceding  informal pattern recognition exercise should  be supplemented with a more formal structural statistical analysis.)
+(It is fair to say that the preceding informal pattern recognition exercise should be supplemented with a more formal structural statistical analysis.)
 
 #### Experiment 3
 
@@ -636,7 +636,7 @@ more closely resemble outcomes from the experiment 2 "unforeseen stabilization".
 Instead of a foreseen sudden stabilization of the type studied with experiment 1,
 it is also interesting to study the consequences of a foreseen gradual stabilization.
 
-Thus, suppose that $\phi \in (0,1)$, that  $\mu_0 > \mu^*$,  and that for $t = 0, \ldots, T-1$
+Thus, suppose that $\phi \in (0,1)$, that $\mu_0 > \mu^*$, and that for $t = 0, \ldots, T-1$
 
 $$
 \mu_t = \phi^t \mu_0 + (1 - \phi^t) \mu^* .
@@ -644,7 +644,7 @@ $$
 
 Next we perform an experiment in which there is a perfectly foreseen *gradual* decrease in the rate of growth of the money supply.
 
-The following  code does the calculations and plots the results.
+The following code does the calculations and plots the results.
 
 ```{code-cell} ipython3
 # parameters
@@ -664,7 +664,7 @@ plot_sequences(sequences, [r'$\mu$', r'$\pi$',
 
 ## Sequel
 
-Another lecture  {doc}`monetarist theory of  price levels with adaptive expectations <cagan_adaptive>` describes an "adaptive expectations" version of Cagan's model.
+Another lecture {doc}`monetarist theory of price levels with adaptive expectations <cagan_adaptive>` describes an "adaptive expectations" version of Cagan's model.
 
 The dynamics become more complicated and so does the algebra.
 
