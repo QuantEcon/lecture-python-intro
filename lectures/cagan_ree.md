@@ -336,7 +336,7 @@ Now we use the following function to plot the result
 
 ```{code-cell} ipython3
 def plot_sequences(sequences, labels):
-    fig, axs = plt.subplots(len(sequences), 1, dpi=200)
+    fig, axs = plt.subplots(len(sequences), 1, figsize=[5, 12], dpi=200)
     for ax, seq, label in zip(axs, sequences, labels):
         ax.plot(range(len(seq)), seq, label=label)
         ax.set_ylabel(label)
@@ -518,7 +518,7 @@ p_seq_2_regime2 = np.concatenate([p_seq_2_path1[:T1+1],
 T_seq = range(T+2)
 
 # plot both regimes
-fig, ax = plt.subplots(5, 1, dpi=200)
+fig, ax = plt.subplots(5, 1, figsize=[5, 12], dpi=200)
 
 ax[0].plot(T_seq[:-1], μ_seq_2)
 ax[0].set_ylabel(r'$\mu$')
@@ -574,7 +574,7 @@ unanticipated, as in experiment 2.
 
 ```{code-cell} ipython3
 # compare foreseen vs unforeseen shock
-fig, ax = plt.subplots(5, dpi=200)
+fig, ax = plt.subplots(5, figsize=[5, 12], dpi=200)
 
 ax[0].plot(T_seq[:-1], μ_seq_2)
 ax[0].set_ylabel(r'$\mu$')
