@@ -243,12 +243,14 @@ First, we store parameters in a `namedtuple`:
 ```{code-cell} ipython3
 # Create the rational expectation version of Cagan model in finite time
 CaganREE = namedtuple("CaganREE", 
-                        ["m0", "μ_seq", "α", "δ", "π_end"])
+                        ["m0",    # initial money supply
+                         "μ_seq", # sequence of rate of growth
+                         "α",     # sensitivity parameter
+                         "δ",     # α/(1 + α)
+                         "π_end"  # terminal expected inflation
+                        ])
 
-def create_cagan_model(m0=1, # Initial money supply
-                       α=5,  # Sensitivity parameter
-                       μ_seq=None # Rate of growth
-                      ):
+def create_cagan_model(m0=1, α=5, μ_seq=None):
     δ = α/(1 + α)
     π_end = μ_seq[-1]    # compute terminal expected inflation
     return CaganREE(m0, μ_seq, α, δ, π_end)
