@@ -167,38 +167,7 @@ $$
 \phi  = \frac{A_h}{A_c} . 
 $$
 
-Soon we'll write Python code to compute $\phi$  and plot it as a function of its determinants.
-
-But first we'll describe an  alternative interpretation of our model that mostly just relabels variables.
-
-
-
-## Reinterpreting the model: workers and entrepreneurs
-
-
-We can add a parameter and reinterpret variables to get a model of entrepreneurs versus workers.
-
-We now let $h$ be  the present value of a "worker".
-
-We define the present value of an entrepreneur to be
-
-$$
-c_0 = \pi \sum_{t=4}^T R^{-t} w_t^c
-$$
-
-where $\pi \in (0,1) $ is  the probability that an entrepreneur's "project" succeeds.
-
-For our model of workers and firms, we'll interpret $D$ as the cost of becoming an entrepreneur.  
-
-This cost might include costs of hiring workers, office space, and lawyers. 
-
-
-
-What we used to call the college, high school wage gap $\phi$ now becomes the ratio
-of a successful entrepreneur's earnings to a worker's earnings.  
-
-We'll find that as $\pi$ decreases, $\phi$ increases, indicating that the riskier it is to
-be an entrepreuner, the higher must be the reward for a successful project. 
+In the next section we'll write Python code to compute $\phi$  and plot it as a function of its determinants.
 
 ## Computations
 
@@ -210,29 +179,25 @@ Now let's write some Python code to compute $\phi$ and plot it as a function of 
 
 ```{code-cell} ipython3
 # Define the namedtuple for the equalizing difference model
-EqDiffModel = namedtuple('EqDiffModel', 'R T γ_h γ_c w_h0 D π')
+EqDiffModel = namedtuple('EqDiffModel', 'R T γ_h γ_c w_h0 D')
 
-def create_edm(R=1.05,   # Gross rate of return
-               T=40,     # Time horizon
-               γ_h=1.01, # High-school wage growth
-               γ_c=1.01, # College wage growth
-               w_h0=1,   # Initial wage (high school)
-               D=10,     # Cost for college
-               π=None):
+def create_edm(R=1.05,   # gross rate of return
+               T=40,     # time horizon
+               γ_h=1.01, # high-school wage growth
+               γ_c=1.01, # college wage growth
+               w_h0=1,   # initial wage (high school)
+               D=10,     # cost for college
+              ):
     
-    return EqDiffModel(R, T, γ_h, γ_c, w_h0, D, π)
+    return EqDiffModel(R, T, γ_h, γ_c, w_h0, D)
 
 def compute_gap(model):
-    R, T, γ_h, γ_c, w_h0, D, π = model
+    R, T, γ_h, γ_c, w_h0, D = model
     
     A_h = (1 - (γ_h/R)**(T+1)) / (1 - γ_h/R)
     A_c = (1 - (γ_c/R)**(T-3)) / (1 - γ_c/R) * (γ_c/R)**4
-    
-    # Tweaked model
-    if π is not None:
-        A_c = π * A_c
-    
     ϕ = A_h / A_c + D / (w_h0 * A_c)
+    
     return ϕ
 ```
 
@@ -267,7 +232,10 @@ Let's start with the gross interest rate $R$.
 
 ```{code-cell} ipython3
 R_arr = np.linspace(1, 1.2, 50)
-plt.plot(R_arr, compute_gap(create_edm(R=R_arr)))
+models = [create_edm(R=r) for r in R_arr]
+gaps = [compute_gap(model) for model in models]
+
+plt.plot(R_arr, gaps)
 plt.xlabel(r'$R$')
 plt.ylabel(r'wage gap')
 plt.show()
@@ -280,7 +248,10 @@ determinants of $\phi$.
 
 ```{code-cell} ipython3
 γc_arr = np.linspace(1, 1.2, 50)
-plt.plot(γc_arr, compute_gap(create_edm(γ_c=γc_arr)))
+models = [create_edm(γ_c=γ_c) for γ_c in γc_arr]
+gaps = [compute_gap(model) for model in models]
+
+plt.plot(γc_arr, gaps)
 plt.xlabel(r'$\gamma_c$')
 plt.ylabel(r'wage gap')
 plt.show()
@@ -296,7 +267,10 @@ The following graph shows what happens.
 
 ```{code-cell} ipython3
 γh_arr = np.linspace(1, 1.1, 50)
-plt.plot(γh_arr, compute_gap(create_edm(γ_h=γh_arr)))
+models = [create_edm(γ_h=γ_h) for γ_h in γh_arr]
+gaps = [compute_gap(model) for model in models]
+
+plt.plot(γh_arr, gaps)
 plt.xlabel(r'$\gamma_h$')
 plt.ylabel(r'wage gap')
 plt.show()
@@ -304,13 +278,63 @@ plt.show()
 
 ## Entrepreneur-worker interpretation
 
-Now let's adopt the entrepreneur-worker interpretation of our model.
+We can add a parameter and reinterpret variables to get a model of entrepreneurs versus workers.
+
+We now let $h$ be  the present value of a "worker".
+
+We define the present value of an entrepreneur to be
+
+$$
+c_0 = \pi \sum_{t=4}^T R^{-t} w_t^c
+$$
+
+where $\pi \in (0,1) $ is  the probability that an entrepreneur's "project" succeeds.
+
+For our model of workers and firms, we'll interpret $D$ as the cost of becoming an entrepreneur.  
+
+This cost might include costs of hiring workers, office space, and lawyers. 
+
+What we used to call the college, high school wage gap $\phi$ now becomes the ratio
+of a successful entrepreneur's earnings to a worker's earnings.  
+
+We'll find that as $\pi$ decreases, $\phi$ increases, indicating that the riskier it is to
+be an entrepreuner, the higher must be the reward for a successful project. 
+
+Now let's adopt the entrepreneur-worker interpretation of our model
+
+```{code-cell} ipython3
+# Define a model of entrepreneur-worker interpretation
+EqDiffModel = namedtuple('EqDiffModel', 'R T γ_h γ_c w_h0 D π')
+
+def create_edm_π(R=1.05,   # gross rate of return
+                 T=40,     # time horizon
+                 γ_h=1.01, # high-school wage growth
+                 γ_c=1.01, # college wage growth
+                 w_h0=1,   # initial wage (high school)
+                 D=10,     # cost for college
+                 π=0       # chance of business success
+              ):
+    
+    return EqDiffModel(R, T, γ_h, γ_c, w_h0, D, π)
+
+
+def compute_gap(model):
+    R, T, γ_h, γ_c, w_h0, D, π = model
+    
+    A_h = (1 - (γ_h/R)**(T+1)) / (1 - γ_h/R)
+    A_c = (1 - (γ_c/R)**(T-3)) / (1 - γ_c/R) * (γ_c/R)**4
+    
+    # Incorprate chance of success
+    A_c = π * A_c
+    
+    ϕ = A_h / A_c + D / (w_h0 * A_c)
+    return ϕ
+```
 
 If the probability that a new business succeeds is $0.2$, let's compute the initial wage premium for successful entrepreneurs.
 
 ```{code-cell} ipython3
-# a model of enterpreneur
-ex3 = create_edm(π=0.2)
+ex3 = create_edm_π(π=0.2)
 gap3 = compute_gap(ex3)
 
 gap3
@@ -320,7 +344,10 @@ Now let's study how the initial wage premium for successful entrepreneurs depend
 
 ```{code-cell} ipython3
 π_arr = np.linspace(0.2, 1, 50)
-plt.plot(π_arr, compute_gap(create_edm(π=π_arr)))
+models = [create_edm_π(π=π) for π in π_arr]
+gaps = [compute_gap(model) for model in models]
+
+plt.plot(π_arr, gaps)
 plt.ylabel(r'wage gap')
 plt.xlabel(r'$\pi$')
 plt.show()
@@ -430,7 +457,7 @@ Let's compute $\frac{\partial \phi}{\partial γ_h}$ and evaluate it at default p
 ϕ_γ_h_func(D_value, γ_h_value, γ_c_value, R_value, T_value, w_h0_value)
 ```
 
-We find that raising $\gamma_h$ increases the initial college wage premium $\phi$, as we did with our  earlier graphical analysis.
+We find that raising $\gamma_h$ increases the initial college wage premium $\phi$, in line with our earlier graphical analysis.
 
 Compute $\frac{\partial \phi}{\partial γ_c}$ and evaluate it numerically at default parameter values
 
@@ -445,7 +472,7 @@ Compute $\frac{\partial \phi}{\partial γ_c}$ and evaluate it numerically at def
 ϕ_γ_c_func(D_value, γ_h_value, γ_c_value, R_value, T_value, w_h0_value)
 ```
 
-We find that raising $\gamma_c$ decreases the initial college wage premium $\phi$, as we did with our graphical analysis earlier
+We find that raising $\gamma_c$ decreases the initial college wage premium $\phi$, in line with our earlier graphical analysis.
 
 Let's compute $\frac{\partial \phi}{\partial R}$ and evaluate it numerically at default parameter values
 
@@ -460,4 +487,4 @@ Let's compute $\frac{\partial \phi}{\partial R}$ and evaluate it numerically at 
 ϕ_R_func(D_value, γ_h_value, γ_c_value, R_value, T_value, w_h0_value)
 ```
 
-We find that raising the gross interest rate $R$ increases the initial college wage premium $\phi$, as we did with our graphical analysis earlier
+We find that raising the gross interest rate $R$ increases the initial college wage premium $\phi$, in line with our earlier graphical analysis.
