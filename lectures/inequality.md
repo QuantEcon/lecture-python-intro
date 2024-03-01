@@ -64,6 +64,7 @@ For each of these measures, we will look at both simulated and real data.
 We will need to install the following packages
 
 ```{code-cell} ipython3
+:tags: [hide-output]
 !pip install wbgapi
 ```
 
@@ -582,7 +583,6 @@ plt.show()
 Looking at this graph you can see that inequality was falling in the USA until 1981 when it appears to have started to change course and steadily rise over time (growing inequality).
 
 ```{admonition} TODO
-:class: warning
 Why did GINI fall in 2020? I would have thought it accelerate in the other direction or was there a lag in investment returns around COVID
 ```
 
@@ -633,10 +633,7 @@ results.to_csv("_static/lecture_specific/inequality/usa-gini-nwealth-tincome-lin
 
 ```{code-cell} ipython3
 ginis = pd.read_csv("_static/lecture_specific/inequality/usa-gini-nwealth-tincome-lincome.csv", index_col='year')
-```
-
-```{code-cell} ipython3
-ginis
+ginis.head(n=5)
 ```
 
 Let's plot the Gini coefficients for net wealth, labor income and total income.
