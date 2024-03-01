@@ -61,8 +61,6 @@ In this lecture we discuss standard measures of inequality used in economic rese
 
 For each of these measures, we will look at both simulated and real data.
 
-+++
-
 We will also use the following imports.
 
 ```{code-cell} ipython3
@@ -582,11 +580,7 @@ Looking at this graph you can see that inequality was falling in the USA until 1
 Why did GINI fall in 2020? I would have thought it accelerate in the other direction or was there a lag in investment returns around COVID
 ```
 
-+++
-
 ## Comparing income and wealth inequality (the US case)
-
-+++
 
 We can use the data collected above {ref}`survey of consumer finances <data:survey-consumer-finance>` to look at the gini coefficient when using income when compared to wealth data. 
 
@@ -595,6 +589,8 @@ Let's compute the gin coefficient for net wealth, total income, and labour incom
 This section makes use of the following code to compute the data, however to speed up execution we have pre-compiled the results and will use that in the subsequent analysis.
 
 ```{code-cell} ipython3
+:tags: [skip-execution, hide-input, hide-output]
+
 import quantecon as qe
 
 varlist = ['n_wealth',   # net wealth 
@@ -852,7 +848,7 @@ for σ in σ_vals:
     f_val, l_val = lorenz_curve(y)
     f_vals.append(f_val)
     l_vals.append(l_val)
-    ginis.append(qe.gini_coefficient(y))
+    ginis.append(gini_coefficient(y))
     topshares.append(calculate_top_share(y))
 ```
 
