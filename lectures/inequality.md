@@ -61,6 +61,12 @@ In this lecture we discuss standard measures of inequality used in economic rese
 
 For each of these measures, we will look at both simulated and real data.
 
+We will need to install the following packages
+
+```{code-cell} ipython3
+!pip install wbgapi
+```
+
 We will also use the following imports.
 
 ```{code-cell} ipython3
@@ -591,6 +597,7 @@ This section makes use of the following code to compute the data, however to spe
 ```{code-cell} ipython3
 :tags: [skip-execution, hide-input, hide-output]
 
+!pip install quantecon
 import quantecon as qe
 
 varlist = ['n_wealth',   # net wealth 
