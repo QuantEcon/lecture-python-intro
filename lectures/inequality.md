@@ -65,6 +65,7 @@ We will need to install the following packages
 
 ```{code-cell} ipython3
 :tags: [hide-output]
+
 !pip install wbgapi
 ```
 
@@ -298,12 +299,10 @@ mystnb:
     alt: lorenz_us
 ---
 fig, ax = plt.subplots()
-
 ax.plot(f_vals_nw[-1], l_vals_nw[-1], label=f'net wealth')
 ax.plot(f_vals_ti[-1], l_vals_ti[-1], label=f'total income')
 ax.plot(f_vals_li[-1], l_vals_li[-1], label=f'labor income')
 ax.plot(f_vals_nw[-1], f_vals_nw[-1], label=f'equality')
-
 ax.legend()
 plt.show()
 ```
@@ -345,6 +344,14 @@ The Gini coefficient is closely related to the Lorenz curve.
 
 In fact, it can be shown that its value is twice the area between the line of
 equality and the Lorenz curve (e.g., the shaded area in the following Figure below).
+
+```{note}
+Another way to think of the gini coefficient is the area between the 45-degree line of 
+perfect equality and the Lorenz curve minus the area below the Lorenz curve devided by
+the total area below the 45-degree line. 
+
+In other words, it is a measure of average deviation from the line of equality.
+```
 
 The idea is that $G=0$ indicates complete equality, while $G=1$ indicates complete inequality.
 
@@ -478,7 +485,7 @@ coefficient.
 
 Now let's look at Gini coefficients for US data. 
 
-In this section we will get Gini coefficients from the World Bank using the [wbgapi](https://blogs.worldbank.org/opendata/introducing-wbgapi-new-python-package-accessing-world-bank-data).
+In this section we will get pre-computed Gini coefficients from the World Bank using the [wbgapi](https://blogs.worldbank.org/opendata/introducing-wbgapi-new-python-package-accessing-world-bank-data).
 
 Let's search the world bank data for gini to find the Series ID.
 
@@ -502,7 +509,7 @@ data = wb.data.DataFrame("SI.POV.GINI", "USA")
 data
 ```
 
-```{note}
+```{tip}
 This package often returns data with year information contained in the columns. This is not always convenient for simple plotting with pandas so it can be useful to transpose the results before plotting
 ```
 
@@ -518,9 +525,9 @@ ax.set_ylim(0,data_usa.max()+5)
 plt.show()
 ```
 
-The gini coefficient does not have significant variation in the full range from 0 to 100.
+The gini coefficient is relatively slow moving and does not have significant variation in the full range from 0 to 100.
 
-In fact we can take a quick look across all countries and all years in the world bank dataset to observe this.
+Using `pandas` we can take a quick look across all countries and all years in the world bank dataset to understand how the Gini coefficient varies across countries and time.
 
 ```{code-cell} ipython3
 gini_all = wb.data.DataFrame("SI.POV.GINI")
@@ -535,7 +542,7 @@ gini_all = gini_all.unstack(level='economy').dropna()
 gini_all.plot(kind="hist", title="Gini coefficient");
 ```
 
-Therefore we can see that across 50 years of data and all countries the measure only varies between 20 and 65.
+Therefore we can see that across 50 years of data and all countries (including low and high income countries) the measure only varies between 20 and 65.
 
 This variation would be even smaller for the subset of wealthy countries, so let us zoom in a little on the US data and add some trendlines.
 
@@ -582,17 +589,19 @@ plt.show()
 
 Looking at this graph you can see that inequality was falling in the USA until 1981 when it appears to have started to change course and steadily rise over time (growing inequality).
 
-```{admonition} TODO
-Why did GINI fall in 2020? I would have thought it accelerate in the other direction or was there a lag in investment returns around COVID
-```
-
 ## Comparing income and wealth inequality (the US case)
+
+The Gini coefficient can also be computed over different distributions such as *income* and *wealth*. 
 
 We can use the data collected above {ref}`survey of consumer finances <data:survey-consumer-finance>` to look at the gini coefficient when using income when compared to wealth data. 
 
-Let's compute the gin coefficient for net wealth, total income, and labour income. 
+Let's compute the gin coefficient for net wealth, total income, and labour income for the most recent year in our sample.
 
 This section makes use of the following code to compute the data, however to speed up execution we have pre-compiled the results and will use that in the subsequent analysis.
+
+```{code-cell} ipython3
+df_income_wealth.year.describe()
+```
 
 ```{code-cell} ipython3
 :tags: [skip-execution, hide-input, hide-output]
@@ -630,6 +639,10 @@ for var in varlist:
 results = pd.DataFrame(results, index=years)
 results.to_csv("_static/lecture_specific/inequality/usa-gini-nwealth-tincome-lincome.csv", index_label='year')
 ```
+
+While the data can be computed using the code above, we will import a pre-computed dataset from the lecture repository.
+
+<!-- TODO: update from csv to github location -->
 
 ```{code-cell} ipython3
 ginis = pd.read_csv("_static/lecture_specific/inequality/usa-gini-nwealth-tincome-lincome.csv", index_col='year')
@@ -926,20 +939,13 @@ Plot the top shares generated from Lorenz curve and the top shares approximated 
 :class: dropdown
 ```
 
-We will use the `interpolation` package in this solution.
-
-```{code-cell} ipython3
-:tags: [hide-output]
-
-!pip install --upgrade interpolation
-from interpolation import interp
-```
++++
 
 Here is one solution:
 
 ```{code-cell} ipython3
 def lorenz2top(f_val, l_val, p=0.1):
-    t = lambda x: interp(f_val, l_val, x)
+    t = lambda x: np.interp(x, f_val, l_val)
     return 1- t(1 - p)
 ```
 
