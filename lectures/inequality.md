@@ -788,6 +788,10 @@ plot_data.year = plot_data.year.map(lambda x: int(x.replace('YR','')))
 ```
 
 ```{code-cell} ipython3
+!pip install plotly
+```
+
+```{code-cell} ipython3
 import plotly.express as px
 fig = px.line(plot_data, x="gini", y="gdppc", color="country", text="year", height=800)
 fig.update_traces(textposition="bottom right")
