@@ -589,7 +589,7 @@ plt.show()
 
 Looking at this graph you can see that inequality was falling in the USA until 1981 when it appears to have started to change course and steadily rise over time (growing inequality).
 
-## Comparing income and wealth inequality (the US case)
+### Comparing income and wealth inequality (the US case)
 
 The Gini coefficient can also be computed over different distributions such as *income* and *wealth*. 
 
@@ -715,6 +715,84 @@ We see that, by this measure, inequality in wealth and income has risen
 substantially since 1980.
 
 The wealth time series exhibits a strong U-shape.
+
++++
+
+### Cross-country comparisons of income inequality
+
+As we saw earlier in this lecture we used `wbgapi` to get gini data across many countries and saved it in a variable called `gini_all`
+
+In this section we will compare a few countries and the evolution in their respective gini coefficients
+
+```{code-cell} ipython3
+# Obtain data for all countries as a table
+data = gini_all.unstack()
+```
+
+```{code-cell} ipython3
+data.columns
+```
+
+There are 167 countries represented in this dataset. 
+
+Let us compare three western economies: USA, United Kingdom, and Norway
+
+```{code-cell} ipython3
+data[['USA','GBR', 'NOR']].plot(ylabel='gini coefficient')
+```
+
+From this plot we can observe that the USA has a higher gini coefficient (i.e. higher income inequality) when compared to the UK and Norway. 
+
+Norway has the lowest gini coefficient over the three economies from the year 2003, and it is substantially lower than the USA suggesting the Lorenz curve is much closer to the 45-degree line of equality.
+
++++
+
+### (Optional) Gini Coefficient and GDP per capita (over time)
+
+```{code-cell} ipython3
+countries = ['USA', 'NOR', 'GBR']
+```
+
+```{code-cell} ipython3
+gdppc = wb.data.DataFrame("NY.GDP.PCAP.KD", countries).T
+```
+
+Let's rearrange the data so that we can plot gdp per capita and the gini coefficient across years
+
+```{code-cell} ipython3
+pdata = pd.DataFrame(data[countries].unstack())
+pdata.index.names = ['country', 'year']
+pdata.columns = ['gini']
+```
+
+```{code-cell} ipython3
+pdata
+```
+
+```{code-cell} ipython3
+pgdppc = pd.DataFrame(gdppc.unstack())
+pgdppc.index.names = ['country', 'year']
+pgdppc.columns = ['gdppc']
+```
+
+```{code-cell} ipython3
+plot_data = pdata.merge(pgdppc, left_index=True, right_index=True)
+```
+
+```{code-cell} ipython3
+plot_data.reset_index(inplace=True)
+```
+
+```{code-cell} ipython3
+plot_data.year = plot_data.year.map(lambda x: int(x.replace('YR','')))
+```
+
+```{code-cell} ipython3
+import plotly.express as px
+fig = px.line(plot_data, x="gini", y="gdppc", color="country", text="year", height=800)
+fig.update_traces(textposition="bottom right")
+fig.show()
+```
 
 ## Top shares
 
