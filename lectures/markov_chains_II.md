@@ -145,7 +145,7 @@ We'll come back to this a bit later.
 
 We discussed uniqueness of stationary distributions our {doc}`earlier lecture on Markov chains <markov_chains_I>` 
 
-There we {ref}`stated <mc_po_conv_thm>` that uniqueness holds when the transition matrix is everywhere positive.
+There we {prf:ref}`stated <mc_po_conv_thm>` that uniqueness holds when the transition matrix is everywhere positive.
 
 In fact irreducibility is sufficient:
 
