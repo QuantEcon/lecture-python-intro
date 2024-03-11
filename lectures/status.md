@@ -1,4 +1,3 @@
-
 ---
 jupytext:
   text_representation:
