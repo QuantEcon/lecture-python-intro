@@ -48,7 +48,6 @@ Let's start with some standard imports:
 
 ```{code-cell} ipython3
 import matplotlib.pyplot as plt
-plt.rcParams["figure.figsize"] = (11, 5)  # set default figure size
 import quantecon as qe
 import numpy as np
 ```
@@ -249,8 +248,6 @@ Hence we expect that $\hat p_n(x) \approx \psi^*(x)$ when $n$ is large.
 The next figure shows convergence of $\hat p_n(x)$ to $\psi^*(x)$ when $x=1$ and
 $X_0$ is either $0, 1$ or $2$.
 
-The figure shows convergence to the stationary distribution regardless of the
-initial condition $X_0$.
 
 
 ```{code-cell} ipython3
@@ -260,23 +257,23 @@ P = np.array([[0.971, 0.029, 0.000],
 ts_length = 10_000
 mc = qe.MarkovChain(P)
 ψ_star = mc.stationary_distributions[0]
-i = 1  # We study convergence to psi^*(x) when x = i
+x = 1  # We study convergence to psi^*(x) 
 
 fig, ax = plt.subplots()
-ax.axhline(ψ_star[i], linestyle='dashed', color='black', 
-                label = fr'$\psi^*({i})$')
+ax.axhline(ψ_star[x], linestyle='dashed', color='black', 
+                label = fr'$\psi^*({x})$')
 # Compute the fraction of time spent in state 0, starting from different x_0s
 for x0 in range(3):
     X = mc.simulate(ts_length, init=x0)
-    p_hat = (X == i).cumsum() / (1 + np.arange(ts_length))
-    ax.plot(p_hat, label=fr'$\psi^*({i})$ when $x_0 = \, {x0}$')
+    p_hat = (X == x).cumsum() / (1 + np.arange(ts_length))
+    ax.plot(p_hat, label=fr'$\hat p_n({x})$ when $X_0 = \, {x0}$')
 ax.set_xlabel('t')
-ax.set_ylabel(fr'$\hat p_n({i})$')
+ax.set_ylabel(fr'$\hat p_n({x})$')
 ax.legend()
 plt.show()
 ```
 
-You might like to try changing $i=1$ to either $i=0$ or $i=2$.
+You might like to try changing $x=1$ to either $x=0$ or $x=2$.
 
 In any of these cases, ergodicity will hold.
 
