@@ -303,6 +303,8 @@ ax.plot(f_vals_nw[-1], l_vals_nw[-1], label=f'net wealth')
 ax.plot(f_vals_ti[-1], l_vals_ti[-1], label=f'total income')
 ax.plot(f_vals_li[-1], l_vals_li[-1], label=f'labor income')
 ax.plot(f_vals_nw[-1], f_vals_nw[-1], label=f'equality')
+ax.set_xlabel("household percentile")
+ax.set_ylabel("income/wealth percentile")
 ax.legend()
 plt.show()
 ```
@@ -356,23 +358,18 @@ mystnb:
     name: lorenz_gini
 ---
 fig, ax = plt.subplots()
-
 f_vals, l_vals = lorenz_curve(sample)
 ax.plot(f_vals, l_vals, label=f'lognormal sample', lw=2)
 ax.plot(f_vals, f_vals, label='equality', lw=2)
-
-ax.legend()
-
 ax.vlines([0.8], [0.0], [0.43], alpha=0.5, colors='k', ls='--')
 ax.hlines([0.43], [0], [0.8], alpha=0.5, colors='k', ls='--')
-
 ax.fill_between(f_vals, l_vals, f_vals, alpha=0.06)
-
 ax.set_ylim((0, 1))
 ax.set_xlim((0, 1))
-
 ax.text(0.04, 0.5, r'$G = 2 \times$ shaded area')
-  
+ax.set_xlabel("household percentile")
+ax.set_ylabel("income/wealth percentile")
+ax.legend()
 plt.show()
 ```
 
@@ -391,21 +388,17 @@ mystnb:
     name: lorenz_gini2
 ---
 fig, ax = plt.subplots()
-
 f_vals, l_vals = lorenz_curve(sample)
-
 ax.plot(f_vals, l_vals, label='lognormal sample', lw=2)
 ax.plot(f_vals, f_vals, label='equality', lw=2)
-
 ax.fill_between(f_vals, l_vals, f_vals, alpha=0.06)
 ax.fill_between(f_vals, l_vals, np.zeros_like(f_vals), alpha=0.06)
-
 ax.set_ylim((0, 1))
 ax.set_xlim((0, 1))
-
 ax.text(0.55, 0.4, 'A')
 ax.text(0.75, 0.15, 'B')
-
+ax.set_xlabel("household percentile")
+ax.set_ylabel("income/wealth percentile")
 ax.legend()
 plt.show()
 ```
@@ -711,7 +704,9 @@ We will smooth our data and take an average of the data either side of it for th
 
 ```{code-cell} ipython3
 ginis["l_income"][1965] = (ginis["l_income"][1962] + ginis["l_income"][1968]) / 2
-ginis["l_income"].plot()
+ax = ginis["l_income"].plot()
+ax.set_ylabel("Gini coefficient")
+plt.show()
 ```
 
 Now we can focus on US net wealth
@@ -728,7 +723,7 @@ mystnb:
 fig, ax = plt.subplots()
 ax.plot(years, ginis["n_wealth"], marker='o')
 ax.set_xlabel("year")
-ax.set_ylabel("gini coefficient")
+ax.set_ylabel("Gini coefficient")
 plt.show()
 ```
 
@@ -747,7 +742,7 @@ fig, ax = plt.subplots()
 ax.plot(years, ginis["l_income"], marker='o', label="labor income")
 ax.plot(years, ginis["t_income"], marker='o', label="total income")
 ax.set_xlabel("year")
-ax.set_ylabel("gini coefficient")
+ax.set_ylabel("Gini coefficient")
 ax.legend()
 plt.show()
 ```
@@ -759,7 +754,7 @@ fig, ax = plt.subplots()
 ax.plot(years, ginis["n_wealth"], marker='o', label="net wealth")
 ax.plot(years, ginis["l_income"], marker='o', label="labour income")
 ax.set_xlabel("year")
-ax.set_ylabel("gini coefficient")
+ax.set_ylabel("Gini coefficient")
 ax.legend()
 plt.show()
 ```
