@@ -77,6 +77,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import random as rd
 import wbgapi as wb
+import plotly.express as px
 ```
 
 ## The Lorenz curve
@@ -596,7 +597,6 @@ mystnb:
     caption: Gini coefficients (USA) with trend
     name: gini_usa_trend
 ---
-
 x = data_usa.dropna().index.values
 y = data_usa.dropna().values
 plt.scatter(x,y)
@@ -619,7 +619,7 @@ As we have discussed the Gini coefficient can also be computed over different di
 
 We can use the data collected above {ref}`survey of consumer finances <data:survey-consumer-finance>` to look at the gini coefficient when using income when compared to wealth data. 
 
-We can compute the Gini coefficient for net wealth, total income, and labour income over many years. 
+We can compute the Gini coefficient for net wealth, total income, and labour income over many years.
 
 ```{code-cell} ipython3
 df_income_wealth.year.describe()
@@ -677,7 +677,7 @@ Let's plot the Gini coefficients for net wealth, labor income and total income.
 
 Looking at each data series we see an outlier in gini coefficient computed for 1965 for `labour income`. 
 
-We will smooth our data and take an average of the data either side of it for the time being. 
+We will smooth our data and take an average of the data either side of it for the time being.
 
 ```{code-cell} ipython3
 ginis["l_income"][1965] = (ginis["l_income"][1962] + ginis["l_income"][1968]) / 2
@@ -722,7 +722,7 @@ ax.legend()
 plt.show()
 ```
 
-Now we can compare net wealth and labour income. 
+Now we can compare net wealth and labour income.
 
 ```{code-cell} ipython3
 fig, ax = plt.subplots()
@@ -758,6 +758,21 @@ Let us compare three western economies: USA, United Kingdom, and Norway
 data[['USA','GBR', 'NOR']].plot(ylabel='gini coefficient')
 ```
 
+We see that Norway has a shorter time series so let us take a closer look at the underlying data
+
+```{code-cell} ipython3
+data[['NOR']].dropna().head(n=5)
+```
+
+The data for Norway in this dataset goes back to 1979 but there are gaps in the time series and matplotlib is not showing those data points. 
+
+We can use `dataframe.ffill()` to copy and bring forward the last known value in a series to fill in these gaps
+
+```{code-cell} ipython3
+data['NOR'] = data['NOR'].ffill()
+data[['USA','GBR', 'NOR']].plot(ylabel='gini coefficient')
+```
+
 From this plot we can observe that the USA has a higher gini coefficient (i.e. higher income inequality) when compared to the UK and Norway. 
 
 Norway has the lowest gini coefficient over the three economies from the year 2003, and it is consistently substantially lower than the USA. 
@@ -781,19 +796,13 @@ plot_data.index.names = ['country', 'year']
 plot_data.columns = ['gini']
 ```
 
-Looking at the first 5 rows of data
-
-```{code-cell} ipython3
-plot_data.head(n=5)
-```
-
 Now we can get the gdp per capita data into a shape that can be merged with `plot_data`
 
 ```{code-cell} ipython3
 pgdppc = pd.DataFrame(gdppc.unstack())
 pgdppc.index.names = ['country', 'year']
 pgdppc.columns = ['gdppc']
-plot_data = pdata.merge(pgdppc, left_index=True, right_index=True)
+plot_data = plot_data.merge(pgdppc, left_index=True, right_index=True)
 plot_data.reset_index(inplace=True)
 ```
 
@@ -803,11 +812,32 @@ We will transform the year column to remove the 'YR' text and return an integer.
 plot_data.year = plot_data.year.map(lambda x: int(x.replace('YR','')))
 ```
 
-Now using plotly to build a plot with gdp per capita on the y-axis and the gini coefficient on the x-axis. 
+Now using plotly to build a plot with gdp per capita on the y-axis and the gini coefficient on the x-axis.
 
 ```{code-cell} ipython3
-import plotly.express as px
-fig = px.line(plot_data, x="gini", y="gdppc", color="country", text="year", height=800)
+min_year = plot_data.year.min()
+max_year = plot_data.year.max()
+```
+
+```{note}
+The time series for all three countries start and stop in different years. We will add a year mask to the data to
+improve clarity in the chart including the different end years associated with each countries time series.
+```
+
+```{code-cell} ipython3
+labels = [1979, 1986, 1991, 1995, 2000, 2020, 2021, 2022] + list(range(min_year,max_year,5))
+plot_data.year = plot_data.year.map(lambda x: x if x in labels else None)
+```
+
+```{code-cell} ipython3
+fig = px.line(plot_data, 
+              x = "gini", 
+              y = "gdppc", 
+              color = "country", 
+              text = "year", 
+              height = 800,
+              labels = {"gini" : "Gini coefficient", "gdppc" : "GDP per capita"}
+             )
 fig.update_traces(textposition="bottom right")
 fig.show()
 ```
