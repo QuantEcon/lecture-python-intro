@@ -519,7 +519,7 @@ Now let's look at the Gini coefficient using US data.
 
 We will get pre-computed Gini coefficients from the World Bank using the [wbgapi](https://blogs.worldbank.org/opendata/introducing-wbgapi-new-python-package-accessing-world-bank-data).
 
-Let's use the `wbgapi` package we imported earlier to search the world bank data for gini to find the Series ID.
+Let's use the `wbgapi` package we imported earlier to search the world bank data for Gini to find the Series ID.
 
 ```{code-cell} ipython3
 wb.search("gini")
@@ -562,7 +562,7 @@ ax.set_ylim(0,data_usa.max()+5)
 plt.show()
 ```
 
-As can be seen in {numref}`gini_usa1` the gini coefficient:
+As can be seen in {numref}`gini_usa1` the Gini coefficient:
 
 1. moves slowly over time, and 
 2. does not have significant variation in the full range from 0 to 100.
@@ -631,11 +631,10 @@ y = data_usa.dropna().values
 plt.scatter(x,y)
 plt.plot(x1, a1*x1+b1)
 plt.plot(x2, a2*x2+b2)
-plt.title("USA gini coefficient dynamics")
+plt.title("US Gini coefficient dynamics")
 plt.legend(['Gini coefficient', 'Trend (before 1981)', 'Trend (after 1981)'])
-plt.ylim(25,45)
 plt.ylabel("Gini coefficient")
-plt.xlabel("Year")
+plt.xlabel("year")
 plt.show()
 ```
 
@@ -646,7 +645,7 @@ plt.show()
 
 As we have discussed the Gini coefficient can also be computed over different distributions such as *income* and *wealth*. 
 
-We can use the data collected above {ref}`survey of consumer finances <data:survey-consumer-finance>` to look at the gini coefficient when using income when compared to wealth data. 
+We can use the data collected above {ref}`survey of consumer finances <data:survey-consumer-finance>` to look at the Gini coefficient when using income when compared to wealth data. 
 
 We can compute the Gini coefficient for net wealth, total income, and labour income over many years.
 
@@ -704,7 +703,7 @@ ginis.head(n=5)
 
 Let's plot the Gini coefficients for net wealth, labor income and total income.
 
-Looking at each data series we see an outlier in gini coefficient computed for 1965 for `labour income`. 
+Looking at each data series we see an outlier in Gini coefficient computed for 1965 for `labour income`. 
 
 We will smooth our data and take an average of the data either side of it for the time being.
 
@@ -770,9 +769,9 @@ The wealth time series exhibits a strong U-shape.
 
 ### Cross-country comparisons of income inequality
 
-As we saw earlier in this lecture we used `wbgapi` to get gini data across many countries and saved it in a variable called `gini_all`
+As we saw earlier in this lecture we used `wbgapi` to get Gini data across many countries and saved it in a variable called `gini_all`
 
-In this section we will compare a few countries and the evolution in their respective gini coefficients
+In this section we will compare a few countries and the evolution in their respective Gini coefficients
 
 ```{code-cell} ipython3
 data = gini_all.unstack() # Obtain data for all countries as a table
@@ -802,9 +801,9 @@ data['NOR'] = data['NOR'].ffill()
 data[['USA','GBR', 'NOR']].plot(ylabel='gini coefficient')
 ```
 
-From this plot we can observe that the USA has a higher gini coefficient (i.e. higher income inequality) when compared to the UK and Norway. 
+From this plot we can observe that the USA has a higher Gini coefficient (i.e. higher income inequality) when compared to the UK and Norway. 
 
-Norway has the lowest gini coefficient over the three economies from the year 2003, and it is consistently substantially lower than the USA. 
+Norway has the lowest Gini coefficient over the three economies from the year 2003, and it is consistently substantially lower than the USA. 
 
 ### Gini Coefficient and GDP per capita (over time)
 
@@ -817,7 +816,7 @@ countries = ['USA', 'NOR', 'GBR']
 gdppc = wb.data.DataFrame("NY.GDP.PCAP.KD", countries).T
 ```
 
-We can rearrange the data so that we can plot gdp per capita and the gini coefficient across years
+We can rearrange the data so that we can plot gdp per capita and the Gini coefficient across years
 
 ```{code-cell} ipython3
 plot_data = pd.DataFrame(data[countries].unstack())
@@ -841,7 +840,7 @@ We will transform the year column to remove the 'YR' text and return an integer.
 plot_data.year = plot_data.year.map(lambda x: int(x.replace('YR','')))
 ```
 
-Now using plotly to build a plot with gdp per capita on the y-axis and the gini coefficient on the x-axis.
+Now using plotly to build a plot with gdp per capita on the y-axis and the Gini coefficient on the x-axis.
 
 ```{code-cell} ipython3
 min_year = plot_data.year.min()
@@ -872,7 +871,7 @@ fig.show()
 ```
 
 This plot shows that all three western economies gdp per capita has grown over time with some fluctuations
-in the gini coefficient. However the appears to be significant structural differences between Norway and the USA.  
+in the Gini coefficient. However the appears to be significant structural differences between Norway and the USA.  
 
 ## Top shares
 
