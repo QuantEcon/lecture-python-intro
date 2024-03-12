@@ -57,12 +57,18 @@ df
 We can use a scatter plot of the data to see the relationship between $y_i$ (ice-cream sales in dollars (\$\'s)) and $x_i$ (degrees Celsius).
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: "Scatter plot"
+    name: sales-v-temp1
+---
 ax = df.plot(
     x='X', 
     y='Y', 
     kind='scatter', 
-    ylabel='Ice-Cream Sales ($\'s)', 
-    xlabel='Degrees Celcius'
+    ylabel='Ice-cream sales ($\'s)', 
+    xlabel='Degrees celcius'
 )
 ```
 
@@ -83,9 +89,16 @@ df['Y_hat'] = α + β * df['X']
 ```
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: "Scatter plot with a line of fit"
+    name: sales-v-temp2
+---
 fig, ax = plt.subplots()
-df.plot(x='X',y='Y', kind='scatter', ax=ax)
-df.plot(x='X',y='Y_hat', kind='line', ax=ax)
+ax = df.plot(x='X',y='Y', kind='scatter', ax=ax)
+ax = df.plot(x='X',y='Y_hat', kind='line', ax=ax)
+plt.show()
 ```
 
 We can see that this model does a poor job of estimating the relationship.
@@ -98,9 +111,16 @@ df['Y_hat'] = α + β * df['X']
 ```
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: "Scatter plot with a line of fit #2"
+    name: sales-v-temp3
+---
 fig, ax = plt.subplots()
-df.plot(x='X',y='Y', kind='scatter', ax=ax)
-df.plot(x='X',y='Y_hat', kind='line', ax=ax)
+ax = df.plot(x='X',y='Y', kind='scatter', ax=ax)
+ax = df.plot(x='X',y='Y_hat', kind='line', ax=ax)
+plt.show()
 ```
 
 ```{code-cell} ipython3
@@ -109,12 +129,19 @@ df['Y_hat'] = α + β * df['X']
 ```
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: "Scatter plot with a line of fit #3"
+    name: sales-v-temp4
+---
 fig, ax = plt.subplots()
-df.plot(x='X',y='Y', kind='scatter', ax=ax)
-df.plot(x='X',y='Y_hat', kind='line', ax=ax, color='g')
+ax = df.plot(x='X',y='Y', kind='scatter', ax=ax)
+ax = df.plot(x='X',y='Y_hat', kind='line', ax=ax, color='g')
+plt.show()
 ```
 
-However we need to think about formalising this guessing process by thinking of this problem as an optimization problem. 
+However we need to think about formalizing this guessing process by thinking of this problem as an optimization problem. 
 
 Let's consider the error $\epsilon_i$ and define the difference between the observed values $y_i$ and the estimated values $\hat{y}_i$ which we will call the residuals
 
@@ -134,13 +161,20 @@ df
 ```
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: "Plot of the residuals"
+    name: plt-residuals
+---
 fig, ax = plt.subplots()
-df.plot(x='X',y='Y', kind='scatter', ax=ax)
-df.plot(x='X',y='Y_hat', kind='line', ax=ax, color='g')
-plt.vlines(df['X'], df['Y_hat'], df['Y'], color='r');
+ax = df.plot(x='X',y='Y', kind='scatter', ax=ax)
+ax = df.plot(x='X',y='Y_hat', kind='line', ax=ax, color='g')
+plt.vlines(df['X'], df['Y_hat'], df['Y'], color='r')
+plt.show()
 ```
 
-The Ordinary Least Squares (OLS) method, as the name suggests, chooses $\alpha$ and $\beta$ in such a way that **minimises** the Sum of the Squared Residuals (SSR). 
+The Ordinary Least Squares (OLS) method chooses $\alpha$ and $\beta$ in such a way that **minimizes** the sum of the squared residuals (SSR). 
 
 $$
 \min_{\alpha,\beta} \sum_{i=1}^{N}{\hat{e}_i^2} = \min_{\alpha,\beta} \sum_{i=1}^{N}{(y_i - \alpha - \beta x_i)^2}
@@ -152,7 +186,7 @@ $$
 C = \sum_{i=1}^{N}{(y_i - \alpha - \beta x_i)^2}
 $$
 
-that we would like to minimise with parameters $\alpha$ and $\beta$.
+that we would like to minimize with parameters $\alpha$ and $\beta$.
 
 ## How does error change with respect to $\alpha$ and $\beta$
 
@@ -173,9 +207,15 @@ for β in np.arange(20,100,0.5):
     errors[β] = abs((α_optimal + β * df['X']) - df['Y']).sum()
 ```
 
-Ploting the error
+Plotting the error
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: "Plotting the error"
+    name: plt-errors
+---
 ax = pd.Series(errors).plot(xlabel='β', ylabel='error')
 plt.axvline(β_optimal, color='r');
 ```
@@ -188,9 +228,15 @@ for α in np.arange(-500,500,5):
     errors[α] = abs((α + β_optimal * df['X']) - df['Y']).sum()
 ```
 
-Ploting the error
+Plotting the error
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: "Plotting the error (2)"
+    name: plt-errors-2
+---
 ax = pd.Series(errors).plot(xlabel='α', ylabel='error')
 plt.axvline(α_optimal, color='r');
 ```
@@ -322,21 +368,20 @@ print(α)
 Now we can plot the OLS solution
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: "OLS line of best fit"
+    name: plt-ols
+---
 df['Y_hat'] = α + β * df['X']
 df['error'] = df['Y_hat'] - df['Y']
 
 fig, ax = plt.subplots()
-df.plot(x='X',y='Y', kind='scatter', ax=ax)
-df.plot(x='X',y='Y_hat', kind='line', ax=ax, color='g')
+ax = df.plot(x='X',y='Y', kind='scatter', ax=ax)
+ax = df.plot(x='X',y='Y_hat', kind='line', ax=ax, color='g')
 plt.vlines(df['X'], df['Y_hat'], df['Y'], color='r');
 ```
-
-:::{admonition} Why use OLS?
-TODO
-
-1. Discuss mathematical properties for why we have chosen OLS
-:::
-
 
 :::{exercise}
 :label: slr-ex1
@@ -347,7 +392,7 @@ Let's consider two economic variables GDP per capita and Life Expectancy.
 
 1. What do you think their relationship would be?
 2. Gather some data [from our world in data](https://ourworldindata.org)
-3. Use `pandas` to import the `csv` formated data and plot a few different countries of interest
+3. Use `pandas` to import the `csv` formatted data and plot a few different countries of interest
 4. Use {eq}`eq:optimal-alpha` and {eq}`eq:optimal-beta` to compute optimal values for  $\alpha$ and $\beta$
 5. Plot the line of best fit found using OLS
 6. Interpret the coefficients and write a summary sentence of the relationship between GDP per capita and Life Expectancy
@@ -363,13 +408,13 @@ Let's consider two economic variables GDP per capita and Life Expectancy.
 <iframe src="https://ourworldindata.org/grapher/life-expectancy-vs-gdp-per-capita" loading="lazy" style="width: 100%; height: 600px; border: 0px none;"></iframe>
 :::
 
-You can download {download}`a copy of the data here <_static/lecture_specific/simple_linear_regression/life-expectancy-vs-gdp-per-capita.csv>` if you get stuck
+You can download {download}`a copy of the data here <https://github.com/QuantEcon/lecture-python-intro/raw/main/lectures/_static/lecture_specific/simple_linear_regression/life-expectancy-vs-gdp-per-capita.csv>` if you get stuck
 
 **Q3:** Use `pandas` to import the `csv` formatted data and plot a few different countries of interest
 
 ```{code-cell} ipython3
-fl = "_static/lecture_specific/simple_linear_regression/life-expectancy-vs-gdp-per-capita.csv"  # TODO: Replace with GitHub link
-df = pd.read_csv(fl, nrows=10)
+data_url = "https://github.com/QuantEcon/lecture-python-intro/raw/main/lectures/_static/lecture_specific/simple_linear_regression/life-expectancy-vs-gdp-per-capita.csv"
+df = pd.read_csv(data_url, nrows=10)
 ```
 
 ```{code-cell} ipython3
@@ -386,7 +431,7 @@ So let's built a list of the columns we want to import
 
 ```{code-cell} ipython3
 cols = ['Code', 'Year', 'Life expectancy at birth (historical)', 'GDP per capita']
-df = pd.read_csv(fl, usecols=cols)
+df = pd.read_csv(data_url, usecols=cols)
 df
 ```
 
@@ -453,7 +498,7 @@ df = df[df.year == 2018].reset_index(drop=True).copy()
 ```
 
 ```{code-cell} ipython3
-df.plot(x='gdppc', y='life_expectancy', kind='scatter',  xlabel="GDP per capita", ylabel="Life Expectancy (Years)",);
+df.plot(x='gdppc', y='life_expectancy', kind='scatter',  xlabel="GDP per capita", ylabel="Life expectancy (years)",);
 ```
 
 This data shows a couple of interesting relationships.
@@ -461,16 +506,12 @@ This data shows a couple of interesting relationships.
 1. there are a number of countries with similar GDP per capita levels but a wide range in Life Expectancy
 2. there appears to be a positive relationship between GDP per capita and life expectancy. Countries with higher GDP per capita tend to have higher life expectancy outcomes
 
-Even though OLS is solving linear equations -- one option we have is to transform the variables, such as through a log transform, and then use OLS to estimate the transformed variables
-
-:::{tip}
-ln -> ln == elasticities
-:::
+Even though OLS is solving linear equations -- one option we have is to transform the variables, such as through a log transform, and then use OLS to estimate the transformed variables.
 
 By specifying `logx` you can plot the GDP per Capita data on a log scale
 
 ```{code-cell} ipython3
-df.plot(x='gdppc', y='life_expectancy', kind='scatter',  xlabel="GDP per capita", ylabel="Life Expectancy (Years)", logx=True);
+df.plot(x='gdppc', y='life_expectancy', kind='scatter',  xlabel="GDP per capita", ylabel="Life expectancy (years)", logx=True);
 ```
 
 As you can see from this transformation -- a linear model fits the shape of the data more closely.
@@ -528,9 +569,9 @@ plt.vlines(data['log_gdppc'], data['life_expectancy_hat'], data['life_expectancy
 :::{exercise}
 :label: slr-ex2
 
-Minimising the sum of squares is not the **only** way to generate the line of best fit. 
+Minimizing the sum of squares is not the **only** way to generate the line of best fit. 
 
-For example, we could also consider minimising the sum of the **absolute values**, that would give less weight to outliers. 
+For example, we could also consider minimizing the sum of the **absolute values**, that would give less weight to outliers. 
 
 Solve for $\alpha$ and $\beta$ using the least absolute values
 :::

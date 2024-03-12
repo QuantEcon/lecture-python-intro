@@ -72,9 +72,9 @@ We say equation**s**, plural, because there are $T+1$ equations, one for each $t
 
 Equations {eq}`eq:Euler1` assert that price paid to purchase  the asset at time $t$  equals the payout $d_t$  plus the price at time  $t+1$ multiplied by a time discount factor $\delta$.
 
-Discounting tomorrow's price  by multiplying it by  $\delta$ accounts for the ``value of waiting one period''.
+Discounting tomorrow's price  by multiplying it by  $\delta$ accounts for the "value of waiting one period".
 
-We want to solve the system of $T+1$ equations {eq}`eq:Euler1` for the asset price sequence  $\{p_t\}_{t=0}^T $ as a function of the divident sequence $\{d_t\}_{t=0}^T $ and the exogenous terminal
+We want to solve the system of $T+1$ equations {eq}`eq:Euler1` for the asset price sequence  $\{p_t\}_{t=0}^T $ as a function of the dividend sequence $\{d_t\}_{t=0}^T $ and the exogenous terminal
 price  $p_{T+1}^*$.
 
 A system of equations like {eq}`eq:Euler1` is an example of a linear  **difference equation**.
