@@ -583,8 +583,6 @@ plt.show()
 
 We can see that across 50 years of data and all countries (including low and high income countries) the measure varies between 20 and 65.
 
-This variation would be even smaller for the subset of wealthy countries. 
-
 Let us zoom in a little on the US data and add some trendlines.
 
 {numref}`gini_usa1` suggests there is a change in trend around the year 1981
