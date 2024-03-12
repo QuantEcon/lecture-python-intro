@@ -870,8 +870,12 @@ fig.show()
 This figure is built using `plotly` and is {ref}` available on the website <fig:plotly-gini-gdppc-years>`
 ```
 
-This plot shows that all three western economies gdp per capita has grown over time with some fluctuations
-in the Gini coefficient. However the appears to be significant structural differences between Norway and the USA.  
+This plot shows that all three western economies GDP per capita has grown over time with some fluctuations
+in the Gini coefficient. From the early 80's the United Kingdom and the US economies both saw increases in income 
+inequality. 
+
+Interestingly, since the year 2000, the United Kingdom saw a decline in income inequality while
+the US exhibits persistent but stable levels around a Gini coefficient of 40. 
 
 ## Top shares
 
