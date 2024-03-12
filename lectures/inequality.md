@@ -416,9 +416,7 @@ $$
 
 It is an average measure of deviation from the line of equality.
 
-+++
-
-### Gini coefficient dynamics of simulated data
+### Gini coefficient of simulated data
 
 Let's examine the Gini coefficient in some simulations.
 
