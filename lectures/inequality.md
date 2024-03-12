@@ -558,7 +558,9 @@ mystnb:
 ---
 fig, ax = plt.subplots()
 ax = data_usa.plot(ax=ax)
-ax.set_ylim(0,data_usa.max()+5)
+ax.set_ylim(0, data_usa.max() + 5)
+ax.set_ylabel("Gini coefficient")
+ax.set_xlabel("year")
 plt.show()
 ```
 
@@ -582,7 +584,7 @@ gini_all = gini_all.unstack(level='economy').dropna()
 gini_all.plot(kind="hist", 
               bins=20,
               title="Gini coefficient"
-              )
+             )
 plt.show()
 ```
 
