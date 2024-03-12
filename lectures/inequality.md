@@ -341,19 +341,10 @@ G :=
      {2n\sum_{i=1}^n w_i}.
 $$ (eq:gini)
 
-
 The Gini coefficient is closely related to the Lorenz curve.
 
 In fact, it can be shown that its value is twice the area between the line of
 equality and the Lorenz curve (e.g., the shaded area in the following Figure below).
-
-```{note}
-Another way to think of the gini coefficient is the area between the 45-degree line of 
-perfect equality and the Lorenz curve minus the area below the Lorenz curve divided by
-the total area below the 45-degree line. 
-
-In other words, it is a measure of average deviation from the line of equality.
-```
 
 The idea is that $G=0$ indicates complete equality, while $G=1$ indicates complete inequality.
 
@@ -363,8 +354,6 @@ mystnb:
   figure:
     caption: Shaded Lorenz curve of simulated data
     name: lorenz_gini
-  image:
-    alt: lorenz_gini
 ---
 fig, ax = plt.subplots()
 
@@ -386,6 +375,48 @@ ax.text(0.04, 0.5, r'$G = 2 \times$ shaded area')
   
 plt.show()
 ```
+
+Another way to think of the Gini coefficient is as a ratio of the area between the 45-degree line of 
+perfect equality and the Lorenz curve (A) divided by the total area below the 45-degree line (A+B). 
+
+```{seealso}
+The World in Data project has a [nice graphical exploration of the Lorenz curve and the Gini coefficient](https://ourworldindata.org/what-is-the-gini-coefficient])
+```
+
+```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: Lorenz curve and Gini coefficient
+    name: lorenz_gini2
+---
+fig, ax = plt.subplots()
+
+f_vals, l_vals = lorenz_curve(sample)
+
+ax.plot(f_vals, l_vals, label='lognormal sample', lw=2)
+ax.plot(f_vals, f_vals, label='equality', lw=2)
+
+ax.fill_between(f_vals, l_vals, f_vals, alpha=0.06)
+ax.fill_between(f_vals, l_vals, np.zeros_like(f_vals), alpha=0.06)
+
+ax.set_ylim((0, 1))
+ax.set_xlim((0, 1))
+
+ax.text(0.55, 0.4, 'A')
+ax.text(0.75, 0.15, 'B')
+
+ax.legend()
+plt.show()
+```
+
+$$
+G = \frac{A}{A+B}
+$$
+
+It is an average measure of deviation from the line of equality.
+
++++
 
 ### Gini coefficient dynamics of simulated data
 
