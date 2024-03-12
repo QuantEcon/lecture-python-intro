@@ -798,7 +798,7 @@ plt.show()
 
 From this plot we can observe that the USA has a higher Gini coefficient (i.e. higher income inequality) when compared to the UK and Norway. 
 
-Norway has the lowest Gini coefficient over the three economies from the year 2003, and it is consistently substantially lower than the USA. 
+Norway has the lowest Gini coefficient over the three economies it is substantially lower than the US.
 
 ### Gini Coefficient and GDP per capita (over time)
 
