@@ -629,8 +629,8 @@ mystnb:
 x = data_usa.dropna().index.values
 y = data_usa.dropna().values
 plt.scatter(x,y)
-plt.plot(x1, a1*x1+b1, 'r-')
-plt.plot(x2, a2*x2+b2, 'y-')
+plt.plot(x1, a1*x1+b1)
+plt.plot(x2, a2*x2+b2)
 plt.title("USA gini coefficient dynamics")
 plt.legend(['Gini coefficient', 'Trend (before 1981)', 'Trend (after 1981)'])
 plt.ylim(25,45)
