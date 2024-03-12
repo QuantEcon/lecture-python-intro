@@ -102,18 +102,18 @@ The curve $L$ is just a function $y = L(x)$ that we can plot and interpret.
 
 To create it we first generate data points $(x_i, y_i)$  according to
 
+```{prf:definition}
 $$
 x_i = \frac{i}{n},
 \qquad
 y_i = \frac{\sum_{j \leq i} w_j}{\sum_{j \leq n} w_j},
 \qquad i = 1, \ldots, n
 $$
+```
 
 Now the Lorenz curve $L$ is formed from these data points using interpolation.
 
-```{tip}
 If we use a line plot in `matplotlib`, the interpolation will be done for us.
-```
 
 The meaning of the statement $y = L(x)$ is that the lowest $(100
 \times x)$\% of people have $(100 \times y)$\% of all wealth.
@@ -337,11 +337,15 @@ smallest to largest.
 
 The Gini coefficient is defined for the sample above as 
 
+```{prf:definition}
+:label: define-gini
+
 $$
 G :=
 \frac{\sum_{i=1}^n \sum_{j = 1}^n |w_j - w_i|}
      {2n\sum_{i=1}^n w_i}.
-$$ (eq:gini)
+$$ ()
+```
 
 The Gini coefficient is closely related to the Lorenz curve.
 
@@ -529,6 +533,7 @@ Let us fetch the data for the USA and request for it to be returned as a `DataFr
 ```{code-cell} ipython3
 data = wb.data.DataFrame("SI.POV.GINI", "USA")
 data.head(n=5)
+data.columns = data.columns.map(lambda x: int(x.replace('YR',''))) # remove 'YR' in index and convert to int
 ```
 
 ```{tip}
@@ -559,8 +564,9 @@ plt.show()
 
 As can be seen in {numref}`gini_usa1` the Gini coefficient:
 
-1. moves slowly over time, and 
-2. does not have significant variation in the full range from 0 to 100.
+1. trended upward from 1980 to 2020 and then dropped slightly following the COVID pandemic
+1. moves slowly over time
+3. does not have significant variation in the full range from 0 to 100
 
 Using `pandas` we can take a quick look across all countries and all years in the World Bank dataset. 
 
@@ -569,6 +575,7 @@ By leaving off the `"USA"` this function returns all Gini data that is available
 ```{code-cell} ipython3
 # Fetch gini data for all countries
 gini_all = wb.data.DataFrame("SI.POV.GINI")
+gini_all.columns = gini_all.columns.map(lambda x: int(x.replace('YR',''))) # remove 'YR' in index and convert to int
 
 # Create a long series with a multi-index of the data to get global min and max values
 gini_all = gini_all.unstack(level='economy').dropna()
@@ -588,7 +595,6 @@ Let us zoom in a little on the US data and add some trendlines.
 {numref}`gini_usa1` suggests there is a change in trend around the year 1981
 
 ```{code-cell} ipython3
-data_usa.index = data_usa.index.map(lambda x: int(x.replace('YR',''))) # remove 'YR' in index and convert to int
 # Use pandas filters to find data before 1981
 pre_1981 = data_usa[data_usa.index <= 1981]
 # Use pandas filters to find data after 1981
@@ -808,7 +814,9 @@ Let's take another look at the USA, Norway, and the United Kingdom.
 
 ```{code-cell} ipython3
 countries = ['USA', 'NOR', 'GBR']
-gdppc = wb.data.DataFrame("NY.GDP.PCAP.KD", countries).T
+gdppc = wb.data.DataFrame("NY.GDP.PCAP.KD", countries)
+gdppc.columns = gdppc.columns.map(lambda x: int(x.replace('YR',''))) # remove 'YR' in index and convert to int
+gdppc = gdppc.T
 ```
 
 We can rearrange the data so that we can plot gdp per capita and the Gini coefficient across years
@@ -829,12 +837,6 @@ plot_data = plot_data.merge(pgdppc, left_index=True, right_index=True)
 plot_data.reset_index(inplace=True)
 ```
 
-We will transform the year column to remove the 'YR' text and return an integer.
-
-```{code-cell} ipython3
-plot_data.year = plot_data.year.map(lambda x: int(x.replace('YR','')))
-```
-
 Now using plotly to build a plot with gdp per capita on the y-axis and the Gini coefficient on the x-axis.
 
 ```{code-cell} ipython3
@@ -853,6 +855,7 @@ plot_data.year = plot_data.year.map(lambda x: x if x in labels else None)
 ```
 
 (fig:plotly-gini-gdppc-years)=
+
 ```{code-cell} ipython3
 fig = px.line(plot_data, 
               x = "gini", 
