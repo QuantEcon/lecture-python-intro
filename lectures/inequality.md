@@ -698,27 +698,12 @@ ginis.head(n=5)
 
 Let's plot the Gini coefficients for net wealth, labor income and total income.
 
-Looking at each data series we see an outlier in Gini coefficient computed for 1965 for `labour income`. 
-
-We will smooth our data and take an average of the data either side of it for the time being.
-
-```{code-cell} ipython3
-ginis["l_income"][1965] = (ginis["l_income"][1962] + ginis["l_income"][1968]) / 2
-ax = ginis["l_income"].plot()
-ax.set_ylabel("Gini coefficient")
-plt.show()
-```
-
-Now we can focus on US net wealth
-
 ```{code-cell} ipython3
 ---
 mystnb:
   figure:
     caption: Gini coefficients of US net wealth
     name: gini_wealth_us
-  image:
-    alt: gini_wealth_us
 ---
 fig, ax = plt.subplots()
 ax.plot(years, ginis["n_wealth"], marker='o')
@@ -727,7 +712,15 @@ ax.set_ylabel("Gini coefficient")
 plt.show()
 ```
 
-and look at US income for both labour and a total income (excl. capital gains)
+Looking at each data series we see an outlier in Gini coefficient computed for 1965 for `labour income`. 
+
+We will smooth our data and take an average of the data either side of it for the time being.
+
+```{code-cell} ipython3
+ginis["l_income"][1965] = (ginis["l_income"][1962] + ginis["l_income"][1968]) / 2
+```
+
+Now looking at US income for both labour and a total income.
 
 ```{code-cell} ipython3
 ---
@@ -735,8 +728,6 @@ mystnb:
   figure:
     caption: Gini coefficients of US income
     name: gini_income_us
-  image:
-    alt: gini_income_us
 ---
 fig, ax = plt.subplots()
 ax.plot(years, ginis["l_income"], marker='o', label="labor income")
@@ -750,6 +741,12 @@ plt.show()
 Now we can compare net wealth and labour income.
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: Gini coefficients of US net wealth and labour income
+    name: gini_wealth_us
+---
 fig, ax = plt.subplots()
 ax.plot(years, ginis["n_wealth"], marker='o', label="net wealth")
 ax.plot(years, ginis["l_income"], marker='o', label="labour income")
@@ -791,11 +788,14 @@ data[['NOR']].dropna().head(n=5)
 
 The data for Norway in this dataset goes back to 1979 but there are gaps in the time series and matplotlib is not showing those data points. 
 
-We can use `dataframe.ffill()` to copy and bring forward the last known value in a series to fill in these gaps
+We can use the `.ffill()` method to copy and bring forward the last known value in a series to fill in these gaps
 
 ```{code-cell} ipython3
 data['NOR'] = data['NOR'].ffill()
-data[['USA','GBR', 'NOR']].plot(ylabel='gini coefficient')
+ax = data[['USA','GBR', 'NOR']].plot()
+ax.set_xlabel('year')
+ax.set_ylabel('Gini coefficient')
+plt.show()
 ```
 
 From this plot we can observe that the USA has a higher Gini coefficient (i.e. higher income inequality) when compared to the UK and Norway. 
@@ -854,6 +854,7 @@ labels = [1979, 1986, 1991, 1995, 2000, 2020, 2021, 2022] + list(range(min_year,
 plot_data.year = plot_data.year.map(lambda x: x if x in labels else None)
 ```
 
+(fig:plotly-gini-gdppc-years)=
 ```{code-cell} ipython3
 fig = px.line(plot_data, 
               x = "gini", 
@@ -865,6 +866,10 @@ fig = px.line(plot_data,
              )
 fig.update_traces(textposition="bottom right")
 fig.show()
+```
+
+```{only} latex
+This figure is built using `plotly` and is {ref}` available on the website <fig:plotly-gini-gdppc-years>`
 ```
 
 This plot shows that all three western economies gdp per capita has grown over time with some fluctuations
