@@ -16,13 +16,13 @@ kernelspec:
 ## Introduction
 
 
-This lecture is a sequel or prequel to another lecture {doc}`monetarist theory of  price levels <cagan_ree>`.
+This lecture is a sequel or prequel to another lecture {doc}`A monetarist theory of  price levels <cagan_ree>`.
 
-We'll use linear algebra to do some experiments with  an alternative "monetarist" or  "fiscal" theory of  price levels".
+We'll use linear algebra to do some experiments with  an alternative "monetarist" or  "fiscal" theory of  price levels.
 
-Like the model in this lecture {doc}`monetarist theory of  price levels <cagan_ree>`, the model asserts that when a government persistently spends more than it collects in taxes and prints money to finance the shortfall, it puts upward pressure on the price level and generates persistent inflation.
+Like the model in this lecture {doc}`A monetarist theory of  price levels <cagan_ree>`, the model asserts that when a government persistently spends more than it collects in taxes and prints money to finance the shortfall, it puts upward pressure on the price level and generates persistent inflation.
 
-Instead of the "perfect foresight" or "rational expectations" version of the model in this lecture {doc}`monetarist theory of  price levels <cagan_ree>`, our model in the present lecture is an "adaptive expectations"  version of a model that Philip Cagan {cite}`Cagan`  used to study the monetary dynamics of hyperinflations.  
+Instead of the "perfect foresight" or "rational expectations" version of the model in this lecture {doc}`A monetarist theory of  price levels <cagan_ree>`, our model in the present lecture is an "adaptive expectations"  version of a model that Philip Cagan {cite}`Cagan`  used to study the monetary dynamics of hyperinflations.  
 
 It combines these components:
 
@@ -54,7 +54,7 @@ Let
 * $\pi_0^*$ public's initial expected rate of inflation between time $0$ and time $1$.
   
   
-The demand for real balances $\exp\left(\frac{m_t^d}{p_t}\right)$ is governed by the following  version of the Cagan demand function
+The demand for real balances $\exp\left(m_t^d-p_t\right)$ is governed by the following  version of the Cagan demand function
   
 $$  
 m_t^d - p_t = -\alpha \pi_t^* \: , \: \alpha > 0 ; \quad t = 0, 1, \ldots, T .
@@ -88,7 +88,7 @@ $$ (eq:adaptexpn)
 As exogenous inputs into the model, we take initial conditions $m_0, \pi_0^*$
 and a money growth sequence $\mu = \{\mu_t\}_{t=0}^T$.  
 
-As endogenous outputs of our model we want to find sequences $\pi = \{\pi_t\}_{t=0}^T, p = \{p_t\}_{t=0}^T$ as functions of the endogenous inputs.
+As endogenous outputs of our model we want to find sequences $\pi = \{\pi_t\}_{t=0}^T, p = \{p_t\}_{t=0}^T$ as functions of the exogenous inputs.
 
 We'll do some mental experiments by studying how the model outputs vary as we vary
 the model inputs.
@@ -278,7 +278,7 @@ $$ (eq:notre)
 This outcome is typical in models in which adaptive expectations hypothesis like equation {eq}`eq:adaptexpn` appear as a
 component.  
 
-In this lecture {doc}`monetarist theory of the price level <cagan_ree>`, we studied a version of the model that replaces hypothesis {eq}`eq:adaptexpn` with
+In this lecture {doc}`A monetarist theory of the price level <cagan_ree>`, we studied a version of the model that replaces hypothesis {eq}`eq:adaptexpn` with
 a "perfect foresight" or "rational expectations" hypothesis.
 
 
@@ -296,7 +296,7 @@ import matplotlib.pyplot as plt
 Cagan_Adaptive = namedtuple("Cagan_Adaptive", 
                         ["α", "m0", "Eπ0", "T", "λ"])
 
-def create_cagan_model(α, m0, Eπ0, T, λ):
+def create_cagan_adaptive_model(α, m0, Eπ0, T, λ):
     return Cagan_Adaptive(α, m0, Eπ0, T, λ)
 ```
 +++ {"user_expressions": []}
@@ -314,7 +314,7 @@ m0 = 1
 μ0 = 0.5
 μ_star = 0
 
-md = create_cagan_model(α=α, m0=m0, Eπ0=μ0, T=T, λ=λ)
+md = create_cagan_adaptive_model(α=α, m0=m0, Eπ0=μ0, T=T, λ=λ)
 ```
 +++ {"user_expressions": []}
 
@@ -431,7 +431,7 @@ $$
      \end{cases}
 $$
 
-Notice that  we studied exactly this experiment  in a rational expectations version of the model in this lecture {doc}`monetarist theory of the price level <cagan_ree>`.
+Notice that  we studied exactly this experiment  in a rational expectations version of the model in this lecture {doc}`A monetarist theory of the price level <cagan_ree>`.
 
 So by comparing outcomes across the two lectures, we can learn about consequences of assuming adaptive expectations, as we do here, instead of  rational expectations as we assumed in that other lecture.
 
@@ -442,7 +442,7 @@ So by comparing outcomes across the two lectures, we can learn about consequence
 π_seq_1, Eπ_seq_1, m_seq_1, p_seq_1 = solve_and_plot(md, μ_seq_1)
 ```
 
-We invite the reader to compare outcomes with those under rational expectations studied in another lecture {doc}`monetarist theory of  price levels <cagan_ree>`.
+We invite the reader to compare outcomes with those under rational expectations studied in another lecture {doc}`A monetarist theory of  price levels <cagan_ree>`.
 
 Please note how the actual inflation rate $\pi_t$ "overshoots" its ultimate steady-state value at the time of the sudden reduction in the rate of growth of the money supply at time $T_1$.
 
