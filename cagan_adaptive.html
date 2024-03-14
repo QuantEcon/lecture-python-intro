@@ -122,7 +122,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="15. Geometric Series for Elementary Economics" href="geom_series.html" />
+    <link rel="next" title="15. Eigenvalues and Eigenvectors" href="eigen_I.html" />
     <link rel="prev" title="13. A Monetarist Theory of Price Levels" href="cagan_ree.html" />
 
 <!-- Normal Meta Tags -->
@@ -243,10 +243,10 @@ const thebe_selector_output = ".output, .cell_output"
 <h1><span class="section-number">14. </span>A Monetarist Theory of Price Levels with Adaptive Expectations<a class="headerlink" href="#a-monetarist-theory-of-price-levels-with-adaptive-expectations" title="Permalink to this heading">#</a></h1>
 <section id="introduction">
 <h2><span class="section-number">14.1. </span>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
-<p>This lecture is a sequel or prequel to another lecture <a class="reference internal" href="cagan_ree.html"><span class="doc">monetarist theory of  price levels</span></a>.</p>
-<p>We’ll use linear algebra to do some experiments with  an alternative “monetarist” or  “fiscal” theory of  price levels”.</p>
-<p>Like the model in this lecture <a class="reference internal" href="cagan_ree.html"><span class="doc">monetarist theory of  price levels</span></a>, the model asserts that when a government persistently spends more than it collects in taxes and prints money to finance the shortfall, it puts upward pressure on the price level and generates persistent inflation.</p>
-<p>Instead of the “perfect foresight” or “rational expectations” version of the model in this lecture <a class="reference internal" href="cagan_ree.html"><span class="doc">monetarist theory of  price levels</span></a>, our model in the present lecture is an “adaptive expectations”  version of a model that Philip Cagan <span id="id1">[<a class="reference internal" href="zreferences.html#id107" title="Philip Cagan. The monetary dynamics of hyperinflation. In Milton Friedman, editor, Studies in the Quantity Theory of Money, pages 25–117. University of Chicago Press, Chicago, 1956.">Cag56</a>]</span>  used to study the monetary dynamics of hyperinflations.</p>
+<p>This lecture is a sequel or prequel to the lecture <a class="reference internal" href="cagan_ree.html"><span class="doc">A Monetarist Theory of  Price Levels</span></a>.</p>
+<p>We’ll use linear algebra to do some experiments with  an alternative “monetarist” or  “fiscal” theory of  price levels.</p>
+<p>Like the model in <a class="reference internal" href="cagan_ree.html"><span class="doc">A Monetarist Theory of  Price Levels</span></a>, the model asserts that when a government persistently spends more than it collects in taxes and prints money to finance the shortfall, it puts upward pressure on the price level and generates persistent inflation.</p>
+<p>Instead of the “perfect foresight” or “rational expectations” version of the model in <a class="reference internal" href="cagan_ree.html"><span class="doc">A Monetarist Theory of  Price Levels</span></a>, our model in the present lecture is an “adaptive expectations”  version of a model that Philip Cagan <span id="id1">[<a class="reference internal" href="zreferences.html#id107" title="Philip Cagan. The monetary dynamics of hyperinflation. In Milton Friedman, editor, Studies in the Quantity Theory of Money, pages 25–117. University of Chicago Press, Chicago, 1956.">Cag56</a>]</span>  used to study the monetary dynamics of hyperinflations.</p>
 <p>It combines these components:</p>
 <ul class="simple">
 <li><p>a demand function for real money balances that asserts that the logarithm of the quantity of real balances demanded depends inversely on the public’s expected rate of inflation</p></li>
@@ -255,7 +255,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li><p>an exogenous sequence of rates of growth of the money supply</p></li>
 </ul>
 <p>Our model stays quite close to Cagan’s original specification.</p>
-<p>As in the <a class="reference internal" href="pv.html"><span class="doc">present values</span></a> and <a class="reference internal" href="cons_smooth.html"><span class="doc">consumption smoothing</span></a> lectures, the only linear algebra operations that we’ll be  using are matrix multiplication and matrix inversion.</p>
+<p>As in the lectures <a class="reference internal" href="pv.html"><span class="doc">Present Values</span></a> and <a class="reference internal" href="cons_smooth.html"><span class="doc">Consumption Smoothing</span></a>, the only linear algebra operations that we’ll be  using are matrix multiplication and matrix inversion.</p>
 <p>To facilitate using  linear matrix algebra as our principal mathematical tool, we’ll use a finite horizon version of
 the model.</p>
 </section>
@@ -271,7 +271,7 @@ the model.</p>
 <li><p><span class="math notranslate nohighlight">\(T\)</span> the horizon – i.e., the last period for which the model will determine <span class="math notranslate nohighlight">\(p_t\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(\pi_0^*\)</span> public’s initial expected rate of inflation between time <span class="math notranslate nohighlight">\(0\)</span> and time <span class="math notranslate nohighlight">\(1\)</span>.</p></li>
 </ul>
-<p>The demand for real balances <span class="math notranslate nohighlight">\(\exp\left(\frac{m_t^d}{p_t}\right)\)</span> is governed by the following  version of the Cagan demand function</p>
+<p>The demand for real balances <span class="math notranslate nohighlight">\(\exp\left(m_t^d-p_t\right)\)</span> is governed by the following  version of the Cagan demand function</p>
 <div class="math notranslate nohighlight" id="equation-eq-caganmd-ad">
 <span class="eqno">(14.1)<a class="headerlink" href="#equation-eq-caganmd-ad" title="Permalink to this equation">#</a></span>\[  
 m_t^d - p_t = -\alpha \pi_t^* \: , \: \alpha &gt; 0 ; \quad t = 0, 1, \ldots, T .
@@ -298,7 +298,7 @@ by the Friedman-Cagan adaptive expectations scheme</p>
 \]</div>
 <p>As exogenous inputs into the model, we take initial conditions <span class="math notranslate nohighlight">\(m_0, \pi_0^*\)</span>
 and a money growth sequence <span class="math notranslate nohighlight">\(\mu = \{\mu_t\}_{t=0}^T\)</span>.</p>
-<p>As endogenous outputs of our model we want to find sequences <span class="math notranslate nohighlight">\(\pi = \{\pi_t\}_{t=0}^T, p = \{p_t\}_{t=0}^T\)</span> as functions of the endogenous inputs.</p>
+<p>As endogenous outputs of our model we want to find sequences <span class="math notranslate nohighlight">\(\pi = \{\pi_t\}_{t=0}^T, p = \{p_t\}_{t=0}^T\)</span> as functions of the exogenous inputs.</p>
 <p>We’ll do some mental experiments by studying how the model outputs vary as we vary
 the model inputs.</p>
 </section>
@@ -462,7 +462,7 @@ p = m + \alpha \hat \pi^*
 \]</div>
 <p>This outcome is typical in models in which adaptive expectations hypothesis like equation <a class="reference internal" href="#equation-eq-adaptexpn">(14.4)</a> appear as a
 component.</p>
-<p>In this lecture <a class="reference internal" href="cagan_ree.html"><span class="doc">monetarist theory of the price level</span></a>, we studied a version of the model that replaces hypothesis <a class="reference internal" href="#equation-eq-adaptexpn">(14.4)</a> with
+<p>In <a class="reference internal" href="cagan_ree.html"><span class="doc">A Monetarist Theory of  Price Levels</span></a> we studied a version of the model that replaces hypothesis <a class="reference internal" href="#equation-eq-adaptexpn">(14.4)</a> with
 a “perfect foresight” or “rational expectations” hypothesis.</p>
 <p>But now, let’s dive in and do some computations with the adaptive expectations version of the model.</p>
 <p>As usual, we’ll start by importing some Python modules.</p>
@@ -480,7 +480,7 @@ a “perfect foresight” or “rational expectations” hypothesis.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Cagan_Adaptive</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s2">&quot;Cagan_Adaptive&quot;</span><span class="p">,</span> 
                         <span class="p">[</span><span class="s2">&quot;α&quot;</span><span class="p">,</span> <span class="s2">&quot;m0&quot;</span><span class="p">,</span> <span class="s2">&quot;Eπ0&quot;</span><span class="p">,</span> <span class="s2">&quot;T&quot;</span><span class="p">,</span> <span class="s2">&quot;λ&quot;</span><span class="p">])</span>
 
-<span class="k">def</span> <span class="nf">create_cagan_model</span><span class="p">(</span><span class="n">α</span><span class="p">,</span> <span class="n">m0</span><span class="p">,</span> <span class="n">Eπ0</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">λ</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">create_cagan_adaptive_model</span><span class="p">(</span><span class="n">α</span><span class="p">,</span> <span class="n">m0</span><span class="p">,</span> <span class="n">Eπ0</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">λ</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">Cagan_Adaptive</span><span class="p">(</span><span class="n">α</span><span class="p">,</span> <span class="n">m0</span><span class="p">,</span> <span class="n">Eπ0</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">λ</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -499,7 +499,7 @@ a “perfect foresight” or “rational expectations” hypothesis.</p>
 <span class="n">μ0</span> <span class="o">=</span> <span class="mf">0.5</span>
 <span class="n">μ_star</span> <span class="o">=</span> <span class="mi">0</span>
 
-<span class="n">md</span> <span class="o">=</span> <span class="n">create_cagan_model</span><span class="p">(</span><span class="n">α</span><span class="o">=</span><span class="n">α</span><span class="p">,</span> <span class="n">m0</span><span class="o">=</span><span class="n">m0</span><span class="p">,</span> <span class="n">Eπ0</span><span class="o">=</span><span class="n">μ0</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="n">T</span><span class="p">,</span> <span class="n">λ</span><span class="o">=</span><span class="n">λ</span><span class="p">)</span>
+<span class="n">md</span> <span class="o">=</span> <span class="n">create_cagan_adaptive_model</span><span class="p">(</span><span class="n">α</span><span class="o">=</span><span class="n">α</span><span class="p">,</span> <span class="n">m0</span><span class="o">=</span><span class="n">m0</span><span class="p">,</span> <span class="n">Eπ0</span><span class="o">=</span><span class="n">μ0</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="n">T</span><span class="p">,</span> <span class="n">λ</span><span class="o">=</span><span class="n">λ</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -625,7 +625,7 @@ from <span class="math notranslate nohighlight">\(t=0\)</span> to <span class="m
      \mu^* , &amp; t \geq T_1
      \end{cases}
 \end{split}\]</div>
-<p>Notice that  we studied exactly this experiment  in a rational expectations version of the model in this lecture <a class="reference internal" href="cagan_ree.html"><span class="doc">monetarist theory of the price level</span></a>.</p>
+<p>Notice that  we studied exactly this experiment  in a rational expectations version of the model in <a class="reference internal" href="cagan_ree.html"><span class="doc">A Monetarist Theory of  Price Levels</span></a>.</p>
 <p>So by comparing outcomes across the two lectures, we can learn about consequences of assuming adaptive expectations, as we do here, instead of  rational expectations as we assumed in that other lecture.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -640,7 +640,7 @@ from <span class="math notranslate nohighlight">\(t=0\)</span> to <span class="m
 <a class="reference internal image-reference" href="_images/ca4f81898029a1d2b8ef05509b74060ed28b7daa670da8dd2a7163c6f76be5aa.png"><img alt="_images/ca4f81898029a1d2b8ef05509b74060ed28b7daa670da8dd2a7163c6f76be5aa.png" src="_images/ca4f81898029a1d2b8ef05509b74060ed28b7daa670da8dd2a7163c6f76be5aa.png" style="width: 80%;" /></a>
 </div>
 </div>
-<p>We invite the reader to compare outcomes with those under rational expectations studied in another lecture <a class="reference internal" href="cagan_ree.html"><span class="doc">monetarist theory of  price levels</span></a>.</p>
+<p>We invite the reader to compare outcomes with those under rational expectations studied in <a class="reference internal" href="cagan_ree.html"><span class="doc">A Monetarist Theory of  Price Levels</span></a>.</p>
 <p>Please note how the actual inflation rate <span class="math notranslate nohighlight">\(\pi_t\)</span> “overshoots” its ultimate steady-state value at the time of the sudden reduction in the rate of growth of the money supply at time <span class="math notranslate nohighlight">\(T_1\)</span>.</p>
 <p>We invite you to explain to  yourself the source of this overshooting and why it does not occur in  the rational expectations version of the model.</p>
 </section>
@@ -761,13 +761,13 @@ decline from a high value to a persistently low value.</p>
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
-  Essential Tools
+  Foundations
  </span>
 </p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
-  <a class="reference internal" href="complex_and_trig.html">
-   6. Complex Numbers and Trigonometry
+  <a class="reference internal" href="intro_supply_demand.html">
+   6. Introduction to Supply and Demand
   </a>
  </li>
  <li class="toctree-l1">
@@ -776,19 +776,19 @@ decline from a high value to a persistently low value.</p>
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="eigen_I.html">
-   8. Eigenvalues and Eigenvectors
+  <a class="reference internal" href="complex_and_trig.html">
+   8. Complex Numbers and Trigonometry
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="intro_supply_demand.html">
-   9. Introduction to Supply and Demand
+  <a class="reference internal" href="geom_series.html">
+   9. Geometric Series for Elementary Economics
   </a>
  </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
-  Linear Dynamics
+  Linear Dynamics: Finite Horizons
  </span>
 </p>
 <ul class="current nav bd-sidenav nav sidenav_l1">
@@ -817,9 +817,16 @@ decline from a high value to a persistently low value.</p>
    14. A Monetarist Theory of Price Levels with Adaptive Expectations
   </a>
  </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Linear Dynamics: Infinite Horizons
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
-  <a class="reference internal" href="geom_series.html">
-   15. Geometric Series for Elementary Economics
+  <a class="reference internal" href="eigen_I.html">
+   15. Eigenvalues and Eigenvectors
   </a>
  </li>
 </ul>

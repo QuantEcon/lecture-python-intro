@@ -27,20 +27,24 @@ In addition to what's in Anaconda, this lecture will need the following librarie
 
 ## Overview
 
-Markov chains are a standard way to model time series with some dependence
-between observations.
+Markov chains provide  a way to model situations in which  the past casts shadows on the future.
+
+By this we mean that observing measurements about a present situation can help us forecast future situations.
+
+This can be possible when there are statistical dependencies among measurements of something taken at different points of time.
 
 For example,
 
-* inflation next year depends on inflation this year
-* unemployment next month depends on unemployment this month
+* inflation next year might co-vary  with inflation this year
+* unemployment next month might co-vary with unemployment this month
 
-Markov chains are one of the workhorse models of economics and finance.
+
+Markov chains are a workhorse for economics and finance.
 
 The theory of Markov chains is beautiful and provides many insights into
 probability and dynamics.
 
-In this introductory lecture, we will
+In this  lecture, we will
 
 * review some of the key ideas from the theory of Markov chains and
 * show how Markov chains appear in some economic applications.
@@ -58,7 +62,7 @@ import matplotlib as mpl
 
 ## Definitions and examples
 
-In this section we provide the basic definitions and some elementary examples.
+In this section we provide some definitions and  elementary examples.
 
 (finite_dp_stoch_mat)=
 ### Stochastic matrices
@@ -82,13 +86,11 @@ Checking this in {ref}`the first exercises <mc1_ex_3>` below.
 
 
 ### Markov chains
-
 Now we can introduce Markov chains.
 
-First we will give some examples and then we will define them more carefully.
+Before defining a Markov chain rigorously, we'll  give some examples.
 
-At that time, the connection between stochastic matrices and Markov chains
-will become clear.
+(Among other things, defining a Markov chain will clarify a  connection between **stochastic matrices** and **Markov chains**.)
 
 
 (mc_eg2)=
@@ -292,8 +294,10 @@ We can also find a higher probability from collapse to growth in democratic regi
 
 ### Defining Markov chains
 
-So far we've given examples of Markov chains but now let's define them more
-carefully.
+
+So far we've given examples of Markov chains but we haven't defined them. 
+
+Let's do that now. 
 
 To begin, let $S$ be a finite set $\{x_1, \ldots, x_n\}$ with $n$ elements.
 
@@ -313,9 +317,9 @@ This means that, for any date $t$ and any state $y \in S$,
 = \mathbb P \{ X_{t+1}  = y \,|\, X_t, X_{t-1}, \ldots \}
 ```
 
-In other words, knowing the current state is enough to know probabilities for the future states.
+This means that once we know the current state $X_t$,  adding knowledge of earlier states $X_{t-1}, X_{t-2}$ provides no additional information about probabilities of **future** states.  
 
-In particular, the dynamics of a Markov chain are fully determined by the set of values
+Thus, the dynamics of a Markov chain are fully determined by the set of **conditional probabilities**
 
 ```{math}
 :label: mpp
@@ -352,7 +356,7 @@ By construction, the resulting process satisfies {eq}`mpp`.
 ```{index} single: Markov Chains; Simulation
 ```
 
-One natural way to answer questions about Markov chains is to simulate them.
+A good way to study a Markov chains is to simulate it.
 
 Let's start by doing this ourselves and then look at libraries that can help
 us.

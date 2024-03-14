@@ -285,17 +285,17 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="expanded">Hide code cell output</span>
 </summary>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: quantecon in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (0.7.1)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: numba&gt;=0.49.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from quantecon) (0.57.1)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: quantecon in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (0.7.2)
+Requirement already satisfied: numba&gt;=0.49.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from quantecon) (0.57.1)
 Requirement already satisfied: numpy&gt;=1.17.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from quantecon) (1.24.3)
 Requirement already satisfied: requests in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from quantecon) (2.31.0)
 Requirement already satisfied: scipy&gt;=1.5.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from quantecon) (1.11.1)
 Requirement already satisfied: sympy in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from quantecon) (1.11.1)
 Requirement already satisfied: llvmlite&lt;0.41,&gt;=0.40.0dev0 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from numba&gt;=0.49.0-&gt;quantecon) (0.40.0)
 Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from requests-&gt;quantecon) (2.0.4)
-Requirement already satisfied: idna&lt;4,&gt;=2.5 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from requests-&gt;quantecon) (3.4)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: idna&lt;4,&gt;=2.5 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from requests-&gt;quantecon) (3.4)
 Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from requests-&gt;quantecon) (1.26.16)
 Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from requests-&gt;quantecon) (2023.7.22)
 Requirement already satisfied: mpmath&gt;=0.19 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from sympy-&gt;quantecon) (1.3.0)
@@ -306,17 +306,18 @@ Requirement already satisfied: mpmath&gt;=0.19 in /usr/share/miniconda3/envs/qua
 </div>
 <section id="overview">
 <h2><span class="section-number">27.1. </span>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
-<p>Markov chains are a standard way to model time series with some dependence
-between observations.</p>
+<p>Markov chains provide  a way to model situations in which  the past casts shadows on the future.</p>
+<p>By this we mean that observing measurements about a present situation can help us forecast future situations.</p>
+<p>This can be possible when there are statistical dependencies among measurements of something taken at different points of time.</p>
 <p>For example,</p>
 <ul class="simple">
-<li><p>inflation next year depends on inflation this year</p></li>
-<li><p>unemployment next month depends on unemployment this month</p></li>
+<li><p>inflation next year might co-vary  with inflation this year</p></li>
+<li><p>unemployment next month might co-vary with unemployment this month</p></li>
 </ul>
-<p>Markov chains are one of the workhorse models of economics and finance.</p>
+<p>Markov chains are a workhorse for economics and finance.</p>
 <p>The theory of Markov chains is beautiful and provides many insights into
 probability and dynamics.</p>
-<p>In this introductory lecture, we will</p>
+<p>In this  lecture, we will</p>
 <ul class="simple">
 <li><p>review some of the key ideas from the theory of Markov chains and</p></li>
 <li><p>show how Markov chains appear in some economic applications.</p></li>
@@ -337,7 +338,7 @@ probability and dynamics.</p>
 </section>
 <section id="definitions-and-examples">
 <h2><span class="section-number">27.2. </span>Definitions and examples<a class="headerlink" href="#definitions-and-examples" title="Permalink to this heading">#</a></h2>
-<p>In this section we provide the basic definitions and some elementary examples.</p>
+<p>In this section we provide some definitions and  elementary examples.</p>
 <section id="stochastic-matrices">
 <span id="finite-dp-stoch-mat"></span><h3><span class="section-number">27.2.1. </span>Stochastic matrices<a class="headerlink" href="#stochastic-matrices" title="Permalink to this heading">#</a></h3>
 <p>Recall that a <strong>probability mass function</strong> over <span class="math notranslate nohighlight">\(n\)</span> possible outcomes is a
@@ -356,9 +357,8 @@ such that each row of <span class="math notranslate nohighlight">\(P\)</span> is
 <section id="markov-chains">
 <h3><span class="section-number">27.2.2. </span>Markov chains<a class="headerlink" href="#markov-chains" title="Permalink to this heading">#</a></h3>
 <p>Now we can introduce Markov chains.</p>
-<p>First we will give some examples and then we will define them more carefully.</p>
-<p>At that time, the connection between stochastic matrices and Markov chains
-will become clear.</p>
+<p>Before defining a Markov chain rigorously, we’ll  give some examples.</p>
+<p>(Among other things, defining a Markov chain will clarify a  connection between <strong>stochastic matrices</strong> and <strong>Markov chains</strong>.)</p>
 <section id="example-1">
 <span id="mc-eg2"></span><h4><span class="section-number">27.2.2.1. </span>Example 1<a class="headerlink" href="#example-1" title="Permalink to this heading">#</a></h4>
 <p>From  US unemployment data, Hamilton <span id="id1">[<a class="reference internal" href="zreferences.html#id182" title="James D Hamilton. What's real about the business cycle? Federal Reserve Bank of St. Louis Review, pages 435–452, 2005.">Ham05</a>]</span> estimated the following dynamics.</p>
@@ -535,8 +535,8 @@ transitioning from growth to growth in autocracies).</p>
 </section>
 <section id="defining-markov-chains">
 <h3><span class="section-number">27.2.3. </span>Defining Markov chains<a class="headerlink" href="#defining-markov-chains" title="Permalink to this heading">#</a></h3>
-<p>So far we’ve given examples of Markov chains but now let’s define them more
-carefully.</p>
+<p>So far we’ve given examples of Markov chains but we haven’t defined them.</p>
+<p>Let’s do that now.</p>
 <p>To begin, let <span class="math notranslate nohighlight">\(S\)</span> be a finite set <span class="math notranslate nohighlight">\(\{x_1, \ldots, x_n\}\)</span> with <span class="math notranslate nohighlight">\(n\)</span> elements.</p>
 <p>The set <span class="math notranslate nohighlight">\(S\)</span> is called the <strong>state space</strong> and <span class="math notranslate nohighlight">\(x_1, \ldots, x_n\)</span> are the <strong>state values</strong>.</p>
 <p>A <strong>distribution</strong> <span class="math notranslate nohighlight">\(\psi\)</span> on <span class="math notranslate nohighlight">\(S\)</span> is a probability mass function of length <span class="math notranslate nohighlight">\(n\)</span>, where <span class="math notranslate nohighlight">\(\psi(i)\)</span> is the amount of probability allocated to state <span class="math notranslate nohighlight">\(x_i\)</span>.</p>
@@ -546,8 +546,8 @@ that have the <strong>Markov property</strong>.</p>
 <div class="math notranslate nohighlight" id="equation-fin-markov-mp">
 <span class="eqno">(27.2)<a class="headerlink" href="#equation-fin-markov-mp" title="Permalink to this equation">#</a></span>\[\mathbb P \{ X_{t+1} = y  \,|\, X_t \}
 = \mathbb P \{ X_{t+1}  = y \,|\, X_t, X_{t-1}, \ldots \}\]</div>
-<p>In other words, knowing the current state is enough to know probabilities for the future states.</p>
-<p>In particular, the dynamics of a Markov chain are fully determined by the set of values</p>
+<p>This means that once we know the current state <span class="math notranslate nohighlight">\(X_t\)</span>,  adding knowledge of earlier states <span class="math notranslate nohighlight">\(X_{t-1}, X_{t-2}\)</span> provides no additional information about probabilities of <strong>future</strong> states.</p>
+<p>Thus, the dynamics of a Markov chain are fully determined by the set of <strong>conditional probabilities</strong></p>
 <div class="math notranslate nohighlight" id="equation-mpp">
 <span class="eqno">(27.3)<a class="headerlink" href="#equation-mpp" title="Permalink to this equation">#</a></span>\[P(x, y) := \mathbb P \{ X_{t+1} = y \,|\, X_t = x \}
 \qquad (x, y \in S)\]</div>
@@ -573,7 +573,7 @@ chain <span class="math notranslate nohighlight">\(\{X_t\}\)</span> as follows:<
 </section>
 <section id="simulation">
 <h2><span class="section-number">27.3. </span>Simulation<a class="headerlink" href="#simulation" title="Permalink to this heading">#</a></h2>
-<p id="index-1">One natural way to answer questions about Markov chains is to simulate them.</p>
+<p id="index-1">A good way to study a Markov chains is to simulate it.</p>
 <p>Let’s start by doing this ourselves and then look at libraries that can help
 us.</p>
 <p>In these exercises, we’ll take the state space to be <span class="math notranslate nohighlight">\(S = 0,\ldots, n-1\)</span>.</p>
@@ -605,7 +605,7 @@ to a cumulative distribution</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1, 0, 1, 1, 0])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1, 1, 1, 1, 1])
 </pre></div>
 </div>
 </div>
@@ -660,7 +660,7 @@ to a cumulative distribution</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 0, 1, 1, 1, 1, 1, 0, 1, 1])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 1, 1, 1, 1, 1, 0, 0, 1, 1])
 </pre></div>
 </div>
 </div>
@@ -679,7 +679,7 @@ sample that takes value 0 will be about 0.25.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.250686
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.250008
 </pre></div>
 </div>
 </div>
@@ -700,7 +700,7 @@ always close to 0.25 (for the <code class="docutils literal notranslate"><span c
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.249554
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.249357
 </pre></div>
 </div>
 </div>
@@ -713,11 +713,11 @@ always close to 0.25 (for the <code class="docutils literal notranslate"><span c
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 1.08 s, sys: 291 µs, total: 1.08 s
-Wall time: 1.08 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 1.1 s, sys: 481 µs, total: 1.1 s
+Wall time: 1.1 s
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 1, 1, ..., 1, 1, 0])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 0, 1, ..., 1, 0, 0])
 </pre></div>
 </div>
 </div>
@@ -729,11 +729,11 @@ Wall time: 1.08 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 10.6 ms, sys: 3.89 ms, total: 14.5 ms
-Wall time: 14 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 6.98 ms, sys: 7.91 ms, total: 14.9 ms
+Wall time: 14.5 ms
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1, 1, 1, ..., 1, 0, 1])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1, 1, 1, ..., 1, 1, 1])
 </pre></div>
 </div>
 </div>
@@ -751,7 +751,7 @@ Wall time: 14 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;employed&#39;, &#39;employed&#39;, &#39;employed&#39;, &#39;unemployed&#39;], dtype=&#39;&lt;U10&#39;)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;employed&#39;, &#39;employed&#39;, &#39;unemployed&#39;, &#39;unemployed&#39;], dtype=&#39;&lt;U10&#39;)
 </pre></div>
 </div>
 </div>
@@ -763,7 +763,7 @@ Wall time: 14 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;unemployed&#39;, &#39;employed&#39;, &#39;employed&#39;, &#39;employed&#39;], dtype=&#39;&lt;U10&#39;)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;unemployed&#39;, &#39;unemployed&#39;, &#39;employed&#39;, &#39;employed&#39;], dtype=&#39;&lt;U10&#39;)
 </pre></div>
 </div>
 </div>
@@ -775,7 +775,7 @@ Wall time: 14 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;unemployed&#39;, &#39;employed&#39;, &#39;unemployed&#39;, &#39;unemployed&#39;], dtype=&#39;&lt;U10&#39;)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;employed&#39;, &#39;employed&#39;, &#39;employed&#39;, &#39;employed&#39;], dtype=&#39;&lt;U10&#39;)
 </pre></div>
 </div>
 </div>
@@ -1146,7 +1146,7 @@ strictly positive, with unique stationary distribution <span class="math notrans
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/bb138c8cfbdf1f2b8e58242993eee85f366fc24d3386fdbd087773390b6d0107.png"><img alt="_images/bb138c8cfbdf1f2b8e58242993eee85f366fc24d3386fdbd087773390b6d0107.png" src="_images/bb138c8cfbdf1f2b8e58242993eee85f366fc24d3386fdbd087773390b6d0107.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/44918f5d251ed271d99f37715d9e96c190560022f16075ec3b85ff51446a4b3e.png"><img alt="_images/44918f5d251ed271d99f37715d9e96c190560022f16075ec3b85ff51446a4b3e.png" src="_images/44918f5d251ed271d99f37715d9e96c190560022f16075ec3b85ff51446a4b3e.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>The convergence to <span class="math notranslate nohighlight">\(\psi^*\)</span> holds for different initial distributions.</p>
@@ -1176,7 +1176,7 @@ P =
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/337f0732b91652f45961cad078457ae8b2efbc0fcf5c51fa2719148e0dfd3d0d.png"><img alt="_images/337f0732b91652f45961cad078457ae8b2efbc0fcf5c51fa2719148e0dfd3d0d.png" src="_images/337f0732b91652f45961cad078457ae8b2efbc0fcf5c51fa2719148e0dfd3d0d.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/cc717f1fe9724e68d6982e2e4bff54407bf0a9c362857a0ae551c4af00587652.png"><img alt="_images/cc717f1fe9724e68d6982e2e4bff54407bf0a9c362857a0ae551c4af00587652.png" src="_images/cc717f1fe9724e68d6982e2e4bff54407bf0a9c362857a0ae551c4af00587652.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>Indeed, this <span class="math notranslate nohighlight">\(P\)</span> fails our asymptotic stationarity condition, since, as you can
@@ -1338,7 +1338,7 @@ P :=
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/34c8a10fd1242e808aff11cdb4ce1951ab7ff7da2ab3ea345377403ad4d56537.png"><img alt="_images/34c8a10fd1242e808aff11cdb4ce1951ab7ff7da2ab3ea345377403ad4d56537.png" src="_images/34c8a10fd1242e808aff11cdb4ce1951ab7ff7da2ab3ea345377403ad4d56537.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/1ad399ab096a5a25c0aaf4a91b80faea3a09df97f63e07849f9f7f696f3f09e4.png"><img alt="_images/1ad399ab096a5a25c0aaf4a91b80faea3a09df97f63e07849f9f7f696f3f09e4.png" src="_images/1ad399ab096a5a25c0aaf4a91b80faea3a09df97f63e07849f9f7f696f3f09e4.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>In fact, the rate of convergence is governed by <a class="reference internal" href="eigen_I.html#eigen"><span class="std std-ref">eigenvalues</span></a> <span id="id7">[<a class="reference internal" href="zreferences.html#id19" title="Thomas J Sargent and John Stachurski. Economic networks: theory and computation. arXiv preprint arXiv:2203.11972, 2023.">SS23</a>]</span>.</p>
@@ -1600,13 +1600,13 @@ have <span class="math notranslate nohighlight">\(P^k \mathbf 1 = \mathbf 1\)</s
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
-  Essential Tools
+  Foundations
  </span>
 </p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
-  <a class="reference internal" href="complex_and_trig.html">
-   6. Complex Numbers and Trigonometry
+  <a class="reference internal" href="intro_supply_demand.html">
+   6. Introduction to Supply and Demand
   </a>
  </li>
  <li class="toctree-l1">
@@ -1615,19 +1615,19 @@ have <span class="math notranslate nohighlight">\(P^k \mathbf 1 = \mathbf 1\)</s
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="eigen_I.html">
-   8. Eigenvalues and Eigenvectors
+  <a class="reference internal" href="complex_and_trig.html">
+   8. Complex Numbers and Trigonometry
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="intro_supply_demand.html">
-   9. Introduction to Supply and Demand
+  <a class="reference internal" href="geom_series.html">
+   9. Geometric Series for Elementary Economics
   </a>
  </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
-  Linear Dynamics
+  Linear Dynamics: Finite Horizons
  </span>
 </p>
 <ul class="nav bd-sidenav nav sidenav_l1">
@@ -1656,9 +1656,16 @@ have <span class="math notranslate nohighlight">\(P^k \mathbf 1 = \mathbf 1\)</s
    14. A Monetarist Theory of Price Levels with Adaptive Expectations
   </a>
  </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Linear Dynamics: Infinite Horizons
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
-  <a class="reference internal" href="geom_series.html">
-   15. Geometric Series for Elementary Economics
+  <a class="reference internal" href="eigen_I.html">
+   15. Eigenvalues and Eigenvectors
   </a>
  </li>
 </ul>

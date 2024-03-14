@@ -256,8 +256,8 @@ const thebe_selector_output = ".output, .cell_output"
 <h1><span class="section-number">11. </span>Consumption Smoothing<a class="headerlink" href="#consumption-smoothing" title="Permalink to this heading">#</a></h1>
 <section id="overview">
 <h2><span class="section-number">11.1. </span>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
-<p>In this lecture, we’ll study a famous model of the “consumption function” that Milton Friedman <span id="id1">[<a class="reference internal" href="zreferences.html#id178" title="M. Friedman. A Theory of the Consumption Function. Princeton University Press, 1956.">Fri56</a>]</span> and Robert Hall <span id="id2">[<a class="reference internal" href="zreferences.html#id179" title="Robert E Hall. Stochastic Implications of the Life Cycle-Permanent Income Hypothesis: Theory and Evidence. Journal of Political Economy, 86(6):971–987, 1978.">Hal78</a>]</span>)  proposed to fit some empirical data patterns that the original  Keynesian consumption function  described in this quantecon lecture <a class="reference internal" href="geom_series.html"><span class="doc">geometric series</span></a>  missed.</p>
-<p>In this lecture, we’ll study what is often  called the “consumption-smoothing model”  using  matrix multiplication and matrix inversion, the same tools that we used in this quantecon lecture <a class="reference internal" href="pv.html"><span class="doc">present values</span></a>.</p>
+<p>In this lecture, we’ll study a famous model of the “consumption function” that Milton Friedman <span id="id1">[<a class="reference internal" href="zreferences.html#id178" title="M. Friedman. A Theory of the Consumption Function. Princeton University Press, 1956.">Fri56</a>]</span> and Robert Hall <span id="id2">[<a class="reference internal" href="zreferences.html#id179" title="Robert E Hall. Stochastic Implications of the Life Cycle-Permanent Income Hypothesis: Theory and Evidence. Journal of Political Economy, 86(6):971–987, 1978.">Hal78</a>]</span>)  proposed to fit some empirical data patterns that the original  Keynesian consumption function  described in this QuantEcon lecture <a class="reference internal" href="geom_series.html"><span class="doc">geometric series</span></a>  missed.</p>
+<p>In this lecture, we’ll study what is often  called the “consumption-smoothing model”  using  matrix multiplication and matrix inversion, the same tools that we used in this QuantEcon lecture <a class="reference internal" href="pv.html"><span class="doc">present values</span></a>.</p>
 <p>Formulas presented in  <a class="reference internal" href="pv.html"><span class="doc">present value formulas</span></a> are at the core of the consumption smoothing model because we shall use them to define a consumer’s “human wealth”.</p>
 <p>The  key idea that inspired Milton Friedman was that a person’s non-financial income, i.e., his or
 her wages from working, could be viewed as a dividend stream from that person’s ‘‘human capital’’
@@ -265,7 +265,7 @@ and that standard asset-pricing formulas could be applied to compute a person’
 ‘‘non-financial wealth’’ that capitalizes the  earnings stream.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>As we’ll see in this quantecon lecture  <a class="reference internal" href="equalizing_difference.html"><span class="doc">equalizing difference model</span></a>,
+<p>As we’ll see in this QuantEcon lecture  <a class="reference internal" href="equalizing_difference.html"><span class="doc">equalizing difference model</span></a>,
 Milton Friedman had used this idea  in his PhD thesis at Columbia University,
 eventually published as <span id="id3">[<a class="reference internal" href="zreferences.html#id4" title="Simon Kuznets and Milton Friedman. Incomes from independent professional practice, 1929-1936. National Bureau of Economic Research Bulletin, 1939.">KF39</a>]</span> and <span id="id4">[<a class="reference internal" href="zreferences.html#id5" title="Milton Friedman and Simon Kuznets. Income from Independent Professional Practice. National Bureau of Economic Research, New York, 1945.">FK45</a>]</span>.</p>
 </div>
@@ -289,14 +289,14 @@ eventually published as <span id="id3">[<a class="reference internal" href="zref
 <p>The consumer faces a gross interest rate of <span class="math notranslate nohighlight">\(R &gt;1\)</span> that is constant over time, at which she is free to borrow or lend, up to  limits that we’ll describe below.</p>
 <p>To set up the model, let</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(T \geq 2\)</span>  be a positive integer that constitutes a time-horizon</p></li>
-<li><p><span class="math notranslate nohighlight">\(y = \{y_t\}_{t=0}^T\)</span> be an exogenous  sequence of non-negative non-financial incomes <span class="math notranslate nohighlight">\(y_t\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(a = \{a_t\}_{t=0}^{T+1}\)</span> be a sequence of financial wealth</p></li>
-<li><p><span class="math notranslate nohighlight">\(c = \{c_t\}_{t=0}^T\)</span> be a sequence of non-negative consumption rates</p></li>
-<li><p><span class="math notranslate nohighlight">\(R \geq 1\)</span> be a fixed gross one period rate of return on financial assets</p></li>
-<li><p><span class="math notranslate nohighlight">\(\beta \in (0,1)\)</span> be a fixed discount factor</p></li>
+<li><p><span class="math notranslate nohighlight">\(T \geq 2\)</span>  be a positive integer that constitutes a time-horizon.</p></li>
+<li><p><span class="math notranslate nohighlight">\(y = \{y_t\}_{t=0}^T\)</span> be an exogenous  sequence of non-negative non-financial incomes <span class="math notranslate nohighlight">\(y_t\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(a = \{a_t\}_{t=0}^{T+1}\)</span> be a sequence of financial wealth.</p></li>
+<li><p><span class="math notranslate nohighlight">\(c = \{c_t\}_{t=0}^T\)</span> be a sequence of non-negative consumption rates.</p></li>
+<li><p><span class="math notranslate nohighlight">\(R \geq 1\)</span> be a fixed gross one period rate of return on financial assets.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\beta \in (0,1)\)</span> be a fixed discount factor.</p></li>
 <li><p><span class="math notranslate nohighlight">\(a_0\)</span> be a given initial level of financial assets</p></li>
-<li><p><span class="math notranslate nohighlight">\(a_{T+1} \geq 0\)</span>  be a terminal condition on final assets</p></li>
+<li><p><span class="math notranslate nohighlight">\(a_{T+1} \geq 0\)</span>  be a terminal condition on final assets.</p></li>
 </ul>
 <p>The sequence of financial wealth <span class="math notranslate nohighlight">\(a\)</span> is to be determined by the model.</p>
 <p>We require it to satisfy  two  <strong>boundary conditions</strong>:</p>
@@ -305,7 +305,7 @@ eventually published as <span id="id3">[<a class="reference internal" href="zref
 <li><p>it must equal or exceed an exogenous value  <span class="math notranslate nohighlight">\(a_{T+1}\)</span> at time <span class="math notranslate nohighlight">\(T+1\)</span>.</p></li>
 </ul>
 <p>The <strong>terminal condition</strong> <span class="math notranslate nohighlight">\(a_{T+1} \geq 0\)</span> requires that the consumer not leave the model in debt.</p>
-<p>(We’ll soon see that a utility maximizing consumer won’t <strong>want</strong> to die leaving positive assets, so she’ll arrange her affairs to make
+<p>(We’ll soon see that a utility maximizing consumer won’t want to die leaving positive assets, so she’ll arrange her affairs to make
 <span class="math notranslate nohighlight">\(a_{T+1} = 0\)</span>.)</p>
 <p>The consumer faces a sequence of budget constraints that  constrains   sequences <span class="math notranslate nohighlight">\((y, c, a)\)</span></p>
 <div class="math notranslate nohighlight" id="equation-eq-a-t">
@@ -313,7 +313,7 @@ eventually published as <span id="id3">[<a class="reference internal" href="zref
 a_{t+1} = R (a_t+ y_t - c_t), \quad t =0, 1, \ldots T
 \]</div>
 <p>Equations <a class="reference internal" href="#equation-eq-a-t">(11.1)</a> constitute  <span class="math notranslate nohighlight">\(T+1\)</span> such budget constraints, one for each <span class="math notranslate nohighlight">\(t=0, 1, \ldots, T\)</span>.</p>
-<p>Given a sequence <span class="math notranslate nohighlight">\(y\)</span> of non-financial incomes, a large  set of <strong>pairs</strong> <span class="math notranslate nohighlight">\((a, c)\)</span> of (financial wealth, consumption) sequences  satisfy the sequence of budget constraints <a class="reference internal" href="#equation-eq-a-t">(11.1)</a>.</p>
+<p>Given a sequence <span class="math notranslate nohighlight">\(y\)</span> of non-financial incomes, a large  set of pairs <span class="math notranslate nohighlight">\((a, c)\)</span> of (financial wealth, consumption) sequences  satisfy the sequence of budget constraints <a class="reference internal" href="#equation-eq-a-t">(11.1)</a>.</p>
 <p>Our model has the following logical flow.</p>
 <ul class="simple">
 <li><p>start with an exogenous non-financial income sequence <span class="math notranslate nohighlight">\(y\)</span>, an initial financial wealth <span class="math notranslate nohighlight">\(a_0\)</span>, and
@@ -330,13 +330,13 @@ a candidate consumption path <span class="math notranslate nohighlight">\(c\)</s
 <p>The above procedure seems like a sensible way to find “budget-feasible” consumption paths <span class="math notranslate nohighlight">\(c\)</span>, i.e., paths that are consistent
 with the exogenous non-financial income stream <span class="math notranslate nohighlight">\(y\)</span>, the initial financial  asset level <span class="math notranslate nohighlight">\(a_0\)</span>, and the terminal asset level <span class="math notranslate nohighlight">\(a_{T+1}\)</span>.</p>
 <p>In general, there are <strong>many</strong> budget feasible consumption paths <span class="math notranslate nohighlight">\(c\)</span>.</p>
-<p>Among all budget-feasible consumption paths, which one <strong>should</strong> a consumer want?</p>
+<p>Among all budget-feasible consumption paths, which one should a consumer want?</p>
 <p>To answer this question, we shall eventually evaluate alternative budget feasible consumption paths <span class="math notranslate nohighlight">\(c\)</span> using the following utility functional or <strong>welfare criterion</strong>:</p>
 <div class="math notranslate nohighlight" id="equation-welfare">
 <span class="eqno">(11.2)<a class="headerlink" href="#equation-welfare" title="Permalink to this equation">#</a></span>\[W = \sum_{t=0}^T \beta^t (g_1 c_t - \frac{g_2}{2} c_t^2 )\]</div>
 <p>where <span class="math notranslate nohighlight">\(g_1 &gt; 0, g_2 &gt; 0\)</span>.</p>
 <p>When <span class="math notranslate nohighlight">\(\beta R \approx 1\)</span>, the fact that the utility function <span class="math notranslate nohighlight">\(g_1 c_t - \frac{g_2}{2} c_t^2\)</span> has diminishing marginal utility imparts a preference for consumption that is very smooth.</p>
-<p>Indeed, we shall see that when <span class="math notranslate nohighlight">\(\beta R = 1\)</span> (a condition assumed by Milton Friedman <span id="id5">[<a class="reference internal" href="zreferences.html#id178" title="M. Friedman. A Theory of the Consumption Function. Princeton University Press, 1956.">Fri56</a>]</span> and Robert Hall <span id="id6">[<a class="reference internal" href="zreferences.html#id179" title="Robert E Hall. Stochastic Implications of the Life Cycle-Permanent Income Hypothesis: Theory and Evidence. Journal of Political Economy, 86(6):971–987, 1978.">Hal78</a>]</span>),  criterion <a class="reference internal" href="#equation-welfare">(11.2)</a> assigns higher welfare to <strong>smoother</strong> consumption paths.</p>
+<p>Indeed, we shall see that when <span class="math notranslate nohighlight">\(\beta R = 1\)</span> (a condition assumed by Milton Friedman <span id="id5">[<a class="reference internal" href="zreferences.html#id178" title="M. Friedman. A Theory of the Consumption Function. Princeton University Press, 1956.">Fri56</a>]</span> and Robert Hall <span id="id6">[<a class="reference internal" href="zreferences.html#id179" title="Robert E Hall. Stochastic Implications of the Life Cycle-Permanent Income Hypothesis: Theory and Evidence. Journal of Political Economy, 86(6):971–987, 1978.">Hal78</a>]</span>),  criterion <a class="reference internal" href="#equation-welfare">(11.2)</a> assigns higher welfare to smoother consumption paths.</p>
 <p>By <strong>smoother</strong> we mean as close as possible to being constant over time.</p>
 <p>The preference for smooth consumption paths that is built into the model gives it the  name “consumption smoothing model”.</p>
 <p>Let’s dive in and do some calculations that will help us understand how the model works.</p>
@@ -347,11 +347,11 @@ with the exogenous non-financial income stream <span class="math notranslate noh
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ConsumptionSmoothing</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s2">&quot;ConsumptionSmoothing&quot;</span><span class="p">,</span> 
                         <span class="p">[</span><span class="s2">&quot;R&quot;</span><span class="p">,</span> <span class="s2">&quot;g1&quot;</span><span class="p">,</span> <span class="s2">&quot;g2&quot;</span><span class="p">,</span> <span class="s2">&quot;β_seq&quot;</span><span class="p">,</span> <span class="s2">&quot;T&quot;</span><span class="p">])</span>
 
-<span class="k">def</span> <span class="nf">creat_cs_model</span><span class="p">(</span><span class="n">R</span><span class="o">=</span><span class="mf">1.05</span><span class="p">,</span> <span class="n">g1</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">g2</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mi">65</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">create_consumption_smoothing_model</span><span class="p">(</span><span class="n">R</span><span class="o">=</span><span class="mf">1.05</span><span class="p">,</span> <span class="n">g1</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">g2</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mi">65</span><span class="p">):</span>
     <span class="n">β</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">R</span>
     <span class="n">β_seq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">β</span><span class="o">**</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">)])</span>
-    <span class="k">return</span> <span class="n">ConsumptionSmoothing</span><span class="p">(</span><span class="n">R</span><span class="o">=</span><span class="mf">1.05</span><span class="p">,</span> <span class="n">g1</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">g2</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> 
-                                <span class="n">β_seq</span><span class="o">=</span><span class="n">β_seq</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mi">65</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">ConsumptionSmoothing</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">g1</span><span class="p">,</span> <span class="n">g2</span><span class="p">,</span> 
+                                <span class="n">β_seq</span><span class="p">,</span> <span class="n">T</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -366,7 +366,7 @@ h_0 \equiv \sum_{t=0}^T R^{-t} y_t = \begin{bmatrix} 1 &amp; R^{-1} &amp; \cdots
 \begin{bmatrix} y_0 \cr y_1  \cr \vdots \cr y_T \end{bmatrix}
 \]</div>
 <p>Human or non-financial wealth  at time <span class="math notranslate nohighlight">\(0\)</span> is evidently just the present value of the consumer’s non-financial income stream <span class="math notranslate nohighlight">\(y\)</span>.</p>
-<p>Formally it very much resembles the asset price that we computed in this quantecon lecture <a class="reference internal" href="pv.html"><span class="doc">present values</span></a>.</p>
+<p>Formally it very much resembles the asset price that we computed in this QuantEcon lecture <a class="reference internal" href="pv.html"><span class="doc">present values</span></a>.</p>
 <p>Indeed, this is why Milton Friedman called it “human capital”.</p>
 <p>By iterating on equation <a class="reference internal" href="#equation-eq-a-t">(11.1)</a> and imposing the terminal condition</p>
 <div class="math notranslate nohighlight">
@@ -379,7 +379,7 @@ a_{T+1} = 0,
 \sum_{t=0}^T R^{-t} c_t = a_0 + h_0. 
 \]</div>
 <p>Equation <a class="reference internal" href="#equation-eq-budget-intertemp">(11.3)</a>  says that the present value of the consumption stream equals the sum of finanical and non-financial (or human) wealth.</p>
-<p>Robert Hall <span id="id7">[<a class="reference internal" href="zreferences.html#id179" title="Robert E Hall. Stochastic Implications of the Life Cycle-Permanent Income Hypothesis: Theory and Evidence. Journal of Political Economy, 86(6):971–987, 1978.">Hal78</a>]</span> showed that when <span class="math notranslate nohighlight">\(\beta R = 1\)</span>, a condition Milton Friedman had also  assumed, it is “optimal” for a consumer to <strong>smooth consumption</strong> by setting</p>
+<p>Robert Hall <span id="id7">[<a class="reference internal" href="zreferences.html#id179" title="Robert E Hall. Stochastic Implications of the Life Cycle-Permanent Income Hypothesis: Theory and Evidence. Journal of Political Economy, 86(6):971–987, 1978.">Hal78</a>]</span> showed that when <span class="math notranslate nohighlight">\(\beta R = 1\)</span>, a condition Milton Friedman had also  assumed, it is “optimal” for a consumer to smooth consumption by setting</p>
 <div class="math notranslate nohighlight">
 \[ 
 c_t = c_0 \quad t =0, 1, \ldots, T
@@ -411,7 +411,7 @@ h_0 = \sum_{t=0}^T R^{-t} y_t = \begin{bmatrix} 1 &amp; R^{-1} &amp; \cdots &amp
 <p>Compute an  time <span class="math notranslate nohighlight">\(0\)</span>   consumption <span class="math notranslate nohighlight">\(c_0 \)</span> :</p>
 <div class="math notranslate nohighlight">
 \[
-c_t = c_0 = \left( \frac{1 - R^{-1}}{1 - R^{-(T+1)}} \right) (a_0 + \sum_{t=0}^T R^t y_t ) , \quad t = 0, 1, \ldots, T
+c_t = c_0 = \left( \frac{1 - R^{-1}}{1 - R^{-(T+1)}} \right) (a_0 + \sum_{t=0}^T R^{-t} y_t ) , \quad t = 0, 1, \ldots, T
 \]</div>
 </section>
 <section id="step-3">
@@ -484,7 +484,7 @@ a_{T+1} = 0.
 <span class="c1"># non-financial Income process</span>
 <span class="n">y_seq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">46</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">20</span><span class="p">)])</span>
 
-<span class="n">cs_model</span> <span class="o">=</span> <span class="n">creat_cs_model</span><span class="p">()</span>
+<span class="n">cs_model</span> <span class="o">=</span> <span class="n">create_consumption_smoothing_model</span><span class="p">()</span>
 <span class="n">c_seq</span><span class="p">,</span> <span class="n">a_seq</span><span class="p">,</span> <span class="n">h0</span> <span class="o">=</span> <span class="n">compute_optimal</span><span class="p">(</span><span class="n">cs_model</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">y_seq</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;check a_T+1=0:&#39;</span><span class="p">,</span> 
@@ -607,7 +607,7 @@ a_{T+1} = 0.
 </section>
 <section id="experiment-2-permanent-wage-gain-loss">
 <h4><span class="section-number">11.4.4.2. </span>Experiment 2: permanent wage gain/loss<a class="headerlink" href="#experiment-2-permanent-wage-gain-loss" title="Permalink to this heading">#</a></h4>
-<p>Now we assume a <strong>permanent</strong>  increase in income of <span class="math notranslate nohighlight">\(W\)</span> in year 21 of the <span class="math notranslate nohighlight">\(y\)</span>-sequence.</p>
+<p>Now we assume a permanent  increase in income of <span class="math notranslate nohighlight">\(W\)</span> in year 21 of the <span class="math notranslate nohighlight">\(y\)</span>-sequence.</p>
 <p>Again we can study positive and negative cases</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -745,7 +745,7 @@ v_t = \xi_1 \phi^t - \xi_0
 <p>We require</p>
 <div class="math notranslate nohighlight">
 \[
-\sum_{t=0}^T \left[ \xi_1 \phi^t - \xi_0 \right] = 0
+\sum_{t=0}^T R^{-t}\left[ \xi_1 \phi^t - \xi_0 \right] = 0
 \]</div>
 <p>which implies that</p>
 <div class="math notranslate nohighlight">
@@ -767,7 +767,7 @@ v_t = \xi_1 \phi^t - \xi_0
 where <span class="math notranslate nohighlight">\(v\)</span> is a budget-feasible variation.</p>
 <p>Given <span class="math notranslate nohighlight">\(R\)</span>, we thus have a two parameter class of budget feasible variations <span class="math notranslate nohighlight">\(v\)</span> that we can use
 to compute alternative consumption paths, then evaluate their welfare.</p>
-<p>Now let’s compute and plot consumption path variations variations</p>
+<p>Now let’s compute and plot consumption path variations</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">compute_variation</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">ξ1</span><span class="p">,</span> <span class="n">ϕ</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">y_seq</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
@@ -922,7 +922,7 @@ welfare=13.28156768298361
 <section id="wrapping-up-the-consumption-smoothing-model">
 <h2><span class="section-number">11.5. </span>Wrapping up the consumption-smoothing model<a class="headerlink" href="#wrapping-up-the-consumption-smoothing-model" title="Permalink to this heading">#</a></h2>
 <p>The consumption-smoothing model of Milton Friedman <span id="id8">[<a class="reference internal" href="zreferences.html#id178" title="M. Friedman. A Theory of the Consumption Function. Princeton University Press, 1956.">Fri56</a>]</span> and Robert Hall <span id="id9">[<a class="reference internal" href="zreferences.html#id179" title="Robert E Hall. Stochastic Implications of the Life Cycle-Permanent Income Hypothesis: Theory and Evidence. Journal of Political Economy, 86(6):971–987, 1978.">Hal78</a>]</span>) is a cornerstone of modern macro that has important ramifications for the size of the Keynesian  “fiscal policy multiplier” described briefly in
-quantecon lecture <a class="reference internal" href="geom_series.html"><span class="doc">geometric series</span></a>.</p>
+QuantEcon lecture <a class="reference internal" href="geom_series.html"><span class="doc">geometric series</span></a>.</p>
 <p>In particular,  it  <strong>lowers</strong> the government expenditure  multiplier relative to  one implied by
 the original Keynesian consumption function presented in <a class="reference internal" href="geom_series.html"><span class="doc">geometric series</span></a>.</p>
 <p>Friedman’s   work opened the door to an enlighening literature on the aggregate consumption function and associated government expenditure  multipliers that
@@ -1126,13 +1126,13 @@ How many initial conditions must you specify?</p>
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
-  Essential Tools
+  Foundations
  </span>
 </p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
-  <a class="reference internal" href="complex_and_trig.html">
-   6. Complex Numbers and Trigonometry
+  <a class="reference internal" href="intro_supply_demand.html">
+   6. Introduction to Supply and Demand
   </a>
  </li>
  <li class="toctree-l1">
@@ -1141,19 +1141,19 @@ How many initial conditions must you specify?</p>
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="eigen_I.html">
-   8. Eigenvalues and Eigenvectors
+  <a class="reference internal" href="complex_and_trig.html">
+   8. Complex Numbers and Trigonometry
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="intro_supply_demand.html">
-   9. Introduction to Supply and Demand
+  <a class="reference internal" href="geom_series.html">
+   9. Geometric Series for Elementary Economics
   </a>
  </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
-  Linear Dynamics
+  Linear Dynamics: Finite Horizons
  </span>
 </p>
 <ul class="current nav bd-sidenav nav sidenav_l1">
@@ -1182,9 +1182,16 @@ How many initial conditions must you specify?</p>
    14. A Monetarist Theory of Price Levels with Adaptive Expectations
   </a>
  </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Linear Dynamics: Infinite Horizons
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
-  <a class="reference internal" href="geom_series.html">
-   15. Geometric Series for Elementary Economics
+  <a class="reference internal" href="eigen_I.html">
+   15. Eigenvalues and Eigenvectors
   </a>
  </li>
 </ul>

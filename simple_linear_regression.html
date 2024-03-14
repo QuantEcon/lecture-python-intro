@@ -396,14 +396,19 @@ y_i = \alpha + \beta x_i + \epsilon_i, i = 1,2,...,N
     <span class="n">x</span><span class="o">=</span><span class="s1">&#39;X&#39;</span><span class="p">,</span> 
     <span class="n">y</span><span class="o">=</span><span class="s1">&#39;Y&#39;</span><span class="p">,</span> 
     <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;scatter&#39;</span><span class="p">,</span> 
-    <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Ice-Cream Sales ($</span><span class="se">\&#39;</span><span class="s1">s)&#39;</span><span class="p">,</span> 
-    <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Degrees Celcius&#39;</span>
+    <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Ice-cream sales ($</span><span class="se">\&#39;</span><span class="s1">s)&#39;</span><span class="p">,</span> 
+    <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Degrees celcius&#39;</span>
 <span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/3bf0a3985c58163ac5ec1ff22623051a7ea22c18ee43c45d964ad5906770216f.png"><img alt="_images/3bf0a3985c58163ac5ec1ff22623051a7ea22c18ee43c45d964ad5906770216f.png" src="_images/3bf0a3985c58163ac5ec1ff22623051a7ea22c18ee43c45d964ad5906770216f.png" style="width: 80%;" /></a>
+<figure class="align-default" id="sales-v-temp1">
+<a class="reference internal image-reference" href="_images/27a9fb14e73a224eb3c693046a3338e9ef6409fdf61e24426db85dd3c266369e.png"><img alt="_images/27a9fb14e73a224eb3c693046a3338e9ef6409fdf61e24426db85dd3c266369e.png" src="_images/27a9fb14e73a224eb3c693046a3338e9ef6409fdf61e24426db85dd3c266369e.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 38.1 </span><span class="caption-text">Scatter plot</span><a class="headerlink" href="#sales-v-temp1" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </div>
 </div>
 <p>as you can see the data suggests that more ice-cream is typically sold on hotter days.</p>
@@ -425,16 +430,19 @@ y_i = \alpha + \beta x_i + \epsilon_i, i = 1,2,...,N
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
-<span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;X&#39;</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;Y&#39;</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;scatter&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
-<span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;X&#39;</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;Y_hat&#39;</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;line&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;X&#39;</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;Y&#39;</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;scatter&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;X&#39;</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;Y_hat&#39;</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;line&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;X&#39;, ylabel=&#39;Y&#39;&gt;
-</pre></div>
-</div>
+<figure class="align-default" id="sales-v-temp2">
 <a class="reference internal image-reference" href="_images/ae0a79696a8963faaf3cd120c936695f4fb798ad4cdce099c298d9061e8700ed.png"><img alt="_images/ae0a79696a8963faaf3cd120c936695f4fb798ad4cdce099c298d9061e8700ed.png" src="_images/ae0a79696a8963faaf3cd120c936695f4fb798ad4cdce099c298d9061e8700ed.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 38.2 </span><span class="caption-text">Scatter plot with a line of fit</span><a class="headerlink" href="#sales-v-temp2" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </div>
 </div>
 <p>We can see that this model does a poor job of estimating the relationship.</p>
@@ -450,16 +458,19 @@ y_i = \alpha + \beta x_i + \epsilon_i, i = 1,2,...,N
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
-<span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;X&#39;</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;Y&#39;</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;scatter&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
-<span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;X&#39;</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;Y_hat&#39;</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;line&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;X&#39;</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;Y&#39;</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;scatter&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;X&#39;</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;Y_hat&#39;</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;line&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;X&#39;, ylabel=&#39;Y&#39;&gt;
-</pre></div>
-</div>
+<figure class="align-default" id="sales-v-temp3">
 <a class="reference internal image-reference" href="_images/9a9e2f15b368942365b2bd8f21d0dac16fdf196a4fdfbd474fa9f4807eb7718f.png"><img alt="_images/9a9e2f15b368942365b2bd8f21d0dac16fdf196a4fdfbd474fa9f4807eb7718f.png" src="_images/9a9e2f15b368942365b2bd8f21d0dac16fdf196a4fdfbd474fa9f4807eb7718f.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 38.3 </span><span class="caption-text">Scatter plot with a line of fit #2</span><a class="headerlink" href="#sales-v-temp3" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </div>
 </div>
 <div class="cell docutils container">
@@ -473,19 +484,22 @@ y_i = \alpha + \beta x_i + \epsilon_i, i = 1,2,...,N
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
-<span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;X&#39;</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;Y&#39;</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;scatter&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
-<span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;X&#39;</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;Y_hat&#39;</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;line&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;X&#39;</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;Y&#39;</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;scatter&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;X&#39;</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;Y_hat&#39;</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;line&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;X&#39;, ylabel=&#39;Y&#39;&gt;
-</pre></div>
-</div>
+<figure class="align-default" id="sales-v-temp4">
 <a class="reference internal image-reference" href="_images/9dde90ebeb4efc1916f1a38eaa94b16e63b2fa3e5126f676f404b81b087ee7f8.png"><img alt="_images/9dde90ebeb4efc1916f1a38eaa94b16e63b2fa3e5126f676f404b81b087ee7f8.png" src="_images/9dde90ebeb4efc1916f1a38eaa94b16e63b2fa3e5126f676f404b81b087ee7f8.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 38.4 </span><span class="caption-text">Scatter plot with a line of fit #3</span><a class="headerlink" href="#sales-v-temp4" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </div>
 </div>
-<p>However we need to think about formalising this guessing process by thinking of this problem as an optimization problem.</p>
+<p>However we need to think about formalizing this guessing process by thinking of this problem as an optimization problem.</p>
 <p>Let’s consider the error <span class="math notranslate nohighlight">\(\epsilon_i\)</span> and define the difference between the observed values <span class="math notranslate nohighlight">\(y_i\)</span> and the estimated values <span class="math notranslate nohighlight">\(\hat{y}_i\)</span> which we will call the residuals</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -610,17 +624,23 @@ y_i = \alpha + \beta x_i + \epsilon_i, i = 1,2,...,N
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
-<span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;X&#39;</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;Y&#39;</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;scatter&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
-<span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;X&#39;</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;Y_hat&#39;</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;line&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Y_hat&#39;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Y&#39;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">);</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;X&#39;</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;Y&#39;</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;scatter&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;X&#39;</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;Y_hat&#39;</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;line&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Y_hat&#39;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Y&#39;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
+<figure class="align-default" id="plt-residuals">
 <a class="reference internal image-reference" href="_images/2e63c5bc45d45db896b7ff08130f6b29851b586593fbea7fc21dd66b51a2061b.png"><img alt="_images/2e63c5bc45d45db896b7ff08130f6b29851b586593fbea7fc21dd66b51a2061b.png" src="_images/2e63c5bc45d45db896b7ff08130f6b29851b586593fbea7fc21dd66b51a2061b.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 38.5 </span><span class="caption-text">Plot of the residuals</span><a class="headerlink" href="#plt-residuals" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </div>
 </div>
-<p>The Ordinary Least Squares (OLS) method, as the name suggests, chooses <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span> in such a way that <strong>minimises</strong> the Sum of the Squared Residuals (SSR).</p>
+<p>The Ordinary Least Squares (OLS) method chooses <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span> in such a way that <strong>minimizes</strong> the sum of the squared residuals (SSR).</p>
 <div class="math notranslate nohighlight">
 \[
 \min_{\alpha,\beta} \sum_{i=1}^{N}{\hat{e}_i^2} = \min_{\alpha,\beta} \sum_{i=1}^{N}{(y_i - \alpha - \beta x_i)^2}
@@ -630,7 +650,7 @@ y_i = \alpha + \beta x_i + \epsilon_i, i = 1,2,...,N
 \[
 C = \sum_{i=1}^{N}{(y_i - \alpha - \beta x_i)^2}
 \]</div>
-<p>that we would like to minimise with parameters <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span>.</p>
+<p>that we would like to minimize with parameters <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span>.</p>
 <section id="how-does-error-change-with-respect-to-alpha-and-beta">
 <h2><span class="section-number">38.1. </span>How does error change with respect to <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span><a class="headerlink" href="#how-does-error-change-with-respect-to-alpha-and-beta" title="Permalink to this heading">#</a></h2>
 <p>Let us first look at how the total error changes with respect to <span class="math notranslate nohighlight">\(\beta\)</span> (holding the intercept <span class="math notranslate nohighlight">\(\alpha\)</span> constant)</p>
@@ -653,7 +673,7 @@ C = \sum_{i=1}^{N}{(y_i - \alpha - \beta x_i)^2}
 </div>
 </div>
 </div>
-<p>Ploting the error</p>
+<p>Plotting the error</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">errors</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;β&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;error&#39;</span><span class="p">)</span>
@@ -662,7 +682,12 @@ C = \sum_{i=1}^{N}{(y_i - \alpha - \beta x_i)^2}
 </div>
 </div>
 <div class="cell_output docutils container">
+<figure class="align-default" id="plt-errors">
 <a class="reference internal image-reference" href="_images/0a15500dc6760ebb0be4ba71591d2497ea27c23f743917cdff309701a366832e.png"><img alt="_images/0a15500dc6760ebb0be4ba71591d2497ea27c23f743917cdff309701a366832e.png" src="_images/0a15500dc6760ebb0be4ba71591d2497ea27c23f743917cdff309701a366832e.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 38.6 </span><span class="caption-text">Plotting the error</span><a class="headerlink" href="#plt-errors" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </div>
 </div>
 <p>Now let us vary <span class="math notranslate nohighlight">\(\alpha\)</span> (holding <span class="math notranslate nohighlight">\(\beta\)</span> constant)</p>
@@ -675,7 +700,7 @@ C = \sum_{i=1}^{N}{(y_i - \alpha - \beta x_i)^2}
 </div>
 </div>
 </div>
-<p>Ploting the error</p>
+<p>Plotting the error</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">errors</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;α&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;error&#39;</span><span class="p">)</span>
@@ -684,7 +709,12 @@ C = \sum_{i=1}^{N}{(y_i - \alpha - \beta x_i)^2}
 </div>
 </div>
 <div class="cell_output docutils container">
+<figure class="align-default" id="plt-errors-2">
 <a class="reference internal image-reference" href="_images/cb272f7af8823a55570f43e364904f55e6a83d66175be566b86b9d58e0cad726.png"><img alt="_images/cb272f7af8823a55570f43e364904f55e6a83d66175be566b86b9d58e0cad726.png" src="_images/cb272f7af8823a55570f43e364904f55e6a83d66175be566b86b9d58e0cad726.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 38.7 </span><span class="caption-text">Plotting the error (2)</span><a class="headerlink" href="#plt-errors-2" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </div>
 </div>
 </section>
@@ -817,22 +847,20 @@ C = \sum_{i=1}^{N}{(y_i - \alpha - \beta x_i)^2}
 <span class="n">df</span><span class="p">[</span><span class="s1">&#39;error&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Y_hat&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Y&#39;</span><span class="p">]</span>
 
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
-<span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;X&#39;</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;Y&#39;</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;scatter&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
-<span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;X&#39;</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;Y_hat&#39;</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;line&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;X&#39;</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;Y&#39;</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;scatter&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;X&#39;</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;Y_hat&#39;</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;line&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Y_hat&#39;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Y&#39;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
+<figure class="align-default" id="plt-ols">
 <a class="reference internal image-reference" href="_images/f4543d81fdfe797db9dfc05ee33e2ce396fd5d0c506265689cc222a67bb10e9b.png"><img alt="_images/f4543d81fdfe797db9dfc05ee33e2ce396fd5d0c506265689cc222a67bb10e9b.png" src="_images/f4543d81fdfe797db9dfc05ee33e2ce396fd5d0c506265689cc222a67bb10e9b.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 38.8 </span><span class="caption-text">OLS line of best fit</span><a class="headerlink" href="#plt-ols" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </div>
-</div>
-<div class="admonition-why-use-ols admonition">
-<p class="admonition-title">Why use OLS?</p>
-<p>TODO</p>
-<ol class="arabic simple">
-<li><p>Discuss mathematical properties for why we have chosen OLS</p></li>
-</ol>
 </div>
 <div class="exercise admonition" id="slr-ex1">
 
@@ -843,7 +871,7 @@ C = \sum_{i=1}^{N}{(y_i - \alpha - \beta x_i)^2}
 <ol class="arabic simple">
 <li><p>What do you think their relationship would be?</p></li>
 <li><p>Gather some data <a class="reference external" href="https://ourworldindata.org">from our world in data</a></p></li>
-<li><p>Use <code class="docutils literal notranslate"><span class="pre">pandas</span></code> to import the <code class="docutils literal notranslate"><span class="pre">csv</span></code> formated data and plot a few different countries of interest</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">pandas</span></code> to import the <code class="docutils literal notranslate"><span class="pre">csv</span></code> formatted data and plot a few different countries of interest</p></li>
 <li><p>Use <a class="reference internal" href="#equation-eq-optimal-alpha">(38.1)</a> and <a class="reference internal" href="#equation-eq-optimal-beta">(38.2)</a> to compute optimal values for  <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span></p></li>
 <li><p>Plot the line of best fit found using OLS</p></li>
 <li><p>Interpret the coefficients and write a summary sentence of the relationship between GDP per capita and Life Expectancy</p></li>
@@ -855,12 +883,12 @@ C = \sum_{i=1}^{N}{(y_i - \alpha - \beta x_i)^2}
 <p class="admonition-title">Solution to<a class="reference internal" href="#slr-ex1"> Exercise 38.1</a></p>
 <section id="solution-content">
 <p><strong>Q2:</strong> Gather some data <a class="reference external" href="https://ourworldindata.org">from our world in data</a></p>
-<iframe src="https://ourworldindata.org/grapher/life-expectancy-vs-gdp-per-capita" loading="lazy" style="width: 100%; height: 600px; border: 0px none;"></iframe><p>You can download <a class="reference download internal" download="" href="_downloads/4f20f803f2e6f2bfce589941ae46788a/life-expectancy-vs-gdp-per-capita.csv"><code class="xref download docutils literal notranslate"><span class="pre">a</span> <span class="pre">copy</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">data</span> <span class="pre">here</span></code></a> if you get stuck</p>
+<iframe src="https://ourworldindata.org/grapher/life-expectancy-vs-gdp-per-capita" loading="lazy" style="width: 100%; height: 600px; border: 0px none;"></iframe><p>You can download <a class="reference download external" download="" href="https://github.com/QuantEcon/lecture-python-intro/raw/main/lectures/_static/lecture_specific/simple_linear_regression/life-expectancy-vs-gdp-per-capita.csv"><code class="xref download docutils literal notranslate"><span class="pre">a</span> <span class="pre">copy</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">data</span> <span class="pre">here</span></code></a> if you get stuck</p>
 <p><strong>Q3:</strong> Use <code class="docutils literal notranslate"><span class="pre">pandas</span></code> to import the <code class="docutils literal notranslate"><span class="pre">csv</span></code> formatted data and plot a few different countries of interest</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fl</span> <span class="o">=</span> <span class="s2">&quot;_static/lecture_specific/simple_linear_regression/life-expectancy-vs-gdp-per-capita.csv&quot;</span>  <span class="c1"># TODO: Replace with GitHub link</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">fl</span><span class="p">,</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_url</span> <span class="o">=</span> <span class="s2">&quot;https://github.com/QuantEcon/lecture-python-intro/raw/main/lectures/_static/lecture_specific/simple_linear_regression/life-expectancy-vs-gdp-per-capita.csv&quot;</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">data_url</span><span class="p">,</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1022,7 +1050,7 @@ C = \sum_{i=1}^{N}{(y_i - \alpha - \beta x_i)^2}
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Code&#39;</span><span class="p">,</span> <span class="s1">&#39;Year&#39;</span><span class="p">,</span> <span class="s1">&#39;Life expectancy at birth (historical)&#39;</span><span class="p">,</span> <span class="s1">&#39;GDP per capita&#39;</span><span class="p">]</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">fl</span><span class="p">,</span> <span class="n">usecols</span><span class="o">=</span><span class="n">cols</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">data_url</span><span class="p">,</span> <span class="n">usecols</span><span class="o">=</span><span class="n">cols</span><span class="p">)</span>
 <span class="n">df</span>
 </pre></div>
 </div>
@@ -1862,12 +1890,12 @@ C = \sum_{i=1}^{N}{(y_i - \alpha - \beta x_i)^2}
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;gdppc&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;life_expectancy&#39;</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;scatter&#39;</span><span class="p">,</span>  <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;GDP per capita&quot;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;Life Expectancy (Years)&quot;</span><span class="p">,);</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;gdppc&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;life_expectancy&#39;</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;scatter&#39;</span><span class="p">,</span>  <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;GDP per capita&quot;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;Life expectancy (years)&quot;</span><span class="p">,);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/0ca2ad20de88e6ea8332dcaa3ae8377337110068d229d8b9c2d23664f5ab6a6c.png"><img alt="_images/0ca2ad20de88e6ea8332dcaa3ae8377337110068d229d8b9c2d23664f5ab6a6c.png" src="_images/0ca2ad20de88e6ea8332dcaa3ae8377337110068d229d8b9c2d23664f5ab6a6c.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/2c5cf064280897f5d8dea649e40274fa49ab3bdd10514150b75344e985a31602.png"><img alt="_images/2c5cf064280897f5d8dea649e40274fa49ab3bdd10514150b75344e985a31602.png" src="_images/2c5cf064280897f5d8dea649e40274fa49ab3bdd10514150b75344e985a31602.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>This data shows a couple of interesting relationships.</p>
@@ -1875,20 +1903,16 @@ C = \sum_{i=1}^{N}{(y_i - \alpha - \beta x_i)^2}
 <li><p>there are a number of countries with similar GDP per capita levels but a wide range in Life Expectancy</p></li>
 <li><p>there appears to be a positive relationship between GDP per capita and life expectancy. Countries with higher GDP per capita tend to have higher life expectancy outcomes</p></li>
 </ol>
-<p>Even though OLS is solving linear equations – one option we have is to transform the variables, such as through a log transform, and then use OLS to estimate the transformed variables</p>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>ln -&gt; ln == elasticities</p>
-</div>
+<p>Even though OLS is solving linear equations – one option we have is to transform the variables, such as through a log transform, and then use OLS to estimate the transformed variables.</p>
 <p>By specifying <code class="docutils literal notranslate"><span class="pre">logx</span></code> you can plot the GDP per Capita data on a log scale</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;gdppc&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;life_expectancy&#39;</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;scatter&#39;</span><span class="p">,</span>  <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;GDP per capita&quot;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;Life Expectancy (Years)&quot;</span><span class="p">,</span> <span class="n">logx</span><span class="o">=</span><span class="kc">True</span><span class="p">);</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;gdppc&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;life_expectancy&#39;</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;scatter&#39;</span><span class="p">,</span>  <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;GDP per capita&quot;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;Life expectancy (years)&quot;</span><span class="p">,</span> <span class="n">logx</span><span class="o">=</span><span class="kc">True</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/41d03ce42ee30350a471e5d9d52742f22566959822878a10ee157c9733eb619b.png"><img alt="_images/41d03ce42ee30350a471e5d9d52742f22566959822878a10ee157c9733eb619b.png" src="_images/41d03ce42ee30350a471e5d9d52742f22566959822878a10ee157c9733eb619b.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/0a2483d779889ec60ceb0bc02210463ab42cad3a1fa4102e9d41644fb10593b3.png"><img alt="_images/0a2483d779889ec60ceb0bc02210463ab42cad3a1fa4102e9d41644fb10593b3.png" src="_images/0a2483d779889ec60ceb0bc02210463ab42cad3a1fa4102e9d41644fb10593b3.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>As you can see from this transformation – a linear model fits the shape of the data more closely.</p>
@@ -2170,7 +2194,7 @@ C = \sum_{i=1}^{N}{(y_i - \alpha - \beta x_i)^2}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.LineCollection at 0x7f472c128110&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.LineCollection at 0x7b4adaae0890&gt;
 </pre></div>
 </div>
 <a class="reference internal image-reference" href="_images/25a8bf826e1682bb1e5bb21be41cea5081ac7119f77721c30160c1bf7831e961.png"><img alt="_images/25a8bf826e1682bb1e5bb21be41cea5081ac7119f77721c30160c1bf7831e961.png" src="_images/25a8bf826e1682bb1e5bb21be41cea5081ac7119f77721c30160c1bf7831e961.png" style="width: 80%;" /></a>
@@ -2182,8 +2206,8 @@ C = \sum_{i=1}^{N}{(y_i - \alpha - \beta x_i)^2}
 
 <p class="admonition-title"><span class="caption-number">Exercise 38.2 </span></p>
 <section id="exercise-content">
-<p>Minimising the sum of squares is not the <strong>only</strong> way to generate the line of best fit.</p>
-<p>For example, we could also consider minimising the sum of the <strong>absolute values</strong>, that would give less weight to outliers.</p>
+<p>Minimizing the sum of squares is not the <strong>only</strong> way to generate the line of best fit.</p>
+<p>For example, we could also consider minimizing the sum of the <strong>absolute values</strong>, that would give less weight to outliers.</p>
 <p>Solve for <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span> using the least absolute values</p>
 </section>
 </div>
@@ -2280,13 +2304,13 @@ C = \sum_{i=1}^{N}{(y_i - \alpha - \beta x_i)^2}
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
-  Essential Tools
+  Foundations
  </span>
 </p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
-  <a class="reference internal" href="complex_and_trig.html">
-   6. Complex Numbers and Trigonometry
+  <a class="reference internal" href="intro_supply_demand.html">
+   6. Introduction to Supply and Demand
   </a>
  </li>
  <li class="toctree-l1">
@@ -2295,19 +2319,19 @@ C = \sum_{i=1}^{N}{(y_i - \alpha - \beta x_i)^2}
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="eigen_I.html">
-   8. Eigenvalues and Eigenvectors
+  <a class="reference internal" href="complex_and_trig.html">
+   8. Complex Numbers and Trigonometry
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="intro_supply_demand.html">
-   9. Introduction to Supply and Demand
+  <a class="reference internal" href="geom_series.html">
+   9. Geometric Series for Elementary Economics
   </a>
  </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
-  Linear Dynamics
+  Linear Dynamics: Finite Horizons
  </span>
 </p>
 <ul class="nav bd-sidenav nav sidenav_l1">
@@ -2336,9 +2360,16 @@ C = \sum_{i=1}^{N}{(y_i - \alpha - \beta x_i)^2}
    14. A Monetarist Theory of Price Levels with Adaptive Expectations
   </a>
  </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Linear Dynamics: Infinite Horizons
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
-  <a class="reference internal" href="geom_series.html">
-   15. Geometric Series for Elementary Economics
+  <a class="reference internal" href="eigen_I.html">
+   15. Eigenvalues and Eigenvectors
   </a>
  </li>
 </ul>

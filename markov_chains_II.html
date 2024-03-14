@@ -177,10 +177,10 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ergodicity">28.3. Ergodicity</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-1">28.3.1. Example 1</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2">28.3.2. Example 2</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-3">28.3.3. Example 3</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-4">28.3.4. Example 4</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-ergodicity-and-unemployment">28.3.1. Example: Ergodicity and unemployment</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-hamilton-dynamics">28.3.2. Example: Hamilton dynamics</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-a-periodic-chain">28.3.3. Example: a periodic chain</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-political-institutions">28.3.4. Example:  political institutions</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#expectations-of-geometric-sums">28.3.5. Expectations of geometric sums</a></li>
 </ul>
 </li>
@@ -258,16 +258,16 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="expanded">Hide code cell output</span>
 </summary>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: quantecon in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (0.7.1)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: numba&gt;=0.49.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from quantecon) (0.57.1)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: quantecon in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (0.7.2)
+Requirement already satisfied: numba&gt;=0.49.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from quantecon) (0.57.1)
 Requirement already satisfied: numpy&gt;=1.17.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from quantecon) (1.24.3)
 Requirement already satisfied: requests in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from quantecon) (2.31.0)
 Requirement already satisfied: scipy&gt;=1.5.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from quantecon) (1.11.1)
 Requirement already satisfied: sympy in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from quantecon) (1.11.1)
 Requirement already satisfied: llvmlite&lt;0.41,&gt;=0.40.0dev0 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from numba&gt;=0.49.0-&gt;quantecon) (0.40.0)
-Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from requests-&gt;quantecon) (2.0.4)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from requests-&gt;quantecon) (2.0.4)
 Requirement already satisfied: idna&lt;4,&gt;=2.5 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from requests-&gt;quantecon) (3.4)
 Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from requests-&gt;quantecon) (1.26.16)
 Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from requests-&gt;quantecon) (2023.7.22)
@@ -294,7 +294,6 @@ law of large numbers.</p></li>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;figure.figsize&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>  <span class="c1"># set default figure size</span>
 <span class="kn">import</span> <span class="nn">quantecon</span> <span class="k">as</span> <span class="nn">qe</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 </pre></div>
@@ -383,9 +382,9 @@ in terms of long-run outcomes.</p>
 <p>We’ll come back to this a bit later.</p>
 <section id="irreducibility-and-stationarity">
 <h3><span class="section-number">28.2.1. </span>Irreducibility and stationarity<a class="headerlink" href="#irreducibility-and-stationarity" title="Permalink to this heading">#</a></h3>
-<p>We discussed the uniqueness of the stationary in the <a class="reference internal" href="markov_chains_I.html#stationary"><span class="std std-ref">previous lecture</span></a> requires the transition matrix to be everywhere positive.</p>
-<p>In fact irreducibility is enough for the uniqueness of the stationary distribution to hold if the distribution exists.</p>
-<p>We can revise the <a class="reference internal" href="markov_chains_I.html#strict-stationary"><span class="std std-ref">theorem</span></a> into the following fundamental theorem:</p>
+<p>We discussed uniqueness of stationary distributions our <a class="reference internal" href="markov_chains_I.html"><span class="doc">earlier lecture on Markov chains</span></a></p>
+<p>There we <a class="reference internal" href="markov_chains_I.html#mc_po_conv_thm">stated</a> that uniqueness holds when the transition matrix is everywhere positive.</p>
+<p>In fact irreducibility is sufficient:</p>
 <div class="proof theorem admonition" id="mc_conv_thm">
 <p class="admonition-title"><span class="caption-number">Theorem 28.1 </span></p>
 <section class="theorem-content" id="proof-content">
@@ -398,7 +397,6 @@ Theorem 5.2 of <span id="id2">[<a class="reference internal" href="zreferences.h
 </section>
 <section id="ergodicity">
 <span id="id3"></span><h2><span class="section-number">28.3. </span>Ergodicity<a class="headerlink" href="#ergodicity" title="Permalink to this heading">#</a></h2>
-<p>Please note that we use <span class="math notranslate nohighlight">\(\mathbb{1}\)</span> for a vector of ones in this lecture.</p>
 <p>Under irreducibility, yet another important result obtains:</p>
 <div class="proof theorem admonition" id="stationary">
 <p class="admonition-title"><span class="caption-number">Theorem 28.2 </span></p>
@@ -423,8 +421,8 @@ converges to <span class="math notranslate nohighlight">\(\psi^*(x)\)</span> as 
 <p>The theorem is related to <a class="reference internal" href="lln_clt.html"><span class="doc">the Law of Large Numbers</span></a>.</p>
 <p>It tells us that, in some settings, the law of large numbers sometimes holds even when the
 sequence of random variables is <a class="reference internal" href="lln_clt.html#iid-violation"><span class="std std-ref">not IID</span></a>.</p>
-<section id="example-1">
-<span id="mc-eg1-2"></span><h3><span class="section-number">28.3.1. </span>Example 1<a class="headerlink" href="#example-1" title="Permalink to this heading">#</a></h3>
+<section id="example-ergodicity-and-unemployment">
+<span id="mc-eg1-2"></span><h3><span class="section-number">28.3.1. </span>Example: Ergodicity and unemployment<a class="headerlink" href="#example-ergodicity-and-unemployment" title="Permalink to this heading">#</a></h3>
 <p>Recall our cross-sectional interpretation of the employment/unemployment model <a class="reference internal" href="markov_chains_I.html#mc-eg1-1"><span class="std std-ref">discussed above</span></a>.</p>
 <p>Assume that <span class="math notranslate nohighlight">\(\alpha \in (0,1)\)</span> and <span class="math notranslate nohighlight">\(\beta \in (0,1)\)</span>, so that irreducibility holds.</p>
 <p>We saw that the stationary distribution is <span class="math notranslate nohighlight">\((p, 1-p)\)</span>, where</p>
@@ -437,19 +435,22 @@ p = \frac{\beta}{\alpha + \beta}
 <p>Thus, in the long run, cross-sectional averages for a population and time-series averages for a given person coincide.</p>
 <p>This is one aspect of the concept  of ergodicity.</p>
 </section>
-<section id="example-2">
-<span id="ergo"></span><h3><span class="section-number">28.3.2. </span>Example 2<a class="headerlink" href="#example-2" title="Permalink to this heading">#</a></h3>
+<section id="example-hamilton-dynamics">
+<span id="ergo"></span><h3><span class="section-number">28.3.2. </span>Example: Hamilton dynamics<a class="headerlink" href="#example-hamilton-dynamics" title="Permalink to this heading">#</a></h3>
 <p>Another example is the Hamilton dynamics we <a class="reference internal" href="markov_chains_I.html#mc-eg2"><span class="std std-ref">discussed before</span></a>.</p>
-<p>The <a class="reference internal" href="markov_chains_I.html#mc-eg2"><span class="std std-ref">graph</span></a> of the Markov chain shows it is irreducible</p>
-<p>Therefore, we can see the sample path averages for each state (the fraction of
-time spent in each state) converges to the stationary distribution regardless of
-the starting state</p>
-<p>Let’s denote the fraction of time spent in state <span class="math notranslate nohighlight">\(x\)</span> at time <span class="math notranslate nohighlight">\(t\)</span> in our sample path as <span class="math notranslate nohighlight">\(\hat p_t(x)\)</span> where</p>
+<p>Let <span class="math notranslate nohighlight">\(\{X_t\}\)</span> be a sample path generated by these dynamics.</p>
+<p>Let’s denote the fraction of time spent in state <span class="math notranslate nohighlight">\(x\)</span> over the period <span class="math notranslate nohighlight">\(t=1,
+\ldots, n\)</span> by <span class="math notranslate nohighlight">\(\hat p_n(x)\)</span>, so that</p>
 <div class="math notranslate nohighlight">
 \[
-\hat p_t(x) := \frac{1}{t} \sum_{t = 1}^t \mathbf{1}\{X_t = x\}
+    \hat p_n(x) := \frac{1}{n} \sum_{t = 1}^n \mathbf{1}\{X_t = x\}
+    \qquad (x \in \{0, 1, 2\})
 \]</div>
-<p>Here we compare <span class="math notranslate nohighlight">\(\hat p_t(x)\)</span> with the stationary distribution <span class="math notranslate nohighlight">\(\psi^* (x)\)</span> for different starting points <span class="math notranslate nohighlight">\(x_0\)</span>.</p>
+<p>The <a class="reference internal" href="markov_chains_I.html#mc-eg2"><span class="std std-ref">graph</span></a> of the Markov chain shows it is irreducible, so
+ergodicity holds.</p>
+<p>Hence we expect that <span class="math notranslate nohighlight">\(\hat p_n(x) \approx \psi^*(x)\)</span> when <span class="math notranslate nohighlight">\(n\)</span> is large.</p>
+<p>The next figure shows convergence of <span class="math notranslate nohighlight">\(\hat p_n(x)\)</span> to <span class="math notranslate nohighlight">\(\psi^*(x)\)</span> when <span class="math notranslate nohighlight">\(x=1\)</span> and
+<span class="math notranslate nohighlight">\(X_0\)</span> is either <span class="math notranslate nohighlight">\(0, 1\)</span> or <span class="math notranslate nohighlight">\(2\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">P</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.971</span><span class="p">,</span> <span class="mf">0.029</span><span class="p">,</span> <span class="mf">0.000</span><span class="p">],</span>
@@ -457,52 +458,106 @@ the starting state</p>
               <span class="p">[</span><span class="mf">0.000</span><span class="p">,</span> <span class="mf">0.508</span><span class="p">,</span> <span class="mf">0.492</span><span class="p">]])</span>
 <span class="n">ts_length</span> <span class="o">=</span> <span class="mi">10_000</span>
 <span class="n">mc</span> <span class="o">=</span> <span class="n">qe</span><span class="o">.</span><span class="n">MarkovChain</span><span class="p">(</span><span class="n">P</span><span class="p">)</span>
-<span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">P</span><span class="p">)</span>
-<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
 <span class="n">ψ_star</span> <span class="o">=</span> <span class="n">mc</span><span class="o">.</span><span class="n">stationary_distributions</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">wspace</span><span class="o">=</span><span class="mf">0.35</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># We study convergence to psi^*(x) </span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">ψ_star</span><span class="p">[</span><span class="n">x</span><span class="p">],</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> 
+                <span class="n">label</span> <span class="o">=</span> <span class="sa">fr</span><span class="s1">&#39;$\psi^*(</span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s1">)$&#39;</span><span class="p">)</span>
+<span class="c1"># Compute the fraction of time spent in state 0, starting from different x_0s</span>
+<span class="k">for</span> <span class="n">x0</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">mc</span><span class="o">.</span><span class="n">simulate</span><span class="p">(</span><span class="n">ts_length</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="n">x0</span><span class="p">)</span>
+    <span class="n">p_hat</span> <span class="o">=</span> <span class="p">(</span><span class="n">X</span> <span class="o">==</span> <span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">cumsum</span><span class="p">()</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">ts_length</span><span class="p">))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">p_hat</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">fr</span><span class="s1">&#39;$\hat p_n(</span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s1">)$ when $X_0 = \, </span><span class="si">{</span><span class="n">x0</span><span class="si">}</span><span class="s1">$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">fr</span><span class="s1">&#39;$\hat p_n(</span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s1">)$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/97cc142f2c3dd3470ea91098c3f62d7f0a71087a7b4c9fe3e6013fc3428dd605.png"><img alt="_images/97cc142f2c3dd3470ea91098c3f62d7f0a71087a7b4c9fe3e6013fc3428dd605.png" src="_images/97cc142f2c3dd3470ea91098c3f62d7f0a71087a7b4c9fe3e6013fc3428dd605.png" style="width: 80%;" /></a>
+</div>
+</div>
+<p>You might like to try changing <span class="math notranslate nohighlight">\(x=1\)</span> to either <span class="math notranslate nohighlight">\(x=0\)</span> or <span class="math notranslate nohighlight">\(x=2\)</span>.</p>
+<p>In any of these cases, ergodicity will hold.</p>
+</section>
+<section id="example-a-periodic-chain">
+<h3><span class="section-number">28.3.3. </span>Example: a periodic chain<a class="headerlink" href="#example-a-periodic-chain" title="Permalink to this heading">#</a></h3>
+<p>Let’s look at the following example with states 0 and 1:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+P :=
+\begin{bmatrix} 
+     0 &amp; 1\\
+     1 &amp; 0\\
+\end{bmatrix} 
+\end{split}\]</div>
+<p>The transition graph shows that this model is irreducible.</p>
+<img alt="_images/example4.png" class="align-center" id="mc-example4" src="_images/example4.png" />
+<p>Notice that there is a periodic cycle — the state cycles between the two states in a regular way.</p>
+<p>Not surprisingly, this property
+is called <a class="reference external" href="https://stats.libretexts.org/Bookshelves/Probability_Theory/Probability_Mathematical_Statistics_and_Stochastic_Processes_(Siegrist)/16%3A_Markov_Processes/16.05%3A_Periodicity_of_Discrete-Time_Chains">periodicity</a>.</p>
+<p>Nonetheless, the model is irreducible, so ergodicity holds.</p>
+<p>The following figure illustrates</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">P</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+              <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+<span class="n">ts_length</span> <span class="o">=</span> <span class="mi">10_000</span>
+<span class="n">mc</span> <span class="o">=</span> <span class="n">qe</span><span class="o">.</span><span class="n">MarkovChain</span><span class="p">(</span><span class="n">P</span><span class="p">)</span>
+<span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">P</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
+<span class="n">ψ_star</span> <span class="o">=</span> <span class="n">mc</span><span class="o">.</span><span class="n">stationary_distributions</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mf">0.45</span><span class="p">,</span> <span class="mf">0.55</span><span class="p">)</span>
     <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">ψ_star</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> 
                     <span class="n">label</span> <span class="o">=</span> <span class="sa">fr</span><span class="s1">&#39;$\psi^*(</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">)$&#39;</span><span class="p">)</span>
     <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="p">)</span>
-    <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">fr</span><span class="s1">&#39;$\hat p_t(</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">)$&#39;</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">fr</span><span class="s1">&#39;$\hat p_n(</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">)$&#39;</span><span class="p">)</span>
 
-    <span class="c1"># Compute the fraction of time spent, starting from different x_0s</span>
-    <span class="k">for</span> <span class="n">x0</span><span class="p">,</span> <span class="n">col</span> <span class="ow">in</span> <span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;blue&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;green&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;red&#39;</span><span class="p">)):</span>
-        <span class="c1"># Generate time series that starts at different x0</span>
+    <span class="c1"># Compute the fraction of time spent, for each x</span>
+    <span class="k">for</span> <span class="n">x0</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="c1"># Generate time series starting at different x_0</span>
         <span class="n">X</span> <span class="o">=</span> <span class="n">mc</span><span class="o">.</span><span class="n">simulate</span><span class="p">(</span><span class="n">ts_length</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="n">x0</span><span class="p">)</span>
-        <span class="n">p_hat</span> <span class="o">=</span> <span class="p">(</span><span class="n">X</span> <span class="o">==</span> <span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">cumsum</span><span class="p">()</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">ts_length</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">))</span>
-        <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">p_hat</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">col</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;$x_0 = \, </span><span class="si">{</span><span class="n">x0</span><span class="si">}</span><span class="s1"> $&#39;</span><span class="p">)</span>
+        <span class="n">p_hat</span> <span class="o">=</span> <span class="p">(</span><span class="n">X</span> <span class="o">==</span> <span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">cumsum</span><span class="p">()</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">ts_length</span><span class="p">))</span>
+        <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">p_hat</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;$x_0 = \, </span><span class="si">{</span><span class="n">x0</span><span class="si">}</span><span class="s1"> $&#39;</span><span class="p">)</span>
+
     <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/f5832166f4fe9e9de9fda33a8680380caa19339b43d17b5deebbe365a867967e.png"><img alt="_images/f5832166f4fe9e9de9fda33a8680380caa19339b43d17b5deebbe365a867967e.png" src="_images/f5832166f4fe9e9de9fda33a8680380caa19339b43d17b5deebbe365a867967e.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/2c003464270d18a533d3f105bec6f81d97752a8907427bdd450fa71ba7114e04.png"><img alt="_images/2c003464270d18a533d3f105bec6f81d97752a8907427bdd450fa71ba7114e04.png" src="_images/2c003464270d18a533d3f105bec6f81d97752a8907427bdd450fa71ba7114e04.png" style="width: 80%;" /></a>
 </div>
 </div>
-<p>Note the convergence to the stationary distribution regardless of the starting point <span class="math notranslate nohighlight">\(x_0\)</span>.</p>
+<p>This example helps to emphasize that asymptotic stationarity is about the distribution, while ergodicity is about the sample path.</p>
+<p>The proportion of time spent in a state can converge to the stationary distribution with periodic chains.</p>
+<p>However, the distribution at each state does not.</p>
 </section>
-<section id="example-3">
-<h3><span class="section-number">28.3.3. </span>Example 3<a class="headerlink" href="#example-3" title="Permalink to this heading">#</a></h3>
-<p>Let’s look at one more example with six states <a class="reference internal" href="markov_chains_I.html#mc-eg3"><span class="std std-ref">discussed before</span></a>.</p>
+<section id="example-political-institutions">
+<h3><span class="section-number">28.3.4. </span>Example:  political institutions<a class="headerlink" href="#example-political-institutions" title="Permalink to this heading">#</a></h3>
+<p>Let’s go back to the political institutions mode with six states discussed <a class="reference internal" href="markov_chains_I.html#mc-eg3"><span class="std std-ref">in a previous lecture</span></a> and study ergodicity.</p>
+<p>Here’s the transition matrix.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-P :=
-\begin{bmatrix} 
-0.86 &amp; 0.11 &amp; 0.03 &amp; 0.00 &amp; 0.00 &amp; 0.00 \\
-0.52 &amp; 0.33 &amp; 0.13 &amp; 0.02 &amp; 0.00 &amp; 0.00 \\
-0.12 &amp; 0.03 &amp; 0.70 &amp; 0.11 &amp; 0.03 &amp; 0.01 \\
-0.13 &amp; 0.02 &amp; 0.35 &amp; 0.36 &amp; 0.10 &amp; 0.04 \\
-0.00 &amp; 0.00 &amp; 0.09 &amp; 0.11 &amp; 0.55 &amp; 0.25 \\
-0.00 &amp; 0.00 &amp; 0.09 &amp; 0.15 &amp; 0.26 &amp; 0.50
-\end{bmatrix} 
+    P :=
+    \begin{bmatrix} 
+        0.86 &amp; 0.11 &amp; 0.03 &amp; 0.00 &amp; 0.00 &amp; 0.00 \\
+        0.52 &amp; 0.33 &amp; 0.13 &amp; 0.02 &amp; 0.00 &amp; 0.00 \\
+        0.12 &amp; 0.03 &amp; 0.70 &amp; 0.11 &amp; 0.03 &amp; 0.01 \\
+        0.13 &amp; 0.02 &amp; 0.35 &amp; 0.36 &amp; 0.10 &amp; 0.04 \\
+        0.00 &amp; 0.00 &amp; 0.09 &amp; 0.11 &amp; 0.55 &amp; 0.25 \\
+        0.00 &amp; 0.00 &amp; 0.09 &amp; 0.15 &amp; 0.26 &amp; 0.50
+    \end{bmatrix} 
 \end{split}\]</div>
 <p>The <a class="reference internal" href="markov_chains_I.html#mc-eg3"><span class="std std-ref">graph</span></a> for the chain shows all states are reachable,
 indicating that this chain is irreducible.</p>
-<p>Here we visualize the difference between <span class="math notranslate nohighlight">\(\hat p_t(x)\)</span> and the stationary distribution <span class="math notranslate nohighlight">\(\psi^* (x)\)</span> for each state <span class="math notranslate nohighlight">\(x\)</span></p>
+<p>In the next figure, we visualize the difference <span class="math notranslate nohighlight">\(\hat p_n(x) - \psi^* (x)\)</span> for each state <span class="math notranslate nohighlight">\(x\)</span>.</p>
+<p>Unlike the previous figure, <span class="math notranslate nohighlight">\(X_0\)</span> is held fixed.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">P</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">0.86</span><span class="p">,</span> <span class="mf">0.11</span><span class="p">,</span> <span class="mf">0.03</span><span class="p">,</span> <span class="mf">0.00</span><span class="p">,</span> <span class="mf">0.00</span><span class="p">,</span> <span class="mf">0.00</span><span class="p">],</span>
@@ -522,12 +577,12 @@ indicating that this chain is irreducible.</p>
 <span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
 
 
-<span class="k">for</span> <span class="n">x0</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">):</span>
+<span class="k">for</span> <span class="n">x0</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">P</span><span class="p">)):</span>
     <span class="c1"># Calculate the fraction of time for each state</span>
-    <span class="n">p_hat</span> <span class="o">=</span> <span class="p">(</span><span class="n">X</span> <span class="o">==</span> <span class="n">x0</span><span class="p">)</span><span class="o">.</span><span class="n">cumsum</span><span class="p">()</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">ts_length</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">))</span>
+    <span class="n">p_hat</span> <span class="o">=</span> <span class="p">(</span><span class="n">X</span> <span class="o">==</span> <span class="n">x0</span><span class="p">)</span><span class="o">.</span><span class="n">cumsum</span><span class="p">()</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">ts_length</span><span class="p">))</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">p_hat</span> <span class="o">-</span> <span class="n">ψ_star</span><span class="p">[</span><span class="n">x0</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;$x = </span><span class="si">{</span><span class="n">x0</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1"> $&#39;</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\hat p_t(x) - \psi^* (x)$&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\hat p_n(x) - \psi^* (x)$&#39;</span><span class="p">)</span>
 
 <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -535,64 +590,9 @@ indicating that this chain is irreducible.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/b2312e8347c3c2bb1b7c1a2209094bd82ff31101e9fa09fa3f3239b623ebd6db.png"><img alt="_images/b2312e8347c3c2bb1b7c1a2209094bd82ff31101e9fa09fa3f3239b623ebd6db.png" src="_images/b2312e8347c3c2bb1b7c1a2209094bd82ff31101e9fa09fa3f3239b623ebd6db.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/3803ca64f2d3520396ad51e86f4995c9e163e204f76423a6e889a43b011c9e42.png"><img alt="_images/3803ca64f2d3520396ad51e86f4995c9e163e204f76423a6e889a43b011c9e42.png" src="_images/3803ca64f2d3520396ad51e86f4995c9e163e204f76423a6e889a43b011c9e42.png" style="width: 80%;" /></a>
 </div>
 </div>
-<p>Similar to previous examples, the sample path averages for each state converge
-to the stationary distribution.</p>
-</section>
-<section id="example-4">
-<h3><span class="section-number">28.3.4. </span>Example 4<a class="headerlink" href="#example-4" title="Permalink to this heading">#</a></h3>
-<p>Let’s look at another example with two states: 0 and 1.</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-P :=
-\begin{bmatrix} 
-     0 &amp; 1\\
-     1 &amp; 0\\
-\end{bmatrix} 
-\end{split}\]</div>
-<p>The diagram of the Markov chain shows that it is <strong>irreducible</strong></p>
-<img alt="_images/example4.png" class="align-center" id="mc-example4" src="_images/example4.png" />
-<p>In fact it has a periodic cycle — the state cycles between the two states in a regular way.</p>
-<p>This is called <a class="reference external" href="https://stats.libretexts.org/Bookshelves/Probability_Theory/Probability_Mathematical_Statistics_and_Stochastic_Processes_(Siegrist)/16%3A_Markov_Processes/16.05%3A_Periodicity_of_Discrete-Time_Chains">periodicity</a>.</p>
-<p>It is still irreducible so ergodicity holds.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">P</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
-              <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
-<span class="n">ts_length</span> <span class="o">=</span> <span class="mi">10_000</span>
-<span class="n">mc</span> <span class="o">=</span> <span class="n">qe</span><span class="o">.</span><span class="n">MarkovChain</span><span class="p">(</span><span class="n">P</span><span class="p">)</span>
-<span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">P</span><span class="p">)</span>
-<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
-<span class="n">ψ_star</span> <span class="o">=</span> <span class="n">mc</span><span class="o">.</span><span class="n">stationary_distributions</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-    <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mf">0.45</span><span class="p">,</span> <span class="mf">0.55</span><span class="p">)</span>
-    <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">ψ_star</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> 
-                    <span class="n">label</span> <span class="o">=</span> <span class="sa">fr</span><span class="s1">&#39;$\psi^*(</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">)$&#39;</span><span class="p">)</span>
-    <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="p">)</span>
-    <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">fr</span><span class="s1">&#39;$\hat p_t(</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">)$&#39;</span><span class="p">)</span>
-
-    <span class="c1"># Compute the fraction of time spent, for each x</span>
-    <span class="k">for</span> <span class="n">x0</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-        <span class="c1"># Generate time series starting at different x_0</span>
-        <span class="n">X</span> <span class="o">=</span> <span class="n">mc</span><span class="o">.</span><span class="n">simulate</span><span class="p">(</span><span class="n">ts_length</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="n">x0</span><span class="p">)</span>
-        <span class="n">p_hat</span> <span class="o">=</span> <span class="p">(</span><span class="n">X</span> <span class="o">==</span> <span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">cumsum</span><span class="p">()</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">ts_length</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">))</span>
-        <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">p_hat</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;$x_0 = \, </span><span class="si">{</span><span class="n">x0</span><span class="si">}</span><span class="s1"> $&#39;</span><span class="p">)</span>
-
-    <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/bfec935b9b85852820eefaa624880a867a701144966c2d3c6449539072be56e4.png"><img alt="_images/bfec935b9b85852820eefaa624880a867a701144966c2d3c6449539072be56e4.png" src="_images/bfec935b9b85852820eefaa624880a867a701144966c2d3c6449539072be56e4.png" style="width: 80%;" /></a>
-</div>
-</div>
-<p>This example helps to emphasize that asymptotic stationarity is about the distribution, while ergodicity is about the sample path.</p>
-<p>The proportion of time spent in a state can converge to the stationary distribution with periodic chains.</p>
-<p>However, the distribution at each state does not.</p>
 </section>
 <section id="expectations-of-geometric-sums">
 <h3><span class="section-number">28.3.5. </span>Expectations of geometric sums<a class="headerlink" href="#expectations-of-geometric-sums" title="Permalink to this heading">#</a></h3>
@@ -625,15 +625,15 @@ P :=
 <div class="math notranslate nohighlight">
 \[\begin{split}
 P:=
-\begin{bmatrix} 
-0.222 &amp; 0.222 &amp; 0.215 &amp; 0.187 &amp; 0.081 &amp; 0.038 &amp; 0.029 &amp; 0.006 \\
-0.221 &amp; 0.22 &amp; 0.215 &amp; 0.188 &amp; 0.082 &amp; 0.039 &amp; 0.029 &amp; 0.006 \\
-0.207 &amp; 0.209 &amp; 0.21 &amp; 0.194 &amp; 0.09 &amp; 0.046 &amp; 0.036 &amp; 0.008 \\ 
-0.198 &amp; 0.201 &amp; 0.207 &amp; 0.198 &amp; 0.095 &amp; 0.052 &amp; 0.04 &amp; 0.009 \\ 
-0.175 &amp; 0.178 &amp; 0.197 &amp; 0.207 &amp; 0.11 &amp; 0.067 &amp; 0.054 &amp; 0.012 \\ 
-0.182 &amp; 0.184 &amp; 0.2 &amp; 0.205 &amp; 0.106 &amp; 0.062 &amp; 0.05 &amp; 0.011 \\ 
-0.123 &amp; 0.125 &amp; 0.166 &amp; 0.216 &amp; 0.141 &amp; 0.114 &amp; 0.094 &amp; 0.021 \\ 
-0.084 &amp; 0.084 &amp; 0.142 &amp; 0.228 &amp; 0.17 &amp; 0.143 &amp; 0.121 &amp; 0.028
+    \begin{bmatrix} 
+        0.222 &amp; 0.222 &amp; 0.215 &amp; 0.187 &amp; 0.081 &amp; 0.038 &amp; 0.029 &amp; 0.006 \\
+        0.221 &amp; 0.22 &amp; 0.215 &amp; 0.188 &amp; 0.082 &amp; 0.039 &amp; 0.029 &amp; 0.006 \\
+        0.207 &amp; 0.209 &amp; 0.21 &amp; 0.194 &amp; 0.09 &amp; 0.046 &amp; 0.036 &amp; 0.008 \\ 
+        0.198 &amp; 0.201 &amp; 0.207 &amp; 0.198 &amp; 0.095 &amp; 0.052 &amp; 0.04 &amp; 0.009 \\ 
+        0.175 &amp; 0.178 &amp; 0.197 &amp; 0.207 &amp; 0.11 &amp; 0.067 &amp; 0.054 &amp; 0.012 \\ 
+        0.182 &amp; 0.184 &amp; 0.2 &amp; 0.205 &amp; 0.106 &amp; 0.062 &amp; 0.05 &amp; 0.011 \\ 
+        0.123 &amp; 0.125 &amp; 0.166 &amp; 0.216 &amp; 0.141 &amp; 0.114 &amp; 0.094 &amp; 0.021 \\ 
+        0.084 &amp; 0.084 &amp; 0.142 &amp; 0.228 &amp; 0.17 &amp; 0.143 &amp; 0.121 &amp; 0.028
 \end{bmatrix} 
 \end{split}\]</div>
 <p>where each state 1 to 8 corresponds to a  percentile of wealth shares</p>
@@ -657,10 +657,9 @@ P:=
 <span class="n">codes_B</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;1&#39;</span><span class="p">,</span><span class="s1">&#39;2&#39;</span><span class="p">,</span><span class="s1">&#39;3&#39;</span><span class="p">,</span><span class="s1">&#39;4&#39;</span><span class="p">,</span><span class="s1">&#39;5&#39;</span><span class="p">,</span><span class="s1">&#39;6&#39;</span><span class="p">,</span><span class="s1">&#39;7&#39;</span><span class="p">,</span><span class="s1">&#39;8&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>In this exercise,</p>
 <ol class="arabic simple">
-<li><p>show this process is asymptotically stationary and calculate the stationary distribution using simulations.</p></li>
-<li><p>use simulations to demonstrate ergodicity of this process.</p></li>
+<li><p>Show this process is asymptotically stationary and calculate an approximation to the stationary distribution.</p></li>
+<li><p>Use simulations to illustrate ergodicity.</p></li>
 </ol>
 </section>
 </div>
@@ -668,8 +667,8 @@ P:=
 
 <p class="admonition-title">Solution to<a class="reference internal" href="#mc_ex1"> Exercise 28.1</a></p>
 <section id="solution-content">
-<p>Solution 1:</p>
-<p>Use the technique we learnt before, we can take the power of the transition matrix</p>
+<p>Part 1:</p>
+<p>One option is to take the power of the transition matrix.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">P</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">0.222</span><span class="p">,</span> <span class="mf">0.222</span><span class="p">,</span> <span class="mf">0.215</span><span class="p">,</span> <span class="mf">0.187</span><span class="p">,</span> <span class="mf">0.081</span><span class="p">,</span> <span class="mf">0.038</span><span class="p">,</span> <span class="mf">0.029</span><span class="p">,</span> <span class="mf">0.006</span><span class="p">],</span>
@@ -709,7 +708,8 @@ P:=
 </div>
 </div>
 </div>
-<p>We find again that rows of the transition matrix converge to the stationary distribution</p>
+<p>For this model, rows of <span class="math notranslate nohighlight">\(P^n\)</span> converge to the stationary distribution as <span class="math notranslate nohighlight">\(n \to
+\infty\)</span>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mc</span> <span class="o">=</span> <span class="n">qe</span><span class="o">.</span><span class="n">MarkovChain</span><span class="p">(</span><span class="n">P</span><span class="p">)</span>
@@ -725,7 +725,7 @@ P:=
 </div>
 </div>
 </div>
-<p>Solution 2:</p>
+<p>Part 2:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ts_length</span> <span class="o">=</span> <span class="mi">1000</span>
@@ -737,10 +737,10 @@ P:=
 
 <span class="k">for</span> <span class="n">x0</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">):</span>
     <span class="c1"># Calculate the fraction of time for each worker</span>
-    <span class="n">p_hat</span> <span class="o">=</span> <span class="p">(</span><span class="n">X</span> <span class="o">==</span> <span class="n">x0</span><span class="p">)</span><span class="o">.</span><span class="n">cumsum</span><span class="p">()</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">ts_length</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">))</span>
+    <span class="n">p_hat</span> <span class="o">=</span> <span class="p">(</span><span class="n">X</span> <span class="o">==</span> <span class="n">x0</span><span class="p">)</span><span class="o">.</span><span class="n">cumsum</span><span class="p">()</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">ts_length</span><span class="p">))</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">p_hat</span> <span class="o">-</span> <span class="n">ψ_star</span><span class="p">[</span><span class="n">x0</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;$x = </span><span class="si">{</span><span class="n">x0</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1"> $&#39;</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\hat p_t(x) - \psi^* (x)$&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\hat p_n(x) - \psi^* (x)$&#39;</span><span class="p">)</span>
 
 <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -748,10 +748,11 @@ P:=
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/0ee5fead7769c80138d61f378cb2dfa0610e35fcc980d417e7bea8102fc720de.png"><img alt="_images/0ee5fead7769c80138d61f378cb2dfa0610e35fcc980d417e7bea8102fc720de.png" src="_images/0ee5fead7769c80138d61f378cb2dfa0610e35fcc980d417e7bea8102fc720de.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/03906146b44b1fee5ed668337213ead3397becd49160860afa75a8baa5901d09.png"><img alt="_images/03906146b44b1fee5ed668337213ead3397becd49160860afa75a8baa5901d09.png" src="_images/03906146b44b1fee5ed668337213ead3397becd49160860afa75a8baa5901d09.png" style="width: 80%;" /></a>
 </div>
 </div>
-<p>Note that the fraction of time spent at each state quickly converges to the probability assigned to that state by the stationary distribution.</p>
+<p>Note that the fraction of time spent at each state converges to the probability
+assigned to that state by the stationary distribution.</p>
 </section>
 </div>
 <div class="exercise admonition" id="mc_ex2">
@@ -814,7 +815,7 @@ conditions.</p>
     <span class="c1"># Generate time series for worker that starts at x0</span>
     <span class="n">X</span> <span class="o">=</span> <span class="n">mc</span><span class="o">.</span><span class="n">simulate</span><span class="p">(</span><span class="n">ts_length</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="n">x0</span><span class="p">)</span>
     <span class="c1"># Compute fraction of time spent unemployed, for each n</span>
-    <span class="n">X_bar</span> <span class="o">=</span> <span class="p">(</span><span class="n">X</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">cumsum</span><span class="p">()</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">ts_length</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">))</span>
+    <span class="n">X_bar</span> <span class="o">=</span> <span class="p">(</span><span class="n">X</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">cumsum</span><span class="p">()</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">ts_length</span><span class="p">))</span>
     <span class="c1"># Plot</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">ts_length</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">ts_length</span><span class="p">),</span> <span class="n">X_bar</span> <span class="o">-</span> <span class="n">p</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">col</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X_bar</span> <span class="o">-</span> <span class="n">p</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">col</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;$x_0 = \, </span><span class="si">{</span><span class="n">x0</span><span class="si">}</span><span class="s1"> $&#39;</span><span class="p">)</span>
@@ -829,7 +830,7 @@ conditions.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/f8e0fc442d154cb0860bfedd54161b594c90c5e0da23834eb87bc2753f623a2f.png"><img alt="_images/f8e0fc442d154cb0860bfedd54161b594c90c5e0da23834eb87bc2753f623a2f.png" src="_images/f8e0fc442d154cb0860bfedd54161b594c90c5e0da23834eb87bc2753f623a2f.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/41c769f3d8bf90e32899db2f75b42d4737c9ab9f54a9531aa03207afaecf0e65.png"><img alt="_images/41c769f3d8bf90e32899db2f75b42d4737c9ab9f54a9531aa03207afaecf0e65.png" src="_images/41c769f3d8bf90e32899db2f75b42d4737c9ab9f54a9531aa03207afaecf0e65.png" style="width: 80%;" /></a>
 </div>
 </div>
 </section>
@@ -839,9 +840,10 @@ conditions.</p>
 <p class="admonition-title"><span class="caption-number">Exercise 28.3 </span></p>
 <section id="exercise-content">
 <p>In <code class="docutils literal notranslate"><span class="pre">quantecon</span></code> library, irreducibility is tested by checking whether the chain forms a <a class="reference external" href="https://networkx.org/documentation/stable/reference/algorithms/generated/networkx.algorithms.components.is_strongly_connected.html">strongly connected component</a>.</p>
-<p>However, another way to verify irreducibility is by checking whether <span class="math notranslate nohighlight">\(A\)</span> satisfies the following statement:</p>
-<p>Assume A is an <span class="math notranslate nohighlight">\(n \times n\)</span> <span class="math notranslate nohighlight">\(A\)</span> is irreducible if and only if <span class="math notranslate nohighlight">\(\sum_{k=0}^{n-1}A^k\)</span> is a positive matrix.</p>
-<p>(see more: <span id="id5">[<a class="reference internal" href="zreferences.html#id272" title="Dongmei Zhao. Power Distribution and Performance Analysis for Wireless Communication Networks. SpringerBriefs in Computer Science. Springer US, Boston, MA, 2012. ISBN 978-1-4614-3283-8 978-1-4614-3284-5. URL: https://link.springer.com/10.1007/978-1-4614-3284-5 (visited on 2023-02-03), doi:10.1007/978-1-4614-3284-5.">Zha12</a>]</span> and <a class="reference external" href="https://math.stackexchange.com/questions/3336616/how-to-prove-this-matrix-is-a-irreducible-matrix">here</a>)</p>
+<p>Another way to test irreducibility is via the following statement:</p>
+<p>The <span class="math notranslate nohighlight">\(n \times n\)</span> matrix <span class="math notranslate nohighlight">\(A\)</span> is irreducible if and only if <span class="math notranslate nohighlight">\(\sum_{k=0}^{n-1}A^k\)</span>
+is a strictly positive matrix.</p>
+<p>(see, e.g., <span id="id5">[<a class="reference internal" href="zreferences.html#id272" title="Dongmei Zhao. Power Distribution and Performance Analysis for Wireless Communication Networks. SpringerBriefs in Computer Science. Springer US, Boston, MA, 2012. ISBN 978-1-4614-3283-8 978-1-4614-3284-5. URL: https://link.springer.com/10.1007/978-1-4614-3284-5 (visited on 2023-02-03), doi:10.1007/978-1-4614-3284-5.">Zha12</a>]</span> and <a class="reference external" href="https://math.stackexchange.com/questions/3336616/how-to-prove-this-matrix-is-a-irreducible-matrix">this StackExchange post</a>)</p>
 <p>Based on this claim, write a function to test irreducibility.</p>
 </section>
 </div>
@@ -861,6 +863,7 @@ conditions.</p>
 </div>
 </div>
 </div>
+<p>Let’s try it.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">P1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
@@ -986,13 +989,13 @@ conditions.</p>
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
-  Essential Tools
+  Foundations
  </span>
 </p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
-  <a class="reference internal" href="complex_and_trig.html">
-   6. Complex Numbers and Trigonometry
+  <a class="reference internal" href="intro_supply_demand.html">
+   6. Introduction to Supply and Demand
   </a>
  </li>
  <li class="toctree-l1">
@@ -1001,19 +1004,19 @@ conditions.</p>
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="eigen_I.html">
-   8. Eigenvalues and Eigenvectors
+  <a class="reference internal" href="complex_and_trig.html">
+   8. Complex Numbers and Trigonometry
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="intro_supply_demand.html">
-   9. Introduction to Supply and Demand
+  <a class="reference internal" href="geom_series.html">
+   9. Geometric Series for Elementary Economics
   </a>
  </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
-  Linear Dynamics
+  Linear Dynamics: Finite Horizons
  </span>
 </p>
 <ul class="nav bd-sidenav nav sidenav_l1">
@@ -1042,9 +1045,16 @@ conditions.</p>
    14. A Monetarist Theory of Price Levels with Adaptive Expectations
   </a>
  </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Linear Dynamics: Infinite Horizons
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
-  <a class="reference internal" href="geom_series.html">
-   15. Geometric Series for Elementary Economics
+  <a class="reference internal" href="eigen_I.html">
+   15. Eigenvalues and Eigenvectors
   </a>
  </li>
 </ul>

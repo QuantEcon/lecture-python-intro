@@ -177,10 +177,9 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#present-value-of-a-college-bound-new-high-school-graduate">12.2.2. Present value of a college-bound new high school graduate</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reinterpreting-the-model-workers-and-entrepreneurs">12.3. Reinterpreting the model: workers and entrepreneurs</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#computations">12.4. Computations</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#entrepreneur-worker-interpretation">12.5. Entrepreneur-worker interpretation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#an-application-of-calculus">12.6. An application of calculus</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#computations">12.3. Computations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#entrepreneur-worker-interpretation">12.4. Entrepreneur-worker interpretation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#an-application-of-calculus">12.5. An application of calculus</a></li>
 </ul>
                             <p class="logo">
                                 
@@ -250,7 +249,7 @@ they reflected entry barriers imposed by governments working in conjunction with
 <p>Chapter 4 of Jennifer Burns <span id="id1">[<a class="reference internal" href="zreferences.html#id3" title="Jennifer Burns. Milton Friedman: The Last Conservative by Jennifer Burns. Farrar, Straus, and Giroux, New York, 2023.">Bur23</a>]</span> describes  Milton Friedman’s joint work with Simon Kuznets that eventually  led to the publication of <span id="id2">[<a class="reference internal" href="zreferences.html#id4" title="Simon Kuznets and Milton Friedman. Incomes from independent professional practice, 1929-1936. National Bureau of Economic Research Bulletin, 1939.">KF39</a>]</span> and <span id="id3">[<a class="reference internal" href="zreferences.html#id5" title="Milton Friedman and Simon Kuznets. Income from Independent Professional Practice. National Bureau of Economic Research, New York, 1945.">FK45</a>]</span>.</p>
 <p>To map  Friedman’s application into our model, think of our high school students as Friedman’s dentists and our college graduates as Friedman’s doctors.</p>
 <p>Our presentation is “incomplete” in the sense that it is based on  a single equation that would be part of set equilibrium conditions of a more fully articulated model.</p>
-<p>This ‘‘equalizing difference’’ equation  determines  a college, high-school wage ratio that equalizes present values of a high school educated  worker and a college educated worker.</p>
+<p>This ‘‘equalizing difference’’ equation  determines  a college-high-school wage ratio that equalizes present values of a high school educated  worker and a college educated worker.</p>
 <p>The idea  is that lifetime earnings somehow adjust to make a new high school worker indifferent between going to college and not going to college but instead going to work immmediately.</p>
 <p>(The job of the “other equations” in a more complete model would be to describe what adjusts to bring about this outcome.)</p>
 <p>Our model is just one example  of an  “equalizing difference” theory of relative wage rates, a class of theories dating back at least to Adam Smith’s <strong>Wealth of Nations</strong> <span id="id4">[<a class="reference internal" href="zreferences.html#id6" title="Adam Smith. The Wealth of Nations: An inquiry into the nature and causes of the Wealth of Nations. Harriman House Limited, 2010.">Smi10</a>]</span>.</p>
@@ -263,6 +262,8 @@ they reflected entry barriers imposed by governments working in conjunction with
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">namedtuple</span>
+<span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">Symbol</span><span class="p">,</span> <span class="n">Lambda</span><span class="p">,</span> <span class="n">symbols</span>
 </pre></div>
 </div>
 </div>
@@ -353,57 +354,37 @@ w_0^h A_h  = \phi w_0^h A_c - D .
 \[
 \phi  = \frac{A_h}{A_c} . 
 \]</div>
-<p>Soon we’ll write Python code to compute <span class="math notranslate nohighlight">\(\phi\)</span>  and plot it as a function of its determinants.</p>
-<p>But first we’ll describe an  alternative interpretation of our model that mostly just relabels variables.</p>
+<p>In the next section we’ll write Python code to compute <span class="math notranslate nohighlight">\(\phi\)</span>  and plot it as a function of its determinants.</p>
 </section>
-</section>
-<section id="reinterpreting-the-model-workers-and-entrepreneurs">
-<h2><span class="section-number">12.3. </span>Reinterpreting the model: workers and entrepreneurs<a class="headerlink" href="#reinterpreting-the-model-workers-and-entrepreneurs" title="Permalink to this heading">#</a></h2>
-<p>We can add a parameter and reinterpret variables to get a model of entrepreneurs versus workers.</p>
-<p>We now let <span class="math notranslate nohighlight">\(h\)</span> be  the present value of a “worker”.</p>
-<p>We define the present value of an entrepreneur to be</p>
-<div class="math notranslate nohighlight">
-\[
-c_0 = \pi \sum_{t=4}^T R^{-t} w_t^c
-\]</div>
-<p>where <span class="math notranslate nohighlight">\(\pi \in (0,1) \)</span> is  the probability that an entrepreneur’s “project” succeeds.</p>
-<p>For our model of workers and firms, we’ll interpret <span class="math notranslate nohighlight">\(D\)</span> as the cost of becoming an entrepreneur.</p>
-<p>This cost might include costs of hiring workers, office space, and lawyers.</p>
-<p>What we used to call the college, high school wage gap <span class="math notranslate nohighlight">\(\phi\)</span> now becomes the ratio
-of a successful entrepreneur’s earnings to a worker’s earnings.</p>
-<p>We’ll find that as <span class="math notranslate nohighlight">\(\pi\)</span> decreases, <span class="math notranslate nohighlight">\(\phi\)</span> increases, indicating that the riskier it is to
-be an entrepreuner, the higher must be the reward for a successful project.</p>
 </section>
 <section id="computations">
-<h2><span class="section-number">12.4. </span>Computations<a class="headerlink" href="#computations" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">12.3. </span>Computations<a class="headerlink" href="#computations" title="Permalink to this heading">#</a></h2>
 <p>We can have some fun with examples that tweak various parameters,
 prominently including <span class="math notranslate nohighlight">\(\gamma_h, \gamma_c, R\)</span>.</p>
 <p>Now let’s write some Python code to compute <span class="math notranslate nohighlight">\(\phi\)</span> and plot it as a function of some of its determinants.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">equalizing_diff</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    A class of the equalizing difference model</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the namedtuple for the equalizing difference model</span>
+<span class="n">EqDiffModel</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s1">&#39;EqDiffModel&#39;</span><span class="p">,</span> <span class="s1">&#39;R T γ_h γ_c w_h0 D&#39;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">create_edm</span><span class="p">(</span><span class="n">R</span><span class="o">=</span><span class="mf">1.05</span><span class="p">,</span>   <span class="c1"># gross rate of return</span>
+               <span class="n">T</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span>     <span class="c1"># time horizon</span>
+               <span class="n">γ_h</span><span class="o">=</span><span class="mf">1.01</span><span class="p">,</span> <span class="c1"># high-school wage growth</span>
+               <span class="n">γ_c</span><span class="o">=</span><span class="mf">1.01</span><span class="p">,</span> <span class="c1"># college wage growth</span>
+               <span class="n">w_h0</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>   <span class="c1"># initial wage (high school)</span>
+               <span class="n">D</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>     <span class="c1"># cost for college</span>
+              <span class="p">):</span>
     
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">R</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">γ_h</span><span class="p">,</span> <span class="n">γ_c</span><span class="p">,</span> <span class="n">w_h0</span><span class="p">,</span> <span class="n">D</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">π</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="c1"># one switches to the weak model by setting π</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">R</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">γ_h</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">γ_c</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">w_h0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">D</span> <span class="o">=</span> <span class="n">R</span><span class="p">,</span> <span class="n">γ_h</span><span class="p">,</span> <span class="n">γ_c</span><span class="p">,</span> <span class="n">w_h0</span><span class="p">,</span> <span class="n">D</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">π</span> <span class="o">=</span> <span class="n">T</span><span class="p">,</span> <span class="n">π</span>
+    <span class="k">return</span> <span class="n">EqDiffModel</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">γ_h</span><span class="p">,</span> <span class="n">γ_c</span><span class="p">,</span> <span class="n">w_h0</span><span class="p">,</span> <span class="n">D</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">compute_gap</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
+    <span class="n">R</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">γ_h</span><span class="p">,</span> <span class="n">γ_c</span><span class="p">,</span> <span class="n">w_h0</span><span class="p">,</span> <span class="n">D</span> <span class="o">=</span> <span class="n">model</span>
     
-    <span class="k">def</span> <span class="nf">compute_gap</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">R</span><span class="p">,</span> <span class="n">γ_h</span><span class="p">,</span> <span class="n">γ_c</span><span class="p">,</span> <span class="n">w_h0</span><span class="p">,</span> <span class="n">D</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">R</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">γ_h</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">γ_c</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">w_h0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">D</span>
-        <span class="n">T</span><span class="p">,</span> <span class="n">π</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">π</span>
-        
-        <span class="n">A_h</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="n">γ_h</span><span class="o">/</span><span class="n">R</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">γ_h</span><span class="o">/</span><span class="n">R</span><span class="p">)</span>
-        <span class="n">A_c</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="n">γ_c</span><span class="o">/</span><span class="n">R</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="n">T</span><span class="o">-</span><span class="mi">3</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">γ_c</span><span class="o">/</span><span class="n">R</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">γ_c</span><span class="o">/</span><span class="n">R</span><span class="p">)</span><span class="o">**</span><span class="mi">4</span>
-        
-        <span class="c1"># tweaked model</span>
-        <span class="k">if</span> <span class="n">π</span><span class="o">!=</span><span class="kc">None</span><span class="p">:</span>
-            <span class="n">A_c</span> <span class="o">=</span> <span class="n">π</span><span class="o">*</span><span class="n">A_c</span> 
-        
-        <span class="n">ϕ</span> <span class="o">=</span> <span class="n">A_h</span><span class="o">/</span><span class="n">A_c</span> <span class="o">+</span> <span class="n">D</span><span class="o">/</span><span class="p">(</span><span class="n">w_h0</span><span class="o">*</span><span class="n">A_c</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">ϕ</span>
+    <span class="n">A_h</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="n">γ_h</span><span class="o">/</span><span class="n">R</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">γ_h</span><span class="o">/</span><span class="n">R</span><span class="p">)</span>
+    <span class="n">A_c</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="n">γ_c</span><span class="o">/</span><span class="n">R</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="n">T</span><span class="o">-</span><span class="mi">3</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">γ_c</span><span class="o">/</span><span class="n">R</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">γ_c</span><span class="o">/</span><span class="n">R</span><span class="p">)</span><span class="o">**</span><span class="mi">4</span>
+    <span class="n">ϕ</span> <span class="o">=</span> <span class="n">A_h</span> <span class="o">/</span> <span class="n">A_c</span> <span class="o">+</span> <span class="n">D</span> <span class="o">/</span> <span class="p">(</span><span class="n">w_h0</span> <span class="o">*</span> <span class="n">A_c</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">ϕ</span>
 </pre></div>
 </div>
 </div>
@@ -414,56 +395,15 @@ we  build some functions to help do comparative statics .</p>
 <p>Let’s do an example.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ϕ_R</span>
-<span class="k">def</span> <span class="nf">ϕ_R</span><span class="p">(</span><span class="n">mc</span><span class="p">,</span> <span class="n">R_new</span><span class="p">):</span>
-    <span class="n">mc_new</span> <span class="o">=</span> <span class="n">equalizing_diff</span><span class="p">(</span><span class="n">R_new</span><span class="p">,</span> <span class="n">mc</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">mc</span><span class="o">.</span><span class="n">γ_h</span><span class="p">,</span> <span class="n">mc</span><span class="o">.</span><span class="n">γ_c</span><span class="p">,</span> <span class="n">mc</span><span class="o">.</span><span class="n">w_h0</span><span class="p">,</span> <span class="n">mc</span><span class="o">.</span><span class="n">D</span><span class="p">,</span> <span class="n">mc</span><span class="o">.</span><span class="n">π</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">mc_new</span><span class="o">.</span><span class="n">compute_gap</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ex1</span> <span class="o">=</span> <span class="n">create_edm</span><span class="p">()</span>
+<span class="n">gap1</span> <span class="o">=</span> <span class="n">compute_gap</span><span class="p">(</span><span class="n">ex1</span><span class="p">)</span>
 
-<span class="n">ϕ_R</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vectorize</span><span class="p">(</span><span class="n">ϕ_R</span><span class="p">)</span>
-
-<span class="c1"># ϕ_γh</span>
-<span class="k">def</span> <span class="nf">ϕ_γh</span><span class="p">(</span><span class="n">mc</span><span class="p">,</span> <span class="n">γh_new</span><span class="p">):</span>
-    <span class="n">mc_new</span> <span class="o">=</span> <span class="n">equalizing_diff</span><span class="p">(</span><span class="n">mc</span><span class="o">.</span><span class="n">R</span><span class="p">,</span> <span class="n">mc</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">γh_new</span><span class="p">,</span> <span class="n">mc</span><span class="o">.</span><span class="n">γ_c</span><span class="p">,</span> <span class="n">mc</span><span class="o">.</span><span class="n">w_h0</span><span class="p">,</span> <span class="n">mc</span><span class="o">.</span><span class="n">D</span><span class="p">,</span> <span class="n">mc</span><span class="o">.</span><span class="n">π</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">mc_new</span><span class="o">.</span><span class="n">compute_gap</span><span class="p">()</span>
-
-<span class="n">ϕ_γh</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vectorize</span><span class="p">(</span><span class="n">ϕ_γh</span><span class="p">)</span>
-
-<span class="c1"># ϕ_γc</span>
-<span class="k">def</span> <span class="nf">ϕ_γc</span><span class="p">(</span><span class="n">mc</span><span class="p">,</span> <span class="n">γc_new</span><span class="p">):</span>
-    <span class="n">mc_new</span> <span class="o">=</span> <span class="n">equalizing_diff</span><span class="p">(</span><span class="n">mc</span><span class="o">.</span><span class="n">R</span><span class="p">,</span> <span class="n">mc</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">mc</span><span class="o">.</span><span class="n">γ_h</span><span class="p">,</span> <span class="n">γc_new</span><span class="p">,</span> <span class="n">mc</span><span class="o">.</span><span class="n">w_h0</span><span class="p">,</span> <span class="n">mc</span><span class="o">.</span><span class="n">D</span><span class="p">,</span> <span class="n">mc</span><span class="o">.</span><span class="n">π</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">mc_new</span><span class="o">.</span><span class="n">compute_gap</span><span class="p">()</span>
-
-<span class="n">ϕ_γc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vectorize</span><span class="p">(</span><span class="n">ϕ_γc</span><span class="p">)</span>
-
-<span class="c1"># ϕ_π</span>
-<span class="k">def</span> <span class="nf">ϕ_π</span><span class="p">(</span><span class="n">mc</span><span class="p">,</span> <span class="n">π_new</span><span class="p">):</span>
-    <span class="n">mc_new</span> <span class="o">=</span> <span class="n">equalizing_diff</span><span class="p">(</span><span class="n">mc</span><span class="o">.</span><span class="n">R</span><span class="p">,</span> <span class="n">mc</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">mc</span><span class="o">.</span><span class="n">γ_h</span><span class="p">,</span> <span class="n">mc</span><span class="o">.</span><span class="n">γ_c</span><span class="p">,</span> <span class="n">mc</span><span class="o">.</span><span class="n">w_h0</span><span class="p">,</span> <span class="n">mc</span><span class="o">.</span><span class="n">D</span><span class="p">,</span> <span class="n">π_new</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">mc_new</span><span class="o">.</span><span class="n">compute_gap</span><span class="p">()</span>
-
-<span class="n">ϕ_π</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vectorize</span><span class="p">(</span><span class="n">ϕ_π</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># set benchmark parameters</span>
-<span class="n">R</span> <span class="o">=</span> <span class="mf">1.05</span>
-<span class="n">T</span> <span class="o">=</span> <span class="mi">40</span>
-<span class="n">γ_h</span><span class="p">,</span> <span class="n">γ_c</span> <span class="o">=</span> <span class="mf">1.01</span><span class="p">,</span> <span class="mf">1.01</span>
-<span class="n">w_h0</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="n">D</span> <span class="o">=</span> <span class="mi">10</span>
-
-<span class="c1"># create an instance</span>
-<span class="n">ex1</span> <span class="o">=</span> <span class="n">equalizing_diff</span><span class="p">(</span><span class="n">R</span><span class="o">=</span><span class="n">R</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="n">T</span><span class="p">,</span> <span class="n">γ_h</span><span class="o">=</span><span class="n">γ_h</span><span class="p">,</span> <span class="n">γ_c</span><span class="o">=</span><span class="n">γ_c</span><span class="p">,</span> <span class="n">w_h0</span><span class="o">=</span><span class="n">w_h0</span><span class="p">,</span> <span class="n">D</span><span class="o">=</span><span class="n">D</span><span class="p">)</span>
-<span class="n">gap1</span> <span class="o">=</span> <span class="n">ex1</span><span class="o">.</span><span class="n">compute_gap</span><span class="p">()</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="n">gap1</span><span class="p">)</span>
+<span class="n">gap1</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.8041412724969135
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.8041412724969135
 </pre></div>
 </div>
 </div>
@@ -473,14 +413,14 @@ we  build some functions to help do comparative statics .</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># free college</span>
-<span class="n">ex2</span> <span class="o">=</span> <span class="n">equalizing_diff</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">γ_h</span><span class="p">,</span> <span class="n">γ_c</span><span class="p">,</span> <span class="n">w_h0</span><span class="p">,</span> <span class="n">D</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">gap2</span> <span class="o">=</span> <span class="n">ex2</span><span class="o">.</span><span class="n">compute_gap</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">gap2</span><span class="p">)</span>
+<span class="n">ex2</span> <span class="o">=</span> <span class="n">create_edm</span><span class="p">(</span><span class="n">D</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">gap2</span> <span class="o">=</span> <span class="n">compute_gap</span><span class="p">(</span><span class="n">ex2</span><span class="p">)</span>
+<span class="n">gap2</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.2204649517903732
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.2204649517903732
 </pre></div>
 </div>
 </div>
@@ -490,7 +430,10 @@ we  build some functions to help do comparative statics .</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">R_arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">R_arr</span><span class="p">,</span> <span class="n">φ_R</span><span class="p">(</span><span class="n">ex1</span><span class="p">,</span> <span class="n">R_arr</span><span class="p">))</span>
+<span class="n">models</span> <span class="o">=</span> <span class="p">[</span><span class="n">create_edm</span><span class="p">(</span><span class="n">R</span><span class="o">=</span><span class="n">r</span><span class="p">)</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">R_arr</span><span class="p">]</span>
+<span class="n">gaps</span> <span class="o">=</span> <span class="p">[</span><span class="n">compute_gap</span><span class="p">(</span><span class="n">model</span><span class="p">)</span> <span class="k">for</span> <span class="n">model</span> <span class="ow">in</span> <span class="n">models</span><span class="p">]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">R_arr</span><span class="p">,</span> <span class="n">gaps</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$R$&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;wage gap&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -507,7 +450,10 @@ determinants of <span class="math notranslate nohighlight">\(\phi\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">γc_arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">γc_arr</span><span class="p">,</span> <span class="n">φ_γc</span><span class="p">(</span><span class="n">ex1</span><span class="p">,</span> <span class="n">γc_arr</span><span class="p">))</span>
+<span class="n">models</span> <span class="o">=</span> <span class="p">[</span><span class="n">create_edm</span><span class="p">(</span><span class="n">γ_c</span><span class="o">=</span><span class="n">γ_c</span><span class="p">)</span> <span class="k">for</span> <span class="n">γ_c</span> <span class="ow">in</span> <span class="n">γc_arr</span><span class="p">]</span>
+<span class="n">gaps</span> <span class="o">=</span> <span class="p">[</span><span class="n">compute_gap</span><span class="p">(</span><span class="n">model</span><span class="p">)</span> <span class="k">for</span> <span class="n">model</span> <span class="ow">in</span> <span class="n">models</span><span class="p">]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">γc_arr</span><span class="p">,</span> <span class="n">gaps</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\gamma_c$&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;wage gap&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -525,7 +471,10 @@ determinants of <span class="math notranslate nohighlight">\(\phi\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">γh_arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">γh_arr</span><span class="p">,</span> <span class="n">φ_γh</span><span class="p">(</span><span class="n">ex1</span><span class="p">,</span> <span class="n">γh_arr</span><span class="p">))</span>
+<span class="n">models</span> <span class="o">=</span> <span class="p">[</span><span class="n">create_edm</span><span class="p">(</span><span class="n">γ_h</span><span class="o">=</span><span class="n">γ_h</span><span class="p">)</span> <span class="k">for</span> <span class="n">γ_h</span> <span class="ow">in</span> <span class="n">γh_arr</span><span class="p">]</span>
+<span class="n">gaps</span> <span class="o">=</span> <span class="p">[</span><span class="n">compute_gap</span><span class="p">(</span><span class="n">model</span><span class="p">)</span> <span class="k">for</span> <span class="n">model</span> <span class="ow">in</span> <span class="n">models</span><span class="p">]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">γh_arr</span><span class="p">,</span> <span class="n">gaps</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\gamma_h$&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;wage gap&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -538,21 +487,66 @@ determinants of <span class="math notranslate nohighlight">\(\phi\)</span>.</p>
 </div>
 </section>
 <section id="entrepreneur-worker-interpretation">
-<h2><span class="section-number">12.5. </span>Entrepreneur-worker interpretation<a class="headerlink" href="#entrepreneur-worker-interpretation" title="Permalink to this heading">#</a></h2>
-<p>Now let’s adopt the entrepreneur-worker interpretation of our model.</p>
-<p>If the probability that a new business succeeds is <span class="math notranslate nohighlight">\(.2\)</span>, let’s compute the initial wage premium for successful entrepreneurs.</p>
+<h2><span class="section-number">12.4. </span>Entrepreneur-worker interpretation<a class="headerlink" href="#entrepreneur-worker-interpretation" title="Permalink to this heading">#</a></h2>
+<p>We can add a parameter and reinterpret variables to get a model of entrepreneurs versus workers.</p>
+<p>We now let <span class="math notranslate nohighlight">\(h\)</span> be  the present value of a “worker”.</p>
+<p>We define the present value of an entrepreneur to be</p>
+<div class="math notranslate nohighlight">
+\[
+c_0 = \pi \sum_{t=4}^T R^{-t} w_t^c
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\pi \in (0,1) \)</span> is  the probability that an entrepreneur’s “project” succeeds.</p>
+<p>For our model of workers and firms, we’ll interpret <span class="math notranslate nohighlight">\(D\)</span> as the cost of becoming an entrepreneur.</p>
+<p>This cost might include costs of hiring workers, office space, and lawyers.</p>
+<p>What we used to call the college, high school wage gap <span class="math notranslate nohighlight">\(\phi\)</span> now becomes the ratio
+of a successful entrepreneur’s earnings to a worker’s earnings.</p>
+<p>We’ll find that as <span class="math notranslate nohighlight">\(\pi\)</span> decreases, <span class="math notranslate nohighlight">\(\phi\)</span> increases, indicating that the riskier it is to
+be an entrepreuner, the higher must be the reward for a successful project.</p>
+<p>Now let’s adopt the entrepreneur-worker interpretation of our model</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># a model of enterpreneur</span>
-<span class="n">ex3</span> <span class="o">=</span> <span class="n">equalizing_diff</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">γ_h</span><span class="p">,</span> <span class="n">γ_c</span><span class="p">,</span> <span class="n">w_h0</span><span class="p">,</span> <span class="n">π</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
-<span class="n">gap3</span> <span class="o">=</span> <span class="n">ex3</span><span class="o">.</span><span class="n">compute_gap</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a model of entrepreneur-worker interpretation</span>
+<span class="n">EqDiffModel</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s1">&#39;EqDiffModel&#39;</span><span class="p">,</span> <span class="s1">&#39;R T γ_h γ_c w_h0 D π&#39;</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="n">gap3</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">create_edm_π</span><span class="p">(</span><span class="n">R</span><span class="o">=</span><span class="mf">1.05</span><span class="p">,</span>   <span class="c1"># gross rate of return</span>
+                 <span class="n">T</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span>     <span class="c1"># time horizon</span>
+                 <span class="n">γ_h</span><span class="o">=</span><span class="mf">1.01</span><span class="p">,</span> <span class="c1"># high-school wage growth</span>
+                 <span class="n">γ_c</span><span class="o">=</span><span class="mf">1.01</span><span class="p">,</span> <span class="c1"># college wage growth</span>
+                 <span class="n">w_h0</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>   <span class="c1"># initial wage (high school)</span>
+                 <span class="n">D</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>     <span class="c1"># cost for college</span>
+                 <span class="n">π</span><span class="o">=</span><span class="mi">0</span>       <span class="c1"># chance of business success</span>
+              <span class="p">):</span>
+    
+    <span class="k">return</span> <span class="n">EqDiffModel</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">γ_h</span><span class="p">,</span> <span class="n">γ_c</span><span class="p">,</span> <span class="n">w_h0</span><span class="p">,</span> <span class="n">D</span><span class="p">,</span> <span class="n">π</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">compute_gap</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
+    <span class="n">R</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">γ_h</span><span class="p">,</span> <span class="n">γ_c</span><span class="p">,</span> <span class="n">w_h0</span><span class="p">,</span> <span class="n">D</span><span class="p">,</span> <span class="n">π</span> <span class="o">=</span> <span class="n">model</span>
+    
+    <span class="n">A_h</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="n">γ_h</span><span class="o">/</span><span class="n">R</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">γ_h</span><span class="o">/</span><span class="n">R</span><span class="p">)</span>
+    <span class="n">A_c</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="n">γ_c</span><span class="o">/</span><span class="n">R</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="n">T</span><span class="o">-</span><span class="mi">3</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">γ_c</span><span class="o">/</span><span class="n">R</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">γ_c</span><span class="o">/</span><span class="n">R</span><span class="p">)</span><span class="o">**</span><span class="mi">4</span>
+    
+    <span class="c1"># Incorprate chance of success</span>
+    <span class="n">A_c</span> <span class="o">=</span> <span class="n">π</span> <span class="o">*</span> <span class="n">A_c</span>
+    
+    <span class="n">ϕ</span> <span class="o">=</span> <span class="n">A_h</span> <span class="o">/</span> <span class="n">A_c</span> <span class="o">+</span> <span class="n">D</span> <span class="o">/</span> <span class="p">(</span><span class="n">w_h0</span> <span class="o">*</span> <span class="n">A_c</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">ϕ</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>If the probability that a new business succeeds is <span class="math notranslate nohighlight">\(0.2\)</span>, let’s compute the initial wage premium for successful entrepreneurs.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ex3</span> <span class="o">=</span> <span class="n">create_edm_π</span><span class="p">(</span><span class="n">π</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="n">gap3</span> <span class="o">=</span> <span class="n">compute_gap</span><span class="p">(</span><span class="n">ex3</span><span class="p">)</span>
+
+<span class="n">gap3</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6.102324758951866
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9.020706362484567
 </pre></div>
 </div>
 </div>
@@ -561,7 +555,10 @@ determinants of <span class="math notranslate nohighlight">\(\phi\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">π_arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">π_arr</span><span class="p">,</span> <span class="n">φ_π</span><span class="p">(</span><span class="n">ex3</span><span class="p">,</span> <span class="n">π_arr</span><span class="p">))</span>
+<span class="n">models</span> <span class="o">=</span> <span class="p">[</span><span class="n">create_edm_π</span><span class="p">(</span><span class="n">π</span><span class="o">=</span><span class="n">π</span><span class="p">)</span> <span class="k">for</span> <span class="n">π</span> <span class="ow">in</span> <span class="n">π_arr</span><span class="p">]</span>
+<span class="n">gaps</span> <span class="o">=</span> <span class="p">[</span><span class="n">compute_gap</span><span class="p">(</span><span class="n">model</span><span class="p">)</span> <span class="k">for</span> <span class="n">model</span> <span class="ow">in</span> <span class="n">models</span><span class="p">]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">π_arr</span><span class="p">,</span> <span class="n">gaps</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;wage gap&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\pi$&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -569,31 +566,23 @@ determinants of <span class="math notranslate nohighlight">\(\phi\)</span>.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/cb5e6a344acc36eb1c0826b2315e9afc164545fca8a175d7af73b4096496e1c4.png"><img alt="_images/cb5e6a344acc36eb1c0826b2315e9afc164545fca8a175d7af73b4096496e1c4.png" src="_images/cb5e6a344acc36eb1c0826b2315e9afc164545fca8a175d7af73b4096496e1c4.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/e4f7786fb324aad3812c0a3c1a3b6ba3c25fb06ac3ff7d13cadb047ac9a5e9cb.png"><img alt="_images/e4f7786fb324aad3812c0a3c1a3b6ba3c25fb06ac3ff7d13cadb047ac9a5e9cb.png" src="_images/e4f7786fb324aad3812c0a3c1a3b6ba3c25fb06ac3ff7d13cadb047ac9a5e9cb.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>Does the graph make sense to you?</p>
 </section>
 <section id="an-application-of-calculus">
-<h2><span class="section-number">12.6. </span>An application of calculus<a class="headerlink" href="#an-application-of-calculus" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">12.5. </span>An application of calculus<a class="headerlink" href="#an-application-of-calculus" title="Permalink to this heading">#</a></h2>
 <p>So far, we have used only linear algebra and it has been a good enough tool for us to  figure out how our model works.</p>
 <p>However, someone who knows calculus might want us  just to  take partial derivatives.</p>
 <p>We’ll do that now.</p>
 <p>A reader who doesn’t know calculus could read no further and feel confident that applying linear algebra has taught us the main properties of the model.</p>
 <p>But for a reader interested in how we can get Python to do all the hard work involved in computing partial derivatives, we’ll say a few things about that now.</p>
 <p>We’ll use the Python module ‘sympy’ to compute partial derivatives of <span class="math notranslate nohighlight">\(\phi\)</span> with respect to the parameters that determine it.</p>
-<p>Let’s import key functions from sympy.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">Symbol</span><span class="p">,</span> <span class="n">Lambda</span><span class="p">,</span> <span class="n">symbols</span>
-</pre></div>
-</div>
-</div>
-</div>
 <p>Define symbols</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">γ_h</span><span class="p">,</span> <span class="n">γ_c</span><span class="p">,</span> <span class="n">w_h0</span><span class="p">,</span> <span class="n">D</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;\gamma_h, \gamma_h_c, w_0^h, D&#39;</span><span class="p">,</span> <span class="n">real</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">γ_h</span><span class="p">,</span> <span class="n">γ_c</span><span class="p">,</span> <span class="n">w_h0</span><span class="p">,</span> <span class="n">D</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;\gamma_h, \gamma_c, w_0^h, D&#39;</span><span class="p">,</span> <span class="n">real</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">R</span><span class="p">,</span> <span class="n">T</span> <span class="o">=</span> <span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;R&#39;</span><span class="p">,</span> <span class="n">real</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> <span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;T&#39;</span><span class="p">,</span> <span class="n">integer</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -622,7 +611,7 @@ determinants of <span class="math notranslate nohighlight">\(\phi\)</span>.</p>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_latex math notranslate nohighlight">
-\[\displaystyle \left( \left( \gamma_{h c}, \  R, \  T\right) \mapsto \frac{\gamma_{h c}^{4} \cdot \left(1 - \left(\frac{\gamma_{h c}}{R}\right)^{T - 3}\right)}{R^{4} \cdot \left(1 - \frac{\gamma_{h c}}{R}\right)} \right)\]</div>
+\[\displaystyle \left( \left( \gamma_{c}, \  R, \  T\right) \mapsto \frac{\gamma_{c}^{4} \cdot \left(1 - \left(\frac{\gamma_{c}}{R}\right)^{T - 3}\right)}{R^{4} \cdot \left(1 - \frac{\gamma_{c}}{R}\right)} \right)\]</div>
 </div>
 </div>
 <p>Now, define <span class="math notranslate nohighlight">\(\phi\)</span></p>
@@ -641,7 +630,7 @@ determinants of <span class="math notranslate nohighlight">\(\phi\)</span>.</p>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_latex math notranslate nohighlight">
-\[\displaystyle \left( \left( D, \  \gamma_{h}, \  \gamma_{h c}, \  R, \  T, \  w^{h}_{0}\right) \mapsto \frac{D R^{4} \cdot \left(1 - \frac{\gamma_{h c}}{R}\right)}{\gamma_{h c}^{4} w^{h}_{0} \cdot \left(1 - \left(\frac{\gamma_{h c}}{R}\right)^{T - 3}\right)} + \frac{R^{4} \cdot \left(1 - \left(\frac{\gamma_{h}}{R}\right)^{T + 1}\right) \left(1 - \frac{\gamma_{h c}}{R}\right)}{\gamma_{h c}^{4} \cdot \left(1 - \frac{\gamma_{h}}{R}\right) \left(1 - \left(\frac{\gamma_{h c}}{R}\right)^{T - 3}\right)} \right)\]</div>
+\[\displaystyle \left( \left( D, \  \gamma_{h}, \  \gamma_{c}, \  R, \  T, \  w^{h}_{0}\right) \mapsto \frac{D R^{4} \cdot \left(1 - \frac{\gamma_{c}}{R}\right)}{\gamma_{c}^{4} w^{h}_{0} \cdot \left(1 - \left(\frac{\gamma_{c}}{R}\right)^{T - 3}\right)} + \frac{R^{4} \cdot \left(1 - \frac{\gamma_{c}}{R}\right) \left(1 - \left(\frac{\gamma_{h}}{R}\right)^{T + 1}\right)}{\gamma_{c}^{4} \cdot \left(1 - \left(\frac{\gamma_{c}}{R}\right)^{T - 3}\right) \left(1 - \frac{\gamma_{h}}{R}\right)} \right)\]</div>
 </div>
 </div>
 <p>We begin by setting  default parameter values.</p>
@@ -666,7 +655,7 @@ determinants of <span class="math notranslate nohighlight">\(\phi\)</span>.</p>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_latex math notranslate nohighlight">
-\[\displaystyle \frac{R^{4} \cdot \left(1 - \frac{\gamma_{h c}}{R}\right)}{\gamma_{h c}^{4} w^{h}_{0} \cdot \left(1 - \left(\frac{\gamma_{h c}}{R}\right)^{T - 3}\right)}\]</div>
+\[\displaystyle \frac{R^{4} \cdot \left(1 - \frac{\gamma_{c}}{R}\right)}{\gamma_{c}^{4} w^{h}_{0} \cdot \left(1 - \left(\frac{\gamma_{c}}{R}\right)^{T - 3}\right)}\]</div>
 </div>
 </div>
 <div class="cell docutils container">
@@ -693,7 +682,7 @@ determinants of <span class="math notranslate nohighlight">\(\phi\)</span>.</p>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_latex math notranslate nohighlight">
-\[\displaystyle \frac{D R^{4} \left(\frac{\gamma_{h c}}{R}\right)^{T - 3} \cdot \left(1 - \frac{\gamma_{h c}}{R}\right) \log{\left(\frac{\gamma_{h c}}{R} \right)}}{\gamma_{h c}^{4} w^{h}_{0} \left(1 - \left(\frac{\gamma_{h c}}{R}\right)^{T - 3}\right)^{2}} - \frac{R^{4} \left(\frac{\gamma_{h}}{R}\right)^{T + 1} \cdot \left(1 - \frac{\gamma_{h c}}{R}\right) \log{\left(\frac{\gamma_{h}}{R} \right)}}{\gamma_{h c}^{4} \cdot \left(1 - \frac{\gamma_{h}}{R}\right) \left(1 - \left(\frac{\gamma_{h c}}{R}\right)^{T - 3}\right)} + \frac{R^{4} \left(\frac{\gamma_{h c}}{R}\right)^{T - 3} \cdot \left(1 - \left(\frac{\gamma_{h}}{R}\right)^{T + 1}\right) \left(1 - \frac{\gamma_{h c}}{R}\right) \log{\left(\frac{\gamma_{h c}}{R} \right)}}{\gamma_{h c}^{4} \cdot \left(1 - \frac{\gamma_{h}}{R}\right) \left(1 - \left(\frac{\gamma_{h c}}{R}\right)^{T - 3}\right)^{2}}\]</div>
+\[\displaystyle \frac{D R^{4} \left(\frac{\gamma_{c}}{R}\right)^{T - 3} \cdot \left(1 - \frac{\gamma_{c}}{R}\right) \log{\left(\frac{\gamma_{c}}{R} \right)}}{\gamma_{c}^{4} w^{h}_{0} \left(1 - \left(\frac{\gamma_{c}}{R}\right)^{T - 3}\right)^{2}} + \frac{R^{4} \left(\frac{\gamma_{c}}{R}\right)^{T - 3} \cdot \left(1 - \frac{\gamma_{c}}{R}\right) \left(1 - \left(\frac{\gamma_{h}}{R}\right)^{T + 1}\right) \log{\left(\frac{\gamma_{c}}{R} \right)}}{\gamma_{c}^{4} \left(1 - \left(\frac{\gamma_{c}}{R}\right)^{T - 3}\right)^{2} \cdot \left(1 - \frac{\gamma_{h}}{R}\right)} - \frac{R^{4} \left(\frac{\gamma_{h}}{R}\right)^{T + 1} \cdot \left(1 - \frac{\gamma_{c}}{R}\right) \log{\left(\frac{\gamma_{h}}{R} \right)}}{\gamma_{c}^{4} \cdot \left(1 - \left(\frac{\gamma_{c}}{R}\right)^{T - 3}\right) \left(1 - \frac{\gamma_{h}}{R}\right)}\]</div>
 </div>
 </div>
 <div class="cell docutils container">
@@ -721,7 +710,7 @@ determinants of <span class="math notranslate nohighlight">\(\phi\)</span>.</p>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_latex math notranslate nohighlight">
-\[\displaystyle - \frac{R^{4} \left(\frac{\gamma_{h}}{R}\right)^{T + 1} \cdot \left(1 - \frac{\gamma_{h c}}{R}\right) \left(T + 1\right)}{\gamma_{h} \gamma_{h c}^{4} \cdot \left(1 - \frac{\gamma_{h}}{R}\right) \left(1 - \left(\frac{\gamma_{h c}}{R}\right)^{T - 3}\right)} + \frac{R^{3} \cdot \left(1 - \left(\frac{\gamma_{h}}{R}\right)^{T + 1}\right) \left(1 - \frac{\gamma_{h c}}{R}\right)}{\gamma_{h c}^{4} \left(1 - \frac{\gamma_{h}}{R}\right)^{2} \cdot \left(1 - \left(\frac{\gamma_{h c}}{R}\right)^{T - 3}\right)}\]</div>
+\[\displaystyle - \frac{R^{4} \left(\frac{\gamma_{h}}{R}\right)^{T + 1} \cdot \left(1 - \frac{\gamma_{c}}{R}\right) \left(T + 1\right)}{\gamma_{c}^{4} \gamma_{h} \left(1 - \left(\frac{\gamma_{c}}{R}\right)^{T - 3}\right) \left(1 - \frac{\gamma_{h}}{R}\right)} + \frac{R^{3} \cdot \left(1 - \frac{\gamma_{c}}{R}\right) \left(1 - \left(\frac{\gamma_{h}}{R}\right)^{T + 1}\right)}{\gamma_{c}^{4} \cdot \left(1 - \left(\frac{\gamma_{c}}{R}\right)^{T - 3}\right) \left(1 - \frac{\gamma_{h}}{R}\right)^{2}}\]</div>
 </div>
 </div>
 <div class="cell docutils container">
@@ -737,7 +726,7 @@ determinants of <span class="math notranslate nohighlight">\(\phi\)</span>.</p>
 \[\displaystyle 17.8590485545256\]</div>
 </div>
 </div>
-<p>We find that raising <span class="math notranslate nohighlight">\(\gamma_h\)</span> increases the initial college wage premium <span class="math notranslate nohighlight">\(\phi\)</span>, as we did with our  earlier graphical analysis.</p>
+<p>We find that raising <span class="math notranslate nohighlight">\(\gamma_h\)</span> increases the initial college wage premium <span class="math notranslate nohighlight">\(\phi\)</span>, in line with our earlier graphical analysis.</p>
 <p>Compute <span class="math notranslate nohighlight">\(\frac{\partial \phi}{\partial γ_c}\)</span> and evaluate it numerically at default parameter values</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -748,7 +737,7 @@ determinants of <span class="math notranslate nohighlight">\(\phi\)</span>.</p>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_latex math notranslate nohighlight">
-\[\displaystyle \frac{D R^{4} \left(\frac{\gamma_{h c}}{R}\right)^{T - 3} \cdot \left(1 - \frac{\gamma_{h c}}{R}\right) \left(T - 3\right)}{\gamma_{h c}^{5} w^{h}_{0} \left(1 - \left(\frac{\gamma_{h c}}{R}\right)^{T - 3}\right)^{2}} - \frac{4 D R^{4} \cdot \left(1 - \frac{\gamma_{h c}}{R}\right)}{\gamma_{h c}^{5} w^{h}_{0} \cdot \left(1 - \left(\frac{\gamma_{h c}}{R}\right)^{T - 3}\right)} - \frac{D R^{3}}{\gamma_{h c}^{4} w^{h}_{0} \cdot \left(1 - \left(\frac{\gamma_{h c}}{R}\right)^{T - 3}\right)} + \frac{R^{4} \left(\frac{\gamma_{h c}}{R}\right)^{T - 3} \cdot \left(1 - \left(\frac{\gamma_{h}}{R}\right)^{T + 1}\right) \left(1 - \frac{\gamma_{h c}}{R}\right) \left(T - 3\right)}{\gamma_{h c}^{5} \cdot \left(1 - \frac{\gamma_{h}}{R}\right) \left(1 - \left(\frac{\gamma_{h c}}{R}\right)^{T - 3}\right)^{2}} - \frac{4 R^{4} \cdot \left(1 - \left(\frac{\gamma_{h}}{R}\right)^{T + 1}\right) \left(1 - \frac{\gamma_{h c}}{R}\right)}{\gamma_{h c}^{5} \cdot \left(1 - \frac{\gamma_{h}}{R}\right) \left(1 - \left(\frac{\gamma_{h c}}{R}\right)^{T - 3}\right)} - \frac{R^{3} \cdot \left(1 - \left(\frac{\gamma_{h}}{R}\right)^{T + 1}\right)}{\gamma_{h c}^{4} \cdot \left(1 - \frac{\gamma_{h}}{R}\right) \left(1 - \left(\frac{\gamma_{h c}}{R}\right)^{T - 3}\right)}\]</div>
+\[\displaystyle \frac{D R^{4} \left(\frac{\gamma_{c}}{R}\right)^{T - 3} \cdot \left(1 - \frac{\gamma_{c}}{R}\right) \left(T - 3\right)}{\gamma_{c}^{5} w^{h}_{0} \left(1 - \left(\frac{\gamma_{c}}{R}\right)^{T - 3}\right)^{2}} - \frac{4 D R^{4} \cdot \left(1 - \frac{\gamma_{c}}{R}\right)}{\gamma_{c}^{5} w^{h}_{0} \cdot \left(1 - \left(\frac{\gamma_{c}}{R}\right)^{T - 3}\right)} - \frac{D R^{3}}{\gamma_{c}^{4} w^{h}_{0} \cdot \left(1 - \left(\frac{\gamma_{c}}{R}\right)^{T - 3}\right)} + \frac{R^{4} \left(\frac{\gamma_{c}}{R}\right)^{T - 3} \cdot \left(1 - \frac{\gamma_{c}}{R}\right) \left(1 - \left(\frac{\gamma_{h}}{R}\right)^{T + 1}\right) \left(T - 3\right)}{\gamma_{c}^{5} \left(1 - \left(\frac{\gamma_{c}}{R}\right)^{T - 3}\right)^{2} \cdot \left(1 - \frac{\gamma_{h}}{R}\right)} - \frac{4 R^{4} \cdot \left(1 - \frac{\gamma_{c}}{R}\right) \left(1 - \left(\frac{\gamma_{h}}{R}\right)^{T + 1}\right)}{\gamma_{c}^{5} \cdot \left(1 - \left(\frac{\gamma_{c}}{R}\right)^{T - 3}\right) \left(1 - \frac{\gamma_{h}}{R}\right)} - \frac{R^{3} \cdot \left(1 - \left(\frac{\gamma_{h}}{R}\right)^{T + 1}\right)}{\gamma_{c}^{4} \cdot \left(1 - \left(\frac{\gamma_{c}}{R}\right)^{T - 3}\right) \left(1 - \frac{\gamma_{h}}{R}\right)}\]</div>
 </div>
 </div>
 <div class="cell docutils container">
@@ -764,7 +753,7 @@ determinants of <span class="math notranslate nohighlight">\(\phi\)</span>.</p>
 \[\displaystyle -31.6486401973376\]</div>
 </div>
 </div>
-<p>We find that raising <span class="math notranslate nohighlight">\(\gamma_c\)</span> decreases the initial college wage premium <span class="math notranslate nohighlight">\(\phi\)</span>, as we did with our graphical analysis earlier</p>
+<p>We find that raising <span class="math notranslate nohighlight">\(\gamma_c\)</span> decreases the initial college wage premium <span class="math notranslate nohighlight">\(\phi\)</span>, in line with our earlier graphical analysis.</p>
 <p>Let’s compute <span class="math notranslate nohighlight">\(\frac{\partial \phi}{\partial R}\)</span> and evaluate it numerically at default parameter values</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -775,7 +764,7 @@ determinants of <span class="math notranslate nohighlight">\(\phi\)</span>.</p>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_latex math notranslate nohighlight">
-\[\displaystyle - \frac{D R^{3} \left(\frac{\gamma_{h c}}{R}\right)^{T - 3} \cdot \left(1 - \frac{\gamma_{h c}}{R}\right) \left(T - 3\right)}{\gamma_{h c}^{4} w^{h}_{0} \left(1 - \left(\frac{\gamma_{h c}}{R}\right)^{T - 3}\right)^{2}} + \frac{4 D R^{3} \cdot \left(1 - \frac{\gamma_{h c}}{R}\right)}{\gamma_{h c}^{4} w^{h}_{0} \cdot \left(1 - \left(\frac{\gamma_{h c}}{R}\right)^{T - 3}\right)} + \frac{D R^{2}}{\gamma_{h c}^{3} w^{h}_{0} \cdot \left(1 - \left(\frac{\gamma_{h c}}{R}\right)^{T - 3}\right)} + \frac{R^{3} \left(\frac{\gamma_{h}}{R}\right)^{T + 1} \cdot \left(1 - \frac{\gamma_{h c}}{R}\right) \left(T + 1\right)}{\gamma_{h c}^{4} \cdot \left(1 - \frac{\gamma_{h}}{R}\right) \left(1 - \left(\frac{\gamma_{h c}}{R}\right)^{T - 3}\right)} - \frac{R^{3} \left(\frac{\gamma_{h c}}{R}\right)^{T - 3} \cdot \left(1 - \left(\frac{\gamma_{h}}{R}\right)^{T + 1}\right) \left(1 - \frac{\gamma_{h c}}{R}\right) \left(T - 3\right)}{\gamma_{h c}^{4} \cdot \left(1 - \frac{\gamma_{h}}{R}\right) \left(1 - \left(\frac{\gamma_{h c}}{R}\right)^{T - 3}\right)^{2}} + \frac{4 R^{3} \cdot \left(1 - \left(\frac{\gamma_{h}}{R}\right)^{T + 1}\right) \left(1 - \frac{\gamma_{h c}}{R}\right)}{\gamma_{h c}^{4} \cdot \left(1 - \frac{\gamma_{h}}{R}\right) \left(1 - \left(\frac{\gamma_{h c}}{R}\right)^{T - 3}\right)} - \frac{R^{2} \gamma_{h} \left(1 - \left(\frac{\gamma_{h}}{R}\right)^{T + 1}\right) \left(1 - \frac{\gamma_{h c}}{R}\right)}{\gamma_{h c}^{4} \left(1 - \frac{\gamma_{h}}{R}\right)^{2} \cdot \left(1 - \left(\frac{\gamma_{h c}}{R}\right)^{T - 3}\right)} + \frac{R^{2} \cdot \left(1 - \left(\frac{\gamma_{h}}{R}\right)^{T + 1}\right)}{\gamma_{h c}^{3} \cdot \left(1 - \frac{\gamma_{h}}{R}\right) \left(1 - \left(\frac{\gamma_{h c}}{R}\right)^{T - 3}\right)}\]</div>
+\[\displaystyle - \frac{D R^{3} \left(\frac{\gamma_{c}}{R}\right)^{T - 3} \cdot \left(1 - \frac{\gamma_{c}}{R}\right) \left(T - 3\right)}{\gamma_{c}^{4} w^{h}_{0} \left(1 - \left(\frac{\gamma_{c}}{R}\right)^{T - 3}\right)^{2}} + \frac{4 D R^{3} \cdot \left(1 - \frac{\gamma_{c}}{R}\right)}{\gamma_{c}^{4} w^{h}_{0} \cdot \left(1 - \left(\frac{\gamma_{c}}{R}\right)^{T - 3}\right)} + \frac{D R^{2}}{\gamma_{c}^{3} w^{h}_{0} \cdot \left(1 - \left(\frac{\gamma_{c}}{R}\right)^{T - 3}\right)} - \frac{R^{3} \left(\frac{\gamma_{c}}{R}\right)^{T - 3} \cdot \left(1 - \frac{\gamma_{c}}{R}\right) \left(1 - \left(\frac{\gamma_{h}}{R}\right)^{T + 1}\right) \left(T - 3\right)}{\gamma_{c}^{4} \left(1 - \left(\frac{\gamma_{c}}{R}\right)^{T - 3}\right)^{2} \cdot \left(1 - \frac{\gamma_{h}}{R}\right)} + \frac{R^{3} \left(\frac{\gamma_{h}}{R}\right)^{T + 1} \cdot \left(1 - \frac{\gamma_{c}}{R}\right) \left(T + 1\right)}{\gamma_{c}^{4} \cdot \left(1 - \left(\frac{\gamma_{c}}{R}\right)^{T - 3}\right) \left(1 - \frac{\gamma_{h}}{R}\right)} + \frac{4 R^{3} \cdot \left(1 - \frac{\gamma_{c}}{R}\right) \left(1 - \left(\frac{\gamma_{h}}{R}\right)^{T + 1}\right)}{\gamma_{c}^{4} \cdot \left(1 - \left(\frac{\gamma_{c}}{R}\right)^{T - 3}\right) \left(1 - \frac{\gamma_{h}}{R}\right)} + \frac{R^{2} \cdot \left(1 - \left(\frac{\gamma_{h}}{R}\right)^{T + 1}\right)}{\gamma_{c}^{3} \cdot \left(1 - \left(\frac{\gamma_{c}}{R}\right)^{T - 3}\right) \left(1 - \frac{\gamma_{h}}{R}\right)} - \frac{R^{2} \gamma_{h} \left(1 - \frac{\gamma_{c}}{R}\right) \left(1 - \left(\frac{\gamma_{h}}{R}\right)^{T + 1}\right)}{\gamma_{c}^{4} \cdot \left(1 - \left(\frac{\gamma_{c}}{R}\right)^{T - 3}\right) \left(1 - \frac{\gamma_{h}}{R}\right)^{2}}\]</div>
 </div>
 </div>
 <div class="cell docutils container">
@@ -791,7 +780,7 @@ determinants of <span class="math notranslate nohighlight">\(\phi\)</span>.</p>
 \[\displaystyle 13.2642738659429\]</div>
 </div>
 </div>
-<p>We find that raising the gross interest rate <span class="math notranslate nohighlight">\(R\)</span> increases the initial college wage premium <span class="math notranslate nohighlight">\(\phi\)</span>, as we did with our graphical analysis earlier</p>
+<p>We find that raising the gross interest rate <span class="math notranslate nohighlight">\(R\)</span> increases the initial college wage premium <span class="math notranslate nohighlight">\(\phi\)</span>, in line with our earlier graphical analysis.</p>
 </section>
 </section>
 
@@ -885,13 +874,13 @@ determinants of <span class="math notranslate nohighlight">\(\phi\)</span>.</p>
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
-  Essential Tools
+  Foundations
  </span>
 </p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
-  <a class="reference internal" href="complex_and_trig.html">
-   6. Complex Numbers and Trigonometry
+  <a class="reference internal" href="intro_supply_demand.html">
+   6. Introduction to Supply and Demand
   </a>
  </li>
  <li class="toctree-l1">
@@ -900,19 +889,19 @@ determinants of <span class="math notranslate nohighlight">\(\phi\)</span>.</p>
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="eigen_I.html">
-   8. Eigenvalues and Eigenvectors
+  <a class="reference internal" href="complex_and_trig.html">
+   8. Complex Numbers and Trigonometry
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="intro_supply_demand.html">
-   9. Introduction to Supply and Demand
+  <a class="reference internal" href="geom_series.html">
+   9. Geometric Series for Elementary Economics
   </a>
  </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
-  Linear Dynamics
+  Linear Dynamics: Finite Horizons
  </span>
 </p>
 <ul class="current nav bd-sidenav nav sidenav_l1">
@@ -941,9 +930,16 @@ determinants of <span class="math notranslate nohighlight">\(\phi\)</span>.</p>
    14. A Monetarist Theory of Price Levels with Adaptive Expectations
   </a>
  </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Linear Dynamics: Infinite Horizons
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
-  <a class="reference internal" href="geom_series.html">
-   15. Geometric Series for Elementary Economics
+  <a class="reference internal" href="eigen_I.html">
+   15. Eigenvalues and Eigenvectors
   </a>
  </li>
 </ul>
