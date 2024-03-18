@@ -344,7 +344,7 @@ $$
 G :=
 \frac{\sum_{i=1}^n \sum_{j = 1}^n |w_j - w_i|}
      {2n\sum_{i=1}^n w_i}.
-$$ ()
+$$
 ```
 
 The Gini coefficient is closely related to the Lorenz curve.
