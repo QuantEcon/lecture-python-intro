@@ -68,7 +68,7 @@ We will install the following libraries.
 ```{code-cell} ipython3
 :tags: [hide-output]
 
-!pip install --upgrade quantecon interpolation
+!pip install quantecon
 ```
 
 And we use the following imports.
@@ -79,7 +79,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 import quantecon as qe
 import random as rd
-from interpolation import interp
 ```
 
 ## The Lorenz curve
@@ -746,7 +745,7 @@ Here is one solution:
 
 ```{code-cell} ipython3
 def lorenz2top(f_val, l_val, p=0.1):
-    t = lambda x: interp(f_val, l_val, x)
+    t = lambda x: np.interp(x, f_val, l_val)
     return 1- t(1 - p)
 ```
 
