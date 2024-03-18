@@ -414,7 +414,7 @@ In addition to what’s in Anaconda, this lecture will need the following librar
 ```{code-cell} ipython3
 import numpy as np
 import matplotlib.pyplot as plt
-from numba import njit, prange
+from numba import jit, prange
 from quantecon.optimize import brent_max
 ```
 
@@ -439,22 +439,19 @@ Knowing $\hat K$, we can calculate other equilibrium objects.
 Let's first define  some Python helper functions.
 
 ```{code-cell} ipython3
-@njit
+@jit
 def K_to_Y(K, α):
-
     return K ** α
 
-@njit
+@jit
 def K_to_r(K, α):
-
     return α * K ** (α - 1)
 
-@njit
+@jit
 def K_to_W(K, α):
-
     return (1 - α) * K ** α
 
-@njit
+@jit
 def K_to_C(K, D, τ, r, α, β):
 
     # consumption for old
@@ -888,7 +885,7 @@ Below we implement the "guess and verify" computation.
 We start by defining the Cobb-Douglas utility function
 
 ```{code-cell} ipython3
-@njit
+@jit
 def U(Cy, Co, β):
 
     return (Cy ** β) * (Co ** (1-β))
@@ -899,7 +896,7 @@ We use `Cy_val` to compute the lifetime value of choosing an arbitrary consumpti
 Note that it requires knowing future prices $r_{t+1}$ and tax rate $\tau_{t+1}$.
 
 ```{code-cell} ipython3
-@njit
+@jit
 def Cy_val(Cy, W, r_next, τ, τ_next, δy, δo_next, β):
 
     # Co given by the budget constraint
@@ -1206,7 +1203,7 @@ C_{yt}+\frac{C_{ot+1}}{1+r_{t+1}\left(1-\tau_{t+1}\right)}=\frac{1}{2}W_{t}\left
 $$
 
 ```{code-cell} ipython3
-@njit
+@jit
 def Cy_val2(Cy, W, W_next, r_next, τ, τ_next, β):
 
     # Co given by the budget constraint
@@ -1404,35 +1401,4 @@ plt.show();
 ```{code-cell} ipython3
 plt.plot(K_seq)
 plt.title('K')
-```
-
-
-
-## Interpolation
-
-
-
-Here is a demonstration of how to use `interp`.
-
-This jitted function is very useful for solving optimal consumption and saving problems using Bellman equations.
-
-```{code-cell} ipython3
-!pip install interpolation
-```
-
-```{code-cell} ipython3
-from interpolation import interp
-```
-
-```{code-cell} ipython3
-# x_arr, V_arr, x => return V(x)
-interp(np.array([0., 1.]), np.array([0.2, 0.8]), 0.2)
-```
-
-```{code-cell} ipython3
-interp(np.array([0., 1.]), np.array([0.2, 0.8]), np.array([0.2, 0.3, 0.4]))
-```
-
-```{code-cell} ipython3
-
 ```
