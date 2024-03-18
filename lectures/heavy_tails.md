@@ -19,7 +19,7 @@ In addition to what's in Anaconda, this lecture will need the following librarie
 ```{code-cell} ipython3
 :tags: [hide-output]
 
-!pip install --upgrade yfinance pandas_datareader interpolation
+!pip install --upgrade yfinance pandas_datareader
 ```
 
 We use the following imports.
@@ -31,7 +31,6 @@ import yfinance as yf
 import pandas as pd
 import statsmodels.api as sm
 
-from interpolation import interp
 from pandas_datareader import wb
 from scipy.stats import norm, cauchy
 from pandas.plotting import register_matplotlib_converters
@@ -602,7 +601,7 @@ def empirical_ccdf(data,
         fw = np.empty_like(aw, dtype='float64')
         for i, a in enumerate(aw):
             fw[i] = a / np.sum(aw)
-        pdf = lambda x: interp(data, fw, x)
+        pdf = lambda x: np.interp(x, data, fw)
         data = np.sort(data)
         j = 0
         for i, d in enumerate(data):
