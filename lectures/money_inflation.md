@@ -192,10 +192,10 @@ This is true in the present model.
 
 In a **steady state** equilibrium of the  model we are studying, 
 
-\begin{align}
+\begin{aligned}
 R_t & = \bar R \cr
 b_t & = \bar b
-\end{align}
+\end{aligned}
 
 for $t \geq 0$.  
 
@@ -203,10 +203,10 @@ Notice that both $R_t = \frac{p_t}{p_{t+1}}$ and $b_t = \frac{m_{t+1}}{p_t} $ ar
 
 To compute a steady state, we seek gross rates of return on currency  $\bar R, \bar b$ that satisfy steady-state versions of  both the government budget constraint and the demand function for real balances:
 
-\begin{align}
+\begin{aligned}
 g & = \bar b ( 1 - \bar R)  \cr
 \bar b & = \gamma_1- \gamma_2 \bar R^{-1}
-\end{align}
+\end{aligned}
 
 Together these equations  imply
 
@@ -379,10 +379,10 @@ We shall  deploy two distinct computation strategies.
    * set $R_0 \in [\frac{\gamma_2}{\gamma_1}, R_u]$ and compute $b_0 = \gamma_1 - \gamma_2/R_0$.
 
    * compute sequences $\{R_t, b_t\}_{t=1}^\infty$ of rates of return and real balances that are associated with an equilibrium by solving equation {eq}`eq:bmotion` and {eq}`eq:bdemand` sequentially  for $t \geq 1$:  
-   \begin{align}
+   \begin{aligned}
 b_t & = b_{t-1} R_{t-1} + g \cr
 R_t^{-1} & = \frac{\gamma_1}{\gamma_2} - \gamma_2^{-1} b_t 
-\end{align}
+\end{aligned}
 
    * Construct the associated equilibrium $p_0$ from 
   
@@ -393,10 +393,10 @@ R_t^{-1} & = \frac{\gamma_1}{\gamma_2} - \gamma_2^{-1} b_t
    * compute $\{p_t, m_t\}_{t=1}^\infty$  by solving the following equations sequentially
   
   $$
-   \begin{align}
+   \begin{aligned}
    p_t & = R_t p_{t-1} \cr
    m_t & = b_{t-1} p_t 
-   \end{align}
+   \end{aligned}
   $$ (eq:method1) 
    
 **Remark 1:** method 1 uses an indirect approach to computing an equilibrium by first computing an equilibrium  $\{R_t, b_t\}_{t=0}^\infty$ sequence and then using it to back out an equilibrium  $\{p_t, m_t\}_{t=0}^\infty$  sequence.
@@ -458,10 +458,10 @@ Start at $t=0$
  
 Then  for $t \geq 1$ construct $(b_t, R_t)$ by
 iterating  on the system 
-\begin{align}
+\begin{aligned}
 b_t & = b_{t-1} R_{t-1} + g \cr
 R_t^{-1} & = \frac{\gamma_1}{\gamma_2} - \gamma_2^{-1} b_t
-\end{align}
+\end{aligned}
 
 
 When we implement this part of method 1, we shall discover the following  striking 
@@ -605,11 +605,11 @@ $$
 
 where 
 
-\begin{align} H_1 & = \begin{bmatrix} 1 & \gamma_2 \cr
+\begin{aligned} H_1 & = \begin{bmatrix} 1 & \gamma_2 \cr
                  1 & 0 \end{bmatrix} \cr
                 H_2 & = \begin{bmatrix} 0 & \gamma_1 \cr
                  1 & g \end{bmatrix}  
-\end{align}
+\end{aligned}
 
 ```{code-cell} ipython3
 H1 = np.array([[1, msm.γ2], 

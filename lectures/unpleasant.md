@@ -142,19 +142,19 @@ Just before time $0$, the government chooses $(m_0, B_{-1})$  subject to constra
 For $t =0, 1, \ldots, T-1$,
 
 $$
-\begin{align}
+\begin{aligned}
 B_t & = \widetilde R B_{t-1} + g \cr
 m_{t+1} &  = m_0 
-\end{align}
+\end{aligned}
 $$
 
 while for $t \geq T$,
 
 $$
-\begin{align}
+\begin{aligned}
 B_t & = B_{T-1} \cr
 m_{t+1} & = m_t + p_t \overline g
-\end{align}
+\end{aligned}
 $$
 
 where 
@@ -188,21 +188,21 @@ For reasons described at the end of **this lecture**, we select the larger root 
 Next, we compute
 
 $$
-\begin{align}
+\begin{aligned}
 R_T & = R_u \cr
 b_T & = \gamma_1 - \gamma_2 R_u^{-1} \cr
 p_T & = \frac{m_0}{\gamma_1 - \overline g - \gamma_2 R_u^{-1}}
-\end{align}
+\end{aligned}
 $$ (eq:LafferTstationary)
 
 
 We can compute continuation sequences $\{R_t, b_t\}_{t=T+1}^\infty$ of rates of return and real balances that are associated with an equilibrium by solving equation {eq}`eq:up_bmotion` and {eq}`eq:up_bdemand` sequentially  for $t \geq 1$:  
-   \begin{align}
+   \begin{aligned}
 b_t & = b_{t-1} R_{t-1} + \overline g \cr
 R_t^{-1} & = \frac{\gamma_1}{\gamma_2} - \gamma_2^{-1} b_t \cr
 p_t & = R_t p_{t-1} \cr
    m_t & = b_{t-1} p_t 
-\end{align}
+\end{aligned}
 
    
 
@@ -219,22 +219,22 @@ Our restrictions that $\gamma_1 > \gamma_2 > 0$ imply that $\lambda \in [0,1)$.
 We want to compute
 
 $$ 
-\begin{align}
+\begin{aligned}
 p_0 &  = \gamma_1^{-1} \left[ \sum_{j=0}^\infty \lambda^j m_{1+j} \right] \cr
 & = \gamma_1^{-1} \left[ \sum_{j=0}^{T-1} \lambda^j m_{0} + \sum_{j=T}^\infty \lambda^j m_{1+j} \right]
-\end{align}
+\end{aligned}
 $$
 
 Thus,
 
 $$
-\begin{align}
+\begin{aligned}
 p_0 & = \gamma_1^{-1} m_0  \left\{ \frac{1 - \lambda^T}{1-\lambda} +  \frac{\lambda^T}{R_u-\lambda}   \right\} \cr
 p_1 & = \gamma_1^{-1} m_0  \left\{ \frac{1 - \lambda^{T-1}}{1-\lambda} +  \frac{\lambda^{T-1}}{R_u-\lambda}   \right\} \cr
 \quad \vdots  & \quad \quad \vdots \cr
 p_{T-1} & = \gamma_1^{-1} m_0  \left\{ \frac{1 - \lambda}{1-\lambda} +  \frac{\lambda}{R_u-\lambda}   \right\}  \cr
 p_T & = \gamma_1^{-1} m_0  \left\{\frac{1}{R_u-\lambda}   \right\}
-\end{align}
+\end{aligned}
 $$ (eq:allts)
 
 We can implement  the preceding formulas by iterating on
