@@ -17,10 +17,10 @@ kernelspec:
 
 ## Overview
 
-This lecture studies stationary and dynamic **Laffer curves** in the inflation tax rate in a non-linear version of the model studied in this XXXX lecture.
+This lecture studies stationary and dynamic **Laffer curves** in the inflation tax rate in a non-linear version of the model studied in this lecture {doc}`money_inflation`.
 
 This lecture uses the log-linear version of the demand function for money that Cagan {cite}`Cagan`
-used in his classic paper in place of the linear demand function used in this XXXX lecture. 
+used in his classic paper in place of the linear demand function used in this lecture {doc}`money_inflation`. 
 
 That change requires that we modify parts of our analysis.
 

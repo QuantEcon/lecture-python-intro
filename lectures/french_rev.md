@@ -101,7 +101,7 @@ in payment, they were to be burned.
 The appendix to {cite}`sargent_velde1995` describes  the
 auction rules in detail.
 ```
-) The Estates available for sale were thought to be worth about 2,400
+The Estates available for sale were thought to be worth about 2,400
 million, while the exactable debt (essentially fixed-term loans, unpaid arrears,
 and liquidated offices) stood at about 2,000 million. The value of the land was
 sufficient to let the Assembly retire all of the exactable debt and thereby eliminate
@@ -114,12 +114,12 @@ aspects of monetary theory help in thinking about the assignat plan. First, a sy
 beginning with a commodity standard typically has room for a once-and-for-all emission
 of (an unbacked) paper currency that can replace the commodity money without generating
 inflation. \citet{Sargent/Wallace:1983} describe models with this property. That
-commodity money systems are wasteful underlies Milton \possessivecite{Friedman1960} preference
+commodity money systems are wasteful underlies Milton Friedman's (1960) TOM:ADD REFERENCE preference
 for a fiat money regime over a commodity money. Second, in a small country on a
 commodity money system that starts with restrictions on intermediation, those restrictions
 can be relaxed by letting the government issue bank notes on the security of safe
 private indebtedness, while leaving bank notes convertible into gold at par. See
-Adam \citet{Smith:1776} and \citet{Sargent_Wallace_1982} for expressions of this idea.
+Adam Smith  and Sargent and Wallace (1982) for expressions of this idea. TOM: ADD REFERENCES HEREAND IN BIBTEX FILE.
 ```
 
 
@@ -401,17 +401,15 @@ with the Terror. It is marked by high real balances, around 2,500 millions, and
 roughly stable prices. The fall of Robespierre in late July 1794 begins the third
 of our episodes, in which real balances decline and prices rise rapidly. We interpret
 these three episodes in terms of three separate theories about money: a ``backing''
-or ''real bills'' theory (the text is Adam Smith [1776],
-a legal restrictions theory,%
-\footnote{\citet{Keynes:1940} urged a forced saving
-program for war finance. \citet{Bryant/Wallace:1984} and \citet{Villamil:1988} have formalized aspects
-of Keynes's analysis.}
+or ''real bills'' theory (the text is Adam Smith (1776)),
+a legal restrictions theory (TOM: HERE PLEASE CITE 
+Keynes,1940, AS WELL AS  Bryant/Wallace:1984 and Villamil:1988) 
 and a classical hyperinflation theory.%
 ```{note}
-According to \possessivecite{Cagan:1956} definition of hyperinflation,
+According to the empirical  definition of hyperinflation adopted by {cite}`Cagan`,
 beginning in the month that inflation exceeds 50 percent
 per month and ending in the month before inflation drops below 50 percent per month
-for at least a year, the \emph{assignat} experienced a hyperinflation from May to December
+for at least a year, the *assignat*  experienced a hyperinflation from May to December
 1795.
 ```
 We view these

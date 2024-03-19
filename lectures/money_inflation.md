@@ -19,7 +19,10 @@ kernelspec:
 
 ## Overview
 
-This lecture describes a theory of price level variations that consists of two components
+This lecture extends and modifies the model in this lecture {doc}`cagan_ree` by modifying the
+law of motion that governed the supply of money.  
+
+In particular, this lecture describes a theory of price level variations that consists of two components
 
  * a demand function for money 
  * a law of motion for the supply of money
@@ -31,8 +34,7 @@ The law of motion for the supply of money assumes that the government prints mon
 Our model equates the demand for money to the supply at each time $t \geq 0$.
 
 Equality between those demands and supply gives in a **dynamic** model in which   money supply
-and  price level **sequences** are simultaneously determined by a special  set of simultaneous linear  
-equations.
+and  price level **sequences** are simultaneously determined by a special  set of simultaneous linear  equations.
 
 These equations take the form of what are often called vector linear **difference equations**.  
 
@@ -40,21 +42,34 @@ In this lecture, we'll roll up our sleeves and solve those equations in a couple
 
 As we'll see, Python is good at solving them.
 
+
+(One of the methods for solving vector linear  difference equations will take advantage of a decomposition of a matrix that is studied in this lecture {doc}`eigen_I`.)
+
+In this lecture we will encounter these concepts
+
+* an **inflation tax** that a government gathers by printing paper or electronic money
+* a dynamic **Laffer curve** in the inflation tax rate that has two stationary equilibria
+* perverse dynamics under rational expectations in which the system converges to the higher stationary inflation tax rate
+* a peculiar comparative stationary-state analysis connected with that stationary inflation rate that assert that inflation can be **reduced** by running **higher**  government deficits 
+
+The same qualitive outcomes prevail in this lecture {doc}`money_inflation_nonlinear` that studies a nonlinear version of the model in this lecture.  
+
+These outcomes will set the stage for the analysis of this lecture {doc}`laffer_adaptive` that studies a version of the present model that  uses a version of "adaptive expectations" instead of rational expectations.
+
+That lecture will show that 
+
+* replacing rational expectations with adaptive expectations leaves the two stationary inflation rates unchanged, but that $\ldots$ 
+* it reverse the pervese dynamics by making the **lower** stationary inflation rate the one to which the system typically converges
+* a more plausible comparative dynamic outcome emerges in which now inflation can be **reduced** by running **lower**  government deficits
+
+This outcome will be used to justify a selection of a stationary inflation rate that underlies the analysis of unpleasant monetarist arithmetic to be studies in this lecture {doc}`unpleasant`.
+
 We'll use theses tools from linear algebra:
 
  * matrix multiplication
  * matrix inversion
  * eigenvalues and eigenvectors of a matrix
 
-Let's start with some imports:
-
-```{code-cell} ipython3
-import numpy as np
-import matplotlib.pyplot as plt
-from matplotlib.ticker import MaxNLocator
-plt.rcParams['figure.dpi'] = 300
-from collections import namedtuple
-```
 
 ## Demand  for and Supply of Money
 
@@ -242,6 +257,21 @@ A steady state gross rate of return  $\bar R$ solves quadratic equation {eq}`eq:
 
 
 So two steady states typically exist. 
+
+
+
+## Some Code
+
+
+Let's start with some imports:
+
+```{code-cell} ipython3
+import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib.ticker import MaxNLocator
+plt.rcParams['figure.dpi'] = 300
+from collections import namedtuple
+```
 
 
 Let's set some parameter values and compute possible steady state rates of return on currency $\bar R$, the  seigniorage maximizing rate of return on currency, and an object that we'll discuss later, namely, an initial price level $p_0$ associated with the maximum steady state rate of return on currency.
