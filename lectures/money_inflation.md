@@ -54,7 +54,7 @@ In this lecture we will encounter these concepts
 
 The same qualitive outcomes prevail in this lecture {doc}`money_inflation_nonlinear` that studies a nonlinear version of the model in this lecture.  
 
-These outcomes will set the stage for the analysis of this lecture {doc}`laffer_adaptive` that studies a version of the present model that  uses a version of "adaptive expectations" instead of rational expectations.
+These outcomes will set the stage for the analysis of this lecture {doc}`laffer_adaptive` that studies a nonlinear version of the present model that  uses a version of "adaptive expectations" instead of rational expectations.
 
 That lecture will show that 
 

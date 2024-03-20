@@ -18,7 +18,7 @@ kernelspec:
 ## Overview 
 
 This lecture describes some monetary and fiscal  features of the French Revolution
-described by Sargent and Velde {cite}`sargent_velde1995`.
+described by {cite}`sargent_velde1995`.
 
 We use matplotlib to replicate several of the graphs that they used to present salient patterns.
 

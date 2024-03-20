@@ -19,7 +19,7 @@ kernelspec:
 
 This lecture studies stationary and dynamic **Laffer curves** in the inflation tax rate in a non-linear version of the model studied in this lecture {doc}`money_inflation`.
 
-This lecture uses the log-linear version of the demand function for money that Cagan {cite}`Cagan`
+This lecture uses the log-linear version of the demand function for money that  {cite}`Cagan`
 used in his classic paper in place of the linear demand function used in this lecture {doc}`money_inflation`. 
 
 That change requires that we modify parts of our analysis.
@@ -27,6 +27,32 @@ That change requires that we modify parts of our analysis.
 In particular, our dynamic system is no longer linear in state variables. 
 
 Nevertheless, the economic logic underlying an  analysis based on what we called ''method 2''  remains unchanged.  
+
+
+in this lecture we shall discover   qualitatively similar outcomnes to those that we studied  in the lecture  {doc}`money_inflation`.
+
+That lecture presented a linear version of the model in this lecture.  
+
+As in that  lecture,  we discussed these topics:
+
+* an **inflation tax** that a government gathers by printing paper or electronic money
+* a dynamic **Laffer curve** in the inflation tax rate that has two stationary equilibria
+* perverse dynamics under rational expectations in which the system converges to the higher stationary inflation tax rate
+* a peculiar comparative stationary-state analysis connected with that stationary inflation rate that assert that inflation can be **reduced** by running **higher**  government deficits 
+
+
+
+These outcomes will set the stage for the analysis of this lecture {doc}`laffer_adaptive` that studies a version of the present model that  uses a version of "adaptive expectations" instead of rational expectations.
+
+That lecture will show that 
+
+* replacing rational expectations with adaptive expectations leaves the two stationary inflation rates unchanged, but that $\ldots$ 
+* it reverse the pervese dynamics by making the **lower** stationary inflation rate the one to which the system typically converges
+* a more plausible comparative dynamic outcome emerges in which now inflation can be **reduced** by running **lower**  government deficits
+
+
+GGHH
+
 
 
 

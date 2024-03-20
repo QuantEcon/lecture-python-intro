@@ -79,7 +79,7 @@ $$
 $$ (eq:eqpipi)
 
 We assume that the expected rate of inflation $\pi_t^*$ is governed
-by the Friedman-Cagan adaptive expectations scheme
+by the following adaptive expectations scheme proposed by {cite}`Friedman1956` and {citet}`Cagan`:
 
 $$
 \pi_{t+1}^* = \lambda \pi_t^* + (1 -\lambda) \pi_t 

@@ -13,26 +13,37 @@ kernelspec:
 
 +++ {"user_expressions": []}
 
-# Inflation Rate Laffer Curves  with Adaptive Expectations 
+# Laffer Curves  with Adaptive Expectations 
 
 ## Overview
 
 This lecture studies stationary and dynamic **Laffer curves** in the inflation tax rate in a non-linear version of the model studied in this  lecture {doc}`money_inflation`.
 
-As in the lecture {doc}`money_inflation`, this lecture uses the log-linear version of the demand function for money that Cagan {cite}`Cagan` used in his classic paper in place of the linear demand function used in this  lecture {doc}`money_inflation`.
+As in the lecture {doc}`money_inflation`, this lecture uses the log-linear version of the demand function for money that  {cite}`Cagan` used in his classic paper in place of the linear demand function used in this  lecture {doc}`money_inflation`.
 
 But now, instead of assuming  ''rational expectations'' in the form of ''perfect foresight'',
-we'll adopt the ''adaptive expectations'' assumption used by Cagan {cite}`Cagan`.
+we'll adopt the ''adaptive expectations'' assumption used by  {cite}`Cagan` and {cite}`Friedman1956`.
 
 
 
-This means that instead of assuming that expected inflation $\pi_t^*$ is described by
+This means that instead of assuming that expected inflation $\pi_t^*$ is described by the "perfect foresight" or "rational expectations" hypothesis 
 
 $$
 \pi_t^* = p_{t+1} - p_t
 $$ 
 
-as we assumed in lecture XXXX, we'll now assume that $\pi_t^*$ is determined by the adaptive expectations scheme described in equation {eq}`eq:adaptex`  reported below. 
+that we adopted in lectures {doc}`money_inflation` and lectures {doc}`money_inflation_nonlinear`, we'll now assume that $\pi_t^*$ is determined by the adaptive expectations hypothesis described in equation {eq}`eq:adaptex`  reported below. 
+
+We shall discover that changing our hypothesis about expectations formation in this way will change some our findings and leave others intact.  In particular, we shall discover that
+
+
+* replacing rational expectations with adaptive expectations leaves the two stationary inflation rates unchanged, but that $\ldots$ 
+* it reverse the pervese dynamics by making the **lower** stationary inflation rate the one to which the system typically converges
+* a more plausible comparative dynamic outcome emerges in which now inflation can be **reduced** by running **lower**  government deficits
+
+These more plausible comparative dynamics underly the "old time religion" that states that 
+"inflation is always and everwhere caused by government deficits".
+
 
 ## The Model
 
