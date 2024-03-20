@@ -155,72 +155,39 @@ Check that your answers agree with `u.mean()` and `u.var()`.
 
 #### Bernoulli distribution
 
-Another useful (and more interesting) distribution is the Bernoulli distribution
+Another useful distribution is the Bernoulli distribution on $S = \{0,1\}$, which has PMF:
+$$
+p(x_i)=
+\begin{cases}
+p & \text{if $x_i = 1$}\\
+1-p & \text{if $x_i = 0$}
+\end{cases}
+$$
+Here $x_i \in S$ is the outcome of the random variable.
 
-We can import the uniform distribution on $S = \{1, \ldots, n\}$  from SciPy like so:
+We can import the Bernoulli distribution on $S = \{0,1\}$ from SciPy like so:
 
 ```{code-cell} ipython3
-n = 10
-u = scipy.stats.randint(1, n+1)
+p = 0.4 
+u = scipy.stats.bernoulli(p)
 ```
 
 
-Here's the mean and variance
+Here's the mean and variance:
 
 ```{code-cell} ipython3
 u.mean(), u.var()
 ```
 
-The formula for the mean is $(n+1)/2$, and the formula for the variance is $(n^2 - 1)/12$.
+The formula for the mean is $p$, and the formula for the variance is $p(1-p)$.
 
 
-Now let's evaluate the PMF
+Now let's evaluate the PMF:
 
 ```{code-cell} ipython3
+u.pmf(0)
 u.pmf(1)
 ```
-
-```{code-cell} ipython3
-u.pmf(2)
-```
-
-
-Here's a plot of the probability mass function:
-
-```{code-cell} ipython3
-fig, ax = plt.subplots()
-S = np.arange(1, n+1)
-ax.plot(S, u.pmf(S), linestyle='', marker='o', alpha=0.8, ms=4)
-ax.vlines(S, 0, u.pmf(S), lw=0.2)
-ax.set_xticks(S)
-plt.show()
-```
-
-
-Here's a plot of the CDF:
-
-```{code-cell} ipython3
-fig, ax = plt.subplots()
-S = np.arange(1, n+1)
-ax.step(S, u.cdf(S))
-ax.vlines(S, 0, u.cdf(S), lw=0.2)
-ax.set_xticks(S)
-plt.show()
-```
-
-
-The CDF jumps up by $p(x_i)$ and $x_i$.
-
-
-```{exercise}
-:label: prob_ex2
-
-Calculate the mean and variance for this parameterization (i.e., $n=10$)
-directly from the PMF, using the expressions given above.
-
-Check that your answers agree with `u.mean()` and `u.var()`. 
-```
-
 
 
 #### Binomial distribution
