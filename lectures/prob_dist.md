@@ -156,6 +156,7 @@ Check that your answers agree with `u.mean()` and `u.var()`.
 #### Bernoulli distribution
 
 Another useful distribution is the Bernoulli distribution on $S = \{0,1\}$, which has PMF:
+
 $$
 p(x_i)=
 \begin{cases}
@@ -163,6 +164,7 @@ p & \text{if $x_i = 1$}\\
 1-p & \text{if $x_i = 0$}
 \end{cases}
 $$
+
 Here $x_i \in S$ is the outcome of the random variable.
 
 We can import the Bernoulli distribution on $S = \{0,1\}$ from SciPy like so:
