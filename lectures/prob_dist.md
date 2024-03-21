@@ -204,7 +204,7 @@ Here $\theta \in [0,1]$ is a parameter.
 
 The interpretation of $p(i)$ is: the probability of $i$ successes in $n$ independent trials with success probability $\theta$.
 
-For example, if $\theta=0.5$, $p(i)$ can be the probability of $i$ heads in $n$ flips of a fair coin.
+For example, if $\theta=0.5$, then $p(i)$ is the probability of $i$ heads in $n$ flips of a fair coin.
 
 The mean and variance are:
 
