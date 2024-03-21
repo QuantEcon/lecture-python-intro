@@ -424,16 +424,12 @@ p0_bars = (p0_l, p0_u)
 draw_iterations(p0s, model, line_params, p0_bars, num_steps=20)
 ```
 
-REQUEST FOR HUMPRHEY: PLEASE MAKE A CAPTION BELOW THE ABOVE GRAPH THAT WE CAN REFER TO AS WE DO 
-THE LECTURE MONEY_INFLATION.MD
 
-IF WE ZOOM, I CAN EXPLAIN QUICKLY.
+Staring at the paths of price levels in  {numref}`p0_path_nonlin` reveals that almost all paths converge to the **higher** inflation tax rate displayed in the stationary state Laffer curve. displayed in figure  {numref}`laffer_curve_nonlinear`.  
 
-Staring at the paths of price levels in  {numref}`p0_path_nonlin` show indicate that almost all paths converge to the **higher** inflation tax rate displayed in the stationary state Laffer curve. %displayed in figure  {numref}`infl_tax`.  
+Thus, we have reconfirmed  what we have  called the "perverse" dynamics under rational expectations in which the system converges to the higher of two possible stationary inflation tax rates.
 
-Thus, we have indeed discovered what we earlier called "perverse" dynamics under rational expectations in which the system converges to the higher of two possible stationary inflation tax rates.
-
-Those dynamics are "perverse" not only in the sense that they imply that the monetary and fiscal authorities that have chosen to finance government expenditures eventually impose a higher inflation tax than required to finance government expenditures, but because of the following "counterintuitive" situation that we can deduce by staring at the stationary state Laffer curve displayed in figure  {numref}`infl_tax`:
+Those dynamics are "perverse" not only in the sense that they imply that the monetary and fiscal authorities that have chosen to finance government expenditures eventually impose a higher inflation tax than required to finance government expenditures, but because of the following "counterintuitive" situation that we can deduce by staring at the stationary state Laffer curve displayed in figure  {numref}`laffer_curve_nonlinear`:
 
 * the figure indicates that inflation can be **reduced** by running **higher**  government deficits, i.e., by raising more resources through  printing money. 
 
@@ -441,4 +437,16 @@ Those dynamics are "perverse" not only in the sense that they imply that the mon
 ```{note}
 The same qualitive outcomes prevail in this lecture {doc}`money_inflation` that studies a linear version of the model in this lecture`.
 ```
+
+We discovered that 
+
+ * all but one of the equilibrium paths converge to limits in which the higher of two possible stationary inflation tax prevails
+ * there is a unique equilibrium path associated with "plausible" statements about how reductions in government deficits affect a stationary  inflation rate
+
+As in  this lecture {doc}`money_inflation`,
+on grounds of plausibility, we  again recommend  selecting the unique equilibrium that converges to the lower stationary inflation tax rate. 
+
+As we shall see, we  accepting  this recommendation is a key ingredient of outcomes of the "unpleasant arithmetic" that we describe in   lecture {doc}`unpleasant`.
+
+In lecture, {doc}`laffer_adaptive`, we shall explore how  {cite}`bruno1990seigniorage` and others justified our equilibrium selection in other ways.
 

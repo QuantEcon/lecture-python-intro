@@ -50,13 +50,6 @@ In addition to learning about ''unpleasant monetarist arithmetic", in this lectu
 
 <!-- #region user_expressions=[] -->
 
-Let's start with some imports:
-
-```{code-cell} ipython3
-import numpy as np
-import matplotlib.pyplot as plt
-from collections import namedtuple
-```
 
 ## Setup
 
@@ -327,7 +320,16 @@ Since the public has less currency (it's supply has diminished) it is plausible 
 
 But that is not the end of the story, because this ''open market operation'' at time $0$ has consequences for future settings of $m_{t+1}$ and the gross-of-interest government deficit $\bar g_t$. 
 
-Let's dive in and implement our ''pseudo code'' in Python.
+
+Let's start with some imports:
+
+```{code-cell} ipython3
+import numpy as np
+import matplotlib.pyplot as plt
+from collections import namedtuple
+```
+
+Now let's dive in and implement our ''pseudo code'' in Python.
 
 ```{code-cell} ipython3
 # Create a namedtuple that contains parameters

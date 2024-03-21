@@ -978,7 +978,7 @@ The same qualitive outcomes prevail in this lecture {doc}`money_inflation_nonlin
 ```
 
 
-## Equilibrium selection criterion 
+## Equilibrium selection 
 
 We have discovered that as a model of price level paths or model is **incomplete** because there is a continuum of "equilibrium" paths for $\{m_{t+1}, p_t\}_{t=0}^\infty$ that are consistent with the demand for real balances always equaling the supply.
   
