@@ -66,7 +66,11 @@ We will need to install the following packages
 ```{code-cell} ipython3
 :tags: [hide-output]
 
+<<<<<<< HEAD
 !pip install wbgapi plotly
+=======
+!pip install quantecon
+>>>>>>> main
 ```
 
 We will also use the following imports.
@@ -76,8 +80,11 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import random as rd
+<<<<<<< HEAD
 import wbgapi as wb
 import plotly.express as px
+=======
+>>>>>>> main
 ```
 
 ## The Lorenz curve
