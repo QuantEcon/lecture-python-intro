@@ -103,6 +103,8 @@ The curve $L$ is just a function $y = L(x)$ that we can plot and interpret.
 To create it we first generate data points $(x_i, y_i)$  according to
 
 ```{prf:definition}
+:label: define-lorenz
+
 $$
 x_i = \frac{i}{n},
 \qquad
@@ -137,7 +139,6 @@ income or wealth data into the cumulative share
 of individuals (or households) and the cumulative share of income (or wealth).
 
 ```{code-cell} ipython3
-:tags: [hide-input]
 
 def lorenz_curve(y):
     """
@@ -350,7 +351,7 @@ $$
 The Gini coefficient is closely related to the Lorenz curve.
 
 In fact, it can be shown that its value is twice the area between the line of
-equality and the Lorenz curve (e.g., the shaded area in the following Figure below).
+equality and the Lorenz curve (e.g., the shaded area in {numref}`lorenz_gini`).
 
 The idea is that $G=0$ indicates complete equality, while $G=1$ indicates complete inequality.
 
@@ -524,9 +525,7 @@ wb.search("gini")
 
 We now know the series ID is `SI.POV.GINI`.
 
-```{tip}
 Another, and often useful way to find series ID, is to use the [World Bank data portal](https://data.worldbank.org) and then use `wbgapi` to fetch the data.
-```
 
 Let us fetch the data for the USA and request for it to be returned as a `DataFrame`.
 
@@ -536,9 +535,7 @@ data.head(n=5)
 data.columns = data.columns.map(lambda x: int(x.replace('YR',''))) # remove 'YR' in index and convert to int
 ```
 
-```{tip}
-This package often returns data with year information contained in the columns. This is not always convenient for simple plotting with pandas so it can be useful to transpose the results before plotting
-```
+**Note:** This package often returns data with year information contained in the columns. This is not always convenient for simple plotting with pandas so it can be useful to transpose the results before plotting
 
 ```{code-cell} ipython3
 data = data.T # transpose to get data series as columns and years as rows
@@ -631,7 +628,7 @@ plt.scatter(x,y)
 plt.plot(x1, a1*x1+b1)
 plt.plot(x2, a2*x2+b2)
 plt.title("US Gini coefficient dynamics")
-plt.legend(['Gini coefficient', 'Trend (before 1981)', 'Trend (after 1981)'])
+plt.legend(['Gini coefficient', 'trend (before 1981)', 'trend (after 1981)'])
 plt.ylabel("Gini coefficient")
 plt.xlabel("year")
 plt.show()
@@ -781,7 +778,7 @@ There are 167 countries represented in this dataset.
 Let us compare three western economies: USA, United Kingdom, and Norway
 
 ```{code-cell} ipython3
-data[['USA','GBR', 'NOR']].plot(ylabel='gini coefficient')
+data[['USA','GBR', 'NOR']].plot(ylabel='Gini coefficient')
 ```
 
 We see that Norway has a shorter time series so let us take a closer look at the underlying data
