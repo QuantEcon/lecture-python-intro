@@ -402,6 +402,16 @@ def draw_iterations(p0s, model, line_params, p0_bars, num_steps):
 ```
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: Starting from different initial values of $p_0$, paths of $m_t$ (top
+      panel, log scale for $m$), $p_t$ (second panel, log scale for $p$),  $\pi_t$ (third panel), and $\mu_t$ (bottom
+      panel)
+    name: p0_path_nonlin
+    width: 500px
+---
+
 # Generate a sequence from p0_l to p0_u
 p0s = np.arange(p0_l, p0_u, 0.1) 
 
@@ -419,7 +429,7 @@ THE LECTURE MONEY_INFLATION.MD
 
 IF WE ZOOM, I CAN EXPLAIN QUICKLY.
 
-Staring at the paths of price levels in  {numref}`p0_pathnonlin` show indicate that almost all paths converge to the **higher** inflation tax rate displayed in the stationary state Laffer curve. %displayed in figure  {numref}`infl_tax`.  
+Staring at the paths of price levels in  {numref}`p0_path_nonlin` show indicate that almost all paths converge to the **higher** inflation tax rate displayed in the stationary state Laffer curve. %displayed in figure  {numref}`infl_tax`.  
 
 Thus, we have indeed discovered what we earlier called "perverse" dynamics under rational expectations in which the system converges to the higher of two possible stationary inflation tax rates.
 
