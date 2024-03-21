@@ -420,7 +420,6 @@ Let's examine the Gini coefficient in some simulations.
 First the code below enables us to compute the Gini coefficient.
 
 ```{code-cell} ipython3
-:tags: [hide-input]
 
 def gini_coefficient(y):
     r"""
@@ -529,14 +528,15 @@ Let us fetch the data for the USA and request for it to be returned as a `DataFr
 ```{code-cell} ipython3
 data = wb.data.DataFrame("SI.POV.GINI", "USA")
 data.head(n=5)
-data.columns = data.columns.map(lambda x: int(x.replace('YR',''))) # remove 'YR' in index and convert to int
+# remove 'YR' in index and convert to integer
+data.columns = data.columns.map(lambda x: int(x.replace('YR','')))
 ```
 
 **Note:** This package often returns data with year information contained in the columns. This is not always convenient for simple plotting with pandas so it can be useful to transpose the results before plotting
 
 ```{code-cell} ipython3
-data = data.T # transpose to get data series as columns and years as rows
-data_usa = data['USA']  # obtain a simple series of USA data
+data = data.T           # Obtain years as rows
+data_usa = data['USA']  # Series of US data
 ```
 
 The `data_usa` series can now be plotted using the pandas `.plot` method.
@@ -575,7 +575,8 @@ mystnb:
 ---
 # Fetch gini data for all countries
 gini_all = wb.data.DataFrame("SI.POV.GINI")
-gini_all.columns = gini_all.columns.map(lambda x: int(x.replace('YR',''))) # remove 'YR' in index and convert to int
+# remove 'YR' in index and convert to integer
+gini_all.columns = gini_all.columns.map(lambda x: int(x.replace('YR',''))) 
 
 # Create a long series with a multi-index of the data to get global min and max values
 gini_all = gini_all.unstack(level='economy').dropna()
@@ -743,7 +744,7 @@ As we saw earlier in this lecture we used `wbgapi` to get Gini data across many 
 In this section we will compare a few western economies and look at the evolution in their respective Gini coefficients
 
 ```{code-cell} ipython3
-data = gini_all.unstack() # Obtain data for all countries as a table
+data = gini_all.unstack()
 data.columns
 ```
 
@@ -803,7 +804,8 @@ Let's take another look at the USA, Norway, and the United Kingdom.
 ```{code-cell} ipython3
 countries = ['USA', 'NOR', 'GBR']
 gdppc = wb.data.DataFrame("NY.GDP.PCAP.KD", countries)
-gdppc.columns = gdppc.columns.map(lambda x: int(x.replace('YR',''))) # remove 'YR' in index and convert to int
+# remove 'YR' in index and convert to integer
+gdppc.columns = gdppc.columns.map(lambda x: int(x.replace('YR',''))) 
 gdppc = gdppc.T
 ```
 
@@ -837,19 +839,14 @@ max_year = plot_data.year.max()
 improve clarity in the chart including the different end years associated with each countries time series.
 
 ```{code-cell} ipython3
-labels = [1979, 1986, 1991, 1995, 2000, 2020, 2021, 2022] + list(range(min_year,max_year,5))
+labels = [1979, 1986, 1991, 1995, 2000, 2020, 2021, 2022] /
+         + list(range(min_year,max_year,5))
 plot_data.year = plot_data.year.map(lambda x: x if x in labels else None)
 ```
 
 (fig:plotly-gini-gdppc-years)=
 
 ```{code-cell} ipython3
----
-mystnb:
-  figure:
-    caption: Gini coefficients and GDP per capita (USA, United Kingdom, and Norway)
-    name: gini_gdppc_usa_gbr_nor1
----
 fig = px.line(plot_data, 
               x = "gini", 
               y = "gdppc", 
