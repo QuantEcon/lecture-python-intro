@@ -139,7 +139,6 @@ income or wealth data into the cumulative share
 of individuals (or households) and the cumulative share of income (or wealth).
 
 ```{code-cell} ipython3
-
 def lorenz_curve(y):
     """
     Calculates the Lorenz Curve, a graphical representation of
@@ -216,9 +215,9 @@ ax.plot(f_vals, f_vals, label='equality', lw=2)
 ax.vlines([0.8], [0.0], [0.43], alpha=0.5, colors='k', ls='--')
 ax.hlines([0.43], [0], [0.8], alpha=0.5, colors='k', ls='--')
 ax.set_xlim((0, 1))
-ax.set_xlabel("Cumulative share of households (%)")
+ax.set_xlabel("share of households (%)")
 ax.set_ylim((0, 1))
-ax.set_ylabel("Cumulative share of income (%)")
+ax.set_ylabel("share of income (%)")
 ax.legend()
 plt.show()
 ```
@@ -304,8 +303,8 @@ ax.plot(f_vals_nw[-1], l_vals_nw[-1], label=f'net wealth')
 ax.plot(f_vals_ti[-1], l_vals_ti[-1], label=f'total income')
 ax.plot(f_vals_li[-1], l_vals_li[-1], label=f'labor income')
 ax.plot(f_vals_nw[-1], f_vals_nw[-1], label=f'equality')
-ax.set_xlabel("household percentile")
-ax.set_ylabel("income/wealth percentile")
+ax.set_xlabel("share of households (%)")
+ax.set_ylabel("share of income/wealth (%)")
 ax.legend()
 plt.show()
 ```
@@ -372,18 +371,14 @@ ax.fill_between(f_vals, l_vals, f_vals, alpha=0.06)
 ax.set_ylim((0, 1))
 ax.set_xlim((0, 1))
 ax.text(0.04, 0.5, r'$G = 2 \times$ shaded area')
-ax.set_xlabel("household percentile")
-ax.set_ylabel("income/wealth percentile")
+ax.set_xlabel("share of households (%)")
+ax.set_ylabel("share of income/wealth (%)")
 ax.legend()
 plt.show()
 ```
 
 Another way to think of the Gini coefficient is as a ratio of the area between the 45-degree line of 
-perfect equality and the Lorenz curve (A) divided by the total area below the 45-degree line (A+B). 
-
-```{seealso}
-The World in Data project has a [nice graphical exploration of the Lorenz curve and the Gini coefficient](https://ourworldindata.org/what-is-the-gini-coefficient])
-```
+perfect equality and the Lorenz curve (A) divided by the total area below the 45-degree line (A+B) as shown in {numref}`lorenz_gini2`. 
 
 ```{code-cell} ipython3
 ---
@@ -402,8 +397,8 @@ ax.set_ylim((0, 1))
 ax.set_xlim((0, 1))
 ax.text(0.55, 0.4, 'A')
 ax.text(0.75, 0.15, 'B')
-ax.set_xlabel("household percentile")
-ax.set_ylabel("income/wealth percentile")
+ax.set_xlabel("share of households (%)")
+ax.set_ylabel("share of income/wealth (%)")
 ax.legend()
 plt.show()
 ```
@@ -413,6 +408,10 @@ G = \frac{A}{A+B}
 $$
 
 It is an average measure of deviation from the line of equality.
+
+```{seealso}
+The World in Data project has a [nice graphical exploration of the Lorenz curve and the Gini coefficient](https://ourworldindata.org/what-is-the-gini-coefficient])
+```
 
 ### Gini coefficient of simulated data
 
@@ -463,10 +462,8 @@ In each case we set $\mu = - \sigma^2 / 2$.
 
 This implies that the mean of the distribution does not change with $\sigma$. 
 
-```{note}
 You can check this by looking up the expression for the mean of a lognormal
 distribution.
-```
 
 ```{code-cell} ipython3
 k = 5
@@ -504,18 +501,18 @@ fix, ax = plot_inequality_measures(σ_vals,
                                   ginis, 
                                   'simulated', 
                                   '$\sigma$', 
-                                  'gini coefficients')
+                                  'Gini coefficients')
 plt.show()
 ```
 
 The plots show that inequality rises with $\sigma$, according to the Gini
 coefficient.
 
-### Gini coefficient dynamics for US data (income)
+### Gini coefficient for US data (income)
 
 Now let's look at the Gini coefficient using US data.
 
-We will get pre-computed Gini coefficients from the World Bank using the [wbgapi](https://blogs.worldbank.org/opendata/introducing-wbgapi-new-python-package-accessing-world-bank-data).
+We will get pre-computed Gini coefficients (based on income) from the World Bank using the [wbgapi](https://blogs.worldbank.org/opendata/introducing-wbgapi-new-python-package-accessing-world-bank-data).
 
 Let's use the `wbgapi` package we imported earlier to search the world bank data for Gini to find the Series ID.
 
@@ -578,63 +575,28 @@ gini_all.columns = gini_all.columns.map(lambda x: int(x.replace('YR',''))) # rem
 gini_all = gini_all.unstack(level='economy').dropna()
 
 # Build a histogram
-gini_all.plot(kind="hist", 
-              bins=20,
-              title="Gini coefficient"
-             )
+ax = gini_all.plot(kind="hist", bins=20)
+ax.set_xlabel("Gini coefficient")
+ax.set_ylabel("frequency")
 plt.show()
 ```
 
-We can see that across 50 years of data and all countries (including low and high income countries) the measure varies between 20 and 65.
+We can see that across 50 years of data and all countries (including low and high income countries) the measure only varies between 20 and 65.
 
-Let us zoom in a little on the US data and add some trendlines.
+{numref}`gini_usa1` suggests there is a change in trend around the year 1980.
 
-{numref}`gini_usa1` suggests there is a change in trend around the year 1981
-
-```{code-cell} ipython3
-# Use pandas filters to find data before 1981
-pre_1981 = data_usa[data_usa.index <= 1981]
-# Use pandas filters to find data after 1981
-post_1981 = data_usa[data_usa.index > 1981]
-```
-
-We can use `numpy` to compute a linear line of best fit.
+Let us zoom on the US data so we can more clearly observe trends.
 
 ```{code-cell} ipython3
-# Pre 1981 Data Trend
-x1 = pre_1981.dropna().index.values
-y1 = pre_1981.dropna().values
-a1, b1 = np.polyfit(x1, y1, 1)
-
-# Post 1981 Data Trend
-x2 = post_1981.dropna().index.values
-y2 = post_1981.dropna().values
-a2, b2 = np.polyfit(x2, y2, 1)
-```
-
-We can now built a plot that includes trend and a range that offers a closer 
-look at the dynamics over time in the Gini coefficient for the USA.
-
-```{code-cell} ipython3
----
-mystnb:
-  figure:
-    caption: Gini coefficients (USA) with trend
-    name: gini_usa_trend
----
-x = data_usa.dropna().index.values
-y = data_usa.dropna().values
-plt.scatter(x,y)
-plt.plot(x1, a1*x1+b1)
-plt.plot(x2, a2*x2+b2)
-plt.title("US Gini coefficient dynamics")
-plt.legend(['Gini coefficient', 'trend (before 1981)', 'trend (after 1981)'])
-plt.ylabel("Gini coefficient")
-plt.xlabel("year")
+fig, ax = plt.subplots()
+ax = data_usa.plot(ax=ax)
+ax.set_ylim(data_usa.min()-1, data_usa.max()+1)
+ax.set_ylabel("Gini coefficient")
+ax.set_xlabel("year")
 plt.show()
 ```
 
-{numref}`gini_usa_trend` shows inequality was falling in the USA until 1981 when it appears to have started to change course and steadily rise over time. 
+{numref}`gini_usa_trend` shows inequality was falling in the USA until 1980 when it appears to have started to change course and steadily rise over time. 
 
 (compare-income-wealth-usa-over-time)=
 ### Comparing income and wealth inequality (the US case)
@@ -766,7 +728,7 @@ The wealth time series exhibits a strong U-shape.
 
 As we saw earlier in this lecture we used `wbgapi` to get Gini data across many countries and saved it in a variable called `gini_all`
 
-In this section we will compare a few countries and the evolution in their respective Gini coefficients
+In this section we will compare a few western economies and look at the evolution in their respective Gini coefficients
 
 ```{code-cell} ipython3
 data = gini_all.unstack() # Obtain data for all countries as a table
@@ -778,7 +740,11 @@ There are 167 countries represented in this dataset.
 Let us compare three western economies: USA, United Kingdom, and Norway
 
 ```{code-cell} ipython3
-data[['USA','GBR', 'NOR']].plot(ylabel='Gini coefficient')
+ax = data[['USA','GBR', 'NOR']].plot()
+ax.set_xlabel('year')
+ax.set_ylabel('Gini coefficient')
+ax.legend(title="")
+plt.show()
 ```
 
 We see that Norway has a shorter time series so let us take a closer look at the underlying data
@@ -796,12 +762,13 @@ data['NOR'] = data['NOR'].ffill()
 ax = data[['USA','GBR', 'NOR']].plot()
 ax.set_xlabel('year')
 ax.set_ylabel('Gini coefficient')
+ax.legend(title="")
 plt.show()
 ```
 
 From this plot we can observe that the USA has a higher Gini coefficient (i.e. higher income inequality) when compared to the UK and Norway. 
 
-Norway has the lowest Gini coefficient over the three economies it is substantially lower than the US.
+Norway has the lowest Gini coefficient over the three economies and is substantially lower than the US.
 
 ### Gini Coefficient and GDP per capita (over time)
 
@@ -841,10 +808,9 @@ min_year = plot_data.year.min()
 max_year = plot_data.year.max()
 ```
 
-```{note}
-The time series for all three countries start and stop in different years. We will add a year mask to the data to
+
+**Note:** The time series for all three countries start and stop in different years. We will add a year mask to the data to
 improve clarity in the chart including the different end years associated with each countries time series.
-```
 
 ```{code-cell} ipython3
 labels = [1979, 1986, 1991, 1995, 2000, 2020, 2021, 2022] + list(range(min_year,max_year,5))
@@ -871,7 +837,9 @@ This figure is built using `plotly` and is {ref}` available on the website <fig:
 ```
 
 This plot shows that all three western economies GDP per capita has grown over time with some fluctuations
-in the Gini coefficient. From the early 80's the United Kingdom and the US economies both saw increases in income 
+in the Gini coefficient. 
+
+From the early 80's the United Kingdom and the US economies both saw increases in income 
 inequality. 
 
 Interestingly, since the year 2000, the United Kingdom saw a decline in income inequality while
@@ -893,10 +861,14 @@ As before, suppose that the sample $w_1, \ldots, w_n$ has been sorted from small
 Given the Lorenz curve $y = L(x)$ defined above, the top $100 \times p \%$
 share is defined as
 
+```{prf:definition}
+:label: top-shares
+
 $$
 T(p) = 1 - L (1-p) 
     \approx \frac{\sum_{j\geq i} w_j}{ \sum_{j \leq n} w_j}, \quad i = \lfloor n (1-p)\rfloor
 $$ (topshares)
+```
 
 Here $\lfloor \cdot \rfloor$ is the floor function, which rounds any
 number down to the integer less than or equal to that number.
