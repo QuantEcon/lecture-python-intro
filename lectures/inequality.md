@@ -839,8 +839,8 @@ max_year = plot_data.year.max()
 improve clarity in the chart including the different end years associated with each countries time series.
 
 ```{code-cell} ipython3
-labels = [1979, 1986, 1991, 1995, 2000, 2020, 2021, 2022] /
-         + list(range(min_year,max_year,5))
+labels = [1979, 1986, 1991, 1995, 2000, 2020, 2021, 2022] + \
+         list(range(min_year,max_year,5))
 plot_data.year = plot_data.year.map(lambda x: x if x in labels else None)
 ```
 
