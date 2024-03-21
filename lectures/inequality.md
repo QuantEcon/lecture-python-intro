@@ -567,6 +567,12 @@ Using `pandas` we can take a quick look across all countries and all years in th
 By leaving off the `"USA"` this function returns all Gini data that is available.
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: Histogram of Gini coefficients
+    name: gini_histogram
+---
 # Fetch gini data for all countries
 gini_all = wb.data.DataFrame("SI.POV.GINI")
 gini_all.columns = gini_all.columns.map(lambda x: int(x.replace('YR',''))) # remove 'YR' in index and convert to int
@@ -588,6 +594,12 @@ We can see that across 50 years of data and all countries (including low and hig
 Let us zoom on the US data so we can more clearly observe trends.
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: Gini coefficients (USA)
+    name: gini_usa_trend
+---
 fig, ax = plt.subplots()
 ax = data_usa.plot(ax=ax)
 ax.set_ylim(data_usa.min()-1, data_usa.max()+1)
@@ -740,6 +752,12 @@ There are 167 countries represented in this dataset.
 Let us compare three western economies: USA, United Kingdom, and Norway
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: Gini coefficients (USA, United Kingdom, and Norway)
+    name: gini_usa_gbr_nor1
+---
 ax = data[['USA','GBR', 'NOR']].plot()
 ax.set_xlabel('year')
 ax.set_ylabel('Gini coefficient')
@@ -758,6 +776,12 @@ The data for Norway in this dataset goes back to 1979 but there are gaps in the 
 We can use the `.ffill()` method to copy and bring forward the last known value in a series to fill in these gaps
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: Gini coefficients (USA, United Kingdom, and Norway)
+    name: gini_usa_gbr_nor2
+---
 data['NOR'] = data['NOR'].ffill()
 ax = data[['USA','GBR', 'NOR']].plot()
 ax.set_xlabel('year')
@@ -820,6 +844,12 @@ plot_data.year = plot_data.year.map(lambda x: x if x in labels else None)
 (fig:plotly-gini-gdppc-years)=
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: Gini coefficients and GDP per capita (USA, United Kingdom, and Norway)
+    name: gini_gdppc_usa_gbr_nor1
+---
 fig = px.line(plot_data, 
               x = "gini", 
               y = "gdppc", 
@@ -928,8 +958,6 @@ mystnb:
   figure:
     caption: US top shares
     name: top_shares_us
-  image:
-    alt: top_shares_us
 ---
 fig, ax = plt.subplots()
 ax.plot(years, df_topshares["topshare_l_income"],
