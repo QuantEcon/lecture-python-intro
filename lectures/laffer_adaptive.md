@@ -34,6 +34,8 @@ $$
 
 that we adopted in lectures {doc}`money_inflation` and lectures {doc}`money_inflation_nonlinear`, we'll now assume that $\pi_t^*$ is determined by the adaptive expectations hypothesis described in equation {eq}`eq:adaptex`  reported below. 
 
+
+
 We shall discover that changing our hypothesis about expectations formation in this way will change some our findings and leave others intact.  In particular, we shall discover that
 
 
@@ -43,6 +45,18 @@ We shall discover that changing our hypothesis about expectations formation in t
 
 These more plausible comparative dynamics underly the "old time religion" that states that 
 "inflation is always and everwhere caused by government deficits".
+
+
+These issues were studyied  by {cite}`bruno1990seigniorage`.
+
+Their purpose was to reverse  what they thought were counter intuitive
+predictions of their model under rational expectations (i.e., perfect foresight in this context)
+by dropping rational expectations and instead assuming that people form  expectations about future inflation rates according to the "adaptive expectations"  scheme {eq}`eq:adaptex` described below.
+
+```{note}
+{cite}`sargent1989least`  had studied another way of selecting stationary equilibrium that involved replacing rational expectations with a model of  learning via least squares regression.  
+ {cite}`marcet2003recurrent` and  {cite}`sargent2009conquest` extended that work and applied it to study recurrent high-inflation episodes in Latin America.
+``` 
 
 
 ## The Model
@@ -378,11 +392,8 @@ print('eq_g == g:', np.isclose(eq_g(m_seq[-1] - m_seq[-2]), model.g))
 
 
 
-We are now equipped  to compute  time series starting from different $p_{-1}, \pi_{-1}^*$ settings, analogous to those in the this XXXX **money_inflation** lecture. 
+We are now equipped  to compute  time series starting from different $p_{-1}, \pi_{-1}^*$ settings, analogous to those in this lecture  {doc}`money_inflation` and this lecture  {doc}`money_inflation_nonlinear`. 
 
-HUMPHREY -- MARCH 16 MODIFICATION OF CHOICE OF "PERTURBED" INITIAL CONDITIONS $p_{-1}, \pi_{-1}^*$
-
-PLEASE RESTRICT THE PERTURBATIONS AS FOLLOWS.
 
 Now we'll study how outcomes unfold when we start $p_{-1}, \pi_{-1}^*$ away from a stationary point of the dynamic Laffer curve, i.e., away from either $\pi_u$ or $ \pi_l$.
 
@@ -391,7 +402,7 @@ To construct a perturbation pair $\check p_{-1}, \check \pi_{-1}^*$we'll impleme
 * set $\check \pi_{-1}^* $ not equal to one of the stationary points $\pi_u$ or $ \pi_l$.
 * set $\check p_{-1} = m_0 + \alpha \check \pi_{-1}^*$
 
-Do this "cautiously" around each of the fixed points $\pi_u$ or $ \pi_l$.
+
 
 ```{code-cell} ipython3
 :tags: [hide-cell]

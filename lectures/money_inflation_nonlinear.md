@@ -51,7 +51,7 @@ That lecture will show that
 * a more plausible comparative dynamic outcome emerges in which now inflation can be **reduced** by running **lower**  government deficits
 
 
-GGHH
+
 
 
 
@@ -112,7 +112,7 @@ We'll summarize our algorithm with the following pseudo-code.
 
 **Pseudo-code**
 
-  * start for $m_0, p0$ at time $t =0$
+  * start for $m_0, p_0$ at time $t =0$
 
   * solve {eq}`eq:msupply2` for $m_{t+1}$
   
@@ -348,7 +348,7 @@ print('eq_g == g:', np.isclose(eq_g(m_seq[-1] - m_seq[-2]), model.g))
 
 ## Slippery Side of Laffer Curve Dynamics
 
-We are now equipped  to compute  time series starting from different $p_0$ settings, like those in the this XXXX **money_inflation** lecture.
+We are now equipped  to compute  time series starting from different $p_0$ settings, like those in  this  lecture {doc}`money_inflation`.
 
 ```{code-cell} ipython3
 :tags: [hide-cell]
@@ -413,3 +413,22 @@ p0_bars = (p0_l, p0_u)
               
 draw_iterations(p0s, model, line_params, p0_bars, num_steps=20)
 ```
+
+REQUEST FOR HUMPRHEY: PLEASE MAKE A CAPTION BELOW THE ABOVE GRAPH THAT WE CAN REFER TO AS WE DO 
+THE LECTURE MONEY_INFLATION.MD
+
+IF WE ZOOM, I CAN EXPLAIN QUICKLY.
+
+Staring at the paths of price levels in  {numref}`p0_pathnonlin` show indicate that almost all paths converge to the **higher** inflation tax rate displayed in the stationary state Laffer curve. %displayed in figure  {numref}`infl_tax`.  
+
+Thus, we have indeed discovered what we earlier called "perverse" dynamics under rational expectations in which the system converges to the higher of two possible stationary inflation tax rates.
+
+Those dynamics are "perverse" not only in the sense that they imply that the monetary and fiscal authorities that have chosen to finance government expenditures eventually impose a higher inflation tax than required to finance government expenditures, but because of the following "counterintuitive" situation that we can deduce by staring at the stationary state Laffer curve displayed in figure  {numref}`infl_tax`:
+
+* the figure indicates that inflation can be **reduced** by running **higher**  government deficits, i.e., by raising more resources through  printing money. 
+
+
+```{note}
+The same qualitive outcomes prevail in this lecture {doc}`money_inflation` that studies a linear version of the model in this lecture`.
+```
+

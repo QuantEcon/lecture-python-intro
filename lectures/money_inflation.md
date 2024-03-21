@@ -13,7 +13,7 @@ kernelspec:
 
 +++ {"user_expressions": []}
 
-# Money Supplies and Price Levels
+# Money Financed Government Deficits and Price Levels
 
 +++ {"user_expressions": []}
 
@@ -22,39 +22,40 @@ kernelspec:
 This lecture extends and modifies the model in this lecture {doc}`cagan_ree` by modifying the
 law of motion that governed the supply of money.  
 
-In particular, this lecture describes a theory of price level variations that consists of two components
+The model in this lecture consists of two components
 
  * a demand function for money 
  * a law of motion for the supply of money
  
 The demand function describes the public's demand for "real balances", defined as the ratio of nominal money balances to the price level
 
+  * it assumes that the demand for real balance today varies inversely with the rate of inflation that the public forecasts to prevail between today and tomorrow
+  * it assumes that the public's forecast of that rate of inflation is perfect 
+
 The law of motion for the supply of money assumes that the government prints money to finance government expenditures
 
 Our model equates the demand for money to the supply at each time $t \geq 0$.
 
 Equality between those demands and supply gives in a **dynamic** model in which   money supply
-and  price level **sequences** are simultaneously determined by a special  set of simultaneous linear  equations.
+and  price level **sequences** are simultaneously determined by a  set of simultaneous linear  equations.
 
 These equations take the form of what are often called vector linear **difference equations**.  
 
-In this lecture, we'll roll up our sleeves and solve those equations in a couple of different ways.
-
-As we'll see, Python is good at solving them.
+In this lecture, we'll roll up our sleeves and solve those equations in two different ways.
 
 
 (One of the methods for solving vector linear  difference equations will take advantage of a decomposition of a matrix that is studied in this lecture {doc}`eigen_I`.)
 
-In this lecture we will encounter these concepts
+In this lecture we will encounter these concepts from macroeconomics:
 
 * an **inflation tax** that a government gathers by printing paper or electronic money
 * a dynamic **Laffer curve** in the inflation tax rate that has two stationary equilibria
 * perverse dynamics under rational expectations in which the system converges to the higher stationary inflation tax rate
-* a peculiar comparative stationary-state analysis connected with that stationary inflation rate that assert that inflation can be **reduced** by running **higher**  government deficits 
+* a peculiar comparative stationary-state outcome connected with that stationary inflation rate: it asserts that inflation can be **reduced** by running **higher**  government deficits, i.e., by raising more resources by printing money. 
 
 The same qualitive outcomes prevail in this lecture {doc}`money_inflation_nonlinear` that studies a nonlinear version of the model in this lecture.  
 
-These outcomes will set the stage for the analysis of this lecture {doc}`laffer_adaptive` that studies a nonlinear version of the present model that  uses a version of "adaptive expectations" instead of rational expectations.
+These outcomes  set the stage for the analysis to be presented in this lecture {doc}`laffer_adaptive` that studies a nonlinear version of the present model; it   assumes a version of "adaptive expectations" instead of rational expectations.
 
 That lecture will show that 
 
@@ -203,10 +204,12 @@ Notice that both $R_t = \frac{p_t}{p_{t+1}}$ and $b_t = \frac{m_{t+1}}{p_t} $ ar
 
 To compute a steady state, we seek gross rates of return on currency  $\bar R, \bar b$ that satisfy steady-state versions of  both the government budget constraint and the demand function for real balances:
 
+$$
 \begin{aligned}
 g & = \bar b ( 1 - \bar R)  \cr
 \bar b & = \gamma_1- \gamma_2 \bar R^{-1}
 \end{aligned}
+$$
 
 Together these equations  imply
 
@@ -952,3 +955,54 @@ Please notice that for $m_t$ and $p_t$, we have used  log scales for the coordin
 
 Using log scales allows us to spot distinct constant limiting gross  rates of growth ${R_u}^{-1}$ and
 ${R_l}^{-1}$ by eye.
+
+
+## Peculiar stationary outcomes
+
+As promised at the start of this lecture, we have encountered these concepts from macroeconomics:
+
+* an **inflation tax** that a government gathers by printing paper or electronic money
+* a dynamic **Laffer curve** in the inflation tax rate that has two stationary equilibria
+
+Staring at the paths of rates of return on the price level in  figure  {numref}`R0_path` and price levels in  {numref}`p0_path` show indicate that almost all paths converge to the **higher** inflation tax rate displayed in the stationary state Laffer curve displayed in figure  {numref}`infl_tax`.  
+
+Thus, we have indeed discovered what we earlier called "perverse" dynamics under rational expectations in which the system converges to the higher of two possible stationary inflation tax rates.
+
+Those dynamics are "perverse" not only in the sense that they imply that the monetary and fiscal authorities that have chosen to finance government expenditures eventually impose a higher inflation tax than required to finance government expenditures, but because of the following "counterintuitive" situation that we can deduce by staring at the stationary state Laffer curve displayed in figure  {numref}`infl_tax`:
+
+* the figure indicates that inflation can be **reduced** by running **higher**  government deficits, i.e., by raising more resources through  printing money. 
+
+
+```{note}
+The same qualitive outcomes prevail in this lecture {doc}`money_inflation_nonlinear` that studies a nonlinear version of the model in this lecture.
+```
+
+
+## Equilibrium selection criterion 
+
+We have discovered that as a model of price level paths or model is **incomplete** because there is a continuum of "equilibrium" paths for $\{m_{t+1}, p_t\}_{t=0}^\infty$ that are consistent with the demand for real balances always equaling the supply.
+  
+
+Through application of our computational methods 1 and 2, we have  learned that this continuum can be indexed by choice of one of two scalars:
+
+* for computational method 1, $R_0$ 
+* for computational method 2, $p_0$
+
+To apply our model, we have somehow to **complete** it by **selecting** an equilibrium path from among the continuum of possible paths. 
+
+We discovered that 
+
+ * all but one of the equilibrium paths converge to limits in which the higher of two possible stationary inflation tax prevails
+ * there is a unique equilibrium path associated with "plausible" statements about how reductions in government deficits affect a stationary  inflation rate
+
+On grounds of plausibility, we recommend following many macroeconomists in selecting the unique equilibrium that converges to the lower stationary inflation tax rate. 
+
+As we shall see, we shall accept this recommendation in  lecture {doc}`unpleasant`.
+
+In lecture, {doc}`laffer_adaptive`, we shall explore how  {cite}`bruno1990seigniorage` and others justified this in other ways.
+
+
+
+
+
+

@@ -11,9 +11,9 @@ kernelspec:
   name: python3
 ---
 
-# A Monetarist Theory of Price Levels with Adaptive Expectations
+# Monetarist Theory of Price Levels with Adaptive Expectations
 
-## Introduction
+## Overview
 
 
 This lecture is a sequel or prequel to the lecture {doc}`cagan_ree`.
@@ -22,7 +22,7 @@ We'll use linear algebra to do some experiments with  an alternative "monetarist
 
 Like the model in {doc}`cagan_ree`, the model asserts that when a government persistently spends more than it collects in taxes and prints money to finance the shortfall, it puts upward pressure on the price level and generates persistent inflation.
 
-Instead of the "perfect foresight" or "rational expectations" version of the model in {doc}`cagan_ree`, our model in the present lecture is an "adaptive expectations"  version of a model that Philip Cagan {cite}`Cagan`  used to study the monetary dynamics of hyperinflations.  
+Instead of the "perfect foresight" or "rational expectations" version of the model in {doc}`cagan_ree`, our model in the present lecture is an "adaptive expectations"  version of a model that  {cite}`Cagan`  used to study the monetary dynamics of hyperinflations.  
 
 It combines these components:
 
@@ -79,7 +79,7 @@ $$
 $$ (eq:eqpipi)
 
 We assume that the expected rate of inflation $\pi_t^*$ is governed
-by the following adaptive expectations scheme proposed by {cite}`Friedman1956` and {citet}`Cagan`:
+by the following adaptive expectations scheme proposed by {cite}`Friedman1956` and {cite}`Cagan`:
 
 $$
 \pi_{t+1}^* = \lambda \pi_t^* + (1 -\lambda) \pi_t 
