@@ -19,7 +19,7 @@ This lecture offers some historical evidence about fluctuations in levels of agg
 
 Let's start by installing the necessary Python packages.
 
-The `xlrd` package is used by `pandas` to perform operations on Excel files. 
+The `xlrd` package is used by `pandas` to perform operations on Excel files.
 
 ```{code-cell} ipython3
 !pip install xlrd
@@ -375,7 +375,7 @@ for i in range(4):
     sheet_list = [process_df(df) for df in sheet_list]
     df_list.append(pd.concat(sheet_list, axis=1))
 
-df_aus, df_hung, df_pol, df_germ = df_list
+df_aus, df_hun, df_pol, df_deu = df_list
 ```
 
 Now let's construct graphs for our four countries.
@@ -453,16 +453,16 @@ mystnb:
     caption: Price index and exchange rate (Hungary)
     name: pi_xrate_hungary
 ---
-m_seq = df_hung['Notes in circulation']
-p_seq = df_hung['Hungarian index of prices']
-e_seq = 1 / df_hung['Cents per crown in New York']
+m_seq = df_hun['Notes in circulation']
+p_seq = df_hun['Hungarian index of prices']
+e_seq = 1 / df_hun['Cents per crown in New York']
 
 lab = ['Hungarian index of prices', 
        '1/cents per Hungarian Korona (Crown)']
 
 # Create plot
 fig, ax = plt.subplots(dpi=200)
-_ = pe_plot(p_seq, e_seq, df_hung.index, lab, ax)
+_ = pe_plot(p_seq, e_seq, df_hun.index, lab, ax)
 
 plt.show()
 ```
@@ -476,7 +476,7 @@ mystnb:
 ---
 # Plot moving average
 fig, ax = plt.subplots(dpi=200)
-_ = pr_plot(p_seq, df_hung.index, ax)
+_ = pr_plot(p_seq, df_hun.index, ax)
 
 plt.show()
 ```
@@ -564,16 +564,16 @@ mystnb:
     caption: Price index and exchange rate (Germany)
     name: pi_xrate_germany
 ---
-p_seq = df_germ['Price index (on basis of marks before July 1924,'
+p_seq = df_deu['Price index (on basis of marks before July 1924,'
                 '  reichsmarks after)'].copy()
-e_seq = 1/df_germ['Cents per mark']
+e_seq = 1/df_deu['Cents per mark']
 
 lab = ['Price index', 
        '1/cents per mark']
 
 # Create plot
 fig, ax = plt.subplots(dpi=200)
-ax1 = pe_plot(p_seq, e_seq, df_germ.index, lab, ax)
+ax1 = pe_plot(p_seq, e_seq, df_deu.index, lab, ax)
 
 plt.show()
 ```
@@ -585,9 +585,9 @@ mystnb:
     caption: Price index (adjusted) and exchange rate (Germany)
     name: piadj_xrate_germany
 ---
-p_seq = df_germ['Price index (on basis of marks before July 1924,'
+p_seq = df_deu['Price index (on basis of marks before July 1924,'
                 '  reichsmarks after)'].copy()
-e_seq = 1/df_germ['Cents per mark'].copy()
+e_seq = 1/df_deu['Cents per mark'].copy()
 
 # Adjust the price level/exchange rate after the currency reform
 p_seq[p_seq.index > '06-01-1924'] = p_seq[p_seq.index 
@@ -600,7 +600,7 @@ lab = ['Price index (marks or converted to marks)',
 
 # Create plot
 fig, ax = plt.subplots(dpi=200)
-ax1 = pe_plot(p_seq, e_seq, df_germ.index, lab, ax)
+ax1 = pe_plot(p_seq, e_seq, df_deu.index, lab, ax)
 
 plt.show()
 ```
@@ -614,7 +614,7 @@ mystnb:
 ---
 # Plot moving average
 fig, ax = plt.subplots(dpi=200)
-_ = pr_plot(p_seq, df_germ.index, ax)
+_ = pr_plot(p_seq, df_deu.index, ax)
 
 plt.show()
 ```
