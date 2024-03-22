@@ -17,7 +17,9 @@ kernelspec:
 
 This lecture offers some historical evidence about fluctuations in levels of aggregate price indexes.  
 
-Let's start by installing the necessary Python packages, which will be needed to extract information and perform operations on Excel files. 
+Let's start by installing the necessary Python packages.
+
+The `xlrd` package is used by `pandas` to perform operations on Excel files. 
 
 ```{code-cell} ipython3
 !pip install xlrd
@@ -168,9 +170,9 @@ for col in cols:
             y=df_fig5[col].iloc[-1], s=col)
 
 ax.set_yscale('log')
-ax.set_ylabel('Logged Price Levels (Index  1913 = 100)')
+ax.set_ylabel('Logs of price levels (Index  1913 = 100)')
 ax.set_ylim([10, 1e6])
-ax.set_xlabel('Year')
+ax.set_xlabel('year')
 ax.set_xlim(xmin=1600)
 plt.tight_layout()
 plt.show()
