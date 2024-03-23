@@ -296,7 +296,7 @@ $$
 \mu_t = \mu^* , \quad t \geq T_1
 $$
 
-so that, in terms of our notation and formula for $\theta_{T+1}^*$ above, $\tilde \gamma = 1$. 
+so that, in terms of our notation and formula for $\pi_{T+1}^*$ above, $\tilde \gamma = 1$. 
 
 #### Experiment 1: Foreseen sudden stabilization
 
@@ -464,7 +464,7 @@ path for $\pi_t$ has $\pi_t = \mu_0$.
 by setting $\mu_s = \mu^*$ for all $s \geq T_1$. The perfect foresight continuation path for 
 $\pi$ is $\pi_s = \mu^*$ 
 
-To capture a "completely unanticipated permanent shock to the $\{\mu\}$ process at time $T_1$, we simply glue the $\mu_t, \pi_t$
+To capture a "completely unanticipated permanent shock to the $\{\mu_t\}$ process at time $T_1$, we simply glue the $\mu_t, \pi_t$
 that emerges under path 2 for $t \geq T_1$ to the $\mu_t, \pi_t$ path that had emerged under path 1 for $ t=0, \ldots,
 T_1 -1$.
 
@@ -482,6 +482,7 @@ are identical to those for experiment 1, the foreseen sudden stabilization.
 The following code does the calculations and plots outcomes.
 
 ```{code-cell} ipython3
+:tags: [hide-cell]
 # path 1
 μ_seq_2_path1 = μ0 * np.ones(T+1)
 
@@ -522,32 +523,31 @@ T_seq = range(T+2)
 # plot both regimes
 fig, ax = plt.subplots(5, 1, figsize=[5, 12], dpi=200)
 
-ax[0].plot(T_seq[:-1], μ_seq_2)
-ax[0].set_ylabel(r'$\mu$')
+# Data configuration for each subplot
+plot_configs = [
+    {'data': [(T_seq[:-1], μ_seq_2)], 'ylabel': r'$\mu$'},
+    {'data': [(T_seq, π_seq_2)], 'ylabel': r'$\pi$'},
+    {'data': [(T_seq, m_seq_2_regime1 - p_seq_2_regime1)], 
+     'ylabel': r'$m - p$'},
+    {'data': [(T_seq, m_seq_2_regime1, 'Smooth $m_{T_1}$'), 
+              (T_seq, m_seq_2_regime2, 'Jumpy $m_{T_1}$')], 
+     'ylabel': r'$m$'},
+    {'data': [(T_seq, p_seq_2_regime1, 'Smooth $p_{T_1}$'), 
+              (T_seq, p_seq_2_regime2, 'Jumpy $p_{T_1}$')], 
+     'ylabel': r'$p$'}
+]
 
-ax[1].plot(T_seq, π_seq_2)
-ax[1].set_ylabel(r'$\pi$')
-
-ax[2].plot(T_seq, m_seq_2_regime1 - p_seq_2_regime1)
-ax[2].set_ylabel(r'$m - p$')
-
-ax[3].plot(T_seq, m_seq_2_regime1, 
-             label='Smooth $m_{T_1}$')
-ax[3].plot(T_seq, m_seq_2_regime2, 
-             label='Jumpy $m_{T_1}$')
-ax[3].set_ylabel(r'$m$')
-
-ax[4].plot(T_seq, p_seq_2_regime1,
-             label='Smooth $m_{T_1}$')
-ax[4].plot(T_seq, p_seq_2_regime2, 
-             label='Jumpy $m_{T_1}$')
-ax[4].set_ylabel(r'$p$')
-
-for i in range(5):
-    ax[i].set_xlabel(r'$t$')
-
-for i in [3, 4]:
-    ax[i].legend()
+# Loop through each subplot configuration
+for axi, config in zip(ax, plot_configs):
+    for data in config['data']:
+        if len(data) == 3:  # Plot with label for legend
+            axi.plot(data[0], data[1], label=data[2])
+        else:  # Plot without label
+            axi.plot(data[0], data[1])
+    axi.set_ylabel(config['ylabel'])
+    axi.set_xlabel(r'$t$')
+    if 'label' in config:  # If there's a label, add a legend
+        axi.legend()
 
 plt.tight_layout()
 plt.show()
@@ -555,11 +555,11 @@ plt.show()
 
 We invite you to compare these graphs with corresponding ones for the foreseen stabilization analyzed in experiment 1 above.
 
-Note how the inflation graph in the top middle panel is now identical to the 
-money growth graph in the top left panel, and how now the log of real balances portrayed in the top right panel jumps upward at time $T_1$.
+Note how the inflation graph in the second panel is now identical to the 
+money growth graph in the top panel, and how now the log of real balances portrayed in the third panel jumps upward at time $T_1$.
 
-The bottom panels plot $m$ and $p$ under two possible ways that $m_{T_1}$ might adjust
-as required by the upward jump in $m - p$ at $T_1$. 
+The bottom two panels plot $m$ and $p$ under two possible ways that $m_{T_1}$ might adjust
+as required by the upward jump in $m - p$ at $T_1$.  
 
 * the orange line lets $m_{T_1}$ jump upward in order to make sure that the log price level $p_{T_1}$ does not fall.
 
@@ -578,43 +578,31 @@ unanticipated, as in experiment 2.
 # compare foreseen vs unforeseen shock
 fig, ax = plt.subplots(5, figsize=[5, 12], dpi=200)
 
-ax[0].plot(T_seq[:-1], μ_seq_2)
-ax[0].set_ylabel(r'$\mu$')
+plot_data = [
+    (T_seq[:-1], [μ_seq_2], r'$\mu$', ['']),
+    (T_seq, [π_seq_2, π_seq_1], r'$\pi$', ['Unforeseen', 'Foreseen']),
+    (T_seq, [m_seq_2_regime1 - p_seq_2_regime1, m_seq_1 - p_seq_1], 
+            r'$m - p$', ['Unforeseen', 'Foreseen']),
+    (T_seq, [m_seq_2_regime1, m_seq_2_regime2, m_seq_1], r'$m$', 
+    ['Unforeseen (Smooth $m_{T_1}$)', 
+    'Unforeseen ($m_{T_1}$ jumps)', 
+    'Foreseen shock']),
+    (T_seq, [p_seq_2_regime1, p_seq_2_regime2, p_seq_1], r'$p$', 
+    ['Unforseen (Smooth $m_{T_1}$)', 
+    'Unforseen ($m_{T_1}$ jumps)', 
+    'Foreseen shock'])
+]
 
-ax[1].plot(T_seq, π_seq_2, 
-             label='Unforeseen')
-ax[1].plot(T_seq, π_seq_1, 
-             label='Foreseen', color='tab:green')
-ax[1].set_ylabel(r'$\pi$')
+for i, (times, sequences, ylabel, labels) in enumerate(plot_data):
+    for seq, label in zip(sequences, labels):
+        ax[i].plot(times, seq, label=label)
+    ax[i].set_ylabel(ylabel)
+    if labels[0]:
+        ax[i].legend()
 
-ax[2].plot(T_seq,
-             m_seq_2_regime1 - p_seq_2_regime1, 
-             label='Unforeseen')
-ax[2].plot(T_seq, m_seq_1 - p_seq_1, 
-             label='Foreseen', color='tab:green')
-ax[2].set_ylabel(r'$m - p$')
-
-ax[3].plot(T_seq, m_seq_2_regime1, 
-             label=r'Unforeseen (Smooth $m_{T_1}$)')
-ax[3].plot(T_seq, m_seq_2_regime2, 
-             label=r'Unforeseen ($m_{T_1}$ jumps)')
-ax[3].plot(T_seq, m_seq_1, 
-             label='Foreseen shock')
-ax[3].set_ylabel(r'$m$')
-
-ax[4].plot(T_seq, p_seq_2_regime1, 
-             label=r'Unforeseen (Smooth $m_{T_1}$)')
-ax[4].plot(T_seq, p_seq_2_regime2, 
-             label=r'Unforeseen ($m_{T_1}$ jumps)')
-ax[4].plot(T_seq, p_seq_1, 
-             label='Foreseen')
-ax[4].set_ylabel(r'$p$')
-
-for i in range(5):
-    ax[i].set_xlabel(r'$t$')
-
-for i in range(1, 5):
-    ax[i].legend()
+# Set the x-axis label for all subplots
+for axis in ax:
+    axis.set_xlabel(r'$t$')
 
 plt.tight_layout()
 plt.show()
