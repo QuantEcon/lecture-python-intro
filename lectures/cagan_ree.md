@@ -20,8 +20,8 @@ We'll use linear algebra first to explain and then do some experiments with a "m
 
 Economists call it a "monetary" or "monetarist" theory of price levels because effects on price levels occur via a central banks's decisions to print money supply. 
 
-  * a goverment's fiscal policies determine whether its *expenditures* exceed its *tax collections*
-  * if its expenditures exceed its tax collections, the government can instruct the central bank to cover the difference by *printing money*
+  * a goverment's fiscal policies determine whether its _expenditures_ exceed its _tax collections_
+  * if its expenditures exceed its tax collections, the government can instruct the central bank to cover the difference by _printing money_
   * that leads to effects on the price level as price level path adjusts to equate the supply of money to the demand for money
 
 Such a theory of price levels was described by Thomas Sargent and Neil Wallace in chapter 5 of 
@@ -41,9 +41,9 @@ persistent inflation.
 
 The "monetarist" or "fiscal theory of price levels" asserts that 
 
-* to *start* a persistent inflation the government beings persistently to run a money-financed government deficit
+* to _start_ a persistent inflation the government beings persistently to run a money-financed government deficit
 
-* to *stop* a persistent inflation the government stops persistently running a money-financed government deficit
+* to _stop_ a persistent inflation the government stops persistently running a money-financed government deficit
 
 The model in this lecture is a "rational expectations" (or "perfect foresight") version of a model that Philip Cagan {cite}`Cagan` used to study the monetary dynamics of hyperinflations. 
 
@@ -316,7 +316,7 @@ $$
      \end{cases}
 $$
 
-We'll start by executing a version of our "experiment 1" in which the government implements a *foreseen* sudden permanent reduction in the rate of money creation at time $T_1$. 
+We'll start by executing a version of our "experiment 1" in which the government implements a _foreseen_ sudden permanent reduction in the rate of money creation at time $T_1$. 
 
 Let's experiment with the following parameters
 
@@ -388,7 +388,7 @@ was completely unanticipated.
 
 At time $T_1$ when the "surprise" money growth rate change occurs, to satisfy
 equation {eq}`eq:pformula2`, the log of real balances jumps 
-*upward* as $\pi_t$ jumps *downward*.
+_upward_ as $\pi_t$ jumps _downward_.
 
 But in order for $m_t - p_t$ to jump, which variable jumps, $m_{T_1}$ or $p_{T_1}$?
 
@@ -407,10 +407,14 @@ An alternative assumption about the money supply level is that as part of the "i
 the government resets $m_{T_1}$ according to
 
 $$
-m_{T_1}^2 - m_{T_1}^1 = \alpha (\pi^1 - \pi^2)
+m_{T_1}^2 - m_{T_1}^1 = \alpha (\pi_{T_1}^1 - \pi_{T_1}^2),
 $$ (eq:eqnmoneyjump)
 
-By letting money jump according to equation {eq}`eq:eqnmoneyjump` the monetary authority prevents the price level from *falling* at the moment that the unanticipated stabilization arrives.
+which describes how the government could reset the money supply at $T_1$ in response to the jump in expected inflation associated with the monetary stabilization. 
+
+Doing this would let the price level be continuous at $T_1$.
+
+By letting money jump according to equation {eq}`eq:eqnmoneyjump` the monetary authority prevents the price level from _falling_ at the moment that the unanticipated stabilization arrives.
 
 In various research papers about stabilizations of high inflations, the jump in the money supply described by equation {eq}`eq:eqnmoneyjump` has been called
 "the velocity dividend" that a government reaps from implementing a regime change that sustains a permanently lower inflation rate.
@@ -482,7 +486,6 @@ are identical to those for experiment 1, the foreseen sudden stabilization.
 The following code does the calculations and plots outcomes.
 
 ```{code-cell} ipython3
-:tags: [hide-cell]
 # path 1
 μ_seq_2_path1 = μ0 * np.ones(T+1)
 
@@ -517,13 +520,16 @@ m_seq_2_regime2 = np.concatenate([m_seq_2_path1[:T1+1],
                                   m_seq_2_cont2])
 p_seq_2_regime2 = np.concatenate([p_seq_2_path1[:T1+1],
                                   p_seq_2_cont2])
+```
 
+```{code-cell} ipython3
+:tags: [hide-input]
 T_seq = range(T+2)
 
 # plot both regimes
 fig, ax = plt.subplots(5, 1, figsize=[5, 12], dpi=200)
 
-# Data configuration for each subplot
+# Configuration for each subplot
 plot_configs = [
     {'data': [(T_seq[:-1], μ_seq_2)], 'ylabel': r'$\mu$'},
     {'data': [(T_seq, π_seq_2)], 'ylabel': r'$\pi$'},
@@ -575,6 +581,7 @@ That allows us to assess how important it is to understand whether the sudden pe
 unanticipated, as in experiment 2.
 
 ```{code-cell} ipython3
+:tags: [hide-input]
 # compare foreseen vs unforeseen shock
 fig, ax = plt.subplots(5, figsize=[5, 12], dpi=200)
 
@@ -600,7 +607,6 @@ for i, (times, sequences, ylabel, labels) in enumerate(plot_data):
     if labels[0]:
         ax[i].legend()
 
-# Set the x-axis label for all subplots
 for axis in ax:
     axis.set_xlabel(r'$t$')
 
@@ -632,7 +638,7 @@ $$
 \mu_t = \phi^t \mu_0 + (1 - \phi^t) \mu^* .
 $$ 
 
-Next we perform an experiment in which there is a perfectly foreseen *gradual* decrease in the rate of growth of the money supply.
+Next we perform an experiment in which there is a perfectly foreseen _gradual_ decrease in the rate of growth of the money supply.
 
 The following code does the calculations and plots the results.
 
