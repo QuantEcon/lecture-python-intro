@@ -240,8 +240,7 @@ const thebe_selector_output = ".output, .cell_output"
                     
                     <div>
                         
-  <!-- #region user_expressions=[] -->
-<section class="tex2jax_ignore mathjax_ignore" id="unpleasant-monetarist-arithmetic">
+  <section class="tex2jax_ignore mathjax_ignore" id="unpleasant-monetarist-arithmetic">
 <h1><span class="section-number">27. </span>Unpleasant Monetarist Arithmetic<a class="headerlink" href="#unpleasant-monetarist-arithmetic" title="Permalink to this heading">#</a></h1>
 <section id="overview">
 <h2><span class="section-number">27.1. </span>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
@@ -260,8 +259,6 @@ by printing money at times <span class="math notranslate nohighlight">\(t \geq T
 <p>That lecture  described  supplies and demands for money that appear in lecture.</p>
 <p>It also   characterized the steady state equilibrium from which we work backwards in this lecture.</p>
 <p>In addition to learning about ‘’unpleasant monetarist arithmetic”, in this lecture we’ll learn how to implement a <strong>fixed point</strong> algorithm for computing an initial price level.</p>
-<!-- #endregion -->
-<!-- #region user_expressions=[] -->
 </section>
 <section id="setup">
 <h2><span class="section-number">27.2. </span>Setup<a class="headerlink" href="#setup" title="Permalink to this heading">#</a></h2>
@@ -321,7 +318,7 @@ B_{-1} - \check B_{-1} = \frac{1}{p_0 \widetilde R} \left( \check m_0 - m_0 \rig
 <section id="an-open-market-operation-at-t-0">
 <h2><span class="section-number">27.4. </span>An open market operation at <span class="math notranslate nohighlight">\(t=0\)</span><a class="headerlink" href="#an-open-market-operation-at-t-0" title="Permalink to this heading">#</a></h2>
 <p>Following Sargent and Wallace (1981), we analyze consequences of a central bank policy that
-uses an open market operation to lower the price level in the face of a peristent fiscal
+uses an open market operation to lower the price level in the face of a persistent fiscal
 deficit that takes the form of a positive <span class="math notranslate nohighlight">\(g\)</span>.</p>
 <p>Just before time <span class="math notranslate nohighlight">\(0\)</span>, the government chooses <span class="math notranslate nohighlight">\((m_0, B_{-1})\)</span>  subject to constraint
 <a class="reference internal" href="#equation-eq-openmarketconstraint">(27.3)</a>.</p>
@@ -370,13 +367,16 @@ b_T &amp; = \gamma_1 - \gamma_2 R_u^{-1} \cr
 p_T &amp; = \frac{m_0}{\gamma_1 - \overline g - \gamma_2 R_u^{-1}}
 \end{aligned}
 \]</div>
-<p>We can compute continuation sequences <span class="math notranslate nohighlight">\(\{R_t, b_t\}_{t=T+1}^\infty\)</span> of rates of return and real balances that are associated with an equilibrium by solving equation <a class="reference internal" href="#equation-eq-up-bmotion">(27.1)</a> and <a class="reference internal" href="#equation-eq-up-bdemand">(27.2)</a> sequentially  for <span class="math notranslate nohighlight">\(t \geq 1\)</span>:<br />
+<p>We can compute continuation sequences <span class="math notranslate nohighlight">\(\{R_t, b_t\}_{t=T+1}^\infty\)</span> of rates of return and real balances that are associated with an equilibrium by solving equation <a class="reference internal" href="#equation-eq-up-bmotion">(27.1)</a> and <a class="reference internal" href="#equation-eq-up-bdemand">(27.2)</a> sequentially  for <span class="math notranslate nohighlight">\(t \geq 1\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
 \begin{aligned}
 b_t &amp; = b_{t-1} R_{t-1} + \overline g \cr
 R_t^{-1} &amp; = \frac{\gamma_1}{\gamma_2} - \gamma_2^{-1} b_t \cr
 p_t &amp; = R_t p_{t-1} \cr
-m_t &amp; = b_{t-1} p_t
-\end{aligned}</p>
+   m_t &amp; = b_{t-1} p_t 
+\end{aligned}
+\]</div>
 </section>
 <section id="before-time-t">
 <h2><span class="section-number">27.6. </span>Before time <span class="math notranslate nohighlight">\(T\)</span><a class="headerlink" href="#before-time-t" title="Permalink to this heading">#</a></h2>
@@ -426,7 +426,7 @@ that constitutes  ‘‘pseudo code’’ because it approaches a set of instruc
 Python coder.</p>
 <p>To compute an equilibrium, we deploy the following algorithm.</p>
 <p>Given <strong>parameters</strong> include <span class="math notranslate nohighlight">\(g, \check m_0, \check B_{-1}, \widetilde R &gt;1, T \)</span></p>
-<p>We define a mappying from <span class="math notranslate nohighlight">\(p_0\)</span> to <span class="math notranslate nohighlight">\(p_0\)</span> as follows.</p>
+<p>We define a mapping from <span class="math notranslate nohighlight">\(p_0\)</span> to <span class="math notranslate nohighlight">\(p_0\)</span> as follows.</p>
 <ul class="simple">
 <li><p>Set <span class="math notranslate nohighlight">\(m_0\)</span> and then compute <span class="math notranslate nohighlight">\(B_{-1}\)</span> to satisfy the constraint on time <span class="math notranslate nohighlight">\(0\)</span> <strong>open market operations</strong></p></li>
 </ul>
@@ -697,7 +697,7 @@ Sargent and Wallace’s <strong>unpleasant monetarist arithmetic</strong> <span 
 <li><p>The lower is the post-open-market-operation money supply at time <span class="math notranslate nohighlight">\(0\)</span>, lower is the price level at time <span class="math notranslate nohighlight">\(0\)</span>.</p></li>
 <li><p>An open  market operation that reduces the post-open-market-operation money supply at time <span class="math notranslate nohighlight">\(0\)</span> also <strong>lowers</strong> the rate of return on money <span class="math notranslate nohighlight">\(R_u\)</span> at times <span class="math notranslate nohighlight">\(t \geq T\)</span> because it brings  a higher gross-of-interest government deficit that must be financed by printing money (i.e., levying an inflation tax) at time <span class="math notranslate nohighlight">\(t \geq T\)</span>.</p></li>
 </ul>
-<!-- #endregion --></section>
+</section>
 </section>
 
     <script type="text/x-thebe-config">

@@ -172,7 +172,7 @@ const thebe_selector_output = ".output, .cell_output"
                         <nav id="bd-toc-nav" class="qe-page__toc-nav">
                             <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">26.1. Overview</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#demand-for-and-supply-of-money">26.2. Demand  for and Supply of Money</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#demand-for-and-supply-of-money">26.2. Demand for and Supply of Money</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#equilibrium-price-and-money-supply-sequences">26.3. Equilibrium price and money supply sequences</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#steady-states">26.3.1. Steady States</a></li>
 </ul>
@@ -295,8 +295,8 @@ and  price level <strong>sequences</strong> are simultaneously determined by a  
 </ul>
 </section>
 <section id="demand-for-and-supply-of-money">
-<h2><span class="section-number">26.2. </span>Demand  for and Supply of Money<a class="headerlink" href="#demand-for-and-supply-of-money" title="Permalink to this heading">#</a></h2>
-<p>We say demand<strong>s</strong> and supp<strong>ies</strong> (plurals) because there is one of each for each <span class="math notranslate nohighlight">\(t \geq 0\)</span>.</p>
+<h2><span class="section-number">26.2. </span>Demand for and Supply of Money<a class="headerlink" href="#demand-for-and-supply-of-money" title="Permalink to this heading">#</a></h2>
+<p>We say demand<strong>s</strong> and suppl<strong>ies</strong> (plurals) because there is one of each for each <span class="math notranslate nohighlight">\(t \geq 0\)</span>.</p>
 <p>Let</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(m_{t+1}\)</span> be the supply of currency at the end of time <span class="math notranslate nohighlight">\(t \geq 0\)</span></p></li>
@@ -383,10 +383,13 @@ that is consistent with a nonnegative demand for real balances.</p>
 <section id="steady-states">
 <h3><span class="section-number">26.3.1. </span>Steady States<a class="headerlink" href="#steady-states" title="Permalink to this heading">#</a></h3>
 <p>In a <strong>steady state</strong> equilibrium of the  model we are studying,</p>
-<p>\begin{aligned}
+<div class="math notranslate nohighlight">
+\[
+\begin{aligned}
 R_t &amp; = \bar R \cr
 b_t &amp; = \bar b
-\end{aligned}</p>
+\end{aligned}
+\]</div>
 <p>for <span class="math notranslate nohighlight">\(t \geq 0\)</span>.</p>
 <p>Notice that both <span class="math notranslate nohighlight">\(R_t = \frac{p_t}{p_{t+1}}\)</span> and <span class="math notranslate nohighlight">\(b_t = \frac{m_{t+1}}{p_t} \)</span> are <strong>ratios</strong>.</p>
 <p>To compute a steady state, we seek gross rates of return on currency  <span class="math notranslate nohighlight">\(\bar R, \bar b\)</span> that satisfy steady-state versions of  both the government budget constraint and the demand function for real balances:</p>
@@ -397,7 +400,7 @@ g &amp; = \bar b ( 1 - \bar R)  \cr
 \bar b &amp; = \gamma_1- \gamma_2 \bar R^{-1}
 \end{aligned}
 \]</div>
-<p>Together these equations  imply</p>
+<p>Together these equations imply</p>
 <div class="math notranslate nohighlight" id="equation-eq-seignsteady">
 <span class="eqno">(26.7)<a class="headerlink" href="#equation-eq-seignsteady" title="Permalink to this equation">#</a></span>\[
 (\gamma_1 + \gamma_2) - \frac{\gamma_2}{\bar R} - \gamma_1 \bar R = g
@@ -564,27 +567,32 @@ R_l, g_l = 0.5344, 3.0000
 <h3><span class="section-number">26.5.1. </span>Method 1<a class="headerlink" href="#method-1" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>set <span class="math notranslate nohighlight">\(R_0 \in [\frac{\gamma_2}{\gamma_1}, R_u]\)</span> and compute <span class="math notranslate nohighlight">\(b_0 = \gamma_1 - \gamma_2/R_0\)</span>.</p></li>
-<li><p>compute sequences <span class="math notranslate nohighlight">\(\{R_t, b_t\}_{t=1}^\infty\)</span> of rates of return and real balances that are associated with an equilibrium by solving equation <a class="reference internal" href="#equation-eq-bmotion">(26.4)</a> and <a class="reference internal" href="#equation-eq-bdemand">(26.5)</a> sequentially  for <span class="math notranslate nohighlight">\(t \geq 1\)</span>:<br />
+<li><p>compute sequences <span class="math notranslate nohighlight">\(\{R_t, b_t\}_{t=1}^\infty\)</span> of rates of return and real balances that are associated with an equilibrium by solving equation <a class="reference internal" href="#equation-eq-bmotion">(26.4)</a> and <a class="reference internal" href="#equation-eq-bdemand">(26.5)</a> sequentially  for <span class="math notranslate nohighlight">\(t \geq 1\)</span>:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
 \begin{aligned}
 b_t &amp; = b_{t-1} R_{t-1} + g \cr
-R_t^{-1} &amp; = \frac{\gamma_1}{\gamma_2} - \gamma_2^{-1} b_t
-\end{aligned}</p></li>
+R_t^{-1} &amp; = \frac{\gamma_1}{\gamma_2} - \gamma_2^{-1} b_t 
+\end{aligned}
+\]</div>
+<ul class="simple">
 <li><p>Construct the associated equilibrium <span class="math notranslate nohighlight">\(p_0\)</span> from</p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-eq-p0fromr0">
 <span class="eqno">(26.10)<a class="headerlink" href="#equation-eq-p0fromr0" title="Permalink to this equation">#</a></span>\[
-   p_0 = \frac{m_0}{\gamma_1 - g - \gamma_2/R_0}
-   \]</div>
+p_0 = \frac{m_0}{\gamma_1 - g - \gamma_2/R_0}
+\]</div>
 <ul class="simple">
 <li><p>compute <span class="math notranslate nohighlight">\(\{p_t, m_t\}_{t=1}^\infty\)</span>  by solving the following equations sequentially</p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-eq-method1">
 <span class="eqno">(26.11)<a class="headerlink" href="#equation-eq-method1" title="Permalink to this equation">#</a></span>\[
-   \begin{aligned}
-   p_t &amp; = R_t p_{t-1} \cr
-   m_t &amp; = b_{t-1} p_t 
-   \end{aligned}
-  \]</div>
+\begin{aligned}
+p_t &amp; = R_t p_{t-1} \cr
+m_t &amp; = b_{t-1} p_t 
+\end{aligned}
+\]</div>
 <p><strong>Remark 1:</strong> method 1 uses an indirect approach to computing an equilibrium by first computing an equilibrium  <span class="math notranslate nohighlight">\(\{R_t, b_t\}_{t=0}^\infty\)</span> sequence and then using it to back out an equilibrium  <span class="math notranslate nohighlight">\(\{p_t, m_t\}_{t=0}^\infty\)</span>  sequence.</p>
 <p><strong>Remark 2:</strong> notice that  method 1 starts by picking an <strong>initial condition</strong> <span class="math notranslate nohighlight">\(R_0\)</span> from a set <span class="math notranslate nohighlight">\([\frac{\gamma_2}{\gamma_1}, R_u]\)</span>. An equilibrium <span class="math notranslate nohighlight">\(\{p_t, m_t\}_{t=0}^\infty\)</span> sequences are not unique.  There is actually a continuum of equilibria indexed by a choice of <span class="math notranslate nohighlight">\(R_0\)</span> from the set <span class="math notranslate nohighlight">\([\frac{\gamma_2}{\gamma_1}, R_u]\)</span>.</p>
 <p><strong>Remark 3:</strong> associated with each selection of <span class="math notranslate nohighlight">\(R_0\)</span> there is a unique <span class="math notranslate nohighlight">\(p_0\)</span> described by
@@ -600,14 +608,14 @@ and formulates  equilibrium conditions <a class="reference internal" href="#equa
 in terms of a first-order vector difference equation</p>
 <div class="math notranslate nohighlight">
 \[
-   y_{t+1} = M y_t, \quad t \geq 0 ,
-   \]</div>
+y_{t+1} = M y_t, \quad t \geq 0 ,
+\]</div>
 <p>where we temporarily take <span class="math notranslate nohighlight">\(y_0 = \begin{bmatrix} m_0 \cr p_0 \end{bmatrix}\)</span> as an <strong>initial condition</strong>.</p>
 <p>The solution is</p>
 <div class="math notranslate nohighlight">
 \[
-   y_t = M^t y_0 .
-   \]</div>
+y_t = M^t y_0 .
+\]</div>
 <p>Now let’s think about the initial condition <span class="math notranslate nohighlight">\(y_0\)</span>.</p>
 <p>It is natural to take the initial stock of money <span class="math notranslate nohighlight">\(m_0 &gt;0\)</span> as an initial condition.</p>
 <p>But what about <span class="math notranslate nohighlight">\(p_0\)</span>?</p>
@@ -626,11 +634,14 @@ in terms of a first-order vector difference equation</p>
 <li><p>compute   <span class="math notranslate nohighlight">\(b_0 = \gamma_1 - \gamma_0 R_0^{-1} \)</span></p></li>
 </ul>
 <p>Then  for <span class="math notranslate nohighlight">\(t \geq 1\)</span> construct <span class="math notranslate nohighlight">\((b_t, R_t)\)</span> by
-iterating  on the system
+iterating  on the system</p>
+<div class="math notranslate nohighlight">
+\[
 \begin{aligned}
 b_t &amp; = b_{t-1} R_{t-1} + g \cr
 R_t^{-1} &amp; = \frac{\gamma_1}{\gamma_2} - \gamma_2^{-1} b_t
-\end{aligned}</p>
+\end{aligned}
+\]</div>
 <p>When we implement this part of method 1, we shall discover the following  striking
 outcome:</p>
 <ul class="simple">
@@ -641,7 +652,7 @@ condition <span class="math notranslate nohighlight">\(R_0\)</span>.</p></li>
 <li><p>for almost every initial condition <span class="math notranslate nohighlight">\(R_0\)</span>, <span class="math notranslate nohighlight">\(\lim_{t \rightarrow +\infty} R_t = R_l\)</span>.</p></li>
 <li><p>if and only if <span class="math notranslate nohighlight">\(R_0 = R_u\)</span>, <span class="math notranslate nohighlight">\(\lim_{t \rightarrow +\infty} R_t = R_u\)</span>.</p></li>
 </ul>
-<p>The quantity   <span class="math notranslate nohighlight">\(1 - R_t\)</span> can be interpreted as an <strong>inflation tax rate</strong> that the government imposes on holders of its currency.</p>
+<p>The quantity <span class="math notranslate nohighlight">\(1 - R_t\)</span> can be interpreted as an <strong>inflation tax rate</strong> that the government imposes on holders of its currency.</p>
 <p>We shall soon  see that the existence of two steady state rates of return on currency
 that serve to finance the government deficit of <span class="math notranslate nohighlight">\(g\)</span> indicates the presence of a <strong>Laffer curve</strong> in the inflation tax rate.</p>
 <div class="admonition note">
@@ -753,7 +764,7 @@ Its hump shape indicates that there are typically two tax rates that yield the s
 <p>Let</p>
 <div class="math notranslate nohighlight">
 \[
-  y_t =  \begin{bmatrix} m_{t} \cr p_{t} \end{bmatrix} .
+y_t =  \begin{bmatrix} m_{t} \cr p_{t} \end{bmatrix} .
 \]</div>
 <p>Represent  equilibrium conditions <a class="reference internal" href="#equation-eq-demandmoney">(26.1)</a>, <a class="reference internal" href="#equation-eq-budgcontraint">(26.2)</a>, and    <a class="reference internal" href="#equation-eq-syeqdemand">(26.3)</a> as</p>
 <div class="math notranslate nohighlight" id="equation-eq-sytem101">
@@ -769,11 +780,14 @@ Its hump shape indicates that there are typically two tax rates that yield the s
 H_1 y_t = H_2  y_{t-1} 
 \]</div>
 <p>where</p>
-<p>\begin{aligned} H_1 &amp; = \begin{bmatrix} 1 &amp; \gamma_2 \cr
-1 &amp; 0 \end{bmatrix} \cr
-H_2 &amp; = \begin{bmatrix} 0 &amp; \gamma_1 \cr
-1 &amp; g \end{bmatrix}<br />
-\end{aligned}</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{aligned} H_1 &amp; = \begin{bmatrix} 1 &amp; \gamma_2 \cr
+                 1 &amp; 0 \end{bmatrix} \cr
+                H_2 &amp; = \begin{bmatrix} 0 &amp; \gamma_1 \cr
+                 1 &amp; g \end{bmatrix}  
+\end{aligned}
+\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">H1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="n">msm</span><span class="o">.</span><span class="n">γ2</span><span class="p">],</span> 
