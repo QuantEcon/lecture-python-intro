@@ -11,8 +11,6 @@ kernelspec:
   name: python3
 ---
 
-+++ {"user_expressions": []}
-
 # Inflation Rate Laffer Curves  
 
 ## Overview
@@ -28,8 +26,7 @@ In particular, our dynamic system is no longer linear in state variables.
 
 Nevertheless, the economic logic underlying an  analysis based on what we called ''method 2''  remains unchanged.  
 
-
-in this lecture we shall discover   qualitatively similar outcomnes to those that we studied  in the lecture  {doc}`money_inflation`.
+in this lecture we shall discover   qualitatively similar outcomes to those that we studied  in the lecture  {doc}`money_inflation`.
 
 That lecture presented a linear version of the model in this lecture.  
 
@@ -40,8 +37,6 @@ As in that  lecture,  we discussed these topics:
 * perverse dynamics under rational expectations in which the system converges to the higher stationary inflation tax rate
 * a peculiar comparative stationary-state analysis connected with that stationary inflation rate that assert that inflation can be **reduced** by running **higher**  government deficits 
 
-
-
 These outcomes will set the stage for the analysis of this lecture {doc}`laffer_adaptive` that studies a version of the present model that  uses a version of "adaptive expectations" instead of rational expectations.
 
 That lecture will show that 
@@ -50,18 +45,12 @@ That lecture will show that
 * it reverse the pervese dynamics by making the **lower** stationary inflation rate the one to which the system typically converges
 * a more plausible comparative dynamic outcome emerges in which now inflation can be **reduced** by running **lower**  government deficits
 
-
-
-
-
-
-
 ## The Model
 
 Let  
 
-  * $m_t$ be the log of the money supply at the beginning of time $t$
-  * $p_t$ be the log of the price level at time $t$
+* $m_t$ be the log of the money supply at the beginning of time $t$
+* $p_t$ be the log of the price level at time $t$
   
 The demand function for money is 
 
@@ -87,7 +76,7 @@ We'll deploy a method similar to **Method 2** used in {doc}`money_inflation`.
 
 We'll take the time $t$ state vector to be $m_t, p_t$.
 
-  * we'll treat $m_t$ as a ''natural state variable'' and $p_t$ as a ''jump'' variable.
+* we'll treat $m_t$ as a ''natural state variable'' and $p_t$ as a ''jump'' variable.
   
 Let
 
@@ -112,33 +101,30 @@ We'll summarize our algorithm with the following pseudo-code.
 
 **Pseudo-code**
 
-  * start for $m_0, p_0$ at time $t =0$
+* start for $m_0, p_0$ at time $t =0$
 
-  * solve {eq}`eq:msupply2` for $m_{t+1}$
-  
-  * solve {eq}`eq:mdemand2` for $p_{t+1} = \lambda^{-1} p_t + (1 - \lambda^{-1}) m_{t+1}$
+* solve {eq}`eq:msupply2` for $m_{t+1}$
 
-  * compute $\pi_t = p_{t+1} - p_t$ and $\mu_t = m_{t+1} - m_t $
-  
-  * iterate on $t$ to convergence of $\pi_t \rightarrow \overline \pi$ and $\mu_t \rightarrow \overline \mu$
-  
+* solve {eq}`eq:mdemand2` for $p_{t+1} = \lambda^{-1} p_t + (1 - \lambda^{-1}) m_{t+1}$
+
+* compute $\pi_t = p_{t+1} - p_t$ and $\mu_t = m_{t+1} - m_t $
+
+* iterate on $t$ to convergence of $\pi_t \rightarrow \overline \pi$ and $\mu_t \rightarrow \overline \mu$
   
 It will turn out that 
 
- * if they exist, limiting values $\overline \pi$ and $\overline \mu$ will be equal
- 
- * if  limiting values exists, there are two possible limiting values, one high, one low
- 
- * for almost all initial log price levels $p_0$, the limiting $\overline \pi = \overline \mu$ is 
- the higher value
- 
- * for each of the two possible limiting values $\bar \pi$ ,there is a unique initial log price level $p_0$ that implies that $\pi_t = \mu_t = \bar \mu$ for all  $t \geq 0$
- 
-    * this unique initial log price level solves $\log(\exp(m_0) + g \exp(p_0)) - p_0 = - \alpha \bar \pi $
-    
-    * the preceding equation for $p_0$ comes from $m_1 - p_0 = -  \alpha \bar \pi$
+* if they exist, limiting values $\overline \pi$ and $\overline \mu$ will be equal
 
-+++ {"user_expressions": []}
+* if  limiting values exists, there are two possible limiting values, one high, one low
+
+* for almost all initial log price levels $p_0$, the limiting $\overline \pi = \overline \mu$ is 
+the higher value
+
+* for each of the two possible limiting values $\bar \pi$ ,there is a unique initial log price level $p_0$ that implies that $\pi_t = \mu_t = \bar \mu$ for all  $t \geq 0$
+
+  * this unique initial log price level solves $\log(\exp(m_0) + g \exp(p_0)) - p_0 = - \alpha \bar \pi $
+  
+  * the preceding equation for $p_0$ comes from $m_1 - p_0 = -  \alpha \bar \pi$
 
 ## Limiting Values of Inflation Rate
 
@@ -174,8 +160,6 @@ Soon  we'll plot  the left and right sides of equation {eq}`eq:steadypi`.
 
 But first we'll write code that computes a steady-state
 $\bar \pi$.
-
-
 
 Let's start by importing some  libraries
 
@@ -224,13 +208,7 @@ def solve_π_bar(model, x0):
 print(f'The two steady state of π are: {π_l, π_u}')
 ```
 
-+++ {"user_expressions": []}
-
 We find two steady state $\bar \pi$ values
-
-+++ {"user_expressions": []}
-
-
 
 ## Steady State Laffer Curve
 
@@ -279,7 +257,7 @@ plot_laffer(model, (π_l, π_u))
 
 ## Associated Initial Price Levels
 
- Now that we have our hands on the two possible steady states, we can compute two initial log price levels $p_0$, which as initial conditions, imply that $\pi_t = \bar \pi $ for all $t \geq 0$.
+Now that we have our hands on the two possible steady states, we can compute two initial log price levels $p_0$, which as initial conditions, imply that $\pi_t = \bar \pi $ for all $t \geq 0$.
 
 ```{code-cell} ipython3
 def solve_p0(p0, m0, α, g, π):
@@ -301,8 +279,6 @@ p0_u = solve_p0_bar(model,
                     π_bar=π_u)
 print(f'Associated initial  p_0s  are: {p0_l, p0_u}')
 ```
-
-+++ {"user_expressions": []}
 
 ### Verification 
 
@@ -343,8 +319,6 @@ eq_g = lambda x: np.exp(-model.α * x) - np.exp(-(1 + model.α) * x)
 
 print('eq_g == g:', np.isclose(eq_g(m_seq[-1] - m_seq[-2]), model.g))
 ```
-
-+++ {"user_expressions": []}
 
 ## Slippery Side of Laffer Curve Dynamics
 
@@ -424,7 +398,6 @@ p0_bars = (p0_l, p0_u)
 draw_iterations(p0s, model, line_params, p0_bars, num_steps=20)
 ```
 
-
 Staring at the paths of price levels in  {numref}`p0_path_nonlin` reveals that almost all paths converge to the **higher** inflation tax rate displayed in the stationary state Laffer curve. displayed in figure  {numref}`laffer_curve_nonlinear`.  
 
 Thus, we have reconfirmed  what we have  called the "perverse" dynamics under rational expectations in which the system converges to the higher of two possible stationary inflation tax rates.
@@ -433,15 +406,14 @@ Those dynamics are "perverse" not only in the sense that they imply that the mon
 
 * the figure indicates that inflation can be **reduced** by running **higher**  government deficits, i.e., by raising more resources through  printing money. 
 
-
 ```{note}
 The same qualitive outcomes prevail in this lecture {doc}`money_inflation` that studies a linear version of the model in this lecture`.
 ```
 
 We discovered that 
 
- * all but one of the equilibrium paths converge to limits in which the higher of two possible stationary inflation tax prevails
- * there is a unique equilibrium path associated with "plausible" statements about how reductions in government deficits affect a stationary  inflation rate
+* all but one of the equilibrium paths converge to limits in which the higher of two possible stationary inflation tax prevails
+* there is a unique equilibrium path associated with "plausible" statements about how reductions in government deficits affect a stationary  inflation rate
 
 As in  this lecture {doc}`money_inflation`,
 on grounds of plausibility, we  again recommend  selecting the unique equilibrium that converges to the lower stationary inflation tax rate. 
@@ -449,4 +421,3 @@ on grounds of plausibility, we  again recommend  selecting the unique equilibriu
 As we shall see, we  accepting  this recommendation is a key ingredient of outcomes of the "unpleasant arithmetic" that we describe in   lecture {doc}`unpleasant`.
 
 In lecture, {doc}`laffer_adaptive`, we shall explore how  {cite}`bruno1990seigniorage` and others justified our equilibrium selection in other ways.
-

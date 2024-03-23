@@ -11,11 +11,7 @@ kernelspec:
   name: python3
 ---
 
-+++ {"user_expressions": []}
-
 # Money Financed Government Deficits and Price Levels
-
-+++ {"user_expressions": []}
 
 ## Overview
 
@@ -24,13 +20,13 @@ law of motion that governed the supply of money.
 
 The model in this lecture consists of two components
 
- * a demand function for money 
- * a law of motion for the supply of money
+* a demand function for money 
+* a law of motion for the supply of money
  
 The demand function describes the public's demand for "real balances", defined as the ratio of nominal money balances to the price level
 
-  * it assumes that the demand for real balance today varies inversely with the rate of inflation that the public forecasts to prevail between today and tomorrow
-  * it assumes that the public's forecast of that rate of inflation is perfect 
+* it assumes that the demand for real balance today varies inversely with the rate of inflation that the public forecasts to prevail between today and tomorrow
+* it assumes that the public's forecast of that rate of inflation is perfect 
 
 The law of motion for the supply of money assumes that the government prints money to finance government expenditures
 
@@ -67,32 +63,32 @@ This outcome will be used to justify a selection of a stationary inflation rate 
 
 We'll use theses tools from linear algebra:
 
- * matrix multiplication
- * matrix inversion
- * eigenvalues and eigenvectors of a matrix
+* matrix multiplication
+* matrix inversion
+* eigenvalues and eigenvectors of a matrix
 
 
-## Demand  for and Supply of Money
+## Demand for and Supply of Money
 
-We say demand**s** and supp**ies** (plurals) because there is one of each for each $t \geq 0$.
+We say demand**s** and suppl**ies** (plurals) because there is one of each for each $t \geq 0$.
 
 Let 
 
-  * $m_{t+1}$ be the supply of currency at the end of time $t \geq 0$
-  * $m_{t}$ be the supply  of currency brought into time $t$ from time $t-1$
-  * $g$ be the government deficit that is financed by printing currency at $t \geq 1$
-  * $m_{t+1}^d$ be the demand at time $t$ for currency  to bring into time $t+1$
-  * $p_t$ be  the price level at time $t$
-  * $b_t = \frac{m_{t+1}}{p_t}$ is real balances at the end of time $t$ 
-  * $R_t = \frac{p_t}{p_{t+1}} $ be the gross rate of return on currency held from time $t$ to time $t+1$
+* $m_{t+1}$ be the supply of currency at the end of time $t \geq 0$
+* $m_{t}$ be the supply  of currency brought into time $t$ from time $t-1$
+* $g$ be the government deficit that is financed by printing currency at $t \geq 1$
+* $m_{t+1}^d$ be the demand at time $t$ for currency  to bring into time $t+1$
+* $p_t$ be  the price level at time $t$
+* $b_t = \frac{m_{t+1}}{p_t}$ is real balances at the end of time $t$ 
+* $R_t = \frac{p_t}{p_{t+1}} $ be the gross rate of return on currency held from time $t$ to time $t+1$
   
 It is often helpful  to state units in which quantities are measured:
 
-  * $m_t$ and $m_t^d$ are measured in dollars
-  * $g$ is measured in time $t$ goods 
-  * $p_t$ is measured in dollars per time $t$ goods
-  * $R_t$ is measured in time $t+1$ goods per unit of time $t$ goods
-  * $b_t$ is measured in time $t$ goods
+* $m_t$ and $m_t^d$ are measured in dollars
+* $g$ is measured in time $t$ goods 
+* $p_t$ is measured in dollars per time $t$ goods
+* $R_t$ is measured in time $t+1$ goods per unit of time $t$ goods
+* $b_t$ is measured in time $t$ goods
    
   
 Our job now is to specify demand and supply functions for money. 
@@ -102,7 +98,6 @@ We assume that the demand for  currency satisfies the Cagan-like demand function
 $$
 m_{t+1}^d/p_t =\gamma_1 - \gamma_2 \frac{p_{t+1}}{p_t}, \quad t \geq 0
 $$ (eq:demandmoney)
-  
   
 Now we turn to the supply of money.
 
@@ -151,8 +146,8 @@ $$ (eq:bmotion)
 
 where
 
-  * $b_t = \frac{m_{t+1}}{p_t}$ is real balances at the end of period $t$
-  * $R_{t-1} = \frac{p_{t-1}}{p_t}$ is the gross rate of return on real balances held from $t-1$ to $t$
+* $b_t = \frac{m_{t+1}}{p_t}$ is real balances at the end of period $t$
+* $R_{t-1} = \frac{p_{t-1}}{p_t}$ is the gross rate of return on real balances held from $t-1$ to $t$
 
 The demand for real balances is 
 
@@ -175,8 +170,6 @@ $$ (eq:Requation)
 Gross real rate of return $\underline R$ is the smallest rate of return on currency 
 that is consistent with a nonnegative demand for real balances.
 
-
-
 We shall describe two distinct but closely related ways of computing a pair   $\{p_t, m_t\}_{t=0}^\infty$ of sequences for the price level and money supply.
 
 But first it is instructive to describe a special type of equilibrium known as a **steady state**.
@@ -193,10 +186,12 @@ This is true in the present model.
 
 In a **steady state** equilibrium of the  model we are studying, 
 
+$$
 \begin{aligned}
 R_t & = \bar R \cr
 b_t & = \bar b
 \end{aligned}
+$$
 
 for $t \geq 0$.  
 
@@ -211,7 +206,7 @@ g & = \bar b ( 1 - \bar R)  \cr
 \end{aligned}
 $$
 
-Together these equations  imply
+Together these equations imply
 
 $$
 (\gamma_1 + \gamma_2) - \frac{\gamma_2}{\bar R} - \gamma_1 \bar R = g
@@ -258,13 +253,9 @@ $$ (eq:steadyquadratic)
 
 A steady state gross rate of return  $\bar R$ solves quadratic equation {eq}`eq:steadyquadratic`.
 
-
 So two steady states typically exist. 
 
-
-
 ## Some Code
-
 
 Let's start with some imports:
 
@@ -276,10 +267,7 @@ plt.rcParams['figure.dpi'] = 300
 from collections import namedtuple
 ```
 
-
 Let's set some parameter values and compute possible steady state rates of return on currency $\bar R$, the  seigniorage maximizing rate of return on currency, and an object that we'll discuss later, namely, an initial price level $p_0$ associated with the maximum steady state rate of return on currency.
-
-+++
 
 First, we create a `namedtuple` to store parameters so that we can reuse this `namedtuple` in our functions throughout this lecture
 
@@ -368,10 +356,7 @@ print(f'R_l, g_l = {msm.R_l:.4f}, {g2:.4f}')
 
 Now let's compute the maximum steady state amount of seigniorage that could be gathered by printing money and the state state rate of return on money that attains it.
 
-+++
-
 ## Two  Computation Strategies
-
 
 We now proceed to compute equilibria, not necessarily steady states.
 
@@ -379,69 +364,72 @@ We shall  deploy two distinct computation strategies.
 
 ### Method 1 
 
-   * set $R_0 \in [\frac{\gamma_2}{\gamma_1}, R_u]$ and compute $b_0 = \gamma_1 - \gamma_2/R_0$.
+* set $R_0 \in [\frac{\gamma_2}{\gamma_1}, R_u]$ and compute $b_0 = \gamma_1 - \gamma_2/R_0$.
 
-   * compute sequences $\{R_t, b_t\}_{t=1}^\infty$ of rates of return and real balances that are associated with an equilibrium by solving equation {eq}`eq:bmotion` and {eq}`eq:bdemand` sequentially  for $t \geq 1$:  
-   \begin{aligned}
+* compute sequences $\{R_t, b_t\}_{t=1}^\infty$ of rates of return and real balances that are associated with an equilibrium by solving equation {eq}`eq:bmotion` and {eq}`eq:bdemand` sequentially  for $t \geq 1$:  
+   
+$$
+\begin{aligned}
 b_t & = b_{t-1} R_{t-1} + g \cr
 R_t^{-1} & = \frac{\gamma_1}{\gamma_2} - \gamma_2^{-1} b_t 
 \end{aligned}
+$$
 
-   * Construct the associated equilibrium $p_0$ from 
-  
-   $$
-   p_0 = \frac{m_0}{\gamma_1 - g - \gamma_2/R_0}
-   $$ (eq:p0fromR0)
-   
-   * compute $\{p_t, m_t\}_{t=1}^\infty$  by solving the following equations sequentially
-  
-  $$
-   \begin{aligned}
-   p_t & = R_t p_{t-1} \cr
-   m_t & = b_{t-1} p_t 
-   \end{aligned}
-  $$ (eq:method1) 
+* Construct the associated equilibrium $p_0$ from 
+
+$$
+p_0 = \frac{m_0}{\gamma_1 - g - \gamma_2/R_0}
+$$ (eq:p0fromR0)
+
+* compute $\{p_t, m_t\}_{t=1}^\infty$  by solving the following equations sequentially
+
+$$
+\begin{aligned}
+p_t & = R_t p_{t-1} \cr
+m_t & = b_{t-1} p_t 
+\end{aligned}
+$$ (eq:method1) 
    
 **Remark 1:** method 1 uses an indirect approach to computing an equilibrium by first computing an equilibrium  $\{R_t, b_t\}_{t=0}^\infty$ sequence and then using it to back out an equilibrium  $\{p_t, m_t\}_{t=0}^\infty$  sequence.
 
 
- **Remark 2:** notice that  method 1 starts by picking an **initial condition** $R_0$ from a set $[\frac{\gamma_2}{\gamma_1}, R_u]$. An equilibrium $\{p_t, m_t\}_{t=0}^\infty$ sequences are not unique.  There is actually a continuum of equilibria indexed by a choice of $R_0$ from the set $[\frac{\gamma_2}{\gamma_1}, R_u]$. 
+**Remark 2:** notice that  method 1 starts by picking an **initial condition** $R_0$ from a set $[\frac{\gamma_2}{\gamma_1}, R_u]$. An equilibrium $\{p_t, m_t\}_{t=0}^\infty$ sequences are not unique.  There is actually a continuum of equilibria indexed by a choice of $R_0$ from the set $[\frac{\gamma_2}{\gamma_1}, R_u]$. 
 
- **Remark 3:** associated with each selection of $R_0$ there is a unique $p_0$ described by
- equation {eq}`eq:p0fromR0`.
+**Remark 3:** associated with each selection of $R_0$ there is a unique $p_0$ described by
+equation {eq}`eq:p0fromR0`.
  
 ### Method 2
 
-   This method deploys a direct approach. 
-   It defines a "state vector" 
-    $y_t = \begin{bmatrix} m_t \cr p_t\end{bmatrix} $
-   and formulates  equilibrium conditions {eq}`eq:demandmoney`, {eq}`eq:budgcontraint`, and
-   {eq}`eq:syeqdemand`
- in terms of a first-order vector difference equation
+This method deploys a direct approach. 
+It defines a "state vector" 
+$y_t = \begin{bmatrix} m_t \cr p_t\end{bmatrix} $
+and formulates  equilibrium conditions {eq}`eq:demandmoney`, {eq}`eq:budgcontraint`, and
+{eq}`eq:syeqdemand`
+in terms of a first-order vector difference equation
 
-   $$
-   y_{t+1} = M y_t, \quad t \geq 0 ,
-   $$
+$$
+y_{t+1} = M y_t, \quad t \geq 0 ,
+$$
 
-   where we temporarily take $y_0 = \begin{bmatrix} m_0 \cr p_0 \end{bmatrix}$ as an **initial condition**. 
-   
-   The solution is 
-   
-   $$
-   y_t = M^t y_0 .
-   $$
+where we temporarily take $y_0 = \begin{bmatrix} m_0 \cr p_0 \end{bmatrix}$ as an **initial condition**. 
 
-   Now let's think about the initial condition $y_0$. 
-   
-   It is natural to take the initial stock of money $m_0 >0$ as an initial condition.
-   
-   But what about $p_0$?  
-   
-   Isn't it  something that we want  to be **determined** by our model?
+The solution is 
 
-   Yes, but sometimes we want too much, because there is actually a continuum of initial $p_0$ levels that are compatible with the existence of an equilibrium.  
-   
-   As we shall see soon, selecting an initial $p_0$ in method 2 is intimately tied to selecting an initial rate of return on currency $R_0$ in method 1. 
+$$
+y_t = M^t y_0 .
+$$
+
+Now let's think about the initial condition $y_0$. 
+
+It is natural to take the initial stock of money $m_0 >0$ as an initial condition.
+
+But what about $p_0$?  
+
+Isn't it  something that we want  to be **determined** by our model?
+
+Yes, but sometimes we want too much, because there is actually a continuum of initial $p_0$ levels that are compatible with the existence of an equilibrium.  
+
+As we shall see soon, selecting an initial $p_0$ in method 2 is intimately tied to selecting an initial rate of return on currency $R_0$ in method 1. 
    
 ## Computation Method 1  
 
@@ -456,32 +444,33 @@ Remember that there exist  two steady state equilibrium  values $ R_l <  R_u$  o
 We proceed as follows.
 
 Start at $t=0$ 
- * select a  $R_0 \in [\frac{\gamma_2}{\gamma_1}, R_u]$  
- * compute   $b_0 = \gamma_1 - \gamma_0 R_0^{-1} $ 
+* select a  $R_0 \in [\frac{\gamma_2}{\gamma_1}, R_u]$  
+* compute   $b_0 = \gamma_1 - \gamma_0 R_0^{-1} $ 
  
 Then  for $t \geq 1$ construct $(b_t, R_t)$ by
 iterating  on the system 
+
+$$
 \begin{aligned}
 b_t & = b_{t-1} R_{t-1} + g \cr
 R_t^{-1} & = \frac{\gamma_1}{\gamma_2} - \gamma_2^{-1} b_t
 \end{aligned}
-
+$$
 
 When we implement this part of method 1, we shall discover the following  striking 
 outcome:
 
- * starting from an $R_0$ in  $[\frac{\gamma_2}{\gamma_1}, R_u]$, we shall find that 
+* starting from an $R_0$ in  $[\frac{\gamma_2}{\gamma_1}, R_u]$, we shall find that 
 $\{R_t\}$ always converges to a limiting "steady state" value  $\bar R$ that depends on the initial
 condition $R_0$.
 
-  * there are only two possible limit points $\{ R_l, R_u\}$. 
-  
-  * for almost every initial condition $R_0$, $\lim_{t \rightarrow +\infty} R_t = R_l$.
-  
-  * if and only if $R_0 = R_u$, $\lim_{t \rightarrow +\infty} R_t = R_u$.
-  
-The quantity   $1 - R_t$ can be interpreted as an **inflation tax rate** that the government imposes on holders of its currency.
+* there are only two possible limit points $\{ R_l, R_u\}$. 
 
+* for almost every initial condition $R_0$, $\lim_{t \rightarrow +\infty} R_t = R_l$.
+
+* if and only if $R_0 = R_u$, $\lim_{t \rightarrow +\infty} R_t = R_u$.
+  
+The quantity $1 - R_t$ can be interpreted as an **inflation tax rate** that the government imposes on holders of its currency.
 
 We shall soon  see that the existence of two steady state rates of return on currency
 that serve to finance the government deficit of $g$ indicates the presence of a **Laffer curve** in the inflation tax rate.  
@@ -579,8 +568,6 @@ draw_paths(R0s, msm, line_params, num_steps=20)
 
 Notice how sequences that  start from $R_0$ in the half-open interval $[R_l, R_u)$ converge to the steady state  associated with  to $ R_l$.
 
-+++ {"user_expressions": []}
-
 ## Computation method 2 
 
 Set $m_t = m_t^d $ for all $t \geq -1$. 
@@ -588,7 +575,7 @@ Set $m_t = m_t^d $ for all $t \geq -1$.
 Let 
 
 $$
-  y_t =  \begin{bmatrix} m_{t} \cr p_{t} \end{bmatrix} .
+y_t =  \begin{bmatrix} m_{t} \cr p_{t} \end{bmatrix} .
 $$
 
 Represent  equilibrium conditions {eq}`eq:demandmoney`, {eq}`eq:budgcontraint`, and    {eq}`eq:syeqdemand` as
@@ -608,11 +595,13 @@ $$
 
 where 
 
+$$
 \begin{aligned} H_1 & = \begin{bmatrix} 1 & \gamma_2 \cr
                  1 & 0 \end{bmatrix} \cr
                 H_2 & = \begin{bmatrix} 0 & \gamma_1 \cr
                  1 & g \end{bmatrix}  
 \end{aligned}
+$$
 
 ```{code-cell} ipython3
 H1 = np.array([[1, msm.γ2], 
@@ -668,7 +657,6 @@ $$
 where $\Lambda$ is a diagonal matrix of eigenvalues and the columns of $Q$ are eigenvectors corresponding to those eigenvalues.
 
 It turns out that  
-
 
 $$
 \begin{bmatrix} {R_l}^{-1} & 0 \cr 
@@ -1000,9 +988,3 @@ On grounds of plausibility, we recommend following many macroeconomists in selec
 As we shall see, we shall accept this recommendation in  lecture {doc}`unpleasant`.
 
 In lecture, {doc}`laffer_adaptive`, we shall explore how  {cite}`bruno1990seigniorage` and others justified this in other ways.
-
-
-
-
-
-
