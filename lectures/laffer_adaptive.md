@@ -11,8 +11,6 @@ kernelspec:
   name: python3
 ---
 
-+++ {"user_expressions": []}
-
 # Laffer Curves  with Adaptive Expectations 
 
 ## Overview
@@ -24,8 +22,6 @@ As in the lecture {doc}`money_inflation`, this lecture uses the log-linear versi
 But now, instead of assuming  ''rational expectations'' in the form of ''perfect foresight'',
 we'll adopt the ''adaptive expectations'' assumption used by  {cite}`Cagan` and {cite}`Friedman1956`.
 
-
-
 This means that instead of assuming that expected inflation $\pi_t^*$ is described by the "perfect foresight" or "rational expectations" hypothesis 
 
 $$
@@ -34,20 +30,16 @@ $$
 
 that we adopted in lectures {doc}`money_inflation` and lectures {doc}`money_inflation_nonlinear`, we'll now assume that $\pi_t^*$ is determined by the adaptive expectations hypothesis described in equation {eq}`eq:adaptex`  reported below. 
 
-
-
 We shall discover that changing our hypothesis about expectations formation in this way will change some our findings and leave others intact.  In particular, we shall discover that
 
-
 * replacing rational expectations with adaptive expectations leaves the two stationary inflation rates unchanged, but that $\ldots$ 
-* it reverse the pervese dynamics by making the **lower** stationary inflation rate the one to which the system typically converges
+* it reverse the perverse dynamics by making the **lower** stationary inflation rate the one to which the system typically converges
 * a more plausible comparative dynamic outcome emerges in which now inflation can be **reduced** by running **lower**  government deficits
 
-These more plausible comparative dynamics underly the "old time religion" that states that 
-"inflation is always and everwhere caused by government deficits".
+These more plausible comparative dynamics underlie the "old time religion" that states that 
+"inflation is always and everywhere caused by government deficits".
 
-
-These issues were studyied  by {cite}`bruno1990seigniorage`.
+These issues were studied by {cite}`bruno1990seigniorage`.
 
 Their purpose was to reverse  what they thought were counter intuitive
 predictions of their model under rational expectations (i.e., perfect foresight in this context)
@@ -58,22 +50,19 @@ by dropping rational expectations and instead assuming that people form  expecta
  {cite}`marcet2003recurrent` and  {cite}`sargent2009conquest` extended that work and applied it to study recurrent high-inflation episodes in Latin America.
 ``` 
 
-
 ## The Model
 
 Let  
 
-  * $m_t$ be the log of the money supply at the beginning of time $t$
-  * $p_t$ be the log of the price level at time $t$
-  * $\pi_t^*$ be the public's expectation of the rate of inflation between $t$ and $t+1$ 
+* $m_t$ be the log of the money supply at the beginning of time $t$
+* $p_t$ be the log of the price level at time $t$
+* $\pi_t^*$ be the public's expectation of the rate of inflation between $t$ and $t+1$ 
   
-
 The law of motion of the money supply is
 
 $$ 
 \exp(m_{t+1}) - \exp(m_t) = g \exp(p_t) 
 $$ (eq:ada_msupply)
-
 
 where $g$ is the part of government expenditures financed by printing money.
 
@@ -91,8 +80,6 @@ $$ (eq:ada_mdemand)
 
 where $\alpha \geq 0$.  
 
-
-
 Expectations of inflation are governed by 
 
 $$
@@ -100,7 +87,6 @@ $$
 $$ (eq:adaptex)
 
 where $\delta \in (0,1)$
-
 
 ## Computing An Equilibrium Sequence 
 
@@ -110,7 +96,6 @@ the following equation for $p_t$:
 $$
 \log[ \exp(m_t) + g \exp(p_t)] - p_t = -\alpha [(1-\delta) (p_t - p_{t-1}) + \delta \pi_{t-1}^*]
 $$ (eq:pequation)
-
 
 **Pseudo-code**
 
@@ -131,19 +116,17 @@ This completes the algorithm.
   
 It will turn out that 
 
- * if they exist, limiting values $\overline \pi$ and $\overline \mu$ will be equal
- 
- * if  limiting values exists, there are two possible limiting values, one high, one low
- 
- * unlike the outcome in lecture {doc}`money_inflation_nonlinear`, for almost all initial log price levels and expected inflation rates $p_0, \pi_{t}^*$, the limiting $\overline \pi = \overline \mu$ is  the **lower** steady state  value
- 
- * for each of the two possible limiting values $\bar \pi$ ,there is a unique initial log price level $p_0$ that implies that $\pi_t = \mu_t = \bar \mu$ for all  $t \geq 0$
- 
-    * this unique initial log price level solves $\log(\exp(m_0) + g \exp(p_0)) - p_0 = - \alpha \bar \pi $
-    
-    * the preceding equation for $p_0$ comes from $m_1 - p_0 = -  \alpha \bar \pi$
+* if they exist, limiting values $\overline \pi$ and $\overline \mu$ will be equal
 
-+++ {"user_expressions": []}
+* if  limiting values exists, there are two possible limiting values, one high, one low
+
+* unlike the outcome in lecture {doc}`money_inflation_nonlinear`, for almost all initial log price levels and expected inflation rates $p_0, \pi_{t}^*$, the limiting $\overline \pi = \overline \mu$ is  the **lower** steady state  value
+
+* for each of the two possible limiting values $\bar \pi$ ,there is a unique initial log price level $p_0$ that implies that $\pi_t = \mu_t = \bar \mu$ for all  $t \geq 0$
+
+  * this unique initial log price level solves $\log(\exp(m_0) + g \exp(p_0)) - p_0 = - \alpha \bar \pi $
+  
+  * the preceding equation for $p_0$ comes from $m_1 - p_0 = -  \alpha \bar \pi$
 
 ## Limiting Values of Inflation Rate
 
@@ -180,8 +163,6 @@ Soon  we'll plot  the left and right sides of equation {eq}`eq:ada_steadypi`.
 But first we'll write code that computes a steady-state
 $\bar \pi$.
 
-
-
 Let's start by importing some  libraries
 
 ```{code-cell} ipython3
@@ -213,8 +194,6 @@ def create_model(α=0.5, m0=np.log(100), g=0.35, δ=0.9):
 model = create_model()
 ```
 
-+++ {"user_expressions": []}
-
 Now we write code that computes steady-state $\bar \pi$s.
 
 ```{code-cell} ipython3
@@ -232,11 +211,7 @@ def solve_π_bar(model, x0):
 print(f'The two steady state of π are: {π_l, π_u}')
 ```
 
-+++ {"user_expressions": []}
-
 We find two steady state $\bar \pi$ values
-
-+++ {"user_expressions": []}
 
 ## Steady State Laffer Curve
 
@@ -283,12 +258,9 @@ def plot_laffer(model, πs):
 plot_laffer(model, (π_l, π_u))
 ```
 
-+++ {"user_expressions": []}
-
 ## Associated Initial Price Levels
 
-
- Now that we have our hands on the two possible steady states, we can compute two initial log price levels $p_{-1}$, which as initial conditions, imply that $\pi_t = \bar \pi $ for all $t \geq 0$.
+Now that we have our hands on the two possible steady states, we can compute two initial log price levels $p_{-1}$, which as initial conditions, imply that $\pi_t = \bar \pi $ for all $t \geq 0$.
 
 In particular, to initiate a fixed point of the dynamic Laffer curve dynamics we set 
 
@@ -307,15 +279,9 @@ p_l, p_u = map(lambda π: solve_p_init(model, π), (π_l, π_u))
 print('Associated initial p_{-1}s', f'are: {p_l, p_u}')
 ```
 
-+++ {"user_expressions": []}
-
 ### Verification 
 
-
-
 To start, let's write some code to verify that if we initial  $\pi_{-1}^*,p_{-1}$ appropriately, the inflation rate $\pi_t$ will be constant for all $t \geq 0$ (at either $\pi_u$ or $\pi_l$ depending on the initial condition)
-
-
 
 The following code verifies this.
 
@@ -352,8 +318,6 @@ def solve_laffer_adapt(p_init, π_init, model, num_steps):
     return π_seq, μ_seq, m_seq, p_seq
 ```
 
-+++ {"user_expressions": []}
-
 Compute limiting values starting from $p_{-1}$ associated with $\pi_l$
 
 ```{code-cell} ipython3
@@ -368,8 +332,6 @@ eq_g = lambda x: np.exp(-model.α * x) - np.exp(-(1 + model.α) * x)
 
 print('eq_g == g:', np.isclose(eq_g(m_seq[-1] - m_seq[-2]), model.g))
 ```
-
-+++ {"user_expressions": []}
 
 Compute limiting values starting from $p_{-1}$ associated with $\pi_u$
 
@@ -386,14 +348,9 @@ eq_g = lambda x: np.exp(-model.α * x) - np.exp(-(1 + model.α) * x)
 print('eq_g == g:', np.isclose(eq_g(m_seq[-1] - m_seq[-2]), model.g))
 ```
 
-+++ {"user_expressions": []}
-
 ## Slippery Side of Laffer Curve Dynamics
 
-
-
 We are now equipped  to compute  time series starting from different $p_{-1}, \pi_{-1}^*$ settings, analogous to those in this lecture  {doc}`money_inflation` and this lecture  {doc}`money_inflation_nonlinear`. 
-
 
 Now we'll study how outcomes unfold when we start $p_{-1}, \pi_{-1}^*$ away from a stationary point of the dynamic Laffer curve, i.e., away from either $\pi_u$ or $ \pi_l$.
 
@@ -401,8 +358,6 @@ To construct a perturbation pair $\check p_{-1}, \check \pi_{-1}^*$we'll impleme
 
 * set $\check \pi_{-1}^* $ not equal to one of the stationary points $\pi_u$ or $ \pi_l$.
 * set $\check p_{-1} = m_0 + \alpha \check \pi_{-1}^*$
-
-
 
 ```{code-cell} ipython3
 :tags: [hide-cell]
@@ -439,8 +394,6 @@ def draw_iterations(π0s, model, line_params, π_bars, num_steps):
     plt.tight_layout()
     plt.show()
 ```
-
-+++ {"user_expressions": []}
 
 Let's simulate the result generated by varying the initial $\pi_{-1}$ and corresponding $p_{-1}$
 

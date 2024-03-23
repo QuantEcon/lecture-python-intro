@@ -11,7 +11,6 @@ kernelspec:
   name: python3
 ---
 
-<!-- #region user_expressions=[] -->
 # Unpleasant Monetarist Arithmetic 
 
 ## Overview
@@ -46,11 +45,6 @@ It also   characterized the steady state equilibrium from which we work backward
 In addition to learning about ''unpleasant monetarist arithmetic", in this lecture we'll learn how to implement a **fixed point** algorithm for computing an initial price level.
 
 
-<!-- #endregion -->
-
-<!-- #region user_expressions=[] -->
-
-
 ## Setup
 
 Let's start with quick reminders of the model's components set out in our lecture on **Money Supplies and Price Levels**.
@@ -72,8 +66,8 @@ $$ (eq:up_bmotion)
 
 where
 
-  * $b_t = \frac{m_{t+1}}{p_t}$ is real balances at the end of period $t$
-  * $R_{t-1} = \frac{p_{t-1}}{p_t}$ is the gross rate of return on real balances held from $t-1$ to $t$
+* $b_t = \frac{m_{t+1}}{p_t}$ is real balances at the end of period $t$
+* $R_{t-1} = \frac{p_{t-1}}{p_t}$ is the gross rate of return on real balances held from $t-1$ to $t$
 
 The demand for real balances is 
 
@@ -81,14 +75,11 @@ $$
 b_t = \gamma_1 - \gamma_2 R_t^{-1} . 
 $$ (eq:up_bdemand)
 
-
-
 ## Monetary-Fiscal Policy
 
 To the basic model of our lecture on **Money Supplies and Price Levels**, we add inflation-indexed one-period government bonds as an additional  way for the government to finance government expenditures. 
 
 Let $\widetilde R > 1$ be a time-invariant gross real rate of return on government one-period inflation-indexed bonds.
-
 
 With this additional source of funds, the government's budget constraint at time $t \geq 0$ is now
 
@@ -126,7 +117,7 @@ This is a version of a standard constraint on a central bank's **open market ope
 ## An open market operation at $t=0$
 
 Following Sargent and Wallace (1981), we analyze consequences of a central bank policy that 
-uses an open market operation to lower the price level in the face of a peristent fiscal
+uses an open market operation to lower the price level in the face of a persistent fiscal
 deficit that takes the form of a positive $g$.
 
 Just before time $0$, the government chooses $(m_0, B_{-1})$  subject to constraint
@@ -258,7 +249,7 @@ To compute an equilibrium, we deploy the following algorithm.
 
 Given **parameters** include $g, \check m_0, \check B_{-1}, \widetilde R >1, T $
 
-We define a mappying from $p_0$ to $p_0$ as follows.
+We define a mapping from $p_0$ to $p_0$ as follows.
 
 * Set $m_0$ and then compute $B_{-1}$ to satisfy the constraint on time $0$ **open market operations**
 
@@ -508,19 +499,8 @@ plot_path([80, 100], msm)
 Figure  {numref}`fig:unpl1` summarizes outcomes of  two experiments that convey   messages of 
 Sargent and Wallace's **unpleasant monetarist arithmetic** {cite}`sargent1981`.
 
- * An open market operation that reduces the supply of money at time $t=0$ reduces  the price level at time $t=0$
+* An open market operation that reduces the supply of money at time $t=0$ reduces  the price level at time $t=0$
 
 * The lower is the post-open-market-operation money supply at time $0$, lower is the price level at time $0$.
 
 * An open  market operation that reduces the post-open-market-operation money supply at time $0$ also **lowers** the rate of return on money $R_u$ at times $t \geq T$ because it brings  a higher gross-of-interest government deficit that must be financed by printing money (i.e., levying an inflation tax) at time $t \geq T$.
-
-
-
-
-
-
- 
-
-<!-- #endregion -->
-
-
