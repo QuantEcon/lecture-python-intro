@@ -269,7 +269,7 @@ const thebe_selector_output = ".output, .cell_output"
 <p>In addition to what’s in Anaconda, this lecture will need the following libraries:</p>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input above-output-prompt docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>yfinance<span class="w"> </span>pandas_datareader<span class="w"> </span>interpolation
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>yfinance<span class="w"> </span>pandas_datareader
 </pre></div>
 </div>
 </div>
@@ -283,17 +283,8 @@ const thebe_selector_output = ".output, .cell_output"
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: pandas_datareader in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (0.10.0)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting interpolation
-  Obtaining dependency information for interpolation from https://files.pythonhosted.org/packages/1c/a4/36997c533d5e25d78e51789509e9e2134034097bb870178e5108f1c73596/interpolation-2.2.1-py3-none-any.whl.metadata
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Downloading interpolation-2.2.1-py3-none-any.whl.metadata (924 bytes)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: pandas&gt;=1.3.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from yfinance) (2.0.3)
-Requirement already satisfied: numpy&gt;=1.16.5 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from yfinance) (1.24.3)
+Requirement already satisfied: pandas&gt;=1.3.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from yfinance) (2.1.4)
+Requirement already satisfied: numpy&gt;=1.16.5 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from yfinance) (1.26.4)
 Requirement already satisfied: requests&gt;=2.31 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from yfinance) (2.31.0)
 Requirement already satisfied: multitasking&gt;=0.0.7 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from yfinance) (0.0.11)
 Requirement already satisfied: lxml&gt;=4.9.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from yfinance) (4.9.3)
@@ -303,40 +294,19 @@ Requirement already satisfied: frozendict&gt;=2.3.4 in /usr/share/miniconda3/env
 Requirement already satisfied: peewee&gt;=3.16.2 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from yfinance) (3.17.1)
 Requirement already satisfied: beautifulsoup4&gt;=4.11.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from yfinance) (4.12.2)
 Requirement already satisfied: html5lib&gt;=1.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from yfinance) (1.1)
-Requirement already satisfied: numba&gt;=0.47 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from interpolation) (0.57.1)
-Requirement already satisfied: scipy&gt;=1.4.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from interpolation) (1.11.1)
-Collecting tempita&gt;=0.5.2 (from interpolation)
-  Obtaining dependency information for tempita&gt;=0.5.2 from https://files.pythonhosted.org/packages/46/5b/2ad80b580134a160e84b9aac0d136df3d77d5ccd45cd349f6146d41cee76/Tempita-0.5.2-py3-none-any.whl.metadata
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Downloading Tempita-0.5.2-py3-none-any.whl.metadata (1.0 kB)
-Requirement already satisfied: soupsieve&gt;1.2 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from beautifulsoup4&gt;=4.11.1-&gt;yfinance) (2.4)
+Requirement already satisfied: soupsieve&gt;1.2 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from beautifulsoup4&gt;=4.11.1-&gt;yfinance) (2.5)
 Requirement already satisfied: six&gt;=1.9 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from html5lib&gt;=1.1-&gt;yfinance) (1.16.0)
 Requirement already satisfied: webencodings in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from html5lib&gt;=1.1-&gt;yfinance) (0.5.1)
-Requirement already satisfied: llvmlite&lt;0.41,&gt;=0.40.0dev0 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from numba&gt;=0.47-&gt;interpolation) (0.40.0)
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: python-dateutil&gt;=2.8.2 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from pandas&gt;=1.3.0-&gt;yfinance) (2.8.2)
 Requirement already satisfied: tzdata&gt;=2022.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from pandas&gt;=1.3.0-&gt;yfinance) (2023.3)
-Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from requests&gt;=2.31-&gt;yfinance) (2.0.4)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from requests&gt;=2.31-&gt;yfinance) (2.0.4)
 Requirement already satisfied: idna&lt;4,&gt;=2.5 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from requests&gt;=2.31-&gt;yfinance) (3.4)
-Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from requests&gt;=2.31-&gt;yfinance) (1.26.16)
-Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from requests&gt;=2.31-&gt;yfinance) (2023.7.22)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading interpolation-2.2.1-py3-none-any.whl (56 kB)
-?25l   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/56.6 kB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">56.6/56.6 kB</span> <span class=" -Color -Color-Red">2.2 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
-?25h
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading Tempita-0.5.2-py3-none-any.whl (12 kB)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Installing collected packages: tempita, interpolation
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Successfully installed interpolation-2.2.1 tempita-0.5.2
+Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from requests&gt;=2.31-&gt;yfinance) (2.0.7)
+Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from requests&gt;=2.31-&gt;yfinance) (2024.2.2)
 </pre></div>
 </div>
 </div>
@@ -351,17 +321,10 @@ Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/share/miniconda3/en
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
 
-<span class="kn">from</span> <span class="nn">interpolation</span> <span class="kn">import</span> <span class="n">interp</span>
 <span class="kn">from</span> <span class="nn">pandas_datareader</span> <span class="kn">import</span> <span class="n">wb</span>
 <span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">norm</span><span class="p">,</span> <span class="n">cauchy</span>
 <span class="kn">from</span> <span class="nn">pandas.plotting</span> <span class="kn">import</span> <span class="n">register_matplotlib_converters</span>
 <span class="n">register_matplotlib_converters</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages/numba/core/decorators.py:262: NumbaDeprecationWarning: <span class=" -Color -Color-Bold">numba.generated_jit is deprecated. Please see the documentation at: https://numba.readthedocs.io/en/stable/reference/deprecation.html#deprecation-of-generated-jit for more information and advice on a suitable replacement.</span>
-  warnings.warn(msg, NumbaDeprecationWarning)
 </pre></div>
 </div>
 </div>
@@ -401,7 +364,7 @@ as with the following code (which assumes <span class="math notranslate nohighli
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/7d68d885a95eded242c1a66da1ad8a11e8a3f5d2b6a8b92febe3dfa6136c24e9.png"><img alt="_images/7d68d885a95eded242c1a66da1ad8a11e8a3f5d2b6a8b92febe3dfa6136c24e9.png" src="_images/7d68d885a95eded242c1a66da1ad8a11e8a3f5d2b6a8b92febe3dfa6136c24e9.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/efa8e4f76ce7a7ab86d2f84e7545055d5fbc12284560f780dad95bb44a4d1cf9.png"><img alt="_images/efa8e4f76ce7a7ab86d2f84e7545055d5fbc12284560f780dad95bb44a4d1cf9.png" src="_images/efa8e4f76ce7a7ab86d2f84e7545055d5fbc12284560f780dad95bb44a4d1cf9.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>Notice how</p>
@@ -417,7 +380,7 @@ as with the following code (which assumes <span class="math notranslate nohighli
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-4.619577675556244, 4.857765012115954)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-5.130626158102246, 4.55662359828619)
 </pre></div>
 </div>
 </div>
@@ -438,7 +401,7 @@ as with the following code (which assumes <span class="math notranslate nohighli
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/83916e89ff18329752b6d64613c31c0b8c97d8b51f6bc86d72cbecd98d8caf30.png"><img alt="_images/83916e89ff18329752b6d64613c31c0b8c97d8b51f6bc86d72cbecd98d8caf30.png" src="_images/83916e89ff18329752b6d64613c31c0b8c97d8b51f6bc86d72cbecd98d8caf30.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/d584faf03a66f64fc29644bc055fcd2a252963c0332a27c102418d0e364ddc47.png"><img alt="_images/d584faf03a66f64fc29644bc055fcd2a252963c0332a27c102418d0e364ddc47.png" src="_images/d584faf03a66f64fc29644bc055fcd2a252963c0332a27c102418d0e364ddc47.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>We have plotted each individual draw <span class="math notranslate nohighlight">\(X_i\)</span> against <span class="math notranslate nohighlight">\(i\)</span>.</p>
@@ -500,7 +463,7 @@ the period from 1st January 2015 to 1st July 2022.</p>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="_images/849aa5f8c4b7db5150eb1aa0aba382305ec149e8b00f2448b1076887a21b1183.png"><img alt="_images/849aa5f8c4b7db5150eb1aa0aba382305ec149e8b00f2448b1076887a21b1183.png" src="_images/849aa5f8c4b7db5150eb1aa0aba382305ec149e8b00f2448b1076887a21b1183.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/e46aa0791764d784b446515d01cbcb7e28841b4687ab19c64561a5c799b9186b.png"><img alt="_images/e46aa0791764d784b446515d01cbcb7e28841b4687ab19c64561a5c799b9186b.png" src="_images/e46aa0791764d784b446515d01cbcb7e28841b4687ab19c64561a5c799b9186b.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>This data looks different to the draws from the normal distribution we saw above.</p>
@@ -529,7 +492,7 @@ the period from 1st January 2015 to 1st July 2022.</p>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="_images/3367bc6b0bb84eaf2c2693a516a5621da81525c279ecd515d4df358633d01c0e.png"><img alt="_images/3367bc6b0bb84eaf2c2693a516a5621da81525c279ecd515d4df358633d01c0e.png" src="_images/3367bc6b0bb84eaf2c2693a516a5621da81525c279ecd515d4df358633d01c0e.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/38ecd5ee03392f3c7a92df7a0eaa128518a1a5972a239a92e7692444102bddba.png"><img alt="_images/38ecd5ee03392f3c7a92df7a0eaa128518a1a5972a239a92e7692444102bddba.png" src="_images/38ecd5ee03392f3c7a92df7a0eaa128518a1a5972a239a92e7692444102bddba.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>The histogram also looks different to the histogram of the normal
@@ -544,12 +507,12 @@ distribution:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/6e2630a84933e1ee8e76154b9a5656b9b00c6d94fb6cf335cd58ca7ae3c5ff83.png"><img alt="_images/6e2630a84933e1ee8e76154b9a5656b9b00c6d94fb6cf335cd58ca7ae3c5ff83.png" src="_images/6e2630a84933e1ee8e76154b9a5656b9b00c6d94fb6cf335cd58ca7ae3c5ff83.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/0f05e8a8abe035432abebf28c5155437c92e45a60b89d7b7e2faf80a665e802f.png"><img alt="_images/0f05e8a8abe035432abebf28c5155437c92e45a60b89d7b7e2faf80a665e802f.png" src="_images/0f05e8a8abe035432abebf28c5155437c92e45a60b89d7b7e2faf80a665e802f.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>If we look at higher frequency returns data (e.g., tick-by-tick), we often see
 even more extreme observations.</p>
-<p>See, for example, <span id="id1">[<a class="reference internal" href="zreferences.html#id81" title="Benoit Mandelbrot. The variation of certain speculative prices. The Journal of Business, 36(4):394–419, 1963.">Man63</a>]</span> or <span id="id2">[<a class="reference internal" href="zreferences.html#id80" title="Svetlozar Todorov Rachev. Handbook of heavy tailed distributions in finance: Handbooks in finance. Volume 1. Elsevier, 2003.">Rac03</a>]</span>.</p>
+<p>See, for example, <span id="id1">[<a class="reference internal" href="zreferences.html#id81" title="Benoit Mandelbrot. The variation of certain speculative prices. The Journal of Business, 36(4):394–419, 1963.">Mandelbrot, 1963</a>]</span> or <span id="id2">[<a class="reference internal" href="zreferences.html#id80" title="Svetlozar Todorov Rachev. Handbook of heavy tailed distributions in finance: Handbooks in finance. Volume 1. Elsevier, 2003.">Rachev, 2003</a>]</span>.</p>
 </section>
 <section id="other-data">
 <h3><span class="section-number">19.1.4. </span>Other data<a class="headerlink" href="#other-data" title="Permalink to this heading">#</a></h3>
@@ -633,7 +596,7 @@ heavy-tailed.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/4513eeff109e4a36ce0cf1edd358cdb537ce2e8f8efcd721cd17a36fe942a76c.png"><img alt="_images/4513eeff109e4a36ce0cf1edd358cdb537ce2e8f8efcd721cd17a36fe942a76c.png" src="_images/4513eeff109e4a36ce0cf1edd358cdb537ce2e8f8efcd721cd17a36fe942a76c.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/1a117643f0ed2630e2370d94009ff0cba8caf79253a6e9f938255ca876114116.png"><img alt="_images/1a117643f0ed2630e2370d94009ff0cba8caf79253a6e9f938255ca876114116.png" src="_images/1a117643f0ed2630e2370d94009ff0cba8caf79253a6e9f938255ca876114116.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>In the top subfigure, the standard deviation of the normal distribution is 2,
@@ -668,7 +631,7 @@ with a few sudden large deviations from the mean.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/39d215126f6895952ac90f9a69ab26b18b500304bba2638615f0d46ee139cfd3.png"><img alt="_images/39d215126f6895952ac90f9a69ab26b18b500304bba2638615f0d46ee139cfd3.png" src="_images/39d215126f6895952ac90f9a69ab26b18b500304bba2638615f0d46ee139cfd3.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/e928470c3819a2c2a79e6f5a57976309b55ec946de6db1ec3ca81d4b289be6fd.png"><img alt="_images/e928470c3819a2c2a79e6f5a57976309b55ec946de6db1ec3ca81d4b289be6fd.png" src="_images/e928470c3819a2c2a79e6f5a57976309b55ec946de6db1ec3ca81d4b289be6fd.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>Another nonnegative distribution is the <a class="reference external" href="https://en.wikipedia.org/wiki/Pareto_distribution">Pareto distribution</a>.</p>
@@ -711,7 +674,7 @@ exponential random variable.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/1f7db8646d50738f0b677aa6fd304b3d0a6f71e778ec16faf8f70a9b3c19b3d7.png"><img alt="_images/1f7db8646d50738f0b677aa6fd304b3d0a6f71e778ec16faf8f70a9b3c19b3d7.png" src="_images/1f7db8646d50738f0b677aa6fd304b3d0a6f71e778ec16faf8f70a9b3c19b3d7.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/62e32e857bc92fd29ef39e94fa890424df7e406a444e2ed069b5b211465b54eb.png"><img alt="_images/62e32e857bc92fd29ef39e94fa890424df7e406a444e2ed069b5b211465b54eb.png" src="_images/62e32e857bc92fd29ef39e94fa890424df7e406a444e2ed069b5b211465b54eb.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>Notice how extreme outcomes are more common.</p>
@@ -774,7 +737,7 @@ distributed with rate parameter <span class="math notranslate nohighlight">\(\al
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/e7c1d67b3c02f744b1130b56d2913d7ce5a91616f8069e4f95fcd0ab880c4cea.png"><img alt="_images/e7c1d67b3c02f744b1130b56d2913d7ce5a91616f8069e4f95fcd0ab880c4cea.png" src="_images/e7c1d67b3c02f744b1130b56d2913d7ce5a91616f8069e4f95fcd0ab880c4cea.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/90e189810f50530e97e69e0ca4246d9c60187c2ca7a899f887b3ee0d22fcb1c1.png"><img alt="_images/90e189810f50530e97e69e0ca4246d9c60187c2ca7a899f887b3ee0d22fcb1c1.png" src="_images/90e189810f50530e97e69e0ca4246d9c60187c2ca7a899f887b3ee0d22fcb1c1.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>Here’s a log-log plot of the same functions, which makes visual comparison
@@ -791,7 +754,7 @@ easier.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/870440758ac5baad5978bb6f6ec3a8d8beae2b08cc4ff97409bbdd817e7c2228.png"><img alt="_images/870440758ac5baad5978bb6f6ec3a8d8beae2b08cc4ff97409bbdd817e7c2228.png" src="_images/870440758ac5baad5978bb6f6ec3a8d8beae2b08cc4ff97409bbdd817e7c2228.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/897a40dd8b61fa28666d35ab4d712920050d25048907b8ccb8db4c5a92f6a154.png"><img alt="_images/897a40dd8b61fa28666d35ab4d712920050d25048907b8ccb8db4c5a92f6a154.png" src="_images/897a40dd8b61fa28666d35ab4d712920050d25048907b8ccb8db4c5a92f6a154.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>In the log-log plot, the Pareto CCDF is linear, while the exponential one is
@@ -845,7 +808,7 @@ visualisations — we return to this point below.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/47a6262044f9cb12126f52649e9cc0acce06806c047ca72384a051df51c1f30c.png"><img alt="_images/47a6262044f9cb12126f52649e9cc0acce06806c047ca72384a051df51c1f30c.png" src="_images/47a6262044f9cb12126f52649e9cc0acce06806c047ca72384a051df51c1f30c.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/66e797d77fde5e213b7a6ad2dcdd5e9ebbc2e42263c6d2d2443162172df78056.png"><img alt="_images/66e797d77fde5e213b7a6ad2dcdd5e9ebbc2e42263c6d2d2443162172df78056.png" src="_images/66e797d77fde5e213b7a6ad2dcdd5e9ebbc2e42263c6d2d2443162172df78056.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>As with the CCDF, the empirical CCDF from the Pareto distributions is
@@ -914,7 +877,7 @@ readers are of course welcome to explore the code (perhaps after examining the f
         <span class="n">fw</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty_like</span><span class="p">(</span><span class="n">aw</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;float64&#39;</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">a</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">aw</span><span class="p">):</span>
             <span class="n">fw</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">aw</span><span class="p">)</span>
-        <span class="n">pdf</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">interp</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">fw</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+        <span class="n">pdf</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">fw</span><span class="p">)</span>
         <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
         <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
@@ -1007,7 +970,7 @@ readers are of course welcome to explore the code (perhaps after examining the f
 </div>
 </details>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/f7ea1eb26e288caf0da3cd1064949ffce8445fc63ef88bbc5b646a3aacebec9b.png"><img alt="_images/f7ea1eb26e288caf0da3cd1064949ffce8445fc63ef88bbc5b646a3aacebec9b.png" src="_images/f7ea1eb26e288caf0da3cd1064949ffce8445fc63ef88bbc5b646a3aacebec9b.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/3b28ca1ee09bdbc63e05e1736e7eec361f6c9e535abd51771b601ba6753f117d.png"><img alt="_images/3b28ca1ee09bdbc63e05e1736e7eec361f6c9e535abd51771b601ba6753f117d.png" src="_images/3b28ca1ee09bdbc63e05e1736e7eec361f6c9e535abd51771b601ba6753f117d.png" style="width: 80%;" /></a>
 </div>
 </div>
 </section>
@@ -1037,7 +1000,7 @@ readers are of course welcome to explore the code (perhaps after examining the f
 </div>
 </details>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/efe6424f0e1d2f004f3862e25c68b3e2e717cb52caff214d55e6ac5d7267a1fe.png"><img alt="_images/efe6424f0e1d2f004f3862e25c68b3e2e717cb52caff214d55e6ac5d7267a1fe.png" src="_images/efe6424f0e1d2f004f3862e25c68b3e2e717cb52caff214d55e6ac5d7267a1fe.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/da9225641e0872a248517da754a3f1184980566eff10f90f14bbb0bd90169d13.png"><img alt="_images/da9225641e0872a248517da754a3f1184980566eff10f90f14bbb0bd90169d13.png" src="_images/da9225641e0872a248517da754a3f1184980566eff10f90f14bbb0bd90169d13.png" style="width: 80%;" /></a>
 </div>
 </div>
 </section>
@@ -1080,7 +1043,7 @@ readers are of course welcome to explore the code (perhaps after examining the f
 </div>
 </details>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/aae0ec4c96358ced0c32afc1d4a298ef28a8f279951e546f3debede402688d2b.png"><img alt="_images/aae0ec4c96358ced0c32afc1d4a298ef28a8f279951e546f3debede402688d2b.png" src="_images/aae0ec4c96358ced0c32afc1d4a298ef28a8f279951e546f3debede402688d2b.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/1e2fd1089185ebe996b8e28ecd1d4dc0ba65b1ea91f32f942f782991d6825341.png"><img alt="_images/1e2fd1089185ebe996b8e28ecd1d4dc0ba65b1ea91f32f942f782991d6825341.png" src="_images/1e2fd1089185ebe996b8e28ecd1d4dc0ba65b1ea91f32f942f782991d6825341.png" style="width: 80%;" /></a>
 </div>
 </div>
 </section>
@@ -1129,7 +1092,7 @@ readers are of course welcome to explore the code (perhaps after examining the f
 </div>
 </details>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/c0a090b6dd6b13ac2ead0d015a4142feb3b7f465cf6eb8cab950ca240625d7ba.png"><img alt="_images/c0a090b6dd6b13ac2ead0d015a4142feb3b7f465cf6eb8cab950ca240625d7ba.png" src="_images/c0a090b6dd6b13ac2ead0d015a4142feb3b7f465cf6eb8cab950ca240625d7ba.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/1f7c83b3392098ee217ad61b6d2e6126d6eace4b7f4f8ccf972426d0b2dbe9ed.png"><img alt="_images/1f7c83b3392098ee217ad61b6d2e6126d6eace4b7f4f8ccf972426d0b2dbe9ed.png" src="_images/1f7c83b3392098ee217ad61b6d2e6126d6eace4b7f4f8ccf972426d0b2dbe9ed.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>The plot is concave rather than linear, so the distribution has light tails.</p>
@@ -1182,7 +1145,7 @@ whether or not the LLN is still valid.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/118522a565f8b5ee9347d18cf39d53c5b179f55b764e878995030b93b18303f1.png"><img alt="_images/118522a565f8b5ee9347d18cf39d53c5b179f55b764e878995030b93b18303f1.png" src="_images/118522a565f8b5ee9347d18cf39d53c5b179f55b764e878995030b93b18303f1.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/913e465c680d79cbc0e1d076f719f61a0c9aa5a147ef01f14a7d340623de985c.png"><img alt="_images/913e465c680d79cbc0e1d076f719f61a0c9aa5a147ef01f14a7d340623de985c.png" src="_images/913e465c680d79cbc0e1d076f719f61a0c9aa5a147ef01f14a7d340623de985c.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>The sequence shows no sign of converging.</p>
@@ -1270,13 +1233,13 @@ heavy-tailed because its moment generating function is infinite everywhere on
 </section>
 <section id="further-reading">
 <h2><span class="section-number">19.7. </span>Further reading<a class="headerlink" href="#further-reading" title="Permalink to this heading">#</a></h2>
-<p>For more on heavy tails in the wealth distribution, see e.g., <span id="id3">[<a class="reference internal" href="zreferences.html#id85" title="Pareto Vilfredo. Cours d'économie politique. Rouge, Lausanne, 1896.">Vil96</a>]</span> and <span id="id4">[<a class="reference internal" href="zreferences.html#id84" title="Jess Benhabib and Alberto Bisin. Skewed wealth distributions: theory and empirics. Journal of Economic Literature, 56(4):1261–91, 2018.">BB18</a>]</span>.</p>
-<p>For more on heavy tails in the firm size distribution, see e.g., <span id="id5">[<a class="reference internal" href="zreferences.html#id83" title="Robert L Axtell. Zipf distribution of us firm sizes. science, 293(5536):1818–1820, 2001.">Axt01</a>]</span>, <span id="id6">[<a class="reference internal" href="zreferences.html#id82" title="Xavier Gabaix. Power laws in economics: an introduction. Journal of Economic Perspectives, 30(1):185–206, 2016.">Gab16</a>]</span>.</p>
-<p>For more on heavy tails in the city size distribution, see e.g., <span id="id7">[<a class="reference internal" href="zreferences.html#id79" title="Hernán D Rozenfeld, Diego Rybski, Xavier Gabaix, and Hernán A Makse. The area and population of cities: new insights from a different perspective on cities. American Economic Review, 101(5):2205–25, 2011.">RRGM11</a>]</span>, <span id="id8">[<a class="reference internal" href="zreferences.html#id82" title="Xavier Gabaix. Power laws in economics: an introduction. Journal of Economic Perspectives, 30(1):185–206, 2016.">Gab16</a>]</span>.</p>
+<p>For more on heavy tails in the wealth distribution, see e.g., <span id="id3">[<a class="reference internal" href="zreferences.html#id85" title="Pareto Vilfredo. Cours d'économie politique. Rouge, Lausanne, 1896.">Vilfredo, 1896</a>]</span> and <span id="id4">[<a class="reference internal" href="zreferences.html#id84" title="Jess Benhabib and Alberto Bisin. Skewed wealth distributions: theory and empirics. Journal of Economic Literature, 56(4):1261–91, 2018.">Benhabib and Bisin, 2018</a>]</span>.</p>
+<p>For more on heavy tails in the firm size distribution, see e.g., <span id="id5">[<a class="reference internal" href="zreferences.html#id83" title="Robert L Axtell. Zipf distribution of us firm sizes. science, 293(5536):1818–1820, 2001.">Axtell, 2001</a>]</span>, <span id="id6">[<a class="reference internal" href="zreferences.html#id82" title="Xavier Gabaix. Power laws in economics: an introduction. Journal of Economic Perspectives, 30(1):185–206, 2016.">Gabaix, 2016</a>]</span>.</p>
+<p>For more on heavy tails in the city size distribution, see e.g., <span id="id7">[<a class="reference internal" href="zreferences.html#id79" title="Hernán D Rozenfeld, Diego Rybski, Xavier Gabaix, and Hernán A Makse. The area and population of cities: new insights from a different perspective on cities. American Economic Review, 101(5):2205–25, 2011.">Rozenfeld <em>et al.</em>, 2011</a>]</span>, <span id="id8">[<a class="reference internal" href="zreferences.html#id82" title="Xavier Gabaix. Power laws in economics: an introduction. Journal of Economic Perspectives, 30(1):185–206, 2016.">Gabaix, 2016</a>]</span>.</p>
 <p>There are other important implications of heavy tails, aside from those
 discussed above.</p>
 <p>For example, heavy tails in income and wealth affect productivity growth, business cycles, and political economy.</p>
-<p>For further reading, see, for example, <span id="id9">[<a class="reference internal" href="zreferences.html#id78" title="Daron Acemoglu and James A. Robinson. The political economy of the Kuznets curve. Review of Development Economics, 6(2):183–203, 2002.">AR02</a>]</span>, <span id="id10">[<a class="reference internal" href="zreferences.html#id77" title="Edward Glaeser, Jose Scheinkman, and Andrei Shleifer. The injustice of inequality. Journal of Monetary Economics, 50(1):199–222, 2003.">GSS03</a>]</span>, <span id="id11">[<a class="reference internal" href="zreferences.html#id76" title="Anmol Bhandari, David Evans, Mikhail Golosov, and Thomas J Sargent. Inequality, business cycles, and monetary-fiscal policy. Technical Report, National Bureau of Economic Research, 2018.">BEGS18</a>]</span> or <span id="id12">[<a class="reference internal" href="zreferences.html#id75" title="SeHyoun Ahn, Greg Kaplan, Benjamin Moll, Thomas Winberry, and Christian Wolf. When inequality matters for macro and macro matters for inequality. NBER Macroeconomics Annual, 32(1):1–75, 2018.">AKM+18</a>]</span>.</p>
+<p>For further reading, see, for example, <span id="id9">[<a class="reference internal" href="zreferences.html#id78" title="Daron Acemoglu and James A. Robinson. The political economy of the Kuznets curve. Review of Development Economics, 6(2):183–203, 2002.">Acemoglu and Robinson, 2002</a>]</span>, <span id="id10">[<a class="reference internal" href="zreferences.html#id77" title="Edward Glaeser, Jose Scheinkman, and Andrei Shleifer. The injustice of inequality. Journal of Monetary Economics, 50(1):199–222, 2003.">Glaeser <em>et al.</em>, 2003</a>]</span>, <span id="id11">[<a class="reference internal" href="zreferences.html#id76" title="Anmol Bhandari, David Evans, Mikhail Golosov, and Thomas J Sargent. Inequality, business cycles, and monetary-fiscal policy. Technical Report, National Bureau of Economic Research, 2018.">Bhandari <em>et al.</em>, 2018</a>]</span> or <span id="id12">[<a class="reference internal" href="zreferences.html#id75" title="SeHyoun Ahn, Greg Kaplan, Benjamin Moll, Thomas Winberry, and Christian Wolf. When inequality matters for macro and macro matters for inequality. NBER Macroeconomics Annual, 32(1):1–75, 2018.">Ahn <em>et al.</em>, 2018</a>]</span>.</p>
 </section>
 <section id="exercises">
 <h2><span class="section-number">19.8. </span>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h2>
@@ -1351,7 +1314,7 @@ Cauchy) with three Pareto distributions using different choices of
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/e6468f08bf0222907207a250ae11df7efe5334f539026ff381ab1d5af15cd5e1.png"><img alt="_images/e6468f08bf0222907207a250ae11df7efe5334f539026ff381ab1d5af15cd5e1.png" src="_images/e6468f08bf0222907207a250ae11df7efe5334f539026ff381ab1d5af15cd5e1.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/38975ab346ef324e990d0d0f6788b9459ec13e2fb1d30797e84ada499e81866e.png"><img alt="_images/38975ab346ef324e990d0d0f6788b9459ec13e2fb1d30797e84ada499e81866e.png" src="_images/38975ab346ef324e990d0d0f6788b9459ec13e2fb1d30797e84ada499e81866e.png" style="width: 80%;" /></a>
 </div>
 </div>
 </section>
@@ -1362,7 +1325,7 @@ Cauchy) with three Pareto distributions using different choices of
 <section id="exercise-content">
 <p>There is an ongoing argument about whether the firm size distribution should
 be modeled as a Pareto distribution or a lognormal distribution (see, e.g.,
-<span id="id13">[<a class="reference internal" href="zreferences.html#id68" title="Yoshi Fujiwara, Corrado Di Guilmi, Hideaki Aoyama, Mauro Gallegati, and Wataru Souma. Do pareto–zipf and gibrat laws hold true? an analysis with european firms. Physica A: Statistical Mechanics and its Applications, 335(1-2):197–216, 2004.">FDGA+04</a>]</span>, <span id="id14">[<a class="reference internal" href="zreferences.html#id66" title="Illenin Kondo, Logan T Lewis, and Andrea Stella. On the us firm and establishment size distributions. Technical Report, SSRN, 2018.">KLS18</a>]</span> or <span id="id15">[<a class="reference internal" href="zreferences.html#id67" title="Christian Schluter and Mark Trede. Size distributions reconsidered. Econometric Reviews, 38(6):695–710, 2019.">ST19</a>]</span>).</p>
+<span id="id13">[<a class="reference internal" href="zreferences.html#id68" title="Yoshi Fujiwara, Corrado Di Guilmi, Hideaki Aoyama, Mauro Gallegati, and Wataru Souma. Do pareto–zipf and gibrat laws hold true? an analysis with european firms. Physica A: Statistical Mechanics and its Applications, 335(1-2):197–216, 2004.">Fujiwara <em>et al.</em>, 2004</a>]</span>, <span id="id14">[<a class="reference internal" href="zreferences.html#id66" title="Illenin Kondo, Logan T Lewis, and Andrea Stella. On the us firm and establishment size distributions. Technical Report, SSRN, 2018.">Kondo <em>et al.</em>, 2018</a>]</span> or <span id="id15">[<a class="reference internal" href="zreferences.html#id67" title="Christian Schluter and Mark Trede. Size distributions reconsidered. Econometric Reviews, 38(6):695–710, 2019.">Schluter and Trede, 2019</a>]</span>).</p>
 <p>This sounds esoteric but has real implications for a variety of economic
 phenomena.</p>
 <p>To illustrate this fact in a simple way, let us consider an economy with
@@ -1383,7 +1346,7 @@ tax revenue over the next 10 years.</p>
 <li><p>summing the results with discounting to obtain present value.</p></li>
 </ol>
 <p>The Pareto distribution is assumed to take the form <a class="reference internal" href="#equation-pareto">(19.1)</a> with <span class="math notranslate nohighlight">\(\bar x = 1\)</span> and <span class="math notranslate nohighlight">\(\alpha = 1.05\)</span>.</p>
-<p>(The value the tail index <span class="math notranslate nohighlight">\(\alpha\)</span> is plausible given the data <span id="id16">[<a class="reference internal" href="zreferences.html#id82" title="Xavier Gabaix. Power laws in economics: an introduction. Journal of Economic Perspectives, 30(1):185–206, 2016.">Gab16</a>]</span>.)</p>
+<p>(The value the tail index <span class="math notranslate nohighlight">\(\alpha\)</span> is plausible given the data <span id="id16">[<a class="reference internal" href="zreferences.html#id82" title="Xavier Gabaix. Power laws in economics: an introduction. Journal of Economic Perspectives, 30(1):185–206, 2016.">Gabaix, 2016</a>]</span>.)</p>
 <p>To make the lognormal option as similar as possible to the Pareto option, choose
 its parameters such that the mean and median of both distributions are the same.</p>
 <p>Note that, for each distribution, your estimate of tax revenue will be random
@@ -1501,7 +1464,7 @@ choice of distribution <code class="docutils literal notranslate"><span class="p
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/cb71100dc7c9f105a66d27dc0d3fc0f7fd4542f76b745253a0a92a75ad6c2547.png"><img alt="_images/cb71100dc7c9f105a66d27dc0d3fc0f7fd4542f76b745253a0a92a75ad6c2547.png" src="_images/cb71100dc7c9f105a66d27dc0d3fc0f7fd4542f76b745253a0a92a75ad6c2547.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/04224de8e49e9a1d5ba38acc31350f5810e33abe974f4b705eb3524a2cea7dd7.png"><img alt="_images/04224de8e49e9a1d5ba38acc31350f5810e33abe974f4b705eb3524a2cea7dd7.png" src="_images/04224de8e49e9a1d5ba38acc31350f5810e33abe974f4b705eb3524a2cea7dd7.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>Finally, let’s print the means and standard deviations.</p>
@@ -1715,7 +1678,7 @@ X_n\)</span> from the Cauchy distribution has the same characteristic function a
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cagan_adaptive.html">
-   14. A Monetarist Theory of Price Levels with Adaptive Expectations
+   14. Monetarist Theory of Price Levels with Adaptive Expectations
   </a>
  </li>
 </ul>
@@ -1797,28 +1760,55 @@ X_n\)</span> from the Cauchy distribution has the same characteristic function a
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
+  Monetary-Fiscal Policy Interactions
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="money_inflation.html">
+   26. Money Financed Government Deficits and Price Levels
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="unpleasant.html">
+   27. Unpleasant Monetarist Arithmetic
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="money_inflation_nonlinear.html">
+   28. Inflation Rate Laffer Curves
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="laffer_adaptive.html">
+   29. Laffer Curves  with Adaptive Expectations
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
   Stochastic Dynamics
  </span>
 </p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="ar1_processes.html">
-   26. AR1 Processes
+   30. AR1 Processes
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="markov_chains_I.html">
-   27. Markov Chains: Basic Concepts
+   31. Markov Chains: Basic Concepts
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="markov_chains_II.html">
-   28. Markov Chains: Irreducibility and Ergodicity
+   32. Markov Chains: Irreducibility and Ergodicity
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="time_series_with_matrices.html">
-   29. Univariate Time Series with Matrix Algebra
+   33. Univariate Time Series with Matrix Algebra
   </a>
  </li>
 </ul>
@@ -1830,12 +1820,12 @@ X_n\)</span> from the Cauchy distribution has the same characteristic function a
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="lp_intro.html">
-   30. Linear Programming
+   34. Linear Programming
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="short_path.html">
-   31. Shortest Paths
+   35. Shortest Paths
   </a>
  </li>
 </ul>
@@ -1847,22 +1837,22 @@ X_n\)</span> from the Cauchy distribution has the same characteristic function a
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="eigen_II.html">
-   32. The Perron-Frobenius Theorem
+   36. The Perron-Frobenius Theorem
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="input_output.html">
-   33. Input-Output Models
+   37. Input-Output Models
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="lake_model.html">
-   34. A Lake Model of Employment
+   38. A Lake Model of Employment
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="networks.html">
-   35. Networks
+   39. Networks
   </a>
  </li>
 </ul>
@@ -1874,12 +1864,12 @@ X_n\)</span> from the Cauchy distribution has the same characteristic function a
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="supply_demand_multiple_goods.html">
-   36. Supply and Demand with Many Goods
+   40. Supply and Demand with Many Goods
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="supply_demand_heterogeneity.html">
-   37. Market Equilibrium with Heterogeneity
+   41. Market Equilibrium with Heterogeneity
   </a>
  </li>
 </ul>
@@ -1891,12 +1881,12 @@ X_n\)</span> from the Cauchy distribution has the same characteristic function a
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="simple_linear_regression.html">
-   38. Simple Linear Regression Model
+   42. Simple Linear Regression Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="mle.html">
-   39. Maximum Likelihood Estimation
+   43. Maximum Likelihood Estimation
   </a>
  </li>
 </ul>
@@ -1908,17 +1898,17 @@ X_n\)</span> from the Cauchy distribution has the same characteristic function a
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="troubleshooting.html">
-   40. Troubleshooting
+   44. Troubleshooting
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="zreferences.html">
-   41. References
+   45. References
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="status.html">
-   42. Execution Statistics
+   46. Execution Statistics
   </a>
  </li>
 </ul>

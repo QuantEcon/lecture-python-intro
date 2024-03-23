@@ -47,7 +47,7 @@ Among these are
 These and other applications prove the truth of the wise crack that
 
 ```{epigraph}
-"in economics, a little knowledge of geometric series goes a long way "
+"In economics, a little knowledge of geometric series goes a long way."
 ```
 
 Below we'll use the following imports:
@@ -171,7 +171,7 @@ The right side records bank $i$'s liabilities,
 namely, the deposits $D_i$ held by its depositors; these are
 IOU's from the bank to its depositors in the form of either checking
 accounts or savings accounts (or before 1914, bank notes issued by a
-bank stating promises to redeem note for gold or silver on demand).
+bank stating promises to redeem notes for gold or silver on demand).
 
 Each bank $i$ sets its reserves to satisfy the equation
 
@@ -573,7 +573,7 @@ Recall that $R = 1+r$ and $G = 1+g$ and that $R > G$
 and $r > g$ and that $r$ and $g$ are typically small
 numbers, e.g., .05 or .03.
 
-Use the Taylor series of $\frac{1}{1+r}$ about $r=0$,
+Use the [Taylor series](https://en.wikipedia.org/wiki/Taylor_series) of $\frac{1}{1+r}$ about $r=0$,
 namely,
 
 $$
@@ -641,7 +641,7 @@ $$
 Expanding:
 
 $$
-\begin{aligned} p_0 &=\frac{x_0(1-1+(T+1)^2 rg -r(T+1)+g(T+1))}{1-1+r-g+rg}  \\&=\frac{x_0(T+1)((T+1)rg+r-g)}{r-g+rg} \\ &\approx \frac{x_0(T+1)(r-g)}{r-g}+\frac{x_0rg(T+1)}{r-g}\\ &= x_0(T+1) + \frac{x_0rg(T+1)}{r-g}  \end{aligned}
+\begin{aligned} p_0 &=\frac{x_0(1-1+(T+1)^2 rg +r(T+1)-g(T+1))}{1-1+r-g+rg}  \\&=\frac{x_0(T+1)((T+1)rg+r-g)}{r-g+rg} \\ &= \frac{x_0(T+1)(r-g)}{r-g + rg}+\frac{x_0rg(T+1)^2}{r-g+rg}\\ &\approx \frac{x_0(T+1)(r-g)}{r-g}+\frac{x_0rg(T+1)}{r-g}\\  &= x_0(T+1) + \frac{x_0rg(T+1)}{r-g}  \end{aligned}
 $$
 
 We could have also approximated by removing the second term

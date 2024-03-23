@@ -256,7 +256,7 @@ const thebe_selector_output = ".output, .cell_output"
 <h1><span class="section-number">11. </span>Consumption Smoothing<a class="headerlink" href="#consumption-smoothing" title="Permalink to this heading">#</a></h1>
 <section id="overview">
 <h2><span class="section-number">11.1. </span>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
-<p>In this lecture, we’ll study a famous model of the “consumption function” that Milton Friedman <span id="id1">[<a class="reference internal" href="zreferences.html#id178" title="M. Friedman. A Theory of the Consumption Function. Princeton University Press, 1956.">Fri56</a>]</span> and Robert Hall <span id="id2">[<a class="reference internal" href="zreferences.html#id179" title="Robert E Hall. Stochastic Implications of the Life Cycle-Permanent Income Hypothesis: Theory and Evidence. Journal of Political Economy, 86(6):971–987, 1978.">Hal78</a>]</span>)  proposed to fit some empirical data patterns that the original  Keynesian consumption function  described in this QuantEcon lecture <a class="reference internal" href="geom_series.html"><span class="doc">geometric series</span></a>  missed.</p>
+<p>In this lecture, we’ll study a famous model of the “consumption function” that Milton Friedman <span id="id1">[<a class="reference internal" href="zreferences.html#id178" title="M. Friedman. A Theory of the Consumption Function. Princeton University Press, 1956.">Friedman, 1956</a>]</span> and Robert Hall <span id="id2">[<a class="reference internal" href="zreferences.html#id179" title="Robert E Hall. Stochastic Implications of the Life Cycle-Permanent Income Hypothesis: Theory and Evidence. Journal of Political Economy, 86(6):971–987, 1978.">Hall, 1978</a>]</span>)  proposed to fit some empirical data patterns that the original  Keynesian consumption function  described in this QuantEcon lecture <a class="reference internal" href="geom_series.html"><span class="doc">geometric series</span></a>  missed.</p>
 <p>In this lecture, we’ll study what is often  called the “consumption-smoothing model”  using  matrix multiplication and matrix inversion, the same tools that we used in this QuantEcon lecture <a class="reference internal" href="pv.html"><span class="doc">present values</span></a>.</p>
 <p>Formulas presented in  <a class="reference internal" href="pv.html"><span class="doc">present value formulas</span></a> are at the core of the consumption smoothing model because we shall use them to define a consumer’s “human wealth”.</p>
 <p>The  key idea that inspired Milton Friedman was that a person’s non-financial income, i.e., his or
@@ -267,7 +267,7 @@ and that standard asset-pricing formulas could be applied to compute a person’
 <p class="admonition-title">Note</p>
 <p>As we’ll see in this QuantEcon lecture  <a class="reference internal" href="equalizing_difference.html"><span class="doc">equalizing difference model</span></a>,
 Milton Friedman had used this idea  in his PhD thesis at Columbia University,
-eventually published as <span id="id3">[<a class="reference internal" href="zreferences.html#id4" title="Simon Kuznets and Milton Friedman. Incomes from independent professional practice, 1929-1936. National Bureau of Economic Research Bulletin, 1939.">KF39</a>]</span> and <span id="id4">[<a class="reference internal" href="zreferences.html#id5" title="Milton Friedman and Simon Kuznets. Income from Independent Professional Practice. National Bureau of Economic Research, New York, 1945.">FK45</a>]</span>.</p>
+eventually published as <span id="id3">[<a class="reference internal" href="zreferences.html#id4" title="Simon Kuznets and Milton Friedman. Incomes from independent professional practice, 1929-1936. National Bureau of Economic Research Bulletin, 1939.">Kuznets and Friedman, 1939</a>]</span> and <span id="id4">[<a class="reference internal" href="zreferences.html#id5" title="Milton Friedman and Simon Kuznets. Income from Independent Professional Practice. National Bureau of Economic Research, New York, 1945.">Friedman and Kuznets, 1945</a>]</span>.</p>
 </div>
 <p>It will take a while for a “present value” or asset price explicilty to appear in this lecture, but when it does it will be a key actor.</p>
 </section>
@@ -336,7 +336,7 @@ with the exogenous non-financial income stream <span class="math notranslate noh
 <span class="eqno">(11.2)<a class="headerlink" href="#equation-welfare" title="Permalink to this equation">#</a></span>\[W = \sum_{t=0}^T \beta^t (g_1 c_t - \frac{g_2}{2} c_t^2 )\]</div>
 <p>where <span class="math notranslate nohighlight">\(g_1 &gt; 0, g_2 &gt; 0\)</span>.</p>
 <p>When <span class="math notranslate nohighlight">\(\beta R \approx 1\)</span>, the fact that the utility function <span class="math notranslate nohighlight">\(g_1 c_t - \frac{g_2}{2} c_t^2\)</span> has diminishing marginal utility imparts a preference for consumption that is very smooth.</p>
-<p>Indeed, we shall see that when <span class="math notranslate nohighlight">\(\beta R = 1\)</span> (a condition assumed by Milton Friedman <span id="id5">[<a class="reference internal" href="zreferences.html#id178" title="M. Friedman. A Theory of the Consumption Function. Princeton University Press, 1956.">Fri56</a>]</span> and Robert Hall <span id="id6">[<a class="reference internal" href="zreferences.html#id179" title="Robert E Hall. Stochastic Implications of the Life Cycle-Permanent Income Hypothesis: Theory and Evidence. Journal of Political Economy, 86(6):971–987, 1978.">Hal78</a>]</span>),  criterion <a class="reference internal" href="#equation-welfare">(11.2)</a> assigns higher welfare to smoother consumption paths.</p>
+<p>Indeed, we shall see that when <span class="math notranslate nohighlight">\(\beta R = 1\)</span> (a condition assumed by Milton Friedman <span id="id5">[<a class="reference internal" href="zreferences.html#id178" title="M. Friedman. A Theory of the Consumption Function. Princeton University Press, 1956.">Friedman, 1956</a>]</span> and Robert Hall <span id="id6">[<a class="reference internal" href="zreferences.html#id179" title="Robert E Hall. Stochastic Implications of the Life Cycle-Permanent Income Hypothesis: Theory and Evidence. Journal of Political Economy, 86(6):971–987, 1978.">Hall, 1978</a>]</span>),  criterion <a class="reference internal" href="#equation-welfare">(11.2)</a> assigns higher welfare to smoother consumption paths.</p>
 <p>By <strong>smoother</strong> we mean as close as possible to being constant over time.</p>
 <p>The preference for smooth consumption paths that is built into the model gives it the  name “consumption smoothing model”.</p>
 <p>Let’s dive in and do some calculations that will help us understand how the model works.</p>
@@ -379,7 +379,7 @@ a_{T+1} = 0,
 \sum_{t=0}^T R^{-t} c_t = a_0 + h_0. 
 \]</div>
 <p>Equation <a class="reference internal" href="#equation-eq-budget-intertemp">(11.3)</a>  says that the present value of the consumption stream equals the sum of finanical and non-financial (or human) wealth.</p>
-<p>Robert Hall <span id="id7">[<a class="reference internal" href="zreferences.html#id179" title="Robert E Hall. Stochastic Implications of the Life Cycle-Permanent Income Hypothesis: Theory and Evidence. Journal of Political Economy, 86(6):971–987, 1978.">Hal78</a>]</span> showed that when <span class="math notranslate nohighlight">\(\beta R = 1\)</span>, a condition Milton Friedman had also  assumed, it is “optimal” for a consumer to smooth consumption by setting</p>
+<p>Robert Hall <span id="id7">[<a class="reference internal" href="zreferences.html#id179" title="Robert E Hall. Stochastic Implications of the Life Cycle-Permanent Income Hypothesis: Theory and Evidence. Journal of Political Economy, 86(6):971–987, 1978.">Hall, 1978</a>]</span> showed that when <span class="math notranslate nohighlight">\(\beta R = 1\)</span>, a condition Milton Friedman had also  assumed, it is “optimal” for a consumer to smooth consumption by setting</p>
 <div class="math notranslate nohighlight">
 \[ 
 c_t = c_0 \quad t =0, 1, \ldots, T
@@ -517,7 +517,7 @@ a_{T+1} = 0.
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/cb4be62fd5fa32a2335656ac8072b85fdb6a61f29b08dbcc997440c471453aa4.png"><img alt="_images/cb4be62fd5fa32a2335656ac8072b85fdb6a61f29b08dbcc997440c471453aa4.png" src="_images/cb4be62fd5fa32a2335656ac8072b85fdb6a61f29b08dbcc997440c471453aa4.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/8e00ba30fe9c03748d450466e9471dc8f013786bb6e27213e8669b4961243880.png"><img alt="_images/8e00ba30fe9c03748d450466e9471dc8f013786bb6e27213e8669b4961243880.png" src="_images/8e00ba30fe9c03748d450466e9471dc8f013786bb6e27213e8669b4961243880.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>Note that <span class="math notranslate nohighlight">\(a_{T+1} = 0\)</span>, as anticipated.</p>
@@ -588,7 +588,7 @@ a_{T+1} = 0.
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/63d775697e76b0c4f88caf27bc584ff0eadfc86945cf371be0c8f6b719853e34.png"><img alt="_images/63d775697e76b0c4f88caf27bc584ff0eadfc86945cf371be0c8f6b719853e34.png" src="_images/63d775697e76b0c4f88caf27bc584ff0eadfc86945cf371be0c8f6b719853e34.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/531ac59faec7e7e2f3e65a64d9212819cd25be679558d06eb634365980d59f43.png"><img alt="_images/531ac59faec7e7e2f3e65a64d9212819cd25be679558d06eb634365980d59f43.png" src="_images/531ac59faec7e7e2f3e65a64d9212819cd25be679558d06eb634365980d59f43.png" style="width: 80%;" /></a>
 </div>
 </div>
 <div class="cell docutils container">
@@ -601,7 +601,7 @@ a_{T+1} = 0.
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/9b579c3a2320251bb71785c51e9f46b2e36f2822666b7c714b1c5abb12b4a801.png"><img alt="_images/9b579c3a2320251bb71785c51e9f46b2e36f2822666b7c714b1c5abb12b4a801.png" src="_images/9b579c3a2320251bb71785c51e9f46b2e36f2822666b7c714b1c5abb12b4a801.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/3877263e7f3b0cad89054a44f67a708ea29eb26ad36e189d46f0dff0e3331d77.png"><img alt="_images/3877263e7f3b0cad89054a44f67a708ea29eb26ad36e189d46f0dff0e3331d77.png" src="_images/3877263e7f3b0cad89054a44f67a708ea29eb26ad36e189d46f0dff0e3331d77.png" style="width: 80%;" /></a>
 </div>
 </div>
 </section>
@@ -620,7 +620,7 @@ a_{T+1} = 0.
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/ac0fd6befc2443db32a489756211b3cd5dab9839fcc807cdcfa98c5ccc81a074.png"><img alt="_images/ac0fd6befc2443db32a489756211b3cd5dab9839fcc807cdcfa98c5ccc81a074.png" src="_images/ac0fd6befc2443db32a489756211b3cd5dab9839fcc807cdcfa98c5ccc81a074.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/6841a042964400c8e3c851bf381e37cf28028dda5dad9ac00965f8e3665946a7.png"><img alt="_images/6841a042964400c8e3c851bf381e37cf28028dda5dad9ac00965f8e3665946a7.png" src="_images/6841a042964400c8e3c851bf381e37cf28028dda5dad9ac00965f8e3665946a7.png" style="width: 80%;" /></a>
 </div>
 </div>
 <div class="cell docutils container">
@@ -634,7 +634,7 @@ a_{T+1} = 0.
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/7f959bf46ada436117c1af275c0942c7538d57c2e88c989996b45c4ccf9a923a.png"><img alt="_images/7f959bf46ada436117c1af275c0942c7538d57c2e88c989996b45c4ccf9a923a.png" src="_images/7f959bf46ada436117c1af275c0942c7538d57c2e88c989996b45c4ccf9a923a.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/380a4f977647317544af88f9baca227b9d75177fb414115a95c00638949bcdba.png"><img alt="_images/380a4f977647317544af88f9baca227b9d75177fb414115a95c00638949bcdba.png" src="_images/380a4f977647317544af88f9baca227b9d75177fb414115a95c00638949bcdba.png" style="width: 80%;" /></a>
 </div>
 </div>
 </section>
@@ -652,7 +652,7 @@ a_{T+1} = 0.
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/e69c0e180aafccf3450f5dcf970a1962c4c0cdf89f049e1f2c0d9f209c200a0c.png"><img alt="_images/e69c0e180aafccf3450f5dcf970a1962c4c0cdf89f049e1f2c0d9f209c200a0c.png" src="_images/e69c0e180aafccf3450f5dcf970a1962c4c0cdf89f049e1f2c0d9f209c200a0c.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/20fac89517176478537b0311dfc6913570e90765495fd418f413f50c170c52d4.png"><img alt="_images/20fac89517176478537b0311dfc6913570e90765495fd418f413f50c170c52d4.png" src="_images/20fac89517176478537b0311dfc6913570e90765495fd418f413f50c170c52d4.png" style="width: 80%;" /></a>
 </div>
 </div>
 </section>
@@ -677,7 +677,7 @@ a_{T+1} = 0.
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/edb50fe246cdfedfa402468e4fb35d9853138ebfc2e8ec8dd35a9db28c84f01f.png"><img alt="_images/edb50fe246cdfedfa402468e4fb35d9853138ebfc2e8ec8dd35a9db28c84f01f.png" src="_images/edb50fe246cdfedfa402468e4fb35d9853138ebfc2e8ec8dd35a9db28c84f01f.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/9b737b744cd6148c8bce6d386e3a9c5aea240250497cc832925f4c0094c69d1a.png"><img alt="_images/9b737b744cd6148c8bce6d386e3a9c5aea240250497cc832925f4c0094c69d1a.png" src="_images/9b737b744cd6148c8bce6d386e3a9c5aea240250497cc832925f4c0094c69d1a.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>Now we show the behavior when <span class="math notranslate nohighlight">\(\lambda = 0.95\)</span></p>
@@ -694,7 +694,7 @@ a_{T+1} = 0.
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/7497b242b126c149598d4b8411c4024b67716fd50a316a2937e47837d39b1891.png"><img alt="_images/7497b242b126c149598d4b8411c4024b67716fd50a316a2937e47837d39b1891.png" src="_images/7497b242b126c149598d4b8411c4024b67716fd50a316a2937e47837d39b1891.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/69114570d957053a28babb5615d25c7888d850ae7da65e99f8f1c4580c6b03db.png"><img alt="_images/69114570d957053a28babb5615d25c7888d850ae7da65e99f8f1c4580c6b03db.png" src="_images/69114570d957053a28babb5615d25c7888d850ae7da65e99f8f1c4580c6b03db.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>What happens when <span class="math notranslate nohighlight">\(\lambda\)</span> is negative</p>
@@ -711,7 +711,7 @@ a_{T+1} = 0.
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/9432d5e3fda676ec428bd7e8bc35d401ba2784c5708676ae341fd06c6d72744b.png"><img alt="_images/9432d5e3fda676ec428bd7e8bc35d401ba2784c5708676ae341fd06c6d72744b.png" src="_images/9432d5e3fda676ec428bd7e8bc35d401ba2784c5708676ae341fd06c6d72744b.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/4dc65338571f9ba60a9c2e3722628166ad6abbc0e3da9ea2f0893ed3c39260b9.png"><img alt="_images/4dc65338571f9ba60a9c2e3722628166ad6abbc0e3da9ea2f0893ed3c39260b9.png" src="_images/4dc65338571f9ba60a9c2e3722628166ad6abbc0e3da9ea2f0893ed3c39260b9.png" style="width: 80%;" /></a>
 </div>
 </div>
 </section>
@@ -843,7 +843,7 @@ welfare=13.28156768298361
 ----------------------------------------------------------------
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="_images/10a9799071974b565baa03e9378645984a604879028dcd81ef5e95e08dbb57c6.png"><img alt="_images/10a9799071974b565baa03e9378645984a604879028dcd81ef5e95e08dbb57c6.png" src="_images/10a9799071974b565baa03e9378645984a604879028dcd81ef5e95e08dbb57c6.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/cef3bf606d4f2c70c4cf62dfc2dcc4fe956e8c792ac80b7bba6cec26c7921183.png"><img alt="_images/cef3bf606d4f2c70c4cf62dfc2dcc4fe956e8c792ac80b7bba6cec26c7921183.png" src="_images/cef3bf606d4f2c70c4cf62dfc2dcc4fe956e8c792ac80b7bba6cec26c7921183.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>We can even use the Python <code class="docutils literal notranslate"><span class="pre">np.gradient</span></code> command to compute derivatives of welfare with respect to our two parameters.</p>
@@ -889,8 +889,8 @@ welfare=13.28156768298361
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/37afe27028469780f2a1cfd91dd89007eb43d5fd135eafbb8afb661677c998dc.png"><img alt="_images/37afe27028469780f2a1cfd91dd89007eb43d5fd135eafbb8afb661677c998dc.png" src="_images/37afe27028469780f2a1cfd91dd89007eb43d5fd135eafbb8afb661677c998dc.png" style="width: 80%;" /></a>
-<a class="reference internal image-reference" href="_images/a224071ba00d30fb15861aa5adeae7f6182f5e5ce46e5e9f592ef5a585c89357.png"><img alt="_images/a224071ba00d30fb15861aa5adeae7f6182f5e5ce46e5e9f592ef5a585c89357.png" src="_images/a224071ba00d30fb15861aa5adeae7f6182f5e5ce46e5e9f592ef5a585c89357.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/b69e0db6ab25f78bc271b82fa0391192cfc126d3bced6bf0ef4f514d4279cf4e.png"><img alt="_images/b69e0db6ab25f78bc271b82fa0391192cfc126d3bced6bf0ef4f514d4279cf4e.png" src="_images/b69e0db6ab25f78bc271b82fa0391192cfc126d3bced6bf0ef4f514d4279cf4e.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/1c738eea9f101d281b9111eafb1780fe3aaadfe5c17f456a0b498b58eaeb1bf1.png"><img alt="_images/1c738eea9f101d281b9111eafb1780fe3aaadfe5c17f456a0b498b58eaeb1bf1.png" src="_images/1c738eea9f101d281b9111eafb1780fe3aaadfe5c17f456a0b498b58eaeb1bf1.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>The same can be done on <span class="math notranslate nohighlight">\(\phi\)</span></p>
@@ -913,15 +913,15 @@ welfare=13.28156768298361
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/c6dcd8054054645e7a64e677ca91c3d0546d0448618f8cff68aad0e6dc60efb6.png"><img alt="_images/c6dcd8054054645e7a64e677ca91c3d0546d0448618f8cff68aad0e6dc60efb6.png" src="_images/c6dcd8054054645e7a64e677ca91c3d0546d0448618f8cff68aad0e6dc60efb6.png" style="width: 80%;" /></a>
-<a class="reference internal image-reference" href="_images/6004f69acd5139d62863f051eb7345af54381cb7c7bc6332d2cbbe9464bdf2bb.png"><img alt="_images/6004f69acd5139d62863f051eb7345af54381cb7c7bc6332d2cbbe9464bdf2bb.png" src="_images/6004f69acd5139d62863f051eb7345af54381cb7c7bc6332d2cbbe9464bdf2bb.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/b54a4e5ad3886685b8f630b885b32708ed555da6791198f0ed0bd3a223b76318.png"><img alt="_images/b54a4e5ad3886685b8f630b885b32708ed555da6791198f0ed0bd3a223b76318.png" src="_images/b54a4e5ad3886685b8f630b885b32708ed555da6791198f0ed0bd3a223b76318.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/ebbed615411b69046e84236db57235f27c8d9ea671586b05bb39fc042002c94b.png"><img alt="_images/ebbed615411b69046e84236db57235f27c8d9ea671586b05bb39fc042002c94b.png" src="_images/ebbed615411b69046e84236db57235f27c8d9ea671586b05bb39fc042002c94b.png" style="width: 80%;" /></a>
 </div>
 </div>
 </section>
 </section>
 <section id="wrapping-up-the-consumption-smoothing-model">
 <h2><span class="section-number">11.5. </span>Wrapping up the consumption-smoothing model<a class="headerlink" href="#wrapping-up-the-consumption-smoothing-model" title="Permalink to this heading">#</a></h2>
-<p>The consumption-smoothing model of Milton Friedman <span id="id8">[<a class="reference internal" href="zreferences.html#id178" title="M. Friedman. A Theory of the Consumption Function. Princeton University Press, 1956.">Fri56</a>]</span> and Robert Hall <span id="id9">[<a class="reference internal" href="zreferences.html#id179" title="Robert E Hall. Stochastic Implications of the Life Cycle-Permanent Income Hypothesis: Theory and Evidence. Journal of Political Economy, 86(6):971–987, 1978.">Hal78</a>]</span>) is a cornerstone of modern macro that has important ramifications for the size of the Keynesian  “fiscal policy multiplier” described briefly in
+<p>The consumption-smoothing model of Milton Friedman <span id="id8">[<a class="reference internal" href="zreferences.html#id178" title="M. Friedman. A Theory of the Consumption Function. Princeton University Press, 1956.">Friedman, 1956</a>]</span> and Robert Hall <span id="id9">[<a class="reference internal" href="zreferences.html#id179" title="Robert E Hall. Stochastic Implications of the Life Cycle-Permanent Income Hypothesis: Theory and Evidence. Journal of Political Economy, 86(6):971–987, 1978.">Hall, 1978</a>]</span>) is a cornerstone of modern macro that has important ramifications for the size of the Keynesian  “fiscal policy multiplier” described briefly in
 QuantEcon lecture <a class="reference internal" href="geom_series.html"><span class="doc">geometric series</span></a>.</p>
 <p>In particular,  it  <strong>lowers</strong> the government expenditure  multiplier relative to  one implied by
 the original Keynesian consumption function presented in <a class="reference internal" href="geom_series.html"><span class="doc">geometric series</span></a>.</p>
@@ -1179,7 +1179,7 @@ How many initial conditions must you specify?</p>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cagan_adaptive.html">
-   14. A Monetarist Theory of Price Levels with Adaptive Expectations
+   14. Monetarist Theory of Price Levels with Adaptive Expectations
   </a>
  </li>
 </ul>
@@ -1261,28 +1261,55 @@ How many initial conditions must you specify?</p>
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
+  Monetary-Fiscal Policy Interactions
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="money_inflation.html">
+   26. Money Financed Government Deficits and Price Levels
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="unpleasant.html">
+   27. Unpleasant Monetarist Arithmetic
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="money_inflation_nonlinear.html">
+   28. Inflation Rate Laffer Curves
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="laffer_adaptive.html">
+   29. Laffer Curves  with Adaptive Expectations
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
   Stochastic Dynamics
  </span>
 </p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="ar1_processes.html">
-   26. AR1 Processes
+   30. AR1 Processes
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="markov_chains_I.html">
-   27. Markov Chains: Basic Concepts
+   31. Markov Chains: Basic Concepts
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="markov_chains_II.html">
-   28. Markov Chains: Irreducibility and Ergodicity
+   32. Markov Chains: Irreducibility and Ergodicity
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="time_series_with_matrices.html">
-   29. Univariate Time Series with Matrix Algebra
+   33. Univariate Time Series with Matrix Algebra
   </a>
  </li>
 </ul>
@@ -1294,12 +1321,12 @@ How many initial conditions must you specify?</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="lp_intro.html">
-   30. Linear Programming
+   34. Linear Programming
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="short_path.html">
-   31. Shortest Paths
+   35. Shortest Paths
   </a>
  </li>
 </ul>
@@ -1311,22 +1338,22 @@ How many initial conditions must you specify?</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="eigen_II.html">
-   32. The Perron-Frobenius Theorem
+   36. The Perron-Frobenius Theorem
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="input_output.html">
-   33. Input-Output Models
+   37. Input-Output Models
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="lake_model.html">
-   34. A Lake Model of Employment
+   38. A Lake Model of Employment
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="networks.html">
-   35. Networks
+   39. Networks
   </a>
  </li>
 </ul>
@@ -1338,12 +1365,12 @@ How many initial conditions must you specify?</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="supply_demand_multiple_goods.html">
-   36. Supply and Demand with Many Goods
+   40. Supply and Demand with Many Goods
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="supply_demand_heterogeneity.html">
-   37. Market Equilibrium with Heterogeneity
+   41. Market Equilibrium with Heterogeneity
   </a>
  </li>
 </ul>
@@ -1355,12 +1382,12 @@ How many initial conditions must you specify?</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="simple_linear_regression.html">
-   38. Simple Linear Regression Model
+   42. Simple Linear Regression Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="mle.html">
-   39. Maximum Likelihood Estimation
+   43. Maximum Likelihood Estimation
   </a>
  </li>
 </ul>
@@ -1372,17 +1399,17 @@ How many initial conditions must you specify?</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="troubleshooting.html">
-   40. Troubleshooting
+   44. Troubleshooting
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="zreferences.html">
-   41. References
+   45. References
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="status.html">
-   42. Execution Statistics
+   46. Execution Statistics
   </a>
  </li>
 </ul>

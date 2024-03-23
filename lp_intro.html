@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>30. Linear Programming &#8212; A First Course in Quantitative Economics with Python</title>
+    <title>34. Linear Programming &#8212; A First Course in Quantitative Economics with Python</title>
     <script src="https://unpkg.com/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://unpkg.com/tippy.js@6.3.1/dist/tippy-bundle.umd.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
@@ -122,8 +122,8 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="31. Shortest Paths" href="short_path.html" />
-    <link rel="prev" title="29. Univariate Time Series with Matrix Algebra" href="time_series_with_matrices.html" />
+    <link rel="next" title="35. Shortest Paths" href="short_path.html" />
+    <link rel="prev" title="33. Univariate Time Series with Matrix Algebra" href="time_series_with_matrices.html" />
 
 <!-- Normal Meta Tags -->
 <meta name="author" context="Thomas J. Sargent &amp; John Stachurski" />
@@ -171,23 +171,23 @@ const thebe_selector_output = ".output, .cell_output"
 
                         <nav id="bd-toc-nav" class="qe-page__toc-nav">
                             <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">30.1. Overview</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-1-production-problem">30.2. Example 1: Production Problem</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#computation-using-or-tools">30.2.1. Computation: Using OR-Tools</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">34.1. Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-1-production-problem">34.2. Example 1: Production Problem</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#computation-using-or-tools">34.2.1. Computation: Using OR-Tools</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-investment-problem">30.3. Example 2: Investment Problem</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">30.3.1. Computation: Using OR-Tools</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-investment-problem">34.3. Example 2: Investment Problem</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">34.3.1. Computation: Using OR-Tools</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#standard-form">30.4. Standard form</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#useful-transformations">30.4.1. Useful transformations</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">30.4.2. Example 1: Production Problem</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#computation-using-scipy">30.4.3. Computation: Using SciPy</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">30.4.4. Example 2: Investment Problem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#standard-form">34.4. Standard form</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#useful-transformations">34.4.1. Useful transformations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">34.4.2. Example 1: Production Problem</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#computation-using-scipy">34.4.3. Computation: Using SciPy</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">34.4.4. Example 2: Investment Problem</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">30.5. Exercises</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">34.5. Exercises</a></li>
 </ul>
                             <p class="logo">
                                 
@@ -247,7 +247,7 @@ const thebe_selector_output = ".output, .cell_output"
                     <div>
                         
   <section class="tex2jax_ignore mathjax_ignore" id="linear-programming">
-<span id="lp-intro"></span><h1><span class="section-number">30. </span>Linear Programming<a class="headerlink" href="#linear-programming" title="Permalink to this heading">#</a></h1>
+<span id="lp-intro"></span><h1><span class="section-number">34. </span>Linear Programming<a class="headerlink" href="#linear-programming" title="Permalink to this heading">#</a></h1>
 <div class="warning admonition">
 <p class="admonition-title">Migrated lecture</p>
 <p>This lecture has moved from our <a class="reference external" href="https://python.quantecon.org/intro.html">Intermediate Quantitative Economics with Python</a> lecture series and is now a part of <a class="reference external" href="https://intro.quantecon.org/intro.html">A First Course in Quantitative Economics</a>.</p>
@@ -266,83 +266,84 @@ const thebe_selector_output = ".output, .cell_output"
 </summary>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting ortools
-  Obtaining dependency information for ortools from https://files.pythonhosted.org/packages/6b/3f/e4a7bf0eb28ba69c6314fd384a00bb9ed5f3b88ad21509da5f83230e4d70/ortools-9.9.3963-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Downloading ortools-9.9.3963-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (2.9 kB)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting absl-py&gt;=2.0.0 (from ortools)
-  Obtaining dependency information for absl-py&gt;=2.0.0 from https://files.pythonhosted.org/packages/a2/ad/e0d3c824784ff121c03cc031f944bc7e139a8f1870ffd2845cc2dd76f6c4/absl_py-2.1.0-py3-none-any.whl.metadata
+Collecting absl-py&gt;=2.0.0 (from ortools)
   Downloading absl_py-2.1.0-py3-none-any.whl.metadata (2.3 kB)
-Requirement already satisfied: numpy&gt;=1.13.3 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from ortools) (1.24.3)
-Requirement already satisfied: pandas&gt;=2.0.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from ortools) (2.0.3)
+Requirement already satisfied: numpy&gt;=1.13.3 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from ortools) (1.26.4)
+Requirement already satisfied: pandas&gt;=2.0.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from ortools) (2.1.4)
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting protobuf&gt;=4.25.3 (from ortools)
-  Obtaining dependency information for protobuf&gt;=4.25.3 from https://files.pythonhosted.org/packages/39/3f/16bdd9d43b024c1d178e817826e4e1ca8a25da3faff1e7566f341094143d/protobuf-5.26.0-cp37-abi3-manylinux2014_x86_64.whl.metadata
   Downloading protobuf-5.26.0-cp37-abi3-manylinux2014_x86_64.whl.metadata (592 bytes)
-Collecting immutabledict&gt;=3.0.0 (from ortools)
-  Obtaining dependency information for immutabledict&gt;=3.0.0 from https://files.pythonhosted.org/packages/e2/13/3cf4ac5b3403f3456e645c4533883ef67b1bb0c72e56b79c707715f57a74/immutabledict-4.2.0-py3-none-any.whl.metadata
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Downloading immutabledict-4.2.0-py3-none-any.whl.metadata (3.4 kB)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting immutabledict&gt;=3.0.0 (from ortools)
+  Downloading immutabledict-4.2.0-py3-none-any.whl.metadata (3.4 kB)
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: python-dateutil&gt;=2.8.2 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from pandas&gt;=2.0.0-&gt;ortools) (2.8.2)
 Requirement already satisfied: pytz&gt;=2020.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from pandas&gt;=2.0.0-&gt;ortools) (2023.3.post1)
 Requirement already satisfied: tzdata&gt;=2022.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from pandas&gt;=2.0.0-&gt;ortools) (2023.3)
 Requirement already satisfied: six&gt;=1.5 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from python-dateutil&gt;=2.8.2-&gt;pandas&gt;=2.0.0-&gt;ortools) (1.16.0)
-Downloading ortools-9.9.3963-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (24.8 MB)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading ortools-9.9.3963-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (24.8 MB)
 ?25l   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/24.8 MB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.1/24.8 MB</span> <span class=" -Color -Color-Red">3.3 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:08</span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.1/24.8 MB</span> <span class=" -Color -Color-Red">3.4 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:08</span>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ╸━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.6/24.8 MB</span> <span class=" -Color -Color-Red">8.3 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:03</span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ╸━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.6/24.8 MB</span> <span class=" -Color -Color-Red">8.5 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:03</span>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━╸━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">2.3/24.8 MB</span> <span class=" -Color -Color-Red">22.6 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+   ━━━━━━━━━━━╸━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">7.4/24.8 MB</span> <span class=" -Color -Color-Red">54.4 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━╸━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">2.3/24.8 MB</span> <span class=" -Color -Color-Red">23.0 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
-   ━━━━━━━━━━━━╺━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">7.6/24.8 MB</span> <span class=" -Color -Color-Red">56.2 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━╸━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">12.8/24.8 MB</span> <span class=" -Color -Color-Red">156.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━╸━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">13.4/24.8 MB</span> <span class=" -Color -Color-Red">162.7 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸━━━━━━━━━━ <span class=" -Color -Color-Green">18.3/24.8 MB</span> <span class=" -Color -Color-Red">161.2 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╺ <span class=" -Color -Color-Green">24.2/24.8 MB</span> <span class=" -Color -Color-Red">167.5 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╺━━━━━━━━━ <span class=" -Color -Color-Green">18.8/24.8 MB</span> <span class=" -Color -Color-Red">166.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸ <span class=" -Color -Color-Green">24.7/24.8 MB</span> <span class=" -Color -Color-Red">170.6 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸ <span class=" -Color -Color-Green">24.8/24.8 MB</span> <span class=" -Color -Color-Red">165.8 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸ <span class=" -Color -Color-Green">24.8/24.8 MB</span> <span class=" -Color -Color-Red">168.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸ <span class=" -Color -Color-Green">24.8/24.8 MB</span> <span class=" -Color -Color-Red">168.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">24.8/24.8 MB</span> <span class=" -Color -Color-Red">70.7 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">24.8/24.8 MB</span> <span class=" -Color -Color-Red">85.6 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
 ?25hDownloading absl_py-2.1.0-py3-none-any.whl (133 kB)
 ?25l   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/133.7 kB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">133.7/133.7 kB</span> <span class=" -Color -Color-Red">52.6 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">133.7/133.7 kB</span> <span class=" -Color -Color-Red">43.9 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
 ?25h
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading immutabledict-4.2.0-py3-none-any.whl (4.7 kB)
 Downloading protobuf-5.26.0-cp37-abi3-manylinux2014_x86_64.whl (302 kB)
 ?25l   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/302.8 kB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">302.8/302.8 kB</span> <span class=" -Color -Color-Red">82.0 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">302.8/302.8 kB</span> <span class=" -Color -Color-Red">76.9 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
 ?25h
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Installing collected packages: protobuf, immutabledict, absl-py, ortools
+  Attempting uninstall: protobuf
+    Found existing installation: protobuf 3.20.3
+    Uninstalling protobuf-3.20.3:
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Successfully installed absl-py-2.1.0 immutabledict-4.2.0 ortools-9.9.3963 protobuf-5.26.0
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>      Successfully uninstalled protobuf-3.20.3
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Red">ERROR: pip&#39;s dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.</span>
+<span class=" -Color -Color-Red">streamlit 1.30.0 requires protobuf&lt;5,&gt;=3.20, but you have protobuf 5.26.0 which is incompatible.</span>
+Successfully installed absl-py-2.1.0 immutabledict-4.2.0 ortools-9.9.3963 protobuf-5.26.0
 </pre></div>
 </div>
 </div>
 </details>
 </div>
 <section id="overview">
-<h2><span class="section-number">30.1. </span>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">34.1. </span>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
 <p><strong>Linear programming</strong> problems either maximize or minimize
 a linear objective function subject to a set of  linear equality and/or inequality constraints.</p>
 <p>Linear programs come in pairs:</p>
@@ -371,8 +372,8 @@ a linear objective function subject to a set of  linear equality and/or inequali
 <p>Let’s start with some examples of linear programming problem.</p>
 </section>
 <section id="example-1-production-problem">
-<h2><span class="section-number">30.2. </span>Example 1: Production Problem<a class="headerlink" href="#example-1-production-problem" title="Permalink to this heading">#</a></h2>
-<p>This example was created by <span id="id1">[<a class="reference internal" href="zreferences.html#id58" title="J. N. Bertsimas, D. &amp; Tsitsiklis. Introduction to linear optimization. Athena Scientific, 1997.">Ber97</a>]</span></p>
+<h2><span class="section-number">34.2. </span>Example 1: Production Problem<a class="headerlink" href="#example-1-production-problem" title="Permalink to this heading">#</a></h2>
+<p>This example was created by <span id="id1">[<a class="reference internal" href="zreferences.html#id58" title="J. N. Bertsimas, D. &amp; Tsitsiklis. Introduction to linear optimization. Athena Scientific, 1997.">Bertsimas, 1997</a>]</span></p>
 <p>Suppose that a factory can produce two goods called Product <span class="math notranslate nohighlight">\(1\)</span> and Product <span class="math notranslate nohighlight">\(2\)</span>.</p>
 <p>To produce each product requires both material and labor.</p>
 <p>Selling each product generates revenue.</p>
@@ -458,7 +459,7 @@ a linear objective function subject to a set of  linear equality and/or inequali
 </div>
 </details>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/f09fe0789ec65822bf434b8d6e34227eee70c8e92f731d41f0291f1f0bd0a41f.png"><img alt="_images/f09fe0789ec65822bf434b8d6e34227eee70c8e92f731d41f0291f1f0bd0a41f.png" src="_images/f09fe0789ec65822bf434b8d6e34227eee70c8e92f731d41f0291f1f0bd0a41f.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/f493a652228dc58a331edec053bbc3e19df7529893e67b0722fcf8a04aeb0ccb.png"><img alt="_images/f493a652228dc58a331edec053bbc3e19df7529893e67b0722fcf8a04aeb0ccb.png" src="_images/f493a652228dc58a331edec053bbc3e19df7529893e67b0722fcf8a04aeb0ccb.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>The blue region is the feasible set within which all constraints are satisfied.</p>
@@ -467,7 +468,7 @@ a linear objective function subject to a set of  linear equality and/or inequali
 <p>The intersection of the feasible set and the highest orange line delineates the optimal set.</p>
 <p>In this example, the optimal set is the point <span class="math notranslate nohighlight">\((2.5, 5)\)</span>.</p>
 <section id="computation-using-or-tools">
-<h3><span class="section-number">30.2.1. </span>Computation: Using OR-Tools<a class="headerlink" href="#computation-using-or-tools" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">34.2.1. </span>Computation: Using OR-Tools<a class="headerlink" href="#computation-using-or-tools" title="Permalink to this heading">#</a></h3>
 <p>Let’s try to solve the same problem using the package <em>ortools.linear_solver</em></p>
 <p>The following cell instantiates a solver and creates two variables specifying the range of values that they can have.</p>
 <div class="cell docutils container">
@@ -500,7 +501,7 @@ a linear objective function subject to a set of  linear equality and/or inequali
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ortools.linear_solver.pywraplp.Constraint; proxy of &lt;Swig Object of type &#39;operations_research::MPConstraint *&#39; at 0x75d5160bbde0&gt; &gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ortools.linear_solver.pywraplp.Constraint; proxy of &lt;Swig Object of type &#39;operations_research::MPConstraint *&#39; at 0x7fa3be949a40&gt; &gt;
 </pre></div>
 </div>
 </div>
@@ -540,8 +541,8 @@ a linear objective function subject to a set of  linear equality and/or inequali
 </section>
 </section>
 <section id="example-2-investment-problem">
-<h2><span class="section-number">30.3. </span>Example 2: Investment Problem<a class="headerlink" href="#example-2-investment-problem" title="Permalink to this heading">#</a></h2>
-<p>We now consider a problem posed and solved by  <span id="id2">[<a class="reference internal" href="zreferences.html#id59" title="Y. Hu, Y. &amp; Guo. Operations research. Tsinghua University Press, 5th edition, 2018.">Hu18</a>]</span>.</p>
+<h2><span class="section-number">34.3. </span>Example 2: Investment Problem<a class="headerlink" href="#example-2-investment-problem" title="Permalink to this heading">#</a></h2>
+<p>We now consider a problem posed and solved by  <span id="id2">[<a class="reference internal" href="zreferences.html#id59" title="Y. Hu, Y. &amp; Guo. Operations research. Tsinghua University Press, 5th edition, 2018.">Hu, 2018</a>]</span>.</p>
 <p>A mutual fund has <span class="math notranslate nohighlight">\( \$ 100,000\)</span> to be invested over a three year horizon.</p>
 <p>Three investment options are available:</p>
 <ol class="arabic simple">
@@ -630,7 +631,7 @@ leaving it with  a bank account balance equal to <span class="math notranslate n
 \end{aligned}
 \end{split}\]</div>
 <section id="id3">
-<h3><span class="section-number">30.3.1. </span>Computation: Using OR-Tools<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">34.3.1. </span>Computation: Using OR-Tools<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
 <p>Let’s try to solve the above problem using the package <em>ortools.linear_solver</em>.</p>
 <p>The following cell instantiates a solver and creates two variables specifying the range of values that they can have.</p>
 <div class="cell docutils container">
@@ -669,7 +670,7 @@ leaving it with  a bank account balance equal to <span class="math notranslate n
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ortools.linear_solver.pywraplp.Constraint; proxy of &lt;Swig Object of type &#39;operations_research::MPConstraint *&#39; at 0x75d5160ba280&gt; &gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ortools.linear_solver.pywraplp.Constraint; proxy of &lt;Swig Object of type &#39;operations_research::MPConstraint *&#39; at 0x7fa3be94aa60&gt; &gt;
 </pre></div>
 </div>
 </div>
@@ -719,7 +720,7 @@ leaving it with  a bank account balance equal to <span class="math notranslate n
 </section>
 </section>
 <section id="standard-form">
-<h2><span class="section-number">30.4. </span>Standard form<a class="headerlink" href="#standard-form" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">34.4. </span>Standard form<a class="headerlink" href="#standard-form" title="Permalink to this heading">#</a></h2>
 <p>For purposes of</p>
 <ul class="simple">
 <li><p>unifying linear programs that are initially stated in superficially different forms, and</p></li>
@@ -753,7 +754,7 @@ x = \begin{bmatrix} x_1 \\ x_2 \\ \vdots \\ x_n \\ \end{bmatrix}. \quad
 \end{split}\]</div>
 <p>The standard form LP problem can be expressed concisely as:</p>
 <div class="math notranslate nohighlight" id="equation-lpproblem">
-<span class="eqno">(30.1)<a class="headerlink" href="#equation-lpproblem" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(34.1)<a class="headerlink" href="#equation-lpproblem" title="Permalink to this equation">#</a></span>\[\begin{split}
 \begin{aligned}
 \min_{x} \ &amp; c'x \\
 \mbox{subject to } \ &amp; Ax = b\\
@@ -763,7 +764,7 @@ x = \begin{bmatrix} x_1 \\ x_2 \\ \vdots \\ x_n \\ \end{bmatrix}. \quad
 <p>Here, <span class="math notranslate nohighlight">\(Ax = b\)</span> means that  the <span class="math notranslate nohighlight">\(i\)</span>-th entry of <span class="math notranslate nohighlight">\(Ax\)</span>  equals the <span class="math notranslate nohighlight">\(i\)</span>-th entry of <span class="math notranslate nohighlight">\(b\)</span> for every <span class="math notranslate nohighlight">\(i\)</span>.</p>
 <p>Similarly, <span class="math notranslate nohighlight">\(x \geq 0\)</span> means that  <span class="math notranslate nohighlight">\(x_j\)</span> is greater than equal to <span class="math notranslate nohighlight">\(0\)</span> for every <span class="math notranslate nohighlight">\(j\)</span>.</p>
 <section id="useful-transformations">
-<h3><span class="section-number">30.4.1. </span>Useful transformations<a class="headerlink" href="#useful-transformations" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">34.4.1. </span>Useful transformations<a class="headerlink" href="#useful-transformations" title="Permalink to this heading">#</a></h3>
 <p>It is useful to know how to transform a problem that initially is not stated in the standard form into one that is.</p>
 <p>By deploying the following steps, any linear programming problem can be transformed into an  equivalent  standard form linear programming problem.</p>
 <ol class="arabic simple">
@@ -774,7 +775,7 @@ x = \begin{bmatrix} x_1 \\ x_2 \\ \vdots \\ x_n \\ \end{bmatrix}. \quad
 <p>Let’s apply the above steps to the two examples described above.</p>
 </section>
 <section id="id4">
-<h3><span class="section-number">30.4.2. </span>Example 1: Production Problem<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">34.4.2. </span>Example 1: Production Problem<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h3>
 <p>The original problem is:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -797,7 +798,7 @@ x = \begin{bmatrix} x_1 \\ x_2 \\ \vdots \\ x_n \\ \end{bmatrix}. \quad
 \end{split}\]</div>
 </section>
 <section id="computation-using-scipy">
-<h3><span class="section-number">30.4.3. </span>Computation: Using SciPy<a class="headerlink" href="#computation-using-scipy" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">34.4.3. </span>Computation: Using SciPy<a class="headerlink" href="#computation-using-scipy" title="Permalink to this heading">#</a></h3>
 <p>The package <em>scipy.optimize</em> provides a function <em><strong>linprog</strong></em> to solve linear programming problems with a form below:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -861,7 +862,7 @@ x = \begin{bmatrix} x_1 \\ x_2 \\ \vdots \\ x_n \\ \end{bmatrix}. \quad
 </div>
 </section>
 <section id="id5">
-<h3><span class="section-number">30.4.4. </span>Example 2: Investment Problem<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">34.4.4. </span>Example 2: Investment Problem<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h3>
 <p>The original problem is:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -961,17 +962,17 @@ x = \begin{bmatrix} x_1 \\ x_2 \\ \vdots \\ x_n \\ \end{bmatrix}. \quad
 </section>
 </section>
 <section id="exercises">
-<h2><span class="section-number">30.5. </span>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">34.5. </span>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h2>
 <div class="exercise admonition" id="lp_intro_ex1">
 
-<p class="admonition-title"><span class="caption-number">Exercise 30.1 </span></p>
+<p class="admonition-title"><span class="caption-number">Exercise 34.1 </span></p>
 <section id="exercise-content">
 <p>Implement a new extended solution for the Problem 1 where in the factory owner decides that number of units of Product 1 should not be less than the number of units of Product 2.</p>
 </section>
 </div>
 <div class="solution dropdown admonition" id="lp_intro-solution-1">
 
-<p class="admonition-title">Solution to<a class="reference internal" href="#lp_intro_ex1"> Exercise 30.1</a></p>
+<p class="admonition-title">Solution to<a class="reference internal" href="#lp_intro_ex1"> Exercise 34.1</a></p>
 <section id="solution-content">
 <p>So we can reformulate the problem as:</p>
 <div class="math notranslate nohighlight">
@@ -1010,7 +1011,7 @@ x = \begin{bmatrix} x_1 \\ x_2 \\ \vdots \\ x_n \\ \end{bmatrix}. \quad
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ortools.linear_solver.pywraplp.Constraint; proxy of &lt;Swig Object of type &#39;operations_research::MPConstraint *&#39; at 0x75d5160ba940&gt; &gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ortools.linear_solver.pywraplp.Constraint; proxy of &lt;Swig Object of type &#39;operations_research::MPConstraint *&#39; at 0x7fa3be948030&gt; &gt;
 </pre></div>
 </div>
 </div>
@@ -1049,7 +1050,7 @@ x = \begin{bmatrix} x_1 \\ x_2 \\ \vdots \\ x_n \\ \end{bmatrix}. \quad
 </div>
 <div class="exercise admonition" id="lp_intro_ex2">
 
-<p class="admonition-title"><span class="caption-number">Exercise 30.2 </span></p>
+<p class="admonition-title"><span class="caption-number">Exercise 34.2 </span></p>
 <section id="exercise-content">
 <p>A carpenter manufactures <span class="math notranslate nohighlight">\(2\)</span> products - <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span>.</p>
 <p>Product <span class="math notranslate nohighlight">\(A\)</span> generates a profit of <span class="math notranslate nohighlight">\(23\)</span> and product <span class="math notranslate nohighlight">\(B\)</span> generates a profit of <span class="math notranslate nohighlight">\(10\)</span>.</p>
@@ -1060,7 +1061,7 @@ x = \begin{bmatrix} x_1 \\ x_2 \\ \vdots \\ x_n \\ \end{bmatrix}. \quad
 </div>
 <div class="solution dropdown admonition" id="lp_intro-solution-3">
 
-<p class="admonition-title">Solution to<a class="reference internal" href="#lp_intro_ex2"> Exercise 30.2</a></p>
+<p class="admonition-title">Solution to<a class="reference internal" href="#lp_intro_ex2"> Exercise 34.2</a></p>
 <section id="solution-content">
 <p>Let us assume the carpenter produces <span class="math notranslate nohighlight">\(x\)</span> units of <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(y\)</span> units of <span class="math notranslate nohighlight">\(B\)</span>.</p>
 <p>So we can formulate the problem as:</p>
@@ -1101,7 +1102,7 @@ x = \begin{bmatrix} x_1 \\ x_2 \\ \vdots \\ x_n \\ \end{bmatrix}. \quad
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ortools.linear_solver.pywraplp.Constraint; proxy of &lt;Swig Object of type &#39;operations_research::MPConstraint *&#39; at 0x75d5160ba760&gt; &gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ortools.linear_solver.pywraplp.Constraint; proxy of &lt;Swig Object of type &#39;operations_research::MPConstraint *&#39; at 0x7fa3be949c50&gt; &gt;
 </pre></div>
 </div>
 </div>
@@ -1284,7 +1285,7 @@ x = \begin{bmatrix} x_1 \\ x_2 \\ \vdots \\ x_n \\ \end{bmatrix}. \quad
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cagan_adaptive.html">
-   14. A Monetarist Theory of Price Levels with Adaptive Expectations
+   14. Monetarist Theory of Price Levels with Adaptive Expectations
   </a>
  </li>
 </ul>
@@ -1366,28 +1367,55 @@ x = \begin{bmatrix} x_1 \\ x_2 \\ \vdots \\ x_n \\ \end{bmatrix}. \quad
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
+  Monetary-Fiscal Policy Interactions
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="money_inflation.html">
+   26. Money Financed Government Deficits and Price Levels
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="unpleasant.html">
+   27. Unpleasant Monetarist Arithmetic
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="money_inflation_nonlinear.html">
+   28. Inflation Rate Laffer Curves
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="laffer_adaptive.html">
+   29. Laffer Curves  with Adaptive Expectations
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
   Stochastic Dynamics
  </span>
 </p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="ar1_processes.html">
-   26. AR1 Processes
+   30. AR1 Processes
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="markov_chains_I.html">
-   27. Markov Chains: Basic Concepts
+   31. Markov Chains: Basic Concepts
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="markov_chains_II.html">
-   28. Markov Chains: Irreducibility and Ergodicity
+   32. Markov Chains: Irreducibility and Ergodicity
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="time_series_with_matrices.html">
-   29. Univariate Time Series with Matrix Algebra
+   33. Univariate Time Series with Matrix Algebra
   </a>
  </li>
 </ul>
@@ -1399,12 +1427,12 @@ x = \begin{bmatrix} x_1 \\ x_2 \\ \vdots \\ x_n \\ \end{bmatrix}. \quad
 <ul class="current nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1 current active active">
   <a class="current reference internal" href="#">
-   30. Linear Programming
+   34. Linear Programming
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="short_path.html">
-   31. Shortest Paths
+   35. Shortest Paths
   </a>
  </li>
 </ul>
@@ -1416,22 +1444,22 @@ x = \begin{bmatrix} x_1 \\ x_2 \\ \vdots \\ x_n \\ \end{bmatrix}. \quad
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="eigen_II.html">
-   32. The Perron-Frobenius Theorem
+   36. The Perron-Frobenius Theorem
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="input_output.html">
-   33. Input-Output Models
+   37. Input-Output Models
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="lake_model.html">
-   34. A Lake Model of Employment
+   38. A Lake Model of Employment
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="networks.html">
-   35. Networks
+   39. Networks
   </a>
  </li>
 </ul>
@@ -1443,12 +1471,12 @@ x = \begin{bmatrix} x_1 \\ x_2 \\ \vdots \\ x_n \\ \end{bmatrix}. \quad
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="supply_demand_multiple_goods.html">
-   36. Supply and Demand with Many Goods
+   40. Supply and Demand with Many Goods
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="supply_demand_heterogeneity.html">
-   37. Market Equilibrium with Heterogeneity
+   41. Market Equilibrium with Heterogeneity
   </a>
  </li>
 </ul>
@@ -1460,12 +1488,12 @@ x = \begin{bmatrix} x_1 \\ x_2 \\ \vdots \\ x_n \\ \end{bmatrix}. \quad
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="simple_linear_regression.html">
-   38. Simple Linear Regression Model
+   42. Simple Linear Regression Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="mle.html">
-   39. Maximum Likelihood Estimation
+   43. Maximum Likelihood Estimation
   </a>
  </li>
 </ul>
@@ -1477,17 +1505,17 @@ x = \begin{bmatrix} x_1 \\ x_2 \\ \vdots \\ x_n \\ \end{bmatrix}. \quad
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="troubleshooting.html">
-   40. Troubleshooting
+   44. Troubleshooting
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="zreferences.html">
-   41. References
+   45. References
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="status.html">
-   42. Execution Statistics
+   46. Execution Statistics
   </a>
  </li>
 </ul>

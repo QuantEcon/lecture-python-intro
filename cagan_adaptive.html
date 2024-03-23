@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>14. A Monetarist Theory of Price Levels with Adaptive Expectations &#8212; A First Course in Quantitative Economics with Python</title>
+    <title>14. Monetarist Theory of Price Levels with Adaptive Expectations &#8212; A First Course in Quantitative Economics with Python</title>
     <script src="https://unpkg.com/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://unpkg.com/tippy.js@6.3.1/dist/tippy-bundle.umd.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
@@ -133,13 +133,13 @@ const thebe_selector_output = ".output, .cell_output"
 <!-- Twitter tags -->
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:site" content="@quantecon" />
-<meta name="twitter:title" content="A Monetarist Theory of Price Levels with Adaptive Expectations"/>
+<meta name="twitter:title" content="Monetarist Theory of Price Levels with Adaptive Expectations"/>
 <meta name="twitter:description" content="This website presents introductory lectures on computational economics, designed and written by Thomas J. Sargent and John Stachurski.">
 <meta name="twitter:creator" content="@quantecon">
 <meta name="twitter:image" content="https://assets.quantecon.org/img/qe-twitter-logo.png">
 
 <!-- Opengraph tags -->
-<meta property="og:title" content="A Monetarist Theory of Price Levels with Adaptive Expectations" />
+<meta property="og:title" content="Monetarist Theory of Price Levels with Adaptive Expectations" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://intro.quantecon.org/cagan_adaptive.html" />
 <meta property="og:image" content="https://assets.quantecon.org/img/qe-og-logo.png" />
@@ -171,7 +171,7 @@ const thebe_selector_output = ".output, .cell_output"
 
                         <nav id="bd-toc-nav" class="qe-page__toc-nav">
                             <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">14.1. Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">14.1. Overview</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#structure-of-the-model">14.2. Structure of the model</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#representing-key-equations-with-linear-algebra">14.3. Representing key equations with linear algebra</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#harvesting-insights-from-our-matrix-formulation">14.4. Harvesting insights from our matrix formulation</a></li>
@@ -213,7 +213,7 @@ const thebe_selector_output = ".output, .cell_output"
 
                         <p class="qe-page__header-heading"><a href="intro.html">A First Course in Quantitative Economics with Python</a></p>
 
-                        <p class="qe-page__header-subheading">A Monetarist Theory of Price Levels with Adaptive Expectations</p>
+                        <p class="qe-page__header-subheading">Monetarist Theory of Price Levels with Adaptive Expectations</p>
 
                     </div>
                     <!-- length 2, since its a string and empty dict has length 2 - {} -->
@@ -239,14 +239,14 @@ const thebe_selector_output = ".output, .cell_output"
                     
                     <div>
                         
-  <section class="tex2jax_ignore mathjax_ignore" id="a-monetarist-theory-of-price-levels-with-adaptive-expectations">
-<h1><span class="section-number">14. </span>A Monetarist Theory of Price Levels with Adaptive Expectations<a class="headerlink" href="#a-monetarist-theory-of-price-levels-with-adaptive-expectations" title="Permalink to this heading">#</a></h1>
-<section id="introduction">
-<h2><span class="section-number">14.1. </span>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
+  <section class="tex2jax_ignore mathjax_ignore" id="monetarist-theory-of-price-levels-with-adaptive-expectations">
+<h1><span class="section-number">14. </span>Monetarist Theory of Price Levels with Adaptive Expectations<a class="headerlink" href="#monetarist-theory-of-price-levels-with-adaptive-expectations" title="Permalink to this heading">#</a></h1>
+<section id="overview">
+<h2><span class="section-number">14.1. </span>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
 <p>This lecture is a sequel or prequel to the lecture <a class="reference internal" href="cagan_ree.html"><span class="doc">A Monetarist Theory of  Price Levels</span></a>.</p>
 <p>We’ll use linear algebra to do some experiments with  an alternative “monetarist” or  “fiscal” theory of  price levels.</p>
 <p>Like the model in <a class="reference internal" href="cagan_ree.html"><span class="doc">A Monetarist Theory of  Price Levels</span></a>, the model asserts that when a government persistently spends more than it collects in taxes and prints money to finance the shortfall, it puts upward pressure on the price level and generates persistent inflation.</p>
-<p>Instead of the “perfect foresight” or “rational expectations” version of the model in <a class="reference internal" href="cagan_ree.html"><span class="doc">A Monetarist Theory of  Price Levels</span></a>, our model in the present lecture is an “adaptive expectations”  version of a model that Philip Cagan <span id="id1">[<a class="reference internal" href="zreferences.html#id107" title="Philip Cagan. The monetary dynamics of hyperinflation. In Milton Friedman, editor, Studies in the Quantity Theory of Money, pages 25–117. University of Chicago Press, Chicago, 1956.">Cag56</a>]</span>  used to study the monetary dynamics of hyperinflations.</p>
+<p>Instead of the “perfect foresight” or “rational expectations” version of the model in <a class="reference internal" href="cagan_ree.html"><span class="doc">A Monetarist Theory of  Price Levels</span></a>, our model in the present lecture is an “adaptive expectations”  version of a model that  <span id="id1">[<a class="reference internal" href="zreferences.html#id107" title="Philip Cagan. The monetary dynamics of hyperinflation. In Milton Friedman, editor, Studies in the Quantity Theory of Money, pages 25–117. University of Chicago Press, Chicago, 1956.">Cagan, 1956</a>]</span>  used to study the monetary dynamics of hyperinflations.</p>
 <p>It combines these components:</p>
 <ul class="simple">
 <li><p>a demand function for real money balances that asserts that the logarithm of the quantity of real balances demanded depends inversely on the public’s expected rate of inflation</p></li>
@@ -291,7 +291,7 @@ p_t = m_t + \alpha \pi_t^*
 \pi_t = \mu_t + \alpha \pi_{t+1}^* - \alpha \pi_t^*
 \]</div>
 <p>We assume that the expected rate of inflation <span class="math notranslate nohighlight">\(\pi_t^*\)</span> is governed
-by the Friedman-Cagan adaptive expectations scheme</p>
+by the following adaptive expectations scheme proposed by <span id="id2">[<a class="reference internal" href="zreferences.html#id178" title="M. Friedman. A Theory of the Consumption Function. Princeton University Press, 1956.">Friedman, 1956</a>]</span> and <span id="id3">[<a class="reference internal" href="zreferences.html#id107" title="Philip Cagan. The monetary dynamics of hyperinflation. In Milton Friedman, editor, Studies in the Quantity Theory of Money, pages 25–117. University of Chicago Press, Chicago, 1956.">Cagan, 1956</a>]</span>:</p>
 <div class="math notranslate nohighlight" id="equation-eq-adaptexpn">
 <span class="eqno">(14.4)<a class="headerlink" href="#equation-eq-adaptexpn" title="Permalink to this equation">#</a></span>\[
 \pi_{t+1}^* = \lambda \pi_t^* + (1 -\lambda) \pi_t 
@@ -637,7 +637,7 @@ from <span class="math notranslate nohighlight">\(t=0\)</span> to <span class="m
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/ca4f81898029a1d2b8ef05509b74060ed28b7daa670da8dd2a7163c6f76be5aa.png"><img alt="_images/ca4f81898029a1d2b8ef05509b74060ed28b7daa670da8dd2a7163c6f76be5aa.png" src="_images/ca4f81898029a1d2b8ef05509b74060ed28b7daa670da8dd2a7163c6f76be5aa.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/7ff93ab5b6a86a80bee864946ef6f4c846c635ee6233b196f50099441bc99709.png"><img alt="_images/7ff93ab5b6a86a80bee864946ef6f4c846c635ee6233b196f50099441bc99709.png" src="_images/7ff93ab5b6a86a80bee864946ef6f4c846c635ee6233b196f50099441bc99709.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>We invite the reader to compare outcomes with those under rational expectations studied in <a class="reference internal" href="cagan_ree.html"><span class="doc">A Monetarist Theory of  Price Levels</span></a>.</p>
@@ -664,7 +664,7 @@ decline from a high value to a persistently low value.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/448c97d118121b8070a0fdc2834da4ee64cc69814eb518192b086b8eb5757384.png"><img alt="_images/448c97d118121b8070a0fdc2834da4ee64cc69814eb518192b086b8eb5757384.png" src="_images/448c97d118121b8070a0fdc2834da4ee64cc69814eb518192b086b8eb5757384.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/5ee281efb152d483caa8235f97c78a2275c52ffb83b2589e499e4d66a44238f5.png"><img alt="_images/5ee281efb152d483caa8235f97c78a2275c52ffb83b2589e499e4d66a44238f5.png" src="_images/5ee281efb152d483caa8235f97c78a2275c52ffb83b2589e499e4d66a44238f5.png" style="width: 80%;" /></a>
 </div>
 </div>
 </section>
@@ -814,7 +814,7 @@ decline from a high value to a persistently low value.</p>
  </li>
  <li class="toctree-l1 current active active">
   <a class="current reference internal" href="#">
-   14. A Monetarist Theory of Price Levels with Adaptive Expectations
+   14. Monetarist Theory of Price Levels with Adaptive Expectations
   </a>
  </li>
 </ul>
@@ -896,28 +896,55 @@ decline from a high value to a persistently low value.</p>
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
+  Monetary-Fiscal Policy Interactions
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="money_inflation.html">
+   26. Money Financed Government Deficits and Price Levels
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="unpleasant.html">
+   27. Unpleasant Monetarist Arithmetic
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="money_inflation_nonlinear.html">
+   28. Inflation Rate Laffer Curves
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="laffer_adaptive.html">
+   29. Laffer Curves  with Adaptive Expectations
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
   Stochastic Dynamics
  </span>
 </p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="ar1_processes.html">
-   26. AR1 Processes
+   30. AR1 Processes
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="markov_chains_I.html">
-   27. Markov Chains: Basic Concepts
+   31. Markov Chains: Basic Concepts
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="markov_chains_II.html">
-   28. Markov Chains: Irreducibility and Ergodicity
+   32. Markov Chains: Irreducibility and Ergodicity
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="time_series_with_matrices.html">
-   29. Univariate Time Series with Matrix Algebra
+   33. Univariate Time Series with Matrix Algebra
   </a>
  </li>
 </ul>
@@ -929,12 +956,12 @@ decline from a high value to a persistently low value.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="lp_intro.html">
-   30. Linear Programming
+   34. Linear Programming
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="short_path.html">
-   31. Shortest Paths
+   35. Shortest Paths
   </a>
  </li>
 </ul>
@@ -946,22 +973,22 @@ decline from a high value to a persistently low value.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="eigen_II.html">
-   32. The Perron-Frobenius Theorem
+   36. The Perron-Frobenius Theorem
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="input_output.html">
-   33. Input-Output Models
+   37. Input-Output Models
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="lake_model.html">
-   34. A Lake Model of Employment
+   38. A Lake Model of Employment
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="networks.html">
-   35. Networks
+   39. Networks
   </a>
  </li>
 </ul>
@@ -973,12 +1000,12 @@ decline from a high value to a persistently low value.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="supply_demand_multiple_goods.html">
-   36. Supply and Demand with Many Goods
+   40. Supply and Demand with Many Goods
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="supply_demand_heterogeneity.html">
-   37. Market Equilibrium with Heterogeneity
+   41. Market Equilibrium with Heterogeneity
   </a>
  </li>
 </ul>
@@ -990,12 +1017,12 @@ decline from a high value to a persistently low value.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="simple_linear_regression.html">
-   38. Simple Linear Regression Model
+   42. Simple Linear Regression Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="mle.html">
-   39. Maximum Likelihood Estimation
+   43. Maximum Likelihood Estimation
   </a>
  </li>
 </ul>
@@ -1007,17 +1034,17 @@ decline from a high value to a persistently low value.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="troubleshooting.html">
-   40. Troubleshooting
+   44. Troubleshooting
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="zreferences.html">
-   41. References
+   45. References
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="status.html">
-   42. Execution Statistics
+   46. Execution Statistics
   </a>
  </li>
 </ul>

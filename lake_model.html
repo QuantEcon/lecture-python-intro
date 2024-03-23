@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>34. A Lake Model of Employment &#8212; A First Course in Quantitative Economics with Python</title>
+    <title>38. A Lake Model of Employment &#8212; A First Course in Quantitative Economics with Python</title>
     <script src="https://unpkg.com/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://unpkg.com/tippy.js@6.3.1/dist/tippy-bundle.umd.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
@@ -122,8 +122,8 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="35. Networks" href="networks.html" />
-    <link rel="prev" title="33. Input-Output Models" href="input_output.html" />
+    <link rel="next" title="39. Networks" href="networks.html" />
+    <link rel="prev" title="37. Input-Output Models" href="input_output.html" />
 
 <!-- Normal Meta Tags -->
 <meta name="author" context="Thomas J. Sargent &amp; John Stachurski" />
@@ -171,19 +171,19 @@ const thebe_selector_output = ".output, .cell_output"
 
                         <nav id="bd-toc-nav" class="qe-page__toc-nav">
                             <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#outline">34.1. Outline</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-lake-model">34.2. The Lake model</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dynamics">34.3. Dynamics</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualising-the-long-run-outcomes">34.3.1. Visualising the long-run outcomes</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-application-of-perron-frobenius-theorem">34.3.2. The application of Perron-Frobenius theorem</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dominant-eigenvector">34.3.2.1. Dominant eigenvector</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#negative-growth-rate">34.3.2.2. Negative growth rate</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#outline">38.1. Outline</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-lake-model">38.2. The Lake model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dynamics">38.3. Dynamics</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualising-the-long-run-outcomes">38.3.1. Visualising the long-run outcomes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-application-of-perron-frobenius-theorem">38.3.2. The application of Perron-Frobenius theorem</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dominant-eigenvector">38.3.2.1. Dominant eigenvector</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#negative-growth-rate">38.3.2.2. Negative growth rate</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#properties">34.3.3. Properties</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#properties">38.3.3. Properties</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise">34.4. Exercise</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise">38.4. Exercise</a></li>
 </ul>
                             <p class="logo">
                                 
@@ -243,9 +243,9 @@ const thebe_selector_output = ".output, .cell_output"
                     <div>
                         
   <section class="tex2jax_ignore mathjax_ignore" id="a-lake-model-of-employment">
-<h1><span class="section-number">34. </span>A Lake Model of Employment<a class="headerlink" href="#a-lake-model-of-employment" title="Permalink to this heading">#</a></h1>
+<h1><span class="section-number">38. </span>A Lake Model of Employment<a class="headerlink" href="#a-lake-model-of-employment" title="Permalink to this heading">#</a></h1>
 <section id="outline">
-<h2><span class="section-number">34.1. </span>Outline<a class="headerlink" href="#outline" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">38.1. </span>Outline<a class="headerlink" href="#outline" title="Permalink to this heading">#</a></h2>
 <p>In addition to what’s in Anaconda, this lecture will need the following libraries:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -257,7 +257,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </section>
 <section id="the-lake-model">
-<h2><span class="section-number">34.2. </span>The Lake model<a class="headerlink" href="#the-lake-model" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">38.2. </span>The Lake model<a class="headerlink" href="#the-lake-model" title="Permalink to this heading">#</a></h2>
 <p>This model is sometimes called the <strong>lake model</strong> because there are two pools of workers:</p>
 <ol class="arabic simple">
 <li><p>those who are currently employed.</p></li>
@@ -274,22 +274,22 @@ const thebe_selector_output = ".output, .cell_output"
 <figure class="align-default" id="lake-model-graphviz">
 <img alt="_images/lake_model_worker.png" src="_images/lake_model_worker.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 34.1 </span><span class="caption-text">An illustration of the lake model</span><a class="headerlink" href="#lake-model-graphviz" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 38.1 </span><span class="caption-text">An illustration of the lake model</span><a class="headerlink" href="#lake-model-graphviz" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
 <section id="dynamics">
-<h2><span class="section-number">34.3. </span>Dynamics<a class="headerlink" href="#dynamics" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">38.3. </span>Dynamics<a class="headerlink" href="#dynamics" title="Permalink to this heading">#</a></h2>
 <p>Let <span class="math notranslate nohighlight">\(e_t\)</span> and <span class="math notranslate nohighlight">\(u_t\)</span> be the number of employed and unemployed workers at time <span class="math notranslate nohighlight">\(t\)</span> respectively.</p>
 <p>The total population of workers is <span class="math notranslate nohighlight">\(n_t = e_t + u_t\)</span>.</p>
 <p>The number of unemployed and employed workers thus evolves according to:</p>
 <div class="math notranslate nohighlight" id="equation-lake-model">
-<span class="eqno">(34.1)<a class="headerlink" href="#equation-lake-model" title="Permalink to this equation">#</a></span>\[\begin{split}\begin{aligned}
+<span class="eqno">(38.1)<a class="headerlink" href="#equation-lake-model" title="Permalink to this equation">#</a></span>\[\begin{split}\begin{aligned}
     u_{t+1} &amp;= (1-d)(1-\lambda)u_t + \alpha(1-d)e_t + bn_t \\
     &amp;= ((1-d)(1-\lambda) + b)u_t + (\alpha(1-d) + b)e_t \\
     e_{t+1} &amp;= (1-d)\lambda u_t + (1 - \alpha)(1-d)e_t
 \end{aligned}\end{split}\]</div>
-<p>We can arrange <a class="reference internal" href="#equation-lake-model">(34.1)</a> as a linear system of equations in matrix form <span class="math notranslate nohighlight">\(x_{t+1} = Ax_t\)</span> where</p>
+<p>We can arrange <a class="reference internal" href="#equation-lake-model">(38.1)</a> as a linear system of equations in matrix form <span class="math notranslate nohighlight">\(x_{t+1} = Ax_t\)</span> where</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 x_{t+1} =
@@ -317,7 +317,7 @@ x_t =
 <p>What long-run unemployment rate and employment rate should we expect?</p>
 <p>Do long-run outcomes depend on the initial values <span class="math notranslate nohighlight">\((u_0, e_o)\)</span>?</p>
 <section id="visualising-the-long-run-outcomes">
-<h3><span class="section-number">34.3.1. </span>Visualising the long-run outcomes<a class="headerlink" href="#visualising-the-long-run-outcomes" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">38.3.1. </span>Visualising the long-run outcomes<a class="headerlink" href="#visualising-the-long-run-outcomes" title="Permalink to this heading">#</a></h3>
 <p>Let us first plot the time series of unemployment <span class="math notranslate nohighlight">\(u_t\)</span>, employment <span class="math notranslate nohighlight">\(e_t\)</span>, and labor force <span class="math notranslate nohighlight">\(n_t\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -413,7 +413,7 @@ x_t =
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/1262afc2e44e4d6bb5b0796d2496d3435d3409375617f9a1cae953b290048b9f.png"><img alt="_images/1262afc2e44e4d6bb5b0796d2496d3435d3409375617f9a1cae953b290048b9f.png" src="_images/1262afc2e44e4d6bb5b0796d2496d3435d3409375617f9a1cae953b290048b9f.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/80581c26a598496b4c9052e08ee4235902c0a09503bcf4c4a819bdce3110a352.png"><img alt="_images/80581c26a598496b4c9052e08ee4235902c0a09503bcf4c4a819bdce3110a352.png" src="_images/80581c26a598496b4c9052e08ee4235902c0a09503bcf4c4a819bdce3110a352.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>Not surprisingly, we observe that labor force <span class="math notranslate nohighlight">\(n_t\)</span> increases at a constant rate.</p>
@@ -436,7 +436,7 @@ is determined by constant exit rate and entry rate of labor market in the long r
 <p>Moreover, the times series of unemployment and employment seems to grow at some stable rates in the long run.</p>
 </section>
 <section id="the-application-of-perron-frobenius-theorem">
-<h3><span class="section-number">34.3.2. </span>The application of Perron-Frobenius theorem<a class="headerlink" href="#the-application-of-perron-frobenius-theorem" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">38.3.2. </span>The application of Perron-Frobenius theorem<a class="headerlink" href="#the-application-of-perron-frobenius-theorem" title="Permalink to this heading">#</a></h3>
 <p>Since by intuition if we consider unemployment pool and employment pool as a closed system, the growth should be similar to the labor force.</p>
 <p>We next ask whether the long run growth rates of <span class="math notranslate nohighlight">\(e_t\)</span> and <span class="math notranslate nohighlight">\(u_t\)</span>
 also dominated by <span class="math notranslate nohighlight">\(1+b-d\)</span> as labor force.</p>
@@ -449,7 +449,7 @@ begin with an initial condition <span class="math notranslate nohighlight">\(x_0
 <p>This theorem helps characterise the dominant eigenvalue <span class="math notranslate nohighlight">\(r(A)\)</span> which
 determines the behavior of this iterative process.</p>
 <section id="dominant-eigenvector">
-<h4><span class="section-number">34.3.2.1. </span>Dominant eigenvector<a class="headerlink" href="#dominant-eigenvector" title="Permalink to this heading">#</a></h4>
+<h4><span class="section-number">38.3.2.1. </span>Dominant eigenvector<a class="headerlink" href="#dominant-eigenvector" title="Permalink to this heading">#</a></h4>
 <p>We now illustrate the power of the Perron-Frobenius theorem by showing how it
 helps us to analyze the lake model.</p>
 <p>Since <span class="math notranslate nohighlight">\(A\)</span> is a nonnegative and irreducible matrix, the Perron-Frobenius theorem implies that:</p>
@@ -479,14 +479,14 @@ helps us to analyze the lake model.</p>
 <p>Therefore, the magnitude <span class="math notranslate nohighlight">\(x_t = A^t x_0\)</span> is also dominated by <span class="math notranslate nohighlight">\(r(A)^t\)</span> in the long run.</p>
 <p>Recall that the spectral radius is bounded by column sums: for <span class="math notranslate nohighlight">\(A \geq 0\)</span>, we have</p>
 <div class="math notranslate nohighlight" id="equation-pf-bounds">
-<span class="eqno">(34.2)<a class="headerlink" href="#equation-pf-bounds" title="Permalink to this equation">#</a></span>\[\min_j \text{colsum}_j (A) \leq r(A) \leq \max_j \text{colsum}_j (A)\]</div>
-<p>Note that <span class="math notranslate nohighlight">\(\text{colsum}_j(A) = 1 + b - d\)</span> for <span class="math notranslate nohighlight">\(j=1,2\)</span> and by <a class="reference internal" href="#equation-pf-bounds">(34.2)</a> we can thus conclude that the dominant eigenvalue
+<span class="eqno">(38.2)<a class="headerlink" href="#equation-pf-bounds" title="Permalink to this equation">#</a></span>\[\min_j \text{colsum}_j (A) \leq r(A) \leq \max_j \text{colsum}_j (A)\]</div>
+<p>Note that <span class="math notranslate nohighlight">\(\text{colsum}_j(A) = 1 + b - d\)</span> for <span class="math notranslate nohighlight">\(j=1,2\)</span> and by <a class="reference internal" href="#equation-pf-bounds">(38.2)</a> we can thus conclude that the dominant eigenvalue
 is <span class="math notranslate nohighlight">\(r(A) = 1 + b - d\)</span>.</p>
 <p>Denote <span class="math notranslate nohighlight">\(g = b - d\)</span> as the overall growth rate of the total labor force, so that <span class="math notranslate nohighlight">\(r(A) = 1 + g\)</span>.</p>
 <p>The Perron-Frobenius implies that there is a unique positive eigenvector <span class="math notranslate nohighlight">\(\bar{x} = \begin{bmatrix} \bar{u} \\ \bar{e} \end{bmatrix}\)</span>
 such that <span class="math notranslate nohighlight">\(A\bar{x} = r(A)\bar{x}\)</span> and <span class="math notranslate nohighlight">\(\begin{bmatrix} 1 &amp; 1 \end{bmatrix} \bar{x} = 1\)</span>:</p>
 <div class="math notranslate nohighlight" id="equation-steady-x">
-<span class="eqno">(34.3)<a class="headerlink" href="#equation-steady-x" title="Permalink to this equation">#</a></span>\[\begin{split}\begin{aligned}
+<span class="eqno">(38.3)<a class="headerlink" href="#equation-steady-x" title="Permalink to this equation">#</a></span>\[\begin{split}\begin{aligned}
     \bar{u} &amp; = \frac{b + \alpha (1-d)}{b + (\alpha+\lambda)(1-d)} \\
     \bar{e} &amp; = \frac{\lambda(1-d)}{b + (\alpha+\lambda)(1-d)}
 \end{aligned}\end{split}\]</div>
@@ -577,7 +577,7 @@ such that <span class="math notranslate nohighlight">\(A\bar{x} = r(A)\bar{x}\)<
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/230f72a86d21d80bc3c039a43b987ee015cb2c7f36b07752fb664a135bd0e5f8.png"><img alt="_images/230f72a86d21d80bc3c039a43b987ee015cb2c7f36b07752fb664a135bd0e5f8.png" src="_images/230f72a86d21d80bc3c039a43b987ee015cb2c7f36b07752fb664a135bd0e5f8.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/ba22019396f87a7ccc9370331b181c92ab5c41089d7c9ed86adad3d2da8ac20b.png"><img alt="_images/ba22019396f87a7ccc9370331b181c92ab5c41089d7c9ed86adad3d2da8ac20b.png" src="_images/ba22019396f87a7ccc9370331b181c92ab5c41089d7c9ed86adad3d2da8ac20b.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>Since <span class="math notranslate nohighlight">\(\bar{x}\)</span> is an eigenvector corresponding to the eigenvalue <span class="math notranslate nohighlight">\(r(A)\)</span>, all the vectors in the set
@@ -588,7 +588,7 @@ to <span class="math notranslate nohighlight">\(r(A)\)</span>.</p>
 <p>This suggests that all such sequences share strong similarities in the long run, determined by the dominant eigenvector <span class="math notranslate nohighlight">\(\bar{x}\)</span>.</p>
 </section>
 <section id="negative-growth-rate">
-<h4><span class="section-number">34.3.2.2. </span>Negative growth rate<a class="headerlink" href="#negative-growth-rate" title="Permalink to this heading">#</a></h4>
+<h4><span class="section-number">38.3.2.2. </span>Negative growth rate<a class="headerlink" href="#negative-growth-rate" title="Permalink to this heading">#</a></h4>
 <p>In the example illustrated above we considered parameters such that overall growth rate of the labor force <span class="math notranslate nohighlight">\(g&gt;0\)</span>.</p>
 <p>Suppose now we are faced with a situation where the <span class="math notranslate nohighlight">\(g&lt;0\)</span>, i.e., negative growth in the labor force.</p>
 <p>This means that <span class="math notranslate nohighlight">\(b-d&lt;0\)</span>, i.e., workers exit the market faster than they enter.</p>
@@ -602,7 +602,7 @@ to <span class="math notranslate nohighlight">\(r(A)\)</span>.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/ab3f7fa9a4c9f563486b0b483b9fa5359a443b363b1bc7974d3d93d192722d56.png"><img alt="_images/ab3f7fa9a4c9f563486b0b483b9fa5359a443b363b1bc7974d3d93d192722d56.png" src="_images/ab3f7fa9a4c9f563486b0b483b9fa5359a443b363b1bc7974d3d93d192722d56.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/c63b093dc4995b3385626baa59daeecc3838e4464ee38c60acb18b6d6c847517.png"><img alt="_images/c63b093dc4995b3385626baa59daeecc3838e4464ee38c60acb18b6d6c847517.png" src="_images/c63b093dc4995b3385626baa59daeecc3838e4464ee38c60acb18b6d6c847517.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>Thus, while the sequence of iterates still moves towards the dominant eigenvector <span class="math notranslate nohighlight">\(\bar{x}\)</span>, in this case
@@ -613,7 +613,7 @@ to some point, in this case to <span class="math notranslate nohighlight">\((0,0
 </section>
 </section>
 <section id="properties">
-<h3><span class="section-number">34.3.3. </span>Properties<a class="headerlink" href="#properties" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">38.3.3. </span>Properties<a class="headerlink" href="#properties" title="Permalink to this heading">#</a></h3>
 <p>Since the column sums of <span class="math notranslate nohighlight">\(A\)</span> are <span class="math notranslate nohighlight">\(r(A)=1\)</span>, the left eigenvector is <span class="math notranslate nohighlight">\(\mathbb{1}^\top=[1, 1]\)</span>.</p>
 <p>Perron-Frobenius theory implies that</p>
 <div class="math notranslate nohighlight">
@@ -688,7 +688,7 @@ r_t = \hat{A}^t r_0 = (1+g)^{-t} A^t r_0 = r(A)^{-t} A^t r_0 \to \begin{bmatrix}
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/332f8c7e432553f9c5d671d970c1555d46441485bd8e1b13d27a9f0d61a92b84.png"><img alt="_images/332f8c7e432553f9c5d671d970c1555d46441485bd8e1b13d27a9f0d61a92b84.png" src="_images/332f8c7e432553f9c5d671d970c1555d46441485bd8e1b13d27a9f0d61a92b84.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/f6a27d16ecb4867ca1984510f3fe0289e0f46c64c1326bfe4560d7b2631d1672.png"><img alt="_images/f6a27d16ecb4867ca1984510f3fe0289e0f46c64c1326bfe4560d7b2631d1672.png" src="_images/f6a27d16ecb4867ca1984510f3fe0289e0f46c64c1326bfe4560d7b2631d1672.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>To provide more intuition for convergence, we further explain the convergence below without the Perron-Frobenius theorem.</p>
@@ -712,10 +712,10 @@ r_t = P z_t = \begin{bmatrix} v_1 &amp; v_2 \end{bmatrix}  \begin{bmatrix} \gamm
 </section>
 </section>
 <section id="exercise">
-<h2><span class="section-number">34.4. </span>Exercise<a class="headerlink" href="#exercise" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">38.4. </span>Exercise<a class="headerlink" href="#exercise" title="Permalink to this heading">#</a></h2>
 <div class="exercise admonition" id="lake_model_ex1">
 
-<p class="admonition-title"><span class="caption-number">Exercise 34.1 </span> (Evolution of unemployment and employment rate)</p>
+<p class="admonition-title"><span class="caption-number">Exercise 38.1 </span> (Evolution of unemployment and employment rate)</p>
 <section id="exercise-content">
 <p>How do the long-run unemployment rate and employment rate evolve if there is an increase in the separation rate <span class="math notranslate nohighlight">\(\alpha\)</span>
 or a decrease in job finding rate <span class="math notranslate nohighlight">\(\lambda\)</span>?</p>
@@ -726,9 +726,9 @@ shifts in the unemployment-employment space.</p>
 </div>
 <div class="solution dropdown admonition" id="lake_model-solution-1">
 
-<p class="admonition-title">Solution to<a class="reference internal" href="#lake_model_ex1"> Exercise 34.1 (Evolution of unemployment and employment rate)</a></p>
+<p class="admonition-title">Solution to<a class="reference internal" href="#lake_model_ex1"> Exercise 38.1 (Evolution of unemployment and employment rate)</a></p>
 <section id="solution-content">
-<p>Eq. <a class="reference internal" href="#equation-steady-x">(34.3)</a> implies that the long-run unemployment rate will increase, and the employment rate will decrease
+<p>Eq. <a class="reference internal" href="#equation-steady-x">(38.3)</a> implies that the long-run unemployment rate will increase, and the employment rate will decrease
 if <span class="math notranslate nohighlight">\(\alpha\)</span> increases or <span class="math notranslate nohighlight">\(\lambda\)</span> decreases.</p>
 <p>Suppose first that <span class="math notranslate nohighlight">\(\alpha=0.01, \lambda=0.1, d=0.02, b=0.025\)</span>.
 Assume that <span class="math notranslate nohighlight">\(\alpha\)</span> increases to <span class="math notranslate nohighlight">\(0.04\)</span>.</p>
@@ -753,7 +753,7 @@ the fraction of unemployment rises as the separation rate increases.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/307422fbcb2e285502c5bca799382e6f057a7ff27408267f6cbd88ef25b6d84f.png"><img alt="_images/307422fbcb2e285502c5bca799382e6f057a7ff27408267f6cbd88ef25b6d84f.png" src="_images/307422fbcb2e285502c5bca799382e6f057a7ff27408267f6cbd88ef25b6d84f.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/1e3abb1c9e7dbfccc01a426c9d5305d1ad076a0a9649198316070b0d4eeb9ac9.png"><img alt="_images/1e3abb1c9e7dbfccc01a426c9d5305d1ad076a0a9649198316070b0d4eeb9ac9.png" src="_images/1e3abb1c9e7dbfccc01a426c9d5305d1ad076a0a9649198316070b0d4eeb9ac9.png" style="width: 80%;" /></a>
 </div>
 </div>
 </section>
@@ -904,7 +904,7 @@ the fraction of unemployment rises as the separation rate increases.</p>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cagan_adaptive.html">
-   14. A Monetarist Theory of Price Levels with Adaptive Expectations
+   14. Monetarist Theory of Price Levels with Adaptive Expectations
   </a>
  </li>
 </ul>
@@ -986,28 +986,55 @@ the fraction of unemployment rises as the separation rate increases.</p>
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
+  Monetary-Fiscal Policy Interactions
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="money_inflation.html">
+   26. Money Financed Government Deficits and Price Levels
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="unpleasant.html">
+   27. Unpleasant Monetarist Arithmetic
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="money_inflation_nonlinear.html">
+   28. Inflation Rate Laffer Curves
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="laffer_adaptive.html">
+   29. Laffer Curves  with Adaptive Expectations
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
   Stochastic Dynamics
  </span>
 </p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="ar1_processes.html">
-   26. AR1 Processes
+   30. AR1 Processes
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="markov_chains_I.html">
-   27. Markov Chains: Basic Concepts
+   31. Markov Chains: Basic Concepts
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="markov_chains_II.html">
-   28. Markov Chains: Irreducibility and Ergodicity
+   32. Markov Chains: Irreducibility and Ergodicity
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="time_series_with_matrices.html">
-   29. Univariate Time Series with Matrix Algebra
+   33. Univariate Time Series with Matrix Algebra
   </a>
  </li>
 </ul>
@@ -1019,12 +1046,12 @@ the fraction of unemployment rises as the separation rate increases.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="lp_intro.html">
-   30. Linear Programming
+   34. Linear Programming
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="short_path.html">
-   31. Shortest Paths
+   35. Shortest Paths
   </a>
  </li>
 </ul>
@@ -1036,22 +1063,22 @@ the fraction of unemployment rises as the separation rate increases.</p>
 <ul class="current nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="eigen_II.html">
-   32. The Perron-Frobenius Theorem
+   36. The Perron-Frobenius Theorem
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="input_output.html">
-   33. Input-Output Models
+   37. Input-Output Models
   </a>
  </li>
  <li class="toctree-l1 current active active">
   <a class="current reference internal" href="#">
-   34. A Lake Model of Employment
+   38. A Lake Model of Employment
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="networks.html">
-   35. Networks
+   39. Networks
   </a>
  </li>
 </ul>
@@ -1063,12 +1090,12 @@ the fraction of unemployment rises as the separation rate increases.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="supply_demand_multiple_goods.html">
-   36. Supply and Demand with Many Goods
+   40. Supply and Demand with Many Goods
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="supply_demand_heterogeneity.html">
-   37. Market Equilibrium with Heterogeneity
+   41. Market Equilibrium with Heterogeneity
   </a>
  </li>
 </ul>
@@ -1080,12 +1107,12 @@ the fraction of unemployment rises as the separation rate increases.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="simple_linear_regression.html">
-   38. Simple Linear Regression Model
+   42. Simple Linear Regression Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="mle.html">
-   39. Maximum Likelihood Estimation
+   43. Maximum Likelihood Estimation
   </a>
  </li>
 </ul>
@@ -1097,17 +1124,17 @@ the fraction of unemployment rises as the separation rate increases.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="troubleshooting.html">
-   40. Troubleshooting
+   44. Troubleshooting
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="zreferences.html">
-   41. References
+   45. References
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="status.html">
-   42. Execution Statistics
+   46. Execution Statistics
   </a>
  </li>
 </ul>

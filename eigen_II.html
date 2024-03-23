@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>32. The Perron-Frobenius Theorem &#8212; A First Course in Quantitative Economics with Python</title>
+    <title>36. The Perron-Frobenius Theorem &#8212; A First Course in Quantitative Economics with Python</title>
     <script src="https://unpkg.com/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://unpkg.com/tippy.js@6.3.1/dist/tippy-bundle.umd.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
@@ -122,8 +122,8 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="33. Input-Output Models" href="input_output.html" />
-    <link rel="prev" title="31. Shortest Paths" href="short_path.html" />
+    <link rel="next" title="37. Input-Output Models" href="input_output.html" />
+    <link rel="prev" title="35. Shortest Paths" href="short_path.html" />
 
 <!-- Normal Meta Tags -->
 <meta name="author" context="Thomas J. Sargent &amp; John Stachurski" />
@@ -171,21 +171,21 @@ const thebe_selector_output = ".output, .cell_output"
 
                         <nav id="bd-toc-nav" class="qe-page__toc-nav">
                             <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nonnegative-matrices">32.1. Nonnegative matrices</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#irreducible-matrices">32.1.1. Irreducible matrices</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#left-eigenvectors">32.1.2. Left eigenvectors</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#perron-frobe">32.1.3. The Perron-Frobenius theorem</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-irreducible-matrix">32.1.3.1. Example: Irreducible matrix</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nonnegative-matrices">36.1. Nonnegative matrices</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#irreducible-matrices">36.1.1. Irreducible matrices</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#left-eigenvectors">36.1.2. Left eigenvectors</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#perron-frobe">36.1.3. The Perron-Frobenius theorem</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-irreducible-matrix">36.1.3.1. Example: Irreducible matrix</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#primitive-matrices">32.1.4. Primitive matrices</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-1-primitive-matrix">32.1.4.1. Example 1: Primitive matrix</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-connection-to-markov-chains">32.1.4.2. Example 2: Connection to Markov chains</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#primitive-matrices">36.1.4. Primitive matrices</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-1-primitive-matrix">36.1.4.1. Example 1: Primitive matrix</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-connection-to-markov-chains">36.1.4.2. Example 2: Connection to Markov chains</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">32.2. Exercises</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">36.2. Exercises</a></li>
 </ul>
                             <p class="logo">
                                 
@@ -245,7 +245,7 @@ const thebe_selector_output = ".output, .cell_output"
                     <div>
                         
   <section class="tex2jax_ignore mathjax_ignore" id="the-perron-frobenius-theorem">
-<h1><span class="section-number">32. </span>The Perron-Frobenius Theorem<a class="headerlink" href="#the-perron-frobenius-theorem" title="Permalink to this heading">#</a></h1>
+<h1><span class="section-number">36. </span>The Perron-Frobenius Theorem<a class="headerlink" href="#the-perron-frobenius-theorem" title="Permalink to this heading">#</a></h1>
 <p id="index-0">In addition to what’s in Anaconda, this lecture will need the following libraries:</p>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input above-output-prompt docutils container">
@@ -260,22 +260,19 @@ const thebe_selector_output = ".output, .cell_output"
 </summary>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting quantecon
-  Obtaining dependency information for quantecon from https://files.pythonhosted.org/packages/77/1b/75e44bd482abe2e87dcbead8cfd99b8fa6582fdc0906967c34f64abfdf13/quantecon-0.7.2-py3-none-any.whl.metadata
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Downloading quantecon-0.7.2-py3-none-any.whl.metadata (4.9 kB)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: numba&gt;=0.49.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from quantecon) (0.57.1)
-Requirement already satisfied: numpy&gt;=1.17.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from quantecon) (1.24.3)
+Requirement already satisfied: numba&gt;=0.49.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from quantecon) (0.59.0)
+Requirement already satisfied: numpy&gt;=1.17.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from quantecon) (1.26.4)
 Requirement already satisfied: requests in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from quantecon) (2.31.0)
-Requirement already satisfied: scipy&gt;=1.5.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from quantecon) (1.11.1)
-Requirement already satisfied: sympy in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from quantecon) (1.11.1)
-Requirement already satisfied: llvmlite&lt;0.41,&gt;=0.40.0dev0 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from numba&gt;=0.49.0-&gt;quantecon) (0.40.0)
+Requirement already satisfied: scipy&gt;=1.5.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from quantecon) (1.11.4)
+Requirement already satisfied: sympy in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from quantecon) (1.12)
+Requirement already satisfied: llvmlite&lt;0.43,&gt;=0.42.0dev0 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from numba&gt;=0.49.0-&gt;quantecon) (0.42.0)
 Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from requests-&gt;quantecon) (2.0.4)
 Requirement already satisfied: idna&lt;4,&gt;=2.5 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from requests-&gt;quantecon) (3.4)
-Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from requests-&gt;quantecon) (1.26.16)
-Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from requests-&gt;quantecon) (2023.7.22)
+Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from requests-&gt;quantecon) (2.0.7)
+Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from requests-&gt;quantecon) (2024.2.2)
 Requirement already satisfied: mpmath&gt;=0.19 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from sympy-&gt;quantecon) (1.3.0)
 </pre></div>
 </div>
@@ -283,8 +280,8 @@ Requirement already satisfied: mpmath&gt;=0.19 in /usr/share/miniconda3/envs/qua
 ?25l   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/215.4 kB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━╺━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">92.2/215.4 kB</span> <span class=" -Color -Color-Red">3.2 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">215.4/215.4 kB</span> <span class=" -Color -Color-Red">4.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━╸━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">112.6/215.4 kB</span> <span class=" -Color -Color-Red">3.3 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">215.4/215.4 kB</span> <span class=" -Color -Color-Red">4.8 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
 ?25h
 </pre></div>
 </div>
@@ -311,7 +308,7 @@ Requirement already satisfied: mpmath&gt;=0.19 in /usr/share/miniconda3/envs/qua
 </div>
 </div>
 <section id="nonnegative-matrices">
-<h2><span class="section-number">32.1. </span>Nonnegative matrices<a class="headerlink" href="#nonnegative-matrices" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">36.1. </span>Nonnegative matrices<a class="headerlink" href="#nonnegative-matrices" title="Permalink to this heading">#</a></h2>
 <p>Often, in economics, the matrix that we are dealing with is nonnegative.</p>
 <p>Nonnegative matrices have several special and useful properties.</p>
 <p>In this section we will discuss some of them — in particular, the connection
@@ -320,7 +317,7 @@ between nonnegativity and eigenvalues.</p>
 is nonnegative, i.e., <span class="math notranslate nohighlight">\(a_{ij} \geq 0\)</span> for every <span class="math notranslate nohighlight">\(i,j\)</span>.</p>
 <p>We denote this as <span class="math notranslate nohighlight">\(A \geq 0\)</span>.</p>
 <section id="irreducible-matrices">
-<span id="irreducible"></span><h3><span class="section-number">32.1.1. </span>Irreducible matrices<a class="headerlink" href="#irreducible-matrices" title="Permalink to this heading">#</a></h3>
+<span id="irreducible"></span><h3><span class="section-number">36.1.1. </span>Irreducible matrices<a class="headerlink" href="#irreducible-matrices" title="Permalink to this heading">#</a></h3>
 <p>We introduced irreducible matrices in the <a class="reference internal" href="markov_chains_II.html#mc-irreducible"><span class="std std-ref">Markov chain lecture</span></a>.</p>
 <p>Here we generalize this concept:</p>
 <p>Let <span class="math notranslate nohighlight">\(a^{k}_{ij}\)</span> be element <span class="math notranslate nohighlight">\((i,j)\)</span> of <span class="math notranslate nohighlight">\(A^k\)</span>.</p>
@@ -355,7 +352,7 @@ C = \begin{bmatrix} 1 &amp; 0 \\
 <span class="math notranslate nohighlight">\(c^{k}_{12},c^{k}_{21} = 0\)</span> for all <span class="math notranslate nohighlight">\(k \geq 0\)</span>.</p>
 </section>
 <section id="left-eigenvectors">
-<h3><span class="section-number">32.1.2. </span>Left eigenvectors<a class="headerlink" href="#left-eigenvectors" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">36.1.2. </span>Left eigenvectors<a class="headerlink" href="#left-eigenvectors" title="Permalink to this heading">#</a></h3>
 <p>Recall that we previously discussed eigenvectors in <a class="reference internal" href="eigen_I.html#la-eigenvalues"><span class="std std-ref">Eigenvalues and Eigenvectors</span></a>.</p>
 <p>In particular, <span class="math notranslate nohighlight">\(\lambda\)</span> is an eigenvalue of <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(v\)</span> is an eigenvector of <span class="math notranslate nohighlight">\(A\)</span> if <span class="math notranslate nohighlight">\(v\)</span> is nonzero and satisfy</p>
 <div class="math notranslate nohighlight">
@@ -431,13 +428,13 @@ The corresponding left eigenvectors are:
 <p>This is a more common expression and where the name left eigenvectors originates.</p>
 </section>
 <section id="perron-frobe">
-<span id="id1"></span><h3><span class="section-number">32.1.3. </span>The Perron-Frobenius theorem<a class="headerlink" href="#perron-frobe" title="Permalink to this heading">#</a></h3>
+<span id="id1"></span><h3><span class="section-number">36.1.3. </span>The Perron-Frobenius theorem<a class="headerlink" href="#perron-frobe" title="Permalink to this heading">#</a></h3>
 <p>For a square nonnegative matrix <span class="math notranslate nohighlight">\(A\)</span>, the behavior of <span class="math notranslate nohighlight">\(A^k\)</span> as <span class="math notranslate nohighlight">\(k \to \infty\)</span> is controlled by the eigenvalue with the largest
 absolute value, often called the <strong>dominant eigenvalue</strong>.</p>
 <p>For any such matrix <span class="math notranslate nohighlight">\(A\)</span>, the Perron-Frobenius Theorem characterizes certain
 properties of the dominant eigenvalue and its corresponding eigenvector.</p>
 <div class="proof theorem admonition" id="perron-frobenius">
-<p class="admonition-title"><span class="caption-number">Theorem 32.1 </span> (Perron-Frobenius Theorem)</p>
+<p class="admonition-title"><span class="caption-number">Theorem 36.1 </span> (Perron-Frobenius Theorem)</p>
 <section class="theorem-content" id="proof-content">
 <p>If a matrix <span class="math notranslate nohighlight">\(A \geq 0\)</span> then,</p>
 <ol class="arabic simple">
@@ -458,7 +455,7 @@ properties of the dominant eigenvalue and its corresponding eigenvector.</p>
 <p>Let’s build our intuition for the theorem using a simple example we have seen <a class="reference internal" href="markov_chains_I.html#mc-eg1"><span class="std std-ref">before</span></a>.</p>
 <p>Now let’s consider examples for each case.</p>
 <section id="example-irreducible-matrix">
-<h4><span class="section-number">32.1.3.1. </span>Example: Irreducible matrix<a class="headerlink" href="#example-irreducible-matrix" title="Permalink to this heading">#</a></h4>
+<h4><span class="section-number">36.1.3.1. </span>Example: Irreducible matrix<a class="headerlink" href="#example-irreducible-matrix" title="Permalink to this heading">#</a></h4>
 <p>Consider the following irreducible matrix <span class="math notranslate nohighlight">\(A\)</span>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -477,10 +474,9 @@ properties of the dominant eigenvalue and its corresponding eigenvector.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([-1.00000e+00,  2.90566e-17,  1.00000e+00]),
- array([[ 5.77350e-01,  7.07107e-01,  5.77350e-01],
-        [-5.77350e-01,  1.36592e-16,  5.77350e-01],
-        [ 5.77350e-01, -7.07107e-01,  5.77350e-01]]))
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>EigResult(eigenvalues=array([-1.00000e+00,  2.90566e-17,  1.00000e+00]), eigenvectors=array([[ 5.77350e-01,  7.07107e-01,  5.77350e-01],
+       [-5.77350e-01,  1.36592e-16,  5.77350e-01],
+       [ 5.77350e-01, -7.07107e-01,  5.77350e-01]]))
 </pre></div>
 </div>
 </div>
@@ -496,7 +492,7 @@ properties of the dominant eigenvalue and its corresponding eigenvector.</p>
 </section>
 </section>
 <section id="primitive-matrices">
-<span id="prim-matrices"></span><h3><span class="section-number">32.1.4. </span>Primitive matrices<a class="headerlink" href="#primitive-matrices" title="Permalink to this heading">#</a></h3>
+<span id="prim-matrices"></span><h3><span class="section-number">36.1.4. </span>Primitive matrices<a class="headerlink" href="#primitive-matrices" title="Permalink to this heading">#</a></h3>
 <p>We know that in real world situations it’s hard for a matrix to be everywhere positive (although they have nice properties).</p>
 <p>The primitive matrices, however, can still give us helpful properties with looser definitions.</p>
 <p>Let <span class="math notranslate nohighlight">\(A\)</span> be a square nonnegative matrix and let <span class="math notranslate nohighlight">\(A^k\)</span> be the <span class="math notranslate nohighlight">\(k^{th}\)</span> power of <span class="math notranslate nohighlight">\(A\)</span>.</p>
@@ -523,7 +519,7 @@ B^2 = \begin{bmatrix} 1 &amp; 0 \\
 <p>We can see that if a matrix is primitive, then it implies the matrix is irreducible but not vice versa.</p>
 <p>Now let’s step back to the primitive matrices part of the Perron-Frobenius Theorem</p>
 <div class="proof theorem admonition" id="con-perron-frobenius">
-<p class="admonition-title"><span class="caption-number">Theorem 32.2 </span> (Continous of Perron-Frobenius Theorem)</p>
+<p class="admonition-title"><span class="caption-number">Theorem 36.2 </span> (Continous of Perron-Frobenius Theorem)</p>
 <section class="theorem-content" id="proof-content">
 <p>If <span class="math notranslate nohighlight">\(A\)</span> is primitive then,</p>
 <ol class="arabic simple" start="6">
@@ -533,7 +529,7 @@ B^2 = \begin{bmatrix} 1 &amp; 0 \\
 </ol>
 </section>
 </div><section id="example-1-primitive-matrix">
-<h4><span class="section-number">32.1.4.1. </span>Example 1: Primitive matrix<a class="headerlink" href="#example-1-primitive-matrix" title="Permalink to this heading">#</a></h4>
+<h4><span class="section-number">36.1.4.1. </span>Example 1: Primitive matrix<a class="headerlink" href="#example-1-primitive-matrix" title="Permalink to this heading">#</a></h4>
 <p>Consider the following primitive matrix <span class="math notranslate nohighlight">\(B\)</span>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -561,10 +557,9 @@ B^2 = \begin{bmatrix} 1 &amp; 0 \\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([-1.,  2., -1.]),
- array([[-0.8165 ,  0.57735,  0.22646],
-        [ 0.40825,  0.57735, -0.79259],
-        [ 0.40825,  0.57735,  0.56614]]))
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>EigResult(eigenvalues=array([-1.,  2., -1.]), eigenvectors=array([[-0.8165 ,  0.57735,  0.22646],
+       [ 0.40825,  0.57735, -0.79259],
+       [ 0.40825,  0.57735,  0.56614]]))
 </pre></div>
 </div>
 </div>
@@ -743,7 +738,7 @@ n = 10000, error = 1.0000000000
 <p>In fact we have already seen the theorem in action before in <a class="reference internal" href="markov_chains_I.html#mc1_ex_1"><span class="std std-ref">the Markov chain lecture</span></a>.</p>
 </section>
 <section id="example-2-connection-to-markov-chains">
-<span id="spec-markov"></span><h4><span class="section-number">32.1.4.2. </span>Example 2: Connection to Markov chains<a class="headerlink" href="#example-2-connection-to-markov-chains" title="Permalink to this heading">#</a></h4>
+<span id="spec-markov"></span><h4><span class="section-number">36.1.4.2. </span>Example 2: Connection to Markov chains<a class="headerlink" href="#example-2-connection-to-markov-chains" title="Permalink to this heading">#</a></h4>
 <p>We are now prepared to bridge the languages spoken in the two lectures.</p>
 <p>A primitive matrix is both irreducible and aperiodic.</p>
 <p>So Perron-Frobenius Theorem explains why both <a class="reference internal" href="markov_chains_I.html#mc-eg3"><span class="std std-ref">Imam and Temple matrix</span></a> and <a class="reference external" href="https://en.wikipedia.org/wiki/Hamiltonian_matrix">Hamilton matrix</a> converge to a stationary distribution, which is the Perron projection of the two matrices</p>
@@ -821,7 +816,7 @@ n = 10000, error = 1.0000000000
 \[
 P^t=\sum_{i=1}^{n-1} \lambda_i^t v_i w_i^{\top}+\mathbb{1} \psi^*,
 \]</div>
-<p>This is proven in <span id="id2">[<a class="reference internal" href="zreferences.html#id19" title="Thomas J Sargent and John Stachurski. Economic networks: theory and computation. arXiv preprint arXiv:2203.11972, 2023.">SS23</a>]</span> and a nice discussion can be found <a class="reference external" href="https://math.stackexchange.com/questions/2433997/can-all-matrices-be-decomposed-as-product-of-right-and-left-eigenvector">here</a>.</p>
+<p>This is proven in <span id="id2">[<a class="reference internal" href="zreferences.html#id19" title="Thomas J Sargent and John Stachurski. Economic networks: theory and computation. arXiv preprint arXiv:2203.11972, 2023.">Sargent and Stachurski, 2023</a>]</span> and a nice discussion can be found <a class="reference external" href="https://math.stackexchange.com/questions/2433997/can-all-matrices-be-decomposed-as-product-of-right-and-left-eigenvector">here</a>.</p>
 <p>In this formula <span class="math notranslate nohighlight">\(\lambda_i\)</span> is an eigenvalue of <span class="math notranslate nohighlight">\(P\)</span> with corresponding right and left eigenvectors <span class="math notranslate nohighlight">\(v_i\)</span> and <span class="math notranslate nohighlight">\(w_i\)</span> .</p>
 <p>Premultiplying <span class="math notranslate nohighlight">\(P^t\)</span> by arbitrary <span class="math notranslate nohighlight">\(\psi \in \mathscr{D}(S)\)</span> and rearranging now gives</p>
 <div class="math notranslate nohighlight">
@@ -843,10 +838,10 @@ but it is out of the scope of this lecture.</p>
 </section>
 </section>
 <section id="exercises">
-<h2><span class="section-number">32.2. </span>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">36.2. </span>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h2>
 <div class="exercise admonition" id="eig_ex1">
 
-<p class="admonition-title"><span class="caption-number">Exercise 32.1 </span> (Leontief’s Input-Output Model)</p>
+<p class="admonition-title"><span class="caption-number">Exercise 36.1 </span> (Leontief’s Input-Output Model)</p>
 <section id="exercise-content">
 <p><a class="reference external" href="https://en.wikipedia.org/wiki/Wassily_Leontief">Wassily Leontief</a> developed a model of an economy with <span class="math notranslate nohighlight">\(n\)</span> sectors producing <span class="math notranslate nohighlight">\(n\)</span> different commodities representing the interdependencies of different sectors of an economy.</p>
 <p>Under this model some of the output is consumed internally by the industries and the rest is consumed by external consumers.</p>
@@ -933,7 +928,7 @@ d =
 </div>
 <div class="solution dropdown admonition" id="eigen_II-solution-3">
 
-<p class="admonition-title">Solution to<a class="reference internal" href="#eig_ex1"> Exercise 32.1 (Leontief’s Input-Output Model)</a></p>
+<p class="admonition-title">Solution to<a class="reference internal" href="#eig_ex1"> Exercise 36.1 (Leontief’s Input-Output Model)</a></p>
 <section id="solution-content">
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1125,7 +1120,7 @@ d =
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cagan_adaptive.html">
-   14. A Monetarist Theory of Price Levels with Adaptive Expectations
+   14. Monetarist Theory of Price Levels with Adaptive Expectations
   </a>
  </li>
 </ul>
@@ -1207,28 +1202,55 @@ d =
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
+  Monetary-Fiscal Policy Interactions
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="money_inflation.html">
+   26. Money Financed Government Deficits and Price Levels
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="unpleasant.html">
+   27. Unpleasant Monetarist Arithmetic
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="money_inflation_nonlinear.html">
+   28. Inflation Rate Laffer Curves
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="laffer_adaptive.html">
+   29. Laffer Curves  with Adaptive Expectations
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
   Stochastic Dynamics
  </span>
 </p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="ar1_processes.html">
-   26. AR1 Processes
+   30. AR1 Processes
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="markov_chains_I.html">
-   27. Markov Chains: Basic Concepts
+   31. Markov Chains: Basic Concepts
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="markov_chains_II.html">
-   28. Markov Chains: Irreducibility and Ergodicity
+   32. Markov Chains: Irreducibility and Ergodicity
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="time_series_with_matrices.html">
-   29. Univariate Time Series with Matrix Algebra
+   33. Univariate Time Series with Matrix Algebra
   </a>
  </li>
 </ul>
@@ -1240,12 +1262,12 @@ d =
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="lp_intro.html">
-   30. Linear Programming
+   34. Linear Programming
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="short_path.html">
-   31. Shortest Paths
+   35. Shortest Paths
   </a>
  </li>
 </ul>
@@ -1257,22 +1279,22 @@ d =
 <ul class="current nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1 current active active">
   <a class="current reference internal" href="#">
-   32. The Perron-Frobenius Theorem
+   36. The Perron-Frobenius Theorem
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="input_output.html">
-   33. Input-Output Models
+   37. Input-Output Models
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="lake_model.html">
-   34. A Lake Model of Employment
+   38. A Lake Model of Employment
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="networks.html">
-   35. Networks
+   39. Networks
   </a>
  </li>
 </ul>
@@ -1284,12 +1306,12 @@ d =
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="supply_demand_multiple_goods.html">
-   36. Supply and Demand with Many Goods
+   40. Supply and Demand with Many Goods
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="supply_demand_heterogeneity.html">
-   37. Market Equilibrium with Heterogeneity
+   41. Market Equilibrium with Heterogeneity
   </a>
  </li>
 </ul>
@@ -1301,12 +1323,12 @@ d =
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="simple_linear_regression.html">
-   38. Simple Linear Regression Model
+   42. Simple Linear Regression Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="mle.html">
-   39. Maximum Likelihood Estimation
+   43. Maximum Likelihood Estimation
   </a>
  </li>
 </ul>
@@ -1318,17 +1340,17 @@ d =
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="troubleshooting.html">
-   40. Troubleshooting
+   44. Troubleshooting
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="zreferences.html">
-   41. References
+   45. References
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="status.html">
-   42. Execution Statistics
+   46. Execution Statistics
   </a>
  </li>
 </ul>

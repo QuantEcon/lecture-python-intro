@@ -291,7 +291,7 @@ start with careful definitions.</p>
 <p>We will install the following libraries.</p>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input above-output-prompt docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>quantecon<span class="w"> </span>interpolation
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>quantecon
 </pre></div>
 </div>
 </div>
@@ -302,22 +302,16 @@ start with careful definitions.</p>
 </summary>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: quantecon in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (0.7.2)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: interpolation in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (2.2.1)
-Requirement already satisfied: numba&gt;=0.49.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from quantecon) (0.57.1)
-Requirement already satisfied: numpy&gt;=1.17.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from quantecon) (1.24.3)
+Requirement already satisfied: numba&gt;=0.49.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from quantecon) (0.59.0)
+Requirement already satisfied: numpy&gt;=1.17.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from quantecon) (1.26.4)
 Requirement already satisfied: requests in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from quantecon) (2.31.0)
-Requirement already satisfied: scipy&gt;=1.5.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from quantecon) (1.11.1)
-Requirement already satisfied: sympy in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from quantecon) (1.11.1)
-Requirement already satisfied: tempita&gt;=0.5.2 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from interpolation) (0.5.2)
-Requirement already satisfied: llvmlite&lt;0.41,&gt;=0.40.0dev0 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from numba&gt;=0.49.0-&gt;quantecon) (0.40.0)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from requests-&gt;quantecon) (2.0.4)
+Requirement already satisfied: scipy&gt;=1.5.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from quantecon) (1.11.4)
+Requirement already satisfied: sympy in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from quantecon) (1.12)
+Requirement already satisfied: llvmlite&lt;0.43,&gt;=0.42.0dev0 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from numba&gt;=0.49.0-&gt;quantecon) (0.42.0)
+Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from requests-&gt;quantecon) (2.0.4)
 Requirement already satisfied: idna&lt;4,&gt;=2.5 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from requests-&gt;quantecon) (3.4)
-Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from requests-&gt;quantecon) (1.26.16)
-Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from requests-&gt;quantecon) (2023.7.22)
+Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from requests-&gt;quantecon) (2.0.7)
+Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from requests-&gt;quantecon) (2024.2.2)
 Requirement already satisfied: mpmath&gt;=0.19 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from sympy-&gt;quantecon) (1.3.0)
 </pre></div>
 </div>
@@ -332,13 +326,6 @@ Requirement already satisfied: mpmath&gt;=0.19 in /usr/share/miniconda3/envs/qua
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">quantecon</span> <span class="k">as</span> <span class="nn">qe</span>
 <span class="kn">import</span> <span class="nn">random</span> <span class="k">as</span> <span class="nn">rd</span>
-<span class="kn">from</span> <span class="nn">interpolation</span> <span class="kn">import</span> <span class="n">interp</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages/numba/core/decorators.py:262: NumbaDeprecationWarning: <span class=" -Color -Color-Bold">numba.generated_jit is deprecated. Please see the documentation at: https://numba.readthedocs.io/en/stable/reference/deprecation.html#deprecation-of-generated-jit for more information and advice on a suitable replacement.</span>
-  warnings.warn(msg, NumbaDeprecationWarning)
 </pre></div>
 </div>
 </div>
@@ -413,7 +400,7 @@ households own just over 40% of total wealth.</p>
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="lorenz-simulated">
-<a class="reference internal image-reference" href="_images/86cda008140d416842937658b1700a95282d7ceabff323e9c083a1d6352e9fe0.png"><img alt="_images/86cda008140d416842937658b1700a95282d7ceabff323e9c083a1d6352e9fe0.png" src="_images/86cda008140d416842937658b1700a95282d7ceabff323e9c083a1d6352e9fe0.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/25f0d954eb0e73b41ace8c1b2b2f9f8b0ed184191d82a60a9726d218e4e4c07e.png"><img alt="_images/25f0d954eb0e73b41ace8c1b2b2f9f8b0ed184191d82a60a9726d218e4e4c07e.png" src="_images/25f0d954eb0e73b41ace8c1b2b2f9f8b0ed184191d82a60a9726d218e4e4c07e.png" style="width: 80%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 5.1 </span><span class="caption-text">Lorenz curve of simulated data</span><a class="headerlink" href="#lorenz-simulated" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -595,7 +582,7 @@ US in 2016.</p>
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="lorenz-us">
-<img alt="lorenz_us" src="_images/e027524022a77b34a1398981744cf1a143209925c2fed2441f3e73766305f64c.png" />
+<img alt="lorenz_us" src="_images/b327838411ad4dcf357df92e6c38ef393fa0fac9a983126a36c8fef39f0134ce.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 5.2 </span><span class="caption-text">2016 US Lorenz curves</span><a class="headerlink" href="#lorenz-us" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -621,8 +608,8 @@ Lorenz curve.</p>
 <p>As before, suppose that the sample <span class="math notranslate nohighlight">\(w_1, \ldots, w_n\)</span> has been sorted from
 smallest to largest.</p>
 <p>The Gini coefficient is defined for the sample above as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-73e5ff37-e1e4-4a67-b55b-9b758c80bfb3">
-<span class="eqno">(5.1)<a class="headerlink" href="#equation-73e5ff37-e1e4-4a67-b55b-9b758c80bfb3" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-77416080-1bda-4c25-b9f1-fd705eaf5e35">
+<span class="eqno">(5.1)<a class="headerlink" href="#equation-77416080-1bda-4c25-b9f1-fd705eaf5e35" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \label{eq:gini}
     G :=
     \frac
@@ -659,7 +646,7 @@ equality and the Lorenz curve (e.g., the shaded area in the following Figure bel
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="lorenz-gini">
-<img alt="lorenz_gini" src="_images/8eb4262ddf7e0e4216bca320a5cb334ab37e28e261827ed68b0d6946587033ef.png" />
+<img alt="lorenz_gini" src="_images/ef7d589012353378c27f90dc5f635d215b362a810fe7fa9327d8b9b1ca882afa.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 5.3 </span><span class="caption-text">Shaded Lorenz curve of simulated data</span><a class="headerlink" href="#lorenz-gini" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -724,7 +711,7 @@ distribution.)</p>
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="gini-simulated">
-<img alt="gini_simulated" src="_images/b2f00d9663f613123dd6ebf234ec6402051c2af7a474d23498247aa0990c5003.png" />
+<img alt="gini_simulated" src="_images/6bcb05314fb31dd8806355dee2181dfea7d24f5b1f7ca493b52b18b37ff33005.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 5.4 </span><span class="caption-text">Gini coefficients of simulated data</span><a class="headerlink" href="#gini-simulated" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -813,7 +800,7 @@ coefficient.</p>
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="gini-wealth-us">
-<img alt="gini_wealth_us" src="_images/8212457383438e2794c8be597ed30746d8683c6b476a17c3af5cb92bf61f708d.png" />
+<img alt="gini_wealth_us" src="_images/f8840bcb16715561451321bb511eb2b7cd3f2fb4230bf27954e5da6dd86f5a28.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 5.5 </span><span class="caption-text">Gini coefficients of US net wealth</span><a class="headerlink" href="#gini-wealth-us" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -840,7 +827,7 @@ coefficient.</p>
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="gini-income-us">
-<img alt="gini_income_us" src="_images/c143e25462479ff1d6fd55dd63022f68667032668dc15b03e3801a179320fc5f.png" />
+<img alt="gini_income_us" src="_images/ab91dea9a188dc65e151cdfa118f84c229f552a21289f41867851e0df1d9e2e0.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 5.6 </span><span class="caption-text">Gini coefficients of US income</span><a class="headerlink" href="#gini-income-us" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -951,7 +938,7 @@ number down to the integer less than or equal to that number.</p>
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="top-shares-us">
-<img alt="top_shares_us" src="_images/6ea61d1f48645e97e8c8d00f909f4a8a0dd14a9dc0e7600683044ab7790a6cd5.png" />
+<img alt="top_shares_us" src="_images/2b4dc9cbe503a64f1958119f309d22c8a011dd51fc3ca27b4c37280fc32e48d8.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 5.7 </span><span class="caption-text">US top shares</span><a class="headerlink" href="#top-shares-us" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -1031,7 +1018,7 @@ generates more dispersion in the sample, and hence greater inequality.</p>
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="top-shares-simulated">
-<img alt="top_shares_simulated" src="_images/b130b21920aaf00ad54f53de1140bbd644c5c85a20514749cdc8c0ac55e7ad01.png" />
+<img alt="top_shares_simulated" src="_images/e4a94fb41135d4f8315285253861d95422ade18abd5a8ff5a3393758b7f0d3ed.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 5.8 </span><span class="caption-text">Top shares of simulated data</span><a class="headerlink" href="#top-shares-simulated" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -1050,7 +1037,7 @@ generates more dispersion in the sample, and hence greater inequality.</p>
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="gini-coef-simulated">
-<img alt="gini_coef_simulated" src="_images/9fd61b0efe3d3de101e6f52f0c672b7005b0e9b5498d8d0c6116a5192051cde0.png" />
+<img alt="gini_coef_simulated" src="_images/6e77a76bac380c22c50ddd3bbd02a2a089fa18866397dab8e299616206889b89.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 5.9 </span><span class="caption-text">Gini coefficients of simulated data</span><a class="headerlink" href="#gini-coef-simulated" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -1070,7 +1057,7 @@ generates more dispersion in the sample, and hence greater inequality.</p>
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="lorenz-curve-simulated">
-<img alt="lorenz_curve_simulated" src="_images/62770a587cc230d65b9625bfd82fb4ec4e6d3321a2ac4e43a9d7153005d995b4.png" />
+<img alt="lorenz_curve_simulated" src="_images/313e8592d7176ad633c6634f6db20b5fde8cae7ae19c32ae5f35a4d30b753d4f.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 5.10 </span><span class="caption-text">Lorenz curves for simulated data</span><a class="headerlink" href="#lorenz-curve-simulated" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -1096,7 +1083,7 @@ generates more dispersion in the sample, and hence greater inequality.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">lorenz2top</span><span class="p">(</span><span class="n">f_val</span><span class="p">,</span> <span class="n">l_val</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="mf">0.1</span><span class="p">):</span>
-    <span class="n">t</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">interp</span><span class="p">(</span><span class="n">f_val</span><span class="p">,</span> <span class="n">l_val</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">f_val</span><span class="p">,</span> <span class="n">l_val</span><span class="p">)</span>
     <span class="k">return</span> <span class="mi">1</span><span class="o">-</span> <span class="n">t</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">p</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1132,7 +1119,7 @@ generates more dispersion in the sample, and hence greater inequality.</p>
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="top-shares-us-al">
-<img alt="top_shares_us_al" src="_images/d9270f71c7706fb94b79584fba9fc9c2520fd4ea1c061a201c11ce00490b86da.png" />
+<img alt="top_shares_us_al" src="_images/7f00d7755aacc7022f03df1a08055e04859da66e50b985a428e7de60e2cb9ebc.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 5.11 </span><span class="caption-text">US top shares: approximation vs Lorenz</span><a class="headerlink" href="#top-shares-us-al" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -1287,7 +1274,7 @@ generates more dispersion in the sample, and hence greater inequality.</p>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cagan_adaptive.html">
-   14. A Monetarist Theory of Price Levels with Adaptive Expectations
+   14. Monetarist Theory of Price Levels with Adaptive Expectations
   </a>
  </li>
 </ul>
@@ -1369,28 +1356,55 @@ generates more dispersion in the sample, and hence greater inequality.</p>
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
+  Monetary-Fiscal Policy Interactions
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="money_inflation.html">
+   26. Money Financed Government Deficits and Price Levels
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="unpleasant.html">
+   27. Unpleasant Monetarist Arithmetic
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="money_inflation_nonlinear.html">
+   28. Inflation Rate Laffer Curves
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="laffer_adaptive.html">
+   29. Laffer Curves  with Adaptive Expectations
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
   Stochastic Dynamics
  </span>
 </p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="ar1_processes.html">
-   26. AR1 Processes
+   30. AR1 Processes
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="markov_chains_I.html">
-   27. Markov Chains: Basic Concepts
+   31. Markov Chains: Basic Concepts
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="markov_chains_II.html">
-   28. Markov Chains: Irreducibility and Ergodicity
+   32. Markov Chains: Irreducibility and Ergodicity
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="time_series_with_matrices.html">
-   29. Univariate Time Series with Matrix Algebra
+   33. Univariate Time Series with Matrix Algebra
   </a>
  </li>
 </ul>
@@ -1402,12 +1416,12 @@ generates more dispersion in the sample, and hence greater inequality.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="lp_intro.html">
-   30. Linear Programming
+   34. Linear Programming
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="short_path.html">
-   31. Shortest Paths
+   35. Shortest Paths
   </a>
  </li>
 </ul>
@@ -1419,22 +1433,22 @@ generates more dispersion in the sample, and hence greater inequality.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="eigen_II.html">
-   32. The Perron-Frobenius Theorem
+   36. The Perron-Frobenius Theorem
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="input_output.html">
-   33. Input-Output Models
+   37. Input-Output Models
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="lake_model.html">
-   34. A Lake Model of Employment
+   38. A Lake Model of Employment
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="networks.html">
-   35. Networks
+   39. Networks
   </a>
  </li>
 </ul>
@@ -1446,12 +1460,12 @@ generates more dispersion in the sample, and hence greater inequality.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="supply_demand_multiple_goods.html">
-   36. Supply and Demand with Many Goods
+   40. Supply and Demand with Many Goods
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="supply_demand_heterogeneity.html">
-   37. Market Equilibrium with Heterogeneity
+   41. Market Equilibrium with Heterogeneity
   </a>
  </li>
 </ul>
@@ -1463,12 +1477,12 @@ generates more dispersion in the sample, and hence greater inequality.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="simple_linear_regression.html">
-   38. Simple Linear Regression Model
+   42. Simple Linear Regression Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="mle.html">
-   39. Maximum Likelihood Estimation
+   43. Maximum Likelihood Estimation
   </a>
  </li>
 </ul>
@@ -1480,17 +1494,17 @@ generates more dispersion in the sample, and hence greater inequality.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="troubleshooting.html">
-   40. Troubleshooting
+   44. Troubleshooting
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="zreferences.html">
-   41. References
+   45. References
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="status.html">
-   42. Execution Statistics
+   46. Execution Statistics
   </a>
  </li>
 </ul>

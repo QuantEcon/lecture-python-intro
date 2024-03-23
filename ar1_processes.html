@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>26. AR1 Processes &#8212; A First Course in Quantitative Economics with Python</title>
+    <title>30. AR1 Processes &#8212; A First Course in Quantitative Economics with Python</title>
     <script src="https://unpkg.com/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://unpkg.com/tippy.js@6.3.1/dist/tippy-bundle.umd.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
@@ -122,8 +122,8 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="27. Markov Chains: Basic Concepts" href="markov_chains_I.html" />
-    <link rel="prev" title="25. Commodity Prices" href="commod_price.html" />
+    <link rel="next" title="31. Markov Chains: Basic Concepts" href="markov_chains_I.html" />
+    <link rel="prev" title="29. Laffer Curves with Adaptive Expectations" href="laffer_adaptive.html" />
 
 <!-- Normal Meta Tags -->
 <meta name="author" context="Thomas J. Sargent &amp; John Stachurski" />
@@ -171,18 +171,18 @@ const thebe_selector_output = ".output, .cell_output"
 
                         <nav id="bd-toc-nav" class="qe-page__toc-nav">
                             <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">26.1. Overview</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-ar-1-model">26.2. The AR(1) Model</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#moving-average-representation">26.2.1. Moving Average Representation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distribution-dynamics">26.2.2. Distribution Dynamics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">30.1. Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-ar-1-model">30.2. The AR(1) Model</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#moving-average-representation">30.2.1. Moving Average Representation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distribution-dynamics">30.2.2. Distribution Dynamics</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stationarity-and-asymptotic-stability">26.3. Stationarity and Asymptotic Stability</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stationary-distributions">26.3.1. Stationary Distributions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stationarity-and-asymptotic-stability">30.3. Stationarity and Asymptotic Stability</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stationary-distributions">30.3.1. Stationary Distributions</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ergodicity">26.4. Ergodicity</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">26.5. Exercises</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ergodicity">30.4. Ergodicity</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">30.5. Exercises</a></li>
 </ul>
                             <p class="logo">
                                 
@@ -246,13 +246,13 @@ const thebe_selector_output = ".output, .cell_output"
                 <img style="width:250px;display:inline;" width="250px" src="https://assets.quantecon.org/img/qe-menubar-logo.svg" alt="QuantEcon">
         </a>
 </div><section class="tex2jax_ignore mathjax_ignore" id="ar1-processes">
-<span id="id1"></span><h1><span class="section-number">26. </span>AR1 Processes<a class="headerlink" href="#ar1-processes" title="Permalink to this heading">#</a></h1>
+<span id="id1"></span><h1><span class="section-number">30. </span>AR1 Processes<a class="headerlink" href="#ar1-processes" title="Permalink to this heading">#</a></h1>
 <div class="warning admonition">
 <p class="admonition-title">Migrated lecture</p>
 <p>This lecture has moved from our <a class="reference external" href="https://python.quantecon.org/intro.html">Intermediate Quantitative Economics with Python</a> lecture series and is now a part of <a class="reference external" href="https://intro.quantecon.org/intro.html">A First Course in Quantitative Economics</a>.</p>
 </div>
 <section id="overview">
-<span id="index-0"></span><h2><span class="section-number">26.1. </span>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
+<span id="index-0"></span><h2><span class="section-number">30.1. </span>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
 <p>In this lecture we are going to study a very simple class of stochastic
 models called AR(1) processes.</p>
 <p>These simple models are used again and again in economic research to represent the dynamics of series such as</p>
@@ -277,10 +277,10 @@ partly because they help us understand important concepts.</p>
 </div>
 </section>
 <section id="the-ar-1-model">
-<h2><span class="section-number">26.2. </span>The AR(1) Model<a class="headerlink" href="#the-ar-1-model" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">30.2. </span>The AR(1) Model<a class="headerlink" href="#the-ar-1-model" title="Permalink to this heading">#</a></h2>
 <p>The <strong>AR(1) model</strong> (autoregressive model of order 1) takes the form</p>
 <div class="math notranslate nohighlight" id="equation-can-ar1">
-<span class="eqno">(26.1)<a class="headerlink" href="#equation-can-ar1" title="Permalink to this equation">#</a></span>\[X_{t+1} = a X_t + b + c W_{t+1}\]</div>
+<span class="eqno">(30.1)<a class="headerlink" href="#equation-can-ar1" title="Permalink to this equation">#</a></span>\[X_{t+1} = a X_t + b + c W_{t+1}\]</div>
 <p>where <span class="math notranslate nohighlight">\(a, b, c\)</span> are scalar-valued parameters.</p>
 <p>This law of motion generates a time series <span class="math notranslate nohighlight">\(\{ X_t\}\)</span> as soon as we
 specify an initial condition <span class="math notranslate nohighlight">\(X_0\)</span>.</p>
@@ -292,7 +292,7 @@ specify an initial condition <span class="math notranslate nohighlight">\(X_0\)<
 <li><p>the initial condition <span class="math notranslate nohighlight">\(X_0\)</span> is independent of <span class="math notranslate nohighlight">\(\{ W_t \}\)</span>.</p></li>
 </ul>
 <section id="moving-average-representation">
-<h3><span class="section-number">26.2.1. </span>Moving Average Representation<a class="headerlink" href="#moving-average-representation" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">30.2.1. </span>Moving Average Representation<a class="headerlink" href="#moving-average-representation" title="Permalink to this heading">#</a></h3>
 <p>Iterating backwards from time <span class="math notranslate nohighlight">\(t\)</span>, we obtain</p>
 <div class="math notranslate nohighlight">
 \[
@@ -302,9 +302,9 @@ X_t = a X_{t-1} + b +  c W_t
 \]</div>
 <p>If we work all the way back to time zero, we get</p>
 <div class="math notranslate nohighlight" id="equation-ar1-ma">
-<span class="eqno">(26.2)<a class="headerlink" href="#equation-ar1-ma" title="Permalink to this equation">#</a></span>\[X_t = a^t X_0 + b \sum_{j=0}^{t-1} a^j +
+<span class="eqno">(30.2)<a class="headerlink" href="#equation-ar1-ma" title="Permalink to this equation">#</a></span>\[X_t = a^t X_0 + b \sum_{j=0}^{t-1} a^j +
         c \sum_{j=0}^{t-1} a^j  W_{t-j}\]</div>
-<p>Equation <a class="reference internal" href="#equation-ar1-ma">(26.2)</a> shows that <span class="math notranslate nohighlight">\(X_t\)</span> is a well defined random variable, the value of which depends on</p>
+<p>Equation <a class="reference internal" href="#equation-ar1-ma">(30.2)</a> shows that <span class="math notranslate nohighlight">\(X_t\)</span> is a well defined random variable, the value of which depends on</p>
 <ul class="simple">
 <li><p>the parameters,</p></li>
 <li><p>the initial condition <span class="math notranslate nohighlight">\(X_0\)</span> and</p></li>
@@ -314,27 +314,27 @@ X_t = a X_{t-1} + b +  c W_t
 density of this random variable <span class="math notranslate nohighlight">\(X_t\)</span>.</p>
 </section>
 <section id="distribution-dynamics">
-<h3><span class="section-number">26.2.2. </span>Distribution Dynamics<a class="headerlink" href="#distribution-dynamics" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">30.2.2. </span>Distribution Dynamics<a class="headerlink" href="#distribution-dynamics" title="Permalink to this heading">#</a></h3>
 <p>One of the nice things about this model is that it’s so easy to trace out the sequence of distributions <span class="math notranslate nohighlight">\(\{ \psi_t \}\)</span> corresponding to the time
 series <span class="math notranslate nohighlight">\(\{ X_t\}\)</span>.</p>
 <p>To see this, we first note that <span class="math notranslate nohighlight">\(X_t\)</span> is normally distributed for each <span class="math notranslate nohighlight">\(t\)</span>.</p>
-<p>This is immediate from <a class="reference internal" href="#equation-ar1-ma">(26.2)</a>, since linear combinations of independent
+<p>This is immediate from <a class="reference internal" href="#equation-ar1-ma">(30.2)</a>, since linear combinations of independent
 normal random variables are normal.</p>
 <p>Given that <span class="math notranslate nohighlight">\(X_t\)</span> is normally distributed, we will know the full distribution
 <span class="math notranslate nohighlight">\(\psi_t\)</span> if we can pin down its first two moments.</p>
 <p>Let <span class="math notranslate nohighlight">\(\mu_t\)</span> and <span class="math notranslate nohighlight">\(v_t\)</span> denote the mean and variance
 of <span class="math notranslate nohighlight">\(X_t\)</span> respectively.</p>
-<p>We can pin down these values from <a class="reference internal" href="#equation-ar1-ma">(26.2)</a> or we can use the following
+<p>We can pin down these values from <a class="reference internal" href="#equation-ar1-ma">(30.2)</a> or we can use the following
 recursive expressions:</p>
 <div class="math notranslate nohighlight" id="equation-dyn-tm">
-<span class="eqno">(26.3)<a class="headerlink" href="#equation-dyn-tm" title="Permalink to this equation">#</a></span>\[\mu_{t+1} = a \mu_t + b
+<span class="eqno">(30.3)<a class="headerlink" href="#equation-dyn-tm" title="Permalink to this equation">#</a></span>\[\mu_{t+1} = a \mu_t + b
 \quad \text{and} \quad
 v_{t+1} = a^2 v_t + c^2\]</div>
-<p>These expressions are obtained from <a class="reference internal" href="#equation-can-ar1">(26.1)</a> by taking, respectively, the expectation and variance of both sides of the equality.</p>
+<p>These expressions are obtained from <a class="reference internal" href="#equation-can-ar1">(30.1)</a> by taking, respectively, the expectation and variance of both sides of the equality.</p>
 <p>In calculating the second expression, we are using the fact that <span class="math notranslate nohighlight">\(X_t\)</span>
 and <span class="math notranslate nohighlight">\(W_{t+1}\)</span> are independent.</p>
-<p>(This follows from our assumptions and <a class="reference internal" href="#equation-ar1-ma">(26.2)</a>.)</p>
-<p>Given the dynamics in <a class="reference internal" href="#equation-ar1-ma">(26.2)</a> and initial conditions <span class="math notranslate nohighlight">\(\mu_0,
+<p>(This follows from our assumptions and <a class="reference internal" href="#equation-ar1-ma">(30.2)</a>.)</p>
+<p>Given the dynamics in <a class="reference internal" href="#equation-ar1-ma">(30.2)</a> and initial conditions <span class="math notranslate nohighlight">\(\mu_0,
 v_0\)</span>, we obtain <span class="math notranslate nohighlight">\(\mu_t, v_t\)</span> and hence</p>
 <div class="math notranslate nohighlight">
 \[
@@ -376,13 +376,13 @@ distributions <span class="math notranslate nohighlight">\(\{ \psi_t \}\)</span>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/113e306174d910f6146f6f754b2f8866ad24a1f39a3c7d1197e272cc1c71858f.png"><img alt="_images/113e306174d910f6146f6f754b2f8866ad24a1f39a3c7d1197e272cc1c71858f.png" src="_images/113e306174d910f6146f6f754b2f8866ad24a1f39a3c7d1197e272cc1c71858f.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/3f561b92958567cfae73b45eaf00859f632f83565a1bdfd8ced358230b30d0ad.png"><img alt="_images/3f561b92958567cfae73b45eaf00859f632f83565a1bdfd8ced358230b30d0ad.png" src="_images/3f561b92958567cfae73b45eaf00859f632f83565a1bdfd8ced358230b30d0ad.png" style="width: 80%;" /></a>
 </div>
 </div>
 </section>
 </section>
 <section id="stationarity-and-asymptotic-stability">
-<h2><span class="section-number">26.3. </span>Stationarity and Asymptotic Stability<a class="headerlink" href="#stationarity-and-asymptotic-stability" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">30.3. </span>Stationarity and Asymptotic Stability<a class="headerlink" href="#stationarity-and-asymptotic-stability" title="Permalink to this heading">#</a></h2>
 <p>Notice that, in the figure above, the sequence <span class="math notranslate nohighlight">\(\{ \psi_t \}\)</span> seems to be converging to a limiting distribution.</p>
 <p>This is even clearer if we project forward further into the future:</p>
 <div class="cell docutils container">
@@ -403,7 +403,7 @@ distributions <span class="math notranslate nohighlight">\(\{ \psi_t \}\)</span>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/94578092f07369c903fc56cc62e835774d329ab5793ecb9a18b7b6d4047a2ee8.png"><img alt="_images/94578092f07369c903fc56cc62e835774d329ab5793ecb9a18b7b6d4047a2ee8.png" src="_images/94578092f07369c903fc56cc62e835774d329ab5793ecb9a18b7b6d4047a2ee8.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/7a65c0bd414c62c889f6d460cfca266b5c2b6e4533e958f532a4ef44b55dd85d.png"><img alt="_images/7a65c0bd414c62c889f6d460cfca266b5c2b6e4533e958f532a4ef44b55dd85d.png" src="_images/7a65c0bd414c62c889f6d460cfca266b5c2b6e4533e958f532a4ef44b55dd85d.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>Moreover, the limit does not depend on the initial condition.</p>
@@ -417,21 +417,21 @@ distributions <span class="math notranslate nohighlight">\(\{ \psi_t \}\)</span>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/df2eb293d90e574d8f07f141063b9f6886afe242316d79e4d70014cd7bbc913a.png"><img alt="_images/df2eb293d90e574d8f07f141063b9f6886afe242316d79e4d70014cd7bbc913a.png" src="_images/df2eb293d90e574d8f07f141063b9f6886afe242316d79e4d70014cd7bbc913a.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/35d4fb0ec0020616676049bab00f6245245c5795a1b05a9ecf1e10ec38c4cd5d.png"><img alt="_images/35d4fb0ec0020616676049bab00f6245245c5795a1b05a9ecf1e10ec38c4cd5d.png" src="_images/35d4fb0ec0020616676049bab00f6245245c5795a1b05a9ecf1e10ec38c4cd5d.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>In fact it’s easy to show that such convergence will occur, regardless of the initial condition, whenever <span class="math notranslate nohighlight">\(|a| &lt; 1\)</span>.</p>
 <p>To see this, we just have to look at the dynamics of the first two moments, as
-given in <a class="reference internal" href="#equation-dyn-tm">(26.3)</a>.</p>
+given in <a class="reference internal" href="#equation-dyn-tm">(30.3)</a>.</p>
 <p>When <span class="math notranslate nohighlight">\(|a| &lt; 1\)</span>, these sequences converge to the respective limits</p>
 <div class="math notranslate nohighlight" id="equation-mu-sig-star">
-<span class="eqno">(26.4)<a class="headerlink" href="#equation-mu-sig-star" title="Permalink to this equation">#</a></span>\[\mu^* := \frac{b}{1-a}
+<span class="eqno">(30.4)<a class="headerlink" href="#equation-mu-sig-star" title="Permalink to this equation">#</a></span>\[\mu^* := \frac{b}{1-a}
 \quad \text{and} \quad
 v^* = \frac{c^2}{1 - a^2}\]</div>
 <p>(See our <a class="reference internal" href="scalar_dynam.html"><span class="doc">lecture on one dimensional dynamics</span></a> for background on deterministic convergence.)</p>
 <p>Hence</p>
 <div class="math notranslate nohighlight" id="equation-ar1-psi-star">
-<span class="eqno">(26.5)<a class="headerlink" href="#equation-ar1-psi-star" title="Permalink to this equation">#</a></span>\[\psi_t \to \psi^* = N(\mu^*, v^*)
+<span class="eqno">(30.5)<a class="headerlink" href="#equation-ar1-psi-star" title="Permalink to this equation">#</a></span>\[\psi_t \to \psi^* = N(\mu^*, v^*)
 \quad \text{as }
 t \to \infty\]</div>
 <p>We can confirm this is valid for the sequence above using the following code.</p>
@@ -451,12 +451,12 @@ t \to \infty\]</div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/3e3300aee9fd72251eb8c00f0bc64cc4645245c9f36301e1d4da3aa2ee89d301.png"><img alt="_images/3e3300aee9fd72251eb8c00f0bc64cc4645245c9f36301e1d4da3aa2ee89d301.png" src="_images/3e3300aee9fd72251eb8c00f0bc64cc4645245c9f36301e1d4da3aa2ee89d301.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/b6c6ba87111c30d02273dde13b40f35614b91cea4dee777c7f54b2670dca8969.png"><img alt="_images/b6c6ba87111c30d02273dde13b40f35614b91cea4dee777c7f54b2670dca8969.png" src="_images/b6c6ba87111c30d02273dde13b40f35614b91cea4dee777c7f54b2670dca8969.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>As claimed, the sequence <span class="math notranslate nohighlight">\(\{ \psi_t \}\)</span> converges to <span class="math notranslate nohighlight">\(\psi^*\)</span>.</p>
 <section id="stationary-distributions">
-<h3><span class="section-number">26.3.1. </span>Stationary Distributions<a class="headerlink" href="#stationary-distributions" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">30.3.1. </span>Stationary Distributions<a class="headerlink" href="#stationary-distributions" title="Permalink to this heading">#</a></h3>
 <p>A stationary distribution is a distribution that is a fixed
 point of the update rule for distributions.</p>
 <p>In other words, if <span class="math notranslate nohighlight">\(\psi_t\)</span> is stationary, then <span class="math notranslate nohighlight">\(\psi_{t+j} =
@@ -469,7 +469,7 @@ X_t \sim \psi
 \quad \implies \quad
 a X_t + b + c W_{t+1} \sim \psi
 \]</div>
-<p>The distribution <span class="math notranslate nohighlight">\(\psi^*\)</span> in <a class="reference internal" href="#equation-ar1-psi-star">(26.5)</a> has this property —
+<p>The distribution <span class="math notranslate nohighlight">\(\psi^*\)</span> in <a class="reference internal" href="#equation-ar1-psi-star">(30.5)</a> has this property —
 checking this is an exercise.</p>
 <p>(Of course, we are assuming that <span class="math notranslate nohighlight">\(|a| &lt; 1\)</span> so that <span class="math notranslate nohighlight">\(\psi^*\)</span> is
 well defined.)</p>
@@ -478,7 +478,7 @@ well defined.)</p>
 </section>
 </section>
 <section id="ergodicity">
-<h2><span class="section-number">26.4. </span>Ergodicity<a class="headerlink" href="#ergodicity" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">30.4. </span>Ergodicity<a class="headerlink" href="#ergodicity" title="Permalink to this heading">#</a></h2>
 <p>The concept of ergodicity is used in different ways by different authors.</p>
 <p>One way to understand it in the present setting is that a version of the Law
 of Large Numbers is valid for <span class="math notranslate nohighlight">\(\{X_t\}\)</span>, even though it is not IID.</p>
@@ -486,14 +486,14 @@ of Large Numbers is valid for <span class="math notranslate nohighlight">\(\{X_t
 stationary distribution.</p>
 <p>Indeed, it can be proved that, whenever <span class="math notranslate nohighlight">\(|a| &lt; 1\)</span>, we have</p>
 <div class="math notranslate nohighlight" id="equation-ar1-ergo">
-<span class="eqno">(26.6)<a class="headerlink" href="#equation-ar1-ergo" title="Permalink to this equation">#</a></span>\[\frac{1}{m} \sum_{t = 1}^m h(X_t)  \to
+<span class="eqno">(30.6)<a class="headerlink" href="#equation-ar1-ergo" title="Permalink to this equation">#</a></span>\[\frac{1}{m} \sum_{t = 1}^m h(X_t)  \to
 \int h(x) \psi^*(x) dx
     \quad \text{as } m \to \infty\]</div>
 <p>whenever the integral on the right hand side is finite and well defined.</p>
 <p>Notes:</p>
 <ul class="simple">
-<li><p>In <a class="reference internal" href="#equation-ar1-ergo">(26.6)</a>, convergence holds with probability one.</p></li>
-<li><p>The textbook by <span id="id2">[<a class="reference internal" href="zreferences.html#id210" title="S P Meyn and R L Tweedie. Markov Chains and Stochastic Stability. Cambridge University Press, 2009.">MT09</a>]</span> is a classic reference on ergodicity.</p></li>
+<li><p>In <a class="reference internal" href="#equation-ar1-ergo">(30.6)</a>, convergence holds with probability one.</p></li>
+<li><p>The textbook by <span id="id2">[<a class="reference internal" href="zreferences.html#id210" title="S P Meyn and R L Tweedie. Markov Chains and Stochastic Stability. Cambridge University Press, 2009.">Meyn and Tweedie, 2009</a>]</span> is a classic reference on ergodicity.</p></li>
 </ul>
 <p>For example, if we consider the identity function <span class="math notranslate nohighlight">\(h(x) = x\)</span>, we get</p>
 <div class="math notranslate nohighlight">
@@ -508,10 +508,10 @@ stationary distribution.</p>
 important concept for statistics and simulation.</p>
 </section>
 <section id="exercises">
-<h2><span class="section-number">26.5. </span>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">30.5. </span>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h2>
 <div class="exercise admonition" id="ar1p_ex1">
 
-<p class="admonition-title"><span class="caption-number">Exercise 26.1 </span></p>
+<p class="admonition-title"><span class="caption-number">Exercise 30.1 </span></p>
 <section id="exercise-content">
 <p>Let <span class="math notranslate nohighlight">\(k\)</span> be a natural number.</p>
 <p>The <span class="math notranslate nohighlight">\(k\)</span>-th central moment of a  random variable is defined as</p>
@@ -529,7 +529,7 @@ M_k =
 \end{cases}
 \end{split}\]</div>
 <p>Here <span class="math notranslate nohighlight">\(n!!\)</span> is the double factorial.</p>
-<p>According to <a class="reference internal" href="#equation-ar1-ergo">(26.6)</a>, we should have, for any <span class="math notranslate nohighlight">\(k \in \mathbb N\)</span>,</p>
+<p>According to <a class="reference internal" href="#equation-ar1-ergo">(30.6)</a>, we should have, for any <span class="math notranslate nohighlight">\(k \in \mathbb N\)</span>,</p>
 <div class="math notranslate nohighlight">
 \[
 \frac{1}{m} \sum_{t = 1}^m
@@ -542,7 +542,7 @@ M_k =
 </div>
 <div class="solution dropdown admonition" id="ar1_processes-solution-1">
 
-<p class="admonition-title">Solution to<a class="reference internal" href="#ar1p_ex1"> Exercise 26.1</a></p>
+<p class="admonition-title">Solution to<a class="reference internal" href="#ar1p_ex1"> Exercise 30.1</a></p>
 <section id="solution-content">
 <p>Here is one solution:</p>
 <div class="cell docutils container">
@@ -584,14 +584,14 @@ M_k =
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/1fa52a9b34e502086e35b40b5b6c618dbc50897675ae07cb426a5f3d9bdcb042.png"><img alt="_images/1fa52a9b34e502086e35b40b5b6c618dbc50897675ae07cb426a5f3d9bdcb042.png" src="_images/1fa52a9b34e502086e35b40b5b6c618dbc50897675ae07cb426a5f3d9bdcb042.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/97b340d8f98a9f1708c422c2f885efde01ebb7bdf56086859088a34934e6ea91.png"><img alt="_images/97b340d8f98a9f1708c422c2f885efde01ebb7bdf56086859088a34934e6ea91.png" src="_images/97b340d8f98a9f1708c422c2f885efde01ebb7bdf56086859088a34934e6ea91.png" style="width: 80%;" /></a>
 </div>
 </div>
 </section>
 </div>
 <div class="exercise admonition" id="ar1p_ex2">
 
-<p class="admonition-title"><span class="caption-number">Exercise 26.2 </span></p>
+<p class="admonition-title"><span class="caption-number">Exercise 30.2 </span></p>
 <section id="exercise-content">
 <p>Write your own version of a one dimensional <a class="reference external" href="https://en.wikipedia.org/wiki/Kernel_density_estimation">kernel density
 estimator</a>,
@@ -633,7 +633,7 @@ of these distributions?)</p>
 </div>
 <div class="solution dropdown admonition" id="ar1_processes-solution-3">
 
-<p class="admonition-title">Solution to<a class="reference internal" href="#ar1p_ex2"> Exercise 26.2</a></p>
+<p class="admonition-title">Solution to<a class="reference internal" href="#ar1p_ex2"> Exercise 30.2</a></p>
 <section id="solution-content">
 <p>Here is one solution:</p>
 <div class="cell docutils container">
@@ -691,9 +691,9 @@ of these distributions?)</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/fd6775c4deff07a705772b1b9dec452f1f00a87d92a5a2dd7bf00e20af2afc87.png"><img alt="_images/fd6775c4deff07a705772b1b9dec452f1f00a87d92a5a2dd7bf00e20af2afc87.png" src="_images/fd6775c4deff07a705772b1b9dec452f1f00a87d92a5a2dd7bf00e20af2afc87.png" style="width: 80%;" /></a>
-<a class="reference internal image-reference" href="_images/02d051bed23dd82d4137d5e79fef4c63a51acd4c4aa021ff7a3a56207a939519.png"><img alt="_images/02d051bed23dd82d4137d5e79fef4c63a51acd4c4aa021ff7a3a56207a939519.png" src="_images/02d051bed23dd82d4137d5e79fef4c63a51acd4c4aa021ff7a3a56207a939519.png" style="width: 80%;" /></a>
-<a class="reference internal image-reference" href="_images/dfc66bf0e1cf256660553501cec028041cc189ed21a1cddf513bff96d0acbc1d.png"><img alt="_images/dfc66bf0e1cf256660553501cec028041cc189ed21a1cddf513bff96d0acbc1d.png" src="_images/dfc66bf0e1cf256660553501cec028041cc189ed21a1cddf513bff96d0acbc1d.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/9786517b8770fd6ea41afa97e876b2afdd3a140d2d4ea4ac2a0258b9b6c102cc.png"><img alt="_images/9786517b8770fd6ea41afa97e876b2afdd3a140d2d4ea4ac2a0258b9b6c102cc.png" src="_images/9786517b8770fd6ea41afa97e876b2afdd3a140d2d4ea4ac2a0258b9b6c102cc.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/e65af8cbaceed5f091a041b7062064caa538c936b795a918709913dee756d747.png"><img alt="_images/e65af8cbaceed5f091a041b7062064caa538c936b795a918709913dee756d747.png" src="_images/e65af8cbaceed5f091a041b7062064caa538c936b795a918709913dee756d747.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/fa470c15f3969c36c55595de799306ef41af1849cc75e6f75965edd1001d4fc3.png"><img alt="_images/fa470c15f3969c36c55595de799306ef41af1849cc75e6f75965edd1001d4fc3.png" src="_images/fa470c15f3969c36c55595de799306ef41af1849cc75e6f75965edd1001d4fc3.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>We see that the kernel density estimator is effective when the underlying
@@ -702,7 +702,7 @@ distribution is smooth but less so otherwise.</p>
 </div>
 <div class="exercise admonition" id="ar1p_ex3">
 
-<p class="admonition-title"><span class="caption-number">Exercise 26.3 </span></p>
+<p class="admonition-title"><span class="caption-number">Exercise 30.3 </span></p>
 <section id="exercise-content">
 <p>In the lecture we discussed the following fact: for the <span class="math notranslate nohighlight">\(AR(1)\)</span> process</p>
 <div class="math notranslate nohighlight">
@@ -742,7 +742,7 @@ theoretical distribution.</p>
 </div>
 <div class="solution dropdown admonition" id="ar1_processes-solution-5">
 
-<p class="admonition-title">Solution to<a class="reference internal" href="#ar1p_ex3"> Exercise 26.3</a></p>
+<p class="admonition-title">Solution to<a class="reference internal" href="#ar1p_ex3"> Exercise 30.3</a></p>
 <section id="solution-content">
 <p>Here is our solution</p>
 <div class="cell docutils container">
@@ -800,7 +800,7 @@ theoretical distribution.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/419a492f66d9513561e8af9f14240e51d52688c63002546b9242dd0f396ac673.png"><img alt="_images/419a492f66d9513561e8af9f14240e51d52688c63002546b9242dd0f396ac673.png" src="_images/419a492f66d9513561e8af9f14240e51d52688c63002546b9242dd0f396ac673.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/433e1b482928acc98d28a6aaafda2f75445bc3e04a14ffa51e9d9e0d94280385.png"><img alt="_images/433e1b482928acc98d28a6aaafda2f75445bc3e04a14ffa51e9d9e0d94280385.png" src="_images/433e1b482928acc98d28a6aaafda2f75445bc3e04a14ffa51e9d9e0d94280385.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>The simulated distribution approximately coincides with the theoretical
@@ -953,7 +953,7 @@ distribution, as predicted.</p>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cagan_adaptive.html">
-   14. A Monetarist Theory of Price Levels with Adaptive Expectations
+   14. Monetarist Theory of Price Levels with Adaptive Expectations
   </a>
  </li>
 </ul>
@@ -1035,28 +1035,55 @@ distribution, as predicted.</p>
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
+  Monetary-Fiscal Policy Interactions
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="money_inflation.html">
+   26. Money Financed Government Deficits and Price Levels
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="unpleasant.html">
+   27. Unpleasant Monetarist Arithmetic
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="money_inflation_nonlinear.html">
+   28. Inflation Rate Laffer Curves
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="laffer_adaptive.html">
+   29. Laffer Curves  with Adaptive Expectations
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
   Stochastic Dynamics
  </span>
 </p>
 <ul class="current nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1 current active active">
   <a class="current reference internal" href="#">
-   26. AR1 Processes
+   30. AR1 Processes
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="markov_chains_I.html">
-   27. Markov Chains: Basic Concepts
+   31. Markov Chains: Basic Concepts
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="markov_chains_II.html">
-   28. Markov Chains: Irreducibility and Ergodicity
+   32. Markov Chains: Irreducibility and Ergodicity
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="time_series_with_matrices.html">
-   29. Univariate Time Series with Matrix Algebra
+   33. Univariate Time Series with Matrix Algebra
   </a>
  </li>
 </ul>
@@ -1068,12 +1095,12 @@ distribution, as predicted.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="lp_intro.html">
-   30. Linear Programming
+   34. Linear Programming
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="short_path.html">
-   31. Shortest Paths
+   35. Shortest Paths
   </a>
  </li>
 </ul>
@@ -1085,22 +1112,22 @@ distribution, as predicted.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="eigen_II.html">
-   32. The Perron-Frobenius Theorem
+   36. The Perron-Frobenius Theorem
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="input_output.html">
-   33. Input-Output Models
+   37. Input-Output Models
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="lake_model.html">
-   34. A Lake Model of Employment
+   38. A Lake Model of Employment
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="networks.html">
-   35. Networks
+   39. Networks
   </a>
  </li>
 </ul>
@@ -1112,12 +1139,12 @@ distribution, as predicted.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="supply_demand_multiple_goods.html">
-   36. Supply and Demand with Many Goods
+   40. Supply and Demand with Many Goods
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="supply_demand_heterogeneity.html">
-   37. Market Equilibrium with Heterogeneity
+   41. Market Equilibrium with Heterogeneity
   </a>
  </li>
 </ul>
@@ -1129,12 +1156,12 @@ distribution, as predicted.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="simple_linear_regression.html">
-   38. Simple Linear Regression Model
+   42. Simple Linear Regression Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="mle.html">
-   39. Maximum Likelihood Estimation
+   43. Maximum Likelihood Estimation
   </a>
  </li>
 </ul>
@@ -1146,17 +1173,17 @@ distribution, as predicted.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="troubleshooting.html">
-   40. Troubleshooting
+   44. Troubleshooting
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="zreferences.html">
-   41. References
+   45. References
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="status.html">
-   42. Execution Statistics
+   46. Execution Statistics
   </a>
  </li>
 </ul>
