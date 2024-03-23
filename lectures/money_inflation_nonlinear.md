@@ -79,11 +79,11 @@ $$ (eq:msupply)
 
 where $g$ is the part of government expenditures financed by printing money.
 
-**Remark:** Please notice that while equation {eq}`eq:mdemand` is linear in logs of the money supply and price level, equation {eq}`eq:msupply` is linear in levels. This will require adapting the equilibrium computation methods that we deployed in lecture XXXX  **money_inflation**.
+**Remark:** Please notice that while equation {eq}`eq:mdemand` is linear in logs of the money supply and price level, equation {eq}`eq:msupply` is linear in levels. This will require adapting the equilibrium computation methods that we deployed in {doc}`money_inflation`.
 
 ## Computing An Equilibrium Sequence 
 
-We'll deploy a method similar to **Method 2** used in the "money_inflation" XXXXVlecture.  
+We'll deploy a method similar to **Method 2** used in {doc}`money_inflation`.  
 
 We'll take the time $t$ state vector to be $m_t, p_t$.
 

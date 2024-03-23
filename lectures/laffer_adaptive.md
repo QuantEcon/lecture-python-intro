@@ -135,7 +135,7 @@ It will turn out that
  
  * if  limiting values exists, there are two possible limiting values, one high, one low
  
- * unlike the outcome in lecture XXXX, for almost all initial log price levels and expected inflation rates $p_0, \pi_{t}^*$, the limiting $\overline \pi = \overline \mu$ is  the **lower** steady state  value
+ * unlike the outcome in lecture {doc}`money_inflation_nonlinear`, for almost all initial log price levels and expected inflation rates $p_0, \pi_{t}^*$, the limiting $\overline \pi = \overline \mu$ is  the **lower** steady state  value
  
  * for each of the two possible limiting values $\bar \pi$ ,there is a unique initial log price level $p_0$ that implies that $\pi_t = \mu_t = \bar \mu$ for all  $t \geq 0$
  
@@ -147,7 +147,7 @@ It will turn out that
 
 ## Limiting Values of Inflation Rate
 
-As in our earlier lecture XXXX, we can compute the two prospective limiting values for $\bar \pi$ by studying the steady-state Laffer curve.
+As in our earlier lecture {doc}`money_inflation_nonlinear`, we can compute the two prospective limiting values for $\bar \pi$ by studying the steady-state Laffer curve.
 
 Thus, in a  **steady state** 
 
