@@ -189,14 +189,16 @@ p_T & = \frac{m_0}{\gamma_1 - \overline g - \gamma_2 R_u^{-1}}
 $$ (eq:LafferTstationary)
 
 
-We can compute continuation sequences $\{R_t, b_t\}_{t=T+1}^\infty$ of rates of return and real balances that are associated with an equilibrium by solving equation {eq}`eq:up_bmotion` and {eq}`eq:up_bdemand` sequentially  for $t \geq 1$:  
-   \begin{aligned}
+We can compute continuation sequences $\{R_t, b_t\}_{t=T+1}^\infty$ of rates of return and real balances that are associated with an equilibrium by solving equation {eq}`eq:up_bmotion` and {eq}`eq:up_bdemand` sequentially  for $t \geq 1$:
+
+$$
+\begin{aligned}
 b_t & = b_{t-1} R_{t-1} + \overline g \cr
 R_t^{-1} & = \frac{\gamma_1}{\gamma_2} - \gamma_2^{-1} b_t \cr
 p_t & = R_t p_{t-1} \cr
    m_t & = b_{t-1} p_t 
 \end{aligned}
-
+$$
    
 
 ## Before time $T$ 
