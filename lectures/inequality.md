@@ -410,7 +410,7 @@ $$
 It is an average measure of deviation from the line of equality.
 
 ```{seealso}
-The World in Data project has a [nice graphical exploration of the Lorenz curve and the Gini coefficient](https://ourworldindata.org/what-is-the-gini-coefficient])
+The World in Data project has a [nice graphical exploration of the Lorenz curve and the Gini coefficient](https://ourworldindata.org/what-is-the-gini-coefficient)
 ```
 
 ### Gini coefficient of simulated data
@@ -507,9 +507,9 @@ plt.show()
 The plots show that inequality rises with $\sigma$, according to the Gini
 coefficient.
 
-### Gini coefficient for US data (income)
+### Gini coefficient for income (US data)
 
-Now let's look at the Gini coefficient using US data.
+Let's look at the Gini coefficient for the distribution of income in the US.
 
 We will get pre-computed Gini coefficients (based on income) from the World Bank using the [wbgapi](https://blogs.worldbank.org/opendata/introducing-wbgapi-new-python-package-accessing-world-bank-data).
 
@@ -523,48 +523,7 @@ We now know the series ID is `SI.POV.GINI`.
 
 Another, and often useful way to find series ID, is to use the [World Bank data portal](https://data.worldbank.org) and then use `wbgapi` to fetch the data.
 
-Let us fetch the data for the USA and request for it to be returned as a `DataFrame`.
-
-```{code-cell} ipython3
-data = wb.data.DataFrame("SI.POV.GINI", "USA")
-data.head(n=5)
-# remove 'YR' in index and convert to integer
-data.columns = data.columns.map(lambda x: int(x.replace('YR','')))
-```
-
-**Note:** This package often returns data with year information contained in the columns. This is not always convenient for simple plotting with pandas so it can be useful to transpose the results before plotting
-
-```{code-cell} ipython3
-data = data.T           # Obtain years as rows
-data_usa = data['USA']  # Series of US data
-```
-
-The `data_usa` series can now be plotted using the pandas `.plot` method.
-
-```{code-cell} ipython3
----
-mystnb:
-  figure:
-    caption: Gini coefficients (USA)
-    name: gini_usa1
----
-fig, ax = plt.subplots()
-ax = data_usa.plot(ax=ax)
-ax.set_ylim(0, data_usa.max() + 5)
-ax.set_ylabel("Gini coefficient")
-ax.set_xlabel("year")
-plt.show()
-```
-
-As can be seen in {numref}`gini_usa1` the Gini coefficient:
-
-1. trended upward from 1980 to 2020 and then dropped slightly following the COVID pandemic
-1. moves slowly over time
-3. does not have significant variation in the full range from 0 to 100
-
 Using `pandas` we can take a quick look across all countries and all years in the World Bank dataset. 
-
-By leaving off the `"USA"` this function returns all Gini data that is available.
 
 ```{code-cell} ipython3
 ---
@@ -588,9 +547,24 @@ ax.set_ylabel("frequency")
 plt.show()
 ```
 
-We can see that across 50 years of data and all countries (including low and high income countries) the measure only varies between 20 and 65.
+We can see in {numref}`gini_histogram` that across 50 years of data and all countries
+the measure only varies between 20 and 65.
 
-{numref}`gini_usa1` suggests there is a change in trend around the year 1980.
+Let us fetch the data `DataFrame` for the USA. 
+
+```{code-cell} ipython3
+data = wb.data.DataFrame("SI.POV.GINI", "USA")
+data.head(n=5)
+# remove 'YR' in index and convert to integer
+data.columns = data.columns.map(lambda x: int(x.replace('YR','')))
+```
+
+**Note:** This package often returns data with year information contained in the columns. This is not always convenient for simple plotting with pandas so it can be useful to transpose the results before plotting
+
+```{code-cell} ipython3
+data = data.T           # Obtain years as rows
+data_usa = data['USA']  # pd.Series of US data
+```
 
 Let us zoom on the US data so we can more clearly observe trends.
 
@@ -598,33 +572,39 @@ Let us zoom on the US data so we can more clearly observe trends.
 ---
 mystnb:
   figure:
-    caption: Gini coefficients (USA)
-    name: gini_usa_trend
+    caption: Gini coefficients for income distribution (USA)
+    name: gini_usa1
 ---
 fig, ax = plt.subplots()
 ax = data_usa.plot(ax=ax)
 ax.set_ylim(data_usa.min()-1, data_usa.max()+1)
-ax.set_ylabel("Gini coefficient")
+ax.set_ylabel("Gini coefficient (income)")
 ax.set_xlabel("year")
 plt.show()
 ```
 
-{numref}`gini_usa_trend` shows inequality was falling in the USA until 1980 when it appears to have started to change course and steadily rise over time. 
+As can be seen in {numref}`gini_usa1` the Gini coefficient:
+
+1. trended upward from 1980 to 2020 and then dropped slightly following at the start of the COVID pandemic
+2. moves slowly over time
 
 (compare-income-wealth-usa-over-time)=
-### Comparing income and wealth inequality (the US case)
+### Gini coefficient for wealth (US data)
 
-As we have discussed the Gini coefficient can also be computed over different distributions such as *income* and *wealth*. 
+In the previous section we looked at the Gini coefficient for income using US data.
 
-We can use the data collected above {ref}`survey of consumer finances <data:survey-consumer-finance>` to look at the Gini coefficient when using income when compared to wealth data. 
+Now let's look at the Gini coefficient for the distribution of wealth.
 
-We can compute the Gini coefficient for net wealth, total income, and labour income over many years.
+We can use the data collected above {ref}`survey of consumer finances <data:survey-consumer-finance>` to look at the Gini coefficient
+computed over the wealth distribution.
+
+The Gini coefficient for net wealth and labour income is computed over many years.
 
 ```{code-cell} ipython3
 df_income_wealth.year.describe()
 ```
 
-This code can be used to compute this information over the full dataset.
+**Note:** This code can be used to compute this information over the full dataset.
 
 ```{code-cell} ipython3
 :tags: [skip-execution, hide-input, hide-output]
@@ -672,7 +652,7 @@ ginis = pd.read_csv("_static/lecture_specific/inequality/usa-gini-nwealth-tincom
 ginis.head(n=5)
 ```
 
-Let's plot the Gini coefficients for net wealth, labor income and total income.
+Let's plot the Gini coefficients for net wealth.
 
 ```{code-cell} ipython3
 ---
@@ -694,24 +674,6 @@ We will smooth our data and take an average of the data either side of it for th
 
 ```{code-cell} ipython3
 ginis["l_income"][1965] = (ginis["l_income"][1962] + ginis["l_income"][1968]) / 2
-```
-
-Now looking at US income for both labour and a total income.
-
-```{code-cell} ipython3
----
-mystnb:
-  figure:
-    caption: Gini coefficients of US income
-    name: gini_income_us
----
-fig, ax = plt.subplots()
-ax.plot(years, ginis["l_income"], marker='o', label="labor income")
-ax.plot(years, ginis["t_income"], marker='o', label="total income")
-ax.set_xlabel("year")
-ax.set_ylabel("Gini coefficient")
-ax.legend()
-plt.show()
 ```
 
 Now we can compare net wealth and labour income.
@@ -756,7 +718,7 @@ Let us compare three western economies: USA, United Kingdom, and Norway
 ---
 mystnb:
   figure:
-    caption: Gini coefficients (USA, United Kingdom, and Norway)
+    caption: Gini coefficients for income (USA, United Kingdom, and Norway)
     name: gini_usa_gbr_nor1
 ---
 ax = data[['USA','GBR', 'NOR']].plot()
@@ -780,7 +742,7 @@ We can use the `.ffill()` method to copy and bring forward the last known value 
 ---
 mystnb:
   figure:
-    caption: Gini coefficients (USA, United Kingdom, and Norway)
+    caption: Gini coefficients for income (USA, United Kingdom, and Norway)
     name: gini_usa_gbr_nor2
 ---
 data['NOR'] = data['NOR'].ffill()
