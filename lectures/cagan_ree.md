@@ -236,6 +236,7 @@ As usual, we'll start by importing some Python modules.
 import numpy as np
 from collections import namedtuple
 import matplotlib.pyplot as plt
+plt.rcParams['figure.dpi'] = 200
 ```
 
 First, we store parameters in a `namedtuple`:
@@ -338,7 +339,7 @@ Now we use the following function to plot the result
 
 ```{code-cell} ipython3
 def plot_sequences(sequences, labels):
-    fig, axs = plt.subplots(len(sequences), 1, figsize=[5, 12], dpi=200)
+    fig, axs = plt.subplots(len(sequences), 1, figsize=[5, 12])
     for ax, seq, label in zip(axs, sequences, labels):
         ax.plot(range(len(seq)), seq, label=label)
         ax.set_ylabel(label)
@@ -524,10 +525,11 @@ p_seq_2_regime2 = np.concatenate([p_seq_2_path1[:T1+1],
 
 ```{code-cell} ipython3
 :tags: [hide-input]
+
 T_seq = range(T+2)
 
 # plot both regimes
-fig, ax = plt.subplots(5, 1, figsize=[5, 12], dpi=200)
+fig, ax = plt.subplots(5, 1, figsize=[5, 12])
 
 # Configuration for each subplot
 plot_configs = [
@@ -543,20 +545,22 @@ plot_configs = [
      'ylabel': r'$p$'}
 ]
 
-# Loop through each subplot configuration
-for axi, config in zip(ax, plot_configs):
-    for data in config['data']:
-        if len(data) == 3:  # Plot with label for legend
-            axi.plot(data[0], data[1], label=data[2])
-        else:  # Plot without label
-            axi.plot(data[0], data[1])
-    axi.set_ylabel(config['ylabel'])
-    axi.set_xlabel(r'$t$')
-    if 'label' in config:  # If there's a label, add a legend
-        axi.legend()
+def generate_plots(plot_configs, ax):
 
-plt.tight_layout()
-plt.show()
+    # Loop through each subplot configuration
+    for axi, config in zip(ax, plot_configs):
+        for data in config['data']:
+            if len(data) == 3:  # Plot with label for legend
+                axi.plot(data[0], data[1], label=data[2])
+                axi.legend()
+            else:  # Plot without label
+                axi.plot(data[0], data[1])
+        axi.set_ylabel(config['ylabel'])
+        axi.set_xlabel(r'$t$')
+    plt.tight_layout()
+    plt.show()
+    
+generate_plots(plot_configs, ax)
 ```
 
 We invite you to compare these graphs with corresponding ones for the foreseen stabilization analyzed in experiment 1 above.
@@ -582,36 +586,25 @@ unanticipated, as in experiment 2.
 
 ```{code-cell} ipython3
 :tags: [hide-input]
-# compare foreseen vs unforeseen shock
-fig, ax = plt.subplots(5, figsize=[5, 12], dpi=200)
 
-plot_data = [
-    (T_seq[:-1], [μ_seq_2], r'$\mu$', ['']),
-    (T_seq, [π_seq_2, π_seq_1], r'$\pi$', ['Unforeseen', 'Foreseen']),
-    (T_seq, [m_seq_2_regime1 - p_seq_2_regime1, m_seq_1 - p_seq_1], 
-            r'$m - p$', ['Unforeseen', 'Foreseen']),
-    (T_seq, [m_seq_2_regime1, m_seq_2_regime2, m_seq_1], r'$m$', 
-    ['Unforeseen (Smooth $m_{T_1}$)', 
-    'Unforeseen ($m_{T_1}$ jumps)', 
-    'Foreseen shock']),
-    (T_seq, [p_seq_2_regime1, p_seq_2_regime2, p_seq_1], r'$p$', 
-    ['Unforseen (Smooth $m_{T_1}$)', 
-    'Unforseen ($m_{T_1}$ jumps)', 
-    'Foreseen shock'])
+# compare foreseen vs unforeseen shock
+fig, ax = plt.subplots(5, figsize=[5, 12])
+
+plot_configs = [
+    {'data': [(T_seq[:-1], μ_seq_2)], 'ylabel': r'$\mu$'},
+    {'data': [(T_seq, π_seq_2, 'Unforeseen'), 
+              (T_seq, π_seq_1, 'Foreseen')], 'ylabel': r'$p$'},
+    {'data': [(T_seq, m_seq_2_regime1 - p_seq_2_regime1, 'Unforeseen'), 
+              (T_seq, m_seq_1 - p_seq_1, 'Foreseen')], 'ylabel': r'$m - p$'},
+    {'data': [(T_seq, m_seq_2_regime1, 'Unforeseen (Smooth $m_{T_1}$)'), 
+              (T_seq, m_seq_2_regime2, 'Unforeseen ($m_{T_1}$ jumps)'),
+              (T_seq, m_seq_1, 'Foreseen')], 'ylabel': r'$m$'},   
+    {'data': [(T_seq, p_seq_2_regime1, 'Unforeseen (Smooth $m_{T_1}$)'), 
+          (T_seq, p_seq_2_regime2, 'Unforeseen ($m_{T_1}$ jumps)'),
+          (T_seq, p_seq_1, 'Foreseen')], 'ylabel': r'$p$'}   
 ]
 
-for i, (times, sequences, ylabel, labels) in enumerate(plot_data):
-    for seq, label in zip(sequences, labels):
-        ax[i].plot(times, seq, label=label)
-    ax[i].set_ylabel(ylabel)
-    if labels[0]:
-        ax[i].legend()
-
-for axis in ax:
-    axis.set_xlabel(r'$t$')
-
-plt.tight_layout()
-plt.show()
+generate_plots(plot_configs, ax)
 ```
 
 It is instructive to compare the preceding graphs with graphs of log price levels and inflation rates for data from four big inflations described in
