@@ -545,8 +545,7 @@ plot_configs = [
      'ylabel': r'$p$'}
 ]
 
-def generate_plots(plot_configs, ax):
-
+def experiment_plot(plot_configs, ax):
     # Loop through each subplot configuration
     for axi, config in zip(ax, plot_configs):
         for data in config['data']:
@@ -560,7 +559,7 @@ def generate_plots(plot_configs, ax):
     plt.tight_layout()
     plt.show()
     
-generate_plots(plot_configs, ax)
+experiment_plot(plot_configs, ax)
 ```
 
 We invite you to compare these graphs with corresponding ones for the foreseen stabilization analyzed in experiment 1 above.
@@ -604,7 +603,7 @@ plot_configs = [
           (T_seq, p_seq_1, 'Foreseen')], 'ylabel': r'$p$'}   
 ]
 
-generate_plots(plot_configs, ax)
+experiment_plot(plot_configs, ax)
 ```
 
 It is instructive to compare the preceding graphs with graphs of log price levels and inflation rates for data from four big inflations described in
