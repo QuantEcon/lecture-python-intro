@@ -11,8 +11,6 @@ kernelspec:
   name: python3
 ---
 
-+++ {"user_expressions": []}
-
 # Price Level Histories 
 
 This lecture offers some historical evidence about fluctuations in levels of aggregate price indexes.  
