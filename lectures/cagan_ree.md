@@ -339,7 +339,7 @@ Now we use the following function to plot the result
 
 ```{code-cell} ipython3
 def plot_sequences(sequences, labels):
-    fig, axs = plt.subplots(len(sequences), 1, figsize=[5, 12])
+    fig, axs = plt.subplots(len(sequences), 1, figsize=(5, 12))
     for ax, seq, label in zip(axs, sequences, labels):
         ax.plot(range(len(seq)), seq, label=label)
         ax.set_ylabel(label)
@@ -348,8 +348,8 @@ def plot_sequences(sequences, labels):
     plt.tight_layout()
     plt.show()
 
-sequences = [μ_seq_1, π_seq_1, m_seq_1 - p_seq_1, m_seq_1, p_seq_1]
-plot_sequences(sequences, [r'$\mu$', r'$\pi$', r'$m - p$', r'$m$', r'$p$'])
+sequences = (μ_seq_1, π_seq_1, m_seq_1 - p_seq_1, m_seq_1, p_seq_1)
+plot_sequences(sequences, (r'$\mu$', r'$\pi$', r'$m - p$', r'$m$', r'$p$'))
 ```
 
 The plot of the money growth rate $\mu_t$ in the top level panel portrays
@@ -502,14 +502,14 @@ cm2 = create_cagan_model(m0=m_seq_2_path1[T1+1],
 
 
 # regime 1 - simply glue π_seq, μ_seq
-μ_seq_2 = np.concatenate([μ_seq_2_path1[:T1+1],
-                          μ_seq_2_cont])
-π_seq_2 = np.concatenate([π_seq_2_path1[:T1+1], 
-                          π_seq_2_cont])
-m_seq_2_regime1 = np.concatenate([m_seq_2_path1[:T1+1], 
-                                  m_seq_2_cont1])
-p_seq_2_regime1 = np.concatenate([p_seq_2_path1[:T1+1], 
-                                  p_seq_2_cont1])
+μ_seq_2 = np.concatenate((μ_seq_2_path1[:T1+1],
+                          μ_seq_2_cont))
+π_seq_2 = np.concatenate((π_seq_2_path1[:T1+1], 
+                          π_seq_2_cont))
+m_seq_2_regime1 = np.concatenate((m_seq_2_path1[:T1+1], 
+                                  m_seq_2_cont1))
+p_seq_2_regime1 = np.concatenate((p_seq_2_path1[:T1+1], 
+                                  p_seq_2_cont1))
 
 # regime 2 - reset m_T1
 m_T1 = (m_seq_2_path1[T1] + μ0) + cm2.α*(μ0 - μ_star)
@@ -517,10 +517,10 @@ m_T1 = (m_seq_2_path1[T1] + μ0) + cm2.α*(μ0 - μ_star)
 cm3 = create_cagan_model(m0=m_T1, μ_seq=μ_seq_2_cont)
 π_seq_2_cont2, m_seq_2_cont2, p_seq_2_cont2 = solve(cm3, T-1-T1)
 
-m_seq_2_regime2 = np.concatenate([m_seq_2_path1[:T1+1], 
-                                  m_seq_2_cont2])
-p_seq_2_regime2 = np.concatenate([p_seq_2_path1[:T1+1],
-                                  p_seq_2_cont2])
+m_seq_2_regime2 = np.concatenate((m_seq_2_path1[:T1+1], 
+                                  m_seq_2_cont2))
+p_seq_2_regime2 = np.concatenate((p_seq_2_path1[:T1+1],
+                                  p_seq_2_cont2))
 ```
 
 ```{code-cell} ipython3
@@ -529,7 +529,7 @@ p_seq_2_regime2 = np.concatenate([p_seq_2_path1[:T1+1],
 T_seq = range(T+2)
 
 # plot both regimes
-fig, ax = plt.subplots(5, 1, figsize=[5, 12])
+fig, ax = plt.subplots(5, 1, figsize=(5, 12))
 
 # Configuration for each subplot
 plot_configs = [
@@ -587,7 +587,7 @@ unanticipated, as in experiment 2.
 :tags: [hide-input]
 
 # compare foreseen vs unforeseen shock
-fig, ax = plt.subplots(5, figsize=[5, 12])
+fig, ax = plt.subplots(5, figsize=(5, 12))
 
 plot_configs = [
     {'data': [(T_seq[:-1], μ_seq_2)], 'ylabel': r'$\mu$'},
@@ -644,10 +644,10 @@ cm4 = create_cagan_model(μ_seq=μ_seq_stab)
 
 π_seq_4, m_seq_4, p_seq_4 = solve(cm4, T)
 
-sequences = [μ_seq_stab, π_seq_4, 
-             m_seq_4 - p_seq_4, m_seq_4, p_seq_4]
-plot_sequences(sequences, [r'$\mu$', r'$\pi$', 
-                           r'$m - p$', r'$m$', r'$p$'])
+sequences = (μ_seq_stab, π_seq_4, 
+             m_seq_4 - p_seq_4, m_seq_4, p_seq_4)
+plot_sequences(sequences, (r'$\mu$', r'$\pi$', 
+                           r'$m - p$', r'$m$', r'$p$'))
 ```
 
 ## Sequel
