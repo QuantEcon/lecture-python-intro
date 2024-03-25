@@ -86,7 +86,7 @@ Hence the second term takes all $x_i \leq x$ and sums their probabilities.
 
 #### Uniform distribution
 
-One simple example is the **uniform distribution**, where $p(x_i) = 1/n$ for all $n$.
+One simple example is the **uniform distribution**, where $p(x_i) = 1/n$ for all $i$.
 
 We can import the uniform distribution on $S = \{1, \ldots, n\}$  from SciPy like so:
 
@@ -96,7 +96,7 @@ u = scipy.stats.randint(1, n+1)
 ```
 
 
-Here's the mean and variance
+Here's the mean and variance:
 
 ```{code-cell} ipython3
 u.mean(), u.var()
@@ -105,7 +105,7 @@ u.mean(), u.var()
 The formula for the mean is $(n+1)/2$, and the formula for the variance is $(n^2 - 1)/12$.
 
 
-Now let's evaluate the PMF
+Now let's evaluate the PMF:
 
 ```{code-cell} ipython3
 u.pmf(1)
@@ -140,7 +140,7 @@ plt.show()
 ```
 
 
-The CDF jumps up by $p(x_i)$ and $x_i$.
+The CDF jumps up by $p(x_i)$ at $x_i$.
 
 
 ```{exercise}
@@ -194,7 +194,7 @@ u.pmf(1)
 
 #### Binomial distribution
 
-Another useful (and more interesting) distribution is the **binomial distribution** on $S=\{0, \ldots, n\}$, which has PMF
+Another useful (and more interesting) distribution is the **binomial distribution** on $S=\{0, \ldots, n\}$, which has PMF:
 
 $$ 
     p(i) = \binom{n}{i} \theta^i (1-\theta)^{n-i}
@@ -202,11 +202,11 @@ $$
 
 Here $\theta \in [0,1]$ is a parameter.
 
-The interpretation of $p(i)$ is: the number of successes in $n$ independent trials with success probability $\theta$.
+The interpretation of $p(i)$ is: the probability of $i$ successes in $n$ independent trials with success probability $\theta$.
 
-(If $\theta=0.5$, p(i) can be "how many heads in $n$ flips of a fair coin")
+For example, if $\theta=0.5$, then $p(i)$ is the probability of $i$ heads in $n$ flips of a fair coin.
 
-The mean and variance are
+The mean and variance are:
 
 ```{code-cell} ipython3
 n = 10
@@ -220,7 +220,7 @@ u.mean(), u.var()
 
 The formula for the mean is $n \theta$ and the formula for the variance is $n \theta (1-\theta)$.
 
-Here's the PDF
+Here's the PMF:
 
 ```{code-cell} ipython3
 u.pmf(1)
@@ -236,7 +236,7 @@ plt.show()
 ```
 
 
-Here's the CDF
+Here's the CDF:
 
 ```{code-cell} ipython3
 fig, ax = plt.subplots()
@@ -258,7 +258,7 @@ Using `u.pmf`, check that our definition of the CDF given above calculates the s
 :class: dropdown
 ```
 
-Here is one solution
+Here is one solution:
 
 ```{code-cell} ipython3
 fig, ax = plt.subplots()
@@ -283,9 +283,9 @@ $$
     p(i) = \frac{\lambda^i}{i!} e^{-\lambda}
 $$
 
-The interpretation of $p(i)$ is: the number of events in a fixed time interval, where the events occur at a constant rate $\lambda$ and independently of each other.
+The interpretation of $p(i)$ is: the probability of $i$ events in a fixed time interval, where the events occur at a constant rate $\lambda$ and independently of each other.
 
-The mean and variance are
+The mean and variance are:
 ```{code-cell} ipython3
 λ = 2
 u = scipy.stats.poisson(λ)
@@ -297,7 +297,7 @@ u.mean(), u.var()
 
 The the expectation of Poisson distribution is $\lambda$ and the variance is also $\lambda$.
 
-Here's the PMF
+Here's the PMF:
 
 ```{code-cell} ipython3
 λ = 2
@@ -321,7 +321,7 @@ plt.show()
 ### Continuous distributions
 
 
-Continuous distributions are represented by a **density function**, which is a function $p$ over $\mathbb R$ (the set of all numbers) such that $p(x) \geq 0$ for all $x$ and
+Continuous distributions are represented by a **probability density function**, which is a function $p$ over $\mathbb R$ (the set of all real numbers) such that $p(x) \geq 0$ for all $x$ and
 
 $$ \int_{-\infty}^\infty p(x) dx = 1 $$
 
@@ -424,7 +424,7 @@ It has a nice interpretation: if $X$ is lognormally distributed, then $\log X$ i
 
 It is often used to model variables that are "multiplicative" in nature, such as income or asset prices.
 
-We can obtain the moments, PDF, and CDF of the normal density as follows:
+We can obtain the moments, PDF, and CDF of the lognormal density as follows:
 
 ```{code-cell} ipython3
 μ, σ = 0.0, 1.0
@@ -479,7 +479,7 @@ It is related to the Poisson distribution as it describes the distribution of th
 
 It can be shown that, for this distribution, the mean is $1/\lambda$ and the variance is $1/\lambda^2$.
 
-We can obtain the moments, PDF, and CDF of the normal density as follows:
+We can obtain the moments, PDF, and CDF of the exponential density as follows:
 
 ```{code-cell} ipython3
 λ = 1.0
@@ -535,7 +535,7 @@ This distribution has two parameters, $\alpha > 0$ and $\beta > 0$.
 It can be shown that, for this distribution, the mean is $\alpha / (\alpha + \beta)$ and 
 the variance is $\alpha \beta / (\alpha + \beta)^2 (\alpha + \beta + 1)$.
 
-We can obtain the moments, PDF, and CDF of the normal density as follows:
+We can obtain the moments, PDF, and CDF of the Beta density as follows:
 
 ```{code-cell} ipython3
 α, β = 3.0, 1.0
@@ -592,7 +592,7 @@ One interpretation is that if $X$ is gamma distributed and $\alpha$ is an
 integer, then $X$ is the sum of $\alpha$ independent exponentially distributed
 random variables with mean $1/\beta$.
 
-We can obtain the moments, PDF, and CDF of the normal density as follows:
+We can obtain the moments, PDF, and CDF of the Gamma density as follows:
 
 ```{code-cell} ipython3
 α, β = 3.0, 2.0
