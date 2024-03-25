@@ -410,7 +410,7 @@ $$
 m_{T_1}^2 - m_{T_1}^1 = \alpha (\pi_{T_1}^1 - \pi_{T_1}^2),
 $$ (eq:eqnmoneyjump)
 
-which describes how the government could reset the money supply at $T_1$ in response to the jump in expected inflation associated with the monetary stabilization. 
+which describes how the government could reset the money supply at $T_1$ in response to the jump in expected inflation associated with monetary stabilization. 
 
 Doing this would let the price level be continuous at $T_1$.
 
