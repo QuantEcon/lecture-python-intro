@@ -4,7 +4,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.15.1
+    jupytext_version: 1.16.1
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
@@ -17,8 +17,9 @@ This lecture offers some historical evidence about fluctuations in levels of agg
 
 Let's start by installing the necessary Python packages.
 
+The `xlrd` package is used by `pandas` to perform operations on Excel files.
+
 ```{code-cell} ipython3
-:tags: [hide-output]
 !pip install xlrd
 ```
 
@@ -67,7 +68,7 @@ Under a gold or silver standard, some money also consisted of "warehouse certifi
 Let us bring the data into pandas from a spreadsheet that is [hosted on github](https://github.com/QuantEcon/lecture-python-intro/tree/main/lectures/datasets).
 
 ```{code-cell} ipython3
-# import data and clean up the index
+# Import data and clean up the index
 data_url = "https://github.com/QuantEcon/lecture-python-intro/raw/main/lectures/datasets/longprices.xls"
 df_fig5 = pd.read_excel(data_url, 
                         sheet_name='all', 
@@ -84,12 +85,12 @@ During most years in this time interval, the countries were on a gold or silver 
 ---
 mystnb:
   figure:
-    caption: "Long run time series of the price level"
+    caption: Long run time series of the price level
     name: lrpl
 ---
 df_fig5_bef1914 = df_fig5[df_fig5.index <= 1915]
 
-# create plot
+# Create plot
 cols = ['UK', 'US', 'France', 'Castile']
 
 fig, ax = plt.subplots(dpi=200)
@@ -156,7 +157,7 @@ After the outbreak of the Great War in 1914, the four countries left the gold st
 ---
 mystnb:
   figure:
-    caption: "Long run time series of the price level (log)"
+    caption: Long run time series of the price level (log)
     name: lrpl_lg
 ---
 fig, ax = plt.subplots(dpi=200)
@@ -167,9 +168,9 @@ for col in cols:
             y=df_fig5[col].iloc[-1], s=col)
 
 ax.set_yscale('log')
-ax.set_ylabel('Index  1913 = 100')
+ax.set_ylabel('Logs of price levels (Index  1913 = 100)')
 ax.set_ylim([10, 1e6])
-ax.set_xlabel('Logs of price levels')
+ax.set_xlabel('year')
 ax.set_xlim(xmin=1600)
 plt.tight_layout()
 plt.show()
@@ -208,7 +209,7 @@ from chapter 3 of {cite}`sargent2013rational`.
 Data underlying our graphs appear in tables in an appendix to chapter 3 of {cite}`sargent2013rational`.
 We have transcribed all of these data into a spreadsheet {download}`chapter_3.xlsx <https://github.com/QuantEcon/lecture-python-intro/raw/main/lectures/datasets/chapter_3.xlsx>` that we read into pandas.
 
-In the code cell below we clean the data and build a `pandas.dataframe`. 
+In the code cell below we clean the data and build a `pandas.dataframe`.
 
 ```{code-cell} ipython3
 :tags: [hide-input]
@@ -217,12 +218,12 @@ def process_entry(entry):
     "Clean each entry of a dataframe."
     
     if type(entry) == str:
-        # remove leading and trailing whitespace
+        # Remove leading and trailing whitespace
         entry = entry.strip()
-        # remove comma
+        # Remove comma
         entry = entry.replace(',', '')
     
-        # remove HTML markers
+        # Remove HTML markers
         item_to_remove = ['<s>a</s>', '<s>c</s>', 
                           '<s>d</s>', '<s>e</s>']
 
@@ -239,14 +240,14 @@ def process_entry(entry):
 def process_df(df):
     "Clean and reorganize the entire dataframe."
     
-    # remove HTML markers from column names
+    # Remove HTML markers from column names
     for item in ['<s>a</s>', '<s>c</s>', '<s>d</s>', '<s>e</s>']:
         df.columns = df.columns.str.replace(item, '')
         
-    # convert years to int
+    # Convert years to int
     df['Year'] = df['Year'].apply(lambda x: int(x))
     
-    # set index to datetime with year and month
+    # Set index to datetime with year and month
     df = df.set_index(
             pd.to_datetime(
                 (df['Year'].astype(str) + \
@@ -254,14 +255,14 @@ def process_df(df):
                 format='%Y%B'))
     df = df.drop(['Year', 'Month'], axis=1)
     
-    # handle duplicates by keeping the first
+    # Handle duplicates by keeping the first
     df = df[~df.index.duplicated(keep='first')]
     
-    # convert attribute values to numeric
+    # Convert attribute values to numeric
     df = df.applymap(lambda x: float(x) \
                 if x != '—' else np.nan)
     
-    # finally, we only focus on data between 1919 and 1925
+    # Finally, we only focus on data between 1919 and 1925
     mask = (df.index >= '1919-01-01') & \
            (df.index < '1925-01-01')
     df = df.loc[mask]
@@ -280,19 +281,19 @@ def pe_plot(p_seq, e_seq, index, labs, ax):
 
     p_lab, e_lab = labs
     
-    # plot price and exchange rates
+    # Plot price and exchange rates
     ax.plot(index, p_seq, label=p_lab, color='tab:blue', lw=2)
     
-    # add a new axis
+    # Add a new axis
     ax1 = ax.twinx()
     ax1.plot([None], [None], label=p_lab, color='tab:blue', lw=2)
     ax1.plot(index, e_seq, label=e_lab, color='tab:orange', lw=2)
     
-    # set log axes
+    # Set log axes
     ax.set_yscale('log')
     ax1.set_yscale('log')
     
-    # define the axis label format
+    # Define the axis label format
     ax.xaxis.set_major_locator(
         mdates.MonthLocator(interval=5))
     ax.xaxis.set_major_formatter(
@@ -300,7 +301,7 @@ def pe_plot(p_seq, e_seq, index, labs, ax):
     for label in ax.get_xticklabels():
         label.set_rotation(45)
     
-    # set labels
+    # Set labels
     ax.set_ylabel('Price level')
     ax1.set_ylabel('Exchange rate')
   
@@ -314,12 +315,12 @@ def pr_plot(p_seq, index, ax):
     #  Calculate the difference of log p_seq
     log_diff_p = np.diff(np.log(p_seq))
     
-    # graph for the difference of log p_seq
+    # Graph for the difference of log p_seq
     ax.scatter(index[1:], log_diff_p, 
                label='Monthly inflation rate', 
                color='tab:grey')
     
-    # calculate and plot moving average
+    # Calculate and plot moving average
     diff_smooth = pd.DataFrame(log_diff_p).rolling(3, center=True).mean()
     ax.plot(index[1:], diff_smooth, label='Moving average (3 period)', alpha=0.5, lw=2)
     ax.set_ylabel('Inflation rate')
@@ -340,30 +341,30 @@ def pr_plot(p_seq, index, ax):
 We prepare the data for each country
 
 ```{code-cell} ipython3
-# import data
+# Import data
 data_url = "https://github.com/QuantEcon/lecture-python-intro/raw/main/lectures/datasets/chapter_3.xlsx"
 xls = pd.ExcelFile(data_url)
 
-# select relevant sheets
+# Select relevant sheets
 sheet_index = [(2, 3, 4), 
                (9, 10), 
                (14, 15, 16), 
                (21, 18, 19)]
 
-# remove redundant rows
+# Remove redundant rows
 remove_row = [(-2, -2, -2), 
               (-7, -10), 
               (-6, -4, -3), 
               (-19, -3, -6)]
 
-# unpack and combine series for each country
+# Unpack and combine series for each country
 df_list = []
 
 for i in range(4):
     
     indices, rows = sheet_index[i], remove_row[i]
     
-    # apply process_entry on the selected sheet
+    # Apply process_entry on the selected sheet
     sheet_list = [
         pd.read_excel(xls, 'Table3.' + str(ind), 
             header=1).iloc[:row].applymap(process_entry)
@@ -372,7 +373,7 @@ for i in range(4):
     sheet_list = [process_df(df) for df in sheet_list]
     df_list.append(pd.concat(sheet_list, axis=1))
 
-df_Aus, df_Hung, df_Pol, df_Germ = df_list
+df_aus, df_hun, df_pol, df_deu = df_list
 ```
 
 Now let's construct graphs for our four countries.
@@ -399,17 +400,18 @@ The sources of our data are:
 ---
 mystnb:
   figure:
-    caption: "Price index and exchange rate (Austria)"
+    caption: Price index and exchange rate (Austria)
     name: pi_xrate_austria
 ---
-p_seq = df_Aus['Retail price index, 52 commodities']
-e_seq = df_Aus['Exchange Rate']
+p_seq = df_aus['Retail price index, 52 commodities']
+e_seq = df_aus['Exchange Rate']
 
-lab = ['Retail price index', 'Exchange rate']
+lab = ['Retail price index', 
+       '1/cents per Austrian Krone (Crown)']
 
-# create plot
+# Create plot
 fig, ax = plt.subplots(dpi=200)
-_ = pe_plot(p_seq, e_seq, df_Aus.index, lab, ax)
+_ = pe_plot(p_seq, e_seq, df_aus.index, lab, ax)
 
 plt.show()
 ```
@@ -418,12 +420,12 @@ plt.show()
 ---
 mystnb:
   figure:
-    caption: "Monthly inflation rate (Austria)"
+    caption: Monthly inflation rate (Austria)
     name: inflationrate_austria
 ---
-# plot moving average
+# Plot moving average
 fig, ax = plt.subplots(dpi=200)
-_ = pr_plot(p_seq, df_Aus.index, ax)
+_ = pr_plot(p_seq, df_aus.index, ax)
 
 plt.show()
 ```
@@ -446,19 +448,19 @@ The source of our data for Hungary is:
 ---
 mystnb:
   figure:
-    caption: "Price index and exchange rate (Hungary)"
+    caption: Price index and exchange rate (Hungary)
     name: pi_xrate_hungary
 ---
-m_seq = df_Hung['Notes in circulation']
-p_seq = df_Hung['Hungarian index of prices']
-e_seq = 1 / df_Hung['Cents per crown in New York']
+m_seq = df_hun['Notes in circulation']
+p_seq = df_hun['Hungarian index of prices']
+e_seq = 1 / df_hun['Cents per crown in New York']
 
 lab = ['Hungarian index of prices', 
-       '1/cents per crown in New York']
+       '1/cents per Hungarian Korona (Crown)']
 
-# create plot
+# Create plot
 fig, ax = plt.subplots(dpi=200)
-_ = pe_plot(p_seq, e_seq, df_Hung.index, lab, ax)
+_ = pe_plot(p_seq, e_seq, df_hun.index, lab, ax)
 
 plt.show()
 ```
@@ -467,12 +469,12 @@ plt.show()
 ---
 mystnb:
   figure:
-    caption: "Monthly inflation rate (Hungary)"
+    caption: Monthly inflation rate (Hungary)
     name: inflationrate_hungary
 ---
-# plot moving average
+# Plot moving average
 fig, ax = plt.subplots(dpi=200)
-_ = pr_plot(p_seq, df_Hung.index, ax)
+_ = pr_plot(p_seq, df_hun.index, ax)
 
 plt.show()
 ```
@@ -493,31 +495,31 @@ We dropped the exchange rate after June 1924, when the zloty was adopted. We did
 ---
 mystnb:
   figure:
-    caption: "Price index and exchange rate (Poland)"
+    caption: Price index and exchange rate (Poland)
     name: pi_xrate_poland
 ---
-# splice three price series in different units
-p_seq1 = df_Pol['Wholesale price index'].copy()
-p_seq2 = df_Pol['Wholesale Price Index: '
+# Splice three price series in different units
+p_seq1 = df_pol['Wholesale price index'].copy()
+p_seq2 = df_pol['Wholesale Price Index: '
                 'On paper currency basis'].copy()
-p_seq3 = df_Pol['Wholesale Price Index: ' 
+p_seq3 = df_pol['Wholesale Price Index: ' 
                 'On zloty basis'].copy()
 
-# non-nan part
+# Non-nan part
 mask_1 = p_seq1[~p_seq1.isna()].index[-1]
 mask_2 = p_seq2[~p_seq2.isna()].index[-2]
 
 adj_ratio12 = (p_seq1[mask_1] / p_seq2[mask_1])
 adj_ratio23 = (p_seq2[mask_2] / p_seq3[mask_2])
 
-# glue three series
+# Glue three series
 p_seq = pd.concat([p_seq1[:mask_1], 
                    adj_ratio12 * p_seq2[mask_1:mask_2], 
                    adj_ratio23 * p_seq3[mask_2:]])
 p_seq = p_seq[~p_seq.index.duplicated(keep='first')]
 
-# exchange rate
-e_seq = 1/df_Pol['Cents per Polish mark (zloty after May 1924)']
+# Exchange rate
+e_seq = 1/df_pol['Cents per Polish mark (zloty after May 1924)']
 e_seq[e_seq.index > '05-01-1924'] = np.nan
 ```
 
@@ -525,9 +527,9 @@ e_seq[e_seq.index > '05-01-1924'] = np.nan
 lab = ['Wholesale price index', 
        '1/cents per polish mark']
 
-# create plot
+# Create plot
 fig, ax = plt.subplots(dpi=200)
-ax1 = pe_plot(p_seq, e_seq, df_Pol.index, lab, ax)
+ax1 = pe_plot(p_seq, e_seq, df_pol.index, lab, ax)
 
 plt.show()
 ```
@@ -536,12 +538,12 @@ plt.show()
 ---
 mystnb:
   figure:
-    caption: "Monthly inflation rate (Poland)"
+    caption: Monthly inflation rate (Poland)
     name: inflationrate_poland
 ---
-# plot moving average
+# Plot moving average
 fig, ax = plt.subplots(dpi=200)
-_ = pr_plot(p_seq, df_Pol.index, ax)
+_ = pr_plot(p_seq, df_pol.index, ax)
 
 plt.show()
 ```
@@ -557,19 +559,19 @@ The sources of our data for Germany are the following tables from chapter 3 of {
 ---
 mystnb:
   figure:
-    caption: "Price index and exchange rate (Germany)"
+    caption: Price index and exchange rate (Germany)
     name: pi_xrate_germany
 ---
-p_seq = df_Germ['Price index (on basis of marks before July 1924,'
+p_seq = df_deu['Price index (on basis of marks before July 1924,'
                 '  reichsmarks after)'].copy()
-e_seq = 1/df_Germ['Cents per mark']
+e_seq = 1/df_deu['Cents per mark']
 
 lab = ['Price index', 
        '1/cents per mark']
 
-# create plot
+# Create plot
 fig, ax = plt.subplots(dpi=200)
-ax1 = pe_plot(p_seq, e_seq, df_Germ.index, lab, ax)
+ax1 = pe_plot(p_seq, e_seq, df_deu.index, lab, ax)
 
 plt.show()
 ```
@@ -578,14 +580,14 @@ plt.show()
 ---
 mystnb:
   figure:
-    caption: "Price index (adjusted) and exchange rate (Germany)"
+    caption: Price index (adjusted) and exchange rate (Germany)
     name: piadj_xrate_germany
 ---
-p_seq = df_Germ['Price index (on basis of marks before July 1924,'
+p_seq = df_deu['Price index (on basis of marks before July 1924,'
                 '  reichsmarks after)'].copy()
-e_seq = 1/df_Germ['Cents per mark'].copy()
+e_seq = 1/df_deu['Cents per mark'].copy()
 
-# adjust the price level/exchange rate after the currency reform
+# Adjust the price level/exchange rate after the currency reform
 p_seq[p_seq.index > '06-01-1924'] = p_seq[p_seq.index 
                                           > '06-01-1924'] * 1e12
 e_seq[e_seq.index > '12-01-1923'] = e_seq[e_seq.index 
@@ -594,9 +596,9 @@ e_seq[e_seq.index > '12-01-1923'] = e_seq[e_seq.index
 lab = ['Price index (marks or converted to marks)', 
        '1/cents per mark (or reichsmark converted to mark)']
 
-# create plot
+# Create plot
 fig, ax = plt.subplots(dpi=200)
-ax1 = pe_plot(p_seq, e_seq, df_Germ.index, lab, ax)
+ax1 = pe_plot(p_seq, e_seq, df_deu.index, lab, ax)
 
 plt.show()
 ```
@@ -605,12 +607,12 @@ plt.show()
 ---
 mystnb:
   figure:
-    caption: "Monthly inflation rate (Germany)"
+    caption: Monthly inflation rate (Germany)
     name: inflationrate_germany
 ---
-# plot moving average
+# Plot moving average
 fig, ax = plt.subplots(dpi=200)
-_ = pr_plot(p_seq, df_Germ.index, ax)
+_ = pr_plot(p_seq, df_deu.index, ax)
 
 plt.show()
 ```
