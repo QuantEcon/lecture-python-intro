@@ -39,7 +39,7 @@ Thus, in the US, the price level at $t$ is measured in dollars (month $t$ or yea
 
 Until the early 20th century, in many western economies, price levels fluctuated from year to year but didn't have much of a trend.  
 
-Often the price level ended a century near where they started.
+Often the price levels ended a century near where they started.
 
 Things were different in the 20th century, as we shall see in this lecture.
 
@@ -202,7 +202,7 @@ The graphs depict logarithms of price levels during the early post World War I y
 * Figure 3.3, Wholesale prices, Poland, 1921-1924 (page 44)
 * Figure 3.4, Wholesale prices, Germany, 1919-1924 (page 45)
 
-We have added logarithms of the exchange rates vis a vis the US dollar to each of the four graphs
+We have added logarithms of the exchange rates vis-&agrave;-vis the US dollar to each of the four graphs
 from chapter 3 of {cite}`sargent2013rational`.
 
 Data underlying our graphs appear in tables in an appendix to chapter 3 of {cite}`sargent2013rational`.
@@ -382,7 +382,7 @@ For each country, we'll plot two graphs.
 The first graph plots logarithms of 
 
 * price levels
-* exchange rates vis a vis US dollars
+* exchange rates vis-&agrave;-vis US dollars
 
 For each country, the scale on the right side of a graph will pertain to the price level while the scale on the left side of a graph will pertain to the exchange rate. 
 
@@ -392,7 +392,7 @@ For each country, the second graph plots a centered three-month moving average o
 
 The sources of our data are:
 
-* Table 3.3, $\exp p$
+* Table 3.3, retail price level $\exp p$
 * Table 3.4, exchange rate with US
 
 ```{code-cell} ipython3

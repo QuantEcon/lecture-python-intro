@@ -51,6 +51,12 @@ jobs:
           jb build lectures --builder pdflatex --path-output ./ -n --keep-going
           mkdir -p _build/html/_pdf
           cp -u _build/latex/*.pdf _build/html/_pdf
+      - name: Upload Execution Reports (LaTeX)
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: execution-reports
+          path: _build/latex/reports
       - name: Build Download Notebooks (sphinx-tojupyter)
         shell: bash -l {0}
         run: |
@@ -66,7 +72,7 @@ jobs:
           rm -r _build/.doctrees
           jb build lectures --path-output ./ -nW --keep-going
       - name: Upload Execution Reports (HTML)
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         if: failure()
         with:
           name: execution-reports
