@@ -683,7 +683,7 @@ Now we can compare net wealth and labour income.
 mystnb:
   figure:
     caption: Gini coefficients of US net wealth and labour income
-    name: gini_wealth_us
+    name: gini_wealth_us2
 ---
 fig, ax = plt.subplots()
 ax.plot(years, ginis["n_wealth"], marker='o', label="net wealth")
@@ -1057,8 +1057,6 @@ Plot the top shares generated from Lorenz curve and the top shares approximated 
 ```{solution-start} inequality_ex2
 :class: dropdown
 ```
-
-+++
 
 Here is one solution:
 
