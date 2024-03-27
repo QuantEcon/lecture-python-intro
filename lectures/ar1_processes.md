@@ -27,15 +27,17 @@ kernelspec:
 This lecture has moved from our [Intermediate Quantitative Economics with Python](https://python.quantecon.org/intro.html) lecture series and is now a part of [A First Course in Quantitative Economics](https://intro.quantecon.org/intro.html).
 ```
 
+This needs some extra stuff here
+
 ```{index} single: Autoregressive processes
 ```
 
 ## Overview
 
-In this lecture we are going to study a very simple class of stochastic
+In this we are going to study a very simple class of stochastic
 models called AR(1) processes.
 
-These simple models are used again and again in economic research to represent the dynamics of series such as
+These simple add something here are used again and again in economic research to represent the dynamics of series such as
 
 * labor income
 * dividends
