@@ -566,7 +566,7 @@ data = data.T           # Obtain years as rows
 data_usa = data['USA']  # pd.Series of US data
 ```
 
-Let us zoom on the US data so we can more clearly observe trends.
+Let us take a look at the data for the US.
 
 ```{code-cell} ipython3
 ---
@@ -668,42 +668,13 @@ ax.set_ylabel("Gini coefficient")
 plt.show()
 ```
 
-Looking at each data series we see an outlier in Gini coefficient computed for 1965 for `labour income`. 
-
-We will smooth our data and take an average of the data either side of it for the time being.
-
-```{code-cell} ipython3
-ginis["l_income"][1965] = (ginis["l_income"][1962] + ginis["l_income"][1968]) / 2
-```
-
-Now we can compare net wealth and labour income.
-
-```{code-cell} ipython3
----
-mystnb:
-  figure:
-    caption: Gini coefficients of US net wealth and labour income
-    name: gini_wealth_us2
----
-fig, ax = plt.subplots()
-ax.plot(years, ginis["n_wealth"], marker='o', label="net wealth")
-ax.plot(years, ginis["l_income"], marker='o', label="labour income")
-ax.set_xlabel("year")
-ax.set_ylabel("Gini coefficient")
-ax.legend()
-plt.show()
-```
-
-We see that, by this measure, inequality in both wealth and income has risen
-substantially since 1980.
-
 The wealth time series exhibits a strong U-shape.
 
 ### Cross-country comparisons of income inequality
 
-As we saw earlier in this lecture we used `wbgapi` to get Gini data across many countries and saved it in a variable called `gini_all`
+Earlier in this lecture we used `wbgapi` to get Gini data across many countries and saved it in a variable called `gini_all`
 
-In this section we will compare a few western economies and look at the evolution in their respective Gini coefficients
+In this section we will compare a few Western economies and look at the evolution in their respective Gini coefficients
 
 ```{code-cell} ipython3
 data = gini_all.unstack()
@@ -712,7 +683,7 @@ data.columns
 
 There are 167 countries represented in this dataset. 
 
-Let us compare three western economies: USA, United Kingdom, and Norway
+Let us compare three Western economies: USA, United Kingdom, and Norway
 
 ```{code-cell} ipython3
 ---
@@ -825,7 +796,7 @@ fig.show()
 This figure is built using `plotly` and is {ref}` available on the website <fig:plotly-gini-gdppc-years>`
 ```
 
-This plot shows that all three western economies GDP per capita has grown over time with some fluctuations
+This plot shows that all three Western economies GDP per capita has grown over time with some fluctuations
 in the Gini coefficient. 
 
 From the early 80's the United Kingdom and the US economies both saw increases in income 
