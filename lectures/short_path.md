@@ -23,8 +23,10 @@ kernelspec:
 ```{index} single: Dynamic Programming; Shortest Paths
 ```
 
-```{contents} Contents
-:depth: 2
+```{admonition} Migrated lecture
+:class: warning
+
+This lecture has moved from our [Intermediate Quantitative Economics with Python](https://python.quantecon.org/intro.html) lecture series and is now a part of [A First Course in Quantitative Economics](https://intro.quantecon.org/intro.html).
 ```
 
 ## Overview

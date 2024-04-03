@@ -16,10 +16,6 @@ kernelspec:
 ```{index} single: The Perron-Frobenius Theorem
 ```
 
-```{contents} Contents
-:depth: 2
-```
-
 In addition to what's in Anaconda, this lecture will need the following libraries:
 
 ```{code-cell} ipython3
@@ -35,7 +31,6 @@ Then we will explore the Perron-Frobenius Theorem and connect it to applications
 We will use the following imports:
 
 ```{code-cell} ipython3
-import matplotlib.pyplot as plt
 import numpy as np
 from numpy.linalg import eig
 import scipy as sp

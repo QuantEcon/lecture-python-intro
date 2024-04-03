@@ -65,7 +65,6 @@ Let's start with some imports.
 import numpy as np
 from scipy import optimize
 from collections import namedtuple
-from functools import partial
 import matplotlib.pyplot as plt
 ```
 

@@ -5,9 +5,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - name: Setup Anaconda
-        uses: conda-incubator/setup-miniconda@v2
+        uses: conda-incubator/setup-miniconda@v3
         with:
           auto-update-conda: true
           auto-activate-base: true
@@ -51,6 +51,12 @@ jobs:
           jb build lectures --builder pdflatex --path-output ./ -n --keep-going
           mkdir -p _build/html/_pdf
           cp -u _build/latex/*.pdf _build/html/_pdf
+      - name: Upload Execution Reports (LaTeX)
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: execution-reports
+          path: _build/latex/reports
       - name: Build Download Notebooks (sphinx-tojupyter)
         shell: bash -l {0}
         run: |
@@ -66,13 +72,13 @@ jobs:
           rm -r _build/.doctrees
           jb build lectures --path-output ./ -nW --keep-going
       - name: Upload Execution Reports (HTML)
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         if: failure()
         with:
           name: execution-reports
           path: _build/html/reports
       - name: Preview Deploy to Netlify
-        uses: nwtgck/actions-netlify@v1.1
+        uses: nwtgck/actions-netlify@v2
         with:
           publish-dir: '_build/html/'
           production-branch: main

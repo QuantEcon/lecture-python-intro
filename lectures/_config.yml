@@ -35,13 +35,19 @@ latex:
     targetname: quantecon-python-intro.tex
 
 sphinx:
-  extra_extensions: [sphinx_multitoc_numbering, sphinxext.rediraffe, sphinx_exercise, sphinx_togglebutton, sphinx_proof, sphinx_tojupyter] 
+  extra_extensions: [sphinx_multitoc_numbering, sphinxext.rediraffe, sphinx_exercise, sphinx_togglebutton, sphinx.ext.intersphinx, sphinx_proof, sphinx_tojupyter] 
   config:
+    bibtex_reference_style: author_year
     # false-positive links
-    linkcheck_ignore: ['https://doi.org/https://doi.org/10.2307/1235116']
+    linkcheck_ignore: ['https://doi.org/https://doi.org/10.2307/1235116', 'https://math.stackexchange.com/*', 'https://stackoverflow.com/*']
     # myst-nb config
     nb_render_image_options:
       width: 80%
+    nb_code_prompt_show: "Show {type}"
+    suppress_warnings: [mystnb.unknown_mime_type, myst.domains]
+    # -------------
+    html_js_files:
+      - https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js
     html_favicon: _static/lectures-favicon.ico
     html_theme: quantecon_book_theme
     html_static_path: ['_static']
@@ -62,12 +68,37 @@ sphinx:
       description: This website presents introductory lectures on computational economics, designed and written by Thomas J. Sargent and John Stachurski.
       keywords: Python, QuantEcon, Quantitative Economics, Economics, Sloan, Alfred P. Sloan Foundation, Tom J. Sargent, John Stachurski
       analytics:
-        google_analytics_id: G-1P39P53YM9
+        google_analytics_id: G-QDS1YRJNGM
       launch_buttons:
         notebook_interface        : classic  # The interface interactive links will activate ["classic", "jupyterlab"]
         binderhub_url             : https://mybinder.org  # The URL of the BinderHub (e.g., https://mybinder.org)
         colab_url                 : https://colab.research.google.com
         thebe                     : false  # Add a thebe button to pages (requires the repository to run on Binder)
+    intersphinx_mapping:
+      pyprog:
+        - https://python-programming.quantecon.org/
+        - null
+      intro: 
+        - https://intro.quantecon.org/
+        - null
+      dle:
+        - https://quantecon.github.io/lecture-dle/
+        - null
+      dps:
+        - https://quantecon.github.io/lecture-dps/
+        - null
+      eqm:
+        - https://quantecon.github.io/lecture-eqm/
+        - null
+      stats:
+        - https://quantecon.github.io/lecture-stats/
+        - null
+      tools:
+        - https://quantecon.github.io/lecture-tools-techniques/
+        - null
+      dynam:
+        - https://quantecon.github.io/lecture-dynamics/
+        - null
     mathjax3_config:
       tex:
         macros:

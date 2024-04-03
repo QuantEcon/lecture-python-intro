@@ -14,10 +14,6 @@ kernelspec:
 (supply_demand_heterogeneity)=
 # Market Equilibrium with Heterogeneity
 
-```{contents} Contents
-:depth: 2
-```
-
 ## Overview
 
 In the {doc}`previous lecture
@@ -37,8 +33,6 @@ Here are some imports:
 
 ```{code-cell} ipython3
 import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
 from scipy.linalg import inv
 ```
 
