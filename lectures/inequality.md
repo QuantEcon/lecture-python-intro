@@ -25,8 +25,8 @@ In this section we
 Many historians argue that inequality played a key role in the fall of the
 Roman Republic.
 
-After defeating Carthage and invading Spain, money flowed into Rome and
-greatly enriched those in power.
+Following the defeat of Carthage and the invasion of Spain, money flowed into
+Rome from across the empire, greatly enriched those in power.
 
 Meanwhile, ordinary citizens were taken from their farms to fight for long
 periods, diminishing their wealth.
@@ -40,26 +40,23 @@ with Octavian (Augustus) in 27 BCE.
 This history is fascinating in its own right, and we can see some
 parallels with certain countries in the modern world.
 
-Many recent political debates revolve around inequality.
+Let's now look at inequality in some of these countries.
 
-Many economic policies, from taxation to the welfare state, are 
-aimed at addressing inequality.
 
 ### Measurement
+
+
+Political debates often revolve around inequality.
 
 One problem with these debates is that inequality is often poorly defined.
 
 Moreover, debates on inequality are often tied to political beliefs.
 
-This is dangerous for economists because allowing political beliefs to
-shape our findings reduces objectivity.
+This is dangerous for economists because allowing political beliefs to shape our findings reduces objectivity.
 
-To bring a truly scientific perspective to the topic of inequality we must
-start with careful definitions.
+To bring a truly scientific perspective to the topic of inequality we must start with careful definitions.
 
-In this lecture we discuss standard measures of inequality used in economic research.
-
-For each of these measures, we will look at both simulated and real data.
+Hence we begin by discussing ways that inequality can be measured in economic research.
 
 We will need to install the following packages
 
@@ -91,7 +88,7 @@ In this section we define the Lorenz curve and examine its properties.
 
 The Lorenz curve takes a sample $w_1, \ldots, w_n$ and produces a curve $L$.
 
-We suppose that the sample $w_1, \ldots, w_n$ has been sorted from smallest to largest.
+We suppose that the sample has been sorted from smallest to largest.
 
 To aid our interpretation, suppose that we are measuring wealth 
 
@@ -224,10 +221,10 @@ plt.show()
 
 ### Lorenz curves for US data
 
-Next let's look at data, focusing on income and wealth in the US in 2016.
+Next let's look at US data for both income and wealth.
 
 (data:survey-consumer-finance)=
-The following code block imports a subset of the dataset `SCF_plus`,
+The following code block imports a subset of the dataset `SCF_plus` for 2016,
 which is derived from the [Survey of Consumer Finances](https://en.wikipedia.org/wiki/Survey_of_Consumer_Finances) (SCF).
 
 ```{code-cell} ipython3
@@ -240,7 +237,7 @@ df_income_wealth = df.dropna()
 df_income_wealth.head(n=5)
 ```
 
-The following code block uses data stored in dataframe `df_income_wealth` to generate the Lorenz curves.
+The next code block uses data stored in dataframe `df_income_wealth` to generate the Lorenz curves.
 
 (The code is somewhat complex because we need to adjust the data according to
 population weights supplied by the SCF.)
@@ -289,6 +286,10 @@ l_vals_nw, l_vals_ti, l_vals_li = L_vals
 Now we plot Lorenz curves for net wealth, total income and labor income in the
 US in 2016.
 
+Total income is the sum of households' all income sources, including labor income but excluding capital gains.
+
+(All income measures are pre-tax.)
+
 ```{code-cell} ipython3
 ---
 mystnb:
@@ -309,31 +310,26 @@ ax.legend()
 plt.show()
 ```
 
-Here all the income and wealth measures are pre-tax.
 
-Total income is the sum of households' all income sources, including labor income but excluding capital gains.
+One key finding from this figure is that wealth inequality is more extreme than income inequality. 
 
-One key finding from this figure is that wealth inequality is significantly
-more extreme than income inequality. 
 
-We will take a look at this trend over time {ref}`in a later section<compare-income-wealth-usa-over-time>`. 
+
 
 ## The Gini coefficient
 
 The Lorenz curve is a useful visual representation of inequality in a distribution.
 
-Another popular measure of income and wealth inequality is the Gini coefficient.
-
-The Gini coefficient is just a number, rather than a curve.
+Another way to study income and wealth inequality is via the Gini coefficient.
 
 In this section we discuss the Gini coefficient and its relationship to the
 Lorenz curve.
 
 
+
 ### Definition
 
-As before, suppose that the sample $w_1, \ldots, w_n$ has been sorted from
-smallest to largest.
+As before, suppose that the sample $w_1, \ldots, w_n$ has been sorted from smallest to largest.
 
 The Gini coefficient is defined for the sample above as 
 
@@ -377,8 +373,14 @@ ax.legend()
 plt.show()
 ```
 
-Another way to think of the Gini coefficient is as a ratio of the area between the 45-degree line of 
-perfect equality and the Lorenz curve (A) divided by the total area below the 45-degree line (A+B) as shown in {numref}`lorenz_gini2`. 
+In fact the Gini coefficient can also be expressed as
+
+$$
+G = \frac{A}{A+B}
+$$
+
+where $A$ is the area between the 45-degree line of 
+perfect equality and the Lorenz curve, while $B$ is the area below the Lorenze curve -- see {numref}`lorenz_gini2`. 
 
 ```{code-cell} ipython3
 ---
@@ -403,11 +405,7 @@ ax.legend()
 plt.show()
 ```
 
-$$
-G = \frac{A}{A+B}
-$$
 
-It is an average measure of deviation from the line of equality.
 
 ```{seealso}
 The World in Data project has a [nice graphical exploration of the Lorenz curve and the Gini coefficient](https://ourworldindata.org/what-is-the-gini-coefficient)
@@ -417,7 +415,7 @@ The World in Data project has a [nice graphical exploration of the Lorenz curve 
 
 Let's examine the Gini coefficient in some simulations.
 
-First the code below enables us to compute the Gini coefficient.
+The code below computes the Gini coefficient from a sample.
 
 ```{code-cell} ipython3
 
@@ -521,9 +519,9 @@ wb.search("gini")
 
 We now know the series ID is `SI.POV.GINI`.
 
-Another, and often useful way to find series ID, is to use the [World Bank data portal](https://data.worldbank.org) and then use `wbgapi` to fetch the data.
+(Another way to find the series ID is to use the [World Bank data portal](https://data.worldbank.org) and then use `wbgapi` to fetch the data.)
 
-Using `pandas` we can take a quick look across all countries and all years in the World Bank dataset. 
+To get a quick overview, let's histogram Gini coefficients across all countries and all years in the World Bank dataset. 
 
 ```{code-cell} ipython3
 ---
@@ -547,8 +545,7 @@ ax.set_ylabel("frequency")
 plt.show()
 ```
 
-We can see in {numref}`gini_histogram` that across 50 years of data and all countries
-the measure only varies between 20 and 65.
+We can see in {numref}`gini_histogram` that across 50 years of data and all countries the measure varies between 20 and 65.
 
 Let us fetch the data `DataFrame` for the USA. 
 
@@ -559,7 +556,8 @@ data.head(n=5)
 data.columns = data.columns.map(lambda x: int(x.replace('YR','')))
 ```
 
-**Note:** This package often returns data with year information contained in the columns. This is not always convenient for simple plotting with pandas so it can be useful to transpose the results before plotting
+(This package often returns data with year information contained in the columns. This is not always convenient for simple plotting with pandas so it can be useful to transpose the results before plotting.)
+
 
 ```{code-cell} ipython3
 data = data.T           # Obtain years as rows
@@ -583,10 +581,8 @@ ax.set_xlabel("year")
 plt.show()
 ```
 
-As can be seen in {numref}`gini_usa1` the Gini coefficient:
-
-1. trended upward from 1980 to 2020 and then dropped slightly following at the start of the COVID pandemic
-2. moves slowly over time
+As can be seen in {numref}`gini_usa1`, the income Gini
+trended upward from 1980 to 2020 and then dropped following at the start of the COVID pandemic.
 
 (compare-income-wealth-usa-over-time)=
 ### Gini coefficient for wealth (US data)
@@ -595,10 +591,9 @@ In the previous section we looked at the Gini coefficient for income using US da
 
 Now let's look at the Gini coefficient for the distribution of wealth.
 
-We can use the data collected above {ref}`survey of consumer finances <data:survey-consumer-finance>` to look at the Gini coefficient
+We can use the {ref}`Survey of Consumer Finances data <data:survey-consumer-finance>` to look at the Gini coefficient
 computed over the wealth distribution.
 
-The Gini coefficient for net wealth and labour income is computed over many years.
 
 ```{code-cell} ipython3
 df_income_wealth.year.describe()
@@ -668,13 +663,24 @@ ax.set_ylabel("Gini coefficient")
 plt.show()
 ```
 
-The wealth time series exhibits a strong U-shape.
+The time series for the wealth Gini exhibits a U-shape, falling until the early
+1980s and then increasing rapidly.
+
+
+One possibility is that this change is mainly driven by technology.
+
+However, we will see below that not all advanced economies experienced similar growth of inequality.
+
+
+
+
 
 ### Cross-country comparisons of income inequality
 
 Earlier in this lecture we used `wbgapi` to get Gini data across many countries and saved it in a variable called `gini_all`
 
-In this section we will compare a few Western economies and look at the evolution in their respective Gini coefficients
+In this section we will use this data to compare several advanced economies, and
+to look at the evolution in their respective income Ginis.
 
 ```{code-cell} ipython3
 data = gini_all.unstack()
@@ -683,7 +689,7 @@ data.columns
 
 There are 167 countries represented in this dataset. 
 
-Let us compare three Western economies: USA, United Kingdom, and Norway
+Let us compare three advanced economies: the US, the UK, and Norway
 
 ```{code-cell} ipython3
 ---
@@ -699,7 +705,9 @@ ax.legend(title="")
 plt.show()
 ```
 
-We see that Norway has a shorter time series so let us take a closer look at the underlying data
+We see that Norway has a shorter time series.
+
+Let us take a closer look at the underlying data and see if we can rectify this.
 
 ```{code-cell} ipython3
 data[['NOR']].dropna().head(n=5)
@@ -724,15 +732,19 @@ ax.legend(title="")
 plt.show()
 ```
 
-From this plot we can observe that the USA has a higher Gini coefficient (i.e. higher income inequality) when compared to the UK and Norway. 
+From this plot we can observe that the US has a higher Gini coefficient (i.e.
+higher income inequality) when compared to the UK and Norway. 
 
-Norway has the lowest Gini coefficient over the three economies and is substantially lower than the US.
+Norway has the lowest Gini coefficient over the three economies and, moreover,
+the Gini coefficient shows no upward trend.
+
+
 
 ### Gini Coefficient and GDP per capita (over time)
 
 We can also look at how the Gini coefficient compares with GDP per capita (over time). 
 
-Let's take another look at the USA, Norway, and the United Kingdom.
+Let's take another look at the US, Norway, and the UK.
 
 ```{code-cell} ipython3
 countries = ['USA', 'NOR', 'GBR']
@@ -742,7 +754,7 @@ gdppc.columns = gdppc.columns.map(lambda x: int(x.replace('YR','')))
 gdppc = gdppc.T
 ```
 
-We can rearrange the data so that we can plot gdp per capita and the Gini coefficient across years
+We can rearrange the data so that we can plot GDP per capita and the Gini coefficient across years
 
 ```{code-cell} ipython3
 plot_data = pd.DataFrame(data[countries].unstack())
@@ -750,7 +762,7 @@ plot_data.index.names = ['country', 'year']
 plot_data.columns = ['gini']
 ```
 
-Now we can get the gdp per capita data into a shape that can be merged with `plot_data`
+Now we can get the GDP per capita data into a shape that can be merged with `plot_data`
 
 ```{code-cell} ipython3
 pgdppc = pd.DataFrame(gdppc.unstack())
@@ -760,15 +772,14 @@ plot_data = plot_data.merge(pgdppc, left_index=True, right_index=True)
 plot_data.reset_index(inplace=True)
 ```
 
-Now using plotly to build a plot with gdp per capita on the y-axis and the Gini coefficient on the x-axis.
+Now we use Plotly to build a plot with GDP per capita on the y-axis and the Gini coefficient on the x-axis.
 
 ```{code-cell} ipython3
 min_year = plot_data.year.min()
 max_year = plot_data.year.max()
 ```
 
-
-**Note:** The time series for all three countries start and stop in different years. We will add a year mask to the data to
+The time series for all three countries start and stop in different years. We will add a year mask to the data to
 improve clarity in the chart including the different end years associated with each countries time series.
 
 ```{code-cell} ipython3
@@ -796,23 +807,23 @@ fig.show()
 This figure is built using `plotly` and is {ref}` available on the website <fig:plotly-gini-gdppc-years>`
 ```
 
-This plot shows that all three Western economies GDP per capita has grown over time with some fluctuations
-in the Gini coefficient. 
+This plot shows that all three Western economies GDP per capita has grown over
+time with some fluctuations in the Gini coefficient. 
 
-From the early 80's the United Kingdom and the US economies both saw increases in income 
-inequality. 
+From the early 80's the United Kingdom and the US economies both saw increases
+in income inequality. 
 
 Interestingly, since the year 2000, the United Kingdom saw a decline in income inequality while
 the US exhibits persistent but stable levels around a Gini coefficient of 40. 
+
 
 ## Top shares
 
 Another popular measure of inequality is the top shares.
 
-Measuring specific shares is less complex than the Lorenz curve or the Gini
-coefficient.
 
 In this section we show how to compute top shares.
+
 
 ### Definition
 
