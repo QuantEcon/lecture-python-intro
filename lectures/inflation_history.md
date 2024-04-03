@@ -258,7 +258,7 @@ def process_df(df):
     # Handle duplicates by keeping the first
     df = df[~df.index.duplicated(keep='first')]
     
-    # convert attribute values to numeric
+    # Convert attribute values to numeric
     df = df.map(lambda x: float(x) \
                 if x != '—' else np.nan)
     
