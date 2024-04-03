@@ -99,6 +99,7 @@
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="_static/togglebutton.js"></script>
     <script src="_static/scripts/quantecon-book-theme.js?digest=eed9c059a3ee152aae2353ec732f0a6d12e6aa07"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="_static/design-tabs.js"></script>
     <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-QDS1YRJNGM"></script>
@@ -242,25 +243,21 @@ const thebe_selector_output = ".output, .cell_output"
 <h1><span class="section-number">4. </span>Price Level Histories<a class="headerlink" href="#price-level-histories" title="Permalink to this heading">#</a></h1>
 <p>This lecture offers some historical evidence about fluctuations in levels of aggregate price indexes.</p>
 <p>Let’s start by installing the necessary Python packages.</p>
-<div class="cell tag_hide-output docutils container">
-<div class="cell_input above-output-prompt docutils container">
+<p>The <code class="docutils literal notranslate"><span class="pre">xlrd</span></code> package is used by <code class="docutils literal notranslate"><span class="pre">pandas</span></code> to perform operations on Excel files.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>xlrd
 </pre></div>
 </div>
 </div>
-<details class="hide below-input">
-<summary aria-label="Toggle hidden content">
-<span class="collapsed">Show output</span>
-<span class="expanded">Hide code cell output</span>
-</summary>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting xlrd
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Downloading xlrd-2.0.1-py2.py3-none-any.whl.metadata (3.4 kB)
+  Downloading xlrd-2.0.1-py2.py3-none-any.whl.metadata (3.4 kB)
 Downloading xlrd-2.0.1-py2.py3-none-any.whl (96 kB)
 ?25l   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/96.5 kB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">96.5/96.5 kB</span> <span class=" -Color -Color-Red">5.8 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">96.5/96.5 kB</span> <span class=" -Color -Color-Red">8.7 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
 ?25h
 </pre></div>
 </div>
@@ -271,7 +268,6 @@ Downloading xlrd-2.0.1-py2.py3-none-any.whl (96 kB)
 </pre></div>
 </div>
 </div>
-</details>
 </div>
 <p>We can then import the Python modules we will use.</p>
 <div class="cell docutils container">
@@ -293,7 +289,7 @@ Downloading xlrd-2.0.1-py2.py3-none-any.whl (96 kB)
 <p>A widely believed explanation of this big difference is that countries’ abandoning gold and silver standards in the early twentieth century.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>This lecture sets the stage for some subsequent lectures about a theory that macro economists use to think about determinants of the price level, namely, <a class="reference internal" href="cagan_ree.html"><span class="doc">A Monetarist Theory of  Price Levels</span></a> and <a class="reference internal" href="cagan_adaptive.html"><span class="doc">Monetarist Theory of Price Levels with Adaptive Expectations</span></a></p>
+<p>This lecture sets the stage for some subsequent lectures about a theory that macro economists use to think about determinants of the price level, namely, <a class="reference internal" href="cagan_ree.html"><span class="doc">A Monetarist Theory of Price Levels</span></a> and <a class="reference internal" href="cagan_adaptive.html"><span class="doc">Monetarist Theory of Price Levels with Adaptive Expectations</span></a></p>
 </div>
 <section id="four-centuries-of-price-levels">
 <h2><span class="section-number">4.1. </span>Four centuries of price levels<a class="headerlink" href="#four-centuries-of-price-levels" title="Permalink to this heading">#</a></h2>
@@ -312,7 +308,7 @@ Downloading xlrd-2.0.1-py2.py3-none-any.whl (96 kB)
 <p>Let us bring the data into pandas from a spreadsheet that is <a class="reference external" href="https://github.com/QuantEcon/lecture-python-intro/tree/main/lectures/datasets">hosted on github</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># import data and clean up the index</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import data and clean up the index</span>
 <span class="n">data_url</span> <span class="o">=</span> <span class="s2">&quot;https://github.com/QuantEcon/lecture-python-intro/raw/main/lectures/datasets/longprices.xls&quot;</span>
 <span class="n">df_fig5</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">data_url</span><span class="p">,</span> 
                         <span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">,</span> 
@@ -329,7 +325,7 @@ Downloading xlrd-2.0.1-py2.py3-none-any.whl (96 kB)
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_fig5_bef1914</span> <span class="o">=</span> <span class="n">df_fig5</span><span class="p">[</span><span class="n">df_fig5</span><span class="o">.</span><span class="n">index</span> <span class="o">&lt;=</span> <span class="mi">1915</span><span class="p">]</span>
 
-<span class="c1"># create plot</span>
+<span class="c1"># Create plot</span>
 <span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;UK&#39;</span><span class="p">,</span> <span class="s1">&#39;US&#39;</span><span class="p">,</span> <span class="s1">&#39;France&#39;</span><span class="p">,</span> <span class="s1">&#39;Castile&#39;</span><span class="p">]</span>
 
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
@@ -402,9 +398,9 @@ Downloading xlrd-2.0.1-py2.py3-none-any.whl (96 kB)
             <span class="n">y</span><span class="o">=</span><span class="n">df_fig5</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="n">col</span><span class="p">)</span>
 
 <span class="n">ax</span><span class="o">.</span><span class="n">set_yscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Index  1913 = 100&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Logs of price levels (Index  1913 = 100)&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span> <span class="mf">1e6</span><span class="p">])</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Logs of price levels&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;year&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">xmin</span><span class="o">=</span><span class="mi">1600</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -413,7 +409,7 @@ Downloading xlrd-2.0.1-py2.py3-none-any.whl (96 kB)
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="lrpl-lg">
-<a class="reference internal image-reference" href="_images/9e896b702773e2e7fe2d097bff131290f6300608b30b4b40e4ea8eb36db4d0ab.png"><img alt="_images/9e896b702773e2e7fe2d097bff131290f6300608b30b4b40e4ea8eb36db4d0ab.png" src="_images/9e896b702773e2e7fe2d097bff131290f6300608b30b4b40e4ea8eb36db4d0ab.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/09ccf1c010b8edb3b13c02ebcec3dbba8a1745d1c9d7bc1b95bfa1c04d6a9098.png"><img alt="_images/09ccf1c010b8edb3b13c02ebcec3dbba8a1745d1c9d7bc1b95bfa1c04d6a9098.png" src="_images/09ccf1c010b8edb3b13c02ebcec3dbba8a1745d1c9d7bc1b95bfa1c04d6a9098.png" style="width: 80%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 4.2 </span><span class="caption-text">Long run time series of the price level (log)</span><a class="headerlink" href="#lrpl-lg" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -455,12 +451,12 @@ We have transcribed all of these data into a spreadsheet <a class="reference dow
     <span class="s2">&quot;Clean each entry of a dataframe.&quot;</span>
     
     <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">entry</span><span class="p">)</span> <span class="o">==</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="c1"># remove leading and trailing whitespace</span>
+        <span class="c1"># Remove leading and trailing whitespace</span>
         <span class="n">entry</span> <span class="o">=</span> <span class="n">entry</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
-        <span class="c1"># remove comma</span>
+        <span class="c1"># Remove comma</span>
         <span class="n">entry</span> <span class="o">=</span> <span class="n">entry</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
     
-        <span class="c1"># remove HTML markers</span>
+        <span class="c1"># Remove HTML markers</span>
         <span class="n">item_to_remove</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;&lt;s&gt;a&lt;/s&gt;&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;s&gt;c&lt;/s&gt;&#39;</span><span class="p">,</span> 
                           <span class="s1">&#39;&lt;s&gt;d&lt;/s&gt;&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;s&gt;e&lt;/s&gt;&#39;</span><span class="p">]</span>
 
@@ -477,14 +473,14 @@ We have transcribed all of these data into a spreadsheet <a class="reference dow
 <span class="k">def</span> <span class="nf">process_df</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
     <span class="s2">&quot;Clean and reorganize the entire dataframe.&quot;</span>
     
-    <span class="c1"># remove HTML markers from column names</span>
+    <span class="c1"># Remove HTML markers from column names</span>
     <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;&lt;s&gt;a&lt;/s&gt;&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;s&gt;c&lt;/s&gt;&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;s&gt;d&lt;/s&gt;&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;s&gt;e&lt;/s&gt;&#39;</span><span class="p">]:</span>
         <span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
         
-    <span class="c1"># convert years to int</span>
+    <span class="c1"># Convert years to int</span>
     <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Year&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Year&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
     
-    <span class="c1"># set index to datetime with year and month</span>
+    <span class="c1"># Set index to datetime with year and month</span>
     <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span>
             <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span>
                 <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Year&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span> <span class="o">+</span> \
@@ -492,14 +488,14 @@ We have transcribed all of these data into a spreadsheet <a class="reference dow
                 <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;%Y%B&#39;</span><span class="p">))</span>
     <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;Year&#39;</span><span class="p">,</span> <span class="s1">&#39;Month&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
     
-    <span class="c1"># handle duplicates by keeping the first</span>
+    <span class="c1"># Handle duplicates by keeping the first</span>
     <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="o">~</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">duplicated</span><span class="p">(</span><span class="n">keep</span><span class="o">=</span><span class="s1">&#39;first&#39;</span><span class="p">)]</span>
     
-    <span class="c1"># convert attribute values to numeric</span>
-    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">applymap</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> \
+    <span class="c1"># Convert attribute values to numeric</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> \
                 <span class="k">if</span> <span class="n">x</span> <span class="o">!=</span> <span class="s1">&#39;—&#39;</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
     
-    <span class="c1"># finally, we only focus on data between 1919 and 1925</span>
+    <span class="c1"># Finally, we only focus on data between 1919 and 1925</span>
     <span class="n">mask</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span> <span class="o">&gt;=</span> <span class="s1">&#39;1919-01-01&#39;</span><span class="p">)</span> <span class="o">&amp;</span> \
            <span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span> <span class="o">&lt;</span> <span class="s1">&#39;1925-01-01&#39;</span><span class="p">)</span>
     <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span>
@@ -524,19 +520,19 @@ and inflation rates, for each country of interest.</p>
 
     <span class="n">p_lab</span><span class="p">,</span> <span class="n">e_lab</span> <span class="o">=</span> <span class="n">labs</span>
     
-    <span class="c1"># plot price and exchange rates</span>
+    <span class="c1"># Plot price and exchange rates</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">p_seq</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">p_lab</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;tab:blue&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
     
-    <span class="c1"># add a new axis</span>
+    <span class="c1"># Add a new axis</span>
     <span class="n">ax1</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">twinx</span><span class="p">()</span>
     <span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="kc">None</span><span class="p">],</span> <span class="p">[</span><span class="kc">None</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="n">p_lab</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;tab:blue&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
     <span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">e_seq</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">e_lab</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;tab:orange&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
     
-    <span class="c1"># set log axes</span>
+    <span class="c1"># Set log axes</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_yscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
     <span class="n">ax1</span><span class="o">.</span><span class="n">set_yscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
     
-    <span class="c1"># define the axis label format</span>
+    <span class="c1"># Define the axis label format</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span>
         <span class="n">mdates</span><span class="o">.</span><span class="n">MonthLocator</span><span class="p">(</span><span class="n">interval</span><span class="o">=</span><span class="mi">5</span><span class="p">))</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span>
@@ -544,7 +540,7 @@ and inflation rates, for each country of interest.</p>
     <span class="k">for</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_xticklabels</span><span class="p">():</span>
         <span class="n">label</span><span class="o">.</span><span class="n">set_rotation</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>
     
-    <span class="c1"># set labels</span>
+    <span class="c1"># Set labels</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Price level&#39;</span><span class="p">)</span>
     <span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Exchange rate&#39;</span><span class="p">)</span>
   
@@ -558,12 +554,12 @@ and inflation rates, for each country of interest.</p>
     <span class="c1">#  Calculate the difference of log p_seq</span>
     <span class="n">log_diff_p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">p_seq</span><span class="p">))</span>
     
-    <span class="c1"># graph for the difference of log p_seq</span>
+    <span class="c1"># Graph for the difference of log p_seq</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">index</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="n">log_diff_p</span><span class="p">,</span> 
                <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Monthly inflation rate&#39;</span><span class="p">,</span> 
                <span class="n">color</span><span class="o">=</span><span class="s1">&#39;tab:grey&#39;</span><span class="p">)</span>
     
-    <span class="c1"># calculate and plot moving average</span>
+    <span class="c1"># Calculate and plot moving average</span>
     <span class="n">diff_smooth</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">log_diff_p</span><span class="p">)</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">index</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="n">diff_smooth</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Moving average (3 period)&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Inflation rate&#39;</span><span class="p">)</span>
@@ -587,87 +583,39 @@ and inflation rates, for each country of interest.</p>
 <p>We prepare the data for each country</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># import data</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import data</span>
 <span class="n">data_url</span> <span class="o">=</span> <span class="s2">&quot;https://github.com/QuantEcon/lecture-python-intro/raw/main/lectures/datasets/chapter_3.xlsx&quot;</span>
 <span class="n">xls</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">ExcelFile</span><span class="p">(</span><span class="n">data_url</span><span class="p">)</span>
 
-<span class="c1"># select relevant sheets</span>
+<span class="c1"># Select relevant sheets</span>
 <span class="n">sheet_index</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> 
                <span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> 
                <span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">16</span><span class="p">),</span> 
                <span class="p">(</span><span class="mi">21</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">19</span><span class="p">)]</span>
 
-<span class="c1"># remove redundant rows</span>
+<span class="c1"># Remove redundant rows</span>
 <span class="n">remove_row</span> <span class="o">=</span> <span class="p">[(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">),</span> 
               <span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">,</span> <span class="o">-</span><span class="mi">10</span><span class="p">),</span> 
               <span class="p">(</span><span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">),</span> 
               <span class="p">(</span><span class="o">-</span><span class="mi">19</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">6</span><span class="p">)]</span>
 
-<span class="c1"># unpack and combine series for each country</span>
+<span class="c1"># Unpack and combine series for each country</span>
 <span class="n">df_list</span> <span class="o">=</span> <span class="p">[]</span>
 
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
     
     <span class="n">indices</span><span class="p">,</span> <span class="n">rows</span> <span class="o">=</span> <span class="n">sheet_index</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">remove_row</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
     
-    <span class="c1"># apply process_entry on the selected sheet</span>
+    <span class="c1"># Apply process_entry on the selected sheet</span>
     <span class="n">sheet_list</span> <span class="o">=</span> <span class="p">[</span>
         <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">xls</span><span class="p">,</span> <span class="s1">&#39;Table3.&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">ind</span><span class="p">),</span> 
-            <span class="n">header</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="n">row</span><span class="p">]</span><span class="o">.</span><span class="n">applymap</span><span class="p">(</span><span class="n">process_entry</span><span class="p">)</span>
+            <span class="n">header</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="n">row</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">process_entry</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">ind</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">indices</span><span class="p">,</span> <span class="n">rows</span><span class="p">)]</span>
     
     <span class="n">sheet_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">process_df</span><span class="p">(</span><span class="n">df</span><span class="p">)</span> <span class="k">for</span> <span class="n">df</span> <span class="ow">in</span> <span class="n">sheet_list</span><span class="p">]</span>
     <span class="n">df_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">sheet_list</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
 
-<span class="n">df_Aus</span><span class="p">,</span> <span class="n">df_Hung</span><span class="p">,</span> <span class="n">df_Pol</span><span class="p">,</span> <span class="n">df_Germ</span> <span class="o">=</span> <span class="n">df_list</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_6521/2739474969.py:27: FutureWarning: DataFrame.applymap has been deprecated. Use DataFrame.map instead.
-  header=1).iloc[:row].applymap(process_entry)
-/tmp/ipykernel_6521/2739474969.py:27: FutureWarning: DataFrame.applymap has been deprecated. Use DataFrame.map instead.
-  header=1).iloc[:row].applymap(process_entry)
-/tmp/ipykernel_6521/2739474969.py:27: FutureWarning: DataFrame.applymap has been deprecated. Use DataFrame.map instead.
-  header=1).iloc[:row].applymap(process_entry)
-/tmp/ipykernel_6521/3228503872.py:46: FutureWarning: DataFrame.applymap has been deprecated. Use DataFrame.map instead.
-  df = df.applymap(lambda x: float(x) \
-/tmp/ipykernel_6521/3228503872.py:46: FutureWarning: DataFrame.applymap has been deprecated. Use DataFrame.map instead.
-  df = df.applymap(lambda x: float(x) \
-/tmp/ipykernel_6521/3228503872.py:46: FutureWarning: DataFrame.applymap has been deprecated. Use DataFrame.map instead.
-  df = df.applymap(lambda x: float(x) \
-/tmp/ipykernel_6521/2739474969.py:27: FutureWarning: DataFrame.applymap has been deprecated. Use DataFrame.map instead.
-  header=1).iloc[:row].applymap(process_entry)
-/tmp/ipykernel_6521/2739474969.py:27: FutureWarning: DataFrame.applymap has been deprecated. Use DataFrame.map instead.
-  header=1).iloc[:row].applymap(process_entry)
-/tmp/ipykernel_6521/3228503872.py:46: FutureWarning: DataFrame.applymap has been deprecated. Use DataFrame.map instead.
-  df = df.applymap(lambda x: float(x) \
-/tmp/ipykernel_6521/3228503872.py:46: FutureWarning: DataFrame.applymap has been deprecated. Use DataFrame.map instead.
-  df = df.applymap(lambda x: float(x) \
-/tmp/ipykernel_6521/2739474969.py:27: FutureWarning: DataFrame.applymap has been deprecated. Use DataFrame.map instead.
-  header=1).iloc[:row].applymap(process_entry)
-/tmp/ipykernel_6521/2739474969.py:27: FutureWarning: DataFrame.applymap has been deprecated. Use DataFrame.map instead.
-  header=1).iloc[:row].applymap(process_entry)
-/tmp/ipykernel_6521/2739474969.py:27: FutureWarning: DataFrame.applymap has been deprecated. Use DataFrame.map instead.
-  header=1).iloc[:row].applymap(process_entry)
-/tmp/ipykernel_6521/3228503872.py:46: FutureWarning: DataFrame.applymap has been deprecated. Use DataFrame.map instead.
-  df = df.applymap(lambda x: float(x) \
-/tmp/ipykernel_6521/3228503872.py:46: FutureWarning: DataFrame.applymap has been deprecated. Use DataFrame.map instead.
-  df = df.applymap(lambda x: float(x) \
-/tmp/ipykernel_6521/3228503872.py:46: FutureWarning: DataFrame.applymap has been deprecated. Use DataFrame.map instead.
-  df = df.applymap(lambda x: float(x) \
-/tmp/ipykernel_6521/2739474969.py:27: FutureWarning: DataFrame.applymap has been deprecated. Use DataFrame.map instead.
-  header=1).iloc[:row].applymap(process_entry)
-/tmp/ipykernel_6521/2739474969.py:27: FutureWarning: DataFrame.applymap has been deprecated. Use DataFrame.map instead.
-  header=1).iloc[:row].applymap(process_entry)
-/tmp/ipykernel_6521/2739474969.py:27: FutureWarning: DataFrame.applymap has been deprecated. Use DataFrame.map instead.
-  header=1).iloc[:row].applymap(process_entry)
-/tmp/ipykernel_6521/3228503872.py:46: FutureWarning: DataFrame.applymap has been deprecated. Use DataFrame.map instead.
-  df = df.applymap(lambda x: float(x) \
-/tmp/ipykernel_6521/3228503872.py:46: FutureWarning: DataFrame.applymap has been deprecated. Use DataFrame.map instead.
-  df = df.applymap(lambda x: float(x) \
-/tmp/ipykernel_6521/3228503872.py:46: FutureWarning: DataFrame.applymap has been deprecated. Use DataFrame.map instead.
-  df = df.applymap(lambda x: float(x) \
+<span class="n">df_aus</span><span class="p">,</span> <span class="n">df_hun</span><span class="p">,</span> <span class="n">df_pol</span><span class="p">,</span> <span class="n">df_deu</span> <span class="o">=</span> <span class="n">df_list</span>
 </pre></div>
 </div>
 </div>
@@ -690,14 +638,15 @@ and inflation rates, for each country of interest.</p>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p_seq</span> <span class="o">=</span> <span class="n">df_Aus</span><span class="p">[</span><span class="s1">&#39;Retail price index, 52 commodities&#39;</span><span class="p">]</span>
-<span class="n">e_seq</span> <span class="o">=</span> <span class="n">df_Aus</span><span class="p">[</span><span class="s1">&#39;Exchange Rate&#39;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p_seq</span> <span class="o">=</span> <span class="n">df_aus</span><span class="p">[</span><span class="s1">&#39;Retail price index, 52 commodities&#39;</span><span class="p">]</span>
+<span class="n">e_seq</span> <span class="o">=</span> <span class="n">df_aus</span><span class="p">[</span><span class="s1">&#39;Exchange Rate&#39;</span><span class="p">]</span>
 
-<span class="n">lab</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Retail price index&#39;</span><span class="p">,</span> <span class="s1">&#39;Exchange rate&#39;</span><span class="p">]</span>
+<span class="n">lab</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Retail price index&#39;</span><span class="p">,</span> 
+       <span class="s1">&#39;1/cents per Austrian Krone (Crown)&#39;</span><span class="p">]</span>
 
-<span class="c1"># create plot</span>
+<span class="c1"># Create plot</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
-<span class="n">_</span> <span class="o">=</span> <span class="n">pe_plot</span><span class="p">(</span><span class="n">p_seq</span><span class="p">,</span> <span class="n">e_seq</span><span class="p">,</span> <span class="n">df_Aus</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">lab</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">pe_plot</span><span class="p">(</span><span class="n">p_seq</span><span class="p">,</span> <span class="n">e_seq</span><span class="p">,</span> <span class="n">df_aus</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">lab</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
@@ -705,7 +654,7 @@ and inflation rates, for each country of interest.</p>
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="pi-xrate-austria">
-<a class="reference internal image-reference" href="_images/efa632cba0dd9a83ad3ff9edb828b0f2d85644f02494c1ae1b517486f19cace3.png"><img alt="_images/efa632cba0dd9a83ad3ff9edb828b0f2d85644f02494c1ae1b517486f19cace3.png" src="_images/efa632cba0dd9a83ad3ff9edb828b0f2d85644f02494c1ae1b517486f19cace3.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/bc4b116000a32ce196a6c0081b973e5b4c8db82c25b8d69b76d152f858706565.png"><img alt="_images/bc4b116000a32ce196a6c0081b973e5b4c8db82c25b8d69b76d152f858706565.png" src="_images/bc4b116000a32ce196a6c0081b973e5b4c8db82c25b8d69b76d152f858706565.png" style="width: 80%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 4.3 </span><span class="caption-text">Price index and exchange rate (Austria)</span><a class="headerlink" href="#pi-xrate-austria" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -714,9 +663,9 @@ and inflation rates, for each country of interest.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot moving average</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot moving average</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
-<span class="n">_</span> <span class="o">=</span> <span class="n">pr_plot</span><span class="p">(</span><span class="n">p_seq</span><span class="p">,</span> <span class="n">df_Aus</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">pr_plot</span><span class="p">(</span><span class="n">p_seq</span><span class="p">,</span> <span class="n">df_aus</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
@@ -747,16 +696,16 @@ and inflation rates, for each country of interest.</p>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m_seq</span> <span class="o">=</span> <span class="n">df_Hung</span><span class="p">[</span><span class="s1">&#39;Notes in circulation&#39;</span><span class="p">]</span>
-<span class="n">p_seq</span> <span class="o">=</span> <span class="n">df_Hung</span><span class="p">[</span><span class="s1">&#39;Hungarian index of prices&#39;</span><span class="p">]</span>
-<span class="n">e_seq</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">df_Hung</span><span class="p">[</span><span class="s1">&#39;Cents per crown in New York&#39;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m_seq</span> <span class="o">=</span> <span class="n">df_hun</span><span class="p">[</span><span class="s1">&#39;Notes in circulation&#39;</span><span class="p">]</span>
+<span class="n">p_seq</span> <span class="o">=</span> <span class="n">df_hun</span><span class="p">[</span><span class="s1">&#39;Hungarian index of prices&#39;</span><span class="p">]</span>
+<span class="n">e_seq</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">df_hun</span><span class="p">[</span><span class="s1">&#39;Cents per crown in New York&#39;</span><span class="p">]</span>
 
 <span class="n">lab</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Hungarian index of prices&#39;</span><span class="p">,</span> 
-       <span class="s1">&#39;1/cents per crown in New York&#39;</span><span class="p">]</span>
+       <span class="s1">&#39;1/cents per Hungarian Korona (Crown)&#39;</span><span class="p">]</span>
 
-<span class="c1"># create plot</span>
+<span class="c1"># Create plot</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
-<span class="n">_</span> <span class="o">=</span> <span class="n">pe_plot</span><span class="p">(</span><span class="n">p_seq</span><span class="p">,</span> <span class="n">e_seq</span><span class="p">,</span> <span class="n">df_Hung</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">lab</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">pe_plot</span><span class="p">(</span><span class="n">p_seq</span><span class="p">,</span> <span class="n">e_seq</span><span class="p">,</span> <span class="n">df_hun</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">lab</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
@@ -764,7 +713,7 @@ and inflation rates, for each country of interest.</p>
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="pi-xrate-hungary">
-<a class="reference internal image-reference" href="_images/22a843f3f78d8d7d1150b648479aa206970476e48a8e0786cd6eafa645444929.png"><img alt="_images/22a843f3f78d8d7d1150b648479aa206970476e48a8e0786cd6eafa645444929.png" src="_images/22a843f3f78d8d7d1150b648479aa206970476e48a8e0786cd6eafa645444929.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/bf837642290a60b0a050e19ab612c4b04f69269ab0835a4328158af0f9643539.png"><img alt="_images/bf837642290a60b0a050e19ab612c4b04f69269ab0835a4328158af0f9643539.png" src="_images/bf837642290a60b0a050e19ab612c4b04f69269ab0835a4328158af0f9643539.png" style="width: 80%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 4.5 </span><span class="caption-text">Price index and exchange rate (Hungary)</span><a class="headerlink" href="#pi-xrate-hungary" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -773,9 +722,9 @@ and inflation rates, for each country of interest.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot moving average</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot moving average</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
-<span class="n">_</span> <span class="o">=</span> <span class="n">pr_plot</span><span class="p">(</span><span class="n">p_seq</span><span class="p">,</span> <span class="n">df_Hung</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">pr_plot</span><span class="p">(</span><span class="n">p_seq</span><span class="p">,</span> <span class="n">df_hun</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
@@ -805,28 +754,28 @@ We dropped the exchange rate after June 1924, when the zloty was adopted. We did
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># splice three price series in different units</span>
-<span class="n">p_seq1</span> <span class="o">=</span> <span class="n">df_Pol</span><span class="p">[</span><span class="s1">&#39;Wholesale price index&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-<span class="n">p_seq2</span> <span class="o">=</span> <span class="n">df_Pol</span><span class="p">[</span><span class="s1">&#39;Wholesale Price Index: &#39;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Splice three price series in different units</span>
+<span class="n">p_seq1</span> <span class="o">=</span> <span class="n">df_pol</span><span class="p">[</span><span class="s1">&#39;Wholesale price index&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">p_seq2</span> <span class="o">=</span> <span class="n">df_pol</span><span class="p">[</span><span class="s1">&#39;Wholesale Price Index: &#39;</span>
                 <span class="s1">&#39;On paper currency basis&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-<span class="n">p_seq3</span> <span class="o">=</span> <span class="n">df_Pol</span><span class="p">[</span><span class="s1">&#39;Wholesale Price Index: &#39;</span> 
+<span class="n">p_seq3</span> <span class="o">=</span> <span class="n">df_pol</span><span class="p">[</span><span class="s1">&#39;Wholesale Price Index: &#39;</span> 
                 <span class="s1">&#39;On zloty basis&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 
-<span class="c1"># non-nan part</span>
+<span class="c1"># Non-nan part</span>
 <span class="n">mask_1</span> <span class="o">=</span> <span class="n">p_seq1</span><span class="p">[</span><span class="o">~</span><span class="n">p_seq1</span><span class="o">.</span><span class="n">isna</span><span class="p">()]</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 <span class="n">mask_2</span> <span class="o">=</span> <span class="n">p_seq2</span><span class="p">[</span><span class="o">~</span><span class="n">p_seq2</span><span class="o">.</span><span class="n">isna</span><span class="p">()]</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
 
 <span class="n">adj_ratio12</span> <span class="o">=</span> <span class="p">(</span><span class="n">p_seq1</span><span class="p">[</span><span class="n">mask_1</span><span class="p">]</span> <span class="o">/</span> <span class="n">p_seq2</span><span class="p">[</span><span class="n">mask_1</span><span class="p">])</span>
 <span class="n">adj_ratio23</span> <span class="o">=</span> <span class="p">(</span><span class="n">p_seq2</span><span class="p">[</span><span class="n">mask_2</span><span class="p">]</span> <span class="o">/</span> <span class="n">p_seq3</span><span class="p">[</span><span class="n">mask_2</span><span class="p">])</span>
 
-<span class="c1"># glue three series</span>
+<span class="c1"># Glue three series</span>
 <span class="n">p_seq</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">p_seq1</span><span class="p">[:</span><span class="n">mask_1</span><span class="p">],</span> 
                    <span class="n">adj_ratio12</span> <span class="o">*</span> <span class="n">p_seq2</span><span class="p">[</span><span class="n">mask_1</span><span class="p">:</span><span class="n">mask_2</span><span class="p">],</span> 
                    <span class="n">adj_ratio23</span> <span class="o">*</span> <span class="n">p_seq3</span><span class="p">[</span><span class="n">mask_2</span><span class="p">:]])</span>
 <span class="n">p_seq</span> <span class="o">=</span> <span class="n">p_seq</span><span class="p">[</span><span class="o">~</span><span class="n">p_seq</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">duplicated</span><span class="p">(</span><span class="n">keep</span><span class="o">=</span><span class="s1">&#39;first&#39;</span><span class="p">)]</span>
 
-<span class="c1"># exchange rate</span>
-<span class="n">e_seq</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">df_Pol</span><span class="p">[</span><span class="s1">&#39;Cents per Polish mark (zloty after May 1924)&#39;</span><span class="p">]</span>
+<span class="c1"># Exchange rate</span>
+<span class="n">e_seq</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">df_pol</span><span class="p">[</span><span class="s1">&#39;Cents per Polish mark (zloty after May 1924)&#39;</span><span class="p">]</span>
 <span class="n">e_seq</span><span class="p">[</span><span class="n">e_seq</span><span class="o">.</span><span class="n">index</span> <span class="o">&gt;</span> <span class="s1">&#39;05-01-1924&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
 </pre></div>
 </div>
@@ -837,9 +786,9 @@ We dropped the exchange rate after June 1924, when the zloty was adopted. We did
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lab</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Wholesale price index&#39;</span><span class="p">,</span> 
        <span class="s1">&#39;1/cents per polish mark&#39;</span><span class="p">]</span>
 
-<span class="c1"># create plot</span>
+<span class="c1"># Create plot</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
-<span class="n">ax1</span> <span class="o">=</span> <span class="n">pe_plot</span><span class="p">(</span><span class="n">p_seq</span><span class="p">,</span> <span class="n">e_seq</span><span class="p">,</span> <span class="n">df_Pol</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">lab</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span>
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">pe_plot</span><span class="p">(</span><span class="n">p_seq</span><span class="p">,</span> <span class="n">e_seq</span><span class="p">,</span> <span class="n">df_pol</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">lab</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
@@ -851,9 +800,9 @@ We dropped the exchange rate after June 1924, when the zloty was adopted. We did
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot moving average</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot moving average</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
-<span class="n">_</span> <span class="o">=</span> <span class="n">pr_plot</span><span class="p">(</span><span class="n">p_seq</span><span class="p">,</span> <span class="n">df_Pol</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">pr_plot</span><span class="p">(</span><span class="n">p_seq</span><span class="p">,</span> <span class="n">df_pol</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
@@ -878,16 +827,16 @@ We dropped the exchange rate after June 1924, when the zloty was adopted. We did
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p_seq</span> <span class="o">=</span> <span class="n">df_Germ</span><span class="p">[</span><span class="s1">&#39;Price index (on basis of marks before July 1924,&#39;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p_seq</span> <span class="o">=</span> <span class="n">df_deu</span><span class="p">[</span><span class="s1">&#39;Price index (on basis of marks before July 1924,&#39;</span>
                 <span class="s1">&#39;  reichsmarks after)&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-<span class="n">e_seq</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">df_Germ</span><span class="p">[</span><span class="s1">&#39;Cents per mark&#39;</span><span class="p">]</span>
+<span class="n">e_seq</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">df_deu</span><span class="p">[</span><span class="s1">&#39;Cents per mark&#39;</span><span class="p">]</span>
 
 <span class="n">lab</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Price index&#39;</span><span class="p">,</span> 
        <span class="s1">&#39;1/cents per mark&#39;</span><span class="p">]</span>
 
-<span class="c1"># create plot</span>
+<span class="c1"># Create plot</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
-<span class="n">ax1</span> <span class="o">=</span> <span class="n">pe_plot</span><span class="p">(</span><span class="n">p_seq</span><span class="p">,</span> <span class="n">e_seq</span><span class="p">,</span> <span class="n">df_Germ</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">lab</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span>
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">pe_plot</span><span class="p">(</span><span class="n">p_seq</span><span class="p">,</span> <span class="n">e_seq</span><span class="p">,</span> <span class="n">df_deu</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">lab</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
@@ -904,11 +853,11 @@ We dropped the exchange rate after June 1924, when the zloty was adopted. We did
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p_seq</span> <span class="o">=</span> <span class="n">df_Germ</span><span class="p">[</span><span class="s1">&#39;Price index (on basis of marks before July 1924,&#39;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p_seq</span> <span class="o">=</span> <span class="n">df_deu</span><span class="p">[</span><span class="s1">&#39;Price index (on basis of marks before July 1924,&#39;</span>
                 <span class="s1">&#39;  reichsmarks after)&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-<span class="n">e_seq</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">df_Germ</span><span class="p">[</span><span class="s1">&#39;Cents per mark&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">e_seq</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">df_deu</span><span class="p">[</span><span class="s1">&#39;Cents per mark&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 
-<span class="c1"># adjust the price level/exchange rate after the currency reform</span>
+<span class="c1"># Adjust the price level/exchange rate after the currency reform</span>
 <span class="n">p_seq</span><span class="p">[</span><span class="n">p_seq</span><span class="o">.</span><span class="n">index</span> <span class="o">&gt;</span> <span class="s1">&#39;06-01-1924&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">p_seq</span><span class="p">[</span><span class="n">p_seq</span><span class="o">.</span><span class="n">index</span> 
                                           <span class="o">&gt;</span> <span class="s1">&#39;06-01-1924&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="mf">1e12</span>
 <span class="n">e_seq</span><span class="p">[</span><span class="n">e_seq</span><span class="o">.</span><span class="n">index</span> <span class="o">&gt;</span> <span class="s1">&#39;12-01-1923&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">e_seq</span><span class="p">[</span><span class="n">e_seq</span><span class="o">.</span><span class="n">index</span> 
@@ -917,9 +866,9 @@ We dropped the exchange rate after June 1924, when the zloty was adopted. We did
 <span class="n">lab</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Price index (marks or converted to marks)&#39;</span><span class="p">,</span> 
        <span class="s1">&#39;1/cents per mark (or reichsmark converted to mark)&#39;</span><span class="p">]</span>
 
-<span class="c1"># create plot</span>
+<span class="c1"># Create plot</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
-<span class="n">ax1</span> <span class="o">=</span> <span class="n">pe_plot</span><span class="p">(</span><span class="n">p_seq</span><span class="p">,</span> <span class="n">e_seq</span><span class="p">,</span> <span class="n">df_Germ</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">lab</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span>
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">pe_plot</span><span class="p">(</span><span class="n">p_seq</span><span class="p">,</span> <span class="n">e_seq</span><span class="p">,</span> <span class="n">df_deu</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">lab</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
@@ -936,9 +885,9 @@ We dropped the exchange rate after June 1924, when the zloty was adopted. We did
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot moving average</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot moving average</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
-<span class="n">_</span> <span class="o">=</span> <span class="n">pr_plot</span><span class="p">(</span><span class="n">p_seq</span><span class="p">,</span> <span class="n">df_Germ</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">pr_plot</span><span class="p">(</span><span class="n">p_seq</span><span class="p">,</span> <span class="n">df_deu</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
@@ -980,7 +929,7 @@ We dropped the exchange rate after June 1924, when the zloty was adopted. We did
 <p>In the end, the German mark stabilized at 1 trillion (<span class="math notranslate nohighlight">\(10^{12}\)</span>) paper marks to the prewar gold mark, the Polish mark at 1.8 million paper marks to the gold zloty, the Austrian crown at 14,400 paper crowns to the prewar Austro-Hungarian crown, and the Hungarian krone at 14,500 paper crowns to the prewar Austro-Hungarian crown.</p>
 <p>Chapter 3 of <span id="id9">[<a class="reference internal" href="zreferences.html#id7" title="Thomas J Sargent and François R Velde. The Big Problem of Small Change. Princeton University Press, Princeton, New Jersey, 2002.">Sargent and Velde, 2002</a>]</span>  described deliberate changes in policy that Hungary, Austria, Poland, and Germany made to end their hyperinflations.</p>
 <p>Each government stopped printing money to pay for goods and services once again and made its currency convertible to the US dollar or the UK pound.</p>
-<p>The story told in <span id="id10">[<a class="reference internal" href="zreferences.html#id7" title="Thomas J Sargent and François R Velde. The Big Problem of Small Change. Princeton University Press, Princeton, New Jersey, 2002.">Sargent and Velde, 2002</a>]</span> is grounded in a “monetarist theory of the price level” described in <a class="reference internal" href="cagan_ree.html"><span class="doc">A Monetarist Theory of  Price Levels</span></a> and <a class="reference internal" href="cagan_adaptive.html"><span class="doc">Monetarist Theory of Price Levels with Adaptive Expectations</span></a>.</p>
+<p>The story told in <span id="id10">[<a class="reference internal" href="zreferences.html#id7" title="Thomas J Sargent and François R Velde. The Big Problem of Small Change. Princeton University Press, Princeton, New Jersey, 2002.">Sargent and Velde, 2002</a>]</span> is grounded in a “monetarist theory of the price level” described in <a class="reference internal" href="cagan_ree.html"><span class="doc">A Monetarist Theory of Price Levels</span></a> and <a class="reference internal" href="cagan_adaptive.html"><span class="doc">Monetarist Theory of Price Levels with Adaptive Expectations</span></a>.</p>
 <p>Those lectures discuss theories about what owners of those rapidly depreciating currencies were thinking and how their beliefs shaped responses of inflation to government monetary and fiscal policies.</p>
 </section>
 </section>
@@ -1123,7 +1072,7 @@ We dropped the exchange rate after June 1924, when the zloty was adopted. We did
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cagan_ree.html">
-   13. A Monetarist Theory of  Price Levels
+   13. A Monetarist Theory of Price Levels
   </a>
  </li>
  <li class="toctree-l1">

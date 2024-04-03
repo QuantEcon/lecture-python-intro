@@ -99,6 +99,7 @@
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="_static/togglebutton.js"></script>
     <script src="_static/scripts/quantecon-book-theme.js?digest=eed9c059a3ee152aae2353ec732f0a6d12e6aa07"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="_static/design-tabs.js"></script>
     <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-QDS1YRJNGM"></script>
@@ -175,10 +176,11 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#structure-of-the-model">14.2. Structure of the model</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#representing-key-equations-with-linear-algebra">14.3. Representing key equations with linear algebra</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#harvesting-insights-from-our-matrix-formulation">14.4. Harvesting insights from our matrix formulation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#forecast-errors">14.5. Forecast errors</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-condition-for-stability">14.6. Technical condition for stability</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#experiment-1">14.6.1. Experiment 1</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#experiment-2">14.6.2. Experiment 2</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#forecast-errors-and-model-computation">14.5. Forecast errors and model computation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-condition-for-stability">14.6. Technical condition for stability</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#experiments">14.7. Experiments</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#experiment-1">14.7.1. Experiment 1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#experiment-2">14.7.2. Experiment 2</a></li>
 </ul>
 </li>
 </ul>
@@ -243,10 +245,10 @@ const thebe_selector_output = ".output, .cell_output"
 <h1><span class="section-number">14. </span>Monetarist Theory of Price Levels with Adaptive Expectations<a class="headerlink" href="#monetarist-theory-of-price-levels-with-adaptive-expectations" title="Permalink to this heading">#</a></h1>
 <section id="overview">
 <h2><span class="section-number">14.1. </span>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
-<p>This lecture is a sequel or prequel to the lecture <a class="reference internal" href="cagan_ree.html"><span class="doc">A Monetarist Theory of  Price Levels</span></a>.</p>
+<p>This lecture is a sequel or prequel to <a class="reference internal" href="cagan_ree.html"><span class="doc">A Monetarist Theory of Price Levels</span></a>.</p>
 <p>We’ll use linear algebra to do some experiments with  an alternative “monetarist” or  “fiscal” theory of  price levels.</p>
-<p>Like the model in <a class="reference internal" href="cagan_ree.html"><span class="doc">A Monetarist Theory of  Price Levels</span></a>, the model asserts that when a government persistently spends more than it collects in taxes and prints money to finance the shortfall, it puts upward pressure on the price level and generates persistent inflation.</p>
-<p>Instead of the “perfect foresight” or “rational expectations” version of the model in <a class="reference internal" href="cagan_ree.html"><span class="doc">A Monetarist Theory of  Price Levels</span></a>, our model in the present lecture is an “adaptive expectations”  version of a model that  <span id="id1">[<a class="reference internal" href="zreferences.html#id107" title="Philip Cagan. The monetary dynamics of hyperinflation. In Milton Friedman, editor, Studies in the Quantity Theory of Money, pages 25–117. University of Chicago Press, Chicago, 1956.">Cagan, 1956</a>]</span>  used to study the monetary dynamics of hyperinflations.</p>
+<p>Like the model in <a class="reference internal" href="cagan_ree.html"><span class="doc">A Monetarist Theory of Price Levels</span></a>, the model asserts that when a government persistently spends more than it collects in taxes and prints money to finance the shortfall, it puts upward pressure on the price level and generates persistent inflation.</p>
+<p>Instead of the “perfect foresight” or “rational expectations” version of the model in <a class="reference internal" href="cagan_ree.html"><span class="doc">A Monetarist Theory of Price Levels</span></a>, our model in the present lecture is an “adaptive expectations”  version of a model that  <span id="id1">[<a class="reference internal" href="zreferences.html#id107" title="Philip Cagan. The monetary dynamics of hyperinflation. In Milton Friedman, editor, Studies in the Quantity Theory of Money, pages 25–117. University of Chicago Press, Chicago, 1956.">Cagan, 1956</a>]</span> used to study the monetary dynamics of hyperinflations.</p>
 <p>It combines these components:</p>
 <ul class="simple">
 <li><p>a demand function for real money balances that asserts that the logarithm of the quantity of real balances demanded depends inversely on the public’s expected rate of inflation</p></li>
@@ -255,7 +257,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li><p>an exogenous sequence of rates of growth of the money supply</p></li>
 </ul>
 <p>Our model stays quite close to Cagan’s original specification.</p>
-<p>As in the lectures <a class="reference internal" href="pv.html"><span class="doc">Present Values</span></a> and <a class="reference internal" href="cons_smooth.html"><span class="doc">Consumption Smoothing</span></a>, the only linear algebra operations that we’ll be  using are matrix multiplication and matrix inversion.</p>
+<p>As in <a class="reference internal" href="pv.html"><span class="doc">Present Values</span></a> and <a class="reference internal" href="cons_smooth.html"><span class="doc">Consumption Smoothing</span></a>, the only linear algebra operations that we’ll be  using are matrix multiplication and matrix inversion.</p>
 <p>To facilitate using  linear matrix algebra as our principal mathematical tool, we’ll use a finite horizon version of
 the model.</p>
 </section>
@@ -448,8 +450,8 @@ p = m + \alpha \hat \pi^*
  \]</div>
 <p>which is just <span class="math notranslate nohighlight">\(\pi^*\)</span> with the last element dropped.</p>
 </section>
-<section id="forecast-errors">
-<h2><span class="section-number">14.5. </span>Forecast errors<a class="headerlink" href="#forecast-errors" title="Permalink to this heading">#</a></h2>
+<section id="forecast-errors-and-model-computation">
+<h2><span class="section-number">14.5. </span>Forecast errors and model computation<a class="headerlink" href="#forecast-errors-and-model-computation" title="Permalink to this heading">#</a></h2>
 <p>Our computations will verify that</p>
 <div class="math notranslate nohighlight">
 \[
@@ -462,7 +464,7 @@ p = m + \alpha \hat \pi^*
 \]</div>
 <p>This outcome is typical in models in which adaptive expectations hypothesis like equation <a class="reference internal" href="#equation-eq-adaptexpn">(14.4)</a> appear as a
 component.</p>
-<p>In <a class="reference internal" href="cagan_ree.html"><span class="doc">A Monetarist Theory of  Price Levels</span></a> we studied a version of the model that replaces hypothesis <a class="reference internal" href="#equation-eq-adaptexpn">(14.4)</a> with
+<p>In <a class="reference internal" href="cagan_ree.html"><span class="doc">A Monetarist Theory of Price Levels</span></a>, we studied a version of the model that replaces hypothesis <a class="reference internal" href="#equation-eq-adaptexpn">(14.4)</a> with
 a “perfect foresight” or “rational expectations” hypothesis.</p>
 <p>But now, let’s dive in and do some computations with the adaptive expectations version of the model.</p>
 <p>As usual, we’ll start by importing some Python modules.</p>
@@ -480,26 +482,10 @@ a “perfect foresight” or “rational expectations” hypothesis.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Cagan_Adaptive</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s2">&quot;Cagan_Adaptive&quot;</span><span class="p">,</span> 
                         <span class="p">[</span><span class="s2">&quot;α&quot;</span><span class="p">,</span> <span class="s2">&quot;m0&quot;</span><span class="p">,</span> <span class="s2">&quot;Eπ0&quot;</span><span class="p">,</span> <span class="s2">&quot;T&quot;</span><span class="p">,</span> <span class="s2">&quot;λ&quot;</span><span class="p">])</span>
 
-<span class="k">def</span> <span class="nf">create_cagan_adaptive_model</span><span class="p">(</span><span class="n">α</span><span class="p">,</span> <span class="n">m0</span><span class="p">,</span> <span class="n">Eπ0</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">λ</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">create_cagan_adaptive_model</span><span class="p">(</span><span class="n">α</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="n">m0</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">Eπ0</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">λ</span> <span class="o">=</span> <span class="mf">0.9</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">Cagan_Adaptive</span><span class="p">(</span><span class="n">α</span><span class="p">,</span> <span class="n">m0</span><span class="p">,</span> <span class="n">Eπ0</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">λ</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>Here we define the parameters.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># parameters</span>
-<span class="n">T</span> <span class="o">=</span> <span class="mi">80</span>
-<span class="n">T1</span> <span class="o">=</span> <span class="mi">60</span>
-<span class="n">α</span> <span class="o">=</span> <span class="mi">5</span>
-<span class="n">λ</span> <span class="o">=</span> <span class="mf">0.9</span>   <span class="c1"># 0.7</span>
-<span class="n">m0</span> <span class="o">=</span> <span class="mi">1</span>
 
-<span class="n">μ0</span> <span class="o">=</span> <span class="mf">0.5</span>
-<span class="n">μ_star</span> <span class="o">=</span> <span class="mi">0</span>
-
-<span class="n">md</span> <span class="o">=</span> <span class="n">create_cagan_adaptive_model</span><span class="p">(</span><span class="n">α</span><span class="o">=</span><span class="n">α</span><span class="p">,</span> <span class="n">m0</span><span class="o">=</span><span class="n">m0</span><span class="p">,</span> <span class="n">Eπ0</span><span class="o">=</span><span class="n">μ0</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="n">T</span><span class="p">,</span> <span class="n">λ</span><span class="o">=</span><span class="n">λ</span><span class="p">)</span>
+<span class="n">md</span> <span class="o">=</span> <span class="n">create_cagan_adaptive_model</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -507,11 +493,9 @@ a “perfect foresight” or “rational expectations” hypothesis.</p>
 <p>We solve the model and plot variables of interests using the following functions.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">solve</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">μ_seq</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">solve_cagan_adaptive</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">μ_seq</span><span class="p">):</span>
     <span class="s2">&quot; Solve the Cagan model in finite time. &quot;</span>
-    
-    <span class="n">model_params</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">α</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">m0</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">Eπ0</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">λ</span>
-    <span class="n">α</span><span class="p">,</span> <span class="n">m0</span><span class="p">,</span> <span class="n">Eπ0</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">λ</span> <span class="o">=</span> <span class="n">model_params</span>
+    <span class="n">α</span><span class="p">,</span> <span class="n">m0</span><span class="p">,</span> <span class="n">Eπ0</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">λ</span> <span class="o">=</span> <span class="n">model</span>
     
     <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">2</span><span class="p">,</span> <span class="n">T</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="n">λ</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">2</span><span class="p">,</span> <span class="n">T</span><span class="o">+</span><span class="mi">2</span><span class="p">,</span> <span class="n">k</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
     <span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">2</span><span class="p">,</span> <span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">k</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
@@ -519,16 +503,16 @@ a “perfect foresight” or “rational expectations” hypothesis.</p>
     <span class="n">Eπ0_seq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Eπ0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
 
     <span class="c1"># Eπ_seq is of length T+2</span>
-    <span class="n">Eπ_seq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">A</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">λ</span><span class="p">)</span><span class="o">*</span><span class="n">B</span> <span class="o">@</span> <span class="n">C</span><span class="p">)</span> <span class="o">@</span> <span class="p">((</span><span class="mi">1</span><span class="o">-</span><span class="n">λ</span><span class="p">)</span> <span class="o">*</span> <span class="n">B</span> <span class="o">@</span> <span class="n">μ_seq</span> <span class="o">+</span> <span class="n">Eπ0_seq</span><span class="p">)</span>
+    <span class="n">Eπ_seq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">A</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">λ</span><span class="p">)</span><span class="o">*</span><span class="n">B</span> <span class="o">@</span> <span class="n">C</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">λ</span><span class="p">)</span> <span class="o">*</span> <span class="n">B</span> <span class="o">@</span> <span class="n">μ_seq</span> <span class="o">+</span> <span class="n">Eπ0_seq</span><span class="p">)</span>
 
     <span class="c1"># π_seq is of length T+1</span>
     <span class="n">π_seq</span> <span class="o">=</span> <span class="n">μ_seq</span> <span class="o">+</span> <span class="n">C</span> <span class="o">@</span> <span class="n">Eπ_seq</span>
 
-    <span class="n">D</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">k</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">D</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">k</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># D is the coefficient matrix in Equation (14.8)</span>
     <span class="n">m0_seq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">m0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">T</span><span class="p">))</span>
 
     <span class="c1"># m_seq is of length T+2</span>
-    <span class="n">m_seq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">D</span><span class="p">)</span> <span class="o">@</span> <span class="p">(</span><span class="n">μ_seq</span> <span class="o">+</span> <span class="n">m0_seq</span><span class="p">)</span>
+    <span class="n">m_seq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="n">μ_seq</span> <span class="o">+</span> <span class="n">m0_seq</span><span class="p">)</span>
     <span class="n">m_seq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">m0</span><span class="p">,</span> <span class="n">m_seq</span><span class="p">)</span>
 
     <span class="c1"># p_seq is of length T+2</span>
@@ -543,7 +527,7 @@ a “perfect foresight” or “rational expectations” hypothesis.</p>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">solve_and_plot</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">μ_seq</span><span class="p">):</span>
     
-    <span class="n">π_seq</span><span class="p">,</span> <span class="n">Eπ_seq</span><span class="p">,</span> <span class="n">m_seq</span><span class="p">,</span> <span class="n">p_seq</span> <span class="o">=</span> <span class="n">solve</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">μ_seq</span><span class="p">)</span>
+    <span class="n">π_seq</span><span class="p">,</span> <span class="n">Eπ_seq</span><span class="p">,</span> <span class="n">m_seq</span><span class="p">,</span> <span class="n">p_seq</span> <span class="o">=</span> <span class="n">solve_cagan_adaptive</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">μ_seq</span><span class="p">)</span>
     
     <span class="n">T_seq</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">T</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span>
     
@@ -556,10 +540,12 @@ a “perfect foresight” or “rational expectations” hypothesis.</p>
     <span class="n">ax</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">T_seq</span><span class="p">,</span> <span class="n">p_seq</span><span class="p">)</span>
     
     <span class="n">y_labs</span> <span class="o">=</span> <span class="p">[</span><span class="sa">r</span><span class="s1">&#39;$\mu$&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$\pi$&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$m - p$&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$m$&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$p$&#39;</span><span class="p">]</span>
+    <span class="n">subplot_title</span> <span class="o">=</span> <span class="p">[</span><span class="sa">r</span><span class="s1">&#39;Money supply growth&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;Inflation&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;Real balances&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;Money supply&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;Price level&#39;</span><span class="p">]</span>
 
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
         <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$t$&#39;</span><span class="p">)</span>
         <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">y_labs</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">subplot_title</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
 
     <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
@@ -589,7 +575,7 @@ a “perfect foresight” or “rational expectations” hypothesis.</p>
 <p>The reader is free to study outcomes in examples that violate condition <a class="reference internal" href="#equation-eq-suffcond">(14.11)</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">((</span><span class="n">λ</span> <span class="o">-</span> <span class="n">α</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">λ</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">α</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">λ</span><span class="p">))))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">((</span><span class="n">md</span><span class="o">.</span><span class="n">λ</span> <span class="o">-</span> <span class="n">md</span><span class="o">.</span><span class="n">α</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">md</span><span class="o">.</span><span class="n">λ</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">md</span><span class="o">.</span><span class="n">α</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">md</span><span class="o">.</span><span class="n">λ</span><span class="p">))))</span>
 </pre></div>
 </div>
 </div>
@@ -599,37 +585,33 @@ a “perfect foresight” or “rational expectations” hypothesis.</p>
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">λ</span> <span class="o">-</span> <span class="n">α</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">λ</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.40000000000000013
-</pre></div>
-</div>
-</div>
-</div>
+</section>
+<section id="experiments">
+<h2><span class="section-number">14.7. </span>Experiments<a class="headerlink" href="#experiments" title="Permalink to this heading">#</a></h2>
 <p>Now we’ll turn to some experiments.</p>
 <section id="experiment-1">
-<h3><span class="section-number">14.6.1. </span>Experiment 1<a class="headerlink" href="#experiment-1" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">14.7.1. </span>Experiment 1<a class="headerlink" href="#experiment-1" title="Permalink to this heading">#</a></h3>
 <p>We’ll study a situation in which the rate of growth of the money supply is <span class="math notranslate nohighlight">\(\mu_0\)</span>
 from <span class="math notranslate nohighlight">\(t=0\)</span> to <span class="math notranslate nohighlight">\(t= T_1\)</span> and then permanently falls to <span class="math notranslate nohighlight">\(\mu^*\)</span> at <span class="math notranslate nohighlight">\(t=T_1\)</span>.</p>
 <p>Thus, let <span class="math notranslate nohighlight">\(T_1 \in (0, T)\)</span>.</p>
 <p>So where <span class="math notranslate nohighlight">\(\mu_0 &gt; \mu^*\)</span>, we assume that</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-\mu_{t+1} = \begin{cases}
+\mu_{t} = \begin{cases}
     \mu_0  , &amp; t = 0, \ldots, T_1 -1 \\
      \mu^* , &amp; t \geq T_1
      \end{cases}
 \end{split}\]</div>
-<p>Notice that  we studied exactly this experiment  in a rational expectations version of the model in <a class="reference internal" href="cagan_ree.html"><span class="doc">A Monetarist Theory of  Price Levels</span></a>.</p>
+<p>Notice that  we studied exactly this experiment  in a rational expectations version of the model in <a class="reference internal" href="cagan_ree.html"><span class="doc">A Monetarist Theory of Price Levels</span></a>.</p>
 <p>So by comparing outcomes across the two lectures, we can learn about consequences of assuming adaptive expectations, as we do here, instead of  rational expectations as we assumed in that other lecture.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">μ_seq_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">μ0</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">T1</span><span class="p">),</span> <span class="n">μ_star</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="o">-</span><span class="n">T1</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Parameters for the experiment 1</span>
+<span class="n">T1</span> <span class="o">=</span> <span class="mi">60</span>
+<span class="n">μ0</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">μ_star</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="n">μ_seq_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">μ0</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">T1</span><span class="p">),</span> <span class="n">μ_star</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">md</span><span class="o">.</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="o">-</span><span class="n">T1</span><span class="p">))</span>
 
 <span class="c1"># solve and plot</span>
 <span class="n">π_seq_1</span><span class="p">,</span> <span class="n">Eπ_seq_1</span><span class="p">,</span> <span class="n">m_seq_1</span><span class="p">,</span> <span class="n">p_seq_1</span> <span class="o">=</span> <span class="n">solve_and_plot</span><span class="p">(</span><span class="n">md</span><span class="p">,</span> <span class="n">μ_seq_1</span><span class="p">)</span>
@@ -637,15 +619,15 @@ from <span class="math notranslate nohighlight">\(t=0\)</span> to <span class="m
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/7ff93ab5b6a86a80bee864946ef6f4c846c635ee6233b196f50099441bc99709.png"><img alt="_images/7ff93ab5b6a86a80bee864946ef6f4c846c635ee6233b196f50099441bc99709.png" src="_images/7ff93ab5b6a86a80bee864946ef6f4c846c635ee6233b196f50099441bc99709.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/b157e992ef9651c4c295cc6a79cb46f91900dc2b00ea246304222ee98bc25e28.png"><img alt="_images/b157e992ef9651c4c295cc6a79cb46f91900dc2b00ea246304222ee98bc25e28.png" src="_images/b157e992ef9651c4c295cc6a79cb46f91900dc2b00ea246304222ee98bc25e28.png" style="width: 80%;" /></a>
 </div>
 </div>
-<p>We invite the reader to compare outcomes with those under rational expectations studied in <a class="reference internal" href="cagan_ree.html"><span class="doc">A Monetarist Theory of  Price Levels</span></a>.</p>
+<p>We invite the reader to compare outcomes with those under rational expectations studied in <a class="reference internal" href="cagan_ree.html"><span class="doc">A Monetarist Theory of Price Levels</span></a>.</p>
 <p>Please note how the actual inflation rate <span class="math notranslate nohighlight">\(\pi_t\)</span> “overshoots” its ultimate steady-state value at the time of the sudden reduction in the rate of growth of the money supply at time <span class="math notranslate nohighlight">\(T_1\)</span>.</p>
 <p>We invite you to explain to  yourself the source of this overshooting and why it does not occur in  the rational expectations version of the model.</p>
 </section>
 <section id="experiment-2">
-<h3><span class="section-number">14.6.2. </span>Experiment 2<a class="headerlink" href="#experiment-2" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">14.7.2. </span>Experiment 2<a class="headerlink" href="#experiment-2" title="Permalink to this heading">#</a></h3>
 <p>Now we’ll do a different experiment, namely, a gradual stabilization in which the rate of growth of the money supply smoothly
 decline from a high value to a persistently low value.</p>
 <p>While price level inflation eventually falls, it falls more slowly than the driving  force that ultimately causes it to fall, namely, the falling rate of growth of the money supply.</p>
@@ -654,7 +636,7 @@ decline from a high value to a persistently low value.</p>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># parameters</span>
 <span class="n">ϕ</span> <span class="o">=</span> <span class="mf">0.9</span>
-<span class="n">μ_seq_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">ϕ</span><span class="o">**</span><span class="n">t</span> <span class="o">*</span> <span class="n">μ0</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">ϕ</span><span class="o">**</span><span class="n">t</span><span class="p">)</span><span class="o">*</span><span class="n">μ_star</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">T</span><span class="p">)])</span>
+<span class="n">μ_seq_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">ϕ</span><span class="o">**</span><span class="n">t</span> <span class="o">*</span> <span class="n">μ0</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">ϕ</span><span class="o">**</span><span class="n">t</span><span class="p">)</span><span class="o">*</span><span class="n">μ_star</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">md</span><span class="o">.</span><span class="n">T</span><span class="p">)])</span>
 <span class="n">μ_seq_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">μ_seq_2</span><span class="p">,</span> <span class="n">μ_star</span><span class="p">)</span>
 
 
@@ -664,7 +646,7 @@ decline from a high value to a persistently low value.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/5ee281efb152d483caa8235f97c78a2275c52ffb83b2589e499e4d66a44238f5.png"><img alt="_images/5ee281efb152d483caa8235f97c78a2275c52ffb83b2589e499e4d66a44238f5.png" src="_images/5ee281efb152d483caa8235f97c78a2275c52ffb83b2589e499e4d66a44238f5.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/975ae4720d12ccda2ffdda1c8ba9a55c062e1de5946397f0b0644672b72562f7.png"><img alt="_images/975ae4720d12ccda2ffdda1c8ba9a55c062e1de5946397f0b0644672b72562f7.png" src="_images/975ae4720d12ccda2ffdda1c8ba9a55c062e1de5946397f0b0644672b72562f7.png" style="width: 80%;" /></a>
 </div>
 </div>
 </section>
@@ -809,7 +791,7 @@ decline from a high value to a persistently low value.</p>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cagan_ree.html">
-   13. A Monetarist Theory of  Price Levels
+   13. A Monetarist Theory of Price Levels
   </a>
  </li>
  <li class="toctree-l1 current active active">

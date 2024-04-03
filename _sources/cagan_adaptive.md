@@ -16,13 +16,13 @@ kernelspec:
 ## Overview
 
 
-This lecture is a sequel or prequel to the lecture {doc}`cagan_ree`.
+This lecture is a sequel or prequel to {doc}`cagan_ree`.
 
 We'll use linear algebra to do some experiments with  an alternative "monetarist" or  "fiscal" theory of  price levels.
 
 Like the model in {doc}`cagan_ree`, the model asserts that when a government persistently spends more than it collects in taxes and prints money to finance the shortfall, it puts upward pressure on the price level and generates persistent inflation.
 
-Instead of the "perfect foresight" or "rational expectations" version of the model in {doc}`cagan_ree`, our model in the present lecture is an "adaptive expectations"  version of a model that  {cite}`Cagan`  used to study the monetary dynamics of hyperinflations.  
+Instead of the "perfect foresight" or "rational expectations" version of the model in {doc}`cagan_ree`, our model in the present lecture is an "adaptive expectations"  version of a model that  {cite}`Cagan` used to study the monetary dynamics of hyperinflations.  
 
 It combines these components:
 
@@ -36,7 +36,7 @@ It combines these components:
 
 Our model stays quite close to Cagan's original specification.  
 
-As in the lectures {doc}`pv` and {doc}`cons_smooth`, the only linear algebra operations that we'll be  using are matrix multiplication and matrix inversion.
+As in {doc}`pv` and {doc}`cons_smooth`, the only linear algebra operations that we'll be  using are matrix multiplication and matrix inversion.
 
 To facilitate using  linear matrix algebra as our principal mathematical tool, we'll use a finite horizon version of
 the model.
@@ -261,7 +261,7 @@ $$
 
 which is just $\pi^*$ with the last element dropped.
  
-## Forecast errors  
+## Forecast errors and model computation
 
 Our computations will verify that 
 
@@ -278,9 +278,8 @@ $$ (eq:notre)
 This outcome is typical in models in which adaptive expectations hypothesis like equation {eq}`eq:adaptexpn` appear as a
 component.  
 
-In {doc}`cagan_ree` we studied a version of the model that replaces hypothesis {eq}`eq:adaptexpn` with
+In {doc}`cagan_ree`, we studied a version of the model that replaces hypothesis {eq}`eq:adaptexpn` with
 a "perfect foresight" or "rational expectations" hypothesis.
-
 
 But now, let's dive in and do some computations with the adaptive expectations version of the model.
 
@@ -296,36 +295,19 @@ import matplotlib.pyplot as plt
 Cagan_Adaptive = namedtuple("Cagan_Adaptive", 
                         ["α", "m0", "Eπ0", "T", "λ"])
 
-def create_cagan_adaptive_model(α, m0, Eπ0, T, λ):
+def create_cagan_adaptive_model(α = 5, m0 = 1, Eπ0 = 0.5, T=80, λ = 0.9):
     return Cagan_Adaptive(α, m0, Eπ0, T, λ)
-```
-+++ {"user_expressions": []}
 
-Here we define the parameters.
-
-```{code-cell} ipython3
-# parameters
-T = 80
-T1 = 60
-α = 5
-λ = 0.9   # 0.7
-m0 = 1
-
-μ0 = 0.5
-μ_star = 0
-
-md = create_cagan_adaptive_model(α=α, m0=m0, Eπ0=μ0, T=T, λ=λ)
+md = create_cagan_adaptive_model()
 ```
 +++ {"user_expressions": []}
 
 We solve the model and plot variables of interests using the following functions.
 
 ```{code-cell} ipython3
-def solve(model, μ_seq):
+def solve_cagan_adaptive(model, μ_seq):
     " Solve the Cagan model in finite time. "
-    
-    model_params = model.α, model.m0, model.Eπ0, model.T, model.λ
-    α, m0, Eπ0, T, λ = model_params
+    α, m0, Eπ0, T, λ = model
     
     A = np.eye(T+2, T+2) - λ*np.eye(T+2, T+2, k=-1)
     B = np.eye(T+2, T+1, k=-1)
@@ -333,16 +315,16 @@ def solve(model, μ_seq):
     Eπ0_seq = np.append(Eπ0, np.zeros(T+1))
 
     # Eπ_seq is of length T+2
-    Eπ_seq = np.linalg.inv(A - (1-λ)*B @ C) @ ((1-λ) * B @ μ_seq + Eπ0_seq)
+    Eπ_seq = np.linalg.solve(A - (1-λ)*B @ C, (1-λ) * B @ μ_seq + Eπ0_seq)
 
     # π_seq is of length T+1
     π_seq = μ_seq + C @ Eπ_seq
 
-    D = np.eye(T+1, T+1) - np.eye(T+1, T+1, k=-1)
+    D = np.eye(T+1, T+1) - np.eye(T+1, T+1, k=-1) # D is the coefficient matrix in Equation (14.8)
     m0_seq = np.append(m0, np.zeros(T))
 
     # m_seq is of length T+2
-    m_seq = np.linalg.inv(D) @ (μ_seq + m0_seq)
+    m_seq = np.linalg.solve(D, μ_seq + m0_seq)
     m_seq = np.append(m0, m_seq)
 
     # p_seq is of length T+2
@@ -356,7 +338,7 @@ def solve(model, μ_seq):
 ```{code-cell} ipython3
 def solve_and_plot(model, μ_seq):
     
-    π_seq, Eπ_seq, m_seq, p_seq = solve(model, μ_seq)
+    π_seq, Eπ_seq, m_seq, p_seq = solve_cagan_adaptive(model, μ_seq)
     
     T_seq = range(model.T+2)
     
@@ -369,10 +351,12 @@ def solve_and_plot(model, μ_seq):
     ax[4].plot(T_seq, p_seq)
     
     y_labs = [r'$\mu$', r'$\pi$', r'$m - p$', r'$m$', r'$p$']
+    subplot_title = [r'Money supply growth', r'Inflation', r'Real balances', r'Money supply', r'Price level']
 
     for i in range(5):
         ax[i].set_xlabel(r'$t$')
         ax[i].set_ylabel(y_labs[i])
+        ax[i].set_title(subplot_title[i])
 
     ax[1].legend()
     plt.tight_layout()
@@ -406,12 +390,10 @@ By assuring that the coefficient on $\pi_t$ is less than one in absolute value, 
 The reader is free to study outcomes in examples that violate condition {eq}`eq:suffcond`.
 
 ```{code-cell} ipython3
-print(np.abs((λ - α*(1-λ))/(1 - α*(1-λ))))
+print(np.abs((md.λ - md.α*(1-md.λ))/(1 - md.α*(1-md.λ))))
 ```
 
-```{code-cell} ipython3
-print(λ - α*(1-λ))
-```
+## Experiments
 
 Now we'll turn to some experiments.
 
@@ -425,7 +407,7 @@ Thus, let $T_1 \in (0, T)$.
 So where $\mu_0 > \mu^*$, we assume that
 
 $$
-\mu_{t+1} = \begin{cases}
+\mu_{t} = \begin{cases}
     \mu_0  , & t = 0, \ldots, T_1 -1 \\
      \mu^* , & t \geq T_1
      \end{cases}
@@ -436,7 +418,12 @@ Notice that  we studied exactly this experiment  in a rational expectations vers
 So by comparing outcomes across the two lectures, we can learn about consequences of assuming adaptive expectations, as we do here, instead of  rational expectations as we assumed in that other lecture.
 
 ```{code-cell} ipython3
-μ_seq_1 = np.append(μ0*np.ones(T1), μ_star*np.ones(T+1-T1))
+# Parameters for the experiment 1
+T1 = 60
+μ0 = 0.5
+μ_star = 0
+
+μ_seq_1 = np.append(μ0*np.ones(T1), μ_star*np.ones(md.T+1-T1))
 
 # solve and plot
 π_seq_1, Eπ_seq_1, m_seq_1, p_seq_1 = solve_and_plot(md, μ_seq_1)
@@ -460,7 +447,7 @@ The sluggish fall in inflation is explained by how anticipated  inflation $\pi_t
 ```{code-cell} ipython3
 # parameters
 ϕ = 0.9
-μ_seq_2 = np.array([ϕ**t * μ0 + (1-ϕ**t)*μ_star for t in range(T)])
+μ_seq_2 = np.array([ϕ**t * μ0 + (1-ϕ**t)*μ_star for t in range(md.T)])
 μ_seq_2 = np.append(μ_seq_2, μ_star)
 
 
