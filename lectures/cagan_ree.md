@@ -236,7 +236,6 @@ As usual, we'll start by importing some Python modules.
 import numpy as np
 from collections import namedtuple
 import matplotlib.pyplot as plt
-plt.rcParams['figure.dpi'] = 200
 ```
 
 First, we store parameters in a `namedtuple`:
@@ -339,7 +338,7 @@ Now we use the following function to plot the result
 
 ```{code-cell} ipython3
 def plot_sequences(sequences, labels):
-    fig, axs = plt.subplots(len(sequences), 1, figsize=(5, 12))
+    fig, axs = plt.subplots(len(sequences), 1, figsize=(5, 12), dpi=200)
     for ax, seq, label in zip(axs, sequences, labels):
         ax.plot(range(len(seq)), seq, label=label)
         ax.set_ylabel(label)
@@ -529,7 +528,7 @@ p_seq_2_regime2 = np.concatenate((p_seq_2_path1[:T1+1],
 T_seq = range(T+2)
 
 # plot both regimes
-fig, ax = plt.subplots(5, 1, figsize=(5, 12))
+fig, ax = plt.subplots(5, 1, figsize=(5, 12), dpi=200)
 
 # Configuration for each subplot
 plot_configs = [
@@ -587,7 +586,7 @@ unanticipated, as in experiment 2.
 :tags: [hide-input]
 
 # compare foreseen vs unforeseen shock
-fig, ax = plt.subplots(5, figsize=(5, 12))
+fig, ax = plt.subplots(5, figsize=(5, 12), dpi=200)
 
 plot_configs = [
     {'data': [(T_seq[:-1], μ_seq_2)], 'ylabel': r'$\mu$'},
