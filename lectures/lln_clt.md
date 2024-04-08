@@ -78,7 +78,9 @@ print(X)
 ```
 
 In this setting, the LLN tells us if we flip the coin many times, the fraction
-of heads that we see will be close to the mean $p$. We use $n$ to represent the number of times the coin is flipped.
+of heads that we see will be close to the mean $p$. 
+
+We use $n$ to represent the number of times the coin is flipped.
 
 Let's check this:
 
