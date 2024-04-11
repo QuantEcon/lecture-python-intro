@@ -148,9 +148,14 @@ $$
 $$ (eq:overlineg)
 
 We want to compute an equilibrium $\{p_t,m_t,b_t, R_t\}_{t=0}$ sequence under this scheme for
-running monetary-fiscal policy.
+running monetary and fiscal policies.
 
-**TOM: add definitions of monetary and fiscal policy and coordination here.**
+Here, by **fiscal policy** we mean the collection of actions that determine a sequence of net-of-interest government deficits $\{g_t\}_{t=0}^\infty$ that must be financed by issuing to the public  either money or interest bearing bonds.
+
+By **monetary policy** or **debt-management polcy**, we  mean the collection of actions that determine how the government divides its  portolio of debts to the public  between interest-bearing parts (government bonds) and non-interest-bearing parts (money).
+
+By an **open market operation**, we mean a government monetary policy action in which the government
+(or its delegate, say, a central bank) either buys  government bonds from the public for newly issued money, or sells  bonds to the public and withdraws the money it receives from public circulation.  
 
 ## Algorithm (basic idea)
 
