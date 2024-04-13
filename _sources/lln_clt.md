@@ -78,7 +78,9 @@ print(X)
 ```
 
 In this setting, the LLN tells us if we flip the coin many times, the fraction
-of heads that we see will be close to the mean $p$.
+of heads that we see will be close to the mean $p$. 
+
+We use $n$ to represent the number of times the coin is flipped.
 
 Let's check this:
 
@@ -286,7 +288,7 @@ as expected.
 
 Let's vary `n` to see how the distribution of the sample mean changes.
 
-We will use a violin plot to show the different distributions.
+We will use a [violin plot](https://intro.quantecon.org/prob_dist.html#violin-plots) to show the different distributions.
 
 Each distribution in the violin plot represents the distribution of $X_n$ for some $n$, calculated by simulation.
 
@@ -357,7 +359,7 @@ This means that the distribution of $\bar X_n$ does not eventually concentrate o
 
 Hence the LLN does not hold.
 
-The LLN fails to hold here because the assumption $\mathbb E|X| = \infty$ is violated by the Cauchy distribution.
+The LLN fails to hold here because the assumption $\mathbb E|X| < \infty$ is violated by the Cauchy distribution.
 
 +++
 
@@ -438,7 +440,7 @@ Here $\stackrel { d } {\to} N(0, \sigma^2)$ indicates [convergence in distributi
 
 The striking implication of the CLT is that for **any** distribution with
 finite [second moment](https://en.wikipedia.org/wiki/Moment_(mathematics)), the simple operation of adding independent
-copies **always** leads to a Gaussian curve.
+copies **always** leads to a Gaussian(Normal) curve.
 
 
 
@@ -503,7 +505,7 @@ The fit to the normal density is already tight and can be further improved by in
 ```{exercise} 
 :label: lln_ex1
 
-Repeat the simulation [above1](sim_one) with the [Beta distribution](https://en.wikipedia.org/wiki/Beta_distribution).
+Repeat the simulation [above](sim_one) with the [Beta distribution](https://en.wikipedia.org/wiki/Beta_distribution).
 
 You can choose any $\alpha > 0$ and $\beta > 0$.
 ```
