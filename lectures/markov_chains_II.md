@@ -295,6 +295,7 @@ The transition graph shows that this model is irreducible.
 ```{image} /_static/lecture_specific/markov_chains_II/example4.png
 :name: mc_example4
 :align: center
+:scale: 80%
 ```
 
 Notice that there is a periodic cycle --- the state cycles between the two states in a regular way.
