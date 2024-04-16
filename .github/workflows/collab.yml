@@ -1,0 +1,89 @@
+name: Build Project on Google Collab (Execution)
+on: [pull_request]
+jobs:
+  collab-execution-check:
+    runs-on: ubuntu-latest
+    container:
+      image: us-docker.pkg.dev/colab-images/public/runtime
+      options: --gpus all
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      #TODO: Review if graphviz is needed
+      - name: Graphics Support
+        run: |
+          sudo apt-get -qq update && sudo apt-get install -y graphviz
+      - name: Install latex dependencies
+        run: |
+          sudo apt-get -qq update
+          sudo apt-get install -y     \
+            texlive-latex-recommended \
+            texlive-latex-extra       \
+            texlive-fonts-recommended \
+            texlive-fonts-extra       \
+            texlive-xetex             \
+            latexmk                   \
+            xindy                     \
+            dvipng                    \
+            cm-super
+      - name: Display Conda Environment Versions
+        shell: bash -l {0}
+        run: conda list
+      - name: Display Pip Versions
+        shell: bash -l {0}
+        run: pip list
+      # Install build software
+      - name: Install Build Software
+        shell: bash -l {0}
+        run: |
+          pip install jupyter-book==0.15.1 docutils==0.17.1 quantecon-book-theme==0.7.1 sphinx-tojupyter==0.3.0 sphinxext-rediraffe==0.2.7 sphinx-exercise==0.4.1 sphinxcontrib-youtube==1.1.0 sphinx-togglebutton==0.3.1 arviz==0.13.0
+      - name: Download "build" folder (cache)
+        uses: dawidd6/action-download-artifact@v2
+        with:
+          workflow: cache.yml
+          branch: main
+          name: build-cache
+          path: _build
+      # Build Assets (Download Notebooks and PDF via LaTeX)
+      - name: Build PDF from LaTeX
+        shell: bash -l {0}
+        run: |
+          jb build lectures --builder pdflatex --path-output ./ -n --keep-going
+          mkdir -p _build/html/_pdf
+          cp -u _build/latex/*.pdf _build/html/_pdf
+      - name: Upload Execution Reports (LaTeX)
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: execution-reports
+          path: _build/latex/reports
+      - name: Build Download Notebooks (sphinx-tojupyter)
+        shell: bash -l {0}
+        run: |
+          jb build lectures --path-output ./ --builder=custom --custom-builder=jupyter
+          mkdir -p _build/html/_notebooks
+          cp -u _build/jupyter/*.ipynb _build/html/_notebooks
+      # Build HTML (Website)
+      # BUG: rm .doctress to remove `sphinx` rendering issues for ipywidget mimetypes
+      # and clear the sphinx cache for building final HTML documents.
+      - name: Build HTML
+        shell: bash -l {0}
+        run: |
+          rm -r _build/.doctrees
+          jb build lectures --path-output ./ -nW --keep-going
+      - name: Upload Execution Reports (HTML)
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: execution-reports
+          path: _build/html/reports
+      - name: Preview Deploy to Netlify
+        uses: nwtgck/actions-netlify@v2
+        with:
+          publish-dir: '_build/html/'
+          production-branch: main
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          deploy-message: "Preview Deploy from GitHub Actions"
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
