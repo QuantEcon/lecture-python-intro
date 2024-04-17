@@ -1,0 +1,15 @@
+digraph {
+	rankdir=LR
+	Growth
+	Stagnation
+	Collapse
+	Growth -> Growth [label=0.68]
+	Growth -> Stagnation [label=0.12]
+	Growth -> Collapse [label=0.20]
+	Stagnation -> Stagnation [label=0.24]
+	Stagnation -> Growth [label=0.50]
+	Stagnation -> Collapse [label=0.26]
+	Collapse -> Collapse [label=0.46]
+	Collapse -> Stagnation [label=0.18]
+	Collapse -> Growth [label=0.36]
+}
