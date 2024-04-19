@@ -39,7 +39,17 @@ register_matplotlib_converters()
 
 ## Overview
 
-In this section we give some motivation for the lecture.
+Heavy-tailed distributions are a class of distributions that generate "extreme" outcomes.
+
+In the natural sciences (and in more traditional economics courses), heavy-tailed distributions are seen as quite exotic and non-standard.
+
+However, it turns out that heavy-tailed distributions play a crucial role in economics.
+
+In fact many -- if not most -- of the important distributions in economics are heavy tailed.
+
+In this lecture we explain what heavy tails are and why they are -- or at least
+why they should be -- central to economic analysis.
+
 
 ### Introduction: light tails
 
@@ -112,7 +122,7 @@ too much from the mean.
 Putting this another way, light-tailed distributions are those that
 rarely generate extreme values.
 
-(A more formal definition is given below.)
+(A more formal definition is given [below](https://intro.quantecon.org/heavy_tails.html#light-and-heavy-tails).)
 
 Many statisticians and econometricians 
 use rules of thumb such as "outcomes more than four or five
@@ -196,9 +206,19 @@ The histogram also looks different to the histogram of the normal
 distribution:
 
 ```{code-cell} ipython3
+r = np.random.standard_t(df=5, size=1000)
+
 fig, ax = plt.subplots()
 ax.hist(r, bins=60, alpha=0.4, label='bitcoin returns', density=True)
+
+xmin, xmax = plt.xlim()
+x = np.linspace(xmin, xmax, 100)
+p = norm.pdf(x, np.mean(r), np.std(r))
+ax.plot(x, p, 'k', linewidth=2, label='normal distribution')
+
 ax.set_xlabel('returns', fontsize=12)
+ax.legend()
+
 plt.show()
 ```
 
@@ -246,7 +266,7 @@ like
 * forecasting
 * taxation (across a heavy-tailed income distribution), etc.
 
-We return to these points below.
+We return to these points [below](https://intro.quantecon.org/heavy_tails.html#why-do-heavy-tails-matter).
 
 
 
@@ -254,6 +274,7 @@ We return to these points below.
 
 
 ## Visual comparisons
+In this section, we will introduce important concepts such as the Pareto distribution, Counter CDFs, and Power laws, which aid in recognizing heavy-tailed distributions.
 
 Later we will provide a mathematical definition of the difference between
 light and heavy tails.
@@ -523,7 +544,7 @@ plt.show()
 As with the CCDF, the empirical CCDF from the Pareto distributions is 
 approximately linear in a log-log plot.
 
-We will use this idea below when we look at real data.
+We will use this idea [below](https://intro.quantecon.org/heavy_tails.html#heavy-tails-in-economic-cross-sections) when we look at real data.
 
 
 ### Power laws 
