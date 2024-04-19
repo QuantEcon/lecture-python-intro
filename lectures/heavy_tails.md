@@ -39,13 +39,17 @@ register_matplotlib_converters()
 
 ## Overview
 
-Studying heavy-tailed distributions is essential for accurately comprehending real-world phenomena. 
+Heavy-tailed distributions are a class of distributions that generate "extreme" outcomes.
 
-Unlike standard Gaussian distributions, heavy-tailed distributions account for extreme events with greater probabilities. 
+In the natural sciences (and in more traditional economics courses), heavy-tailed distributions are seen as quite exotic and non-standard.
 
-This understanding is crucial in analyzing wealth, firm size, and city size distributions, as well as other areas such as business cycles and political economy.
+However, it turns out that heavy-tailed distributions play a crucial role in economics.
 
-In this section we give some motivation for the lecture.
+In fact many -- if not most -- of the important distributions in economics are heavy tailed.
+
+In this lecture we explain what heavy tails are and why they are -- or at least
+why they should be -- central to economic analysis.
+
 
 ### Introduction: light tails
 
