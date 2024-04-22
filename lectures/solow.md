@@ -181,7 +181,7 @@ If $g(k_t) < k_t$ then capital per worker falls.
 
 If $g(k_t) = k_t$, then we are at a **steady state** and $k_t$ remains constant.
 
-(A [steady state](https://intro.quantecon.org/scalar_dynam.html#steady-states) of the model is a [fixed point](https://en.wikipedia.org/wiki/Fixed_point_(mathematics)) of the mapping $g$.)
+(A {ref}`steady state <scalar-dynam:steady-state>` of the model is a [fixed point](https://en.wikipedia.org/wiki/Fixed_point_(mathematics)) of the mapping $g$.)
 
 From the shape of the function $g$ in the figure, we see that
 there is a unique steady state in $(0, \infty)$.
@@ -207,7 +207,7 @@ plot45(kstar)
 From our graphical analysis, it appears that $(k_t)$ converges to $k^*$, regardless of initial capital
 $k_0$.
 
-This is a form of [global stability](https://intro.quantecon.org/scalar_dynam.html#global-stability).
+This is a form of {ref}`global stability <scalar-dynam:global-stability>`.
 
 
 The next figure shows three time paths for capital, from
