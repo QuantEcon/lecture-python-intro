@@ -40,7 +40,6 @@ and understand key concepts.
 Let's start with some standard imports:
 
 ```{code-cell} ipython
-%matplotlib inline
 import matplotlib.pyplot as plt
 import numpy as np
 ```

@@ -56,7 +56,6 @@ from ortools.linear_solver import pywraplp
 from scipy.optimize import linprog
 import matplotlib.pyplot as plt
 from matplotlib.patches import Polygon
-%matplotlib inline
 ```
 
 Let's start with some examples of linear programming problem.
