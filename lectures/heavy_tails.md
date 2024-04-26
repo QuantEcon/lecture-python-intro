@@ -4,7 +4,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.14.5
+    jupytext_version: 1.16.1
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
@@ -169,7 +169,12 @@ This equates to daily returns if we set dividends aside.
 The code below produces the desired plot using Yahoo financial data via the `yfinance` library.
 
 ```{code-cell} ipython3
-s = yf.download('AMZN', '2015-1-1', '2022-7-1')['Adj Close']
+:tags: [hide-output]
+data = yf.download('AMZN', '2015-1-1', '2022-7-1')
+```
+
+```{code-cell} ipython3
+s = data['Adj Close']
 r = s.pct_change()
 
 fig, ax = plt.subplots()
