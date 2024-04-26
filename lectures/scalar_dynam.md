@@ -336,7 +336,7 @@ def plot45(g, xmin, xmax, x0, num_arrows=6, var='x'):
     ax.set_xlim(xmin, xmax)
     ax.set_ylim(xmin, xmax)
     ax.set_xlabel(r'${}_t$'.format(var), fontsize=14)
-    ax.set_ylabel(r'${}_{t+1}$'.format(var), fontsize=14)
+    ax.set_ylabel(r'${}_{}$'.format(var, str('{t+1}')), fontsize=14)
 
     hw = (xmax - xmin) * 0.01
     hl = 2 * hw
