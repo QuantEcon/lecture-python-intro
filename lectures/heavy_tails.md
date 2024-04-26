@@ -118,7 +118,7 @@ too much from the mean.
 Putting this another way, light-tailed distributions are those that
 rarely generate extreme values.
 
-(A more formal definition is given [below](https://intro.quantecon.org/heavy_tails.html#light-and-heavy-tails).)
+(A more formal definition is given {ref}`below <heavy-tail:formal-definition>`.)
 
 Many statisticians and econometricians 
 use rules of thumb such as "outcomes more than four or five
@@ -262,7 +262,7 @@ like
 * forecasting
 * taxation (across a heavy-tailed income distribution), etc.
 
-We return to these points [below](https://intro.quantecon.org/heavy_tails.html#why-do-heavy-tails-matter).
+We return to these points {ref}`below <heavy-tail:application>`.
 
 
 
@@ -467,6 +467,8 @@ fig, ax = plt.subplots()
 alpha = 1.0
 ax.plot(x, np.exp(- alpha * x), label='exponential', alpha=0.8)
 ax.plot(x, x**(- alpha), label='Pareto', alpha=0.8)
+ax.set_xlabel('X value', fontsize=12)
+ax.set_ylabel('CCDF', fontsize=12)
 ax.legend()
 plt.show()
 ```
@@ -479,6 +481,8 @@ fig, ax = plt.subplots()
 alpha = 1.0
 ax.loglog(x, np.exp(- alpha * x), label='exponential', alpha=0.8)
 ax.loglog(x, x**(- alpha), label='Pareto', alpha=0.8)
+ax.set_xlabel('log value', fontsize=12)
+ax.set_ylabel('log prob', fontsize=12)
 ax.legend()
 plt.show()
 ```
@@ -848,6 +852,7 @@ The sequence shows no sign of converging.
 We return to this point in the exercises.
 
 
+(heavy-tail:application)=
 ## Why do heavy tails matter?
 
 We have now seen that 
@@ -925,6 +930,7 @@ nonnegative random variables and their distributions.
 The definitions for
 left hand tails are very similar and we omit them to simplify the exposition.
 
+(heavy-tail:formal-definition)=
 ### Light and heavy tails
 
 A distribution $F$ with density $f$ on $\mathbb R_+$ is called **heavy-tailed** if
