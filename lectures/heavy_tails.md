@@ -334,8 +334,8 @@ heavy-tailed.
 ---
 mystnb:
   figure:
-    caption: Histogram of Cauchy distribution
-    name: hist-cauchy
+    caption: Draws from Normal and Cauchy distributions
+    name: draws-normal-cauchy
 ---
 n = 120
 np.random.seed(11)
@@ -393,8 +393,8 @@ Here are some draws from the exponential distribution.
 ---
 mystnb:
   figure:
-    caption: Histogram of Exponential distribution
-    name: hist-exponential
+    caption: Draws of Exponential distribution
+    name: draws-exponential
 ---
 n = 120
 np.random.seed(11)
@@ -450,8 +450,8 @@ $1$.
 ---
 mystnb:
   figure:
-    caption: Histogram of Pareto distribution
-    name: hist-pareto
+    caption: Draws from Pareto distribution
+    name: draws-pareto
 ---
 n = 120
 np.random.seed(11)
@@ -528,6 +528,12 @@ $$
 Here's a plot that illustrates how $G_E$ goes to zero faster than $G_P$.
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: Pareto and exponential distribution comparison
+    name: compare-pareto-exponential
+---
 x = np.linspace(1.5, 100, 1000)
 fig, ax = plt.subplots()
 alpha = 1.0
@@ -541,6 +547,12 @@ Here's a log-log plot of the same functions, which makes visual comparison
 easier.
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: Pareto and exponential distribution comparison (log-log)
+    name: compare-pareto-exponential-log-log
+---
 fig, ax = plt.subplots()
 alpha = 1.0
 ax.loglog(x, np.exp(- alpha * x), label='exponential', alpha=0.8)
