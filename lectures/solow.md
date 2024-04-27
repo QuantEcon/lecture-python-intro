@@ -385,9 +385,7 @@ linear differential equation
     x'_t = (1-\alpha) (sA - \delta x_t)
 ```
 
-To solve this equation, we need the [first ODE](https://math.libretexts.org/Bookshelves/Calculus/Calculus_(Guichard)/17%3A_Differential_Equations/17.01%3A_First_Order_Differential_Equations). 
-
-This equation has the exact solution
+This equation, which is a [linear ordinary differential equation](https://math.libretexts.org/Bookshelves/Calculus/Calculus_(Guichard)/17%3A_Differential_Equations/17.01%3A_First_Order_Differential_Equations), has the solution
 
 $$
     x_t
