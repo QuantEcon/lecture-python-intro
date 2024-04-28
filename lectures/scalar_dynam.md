@@ -235,6 +235,7 @@ Analyzing the dynamics of this model requires a different method (see below).
 Consider a fixed dynamic system consisting of set $S \subset \mathbb R$ and
 $g$ mapping $S$ to $S$.
 
+(scalar-dynam:steady-state)=
 ### Steady states
 
 A **steady state** of this system is a
@@ -254,6 +255,7 @@ definition to check that
 
 
 
+(scalar-dynam:global-stability)=
 ### Global stability
 
 A steady state $x^*$ of the dynamic system is called
