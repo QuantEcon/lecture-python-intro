@@ -20,22 +20,31 @@ kernelspec:
 (scalar_dynam)=
 # Dynamics in One Dimension
 
-```{admonition} Migrated lecture
-:class: warning
-
-This lecture has moved from our [Intermediate Quantitative Economics with Python](https://python.quantecon.org/intro.html) lecture series and is now a part of [A First Course in Quantitative Economics](https://intro.quantecon.org/intro.html).
-```
 
 ## Overview
 
-In this lecture we give a quick introduction to discrete time dynamics in one dimension.
+In economics many variables depend on their past values
 
-* In one-dimensional models, the state of the system is described by a single variable.
-* The variable is a number (that is, a point in $\mathbb R$).
+For example, it seems reasonable to believe that inflation last year with affects inflation this year.
 
-While most quantitative models have two or more state variables, the
-one-dimensional setting is a good place to learn the foundations of dynamics
-and understand key concepts.
+(Perhaps high inflation last year will lead people to demand higher wages to
+compensate, which will feed into higher prices this year.)
+
+Letting $\pi_t$ be inflation this year and $\pi_{t-1}$ be inflation last year, we
+can write this relationship in a general form as
+
+$$ \pi_t = f(\pi_{t-1}) $$
+
+where $f$ is some function describing the relationship between the variables.
+
+This equation is an example of one-dimensional discrete time dynamic system.
+
+In this lecture we cover the foundations of one-dimensional discrete time
+dynamics.
+
+(While most quantitative models have two or more state variables, the
+one-dimensional setting is a good place to learn foundations 
+and understand key concepts.)
 
 Let's start with some standard imports:
 
@@ -43,6 +52,7 @@ Let's start with some standard imports:
 import matplotlib.pyplot as plt
 import numpy as np
 ```
+
 
 ## Some definitions
 
@@ -148,7 +158,7 @@ Equation {eq}`sdsod` is sometimes called a **first order difference equation**
 ### Example: a linear model
 
 One simple example of a dynamic system is when $S=\mathbb R$ and $g(x)=ax +
-b$, where $a, b$ are constants (sometimes they are referred as parameters).
+b$, where $a, b$ are constants (sometimes called ``parameters'').
 
 This leads to the **linear difference equation**
 
@@ -205,7 +215,7 @@ This made analysis of dynamics very easy.
 
 When models are nonlinear, however, the situation can be quite different.
 
-For example, the law of motion for the Solow-Swan growth model, a simplified version of which is
+For example, in a later lecture {doc}`solow`, we will study the Solow-Swan growth model, which has dynamics 
 
 ```{math}
 :label: solow_lom2
