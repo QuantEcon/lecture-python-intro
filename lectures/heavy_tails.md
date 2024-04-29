@@ -245,7 +245,7 @@ distribution:
 ---
 mystnb:
   figure:
-    caption: Histogram (Normal vs Bitcoin returns)
+    caption: Histogram (normal vs bitcoin returns)
     name: hist-normal-btc
 ---
 r = np.random.standard_t(df=5, size=1000)
@@ -336,7 +336,7 @@ heavy-tailed.
 ---
 mystnb:
   figure:
-    caption: Draws from Normal and Cauchy distributions
+    caption: Draws from normal and Cauchy distributions
     name: draws-normal-cauchy
 ---
 n = 120
@@ -395,7 +395,7 @@ Here are some draws from the exponential distribution.
 ---
 mystnb:
   figure:
-    caption: Draws of Exponential distribution
+    caption: Draws of exponential distribution
     name: draws-exponential
 ---
 n = 120
@@ -643,7 +643,7 @@ We can also use a [qq plot](https://en.wikipedia.org/wiki/Q%E2%80%93Q_plot) to d
 
 The [statsmodels](https://www.statsmodels.org/stable/index.html) package provides a convenient [qqplot](https://www.statsmodels.org/stable/generated/statsmodels.graphics.gofplots.qqplot.html) function that, by default, compares sample data to the quintiles of the normal distribution.
 
-If the data is drawn from a Normal distribution, the plot would look like:
+If the data is drawn from a normal distribution, the plot would look like:
 
 ```{code-cell} ipython3
 data_normal = np.random.normal(size=sample_size)
@@ -651,7 +651,7 @@ sm.qqplot(data_normal, line='45')
 plt.show()
 ```
 
-We can now compare this with the exponential, log-normal, and pareto distributions
+We can now compare this with the exponential, log-normal, and Pareto distributions
 
 ```{code-cell} ipython3
 # Build figure
@@ -858,7 +858,7 @@ The data is from the Forbes Billionaires list in 2020.
 ---
 mystnb:
   figure:
-    caption: Wealth distribution (Forbes Billionaires in 2020)
+    caption: Wealth distribution (Forbes billionaires in 2020)
     name: wealth-dist
 tags: [hide-input]
 ---
