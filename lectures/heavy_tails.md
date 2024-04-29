@@ -655,7 +655,7 @@ We can now compare this with the exponential, log-normal, and pareto distributio
 
 ```{code-cell} ipython3
 # Build figure
-fig, axes = plt.subplots(3, 1, figsize=(6, 8))
+fig, axes = plt.subplots(3, 1, figsize=(8, 8))
 axes = axes.flatten()
 labels = ['exponential', 'lognormal', 'Pareto']
 for data, label, ax in zip(data_list, labels, axes):
