@@ -582,6 +582,12 @@ $$
 
 Thus, $\hat G(x)$ shows the fraction of the sample that exceeds $x$.
 
+```{code-cell} ipython3
+def eccdf(x, data):
+    "Simple empirical CCDF function."
+    return np.mean(data > x)
+```
+
 Here's a figure containing some empirical CCDFs from simulated data.
 
 ```{code-cell} ipython3
@@ -591,21 +597,20 @@ mystnb:
     caption: Empirical CCDFs
     name: ccdf-empirics
 ---
-def eccdf(x, data):
-    "Simple empirical CCDF function."
-    return np.mean(data > x)
-
+# Parameters and grid
 x_grid = np.linspace(1, 1000, 1000)
 sample_size = 1000
 np.random.seed(13)
 z = np.random.randn(sample_size)
 
-data_1 = np.random.exponential(size=sample_size)
-data_2 = np.exp(z)
-data_3 = np.exp(np.random.exponential(size=sample_size))
+# Draws
+data_exp = np.random.exponential(size=sample_size)
+data_logn = np.exp(z)
+data_pareto = np.exp(np.random.exponential(size=sample_size))
 
-data_list = [data_1, data_2, data_3]
+data_list = [data_exp, data_logn, data_pareto]
 
+# Build figure
 fig, axes = plt.subplots(3, 1, figsize=(6, 8))
 axes = axes.flatten()
 labels = ['exponential', 'lognormal', 'Pareto']
@@ -629,6 +634,36 @@ As with the CCDF, the empirical CCDF from the Pareto distributions is
 approximately linear in a log-log plot.
 
 We will use this idea [below](https://intro.quantecon.org/heavy_tails.html#heavy-tails-in-economic-cross-sections) when we look at real data.
+
++++
+
+#### Q-Q Plots
+
+We can also use a [qq plot](https://en.wikipedia.org/wiki/Q%E2%80%93Q_plot) to do a visual comparison between two probability distributions. 
+
+The [statsmodels](https://www.statsmodels.org/stable/index.html) package provides a convenient [qqplot](https://www.statsmodels.org/stable/generated/statsmodels.graphics.gofplots.qqplot.html) function that, by default, compares sample data to the quintiles of the normal distribution.
+
+If the data is drawn from a Normal distribution, the plot would look like:
+
+```{code-cell} ipython3
+data_normal = np.random.normal(size=sample_size)
+sm.qqplot(data_normal, line='45')
+plt.show()
+```
+
+We can now compare this with the exponential, log-normal, and pareto distributions
+
+```{code-cell} ipython3
+# Build figure
+fig, axes = plt.subplots(3, 1, figsize=(6, 8))
+axes = axes.flatten()
+labels = ['exponential', 'lognormal', 'Pareto']
+for data, label, ax in zip(data_list, labels, axes):
+    sm.qqplot(data, line='45', ax=ax, )
+    ax.set_title(label)
+plt.tight_layout()
+plt.show()
+```
 
 
 ### Power laws 
@@ -776,7 +811,6 @@ mystnb:
     name: firm-size-dist
 tags: [hide-input]
 ---
-
 df_fs = pd.read_csv('https://media.githubusercontent.com/media/QuantEcon/high_dim_data/main/cross_section/forbes-global2000.csv')
 df_fs = df_fs[['Country', 'Sales', 'Profits', 'Assets', 'Market Value']]
 fig, ax = plt.subplots(figsize=(6.4, 3.5))
@@ -803,7 +837,6 @@ mystnb:
     name: city-size-dist
 tags: [hide-input]
 ---
-
 # import population data of cities in 2023 United States and 2023 Brazil from world population review
 df_cs_us = pd.read_csv('https://media.githubusercontent.com/media/QuantEcon/high_dim_data/main/cross_section/cities_us.csv')
 df_cs_br = pd.read_csv('https://media.githubusercontent.com/media/QuantEcon/high_dim_data/main/cross_section/cities_brazil.csv')
@@ -830,7 +863,6 @@ mystnb:
     name: wealth-dist
 tags: [hide-input]
 ---
-
 df_w = pd.read_csv('https://media.githubusercontent.com/media/QuantEcon/high_dim_data/main/cross_section/forbes-billionaires.csv')
 df_w = df_w[['country', 'realTimeWorth', 'realTimeRank']].dropna()
 df_w = df_w.astype({'realTimeRank': int})
@@ -886,7 +918,6 @@ mystnb:
     name: gdppc-dist
 tags: [hide-input]
 ---
-
 fig, axes = plt.subplots(1, 2, figsize=(8.8, 3.6))
 
 for name, ax in zip(variable_names, axes):
