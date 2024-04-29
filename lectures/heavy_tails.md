@@ -655,7 +655,7 @@ We can now compare this with the exponential, log-normal, and pareto distributio
 
 ```{code-cell} ipython3
 # Build figure
-fig, axes = plt.subplots(3, 1, figsize=(8, 8))
+fig, axes = plt.subplots(1, 3, figsize=(12, 4))
 axes = axes.flatten()
 labels = ['exponential', 'lognormal', 'Pareto']
 for data, label, ax in zip(data_list, labels, axes):
@@ -664,7 +664,6 @@ for data, label, ax in zip(data_list, labels, axes):
 plt.tight_layout()
 plt.show()
 ```
-
 
 ### Power laws 
 
