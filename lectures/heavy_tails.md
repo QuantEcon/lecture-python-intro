@@ -1076,7 +1076,7 @@ left hand tails are very similar and we omit them to simplify the exposition.
 
 ### Light and heavy tails
 
-A distribution $F$ with density $f$ on $\mathbb R_+$ is called **heavy-tailed** if
+A distribution $F$ with density $f$ on $\mathbb R_+$ is called [heavy-tailed](https://en.wikipedia.org/wiki/Heavy-tailed_distribution) if
 
 ```{math}
 :label: defht
@@ -1095,6 +1095,8 @@ heavy-tailed because its moment generating function is infinite everywhere on
 $(0, \infty)$.
 
 The Pareto distribution is also heavy-tailed.
+
+Less formally, a **heavy-tailed** distribution is one that is not exponentially bounded (i.e. the tails are heavier than the exponential distribution). 
 
 A distribution $F$ on $\mathbb R_+$ is called **light-tailed** if it is not heavy-tailed.
 
