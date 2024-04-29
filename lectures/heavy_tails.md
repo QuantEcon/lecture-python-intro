@@ -182,6 +182,7 @@ The code below produces the desired plot using Yahoo financial data via the `yfi
 
 ```{code-cell} ipython3
 :tags: [hide-output]
+
 data = yf.download('AMZN', '2015-1-1', '2022-7-1')
 ```
 
@@ -213,6 +214,7 @@ We get a similar picture if we look at other assets, such as Bitcoin
 
 ```{code-cell} ipython3
 :tags: [hide-output]
+
 data = yf.download('BTC-USD', '2015-1-1', '2022-7-1')
 ```
 
@@ -254,7 +256,7 @@ ax.hist(r, bins=60, alpha=0.4, label='bitcoin returns', density=True)
 xmin, xmax = plt.xlim()
 x = np.linspace(xmin, xmax, 100)
 p = norm.pdf(x, np.mean(r), np.std(r))
-ax.plot(x, p, 'k', linewidth=2, label='normal distribution')
+ax.plot(x, p, linewidth=2, label='normal distribution')
 
 ax.set_xlabel('returns', fontsize=12)
 ax.legend()
@@ -768,12 +770,12 @@ Here is a plot of the firm size distribution for the largest 500 firms in 2020 t
 
 ```{code-cell} ipython3
 ---
-tags: [hide-input]
 mystnb:
   figure:
     caption: Firm size distribution
     name: firm-size-dist
---- 
+tags: [hide-input]
+---
 
 df_fs = pd.read_csv('https://media.githubusercontent.com/media/QuantEcon/high_dim_data/main/cross_section/forbes-global2000.csv')
 df_fs = df_fs[['Country', 'Sales', 'Profits', 'Assets', 'Market Value']]
@@ -795,12 +797,12 @@ The size is measured by population.
 
 ```{code-cell} ipython3
 ---
-tags: [hide-input]
 mystnb:
   figure:
     caption: City size distribution
     name: city-size-dist
---- 
+tags: [hide-input]
+---
 
 # import population data of cities in 2023 United States and 2023 Brazil from world population review
 df_cs_us = pd.read_csv('https://media.githubusercontent.com/media/QuantEcon/high_dim_data/main/cross_section/cities_us.csv')
@@ -822,12 +824,12 @@ The data is from the Forbes Billionaires list in 2020.
 
 ```{code-cell} ipython3
 ---
-tags: [hide-input]
 mystnb:
   figure:
     caption: Wealth distribution (Forbes Billionaires in 2020)
     name: wealth-dist
---- 
+tags: [hide-input]
+---
 
 df_w = pd.read_csv('https://media.githubusercontent.com/media/QuantEcon/high_dim_data/main/cross_section/forbes-billionaires.csv')
 df_w = df_w[['country', 'realTimeWorth', 'realTimeRank']].dropna()
@@ -878,12 +880,12 @@ df_gdp1.dropna(inplace=True)
 
 ```{code-cell} ipython3
 ---
-tags: [hide-input]
 mystnb:
   figure:
     caption: GDP per capita distribution
     name: gdppc-dist
---- 
+tags: [hide-input]
+---
 
 fig, axes = plt.subplots(1, 2, figsize=(8.8, 3.6))
 
@@ -934,7 +936,7 @@ mystnb:
   figure:
     caption: LLN failure
     name: fail-lln
---- 
+---
 from scipy.stats import cauchy
 
 np.random.seed(1234)
