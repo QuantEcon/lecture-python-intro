@@ -1095,7 +1095,7 @@ $(0, \infty)$.
 
 The Pareto distribution is also heavy-tailed.
 
-Less formally, a **heavy-tailed** distribution is one that is not exponentially bounded (i.e. the tails are heavier than the exponential distribution). 
+Less formally, a heavy-tailed distribution is one that is not exponentially bounded (i.e. the tails are heavier than the exponential distribution). 
 
 A distribution $F$ on $\mathbb R_+$ is called **light-tailed** if it is not heavy-tailed.
 
