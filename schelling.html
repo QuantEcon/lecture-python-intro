@@ -123,7 +123,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="21. The Solow-Swan Growth Model" href="solow.html" />
+    <link rel="next" title="21. Dynamics in One Dimension" href="scalar_dynam.html" />
     <link rel="prev" title="19. Heavy-Tailed Distributions" href="heavy_tails.html" />
 
 <!-- Normal Meta Tags -->
@@ -275,8 +275,7 @@ awarded the 2005 Nobel Prize in Economic Sciences (joint with Robert Aumann).</p
 <p>Let’s start with some imports:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">uniform</span><span class="p">,</span> <span class="n">seed</span>
 <span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">sqrt</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -694,12 +693,12 @@ with small probability, is replaced by an agent of the other type.)</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/1f38dd8613e8b3e32d95d7f9d52189bfb4fb3e217012a3e3b7f0973eb3097293.png"><img alt="_images/1f38dd8613e8b3e32d95d7f9d52189bfb4fb3e217012a3e3b7f0973eb3097293.png" src="_images/1f38dd8613e8b3e32d95d7f9d52189bfb4fb3e217012a3e3b7f0973eb3097293.png" style="width: 80%;" /></a>
-<a class="reference internal image-reference" href="_images/2166ccc06ddd2e3824a256d19c45880836d9434b4a3b840c7f0d7cccab843130.png"><img alt="_images/2166ccc06ddd2e3824a256d19c45880836d9434b4a3b840c7f0d7cccab843130.png" src="_images/2166ccc06ddd2e3824a256d19c45880836d9434b4a3b840c7f0d7cccab843130.png" style="width: 80%;" /></a>
-<a class="reference internal image-reference" href="_images/18a6691d740113e2cdcea83a42ddd8dbec4a44fb4c7a3b3727b275815bec3acb.png"><img alt="_images/18a6691d740113e2cdcea83a42ddd8dbec4a44fb4c7a3b3727b275815bec3acb.png" src="_images/18a6691d740113e2cdcea83a42ddd8dbec4a44fb4c7a3b3727b275815bec3acb.png" style="width: 80%;" /></a>
-<a class="reference internal image-reference" href="_images/e8991c7e1cc42f750a9b8a89aed5465b68175a72e97de9ae627147ccb4098b05.png"><img alt="_images/e8991c7e1cc42f750a9b8a89aed5465b68175a72e97de9ae627147ccb4098b05.png" src="_images/e8991c7e1cc42f750a9b8a89aed5465b68175a72e97de9ae627147ccb4098b05.png" style="width: 80%;" /></a>
-<a class="reference internal image-reference" href="_images/58db15e63caa6ca689b07e189ae7e954af5108cddc6a3f0b13a20d0b464ec666.png"><img alt="_images/58db15e63caa6ca689b07e189ae7e954af5108cddc6a3f0b13a20d0b464ec666.png" src="_images/58db15e63caa6ca689b07e189ae7e954af5108cddc6a3f0b13a20d0b464ec666.png" style="width: 80%;" /></a>
-<a class="reference internal image-reference" href="_images/dc3de6804558ed64db983d1e15da2efb636404464bb6b21fc1e54300ce38d88d.png"><img alt="_images/dc3de6804558ed64db983d1e15da2efb636404464bb6b21fc1e54300ce38d88d.png" src="_images/dc3de6804558ed64db983d1e15da2efb636404464bb6b21fc1e54300ce38d88d.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/518bbea5dfc7ea82807b09e05c0ad877ec77fc8c9eaf615846fda4372faf927d.png"><img alt="_images/518bbea5dfc7ea82807b09e05c0ad877ec77fc8c9eaf615846fda4372faf927d.png" src="_images/518bbea5dfc7ea82807b09e05c0ad877ec77fc8c9eaf615846fda4372faf927d.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/8890409fdde929063d1f80d5b9fc68dca9c860040db022d3b90a01261690f97a.png"><img alt="_images/8890409fdde929063d1f80d5b9fc68dca9c860040db022d3b90a01261690f97a.png" src="_images/8890409fdde929063d1f80d5b9fc68dca9c860040db022d3b90a01261690f97a.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/b2ac6bdc4d5d6a2d275e8f724e55bd4193b01196db76baf8db390bbf6de2ba4d.png"><img alt="_images/b2ac6bdc4d5d6a2d275e8f724e55bd4193b01196db76baf8db390bbf6de2ba4d.png" src="_images/b2ac6bdc4d5d6a2d275e8f724e55bd4193b01196db76baf8db390bbf6de2ba4d.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/36433fb37af15294bbddad6cc9a881743d3dad2cb36bb7d4a3bfaa710236ee9b.png"><img alt="_images/36433fb37af15294bbddad6cc9a881743d3dad2cb36bb7d4a3bfaa710236ee9b.png" src="_images/36433fb37af15294bbddad6cc9a881743d3dad2cb36bb7d4a3bfaa710236ee9b.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/c8c2ace817658cb4884038939a06029973ac2eff27840ec16cd394ae3acf48ef.png"><img alt="_images/c8c2ace817658cb4884038939a06029973ac2eff27840ec16cd394ae3acf48ef.png" src="_images/c8c2ace817658cb4884038939a06029973ac2eff27840ec16cd394ae3acf48ef.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/13c28ec2ff1d2b9f0912cd3faedaf5849b1e95124e4781c7ba8651ce807f8e46.png"><img alt="_images/13c28ec2ff1d2b9f0912cd3faedaf5849b1e95124e4781c7ba8651ce807f8e46.png" src="_images/13c28ec2ff1d2b9f0912cd3faedaf5849b1e95124e4781c7ba8651ce807f8e46.png" style="width: 80%;" /></a>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Terminating at iteration 50001
 </pre></div>
 </div>
@@ -906,13 +905,13 @@ with small probability, is replaced by an agent of the other type.)</p>
 </p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
-  <a class="reference internal" href="solow.html">
-   21. The Solow-Swan Growth Model
+  <a class="reference internal" href="scalar_dynam.html">
+   21. Dynamics in One Dimension
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="scalar_dynam.html">
-   22. Dynamics in One Dimension
+  <a class="reference internal" href="solow.html">
+   22. The Solow-Swan Growth Model
   </a>
  </li>
  <li class="toctree-l1">

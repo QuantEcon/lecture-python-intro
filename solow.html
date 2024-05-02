@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>21. The Solow-Swan Growth Model &#8212; A First Course in Quantitative Economics with Python</title>
+    <title>22. The Solow-Swan Growth Model &#8212; A First Course in Quantitative Economics with Python</title>
     <script src="https://unpkg.com/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://unpkg.com/tippy.js@6.3.1/dist/tippy-bundle.umd.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
@@ -123,8 +123,8 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="22. Dynamics in One Dimension" href="scalar_dynam.html" />
-    <link rel="prev" title="20. Racial Segregation" href="schelling.html" />
+    <link rel="next" title="23. The Cobweb Model" href="cobweb.html" />
+    <link rel="prev" title="21. Dynamics in One Dimension" href="scalar_dynam.html" />
 
 <!-- Normal Meta Tags -->
 <meta name="author" context="Thomas J. Sargent &amp; John Stachurski" />
@@ -172,10 +172,10 @@ const thebe_selector_output = ".output, .cell_output"
 
                         <nav id="bd-toc-nav" class="qe-page__toc-nav">
                             <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-model">21.1. The model</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-graphical-perspective">21.2. A graphical perspective</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#growth-in-continuous-time">21.3. Growth in continuous time</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">21.4. Exercises</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-model">22.1. The model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-graphical-perspective">22.2. A graphical perspective</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#growth-in-continuous-time">22.3. Growth in continuous time</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">22.4. Exercises</a></li>
 </ul>
                             <p class="logo">
                                 
@@ -235,7 +235,7 @@ const thebe_selector_output = ".output, .cell_output"
                     <div>
                         
   <section class="tex2jax_ignore mathjax_ignore" id="the-solow-swan-growth-model">
-<span id="solow"></span><h1><span class="section-number">21. </span>The Solow-Swan Growth Model<a class="headerlink" href="#the-solow-swan-growth-model" title="Permalink to this heading">#</a></h1>
+<span id="solow"></span><h1><span class="section-number">22. </span>The Solow-Swan Growth Model<a class="headerlink" href="#the-solow-swan-growth-model" title="Permalink to this heading">#</a></h1>
 <p>In this lecture we review a famous model due
 to <a class="reference external" href="https://en.wikipedia.org/wiki/Robert_Solow">Robert Solow (1925–2023)</a> and <a class="reference external" href="https://en.wikipedia.org/wiki/Trevor_Swan">Trevor Swan (1918–1989)</a>.</p>
 <p>The model is used to study growth over the long run.</p>
@@ -250,7 +250,7 @@ to <a class="reference external" href="https://en.wikipedia.org/wiki/Robert_Solo
 </div>
 </div>
 <section id="the-model">
-<h2><span class="section-number">21.1. </span>The model<a class="headerlink" href="#the-model" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">22.1. </span>The model<a class="headerlink" href="#the-model" title="Permalink to this heading">#</a></h2>
 <p>In a Solow–Swan economy, agents save a fixed fraction of their current
 incomes.</p>
 <p>Savings sustain or increase the stock of capital.</p>
@@ -296,21 +296,19 @@ becomes <span class="math notranslate nohighlight">\(1-\delta\)</span> units tom
 \]</div>
 <p>With  <span class="math notranslate nohighlight">\(f(k) := F(k, 1)\)</span>, the final expression for capital dynamics is</p>
 <div class="math notranslate nohighlight" id="equation-solow">
-<span class="eqno">(21.1)<a class="headerlink" href="#equation-solow" title="Permalink to this equation">#</a></span>\[    k_{t+1} = g(k_t)
+<span class="eqno">(22.1)<a class="headerlink" href="#equation-solow" title="Permalink to this equation">#</a></span>\[    k_{t+1} = g(k_t)
     \text{ where } g(k) := s f(k) + (1 - \delta) k\]</div>
 <p>Our aim is to learn about the evolution of <span class="math notranslate nohighlight">\(k_t\)</span> over time,
 given an exogenous initial capital stock  <span class="math notranslate nohighlight">\(k_0\)</span>.</p>
 </section>
 <section id="a-graphical-perspective">
-<h2><span class="section-number">21.2. </span>A graphical perspective<a class="headerlink" href="#a-graphical-perspective" title="Permalink to this heading">#</a></h2>
-<p>To understand the dynamics of the sequence <span class="math notranslate nohighlight">\((k_t)_{t \geq 0}\)</span> we use a 45
-degree diagram.</p>
+<h2><span class="section-number">22.2. </span>A graphical perspective<a class="headerlink" href="#a-graphical-perspective" title="Permalink to this heading">#</a></h2>
+<p>To understand the dynamics of the sequence <span class="math notranslate nohighlight">\((k_t)_{t \geq 0}\)</span> we use a 45-degree diagram.</p>
 <p>To do so, we first
 need to specify the functional form for <span class="math notranslate nohighlight">\(f\)</span> and assign values to the parameters.</p>
 <p>We choose the Cobb–Douglas specification <span class="math notranslate nohighlight">\(f(k) = A k^\alpha\)</span> and set <span class="math notranslate nohighlight">\(A=2.0\)</span>,
 <span class="math notranslate nohighlight">\(\alpha=0.3\)</span>, <span class="math notranslate nohighlight">\(s=0.3\)</span> and <span class="math notranslate nohighlight">\(\delta=0.4\)</span>.</p>
-<p>The function <span class="math notranslate nohighlight">\(g\)</span> from <a class="reference internal" href="#equation-solow">(21.1)</a> is then plotted, along with the 45
-degree line.</p>
+<p>The function <span class="math notranslate nohighlight">\(g\)</span> from <a class="reference internal" href="#equation-solow">(22.1)</a> is then plotted, along with the 45-degree line.</p>
 <p>Let’s define the constants.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -330,7 +328,7 @@ degree line.</p>
 </div>
 </div>
 </div>
-<p>Let’s plot the 45 degree diagram of <span class="math notranslate nohighlight">\(g\)</span>.</p>
+<p>Let’s plot the 45-degree diagram of <span class="math notranslate nohighlight">\(g\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot45</span><span class="p">(</span><span class="n">kstar</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
@@ -347,7 +345,7 @@ degree line.</p>
 
     <span class="n">lb</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;$g(k) = sAk^{\alpha} + (1 - \delta)k$&#39;</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xgrid</span><span class="p">,</span> <span class="n">g_values</span><span class="p">,</span>  <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">lb</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xgrid</span><span class="p">,</span> <span class="n">xgrid</span><span class="p">,</span> <span class="s1">&#39;k-&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;45&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xgrid</span><span class="p">,</span> <span class="n">xgrid</span><span class="p">,</span> <span class="s1">&#39;k-&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$45^{\circ}$&#39;</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">kstar</span><span class="p">:</span>
         <span class="n">fps</span> <span class="o">=</span> <span class="p">(</span><span class="n">kstar</span><span class="p">,)</span>
@@ -382,22 +380,22 @@ degree line.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/bfbd14cc1d9f4b8dced06322b41ca5c619d58e81818e2c50d6ddc5710bc88323.png"><img alt="_images/bfbd14cc1d9f4b8dced06322b41ca5c619d58e81818e2c50d6ddc5710bc88323.png" src="_images/bfbd14cc1d9f4b8dced06322b41ca5c619d58e81818e2c50d6ddc5710bc88323.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/b3474ecf55d5477b3ff509e4c82c3ac203514ea222a303b537466c59471d5fdd.png"><img alt="_images/b3474ecf55d5477b3ff509e4c82c3ac203514ea222a303b537466c59471d5fdd.png" src="_images/b3474ecf55d5477b3ff509e4c82c3ac203514ea222a303b537466c59471d5fdd.png" style="width: 80%;" /></a>
 </div>
 </div>
-<p>Suppose, at some <span class="math notranslate nohighlight">\(k_t\)</span>, the value <span class="math notranslate nohighlight">\(g(k_t)\)</span> lies strictly above the 45 degree line.</p>
+<p>Suppose, at some <span class="math notranslate nohighlight">\(k_t\)</span>, the value <span class="math notranslate nohighlight">\(g(k_t)\)</span> lies strictly above the 45-degree line.</p>
 <p>Then we have <span class="math notranslate nohighlight">\(k_{t+1} = g(k_t) &gt; k_t\)</span> and capital per worker rises.</p>
 <p>If <span class="math notranslate nohighlight">\(g(k_t) &lt; k_t\)</span> then capital per worker falls.</p>
 <p>If <span class="math notranslate nohighlight">\(g(k_t) = k_t\)</span>, then we are at a <strong>steady state</strong> and <span class="math notranslate nohighlight">\(k_t\)</span> remains constant.</p>
-<p>(A steady state of the model is a <a class="reference external" href="https://en.wikipedia.org/wiki/Fixed_point_(mathematics)">fixed point</a> of the mapping <span class="math notranslate nohighlight">\(g\)</span>.)</p>
+<p>(A <a class="reference internal" href="scalar_dynam.html#scalar-dynam-steady-state"><span class="std std-ref">steady state</span></a> of the model is a <a class="reference external" href="https://en.wikipedia.org/wiki/Fixed_point_(mathematics)">fixed point</a> of the mapping <span class="math notranslate nohighlight">\(g\)</span>.)</p>
 <p>From the shape of the function <span class="math notranslate nohighlight">\(g\)</span> in the figure, we see that
 there is a unique steady state in <span class="math notranslate nohighlight">\((0, \infty)\)</span>.</p>
 <p>It solves <span class="math notranslate nohighlight">\(k = s Ak^{\alpha} + (1-\delta)k\)</span> and hence is given by</p>
 <div class="math notranslate nohighlight" id="equation-kstarss">
-<span class="eqno">(21.2)<a class="headerlink" href="#equation-kstarss" title="Permalink to this equation">#</a></span>\[    k^* := \left( \frac{s A}{\delta} \right)^{1/(1 - \alpha)}\]</div>
+<span class="eqno">(22.2)<a class="headerlink" href="#equation-kstarss" title="Permalink to this equation">#</a></span>\[    k^* := \left( \frac{s A}{\delta} \right)^{1/(1 - \alpha)}\]</div>
 <p>If initial capital is below <span class="math notranslate nohighlight">\(k^*\)</span>, then capital increases over time.</p>
 <p>If initial capital is above this level, then the reverse is true.</p>
-<p>Let’s plot the 45 degree diagram to show the <span class="math notranslate nohighlight">\(k^*\)</span> in the plot.</p>
+<p>Let’s plot the 45-degree diagram to show the <span class="math notranslate nohighlight">\(k^*\)</span> in the plot.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kstar</span> <span class="o">=</span> <span class="p">((</span><span class="n">s</span> <span class="o">*</span> <span class="n">A</span><span class="p">)</span> <span class="o">/</span> <span class="n">delta</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">alpha</span><span class="p">))</span>
@@ -406,12 +404,12 @@ there is a unique steady state in <span class="math notranslate nohighlight">\((
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/7c6d35197084b074e7e42777e75c0307d3e7fa2bed62b068070111b77b0f8841.png"><img alt="_images/7c6d35197084b074e7e42777e75c0307d3e7fa2bed62b068070111b77b0f8841.png" src="_images/7c6d35197084b074e7e42777e75c0307d3e7fa2bed62b068070111b77b0f8841.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/9b4ba839fc4d5e4862864a4e9960f53ed24e7f3d925f808229d0ec3b06b86d44.png"><img alt="_images/9b4ba839fc4d5e4862864a4e9960f53ed24e7f3d925f808229d0ec3b06b86d44.png" src="_images/9b4ba839fc4d5e4862864a4e9960f53ed24e7f3d925f808229d0ec3b06b86d44.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>From our graphical analysis, it appears that <span class="math notranslate nohighlight">\((k_t)\)</span> converges to <span class="math notranslate nohighlight">\(k^*\)</span>, regardless of initial capital
 <span class="math notranslate nohighlight">\(k_0\)</span>.</p>
-<p>This is a form of global stability.</p>
+<p>This is a form of <a class="reference internal" href="scalar_dynam.html#scalar-dynam-global-stability"><span class="std std-ref">global stability</span></a>.</p>
 <p>The next figure shows three time paths for capital, from
 three distinct initial conditions, under the parameterization listed above.</p>
 <p>At this parameterization, <span class="math notranslate nohighlight">\(k^* \approx 1.78\)</span>.</p>
@@ -471,7 +469,7 @@ three distinct initial conditions, under the parameterization listed above.</p>
 <p>As expected, the time paths in the figure all converge to <span class="math notranslate nohighlight">\(k^*\)</span>.</p>
 </section>
 <section id="growth-in-continuous-time">
-<h2><span class="section-number">21.3. </span>Growth in continuous time<a class="headerlink" href="#growth-in-continuous-time" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">22.3. </span>Growth in continuous time<a class="headerlink" href="#growth-in-continuous-time" title="Permalink to this heading">#</a></h2>
 <p>In this section, we investigate a continuous time version of the Solow–Swan
 growth model.</p>
 <p>We will see how the smoothing provided by continuous time can
@@ -487,18 +485,18 @@ given by <span class="math notranslate nohighlight">\(k_{t+1} = s f(k_t) + (1 - 
 \]</div>
 <p>Taking the time step to zero gives the continuous time limit</p>
 <div class="math notranslate nohighlight" id="equation-solowc">
-<span class="eqno">(21.3)<a class="headerlink" href="#equation-solowc" title="Permalink to this equation">#</a></span>\[    k'_t = s f(k_t) - \delta k_t
+<span class="eqno">(22.3)<a class="headerlink" href="#equation-solowc" title="Permalink to this equation">#</a></span>\[    k'_t = s f(k_t) - \delta k_t
     \qquad \text{with} \qquad
     k'_t := \frac{d}{dt} k_t\]</div>
 <p>Our aim is to learn about the evolution of <span class="math notranslate nohighlight">\(k_t\)</span> over time,
 given an initial stock  <span class="math notranslate nohighlight">\(k_0\)</span>.</p>
-<p>A <strong>steady state</strong> for <a class="reference internal" href="#equation-solowc">(21.3)</a> is a value <span class="math notranslate nohighlight">\(k^*\)</span>
+<p>A <strong>steady state</strong> for <a class="reference internal" href="#equation-solowc">(22.3)</a> is a value <span class="math notranslate nohighlight">\(k^*\)</span>
 at which capital is unchanging, meaning <span class="math notranslate nohighlight">\(k'_t = 0\)</span> or, equivalently,
 <span class="math notranslate nohighlight">\(s f(k^*) = \delta k^*\)</span>.</p>
 <p>We assume
 <span class="math notranslate nohighlight">\(f(k) = Ak^\alpha\)</span>, so <span class="math notranslate nohighlight">\(k^*\)</span> solves
 <span class="math notranslate nohighlight">\(s A k^\alpha = \delta k\)</span>.</p>
-<p>The solution is the same as the discrete time case—see <a class="reference internal" href="#equation-kstarss">(21.2)</a>.</p>
+<p>The solution is the same as the discrete time case—see <a class="reference internal" href="#equation-kstarss">(22.2)</a>.</p>
 <p>The dynamics are represented in
 the next figure, maintaining the parameterization we used
 above.</p>
@@ -584,8 +582,8 @@ k'_t\)</span>.</p>
 <p>Substituting into <span class="math notranslate nohighlight">\(k'_t = sAk_t^\alpha - \delta k_t\)</span> leads to the
 linear differential equation</p>
 <div class="math notranslate nohighlight" id="equation-xsolow">
-<span class="eqno">(21.4)<a class="headerlink" href="#equation-xsolow" title="Permalink to this equation">#</a></span>\[    x'_t = (1-\alpha) (sA - \delta x_t)\]</div>
-<p>This equation has the exact solution</p>
+<span class="eqno">(22.4)<a class="headerlink" href="#equation-xsolow" title="Permalink to this equation">#</a></span>\[    x'_t = (1-\alpha) (sA - \delta x_t)\]</div>
+<p>This equation, which is a <a class="reference external" href="https://math.libretexts.org/Bookshelves/Calculus/Calculus_(Guichard)/17%3A_Differential_Equations/17.01%3A_First_Order_Differential_Equations">linear ordinary differential equation</a>, has the solution</p>
 <div class="math notranslate nohighlight">
 \[
     x_t
@@ -595,11 +593,11 @@ linear differential equation</p>
       \mathrm{e}^{-\delta (1-\alpha) t} +
     \frac{sA}{\delta}
 \]</div>
-<p>(You can confirm that this function <span class="math notranslate nohighlight">\(x_t\)</span> satisfies <a class="reference internal" href="#equation-xsolow">(21.4)</a> by
+<p>(You can confirm that this function <span class="math notranslate nohighlight">\(x_t\)</span> satisfies <a class="reference internal" href="#equation-xsolow">(22.4)</a> by
 differentiating it with respect to <span class="math notranslate nohighlight">\(t\)</span>.)</p>
 <p>Converting back to <span class="math notranslate nohighlight">\(k_t\)</span> yields</p>
 <div class="math notranslate nohighlight" id="equation-ssivs">
-<span class="eqno">(21.5)<a class="headerlink" href="#equation-ssivs" title="Permalink to this equation">#</a></span>\[    k_t
+<span class="eqno">(22.5)<a class="headerlink" href="#equation-ssivs" title="Permalink to this equation">#</a></span>\[    k_t
     =
     \left[
         \left(
@@ -613,10 +611,10 @@ k^*\)</span> as <span class="math notranslate nohighlight">\(t \to \infty\)</spa
 <p>Thus, global stability holds.</p>
 </section>
 <section id="exercises">
-<h2><span class="section-number">21.4. </span>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">22.4. </span>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h2>
 <div class="exercise admonition" id="solow_ex1">
 
-<p class="admonition-title"><span class="caption-number">Exercise 21.1 </span></p>
+<p class="admonition-title"><span class="caption-number">Exercise 22.1 </span></p>
 <section id="exercise-content">
 <p>Plot per capita consumption <span class="math notranslate nohighlight">\(c\)</span> at the steady state, as a function of the savings rate <span class="math notranslate nohighlight">\(s\)</span>, where <span class="math notranslate nohighlight">\(0 \leq s \leq 1\)</span>.</p>
 <p>Use the Cobb–Douglas specification <span class="math notranslate nohighlight">\(f(k) = A k^\alpha\)</span>.</p>
@@ -626,7 +624,7 @@ k^*\)</span> as <span class="math notranslate nohighlight">\(t \to \infty\)</spa
 </div>
 <div class="solution dropdown admonition" id="solow-solution-1">
 
-<p class="admonition-title">Solution to<a class="reference internal" href="#solow_ex1"> Exercise 21.1</a></p>
+<p class="admonition-title">Solution to<a class="reference internal" href="#solow_ex1"> Exercise 22.1</a></p>
 <section id="solution-content">
 <p>Steady state consumption at savings rate <span class="math notranslate nohighlight">\(s\)</span> is given by</p>
 <div class="math notranslate nohighlight">
@@ -754,7 +752,7 @@ We will use <span class="math notranslate nohighlight">\(-c^*(s)\)</span> since 
 </div>
 <div class="exercise admonition" id="solow_ex2">
 
-<p class="admonition-title"><span class="caption-number">Exercise 21.2 </span></p>
+<p class="admonition-title"><span class="caption-number">Exercise 22.2 </span></p>
 <section id="exercise-content">
 <p><strong>Stochastic Productivity</strong></p>
 <p>To bring the Solow–Swan model closer to data, we need to think about handling
@@ -767,7 +765,7 @@ k^\alpha_t\)</span> converges to a constant <span class="math notranslate nohigh
 stochastic sequence <span class="math notranslate nohighlight">\((A_t)_{t \geq 1}\)</span>.</p>
 <p>Dynamics are now</p>
 <div class="math notranslate nohighlight" id="equation-solowran">
-<span class="eqno">(21.6)<a class="headerlink" href="#equation-solowran" title="Permalink to this equation">#</a></span>\[    k_{t+1} = s A_{t+1} f(k_t) + (1 - \delta) k_t\]</div>
+<span class="eqno">(22.6)<a class="headerlink" href="#equation-solowran" title="Permalink to this equation">#</a></span>\[    k_{t+1} = s A_{t+1} f(k_t) + (1 - \delta) k_t\]</div>
 <p>We suppose <span class="math notranslate nohighlight">\(f\)</span> is Cobb–Douglas and <span class="math notranslate nohighlight">\((A_t)\)</span> is IID and lognormal.</p>
 <p>Now the long run convergence obtained in the deterministic case breaks
 down, since the system is hit with new shocks at each point in time.</p>
@@ -777,7 +775,7 @@ down, since the system is hit with new shocks at each point in time.</p>
 </div>
 <div class="solution dropdown admonition" id="solow-solution-3">
 
-<p class="admonition-title">Solution to<a class="reference internal" href="#solow_ex2"> Exercise 21.2</a></p>
+<p class="admonition-title">Solution to<a class="reference internal" href="#solow_ex2"> Exercise 22.2</a></p>
 <section id="solution-content">
 <p>Let’s define the constants for lognormal distribution and initial values used for simulation</p>
 <div class="cell docutils container">
@@ -838,7 +836,7 @@ down, since the system is hit with new shocks at each point in time.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/e2aaad87326c65aff2ffe3ae50794a150221a70e13358ba1866fc0848421be8e.png"><img alt="_images/e2aaad87326c65aff2ffe3ae50794a150221a70e13358ba1866fc0848421be8e.png" src="_images/e2aaad87326c65aff2ffe3ae50794a150221a70e13358ba1866fc0848421be8e.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/61716c273a6a4266df22c4172a7591ebae00d3d972501655ab4d5e56020336c7.png"><img alt="_images/61716c273a6a4266df22c4172a7591ebae00d3d972501655ab4d5e56020336c7.png" src="_images/61716c273a6a4266df22c4172a7591ebae00d3d972501655ab4d5e56020336c7.png" style="width: 80%;" /></a>
 </div>
 </div>
 </section>
@@ -1043,14 +1041,14 @@ down, since the system is hit with new shocks at each point in time.</p>
  </span>
 </p>
 <ul class="current nav bd-sidenav nav sidenav_l1">
- <li class="toctree-l1 current active active">
-  <a class="current reference internal" href="#">
-   21. The Solow-Swan Growth Model
-  </a>
- </li>
  <li class="toctree-l1">
   <a class="reference internal" href="scalar_dynam.html">
-   22. Dynamics in One Dimension
+   21. Dynamics in One Dimension
+  </a>
+ </li>
+ <li class="toctree-l1 current active active">
+  <a class="current reference internal" href="#">
+   22. The Solow-Swan Growth Model
   </a>
  </li>
  <li class="toctree-l1">

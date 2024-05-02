@@ -184,7 +184,10 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulations">19.2.1. Simulations</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nonnegative-distributions">19.2.2. Nonnegative distributions</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#counter-cdfs">19.2.3. Counter CDFs</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#empirical-ccdfs">19.2.4. Empirical CCDFs</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#empirical-ccdfs">19.2.4. Empirical CCDFs</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#q-q-plots">19.2.4.1. Q-Q Plots</a></li>
+</ul>
+</li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#power-laws">19.2.5. Power laws</a></li>
 </ul>
 </li>
@@ -280,21 +283,21 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="expanded">Hide code cell output</span>
 </summary>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: yfinance in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (0.2.37)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: yfinance in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (0.2.38)
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: pandas_datareader in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (0.10.0)
 Requirement already satisfied: pandas&gt;=1.3.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from yfinance) (2.1.4)
-Requirement already satisfied: numpy&gt;=1.16.5 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from yfinance) (1.26.4)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: numpy&gt;=1.16.5 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from yfinance) (1.26.4)
 Requirement already satisfied: requests&gt;=2.31 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from yfinance) (2.31.0)
 Requirement already satisfied: multitasking&gt;=0.0.7 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from yfinance) (0.0.11)
 Requirement already satisfied: lxml&gt;=4.9.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from yfinance) (4.9.3)
 Requirement already satisfied: appdirs&gt;=1.4.4 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from yfinance) (1.4.4)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: pytz&gt;=2022.5 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from yfinance) (2023.3.post1)
-Requirement already satisfied: frozendict&gt;=2.3.4 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from yfinance) (2.4.1)
-Requirement already satisfied: peewee&gt;=3.16.2 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from yfinance) (3.17.1)
+Requirement already satisfied: pytz&gt;=2022.5 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from yfinance) (2023.3.post1)
+Requirement already satisfied: frozendict&gt;=2.3.4 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from yfinance) (2.4.2)
+Requirement already satisfied: peewee&gt;=3.16.2 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from yfinance) (3.17.3)
 Requirement already satisfied: beautifulsoup4&gt;=4.11.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from yfinance) (4.12.2)
 Requirement already satisfied: html5lib&gt;=1.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from yfinance) (1.1)
 Requirement already satisfied: soupsieve&gt;1.2 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from beautifulsoup4&gt;=4.11.1-&gt;yfinance) (2.5)
@@ -332,7 +335,12 @@ Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/share/miniconda3/en
 </div>
 <section id="overview">
 <h2><span class="section-number">19.1. </span>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
-<p>In this section we give some motivation for the lecture.</p>
+<p>Heavy-tailed distributions are a class of distributions that generate “extreme” outcomes.</p>
+<p>In the natural sciences (and in more traditional economics courses), heavy-tailed distributions are seen as quite exotic and non-standard.</p>
+<p>However, it turns out that heavy-tailed distributions play a crucial role in economics.</p>
+<p>In fact many – if not most – of the important distributions in economics are heavy tailed.</p>
+<p>In this lecture we explain what heavy tails are and why they are – or at least
+why they should be – central to economic analysis.</p>
 <section id="introduction-light-tails">
 <h3><span class="section-number">19.1.1. </span>Introduction: light tails<a class="headerlink" href="#introduction-light-tails" title="Permalink to this heading">#</a></h3>
 <p>Most <a class="reference internal" href="prob_dist.html"><span class="doc">commonly used probability distributions</span></a> in classical statistics and
@@ -341,10 +349,10 @@ the natural sciences have “light tails.”</p>
 <p>The classic example is the <a class="reference external" href="https://en.wikipedia.org/wiki/Normal_distribution">normal distribution</a>, which has density</p>
 <div class="math notranslate nohighlight">
 \[ 
-    f(x) = \frac{1}{\sqrt{2\pi}\sigma} 
-    \exp\left( -\frac{(x-\mu)^2}{2 \sigma^2} \right)
-    \qquad
-    (-\infty &lt; x &lt; \infty)
+f(x) = \frac{1}{\sqrt{2\pi}\sigma} 
+\exp\left( -\frac{(x-\mu)^2}{2 \sigma^2} \right)
+\qquad
+(-\infty &lt; x &lt; \infty)
 \]</div>
 <p>The two parameters <span class="math notranslate nohighlight">\(\mu\)</span> and <span class="math notranslate nohighlight">\(\sigma\)</span> are the mean and standard deviation
 respectively.</p>
@@ -365,7 +373,12 @@ as with the following code (which assumes <span class="math notranslate nohighli
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/38fac6d1de1a388c8949dd265e2f4ceae9b11ab2a715940ed6ebbd2676134fa9.png"><img alt="_images/38fac6d1de1a388c8949dd265e2f4ceae9b11ab2a715940ed6ebbd2676134fa9.png" src="_images/38fac6d1de1a388c8949dd265e2f4ceae9b11ab2a715940ed6ebbd2676134fa9.png" style="width: 80%;" /></a>
+<figure class="align-default" id="hist-obs">
+<a class="reference internal image-reference" href="_images/b9a8d0cfa811336ed8ed5e79b4ae8190292aec5b095ba26b6abe2084f0520762.png"><img alt="_images/b9a8d0cfa811336ed8ed5e79b4ae8190292aec5b095ba26b6abe2084f0520762.png" src="_images/b9a8d0cfa811336ed8ed5e79b4ae8190292aec5b095ba26b6abe2084f0520762.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 19.1 </span><span class="caption-text">Histogram of observations</span><a class="headerlink" href="#hist-obs" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </div>
 </div>
 <p>Notice how</p>
@@ -381,7 +394,7 @@ as with the following code (which assumes <span class="math notranslate nohighli
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-4.491677725316882, 5.308289384906541)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-4.857238912855835, 5.044589867727881)
 </pre></div>
 </div>
 </div>
@@ -402,7 +415,12 @@ as with the following code (which assumes <span class="math notranslate nohighli
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/246fa16300a5dc92dc2e45e0331c6d7fdcda694a062c3b80a8cb662b4ad7993b.png"><img alt="_images/246fa16300a5dc92dc2e45e0331c6d7fdcda694a062c3b80a8cb662b4ad7993b.png" src="_images/246fa16300a5dc92dc2e45e0331c6d7fdcda694a062c3b80a8cb662b4ad7993b.png" style="width: 80%;" /></a>
+<figure class="align-default" id="hist-obs2">
+<a class="reference internal image-reference" href="_images/084399ee9685a7c7d226684fc515b443368c8db1c4114c9c22d5ec26fe43c9dc.png"><img alt="_images/084399ee9685a7c7d226684fc515b443368c8db1c4114c9c22d5ec26fe43c9dc.png" src="_images/084399ee9685a7c7d226684fc515b443368c8db1c4114c9c22d5ec26fe43c9dc.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 19.2 </span><span class="caption-text">Histogram of observations</span><a class="headerlink" href="#hist-obs2" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </div>
 </div>
 <p>We have plotted each individual draw <span class="math notranslate nohighlight">\(X_i\)</span> against <span class="math notranslate nohighlight">\(i\)</span>.</p>
@@ -411,7 +429,7 @@ as with the following code (which assumes <span class="math notranslate nohighli
 too much from the mean.</p>
 <p>Putting this another way, light-tailed distributions are those that
 rarely generate extreme values.</p>
-<p>(A more formal definition is given below.)</p>
+<p>(A more formal definition is given <a class="reference external" href="https://intro.quantecon.org/heavy_tails.html#light-and-heavy-tails">below</a>.)</p>
 <p>Many statisticians and econometricians
 use rules of thumb such as “outcomes more than four or five
 standard deviations from the mean can safely be ignored.”</p>
@@ -441,9 +459,30 @@ human height has very light tails.</p>
 the period from 1st January 2015 to 1st July 2022.</p>
 <p>This equates to daily returns if we set dividends aside.</p>
 <p>The code below produces the desired plot using Yahoo financial data via the <code class="docutils literal notranslate"><span class="pre">yfinance</span></code> library.</p>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input above-output-prompt docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">yf</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;AMZN&#39;</span><span class="p">,</span> <span class="s1">&#39;2015-1-1&#39;</span><span class="p">,</span> <span class="s1">&#39;2022-7-1&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<details class="hide below-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show output</span>
+<span class="expanded">Hide code cell output</span>
+</summary>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[*********************100%%**********************]  1 of 1 completed
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="n">yf</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;AMZN&#39;</span><span class="p">,</span> <span class="s1">&#39;2015-1-1&#39;</span><span class="p">,</span> <span class="s1">&#39;2022-7-1&#39;</span><span class="p">)[</span><span class="s1">&#39;Adj Close&#39;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;Adj Close&#39;</span><span class="p">]</span>
 <span class="n">r</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">pct_change</span><span class="p">()</span>
 
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
@@ -458,21 +497,41 @@ the period from 1st January 2015 to 1st July 2022.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[*********************100%%**********************]  1 of 1 completed
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
+<figure class="align-default" id="dailyreturns-amzn">
 <a class="reference internal image-reference" href="_images/e46aa0791764d784b446515d01cbcb7e28841b4687ab19c64561a5c799b9186b.png"><img alt="_images/e46aa0791764d784b446515d01cbcb7e28841b4687ab19c64561a5c799b9186b.png" src="_images/e46aa0791764d784b446515d01cbcb7e28841b4687ab19c64561a5c799b9186b.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 19.3 </span><span class="caption-text">Daily Amazon returns</span><a class="headerlink" href="#dailyreturns-amzn" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </div>
 </div>
 <p>This data looks different to the draws from the normal distribution we saw above.</p>
 <p>Several of observations are quite extreme.</p>
 <p>We get a similar picture if we look at other assets, such as Bitcoin</p>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input above-output-prompt docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">yf</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;BTC-USD&#39;</span><span class="p">,</span> <span class="s1">&#39;2015-1-1&#39;</span><span class="p">,</span> <span class="s1">&#39;2022-7-1&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<details class="hide below-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show output</span>
+<span class="expanded">Hide code cell output</span>
+</summary>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[*********************100%%**********************]  1 of 1 completed
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="n">yf</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;BTC-USD&#39;</span><span class="p">,</span> <span class="s1">&#39;2015-1-1&#39;</span><span class="p">,</span> <span class="s1">&#39;2022-7-1&#39;</span><span class="p">)[</span><span class="s1">&#39;Adj Close&#39;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;Adj Close&#39;</span><span class="p">]</span>
 <span class="n">r</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">pct_change</span><span class="p">()</span>
 
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
@@ -487,28 +546,42 @@ the period from 1st January 2015 to 1st July 2022.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[*********************100%%**********************]  1 of 1 completed
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
+<figure class="align-default" id="dailyreturns-btc">
 <a class="reference internal image-reference" href="_images/38ecd5ee03392f3c7a92df7a0eaa128518a1a5972a239a92e7692444102bddba.png"><img alt="_images/38ecd5ee03392f3c7a92df7a0eaa128518a1a5972a239a92e7692444102bddba.png" src="_images/38ecd5ee03392f3c7a92df7a0eaa128518a1a5972a239a92e7692444102bddba.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 19.4 </span><span class="caption-text">Daily Bitcoin returns</span><a class="headerlink" href="#dailyreturns-btc" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </div>
 </div>
 <p>The histogram also looks different to the histogram of the normal
 distribution:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">standard_t</span><span class="p">(</span><span class="n">df</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;bitcoin returns&#39;</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">()</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">norm</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">r</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">r</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;normal distribution&#39;</span><span class="p">)</span>
+
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;returns&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/0f05e8a8abe035432abebf28c5155437c92e45a60b89d7b7e2faf80a665e802f.png"><img alt="_images/0f05e8a8abe035432abebf28c5155437c92e45a60b89d7b7e2faf80a665e802f.png" src="_images/0f05e8a8abe035432abebf28c5155437c92e45a60b89d7b7e2faf80a665e802f.png" style="width: 80%;" /></a>
+<figure class="align-default" id="hist-normal-btc">
+<a class="reference internal image-reference" href="_images/2b0f63fbf5d5da20539e639865719f34bb6f27be8f85cedaf6c335e067c7dfd6.png"><img alt="_images/2b0f63fbf5d5da20539e639865719f34bb6f27be8f85cedaf6c335e067c7dfd6.png" src="_images/2b0f63fbf5d5da20539e639865719f34bb6f27be8f85cedaf6c335e067c7dfd6.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 19.5 </span><span class="caption-text">Histogram (normal vs bitcoin returns)</span><a class="headerlink" href="#hist-normal-btc" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </div>
 </div>
 <p>If we look at higher frequency returns data (e.g., tick-by-tick), we often see
@@ -548,11 +621,12 @@ like</p>
 <li><p>forecasting</p></li>
 <li><p>taxation (across a heavy-tailed income distribution), etc.</p></li>
 </ul>
-<p>We return to these points below.</p>
+<p>We return to these points <a class="reference external" href="https://intro.quantecon.org/heavy_tails.html#why-do-heavy-tails-matter">below</a>.</p>
 </section>
 </section>
 <section id="visual-comparisons">
 <h2><span class="section-number">19.2. </span>Visual comparisons<a class="headerlink" href="#visual-comparisons" title="Permalink to this heading">#</a></h2>
+<p>In this section, we will introduce important concepts such as the Pareto distribution, Counter CDFs, and Power laws, which aid in recognizing heavy-tailed distributions.</p>
 <p>Later we will provide a mathematical definition of the difference between
 light and heavy tails.</p>
 <p>But for now let’s do some visual comparisons to help us build intuition on the
@@ -597,7 +671,12 @@ heavy-tailed.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
+<figure class="align-default" id="draws-normal-cauchy">
 <a class="reference internal image-reference" href="_images/1a117643f0ed2630e2370d94009ff0cba8caf79253a6e9f938255ca876114116.png"><img alt="_images/1a117643f0ed2630e2370d94009ff0cba8caf79253a6e9f938255ca876114116.png" src="_images/1a117643f0ed2630e2370d94009ff0cba8caf79253a6e9f938255ca876114116.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 19.6 </span><span class="caption-text">Draws from normal and Cauchy distributions</span><a class="headerlink" href="#draws-normal-cauchy" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </div>
 </div>
 <p>In the top subfigure, the standard deviation of the normal distribution is 2,
@@ -632,7 +711,12 @@ with a few sudden large deviations from the mean.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
+<figure class="align-default" id="draws-exponential">
 <a class="reference internal image-reference" href="_images/e928470c3819a2c2a79e6f5a57976309b55ec946de6db1ec3ca81d4b289be6fd.png"><img alt="_images/e928470c3819a2c2a79e6f5a57976309b55ec946de6db1ec3ca81d4b289be6fd.png" src="_images/e928470c3819a2c2a79e6f5a57976309b55ec946de6db1ec3ca81d4b289be6fd.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 19.7 </span><span class="caption-text">Draws of exponential distribution</span><a class="headerlink" href="#draws-exponential" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </div>
 </div>
 <p>Another nonnegative distribution is the <a class="reference external" href="https://en.wikipedia.org/wiki/Pareto_distribution">Pareto distribution</a>.</p>
@@ -654,7 +738,9 @@ and <span class="math notranslate nohighlight">\(\alpha\)</span> such that</p>
 exponential random variable.</p>
 <p>In particular, if <span class="math notranslate nohighlight">\(X\)</span> is exponentially distributed with rate parameter <span class="math notranslate nohighlight">\(\alpha\)</span>, then</p>
 <div class="math notranslate nohighlight">
-\[   Y = \bar x \exp(X) \]</div>
+\[
+Y = \bar x \exp(X) 
+\]</div>
 <p>is Pareto-distributed with minimum <span class="math notranslate nohighlight">\(\bar x\)</span> and tail index <span class="math notranslate nohighlight">\(\alpha\)</span>.</p>
 <p>Here are some draws from the Pareto distribution with tail index <span class="math notranslate nohighlight">\(1\)</span> and minimum
 <span class="math notranslate nohighlight">\(1\)</span>.</p>
@@ -675,7 +761,12 @@ exponential random variable.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
+<figure class="align-default" id="draws-pareto">
 <a class="reference internal image-reference" href="_images/62e32e857bc92fd29ef39e94fa890424df7e406a444e2ed069b5b211465b54eb.png"><img alt="_images/62e32e857bc92fd29ef39e94fa890424df7e406a444e2ed069b5b211465b54eb.png" src="_images/62e32e857bc92fd29ef39e94fa890424df7e406a444e2ed069b5b211465b54eb.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 19.8 </span><span class="caption-text">Draws from Pareto distribution</span><a class="headerlink" href="#draws-pareto" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </div>
 </div>
 <p>Notice how extreme outcomes are more common.</p>
@@ -687,16 +778,22 @@ light and heavy tails is to look at the
 <strong>counter CDF</strong> (CCDF).</p>
 <p>For a random variable <span class="math notranslate nohighlight">\(X\)</span> with CDF <span class="math notranslate nohighlight">\(F\)</span>, the CCDF is the function</p>
 <div class="math notranslate nohighlight">
-\[ G(x) := 1 - F(x) = \mathbb P\{X &gt; x\} \]</div>
+\[
+G(x) := 1 - F(x) = \mathbb P\{X &gt; x\} 
+\]</div>
 <p>(Some authors call <span class="math notranslate nohighlight">\(G\)</span> the “survival” function.)</p>
 <p>The CCDF shows how fast the upper tail goes to zero as <span class="math notranslate nohighlight">\(x \to \infty\)</span>.</p>
 <p>If <span class="math notranslate nohighlight">\(X\)</span> is exponentially distributed with rate parameter <span class="math notranslate nohighlight">\(\alpha\)</span>, then the CCDF is</p>
 <div class="math notranslate nohighlight">
-\[ G_E(x) = \exp(- \alpha x) \]</div>
+\[
+G_E(x) = \exp(- \alpha x)
+\]</div>
 <p>This function goes to zero relatively quickly as <span class="math notranslate nohighlight">\(x\)</span> gets large.</p>
 <p>The standard Pareto distribution, where <span class="math notranslate nohighlight">\(\bar x = 1\)</span>, has CCDF</p>
 <div class="math notranslate nohighlight">
-\[ G_P(x) = x^{- \alpha} \]</div>
+\[
+G_P(x) = x^{- \alpha}
+\]</div>
 <p>This function goes to zero as <span class="math notranslate nohighlight">\(x \to \infty\)</span>, but much slower than <span class="math notranslate nohighlight">\(G_E\)</span>.</p>
 <div class="exercise admonition" id="ht_ex_x1">
 
@@ -738,7 +835,12 @@ distributed with rate parameter <span class="math notranslate nohighlight">\(\al
 </div>
 </div>
 <div class="cell_output docutils container">
+<figure class="align-default" id="compare-pareto-exponential">
 <a class="reference internal image-reference" href="_images/90e189810f50530e97e69e0ca4246d9c60187c2ca7a899f887b3ee0d22fcb1c1.png"><img alt="_images/90e189810f50530e97e69e0ca4246d9c60187c2ca7a899f887b3ee0d22fcb1c1.png" src="_images/90e189810f50530e97e69e0ca4246d9c60187c2ca7a899f887b3ee0d22fcb1c1.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 19.9 </span><span class="caption-text">Pareto and exponential distribution comparison</span><a class="headerlink" href="#compare-pareto-exponential" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </div>
 </div>
 <p>Here’s a log-log plot of the same functions, which makes visual comparison
@@ -755,7 +857,12 @@ easier.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
+<figure class="align-default" id="compare-pareto-exponential-log-log">
 <a class="reference internal image-reference" href="_images/897a40dd8b61fa28666d35ab4d712920050d25048907b8ccb8db4c5a92f6a154.png"><img alt="_images/897a40dd8b61fa28666d35ab4d712920050d25048907b8ccb8db4c5a92f6a154.png" src="_images/897a40dd8b61fa28666d35ab4d712920050d25048907b8ccb8db4c5a92f6a154.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 19.10 </span><span class="caption-text">Pareto and exponential distribution comparison (log-log)</span><a class="headerlink" href="#compare-pareto-exponential-log-log" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </div>
 </div>
 <p>In the log-log plot, the Pareto CCDF is linear, while the exponential one is
@@ -768,26 +875,36 @@ visualisations — we return to this point below.</p>
 <p>The sample counterpart of the CCDF function is the <strong>empirical CCDF</strong>.</p>
 <p>Given a sample <span class="math notranslate nohighlight">\(x_1, \ldots, x_n\)</span>, the empirical CCDF is given by</p>
 <div class="math notranslate nohighlight">
-\[ \hat G(x) = \frac{1}{n} \sum_{i=1}^n \mathbb 1\{x_i &gt; x\} \]</div>
+\[
+\hat G(x) = \frac{1}{n} \sum_{i=1}^n \mathbb 1\{x_i &gt; x\}
+\]</div>
 <p>Thus, <span class="math notranslate nohighlight">\(\hat G(x)\)</span> shows the fraction of the sample that exceeds <span class="math notranslate nohighlight">\(x\)</span>.</p>
-<p>Here’s a figure containing some empirical CCDFs from simulated data.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">eccdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
     <span class="s2">&quot;Simple empirical CCDF function.&quot;</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">data</span> <span class="o">&gt;</span> <span class="n">x</span><span class="p">)</span>
-
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here’s a figure containing some empirical CCDFs from simulated data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Parameters and grid</span>
 <span class="n">x_grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
 <span class="n">sample_size</span> <span class="o">=</span> <span class="mi">1000</span>
 <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">13</span><span class="p">)</span>
 <span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">sample_size</span><span class="p">)</span>
 
-<span class="n">data_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">exponential</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">sample_size</span><span class="p">)</span>
-<span class="n">data_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
-<span class="n">data_3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">exponential</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">sample_size</span><span class="p">))</span>
+<span class="c1"># Draws</span>
+<span class="n">data_exp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">exponential</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">sample_size</span><span class="p">)</span>
+<span class="n">data_logn</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+<span class="n">data_pareto</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">exponential</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">sample_size</span><span class="p">))</span>
 
-<span class="n">data_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">data_1</span><span class="p">,</span> <span class="n">data_2</span><span class="p">,</span> <span class="n">data_3</span><span class="p">]</span>
+<span class="n">data_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">data_exp</span><span class="p">,</span> <span class="n">data_logn</span><span class="p">,</span> <span class="n">data_pareto</span><span class="p">]</span>
 
+<span class="c1"># Build figure</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
 <span class="n">axes</span> <span class="o">=</span> <span class="n">axes</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
 <span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;exponential&#39;</span><span class="p">,</span> <span class="s1">&#39;lognormal&#39;</span><span class="p">,</span> <span class="s1">&#39;Pareto&#39;</span><span class="p">]</span>
@@ -809,12 +926,54 @@ visualisations — we return to this point below.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
+<figure class="align-default" id="ccdf-empirics">
 <a class="reference internal image-reference" href="_images/66e797d77fde5e213b7a6ad2dcdd5e9ebbc2e42263c6d2d2443162172df78056.png"><img alt="_images/66e797d77fde5e213b7a6ad2dcdd5e9ebbc2e42263c6d2d2443162172df78056.png" src="_images/66e797d77fde5e213b7a6ad2dcdd5e9ebbc2e42263c6d2d2443162172df78056.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 19.11 </span><span class="caption-text">Empirical CCDFs</span><a class="headerlink" href="#ccdf-empirics" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </div>
 </div>
 <p>As with the CCDF, the empirical CCDF from the Pareto distributions is
 approximately linear in a log-log plot.</p>
-<p>We will use this idea below when we look at real data.</p>
+<p>We will use this idea <a class="reference external" href="https://intro.quantecon.org/heavy_tails.html#heavy-tails-in-economic-cross-sections">below</a> when we look at real data.</p>
+<section id="q-q-plots">
+<h4><span class="section-number">19.2.4.1. </span>Q-Q Plots<a class="headerlink" href="#q-q-plots" title="Permalink to this heading">#</a></h4>
+<p>We can also use a <a class="reference external" href="https://en.wikipedia.org/wiki/Q%E2%80%93Q_plot">qq plot</a> to do a visual comparison between two probability distributions.</p>
+<p>The <a class="reference external" href="https://www.statsmodels.org/stable/index.html">statsmodels</a> package provides a convenient <a class="reference external" href="https://www.statsmodels.org/stable/generated/statsmodels.graphics.gofplots.qqplot.html">qqplot</a> function that, by default, compares sample data to the quintiles of the normal distribution.</p>
+<p>If the data is drawn from a normal distribution, the plot would look like:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_normal</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">sample_size</span><span class="p">)</span>
+<span class="n">sm</span><span class="o">.</span><span class="n">qqplot</span><span class="p">(</span><span class="n">data_normal</span><span class="p">,</span> <span class="n">line</span><span class="o">=</span><span class="s1">&#39;45&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/b6af2671c729c4eaccf067b98d0b0d1caa55c904492d98c0230b1771943c63a0.png"><img alt="_images/b6af2671c729c4eaccf067b98d0b0d1caa55c904492d98c0230b1771943c63a0.png" src="_images/b6af2671c729c4eaccf067b98d0b0d1caa55c904492d98c0230b1771943c63a0.png" style="width: 80%;" /></a>
+</div>
+</div>
+<p>We can now compare this with the exponential, log-normal, and Pareto distributions</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Build figure</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">axes</span> <span class="o">=</span> <span class="n">axes</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;exponential&#39;</span><span class="p">,</span> <span class="s1">&#39;lognormal&#39;</span><span class="p">,</span> <span class="s1">&#39;Pareto&#39;</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">data</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">ax</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">data_list</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">axes</span><span class="p">):</span>
+    <span class="n">sm</span><span class="o">.</span><span class="n">qqplot</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">line</span><span class="o">=</span><span class="s1">&#39;45&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">label</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/63c717f538542155b3488d51972c759cb427203eacf16d355c980a834467b683.png"><img alt="_images/63c717f538542155b3488d51972c759cb427203eacf16d355c980a834467b683.png" src="_images/63c717f538542155b3488d51972c759cb427203eacf16d355c980a834467b683.png" style="width: 80%;" /></a>
+</div>
+</div>
+</section>
 </section>
 <section id="power-laws">
 <h3><span class="section-number">19.2.5. </span>Power laws<a class="headerlink" href="#power-laws" title="Permalink to this heading">#</a></h3>
@@ -971,7 +1130,12 @@ readers are of course welcome to explore the code (perhaps after examining the f
 </div>
 </details>
 <div class="cell_output docutils container">
+<figure class="align-default" id="firm-size-dist">
 <a class="reference internal image-reference" href="_images/3b28ca1ee09bdbc63e05e1736e7eec361f6c9e535abd51771b601ba6753f117d.png"><img alt="_images/3b28ca1ee09bdbc63e05e1736e7eec361f6c9e535abd51771b601ba6753f117d.png" src="_images/3b28ca1ee09bdbc63e05e1736e7eec361f6c9e535abd51771b601ba6753f117d.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 19.12 </span><span class="caption-text">Firm size distribution</span><a class="headerlink" href="#firm-size-dist" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </div>
 </div>
 </section>
@@ -1001,7 +1165,12 @@ readers are of course welcome to explore the code (perhaps after examining the f
 </div>
 </details>
 <div class="cell_output docutils container">
+<figure class="align-default" id="city-size-dist">
 <a class="reference internal image-reference" href="_images/da9225641e0872a248517da754a3f1184980566eff10f90f14bbb0bd90169d13.png"><img alt="_images/da9225641e0872a248517da754a3f1184980566eff10f90f14bbb0bd90169d13.png" src="_images/da9225641e0872a248517da754a3f1184980566eff10f90f14bbb0bd90169d13.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 19.13 </span><span class="caption-text">City size distribution</span><a class="headerlink" href="#city-size-dist" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </div>
 </div>
 </section>
@@ -1044,7 +1213,12 @@ readers are of course welcome to explore the code (perhaps after examining the f
 </div>
 </details>
 <div class="cell_output docutils container">
+<figure class="align-default" id="wealth-dist">
 <a class="reference internal image-reference" href="_images/1e2fd1089185ebe996b8e28ecd1d4dc0ba65b1ea91f32f942f782991d6825341.png"><img alt="_images/1e2fd1089185ebe996b8e28ecd1d4dc0ba65b1ea91f32f942f782991d6825341.png" src="_images/1e2fd1089185ebe996b8e28ecd1d4dc0ba65b1ea91f32f942f782991d6825341.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 19.14 </span><span class="caption-text">Wealth distribution (Forbes billionaires in 2020)</span><a class="headerlink" href="#wealth-dist" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </div>
 </div>
 </section>
@@ -1093,7 +1267,12 @@ readers are of course welcome to explore the code (perhaps after examining the f
 </div>
 </details>
 <div class="cell_output docutils container">
+<figure class="align-default" id="gdppc-dist">
 <a class="reference internal image-reference" href="_images/1f7c83b3392098ee217ad61b6d2e6126d6eace4b7f4f8ccf972426d0b2dbe9ed.png"><img alt="_images/1f7c83b3392098ee217ad61b6d2e6126d6eace4b7f4f8ccf972426d0b2dbe9ed.png" src="_images/1f7c83b3392098ee217ad61b6d2e6126d6eace4b7f4f8ccf972426d0b2dbe9ed.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 19.15 </span><span class="caption-text">GDP per capita distribution</span><a class="headerlink" href="#gdppc-dist" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </div>
 </div>
 <p>The plot is concave rather than linear, so the distribution has light tails.</p>
@@ -1146,7 +1325,12 @@ whether or not the LLN is still valid.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
+<figure class="align-default" id="fail-lln">
 <a class="reference internal image-reference" href="_images/913e465c680d79cbc0e1d076f719f61a0c9aa5a147ef01f14a7d340623de985c.png"><img alt="_images/913e465c680d79cbc0e1d076f719f61a0c9aa5a147ef01f14a7d340623de985c.png" src="_images/913e465c680d79cbc0e1d076f719f61a0c9aa5a147ef01f14a7d340623de985c.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 19.16 </span><span class="caption-text">LLN failure</span><a class="headerlink" href="#fail-lln" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </div>
 </div>
 <p>The sequence shows no sign of converging.</p>
@@ -1174,7 +1358,9 @@ independent and each return has  mean <span class="math notranslate nohighlight"
 portfolio is <span class="math notranslate nohighlight">\(\mu\)</span> and the variance is <span class="math notranslate nohighlight">\(\sigma^2\)</span>.</p>
 <p>If instead the investor puts share <span class="math notranslate nohighlight">\(1/n\)</span> of her wealth in each asset, then the portfolio payoff is</p>
 <div class="math notranslate nohighlight">
-\[ Y_n = \sum_{i=1}^n \frac{X_i}{n} = \frac{1}{n} \sum_{i=1}^n X_i. \]</div>
+\[
+Y_n = \sum_{i=1}^n \frac{X_i}{n} = \frac{1}{n} \sum_{i=1}^n X_i. 
+\]</div>
 <p>Try computing the mean and variance.</p>
 <p>You will find that</p>
 <ul class="simple">
@@ -1207,7 +1393,7 @@ nonnegative random variables and their distributions.</p>
 left hand tails are very similar and we omit them to simplify the exposition.</p>
 <section id="light-and-heavy-tails">
 <h3><span class="section-number">19.6.1. </span>Light and heavy tails<a class="headerlink" href="#light-and-heavy-tails" title="Permalink to this heading">#</a></h3>
-<p>A distribution <span class="math notranslate nohighlight">\(F\)</span> with density <span class="math notranslate nohighlight">\(f\)</span> on <span class="math notranslate nohighlight">\(\mathbb R_+\)</span> is called <strong>heavy-tailed</strong> if</p>
+<p>A distribution <span class="math notranslate nohighlight">\(F\)</span> with density <span class="math notranslate nohighlight">\(f\)</span> on <span class="math notranslate nohighlight">\(\mathbb R_+\)</span> is called <a class="reference external" href="https://en.wikipedia.org/wiki/Heavy-tailed_distribution">heavy-tailed</a> if</p>
 <div class="math notranslate nohighlight" id="equation-defht">
 <span class="eqno">(19.4)<a class="headerlink" href="#equation-defht" title="Permalink to this equation">#</a></span>\[\int_0^\infty \exp(tx) f(x) dx = \infty \; \text{ for all } t &gt; 0.\]</div>
 <p>We say that a nonnegative random variable <span class="math notranslate nohighlight">\(X\)</span> is <strong>heavy-tailed</strong> if its density is heavy-tailed.</p>
@@ -1218,12 +1404,15 @@ distribution</a> is
 heavy-tailed because its moment generating function is infinite everywhere on
 <span class="math notranslate nohighlight">\((0, \infty)\)</span>.</p>
 <p>The Pareto distribution is also heavy-tailed.</p>
+<p>Less formally, a heavy-tailed distribution is one that is not exponentially bounded (i.e. the tails are heavier than the exponential distribution).</p>
 <p>A distribution <span class="math notranslate nohighlight">\(F\)</span> on <span class="math notranslate nohighlight">\(\mathbb R_+\)</span> is called <strong>light-tailed</strong> if it is not heavy-tailed.</p>
 <p>A nonnegative random variable <span class="math notranslate nohighlight">\(X\)</span> is <strong>light-tailed</strong> if its distribution <span class="math notranslate nohighlight">\(F\)</span> is light-tailed.</p>
 <p>For example, every random variable with bounded support is light-tailed. (Why?)</p>
 <p>As another example, if <span class="math notranslate nohighlight">\(X\)</span> has the <a class="reference external" href="https://en.wikipedia.org/wiki/Exponential_distribution">exponential distribution</a>, with cdf <span class="math notranslate nohighlight">\(F(x) = 1 - \exp(-\lambda x)\)</span> for some <span class="math notranslate nohighlight">\(\lambda &gt; 0\)</span>, then its moment generating function is</p>
 <div class="math notranslate nohighlight">
-\[ m(t) = \frac{\lambda}{\lambda - t} \quad \text{when } t &lt; \lambda \]</div>
+\[
+m(t) = \frac{\lambda}{\lambda - t} \quad \text{when } t &lt; \lambda 
+\]</div>
 <p>In particular, <span class="math notranslate nohighlight">\(m(t)\)</span> is finite whenever <span class="math notranslate nohighlight">\(t &lt; \lambda\)</span>, so <span class="math notranslate nohighlight">\(X\)</span> is light-tailed.</p>
 <p>One can show that if <span class="math notranslate nohighlight">\(X\)</span> is light-tailed, then all of its
 <a class="reference external" href="https://en.wikipedia.org/wiki/Moment_(mathematics)">moments</a> are finite.</p>
@@ -1266,7 +1455,7 @@ discussed above.</p>
 <p>But then</p>
 <div class="math notranslate nohighlight">
 \[
-    \mathbb E X^r = r \int_0^\infty x^{r-1} \mathbb P\{ X &gt; x \} dx
+\mathbb E X^r = r \int_0^\infty x^{r-1} \mathbb P\{ X &gt; x \} dx
 \geq
 r \int_0^{\bar x} x^{r-1} \mathbb P\{ X &gt; x \} dx
 + r \int_{\bar x}^\infty  x^{r-1} b x^{-\alpha} dx.
@@ -1504,7 +1693,7 @@ assumption leads to a lower mean and greater dispersion.</p>
 <p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Characteristic_function_%28probability_theory%29">characteristic function</a> of the Cauchy distribution is</p>
 <div class="math notranslate nohighlight" id="equation-lln-cch">
 <span class="eqno">(19.5)<a class="headerlink" href="#equation-lln-cch" title="Permalink to this equation">#</a></span>\[
-    \phi(t) = \mathbb E e^{itX} = \int e^{i t x} f(x) dx = e^{-|t|}
+\phi(t) = \mathbb E e^{itX} = \int e^{i t x} f(x) dx = e^{-|t|}
 \]</div>
 <p>Prove that the sample mean <span class="math notranslate nohighlight">\(\bar X_n\)</span> of <span class="math notranslate nohighlight">\(n\)</span> independent draws <span class="math notranslate nohighlight">\(X_1, \ldots,
 X_n\)</span> from the Cauchy distribution has the same characteristic function as
@@ -1734,13 +1923,13 @@ X_n\)</span> from the Cauchy distribution has the same characteristic function a
 </p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
-  <a class="reference internal" href="solow.html">
-   21. The Solow-Swan Growth Model
+  <a class="reference internal" href="scalar_dynam.html">
+   21. Dynamics in One Dimension
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="scalar_dynam.html">
-   22. Dynamics in One Dimension
+  <a class="reference internal" href="solow.html">
+   22. The Solow-Swan Growth Model
   </a>
  </li>
  <li class="toctree-l1">
