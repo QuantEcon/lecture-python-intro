@@ -24,7 +24,7 @@ because it shows the fundamental importance of *expectations*.
 
 To give some idea of how the model operates, and why expectations matter, imagine the following scenario.
 
-There is a market for soy beans, say, where prices and traded quantities
+There is a market for soybeans, say, where prices and traded quantities
 depend on the choices of buyers and sellers.
 
 The buyers are represented by a demand curve --- they buy more at low prices
@@ -38,11 +38,11 @@ However, the sellers (who are farmers) need time to grow their crops.
 Suppose now that the price is currently high.
 
 Seeing this high price, and perhaps expecting that the high price will remain
-for some time, the farmers plant many fields with soy beans.
+for some time, the farmers plant many fields with soybeans.
 
 Next period the resulting high supply floods the market, causing the price to drop.
 
-Seeing this low price, the farmers now shift out of soy beans, restricting
+Seeing this low price, the farmers now shift out of soybeans, restricting
 supply and causing the price to climb again.
 
 You can imagine how these dynamics could cause cycles in prices and quantities
@@ -52,7 +52,7 @@ The cobweb model puts these ideas into equations so we can try to quantify
 them, and to study conditions under which cycles persist (or disappear).
 
 In this lecture, we investigate and simulate the basic model under different
-assumptions regarding the way that produces form expectations.
+assumptions regarding the way that producers form expectations.
 
 Our discussion and simulations draw on [high quality lectures](https://comp-econ.org/CEF_2013/downloads/Complex%20Econ%20Systems%20Lecture%20II.pdf) by [Cars Hommes](https://www.uva.nl/en/profile/h/o/c.h.hommes/c.h.hommes.html).
 
@@ -70,7 +70,7 @@ import matplotlib.pyplot as plt
 
 Early papers on the cobweb cycle include {cite}`cobweb_model` and {cite}`hog_cycle`.
 
-The paper {cite}`hog_cycle` uses the cobweb theorem to explain the prices of hog in the US over 1920--1950
+The paper {cite}`hog_cycle` uses the cobweb theorem to explain the prices of hog in the US over 1920--1950.
 
 The next plot replicates part of Figure 2 from that paper, which plots the price of hogs at yearly frequency.
 
@@ -94,9 +94,9 @@ plt.show()
 
 ## The model
 
-Let's return to our discussion of a hypothetical soy bean market, where price is determined by supply and demand.
+Let's return to our discussion of a hypothetical soybean market, where price is determined by supply and demand.
 
-We suppose that demand for soy beans is given by
+We suppose that demand for soybeans is given by
 
 $$
     D(p_t) = a - b p_t
@@ -106,15 +106,15 @@ where $a, b$ are nonnegative constants and $p_t$ is the spot (i.e, current marke
 
 ($D(p_t)$ is the quantity demanded in some fixed unit, such as thousands of tons.)
 
-Because the crop of soy beans for time $t$ is planted at $t-1$, supply of soy beans at time $t$ depends on *expected* prices at time $t$, which we denote $p^e_{t-1}$.
+Because the crop of soybeans for time $t$ is planted at $t-1$, supply of soybeans at time $t$ depends on *expected* prices at time $t$, which we denote $p^t_{t-1}$.
 
 We suppose that supply is nonlinear in expected prices, and takes the form
 
 $$
-    S(p^e_{t-1}) = \tanh(\lambda(p^e_{t-1} - c)) + d
+    S(p^t_{t-1}) = \tanh(\lambda(p^t_{t-1} - c)) + d
 $$
 
-where $\lambda$ is a positive constant and $c, d \geq 0$.
+where $\lambda$ is a positive constant, $c, d$ are nonnegative constants and $\tanh$ is a type of [hyperbolic function](https://en.wikipedia.org/wiki/Hyperbolic_functions).
 
 Let's make a plot of supply and demand for particular choices of the parameter values.
 
@@ -149,7 +149,7 @@ m = Market()
 fig, ax = plt.subplots()
 
 ax.plot(p_grid, m.demand(p_grid), label="$D$")
-ax.plot(p_grid, m.supply(p_grid), label="S")
+ax.plot(p_grid, m.supply(p_grid), label="$S$")
 ax.set_xlabel("price")
 ax.set_ylabel("quantity")
 ax.legend()
@@ -160,13 +160,13 @@ plt.show()
 Market equilibrium requires that supply equals demand, or
 
 $$
-    a - b p_t = S(p^e_{t-1})
+    a - b p_t = S(p^t_{t-1})
 $$
 
 Rewriting in terms of $p_t$ gives
 
 $$
-    p_t = - \frac{1}{b} [S(p^e_{t-1}) - a]
+    p_t = - \frac{1}{b} [S(p^t_{t-1}) - a]
 $$
 
 Finally, to complete the model, we need to describe how price expectations are formed.
@@ -177,7 +177,7 @@ In particular, we suppose that
 
 ```{math}
 :label: p_et
-    p^e_{t-1} = f(p_{t-1}, p_{t-2})
+    p^t_{t-1} = f(p_{t-1}, p_{t-2})
 ```
 
 where $f$ is some function.
@@ -204,7 +204,7 @@ Let's start with naive expectations, which refers to the case where producers ex
 
 In other words,
 
-$$ p_{t-1}^e = p_{t-1} $$
+$$ p_{t-1}^t = p_{t-1} $$
 
 Using {eq}`price_t`, we then have
 
@@ -239,9 +239,9 @@ def g(model, current_price):
     return next_price
 ```
 
-Let's try to understand how prices will evolve using a 45 degree diagram, which is a tool for studying one-dimensional dynamics.
+Let's try to understand how prices will evolve using a 45-degree diagram, which is a tool for studying one-dimensional dynamics.
 
-The function `plot45` defined below helps us draw the 45 degree diagram.
+The function `plot45` defined below helps us draw the 45-degree diagram.
 
 ```{code-cell} ipython3
 :tags: [hide-input]
@@ -277,7 +277,7 @@ def plot45(model, pmin, pmax, p0, num_arrows=5):
 
     ax.plot(pgrid, g(model, pgrid), 'b-',
             lw=2, alpha=0.6, label='g')
-    ax.plot(pgrid, pgrid, lw=1, alpha=0.7, label='45')
+    ax.plot(pgrid, pgrid, lw=1, alpha=0.7, label='$45\degree$')
 
     x = p0
     xticks = [pmin]
@@ -316,7 +316,7 @@ def plot45(model, pmin, pmax, p0, num_arrows=5):
     plt.show()
 ```
 
-Now we can set up a market and plot the 45 degree diagram.
+Now we can set up a market and plot the 45-degree diagram.
 
 ```{code-cell} ipython3
 m = Market()
@@ -326,7 +326,7 @@ m = Market()
 plot45(m, 0, 9, 2, num_arrows=3)
 ```
 
-The plot shows the function $g$ defined in {eq}`def_g` and the $45$ degree line.
+The plot shows the function $g$ defined in {eq}`def_g` and the $45\degree$ line.
 
 Think of $ p_t $ as a value on the horizontal axis.
 
@@ -334,13 +334,13 @@ Since $p_{t+1} = g(p_t)$, we use the graph of $g$ to see $p_{t+1}$ on the vertic
 
 Clearly,
 
-- If $ g $ lies above the 45 degree line at $p_t$, then we have $ p_{t+1} > p_t $.
-- If $ g $ lies below the 45 degree line at $p_t$, then we have $ p_{t+1} < p_t $.
-- If $ g $ hits the 45 degree line at $p_t$, then we have $ p_{t+1} = p_t $, so $ p_t $ is a steady state.
+- If $ g $ lies above the 45-degree line at $p_t$, then we have $ p_{t+1} > p_t $.
+- If $ g $ lies below the 45-degree line at $p_t$, then we have $ p_{t+1} < p_t $.
+- If $ g $ hits the 45-degree line at $p_t$, then we have $ p_{t+1} = p_t $, so $ p_t $ is a {ref}` steady state <scalar-dynam:steady-state>`.
 
 Consider the sequence of prices starting at $p_0$, as shown in the figure.
 
-We find $p_1$ on the vertical axis and then shift it to the horizontal axis using the 45 degree line (where values on the two axes are equal).
+We find $p_1$ on the vertical axis and then shift it to the horizontal axis using the 45-degree line (where values on the two axes are equal).
 
 Then from $p_1$ we obtain $p_2$ and continue.
 
@@ -408,7 +408,7 @@ That is,
 
 ```{math}
 :label: pe_adaptive
-p_{t-1}^e = \alpha p_{t-1} + (1-\alpha) p^e_{t-2}
+p_{t-1}^t = \alpha p_{t-1} + (1-\alpha) p^t_{t-2}
 \qquad (0 \leq \alpha \leq 1)
 ```
 
@@ -416,7 +416,7 @@ Another way to write this is
 
 ```{math}
 :label: pe_adaptive_2
-p_{t-1}^e = p^e_{t-2} + \alpha (p_{t-1} - p_{t-2}^e)
+p_{t-1}^t = p^t_{t-2} + \alpha (p_{t-1} - p_{t-2}^t)
 ```
 
 This equation helps to show that expectations shift
@@ -427,7 +427,7 @@ This equation helps to show that expectations shift
 Using {eq}`pe_adaptive`, we obtain the dynamics
 
 $$
-    p_t = - \frac{1}{b} [ S(\alpha p_{t-1} + (1-\alpha) p^e_{t-2}) - a]
+    p_t = - \frac{1}{b} [ S(\alpha p_{t-1} + (1-\alpha) p^t_{t-2}) - a]
 $$
 
 
@@ -464,7 +464,6 @@ def ts_price_plot_adaptive(model, p0, ts_length=10, α=[1.0, 0.9, 0.75]):
 
 Let's call the function with prices starting at $p_0 = 5$.
 
-TODO does this fit well in the page, even in the pdf? If not should it be stacked vertically?
 
 ```{code-cell} ipython3
 ts_price_plot_adaptive(m, 5, ts_length=30)
@@ -478,7 +477,6 @@ expectations, which stabilizes expected prices.
 This increased stability can be seen in the figures.
 
 
-TODO check / fix exercises
 
 ## Exercises
 
@@ -547,7 +545,7 @@ That is,
 
 ```{math}
 :label: pe_blae
-p_{t-1}^e = \alpha p_{t-1} + (1-\alpha) p_{t-2}
+p_{t-1}^t = \alpha p_{t-1} + (1-\alpha) p_{t-2}
 ```
 
 
