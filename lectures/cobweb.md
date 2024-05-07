@@ -326,7 +326,7 @@ m = Market()
 plot45(m, 0, 9, 2, num_arrows=3)
 ```
 
-The plot shows the function $g$ defined in {eq}`def_g` and the $45\degree$ line.
+The plot shows the function $g$ defined in {eq}`def_g` and the 45-degree line.
 
 Think of $ p_t $ as a value on the horizontal axis.
 
@@ -336,7 +336,7 @@ Clearly,
 
 - If $ g $ lies above the 45-degree line at $p_t$, then we have $ p_{t+1} > p_t $.
 - If $ g $ lies below the 45-degree line at $p_t$, then we have $ p_{t+1} < p_t $.
-- If $ g $ hits the 45-degree line at $p_t$, then we have $ p_{t+1} = p_t $, so $ p_t $ is a {ref}` steady state <scalar-dynam:steady-state>`.
+- If $ g $ hits the 45-degree line at $p_t$, then we have $ p_{t+1} = p_t $, so $ p_t $ is a steady state.
 
 Consider the sequence of prices starting at $p_0$, as shown in the figure.
 
