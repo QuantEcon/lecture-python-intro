@@ -467,8 +467,8 @@ fig, ax = plt.subplots()
 alpha = 1.0
 ax.plot(x, np.exp(- alpha * x), label='exponential', alpha=0.8)
 ax.plot(x, x**(- alpha), label='Pareto', alpha=0.8)
-ax.set_xlabel('X value', fontsize=12)
-ax.set_ylabel('CCDF', fontsize=12)
+ax.set_xlabel('X value')
+ax.set_ylabel('CCDF')
 ax.legend()
 plt.show()
 ```
@@ -481,8 +481,8 @@ fig, ax = plt.subplots()
 alpha = 1.0
 ax.loglog(x, np.exp(- alpha * x), label='exponential', alpha=0.8)
 ax.loglog(x, x**(- alpha), label='Pareto', alpha=0.8)
-ax.set_xlabel('log value', fontsize=12)
-ax.set_ylabel('log prob', fontsize=12)
+ax.set_xlabel('log value')
+ax.set_ylabel('log prob')
 ax.legend()
 plt.show()
 ```
