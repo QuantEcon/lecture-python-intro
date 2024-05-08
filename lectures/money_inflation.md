@@ -32,7 +32,7 @@ The law of motion for the supply of money assumes that the government prints mon
 
 Our model equates the demand for money to the supply at each time $t \geq 0$.
 
-Equality between those demands and supply gives in a **dynamic** model in which   money supply
+Equality between those demands and supply gives a *dynamic* model in which   money supply
 and  price level *sequences* are simultaneously determined by a  set of simultaneous linear  equations.
 
 These equations take the form of what are often called vector linear **difference equations**.  
@@ -964,7 +964,7 @@ Through application of our computational methods 1 and 2, we have  learned that 
 * for computational method 1, $R_0$ 
 * for computational method 2, $p_0$
 
-To apply our model, we have somehow to **complete** it by *selecting* an equilibrium path from among the continuum of possible paths. 
+To apply our model, we have somehow to *complete* it by *selecting* an equilibrium path from among the continuum of possible paths. 
 
 We discovered that 
 
