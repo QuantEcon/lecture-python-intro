@@ -738,7 +738,10 @@ Finally, here is the 45-degree diagram.
 kmin, kmax = 0, 0.5
 n = 1000
 k_grid = np.linspace(kmin, kmax, n)
-k_grid_next = k_update(k_grid,α,β)
+k_grid_next = np.empty_like(k_grid)
+
+for i in range(n):
+    k_grid_next[i] = k_update(k_grid[i], model)
 
 fig, ax = plt.subplots(figsize=(6, 6))
 
