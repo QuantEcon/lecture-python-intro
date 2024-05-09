@@ -33,7 +33,7 @@ from packaging.version import Version
 from importlib import reload
 if Version(pd.__version__) < Version('2.1.4'):
   !pip install pandas==2.1.4
-  reload('pandas')
+  reload(pandas)
 ```
 
 We can then import the Python modules we will use.
