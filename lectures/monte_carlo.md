@@ -49,7 +49,7 @@ from numpy.random import randn
 ```
 
 
-
+(Monte-Carlo)=
 ## An introduction to Monte Carlo
 
 In this section we describe how Monte Carlo can be used to compute

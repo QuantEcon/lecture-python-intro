@@ -32,8 +32,7 @@ We will solve an equation where the price function is the unknown.
 
 This is harder than solving an equation for an unknown number, or vector.
 
-The lecture will discuss one way to solve a "functional equation" for an unknown
-function 
+The lecture will discuss one way to solve a "functional equation" (the equation where the unknown object is a function).
 
 For this lecture we need the `yfinance` library.
 
@@ -134,8 +133,7 @@ $p_t$.
 
 The harvest of the commodity at time $t$ is $Z_t$.
 
-We assume that the sequence $\{ Z_t \}_{t \geq 1}$ is IID with common
-density function $\phi$.
+We assume that the sequence $\{ Z_t \}_{t \geq 1}$ is {ref}`IID <lln_ksl>` with common density function $\phi$, where $\phi$ is nonnegative.
 
 Speculators can store the commodity between periods, with $I_t$ units
 purchased in the current period yielding $\alpha I_t$ units in the next.
@@ -193,12 +191,12 @@ Let $P := D^{-1}$ be the inverse demand function.
 
 Regarding quantities,
 
-* supply is the sum of carryover by speculators and the current harvest
+* supply is the sum of carryover by speculators and the current harvest, and
 * demand is the sum of purchases by consumers and purchases by speculators.
 
 Mathematically,
 
-* supply $ = X_t = \alpha I_{t-1} + Z_t$, which takes values in $S := \mathbb R_+$, while
+* supply is given by $X_t = \alpha I_{t-1} + Z_t$, which takes values in $S := \mathbb R_+$, while
 * demand $ = D(p_t) + I_t$
 
 Thus, the market equilibrium condition is
@@ -347,7 +345,7 @@ The code below implements this iterative process, starting from $p_0 = P$.
 The distribution $\phi$ is set to a shifted Beta distribution (although many
 other choices are possible).
 
-The integral in [](eq:dopf3) is computed via Monte Carlo.
+The integral in [](eq:dopf3) is computed via {ref}`Monte Carlo <Monte-Carlo>`.
 
 
 ```{code-cell} ipython3
@@ -396,6 +394,7 @@ while error > tol:
 ax.plot(grid, price, 'k-', alpha=0.5, lw=2, label=r'$p^*$')
 ax.legend()
 ax.set_xlabel('$x$', fontsize=12)
+ax.set_ylabel('$prices$', fontsize=12)
 
 plt.show()
 ```
