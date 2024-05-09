@@ -20,7 +20,19 @@ Let's start by installing the necessary Python packages.
 The `xlrd` package is used by `pandas` to perform operations on Excel files.
 
 ```{code-cell} ipython3
+:tags: [hide-output]
 !pip install xlrd
+```
+
+This lecture also requires `pandas >= 2.1.4`
+
+```{code-cell} ipython3
+:tags: [hide-output]
+from packaging.version import Version
+import pandas as pd
+if Version(pd.__version__) < Version('2.1.4'):
+  !pip install pandas==2.1.4
+  reload(pandas)
 ```
 
 We can then import the Python modules we will use.
