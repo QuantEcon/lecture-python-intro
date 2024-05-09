@@ -28,8 +28,9 @@ This lecture also requires `pandas >= 2.1.4`
 
 ```{code-cell} ipython3
 :tags: [hide-output]
-from packaging.version import Version
 import pandas as pd
+from packaging.version import Version
+from importlib import reload
 if Version(pd.__version__) < Version('2.1.4'):
   !pip install pandas==2.1.4
   reload(pandas)
