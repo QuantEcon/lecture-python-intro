@@ -133,7 +133,7 @@ $p_t$.
 
 The harvest of the commodity at time $t$ is $Z_t$.
 
-We assume that the sequence $\{ Z_t \}_{t \geq 1}$ is {ref}`IID <lln_ksl>` with common density function $\phi$, where $\phi$ is nonnegative.
+We assume that the sequence $\{ Z_t \}_{t \geq 1}$ is {ref}`IID <iid-theorem>` with common density function $\phi$, where $\phi$ is nonnegative.
 
 Speculators can store the commodity between periods, with $I_t$ units
 purchased in the current period yielding $\alpha I_t$ units in the next.
