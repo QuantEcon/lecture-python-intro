@@ -28,12 +28,16 @@ This lecture also requires `pandas >= 2.1.4`
 
 ```{code-cell} ipython3
 :tags: [hide-output]
-import pandas
+from importlib.metadata import version
 from packaging.version import Version
-from importlib import reload
-if Version(pandas.__version__) < Version('2.1.4'):
-  !pip install pandas==2.1.4
-  reload(pandas)
+
+try:
+    pandas_version = version("pandas")
+except:
+    pandas_version = '0.0.0'
+
+if Version(pandas_version) < Version('2.1.4'):
+    !pip install "pandas>=2.1.4"
 ```
 
 We can then import the Python modules we will use.
