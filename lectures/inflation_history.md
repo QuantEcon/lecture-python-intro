@@ -24,19 +24,14 @@ The `xlrd` package is used by `pandas` to perform operations on Excel files.
 !pip install xlrd
 ```
 
-This lecture also requires `pandas >= 2.1.4`
+<!-- Check for pandas>=2.1.4 for Google Collab Compat -->
 
 ```{code-cell} ipython3
-:tags: [hide-output]
+:tags: [hide-cell]
 from importlib.metadata import version
 from packaging.version import Version
 
-try:
-    pandas_version = version("pandas")
-except:
-    pandas_version = '0.0.0'
-
-if Version(pandas_version) < Version('2.1.4'):
+if Version(version("pandas")) < Version('2.1.4'):
     !pip install "pandas>=2.1.4"
 ```
 
