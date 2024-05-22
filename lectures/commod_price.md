@@ -394,7 +394,7 @@ while error > tol:
 ax.plot(grid, price, 'k-', alpha=0.5, lw=2, label=r'$p^*$')
 ax.legend()
 ax.set_xlabel('$x$')
-ax.set_ylabel('$prices$')
+ax.set_ylabel("prices")
 
 plt.show()
 ```
