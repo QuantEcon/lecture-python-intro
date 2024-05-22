@@ -11,14 +11,14 @@ kernelspec:
   name: python3
 ---
 
-# Unpleasant Monetarist Arithmetic 
+# Some Unpleasant Monetarist Arithmetic 
 
 ## Overview
 
 
 This lecture builds on concepts and issues introduced in our  lecture on **Money Supplies and Price Levels**.
 
-That lecture describes stationary equilibria that reveal a **Laffer curve** in the inflation tax rate and the associated  stationary rate of return 
+That lecture describes stationary equilibria that reveal a [**Laffer curve**](https://en.wikipedia.org/wiki/Laffer_curve) in the inflation tax rate and the associated  stationary rate of return 
 on currency.  
 
 In this lecture we study  a situation  in which a stationary equilibrium prevails after  date $T > 0$, but not before then.  
@@ -75,6 +75,8 @@ $$
 b_t = \gamma_1 - \gamma_2 R_t^{-1} . 
 $$ (eq:up_bdemand)
 
+where $\gamma_1 > \gamma_2 > 0$.
+
 ## Monetary-Fiscal Policy
 
 To the basic model of our lecture on **Money Supplies and Price Levels**, we add inflation-indexed one-period government bonds as an additional  way for the government to finance government expenditures. 
@@ -91,8 +93,8 @@ $$
 Just before the beginning of time $0$, the  public owns  $\check m_0$ units of currency (measured in dollars)
 and $\widetilde R \check B_{-1}$ units of one-period indexed bonds (measured in time $0$ goods); these two quantities are initial conditions set outside the model.
 
-Notice that $\check m_0$ is a **nominal** quantity, being measured in dollar, while
-$\widetilde R \check B_{-1}$ is a **real** quantity, being measured in time $0$ goods.
+Notice that $\check m_0$ is a *nominal* quantity, being measured in dollar, while
+$\widetilde R \check B_{-1}$ is a *real* quantity, being measured in time $0$ goods.
 
 
 ### Open market operations
@@ -109,8 +111,8 @@ $$
 B_{-1} - \check B_{-1} = \frac{1}{p_0 \widetilde R} \left( \check m_0 - m_0 \right)  
 $$ (eq:openmarketconstraint)
 
-This equation says that the government (e.g., the central bank) can **decrease** $m_0$ relative to 
-$\check m_0$ by **increasing** $B_{-1}$ relative to $\check B_{-1}$. 
+This equation says that the government (e.g., the central bank) can *decrease* $m_0$ relative to 
+$\check m_0$ by *increasing* $B_{-1}$ relative to $\check B_{-1}$. 
 
 This is a version of a standard constraint on a central bank's **open market operations** in which it expands the stock of money by buying government bonds from  the public. 
 
@@ -152,7 +154,7 @@ running monetary and fiscal policies.
 
 Here, by **fiscal policy** we mean the collection of actions that determine a sequence of net-of-interest government deficits $\{g_t\}_{t=0}^\infty$ that must be financed by issuing to the public  either money or interest bearing bonds.
 
-By **monetary policy** or **debt-management polcy**, we  mean the collection of actions that determine how the government divides its  portolio of debts to the public  between interest-bearing parts (government bonds) and non-interest-bearing parts (money).
+By **monetary policy** or **debt-management policy**, we  mean the collection of actions that determine how the government divides its  portolio of debts to the public  between interest-bearing parts (government bonds) and non-interest-bearing parts (money).
 
 By an **open market operation**, we mean a government monetary policy action in which the government
 (or its delegate, say, a central bank) either buys  government bonds from the public for newly issued money, or sells  bonds to the public and withdraws the money it receives from public circulation.  
@@ -171,7 +173,7 @@ $$ (eq:up_steadyquadratic)
 
 Quadratic equation {eq}`eq:up_steadyquadratic` has two roots, $R_l < R_u < 1$.
 
-For reasons described at the end of **this lecture**, we select the larger root $R_u$. 
+For reasons described at the end of *this lecture*, we select the larger root $R_u$. 
 
 
 Next, we compute
@@ -211,7 +213,7 @@ We want to compute
 
 $$ 
 \begin{aligned}
-p_0 &  = \gamma_1^{-1} \left[ \sum_{j=0}^\infty \lambda^j m_{1+j} \right] \cr
+p_0 &  = \gamma_1^{-1} \left[ \sum_{j=0}^\infty \lambda^j m_{j} \right] \cr
 & = \gamma_1^{-1} \left[ \sum_{j=0}^{T-1} \lambda^j m_{0} + \sum_{j=T}^\infty \lambda^j m_{1+j} \right]
 \end{aligned}
 $$
@@ -252,9 +254,9 @@ Python coder.
 
 To compute an equilibrium, we deploy the following algorithm.
 
-Given **parameters** include $g, \check m_0, \check B_{-1}, \widetilde R >1, T $
+Given **parameters** include $g, \check m_0, \check B_{-1}, \widetilde R >1, T $.
 
-We define a mapping from $p_0$ to $p_0$ as follows.
+We define a mapping from $p_0$ to $\widehat p_0$ as follows.
 
 * Set $m_0$ and then compute $B_{-1}$ to satisfy the constraint on time $0$ **open market operations**
 
@@ -469,25 +471,16 @@ def simulate(m0, model, length=15, p0_guess=1):
 def plot_path(m0_arr, model, length=15):
 
     fig, axs = plt.subplots(2, 2, figsize=(8, 5))
-
+    titles = ['$p_t$', '$m_t$', '$b_t$', '$R_t$']
+    
     for m0 in m0_arr:
-        paths = simulate(m0, msm, length=length)
-
-        axs[0, 0].plot(paths[0])
-        axs[0, 0].set_title('$p_t$')
-
-        axs[0, 1].plot(paths[1])
-        axs[0, 1].set_title('$m_t$')
-
-        axs[1, 0].plot(paths[2])
-        axs[1, 0].set_title('$b_t$')
-
-        axs[1, 1].plot(paths[3])
-        axs[1, 1].set_title('$R_t$')
-
-    axs[0, 1].hlines(model.m0_check, 0, length,
-                     color='r', linestyle='--')
-    axs[0, 1].text(length*0.8, model.m0_check*0.9, '$\check{m}_0$')
+        paths = simulate(m0, model, length=length)
+        for i, ax in enumerate(axs.flat):
+            ax.plot(paths[i])
+            ax.set_title(titles[i])
+    
+    axs[0, 1].hlines(model.m0_check, 0, length, color='r', linestyle='--')
+    axs[0, 1].text(length * 0.8, model.m0_check * 0.9, '$\check{m}_0$')
     plt.show()
 ```
 
@@ -508,4 +501,6 @@ Sargent and Wallace's **unpleasant monetarist arithmetic** {cite}`sargent1981`.
 
 * The lower is the post-open-market-operation money supply at time $0$, lower is the price level at time $0$.
 
-* An open  market operation that reduces the post-open-market-operation money supply at time $0$ also **lowers** the rate of return on money $R_u$ at times $t \geq T$ because it brings  a higher gross-of-interest government deficit that must be financed by printing money (i.e., levying an inflation tax) at time $t \geq T$.
+* An open  market operation that reduces the post-open-market-operation money supply at time $0$ also *lowers* the rate of return on money $R_u$ at times $t \geq T$ because it brings  a higher gross-of-interest government deficit that must be financed by printing money (i.e., levying an inflation tax) at time $t \geq T$.
+
+* $R$ is important in the context of maintaining monetary stability and addressing the consequences of increased inflation due to government deficits. Thus, a larger $R$ might be chosen to mitigate the negative impacts on the real rate of return caused by inflation.
