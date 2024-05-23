@@ -15,9 +15,9 @@ kernelspec:
 
 ## Overview
 
-This lecture studies stationary and dynamic **Laffer curves** in the inflation tax rate in a non-linear version of the model studied in this lecture {doc}`money_inflation`.
+We study stationary and dynamic *Laffer curves* in the inflation tax rate in a non-linear version of the model studied in this lecture {doc}`money_inflation`.
 
-This lecture uses the log-linear version of the demand function for money that  {cite}`Cagan`
+We use the log-linear version of the demand function for money that  {cite}`Cagan`
 used in his classic paper in place of the linear demand function used in this lecture {doc}`money_inflation`. 
 
 That change requires that we modify parts of our analysis.
@@ -26,7 +26,7 @@ In particular, our dynamic system is no longer linear in state variables.
 
 Nevertheless, the economic logic underlying an  analysis based on what we called ''method 2''  remains unchanged.  
 
-in this lecture we shall discover   qualitatively similar outcomes to those that we studied  in the lecture  {doc}`money_inflation`.
+We shall discover qualitatively similar outcomes to those that we studied  in the lecture  {doc}`money_inflation`.
 
 That lecture presented a linear version of the model in this lecture.  
 
@@ -35,17 +35,17 @@ As in that  lecture,  we discussed these topics:
 * an **inflation tax** that a government gathers by printing paper or electronic money
 * a dynamic **Laffer curve** in the inflation tax rate that has two stationary equilibria
 * perverse dynamics under rational expectations in which the system converges to the higher stationary inflation tax rate
-* a peculiar comparative stationary-state analysis connected with that stationary inflation rate that assert that inflation can be **reduced** by running **higher**  government deficits 
+* a peculiar comparative stationary-state analysis connected with that stationary inflation rate that assert that inflation can be *reduced* by running *higher*  government deficits 
 
 These outcomes will set the stage for the analysis of this lecture {doc}`laffer_adaptive` that studies a version of the present model that  uses a version of "adaptive expectations" instead of rational expectations.
 
 That lecture will show that 
 
 * replacing rational expectations with adaptive expectations leaves the two stationary inflation rates unchanged, but that $\ldots$ 
-* it reverse the pervese dynamics by making the **lower** stationary inflation rate the one to which the system typically converges
-* a more plausible comparative dynamic outcome emerges in which now inflation can be **reduced** by running **lower**  government deficits
+* it reverse the pervese dynamics by making the *lower* stationary inflation rate the one to which the system typically converges
+* a more plausible comparative dynamic outcome emerges in which now inflation can be *reduced* by running *lower*  government deficits
 
-## The Model
+## The model
 
 Let  
 
@@ -70,9 +70,9 @@ where $g$ is the part of government expenditures financed by printing money.
 
 **Remark:** Please notice that while equation {eq}`eq:mdemand` is linear in logs of the money supply and price level, equation {eq}`eq:msupply` is linear in levels. This will require adapting the equilibrium computation methods that we deployed in {doc}`money_inflation`.
 
-## Computing An Equilibrium Sequence 
+## Computing an equilibrium sequence 
 
-We'll deploy a method similar to **Method 2** used in {doc}`money_inflation`.  
+We'll deploy a method similar to *Method 2* used in {doc}`money_inflation`.  
 
 We'll take the time $t$ state vector to be $m_t, p_t$.
 
@@ -84,14 +84,7 @@ $$
 \lambda \equiv \frac{\alpha}{1+ \alpha}
 $$
 
-Let's rewrite equations {eq}`eq:msupply` and {eq}`eq:mdemand`, respectively,  as
-
-
-$$ 
-\exp(m_{t+1}) - \exp(m_t) = g \exp(p_t) 
-$$ (eq:msupply2)
-
-and 
+Let's rewrite equation {eq}`eq:mdemand`, respectively,  as
 
 $$
 p_t = (1-\lambda) m_{t+1} + \lambda p_{t+1} 
@@ -103,11 +96,11 @@ We'll summarize our algorithm with the following pseudo-code.
 
 * start for $m_0, p_0$ at time $t =0$
 
-* solve {eq}`eq:msupply2` for $m_{t+1}$
+* solve {eq}`eq:msupply` for $m_{t+1}$
 
 * solve {eq}`eq:mdemand2` for $p_{t+1} = \lambda^{-1} p_t + (1 - \lambda^{-1}) m_{t+1}$
 
-* compute $\pi_t = p_{t+1} - p_t$ and $\mu_t = m_{t+1} - m_t $
+* compute the inflation rate $\pi_t = p_{t+1} - p_t$ and growth of money supply $\mu_t = m_{t+1} - m_t $
 
 * iterate on $t$ to convergence of $\pi_t \rightarrow \overline \pi$ and $\mu_t \rightarrow \overline \mu$
   
@@ -115,22 +108,22 @@ It will turn out that
 
 * if they exist, limiting values $\overline \pi$ and $\overline \mu$ will be equal
 
-* if  limiting values exists, there are two possible limiting values, one high, one low
+* if  limiting values exist, there are two possible limiting values, one high, one low
 
 * for almost all initial log price levels $p_0$, the limiting $\overline \pi = \overline \mu$ is 
 the higher value
 
-* for each of the two possible limiting values $\bar \pi$ ,there is a unique initial log price level $p_0$ that implies that $\pi_t = \mu_t = \bar \mu$ for all  $t \geq 0$
+* for each of the two possible limiting values $\overline \pi$ ,there is a unique initial log price level $p_0$ that implies that $\pi_t = \mu_t = \overline \mu$ for all  $t \geq 0$
 
-  * this unique initial log price level solves $\log(\exp(m_0) + g \exp(p_0)) - p_0 = - \alpha \bar \pi $
+  * this unique initial log price level solves $\log(\exp(m_0) + g \exp(p_0)) - p_0 = - \alpha \overline \pi $
   
-  * the preceding equation for $p_0$ comes from $m_1 - p_0 = -  \alpha \bar \pi$
+  * the preceding equation for $p_0$ comes from $m_1 - p_0 = -  \alpha \overline \pi$
 
-## Limiting Values of Inflation Rate
+## Limiting values of inflation rate
 
-We can compute the two prospective limiting values for $\bar \pi$ by studying the steady-state Laffer curve.
+We can compute the two prospective limiting values for $\overline \pi$ by studying the steady-state Laffer curve.
 
-Thus, in a  **steady state** 
+Thus, in a  *steady state* 
 
 $$
 m_{t+1} - m_t = p_{t+1} - p_t =  x \quad \forall t ,
@@ -147,7 +140,7 @@ $$ (eq:steadypi)
 where we require that
 
 $$
-g \leq \max_{x: x \geq 0} \exp(-\alpha x) - \exp(-(1 + \alpha) x) ,  
+g \leq \max_{x \geq 0} \{\exp(-\alpha x) - \exp(-(1 + \alpha) x) \},  
 $$ (eq:revmax)
 
 so that it is feasible to finance $g$ by printing money.
@@ -159,7 +152,7 @@ The right side of {eq}`eq:steadypi` is the quantity  of time $t$ goods  that the
 Soon  we'll plot  the left and right sides of equation {eq}`eq:steadypi`.
 
 But first we'll write code that computes a steady-state
-$\bar \pi$.
+$\overline \pi$.
 
 Let's start by importing some  libraries
 
@@ -182,7 +175,7 @@ CaganLaffer = namedtuple('CaganLaffer',
                          "λ",
                          "g" ])
 
-# Create a CaganLaffer model
+# Create a Cagan Laffer model
 def create_model(α=0.5, m0=np.log(100), g=0.35):
     return CaganLaffer(α=α, m0=m0, λ=α/(1+α), g=g)
 
@@ -191,7 +184,7 @@ model = create_model()
 
 +++ {"user_expressions": []}
 
-Now we write code that computes steady-state $\bar \pi$s.
+Now we write code that computes steady-state $\overline \pi$s.
 
 ```{code-cell} ipython3
 # Define formula for π_bar
@@ -208,9 +201,9 @@ def solve_π_bar(model, x0):
 print(f'The two steady state of π are: {π_l, π_u}')
 ```
 
-We find two steady state $\bar \pi$ values
+We find two steady state $\overline \pi$ values.
 
-## Steady State Laffer Curve
+## Steady state Laffer curve
 
 The following figure plots the steady state Laffer curve together with the two stationary inflation rates.
 
@@ -237,7 +230,7 @@ def plot_laffer(model, πs):
 
     # Plot the function
     plt.plot(x_values, y_values, 
-            label=f'$exp((-{α})x) - exp(- (1- {α}) x)$')
+            label=f'Laffer curve')
     for π, label in zip(πs, ['$\pi_l$', '$\pi_u$']):
         plt.text(π, plt.gca().get_ylim()[0]*2, 
                  label, horizontalalignment='center',
@@ -248,16 +241,15 @@ def plot_laffer(model, πs):
     plt.xlabel('$\pi$')
     plt.ylabel('seigniorage')
     plt.legend()
-    plt.grid(True)
     plt.show()
 
 # Steady state Laffer curve
 plot_laffer(model, (π_l, π_u))
 ```
 
-## Associated Initial Price Levels
+## Associated initial price levels
 
-Now that we have our hands on the two possible steady states, we can compute two initial log price levels $p_0$, which as initial conditions, imply that $\pi_t = \bar \pi $ for all $t \geq 0$.
+Now that we have our hands on the two possible steady states, we can compute two initial log price levels $p_0$, which as initial conditions, imply that $\pi_t = \overline \pi $ for all $t \geq 0$.
 
 ```{code-cell} ipython3
 def solve_p0(p0, m0, α, g, π):
@@ -320,7 +312,7 @@ eq_g = lambda x: np.exp(-model.α * x) - np.exp(-(1 + model.α) * x)
 print('eq_g == g:', np.isclose(eq_g(m_seq[-1] - m_seq[-2]), model.g))
 ```
 
-## Slippery Side of Laffer Curve Dynamics
+## Slippery side of Laffer curve dynamics
 
 We are now equipped  to compute  time series starting from different $p_0$ settings, like those in  this  lecture {doc}`money_inflation`.
 
@@ -398,16 +390,16 @@ p0_bars = (p0_l, p0_u)
 draw_iterations(p0s, model, line_params, p0_bars, num_steps=20)
 ```
 
-Staring at the paths of price levels in  {numref}`p0_path_nonlin` reveals that almost all paths converge to the **higher** inflation tax rate displayed in the stationary state Laffer curve. displayed in figure  {numref}`laffer_curve_nonlinear`.  
+Staring at the paths of price levels in  {numref}`p0_path_nonlin` reveals that almost all paths converge to the *higher* inflation tax rate displayed in the stationary state Laffer curve. displayed in figure  {numref}`laffer_curve_nonlinear`.  
 
 Thus, we have reconfirmed  what we have  called the "perverse" dynamics under rational expectations in which the system converges to the higher of two possible stationary inflation tax rates.
 
 Those dynamics are "perverse" not only in the sense that they imply that the monetary and fiscal authorities that have chosen to finance government expenditures eventually impose a higher inflation tax than required to finance government expenditures, but because of the following "counterintuitive" situation that we can deduce by staring at the stationary state Laffer curve displayed in figure  {numref}`laffer_curve_nonlinear`:
 
-* the figure indicates that inflation can be **reduced** by running **higher**  government deficits, i.e., by raising more resources through  printing money. 
+* the figure indicates that inflation can be *reduced* by running *higher*  government deficits, i.e., by raising more resources through  printing money. 
 
 ```{note}
-The same qualitive outcomes prevail in this lecture {doc}`money_inflation` that studies a linear version of the model in this lecture`.
+The same qualitive outcomes prevail in this lecture {doc}`money_inflation` that studies a linear version of the model in this lecture.
 ```
 
 We discovered that 
