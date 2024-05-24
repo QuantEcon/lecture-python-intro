@@ -15,10 +15,10 @@ kernelspec:
 
 ## Overview
 
-We study stationary and dynamic *Laffer curves* in the inflation tax rate in a non-linear version of the model studied in this lecture {doc}`money_inflation`.
+We study stationary and dynamic *Laffer curves* in the inflation tax rate in a non-linear version of the model studied in {doc}`money_inflation`.
 
 We use the log-linear version of the demand function for money that  {cite}`Cagan`
-used in his classic paper in place of the linear demand function used in this lecture {doc}`money_inflation`. 
+used in his classic paper in place of the linear demand function used in {doc}`money_inflation`. 
 
 That change requires that we modify parts of our analysis.
 
@@ -26,7 +26,7 @@ In particular, our dynamic system is no longer linear in state variables.
 
 Nevertheless, the economic logic underlying an  analysis based on what we called ''method 2''  remains unchanged.  
 
-We shall discover qualitatively similar outcomes to those that we studied  in the lecture  {doc}`money_inflation`.
+We shall discover qualitatively similar outcomes to those that we studied  in {doc}`money_inflation`.
 
 That lecture presented a linear version of the model in this lecture.  
 
@@ -37,7 +37,7 @@ As in that  lecture,  we discussed these topics:
 * perverse dynamics under rational expectations in which the system converges to the higher stationary inflation tax rate
 * a peculiar comparative stationary-state analysis connected with that stationary inflation rate that assert that inflation can be *reduced* by running *higher*  government deficits 
 
-These outcomes will set the stage for the analysis of this lecture {doc}`laffer_adaptive` that studies a version of the present model that  uses a version of "adaptive expectations" instead of rational expectations.
+These outcomes will set the stage for the analysis of {doc}`laffer_adaptive` that studies a version of the present model that  uses a version of "adaptive expectations" instead of rational expectations.
 
 That lecture will show that 
 
@@ -314,7 +314,7 @@ print('eq_g == g:', np.isclose(eq_g(m_seq[-1] - m_seq[-2]), model.g))
 
 ## Slippery side of Laffer curve dynamics
 
-We are now equipped  to compute  time series starting from different $p_0$ settings, like those in  this  lecture {doc}`money_inflation`.
+We are now equipped  to compute  time series starting from different $p_0$ settings, like those in {doc}`money_inflation`.
 
 ```{code-cell} ipython3
 :tags: [hide-cell]
@@ -399,7 +399,7 @@ Those dynamics are "perverse" not only in the sense that they imply that the mon
 * the figure indicates that inflation can be *reduced* by running *higher*  government deficits, i.e., by raising more resources through  printing money. 
 
 ```{note}
-The same qualitive outcomes prevail in this lecture {doc}`money_inflation` that studies a linear version of the model in this lecture.
+The same qualitive outcomes prevail in {doc}`money_inflation` that studies a linear version of the model in this lecture.
 ```
 
 We discovered that 
@@ -407,9 +407,9 @@ We discovered that
 * all but one of the equilibrium paths converge to limits in which the higher of two possible stationary inflation tax prevails
 * there is a unique equilibrium path associated with "plausible" statements about how reductions in government deficits affect a stationary  inflation rate
 
-As in  this lecture {doc}`money_inflation`,
+As in {doc}`money_inflation`,
 on grounds of plausibility, we  again recommend  selecting the unique equilibrium that converges to the lower stationary inflation tax rate. 
 
-As we shall see, we  accepting  this recommendation is a key ingredient of outcomes of the "unpleasant arithmetic" that we describe in   lecture {doc}`unpleasant`.
+As we shall see, we  accepting  this recommendation is a key ingredient of outcomes of the "unpleasant arithmetic" that we describe in {doc}`unpleasant`.
 
-In lecture, {doc}`laffer_adaptive`, we shall explore how  {cite}`bruno1990seigniorage` and others justified our equilibrium selection in other ways.
+In {doc}`laffer_adaptive`, we shall explore how  {cite}`bruno1990seigniorage` and others justified our equilibrium selection in other ways.
