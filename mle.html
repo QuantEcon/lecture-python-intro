@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>43. Maximum Likelihood Estimation &#8212; A First Course in Quantitative Economics with Python</title>
+    <title>44. Maximum Likelihood Estimation &#8212; A First Course in Quantitative Economics with Python</title>
     <script src="https://unpkg.com/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://unpkg.com/tippy.js@6.3.1/dist/tippy-bundle.umd.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
@@ -56,19 +56,19 @@
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" href="_static/styles/quantecon-book-theme.css?digest=b09b2da44b9015b4fa76ea072fa2d8f7faee5492" type="text/css" />
@@ -81,9 +81,9 @@
     <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
-  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
 
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
@@ -123,8 +123,8 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="44. Troubleshooting" href="troubleshooting.html" />
-    <link rel="prev" title="42. Simple Linear Regression Model" href="simple_linear_regression.html" />
+    <link rel="next" title="45. Troubleshooting" href="troubleshooting.html" />
+    <link rel="prev" title="43. Simple Linear Regression Model" href="simple_linear_regression.html" />
 
 <!-- Normal Meta Tags -->
 <meta name="author" context="Thomas J. Sargent &amp; John Stachurski" />
@@ -172,16 +172,16 @@ const thebe_selector_output = ".output, .cell_output"
 
                         <nav id="bd-toc-nav" class="qe-page__toc-nav">
                             <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">43.1. Introduction</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">43.2. Maximum likelihood estimation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pareto-distribution">43.3. Pareto distribution</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-the-best-distribution">43.4. What is the best distribution?</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lognormal-distribution-for-the-right-hand-tail">43.4.1. Lognormal distribution for the right hand tail</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pareto-distribution-for-the-right-hand-tail">43.4.2. Pareto distribution for the right hand tail</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#so-what-is-the-best-distribution">43.4.3. So what is the best distribution?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">44.1. Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">44.2. Maximum likelihood estimation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pareto-distribution">44.3. Pareto distribution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-the-best-distribution">44.4. What is the best distribution?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lognormal-distribution-for-the-right-hand-tail">44.4.1. Lognormal distribution for the right hand tail</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pareto-distribution-for-the-right-hand-tail">44.4.2. Pareto distribution for the right hand tail</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#so-what-is-the-best-distribution">44.4.3. So what is the best distribution?</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">43.5. Exercises</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">44.5. Exercises</a></li>
 </ul>
                             <p class="logo">
                                 
@@ -241,7 +241,7 @@ const thebe_selector_output = ".output, .cell_output"
                     <div>
                         
   <section class="tex2jax_ignore mathjax_ignore" id="maximum-likelihood-estimation">
-<h1><span class="section-number">43. </span>Maximum Likelihood Estimation<a class="headerlink" href="#maximum-likelihood-estimation" title="Permalink to this heading">#</a></h1>
+<h1><span class="section-number">44. </span>Maximum Likelihood Estimation<a class="headerlink" href="#maximum-likelihood-estimation" title="Permalink to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">lognorm</span><span class="p">,</span> <span class="n">pareto</span><span class="p">,</span> <span class="n">expon</span>
@@ -255,7 +255,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <section id="introduction">
-<h2><span class="section-number">43.1. </span>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">44.1. </span>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
 <p>Consider a situation where a policymaker is trying to estimate how much revenue
 a proposed wealth tax will raise.</p>
 <p>The proposed tax is</p>
@@ -361,7 +361,7 @@ very high wealth.</p>
 <p>Our plan is to assume that wealth of each individual is a draw from a distribution with density <span class="math notranslate nohighlight">\(f\)</span>.</p>
 <p>If we obtain an estimate of <span class="math notranslate nohighlight">\(f\)</span> we can then approximate <span class="math notranslate nohighlight">\(T\)</span> as follows:</p>
 <div class="math notranslate nohighlight" id="equation-eq-est-rev">
-<span class="eqno">(43.1)<a class="headerlink" href="#equation-eq-est-rev" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(44.1)<a class="headerlink" href="#equation-eq-est-rev" title="Permalink to this equation">#</a></span>\[
     T = \sum_{i=1}^{N} h(w_i) 
       = N \frac{1}{N} \sum_{i=1}^{N} h(w_i) 
       \approx N \int_{0}^{\infty} h(w)f(w) dw
@@ -370,7 +370,7 @@ very high wealth.</p>
 <p>The problem now is: how do we estimate <span class="math notranslate nohighlight">\(f\)</span>?</p>
 </section>
 <section id="id1">
-<h2><span class="section-number">43.2. </span>Maximum likelihood estimation<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">44.2. </span>Maximum likelihood estimation<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
 <p><a class="reference external" href="https://en.wikipedia.org/wiki/Maximum_likelihood_estimation">Maximum likelihood estimation</a>
 is a method of estimating an unknown distribution.</p>
 <p>Maximum likelihood estimation has two steps:</p>
@@ -502,7 +502,7 @@ let’s compute them for our wealth sample.</p>
 </div>
 </div>
 <p>Our estimated lognormal distribution appears to be a reasonable fit for the overall data.</p>
-<p>We now use <a class="reference internal" href="#equation-eq-est-rev">(43.1)</a> to calculate total revenue.</p>
+<p>We now use <a class="reference internal" href="#equation-eq-est-rev">(44.1)</a> to calculate total revenue.</p>
 <p>We will compute the integral using numerical integration via SciPy’s
 <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.quad.html">quad</a>
 function</p>
@@ -533,7 +533,7 @@ function</p>
 times as large.)</p>
 </section>
 <section id="pareto-distribution">
-<h2><span class="section-number">43.3. </span>Pareto distribution<a class="headerlink" href="#pareto-distribution" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">44.3. </span>Pareto distribution<a class="headerlink" href="#pareto-distribution" title="Permalink to this heading">#</a></h2>
 <p>We mentioned above that using maximum likelihood estimation requires us to make
 a prior assumption of the underlying distribution.</p>
 <p>Previously we assumed that the distribution is lognormal.</p>
@@ -627,7 +627,7 @@ with parameters <span class="math notranslate nohighlight">\(b\)</span> and <spa
 good, so we can probably reject it.</p>
 </section>
 <section id="what-is-the-best-distribution">
-<h2><span class="section-number">43.4. </span>What is the best distribution?<a class="headerlink" href="#what-is-the-best-distribution" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">44.4. </span>What is the best distribution?<a class="headerlink" href="#what-is-the-best-distribution" title="Permalink to this heading">#</a></h2>
 <p>There is no “best” distribution — every choice we make is an assumption.</p>
 <p>All we can do is try to pick a distribution that fits the data well.</p>
 <p>The plots above suggested that the lognormal distribution is optimal.</p>
@@ -667,7 +667,7 @@ good, so we can probably reject it.</p>
 </div>
 <p>Now let’s try fitting some distributions to this data.</p>
 <section id="lognormal-distribution-for-the-right-hand-tail">
-<h3><span class="section-number">43.4.1. </span>Lognormal distribution for the right hand tail<a class="headerlink" href="#lognormal-distribution-for-the-right-hand-tail" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">44.4.1. </span>Lognormal distribution for the right hand tail<a class="headerlink" href="#lognormal-distribution-for-the-right-hand-tail" title="Permalink to this heading">#</a></h3>
 <p>Let’s start with the lognormal distribution</p>
 <p>We estimate the parameters again and plot the density against our data.</p>
 <div class="cell docutils container">
@@ -695,7 +695,7 @@ good, so we can probably reject it.</p>
 it is not a good fit for the right hand tail.</p>
 </section>
 <section id="pareto-distribution-for-the-right-hand-tail">
-<h3><span class="section-number">43.4.2. </span>Pareto distribution for the right hand tail<a class="headerlink" href="#pareto-distribution-for-the-right-hand-tail" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">44.4.2. </span>Pareto distribution for the right hand tail<a class="headerlink" href="#pareto-distribution-for-the-right-hand-tail" title="Permalink to this heading">#</a></h3>
 <p>Let’s now assume the truncated dataset has a Pareto distribution.</p>
 <p>We estimate the parameters again and plot the density against our data.</p>
 <div class="cell docutils container">
@@ -721,7 +721,7 @@ it is not a good fit for the right hand tail.</p>
 <p>The Pareto distribution is a better fit for the right hand tail of our dataset.</p>
 </section>
 <section id="so-what-is-the-best-distribution">
-<h3><span class="section-number">43.4.3. </span>So what is the best distribution?<a class="headerlink" href="#so-what-is-the-best-distribution" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">44.4.3. </span>So what is the best distribution?<a class="headerlink" href="#so-what-is-the-best-distribution" title="Permalink to this heading">#</a></h3>
 <p>As we said above, there is no “best” distribution — each choice is an
 assumption.</p>
 <p>We just have to test what we think are reasonable distributions.</p>
@@ -732,10 +732,10 @@ they have completed these lectures).</p>
 </section>
 </section>
 <section id="exercises">
-<h2><span class="section-number">43.5. </span>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">44.5. </span>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h2>
 <div class="exercise admonition" id="mle_ex1">
 
-<p class="admonition-title"><span class="caption-number">Exercise 43.1 </span></p>
+<p class="admonition-title"><span class="caption-number">Exercise 44.1 </span></p>
 <section id="exercise-content">
 <p>Suppose we assume wealth is <a class="reference external" href="https://en.wikipedia.org/wiki/Exponential_distribution">exponentially</a>
 distributed with parameter <span class="math notranslate nohighlight">\(\lambda &gt; 0\)</span>.</p>
@@ -752,7 +752,7 @@ distributed with parameter <span class="math notranslate nohighlight">\(\lambda 
 </div>
 <div class="solution dropdown admonition" id="mle-solution-1">
 
-<p class="admonition-title">Solution to<a class="reference internal" href="#mle_ex1"> Exercise 43.1</a></p>
+<p class="admonition-title">Solution to<a class="reference internal" href="#mle_ex1"> Exercise 44.1</a></p>
 <section id="solution-content">
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -785,14 +785,14 @@ distributed with parameter <span class="math notranslate nohighlight">\(\lambda 
 </div>
 <div class="exercise admonition" id="mle_ex2">
 
-<p class="admonition-title"><span class="caption-number">Exercise 43.2 </span></p>
+<p class="admonition-title"><span class="caption-number">Exercise 44.2 </span></p>
 <section id="exercise-content">
 <p>Plot the exponential distribution against the sample and check if it is a good fit or not.</p>
 </section>
 </div>
 <div class="solution dropdown admonition" id="mle-solution-3">
 
-<p class="admonition-title">Solution to<a class="reference internal" href="#mle_ex2"> Exercise 43.2</a></p>
+<p class="admonition-title">Solution to<a class="reference internal" href="#mle_ex2"> Exercise 44.2</a></p>
 <section id="solution-content">
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1066,6 +1066,11 @@ distributed with parameter <span class="math notranslate nohighlight">\(\lambda 
    29. Laffer Curves  with Adaptive Expectations
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ak2.html">
+   30. Transitions in an Overlapping Generations Model
+  </a>
+ </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
@@ -1075,22 +1080,22 @@ distributed with parameter <span class="math notranslate nohighlight">\(\lambda 
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="ar1_processes.html">
-   30. AR1 Processes
+   31. AR1 Processes
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="markov_chains_I.html">
-   31. Markov Chains: Basic Concepts
+   32. Markov Chains: Basic Concepts
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="markov_chains_II.html">
-   32. Markov Chains: Irreducibility and Ergodicity
+   33. Markov Chains: Irreducibility and Ergodicity
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="time_series_with_matrices.html">
-   33. Univariate Time Series with Matrix Algebra
+   34. Univariate Time Series with Matrix Algebra
   </a>
  </li>
 </ul>
@@ -1102,12 +1107,12 @@ distributed with parameter <span class="math notranslate nohighlight">\(\lambda 
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="lp_intro.html">
-   34. Linear Programming
+   35. Linear Programming
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="short_path.html">
-   35. Shortest Paths
+   36. Shortest Paths
   </a>
  </li>
 </ul>
@@ -1119,22 +1124,22 @@ distributed with parameter <span class="math notranslate nohighlight">\(\lambda 
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="eigen_II.html">
-   36. The Perron-Frobenius Theorem
+   37. The Perron-Frobenius Theorem
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="input_output.html">
-   37. Input-Output Models
+   38. Input-Output Models
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="lake_model.html">
-   38. A Lake Model of Employment
+   39. A Lake Model of Employment
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="networks.html">
-   39. Networks
+   40. Networks
   </a>
  </li>
 </ul>
@@ -1146,12 +1151,12 @@ distributed with parameter <span class="math notranslate nohighlight">\(\lambda 
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="supply_demand_multiple_goods.html">
-   40. Supply and Demand with Many Goods
+   41. Supply and Demand with Many Goods
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="supply_demand_heterogeneity.html">
-   41. Market Equilibrium with Heterogeneity
+   42. Market Equilibrium with Heterogeneity
   </a>
  </li>
 </ul>
@@ -1163,12 +1168,12 @@ distributed with parameter <span class="math notranslate nohighlight">\(\lambda 
 <ul class="current nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="simple_linear_regression.html">
-   42. Simple Linear Regression Model
+   43. Simple Linear Regression Model
   </a>
  </li>
  <li class="toctree-l1 current active active">
   <a class="current reference internal" href="#">
-   43. Maximum Likelihood Estimation
+   44. Maximum Likelihood Estimation
   </a>
  </li>
 </ul>
@@ -1180,17 +1185,17 @@ distributed with parameter <span class="math notranslate nohighlight">\(\lambda 
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="troubleshooting.html">
-   44. Troubleshooting
+   45. Troubleshooting
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="zreferences.html">
-   45. References
+   46. References
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="status.html">
-   46. Execution Statistics
+   47. Execution Statistics
   </a>
  </li>
 </ul>
