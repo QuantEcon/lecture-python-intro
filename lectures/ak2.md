@@ -218,10 +218,10 @@ $$
 To maximize profits a firm equates marginal products to rental rates:
 
 $$
-\begin{align}
+\begin{aligneded}
 W_t & = (1-\alpha) K_t^\alpha L_t^{-\alpha} \\
 r_t & = \alpha K_t^\alpha L_t^{1-\alpha}
-\end{align}
+\end{aligneded}
 $$  (eq:firmfonc)
 
 Output can  be consumed either by old people or young people; or sold to young people who use it  to augment the capital stock;  or  sold to  the government for  uses that do not generate utility for the people in the model  (i.e., ``it is thrown into the ocean'').  
@@ -274,10 +274,10 @@ $$ (eq:utilfn)
 subject to the following  budget constraints at times $t$ and $t+1$:
 
 $$
-\begin{align}
+\begin{aligned}
 C_{yt} + A_{t+1} & =  W_t (1 - \tau_t) - \delta_{yt} \\
 C_{ot+1} & = (1+ r_{t+1} (1 - \tau_{t+1}))A_{t+1} - \delta_{ot}
-\end{align}
+\end{aligned}
 $$ (eq:twobudgetc)
 
 
@@ -290,9 +290,9 @@ $$ (eq:onebudgetc)
 To solve the young person's choice problem, form a Lagrangian 
 
 $$ 
-\begin{align}
+\begin{aligned}
 {\mathcal L}  & = C_{yt}^\beta C_{o,t+1}^{1-\beta} \\ &  + \lambda \Bigl[ C_{yt} + \frac{C_{ot+1}}{1 + r_{t+1}(1 - \tau_{t+1})} - W_t (1 - \tau_t) + \delta_{yt} + \frac{\delta_{ot}}{1 + r_{t+1}(1 - \tau_{t+1})}\Bigr],
-\end{align}
+\end{aligned}
 $$ (eq:lagC)
 
 where $\lambda$ is a Lagrange multiplier on the intertemporal budget constraint {eq}`eq:onebudgetc`.
@@ -302,10 +302,10 @@ After several lines of algebra, the intertemporal budget constraint {eq}`eq:oneb
 imply that an optimal consumption plan satisfies
 
 $$
-\begin{align}
+\begin{aligned}
 C_{yt} & = \beta \Bigl[ W_t (1 - \tau_t) - \delta_{yt} - \frac{\delta_{ot}}{1 + r_{t+1}(1 - \tau_{t+1})}\Bigr] \\
 \frac{C_{0t+1}}{1 + r_{t+1}(1-\tau_{t+1})  } & = (1-\beta)   \Bigl[ W_t (1 - \tau_t) - \delta_{yt} - \frac{\delta_{ot}}{1 + r_{t+1}(1 - \tau_{t+1})}\Bigr] 
-\end{align}
+\end{aligned}
 $$ (eq:optconsplan)
 
 The first-order condition for minimizing Lagrangian {eq}`eq:lagC` with respect to the Lagrange multipler $\lambda$ recovers the budget constraint {eq}`eq:onebudgetc`,
@@ -351,10 +351,10 @@ As our special case of {eq}`eq:optconsplan`, we compute the following consumptio
 
 
 $$
-\begin{align}
+\begin{aligned}
 C_{yt} & = \beta (1 - \tau_t) W_t \\
 A_{t+1} &= (1-\beta) (1- \tau_t) W_t
-\end{align}
+\end{aligned}
 $$
 
 Using  {eq}`eq:firmfonc` and  $A_t = K_t + D_t$, we obtain the following closed form transition law for capital:
@@ -368,20 +368,20 @@ $$ (eq:Klawclosed)
 From {eq}`eq:Klawclosed` and the government budget constraint {eq}`eq:govbudgetsequence`, we compute **time-invariant** or **steady state values**   $\hat K, \hat D, \hat T$:
 
 $$
-\begin{align}
+\begin{aligned}
 \hat{K} &=\hat{K}\left(1-\hat{\tau}\right)\left(1-\alpha\right)\left(1-\beta\right) - \hat{D} \\
 \hat{D} &= (1 + \hat{r})  \hat{D} + \hat{G} - \hat{T} \\
 \hat{T} &= \hat{\tau} \hat{Y} + \hat{\tau} \hat{r} \hat{D} .
-\end{align}
+\end{aligned}
 $$ (eq:steadystates)
 
 These imply
 
 $$
-\begin{align}
+\begin{aligned}
 \hat{K} &= \left[\left(1-\hat{\tau}\right)\left(1-\alpha\right)\left(1-\beta\right)\right]^{\frac{1}{1-\alpha}} \\
 \hat{\tau} &= \frac{\hat{G} + \hat{r} \hat{D}}{\hat{Y} + \hat{r} \hat{D}}
-\end{align}
+\end{aligned}
 $$
 
 Let's take an example in which
@@ -392,11 +392,11 @@ Let's take an example in which
 Our formulas for steady-state values  tell us that
 
 $$
-\begin{align}
+\begin{aligned}
 \hat{D} &= 0 \\
 \hat{G} &= 0.15 \hat{Y} \\
 \hat{\tau} &= 0.15 \\
-\end{align}
+\end{aligned}
 $$
 
 
@@ -694,12 +694,12 @@ To illustrate the power of `ClosedFormTrans`, let's first experiment with the fo
 The following equations completely characterize the equilibrium transition path originating from the initial steady state
 
 $$
-\begin{align}
+\begin{aligned}
 K_{t+1} &= K_{t}^{\alpha}\left(1-\tau_{t}\right)\left(1-\alpha\right)\left(1-\beta\right) - \bar{D} \\
 \tau_{0} &= (1-\frac{1}{3}) \hat{\tau} \\
 \bar{D} &= \hat{G} - \tau_0\hat{Y} \\
 \quad\tau_{t} & =\frac{\hat{G}+r_{t} \bar{D}}{\hat{Y}+r_{t} \bar{D}}
-\end{align}
+\end{aligned}
 $$
 
 We can simulate the transition  for $20$ periods, after which the economy will be close to a new steady state.
