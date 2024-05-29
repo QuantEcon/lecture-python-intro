@@ -37,6 +37,7 @@ Their model of two-period lived overlapping generations is a useful starting poi
 * it is good laboratory for studying connections between government tax and subsidy programs and for policies for issuing and servicing government debt
 * some interesting experiments involving transitions from one steady state to another can be computed by hand
 * it is a good setting for illustrating  a **shooting method** for solving a system of non-linear difference equations with  initial and terminal condition
+ 
  ```{note}
 Auerbach and Kotlikoff use computer code to calculate transition paths for their models with long-lived people.
 ``` 
@@ -218,10 +219,10 @@ $$
 To maximize profits a firm equates marginal products to rental rates:
 
 $$
-\begin{aligneded}
+\begin{aligned}
 W_t & = (1-\alpha) K_t^\alpha L_t^{-\alpha} \\
 r_t & = \alpha K_t^\alpha L_t^{1-\alpha}
-\end{aligneded}
+\end{aligned}
 $$  (eq:firmfonc)
 
 Output can  be consumed either by old people or young people; or sold to young people who use it  to augment the capital stock;  or  sold to  the government for  uses that do not generate utility for the people in the model  (i.e., ``it is thrown into the ocean'').  
@@ -493,7 +494,9 @@ init_ss = np.array([K_hat, Y_hat, Cy_hat, Co_hat,     # quantities
 
 ### Transitions
 
+<!--
 %<font color='red'>Zejin: I tried to edit the following part to describe the fiscal policy %experiment and the objects we are interested in computing. </font>
+-->
 
 We have computed a steady state in which the government policy sequences are each constant over time.
 
