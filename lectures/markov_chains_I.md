@@ -486,7 +486,7 @@ The following code illustrates
 
 ```{code-cell} ipython3
 mc = qe.MarkovChain(P, state_values=('unemployed', 'employed'))
-mc.simulate(ts_length=4, init='employed'). # Start at employed initial state
+mc.simulate(ts_length=4, init='employed')  # Start at employed initial state
 ```
 
 ```{code-cell} ipython3
