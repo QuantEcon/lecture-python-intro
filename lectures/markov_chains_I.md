@@ -82,15 +82,14 @@ In other words,
 
 If $P$ is a stochastic matrix, then so is the $k$-th power $P^k$ for all $k \in \mathbb N$.
 
-Checking this in {ref}`the last exercise <mc1_ex_3>` below.
+You are asked to check this in {ref}`an exercise <mc1_ex_3>` below.
 
 
 ### Markov chains
+
 Now we can introduce Markov chains.
 
 Before defining a Markov chain rigorously, we'll  give some examples.
-
-(Among other things, defining a Markov chain will clarify a  connection between **stochastic matrices** and **Markov chains**.)
 
 
 (mc_eg2)=
@@ -110,7 +109,7 @@ Here there are three **states**
 * "mr" represents mild recession
 * "sr" represents severe recession
 
-The arrows represent **transition probabilities** over one month.
+The arrows represent transition probabilities over one month.
 
 For example, the arrow from mild recession to normal growth has 0.145 next to it.
 
@@ -120,7 +119,7 @@ The arrow from normal growth back to normal growth tells us that there is a
 97% probability of transitioning from normal growth to normal growth (staying
 in the same state).
 
-Note that these are *conditional* probabilities --- the probability of
+Note that these are conditional probabilities --- the probability of
 transitioning from one state to another (or staying at the same one) conditional on the
 current state.
 
