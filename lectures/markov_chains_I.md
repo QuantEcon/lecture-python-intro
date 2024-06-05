@@ -353,7 +353,7 @@ By construction, the resulting process satisfies {eq}`mpp`.
 ```{index} single: Markov Chains; Simulation
 ```
 
-A good way to study Markov chains is to simulate it.
+A good way to study Markov chains is to simulate them.
 
 Let's start by doing this ourselves and then look at libraries that can help
 us.
