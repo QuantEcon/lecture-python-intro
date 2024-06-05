@@ -82,15 +82,14 @@ In other words,
 
 If $P$ is a stochastic matrix, then so is the $k$-th power $P^k$ for all $k \in \mathbb N$.
 
-Checking this in {ref}`the first exercises <mc1_ex_3>` below.
+You are asked to check this in {ref}`an exercise <mc1_ex_3>` below.
 
 
 ### Markov chains
+
 Now we can introduce Markov chains.
 
 Before defining a Markov chain rigorously, we'll  give some examples.
-
-(Among other things, defining a Markov chain will clarify a  connection between **stochastic matrices** and **Markov chains**.)
 
 
 (mc_eg2)=
@@ -110,7 +109,7 @@ Here there are three **states**
 * "mr" represents mild recession
 * "sr" represents severe recession
 
-The arrows represent **transition probabilities** over one month.
+The arrows represent transition probabilities over one month.
 
 For example, the arrow from mild recession to normal growth has 0.145 next to it.
 
@@ -120,7 +119,7 @@ The arrow from normal growth back to normal growth tells us that there is a
 97% probability of transitioning from normal growth to normal growth (staying
 in the same state).
 
-Note that these are *conditional* probabilities --- the probability of
+Note that these are conditional probabilities --- the probability of
 transitioning from one state to another (or staying at the same one) conditional on the
 current state.
 
@@ -258,14 +257,12 @@ Here is a visualization, with darker colors indicating higher probability.
 :tags: [hide-input]
 
 G = nx.MultiDiGraph()
-edge_ls = []
-label_dict = {}
 
 for start_idx, node_start in enumerate(nodes):
     for end_idx, node_end in enumerate(nodes):
         value = P[start_idx][end_idx]
         if value != 0:
-            G.add_edge(node_start,node_end, weight=value, len=100)
+            G.add_edge(node_start,node_end, weight=value)
 
 pos = nx.spring_layout(G, seed=10)
 fig, ax = plt.subplots()
@@ -273,7 +270,7 @@ nx.draw_networkx_nodes(G, pos, node_size=600, edgecolors='black', node_color='wh
 nx.draw_networkx_labels(G, pos)
 
 arc_rad = 0.2
-curved_edges = [edge for edge in G.edges()]
+
 edges = nx.draw_networkx_edges(G, pos, ax=ax, connectionstyle=f'arc3, rad = {arc_rad}', edge_cmap=cm.Blues, width=2,
     edge_color=[G[nodes[0]][nodes[1]][0]['weight'] for nodes in G.edges])
 
@@ -317,7 +314,7 @@ This means that, for any date $t$ and any state $y \in S$,
 = \mathbb P \{ X_{t+1}  = y \,|\, X_t, X_{t-1}, \ldots \}
 ```
 
-This means that once we know the current state $X_t$,  adding knowledge of earlier states $X_{t-1}, X_{t-2}$ provides no additional information about probabilities of **future** states.  
+This means that once we know the current state $X_t$,  adding knowledge of earlier states $X_{t-1}, X_{t-2}$ provides no additional information about probabilities of *future* states.  
 
 Thus, the dynamics of a Markov chain are fully determined by the set of **conditional probabilities**
 
@@ -356,7 +353,7 @@ By construction, the resulting process satisfies {eq}`mpp`.
 ```{index} single: Markov Chains; Simulation
 ```
 
-A good way to study a Markov chains is to simulate it.
+A good way to study Markov chains is to simulate them.
 
 Let's start by doing this ourselves and then look at libraries that can help
 us.
@@ -434,7 +431,7 @@ P = [[0.4, 0.6],
 Here's a short time series.
 
 ```{code-cell} ipython3
-mc_sample_path(P, ψ_0=[1.0, 0.0], ts_length=10)
+mc_sample_path(P, ψ_0=(1.0, 0.0), ts_length=10)
 ```
 
 It can be shown that for a long series drawn from `P`, the fraction of the
@@ -448,7 +445,7 @@ $X_0$ is drawn.
 The following code illustrates this
 
 ```{code-cell} ipython3
-X = mc_sample_path(P, ψ_0=[0.1, 0.9], ts_length=1_000_000)
+X = mc_sample_path(P, ψ_0=(0.1, 0.9), ts_length=1_000_000)
 np.mean(X == 0)
 ```
 
@@ -488,11 +485,11 @@ The following code illustrates
 
 ```{code-cell} ipython3
 mc = qe.MarkovChain(P, state_values=('unemployed', 'employed'))
-mc.simulate(ts_length=4, init='employed')
+mc.simulate(ts_length=4, init='employed')  # Start at employed initial state
 ```
 
 ```{code-cell} ipython3
-mc.simulate(ts_length=4, init='unemployed')
+mc.simulate(ts_length=4, init='unemployed')  # Start at unemployed initial state
 ```
 
 ```{code-cell} ipython3
@@ -570,7 +567,7 @@ This is very important, so let's repeat it
 X_0 \sim \psi_0 \quad \implies \quad X_m \sim \psi_0 P^m
 ```
 
-The general rule is that post-multiplying a distribution by $P^m$ shifts it forward $m$ units of time.
+The general rule is that postmultiplying a distribution by $P^m$ shifts it forward $m$ units of time.
 
 Hence the following is also valid.
 
@@ -625,12 +622,12 @@ $$
 
 
 (mc_eg1-1)=
-### Example 2: Cross-sectional distributions
+### Example 2: cross-sectional distributions
 
 The distributions we have been studying can be viewed either
 
 1. as probabilities or
-1. as cross-sectional frequencies that the Law of Large Numbers leads us to anticipate for large samples.
+1. as cross-sectional frequencies that the law of large numbers leads us to anticipate for large samples.
 
 To illustrate, recall our model of employment/unemployment dynamics for a given worker {ref}`discussed above <mc_eg1>`.
 
@@ -641,9 +638,9 @@ workers' processes.
 
 Let $\psi_t$ be the current *cross-sectional* distribution over $\{ 0, 1 \}$.
 
-The cross-sectional distribution records fractions of workers employed and unemployed at a given moment t.
+The cross-sectional distribution records fractions of workers employed and unemployed at a given moment $t$.
 
-* For example, $\psi_t(0)$ is the unemployment rate.
+* For example, $\psi_t(0)$ is the unemployment rate at time $t$.
 
 What will the cross-sectional distribution be in 10 periods hence?
 
@@ -651,11 +648,11 @@ The answer is $\psi_t P^{10}$, where $P$ is the stochastic matrix in
 {eq}`p_unempemp`.
 
 This is because each worker's state evolves according to $P$, so
-$\psi_t P^{10}$ is a marginal distribution  for a single randomly selected
+$\psi_t P^{10}$ is a [marginal distribution](https://en.wikipedia.org/wiki/Marginal_distribution)  for a single randomly selected
 worker.
 
-But when the sample is large, outcomes and probabilities are roughly equal (by an application of the Law
-of Large Numbers).
+But when the sample is large, outcomes and probabilities are roughly equal (by an application of the law
+of large numbers).
 
 So for a very large (tending to infinite) population,
 $\psi_t P^{10}$ also represents  fractions of workers in
@@ -688,11 +685,11 @@ Such distributions are called **stationary** or **invariant**.
 (mc_stat_dd)=
 Formally, a distribution $\psi^*$ on $S$ is called **stationary** for $P$ if $\psi^* P = \psi^* $.
 
-Notice that, post-multiplying by $P$, we have $\psi^* P^2 = \psi^* P = \psi^*$.
+Notice that, postmultiplying by $P$, we have $\psi^* P^2 = \psi^* P = \psi^*$.
 
-Continuing in the same way leads to $\psi^* = \psi^* P^t$ for all $t$.
+Continuing in the same way leads to $\psi^* = \psi^* P^t$ for all $t \ge 0$.
 
-This tells us an important fact: If the distribution of $\psi_0$ is a stationary distribution, then $\psi_t$ will have this same distribution for all $t$.
+This tells us an important fact: If the distribution of $\psi_0$ is a stationary distribution, then $\psi_t$ will have this same distribution for all $t \ge 0$.
 
 The following theorem is proved in Chapter 4 of {cite}`sargent2023economic` and numerous other sources.
 
@@ -767,7 +764,7 @@ For example, we have the following result
 
 (strict_stationary)=
 ```{prf:theorem}
-Theorem: If there exists an integer $m$ such that all entries of $P^m$ are
+If there exists an integer $m$ such that all entries of $P^m$ are
 strictly positive, with unique stationary distribution $\psi^*$, then
 
 $$
@@ -801,11 +798,10 @@ First, we write a function to iterate the sequence of distributions for `ts_leng
 def iterate_ψ(ψ_0, P, ts_length):
     n = len(P)
     ψ_t = np.empty((ts_length, n))
-    ψ = ψ_0
-    for t in range(ts_length):
-        ψ_t[t] = ψ
-        ψ = ψ @ P
-    return np.array(ψ_t)
+    ψ_t[0 ]= ψ_0
+    for t in range(1, ts_length):
+        ψ_t[t] = ψ_t[t-1] @ P
+    return ψ_t
 ```
 
 Now we plot the sequence
@@ -814,12 +810,7 @@ Now we plot the sequence
 ψ_0 = (0.0, 0.2, 0.8)        # Initial condition
 
 fig = plt.figure()
-ax = fig.add_subplot(111, projection='3d')
-
-ax.set(xlim=(0, 1), ylim=(0, 1), zlim=(0, 1),
-       xticks=(0.25, 0.5, 0.75),
-       yticks=(0.25, 0.5, 0.75),
-       zticks=(0.25, 0.5, 0.75))
+ax = fig.add_subplot(projection='3d')
 
 ψ_t = iterate_ψ(ψ_0, P, 20)
 
@@ -852,13 +843,9 @@ First, we write a function to draw initial distributions $\psi_0$ of size `num_d
 ```{code-cell} ipython3
 def generate_initial_values(num_distributions):
     n = len(P)
-    ψ_0s = np.empty((num_distributions, n))
-
-    for i in range(num_distributions):
-        draws = np.random.randint(1, 10_000_000, size=n)
-
-        # Scale them so that they add up into 1
-        ψ_0s[i,:] = np.array(draws/sum(draws))
+    
+    draws = np.random.randint(1, 10_000_000, size=(num_distributions,n))
+    ψ_0s = draws/draws.sum(axis=1)[:, None]
 
     return ψ_0s
 ```
@@ -917,7 +904,7 @@ The convergence to $\psi^*$ holds for different initial distributions.
 
 
 
-#### Example: Failure of convergence
+#### Example: failure of convergence
 
 
 In the case of a periodic chain, with
@@ -1077,7 +1064,7 @@ Solution 1:
 
 ```
 
-Since the matrix is everywhere positive, there is a unique stationary distribution.
+Since the matrix is everywhere positive, there is a unique stationary distribution $\psi^*$ such that $\psi_t\to \psi^*$ as $t\to \infty$.
 
 Solution 2:
 
