@@ -15,15 +15,35 @@ kernelspec:
 
 ## Overview
 
-In this section we 
+In the lecture {doc}`long_run_growth` we studied how GDP per capita has changed
+for certain countries and regions.
 
-* provide motivation for the techniques deployed in the lecture and
-* import code libraries needed for our work.
+Per capital GDP is important because it gives us an idea of average income for
+households in a given country.
+
+However, when we study income and wealth, averages are only part of the story.
+
+For example, imagine two societies, each with one million people, where
+
+* in the first society, the yearly income of one man is $100,000,000 and the income of the
+  others is zero
+* in the second society, the yearly income of everyone is $100
+
+These countries have the same income per capita (average income is $100) but the lives of the people will be very different (e.g., almost everyone in the first society is
+starving, even though one person is fabulously rich).
+
+The example above suggests that we should go beyond simple averages when we study income and wealth.
+
+This leads us to the topic of economic inequality, which examines how income and wealth (and other quantities) are distributed across a population.
+
+In this lecture we study inequality, beginning with measures of inequality and
+then applying them to wealth and income data from the US and other countries.
+
+
 
 ### Some history
 
-Many historians argue that inequality played a key role in the fall of the
-Roman Republic.
+Many historians argue that inequality played a role in the fall of the Roman Republic (see, e.g., {cite}`levitt2019did`).
 
 Following the defeat of Carthage and the invasion of Spain, money flowed into
 Rome from across the empire, greatly enriched those in power.
@@ -31,30 +51,24 @@ Rome from across the empire, greatly enriched those in power.
 Meanwhile, ordinary citizens were taken from their farms to fight for long
 periods, diminishing their wealth.
 
-The resulting growth in inequality caused political turmoil that shook the
-foundations of the republic. 
+The resulting growth in inequality was a driving factor behind political turmoil that shook the foundations of the republic. 
 
-Eventually, the Roman Republic gave way to a series of dictatorships, starting
-with Octavian (Augustus) in 27 BCE.
+Eventually, the Roman Republic gave way to a series of dictatorships, starting with [Octavian](https://en.wikipedia.org/wiki/Augustus) (Augustus) in 27 BCE.
 
-This history is fascinating in its own right, and we can see some
-parallels with certain countries in the modern world.
+This history tells us that inequality matters, in the sense that it can drive major world events. 
 
-Let's now look at inequality in some of these countries.
+There are other reasons that inequality might matter, such as how it affects
+human welfare.
+
+With this motivation, let us start to think about what inequality is and how we
+can quantify and analyze it.
 
 
 ### Measurement
 
+In politics and popular media, the word "inequality" is often used quite loosely, without any firm definition.
 
-Political debates often revolve around inequality.
-
-One problem with these debates is that inequality is often poorly defined.
-
-Moreover, debates on inequality are often tied to political beliefs.
-
-This is dangerous for economists because allowing political beliefs to shape our findings reduces objectivity.
-
-To bring a truly scientific perspective to the topic of inequality we must start with careful definitions.
+To bring a scientific perspective to the topic of inequality we must start with careful definitions.
 
 Hence we begin by discussing ways that inequality can be measured in economic research.
 
@@ -76,6 +90,8 @@ import random as rd
 import wbgapi as wb
 import plotly.express as px
 ```
+
+
 
 ## The Lorenz curve
 
@@ -197,7 +213,7 @@ households own just over 40\% of total wealth.
 ---
 mystnb:
   figure:
-    caption: Lorenz curve of simulated data
+    caption: Lorenz curve of simulated wealth data
     name: lorenz_simulated
 ---
 n = 2000
@@ -212,12 +228,15 @@ ax.plot(f_vals, f_vals, label='equality', lw=2)
 ax.vlines([0.8], [0.0], [0.43], alpha=0.5, colors='k', ls='--')
 ax.hlines([0.43], [0], [0.8], alpha=0.5, colors='k', ls='--')
 ax.set_xlim((0, 1))
-ax.set_xlabel("share of households (%)")
+ax.set_xlabel("share of households")
 ax.set_ylim((0, 1))
-ax.set_ylabel("share of income (%)")
+ax.set_ylabel("share of wealth")
 ax.legend()
 plt.show()
 ```
+
+
+
 
 ### Lorenz curves for US data
 
@@ -304,8 +323,8 @@ ax.plot(f_vals_nw[-1], l_vals_nw[-1], label=f'net wealth')
 ax.plot(f_vals_ti[-1], l_vals_ti[-1], label=f'total income')
 ax.plot(f_vals_li[-1], l_vals_li[-1], label=f'labor income')
 ax.plot(f_vals_nw[-1], f_vals_nw[-1], label=f'equality')
-ax.set_xlabel("share of households (%)")
-ax.set_ylabel("share of income/wealth (%)")
+ax.set_xlabel("share of households")
+ax.set_ylabel("share of income/wealth")
 ax.legend()
 plt.show()
 ```
@@ -316,14 +335,15 @@ One key finding from this figure is that wealth inequality is more extreme than 
 
 
 
+
+
 ## The Gini coefficient
 
-The Lorenz curve is a useful visual representation of inequality in a distribution.
+The Lorenz curve provides a visual representation of inequality in a distribution.
 
 Another way to study income and wealth inequality is via the Gini coefficient.
 
-In this section we discuss the Gini coefficient and its relationship to the
-Lorenz curve.
+In this section we discuss the Gini coefficient and its relationship to the Lorenz curve.
 
 
 
@@ -354,21 +374,19 @@ The idea is that $G=0$ indicates complete equality, while $G=1$ indicates comple
 ---
 mystnb:
   figure:
-    caption: Shaded Lorenz curve of simulated data
+    caption: Gini coefficient (simulated wealth data)
     name: lorenz_gini
 ---
 fig, ax = plt.subplots()
 f_vals, l_vals = lorenz_curve(sample)
 ax.plot(f_vals, l_vals, label=f'lognormal sample', lw=2)
 ax.plot(f_vals, f_vals, label='equality', lw=2)
-ax.vlines([0.8], [0.0], [0.43], alpha=0.5, colors='k', ls='--')
-ax.hlines([0.43], [0], [0.8], alpha=0.5, colors='k', ls='--')
 ax.fill_between(f_vals, l_vals, f_vals, alpha=0.06)
 ax.set_ylim((0, 1))
 ax.set_xlim((0, 1))
 ax.text(0.04, 0.5, r'$G = 2 \times$ shaded area')
 ax.set_xlabel("share of households (%)")
-ax.set_ylabel("share of income/wealth (%)")
+ax.set_ylabel("share of wealth (%)")
 ax.legend()
 plt.show()
 ```
@@ -399,8 +417,8 @@ ax.set_ylim((0, 1))
 ax.set_xlim((0, 1))
 ax.text(0.55, 0.4, 'A')
 ax.text(0.75, 0.15, 'B')
-ax.set_xlabel("share of households (%)")
-ax.set_ylabel("share of income/wealth (%)")
+ax.set_xlabel("share of households")
+ax.set_ylabel("share of wealth")
 ax.legend()
 plt.show()
 ```
@@ -408,7 +426,7 @@ plt.show()
 
 
 ```{seealso}
-The World in Data project has a [nice graphical exploration of the Lorenz curve and the Gini coefficient](https://ourworldindata.org/what-is-the-gini-coefficient)
+The World in Data project has a [graphical exploration of the Lorenz curve and the Gini coefficient](https://ourworldindata.org/what-is-the-gini-coefficient)
 ```
 
 ### Gini coefficient of simulated data
@@ -527,7 +545,7 @@ To get a quick overview, let's histogram Gini coefficients across all countries 
 ---
 mystnb:
   figure:
-    caption: Histogram of Gini coefficients
+    caption: Histogram of Gini coefficients across countries
     name: gini_histogram
 ---
 # Fetch gini data for all countries
@@ -585,21 +603,20 @@ As can be seen in {numref}`gini_usa1`, the income Gini
 trended upward from 1980 to 2020 and then dropped following at the start of the COVID pandemic.
 
 (compare-income-wealth-usa-over-time)=
-### Gini coefficient for wealth (US data)
+### Gini coefficient for wealth
 
-In the previous section we looked at the Gini coefficient for income using US data.
+In the previous section we looked at the Gini coefficient for income, focusing on using US data.
 
 Now let's look at the Gini coefficient for the distribution of wealth.
 
-We can use the {ref}`Survey of Consumer Finances data <data:survey-consumer-finance>` to look at the Gini coefficient
-computed over the wealth distribution.
+We will use US data from the {ref}`Survey of Consumer Finances<data:survey-consumer-finance>` 
 
 
 ```{code-cell} ipython3
 df_income_wealth.year.describe()
 ```
 
-**Note:** This code can be used to compute this information over the full dataset.
+This code can be used to compute this information over the full dataset.
 
 ```{code-cell} ipython3
 :tags: [skip-execution, hide-input, hide-output]
@@ -666,7 +683,6 @@ plt.show()
 The time series for the wealth Gini exhibits a U-shape, falling until the early
 1980s and then increasing rapidly.
 
-
 One possibility is that this change is mainly driven by technology.
 
 However, we will see below that not all advanced economies experienced similar growth of inequality.
@@ -677,7 +693,8 @@ However, we will see below that not all advanced economies experienced similar g
 
 ### Cross-country comparisons of income inequality
 
-Earlier in this lecture we used `wbgapi` to get Gini data across many countries and saved it in a variable called `gini_all`
+Earlier in this lecture we used `wbgapi` to get Gini data across many countries
+and saved it in a variable called `gini_all`
 
 In this section we will use this data to compare several advanced economies, and
 to look at the evolution in their respective income Ginis.
@@ -820,7 +837,6 @@ the US exhibits persistent but stable levels around a Gini coefficient of 40.
 ## Top shares
 
 Another popular measure of inequality is the top shares.
-
 
 In this section we show how to compute top shares.
 

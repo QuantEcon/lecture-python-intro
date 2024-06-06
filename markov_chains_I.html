@@ -195,7 +195,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distributions-over-time">32.4. Distributions over time</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multiple-step-transition-probabilities">32.4.1. Multiple step transition probabilities</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-probability-of-recession">32.4.2. Example: probability of recession</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-cross-sectional-distributions">32.4.3. Example 2: Cross-sectional distributions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-cross-sectional-distributions">32.4.3. Example 2: cross-sectional distributions</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stationary-distributions">32.5. Stationary distributions</a><ul class="nav section-nav flex-column">
@@ -204,7 +204,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#asymptotic-stationarity">32.5.3. Asymptotic stationarity</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-hamiltons-chain">32.5.3.1. Example: Hamilton’s chain</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#an-alternative-illustration">32.5.3.2. An alternative illustration</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-failure-of-convergence">32.5.3.3. Example: Failure of convergence</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-failure-of-convergence">32.5.3.3. Example: failure of convergence</a></li>
 </ul>
 </li>
 </ul>
@@ -287,15 +287,15 @@ const thebe_selector_output = ".output, .cell_output"
 </summary>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: quantecon in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (0.7.2)
-Requirement already satisfied: numba&gt;=0.49.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from quantecon) (0.59.0)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: numba&gt;=0.49.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from quantecon) (0.59.0)
 Requirement already satisfied: numpy&gt;=1.17.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from quantecon) (1.26.4)
 Requirement already satisfied: requests in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from quantecon) (2.31.0)
 Requirement already satisfied: scipy&gt;=1.5.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from quantecon) (1.11.4)
 Requirement already satisfied: sympy in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from quantecon) (1.12)
 Requirement already satisfied: llvmlite&lt;0.43,&gt;=0.42.0dev0 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from numba&gt;=0.49.0-&gt;quantecon) (0.42.0)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from requests-&gt;quantecon) (2.0.4)
+Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from requests-&gt;quantecon) (2.0.4)
 Requirement already satisfied: idna&lt;4,&gt;=2.5 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from requests-&gt;quantecon) (3.4)
 Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from requests-&gt;quantecon) (2.0.7)
 Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from requests-&gt;quantecon) (2024.2.2)
@@ -353,16 +353,15 @@ such that each row of <span class="math notranslate nohighlight">\(P\)</span> is
 <li><p>each row of <span class="math notranslate nohighlight">\(P\)</span> sums to one</p></li>
 </ol>
 <p>If <span class="math notranslate nohighlight">\(P\)</span> is a stochastic matrix, then so is the <span class="math notranslate nohighlight">\(k\)</span>-th power <span class="math notranslate nohighlight">\(P^k\)</span> for all <span class="math notranslate nohighlight">\(k \in \mathbb N\)</span>.</p>
-<p>Checking this in <a class="reference internal" href="#mc1_ex_3"><span class="std std-ref">the first exercises</span></a> below.</p>
+<p>You are asked to check this in <a class="reference internal" href="#mc1_ex_3"><span class="std std-ref">an exercise</span></a> below.</p>
 </section>
 <section id="markov-chains">
 <h3><span class="section-number">32.2.2. </span>Markov chains<a class="headerlink" href="#markov-chains" title="Permalink to this heading">#</a></h3>
 <p>Now we can introduce Markov chains.</p>
 <p>Before defining a Markov chain rigorously, we’ll  give some examples.</p>
-<p>(Among other things, defining a Markov chain will clarify a  connection between <strong>stochastic matrices</strong> and <strong>Markov chains</strong>.)</p>
 <section id="example-1">
 <span id="mc-eg2"></span><h4><span class="section-number">32.2.2.1. </span>Example 1<a class="headerlink" href="#example-1" title="Permalink to this heading">#</a></h4>
-<p>From  US unemployment data, Hamilton <span id="id1">[<a class="reference internal" href="zreferences.html#id182" title="James D Hamilton. What's real about the business cycle? Federal Reserve Bank of St. Louis Review, pages 435–452, 2005.">Hamilton, 2005</a>]</span> estimated the following dynamics.</p>
+<p>From  US unemployment data, Hamilton <span id="id1">[<a class="reference internal" href="zreferences.html#id183" title="James D Hamilton. What's real about the business cycle? Federal Reserve Bank of St. Louis Review, pages 435–452, 2005.">Hamilton, 2005</a>]</span> estimated the following dynamics.</p>
 <img alt="_images/Hamilton.png" class="align-center" id="mc-hamilton" src="_images/Hamilton.png" />
 <p>Here there are three <strong>states</strong></p>
 <ul class="simple">
@@ -370,13 +369,13 @@ such that each row of <span class="math notranslate nohighlight">\(P\)</span> is
 <li><p>“mr” represents mild recession</p></li>
 <li><p>“sr” represents severe recession</p></li>
 </ul>
-<p>The arrows represent <strong>transition probabilities</strong> over one month.</p>
+<p>The arrows represent transition probabilities over one month.</p>
 <p>For example, the arrow from mild recession to normal growth has 0.145 next to it.</p>
 <p>This tells us that, according to past data, there is a 14.5% probability of transitioning from mild recession to normal growth in one month.</p>
 <p>The arrow from normal growth back to normal growth tells us that there is a
 97% probability of transitioning from normal growth to normal growth (staying
 in the same state).</p>
-<p>Note that these are <em>conditional</em> probabilities — the probability of
+<p>Note that these are conditional probabilities — the probability of
 transitioning from one state to another (or staying at the same one) conditional on the
 current state.</p>
 <p>To make the problem easier to work with numerically, let’s convert states to
@@ -455,11 +454,11 @@ or employed (state 1).</p>
 </section>
 <section id="example-3">
 <span id="mc-eg3"></span><h4><span class="section-number">32.2.2.3. </span>Example 3<a class="headerlink" href="#example-3" title="Permalink to this heading">#</a></h4>
-<p>Imam and Temple <span id="id2">[<a class="reference internal" href="zreferences.html#id284" title="Patrick Imam and Jonathan RW Temple. Political institutions and output collapses. IMF Working Paper, 2023.">Imam and Temple, 2023</a>]</span> categorize political institutions into
+<p>Imam and Temple <span id="id2">[<a class="reference internal" href="zreferences.html#id285" title="Patrick Imam and Jonathan RW Temple. Political institutions and output collapses. IMF Working Paper, 2023.">Imam and Temple, 2023</a>]</span> categorize political institutions into
 three types: democracy <span class="math notranslate nohighlight">\(\text{(D)}\)</span>, autocracy <span class="math notranslate nohighlight">\(\text{(A)}\)</span>, and an intermediate
 state called anocracy <span class="math notranslate nohighlight">\(\text{(N)}\)</span>.</p>
 <p>Each institution can have two potential development regimes: collapse <span class="math notranslate nohighlight">\(\text{(C)}\)</span> and growth <span class="math notranslate nohighlight">\(\text{(G)}\)</span>. This results in six possible states: <span class="math notranslate nohighlight">\(\text{DG, DC, NG, NC, AG}\)</span> and <span class="math notranslate nohighlight">\(\text{AC}\)</span>.</p>
-<p>Imam and Temple <span id="id3">[<a class="reference internal" href="zreferences.html#id284" title="Patrick Imam and Jonathan RW Temple. Political institutions and output collapses. IMF Working Paper, 2023.">Imam and Temple, 2023</a>]</span> estimate the following transition
+<p>Imam and Temple <span id="id3">[<a class="reference internal" href="zreferences.html#id285" title="Patrick Imam and Jonathan RW Temple. Political institutions and output collapses. IMF Working Paper, 2023.">Imam and Temple, 2023</a>]</span> estimate the following transition
 probabilities:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -495,14 +494,12 @@ P :=
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">MultiDiGraph</span><span class="p">()</span>
-<span class="n">edge_ls</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">label_dict</span> <span class="o">=</span> <span class="p">{}</span>
 
 <span class="k">for</span> <span class="n">start_idx</span><span class="p">,</span> <span class="n">node_start</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">nodes</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">end_idx</span><span class="p">,</span> <span class="n">node_end</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">nodes</span><span class="p">):</span>
         <span class="n">value</span> <span class="o">=</span> <span class="n">P</span><span class="p">[</span><span class="n">start_idx</span><span class="p">][</span><span class="n">end_idx</span><span class="p">]</span>
         <span class="k">if</span> <span class="n">value</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="n">G</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">node_start</span><span class="p">,</span><span class="n">node_end</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="n">value</span><span class="p">,</span> <span class="nb">len</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+            <span class="n">G</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">node_start</span><span class="p">,</span><span class="n">node_end</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="n">value</span><span class="p">)</span>
 
 <span class="n">pos</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">spring_layout</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
@@ -510,7 +507,7 @@ P :=
 <span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_labels</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">)</span>
 
 <span class="n">arc_rad</span> <span class="o">=</span> <span class="mf">0.2</span>
-<span class="n">curved_edges</span> <span class="o">=</span> <span class="p">[</span><span class="n">edge</span> <span class="k">for</span> <span class="n">edge</span> <span class="ow">in</span> <span class="n">G</span><span class="o">.</span><span class="n">edges</span><span class="p">()]</span>
+
 <span class="n">edges</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edges</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">connectionstyle</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;arc3, rad = </span><span class="si">{</span><span class="n">arc_rad</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">edge_cmap</span><span class="o">=</span><span class="n">cm</span><span class="o">.</span><span class="n">Blues</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
     <span class="n">edge_color</span><span class="o">=</span><span class="p">[</span><span class="n">G</span><span class="p">[</span><span class="n">nodes</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="n">nodes</span><span class="p">[</span><span class="mi">1</span><span class="p">]][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;weight&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">nodes</span> <span class="ow">in</span> <span class="n">G</span><span class="o">.</span><span class="n">edges</span><span class="p">])</span>
 
@@ -525,7 +522,7 @@ P :=
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_6619/3525694675.py:18: DeprecationWarning: `alltrue` is deprecated as of NumPy 1.25.0, and will be removed in NumPy 2.0. Please use `all` instead.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_6591/2625744094.py:16: DeprecationWarning: `alltrue` is deprecated as of NumPy 1.25.0, and will be removed in NumPy 2.0. Please use `all` instead.
   edges = nx.draw_networkx_edges(G, pos, ax=ax, connectionstyle=f&#39;arc3, rad = {arc_rad}&#39;, edge_cmap=cm.Blues, width=2,
 </pre></div>
 </div>
@@ -551,7 +548,7 @@ that have the <strong>Markov property</strong>.</p>
 <div class="math notranslate nohighlight" id="equation-fin-markov-mp">
 <span class="eqno">(32.2)<a class="headerlink" href="#equation-fin-markov-mp" title="Permalink to this equation">#</a></span>\[\mathbb P \{ X_{t+1} = y  \,|\, X_t \}
 = \mathbb P \{ X_{t+1}  = y \,|\, X_t, X_{t-1}, \ldots \}\]</div>
-<p>This means that once we know the current state <span class="math notranslate nohighlight">\(X_t\)</span>,  adding knowledge of earlier states <span class="math notranslate nohighlight">\(X_{t-1}, X_{t-2}\)</span> provides no additional information about probabilities of <strong>future</strong> states.</p>
+<p>This means that once we know the current state <span class="math notranslate nohighlight">\(X_t\)</span>,  adding knowledge of earlier states <span class="math notranslate nohighlight">\(X_{t-1}, X_{t-2}\)</span> provides no additional information about probabilities of <em>future</em> states.</p>
 <p>Thus, the dynamics of a Markov chain are fully determined by the set of <strong>conditional probabilities</strong></p>
 <div class="math notranslate nohighlight" id="equation-mpp">
 <span class="eqno">(32.3)<a class="headerlink" href="#equation-mpp" title="Permalink to this equation">#</a></span>\[P(x, y) := \mathbb P \{ X_{t+1} = y \,|\, X_t = x \}
@@ -578,7 +575,7 @@ chain <span class="math notranslate nohighlight">\(\{X_t\}\)</span> as follows:<
 </section>
 <section id="simulation">
 <h2><span class="section-number">32.3. </span>Simulation<a class="headerlink" href="#simulation" title="Permalink to this heading">#</a></h2>
-<p id="index-1">A good way to study a Markov chains is to simulate it.</p>
+<p id="index-1">A good way to study Markov chains is to simulate them.</p>
 <p>Let’s start by doing this ourselves and then look at libraries that can help
 us.</p>
 <p>In these exercises, we’ll take the state space to be <span class="math notranslate nohighlight">\(S = 0,\ldots, n-1\)</span>.</p>
@@ -610,7 +607,7 @@ to a cumulative distribution</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1, 1, 1, 1, 1])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1, 1, 0, 0, 1])
 </pre></div>
 </div>
 </div>
@@ -660,12 +657,12 @@ to a cumulative distribution</p>
 <p>Here’s a short time series.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mc_sample_path</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">ψ_0</span><span class="o">=</span><span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="n">ts_length</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mc_sample_path</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">ψ_0</span><span class="o">=</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span> <span class="n">ts_length</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 1, 1, 1, 1, 1, 1, 0, 0, 1])
 </pre></div>
 </div>
 </div>
@@ -678,13 +675,13 @@ sample that takes value 0 will be about 0.25.</p>
 <p>The following code illustrates this</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">mc_sample_path</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">ψ_0</span><span class="o">=</span><span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">],</span> <span class="n">ts_length</span><span class="o">=</span><span class="mi">1_000_000</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">mc_sample_path</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">ψ_0</span><span class="o">=</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">),</span> <span class="n">ts_length</span><span class="o">=</span><span class="mi">1_000_000</span><span class="p">)</span>
 <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">X</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.250758
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.250744
 </pre></div>
 </div>
 </div>
@@ -705,7 +702,7 @@ always close to 0.25 (for the <code class="docutils literal notranslate"><span c
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.249726
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.250039
 </pre></div>
 </div>
 </div>
@@ -718,11 +715,11 @@ always close to 0.25 (for the <code class="docutils literal notranslate"><span c
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 1.13 s, sys: 103 µs, total: 1.13 s
-Wall time: 1.13 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 1.11 s, sys: 0 ns, total: 1.11 s
+Wall time: 1.11 s
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 1, 1, ..., 0, 1, 1])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 0, 0, ..., 1, 1, 1])
 </pre></div>
 </div>
 </div>
@@ -734,11 +731,11 @@ Wall time: 1.13 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 14.2 ms, sys: 0 ns, total: 14.2 ms
-Wall time: 14 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 14.7 ms, sys: 0 ns, total: 14.7 ms
+Wall time: 14.2 ms
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 1, 0, ..., 1, 1, 1])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 1, 1, ..., 1, 0, 1])
 </pre></div>
 </div>
 </div>
@@ -751,7 +748,7 @@ Wall time: 14 ms
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mc</span> <span class="o">=</span> <span class="n">qe</span><span class="o">.</span><span class="n">MarkovChain</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">state_values</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;unemployed&#39;</span><span class="p">,</span> <span class="s1">&#39;employed&#39;</span><span class="p">))</span>
-<span class="n">mc</span><span class="o">.</span><span class="n">simulate</span><span class="p">(</span><span class="n">ts_length</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="s1">&#39;employed&#39;</span><span class="p">)</span>
+<span class="n">mc</span><span class="o">.</span><span class="n">simulate</span><span class="p">(</span><span class="n">ts_length</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="s1">&#39;employed&#39;</span><span class="p">)</span>  <span class="c1"># Start at employed initial state</span>
 </pre></div>
 </div>
 </div>
@@ -763,13 +760,12 @@ Wall time: 14 ms
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mc</span><span class="o">.</span><span class="n">simulate</span><span class="p">(</span><span class="n">ts_length</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="s1">&#39;unemployed&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mc</span><span class="o">.</span><span class="n">simulate</span><span class="p">(</span><span class="n">ts_length</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="s1">&#39;unemployed&#39;</span><span class="p">)</span>  <span class="c1"># Start at unemployed initial state</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;unemployed&#39;, &#39;unemployed&#39;, &#39;unemployed&#39;, &#39;unemployed&#39;],
-      dtype=&#39;&lt;U10&#39;)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;unemployed&#39;, &#39;employed&#39;, &#39;unemployed&#39;, &#39;unemployed&#39;], dtype=&#39;&lt;U10&#39;)
 </pre></div>
 </div>
 </div>
@@ -781,7 +777,7 @@ Wall time: 14 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;employed&#39;, &#39;employed&#39;, &#39;employed&#39;, &#39;employed&#39;], dtype=&#39;&lt;U10&#39;)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;unemployed&#39;, &#39;unemployed&#39;, &#39;employed&#39;, &#39;employed&#39;], dtype=&#39;&lt;U10&#39;)
 </pre></div>
 </div>
 </div>
@@ -794,7 +790,7 @@ Wall time: 14 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 1, 0, 1])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1, 1, 1, 1])
 </pre></div>
 </div>
 </div>
@@ -841,7 +837,7 @@ which <span class="math notranslate nohighlight">\(X_0\)</span> is drawn, then <
 <p>This is very important, so let’s repeat it</p>
 <div class="math notranslate nohighlight" id="equation-mdfmc">
 <span class="eqno">(32.5)<a class="headerlink" href="#equation-mdfmc" title="Permalink to this equation">#</a></span>\[X_0 \sim \psi_0 \quad \implies \quad X_m \sim \psi_0 P^m\]</div>
-<p>The general rule is that post-multiplying a distribution by <span class="math notranslate nohighlight">\(P^m\)</span> shifts it forward <span class="math notranslate nohighlight">\(m\)</span> units of time.</p>
+<p>The general rule is that postmultiplying a distribution by <span class="math notranslate nohighlight">\(P^m\)</span> shifts it forward <span class="math notranslate nohighlight">\(m\)</span> units of time.</p>
 <p>Hence the following is also valid.</p>
 <div class="math notranslate nohighlight" id="equation-mdfmc2">
 <span class="eqno">(32.6)<a class="headerlink" href="#equation-mdfmc2" title="Permalink to this equation">#</a></span>\[X_t \sim \psi_t \quad \implies \quad X_{t+m} \sim \psi_t P^m\]</div>
@@ -873,11 +869,11 @@ one step is <span class="math notranslate nohighlight">\(P(x,y)\)</span>.</p>
 \]</div>
 </section>
 <section id="example-2-cross-sectional-distributions">
-<span id="mc-eg1-1"></span><h3><span class="section-number">32.4.3. </span>Example 2: Cross-sectional distributions<a class="headerlink" href="#example-2-cross-sectional-distributions" title="Permalink to this heading">#</a></h3>
+<span id="mc-eg1-1"></span><h3><span class="section-number">32.4.3. </span>Example 2: cross-sectional distributions<a class="headerlink" href="#example-2-cross-sectional-distributions" title="Permalink to this heading">#</a></h3>
 <p>The distributions we have been studying can be viewed either</p>
 <ol class="arabic simple">
 <li><p>as probabilities or</p></li>
-<li><p>as cross-sectional frequencies that the Law of Large Numbers leads us to anticipate for large samples.</p></li>
+<li><p>as cross-sectional frequencies that the law of large numbers leads us to anticipate for large samples.</p></li>
 </ol>
 <p>To illustrate, recall our model of employment/unemployment dynamics for a given worker <a class="reference internal" href="#mc-eg1"><span class="std std-ref">discussed above</span></a>.</p>
 <p>Consider a large population of workers, each of whose lifetime experience is
@@ -885,18 +881,18 @@ described by the specified dynamics, with each worker’s outcomes being
 realizations of processes that are statistically independent of all other
 workers’ processes.</p>
 <p>Let <span class="math notranslate nohighlight">\(\psi_t\)</span> be the current <em>cross-sectional</em> distribution over <span class="math notranslate nohighlight">\(\{ 0, 1 \}\)</span>.</p>
-<p>The cross-sectional distribution records fractions of workers employed and unemployed at a given moment t.</p>
+<p>The cross-sectional distribution records fractions of workers employed and unemployed at a given moment <span class="math notranslate nohighlight">\(t\)</span>.</p>
 <ul class="simple">
-<li><p>For example, <span class="math notranslate nohighlight">\(\psi_t(0)\)</span> is the unemployment rate.</p></li>
+<li><p>For example, <span class="math notranslate nohighlight">\(\psi_t(0)\)</span> is the unemployment rate at time <span class="math notranslate nohighlight">\(t\)</span>.</p></li>
 </ul>
 <p>What will the cross-sectional distribution be in 10 periods hence?</p>
 <p>The answer is <span class="math notranslate nohighlight">\(\psi_t P^{10}\)</span>, where <span class="math notranslate nohighlight">\(P\)</span> is the stochastic matrix in
 <a class="reference internal" href="#equation-p-unempemp">(32.1)</a>.</p>
 <p>This is because each worker’s state evolves according to <span class="math notranslate nohighlight">\(P\)</span>, so
-<span class="math notranslate nohighlight">\(\psi_t P^{10}\)</span> is a marginal distribution  for a single randomly selected
+<span class="math notranslate nohighlight">\(\psi_t P^{10}\)</span> is a <a class="reference external" href="https://en.wikipedia.org/wiki/Marginal_distribution">marginal distribution</a>  for a single randomly selected
 worker.</p>
-<p>But when the sample is large, outcomes and probabilities are roughly equal (by an application of the Law
-of Large Numbers).</p>
+<p>But when the sample is large, outcomes and probabilities are roughly equal (by an application of the law
+of large numbers).</p>
 <p>So for a very large (tending to infinite) population,
 <span class="math notranslate nohighlight">\(\psi_t P^{10}\)</span> also represents  fractions of workers in
 each state.</p>
@@ -926,10 +922,10 @@ unit of time via postmultiplication by <span class="math notranslate nohighlight
 <p>Notice that <code class="docutils literal notranslate"><span class="pre">ψ</span> <span class="pre">&#64;</span> <span class="pre">P</span></code> is the same as <code class="docutils literal notranslate"><span class="pre">ψ</span></code>.</p>
 <p>Such distributions are called <strong>stationary</strong> or <strong>invariant</strong>.</p>
 <p id="mc-stat-dd">Formally, a distribution <span class="math notranslate nohighlight">\(\psi^*\)</span> on <span class="math notranslate nohighlight">\(S\)</span> is called <strong>stationary</strong> for <span class="math notranslate nohighlight">\(P\)</span> if <span class="math notranslate nohighlight">\(\psi^* P = \psi^* \)</span>.</p>
-<p>Notice that, post-multiplying by <span class="math notranslate nohighlight">\(P\)</span>, we have <span class="math notranslate nohighlight">\(\psi^* P^2 = \psi^* P = \psi^*\)</span>.</p>
-<p>Continuing in the same way leads to <span class="math notranslate nohighlight">\(\psi^* = \psi^* P^t\)</span> for all <span class="math notranslate nohighlight">\(t\)</span>.</p>
-<p>This tells us an important fact: If the distribution of <span class="math notranslate nohighlight">\(\psi_0\)</span> is a stationary distribution, then <span class="math notranslate nohighlight">\(\psi_t\)</span> will have this same distribution for all <span class="math notranslate nohighlight">\(t\)</span>.</p>
-<p>The following theorem is proved in Chapter 4 of <span id="id4">[<a class="reference internal" href="zreferences.html#id19" title="Thomas J Sargent and John Stachurski. Economic networks: theory and computation. arXiv preprint arXiv:2203.11972, 2023.">Sargent and Stachurski, 2023</a>]</span> and numerous other sources.</p>
+<p>Notice that, postmultiplying by <span class="math notranslate nohighlight">\(P\)</span>, we have <span class="math notranslate nohighlight">\(\psi^* P^2 = \psi^* P = \psi^*\)</span>.</p>
+<p>Continuing in the same way leads to <span class="math notranslate nohighlight">\(\psi^* = \psi^* P^t\)</span> for all <span class="math notranslate nohighlight">\(t \ge 0\)</span>.</p>
+<p>This tells us an important fact: If the distribution of <span class="math notranslate nohighlight">\(\psi_0\)</span> is a stationary distribution, then <span class="math notranslate nohighlight">\(\psi_t\)</span> will have this same distribution for all <span class="math notranslate nohighlight">\(t \ge 0\)</span>.</p>
+<p>The following theorem is proved in Chapter 4 of <span id="id4">[<a class="reference internal" href="zreferences.html#id20" title="Thomas J Sargent and John Stachurski. Economic networks: theory and computation. arXiv preprint arXiv:2203.11972, 2023.">Sargent and Stachurski, 2023</a>]</span> and numerous other sources.</p>
 <div class="proof theorem admonition" id="unique_stat">
 <p class="admonition-title"><span class="caption-number">Theorem 32.1 </span></p>
 <section class="theorem-content" id="proof-content">
@@ -993,7 +989,7 @@ corresponds to unemployment (state 0).</p>
 <div class="proof theorem admonition" id="theorem-2">
 <span id="strict-stationary"></span><p class="admonition-title"><span class="caption-number">Theorem 32.3 </span></p>
 <section class="theorem-content" id="proof-content">
-<p>Theorem: If there exists an integer <span class="math notranslate nohighlight">\(m\)</span> such that all entries of <span class="math notranslate nohighlight">\(P^m\)</span> are
+<p>If there exists an integer <span class="math notranslate nohighlight">\(m\)</span> such that all entries of <span class="math notranslate nohighlight">\(P^m\)</span> are
 strictly positive, with unique stationary distribution <span class="math notranslate nohighlight">\(\psi^*\)</span>, then</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1001,7 +997,7 @@ strictly positive, with unique stationary distribution <span class="math notrans
     \quad \text{ as } t \to \infty
 \]</div>
 </section>
-</div><p>See, for example, <span id="id5">[<a class="reference internal" href="zreferences.html#id19" title="Thomas J Sargent and John Stachurski. Economic networks: theory and computation. arXiv preprint arXiv:2203.11972, 2023.">Sargent and Stachurski, 2023</a>]</span> Chapter 4.</p>
+</div><p>See, for example, <span id="id5">[<a class="reference internal" href="zreferences.html#id20" title="Thomas J Sargent and John Stachurski. Economic networks: theory and computation. arXiv preprint arXiv:2203.11972, 2023.">Sargent and Stachurski, 2023</a>]</span> Chapter 4.</p>
 <section id="example-hamiltons-chain">
 <span id="hamilton"></span><h4><span class="section-number">32.5.3.1. </span>Example: Hamilton’s chain<a class="headerlink" href="#example-hamiltons-chain" title="Permalink to this heading">#</a></h4>
 <p>Hamilton’s chain satisfies the conditions of the theorem because <span class="math notranslate nohighlight">\(P^2\)</span> is everywhere positive:</p>
@@ -1029,11 +1025,10 @@ strictly positive, with unique stationary distribution <span class="math notrans
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">iterate_ψ</span><span class="p">(</span><span class="n">ψ_0</span><span class="p">,</span> <span class="n">P</span><span class="p">,</span> <span class="n">ts_length</span><span class="p">):</span>
     <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">P</span><span class="p">)</span>
     <span class="n">ψ_t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">ts_length</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span>
-    <span class="n">ψ</span> <span class="o">=</span> <span class="n">ψ_0</span>
-    <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ts_length</span><span class="p">):</span>
-        <span class="n">ψ_t</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">=</span> <span class="n">ψ</span>
-        <span class="n">ψ</span> <span class="o">=</span> <span class="n">ψ</span> <span class="o">@</span> <span class="n">P</span>
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">ψ_t</span><span class="p">)</span>
+    <span class="n">ψ_t</span><span class="p">[</span><span class="mi">0</span> <span class="p">]</span><span class="o">=</span> <span class="n">ψ_0</span>
+    <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">ts_length</span><span class="p">):</span>
+        <span class="n">ψ_t</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">=</span> <span class="n">ψ_t</span><span class="p">[</span><span class="n">t</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">@</span> <span class="n">P</span>
+    <span class="k">return</span> <span class="n">ψ_t</span>
 </pre></div>
 </div>
 </div>
@@ -1044,12 +1039,7 @@ strictly positive, with unique stationary distribution <span class="math notrans
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ψ_0</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">)</span>        <span class="c1"># Initial condition</span>
 
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s1">&#39;3d&#39;</span><span class="p">)</span>
-
-<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">zlim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
-       <span class="n">xticks</span><span class="o">=</span><span class="p">(</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">),</span>
-       <span class="n">yticks</span><span class="o">=</span><span class="p">(</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">),</span>
-       <span class="n">zticks</span><span class="o">=</span><span class="p">(</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="s1">&#39;3d&#39;</span><span class="p">)</span>
 
 <span class="n">ψ_t</span> <span class="o">=</span> <span class="n">iterate_ψ</span><span class="p">(</span><span class="n">ψ_0</span><span class="p">,</span> <span class="n">P</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
 
@@ -1065,7 +1055,7 @@ strictly positive, with unique stationary distribution <span class="math notrans
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/d1146b4bc91acd72ecf3120990ce17214b83e46b2863b9e5a9fc2b1e3daf2647.png"><img alt="_images/d1146b4bc91acd72ecf3120990ce17214b83e46b2863b9e5a9fc2b1e3daf2647.png" src="_images/d1146b4bc91acd72ecf3120990ce17214b83e46b2863b9e5a9fc2b1e3daf2647.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/1bfba1eacb384ce9656d2fda1ce012daca04fc795603def60950c742650cebec.png"><img alt="_images/1bfba1eacb384ce9656d2fda1ce012daca04fc795603def60950c742650cebec.png" src="_images/1bfba1eacb384ce9656d2fda1ce012daca04fc795603def60950c742650cebec.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>Here</p>
@@ -1085,13 +1075,9 @@ strictly positive, with unique stationary distribution <span class="math notrans
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">generate_initial_values</span><span class="p">(</span><span class="n">num_distributions</span><span class="p">):</span>
     <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">P</span><span class="p">)</span>
-    <span class="n">ψ_0s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">num_distributions</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span>
-
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_distributions</span><span class="p">):</span>
-        <span class="n">draws</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10_000_000</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
-
-        <span class="c1"># Scale them so that they add up into 1</span>
-        <span class="n">ψ_0s</span><span class="p">[</span><span class="n">i</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">draws</span><span class="o">/</span><span class="nb">sum</span><span class="p">(</span><span class="n">draws</span><span class="p">))</span>
+    
+    <span class="n">draws</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10_000_000</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">num_distributions</span><span class="p">,</span><span class="n">n</span><span class="p">))</span>
+    <span class="n">ψ_0s</span> <span class="o">=</span> <span class="n">draws</span><span class="o">/</span><span class="n">draws</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)[:,</span> <span class="kc">None</span><span class="p">]</span>
 
     <span class="k">return</span> <span class="n">ψ_0s</span>
 </pre></div>
@@ -1152,13 +1138,13 @@ strictly positive, with unique stationary distribution <span class="math notrans
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/903ab6f5c2d7f989bcb7503eac8d0287ec544f45c6d9af5f830f9914bdfc19d8.png"><img alt="_images/903ab6f5c2d7f989bcb7503eac8d0287ec544f45c6d9af5f830f9914bdfc19d8.png" src="_images/903ab6f5c2d7f989bcb7503eac8d0287ec544f45c6d9af5f830f9914bdfc19d8.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/87fca69b16fb9acd9f295dc0d2bd3bbde6c15e93966161c18a3acca1e8506b57.png"><img alt="_images/87fca69b16fb9acd9f295dc0d2bd3bbde6c15e93966161c18a3acca1e8506b57.png" src="_images/87fca69b16fb9acd9f295dc0d2bd3bbde6c15e93966161c18a3acca1e8506b57.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>The convergence to <span class="math notranslate nohighlight">\(\psi^*\)</span> holds for different initial distributions.</p>
 </section>
 <section id="example-failure-of-convergence">
-<h4><span class="section-number">32.5.3.3. </span>Example: Failure of convergence<a class="headerlink" href="#example-failure-of-convergence" title="Permalink to this heading">#</a></h4>
+<h4><span class="section-number">32.5.3.3. </span>Example: failure of convergence<a class="headerlink" href="#example-failure-of-convergence" title="Permalink to this heading">#</a></h4>
 <p>In the case of a periodic chain, with</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -1182,7 +1168,7 @@ P =
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/5bfc507e5d7ef19577e7b412fc3f0404b96a13ae2fe5c84f10b4d445f2ef5eac.png"><img alt="_images/5bfc507e5d7ef19577e7b412fc3f0404b96a13ae2fe5c84f10b4d445f2ef5eac.png" src="_images/5bfc507e5d7ef19577e7b412fc3f0404b96a13ae2fe5c84f10b4d445f2ef5eac.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/257ddc861a82ccc94140ea94b94d96e1f42e92c2e5963ca824b042cbc58502b6.png"><img alt="_images/257ddc861a82ccc94140ea94b94d96e1f42e92c2e5963ca824b042cbc58502b6.png" src="_images/257ddc861a82ccc94140ea94b94d96e1f42e92c2e5963ca824b042cbc58502b6.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>Indeed, this <span class="math notranslate nohighlight">\(P\)</span> fails our asymptotic stationarity condition, since, as you can
@@ -1258,7 +1244,7 @@ the conditional distribution of <span class="math notranslate nohighlight">\(X_{
 
 <p class="admonition-title"><span class="caption-number">Exercise 32.1 </span></p>
 <section id="exercise-content">
-<p>Imam and Temple <span id="id6">[<a class="reference internal" href="zreferences.html#id284" title="Patrick Imam and Jonathan RW Temple. Political institutions and output collapses. IMF Working Paper, 2023.">Imam and Temple, 2023</a>]</span> used a three-state transition matrix to describe the transition of three states of a regime: growth, stagnation, and collapse</p>
+<p>Imam and Temple <span id="id6">[<a class="reference internal" href="zreferences.html#id285" title="Patrick Imam and Jonathan RW Temple. Political institutions and output collapses. IMF Working Paper, 2023.">Imam and Temple, 2023</a>]</span> used a three-state transition matrix to describe the transition of three states of a regime: growth, stagnation, and collapse</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 P :=
@@ -1284,7 +1270,7 @@ P :=
 <section id="solution-content">
 <p>Solution 1:</p>
 <img alt="_images/Temple.png" class="align-center" id="mc-temple" src="_images/Temple.png" />
-<p>Since the matrix is everywhere positive, there is a unique stationary distribution.</p>
+<p>Since the matrix is everywhere positive, there is a unique stationary distribution <span class="math notranslate nohighlight">\(\psi^*\)</span> such that <span class="math notranslate nohighlight">\(\psi_t\to \psi^*\)</span> as <span class="math notranslate nohighlight">\(t\to \infty\)</span>.</p>
 <p>Solution 2:</p>
 <p>One simple way to calculate the stationary distribution is to take the power of the transition matrix as we have shown before</p>
 <div class="cell docutils container">
@@ -1344,10 +1330,10 @@ P :=
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/02d56d20f9f608738d313ea4a98a8efc68058c9d4130b43114a0ab216c728132.png"><img alt="_images/02d56d20f9f608738d313ea4a98a8efc68058c9d4130b43114a0ab216c728132.png" src="_images/02d56d20f9f608738d313ea4a98a8efc68058c9d4130b43114a0ab216c728132.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/8828f2852a195bc6bf6fc51c66334cc6325a6491e9b00c76c999b71234f7769a.png"><img alt="_images/8828f2852a195bc6bf6fc51c66334cc6325a6491e9b00c76c999b71234f7769a.png" src="_images/8828f2852a195bc6bf6fc51c66334cc6325a6491e9b00c76c999b71234f7769a.png" style="width: 80%;" /></a>
 </div>
 </div>
-<p>In fact, the rate of convergence is governed by <a class="reference internal" href="eigen_I.html#eigen"><span class="std std-ref">eigenvalues</span></a> <span id="id7">[<a class="reference internal" href="zreferences.html#id19" title="Thomas J Sargent and John Stachurski. Economic networks: theory and computation. arXiv preprint arXiv:2203.11972, 2023.">Sargent and Stachurski, 2023</a>]</span>.</p>
+<p>In fact, the rate of convergence is governed by <a class="reference internal" href="eigen_I.html#eigen"><span class="std std-ref">eigenvalues</span></a> <span id="id7">[<a class="reference internal" href="zreferences.html#id20" title="Thomas J Sargent and John Stachurski. Economic networks: theory and computation. arXiv preprint arXiv:2203.11972, 2023.">Sargent and Stachurski, 2023</a>]</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">P_eigenvals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigvals</span><span class="p">(</span><span class="n">P</span><span class="p">)</span>
@@ -1401,7 +1387,7 @@ P :=
 
 <p class="admonition-title"><span class="caption-number">Exercise 32.2 </span></p>
 <section id="exercise-content">
-<p>We discussed the six-state transition matrix estimated by Imam &amp; Temple <span id="id8">[<a class="reference internal" href="zreferences.html#id284" title="Patrick Imam and Jonathan RW Temple. Political institutions and output collapses. IMF Working Paper, 2023.">Imam and Temple, 2023</a>]</span> <a class="reference internal" href="#mc-eg3"><span class="std std-ref">before</span></a>.</p>
+<p>We discussed the six-state transition matrix estimated by Imam &amp; Temple <span id="id8">[<a class="reference internal" href="zreferences.html#id285" title="Patrick Imam and Jonathan RW Temple. Political institutions and output collapses. IMF Working Paper, 2023.">Imam and Temple, 2023</a>]</span> <a class="reference internal" href="#mc-eg3"><span class="std std-ref">before</span></a>.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">nodes</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;DG&#39;</span><span class="p">,</span> <span class="s1">&#39;DC&#39;</span><span class="p">,</span> <span class="s1">&#39;NG&#39;</span><span class="p">,</span> <span class="s1">&#39;NC&#39;</span><span class="p">,</span> <span class="s1">&#39;AG&#39;</span><span class="p">,</span> <span class="s1">&#39;AC&#39;</span><span class="p">]</span>
 <span class="n">P</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">0.86</span><span class="p">,</span> <span class="mf">0.11</span><span class="p">,</span> <span class="mf">0.03</span><span class="p">,</span> <span class="mf">0.00</span><span class="p">,</span> <span class="mf">0.00</span><span class="p">,</span> <span class="mf">0.00</span><span class="p">],</span>
      <span class="p">[</span><span class="mf">0.52</span><span class="p">,</span> <span class="mf">0.33</span><span class="p">,</span> <span class="mf">0.13</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.00</span><span class="p">,</span> <span class="mf">0.00</span><span class="p">],</span>

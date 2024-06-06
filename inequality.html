@@ -184,16 +184,16 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-gini-coefficient">5.3. The Gini coefficient</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">5.3.1. Definition</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">5.3.1. Definition</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gini-coefficient-of-simulated-data">5.3.2. Gini coefficient of simulated data</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gini-coefficient-for-income-us-data">5.3.3. Gini coefficient for income (US data)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gini-coefficient-for-wealth-us-data">5.3.4. Gini coefficient for wealth (US data)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gini-coefficient-for-wealth">5.3.4. Gini coefficient for wealth</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-country-comparisons-of-income-inequality">5.3.5. Cross-country comparisons of income inequality</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gini-coefficient-and-gdp-per-capita-over-time">5.3.6. Gini Coefficient and GDP per capita (over time)</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#top-shares">5.4. Top shares</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">5.4.1. Definition</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">5.4.1. Definition</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">5.5. Exercises</a></li>
@@ -259,34 +259,42 @@ const thebe_selector_output = ".output, .cell_output"
 <h1><span class="section-number">5. </span>Income and Wealth Inequality<a class="headerlink" href="#income-and-wealth-inequality" title="Permalink to this heading">#</a></h1>
 <section id="overview">
 <h2><span class="section-number">5.1. </span>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
-<p>In this section we</p>
+<p>In the lecture <a class="reference internal" href="long_run_growth.html"><span class="doc">Long-Run Growth</span></a> we studied how GDP per capita has changed
+for certain countries and regions.</p>
+<p>Per capital GDP is important because it gives us an idea of average income for
+households in a given country.</p>
+<p>However, when we study income and wealth, averages are only part of the story.</p>
+<p>For example, imagine two societies, each with one million people, where</p>
 <ul class="simple">
-<li><p>provide motivation for the techniques deployed in the lecture and</p></li>
-<li><p>import code libraries needed for our work.</p></li>
+<li><p>in the first society, the yearly income of one man is $100,000,000 and the income of the
+others is zero</p></li>
+<li><p>in the second society, the yearly income of everyone is $100</p></li>
 </ul>
+<p>These countries have the same income per capita (average income is $100) but the lives of the people will be very different (e.g., almost everyone in the first society is
+starving, even though one person is fabulously rich).</p>
+<p>The example above suggests that we should go beyond simple averages when we study income and wealth.</p>
+<p>This leads us to the topic of economic inequality, which examines how income and wealth (and other quantities) are distributed across a population.</p>
+<p>In this lecture we study inequality, beginning with measures of inequality and
+then applying them to wealth and income data from the US and other countries.</p>
 <section id="some-history">
 <h3><span class="section-number">5.1.1. </span>Some history<a class="headerlink" href="#some-history" title="Permalink to this heading">#</a></h3>
-<p>Many historians argue that inequality played a key role in the fall of the
-Roman Republic.</p>
+<p>Many historians argue that inequality played a role in the fall of the Roman Republic (see, e.g., <span id="id1">[<a class="reference internal" href="zreferences.html#id3" title="Malcolm Levitt. Why did ancient states collapse?: the dysfunctional state. Why Did Ancient States Collapse?, pages 1–56, 2019.">Levitt, 2019</a>]</span>).</p>
 <p>Following the defeat of Carthage and the invasion of Spain, money flowed into
 Rome from across the empire, greatly enriched those in power.</p>
 <p>Meanwhile, ordinary citizens were taken from their farms to fight for long
 periods, diminishing their wealth.</p>
-<p>The resulting growth in inequality caused political turmoil that shook the
-foundations of the republic.</p>
-<p>Eventually, the Roman Republic gave way to a series of dictatorships, starting
-with Octavian (Augustus) in 27 BCE.</p>
-<p>This history is fascinating in its own right, and we can see some
-parallels with certain countries in the modern world.</p>
-<p>Let’s now look at inequality in some of these countries.</p>
+<p>The resulting growth in inequality was a driving factor behind political turmoil that shook the foundations of the republic.</p>
+<p>Eventually, the Roman Republic gave way to a series of dictatorships, starting with <a class="reference external" href="https://en.wikipedia.org/wiki/Augustus">Octavian</a> (Augustus) in 27 BCE.</p>
+<p>This history tells us that inequality matters, in the sense that it can drive major world events.</p>
+<p>There are other reasons that inequality might matter, such as how it affects
+human welfare.</p>
+<p>With this motivation, let us start to think about what inequality is and how we
+can quantify and analyze it.</p>
 </section>
 <section id="measurement">
 <h3><span class="section-number">5.1.2. </span>Measurement<a class="headerlink" href="#measurement" title="Permalink to this heading">#</a></h3>
-<p>Political debates often revolve around inequality.</p>
-<p>One problem with these debates is that inequality is often poorly defined.</p>
-<p>Moreover, debates on inequality are often tied to political beliefs.</p>
-<p>This is dangerous for economists because allowing political beliefs to shape our findings reduces objectivity.</p>
-<p>To bring a truly scientific perspective to the topic of inequality we must start with careful definitions.</p>
+<p>In politics and popular media, the word “inequality” is often used quite loosely, without any firm definition.</p>
+<p>To bring a scientific perspective to the topic of inequality we must start with careful definitions.</p>
 <p>Hence we begin by discussing ways that inequality can be measured in economic research.</p>
 <p>We will need to install the following packages</p>
 <div class="cell tag_hide-output docutils container">
@@ -301,7 +309,10 @@ parallels with certain countries in the modern world.</p>
 <span class="expanded">Hide code cell output</span>
 </summary>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: wbgapi in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (1.0.12)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting wbgapi
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Downloading wbgapi-1.0.12-py3-none-any.whl.metadata (13 kB)
 Requirement already satisfied: plotly in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (5.9.0)
 Requirement already satisfied: requests in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from wbgapi) (2.31.0)
 Requirement already satisfied: PyYAML in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from wbgapi) (6.0.1)
@@ -313,6 +324,11 @@ Requirement already satisfied: tenacity&gt;=6.2.0 in /usr/share/miniconda3/envs/
 Requirement already satisfied: idna&lt;4,&gt;=2.5 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from requests-&gt;wbgapi) (3.4)
 Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from requests-&gt;wbgapi) (2.0.7)
 Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from requests-&gt;wbgapi) (2024.2.2)
+Downloading wbgapi-1.0.12-py3-none-any.whl (36 kB)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Installing collected packages: wbgapi
+Successfully installed wbgapi-1.0.12
 </pre></div>
 </div>
 </div>
@@ -449,9 +465,9 @@ households own just over 40% of total wealth.</p>
 <span class="n">ax</span><span class="o">.</span><span class="n">vlines</span><span class="p">([</span><span class="mf">0.8</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.43</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">hlines</span><span class="p">([</span><span class="mf">0.43</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.8</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;share of households (%)&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;share of households&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;share of income (%)&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;share of wealth&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
@@ -459,9 +475,9 @@ households own just over 40% of total wealth.</p>
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="lorenz-simulated">
-<a class="reference internal image-reference" href="_images/ac602e11e8f5c5d018e28bac09c2e034f342a9aec46e32713e79355c2035034b.png"><img alt="_images/ac602e11e8f5c5d018e28bac09c2e034f342a9aec46e32713e79355c2035034b.png" src="_images/ac602e11e8f5c5d018e28bac09c2e034f342a9aec46e32713e79355c2035034b.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/d02ff6c9a9947e4031468afd559e356c08e6cfa09c3136b200a018c82145d901.png"><img alt="_images/d02ff6c9a9947e4031468afd559e356c08e6cfa09c3136b200a018c82145d901.png" src="_images/d02ff6c9a9947e4031468afd559e356c08e6cfa09c3136b200a018c82145d901.png" style="width: 80%;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 5.1 </span><span class="caption-text">Lorenz curve of simulated data</span><a class="headerlink" href="#lorenz-simulated" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 5.1 </span><span class="caption-text">Lorenz curve of simulated wealth data</span><a class="headerlink" href="#lorenz-simulated" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </div>
@@ -632,8 +648,8 @@ US in 2016.</p>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f_vals_ti</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">l_vals_ti</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;total income&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f_vals_li</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">l_vals_li</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;labor income&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f_vals_nw</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">f_vals_nw</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;equality&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;share of households (%)&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;share of income/wealth (%)&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;share of households&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;share of income/wealth&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
@@ -641,7 +657,7 @@ US in 2016.</p>
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="lorenz-us">
-<img alt="lorenz_us" src="_images/f64d44e385e59852bed4e78d71229d88fbac6065c1f02aedc2582829de9290dd.png" />
+<img alt="lorenz_us" src="_images/be4b1658ca98e9c89cd8f52c58332cf4722eccdcbda0ee1739db6559a6478248.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 5.2 </span><span class="caption-text">2016 US Lorenz curves</span><a class="headerlink" href="#lorenz-us" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -653,12 +669,11 @@ US in 2016.</p>
 </section>
 <section id="the-gini-coefficient">
 <h2><span class="section-number">5.3. </span>The Gini coefficient<a class="headerlink" href="#the-gini-coefficient" title="Permalink to this heading">#</a></h2>
-<p>The Lorenz curve is a useful visual representation of inequality in a distribution.</p>
+<p>The Lorenz curve provides a visual representation of inequality in a distribution.</p>
 <p>Another way to study income and wealth inequality is via the Gini coefficient.</p>
-<p>In this section we discuss the Gini coefficient and its relationship to the
-Lorenz curve.</p>
-<section id="id1">
-<h3><span class="section-number">5.3.1. </span>Definition<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<p>In this section we discuss the Gini coefficient and its relationship to the Lorenz curve.</p>
+<section id="id2">
+<h3><span class="section-number">5.3.1. </span>Definition<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
 <p>As before, suppose that the sample <span class="math notranslate nohighlight">\(w_1, \ldots, w_n\)</span> has been sorted from smallest to largest.</p>
 <p>The Gini coefficient is defined for the sample above as</p>
 <div class="proof definition admonition" id="define-gini">
@@ -681,14 +696,12 @@ equality and the Lorenz curve (e.g., the shaded area in <a class="reference inte
 <span class="n">f_vals</span><span class="p">,</span> <span class="n">l_vals</span> <span class="o">=</span> <span class="n">lorenz_curve</span><span class="p">(</span><span class="n">sample</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f_vals</span><span class="p">,</span> <span class="n">l_vals</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;lognormal sample&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f_vals</span><span class="p">,</span> <span class="n">f_vals</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;equality&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">vlines</span><span class="p">([</span><span class="mf">0.8</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.43</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">hlines</span><span class="p">([</span><span class="mf">0.43</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.8</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">f_vals</span><span class="p">,</span> <span class="n">l_vals</span><span class="p">,</span> <span class="n">f_vals</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.06</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.04</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$G = 2 \times$ shaded area&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;share of households (%)&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;share of income/wealth (%)&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;share of wealth (%)&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
@@ -696,9 +709,9 @@ equality and the Lorenz curve (e.g., the shaded area in <a class="reference inte
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="lorenz-gini">
-<a class="reference internal image-reference" href="_images/0ea65cd3e6db13621369cdbd37474ac5c5b4c86c1578f2831f3ffd7c96dc76fb.png"><img alt="_images/0ea65cd3e6db13621369cdbd37474ac5c5b4c86c1578f2831f3ffd7c96dc76fb.png" src="_images/0ea65cd3e6db13621369cdbd37474ac5c5b4c86c1578f2831f3ffd7c96dc76fb.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/3935dd8e4e8cad9bf1ae35d28493a0a6c99c0a318f167d29a45d3ac84d92435c.png"><img alt="_images/3935dd8e4e8cad9bf1ae35d28493a0a6c99c0a318f167d29a45d3ac84d92435c.png" src="_images/3935dd8e4e8cad9bf1ae35d28493a0a6c99c0a318f167d29a45d3ac84d92435c.png" style="width: 80%;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 5.3 </span><span class="caption-text">Shaded Lorenz curve of simulated data</span><a class="headerlink" href="#lorenz-gini" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 5.3 </span><span class="caption-text">Gini coefficient (simulated wealth data)</span><a class="headerlink" href="#lorenz-gini" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </div>
@@ -722,8 +735,8 @@ perfect equality and the Lorenz curve, while <span class="math notranslate nohig
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.55</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.75</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;share of households (%)&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;share of income/wealth (%)&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;share of households&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;share of wealth&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
@@ -731,7 +744,7 @@ perfect equality and the Lorenz curve, while <span class="math notranslate nohig
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="lorenz-gini2">
-<a class="reference internal image-reference" href="_images/cc4c1e3edc3dc9ff9621abc1353800682c08d1cf4a1ca583ada8d7156d618052.png"><img alt="_images/cc4c1e3edc3dc9ff9621abc1353800682c08d1cf4a1ca583ada8d7156d618052.png" src="_images/cc4c1e3edc3dc9ff9621abc1353800682c08d1cf4a1ca583ada8d7156d618052.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/0ec1fef4acdefa83baa471f58b998303750a6f3653536fd303a697ecb9714908.png"><img alt="_images/0ec1fef4acdefa83baa471f58b998303750a6f3653536fd303a697ecb9714908.png" src="_images/0ec1fef4acdefa83baa471f58b998303750a6f3653536fd303a697ecb9714908.png" style="width: 80%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 5.4 </span><span class="caption-text">Lorenz curve and Gini coefficient</span><a class="headerlink" href="#lorenz-gini2" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -740,7 +753,7 @@ perfect equality and the Lorenz curve, while <span class="math notranslate nohig
 </div>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
-<p>The World in Data project has a <a class="reference external" href="https://ourworldindata.org/what-is-the-gini-coefficient">nice graphical exploration of the Lorenz curve and the Gini coefficient</a></p>
+<p>The World in Data project has a <a class="reference external" href="https://ourworldindata.org/what-is-the-gini-coefficient">graphical exploration of the Lorenz curve and the Gini coefficient</a></p>
 </div>
 </section>
 <section id="gini-coefficient-of-simulated-data">
@@ -831,7 +844,7 @@ distribution.</p>
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="gini-simulated">
-<a class="reference internal image-reference" href="_images/436efc93738eb6d3c5f7efe0cc7e718317f0dba13ded62ab832f524946f1e6ee.png"><img alt="_images/436efc93738eb6d3c5f7efe0cc7e718317f0dba13ded62ab832f524946f1e6ee.png" src="_images/436efc93738eb6d3c5f7efe0cc7e718317f0dba13ded62ab832f524946f1e6ee.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/4da6efbf826ca5464cf3595b9eec0752342c43712159e348a7dff359d9ee1998.png"><img alt="_images/4da6efbf826ca5464cf3595b9eec0752342c43712159e348a7dff359d9ee1998.png" src="_images/4da6efbf826ca5464cf3595b9eec0752342c43712159e348a7dff359d9ee1998.png" style="width: 80%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 5.5 </span><span class="caption-text">Gini coefficients of simulated data</span><a class="headerlink" href="#gini-simulated" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -853,19 +866,7 @@ coefficient.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div class="wbgapi"><h4>Series</h4><table>
-<thead>
-<tr><th>ID         </th><th>Name  </th><th>Field                           </th><th>Value                                                                                                                                                             </th></tr>
-</thead>
-<tbody>
-<tr><td>SI.POV.GINI</td><td>      </td><td>Developmentrelevance            </td><td>...growth of the bottom 40 per cent of the welfare distribution in every country. Gini coefficients are important background information for shared prosperity....</td></tr>
-<tr><td>SI.POV.GINI</td><td>      </td><td>IndicatorName                   </td><td>Gini index                                                                                                                                                        </td></tr>
-<tr><td>SI.POV.GINI</td><td>      </td><td>Limitationsandexceptions        </td><td>...Gini coefficients are not unique. It is possible for two different Lorenz curves to...                                                                         </td></tr>
-<tr><td>SI.POV.GINI</td><td>      </td><td>Longdefinition                  </td><td>...Gini index measures the extent to which the distribution of income (or, in some...                                                                             </td></tr>
-<tr><td>SI.POV.GINI</td><td>      </td><td>Shortdefinition                 </td><td>...The Gini index measures the extent to which the distribution of income or consumption...                                                                       </td></tr>
-<tr><td>SI.POV.GINI</td><td>      </td><td>Statisticalconceptandmethodology</td><td>...The Gini index measures the area between the Lorenz curve and a hypothetical line of...                                                                        </td></tr>
-</tbody>
-</table></div></div></div>
+<div class="output text_html"><div class="wbgapi"><p class="nomatch">No match</p></div></div></div>
 </div>
 <p>We now know the series ID is <code class="docutils literal notranslate"><span class="pre">SI.POV.GINI</span></code>.</p>
 <p>(Another way to find the series ID is to use the <a class="reference external" href="https://data.worldbank.org">World Bank data portal</a> and then use <code class="docutils literal notranslate"><span class="pre">wbgapi</span></code> to fetch the data.)</p>
@@ -892,7 +893,7 @@ coefficient.</p>
 <figure class="align-default" id="gini-histogram">
 <a class="reference internal image-reference" href="_images/26d1c2196d696bd63d1c87c056cb845db2afcadcb99dde13c660db6c0c19f103.png"><img alt="_images/26d1c2196d696bd63d1c87c056cb845db2afcadcb99dde13c660db6c0c19f103.png" src="_images/26d1c2196d696bd63d1c87c056cb845db2afcadcb99dde13c660db6c0c19f103.png" style="width: 80%;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 5.6 </span><span class="caption-text">Histogram of Gini coefficients</span><a class="headerlink" href="#gini-histogram" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 5.6 </span><span class="caption-text">Histogram of Gini coefficients across countries</span><a class="headerlink" href="#gini-histogram" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </div>
@@ -942,12 +943,11 @@ coefficient.</p>
 <p>As can be seen in <a class="reference internal" href="#gini-usa1"><span class="std std-numref">Fig. 5.7</span></a>, the income Gini
 trended upward from 1980 to 2020 and then dropped following at the start of the COVID pandemic.</p>
 </section>
-<section id="gini-coefficient-for-wealth-us-data">
-<span id="compare-income-wealth-usa-over-time"></span><h3><span class="section-number">5.3.4. </span>Gini coefficient for wealth (US data)<a class="headerlink" href="#gini-coefficient-for-wealth-us-data" title="Permalink to this heading">#</a></h3>
-<p>In the previous section we looked at the Gini coefficient for income using US data.</p>
+<section id="gini-coefficient-for-wealth">
+<span id="compare-income-wealth-usa-over-time"></span><h3><span class="section-number">5.3.4. </span>Gini coefficient for wealth<a class="headerlink" href="#gini-coefficient-for-wealth" title="Permalink to this heading">#</a></h3>
+<p>In the previous section we looked at the Gini coefficient for income, focusing on using US data.</p>
 <p>Now let’s look at the Gini coefficient for the distribution of wealth.</p>
-<p>We can use the <a class="reference internal" href="#data-survey-consumer-finance"><span class="std std-ref">Survey of Consumer Finances data</span></a> to look at the Gini coefficient
-computed over the wealth distribution.</p>
+<p>We will use US data from the <a class="reference internal" href="#data-survey-consumer-finance"><span class="std std-ref">Survey of Consumer Finances</span></a></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_income_wealth</span><span class="o">.</span><span class="n">year</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
@@ -968,7 +968,7 @@ Name: year, dtype: float64
 </div>
 </div>
 </div>
-<p><strong>Note:</strong> This code can be used to compute this information over the full dataset.</p>
+<p>This code can be used to compute this information over the full dataset.</p>
 <div class="cell tag_skip-execution tag_hide-input tag_hide-output docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -1113,7 +1113,8 @@ Name: year, dtype: float64
 </section>
 <section id="cross-country-comparisons-of-income-inequality">
 <h3><span class="section-number">5.3.5. </span>Cross-country comparisons of income inequality<a class="headerlink" href="#cross-country-comparisons-of-income-inequality" title="Permalink to this heading">#</a></h3>
-<p>Earlier in this lecture we used <code class="docutils literal notranslate"><span class="pre">wbgapi</span></code> to get Gini data across many countries and saved it in a variable called <code class="docutils literal notranslate"><span class="pre">gini_all</span></code></p>
+<p>Earlier in this lecture we used <code class="docutils literal notranslate"><span class="pre">wbgapi</span></code> to get Gini data across many countries
+and saved it in a variable called <code class="docutils literal notranslate"><span class="pre">gini_all</span></code></p>
 <p>In this section we will use this data to compare several advanced economies, and
 to look at the evolution in their respective income Ginis.</p>
 <div class="cell docutils container">
@@ -1385,9 +1386,9 @@ e.exports=function(t){return null!=t&&(n(t)||function(t){return"function"==typeo
         });
         }
         </script>
-        </div><div class="output text_html"><div>                            <div id="32e2304c-29d8-4dfa-ab7c-b48b92ede836" class="plotly-graph-div" style="height:800px; width:100%;"></div>            <script type="text/javascript">                require(["plotly"], function(Plotly) {                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("32e2304c-29d8-4dfa-ab7c-b48b92ede836")) {                    Plotly.newPlot(                        "32e2304c-29d8-4dfa-ab7c-b48b92ede836",                        [{"hovertemplate":"country=USA<br>Gini coefficient=%{x}<br>GDP per capita=%{y}<br>year=%{text}<extra></extra>","legendgroup":"USA","line":{"color":"#636efa","dash":"solid"},"marker":{"symbol":"circle"},"mode":"lines+markers+text","name":"USA","orientation":"v","showlegend":true,"text":[1963.0,null,null,null,null,1968.0,null,null,null,null,1973.0,null,null,null,null,1978.0,1979.0,null,null,null,1983.0,null,null,1986.0,null,1988.0,null,null,1991.0,null,1993.0,null,1995.0,null,null,1998.0,null,2000.0,null,null,2003.0,null,null,null,null,2008.0,null,null,null,null,2013.0,null,null,null,null,2018.0,null,2020.0,2021.0,2022.0,null],"x":[37.6,38.1,37.5,37.8,36.9,36.3,36.0,36.6,36.9,36.7,36.1,35.5,35.7,35.6,35.5,34.8,34.8,34.7,35.5,36.7,37.3,37.3,37.6,37.6,37.2,37.7,38.2,38.3,38.0,38.4,40.4,40.0,39.9,40.3,40.5,40.0,40.0,40.1,40.6,40.4,40.8,40.3,41.0,41.4,40.8,40.8,40.6,40.0,40.9,40.9,40.7,41.5,41.2,41.1,41.2,41.4,41.5,39.7,39.8,null,null],"xaxis":"x","y":[20701.2699473561,21599.8187054259,22696.678582964,23894.408153854,24226.5287873383,25137.1602435017,25664.3794275179,25295.2100247742,25800.0012953805,26867.6303169189,28114.8675610758,27708.5699542679,27380.3393850157,28582.7368220699,29605.1832509229,30914.6159489633,31543.384323832,31161.9307250523,31640.6777866874,30775.4413892534,31893.1990487271,33906.3512435069,35008.5302281401,35887.5545010474,36798.6044063082,37989.1923811549,39014.204109084,39303.4890094262,38739.7983208225,39552.0218779482,40108.0080371193,41215.3429307632,41820.6801876235,42896.4164829209,44267.9058817489,45715.6926453849,47360.5364177179,48746.0409600767,48726.5816727299,49095.3317986996,50036.2342349321,51485.2074124697,52789.7314187756,53738.0917251561,54299.6172405205,53854.1606116578,51996.1834952422,52963.4641697124,53394.8618380061,54213.4595516389,54830.7840664164,55675.3868536862,56762.7294515989,57292.5387829091,58207.578310388,59607.3936602496,60698.0112990179,58451.6067152443,61829.8456266599,62789.1279211483,null],"yaxis":"y","type":"scatter","textposition":"bottom right"},{"hovertemplate":"country=NOR<br>Gini coefficient=%{x}<br>GDP per capita=%{y}<br>year=%{text}<extra></extra>","legendgroup":"NOR","line":{"color":"#EF553B","dash":"solid"},"marker":{"symbol":"circle"},"mode":"lines+markers+text","name":"NOR","orientation":"v","showlegend":true,"text":[1963.0,null,null,null,null,1968.0,null,null,null,null,1973.0,null,null,null,null,1978.0,1979.0,null,null,null,1983.0,null,null,1986.0,null,1988.0,null,null,1991.0,null,1993.0,null,1995.0,null,null,1998.0,null,2000.0,null,null,2003.0,null,null,null,null,2008.0,null,null,null,null,2013.0,null,null,null,null,2018.0,null,2020.0,2021.0,2022.0,null],"x":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,26.9,26.9,26.9,26.9,26.9,26.9,26.9,24.6,24.6,24.6,24.6,24.6,25.2,25.2,25.2,25.2,26.0,26.0,26.0,26.0,26.0,27.4,27.4,27.4,27.6,31.6,30.6,26.4,27.1,27.0,26.2,25.7,25.3,25.7,26.4,26.8,27.5,28.5,27.0,27.6,27.7,27.7,27.7,27.7,27.7],"xaxis":"x","y":[21193.1478424163,22087.3701871548,23074.7568949709,23758.0469556874,25034.0716077623,25385.5198473641,26313.7773973959,26735.8304095216,28055.2761671794,29325.6487853574,30441.2763811072,31439.5969962052,32814.9157097687,34564.0686876912,35850.3348649494,37095.6138644061,38585.9873612669,40217.748173408,40720.2148104905,40666.4051195008,42142.3366571342,44567.0046807654,46901.3242898955,48623.3846873713,49244.9631981733,48855.8114061805,49159.7036154895,49937.4557760277,51233.0361138797,52758.9452456296,53938.0213173081,56343.0105413415,58380.5400198046,61005.8800438647,63882.4765007626,65197.9463149391,66094.7354617269,67846.5968530147,68899.5269042015,69472.9836723066,69719.312268163,72090.9862919578,73524.2549173583,74729.7366063199,76115.7066720983,75535.2117892008,73141.3073422967,72804.3956195341,72660.6754085214,73661.6785918009,73515.9144885958,74180.323865677,74809.9658049898,75017.4944737055,76247.4116556881,76373.6241145297,76712.2871258373,75287.2059530897,77812.7115682103,79442.533445361,null],"yaxis":"y","type":"scatter","textposition":"bottom right"},{"hovertemplate":"country=GBR<br>Gini coefficient=%{x}<br>GDP per capita=%{y}<br>year=%{text}<extra></extra>","legendgroup":"GBR","line":{"color":"#00cc96","dash":"solid"},"marker":{"symbol":"circle"},"mode":"lines+markers+text","name":"GBR","orientation":"v","showlegend":true,"text":[1963.0,null,null,null,null,1968.0,null,null,null,null,1973.0,null,null,null,null,1978.0,1979.0,null,null,null,1983.0,null,null,1986.0,null,1988.0,null,null,1991.0,null,1993.0,null,1995.0,null,null,1998.0,null,2000.0,null,null,2003.0,null,null,null,null,2008.0,null,null,null,null,2013.0,null,null,null,null,2018.0,null,2020.0,2021.0,2022.0,null],"x":[null,null,null,null,null,26.8,27.9,28.0,29.3,28.8,28.8,29.0,27.9,27.6,27.1,27.2,27.4,28.5,29.7,29.9,29.8,29.2,30.4,31.9,33.9,34.3,33.4,35.7,35.0,35.0,35.1,36.0,35.5,35.3,35.7,36.6,36.8,38.8,37.1,35.1,34.9,34.8,35.5,35.9,34.4,35.4,35.1,33.7,33.2,33.1,32.7,33.1,33.3,33.1,32.6,33.7,32.8,32.6,32.4,null,null],"xaxis":"x","y":[15859.4491137533,16628.5760831549,16876.0173572894,17047.2524596601,17428.1583772499,18287.2056960878,18561.7282872709,19284.4869197438,19877.1598176267,20665.9960556535,21971.7243074805,21412.3512148024,21098.3743618178,21717.7359378902,22258.8198333192,23193.3954328959,24041.338024567,23524.8369726649,23331.3956961222,23805.3626651459,24801.9316298985,25324.6026235794,26315.1286500244,27081.3489722657,28481.1492719879,30047.0088495828,30741.373836081,30874.5089314482,30439.6458572767,30479.1970018521,31163.2753403968,32279.5337364039,33009.3041509745,33775.5009001382,35347.7635433746,36448.2642198935,37440.7940592239,38918.4550574708,39768.6663463971,40310.3049399328,41385.5404684913,42149.2703352153,43007.3629245892,43711.1550172471,44508.6057952919,44060.0030980603,41709.9661677375,42310.749912752,42462.1067349807,42805.8425172666,43282.2097513788,44337.6786402733,44964.3911437292,45482.1782886254,46373.6385314155,46740.5535926377,47240.599622327,42191.9173665785,45889.6110228554,47923.4822383348,null],"yaxis":"y","type":"scatter","textposition":"bottom right"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"type":"heatmapgl","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"xaxis":{"anchor":"y","domain":[0.0,1.0],"title":{"text":"Gini coefficient"}},"yaxis":{"anchor":"x","domain":[0.0,1.0],"title":{"text":"GDP per capita"}},"legend":{"title":{"text":"country"},"tracegroupgap":0},"margin":{"t":60},"height":800},                        {"responsive": true}                    ).then(function(){
+        </div><div class="output text_html"><div>                            <div id="10d014f4-a66f-415a-af3a-659bda625de3" class="plotly-graph-div" style="height:800px; width:100%;"></div>            <script type="text/javascript">                require(["plotly"], function(Plotly) {                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("10d014f4-a66f-415a-af3a-659bda625de3")) {                    Plotly.newPlot(                        "10d014f4-a66f-415a-af3a-659bda625de3",                        [{"hovertemplate":"country=USA<br>Gini coefficient=%{x}<br>GDP per capita=%{y}<br>year=%{text}<extra></extra>","legendgroup":"USA","line":{"color":"#636efa","dash":"solid"},"marker":{"symbol":"circle"},"mode":"markers+lines+text","name":"USA","orientation":"v","showlegend":true,"text":[1963.0,null,null,null,null,1968.0,null,null,null,null,1973.0,null,null,null,null,1978.0,1979.0,null,null,null,1983.0,null,null,1986.0,null,1988.0,null,null,1991.0,null,1993.0,null,1995.0,null,null,1998.0,null,2000.0,null,null,2003.0,null,null,null,null,2008.0,null,null,null,null,2013.0,null,null,null,null,2018.0,null,2020.0,2021.0,2022.0,null],"x":[37.6,38.1,37.5,37.8,36.9,36.3,36.0,36.6,36.9,36.7,36.1,35.5,35.7,35.6,35.5,34.8,34.8,34.7,35.5,36.7,37.3,37.3,37.6,37.6,37.2,37.7,38.2,38.3,38.0,38.4,40.4,40.0,39.9,40.3,40.5,40.0,40.0,40.1,40.6,40.4,40.8,40.3,41.0,41.4,40.8,40.8,40.6,40.0,40.9,40.9,40.7,41.5,41.2,41.1,41.2,41.4,41.5,39.7,39.8,null,null],"xaxis":"x","y":[20701.2699473561,21599.8187054259,22696.678582964,23894.408153854,24226.5287873383,25137.1602435017,25664.3794275179,25295.2100247742,25800.0012953805,26867.6303169189,28114.8675610758,27708.5699542679,27380.3393850157,28582.7368220699,29605.1832509229,30914.6159489633,31543.384323832,31161.9307250523,31640.6777866874,30775.4413892534,31893.1990487271,33906.3512435069,35008.5302281401,35887.5545010474,36798.6044063082,37989.1923811549,39014.204109084,39303.4890094262,38739.7983208225,39552.0218779482,40108.0080371193,41215.3429307632,41820.6801876235,42896.4164829209,44267.9058817489,45715.6926453849,47360.5364177179,48746.0409600767,48726.5816727299,49095.3317986996,50036.2342349321,51485.2074124697,52789.7314187756,53738.0917251561,54299.6172405205,53854.1606116578,51996.1834952422,52963.4641697124,53394.8618380061,54213.4595516389,54830.7840664164,55675.3868536862,56762.7294515989,57292.5387829091,58207.578310388,59607.3936602496,60698.0112990179,58451.6067152443,61829.8456266599,62789.1279211483,null],"yaxis":"y","type":"scatter","textposition":"bottom right"},{"hovertemplate":"country=NOR<br>Gini coefficient=%{x}<br>GDP per capita=%{y}<br>year=%{text}<extra></extra>","legendgroup":"NOR","line":{"color":"#EF553B","dash":"solid"},"marker":{"symbol":"circle"},"mode":"markers+lines+text","name":"NOR","orientation":"v","showlegend":true,"text":[1963.0,null,null,null,null,1968.0,null,null,null,null,1973.0,null,null,null,null,1978.0,1979.0,null,null,null,1983.0,null,null,1986.0,null,1988.0,null,null,1991.0,null,1993.0,null,1995.0,null,null,1998.0,null,2000.0,null,null,2003.0,null,null,null,null,2008.0,null,null,null,null,2013.0,null,null,null,null,2018.0,null,2020.0,2021.0,2022.0,null],"x":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,26.9,26.9,26.9,26.9,26.9,26.9,26.9,24.6,24.6,24.6,24.6,24.6,25.2,25.2,25.2,25.2,26.0,26.0,26.0,26.0,26.0,27.4,27.4,27.4,27.6,31.6,30.6,26.4,27.1,27.0,26.2,25.7,25.3,25.7,26.4,26.8,27.5,28.5,27.0,27.6,27.7,27.7,27.7,27.7,27.7],"xaxis":"x","y":[21193.1478424163,22087.3701871548,23074.7568949709,23758.0469556874,25034.0716077623,25385.5198473641,26313.7773973959,26735.8304095216,28055.2761671794,29325.6487853574,30441.2763811072,31439.5969962052,32814.9157097687,34564.0686876912,35850.3348649494,37095.6138644061,38585.9873612669,40217.748173408,40720.2148104905,40666.4051195008,42142.3366571342,44567.0046807654,46901.3242898955,48623.3846873713,49244.9631981733,48855.8114061805,49159.7036154895,49937.4557760277,51233.0361138797,52758.9452456296,53938.0213173081,56343.0105413415,58380.5400198046,61005.8800438647,63882.4765007626,65197.9463149391,66094.7354617269,67846.5968530147,68899.5269042015,69472.9836723066,69719.312268163,72090.9862919578,73524.2549173583,74729.7366063199,76115.7066720983,75535.2117892008,73141.3073422967,72804.3956195341,72660.6754085214,73661.6785918009,73515.9144885958,74180.323865677,74809.9658049898,75017.4944737055,76247.4116556881,76373.6241145297,76712.2871258373,75287.2059530897,77812.7115682103,79442.533445361,null],"yaxis":"y","type":"scatter","textposition":"bottom right"},{"hovertemplate":"country=GBR<br>Gini coefficient=%{x}<br>GDP per capita=%{y}<br>year=%{text}<extra></extra>","legendgroup":"GBR","line":{"color":"#00cc96","dash":"solid"},"marker":{"symbol":"circle"},"mode":"markers+lines+text","name":"GBR","orientation":"v","showlegend":true,"text":[1963.0,null,null,null,null,1968.0,null,null,null,null,1973.0,null,null,null,null,1978.0,1979.0,null,null,null,1983.0,null,null,1986.0,null,1988.0,null,null,1991.0,null,1993.0,null,1995.0,null,null,1998.0,null,2000.0,null,null,2003.0,null,null,null,null,2008.0,null,null,null,null,2013.0,null,null,null,null,2018.0,null,2020.0,2021.0,2022.0,null],"x":[null,null,null,null,null,26.8,27.9,28.0,29.3,28.8,28.8,29.0,27.9,27.6,27.1,27.2,27.4,28.5,29.7,29.9,29.8,29.2,30.4,31.9,33.9,34.3,33.4,35.7,35.0,35.0,35.1,36.0,35.5,35.3,35.7,36.6,36.8,38.8,37.1,35.1,34.9,34.8,35.5,35.9,34.4,35.4,35.1,33.7,33.2,33.1,32.7,33.1,33.3,33.1,32.6,33.7,32.8,32.6,32.4,null,null],"xaxis":"x","y":[15859.4491137533,16628.5760831549,16876.0173572894,17047.2524596601,17428.1583772499,18287.2056960878,18561.7282872709,19284.4869197438,19877.1598176267,20665.9960556535,21971.7243074805,21412.3512148024,21098.3743618178,21717.7359378902,22258.8198333192,23193.3954328959,24041.338024567,23524.8369726649,23331.3956961222,23805.3626651459,24801.9316298985,25324.6026235794,26315.1286500244,27081.3489722657,28481.1492719879,30047.0088495828,30741.373836081,30874.5089314482,30439.6458572767,30479.1970018521,31163.2753403968,32279.5337364039,33009.3041509745,33775.5009001382,35347.7635433746,36448.2642198935,37440.7940592239,38918.4550574708,39768.6663463971,40310.3049399328,41385.5404684913,42149.2703352153,43007.3629245892,43711.1550172471,44508.6057952919,44060.0030980603,41709.9661677375,42310.749912752,42462.1067349807,42805.8425172666,43282.2097513788,44337.6786402733,44964.3911437292,45482.1782886254,46373.6385314155,46740.5535926377,47240.599622327,42191.9173665785,45889.6110228554,47923.4822383348,null],"yaxis":"y","type":"scatter","textposition":"bottom right"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"type":"heatmapgl","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"xaxis":{"anchor":"y","domain":[0.0,1.0],"title":{"text":"Gini coefficient"}},"yaxis":{"anchor":"x","domain":[0.0,1.0],"title":{"text":"GDP per capita"}},"legend":{"title":{"text":"country"},"tracegroupgap":0},"margin":{"t":60},"height":800},                        {"responsive": true}                    ).then(function(){
                             
-var gd = document.getElementById('32e2304c-29d8-4dfa-ab7c-b48b92ede836');
+var gd = document.getElementById('10d014f4-a66f-415a-af3a-659bda625de3');
 var x = new MutationObserver(function (mutations, observer) {{
         var display = window.getComputedStyle(gd).display;
         if (!display || display === 'none') {{
@@ -1423,8 +1424,8 @@ the US exhibits persistent but stable levels around a Gini coefficient of 40.</p
 <h2><span class="section-number">5.4. </span>Top shares<a class="headerlink" href="#top-shares" title="Permalink to this heading">#</a></h2>
 <p>Another popular measure of inequality is the top shares.</p>
 <p>In this section we show how to compute top shares.</p>
-<section id="id2">
-<h3><span class="section-number">5.4.1. </span>Definition<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
+<section id="id3">
+<h3><span class="section-number">5.4.1. </span>Definition<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
 <p>As before, suppose that the sample <span class="math notranslate nohighlight">\(w_1, \ldots, w_n\)</span> has been sorted from smallest to largest.</p>
 <p>Given the Lorenz curve <span class="math notranslate nohighlight">\(y = L(x)\)</span> defined above, the top <span class="math notranslate nohighlight">\(100 \times p \%\)</span>
 share is defined as</p>
@@ -1591,7 +1592,7 @@ generates more dispersion in the sample, and hence greater inequality.</p>
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="top-shares-simulated">
-<img alt="top_shares_simulated" src="_images/d8022b9c1dd397cc3adcf5eed1ed5418255e5d9c1961488a40ec6a7b37480fa9.png" />
+<img alt="top_shares_simulated" src="_images/c2aac792427217c7b11eb2abb34f7d44443e419b3a3cf812f8572a41d2763d4e.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 5.12 </span><span class="caption-text">Top shares of simulated data</span><a class="headerlink" href="#top-shares-simulated" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -1611,7 +1612,7 @@ generates more dispersion in the sample, and hence greater inequality.</p>
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="gini-coef-simulated">
-<img alt="gini_coef_simulated" src="_images/8173cd3bc32ede52e173f7a0a9ed49604ee80225bb6ba4357cd9bf124632651e.png" />
+<img alt="gini_coef_simulated" src="_images/d44bc1eb8cf37d527c4aae8b29aac1978fd1b909a5529270806869768227f588.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 5.13 </span><span class="caption-text">Gini coefficients of simulated data</span><a class="headerlink" href="#gini-coef-simulated" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -1631,7 +1632,7 @@ generates more dispersion in the sample, and hence greater inequality.</p>
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="lorenz-curve-simulated">
-<img alt="lorenz_curve_simulated" src="_images/201960bcb5b1b95d59d8a65738c98adeb5001e082cd88cc86d3762a94f8d762f.png" />
+<img alt="lorenz_curve_simulated" src="_images/5ea48589b67d0ad0078b7a55a5a760bcb2a9db77ebf3cea116e23275e0dba241.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 5.14 </span><span class="caption-text">Lorenz curves for simulated data</span><a class="headerlink" href="#lorenz-curve-simulated" title="Permalink to this image">#</a></p>
 </figcaption>
