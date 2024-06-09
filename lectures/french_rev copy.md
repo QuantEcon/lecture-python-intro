@@ -20,120 +20,28 @@ kernelspec:
 This lecture describes some monetary and fiscal  features of the French Revolution
 described by {cite}`sargent_velde1995`.
 
+In order to finance public expenditures and service debts issued by earlier French governments, 
+successive French governments performed several policy experiments.
+
+Authors of these experiments were guided by their having decided to put in place monetary-fiscal policies recommended by particular theories.  
+
+As a consequence, data on money growth and inflation from the period 1789 to 1787 at least temorarily illustrated outcomes  predicted by these   arrangements:
+
+* some *unpleasant monetarist arithmetic* like that described in this quanteon lecture XXX
+that governed French government debt dynamics in the decades preceding 1789 
+
+* a *real bills* theory of the effects of government open market operations in which the government *backs* its issues of paper money with valuable real property or financial assets
+
+* a classical ``gold or silver'' standard
+
+* a classical inflation-tax theory of inflation in which Philip Cagan's  demand for money studied 
+in this lecture is a key component
+
+* a *legal restrictions*  or *financial repression* theory of the demand for real balances 
+
 We use matplotlib to replicate several of the graphs that they used to present salient patterns.
 
 
-
-## Fiscal Situation and Response of National Assembly
-
-
-In response to a motion by Catholic Bishop Talleyrand,
-the National Assembly confiscated and nationalized  Church lands. 
-
-But the National Assembly was dominated by free market advocates, not socialists.
-
-The National Assembly intended to use earnings from  Church lands to service its national debt.
-
-To do this, it  began to implement a ''privatization plan'' that would let it service its debt while
-not raising taxes.
-
-Their plan involved issuing paper notes called ''assignats'' that entitled bearers to use them to purchase state lands.  
-
-These paper notes would be ''as good as silver coins'' in the sense that both were acceptable means of payment in exchange for those (formerly) church lands.  
-
-Finance Minister Necker and the Constituants planned
-to solve the privatization problem **and** the debt problem simultaneously
-by creating a new currency. 
-
-They devised a scheme to raise revenues by auctioning
-the confiscated lands, thereby withdrawing paper notes issued on the security of
-the lands sold by the government.
-
- This ''tax-backed money'' scheme propelled the National Assembly  into the domain of monetary experimentation.
- 
-Records of their debates show
-how members of the Assembly marshaled theory and evidence to assess the likely
-effects of their innovation. 
-
-They quoted David Hume and Adam Smith and cited John
-Law's System of 1720 and the American experiences with paper money fifteen years
-earlier as examples of how paper money schemes can go awry.
-
-
-### Necker's plan and how it was tweaked
-
-Necker's original plan embodied two components: a national bank and a new
-financial instrument, the ''assignat''. 
-
-
-Necker's national
-bank was patterned after the Bank of England. He proposed to transform the *Caisse d'Escompte* into a national bank by granting it a monopoly on issuing
-notes and marketing government debt. The *Caisse*  was a
-discount bank founded in 1776 whose main function was to discount commercial bills
-and issue convertible notes. Although independent of the government in principle,
-it had occasionally been used as a source of loans. Its notes had been declared
-inconvertible in August 1788, and by the time of Necker's proposal, its reserves
-were exhausted. Necker's plan placed the National Estates (as the Church lands
-became known after the addition of the royal demesne) at the center of the financial
-picture: a ''Bank of France'' would issue a $5\%$ security mortgaged on the prospective
-receipts from the modest sale of some 400 millions' worth of National Estates in
-the years 1791 to 1793.
-```{note}
- Only 170 million was to be used initially
-to cover the deficits of 1789 and 1790.
-```
-
-
-By mid-1790, members of the National Assembly had agreed to sell the National
-Estates and to use the proceeds to service the debt in a ``tax-backed money'' scheme 
-```{note}
-Debt service costs absorbed 
- over 60\% of French government expenditures. 
-```
-
-The government would issue securities with which it would reimburse debt.
-
-The securities
-were acceptable as payment for National Estates purchased at auctions; once received
-in payment, they were to be burned. 
-
-```{note} 
-The appendix to {cite}`sargent_velde1995` describes  the
-auction rules in detail.
-```
-The Estates available for sale were thought to be worth about 2,400
-million, while the exactable debt (essentially fixed-term loans, unpaid arrears,
-and liquidated offices) stood at about 2,000 million. The value of the land was
-sufficient to let the Assembly retire all of the exactable debt and thereby eliminate
-the interest payments on it. After lengthy debates, in August 1790, the Assembly set the denomination
-and interest rate structure of the debt. 
-
-
-```{note} Two distinct
-aspects of monetary theory help in thinking about the assignat plan. First, a system
-beginning with a commodity standard typically has room for a once-and-for-all emission
-of (an unbacked) paper currency that can replace the commodity money without generating
-inflation. \citet{Sargent/Wallace:1983} describe models with this property. That
-commodity money systems are wasteful underlies Milton Friedman's (1960) TOM:ADD REFERENCE preference
-for a fiat money regime over a commodity money. Second, in a small country on a
-commodity money system that starts with restrictions on intermediation, those restrictions
-can be relaxed by letting the government issue bank notes on the security of safe
-private indebtedness, while leaving bank notes convertible into gold at par. See
-Adam Smith  and Sargent and Wallace (1982) for expressions of this idea. TOM: ADD REFERENCES HEREAND IN BIBTEX FILE.
-```
-
-
-```{note} 
-The
-National Assembly debated many now classic questions in monetary economics. Under
-what conditions would money creation generate inflation, with what consequences
-for business conditions? Distinctions were made between issue of money to pay off
-debt, on one hand, and monetization of deficits, on the other. Would *assignats* be akin
-to notes emitted under a real bills regime, and cause loss of specie, or would
-they circulate alongside specie, thus increasing the money stock? Would inflation
-affect real wages? How would it impact foreign trade, competitiveness of French
-industry and agriculture, balance of trade, foreign exchange?
-```
 
 ## Data Sources
 
@@ -150,7 +58,7 @@ import matplotlib.pyplot as plt
 plt.rcParams.update({'font.size': 12})
 ```
 
-<!-- #region user_expressions=[] -->
+
 ## Figure 1
 <!-- #endregion -->
 
@@ -194,7 +102,14 @@ plt.show()
 ```
 
 
-TO TEACH TOM:  By staring at {numref}`fig1` carefully
+ {numref}`fig1` plots ratios of debt service to total taxes collected for Great Britain and France.
+ The figure shows 
+
+  * ratios of debt service to taxes rise  for both countries  at the  beginning of the century and at the end of the century 
+  * ratios that are similar for both countries in most years 
+
+
+
 <!-- #region user_expressions=[] -->
 
 ## Figure 2
@@ -240,6 +155,9 @@ plt.show()
 ```
 
 <!-- #region user_expressions=[] -->
+
+{numref}`fig2` plots total taxes, total government expenditures, and the composition of government expenditures in Great Britain during much of the 18th century.
+
 ## Figure 3 
 
 
@@ -289,7 +207,16 @@ plt.show()
 
 TO TEACH TOM:  By staring at {numref}`fr_fig3` carefully
 
+{numref}`fr_fig3` plots total taxes, total government expenditures, and the composition of government expenditures in France  during much of the 18th century.
+
 ```{code-cell} ipython3
+
+---
+mystnb:
+  figure:
+    caption: "Government Spending and Tax Revenues in France"
+    name: fr_fig3b
+---
 # Plot the data
 plt.figure()
 
@@ -315,6 +242,10 @@ plt.show()
 
 #plt.savefig('frfinfig3_ignore_nan.jpg', dpi=600)
 ```
+
+{numref}`fr_fig3b` plots total taxes, total government expenditures, and the composition of government expenditures in France  during much of the 18th century.
+
+<!-- #region user_expressions=[] -->
 
 <!-- #region user_expressions=[] -->
 ## Figure 4
@@ -350,8 +281,12 @@ plt.show()
 #plt.savefig('frfinfig4.pdf', dpi=600)
 ```
 
+
+{numref}`fig4` plots total taxes, total government expenditures, and the composition of government expenditures in France  during much of the 18th century.
+
 TO TEACH TOM:  By staring at {numref}`fig4` carefully
-<!-- #region user_expressions=[] -->
+
+
 ## Figure 5
 <!-- #endregion -->
 
@@ -1028,4 +963,116 @@ plt.show()
 
 ```{code-cell} ipython3
 
+```
+
+
+## Fiscal Situation and Response of National Assembly
+
+
+In response to a motion by Catholic Bishop Talleyrand,
+the National Assembly confiscated and nationalized  Church lands. 
+
+But the National Assembly was dominated by free market advocates, not socialists.
+
+The National Assembly intended to use earnings from  Church lands to service its national debt.
+
+To do this, it  began to implement a ''privatization plan'' that would let it service its debt while
+not raising taxes.
+
+Their plan involved issuing paper notes called ''assignats'' that entitled bearers to use them to purchase state lands.  
+
+These paper notes would be ''as good as silver coins'' in the sense that both were acceptable means of payment in exchange for those (formerly) church lands.  
+
+Finance Minister Necker and the Constituants planned
+to solve the privatization problem **and** the debt problem simultaneously
+by creating a new currency. 
+
+They devised a scheme to raise revenues by auctioning
+the confiscated lands, thereby withdrawing paper notes issued on the security of
+the lands sold by the government.
+
+ This ''tax-backed money'' scheme propelled the National Assembly  into the domain of monetary experimentation.
+ 
+Records of their debates show
+how members of the Assembly marshaled theory and evidence to assess the likely
+effects of their innovation. 
+
+They quoted David Hume and Adam Smith and cited John
+Law's System of 1720 and the American experiences with paper money fifteen years
+earlier as examples of how paper money schemes can go awry.
+
+
+### Necker's plan and how it was tweaked
+
+Necker's original plan embodied two components: a national bank and a new
+financial instrument, the ''assignat''. 
+
+
+Necker's national
+bank was patterned after the Bank of England. He proposed to transform the *Caisse d'Escompte* into a national bank by granting it a monopoly on issuing
+notes and marketing government debt. The *Caisse*  was a
+discount bank founded in 1776 whose main function was to discount commercial bills
+and issue convertible notes. Although independent of the government in principle,
+it had occasionally been used as a source of loans. Its notes had been declared
+inconvertible in August 1788, and by the time of Necker's proposal, its reserves
+were exhausted. Necker's plan placed the National Estates (as the Church lands
+became known after the addition of the royal demesne) at the center of the financial
+picture: a ''Bank of France'' would issue a $5\%$ security mortgaged on the prospective
+receipts from the modest sale of some 400 millions' worth of National Estates in
+the years 1791 to 1793.
+```{note}
+ Only 170 million was to be used initially
+to cover the deficits of 1789 and 1790.
+```
+
+
+By mid-1790, members of the National Assembly had agreed to sell the National
+Estates and to use the proceeds to service the debt in a ``tax-backed money'' scheme 
+```{note}
+Debt service costs absorbed 
+ over 60\% of French government expenditures. 
+```
+
+The government would issue securities with which it would reimburse debt.
+
+The securities
+were acceptable as payment for National Estates purchased at auctions; once received
+in payment, they were to be burned. 
+
+```{note} 
+The appendix to {cite}`sargent_velde1995` describes  the
+auction rules in detail.
+```
+The Estates available for sale were thought to be worth about 2,400
+million, while the exactable debt (essentially fixed-term loans, unpaid arrears,
+and liquidated offices) stood at about 2,000 million. The value of the land was
+sufficient to let the Assembly retire all of the exactable debt and thereby eliminate
+the interest payments on it. After lengthy debates, in August 1790, the Assembly set the denomination
+and interest rate structure of the debt. 
+
+
+```{note} Two distinct
+aspects of monetary theory help in thinking about the assignat plan. First, a system
+beginning with a commodity standard typically has room for a once-and-for-all emission
+of (an unbacked) paper currency that can replace the commodity money without generating
+inflation. \citet{Sargent/Wallace:1983} describe models with this property. That
+commodity money systems are wasteful underlies Milton Friedman's (1960) TOM:ADD REFERENCE preference
+for a fiat money regime over a commodity money. Second, in a small country on a
+commodity money system that starts with restrictions on intermediation, those restrictions
+can be relaxed by letting the government issue bank notes on the security of safe
+private indebtedness, while leaving bank notes convertible into gold at par. See
+Adam Smith  and Sargent and Wallace (1982) for expressions of this idea. TOM: ADD REFERENCES HEREAND IN BIBTEX FILE.
+```
+
+
+```{note} 
+The
+National Assembly debated many now classic questions in monetary economics. Under
+what conditions would money creation generate inflation, with what consequences
+for business conditions? Distinctions were made between issue of money to pay off
+debt, on one hand, and monetization of deficits, on the other. Would *assignats* be akin
+to notes emitted under a real bills regime, and cause loss of specie, or would
+they circulate alongside specie, thus increasing the money stock? Would inflation
+affect real wages? How would it impact foreign trade, competitiveness of French
+industry and agriculture, balance of trade, foreign exchange?
 ```
