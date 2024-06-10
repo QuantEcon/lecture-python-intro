@@ -19,7 +19,7 @@ kernelspec:
 ```
 
 (ar1_processes)=
-# AR1 Processes
+# AR(1) Processes
 
 ```{admonition} Migrated lecture
 :class: warning
@@ -44,7 +44,7 @@ These simple models are used again and again in economic research to represent t
 AR(1) processes can take negative values but are easily converted into positive processes when necessary by a transformation such as exponentiation.
 
 We are going to study AR(1) processes partly because they are useful and
-partly because they help us understand important concepts.
+partly because they help us understand important concepts. Specifically, AR(1) processes are valuable as they can measure the persistence of shocks over time.
 
 Let's start with some imports:
 
@@ -54,7 +54,7 @@ import matplotlib.pyplot as plt
 plt.rcParams["figure.figsize"] = (11, 5)  #set default figure size
 ```
 
-## The AR(1) Model
+## The AR(1) model
 
 The **AR(1) model** (autoregressive model of order 1) takes the form
 
@@ -73,11 +73,11 @@ This is called the **state process** and the state space is $\mathbb R$.
 
 To make things even simpler, we will assume that
 
-* the process $\{ W_t \}$ is IID and standard normal,
+* the process $\{ W_t \}$ is {ref}`IID <iid-theorem>` and standard normal,
 * the initial condition $X_0$ is drawn from the normal distribution $N(\mu_0, v_0)$ and
 * the initial condition $X_0$ is independent of $\{ W_t \}$.
 
-### Moving Average Representation
+### Moving average representation
 
 Iterating backwards from time $t$, we obtain
 
@@ -105,7 +105,7 @@ Equation {eq}`ar1_ma` shows that $X_t$ is a well defined random variable, the va
 Throughout, the symbol $\psi_t$ will be used to refer to the
 density of this random variable $X_t$.
 
-### Distribution Dynamics
+### Distribution dynamics
 
 One of the nice things about this model is that it's so easy to trace out the sequence of distributions $\{ \psi_t \}$ corresponding to the time
 series $\{ X_t\}$.
@@ -116,7 +116,7 @@ This is immediate from {eq}`ar1_ma`, since linear combinations of independent
 normal random variables are normal.
 
 Given that $X_t$ is normally distributed, we will know the full distribution
-$\psi_t$ if we can pin down its first two moments.
+$\psi_t$ if we can pin down its first two [moments](https://en.wikipedia.org/wiki/Moment_(mathematics)).
 
 Let $\mu_t$ and $v_t$ denote the mean and variance
 of $X_t$ respectively.
@@ -179,7 +179,9 @@ ax.legend(bbox_to_anchor=[1.05,1],loc=2,borderaxespad=1)
 plt.show()
 ```
 
-## Stationarity and Asymptotic Stability
+## Stationarity and asymptotic stability
+
+In Distribution Dynamics, stationarity and asymptotic stability ensure that a single long-term prediction remains valid over time.
 
 Notice that, in the figure above, the sequence $\{ \psi_t \}$ seems to be converging to a limiting distribution.
 
@@ -254,7 +256,7 @@ plt.show()
 
 As claimed, the sequence $\{ \psi_t \}$ converges to $\psi^*$.
 
-### Stationary Distributions
+### Stationary distributions
 
 A stationary distribution is a distribution that is a fixed
 point of the update rule for distributions.
@@ -285,8 +287,8 @@ Thus, when $|a| < 1$, the AR(1) model has exactly one stationary density and tha
 
 The concept of ergodicity is used in different ways by different authors.
 
-One way to understand it in the present setting is that a version of the Law
-of Large Numbers is valid for $\{X_t\}$, even though it is not IID.
+One way to understand it in the present setting is that a version of the law
+of large numbers is valid for $\{X_t\}$, even though it is not IID.
 
 In particular, averages over time series converge to expectations under the
 stationary distribution.
@@ -319,6 +321,10 @@ $$
 In other words, the time series sample mean converges to the mean of the
 stationary distribution.
 
+In reality, if an economy is ergodic, its long-term average growth rate is stable. For example, observing an economy's behavior over time can give a reliable estimate of its long-term growth potential. 
+
+However, ergodicity fails when persistent shocks or structural changes affect growth dynamics, making past observations unreliable for predicting future growth.
+
 As will become clear over the next few lectures, ergodicity is a very
 important concept for statistics and simulation.
 
@@ -345,7 +351,7 @@ M_k =
 \end{cases}
 $$
 
-Here $n!!$ is the double factorial.
+Here $n!!$ is the [double factorial](https://en.wikipedia.org/wiki/Double_factorial).
 
 According to {eq}`ar1_ergo`, we should have, for any $k \in \mathbb N$,
 
