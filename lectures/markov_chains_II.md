@@ -310,7 +310,7 @@ P = np.array([[0, 1],
 ts_length = 10_000
 mc = qe.MarkovChain(P)
 n = len(P)
-fig, axes = plt.subplots(figsize=(11, 5), nrows=1, ncols=n)
+fig, axes = plt.subplots(nrows=1, ncols=n)
 ψ_star = mc.stationary_distributions[0]
 
 for i in range(n):
@@ -328,6 +328,8 @@ for i in range(n):
         axes[i].plot(p_hat, label=f'$x_0 = \, {x0} $')
 
     axes[i].legend()
+    
+plt.tight_layout()
 plt.show()
 ```
 
