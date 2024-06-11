@@ -133,10 +133,10 @@ $$
 where $\eta_1$ and $\eta_2$ are chosen to satisfy the  prescribed initial conditions $y_{-1}, y_{-2}$:
 
 $$
-\begin{align}
+\begin{aligned}
 \lambda_1^{-1} \eta_1 + \lambda_2^{-1} \eta_2 & =  y_{-1} \cr
 \lambda_1^{-2} \eta_1 + \lambda_2^{-2} \eta_2 & =  y_{-2}
-\end{align}
+\end{aligned}
 $$(eq:leq_sq)
 
 System {eq}`eq:leq_sq` of simultaneous linear equations will play a big role in the remainder of this lecture.  
