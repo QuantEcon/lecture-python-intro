@@ -48,13 +48,95 @@ In this lecture, we'll describe this method.
 
 We'll also use invariant subspaces to describe variations on this method that are faster.
 
-In this lecture, we use the following import:
+## Primer on second order linear difference equation
 
-```{code-cell} ipython3
-:tags: []
+Consider the following second-order linear difference equation
 
-import numpy as np
-```
+$$
+y_t = a_1 y_{t-1} + a_2 y_{t-2}, \quad t \geq 0
+$$ (eq:2diff1)
+
+where $(y_{-1},  y_{-2})$ is a pair of given initial conditions.  
+
+We want to find expressions for $y_t, t \geq 0$ as functions of the initial conditions  $(y_{-1},  y_{-2})$:
+
+$$ 
+y_t = g((y_{-1},  y_{-2});t), \quad t \geq 0
+$$ (eq:2diff2)
+
+We call such a function $g$ a **solution** of the difference equation {eq}`eq:2diff1`.
+
+One way to discover a solution is to use a guess and verify method.
+
+We shall begin by considering a special initial pair of initial  conditions
+that satisfy
+
+$$
+y_{-1} = \delta y_{-2}
+$$ (eq:2diff3)
+
+where $\delta$ is a scalar to be determined.
+
+For initial condition that satisfy {eq}`eq:2diff3`
+equation {eq}`eq:2diff1` impllies that
+
+$$
+y_0 = \left(a_1 + \frac{a_2}{\delta}\right) y_{-1}
+$$ (eq:2diff4)
+
+We want 
+
+$$
+\left(a_1 + \frac{a_2}{\delta}\right) = \delta
+$$ (eq:2diff5)
+
+which we can rewrite as the **characteristic equation** 
+
+$$
+\delta^2 - a_1 \delta - a_2 = 0
+$$ (eq:2diff6)
+
+Applying the quadratic formula to solve for the roots of {eq}`eq:2diff6` we find that
+
+$$
+\delta = \frac{ a_1 \pm \sqrt{a_1^2 + 4 a_2}}{2}
+$$ (eq:2diff7)
+
+For either of the two $\delta$'s that satisfy equation {eq}`eq:2diff7`, 
+a solution of difference equation {eq}`eq:2diff1` is 
+
+$$
+y_t = \delta^t y_0 , \forall t \geq 0
+$$ (eq:2diff8)
+
+and $y_0 = a_1 y_{-1} + a_2 y_{-2}$
+
+The **general** solution of difference equation {eq}`eq:2diff1` takes the form
+
+$$
+y_t = \eta_1 \delta_1^t + \eta_2 \delta_2^t
+$$ (eq:2diff9)
+
+where $\delta_1, \delta_2$ are the two solutions {eq}`eq:2diff7` of the characteristic equation {eq}`eq:2diff6`, and  $\eta_1, \eta_2$ are two constants chosen to satisfy
+    
+$$ 
+    \begin{bmatrix} y_{-1} \cr y_{-2} \end{bmatrix} = \begin{bmatrix} \delta_1^{-1}  & \delta_2^{-1} \cr \delta_1^{-2} & \delta_2^{-2} \end{bmatrix} \begin{bmatrix} \eta_1 \cr \eta_2 \end{bmatrix} 
+$$ (eq:2diff10)
+
+or
+
+$$
+\begin{bmatrix} \eta_1 \cr \eta_2 \end{bmatrix} = \begin{bmatrix} \delta_1^{-1}  & \delta_2^{-1} \cr \delta_1^{-2} & \delta_2^{-2} \end{bmatrix}^{-1} \begin{bmatrix} y_{-1} \cr y_{-2} \end{bmatrix}
+$$ (eq:2diff11)
+
+Sometimes we are free to choose the initial conditions $(y_{-1}, y_{-2})$, in which case we 
+use system {eq}`eq:2diff10` to find the associated $(\eta_1, \eta_2)$.
+
+If we choose $(y_{-1}, y_{-2})$ to set $(\eta_1, \eta_2) = (1, 0)$, then $y_t = \delta_1^t$ for all $t \geq 0$.
+
+
+If we choose $(y_{-1}, y_{-2})$ to set $(\eta_1, \eta_2) = (0, 1)$, then $y_t = \delta_2^t$ for all $t \geq 0$.
+
 
 ## Setup
 
@@ -90,6 +172,8 @@ c(x) \equiv x^2 - 2 x + (1 - \sigma) = 0
 $$ (eq:cha_eq0)
 
 +++
+
+(This is an instance of equation {eq}`eq:2diff6` above.)
 
 If we factor the right side of the  equation {eq}`eq:cha_eq0`, we obtain 
 
@@ -206,7 +290,16 @@ We'll study these special initial conditions soon.  But first let's write some P
 
 ## Implementation
 
-We now implement the above algorithm to compute the square root of $\sigma$
+We now implement the above algorithm to compute the square root of $\sigma$.
+
+
+In this lecture, we use the following import:
+
+```{code-cell} ipython3
+:tags: []
+
+import numpy as np
+```
 
 ```{code-cell} ipython3
 :tags: []
