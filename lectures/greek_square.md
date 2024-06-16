@@ -48,9 +48,12 @@ In this lecture, we'll describe this method.
 
 We'll also use invariant subspaces to describe variations on this method that are faster.
 
-## Primer on second order linear difference equation
+## Second order linear difference equations
 
-Consider the following second-order linear difference equation
+Before telling how the ancient Greeks computed square roots, we'll provide a quick introduction
+to second order linear difference equations.
+
+We'll study  the following second-order linear difference equation
 
 $$
 y_t = a_1 y_{t-1} + a_2 y_{t-2}, \quad t \geq 0
@@ -58,7 +61,24 @@ $$ (eq:2diff1)
 
 where $(y_{-1},  y_{-2})$ is a pair of given initial conditions.  
 
-We want to find expressions for $y_t, t \geq 0$ as functions of the initial conditions  $(y_{-1},  y_{-2})$:
+Equation {eq}`eq:2diff1` is actually an infinite number of linear equations in the sequence
+$\{y_t\}_{t=0}^\infty$.
+
+There is one equation each for $t = 0, 1, 2, \ldots$.  
+
+We could follow an approach taken in this QuantEcon lecture {doc}`present values<pv>` and stack all of these equations into a single matrix equation that we would then solve by using matrix inversion.
+
+```{note} In the present instance, the matrix equation would have an infinite dimensional square matrix multiplying an infinite dimensional vector.  With some qualifications, standard  matrix multiplication and inversion tools can be applied to such a system.
+```
+
+But we won't pursue that approach here. 
+
+
+Instead, we'll seek to find a time-invariant function that *solves* our difference equation, meaning
+thatit provides a formula for a $\{y_t\}_{t=0}^\infty$ sequence that satisfies 
+equation {eq}`eq:2diff1` for each $t \geq 0$.
+
+We seek an expression  for $y_t, t \geq 0$ as functions of the initial conditions  $(y_{-1},  y_{-2})$:
 
 $$ 
 y_t = g((y_{-1},  y_{-2});t), \quad t \geq 0
@@ -137,8 +157,14 @@ If we choose $(y_{-1}, y_{-2})$ to set $(\eta_1, \eta_2) = (1, 0)$, then $y_t = 
 
 If we choose $(y_{-1}, y_{-2})$ to set $(\eta_1, \eta_2) = (0, 1)$, then $y_t = \delta_2^t$ for all $t \geq 0$.
 
+Soon we'll relate the preceding calculations to components an eigen decomposition of a transition
+matrix that represents difference equation {eq}`eq:2diff1` in a very convenient way.
 
-## Setup
+We'll turn to that after we describe how Ancient Greeks figured out how to compute square roots of
+positive integers that are not perfect squares.
+
+
+## Algorithm of the Ancient Greeks
 
 Let $\sigma$ be a positive  integer greater than $1$
 
@@ -173,7 +199,7 @@ $$ (eq:cha_eq0)
 
 +++
 
-(This is an instance of equation {eq}`eq:2diff6` above.)
+(Notice how this is an instance of equation {eq}`eq:2diff6` above.)
 
 If we factor the right side of the  equation {eq}`eq:cha_eq0`, we obtain 
 
@@ -280,7 +306,7 @@ In taking this second approach, we were in effect finding  an **invariant subspa
 
 Here is what is going on.  
 
-For $ t \geq 0$ and for most pairs of  initial conditions $(y_{-1}, y_{-2}) \in {\bf R}^2$ for equation {eq}`eq:second_order', $y_t$ can be expressed as a linear combination  of $y_{t-1}$ and $y_{t-2}$.
+For $ t \geq 0$ and for most pairs of  initial conditions $(y_{-1}, y_{-2}) \in {\bf R}^2$ for equation {eq}`eq:second_order`, $y_t$ can be expressed as a linear combination  of $y_{t-1}$ and $y_{t-2}$.
 
 But for some special initial conditions $(y_{-1}, y_{-2}) \in {\bf R}^2$, $y_t$ can be expressed as a linear function  of $y_{t-1}$ only. 
 
@@ -500,7 +526,7 @@ $$
 This can be achieved by setting 
 
 $$
-x_{2,0} =  -( V^{1,2})^{-1} V^{1,1} = V_{2,1} V_{1,1}^{-1} x_{1,0}.
+x_{2,0} =  -( V^{1,2})^{-1} V^{1,1} = V_{2,2} V_{1,2}^{-1} x_{1,0}.
 $$ (eq:deactivate1)
 
 To deactivate $\lambda_2$, we want to  set
@@ -514,6 +540,20 @@ This can be achieved by setting
 $$
 x_{2,0} = -(V^{2,2})^{-1} V^{2,1} = V_{2,1} V_{1,1}^{-1} x_{1,0}
 $$ (eq:deactivate2)
+
+**Request for Humphrey**:
+
+Please compute the coefficients on $x_{1,0}$ in the  two alternative settings for $x_{2,0}$ given by equations {eq}`eq:deactivate1` and {eq}`eq:deactivate2`.  In 
+particular, please print out
+
+  * $V_{2,2} V_{1,2}^{-1}$
+  * $ V_{2,1} V_{1,1}^{-1}$
+
+I want to compare them with the zeros of the characteristic polynomial that we computed above.
+I'll explain why.
+
+**end of request for Humphrey**
+
 
 
 We shall encounter equations very similar to {eq}`eq:deactivate1` and {eq}`eq:deactivate2`
