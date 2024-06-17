@@ -183,7 +183,7 @@ distribution, then, for all $x \in S$,
 Here
 
 * $\{X_t\}$ is a Markov chain with stochastic matrix $P$ and initial distribution $\psi_0$
-* $\mathbb{1} \{X_t = x\} = 1$ if $X_t = x$ and zero otherwise.
+* $\mathbf{1} \{X_t = x\} = 1$ if $X_t = x$ and zero otherwise.
 
 The result in [theorem 4.3](llnfmc0) is sometimes called **ergodicity**.
 
@@ -234,7 +234,7 @@ Let's denote the fraction of time spent in state $x$ over the period $t=1,
 \ldots, n$ by $\hat p_n(x)$, so that 
 
 $$
-    \hat p_n(x) := \frac{1}{n} \sum_{t = 1}^n \mathbb{1}\{X_t = x\}
+    \hat p_n(x) := \frac{1}{n} \sum_{t = 1}^n \mathbf{1}\{X_t = x\}
     \qquad (x \in \{0, 1, 2\})
 $$
 
@@ -527,7 +527,7 @@ In other words, if $\{X_t\}$ represents the Markov chain for
 employment, then $\bar X_m \to p$ as $m \to \infty$, where
 
 $$
-\bar X_m := \frac{1}{m} \sum_{t = 1}^m \mathbb{1}\{X_t = 0\}
+\bar X_m := \frac{1}{m} \sum_{t = 1}^m \mathbf{1}\{X_t = 0\}
 $$
 
 This exercise asks you to illustrate convergence by computing
