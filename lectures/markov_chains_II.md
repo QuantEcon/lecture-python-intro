@@ -142,7 +142,7 @@ We'll come back to this a bit later.
 
 ### Irreducibility and stationarity
 
-We discussed uniqueness of stationary distributions in our {doc}`earlier lecture on <markov_chains_I>`.
+We discussed uniqueness of stationary distributions in our earlier lecture {doc}`markov_chains_I`.
 
 There we {prf:ref}`stated <mc_po_conv_thm>` that uniqueness holds when the transition matrix is everywhere positive.
 
