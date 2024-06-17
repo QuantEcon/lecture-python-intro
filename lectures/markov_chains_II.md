@@ -4,7 +4,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.14.4
+    jupytext_version: 1.16.1
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
@@ -247,8 +247,6 @@ Hence we expect that $\hat p_n(x) \approx \psi^*(x)$ when $n$ is large.
 
 The next figure shows convergence of $\hat p_n(x)$ to $\psi^*(x)$ when $x=1$ and
 $X_0$ is either $0, 1$ or $2$.
-
-
 
 ```{code-cell} ipython3
 P = np.array([[0.971, 0.029, 0.000],
