@@ -58,14 +58,9 @@ import numpy as np
 
 To explain irreducibility, let's take $P$ to be a fixed stochastic matrix.
 
-Two states $x$ and $y$ are said to **communicate** with each other if
-there exist positive integers $j$ and $k$ such that
+State $x$ is called **accessible** (or **reachable**) from state $y$ if $P^t(x,y)>0$ for some integer $t\ge 0$. 
 
-$$
-P^j(x, y) > 0
-\quad \text{and} \quad
-P^k(y, x) > 0
-$$
+Two states, $x$ and $y$, are said to **communicate** if $x$ and $y$ are accessible from each other.
 
 In view of our discussion {ref}`above <finite_mc_mstp>`, this means precisely
 that
