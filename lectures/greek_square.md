@@ -4,7 +4,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.14.4
+    jupytext_version: 1.16.2
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
@@ -322,14 +322,10 @@ We now implement the above algorithm to compute the square root of $\sigma$.
 In this lecture, we use the following import:
 
 ```{code-cell} ipython3
-:tags: []
-
 import numpy as np
 ```
 
 ```{code-cell} ipython3
-:tags: []
-
 def solve_λs(coefs):    
     # Calculate the roots using numpy.roots
     λs = np.roots(coefs)
@@ -385,16 +381,12 @@ print(f"sqrt({σ}) is approximately {sqrt_σ:.5f} (error: {dev:.5f})")
 Now we consider cases where $(\eta_1, \eta_2) = (0, 1)$ and $(\eta_1, \eta_2) = (1, 0)$
 
 ```{code-cell} ipython3
-:tags: []
-
 # Compute λ_1, λ_2
 λ_1, λ_2 = solve_λs(coefs)
 print(f'Roots for the characteristic equation are ({λ_1:.5f}, {λ_2:.5f}))')
 ```
 
 ```{code-cell} ipython3
-:tags: []
-
 # Case 1: η_1, η_2 = (0, 1)
 ηs = (0, 1)
 
@@ -406,8 +398,6 @@ print(f"For η_1, η_2 = (0, 1), sqrt_σ = {sqrt_σ:.5f}")
 ```
 
 ```{code-cell} ipython3
-:tags: []
-
 # Case 2: η_1, η_2 = (0, 1)
 ηs = (1, 0)
 sqrt_σ = y(1, ηs) / y(0, ηs) - 1
@@ -458,6 +448,48 @@ Write equation {eq}`eq:second_order` as
 $$
 x_{t+1} = V \Lambda V^{-1} x_t
 $$
+
+Now we implement the algorithm above.
+
+First we write a function that iterates $M$
+
+```{code-cell} ipython3
+def iterate_M(x_0, M, num_steps):
+    # Eigendecomposition of M
+    Λ, V_inv = np.linalg.eig(M)
+    V = np.linalg.inv(V_inv)
+    
+    print(f"eigenvalue:\n{Λ}")
+    print(f"eigenvector:\n{V}")
+    
+    # Initialize the array to store results
+    x = np.zeros((x_0.shape[0], num_steps))
+    
+    # Perform the iterations
+    for t in range(num_steps):
+        x[:, t] = V @ np.diag(Λ**t) @ V_inv @ x_0
+    
+    return x, Λ, V, V_inv
+
+# Define the state transition matrix M
+M = np.array([[2, -(1 - σ)],
+              [1, 0]])
+
+# Initial condition vector x_0
+x_0 = np.array([2, 2])
+
+# Perform the iteration
+xs, Λ, V, V_inv = iterate_M(x_0, M, num_steps=100)
+```
+
+Compare the eigenvector to the roots we obtained above
+
+```{code-cell} ipython3
+roots = solve_λs((1, -2, (1 - σ)))
+print(f"roots: {np.round(roots, 8)}")
+```
+
+Hence we confirmed {eq}`eq:eigen_sqrt`.
 
 Define
 
@@ -541,13 +573,52 @@ $$
 x_{2,0} = -(V^{2,2})^{-1} V^{2,1} = V_{2,1} V_{1,1}^{-1} x_{1,0}
 $$ (eq:deactivate2)
 
+Let's verify {eq}`eq:deactivate1` and {eq}`eq:deactivate2` below
+
++++
+
+To deactivate $\lambda_1$ we use {eq}`eq:deactivate1`
+
+```{code-cell} ipython3
+xd_1 = np.array((x_0[0], 
+                 V[1,1] * (1/V[0,1]) * x_0[0]))
+
+# Compute x_{1,0}^*
+np.round(V_inv @ xd_1, 8)
+```
+
+We find $x_{1,0}^* = 0$.
+
++++
+
+Now we deactivate $\lambda_2$ using {eq}`eq:deactivate2`
+
+```{code-cell} ipython3
+xd_2 = np.array((x_0[0], 
+                 V[1,0] * (1/V[0,0]) * x_0[0]))
+
+# Compute x_{2,0}^*
+np.round(V_inv @ xd_2, 8)
+```
+
+We find $x_{2,0}^* = 0$.
+
++++
+
+Here we compare $V_{2,2} V_{1,2}^{-1}$ and $V_{2,1} V_{1,1}^{-1}$ with the roots we computed above
+
+```{code-cell} ipython3
+np.round((V[1,1]*(1/V[0,1]), 
+          V[1,0]*(1/V[0,0])), 8)
+```
+
 **Request for Humphrey**:
 
 Please compute the coefficients on $x_{1,0}$ in the  two alternative settings for $x_{2,0}$ given by equations {eq}`eq:deactivate1` and {eq}`eq:deactivate2`.  In 
 particular, please print out
 
   * $V_{2,2} V_{1,2}^{-1}$
-  * $ V_{2,1} V_{1,1}^{-1}$
+  * $V_{2,1} V_{1,1}^{-1}$
 
 I want to compare them with the zeros of the characteristic polynomial that we computed above.
 I'll explain why.
@@ -559,51 +630,3 @@ I'll explain why.
 We shall encounter equations very similar to {eq}`eq:deactivate1` and {eq}`eq:deactivate2`
 in  this QuantEcon lecture {doc}`money financed government deficits and inflation <money_inflation>`
 and in many other places in dynamic economic theory.
-
-### Implementation
-
-Now we implement the algorithm above.
-
-First we write a function that iterates $M$
-
-```{code-cell} ipython3
-:tags: []
-
-def iterate_M(x_0, M, num_steps):
-    # Eigendecomposition of M
-    Λ, V = np.linalg.eig(M)
-    V_inv = np.linalg.inv(V)
-    
-    print(f"eigenvalue:\n{Λ}")
-    print(f"eigenvector:\n{V}")
-    
-    # Initialize the array to store results
-    x = np.zeros((x_0.shape[0], num_steps))
-    
-    # Perform the iterations
-    for t in range(num_steps):
-        x[:, t] = V @ np.diag(Λ**t) @ V_inv @ x_0
-    
-    return x
-
-# Define the state transition matrix M
-M = np.array([[2, -(1 - σ)],
-              [1, 0]])
-
-# Initial condition vector x_0
-x_0 = np.array([1, 0])
-
-# Perform the iteration
-xs = iterate_M(x_0, M, num_steps=100)
-```
-
-Compare the eigenvector to the roots we obtained above
-
-```{code-cell} ipython3
-:tags: []
-
-roots = solve_λs((1, -2, (1 - σ)))
-print(f"roots: {np.round(roots, 8)}")
-```
-
-Hence we confirmed {eq}`eq:eigen_sqrt`.
