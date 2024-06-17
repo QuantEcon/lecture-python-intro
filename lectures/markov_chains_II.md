@@ -198,7 +198,7 @@ Importantly, the result is valid for any choice of $\psi_0$.
 The theorem is related to {doc}`the law of large numbers <lln_clt>`.
 
 It tells us that, in some settings, the law of large numbers sometimes holds even when the
-sequence of random variables is [not IID](iid_violation).
+sequence of random variables is {ref}`not IID  <iid_violation>`.
 
 
 (mc_eg1-2)=
