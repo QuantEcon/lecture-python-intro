@@ -3,8 +3,10 @@ jupytext:
   text_representation:
     extension: .md
     format_name: myst
+    format_version: 0.13
+    jupytext_version: 1.16.2
 kernelspec:
-  display_name: Python 3
+  display_name: Python 3 (ipykernel)
   language: python
   name: python3
 ---
@@ -43,7 +45,7 @@ a "forward-looking" linear difference equation.
 
 We will use the following imports:
 
-```{code-cell} ipython
+```{code-cell} ipython3
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib import cm
@@ -132,40 +134,40 @@ Samuelson’s multiplier-accelerator model.
 
 We'll set parameters equal to the same values we used in [this QuantEcon lecture](https://python.quantecon.org/samuelson.html).
 
-```{code-cell} python3
+```{code-cell} ipython3
 T = 80
 
 # parameters
-𝛼0 = 10.0
-𝛼1 = 1.53
-𝛼2 = -.9
+α_0 = 10.0
+α_1 = 1.53
+α_2 = -.9
 
-y_1 = 28. # y_{-1}
-y0 = 24.
+y_neg1 = 28. # y_{-1}
+y_0 = 24.
 ```
 
 Now we construct $A$ and $b$.
 
-```{code-cell} python3
+```{code-cell} ipython3
 A = np.identity(T)  # The T x T identity matrix
 
 for i in range(T):
 
     if i-1 >= 0:
-        A[i, i-1] = -𝛼1
+        A[i, i-1] = -α_1
 
     if i-2 >= 0:
-        A[i, i-2] = -𝛼2
+        A[i, i-2] = -α_2
 
-b = np.full(T, 𝛼0)
-b[0] = 𝛼0 + 𝛼1 * y0 + 𝛼2 * y_1
-b[1] = 𝛼0 + 𝛼2 * y0
+b = np.full(T, α_0)
+b[0] = α_0 + α_1 * y_0 + α_2 * y_neg1
+b[1] = α_0 + α_2 * y_0
 ```
 
 Let’s look at the matrix $A$ and the vector $b$ for our
 example.
 
-```{code-cell} python3
+```{code-cell} ipython3
 A, b
 ```
 
@@ -174,25 +176,24 @@ Now let’s solve for the path of $y$.
 If $y_t$ is GNP at time $t$, then we have a version of
 Samuelson’s model of the dynamics for GNP.
 
-To solve $y = A^{-1} b$ we can either invert $A$ directly, as in 
+To solve $y = A^{-1} b$ we can either invert $A$ directly, as in
 
-```{code-cell} python3
+```{code-cell} ipython3
 A_inv = np.linalg.inv(A)
 
 y = A_inv @ b
 ```
 
-or we can use `np.linalg.solve`: 
+or we can use `np.linalg.solve`:
 
-
-```{code-cell} python3
+```{code-cell} ipython3
 y_second_method = np.linalg.solve(A, b)
 ```
 
 Here make sure the two methods give the same result, at least up to floating
 point precision:
 
-```{code-cell} python3
+```{code-cell} ipython3
 np.allclose(y, y_second_method)
 ```
 
@@ -206,7 +207,7 @@ it directly.
 
 Now we can plot.
 
-```{code-cell} python3
+```{code-cell} ipython3
 plt.plot(np.arange(T)+1, y)
 plt.xlabel('t')
 plt.ylabel('y')
@@ -224,21 +225,21 @@ $$
 If we set the initial values to $y_{0} = y_{-1} = y^*$, then $y_{t}$ will be
 constant:
 
-```{code-cell} python3
-y_star = 𝛼0 / (1 - 𝛼1 - 𝛼2)
-y_1_steady = y_star # y_{-1}
-y0_steady = y_star
+```{code-cell} ipython3
+y_star = α_0 / (1 - α_1 - α_2)
+y_neg1_steady = y_star # y_{-1}
+y_0_steady = y_star
 
-b_steady = np.full(T, 𝛼0)
-b_steady[0] = 𝛼0 + 𝛼1 * y0_steady + 𝛼2 * y_1_steady
-b_steady[1] = 𝛼0 + 𝛼2 * y0_steady
+b_steady = np.full(T, α_0)
+b_steady[0] = α_0 + α_1 * y_0_steady + α_2 * y_neg1_steady
+b_steady[1] = α_0 + α_2 * y_0_steady
 ```
 
-```{code-cell} python3
+```{code-cell} ipython3
 y_steady = A_inv @ b_steady
 ```
 
-```{code-cell} python3
+```{code-cell} ipython3
 plt.plot(np.arange(T)+1, y_steady)
 plt.xlabel('t')
 plt.ylabel('y')
@@ -291,16 +292,13 @@ $$ (eq:eqma)
 
 Let’s try it out in Python.
 
-```{code-cell} python3
-𝜎u = 2.
-```
-
-```{code-cell} python3
-u = np.random.normal(0, 𝜎u, size=T)
+```{code-cell} ipython3
+σ_u = 2.
+u = np.random.normal(0, σ_u, size=T)
 y = A_inv @ (b + u)
 ```
 
-```{code-cell} python3
+```{code-cell} ipython3
 plt.plot(np.arange(T)+1, y)
 plt.xlabel('t')
 plt.ylabel('y')
@@ -313,12 +311,12 @@ number of advanced countries in recent decades.
 
 We can simulate $N$ paths.
 
-```{code-cell} python3
+```{code-cell} ipython3
 N = 100
 
 for i in range(N):
     col = cm.viridis(np.random.rand())  # Choose a random color from viridis
-    u = np.random.normal(0, 𝜎u, size=T)
+    u = np.random.normal(0, σ_u, size=T)
     y = A_inv @ (b + u)
     plt.plot(np.arange(T)+1, y, lw=0.5, color=col)
 
@@ -331,12 +329,12 @@ plt.show()
 Also consider the case when $y_{0}$ and $y_{-1}$ are at
 steady state.
 
-```{code-cell} python3
+```{code-cell} ipython3
 N = 100
 
 for i in range(N):
     col = cm.viridis(np.random.rand())  # Choose a random color from viridis
-    u = np.random.normal(0, 𝜎u, size=T)
+    u = np.random.normal(0, σ_u, size=T)
     y_steady = A_inv @ (b_steady + u)
     plt.plot(np.arange(T)+1, y_steady, lw=0.5, color=col)
 
@@ -345,8 +343,6 @@ plt.ylabel('y')
 
 plt.show()
 ```
-
-
 
 ## Computing population moments
 
@@ -388,44 +384,42 @@ $$
 
 Let's write a Python  class that computes the mean vector $\mu_y$ and covariance matrix $\Sigma_y$.
 
-
-
 ```{code-cell} ipython3
 class population_moments:
     """
-    Compute population moments mu_y, Sigma_y.
+    Compute population moments μ_y, Σ_y.
     ---------
     Parameters:
-    alpha0, alpha1, alpha2, T, y_1, y0
+    α_0, α_1, α_2, T, y_neg1, y_0
     """
-    def __init__(self, alpha0, alpha1, alpha2, T, y_1, y0, sigma_u):
+    def __init__(self, α_0, α_1, α_2, T, y_neg1, y_0, σ_u):
 
         # compute A
         A = np.identity(T)
 
         for i in range(T):
             if i-1 >= 0:
-                A[i, i-1] = -alpha1
+                A[i, i-1] = -α_1
 
             if i-2 >= 0:
-                A[i, i-2] = -alpha2
+                A[i, i-2] = -α_2
 
         # compute b
-        b = np.full(T, alpha0)
-        b[0] = alpha0 + alpha1 * y0 + alpha2 * y_1
-        b[1] = alpha0 + alpha2 * y0
+        b = np.full(T, α_0)
+        b[0] = α_0 + α_1 * y_0 + α_2 * y_neg1
+        b[1] = α_0 + α_2 * y_0
 
         # compute A inverse
         A_inv = np.linalg.inv(A)
 
-        self.A, self.b, self.A_inv, self.sigma_u, self.T = A, b, A_inv, sigma_u, T
+        self.A, self.b, self.A_inv, self.σ_u, self.T = A, b, A_inv, σ_u, T
     
     def sample_y(self, n):
         """
         Give a sample of size n of y.
         """
-        A_inv, sigma_u, b, T = self.A_inv, self.sigma_u, self.b, self.T
-        us = np.random.normal(0, sigma_u, size=[n, T])
+        A_inv, σ_u, b, T = self.A_inv, self.σ_u, self.b, self.T
+        us = np.random.normal(0, σ_u, size=[n, T])
         ys = np.vstack([A_inv @ (b + u) for u in us])
 
         return ys
@@ -434,20 +428,20 @@ class population_moments:
         """
         Compute the population moments of y.
         """
-        A_inv, sigma_u, b = self.A_inv, self.sigma_u, self.b
+        A_inv, σ_u, b = self.A_inv, self.σ_u, self.b
 
-        # compute mu_y
-        self.mu_y = A_inv @ b
-        self.Sigma_y = sigma_u**2 * (A_inv @ A_inv.T)
+        # compute μ_y
+        self.μ_y = A_inv @ b
+        self.Σ_y = σ_u**2 * (A_inv @ A_inv.T)
+        
+        return self.μ_y, self.Σ_y
 
-        return self.mu_y, self.Sigma_y
 
-
-my_process = population_moments(
-    alpha0=10.0, alpha1=1.53, alpha2=-.9, T=80, y_1=28., y0=24., sigma_u=1)
+series_process = population_moments(
+    α_0=10.0, α_1=1.53, α_2=-.9, T=80, y_neg1=28., y_0=24., σ_u=1)
     
-mu_y, Sigma_y = my_process.get_moments()
-A_inv = my_process.A_inv
+μ_y, Σ_y = series_process.get_moments()
+A_inv = series_process.A_inv
 ```
 
 It is enlightening  to study the $\mu_y, \Sigma_y$'s implied by  various parameter values.
@@ -457,14 +451,14 @@ Among other things, we can use the class to exhibit how  **statistical stationar
 Let's begin by generating $N$ time realizations of $y$ plotting them together with  population  mean $\mu_y$ .
 
 ```{code-cell} ipython3
-# plot mean
+# Plot mean
 N = 100
 
 for i in range(N):
     col = cm.viridis(np.random.rand())  # Choose a random color from viridis
-    ys = my_process.sample_y(N)
+    ys = series_process.sample_y(N)
     plt.plot(ys[i,:], lw=0.5, color=col)
-    plt.plot(mu_y, color='red')
+    plt.plot(μ_y, color='red')
 
 plt.xlabel('t')
 plt.ylabel('y')
@@ -477,8 +471,8 @@ Visually, notice how the  variance across realizations of $y_t$ decreases as $t$
 Let's plot the population variance of $y_t$ against $t$.
 
 ```{code-cell} ipython3
-# plot variance
-plt.plot(Sigma_y.diagonal())
+# Plot variance
+plt.plot(Σ_y.diagonal())
 plt.show()
 ```
 
@@ -489,28 +483,29 @@ Notice how the population variance increases and asymptotes.
 Let's print out the covariance matrix $\Sigma_y$ for a  time series $y$.
 
 ```{code-cell} ipython3
-my_process = population_moments(alpha0=0, alpha1=.8, alpha2=0, T=6, y_1=0., y0=0., sigma_u=1)
-    
-mu_y, Sigma_y = my_process.get_moments()
-print("mu_y = ",mu_y)
-print("Sigma_y = ", Sigma_y)
+series_process = population_moments(
+    α_0=0, α_1=.8, α_2=0, T=6, y_neg1=0., y_0=0., σ_u=1)
+
+μ_y, Σ_y = series_process.get_moments()
+print("μ_y = ", μ_y)
+print("Σ_y = ", Σ_y)
 ```
 
 Notice that  the covariance between $y_t$ and $y_{t-1}$ -- the elements on the superdiagonal -- are *not* identical.
 
 This is an indication that the time series represented by our $y$ vector is not **stationary**.  
 
-To make it stationary, we'd have to alter our system so that our *initial conditions* $(y_1, y_0)$ are not fixed numbers but instead a jointly normally distributed random vector with a particular mean and  covariance matrix.
+To make it stationary, we'd have to alter our system so that our *initial conditions* $(y_0, y_{-1})$ are not fixed numbers but instead a jointly normally distributed random vector with a particular mean and  covariance matrix.
 
 We describe how to do that in [Linear State Space Models](https://python.quantecon.org/linear_models.html).
 
 But just to set the stage for that analysis, let's  print out the bottom right corner of $\Sigma_y$.
 
 ```{code-cell} ipython3
-my_process = population_moments(
-    alpha0=10.0, alpha1=1.53, alpha2=-.9, T=80, y_1=28., y0=24., sigma_u=1)
-mu_y, Sigma_y = my_process.get_moments()
-print("bottom right corner of Sigma_y = \n", Sigma_y[72:,72:])
+series_process = population_moments(
+    α_0=10.0, α_1=1.53, α_2=-.9, T=80, y_neg1=28., y_0=24., σ_u=1)
+μ_y, Σ_y = series_process.get_moments()
+print("bottom right corner of Σ_y = \n", Σ_y[72:,72:])
 ```
 
 Please notice how the subdiagonal and superdiagonal elements seem to have converged.
@@ -522,7 +517,6 @@ You can read  about stationarity of more general linear time series models in th
 There is a lot to be learned about the process by staring at the off diagonal elements of $\Sigma_y$ corresponding to different time periods $t$, but we resist the temptation to do so here.
 
 +++
-
 
 ## Moving average representation
 
@@ -539,9 +533,6 @@ with np.printoptions(precision=3, suppress=True):
     print(A_inv[0:7,0:7])
 ```
 
-
-
-
 Evidently, $A^{-1}$ is a lower triangular matrix. 
 
 
@@ -551,7 +542,6 @@ Let's print out the lower right hand corner of $A^{-1}$ and stare at it.
 with np.printoptions(precision=3, suppress=True):
     print(A_inv[72:,72:])
 ```
-
 
 Notice how  every row ends with the previous row's pre-diagonal entries.
 
@@ -635,34 +625,34 @@ y_{T}
 \end{array}\right]
 $$
 
-```{code-cell} python3
-𝛽 = .96
+```{code-cell} ipython3
+β = .96
 ```
 
-```{code-cell} python3
+```{code-cell} ipython3
 # construct B
 B = np.zeros((T, T))
 
 for i in range(T):
-    B[i, i:] = 𝛽 ** np.arange(0, T-i)
+    B[i, i:] = β ** np.arange(0, T-i)
 ```
 
-```{code-cell} python3
+```{code-cell} ipython3
 B
 ```
 
-```{code-cell} python3
-𝜎u = 0.
-u = np.random.normal(0, 𝜎u, size=T)
+```{code-cell} ipython3
+σ_u = 0.
+u = np.random.normal(0, σ_u, size=T)
 y = A_inv @ (b + u)
 y_steady = A_inv @ (b_steady + u)
 ```
 
-```{code-cell} python3
+```{code-cell} ipython3
 p = B @ y
 ```
 
-```{code-cell} python3
+```{code-cell} ipython3
 plt.plot(np.arange(0, T)+1, y, label='y')
 plt.plot(np.arange(0, T)+1, p, label='p')
 plt.xlabel('t')
@@ -677,7 +667,7 @@ Can you explain why the trend of the price is downward over time?
 Also consider the case when $y_{0}$ and $y_{-1}$ are at the
 steady state.
 
-```{code-cell} python3
+```{code-cell} ipython3
 p_steady = B @ y_steady
 
 plt.plot(np.arange(0, T)+1, y_steady, label='y')
@@ -688,4 +678,3 @@ plt.legend()
 
 plt.show()
 ```
-
