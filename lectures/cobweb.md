@@ -4,7 +4,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.14.1
+    jupytext_version: 1.16.2
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
@@ -56,7 +56,6 @@ assumptions regarding the way that producers form expectations.
 
 Our discussion and simulations draw on [high quality lectures](https://comp-econ.org/CEF_2013/downloads/Complex%20Econ%20Systems%20Lecture%20II.pdf) by [Cars Hommes](https://www.uva.nl/en/profile/h/o/c.h.hommes/c.h.hommes.html).
 
-
 +++
 
 We will use the following imports.
@@ -90,8 +89,6 @@ ax.grid()
 plt.show()
 ```
 
-
-
 ## The model
 
 Let's return to our discussion of a hypothetical soybean market, where price is determined by supply and demand.
@@ -106,12 +103,12 @@ where $a, b$ are nonnegative constants and $p_t$ is the spot (i.e, current marke
 
 ($D(p_t)$ is the quantity demanded in some fixed unit, such as thousands of tons.)
 
-Because the crop of soybeans for time $t$ is planted at $t-1$, supply of soybeans at time $t$ depends on *expected* prices at time $t$, which we denote $p^t_{t-1}$.
+Because the crop of soybeans for time $t$ is planted at $t-1$, supply of soybeans at time $t$ depends on *expected* prices at time $t$, which we denote $p^e_t$.
 
 We suppose that supply is nonlinear in expected prices, and takes the form
 
 $$
-    S(p^t_{t-1}) = \tanh(\lambda(p^t_{t-1} - c)) + d
+    S(p^e_t) = \tanh(\lambda(p^e_t - c)) + d
 $$
 
 where $\lambda$ is a positive constant, $c, d$ are nonnegative constants and $\tanh$ is a type of [hyperbolic function](https://en.wikipedia.org/wiki/Hyperbolic_functions).
@@ -160,13 +157,13 @@ plt.show()
 Market equilibrium requires that supply equals demand, or
 
 $$
-    a - b p_t = S(p^t_{t-1})
+    a - b p_t = S(p^e_t)
 $$
 
 Rewriting in terms of $p_t$ gives
 
 $$
-    p_t = - \frac{1}{b} [S(p^t_{t-1}) - a]
+    p_t = - \frac{1}{b} [S(p^e_t) - a]
 $$
 
 Finally, to complete the model, we need to describe how price expectations are formed.
@@ -177,7 +174,7 @@ In particular, we suppose that
 
 ```{math}
 :label: p_et
-    p^t_{t-1} = f(p_{t-1}, p_{t-2})
+    p^e_t = f(p_{t-1}, p_{t-2})
 ```
 
 where $f$ is some function.
@@ -204,7 +201,7 @@ Let's start with naive expectations, which refers to the case where producers ex
 
 In other words,
 
-$$ p_{t-1}^t = p_{t-1} $$
+$$ p_t^e = p_{t-1} $$
 
 Using {eq}`price_t`, we then have
 
@@ -408,7 +405,7 @@ That is,
 
 ```{math}
 :label: pe_adaptive
-p_{t-1}^t = \alpha p_{t-1} + (1-\alpha) p^t_{t-2}
+p_t^e = \alpha p_{t-1} + (1-\alpha) p^e_{t-1}
 \qquad (0 \leq \alpha \leq 1)
 ```
 
@@ -416,7 +413,7 @@ Another way to write this is
 
 ```{math}
 :label: pe_adaptive_2
-p_{t-1}^t = p^t_{t-2} + \alpha (p_{t-1} - p_{t-2}^t)
+p_t^e = p^e_{t-1} + \alpha (p_{t-1} - p_{t-1}^e)
 ```
 
 This equation helps to show that expectations shift
@@ -427,7 +424,7 @@ This equation helps to show that expectations shift
 Using {eq}`pe_adaptive`, we obtain the dynamics
 
 $$
-    p_t = - \frac{1}{b} [ S(\alpha p_{t-1} + (1-\alpha) p^t_{t-2}) - a]
+    p_t = - \frac{1}{b} [ S(\alpha p_{t-1} + (1-\alpha) p^e_{t-1}) - a]
 $$
 
 
@@ -463,7 +460,6 @@ def ts_price_plot_adaptive(model, p0, ts_length=10, α=[1.0, 0.9, 0.75]):
 ```
 
 Let's call the function with prices starting at $p_0 = 5$.
-
 
 ```{code-cell} ipython3
 ts_price_plot_adaptive(m, 5, ts_length=30)
@@ -545,7 +541,7 @@ That is,
 
 ```{math}
 :label: pe_blae
-p_{t-1}^t = \alpha p_{t-1} + (1-\alpha) p_{t-2}
+p_t^e = \alpha p_{t-1} + (1-\alpha) p_{t-2}
 ```
 
 
@@ -608,4 +604,3 @@ ts_plot_price_blae(m,
 ```{code-cell} ipython3
 
 ```
-
