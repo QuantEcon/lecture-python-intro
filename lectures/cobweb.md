@@ -14,7 +14,6 @@ kernelspec:
 (cobweb)=
 # The Cobweb Model
 
-
 The cobweb model is a model of prices and quantities in a given market, and how they evolve over time.
 
 ## Overview 
@@ -55,8 +54,6 @@ In this lecture, we investigate and simulate the basic model under different
 assumptions regarding the way that producers form expectations.
 
 Our discussion and simulations draw on [high quality lectures](https://comp-econ.org/CEF_2013/downloads/Complex%20Econ%20Systems%20Lecture%20II.pdf) by [Cars Hommes](https://www.uva.nl/en/profile/h/o/c.h.hommes/c.h.hommes.html).
-
-+++
 
 We will use the following imports.
 
@@ -192,7 +189,6 @@ Combining the last two equations gives the dynamics for prices:
 
 The price dynamics depend on the parameter values and also on the function $f$ that determines how producers form expectations.
 
-
 ## Naive expectations
 
 To go further in our analysis we need to specify the function $f$; that is, how expectations are formed.
@@ -221,7 +217,6 @@ where $g$ is the function defined by
 :label: def_g
     g(p) = - \frac{1}{b} [ S(p) - a]
 ```
-
 
 Here we represent the function $g$
 
@@ -427,7 +422,6 @@ $$
     p_t = - \frac{1}{b} [ S(\alpha p_{t-1} + (1-\alpha) p^e_{t-1}) - a]
 $$
 
-
 Let's try to simulate the price and observe the dynamics using different values of $\alpha$.
 
 ```{code-cell} ipython3
@@ -471,8 +465,6 @@ Decreasing the value of $\alpha$ shifts more weight to the previous
 expectations, which stabilizes expected prices.
 
 This increased stability can be seen in the figures.
-
-
 
 ## Exercises
 
@@ -599,8 +591,4 @@ ts_plot_price_blae(m,
 ```
 
 ```{solution-end}
-```
-
-```{code-cell} ipython3
-
 ```
