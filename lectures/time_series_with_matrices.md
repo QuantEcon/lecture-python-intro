@@ -26,13 +26,12 @@ This lecture uses matrices to solve some linear difference equations.
 
 As a running example, we’ll study a **second-order linear difference
 equation** that was the key technical tool in Paul Samuelson’s 1939
-article {cite}`Samuelson1939` that introduced the **multiplier-accelerator** model.
+article {cite}`Samuelson1939` that introduced the *multiplier-accelerator model*.
 
 This model became the workhorse that powered early econometric versions of
 Keynesian macroeconomic models in the United States.
 
-You can read about the details of that model in [this](https://python.quantecon.org/samuelson.html)
-QuantEcon lecture.
+You can read about the details of that model in [Samuelson Multiplier-Accelerator](https://python.quantecon.org/samuelson.html).
 
 (That lecture also describes some technicalities about second-order linear difference equations.)
 
@@ -64,20 +63,20 @@ y_{t} = \alpha_{0} + \alpha_{1} y_{t-1} + \alpha_{2} y_{t-2}
 ```
 
 where we assume that $y_0$ and $y_{-1}$ are given numbers
-that we take as **initial conditions**.
+that we take as *initial conditions*.
 
 In Samuelson's model, $y_t$ stood for **national income** or perhaps a different
 measure of aggregate activity called **gross domestic product** (GDP) at time $t$.
 
-Equation {eq}`tswm_1` is called a **second-order linear difference equation**.
+Equation {eq}`tswm_1` is called a **second-order linear difference equation**. It is called second order because it depends on two lags.
 
 But actually, it is a collection of $T$ simultaneous linear
 equations in the $T$ variables $y_1, y_2, \ldots, y_T$.
 
 ```{note}
 To be able to solve a second-order linear difference
-equation, we require two **boundary conditions** that can take the form
-either of two **initial conditions** or two **terminal conditions** or
+equation, we require two *boundary conditions* that can take the form
+either of two *initial conditions* or two *terminal conditions* or
 possibly one of each.
 ```
 
@@ -215,7 +214,7 @@ plt.ylabel('y')
 plt.show()
 ```
 
-The **steady state** value $y^*$ of $y_t$ is obtained by setting $y_t = y_{t-1} =
+The {ref}`**steady state**<scalar-dynam:steady-state>` value $y^*$ of $y_t$ is obtained by setting $y_t = y_{t-1} =
 y_{t-2} = y^*$ in {eq}`tswm_1`, which yields
 
 $$
@@ -250,7 +249,7 @@ plt.show()
 ## Adding a random term
 
 To generate some excitement, we'll follow in the spirit of the great economists
-Eugen Slutsky and Ragnar Frisch and replace our original second-order difference
+[Eugen Slutsky](https://en.wikipedia.org/wiki/Eugen_Slutsky) and [Ragnar Frisch](https://en.wikipedia.org/wiki/Ragnar_Frisch) and replace our original second-order difference
 equation with the following **second-order stochastic linear difference
 equation**:
 
@@ -260,8 +259,8 @@ equation**:
 y_{t} = \alpha_{0} + \alpha_{1} y_{t-1} + \alpha_{2} y_{t-2} + u_t
 ```
 
-where $u_{t} \sim N\left(0, \sigma_{u}^{2}\right)$ and is IID,
-meaning **independent** and **identically** distributed.
+where $u_{t} \sim N\left(0, \sigma_{u}^{2}\right)$ and is {ref}`IID <iid-theorem>`,
+meaning independent and identically distributed.
 
 We’ll stack these $T$ equations into a system cast in terms of
 matrix algebra.
@@ -483,11 +482,11 @@ plt.plot(Sigma_y.diagonal())
 plt.show()
 ```
 
-Notice how the population variance increases and asymptotes
+Notice how the population variance increases and asymptotes.
 
 +++
 
-Let's print out the covariance matrix $\Sigma_y$ for a  time series $y$
+Let's print out the covariance matrix $\Sigma_y$ for a  time series $y$.
 
 ```{code-cell} ipython3
 my_process = population_moments(alpha0=0, alpha1=.8, alpha2=0, T=6, y_1=0., y0=0., sigma_u=1)
@@ -497,22 +496,24 @@ print("mu_y = ",mu_y)
 print("Sigma_y = ", Sigma_y)
 ```
 
-Notice that  the covariance between $y_t$ and $y_{t-1}$ -- the elements on the superdiagonal -- are **not** identical.
+Notice that  the covariance between $y_t$ and $y_{t-1}$ -- the elements on the superdiagonal -- are *not* identical.
 
-This is is an indication that the time series represented by our $y$ vector is not **stationary**.  
+This is an indication that the time series represented by our $y$ vector is not **stationary**.  
 
-To make it stationary, we'd have to alter our system so that our **initial conditions** $(y_1, y_0)$ are not fixed numbers but instead a jointly normally distributed random vector with a particular mean and  covariance matrix.
+To make it stationary, we'd have to alter our system so that our *initial conditions* $(y_1, y_0)$ are not fixed numbers but instead a jointly normally distributed random vector with a particular mean and  covariance matrix.
 
-We describe how to do that in another lecture in this lecture [Linear State Space Models](https://python.quantecon.org/linear_models.html).
+We describe how to do that in [Linear State Space Models](https://python.quantecon.org/linear_models.html).
 
 But just to set the stage for that analysis, let's  print out the bottom right corner of $\Sigma_y$.
 
 ```{code-cell} ipython3
+my_process = population_moments(
+    alpha0=10.0, alpha1=1.53, alpha2=-.9, T=80, y_1=28., y0=24., sigma_u=1)
 mu_y, Sigma_y = my_process.get_moments()
 print("bottom right corner of Sigma_y = \n", Sigma_y[72:,72:])
 ```
 
-Please notice how the sub diagonal and super diagonal elements seem to have converged.
+Please notice how the subdiagonal and superdiagonal elements seem to have converged.
 
 This is an indication that our process is asymptotically stationary.
 
@@ -531,7 +532,7 @@ Let's print out  $A^{-1}$ and stare at  its structure
 
 To study the structure of $A^{-1}$, we shall print just  up to $3$ decimals.
 
-Let's begin by printing out just the upper left hand corner of $A^{-1}$
+Let's begin by printing out just the upper left hand corner of $A^{-1}$.
 
 ```{code-cell} ipython3
 with np.printoptions(precision=3, suppress=True):
@@ -560,7 +561,7 @@ Notice how  every row ends with the previous row's pre-diagonal entries.
 
 Since $A^{-1}$ is lower triangular,  each  row represents  $ y_t$ for a particular $t$ as the sum of 
 - a time-dependent function $A^{-1} b$ of the initial conditions incorporated in $b$, and 
-- a weighted sum of  current and past values of the IID shocks $\{u_t\}$
+- a weighted sum of  current and past values of the IID shocks $\{u_t\}$.
 
 Thus,  let $\tilde{A}=A^{-1}$. 
 
@@ -580,13 +581,13 @@ Just as system {eq}`eq:eqma` constitutes  a
 
 ## A forward looking model
 
-Samuelson’s model is **backwards looking** in the sense that we give it **initial conditions** and let it
+Samuelson’s model is *backward looking* in the sense that we give it *initial conditions* and let it
 run.
 
-Let’s now turn to model  that is **forward looking**.
+Let’s now turn to model  that is *forward looking*.
 
-We apply similar linear algebra machinery to study a **perfect
-foresight** model widely used as a benchmark in macroeconomics and
+We apply similar linear algebra machinery to study a *perfect
+foresight* model widely used as a benchmark in macroeconomics and
 finance.
 
 As an example, we suppose that $p_t$ is the price of a stock and
@@ -599,7 +600,7 @@ $$
 y = A^{-1} \left(b + u\right)
 $$
 
-Our **perfect foresight** model of stock prices is
+Our *perfect foresight* model of stock prices is
 
 $$
 p_{t} = \sum_{j=0}^{T-t} \beta^{j} y_{t+j}, \quad \beta \in (0,1)
