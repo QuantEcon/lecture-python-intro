@@ -774,7 +774,7 @@ In general, we can write the demand equation as $q^d = Dp + h$, where
 
 Similarly, we can write the supply equation as $q^s = Cp + e$, where
 
-* $q^d$ is an $n \times 1$ vector of supply quantities for the same goods.
+* $q^s$ is an $n \times 1$ vector of supply quantities for the same goods.
 * $C$ is an $n \times n$ "coefficient" matrix.
 * $e$ is an $n \times 1$ vector of constant values.
 

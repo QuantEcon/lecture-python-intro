@@ -20,7 +20,19 @@ Let's start by installing the necessary Python packages.
 The `xlrd` package is used by `pandas` to perform operations on Excel files.
 
 ```{code-cell} ipython3
+:tags: [hide-output]
 !pip install xlrd
+```
+
+<!-- Check for pandas>=2.1.4 for Google Collab Compat -->
+
+```{code-cell} ipython3
+:tags: [hide-cell]
+from importlib.metadata import version
+from packaging.version import Version
+
+if Version(version("pandas")) < Version('2.1.4'):
+    !pip install "pandas>=2.1.4"
 ```
 
 We can then import the Python modules we will use.
