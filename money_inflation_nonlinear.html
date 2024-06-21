@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>28. Inflation Rate Laffer Curves &#8212; A First Course in Quantitative Economics with Python</title>
+    <title>29. Inflation Rate Laffer Curves &#8212; A First Course in Quantitative Economics with Python</title>
     <script src="https://unpkg.com/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://unpkg.com/tippy.js@6.3.1/dist/tippy-bundle.umd.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
@@ -123,8 +123,8 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="29. Laffer Curves with Adaptive Expectations" href="laffer_adaptive.html" />
-    <link rel="prev" title="27. Unpleasant Monetarist Arithmetic" href="unpleasant.html" />
+    <link rel="next" title="30. Laffer Curves with Adaptive Expectations" href="laffer_adaptive.html" />
+    <link rel="prev" title="28. Unpleasant Monetarist Arithmetic" href="unpleasant.html" />
 
 <!-- Normal Meta Tags -->
 <meta name="author" context="Thomas J. Sargent &amp; John Stachurski" />
@@ -172,16 +172,16 @@ const thebe_selector_output = ".output, .cell_output"
 
                         <nav id="bd-toc-nav" class="qe-page__toc-nav">
                             <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">28.1. Overview</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-model">28.2. The Model</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#computing-an-equilibrium-sequence">28.3. Computing An Equilibrium Sequence</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limiting-values-of-inflation-rate">28.4. Limiting Values of Inflation Rate</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#steady-state-laffer-curve">28.5. Steady State Laffer Curve</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#associated-initial-price-levels">28.6. Associated Initial Price Levels</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#verification">28.6.1. Verification</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">29.1. Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-model">29.2. The model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#computing-an-equilibrium-sequence">29.3. Computing an equilibrium sequence</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limiting-values-of-inflation-rate">29.4. Limiting values of inflation rate</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#steady-state-laffer-curve">29.5. Steady state Laffer curve</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#associated-initial-price-levels">29.6. Associated initial price levels</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#verification">29.6.1. Verification</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#slippery-side-of-laffer-curve-dynamics">28.7. Slippery Side of Laffer Curve Dynamics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#slippery-side-of-laffer-curve-dynamics">29.7. Slippery side of Laffer curve dynamics</a></li>
 </ul>
                             <p class="logo">
                                 
@@ -241,34 +241,34 @@ const thebe_selector_output = ".output, .cell_output"
                     <div>
                         
   <section class="tex2jax_ignore mathjax_ignore" id="inflation-rate-laffer-curves">
-<h1><span class="section-number">28. </span>Inflation Rate Laffer Curves<a class="headerlink" href="#inflation-rate-laffer-curves" title="Permalink to this heading">#</a></h1>
+<h1><span class="section-number">29. </span>Inflation Rate Laffer Curves<a class="headerlink" href="#inflation-rate-laffer-curves" title="Permalink to this heading">#</a></h1>
 <section id="overview">
-<h2><span class="section-number">28.1. </span>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
-<p>This lecture studies stationary and dynamic <strong>Laffer curves</strong> in the inflation tax rate in a non-linear version of the model studied in this lecture <a class="reference internal" href="money_inflation.html"><span class="doc">Money Financed Government Deficits and Price Levels</span></a>.</p>
-<p>This lecture uses the log-linear version of the demand function for money that  <span id="id1">[<a class="reference internal" href="zreferences.html#id108" title="Philip Cagan. The monetary dynamics of hyperinflation. In Milton Friedman, editor, Studies in the Quantity Theory of Money, pages 25–117. University of Chicago Press, Chicago, 1956.">Cagan, 1956</a>]</span>
-used in his classic paper in place of the linear demand function used in this lecture <a class="reference internal" href="money_inflation.html"><span class="doc">Money Financed Government Deficits and Price Levels</span></a>.</p>
+<h2><span class="section-number">29.1. </span>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
+<p>We study stationary and dynamic <em>Laffer curves</em> in the inflation tax rate in a non-linear version of the model studied in <a class="reference internal" href="money_inflation.html"><span class="doc">Money Financed Government Deficits and Price Levels</span></a>.</p>
+<p>We use the log-linear version of the demand function for money that  <span id="id1">[<a class="reference internal" href="zreferences.html#id108" title="Philip Cagan. The monetary dynamics of hyperinflation. In Milton Friedman, editor, Studies in the Quantity Theory of Money, pages 25–117. University of Chicago Press, Chicago, 1956.">Cagan, 1956</a>]</span>
+used in his classic paper in place of the linear demand function used in <a class="reference internal" href="money_inflation.html"><span class="doc">Money Financed Government Deficits and Price Levels</span></a>.</p>
 <p>That change requires that we modify parts of our analysis.</p>
 <p>In particular, our dynamic system is no longer linear in state variables.</p>
 <p>Nevertheless, the economic logic underlying an  analysis based on what we called ‘‘method 2’’  remains unchanged.</p>
-<p>in this lecture we shall discover   qualitatively similar outcomes to those that we studied  in the lecture  <a class="reference internal" href="money_inflation.html"><span class="doc">Money Financed Government Deficits and Price Levels</span></a>.</p>
+<p>We shall discover qualitatively similar outcomes to those that we studied  in <a class="reference internal" href="money_inflation.html"><span class="doc">Money Financed Government Deficits and Price Levels</span></a>.</p>
 <p>That lecture presented a linear version of the model in this lecture.</p>
 <p>As in that  lecture,  we discussed these topics:</p>
 <ul class="simple">
 <li><p>an <strong>inflation tax</strong> that a government gathers by printing paper or electronic money</p></li>
 <li><p>a dynamic <strong>Laffer curve</strong> in the inflation tax rate that has two stationary equilibria</p></li>
 <li><p>perverse dynamics under rational expectations in which the system converges to the higher stationary inflation tax rate</p></li>
-<li><p>a peculiar comparative stationary-state analysis connected with that stationary inflation rate that assert that inflation can be <strong>reduced</strong> by running <strong>higher</strong>  government deficits</p></li>
+<li><p>a peculiar comparative stationary-state analysis connected with that stationary inflation rate that assert that inflation can be <em>reduced</em> by running <em>higher</em>  government deficits</p></li>
 </ul>
-<p>These outcomes will set the stage for the analysis of this lecture <a class="reference internal" href="laffer_adaptive.html"><span class="doc">Laffer Curves  with Adaptive Expectations</span></a> that studies a version of the present model that  uses a version of “adaptive expectations” instead of rational expectations.</p>
+<p>These outcomes will set the stage for the analysis of <a class="reference internal" href="laffer_adaptive.html"><span class="doc">Laffer Curves  with Adaptive Expectations</span></a> that studies a version of the present model that  uses a version of “adaptive expectations” instead of rational expectations.</p>
 <p>That lecture will show that</p>
 <ul class="simple">
 <li><p>replacing rational expectations with adaptive expectations leaves the two stationary inflation rates unchanged, but that <span class="math notranslate nohighlight">\(\ldots\)</span></p></li>
-<li><p>it reverse the pervese dynamics by making the <strong>lower</strong> stationary inflation rate the one to which the system typically converges</p></li>
-<li><p>a more plausible comparative dynamic outcome emerges in which now inflation can be <strong>reduced</strong> by running <strong>lower</strong>  government deficits</p></li>
+<li><p>it reverse the pervese dynamics by making the <em>lower</em> stationary inflation rate the one to which the system typically converges</p></li>
+<li><p>a more plausible comparative dynamic outcome emerges in which now inflation can be <em>reduced</em> by running <em>lower</em>  government deficits</p></li>
 </ul>
 </section>
 <section id="the-model">
-<h2><span class="section-number">28.2. </span>The Model<a class="headerlink" href="#the-model" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">29.2. </span>The model<a class="headerlink" href="#the-model" title="Permalink to this heading">#</a></h2>
 <p>Let</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(m_t\)</span> be the log of the money supply at the beginning of time <span class="math notranslate nohighlight">\(t\)</span></p></li>
@@ -276,21 +276,21 @@ used in his classic paper in place of the linear demand function used in this le
 </ul>
 <p>The demand function for money is</p>
 <div class="math notranslate nohighlight" id="equation-eq-mdemand">
-<span class="eqno">(28.1)<a class="headerlink" href="#equation-eq-mdemand" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(29.1)<a class="headerlink" href="#equation-eq-mdemand" title="Permalink to this equation">#</a></span>\[
 m_{t+1} - p_t = -\alpha (p_{t+1} - p_t) 
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(\alpha \geq 0\)</span>.</p>
 <p>The law of motion of the money supply is</p>
 <div class="math notranslate nohighlight" id="equation-eq-msupply">
-<span class="eqno">(28.2)<a class="headerlink" href="#equation-eq-msupply" title="Permalink to this equation">#</a></span>\[ 
+<span class="eqno">(29.2)<a class="headerlink" href="#equation-eq-msupply" title="Permalink to this equation">#</a></span>\[ 
 \exp(m_{t+1}) - \exp(m_t) = g \exp(p_t) 
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(g\)</span> is the part of government expenditures financed by printing money.</p>
-<p><strong>Remark:</strong> Please notice that while equation <a class="reference internal" href="#equation-eq-mdemand">(28.1)</a> is linear in logs of the money supply and price level, equation <a class="reference internal" href="#equation-eq-msupply">(28.2)</a> is linear in levels. This will require adapting the equilibrium computation methods that we deployed in <a class="reference internal" href="money_inflation.html"><span class="doc">Money Financed Government Deficits and Price Levels</span></a>.</p>
+<p><strong>Remark:</strong> Please notice that while equation <a class="reference internal" href="#equation-eq-mdemand">(29.1)</a> is linear in logs of the money supply and price level, equation <a class="reference internal" href="#equation-eq-msupply">(29.2)</a> is linear in levels. This will require adapting the equilibrium computation methods that we deployed in <a class="reference internal" href="money_inflation.html"><span class="doc">Money Financed Government Deficits and Price Levels</span></a>.</p>
 </section>
 <section id="computing-an-equilibrium-sequence">
-<h2><span class="section-number">28.3. </span>Computing An Equilibrium Sequence<a class="headerlink" href="#computing-an-equilibrium-sequence" title="Permalink to this heading">#</a></h2>
-<p>We’ll deploy a method similar to <strong>Method 2</strong> used in <a class="reference internal" href="money_inflation.html"><span class="doc">Money Financed Government Deficits and Price Levels</span></a>.</p>
+<h2><span class="section-number">29.3. </span>Computing an equilibrium sequence<a class="headerlink" href="#computing-an-equilibrium-sequence" title="Permalink to this heading">#</a></h2>
+<p>We’ll deploy a method similar to <em>Method 2</em> used in <a class="reference internal" href="money_inflation.html"><span class="doc">Money Financed Government Deficits and Price Levels</span></a>.</p>
 <p>We’ll take the time <span class="math notranslate nohighlight">\(t\)</span> state vector to be <span class="math notranslate nohighlight">\(m_t, p_t\)</span>.</p>
 <ul class="simple">
 <li><p>we’ll treat <span class="math notranslate nohighlight">\(m_t\)</span> as a ‘‘natural state variable’’ and <span class="math notranslate nohighlight">\(p_t\)</span> as a ‘‘jump’’ variable.</p></li>
@@ -300,43 +300,38 @@ m_{t+1} - p_t = -\alpha (p_{t+1} - p_t)
 \[
 \lambda \equiv \frac{\alpha}{1+ \alpha}
 \]</div>
-<p>Let’s rewrite equations <a class="reference internal" href="#equation-eq-msupply">(28.2)</a> and <a class="reference internal" href="#equation-eq-mdemand">(28.1)</a>, respectively,  as</p>
-<div class="math notranslate nohighlight" id="equation-eq-msupply2">
-<span class="eqno">(28.3)<a class="headerlink" href="#equation-eq-msupply2" title="Permalink to this equation">#</a></span>\[ 
-\exp(m_{t+1}) - \exp(m_t) = g \exp(p_t) 
-\]</div>
-<p>and</p>
+<p>Let’s rewrite equation <a class="reference internal" href="#equation-eq-mdemand">(29.1)</a>, respectively,  as</p>
 <div class="math notranslate nohighlight" id="equation-eq-mdemand2">
-<span class="eqno">(28.4)<a class="headerlink" href="#equation-eq-mdemand2" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(29.3)<a class="headerlink" href="#equation-eq-mdemand2" title="Permalink to this equation">#</a></span>\[
 p_t = (1-\lambda) m_{t+1} + \lambda p_{t+1} 
 \]</div>
 <p>We’ll summarize our algorithm with the following pseudo-code.</p>
 <p><strong>Pseudo-code</strong></p>
 <ul class="simple">
 <li><p>start for <span class="math notranslate nohighlight">\(m_0, p_0\)</span> at time <span class="math notranslate nohighlight">\(t =0\)</span></p></li>
-<li><p>solve <a class="reference internal" href="#equation-eq-msupply2">(28.3)</a> for <span class="math notranslate nohighlight">\(m_{t+1}\)</span></p></li>
-<li><p>solve <a class="reference internal" href="#equation-eq-mdemand2">(28.4)</a> for <span class="math notranslate nohighlight">\(p_{t+1} = \lambda^{-1} p_t + (1 - \lambda^{-1}) m_{t+1}\)</span></p></li>
-<li><p>compute <span class="math notranslate nohighlight">\(\pi_t = p_{t+1} - p_t\)</span> and <span class="math notranslate nohighlight">\(\mu_t = m_{t+1} - m_t \)</span></p></li>
+<li><p>solve <a class="reference internal" href="#equation-eq-msupply">(29.2)</a> for <span class="math notranslate nohighlight">\(m_{t+1}\)</span></p></li>
+<li><p>solve <a class="reference internal" href="#equation-eq-mdemand2">(29.3)</a> for <span class="math notranslate nohighlight">\(p_{t+1} = \lambda^{-1} p_t + (1 - \lambda^{-1}) m_{t+1}\)</span></p></li>
+<li><p>compute the inflation rate <span class="math notranslate nohighlight">\(\pi_t = p_{t+1} - p_t\)</span> and growth of money supply <span class="math notranslate nohighlight">\(\mu_t = m_{t+1} - m_t \)</span></p></li>
 <li><p>iterate on <span class="math notranslate nohighlight">\(t\)</span> to convergence of <span class="math notranslate nohighlight">\(\pi_t \rightarrow \overline \pi\)</span> and <span class="math notranslate nohighlight">\(\mu_t \rightarrow \overline \mu\)</span></p></li>
 </ul>
 <p>It will turn out that</p>
 <ul class="simple">
 <li><p>if they exist, limiting values <span class="math notranslate nohighlight">\(\overline \pi\)</span> and <span class="math notranslate nohighlight">\(\overline \mu\)</span> will be equal</p></li>
-<li><p>if  limiting values exists, there are two possible limiting values, one high, one low</p></li>
+<li><p>if  limiting values exist, there are two possible limiting values, one high, one low</p></li>
 <li><p>for almost all initial log price levels <span class="math notranslate nohighlight">\(p_0\)</span>, the limiting <span class="math notranslate nohighlight">\(\overline \pi = \overline \mu\)</span> is
 the higher value</p></li>
-<li><p>for each of the two possible limiting values <span class="math notranslate nohighlight">\(\bar \pi\)</span> ,there is a unique initial log price level <span class="math notranslate nohighlight">\(p_0\)</span> that implies that <span class="math notranslate nohighlight">\(\pi_t = \mu_t = \bar \mu\)</span> for all  <span class="math notranslate nohighlight">\(t \geq 0\)</span></p>
+<li><p>for each of the two possible limiting values <span class="math notranslate nohighlight">\(\overline \pi\)</span> ,there is a unique initial log price level <span class="math notranslate nohighlight">\(p_0\)</span> that implies that <span class="math notranslate nohighlight">\(\pi_t = \mu_t = \overline \mu\)</span> for all  <span class="math notranslate nohighlight">\(t \geq 0\)</span></p>
 <ul>
-<li><p>this unique initial log price level solves <span class="math notranslate nohighlight">\(\log(\exp(m_0) + g \exp(p_0)) - p_0 = - \alpha \bar \pi \)</span></p></li>
-<li><p>the preceding equation for <span class="math notranslate nohighlight">\(p_0\)</span> comes from <span class="math notranslate nohighlight">\(m_1 - p_0 = -  \alpha \bar \pi\)</span></p></li>
+<li><p>this unique initial log price level solves <span class="math notranslate nohighlight">\(\log(\exp(m_0) + g \exp(p_0)) - p_0 = - \alpha \overline \pi \)</span></p></li>
+<li><p>the preceding equation for <span class="math notranslate nohighlight">\(p_0\)</span> comes from <span class="math notranslate nohighlight">\(m_1 - p_0 = -  \alpha \overline \pi\)</span></p></li>
 </ul>
 </li>
 </ul>
 </section>
 <section id="limiting-values-of-inflation-rate">
-<h2><span class="section-number">28.4. </span>Limiting Values of Inflation Rate<a class="headerlink" href="#limiting-values-of-inflation-rate" title="Permalink to this heading">#</a></h2>
-<p>We can compute the two prospective limiting values for <span class="math notranslate nohighlight">\(\bar \pi\)</span> by studying the steady-state Laffer curve.</p>
-<p>Thus, in a  <strong>steady state</strong></p>
+<h2><span class="section-number">29.4. </span>Limiting values of inflation rate<a class="headerlink" href="#limiting-values-of-inflation-rate" title="Permalink to this heading">#</a></h2>
+<p>We can compute the two prospective limiting values for <span class="math notranslate nohighlight">\(\overline \pi\)</span> by studying the steady-state Laffer curve.</p>
+<p>Thus, in a  <em>steady state</em></p>
 <div class="math notranslate nohighlight">
 \[
 m_{t+1} - m_t = p_{t+1} - p_t =  x \quad \forall t ,
@@ -344,20 +339,20 @@ m_{t+1} - m_t = p_{t+1} - p_t =  x \quad \forall t ,
 <p>where <span class="math notranslate nohighlight">\(x &gt; 0 \)</span> is a common rate of growth of logarithms of the money supply and price level.</p>
 <p>A few lines of algebra yields the following equation that <span class="math notranslate nohighlight">\(x\)</span> satisfies</p>
 <div class="math notranslate nohighlight" id="equation-eq-steadypi">
-<span class="eqno">(28.5)<a class="headerlink" href="#equation-eq-steadypi" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(29.4)<a class="headerlink" href="#equation-eq-steadypi" title="Permalink to this equation">#</a></span>\[
 \exp(-\alpha x) - \exp(-(1 + \alpha) x) = g 
 \]</div>
 <p>where we require that</p>
 <div class="math notranslate nohighlight" id="equation-eq-revmax">
-<span class="eqno">(28.6)<a class="headerlink" href="#equation-eq-revmax" title="Permalink to this equation">#</a></span>\[
-g \leq \max_{x: x \geq 0} \exp(-\alpha x) - \exp(-(1 + \alpha) x) ,  
+<span class="eqno">(29.5)<a class="headerlink" href="#equation-eq-revmax" title="Permalink to this equation">#</a></span>\[
+g \leq \max_{x \geq 0} \{\exp(-\alpha x) - \exp(-(1 + \alpha) x) \},  
 \]</div>
 <p>so that it is feasible to finance <span class="math notranslate nohighlight">\(g\)</span> by printing money.</p>
-<p>The left side of <a class="reference internal" href="#equation-eq-steadypi">(28.5)</a> is steady state revenue raised by printing money.</p>
-<p>The right side of <a class="reference internal" href="#equation-eq-steadypi">(28.5)</a> is the quantity  of time <span class="math notranslate nohighlight">\(t\)</span> goods  that the government raises by printing money.</p>
-<p>Soon  we’ll plot  the left and right sides of equation <a class="reference internal" href="#equation-eq-steadypi">(28.5)</a>.</p>
+<p>The left side of <a class="reference internal" href="#equation-eq-steadypi">(29.4)</a> is steady state revenue raised by printing money.</p>
+<p>The right side of <a class="reference internal" href="#equation-eq-steadypi">(29.4)</a> is the quantity  of time <span class="math notranslate nohighlight">\(t\)</span> goods  that the government raises by printing money.</p>
+<p>Soon  we’ll plot  the left and right sides of equation <a class="reference internal" href="#equation-eq-steadypi">(29.4)</a>.</p>
 <p>But first we’ll write code that computes a steady-state
-<span class="math notranslate nohighlight">\(\bar \pi\)</span>.</p>
+<span class="math notranslate nohighlight">\(\overline \pi\)</span>.</p>
 <p>Let’s start by importing some  libraries</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -379,7 +374,7 @@ g \leq \max_{x: x \geq 0} \exp(-\alpha x) - \exp(-(1 + \alpha) x) ,
                          <span class="s2">&quot;λ&quot;</span><span class="p">,</span>
                          <span class="s2">&quot;g&quot;</span> <span class="p">])</span>
 
-<span class="c1"># Create a CaganLaffer model</span>
+<span class="c1"># Create a Cagan Laffer model</span>
 <span class="k">def</span> <span class="nf">create_model</span><span class="p">(</span><span class="n">α</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">m0</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span> <span class="n">g</span><span class="o">=</span><span class="mf">0.35</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">CaganLaffer</span><span class="p">(</span><span class="n">α</span><span class="o">=</span><span class="n">α</span><span class="p">,</span> <span class="n">m0</span><span class="o">=</span><span class="n">m0</span><span class="p">,</span> <span class="n">λ</span><span class="o">=</span><span class="n">α</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">α</span><span class="p">),</span> <span class="n">g</span><span class="o">=</span><span class="n">g</span><span class="p">)</span>
 
@@ -388,7 +383,7 @@ g \leq \max_{x: x \geq 0} \exp(-\alpha x) - \exp(-(1 + \alpha) x) ,
 </div>
 </div>
 </div>
-<p>Now we write code that computes steady-state <span class="math notranslate nohighlight">\(\bar \pi\)</span>s.</p>
+<p>Now we write code that computes steady-state <span class="math notranslate nohighlight">\(\overline \pi\)</span>s.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define formula for π_bar</span>
@@ -412,10 +407,10 @@ g \leq \max_{x: x \geq 0} \exp(-\alpha x) - \exp(-(1 + \alpha) x) ,
 </div>
 </div>
 </div>
-<p>We find two steady state <span class="math notranslate nohighlight">\(\bar \pi\)</span> values</p>
+<p>We find two steady state <span class="math notranslate nohighlight">\(\overline \pi\)</span> values.</p>
 </section>
 <section id="steady-state-laffer-curve">
-<h2><span class="section-number">28.5. </span>Steady State Laffer Curve<a class="headerlink" href="#steady-state-laffer-curve" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">29.5. </span>Steady state Laffer curve<a class="headerlink" href="#steady-state-laffer-curve" title="Permalink to this heading">#</a></h2>
 <p>The following figure plots the steady state Laffer curve together with the two stationary inflation rates.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -433,7 +428,7 @@ g \leq \max_{x: x \geq 0} \exp(-\alpha x) - \exp(-(1 + \alpha) x) ,
 
     <span class="c1"># Plot the function</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_values</span><span class="p">,</span> <span class="n">y_values</span><span class="p">,</span> 
-            <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;$exp((-</span><span class="si">{</span><span class="n">α</span><span class="si">}</span><span class="s1">)x) - exp(- (1- </span><span class="si">{</span><span class="n">α</span><span class="si">}</span><span class="s1">) x)$&#39;</span><span class="p">)</span>
+            <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Laffer curve&#39;</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">π</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">πs</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;$\pi_l$&#39;</span><span class="p">,</span> <span class="s1">&#39;$\pi_u$&#39;</span><span class="p">]):</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">π</span><span class="p">,</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">get_ylim</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">2</span><span class="p">,</span> 
                  <span class="n">label</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span>
@@ -444,7 +439,6 @@ g \leq \max_{x: x \geq 0} \exp(-\alpha x) - \exp(-(1 + \alpha) x) ,
     <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$\pi$&#39;</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;seigniorage&#39;</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
 <span class="c1"># Steady state Laffer curve</span>
@@ -454,17 +448,17 @@ g \leq \max_{x: x \geq 0} \exp(-\alpha x) - \exp(-(1 + \alpha) x) ,
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="laffer-curve-nonlinear">
-<a class="reference internal image-reference" href="_images/f4e0938857d9ebb377c65a1d6b75570280232e4d292176b074eec3bf3003c189.png"><img alt="_images/f4e0938857d9ebb377c65a1d6b75570280232e4d292176b074eec3bf3003c189.png" src="_images/f4e0938857d9ebb377c65a1d6b75570280232e4d292176b074eec3bf3003c189.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/ea3cb100ca6885eec37dc1d4424dc75879877a6b0b2a868c1204df783ca6e403.png"><img alt="_images/ea3cb100ca6885eec37dc1d4424dc75879877a6b0b2a868c1204df783ca6e403.png" src="_images/ea3cb100ca6885eec37dc1d4424dc75879877a6b0b2a868c1204df783ca6e403.png" style="width: 80%;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 28.1 </span><span class="caption-text">Seigniorage as function of steady state inflation. The dashed brown lines indicate <span class="math notranslate nohighlight">\(\pi_l\)</span> and <span class="math notranslate nohighlight">\(\pi_u\)</span>.</span><a class="headerlink" href="#laffer-curve-nonlinear" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 29.1 </span><span class="caption-text">Seigniorage as function of steady state inflation. The dashed brown lines indicate <span class="math notranslate nohighlight">\(\pi_l\)</span> and <span class="math notranslate nohighlight">\(\pi_u\)</span>.</span><a class="headerlink" href="#laffer-curve-nonlinear" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </div>
 </div>
 </section>
 <section id="associated-initial-price-levels">
-<h2><span class="section-number">28.6. </span>Associated Initial Price Levels<a class="headerlink" href="#associated-initial-price-levels" title="Permalink to this heading">#</a></h2>
-<p>Now that we have our hands on the two possible steady states, we can compute two initial log price levels <span class="math notranslate nohighlight">\(p_0\)</span>, which as initial conditions, imply that <span class="math notranslate nohighlight">\(\pi_t = \bar \pi \)</span> for all <span class="math notranslate nohighlight">\(t \geq 0\)</span>.</p>
+<h2><span class="section-number">29.6. </span>Associated initial price levels<a class="headerlink" href="#associated-initial-price-levels" title="Permalink to this heading">#</a></h2>
+<p>Now that we have our hands on the two possible steady states, we can compute two initial log price levels <span class="math notranslate nohighlight">\(p_0\)</span>, which as initial conditions, imply that <span class="math notranslate nohighlight">\(\pi_t = \overline \pi \)</span> for all <span class="math notranslate nohighlight">\(t \geq 0\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">solve_p0</span><span class="p">(</span><span class="n">p0</span><span class="p">,</span> <span class="n">m0</span><span class="p">,</span> <span class="n">α</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">π</span><span class="p">):</span>
@@ -495,7 +489,7 @@ g \leq \max_{x: x \geq 0} \exp(-\alpha x) - \exp(-(1 + \alpha) x) ,
 </div>
 </div>
 <section id="verification">
-<h3><span class="section-number">28.6.1. </span>Verification<a class="headerlink" href="#verification" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">29.6.1. </span>Verification<a class="headerlink" href="#verification" title="Permalink to this heading">#</a></h3>
 <p>To start, let’s write some code to verify that if the initial log price level <span class="math notranslate nohighlight">\(p_0\)</span> takes one
 of the two values we just calculated, the inflation rate <span class="math notranslate nohighlight">\(\pi_t\)</span> will be constant for all <span class="math notranslate nohighlight">\(t \geq 0\)</span>.</p>
 <p>The following code verifies this.</p>
@@ -549,8 +543,8 @@ eq_g == g: True
 </section>
 </section>
 <section id="slippery-side-of-laffer-curve-dynamics">
-<h2><span class="section-number">28.7. </span>Slippery Side of Laffer Curve Dynamics<a class="headerlink" href="#slippery-side-of-laffer-curve-dynamics" title="Permalink to this heading">#</a></h2>
-<p>We are now equipped  to compute  time series starting from different <span class="math notranslate nohighlight">\(p_0\)</span> settings, like those in  this  lecture <a class="reference internal" href="money_inflation.html"><span class="doc">Money Financed Government Deficits and Price Levels</span></a>.</p>
+<h2><span class="section-number">29.7. </span>Slippery side of Laffer curve dynamics<a class="headerlink" href="#slippery-side-of-laffer-curve-dynamics" title="Permalink to this heading">#</a></h2>
+<p>We are now equipped  to compute  time series starting from different <span class="math notranslate nohighlight">\(p_0\)</span> settings, like those in <a class="reference internal" href="money_inflation.html"><span class="doc">Money Financed Government Deficits and Price Levels</span></a>.</p>
 <div class="cell tag_hide-cell docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -628,30 +622,30 @@ eq_g == g: True
 <figure class="align-default" id="p0-path-nonlin">
 <a class="reference internal image-reference" href="_images/6021233bdf663defe01651daff3aa94b924c68998e2184bf79dc9ac9b377ea83.png"><img alt="_images/6021233bdf663defe01651daff3aa94b924c68998e2184bf79dc9ac9b377ea83.png" src="_images/6021233bdf663defe01651daff3aa94b924c68998e2184bf79dc9ac9b377ea83.png" style="width: 80%;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 28.2 </span><span class="caption-text">Starting from different initial values of <span class="math notranslate nohighlight">\(p_0\)</span>, paths of <span class="math notranslate nohighlight">\(m_t\)</span> (top panel, log scale for <span class="math notranslate nohighlight">\(m\)</span>), <span class="math notranslate nohighlight">\(p_t\)</span> (second panel, log scale for <span class="math notranslate nohighlight">\(p\)</span>),  <span class="math notranslate nohighlight">\(\pi_t\)</span> (third panel), and <span class="math notranslate nohighlight">\(\mu_t\)</span> (bottom panel)</span><a class="headerlink" href="#p0-path-nonlin" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 29.2 </span><span class="caption-text">Starting from different initial values of <span class="math notranslate nohighlight">\(p_0\)</span>, paths of <span class="math notranslate nohighlight">\(m_t\)</span> (top panel, log scale for <span class="math notranslate nohighlight">\(m\)</span>), <span class="math notranslate nohighlight">\(p_t\)</span> (second panel, log scale for <span class="math notranslate nohighlight">\(p\)</span>),  <span class="math notranslate nohighlight">\(\pi_t\)</span> (third panel), and <span class="math notranslate nohighlight">\(\mu_t\)</span> (bottom panel)</span><a class="headerlink" href="#p0-path-nonlin" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </div>
 </div>
-<p>Staring at the paths of price levels in  <a class="reference internal" href="#p0-path-nonlin"><span class="std std-numref">Fig. 28.2</span></a> reveals that almost all paths converge to the <strong>higher</strong> inflation tax rate displayed in the stationary state Laffer curve. displayed in figure  <a class="reference internal" href="#laffer-curve-nonlinear"><span class="std std-numref">Fig. 28.1</span></a>.</p>
+<p>Staring at the paths of price levels in  <a class="reference internal" href="#p0-path-nonlin"><span class="std std-numref">Fig. 29.2</span></a> reveals that almost all paths converge to the <em>higher</em> inflation tax rate displayed in the stationary state Laffer curve. displayed in figure  <a class="reference internal" href="#laffer-curve-nonlinear"><span class="std std-numref">Fig. 29.1</span></a>.</p>
 <p>Thus, we have reconfirmed  what we have  called the “perverse” dynamics under rational expectations in which the system converges to the higher of two possible stationary inflation tax rates.</p>
-<p>Those dynamics are “perverse” not only in the sense that they imply that the monetary and fiscal authorities that have chosen to finance government expenditures eventually impose a higher inflation tax than required to finance government expenditures, but because of the following “counterintuitive” situation that we can deduce by staring at the stationary state Laffer curve displayed in figure  <a class="reference internal" href="#laffer-curve-nonlinear"><span class="std std-numref">Fig. 28.1</span></a>:</p>
+<p>Those dynamics are “perverse” not only in the sense that they imply that the monetary and fiscal authorities that have chosen to finance government expenditures eventually impose a higher inflation tax than required to finance government expenditures, but because of the following “counterintuitive” situation that we can deduce by staring at the stationary state Laffer curve displayed in figure  <a class="reference internal" href="#laffer-curve-nonlinear"><span class="std std-numref">Fig. 29.1</span></a>:</p>
 <ul class="simple">
-<li><p>the figure indicates that inflation can be <strong>reduced</strong> by running <strong>higher</strong>  government deficits, i.e., by raising more resources through  printing money.</p></li>
+<li><p>the figure indicates that inflation can be <em>reduced</em> by running <em>higher</em>  government deficits, i.e., by raising more resources through  printing money.</p></li>
 </ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The same qualitive outcomes prevail in this lecture <a class="reference internal" href="money_inflation.html"><span class="doc">Money Financed Government Deficits and Price Levels</span></a> that studies a linear version of the model in this lecture`.</p>
+<p>The same qualitive outcomes prevail in <a class="reference internal" href="money_inflation.html"><span class="doc">Money Financed Government Deficits and Price Levels</span></a> that studies a linear version of the model in this lecture.</p>
 </div>
 <p>We discovered that</p>
 <ul class="simple">
 <li><p>all but one of the equilibrium paths converge to limits in which the higher of two possible stationary inflation tax prevails</p></li>
 <li><p>there is a unique equilibrium path associated with “plausible” statements about how reductions in government deficits affect a stationary  inflation rate</p></li>
 </ul>
-<p>As in  this lecture <a class="reference internal" href="money_inflation.html"><span class="doc">Money Financed Government Deficits and Price Levels</span></a>,
+<p>As in <a class="reference internal" href="money_inflation.html"><span class="doc">Money Financed Government Deficits and Price Levels</span></a>,
 on grounds of plausibility, we  again recommend  selecting the unique equilibrium that converges to the lower stationary inflation tax rate.</p>
-<p>As we shall see, we  accepting  this recommendation is a key ingredient of outcomes of the “unpleasant arithmetic” that we describe in   lecture <a class="reference internal" href="unpleasant.html"><span class="doc">Unpleasant Monetarist Arithmetic</span></a>.</p>
-<p>In lecture, <a class="reference internal" href="laffer_adaptive.html"><span class="doc">Laffer Curves  with Adaptive Expectations</span></a>, we shall explore how  <span id="id2">[<a class="reference internal" href="zreferences.html#id292" title="Michael Bruno and Stanley Fischer. Seigniorage, operating rules, and the high inflation trap. The Quarterly Journal of Economics, 105(2):353–374, 1990.">Bruno and Fischer, 1990</a>]</span> and others justified our equilibrium selection in other ways.</p>
+<p>As we shall see, we  accepting  this recommendation is a key ingredient of outcomes of the “unpleasant arithmetic” that we describe in <a class="reference internal" href="unpleasant.html"><span class="doc">Unpleasant Monetarist Arithmetic</span></a>.</p>
+<p>In <a class="reference internal" href="laffer_adaptive.html"><span class="doc">Laffer Curves  with Adaptive Expectations</span></a>, we shall explore how  <span id="id2">[<a class="reference internal" href="zreferences.html#id292" title="Michael Bruno and Stanley Fischer. Seigniorage, operating rules, and the high inflation trap. The Quarterly Journal of Economics, 105(2):353–374, 1990.">Bruno and Fischer, 1990</a>]</span> and others justified our equilibrium selection in other ways.</p>
 </section>
 </section>
 
@@ -813,6 +807,11 @@ on grounds of plausibility, we  again recommend  selecting the unique equilibriu
    15. Eigenvalues and Eigenvectors
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="greek_square.html">
+   16. Computing Square Roots
+  </a>
+ </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
@@ -822,27 +821,27 @@ on grounds of plausibility, we  again recommend  selecting the unique equilibriu
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="prob_dist.html">
-   16. Distributions and Probabilities
+   17. Distributions and Probabilities
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="lln_clt.html">
-   17. LLN and CLT
+   18. LLN and CLT
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="monte_carlo.html">
-   18. Monte Carlo and Option Pricing
+   19. Monte Carlo and Option Pricing
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="heavy_tails.html">
-   19. Heavy-Tailed Distributions
+   20. Heavy-Tailed Distributions
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="schelling.html">
-   20. Racial Segregation
+   21. Racial Segregation
   </a>
  </li>
 </ul>
@@ -854,27 +853,27 @@ on grounds of plausibility, we  again recommend  selecting the unique equilibriu
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="scalar_dynam.html">
-   21. Dynamics in One Dimension
+   22. Dynamics in One Dimension
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="solow.html">
-   22. The Solow-Swan Growth Model
+   23. The Solow-Swan Growth Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cobweb.html">
-   23. The Cobweb Model
+   24. The Cobweb Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="olg.html">
-   24. The Overlapping Generations Model
+   25. The Overlapping Generations Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="commod_price.html">
-   25. Commodity Prices
+   26. Commodity Prices
   </a>
  </li>
 </ul>
@@ -886,27 +885,27 @@ on grounds of plausibility, we  again recommend  selecting the unique equilibriu
 <ul class="current nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="money_inflation.html">
-   26. Money Financed Government Deficits and Price Levels
+   27. Money Financed Government Deficits and Price Levels
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="unpleasant.html">
-   27. Unpleasant Monetarist Arithmetic
+   28. Unpleasant Monetarist Arithmetic
   </a>
  </li>
  <li class="toctree-l1 current active active">
   <a class="current reference internal" href="#">
-   28. Inflation Rate Laffer Curves
+   29. Inflation Rate Laffer Curves
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="laffer_adaptive.html">
-   29. Laffer Curves  with Adaptive Expectations
+   30. Laffer Curves  with Adaptive Expectations
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ak2.html">
-   30. Transitions in an Overlapping Generations Model
+   31. Transitions in an Overlapping Generations Model
   </a>
  </li>
 </ul>
@@ -918,22 +917,22 @@ on grounds of plausibility, we  again recommend  selecting the unique equilibriu
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="ar1_processes.html">
-   31. AR1 Processes
+   32. AR1 Processes
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="markov_chains_I.html">
-   32. Markov Chains: Basic Concepts
+   33. Markov Chains: Basic Concepts
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="markov_chains_II.html">
-   33. Markov Chains: Irreducibility and Ergodicity
+   34. Markov Chains: Irreducibility and Ergodicity
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="time_series_with_matrices.html">
-   34. Univariate Time Series with Matrix Algebra
+   35. Univariate Time Series with Matrix Algebra
   </a>
  </li>
 </ul>
@@ -945,12 +944,12 @@ on grounds of plausibility, we  again recommend  selecting the unique equilibriu
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="lp_intro.html">
-   35. Linear Programming
+   36. Linear Programming
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="short_path.html">
-   36. Shortest Paths
+   37. Shortest Paths
   </a>
  </li>
 </ul>
@@ -962,22 +961,22 @@ on grounds of plausibility, we  again recommend  selecting the unique equilibriu
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="eigen_II.html">
-   37. The Perron-Frobenius Theorem
+   38. The Perron-Frobenius Theorem
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="input_output.html">
-   38. Input-Output Models
+   39. Input-Output Models
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="lake_model.html">
-   39. A Lake Model of Employment
+   40. A Lake Model of Employment
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="networks.html">
-   40. Networks
+   41. Networks
   </a>
  </li>
 </ul>
@@ -989,12 +988,12 @@ on grounds of plausibility, we  again recommend  selecting the unique equilibriu
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="supply_demand_multiple_goods.html">
-   41. Supply and Demand with Many Goods
+   42. Supply and Demand with Many Goods
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="supply_demand_heterogeneity.html">
-   42. Market Equilibrium with Heterogeneity
+   43. Market Equilibrium with Heterogeneity
   </a>
  </li>
 </ul>
@@ -1006,12 +1005,12 @@ on grounds of plausibility, we  again recommend  selecting the unique equilibriu
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="simple_linear_regression.html">
-   43. Simple Linear Regression Model
+   44. Simple Linear Regression Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="mle.html">
-   44. Maximum Likelihood Estimation
+   45. Maximum Likelihood Estimation
   </a>
  </li>
 </ul>
@@ -1023,17 +1022,17 @@ on grounds of plausibility, we  again recommend  selecting the unique equilibriu
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="troubleshooting.html">
-   45. Troubleshooting
+   46. Troubleshooting
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="zreferences.html">
-   46. References
+   47. References
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="status.html">
-   47. Execution Statistics
+   48. Execution Statistics
   </a>
  </li>
 </ul>

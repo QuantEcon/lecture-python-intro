@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>38. Input-Output Models &#8212; A First Course in Quantitative Economics with Python</title>
+    <title>39. Input-Output Models &#8212; A First Course in Quantitative Economics with Python</title>
     <script src="https://unpkg.com/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://unpkg.com/tippy.js@6.3.1/dist/tippy-bundle.umd.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
@@ -123,8 +123,8 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="39. A Lake Model of Employment" href="lake_model.html" />
-    <link rel="prev" title="37. The Perron-Frobenius Theorem" href="eigen_II.html" />
+    <link rel="next" title="40. A Lake Model of Employment" href="lake_model.html" />
+    <link rel="prev" title="38. The Perron-Frobenius Theorem" href="eigen_II.html" />
 
 <!-- Normal Meta Tags -->
 <meta name="author" context="Thomas J. Sargent &amp; John Stachurski" />
@@ -172,24 +172,24 @@ const thebe_selector_output = ".output, .cell_output"
 
                         <nav id="bd-toc-nav" class="qe-page__toc-nav">
                             <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">38.1. Overview</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#input-output-analysis">38.2. Input output analysis</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#two-goods">38.2.1. Two goods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">39.1. Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#input-output-analysis">39.2. Input output analysis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#two-goods">39.2.1. Two goods</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#production-possibility-frontier">38.3. Production possibility frontier</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prices">38.4. Prices</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-programs">38.5. Linear programs</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#leontief-inverse">38.6. Leontief inverse</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#demand-shocks">38.6.1. Demand shocks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#production-possibility-frontier">39.3. Production possibility frontier</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prices">39.4. Prices</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-programs">39.5. Linear programs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#leontief-inverse">39.6. Leontief inverse</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#demand-shocks">39.6.1. Demand shocks</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#applications-of-graph-theory">38.7. Applications of graph theory</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eigenvector-centrality">38.7.1. Eigenvector centrality</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#output-multipliers">38.7.2. Output multipliers</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#applications-of-graph-theory">39.7. Applications of graph theory</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eigenvector-centrality">39.7.1. Eigenvector centrality</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#output-multipliers">39.7.2. Output multipliers</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">38.8. Exercises</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">39.8. Exercises</a></li>
 </ul>
                             <p class="logo">
                                 
@@ -249,9 +249,9 @@ const thebe_selector_output = ".output, .cell_output"
                     <div>
                         
   <section class="tex2jax_ignore mathjax_ignore" id="input-output-models">
-<h1><span class="section-number">38. </span>Input-Output Models<a class="headerlink" href="#input-output-models" title="Permalink to this heading">#</a></h1>
+<h1><span class="section-number">39. </span>Input-Output Models<a class="headerlink" href="#input-output-models" title="Permalink to this heading">#</a></h1>
 <section id="overview">
-<h2><span class="section-number">38.1. </span>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">39.1. </span>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
 <p>This lecture requires the following imports and installs before we proceed.</p>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input above-output-prompt docutils container">
@@ -276,7 +276,9 @@ Requirement already satisfied: scipy in /usr/share/miniconda3/envs/quantecon/lib
 Requirement already satisfied: pandas in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from quantecon_book_networks) (2.1.4)
 Requirement already satisfied: matplotlib in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from quantecon_book_networks) (3.8.0)
 Requirement already satisfied: pandas-datareader in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from quantecon_book_networks) (0.10.0)
-Requirement already satisfied: networkx in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from quantecon_book_networks) (3.1)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: networkx in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from quantecon_book_networks) (3.1)
 Requirement already satisfied: quantecon in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from quantecon_book_networks) (0.7.2)
 </pre></div>
 </div>
@@ -315,10 +317,16 @@ Requirement already satisfied: mpmath&gt;=0.19 in /usr/share/miniconda3/envs/qua
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading quantecon_book_networks-1.1-py2.py3-none-any.whl (364 kB)
 ?25l   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/364.8 kB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">364.8/364.8 kB</span> <span class=" -Color -Color-Red">29.8 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
-?25hDownloading POT-0.9.3-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (858 kB)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━╺━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">194.6/364.8 kB</span> <span class=" -Color -Color-Red">5.6 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">364.8/364.8 kB</span> <span class=" -Color -Color-Red">7.8 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25h
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading POT-0.9.3-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (858 kB)
 ?25l   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/858.2 kB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">858.2/858.2 kB</span> <span class=" -Color -Color-Red">92.2 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">858.2/858.2 kB</span> <span class=" -Color -Color-Red">31.9 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
 ?25h
 </pre></div>
 </div>
@@ -334,31 +342,33 @@ Requirement already satisfied: numpy&gt;=1.17.0 in /usr/share/miniconda3/envs/qu
 Requirement already satisfied: requests in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from quantecon) (2.31.0)
 Requirement already satisfied: scipy&gt;=1.5.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from quantecon) (1.11.4)
 Requirement already satisfied: sympy in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from quantecon) (1.12)
-Requirement already satisfied: llvmlite&lt;0.43,&gt;=0.42.0dev0 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from numba&gt;=0.49.0-&gt;quantecon) (0.42.0)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: llvmlite&lt;0.43,&gt;=0.42.0dev0 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from numba&gt;=0.49.0-&gt;quantecon) (0.42.0)
 Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from requests-&gt;quantecon) (2.0.4)
 Requirement already satisfied: idna&lt;4,&gt;=2.5 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from requests-&gt;quantecon) (3.4)
 Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from requests-&gt;quantecon) (2.0.7)
 Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from requests-&gt;quantecon) (2024.2.2)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: mpmath&gt;=0.19 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from sympy-&gt;quantecon) (1.3.0)
+Requirement already satisfied: mpmath&gt;=0.19 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from sympy-&gt;quantecon) (1.3.0)
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: pandas-datareader in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (0.10.0)
 Requirement already satisfied: lxml in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from pandas-datareader) (4.9.3)
 Requirement already satisfied: pandas&gt;=0.23 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from pandas-datareader) (2.1.4)
 Requirement already satisfied: requests&gt;=2.19.0 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from pandas-datareader) (2.31.0)
-Requirement already satisfied: numpy&lt;2,&gt;=1.23.2 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from pandas&gt;=0.23-&gt;pandas-datareader) (1.26.4)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: python-dateutil&gt;=2.8.2 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from pandas&gt;=0.23-&gt;pandas-datareader) (2.8.2)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: numpy&lt;2,&gt;=1.23.2 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from pandas&gt;=0.23-&gt;pandas-datareader) (1.26.4)
+Requirement already satisfied: python-dateutil&gt;=2.8.2 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from pandas&gt;=0.23-&gt;pandas-datareader) (2.8.2)
 Requirement already satisfied: pytz&gt;=2020.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from pandas&gt;=0.23-&gt;pandas-datareader) (2023.3.post1)
 Requirement already satisfied: tzdata&gt;=2022.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from pandas&gt;=0.23-&gt;pandas-datareader) (2023.3)
 Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from requests&gt;=2.19.0-&gt;pandas-datareader) (2.0.4)
 Requirement already satisfied: idna&lt;4,&gt;=2.5 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from requests&gt;=2.19.0-&gt;pandas-datareader) (3.4)
 Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from requests&gt;=2.19.0-&gt;pandas-datareader) (2.0.7)
 Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from requests&gt;=2.19.0-&gt;pandas-datareader) (2024.2.2)
-Requirement already satisfied: six&gt;=1.5 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from python-dateutil&gt;=2.8.2-&gt;pandas&gt;=0.23-&gt;pandas-datareader) (1.16.0)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: six&gt;=1.5 in /usr/share/miniconda3/envs/quantecon/lib/python3.11/site-packages (from python-dateutil&gt;=2.8.2-&gt;pandas&gt;=0.23-&gt;pandas-datareader) (1.16.0)
 </pre></div>
 </div>
 </div>
@@ -451,7 +461,7 @@ Data.</p>
 <figure class="align-default" id="us-15sectors">
 <a class="reference internal image-reference" href="_images/7a50a79011d60ef3798ff7d92ac112e69dad7ecce08062dfac8b644081002751.png"><img alt="_images/7a50a79011d60ef3798ff7d92ac112e69dad7ecce08062dfac8b644081002751.png" src="_images/7a50a79011d60ef3798ff7d92ac112e69dad7ecce08062dfac8b644081002751.png" style="width: 80%;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 38.1 </span><span class="caption-text">US 15 sector production network</span><a class="headerlink" href="#us-15sectors" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 39.1 </span><span class="caption-text">US 15 sector production network</span><a class="headerlink" href="#us-15sectors" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </div>
@@ -512,7 +522,7 @@ Data.</p>
 <p>After  introducing the input-output model, we describe some of its connections to <a class="reference internal" href="lp_intro.html"><span class="doc">linear programming lecture</span></a>.</p>
 </section>
 <section id="input-output-analysis">
-<h2><span class="section-number">38.2. </span>Input output analysis<a class="headerlink" href="#input-output-analysis" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">39.2. </span>Input output analysis<a class="headerlink" href="#input-output-analysis" title="Permalink to this heading">#</a></h2>
 <p>Let</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(x_0\)</span> be the amount of a single exogenous input to production, say labor</p></li>
@@ -530,7 +540,7 @@ Data.</p>
     x_j = \min_{i \in \{0, \ldots , n \}} \left( \frac{z_{ij}}{a_{ij}}\right)
 \]</div>
 <section id="two-goods">
-<h3><span class="section-number">38.2.1. </span>Two goods<a class="headerlink" href="#two-goods" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">39.2.1. </span>Two goods<a class="headerlink" href="#two-goods" title="Permalink to this heading">#</a></h3>
 <p>To illustrate, we begin by setting <span class="math notranslate nohighlight">\(n =2\)</span> and formulating
 the following network.</p>
 <div class="cell tag_hide-input docutils container">
@@ -578,7 +588,7 @@ the following network.</p>
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_6253/1540025235.py:22: DeprecationWarning: `alltrue` is deprecated as of NumPy 1.25.0, and will be removed in NumPy 2.0. Please use `all` instead.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_6326/1540025235.py:22: DeprecationWarning: `alltrue` is deprecated as of NumPy 1.25.0, and will be removed in NumPy 2.0. Please use `all` instead.
   nx.draw_networkx_edges(G, pos=pos, edgelist=edges2,
 </pre></div>
 </div>
@@ -639,20 +649,20 @@ a_{01} x_1 + a_{02} x_2 &amp; \leq x_0
 </div>
 <p>More generally,   constraints on production are</p>
 <div class="math notranslate nohighlight" id="equation-eq-inout-1">
-<span class="eqno">(38.1)<a class="headerlink" href="#equation-eq-inout-1" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(39.1)<a class="headerlink" href="#equation-eq-inout-1" title="Permalink to this equation">#</a></span>\[
 \begin{aligned}
 (I - A) x &amp;  \geq d \cr
 a_0^\top x &amp; \leq x_0
 \end{aligned}
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(A\)</span> is the <span class="math notranslate nohighlight">\(n \times n\)</span> matrix with typical element <span class="math notranslate nohighlight">\(a_{ij}\)</span> and <span class="math notranslate nohighlight">\(a_0^\top = \begin{bmatrix} a_{01} &amp; \cdots &amp; a_{0n} \end{bmatrix}\)</span>.</p>
-<p>If we solve the first block of equations of <a class="reference internal" href="#equation-eq-inout-1">(38.1)</a> for gross output <span class="math notranslate nohighlight">\(x\)</span> we get</p>
+<p>If we solve the first block of equations of <a class="reference internal" href="#equation-eq-inout-1">(39.1)</a> for gross output <span class="math notranslate nohighlight">\(x\)</span> we get</p>
 <div class="math notranslate nohighlight" id="equation-eq-inout-2">
-<span class="eqno">(38.2)<a class="headerlink" href="#equation-eq-inout-2" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(39.2)<a class="headerlink" href="#equation-eq-inout-2" title="Permalink to this equation">#</a></span>\[
 x = (I -A)^{-1} d \equiv L d
 \]</div>
 <p>where the matrix <span class="math notranslate nohighlight">\(L = (I-A)^{-1}\)</span> is sometimes called  a <strong>Leontief Inverse</strong>.</p>
-<p>To assure that the solution <span class="math notranslate nohighlight">\(X\)</span> of <a class="reference internal" href="#equation-eq-inout-2">(38.2)</a> is a positive vector, the  following <strong>Hawkins-Simon conditions</strong> suffice:</p>
+<p>To assure that the solution <span class="math notranslate nohighlight">\(X\)</span> of <a class="reference internal" href="#equation-eq-inout-2">(39.2)</a> is a positive vector, the  following <strong>Hawkins-Simon conditions</strong> suffice:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{aligned}
@@ -662,7 +672,7 @@ x = (I -A)^{-1} d \equiv L d
 \end{split}\]</div>
 <p>For example a two good economy described by</p>
 <div class="math notranslate nohighlight" id="equation-eq-inout-ex">
-<span class="eqno">(38.3)<a class="headerlink" href="#equation-eq-inout-ex" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(39.3)<a class="headerlink" href="#equation-eq-inout-ex" title="Permalink to this equation">#</a></span>\[\begin{split}
 A =
 \begin{bmatrix}
     0.1 &amp; 40 \\
@@ -744,15 +754,15 @@ d =
 </section>
 </section>
 <section id="production-possibility-frontier">
-<h2><span class="section-number">38.3. </span>Production possibility frontier<a class="headerlink" href="#production-possibility-frontier" title="Permalink to this heading">#</a></h2>
-<p>The second equation of <a class="reference internal" href="#equation-eq-inout-1">(38.1)</a> can be written</p>
+<h2><span class="section-number">39.3. </span>Production possibility frontier<a class="headerlink" href="#production-possibility-frontier" title="Permalink to this heading">#</a></h2>
+<p>The second equation of <a class="reference internal" href="#equation-eq-inout-1">(39.1)</a> can be written</p>
 <div class="math notranslate nohighlight">
 \[
 a_0^\top x = x_0
 \]</div>
 <p>or</p>
 <div class="math notranslate nohighlight" id="equation-eq-inout-frontier">
-<span class="eqno">(38.4)<a class="headerlink" href="#equation-eq-inout-frontier" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(39.4)<a class="headerlink" href="#equation-eq-inout-frontier" title="Permalink to this equation">#</a></span>\[
 A_0^\top d = x_0
 \]</div>
 <p>where</p>
@@ -761,8 +771,8 @@ A_0^\top d = x_0
 A_0^\top = a_0^\top (I - A)^{-1}
 \]</div>
 <p>For <span class="math notranslate nohighlight">\(i \in \{1, \ldots , n\}\)</span>, the <span class="math notranslate nohighlight">\(i\)</span>th component  of <span class="math notranslate nohighlight">\(A_0\)</span> is the amount of labor that is required to produce one unit of final output of good <span class="math notranslate nohighlight">\(i\)</span>.</p>
-<p>Equation <a class="reference internal" href="#equation-eq-inout-frontier">(38.4)</a> sweeps out a  <strong>production possibility frontier</strong> of final consumption bundles <span class="math notranslate nohighlight">\(d\)</span> that can be produced with exogenous labor input <span class="math notranslate nohighlight">\(x_0\)</span>.</p>
-<p>Consider the example in <a class="reference internal" href="#equation-eq-inout-ex">(38.3)</a>.</p>
+<p>Equation <a class="reference internal" href="#equation-eq-inout-frontier">(39.4)</a> sweeps out a  <strong>production possibility frontier</strong> of final consumption bundles <span class="math notranslate nohighlight">\(d\)</span> that can be produced with exogenous labor input <span class="math notranslate nohighlight">\(x_0\)</span>.</p>
+<p>Consider the example in <a class="reference internal" href="#equation-eq-inout-ex">(39.3)</a>.</p>
 <p>Suppose we are now given</p>
 <div class="math notranslate nohighlight">
 \[
@@ -792,7 +802,7 @@ a_0^\top = \begin{bmatrix}
 \]</div>
 </section>
 <section id="prices">
-<h2><span class="section-number">38.4. </span>Prices<a class="headerlink" href="#prices" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">39.4. </span>Prices<a class="headerlink" href="#prices" title="Permalink to this heading">#</a></h2>
 <p><span id="id1">[<a class="reference internal" href="zreferences.html#id55" title="Robert Dorfman, Paul A. Samuelson, and Robert M. Solow. Linear Programming and Economic Analysis: Revised Edition. McGraw Hill, New York, 1958.">Dorfman <em>et al.</em>, 1958</a>]</span> argue that relative prices of the <span class="math notranslate nohighlight">\(n\)</span> produced goods must satisfy</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -811,7 +821,7 @@ of production, which consists of costs of intermediate inputs <span class="math 
 plus costs of labor <span class="math notranslate nohighlight">\(a_0 w\)</span>.</p>
 <p>This equation can be written as</p>
 <div class="math notranslate nohighlight" id="equation-eq-inout-price">
-<span class="eqno">(38.5)<a class="headerlink" href="#equation-eq-inout-price" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(39.5)<a class="headerlink" href="#equation-eq-inout-price" title="Permalink to this equation">#</a></span>\[
 (I - A^\top) p = a_0 w
 \]</div>
 <p>which implies</p>
@@ -819,13 +829,13 @@ plus costs of labor <span class="math notranslate nohighlight">\(a_0 w\)</span>.
 \[
 p = (I - A^\top)^{-1} a_0 w
 \]</div>
-<p>Notice how  <a class="reference internal" href="#equation-eq-inout-price">(38.5)</a> with <a class="reference internal" href="#equation-eq-inout-1">(38.1)</a> forms a
+<p>Notice how  <a class="reference internal" href="#equation-eq-inout-price">(39.5)</a> with <a class="reference internal" href="#equation-eq-inout-1">(39.1)</a> forms a
 <strong>conjugate pair</strong>  through the appearance of operators
 that are transposes of one another.</p>
 <p>This connection surfaces again in a classic linear program and its dual.</p>
 </section>
 <section id="linear-programs">
-<h2><span class="section-number">38.5. </span>Linear programs<a class="headerlink" href="#linear-programs" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">39.5. </span>Linear programs<a class="headerlink" href="#linear-programs" title="Permalink to this heading">#</a></h2>
 <p>A <strong>primal</strong> problem is</p>
 <div class="math notranslate nohighlight">
 \[
@@ -899,8 +909,8 @@ w a_0^\top x^* = p^* d
 </div>
 </section>
 <section id="leontief-inverse">
-<h2><span class="section-number">38.6. </span>Leontief inverse<a class="headerlink" href="#leontief-inverse" title="Permalink to this heading">#</a></h2>
-<p>We have discussed that gross output <span class="math notranslate nohighlight">\(x\)</span> is given by <a class="reference internal" href="#equation-eq-inout-2">(38.2)</a>, where <span class="math notranslate nohighlight">\(L\)</span> is called the Leontief Inverse.</p>
+<h2><span class="section-number">39.6. </span>Leontief inverse<a class="headerlink" href="#leontief-inverse" title="Permalink to this heading">#</a></h2>
+<p>We have discussed that gross output <span class="math notranslate nohighlight">\(x\)</span> is given by <a class="reference internal" href="#equation-eq-inout-2">(39.2)</a>, where <span class="math notranslate nohighlight">\(L\)</span> is called the Leontief Inverse.</p>
 <p>Recall the <a class="reference internal" href="eigen_II.html"><span class="doc">Neumann Series Lemma</span></a> which states that <span class="math notranslate nohighlight">\(L\)</span> exists if the spectral radius <span class="math notranslate nohighlight">\(r(A)&lt;1\)</span>.</p>
 <p>In fact</p>
 <div class="math notranslate nohighlight">
@@ -908,7 +918,7 @@ w a_0^\top x^* = p^* d
 L = \sum_{i=0}^{\infty} A^i
 \]</div>
 <section id="demand-shocks">
-<h3><span class="section-number">38.6.1. </span>Demand shocks<a class="headerlink" href="#demand-shocks" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">39.6.1. </span>Demand shocks<a class="headerlink" href="#demand-shocks" title="Permalink to this heading">#</a></h3>
 <p>Consider the impact of a demand shock <span class="math notranslate nohighlight">\(\Delta d\)</span> which shifts demand from <span class="math notranslate nohighlight">\(d_0\)</span> to <span class="math notranslate nohighlight">\(d_1 = d_0 + \Delta d\)</span>.</p>
 <p>Gross output shifts from <span class="math notranslate nohighlight">\(x_0 = Ld_0\)</span> to <span class="math notranslate nohighlight">\(x_1 = Ld_1\)</span>.</p>
 <p>If <span class="math notranslate nohighlight">\(r(A) &lt; 1\)</span> then a solution exists and</p>
@@ -920,7 +930,7 @@ L = \sum_{i=0}^{\infty} A^i
 </section>
 </section>
 <section id="applications-of-graph-theory">
-<h2><span class="section-number">38.7. </span>Applications of graph theory<a class="headerlink" href="#applications-of-graph-theory" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">39.7. </span>Applications of graph theory<a class="headerlink" href="#applications-of-graph-theory" title="Permalink to this heading">#</a></h2>
 <p>We can further study input output networks through applications of <a class="reference internal" href="networks.html"><span class="doc">graph theory</span></a>.</p>
 <p>An input output network can be represented by a weighted directed graph induced by the adjacency matrix <span class="math notranslate nohighlight">\(A\)</span>.</p>
 <p>The set of nodes <span class="math notranslate nohighlight">\(V = [n]\)</span> is the list of sectors and the set of edges is given by</p>
@@ -928,10 +938,10 @@ L = \sum_{i=0}^{\infty} A^i
 \[
 E = \{(i,j) \in V \times V : a_{ij}&gt;0\}
 \]</div>
-<p>In <a class="reference internal" href="#us-15sectors"><span class="std std-numref">Fig. 38.1</span></a> weights are indicated by the widths of the arrows, which are proportional to the corresponding input-output coefficients.</p>
+<p>In <a class="reference internal" href="#us-15sectors"><span class="std std-numref">Fig. 39.1</span></a> weights are indicated by the widths of the arrows, which are proportional to the corresponding input-output coefficients.</p>
 <p>We can now use centrality measures to rank sectors and discuss their importance relative to the other sectors.</p>
 <section id="eigenvector-centrality">
-<h3><span class="section-number">38.7.1. </span>Eigenvector centrality<a class="headerlink" href="#eigenvector-centrality" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">39.7.1. </span>Eigenvector centrality<a class="headerlink" href="#eigenvector-centrality" title="Permalink to this heading">#</a></h3>
 <p>Eigenvector centrality of a node <span class="math notranslate nohighlight">\(i\)</span> is measured by</p>
 <div class="math notranslate nohighlight">
 \[
@@ -939,7 +949,7 @@ E = \{(i,j) \in V \times V : a_{ij}&gt;0\}
     e_i = \frac{1}{r(A)} \sum_{1 \leq j \leq n} a_{ij} e_j
 \end{aligned}
 \]</div>
-<p>We plot a bar graph of hub-based eigenvector centrality for the sectors represented in <a class="reference internal" href="#us-15sectors"><span class="std std-numref">Fig. 38.1</span></a>.</p>
+<p>We plot a bar graph of hub-based eigenvector centrality for the sectors represented in <a class="reference internal" href="#us-15sectors"><span class="std std-numref">Fig. 39.1</span></a>.</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -964,7 +974,7 @@ E = \{(i,j) \in V \times V : a_{ij}&gt;0\}
 <p>The above figure indicates that manufacturing is the most dominant sector in the US economy.</p>
 </section>
 <section id="output-multipliers">
-<h3><span class="section-number">38.7.2. </span>Output multipliers<a class="headerlink" href="#output-multipliers" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">39.7.2. </span>Output multipliers<a class="headerlink" href="#output-multipliers" title="Permalink to this heading">#</a></h3>
 <p>Another way to rank sectors in input output networks is via output multipliers.</p>
 <p>The <strong>output multiplier</strong> of sector <span class="math notranslate nohighlight">\(j\)</span> denoted by <span class="math notranslate nohighlight">\(\mu_j\)</span> is usually defined as the
 total sector-wide impact of a unit change of demand in sector <span class="math notranslate nohighlight">\(j\)</span>.</p>
@@ -984,7 +994,7 @@ total sector-wide impact of a unit change of demand in sector <span class="math 
 <p>High ranking sectors within this measure are important buyers of intermediate goods.</p>
 <p>A demand shock in such sectors will cause a large impact on the whole production network.</p>
 <p>The following figure displays the output multipliers for the sectors represented
-in <a class="reference internal" href="#us-15sectors"><span class="std std-numref">Fig. 38.1</span></a>.</p>
+in <a class="reference internal" href="#us-15sectors"><span class="std std-numref">Fig. 39.1</span></a>.</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -1012,10 +1022,10 @@ in <a class="reference internal" href="#us-15sectors"><span class="std std-numre
 </section>
 </section>
 <section id="exercises">
-<h2><span class="section-number">38.8. </span>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">39.8. </span>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h2>
 <div class="exercise admonition" id="io_ex1">
 
-<p class="admonition-title"><span class="caption-number">Exercise 38.1 </span></p>
+<p class="admonition-title"><span class="caption-number">Exercise 39.1 </span></p>
 <section id="exercise-content">
 <p><span id="id2">[<a class="reference internal" href="zreferences.html#id55" title="Robert Dorfman, Paul A. Samuelson, and Robert M. Solow. Linear Programming and Economic Analysis: Revised Edition. McGraw Hill, New York, 1958.">Dorfman <em>et al.</em>, 1958</a>]</span> Chapter 9 discusses an example with the following
 parameter settings:</p>
@@ -1051,7 +1061,7 @@ z_0 = \begin{bmatrix} 10 &amp; 40 \end{bmatrix}
 </div>
 <div class="solution dropdown admonition" id="input_output-solution-1">
 
-<p class="admonition-title">Solution to<a class="reference internal" href="#io_ex1"> Exercise 38.1</a></p>
+<p class="admonition-title">Solution to<a class="reference internal" href="#io_ex1"> Exercise 39.1</a></p>
 <section id="solution-content">
 <p>For each <span class="math notranslate nohighlight">\(i = 0,1,2\)</span> and <span class="math notranslate nohighlight">\(j = 1,2\)</span></p>
 <div class="math notranslate nohighlight">
@@ -1062,14 +1072,14 @@ a_{ij} = \frac{z_{ij}}{x_j}
 </div>
 <div class="exercise admonition" id="io_ex2">
 
-<p class="admonition-title"><span class="caption-number">Exercise 38.2 </span></p>
+<p class="admonition-title"><span class="caption-number">Exercise 39.2 </span></p>
 <section id="exercise-content">
 <p>Derive the production possibility frontier for the economy characterized in the previous exercise.</p>
 </section>
 </div>
 <div class="solution dropdown admonition" id="input_output-solution-3">
 
-<p class="admonition-title">Solution to<a class="reference internal" href="#io_ex2"> Exercise 38.2</a></p>
+<p class="admonition-title">Solution to<a class="reference internal" href="#io_ex2"> Exercise 39.2</a></p>
 <section id="solution-content">
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1270,6 +1280,11 @@ a_{ij} = \frac{z_{ij}}{x_j}
    15. Eigenvalues and Eigenvectors
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="greek_square.html">
+   16. Computing Square Roots
+  </a>
+ </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
@@ -1279,27 +1294,27 @@ a_{ij} = \frac{z_{ij}}{x_j}
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="prob_dist.html">
-   16. Distributions and Probabilities
+   17. Distributions and Probabilities
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="lln_clt.html">
-   17. LLN and CLT
+   18. LLN and CLT
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="monte_carlo.html">
-   18. Monte Carlo and Option Pricing
+   19. Monte Carlo and Option Pricing
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="heavy_tails.html">
-   19. Heavy-Tailed Distributions
+   20. Heavy-Tailed Distributions
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="schelling.html">
-   20. Racial Segregation
+   21. Racial Segregation
   </a>
  </li>
 </ul>
@@ -1311,27 +1326,27 @@ a_{ij} = \frac{z_{ij}}{x_j}
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="scalar_dynam.html">
-   21. Dynamics in One Dimension
+   22. Dynamics in One Dimension
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="solow.html">
-   22. The Solow-Swan Growth Model
+   23. The Solow-Swan Growth Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cobweb.html">
-   23. The Cobweb Model
+   24. The Cobweb Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="olg.html">
-   24. The Overlapping Generations Model
+   25. The Overlapping Generations Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="commod_price.html">
-   25. Commodity Prices
+   26. Commodity Prices
   </a>
  </li>
 </ul>
@@ -1343,27 +1358,27 @@ a_{ij} = \frac{z_{ij}}{x_j}
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="money_inflation.html">
-   26. Money Financed Government Deficits and Price Levels
+   27. Money Financed Government Deficits and Price Levels
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="unpleasant.html">
-   27. Unpleasant Monetarist Arithmetic
+   28. Unpleasant Monetarist Arithmetic
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="money_inflation_nonlinear.html">
-   28. Inflation Rate Laffer Curves
+   29. Inflation Rate Laffer Curves
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="laffer_adaptive.html">
-   29. Laffer Curves  with Adaptive Expectations
+   30. Laffer Curves  with Adaptive Expectations
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ak2.html">
-   30. Transitions in an Overlapping Generations Model
+   31. Transitions in an Overlapping Generations Model
   </a>
  </li>
 </ul>
@@ -1375,22 +1390,22 @@ a_{ij} = \frac{z_{ij}}{x_j}
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="ar1_processes.html">
-   31. AR1 Processes
+   32. AR1 Processes
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="markov_chains_I.html">
-   32. Markov Chains: Basic Concepts
+   33. Markov Chains: Basic Concepts
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="markov_chains_II.html">
-   33. Markov Chains: Irreducibility and Ergodicity
+   34. Markov Chains: Irreducibility and Ergodicity
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="time_series_with_matrices.html">
-   34. Univariate Time Series with Matrix Algebra
+   35. Univariate Time Series with Matrix Algebra
   </a>
  </li>
 </ul>
@@ -1402,12 +1417,12 @@ a_{ij} = \frac{z_{ij}}{x_j}
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="lp_intro.html">
-   35. Linear Programming
+   36. Linear Programming
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="short_path.html">
-   36. Shortest Paths
+   37. Shortest Paths
   </a>
  </li>
 </ul>
@@ -1419,22 +1434,22 @@ a_{ij} = \frac{z_{ij}}{x_j}
 <ul class="current nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="eigen_II.html">
-   37. The Perron-Frobenius Theorem
+   38. The Perron-Frobenius Theorem
   </a>
  </li>
  <li class="toctree-l1 current active active">
   <a class="current reference internal" href="#">
-   38. Input-Output Models
+   39. Input-Output Models
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="lake_model.html">
-   39. A Lake Model of Employment
+   40. A Lake Model of Employment
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="networks.html">
-   40. Networks
+   41. Networks
   </a>
  </li>
 </ul>
@@ -1446,12 +1461,12 @@ a_{ij} = \frac{z_{ij}}{x_j}
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="supply_demand_multiple_goods.html">
-   41. Supply and Demand with Many Goods
+   42. Supply and Demand with Many Goods
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="supply_demand_heterogeneity.html">
-   42. Market Equilibrium with Heterogeneity
+   43. Market Equilibrium with Heterogeneity
   </a>
  </li>
 </ul>
@@ -1463,12 +1478,12 @@ a_{ij} = \frac{z_{ij}}{x_j}
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="simple_linear_regression.html">
-   43. Simple Linear Regression Model
+   44. Simple Linear Regression Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="mle.html">
-   44. Maximum Likelihood Estimation
+   45. Maximum Likelihood Estimation
   </a>
  </li>
 </ul>
@@ -1480,17 +1495,17 @@ a_{ij} = \frac{z_{ij}}{x_j}
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="troubleshooting.html">
-   45. Troubleshooting
+   46. Troubleshooting
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="zreferences.html">
-   46. References
+   47. References
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="status.html">
-   47. Execution Statistics
+   48. Execution Statistics
   </a>
  </li>
 </ul>

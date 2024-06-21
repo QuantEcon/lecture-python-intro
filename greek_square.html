@@ -1,0 +1,1274 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>16. Computing Square Roots &#8212; A First Course in Quantitative Economics with Python</title>
+    <script src="https://unpkg.com/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://unpkg.com/tippy.js@6.3.1/dist/tippy-bundle.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    
+        <script>
+            MathJax = {
+            loader: {load: ['[tex]/boldsymbol', '[tex]/textmacros']},
+            tex: {
+                packages: {'[+]': ['boldsymbol', 'textmacros']},
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                processEscapes: true,
+                macros: {
+                    "argmax" : "arg\\,max",
+                    "argmin" : "arg\\,min",
+                    "col"    : "col",
+                    "Span"   :  "span",
+                    "epsilon": "\\varepsilon",
+                    "EE": "\\mathbb{E}",
+                    "PP": "\\mathbb{P}",
+                    "RR": "\\mathbb{R}",
+                    "NN": "\\mathbb{N}",
+                    "ZZ": "\\mathbb{Z}",
+                    "aA": "\\mathcal{A}",
+                    "bB": "\\mathcal{B}",
+                    "cC": "\\mathcal{C}",
+                    "dD": "\\mathcal{D}",
+                    "eE": "\\mathcal{E}",
+                    "fF": "\\mathcal{F}",
+                    "gG": "\\mathcal{G}",
+                    "hH": "\\mathcal{H}",
+                }
+            },
+            svg: {
+                fontCache: 'global',
+                scale: 0.92,
+                displayAlign: "center",
+            },
+            };
+        </script>
+    
+    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/quantecon-book-theme.css?digest=b09b2da44b9015b4fa76ea072fa2d8f7faee5492" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/exercise.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
+
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/scripts/quantecon-book-theme.js?digest=eed9c059a3ee152aae2353ec732f0a6d12e6aa07"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-QDS1YRJNGM"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-QDS1YRJNGM');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"tex": {"macros": {"argmax": "arg\\,max", "argmin": "arg\\,min"}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'greek_square';</script>
+    <link rel="canonical" href="https://intro.quantecon.org/greek_square.html" />
+    <link rel="shortcut icon" href="_static/lectures-favicon.ico"/>
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="17. Distributions and Probabilities" href="prob_dist.html" />
+    <link rel="prev" title="15. Eigenvalues and Eigenvectors" href="eigen_I.html" />
+
+<!-- Normal Meta Tags -->
+<meta name="author" context="Thomas J. Sargent &amp; John Stachurski" />
+<meta name="keywords" content="Python, QuantEcon, Quantitative Economics, Economics, Sloan, Alfred P. Sloan Foundation, Tom J. Sargent, John Stachurski" />
+<meta name="description" content=This website presents introductory lectures on computational economics, designed and written by Thomas J. Sargent and John Stachurski. />
+
+<!-- Twitter tags -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@quantecon" />
+<meta name="twitter:title" content="Computing Square Roots"/>
+<meta name="twitter:description" content="This website presents introductory lectures on computational economics, designed and written by Thomas J. Sargent and John Stachurski.">
+<meta name="twitter:creator" content="@quantecon">
+<meta name="twitter:image" content="https://assets.quantecon.org/img/qe-twitter-logo.png">
+
+<!-- Opengraph tags -->
+<meta property="og:title" content="Computing Square Roots" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://intro.quantecon.org/greek_square.html" />
+<meta property="og:image" content="https://assets.quantecon.org/img/qe-og-logo.png" />
+<meta property="og:description" content="This website presents introductory lectures on computational economics, designed and written by Thomas J. Sargent and John Stachurski." />
+<meta property="og:site_name" content="A First Course in Quantitative Economics with Python" />
+<meta name="theme-color" content="#ffffff" />
+
+  </head>
+<body>
+
+
+    <span id="top"></span>
+
+    <div class="qe-wrapper">
+
+        <div class="qe-main">
+
+            <div class="qe-page" id=greek_square>
+
+                <div class="qe-page__toc">
+
+                    <div class="inner">
+
+                        
+                        <div class="qe-page__toc-header">
+                            On this page
+                        </div>
+
+
+                        <nav id="bd-toc-nav" class="qe-page__toc-nav">
+                            <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">16.1. Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#primer-on-second-order-linear-difference-equation">16.2. Primer on second order linear difference equation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup">16.3. Setup</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation">16.4. Implementation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vectorizing-the-difference-equation">16.5. Vectorizing the difference equation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">16.5.1. Implementation</a></li>
+</ul>
+</li>
+</ul>
+                            <p class="logo">
+                                
+                                    
+                                    <a href=https://quantecon.org><img src="_static/qe-logo.png" class="logo logo-img" alt="logo"></a>
+                                    
+                                    <a href=https://quantecon.org><img src="_static/quantecon-logo-transparent.png" class="dark-logo-img" alt="logo"></a>
+                                    
+                                    
+                                
+                            </p>
+
+                            <p class="powered">Powered by <a href="https://jupyterbook.org/">Jupyter Book</a></p>
+
+                        </nav>
+
+                        <div class="qe-page__toc-footer">
+                            
+                            
+                            <p><a href="#top"><strong>Back to top</strong></a></p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="qe-page__header">
+
+                    <div class="qe-page__header-copy">
+
+                        <p class="qe-page__header-heading"><a href="intro.html">A First Course in Quantitative Economics with Python</a></p>
+
+                        <p class="qe-page__header-subheading">Computing Square Roots</p>
+
+                    </div>
+                    <!-- length 2, since its a string and empty dict has length 2 - {} -->
+                        <p class="qe-page__header-authors" font-size="18">
+                            
+                                
+                                    <a href="http://www.tomsargent.com/" target="_blank"><span>Thomas J. Sargent</span></a>
+                                
+                            
+                                
+                                    and <a href="https://johnstachurski.net/" target="_blank"><span>John Stachurski</span></a>
+                                
+                            
+                        </p>
+
+
+                </div> <!-- .page__header -->
+
+
+
+                
+                <main class="qe-page__content" role="main">
+                    
+                    <div>
+                        
+  <section class="tex2jax_ignore mathjax_ignore" id="computing-square-roots">
+<h1><span class="section-number">16. </span>Computing Square Roots<a class="headerlink" href="#computing-square-roots" title="Permalink to this heading">#</a></h1>
+<section id="introduction">
+<h2><span class="section-number">16.1. </span>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
+<p>This lectures provides an  example of <strong>invariant subspace</strong> methods for analyzing linear difference equations.</p>
+<p>These methods are applied throughout applied economic dynamics, for example, in this QuantEcon lecture <a class="reference internal" href="money_inflation.html"><span class="doc">money financed government deficits and inflation</span></a></p>
+<p>Our approach in this lecture is to illustrate the method with an ancient example, one that ancient Greek mathematicians used to compute square roots of positive integers.</p>
+<p>An integer is called a <strong>perfect square</strong> if its square root is also an integer.</p>
+<p>An ordered sequence of  perfect squares starts with</p>
+<div class="math notranslate nohighlight">
+\[
+4, 9, 16, 25, 36, 49, 64, 81, 100, 121, 144, 169, 196, 225, \ldots 
+\]</div>
+<p>If an integer is not a perfect square, then its square root is an irrational number – i.e., it cannot be expressed as a ratio of two integers, and its decimal expansion is indefinite.</p>
+<p>The ancient Greeks invented an algorithm to compute square roots of integers, including integers that are not perfect squares.</p>
+<p>Their method involved</p>
+<ul class="simple">
+<li><p>computing a particular sequence of integers <span class="math notranslate nohighlight">\(\{y_t\}_{t=0}^\infty\)</span></p></li>
+<li><p>computing <span class="math notranslate nohighlight">\(\lim_{t \rightarrow \infty} \left(\frac{y_{t+1}}{y_t}\right) = \bar r\)</span></p></li>
+<li><p>deducing the desired square root from <span class="math notranslate nohighlight">\(\bar r\)</span></p></li>
+</ul>
+<p>In this lecture, we’ll describe this method.</p>
+<p>We’ll also use invariant subspaces to describe variations on this method that are faster.</p>
+</section>
+<section id="primer-on-second-order-linear-difference-equation">
+<h2><span class="section-number">16.2. </span>Primer on second order linear difference equation<a class="headerlink" href="#primer-on-second-order-linear-difference-equation" title="Permalink to this heading">#</a></h2>
+<p>Consider the following second-order linear difference equation</p>
+<div class="math notranslate nohighlight" id="equation-eq-2diff1">
+<span class="eqno">(16.1)<a class="headerlink" href="#equation-eq-2diff1" title="Permalink to this equation">#</a></span>\[
+y_t = a_1 y_{t-1} + a_2 y_{t-2}, \quad t \geq 0
+\]</div>
+<p>where <span class="math notranslate nohighlight">\((y_{-1},  y_{-2})\)</span> is a pair of given initial conditions.</p>
+<p>We want to find expressions for <span class="math notranslate nohighlight">\(y_t, t \geq 0\)</span> as functions of the initial conditions  <span class="math notranslate nohighlight">\((y_{-1},  y_{-2})\)</span>:</p>
+<div class="math notranslate nohighlight" id="equation-eq-2diff2">
+<span class="eqno">(16.2)<a class="headerlink" href="#equation-eq-2diff2" title="Permalink to this equation">#</a></span>\[ 
+y_t = g((y_{-1},  y_{-2});t), \quad t \geq 0
+\]</div>
+<p>We call such a function <span class="math notranslate nohighlight">\(g\)</span> a <strong>solution</strong> of the difference equation <a class="reference internal" href="#equation-eq-2diff1">(16.1)</a>.</p>
+<p>One way to discover a solution is to use a guess and verify method.</p>
+<p>We shall begin by considering a special initial pair of initial  conditions
+that satisfy</p>
+<div class="math notranslate nohighlight" id="equation-eq-2diff3">
+<span class="eqno">(16.3)<a class="headerlink" href="#equation-eq-2diff3" title="Permalink to this equation">#</a></span>\[
+y_{-1} = \delta y_{-2}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\delta\)</span> is a scalar to be determined.</p>
+<p>For initial condition that satisfy <a class="reference internal" href="#equation-eq-2diff3">(16.3)</a>
+equation <a class="reference internal" href="#equation-eq-2diff1">(16.1)</a> impllies that</p>
+<div class="math notranslate nohighlight" id="equation-eq-2diff4">
+<span class="eqno">(16.4)<a class="headerlink" href="#equation-eq-2diff4" title="Permalink to this equation">#</a></span>\[
+y_0 = \left(a_1 + \frac{a_2}{\delta}\right) y_{-1}
+\]</div>
+<p>We want</p>
+<div class="math notranslate nohighlight" id="equation-eq-2diff5">
+<span class="eqno">(16.5)<a class="headerlink" href="#equation-eq-2diff5" title="Permalink to this equation">#</a></span>\[
+\left(a_1 + \frac{a_2}{\delta}\right) = \delta
+\]</div>
+<p>which we can rewrite as the <strong>characteristic equation</strong></p>
+<div class="math notranslate nohighlight" id="equation-eq-2diff6">
+<span class="eqno">(16.6)<a class="headerlink" href="#equation-eq-2diff6" title="Permalink to this equation">#</a></span>\[
+\delta^2 - a_1 \delta - a_2 = 0
+\]</div>
+<p>Applying the quadratic formula to solve for the roots of <a class="reference internal" href="#equation-eq-2diff6">(16.6)</a> we find that</p>
+<div class="math notranslate nohighlight" id="equation-eq-2diff7">
+<span class="eqno">(16.7)<a class="headerlink" href="#equation-eq-2diff7" title="Permalink to this equation">#</a></span>\[
+\delta = \frac{ a_1 \pm \sqrt{a_1^2 + 4 a_2}}{2}
+\]</div>
+<p>For either of the two <span class="math notranslate nohighlight">\(\delta\)</span>’s that satisfy equation <a class="reference internal" href="#equation-eq-2diff7">(16.7)</a>,
+a solution of difference equation <a class="reference internal" href="#equation-eq-2diff1">(16.1)</a> is</p>
+<div class="math notranslate nohighlight" id="equation-eq-2diff8">
+<span class="eqno">(16.8)<a class="headerlink" href="#equation-eq-2diff8" title="Permalink to this equation">#</a></span>\[
+y_t = \delta^t y_0 , \forall t \geq 0
+\]</div>
+<p>and <span class="math notranslate nohighlight">\(y_0 = a_1 y_{-1} + a_2 y_{-2}\)</span></p>
+<p>The <strong>general</strong> solution of difference equation <a class="reference internal" href="#equation-eq-2diff1">(16.1)</a> takes the form</p>
+<div class="math notranslate nohighlight" id="equation-eq-2diff9">
+<span class="eqno">(16.9)<a class="headerlink" href="#equation-eq-2diff9" title="Permalink to this equation">#</a></span>\[
+y_t = \eta_1 \delta_1^t + \eta_2 \delta_2^t
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\delta_1, \delta_2\)</span> are the two solutions <a class="reference internal" href="#equation-eq-2diff7">(16.7)</a> of the characteristic equation <a class="reference internal" href="#equation-eq-2diff6">(16.6)</a>, and  <span class="math notranslate nohighlight">\(\eta_1, \eta_2\)</span> are two constants chosen to satisfy</p>
+<div class="math notranslate nohighlight" id="equation-eq-2diff10">
+<span class="eqno">(16.10)<a class="headerlink" href="#equation-eq-2diff10" title="Permalink to this equation">#</a></span>\[ 
+    \begin{bmatrix} y_{-1} \cr y_{-2} \end{bmatrix} = \begin{bmatrix} \delta_1^{-1}  &amp; \delta_2^{-1} \cr \delta_1^{-2} &amp; \delta_2^{-2} \end{bmatrix} \begin{bmatrix} \eta_1 \cr \eta_2 \end{bmatrix} 
+\]</div>
+<p>or</p>
+<div class="math notranslate nohighlight" id="equation-eq-2diff11">
+<span class="eqno">(16.11)<a class="headerlink" href="#equation-eq-2diff11" title="Permalink to this equation">#</a></span>\[
+\begin{bmatrix} \eta_1 \cr \eta_2 \end{bmatrix} = \begin{bmatrix} \delta_1^{-1}  &amp; \delta_2^{-1} \cr \delta_1^{-2} &amp; \delta_2^{-2} \end{bmatrix}^{-1} \begin{bmatrix} y_{-1} \cr y_{-2} \end{bmatrix}
+\]</div>
+<p>Sometimes we are free to choose the initial conditions <span class="math notranslate nohighlight">\((y_{-1}, y_{-2})\)</span>, in which case we
+use system <a class="reference internal" href="#equation-eq-2diff10">(16.10)</a> to find the associated <span class="math notranslate nohighlight">\((\eta_1, \eta_2)\)</span>.</p>
+<p>If we choose <span class="math notranslate nohighlight">\((y_{-1}, y_{-2})\)</span> to set <span class="math notranslate nohighlight">\((\eta_1, \eta_2) = (1, 0)\)</span>, then <span class="math notranslate nohighlight">\(y_t = \delta_1^t\)</span> for all <span class="math notranslate nohighlight">\(t \geq 0\)</span>.</p>
+<p>If we choose <span class="math notranslate nohighlight">\((y_{-1}, y_{-2})\)</span> to set <span class="math notranslate nohighlight">\((\eta_1, \eta_2) = (0, 1)\)</span>, then <span class="math notranslate nohighlight">\(y_t = \delta_2^t\)</span> for all <span class="math notranslate nohighlight">\(t \geq 0\)</span>.</p>
+</section>
+<section id="setup">
+<h2><span class="section-number">16.3. </span>Setup<a class="headerlink" href="#setup" title="Permalink to this heading">#</a></h2>
+<p>Let <span class="math notranslate nohighlight">\(\sigma\)</span> be a positive  integer greater than <span class="math notranslate nohighlight">\(1\)</span></p>
+<p>So <span class="math notranslate nohighlight">\(\sigma \in {\mathcal I} \equiv  \{2, 3, \ldots \}\)</span></p>
+<p>We want an algorithm to compute the square root of <span class="math notranslate nohighlight">\(\sigma \in {\mathcal I}\)</span>.</p>
+<p>If <span class="math notranslate nohighlight">\(\sqrt{\sigma} \in {\mathcal I}\)</span>, <span class="math notranslate nohighlight">\(\sigma \)</span> is said to be a <strong>perfect square</strong>.</p>
+<p>If <span class="math notranslate nohighlight">\(\sqrt{\sigma} \not\in {\mathcal I}\)</span>, it turns out that it is irrational.</p>
+<p>Ancient Greeks used a recursive algorithm to compute square roots of integers that are not perfect squares.</p>
+<p>The algorithm iterates on a  second order  linear  difference equation in the sequence <span class="math notranslate nohighlight">\(\{y_t\}_{t=0}^\infty\)</span>:</p>
+<div class="math notranslate nohighlight" id="equation-eq-second-order">
+<span class="eqno">(16.12)<a class="headerlink" href="#equation-eq-second-order" title="Permalink to this equation">#</a></span>\[
+y_{t} = 2 y_{t-1} - (1 - \sigma) y_{t-2}, \quad t \geq 0
+\]</div>
+<p>together with a pair of integers that are  initial conditions for   <span class="math notranslate nohighlight">\(y_{-1}, y_{-2}\)</span>.</p>
+<p>First, we’ll deploy some techniques for solving difference equations that are also deployed in this QuantEcon lecture about the multiplier-accelerator model:
+<a class="reference external" href="https://python.quantecon.org/samuelson.html">https://python.quantecon.org/samuelson.html</a></p>
+<p>The characteristic equation associated with difference equation <a class="reference internal" href="#equation-eq-second-order">(16.12)</a> is</p>
+<div class="math notranslate nohighlight" id="equation-eq-cha-eq0">
+<span class="eqno">(16.13)<a class="headerlink" href="#equation-eq-cha-eq0" title="Permalink to this equation">#</a></span>\[
+c(x) \equiv x^2 - 2 x + (1 - \sigma) = 0
+\]</div>
+<p>(This is an instance of equation <a class="reference internal" href="#equation-eq-2diff6">(16.6)</a> above.)</p>
+<p>If we factor the right side of the  equation <a class="reference internal" href="#equation-eq-cha-eq0">(16.13)</a>, we obtain</p>
+<div class="math notranslate nohighlight" id="equation-eq-cha-eq">
+<span class="eqno">(16.14)<a class="headerlink" href="#equation-eq-cha-eq" title="Permalink to this equation">#</a></span>\[
+c(x)= (x - \lambda_1) (x-\lambda_2) = 0
+\]</div>
+<p>where</p>
+<div class="math notranslate nohighlight">
+\[ 
+c(x) = 0 
+\]</div>
+<p>for <span class="math notranslate nohighlight">\(x = \lambda_1\)</span> or <span class="math notranslate nohighlight">\(x = \lambda_2\)</span>.</p>
+<p>These two special values of <span class="math notranslate nohighlight">\(x\)</span> are sometimes called zeros or roots of <span class="math notranslate nohighlight">\(c(x)\)</span>.</p>
+<p>By applying the quadratic formula to solve for the roots  the characteristic equation
+<a class="reference internal" href="#equation-eq-cha-eq0">(16.13)</a>, we find that</p>
+<div class="math notranslate nohighlight" id="equation-eq-secretweapon">
+<span class="eqno">(16.15)<a class="headerlink" href="#equation-eq-secretweapon" title="Permalink to this equation">#</a></span>\[
+\lambda_1 = 1 + \sqrt{\sigma}, \quad \lambda_2 = 1 - \sqrt{\sigma} 
+\]</div>
+<p>Formulas <a class="reference internal" href="#equation-eq-secretweapon">(16.15)</a> indicate that  <span class="math notranslate nohighlight">\(\lambda_1\)</span> and  <span class="math notranslate nohighlight">\(\lambda_2\)</span> are both simple functions
+of a single variable, namely,  <span class="math notranslate nohighlight">\(\sqrt{\sigma}\)</span>, the object that some Ancient Greeks   wanted to compute.</p>
+<p>Ancient Greeks had an indirect way of exploiting this fact to compute square roots of a positive integer.</p>
+<p>They did this by starting from particular initial conditions <span class="math notranslate nohighlight">\(y_{-1}, y_{-2}\)</span> and iterating on the difference equation <a class="reference internal" href="#equation-eq-second-order">(16.12)</a>.</p>
+<p>Solutions  of  difference equation <a class="reference internal" href="#equation-eq-second-order">(16.12)</a> take the form</p>
+<div class="math notranslate nohighlight">
+\[
+y_t = \lambda_1^t \eta_1 + \lambda_2^t \eta_2
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\eta_1\)</span> and <span class="math notranslate nohighlight">\(\eta_2\)</span> are chosen to satisfy the  prescribed initial conditions <span class="math notranslate nohighlight">\(y_{-1}, y_{-2}\)</span>:</p>
+<div class="math notranslate nohighlight" id="equation-eq-leq-sq">
+<span class="eqno">(16.16)<a class="headerlink" href="#equation-eq-leq-sq" title="Permalink to this equation">#</a></span>\[
+\begin{aligned}
+\lambda_1^{-1} \eta_1 + \lambda_2^{-1} \eta_2 &amp; =  y_{-1} \cr
+\lambda_1^{-2} \eta_1 + \lambda_2^{-2} \eta_2 &amp; =  y_{-2}
+\end{aligned}
+\]</div>
+<p>System <a class="reference internal" href="#equation-eq-leq-sq">(16.16)</a> of simultaneous linear equations will play a big role in the remainder of this lecture.</p>
+<p>Since <span class="math notranslate nohighlight">\(\lambda_1 = 1 + \sqrt{\sigma} &gt; 1 &gt; \lambda_2 = 1 - \sqrt{\sigma} \)</span>
+it follows that for <strong>almost all</strong> (but not all) initial conditions</p>
+<div class="math notranslate nohighlight">
+\[
+\lim_{t \rightarrow \infty} \left(\frac{y_{t+1}}{y_t}\right) = 1 + \sqrt{\sigma}
+\]</div>
+<p>Thus,</p>
+<div class="math notranslate nohighlight">
+\[
+\sqrt{\sigma} = \lim_{t \rightarrow \infty} \left(\frac{y_{t+1}}{y_t}\right) - 1
+\]</div>
+<p>However, notice that if <span class="math notranslate nohighlight">\(\eta_1 = 0\)</span>, then</p>
+<div class="math notranslate nohighlight">
+\[
+\lim_{t \rightarrow \infty} \left(\frac{y_{t+1}}{y_t}\right) = 1 - \sqrt{\sigma}
+\]</div>
+<p>so that</p>
+<div class="math notranslate nohighlight">
+\[
+\sqrt{\sigma} = 1 - \lim_{t \rightarrow \infty} \left(\frac{y_{t+1}}{y_t}\right)
+\]</div>
+<p>Actually, if <span class="math notranslate nohighlight">\(\eta_1 =0\)</span>, it follows that</p>
+<div class="math notranslate nohighlight">
+\[
+\sqrt{\sigma} = 1 - \left(\frac{y_{t+1}}{y_t}\right) \quad \forall t \geq 0,
+\]</div>
+<p>so that convergence is immediate and there is no need to take limits.</p>
+<p>Symmetrically, if <span class="math notranslate nohighlight">\(\eta_2 =0\)</span>, it follows that</p>
+<div class="math notranslate nohighlight">
+\[
+\sqrt{\sigma} =  \left(\frac{y_{t+1}}{y_t}\right) - 1 \quad \forall t \geq 0
+\]</div>
+<p>so again, convergence is immediate, and we have no need to compute a limit.</p>
+<p>System <a class="reference internal" href="#equation-eq-leq-sq">(16.16)</a> of simultaneous linear equations can be used in various ways.</p>
+<ul class="simple">
+<li><p>we can take <span class="math notranslate nohighlight">\(y_{-1}, y_{-2}\)</span> as given initial conditions and solve for <span class="math notranslate nohighlight">\(\eta_1, \eta_2\)</span></p></li>
+<li><p>we can instead take <span class="math notranslate nohighlight">\(\eta_1, \eta_2\)</span> as given and solve for initial conditions  <span class="math notranslate nohighlight">\(y_{-1}, y_{-2}\)</span></p></li>
+</ul>
+<p>Notice how we used the  second approach above when we set  <span class="math notranslate nohighlight">\(\eta_1, \eta_2\)</span>  either to <span class="math notranslate nohighlight">\((0, 1)\)</span>, for example, or <span class="math notranslate nohighlight">\((1, 0)\)</span>, for example.</p>
+<p>In taking this second approach, we were in effect finding  an <strong>invariant subspace</strong> of <span class="math notranslate nohighlight">\({\bf R}^2\)</span>.</p>
+<p>Here is what is going on.</p>
+<p>For <span class="math notranslate nohighlight">\( t \geq 0\)</span> and for most pairs of  initial conditions <span class="math notranslate nohighlight">\((y_{-1}, y_{-2}) \in {\bf R}^2\)</span> for equation {eq}`eq:second_order’, <span class="math notranslate nohighlight">\(y_t\)</span> can be expressed as a linear combination  of <span class="math notranslate nohighlight">\(y_{t-1}\)</span> and <span class="math notranslate nohighlight">\(y_{t-2}\)</span>.</p>
+<p>But for some special initial conditions <span class="math notranslate nohighlight">\((y_{-1}, y_{-2}) \in {\bf R}^2\)</span>, <span class="math notranslate nohighlight">\(y_t\)</span> can be expressed as a linear function  of <span class="math notranslate nohighlight">\(y_{t-1}\)</span> only.</p>
+<p>These special initial conditions require that <span class="math notranslate nohighlight">\(y_{-1}\)</span> be a linear function of <span class="math notranslate nohighlight">\(y_{-2}\)</span>.</p>
+<p>We’ll study these special initial conditions soon.  But first let’s write some Python code to iterate on equation <a class="reference internal" href="#equation-eq-second-order">(16.12)</a> starting from an arbitrary <span class="math notranslate nohighlight">\((y_{-1}, y_{-2}) \in {\bf R}^2\)</span>.</p>
+</section>
+<section id="implementation">
+<h2><span class="section-number">16.4. </span>Implementation<a class="headerlink" href="#implementation" title="Permalink to this heading">#</a></h2>
+<p>We now implement the above algorithm to compute the square root of <span class="math notranslate nohighlight">\(\sigma\)</span>.</p>
+<p>In this lecture, we use the following import:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">solve_λs</span><span class="p">(</span><span class="n">coefs</span><span class="p">):</span>    
+    <span class="c1"># Calculate the roots using numpy.roots</span>
+    <span class="n">λs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">roots</span><span class="p">(</span><span class="n">coefs</span><span class="p">)</span>
+    
+    <span class="c1"># Sort the roots for consistency</span>
+    <span class="k">return</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">λs</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">solve_η</span><span class="p">(</span><span class="n">λ_1</span><span class="p">,</span> <span class="n">λ_2</span><span class="p">,</span> <span class="n">y_neg1</span><span class="p">,</span> <span class="n">y_neg2</span><span class="p">):</span>
+    <span class="c1"># Solve the system of linear equation</span>
+    <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+        <span class="p">[</span><span class="mi">1</span><span class="o">/</span><span class="n">λ_1</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="n">λ_2</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="n">λ_1</span><span class="o">**</span><span class="mi">2</span><span class="p">),</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="n">λ_2</span><span class="o">**</span><span class="mi">2</span><span class="p">)]</span>
+    <span class="p">])</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">((</span><span class="n">y_neg1</span><span class="p">,</span> <span class="n">y_neg2</span><span class="p">))</span>
+    <span class="n">ηs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">ηs</span>
+
+<span class="k">def</span> <span class="nf">solve_sqrt</span><span class="p">(</span><span class="n">σ</span><span class="p">,</span> <span class="n">coefs</span><span class="p">,</span> <span class="n">y_neg1</span><span class="p">,</span> <span class="n">y_neg2</span><span class="p">,</span> <span class="n">t_max</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+    <span class="c1"># Ensure σ is greater than 1</span>
+    <span class="k">if</span> <span class="n">σ</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;σ must be greater than 1&quot;</span><span class="p">)</span>
+        
+    <span class="c1"># Characteristic roots</span>
+    <span class="n">λ_1</span><span class="p">,</span> <span class="n">λ_2</span> <span class="o">=</span> <span class="n">solve_λs</span><span class="p">(</span><span class="n">coefs</span><span class="p">)</span>
+    
+    <span class="c1"># Solve for η_1 and η_2</span>
+    <span class="n">η_1</span><span class="p">,</span> <span class="n">η_2</span> <span class="o">=</span> <span class="n">solve_η</span><span class="p">(</span><span class="n">λ_1</span><span class="p">,</span> <span class="n">λ_2</span><span class="p">,</span> <span class="n">y_neg1</span><span class="p">,</span> <span class="n">y_neg2</span><span class="p">)</span>
+
+    <span class="c1"># Compute the sequence up to t_max</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">t_max</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="p">(</span><span class="n">λ_1</span> <span class="o">**</span> <span class="n">t</span><span class="p">)</span> <span class="o">*</span> <span class="n">η_1</span> <span class="o">+</span> <span class="p">(</span><span class="n">λ_2</span> <span class="o">**</span> <span class="n">t</span><span class="p">)</span> <span class="o">*</span> <span class="n">η_2</span>
+    
+    <span class="c1"># Compute the ratio y_{t+1} / y_t for large t</span>
+    <span class="n">sqrt_σ_estimate</span> <span class="o">=</span> <span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="n">y</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span> <span class="o">-</span> <span class="mi">1</span>
+    
+    <span class="k">return</span> <span class="n">sqrt_σ_estimate</span>
+
+<span class="c1"># Use σ = 2 as an example</span>
+<span class="n">σ</span> <span class="o">=</span> <span class="mi">2</span>
+
+<span class="c1"># Encode characteristic equation</span>
+<span class="n">coefs</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">σ</span><span class="p">))</span>
+
+<span class="c1"># Solve for the square root of σ</span>
+<span class="n">sqrt_σ</span> <span class="o">=</span> <span class="n">solve_sqrt</span><span class="p">(</span><span class="n">σ</span><span class="p">,</span> <span class="n">coefs</span><span class="p">,</span> <span class="n">y_neg1</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">y_neg2</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Calculate the deviation</span>
+<span class="n">dev</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">sqrt_σ</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">σ</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;sqrt(</span><span class="si">{</span><span class="n">σ</span><span class="si">}</span><span class="s2">) is approximately </span><span class="si">{</span><span class="n">sqrt_σ</span><span class="si">:</span><span class="s2">.5f</span><span class="si">}</span><span class="s2"> (error: </span><span class="si">{</span><span class="n">dev</span><span class="si">:</span><span class="s2">.5f</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>sqrt(2) is approximately 1.41421 (error: 0.00000)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we consider cases where <span class="math notranslate nohighlight">\((\eta_1, \eta_2) = (0, 1)\)</span> and <span class="math notranslate nohighlight">\((\eta_1, \eta_2) = (1, 0)\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute λ_1, λ_2</span>
+<span class="n">λ_1</span><span class="p">,</span> <span class="n">λ_2</span> <span class="o">=</span> <span class="n">solve_λs</span><span class="p">(</span><span class="n">coefs</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Roots for the characteristic equation are (</span><span class="si">{</span><span class="n">λ_1</span><span class="si">:</span><span class="s1">.5f</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">λ_2</span><span class="si">:</span><span class="s1">.5f</span><span class="si">}</span><span class="s1">))&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Roots for the characteristic equation are (2.41421, -0.41421))
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Case 1: η_1, η_2 = (0, 1)</span>
+<span class="n">ηs</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Compute y_{t} and y_{t-1} with t &gt;= 0</span>
+<span class="n">y</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">t</span><span class="p">,</span> <span class="n">ηs</span><span class="p">:</span> <span class="p">(</span><span class="n">λ_1</span> <span class="o">**</span> <span class="n">t</span><span class="p">)</span> <span class="o">*</span> <span class="n">ηs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="n">λ_2</span> <span class="o">**</span> <span class="n">t</span><span class="p">)</span> <span class="o">*</span> <span class="n">ηs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">sqrt_σ</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">y</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">ηs</span><span class="p">)</span> <span class="o">/</span> <span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">ηs</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;For η_1, η_2 = (0, 1), sqrt_σ = </span><span class="si">{</span><span class="n">sqrt_σ</span><span class="si">:</span><span class="s2">.5f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>For η_1, η_2 = (0, 1), sqrt_σ = 1.41421
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Case 2: η_1, η_2 = (0, 1)</span>
+<span class="n">ηs</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">sqrt_σ</span> <span class="o">=</span> <span class="n">y</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">ηs</span><span class="p">)</span> <span class="o">/</span> <span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">ηs</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;For η_1, η_2 = (1, 0), sqrt_σ = </span><span class="si">{</span><span class="n">sqrt_σ</span><span class="si">:</span><span class="s2">.5f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>For η_1, η_2 = (1, 0), sqrt_σ = 1.41421
+</pre></div>
+</div>
+</div>
+</div>
+<p>We find that convergence is immediate.</p>
+<p>Let’s represent the preceding analysis by vectorizing our second order difference equation <a class="reference internal" href="#equation-eq-second-order">(16.12)</a> and then using  eigendecompositions of a state transition matrix.</p>
+</section>
+<section id="vectorizing-the-difference-equation">
+<h2><span class="section-number">16.5. </span>Vectorizing the difference equation<a class="headerlink" href="#vectorizing-the-difference-equation" title="Permalink to this heading">#</a></h2>
+<p>Represent <a class="reference internal" href="#equation-eq-second-order">(16.12)</a> with the first-order matrix difference equation</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{bmatrix} y_{t+1} \cr y_{t} \end{bmatrix}
+= \begin{bmatrix} 2 &amp; - ( 1 - \sigma) \cr 1 &amp; 0 \end{bmatrix} \begin{bmatrix} y_{t} \cr y_{t-1} \end{bmatrix}
+\]</div>
+<p>or</p>
+<div class="math notranslate nohighlight">
+\[
+x_{t+1} = M x_t 
+\]</div>
+<p>where</p>
+<div class="math notranslate nohighlight">
+\[
+M = \begin{bmatrix} 2 &amp; - (1 - \sigma )  \cr 1 &amp; 0 \end{bmatrix},  \quad x_t= \begin{bmatrix} y_{t} \cr y_{t-1} \end{bmatrix}
+\]</div>
+<p>Construct an eigendecomposition of <span class="math notranslate nohighlight">\(M\)</span>:</p>
+<div class="math notranslate nohighlight" id="equation-eq-eigen-sqrt">
+<span class="eqno">(16.17)<a class="headerlink" href="#equation-eq-eigen-sqrt" title="Permalink to this equation">#</a></span>\[
+M = V \begin{bmatrix} \lambda_1 &amp; 0 \cr 0 &amp; \lambda_2  \end{bmatrix} V^{-1} 
+\]</div>
+<p>where columns of <span class="math notranslate nohighlight">\(V\)</span> are eigenvectors corresponding to  eigenvalues <span class="math notranslate nohighlight">\(\lambda_1\)</span> and <span class="math notranslate nohighlight">\(\lambda_2\)</span>.</p>
+<p>The eigenvalues can be ordered so that  <span class="math notranslate nohighlight">\(\lambda_1 &gt; 1 &gt; \lambda_2\)</span>.</p>
+<p>Write equation <a class="reference internal" href="#equation-eq-second-order">(16.12)</a> as</p>
+<div class="math notranslate nohighlight">
+\[
+x_{t+1} = V \Lambda V^{-1} x_t
+\]</div>
+<p>Define</p>
+<div class="math notranslate nohighlight">
+\[
+x_t^* = V^{-1} x_t
+\]</div>
+<p>We can recover <span class="math notranslate nohighlight">\(x_t\)</span> from <span class="math notranslate nohighlight">\(x_t^*\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+x_t = V x_t^*
+\]</div>
+<p>The following notations and equations will help us.</p>
+<p>Let</p>
+<div class="math notranslate nohighlight">
+\[V = \begin{bmatrix} V_{1,1} &amp; V_{1,2} \cr 
+                         V_{2,2} &amp; V_{2,2} \end{bmatrix}, \quad
+V^{-1} = \begin{bmatrix} V^{1,1} &amp; V^{1,2} \cr 
+                         V^{2,2} &amp; V^{2,2} \end{bmatrix}
+\]</div>
+<p>Notice that it follows from</p>
+<div class="math notranslate nohighlight">
+\[
+ \begin{bmatrix} V^{1,1} &amp; V^{1,2} \cr 
+                         V^{2,2} &amp; V^{2,2} \end{bmatrix} \begin{bmatrix} V_{1,1} &amp; V_{1,2} \cr 
+                         V_{2,2} &amp; V_{2,2} \end{bmatrix} = \begin{bmatrix} 1  &amp; 0 \cr 0 &amp; 1 \end{bmatrix}
+\]</div>
+<p>that</p>
+<div class="math notranslate nohighlight">
+\[
+V^{2,1} V_{1,1} + V^{2,2} V_{2,1} = 0
+\]</div>
+<p>and</p>
+<div class="math notranslate nohighlight">
+\[
+V^{1,1}V_{1,2} + V^{1,2} V_{2,2} = 0
+\]</div>
+<p>These equations will be very useful soon.</p>
+<p>Notice that</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{bmatrix} x_{1,t+1}^* \cr x_{2,t+1}^* \end{bmatrix} = \begin{bmatrix} \lambda_1  &amp; 0 \cr 0 &amp; \lambda_2 \end{bmatrix}
+\begin{bmatrix} x_{1,t}^* \cr x_{2,t}^* \end{bmatrix}
+\]</div>
+<p>To deactivate <span class="math notranslate nohighlight">\(\lambda_1\)</span> we want to set</p>
+<div class="math notranslate nohighlight">
+\[
+x_{1,0}^* = 0
+\]</div>
+<p>This can be achieved by setting</p>
+<div class="math notranslate nohighlight" id="equation-eq-deactivate1">
+<span class="eqno">(16.18)<a class="headerlink" href="#equation-eq-deactivate1" title="Permalink to this equation">#</a></span>\[
+x_{2,0} =  -( V^{1,2})^{-1} V^{1,1} = V_{2,1} V_{1,1}^{-1} x_{1,0}.
+\]</div>
+<p>To deactivate <span class="math notranslate nohighlight">\(\lambda_2\)</span>, we want to  set</p>
+<div class="math notranslate nohighlight">
+\[
+x_{2,0}^* = 0
+\]</div>
+<p>This can be achieved by setting</p>
+<div class="math notranslate nohighlight" id="equation-eq-deactivate2">
+<span class="eqno">(16.19)<a class="headerlink" href="#equation-eq-deactivate2" title="Permalink to this equation">#</a></span>\[
+x_{2,0} = -(V^{2,2})^{-1} V^{2,1} = V_{2,1} V_{1,1}^{-1} x_{1,0}
+\]</div>
+<p>We shall encounter equations very similar to <a class="reference internal" href="#equation-eq-deactivate1">(16.18)</a> and <a class="reference internal" href="#equation-eq-deactivate2">(16.19)</a>
+in  this QuantEcon lecture <a class="reference internal" href="money_inflation.html"><span class="doc">money financed government deficits and inflation</span></a>
+and in many other places in dynamic economic theory.</p>
+<section id="id1">
+<h3><span class="section-number">16.5.1. </span>Implementation<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<p>Now we implement the algorithm above.</p>
+<p>First we write a function that iterates <span class="math notranslate nohighlight">\(M\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">iterate_M</span><span class="p">(</span><span class="n">x_0</span><span class="p">,</span> <span class="n">M</span><span class="p">,</span> <span class="n">num_steps</span><span class="p">):</span>
+    <span class="c1"># Eigendecomposition of M</span>
+    <span class="n">Λ</span><span class="p">,</span> <span class="n">V</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eig</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>
+    <span class="n">V_inv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;eigenvalue:</span><span class="se">\n</span><span class="si">{</span><span class="n">Λ</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;eigenvector:</span><span class="se">\n</span><span class="si">{</span><span class="n">V</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Initialize the array to store results</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">x_0</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">num_steps</span><span class="p">))</span>
+    
+    <span class="c1"># Perform the iterations</span>
+    <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_steps</span><span class="p">):</span>
+        <span class="n">x</span><span class="p">[:,</span> <span class="n">t</span><span class="p">]</span> <span class="o">=</span> <span class="n">V</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">Λ</span><span class="o">**</span><span class="n">t</span><span class="p">)</span> <span class="o">@</span> <span class="n">V_inv</span> <span class="o">@</span> <span class="n">x_0</span>
+    
+    <span class="k">return</span> <span class="n">x</span>
+
+<span class="c1"># Define the state transition matrix M</span>
+<span class="n">M</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">σ</span><span class="p">)],</span>
+              <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+
+<span class="c1"># Initial condition vector x_0</span>
+<span class="n">x_0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+
+<span class="c1"># Perform the iteration</span>
+<span class="n">xs</span> <span class="o">=</span> <span class="n">iterate_M</span><span class="p">(</span><span class="n">x_0</span><span class="p">,</span> <span class="n">M</span><span class="p">,</span> <span class="n">num_steps</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>eigenvalue:
+[ 2.41421356 -0.41421356]
+eigenvector:
+[[ 0.92387953 -0.38268343]
+ [ 0.38268343  0.92387953]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Compare the eigenvector to the roots we obtained above</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">roots</span> <span class="o">=</span> <span class="n">solve_λs</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">σ</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;roots: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">roots</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>roots: [ 2.41421356 -0.41421356]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Hence we confirmed <a class="reference internal" href="#equation-eq-eigen-sqrt">(16.17)</a>.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                    </div>
+                    
+                </main> <!-- .page__content -->
+                
+
+
+                <footer class="qe-page__footer">
+
+                    <p><a href="https://creativecommons.org/licenses/by-sa/4.0/"><img src="https://licensebuttons.net/l/by-sa/4.0/80x15.png"></a></p>
+
+                    <p>Creative Commons License &ndash; This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International.</p>
+
+                </footer> <!-- .page__footer -->
+
+            </div> <!-- .page -->
+
+            
+
+            
+            <div class="qe-sidebar bd-sidebar inactive" id="site-navigation">
+
+                <div class="qe-sidebar__header">
+
+
+                    Contents
+
+                </div>
+
+                <nav class="qe-sidebar__nav" id="qe-sidebar-nav" aria-label="Main navigation">
+                    <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Introduction
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="about.html">
+   1. About These Lectures
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Economic Data
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="long_run_growth.html">
+   2. Long-Run Growth
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="business_cycle.html">
+   3. Business Cycles
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="inflation_history.html">
+   4. Price Level Histories
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="inequality.html">
+   5. Income and Wealth Inequality
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Foundations
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro_supply_demand.html">
+   6. Introduction to Supply and Demand
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="linear_equations.html">
+   7. Linear Equations and Matrix Algebra
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="complex_and_trig.html">
+   8. Complex Numbers and Trigonometry
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="geom_series.html">
+   9. Geometric Series for Elementary Economics
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Linear Dynamics: Finite Horizons
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="pv.html">
+   10. Present Values
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cons_smooth.html">
+   11. Consumption Smoothing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="equalizing_difference.html">
+   12. Equalizing Difference Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cagan_ree.html">
+   13. A Monetarist Theory of Price Levels
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cagan_adaptive.html">
+   14. Monetarist Theory of Price Levels with Adaptive Expectations
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Linear Dynamics: Infinite Horizons
+ </span>
+</p>
+<ul class="current nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="eigen_I.html">
+   15. Eigenvalues and Eigenvectors
+  </a>
+ </li>
+ <li class="toctree-l1 current active active">
+  <a class="current reference internal" href="#">
+   16. Computing Square Roots
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Probability and Distributions
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="prob_dist.html">
+   17. Distributions and Probabilities
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lln_clt.html">
+   18. LLN and CLT
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="monte_carlo.html">
+   19. Monte Carlo and Option Pricing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="heavy_tails.html">
+   20. Heavy-Tailed Distributions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="schelling.html">
+   21. Racial Segregation
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Nonlinear Dynamics
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="scalar_dynam.html">
+   22. Dynamics in One Dimension
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="solow.html">
+   23. The Solow-Swan Growth Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cobweb.html">
+   24. The Cobweb Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="olg.html">
+   25. The Overlapping Generations Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="commod_price.html">
+   26. Commodity Prices
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Monetary-Fiscal Policy Interactions
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="money_inflation.html">
+   27. Money Financed Government Deficits and Price Levels
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="unpleasant.html">
+   28. Unpleasant Monetarist Arithmetic
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="money_inflation_nonlinear.html">
+   29. Inflation Rate Laffer Curves
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="laffer_adaptive.html">
+   30. Laffer Curves  with Adaptive Expectations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ak2.html">
+   31. Transitions in an Overlapping Generations Model
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Stochastic Dynamics
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="ar1_processes.html">
+   32. AR1 Processes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="markov_chains_I.html">
+   33. Markov Chains: Basic Concepts
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="markov_chains_II.html">
+   34. Markov Chains: Irreducibility and Ergodicity
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="time_series_with_matrices.html">
+   35. Univariate Time Series with Matrix Algebra
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Optimization
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="lp_intro.html">
+   36. Linear Programming
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="short_path.html">
+   37. Shortest Paths
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Modeling in Higher Dimensions
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="eigen_II.html">
+   38. The Perron-Frobenius Theorem
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="input_output.html">
+   39. Input-Output Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lake_model.html">
+   40. A Lake Model of Employment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="networks.html">
+   41. Networks
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Markets and Competitive Equilibrium
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="supply_demand_multiple_goods.html">
+   42. Supply and Demand with Many Goods
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="supply_demand_heterogeneity.html">
+   43. Market Equilibrium with Heterogeneity
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Estimation
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="simple_linear_regression.html">
+   44. Simple Linear Regression Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="mle.html">
+   45. Maximum Likelihood Estimation
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Other
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="troubleshooting.html">
+   46. Troubleshooting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="zreferences.html">
+   47. References
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="status.html">
+   48. Execution Statistics
+  </a>
+ </li>
+</ul>
+
+                </nav>
+
+                <div class="qe-sidebar__footer">
+
+                </div>
+
+            </div> <!-- .sidebar -->
+            
+        </div> <!-- .main -->
+
+        <div class="qe-toolbar">
+
+            <div class="qe-toolbar__inner">
+
+                <ul class="qe-toolbar__main">
+                    <li data-tippy-content="Table of Contents" class="btn__sidebar"><i data-feather="menu"></i></li>
+                    <li data-tippy-content="Home"><a href="intro.html"><i data-feather="home"></i></a></li>
+                    <li class="btn__qelogo"><a href="https://quantecon.org" title=""><span class="show-for-sr">QuantEcon</span></a></li>
+                </ul>
+
+                <ul class="qe-toolbar__links">
+                    <li class="btn__search">
+                        <form action="search.html" method="get">
+                            <input type="search" class="form-control" name="q" id="search-input" placeholder="Search..." aria-label="Search..." autocomplete="off" accesskey="k">
+                            <i data-feather="search" id="search-icon"></i>
+                        </form>
+                    </li>
+                    <li data-tippy-content="Fullscreen" class="btn__fullscreen"><i data-feather="maximize"></i></li>
+                    <li data-tippy-content="Increase font size" class="btn__plus"><i data-feather="plus-circle"></i></li>
+                    <li data-tippy-content="Decrease font size" class="btn__minus"><i data-feather="minus-circle"></i></li>
+                    <li data-tippy-content="Change contrast" class="btn__contrast"><i data-feather="sunset"></i></li>
+                    <li data-tippy-content="Download Notebook"><a href="/_notebooks/greek_square.ipynb" download><i data-feather="download-cloud"></i></a></li>
+                    <li class="settings-button" id="settingsButton"><div data-tippy-content="Launch Notebook"><i data-feather="play-circle"></i></div></li>
+                        <li class="download-pdf" id="downloadButton"><i data-feather="file"></i></li>
+                    <li data-tippy-content="View Source"><a target="_blank" href="https://github.com/QuantEcon/lecture-python-intro/blob/main/lectures/greek_square.md" download><i data-feather="github"></i></a></li>
+                </ul>
+
+            </div>
+
+        </div> <!-- .toolbar -->
+        <div id="downloadPDFModal" style="display: none;">
+            <ul class="pdf-options" style="display: block;">
+                <li class="download-pdf-book" onClick="window.print()">
+                    <p>Lecture (PDF)</p>
+                </li>
+                <li class="download-pdf-file">
+                    <a href="/_pdf/quantecon-python-intro.pdf" download><p>Book (PDF)</p></a>
+                </li>
+            </ul>
+        </div>
+        <div id="settingsModal" style="display: none;">
+            <p class="modal-title"> Notebook Launcher </p>
+            <div class="modal-desc">
+            <p>
+                Choose public or private cloud service for "Launch" button.
+            </p>
+            </div>
+            <p class="modal-subtitle">Select a server</p>
+            <ul class="modal-servers">
+            <li class="active launcher-public">
+                <span class="label">Public</span>
+                <select id="launcher-public-input">
+                
+                    <option value="https://mybinder.org/v2/gh/QuantEcon/lecture-python-intro.notebooks/master?urlpath=tree/greek_square.ipynb">BinderHub</option>
+                
+                    <option value="https://colab.research.google.com/github/QuantEcon/lecture-python-intro.notebooks/blob/master/greek_square.ipynb">Colab</option>
+                
+                </select>
+                <i class="fas fa-check-circle"></i>
+            </li>
+            <li class="launcher-private">
+                <span class="label">Private</span>
+                <input type="text" id="launcher-private-input" data-repourl="https://github.com/QuantEcon/lecture-python-intro.notebooks" data-urlpath="tree/lecture-python-intro.notebooks/greek_square.ipynb" data-branch=master>
+                <i class="fas fa-check-circle"></i>
+            </li>
+            </ul>
+            <p class="launch"><a href="https://colab.research.google.com/github/QuantEcon/lecture-python-intro.notebooks/blob/master/greek_square.ipynb" id="advancedLaunchButton" target="_blank">Launch Notebook</a></p>
+            <script>
+                // QuantEcon Notebook Launcher
+                const launcherTypeElements = document.querySelectorAll('#settingsModal .modal-servers li');
+                // Highlight the server type if previous selection exists
+                if (typeof localStorage.launcherType !== 'undefined') {
+                  for (var i = 0; i < launcherTypeElements.length; i++) {
+                    launcherTypeElements[i].classList.remove('active');
+                    if ( launcherTypeElements[i].classList.contains(localStorage.launcherType) ) {
+                      launcherTypeElements[i].classList.add('active');
+                    }
+                  }
+                }
+                // Highlight server type on click and set local storage value
+                for (var i = 0; i < launcherTypeElements.length; i++) {
+                  launcherTypeElements[i].addEventListener('click', function() {
+                    for (var j = 0; j < launcherTypeElements.length; j++) {
+                      launcherTypeElements[j].classList.remove('active');
+                    }
+                    this.classList.add('active');
+                    if ( this.classList.contains('launcher-private') ) {
+                      localStorage.launcherType = 'launcher-private';
+                    } else if ( this.classList.contains('launcher-public') ) {
+                      localStorage.launcherType = 'launcher-public';
+                    }
+                    setLaunchServer();
+                  })
+                }
+                const launcherPublic = document.getElementById('launcher-public-input');
+                const launcherPrivate = document.getElementById('launcher-private-input');
+                const pageName = "greek_square";
+                const repoURL = "https://github.com/QuantEcon/lecture-python-intro.notebooks";
+                const urlPath = "tree/lecture-python-intro.notebooks/greek_square.ipynb";
+                const branch = "master"
+                const launchNotebookLink = document.getElementById('advancedLaunchButton');
+
+                // Highlight public server option if previous selection exists
+                if (typeof localStorage.launcherPublic !== 'undefined') {
+                  launcherPublic.value = localStorage.launcherPublic;
+                }
+                // Update local storage upon public server selection
+                launcherPublic.addEventListener('change', (event) => {
+                  setLaunchServer();
+                });
+                // Populate private server input if previous entry exists
+                if (typeof localStorage.launcherPrivate !== 'undefined') {
+                  launcherPrivate.value = localStorage.launcherPrivate;
+                }
+                // Update local storage when a private server is entered
+                launcherPrivate.addEventListener('input', (event) => {
+                  setLaunchServer();
+                });
+
+                // Function to update the "Launch Notebook" link href
+                function setLaunchServer() {
+                  launchNotebookLink.removeAttribute("style")
+                  if ( localStorage.launcherType == 'launcher-private' ) {
+                    let repoPrefix = "/jupyter/hub/user-redirect/git-pull?repo=" + repoURL + "&branch=" + branch + "&urlpath=" + urlPath;
+                    launcherPrivateValue = launcherPrivate.value
+                    if (!launcherPrivateValue) {
+                        launchNotebookLink.removeAttribute("href")
+                        launchNotebookLink.style.background = "grey"
+                        return
+                    }
+                    localStorage.launcherPrivate = launcherPrivateValue;
+                    privateServer = localStorage.launcherPrivate.replace(/\/$/, "")
+                    if (!privateServer.includes("http")) {
+                        privateServer = "http://" + privateServer
+                    }
+                    launchNotebookLinkURL = privateServer + repoPrefix;
+                  } else if ( localStorage.launcherType == 'launcher-public' ) {
+                    launcherPublicValue = launcherPublic.options[launcherPublic.selectedIndex].value;
+                    localStorage.launcherPublic = launcherPublicValue;
+                    launchNotebookLinkURL = localStorage.launcherPublic;
+                  }
+                  if (launchNotebookLinkURL) launchNotebookLink.href = launchNotebookLinkURL;
+                }
+                // Check if user has previously selected a server
+                if ( (typeof localStorage.launcherPrivate !== 'undefined') || (typeof localStorage.launcherPublic !== 'undefined') ) {
+                  setLaunchServer();
+                }
+                </script>
+
+        </div>
+
+    </div> <!-- .wrapper-->
+  </body>
+</html>
