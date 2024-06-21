@@ -18,6 +18,7 @@ kernelspec:
 
 ## Introduction
 
+
 This lectures provides an  example of **invariant subspace** methods for analyzing linear difference equations. 
 
 These methods are applied throughout applied economic dynamics, for example, in this QuantEcon lecture {doc}`money financed government deficits and inflation <money_inflation>`
@@ -459,8 +460,9 @@ def iterate_M(x_0, M, num_steps):
     Λ, V_inv = np.linalg.eig(M)
     V = np.linalg.inv(V_inv)
     
-    print(f"eigenvalue:\n{Λ}")
-    print(f"eigenvector:\n{V}")
+    print(f"eigenvalues:\n{Λ}")
+    print(f"eigenvectors:\n{V}")
+    print(f"inverse eigenvectors:\n{V_inv}")
     
     # Initialize the array to store results
     x = np.zeros((x_0.shape[0], num_steps))
@@ -482,7 +484,8 @@ x_0 = np.array([2, 2])
 xs, Λ, V, V_inv = iterate_M(x_0, M, num_steps=100)
 ```
 
-Compare the eigenvector to the roots we obtained above
+Let's compare the eigenvalues to the roots {eq}`eq:secretweapon` of equation 
+{eq}`eq:cha_eq0` that  we obtained above.
 
 ```{code-cell} ipython3
 roots = solve_λs((1, -2, (1 - σ)))
@@ -558,7 +561,7 @@ $$
 This can be achieved by setting 
 
 $$
-x_{2,0} =  -( V^{1,2})^{-1} V^{1,1} = V_{2,2} V_{1,2}^{-1} x_{1,0}.
+x_{2,0} =  -( V^{1,2})^{-1} V^{1,1} x_{1,0} = V_{2,2} V_{1,2}^{-1} x_{1,0}.
 $$ (eq:deactivate1)
 
 To deactivate $\lambda_2$, we want to  set
@@ -570,7 +573,7 @@ $$
 This can be achieved by setting 
 
 $$
-x_{2,0} = -(V^{2,2})^{-1} V^{2,1} = V_{2,1} V_{1,1}^{-1} x_{1,0}
+x_{2,0} = -(V^{2,2})^{-1} V^{2,1} x_{1,0} = V_{2,1} V_{1,1}^{-1} x_{1,0}
 $$ (eq:deactivate2)
 
 Let's verify {eq}`eq:deactivate1` and {eq}`eq:deactivate2` below
