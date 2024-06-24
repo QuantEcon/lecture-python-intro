@@ -19,11 +19,18 @@ kernelspec:
 ## Introduction
 
 
-This lectures provides an  example of **invariant subspace** methods for analyzing linear difference equations. 
+This lecture can be viewed as a sequel to this QuantEcon lecture {doc}`eigenvalues and eigenvectors <eigen_I>` 
 
-These methods are applied throughout applied economic dynamics, for example, in this QuantEcon lecture {doc}`money financed government deficits and inflation <money_inflation>`
+It  provides an  example of how eigen vectors isolate  **invariant subspaces** that help construct and analyze solutions of  linear difference equations. 
 
-Our approach in this lecture is to illustrate the method with an ancient example, one that ancient Greek mathematicians used to compute square roots of positive integers.
+When vector $x_t$ starts in an invariant subspace, iterating the different equation keeps $x_{t+j}$
+in that subspace for all $j \geq 1$.  
+
+Invariant subspace methods are used throughout applied economic dynamics, for example, in this QuantEcon lecture {doc}`money financed government deficits and inflation <money_inflation>`
+
+Our approach here  is to illustrate the method with an ancient example, one that ancient Greek mathematicians used to compute square roots of positive integers.
+
+## Perfect Squares and Irrational Numbers
 
 An integer is called a **perfect square** if its square root is also an integer.
 
@@ -69,7 +76,7 @@ There is one equation each for $t = 0, 1, 2, \ldots$.
 
 We could follow an approach taken in this QuantEcon lecture {doc}`present values<pv>` and stack all of these equations into a single matrix equation that we would then solve by using matrix inversion.
 
-```{note} In the present instance, the matrix equation would have an infinite dimensional square matrix multiplying an infinite dimensional vector.  With some qualifications, standard  matrix multiplication and inversion tools can be applied to such a system.
+```{note} In the present instance, the matrix equation would multiply a countably infinite dimensional square matrix by  a countably infinite dimensional vector.  With some qualifications, matrix multiplication and inversion tools apply to such an equation.
 ```
 
 But we won't pursue that approach here. 
@@ -130,7 +137,11 @@ $$
 y_t = \delta^t y_0 , \forall t \geq 0
 $$ (eq:2diff8)
 
-and $y_0 = a_1 y_{-1} + a_2 y_{-2}$
+provded that we set 
+
+$$
+y_0 = \delta  y_{-1} . 
+$$ 
 
 The **general** solution of difference equation {eq}`eq:2diff1` takes the form
 
@@ -202,7 +213,7 @@ $$ (eq:cha_eq0)
 
 (Notice how this is an instance of equation {eq}`eq:2diff6` above.)
 
-If we factor the right side of the  equation {eq}`eq:cha_eq0`, we obtain 
+Factoring the right side of   equation {eq}`eq:cha_eq0`, we obtain 
 
 $$
 c(x)= (x - \lambda_1) (x-\lambda_2) = 0
@@ -227,8 +238,8 @@ $$
 \lambda_1 = 1 + \sqrt{\sigma}, \quad \lambda_2 = 1 - \sqrt{\sigma} 
 $$ (eq:secretweapon)
 
-Formulas {eq}`eq:secretweapon` indicate that  $\lambda_1$ and  $\lambda_2$ are both simple functions
-of a single variable, namely,  $\sqrt{\sigma}$, the object that some Ancient Greeks   wanted to compute.
+Formulas {eq}`eq:secretweapon` indicate that  $\lambda_1$ and  $\lambda_2$ are each functions
+of a single variable, namely,  $\sqrt{\sigma}$, the object that we along with some  Ancient Greeks   want to compute.
 
 Ancient Greeks had an indirect way of exploiting this fact to compute square roots of a positive integer.
 
@@ -241,7 +252,7 @@ $$
 y_t = \lambda_1^t \eta_1 + \lambda_2^t \eta_2
 $$
 
-where $\eta_1$ and $\eta_2$ are chosen to satisfy the  prescribed initial conditions $y_{-1}, y_{-2}$:
+where $\eta_1$ and $\eta_2$ are chosen to satisfy   prescribed initial conditions $y_{-1}, y_{-2}$:
 
 $$
 \begin{align}
@@ -252,7 +263,7 @@ $$(eq:leq_sq)
 
 System {eq}`eq:leq_sq` of simultaneous linear equations will play a big role in the remainder of this lecture.  
 
-Since $\lambda_1 = 1 + \sqrt{\sigma} > 1 > \lambda_2 = 1 - \sqrt{\sigma} $
+Since $\lambda_1 = 1 + \sqrt{\sigma} > 1 > \lambda_2 = 1 - \sqrt{\sigma} $,
 it follows that for **almost all** (but not all) initial conditions
 
 $$
@@ -303,7 +314,7 @@ System {eq}`eq:leq_sq` of simultaneous linear equations can be used in various w
  
 Notice how we used the  second approach above when we set  $\eta_1, \eta_2$  either to $(0, 1)$, for example, or $(1, 0)$, for example.
 
-In taking this second approach, we were in effect finding  an **invariant subspace** of ${\bf R}^2$. 
+In taking this second approach, we  constructed   an **invariant subspace** of ${\bf R}^2$. 
 
 Here is what is going on.  
 
@@ -313,7 +324,9 @@ But for some special initial conditions $(y_{-1}, y_{-2}) \in {\bf R}^2$, $y_t$ 
 
 These special initial conditions require that $y_{-1}$ be a linear function of $y_{-2}$.
 
-We'll study these special initial conditions soon.  But first let's write some Python code to iterate on equation {eq}`eq:second_order` starting from an arbitrary $(y_{-1}, y_{-2}) \in {\bf R}^2$.
+We'll study these special initial conditions soon. 
+
+But first let's write some Python code to iterate on equation {eq}`eq:second_order` starting from an arbitrary $(y_{-1}, y_{-2}) \in {\bf R}^2$.
 
 ## Implementation
 
@@ -410,7 +423,7 @@ We find that convergence is immediate.
 
 +++
 
-Let's represent the preceding analysis by vectorizing our second order difference equation {eq}`eq:second_order` and then using  eigendecompositions of a state transition matrix.
+Next, we'll  represent the preceding analysis by first vectorizing our second order difference equation {eq}`eq:second_order` and then using  eigendecompositions of an  associated  state transition matrix.
 
 ## Vectorizing the difference equation
 
@@ -485,7 +498,7 @@ xs, Λ, V, V_inv = iterate_M(x_0, M, num_steps=100)
 ```
 
 Let's compare the eigenvalues to the roots {eq}`eq:secretweapon` of equation 
-{eq}`eq:cha_eq0` that  we obtained above.
+{eq}`eq:cha_eq0` that  we computed above.
 
 ```{code-cell} ipython3
 roots = solve_λs((1, -2, (1 - σ)))
@@ -494,13 +507,51 @@ print(f"roots: {np.round(roots, 8)}")
 
 Hence we confirmed {eq}`eq:eigen_sqrt`.
 
-Define
+**Request to Humphrey**
+Please beautify the following description and code.
+
+Information about the square root we are after is also contained
+in the two  eigenvectors.
+
+Indeed, each  eigenvector is just a   two dimensional  subspace of ${\bf R}^3$ pinned down
+by dynamics of the form 
+
+$$
+y_{t} = \delta_i y_{t-1}, \quad i = 1, 2 
+$$ (eq:invariantsub101)
+
+that we encountered above in equation {eq}`eq:2diff8` above.
+
+In equation {eq}`eq:invariantsub101`, the $i$th $\delta_i$  equals the $V_{i, 0}/V_{i,1}$.
+
+The following code cell verifies this for our example. 
+
+
+```{code-cell} ipython3
+s1 = V[0,0] / V[0,1]
+s2 = V[1,0] / V[1,1]
+print ("(s1, s2) = ", s1, s2)
+g1 = 1 + np.sqrt(2)
+g2 = 1 - np.sqrt(2)
+print("(g1, g2) = ", g1, g2)
+```
+
+**End of request to Humphrey**
+
+## Invariant Subspace Approach 
+
+The preceding  calculation indicates that we can use the eigenvectors $V$ to construct 2-dimensional  **invariant subspaces**.
+
+We'll pursue that possibility now.
+
+Define the transformed variables
+
 
 $$
 x_t^* = V^{-1} x_t
 $$
 
-We can recover $x_t$ from $x_t^*$:
+Evidently, we can recover $x_t$ from $x_t^*$:
 
 $$
 x_t = V x_t^*
@@ -615,20 +666,12 @@ np.round((V[1,1]*(1/V[0,1]),
           V[1,0]*(1/V[0,0])), 8)
 ```
 
-**Request for Humphrey**:
 
-Please compute the coefficients on $x_{1,0}$ in the  two alternative settings for $x_{2,0}$ given by equations {eq}`eq:deactivate1` and {eq}`eq:deactivate2`.  In 
-particular, please print out
+## Concluding Remarks
 
-  * $V_{2,2} V_{1,2}^{-1}$
-  * $V_{2,1} V_{1,1}^{-1}$
+This lecture sets the stage  for many other applications of the **invariant subspace** methods.
 
-I want to compare them with the zeros of the characteristic polynomial that we computed above.
-I'll explain why.
-
-**end of request for Humphrey**
-
-
+All of these exploit very similar equations based on eigen decompositions. 
 
 We shall encounter equations very similar to {eq}`eq:deactivate1` and {eq}`eq:deactivate2`
 in  this QuantEcon lecture {doc}`money financed government deficits and inflation <money_inflation>`
