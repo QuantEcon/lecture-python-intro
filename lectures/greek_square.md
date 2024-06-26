@@ -337,6 +337,7 @@ In this lecture, we use the following import:
 
 ```{code-cell} ipython3
 import numpy as np
+import matplotlib.pyplot as plt
 ```
 
 ```{code-cell} ipython3
@@ -412,7 +413,7 @@ print(f"For η_1, η_2 = (0, 1), sqrt_σ = {sqrt_σ:.5f}")
 ```
 
 ```{code-cell} ipython3
-# Case 2: η_1, η_2 = (0, 1)
+# Case 2: η_1, η_2 = (1, 0)
 ηs = (1, 0)
 sqrt_σ = y(1, ηs) / y(0, ηs) - 1
 
@@ -468,33 +469,37 @@ Now we implement the algorithm above.
 First we write a function that iterates $M$
 
 ```{code-cell} ipython3
-def iterate_M(x_0, M, num_steps):
-    # Eigendecomposition of M
-    Λ, V_inv = np.linalg.eig(M)
-    V = np.linalg.inv(V_inv)
+def iterate_M(x_0, M, num_steps, dtype=np.float64):
     
-    print(f"eigenvalues:\n{Λ}")
-    print(f"eigenvectors:\n{V}")
-    print(f"inverse eigenvectors:\n{V_inv}")
+    # Eigendecomposition of M
+    Λ, V = np.linalg.eig(M)
+    V_inv = np.linalg.inv(V)
     
     # Initialize the array to store results
-    x = np.zeros((x_0.shape[0], num_steps))
+    xs = np.zeros((x_0.shape[0], 
+                   num_steps + 1))
     
     # Perform the iterations
+    xs[:, 0] = x_0
     for t in range(num_steps):
-        x[:, t] = V @ np.diag(Λ**t) @ V_inv @ x_0
+        xs[:, t + 1] = M @ xs[:, t]
     
-    return x, Λ, V, V_inv
+    return xs, Λ, V, V_inv
 
 # Define the state transition matrix M
-M = np.array([[2, -(1 - σ)],
-              [1, 0]])
+M = np.array([
+      [2, -(1 - σ)],
+      [1, 0]])
 
 # Initial condition vector x_0
 x_0 = np.array([2, 2])
 
 # Perform the iteration
 xs, Λ, V, V_inv = iterate_M(x_0, M, num_steps=100)
+
+print(f"eigenvalues:\n{Λ}")
+print(f"eigenvectors:\n{V}")
+print(f"inverse eigenvectors:\n{V_inv}")
 ```
 
 Let's compare the eigenvalues to the roots {eq}`eq:secretweapon` of equation 
@@ -507,36 +512,47 @@ print(f"roots: {np.round(roots, 8)}")
 
 Hence we confirmed {eq}`eq:eigen_sqrt`.
 
-**Request to Humphrey**
-Please beautify the following description and code.
-
 Information about the square root we are after is also contained
 in the two  eigenvectors.
 
-Indeed, each  eigenvector is just a   two dimensional  subspace of ${\bf R}^3$ pinned down
-by dynamics of the form 
+Indeed, each  eigenvector is just a two-dimensional subspace of ${\mathbb R}^3$ pinned down by dynamics of the form 
 
 $$
-y_{t} = \delta_i y_{t-1}, \quad i = 1, 2 
+y_{t} = \lambda_i y_{t-1}, \quad i = 1, 2 
 $$ (eq:invariantsub101)
 
 that we encountered above in equation {eq}`eq:2diff8` above.
 
-In equation {eq}`eq:invariantsub101`, the $i$th $\delta_i$  equals the $V_{i, 0}/V_{i,1}$.
+In equation {eq}`eq:invariantsub101`, the $i$th $\lambda_i$  equals the $V_{i, 1}/V_{i,2}$.
 
-The following code cell verifies this for our example. 
-
+The following graph verifies this for our example.
 
 ```{code-cell} ipython3
-s1 = V[0,0] / V[0,1]
-s2 = V[1,0] / V[1,1]
-print ("(s1, s2) = ", s1, s2)
-g1 = 1 + np.sqrt(2)
-g2 = 1 - np.sqrt(2)
-print("(g1, g2) = ", g1, g2)
-```
+# Plotting the eigenvectors
+plt.figure(figsize=(8, 8))
 
-**End of request to Humphrey**
+plt.quiver(0, 0, V[0, 0], V[0, 1], angles='xy', scale_units='xy', 
+           scale=1, color='C0', label=fr'$\lambda_1={np.round(Λ[0], 4)}$')
+plt.quiver(0, 0, V[1, 0], V[1, 1], angles='xy', scale_units='xy', 
+           scale=1, color='C1', label=fr'$\lambda_2={np.round(Λ[1], 4)}$')
+
+# Annotating the slopes
+plt.text(V[0, 0]-0.5, V[0, 1]*1.2, 
+         r'slope=$\frac{V_{1,1}}{V_{1,2}}=$'+f'{np.round(V[0, 0] / V[0, 1], 4)}', 
+         fontsize=12, color='C0')
+plt.text(V[1, 0]-0.5, V[1, 1]*1.2, 
+         r'slope=$\frac{V_{2,1}}{V_{2,2}}=$'+f'{np.round(V[1, 0] / V[1, 1], 4)}', 
+         fontsize=12, color='C1')
+
+# Adding labels
+plt.axhline(0, color='grey', linewidth=0.5, alpha=0.4)
+plt.axvline(0, color='grey', linewidth=0.5, alpha=0.4)
+plt.legend()
+
+plt.xlim(-1.5, 1.5)
+plt.ylim(-1.5, 1.5)
+plt.show()
+```
 
 ## Invariant Subspace Approach 
 
@@ -565,9 +581,9 @@ Let
 $$
 
 V = \begin{bmatrix} V_{1,1} & V_{1,2} \cr 
-                         V_{2,2} & V_{2,2} \end{bmatrix}, \quad
+                         V_{2,1} & V_{2,2} \end{bmatrix}, \quad
 V^{-1} = \begin{bmatrix} V^{1,1} & V^{1,2} \cr 
-                         V^{2,2} & V^{2,2} \end{bmatrix}
+                         V^{2,1} & V^{2,2} \end{bmatrix}
 $$
 
 Notice that it follows from
@@ -634,8 +650,11 @@ Let's verify {eq}`eq:deactivate1` and {eq}`eq:deactivate2` below
 To deactivate $\lambda_1$ we use {eq}`eq:deactivate1`
 
 ```{code-cell} ipython3
+Λ, V = np.linalg.eig(M)
+
 xd_1 = np.array((x_0[0], 
-                 V[1,1] * (1/V[0,1]) * x_0[0]))
+                 V[1,1]/V[0,1] * x_0[0]),
+                dtype=np.float64)
 
 # Compute x_{1,0}^*
 np.round(V_inv @ xd_1, 8)
@@ -649,7 +668,8 @@ Now we deactivate $\lambda_2$ using {eq}`eq:deactivate2`
 
 ```{code-cell} ipython3
 xd_2 = np.array((x_0[0], 
-                 V[1,0] * (1/V[0,0]) * x_0[0]))
+                 V[1,0]/V[0,0] * x_0[0]), 
+                 dtype=np.float64)
 
 # Compute x_{2,0}^*
 np.round(V_inv @ xd_2, 8)
@@ -657,15 +677,47 @@ np.round(V_inv @ xd_2, 8)
 
 We find $x_{2,0}^* = 0$.
 
-+++
+```{code-cell} ipython3
+# Simulate the difference equation with muted λ1
+num_steps = 10
+xs_λ1, Λ, _, _ = iterate_M(xd_1, M, num_steps)
+
+# Simulate the difference equation with muted λ2
+xs_λ2, _, _, _ = iterate_M(xd_2, M, num_steps)
+
+# Compute ratios y_t / y_{t-1} with higher precision
+ratios_λ1 = xs_λ1[1, 1:] / xs_λ1[1, :-1]  # Adjusted to second component
+ratios_λ2 = xs_λ2[1, 1:] / xs_λ2[1, :-1]  # Adjusted to second component
+
+# Plot the ratios for y_t with higher precision
+plt.figure(figsize=(14, 6))
+
+plt.subplot(1, 2, 1)
+plt.plot(np.round(ratios_λ1, 6), label='Ratios $y_t / y_{t-1}$ after muting $\lambda_1$', color='blue')
+plt.axhline(y=Λ[1], color='red', linestyle='--', label='$\lambda_2$')
+plt.xlabel('Time')
+plt.ylabel('Ratio $y_t / y_{t-1}$')
+plt.title('Ratios after Muting $\lambda_1$')
+plt.legend()
+
+plt.subplot(1, 2, 2)
+plt.plot(ratios_λ2, label='Ratios $y_t / y_{t-1}$ after muting $\lambda_2$', color='orange')
+plt.axhline(y=Λ[0], color='green', linestyle='--', label='$\lambda_1$')
+plt.xlabel('Time')
+plt.ylabel('Ratio $y_t / y_{t-1}$')
+plt.title('Ratios after Muting $\lambda_2$')
+plt.legend()
+
+plt.tight_layout()
+plt.show()
+```
 
 Here we compare $V_{2,2} V_{1,2}^{-1}$ and $V_{2,1} V_{1,1}^{-1}$ with the roots we computed above
 
 ```{code-cell} ipython3
-np.round((V[1,1]*(1/V[0,1]), 
-          V[1,0]*(1/V[0,0])), 8)
+np.round((V[1,1]/V[0,1], 
+           V[1,0]/V[0,0]), 8)
 ```
-
 
 ## Concluding Remarks
 
