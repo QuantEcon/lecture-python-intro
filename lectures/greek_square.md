@@ -30,6 +30,8 @@ Invariant subspace methods are used throughout applied economic dynamics, for ex
 
 Our approach here  is to illustrate the method with an ancient example, one that ancient Greek mathematicians used to compute square roots of positive integers.
 
+In this lecture we assume that we have yet
+
 ## Perfect Squares and Irrational Numbers
 
 An integer is called a **perfect square** if its square root is also an integer.
@@ -528,20 +530,22 @@ In equation {eq}`eq:invariantsub101`, the $i$th $\lambda_i$  equals the $V_{i, 1
 The following graph verifies this for our example.
 
 ```{code-cell} ipython3
+:tags: [hide-input]
+
 # Plotting the eigenvectors
 plt.figure(figsize=(8, 8))
 
-plt.quiver(0, 0, V[0, 0], V[0, 1], angles='xy', scale_units='xy', 
+plt.quiver(0, 0, V[0, 0], V[1, 0], angles='xy', scale_units='xy', 
            scale=1, color='C0', label=fr'$\lambda_1={np.round(Λ[0], 4)}$')
-plt.quiver(0, 0, V[1, 0], V[1, 1], angles='xy', scale_units='xy', 
+plt.quiver(0, 0, V[0, 1], V[1, 1], angles='xy', scale_units='xy', 
            scale=1, color='C1', label=fr'$\lambda_2={np.round(Λ[1], 4)}$')
 
 # Annotating the slopes
-plt.text(V[0, 0]-0.5, V[0, 1]*1.2, 
-         r'slope=$\frac{V_{1,1}}{V_{1,2}}=$'+f'{np.round(V[0, 0] / V[0, 1], 4)}', 
+plt.text(V[0, 0]-0.5, V[1, 0]*1.2, 
+         r'slope=$\frac{V_{1,1}}{V_{1,2}}=$'+f'{np.round(V[0, 0] / V[1, 0], 4)}', 
          fontsize=12, color='C0')
-plt.text(V[1, 0]-0.5, V[1, 1]*1.2, 
-         r'slope=$\frac{V_{2,1}}{V_{2,2}}=$'+f'{np.round(V[1, 0] / V[1, 1], 4)}', 
+plt.text(V[0, 1]-0.5, V[1, 1]*1.2, 
+         r'slope=$\frac{V_{2,1}}{V_{2,2}}=$'+f'{np.round(V[0, 1] / V[1, 1], 4)}', 
          fontsize=12, color='C1')
 
 # Adding labels
@@ -590,8 +594,8 @@ Notice that it follows from
 
 $$
  \begin{bmatrix} V^{1,1} & V^{1,2} \cr 
-                         V^{2,2} & V^{2,2} \end{bmatrix} \begin{bmatrix} V_{1,1} & V_{1,2} \cr 
-                         V_{2,2} & V_{2,2} \end{bmatrix} = \begin{bmatrix} 1  & 0 \cr 0 & 1 \end{bmatrix}
+                         V^{2,1} & V^{2,2} \end{bmatrix} \begin{bmatrix} V_{1,1} & V_{1,2} \cr 
+                         V_{2,1} & V_{2,2} \end{bmatrix} = \begin{bmatrix} 1  & 0 \cr 0 & 1 \end{bmatrix}
 $$
 
 that
@@ -650,8 +654,6 @@ Let's verify {eq}`eq:deactivate1` and {eq}`eq:deactivate2` below
 To deactivate $\lambda_1$ we use {eq}`eq:deactivate1`
 
 ```{code-cell} ipython3
-Λ, V = np.linalg.eig(M)
-
 xd_1 = np.array((x_0[0], 
                  V[1,1]/V[0,1] * x_0[0]),
                 dtype=np.float64)
@@ -678,45 +680,46 @@ np.round(V_inv @ xd_2, 8)
 We find $x_{2,0}^* = 0$.
 
 ```{code-cell} ipython3
-# Simulate the difference equation with muted λ1
+# Simulate with muted λ1 λ2.
 num_steps = 10
-xs_λ1, Λ, _, _ = iterate_M(xd_1, M, num_steps)
+xs_λ1 = iterate_M(xd_1, M, num_steps)[0]
+xs_λ2 = iterate_M(xd_2, M, num_steps)[0]
 
-# Simulate the difference equation with muted λ2
-xs_λ2, _, _, _ = iterate_M(xd_2, M, num_steps)
+# Compute ratios y_t / y_{t-1}
+ratios_λ1 = xs_λ1[1, 1:] / xs_λ1[1, :-1]
+ratios_λ2 = xs_λ2[1, 1:] / xs_λ2[1, :-1] 
+```
 
-# Compute ratios y_t / y_{t-1} with higher precision
-ratios_λ1 = xs_λ1[1, 1:] / xs_λ1[1, :-1]  # Adjusted to second component
-ratios_λ2 = xs_λ2[1, 1:] / xs_λ2[1, :-1]  # Adjusted to second component
+```{code-cell} ipython3
+:tags: [hide-input]
 
-# Plot the ratios for y_t with higher precision
+# Plot the ratios for y_t 
 plt.figure(figsize=(14, 6))
 
 plt.subplot(1, 2, 1)
-plt.plot(np.round(ratios_λ1, 6), label='Ratios $y_t / y_{t-1}$ after muting $\lambda_1$', color='blue')
-plt.axhline(y=Λ[1], color='red', linestyle='--', label='$\lambda_2$')
-plt.xlabel('Time')
-plt.ylabel('Ratio $y_t / y_{t-1}$')
-plt.title('Ratios after Muting $\lambda_1$')
+plt.plot(np.round(ratios_λ1, 6), 
+         label=r'$\frac{y_t}{y_{t-1}}$', linewidth=3)
+plt.axhline(y=Λ[1], color='red', 
+            linestyle='--', label='$\lambda_2$', alpha=0.5)
+plt.xlabel('t', size=18)
+plt.ylabel(r'$\frac{y_t}{y_{t-1}}$', size=18)
+plt.title(r'$\frac{y_t}{y_{t-1}}$ after Muting $\lambda_1$', 
+          size=13)
 plt.legend()
 
 plt.subplot(1, 2, 2)
-plt.plot(ratios_λ2, label='Ratios $y_t / y_{t-1}$ after muting $\lambda_2$', color='orange')
-plt.axhline(y=Λ[0], color='green', linestyle='--', label='$\lambda_1$')
-plt.xlabel('Time')
-plt.ylabel('Ratio $y_t / y_{t-1}$')
-plt.title('Ratios after Muting $\lambda_2$')
+plt.plot(ratios_λ2, 
+         label=r'$\frac{y_t}{y_{t-1}}$', linewidth=3)
+plt.axhline(y=Λ[0], color='green', 
+            linestyle='--', label='$\lambda_1$', alpha=0.5)
+plt.xlabel('t', size=18)
+plt.ylabel(r'$\frac{y_t}{y_{t-1}}$', size=18)
+plt.title(r'$\frac{y_t}{y_{t-1}}$ after Muting $\lambda_2$', 
+          size=13)
 plt.legend()
 
 plt.tight_layout()
 plt.show()
-```
-
-Here we compare $V_{2,2} V_{1,2}^{-1}$ and $V_{2,1} V_{1,1}^{-1}$ with the roots we computed above
-
-```{code-cell} ipython3
-np.round((V[1,1]/V[0,1], 
-           V[1,0]/V[0,0]), 8)
 ```
 
 ## Concluding Remarks
