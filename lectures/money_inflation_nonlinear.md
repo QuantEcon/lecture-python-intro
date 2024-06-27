@@ -113,7 +113,7 @@ It will turn out that
 * for almost all initial log price levels $p_0$, the limiting $\overline \pi = \overline \mu$ is 
 the higher value
 
-* for each of the two possible limiting values $\overline \pi$ ,there is a unique initial log price level $p_0$ that implies that $\pi_t = \mu_t = \overline \mu$ for all  $t \geq 0$
+* for each of the two possible limiting values $\overline \pi$, there is a unique initial log price level $p_0$ that implies that $\pi_t = \mu_t = \overline \mu$ for all  $t \geq 0$
 
   * this unique initial log price level solves $\log(\exp(m_0) + g \exp(p_0)) - p_0 = - \alpha \overline \pi $
   
@@ -390,11 +390,11 @@ p0_bars = (p0_l, p0_u)
 draw_iterations(p0s, model, line_params, p0_bars, num_steps=20)
 ```
 
-Staring at the paths of price levels in  {numref}`p0_path_nonlin` reveals that almost all paths converge to the *higher* inflation tax rate displayed in the stationary state Laffer curve. displayed in figure  {numref}`laffer_curve_nonlinear`.  
+Staring at the paths of price levels in  {numref}`p0_path_nonlin` reveals that almost all paths converge to the *higher* inflation tax rate displayed in the stationary state Laffer curve. displayed in {numref}`laffer_curve_nonlinear`.  
 
 Thus, we have reconfirmed  what we have  called the "perverse" dynamics under rational expectations in which the system converges to the higher of two possible stationary inflation tax rates.
 
-Those dynamics are "perverse" not only in the sense that they imply that the monetary and fiscal authorities that have chosen to finance government expenditures eventually impose a higher inflation tax than required to finance government expenditures, but because of the following "counterintuitive" situation that we can deduce by staring at the stationary state Laffer curve displayed in figure  {numref}`laffer_curve_nonlinear`:
+Those dynamics are "perverse" not only in the sense that they imply that the monetary and fiscal authorities that have chosen to finance government expenditures eventually impose a higher inflation tax than required to finance government expenditures, but because of the following "counterintuitive" situation that we can deduce by staring at the stationary state Laffer curve displayed in {numref}`laffer_curve_nonlinear`:
 
 * the figure indicates that inflation can be *reduced* by running *higher*  government deficits, i.e., by raising more resources through  printing money. 
 
