@@ -162,7 +162,7 @@ By an **open market operation**, we mean a government monetary policy action in 
 ## Algorithm (basic idea)
 
 
-We work backwards from $t=T$ and first compute $p_T, R_u$ associated with the  low-inflation, low-inflation-tax-rate   stationary equilibrium of our lecture on the dynamic Laffer curve for the inflation tax.
+We work backwards from $t=T$ and first compute $p_T, R_u$ associated with the low-inflation, low-inflation-tax-rate stationary equilibrium in {doc}`money_inflation_nonlinear`.
 
 To start our description of our algorithm, it is useful to recall that a stationary rate of return
 on currency $\bar R$ solves the quadratic equation
@@ -173,7 +173,7 @@ $$ (eq:up_steadyquadratic)
 
 Quadratic equation {eq}`eq:up_steadyquadratic` has two roots, $R_l < R_u < 1$.
 
-For reasons described at the end of *this lecture*, we select the larger root $R_u$. 
+For reasons described at the end of {doc}`money_inflation`, we select the larger root $R_u$. 
 
 
 Next, we compute
@@ -303,7 +303,7 @@ where $\theta \in [0,1)$ is a relaxation parameter.
 ## Example Calculations
 
 We'll set parameters of the model so that the steady state after time $T$ is initially the same
-as in our lecture on "Money and Inflation".
+as in {doc}`money_inflation_nonlinear`
 
 In particular, we set $\gamma_1=100, \gamma_2 =50, g=3.0$.  We set $m_0 = 100$ in that lecture,
 but now the counterpart will be $M_T$, which is endogenous.  
@@ -494,7 +494,7 @@ mystnb:
 plot_path([80, 100], msm)
 ```
 
-Figure  {numref}`fig:unpl1` summarizes outcomes of  two experiments that convey   messages of 
+{numref}`fig:unpl1` summarizes outcomes of  two experiments that convey   messages of 
 Sargent and Wallace's **unpleasant monetarist arithmetic** {cite}`sargent1981`.
 
 * An open market operation that reduces the supply of money at time $t=0$ reduces  the price level at time $t=0$
