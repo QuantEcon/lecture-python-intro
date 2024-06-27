@@ -98,36 +98,28 @@ The following graph illustrates the firm's constraints and iso-revenue lines.
 tags: [hide-input]
 ---
 fig, ax = plt.subplots()
-ax.grid()
-
 # Draw constraint lines
-ax.hlines(0, -1, 17.5)
-ax.vlines(0, -1, 12)
-ax.plot(np.linspace(-1, 17.5, 100), 6-0.4*np.linspace(-1, 17.5, 100), color="r")
-ax.plot(np.linspace(-1, 5.5, 100), 10-2*np.linspace(-1, 5.5, 100), color="r")
-ax.text(1.5, 8, "$2x_1 + 5x_2 \leq 30$", size=12)
-ax.text(10, 2.5, "$4x_1 + 2x_2 \leq 20$", size=12)
-ax.text(-2, 2, "$x_2 \geq 0$", size=12)
-ax.text(2.5, -0.7, "$x_1 \geq 0$", size=12)
+ax.set_xlim(0,15)
+ax.set_ylim(0,10)
+x1 = np.linspace(0, 15)
+ax.plot(x1, 6-0.4*x1, label="$2x_1 + 5x_2=30$")
+ax.plot(x1, 10-2*x1, label="$4x_1 + 2x_2=20$")
+
 
 # Draw the feasible region
-feasible_set = Polygon(np.array([[0, 0],
-                                 [0, 6],
-                                 [2.5, 5],
-                                 [5, 0]]),
-                       color="cyan")
+feasible_set = Polygon(np.array([[0, 0],[0, 6],[2.5, 5],[5, 0]]), alpha=0.1)
 ax.add_patch(feasible_set)
 
 # Draw the objective function
-ax.plot(np.linspace(-1, 5.5, 100), 3.875-0.75*np.linspace(-1, 5.5, 100), color="orange")
-ax.plot(np.linspace(-1, 5.5, 100), 5.375-0.75*np.linspace(-1, 5.5, 100), color="orange")
-ax.plot(np.linspace(-1, 5.5, 100), 6.875-0.75*np.linspace(-1, 5.5, 100), color="orange")
-ax.arrow(-1.6, 5, 0, 2, width = 0.05, head_width=0.2, head_length=0.5, color="orange")
-ax.text(5.7, 1, "$z = 3x_1 + 4x_2$", size=12)
+ax.plot(x1, 3.875-0.75*x1, label="iso-revenue lines",color='k',linewidth=0.75)
+ax.plot(x1, 5.375-0.75*x1, color='k',linewidth=0.75)
+ax.plot(x1, 6.875-0.75*x1, color='k',linewidth=0.75)
 
 # Draw the optimal solution
-ax.plot(2.5, 5, "*", color="black")
-ax.text(2.7, 5.2, "Optimal Solution", size=12)
+ax.plot(2.5, 5, ".", label="optimal solution")
+ax.set_xlabel("$x_1$")
+ax.set_ylabel("$x_2$")
+ax.legend()
 
 plt.show()
 ```
