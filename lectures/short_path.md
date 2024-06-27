@@ -75,7 +75,7 @@ Possible interpretations of the graph include
 
 * Minimum cost for supplier to reach a destination.
 * Routing of packets on the internet (minimize time).
-* Etc., etc.
+* etc., etc.
 
 For this simple graph, a quick scan of the edges shows that the optimal paths are
 
@@ -97,7 +97,7 @@ For large graphs, we need a systematic solution.
 
 Let $J(v)$ denote the minimum cost-to-go from node $v$, understood as the total cost from $v$ if we take the best route.
 
-Suppose that we know $J(v)$ for each node $v$, as shown below for the graph from the preceding example
+Suppose that we know $J(v)$ for each node $v$, as shown below for the graph from the preceding example.
 
 ```{figure} /_static/lecture_specific/short_path/graph2.png
 
@@ -134,7 +134,7 @@ the function $J$ satisfies
 J(v) = \min_{w \in F_v} \{ c(v, w) + J(w) \}
 ```
 
-This is known as the *Bellman equation*, after the mathematician Richard Bellman.
+This is known as the **Bellman equation**, after the mathematician [Richard Bellman](https://en.wikipedia.org/wiki/Richard_E._Bellman).
 
 The Bellman equation can be thought of as a restriction that $J$ must
 satisfy.
@@ -215,7 +215,7 @@ Q = np.array([[inf, 1,   5,   3,   inf, inf, inf],
 
 Notice that the cost of staying still (on the principle diagonal) is set to
 
-* np.inf for non-destination nodes --- moving on is required.
+* `np.inf` for non-destination nodes --- moving on is required.
 * 0 for the destination node --- here is where we stop.
 
 For the sequence of approximations $\{J_n\}$ of the cost-to-go functions, we can use NumPy arrays.
@@ -232,18 +232,14 @@ i = 0
 
 while i < max_iter:
     for v in nodes:
-        # minimize Q[v, w] + J[w] over all choices of w
-        lowest_cost = inf
-        for w in nodes:
-            cost = Q[v, w] + J[w]
-            if cost < lowest_cost:
-                lowest_cost = cost
-        next_J[v] = lowest_cost
-    if np.equal(next_J, J).all():
+        # Minimize Q[v, w] + J[w] over all choices of w
+        next_J[v] = np.min(Q[v, :] + J)
+    
+    if np.array_equal(next_J, J):                
         break
-    else:
-        J[:] = next_J   # Copy contents of next_J to J
-        i += 1
+    
+    J[:] = next_J                                # Copy contents of next_J to J
+    i += 1
 
 print("The cost-to-go function is", J)
 ```
@@ -426,11 +422,7 @@ The minimization step is vectorized to make it faster.
 
 ```{code-cell} python3
 def bellman(J, Q):
-    num_nodes = Q.shape[0]
-    next_J = np.empty_like(J)
-    for v in range(num_nodes):
-        next_J[v] = np.min(Q[v, :] + J)
-    return next_J
+    return np.min(Q + J, axis=1)
 
 
 def compute_cost_to_go(Q):
