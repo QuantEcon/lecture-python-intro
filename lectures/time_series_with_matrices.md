@@ -12,7 +12,7 @@ kernelspec:
 ---
 
 (time_series_with_matrices)=
-```{raw} html
+```{raw} jupyter
 <div id="qe-notebook-header" align="right" style="text-align:right;">
         <a href="https://quantecon.org/" title="quantecon.org">
                 <img style="width:250px;display:inline;" width="250px" src="https://assets.quantecon.org/img/qe-menubar-logo.svg" alt="QuantEcon">
@@ -33,7 +33,7 @@ article {cite}`Samuelson1939` that introduced the *multiplier-accelerator model*
 This model became the workhorse that powered early econometric versions of
 Keynesian macroeconomic models in the United States.
 
-You can read about the details of that model in [Samuelson Multiplier-Accelerator](https://python.quantecon.org/samuelson.html).
+You can read about the details of that model in {doc}`intermediate:samuelson`.
 
 (That lecture also describes some technicalities about second-order linear difference equations.)
 
