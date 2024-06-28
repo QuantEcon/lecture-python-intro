@@ -19,20 +19,20 @@ kernelspec:
 ## Introduction
 
 
-This lecture can be viewed as a sequel to this QuantEcon lecture {doc}`eigenvalues and eigenvectors <eigen_I>` 
+This lecture can be viewed as a sequel to this QuantEcon lecture {doc}`eigen_I`
 
-It  provides an  example of how eigen vectors isolate  **invariant subspaces** that help construct and analyze solutions of  linear difference equations. 
+It  provides an  example of how eigenvectors isolate  *invariant subspaces* that help construct and analyze solutions of linear difference equations. 
 
 When vector $x_t$ starts in an invariant subspace, iterating the different equation keeps $x_{t+j}$
 in that subspace for all $j \geq 1$.  
 
-Invariant subspace methods are used throughout applied economic dynamics, for example, in this QuantEcon lecture {doc}`money financed government deficits and inflation <money_inflation>`
+Invariant subspace methods are used throughout applied economic dynamics, for example, in this QuantEcon lecture {doc}`money_inflation`
 
 Our approach here  is to illustrate the method with an ancient example, one that ancient Greek mathematicians used to compute square roots of positive integers.
 
 In this lecture we assume that we have yet
 
-## Perfect Squares and Irrational Numbers
+## Perfect squares and irrational numbers
 
 An integer is called a **perfect square** if its square root is also an integer.
 
@@ -58,10 +58,10 @@ In this lecture, we'll describe this method.
 
 We'll also use invariant subspaces to describe variations on this method that are faster.
 
-## Second order linear difference equations
+## Second-order linear difference equations
 
 Before telling how the ancient Greeks computed square roots, we'll provide a quick introduction
-to second order linear difference equations.
+to second-order linear difference equations.
 
 We'll study  the following second-order linear difference equation
 
@@ -78,14 +78,15 @@ There is one equation each for $t = 0, 1, 2, \ldots$.
 
 We could follow an approach taken in this QuantEcon lecture {doc}`present values<pv>` and stack all of these equations into a single matrix equation that we would then solve by using matrix inversion.
 
-```{note} In the present instance, the matrix equation would multiply a countably infinite dimensional square matrix by  a countably infinite dimensional vector.  With some qualifications, matrix multiplication and inversion tools apply to such an equation.
+```{note} 
+In the present instance, the matrix equation would multiply a countably infinite dimensional square matrix by  a countably infinite dimensional vector.  With some qualifications, matrix multiplication and inversion tools apply to such an equation.
 ```
 
 But we won't pursue that approach here. 
 
 
 Instead, we'll seek to find a time-invariant function that *solves* our difference equation, meaning
-thatit provides a formula for a $\{y_t\}_{t=0}^\infty$ sequence that satisfies 
+that it provides a formula for a $\{y_t\}_{t=0}^\infty$ sequence that satisfies 
 equation {eq}`eq:2diff1` for each $t \geq 0$.
 
 We seek an expression  for $y_t, t \geq 0$ as functions of the initial conditions  $(y_{-1},  y_{-2})$:
@@ -94,7 +95,7 @@ $$
 y_t = g((y_{-1},  y_{-2});t), \quad t \geq 0
 $$ (eq:2diff2)
 
-We call such a function $g$ a **solution** of the difference equation {eq}`eq:2diff1`.
+We call such a function $g$ a *solution* of the difference equation {eq}`eq:2diff1`.
 
 One way to discover a solution is to use a guess and verify method.
 
@@ -120,7 +121,7 @@ $$
 \left(a_1 + \frac{a_2}{\delta}\right) = \delta
 $$ (eq:2diff5)
 
-which we can rewrite as the **characteristic equation** 
+which we can rewrite as the *characteristic equation* 
 
 $$
 \delta^2 - a_1 \delta - a_2 = 0
@@ -139,13 +140,13 @@ $$
 y_t = \delta^t y_0 , \forall t \geq 0
 $$ (eq:2diff8)
 
-provded that we set 
+provided that we set 
 
 $$
 y_0 = \delta  y_{-1} . 
 $$ 
 
-The **general** solution of difference equation {eq}`eq:2diff1` takes the form
+The *general* solution of difference equation {eq}`eq:2diff1` takes the form
 
 $$
 y_t = \eta_1 \delta_1^t + \eta_2 \delta_2^t
@@ -186,13 +187,13 @@ So $\sigma \in {\mathcal I} \equiv  \{2, 3, \ldots \}$
 
 We want an algorithm to compute the square root of $\sigma \in {\mathcal I}$.
 
-If $\sqrt{\sigma} \in {\mathcal I}$, $\sigma $ is said to be a **perfect square**.
+If $\sqrt{\sigma} \in {\mathcal I}$, $\sigma $ is said to be a *perfect square*.
 
 If $\sqrt{\sigma} \not\in {\mathcal I}$, it turns out that it is irrational.
 
 Ancient Greeks used a recursive algorithm to compute square roots of integers that are not perfect squares. 
 
-The algorithm iterates on a  second order  linear  difference equation in the sequence $\{y_t\}_{t=0}^\infty$:
+The algorithm iterates on a  second-order  linear  difference equation in the sequence $\{y_t\}_{t=0}^\infty$:
 
 $$
 y_{t} = 2 y_{t-1} - (1 - \sigma) y_{t-2}, \quad t \geq 0
@@ -200,7 +201,7 @@ $$ (eq:second_order)
 
 together with a pair of integers that are  initial conditions for   $y_{-1}, y_{-2}$.
 
-First, we'll deploy some techniques for solving difference equations that are also deployed in this QuantEcon lecture about the multiplier-accelerator model:
+First, we'll deploy some techniques for solving the difference equations that are also deployed in this QuantEcon lecture about the multiplier-accelerator model:
 <https://python.quantecon.org/samuelson.html>
 
 
@@ -257,16 +258,16 @@ $$
 where $\eta_1$ and $\eta_2$ are chosen to satisfy   prescribed initial conditions $y_{-1}, y_{-2}$:
 
 $$
-\begin{align}
+\begin{aligned}
 \lambda_1^{-1} \eta_1 + \lambda_2^{-1} \eta_2 & =  y_{-1} \cr
 \lambda_1^{-2} \eta_1 + \lambda_2^{-2} \eta_2 & =  y_{-2}
-\end{align}
+\end{aligned}
 $$(eq:leq_sq)
 
 System {eq}`eq:leq_sq` of simultaneous linear equations will play a big role in the remainder of this lecture.  
 
 Since $\lambda_1 = 1 + \sqrt{\sigma} > 1 > \lambda_2 = 1 - \sqrt{\sigma} $,
-it follows that for **almost all** (but not all) initial conditions
+it follows that for *almost all* (but not all) initial conditions
 
 $$
 \lim_{t \rightarrow \infty} \left(\frac{y_{t+1}}{y_t}\right) = 1 + \sqrt{\sigma}
@@ -316,7 +317,7 @@ System {eq}`eq:leq_sq` of simultaneous linear equations can be used in various w
  
 Notice how we used the  second approach above when we set  $\eta_1, \eta_2$  either to $(0, 1)$, for example, or $(1, 0)$, for example.
 
-In taking this second approach, we  constructed   an **invariant subspace** of ${\bf R}^2$. 
+In taking this second approach, we constructed an *invariant subspace* of ${\bf R}^2$. 
 
 Here is what is going on.  
 
@@ -426,7 +427,7 @@ We find that convergence is immediate.
 
 +++
 
-Next, we'll  represent the preceding analysis by first vectorizing our second order difference equation {eq}`eq:second_order` and then using  eigendecompositions of an  associated  state transition matrix.
+Next, we'll  represent the preceding analysis by first vectorizing our second-order difference equation {eq}`eq:second_order` and then using  eigendecompositions of an  associated  state transition matrix.
 
 ## Vectorizing the difference equation
 
@@ -558,9 +559,9 @@ plt.ylim(-1.5, 1.5)
 plt.show()
 ```
 
-## Invariant Subspace Approach 
+## Invariant subspace approach 
 
-The preceding  calculation indicates that we can use the eigenvectors $V$ to construct 2-dimensional  **invariant subspaces**.
+The preceding  calculation indicates that we can use the eigenvectors $V$ to construct 2-dimensional  *invariant subspaces*.
 
 We'll pursue that possibility now.
 
@@ -722,12 +723,12 @@ plt.tight_layout()
 plt.show()
 ```
 
-## Concluding Remarks
+## Concluding remarks
 
-This lecture sets the stage  for many other applications of the **invariant subspace** methods.
+This lecture sets the stage  for many other applications of the *invariant subspace* methods.
 
 All of these exploit very similar equations based on eigen decompositions. 
 
 We shall encounter equations very similar to {eq}`eq:deactivate1` and {eq}`eq:deactivate2`
-in  this QuantEcon lecture {doc}`money financed government deficits and inflation <money_inflation>`
+in  this QuantEcon lecture {doc}`money_inflation`
 and in many other places in dynamic economic theory.
