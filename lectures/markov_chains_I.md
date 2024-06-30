@@ -96,7 +96,7 @@ Before defining a Markov chain rigorously, we'll  give some examples.
 
 
 (mc_eg2)=
-#### Example 1: Economic States
+#### Example 1: Economic states
 
 From  US unemployment data, Hamilton {cite}`Hamilton2005` estimated the following dynamics.
 
@@ -220,7 +220,7 @@ Then we can address a range of questions, such as
 We'll cover some of these applications below.
 
 (mc_eg3)=
-#### Example 3: Political Transition Dynamics
+#### Example 3: Political transition dynamics
 
 Imam and Temple {cite}`imampolitical` categorize political institutions into
 three types: democracy $\text{(D)}$, autocracy $\text{(A)}$, and an intermediate
@@ -624,7 +624,7 @@ $$
 ```{index} single: Markov Chains; Future Probabilities
 ```
 
-Recall the stochastic matrix $P$ for recession and growth considered in {ref}`Example 1: Economic States <mc_eg2>`.
+Recall the stochastic matrix $P$ for recession and growth considered in {prf:ref}`Example 1: Economic states <mc_eg2>`.
 
 Suppose that the current state is unknown --- perhaps statistics are available only at the *end* of the current month.
 
@@ -646,7 +646,7 @@ The distributions we have been studying can be viewed either
 1. as probabilities or
 1. as cross-sectional frequencies that the law of large numbers leads us to anticipate for large samples.
 
-To illustrate, recall our model of employment/unemployment dynamics for a given worker discussed in {ref}`Example 2: Unemployment <mc_eg1>`.
+To illustrate, recall our model of employment/unemployment dynamics for a given worker discussed in {prf:ref}`Example 2: Unemployment <mc_eg1>`.
 
 Consider a large population of workers, each of whose lifetime experience is
 described by the specified dynamics, with each worker's outcomes being
@@ -740,7 +740,7 @@ We will come back to this when we introduce irreducibility in the {doc}`next lec
 
 ### Example
 
-Recall our model of the employment/unemployment dynamics of a particular worker discussed in {ref}`Example 2: Unemployment <mc_eg1>`.
+Recall our model of the employment/unemployment dynamics of a particular worker discussed in {prf:ref}`Example 2: Unemployment <mc_eg1>`.
 
 If $\alpha \in (0,1)$ and $\beta \in (0,1)$, then the transition matrix is everywhere positive.
 
@@ -854,7 +854,7 @@ HTML(anim.to_jshtml())
 
 Here
 
-* $P$ is the stochastic matrix for recession and growth considered in {ref}`Example 1: Economic States <mc_eg2>`.
+* $P$ is the stochastic matrix for recession and growth considered in {prf:ref}`Example 1: Economic states <mc_eg2>`.
 * The highest red dot is an arbitrarily chosen initial marginal probability distribution  $\psi_0$, represented as a vector in $\mathbb R^3$.
 * The other red dots are the marginal distributions $\psi_0 P^t$ for $t = 1, 2, \ldots$.
 * The black dot is $\psi^*$.
