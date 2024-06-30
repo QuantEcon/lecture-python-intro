@@ -197,7 +197,9 @@ Let's start with naive expectations, which refers to the case where producers ex
 
 In other words,
 
-$$ p_t^e = p_{t-1} $$
+$$ 
+p_t^e = p_{t-1} 
+$$
 
 Using {eq}`price_t`, we then have
 
