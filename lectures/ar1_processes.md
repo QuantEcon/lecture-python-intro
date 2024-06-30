@@ -56,7 +56,7 @@ plt.rcParams["figure.figsize"] = (11, 5)  #set default figure size
 
 ## The AR(1) model
 
-The **AR(1) model** (autoregressive model of order 1) takes the form
+The *AR(1) model* (autoregressive model of order 1) takes the form
 
 ```{math}
 :label: can_ar1
