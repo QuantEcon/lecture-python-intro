@@ -32,7 +32,7 @@ We will solve an equation where the price function is the unknown.
 
 This is harder than solving an equation for an unknown number, or vector.
 
-The lecture will discuss one way to solve a "functional equation" (the equation where the unknown object is a function).
+The lecture will discuss one way to solve a *functional equation* (the equation where the unknown object is a function).
 
 For this lecture we need the `yfinance` library.
 
