@@ -70,7 +70,7 @@ that we take as *initial conditions*.
 In Samuelson's model, $y_t$ stood for **national income** or perhaps a different
 measure of aggregate activity called **gross domestic product** (GDP) at time $t$.
 
-Equation {eq}`tswm_1` is called a **second-order linear difference equation**. It is called second order because it depends on two lags.
+Equation {eq}`tswm_1` is called a *second-order linear difference equation*. It is called second order because it depends on two lags.
 
 But actually, it is a collection of $T$ simultaneous linear
 equations in the $T$ variables $y_1, y_2, \ldots, y_T$.
