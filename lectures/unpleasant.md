@@ -18,7 +18,7 @@ kernelspec:
 
 This lecture builds on concepts and issues introduced in our  lecture on **Money Supplies and Price Levels**.
 
-That lecture describes stationary equilibria that reveal a [**Laffer curve**](https://en.wikipedia.org/wiki/Laffer_curve) in the inflation tax rate and the associated  stationary rate of return 
+That lecture describes stationary equilibria that reveal a [*Laffer curve*](https://en.wikipedia.org/wiki/Laffer_curve) in the inflation tax rate and the associated  stationary rate of return 
 on currency.  
 
 In this lecture we study  a situation  in which a stationary equilibrium prevails after  date $T > 0$, but not before then.  
@@ -154,7 +154,7 @@ running monetary and fiscal policies.
 
 Here, by **fiscal policy** we mean the collection of actions that determine a sequence of net-of-interest government deficits $\{g_t\}_{t=0}^\infty$ that must be financed by issuing to the public  either money or interest bearing bonds.
 
-By **monetary policy** or **debt-management policy**, we  mean the collection of actions that determine how the government divides its  portolio of debts to the public  between interest-bearing parts (government bonds) and non-interest-bearing parts (money).
+By **monetary policy** or *debt-management policy*, we  mean the collection of actions that determine how the government divides its  portolio of debts to the public  between interest-bearing parts (government bonds) and non-interest-bearing parts (money).
 
 By an **open market operation**, we mean a government monetary policy action in which the government
 (or its delegate, say, a central bank) either buys  government bonds from the public for newly issued money, or sells  bonds to the public and withdraws the money it receives from public circulation.  
@@ -254,7 +254,7 @@ Python coder.
 
 To compute an equilibrium, we deploy the following algorithm.
 
-Given **parameters** include $g, \check m_0, \check B_{-1}, \widetilde R >1, T $.
+Given *parameters* include $g, \check m_0, \check B_{-1}, \widetilde R >1, T $.
 
 We define a mapping from $p_0$ to $\widehat p_0$ as follows.
 
@@ -501,6 +501,6 @@ Sargent and Wallace's **unpleasant monetarist arithmetic** {cite}`sargent1981`.
 
 * The lower is the post-open-market-operation money supply at time $0$, lower is the price level at time $0$.
 
-* An open  market operation that reduces the post-open-market-operation money supply at time $0$ also *lowers* the rate of return on money $R_u$ at times $t \geq T$ because it brings  a higher gross-of-interest government deficit that must be financed by printing money (i.e., levying an inflation tax) at time $t \geq T$.
+* An open  market operation that reduces the post open market operation money supply at time $0$ also *lowers* the rate of return on money $R_u$ at times $t \geq T$ because it brings  a higher gross of interest government deficit that must be financed by printing money (i.e., levying an inflation tax) at time $t \geq T$.
 
 * $R$ is important in the context of maintaining monetary stability and addressing the consequences of increased inflation due to government deficits. Thus, a larger $R$ might be chosen to mitigate the negative impacts on the real rate of return caused by inflation.
