@@ -215,7 +215,7 @@ plt.ylabel('y')
 plt.show()
 ```
 
-The {ref}`**steady state**<scalar-dynam:steady-state>` value $y^*$ of $y_t$ is obtained by setting $y_t = y_{t-1} =
+The {ref}`*steady state*<scalar-dynam:steady-state>` value $y^*$ of $y_t$ is obtained by setting $y_t = y_{t-1} =
 y_{t-2} = y^*$ in {eq}`tswm_1`, which yields
 
 $$
