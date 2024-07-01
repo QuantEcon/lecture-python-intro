@@ -58,6 +58,8 @@ import numpy as np
 import networkx as nx
 from matplotlib import cm
 import matplotlib as mpl
+from matplotlib.patches import Polygon
+from mpl_toolkits.mplot3d.art3d import Poly3DCollection
 from mpl_toolkits.mplot3d import Axes3D
 from matplotlib.animation import FuncAnimation
 from IPython.display import HTML
@@ -810,26 +812,44 @@ def iterate_ψ(ψ_0, P, ts_length):
 Now we plot the sequence
 
 ```{code-cell} ipython3
-ψ_0 = (0.0, 0.2, 0.8)        # Initial condition
+ψ_1 = (0.0, 0.0, 1.0)
+ψ_2 = (1.0, 0.0, 0.0)
+ψ_3 = (0.0, 1.0, 0.0)                   # Three initial conditions
+colors = ['blue','red', 'green']   # Different colors for each initial point
+
+# Define the vertices of the unit simplex
+v = np.array([[1, 0, 0], [0, 1, 0], [0, 0, 1], [0, 0, 0]])
+
+# Define the faces of the unit simplex
+faces = [
+    [v[0], v[1], v[2]],
+    [v[0], v[1], v[3]],
+    [v[0], v[2], v[3]],
+    [v[1], v[2], v[3]]
+]
 
 fig = plt.figure()
 ax = fig.add_subplot(projection='3d')
 
-def update(n):
-    ψ_t = iterate_ψ(ψ_0, P, n+1)
-    
+def update(n):    
     ax.clear()
     ax.set_xlim([0, 1])
     ax.set_ylim([0, 1])
     ax.set_zlim([0, 1])
-    ax.view_init(30, 210)
+    ax.view_init(45, 45)
     
-    for i, point in enumerate(ψ_t):
-        ax.scatter(point[0], point[1], point[2], color='r', s=60, alpha=(i+1)/len(ψ_t))
+    simplex = Poly3DCollection(faces, alpha=0.03)
+    ax.add_collection3d(simplex)
     
+    for idx, ψ_0 in enumerate([ψ_1, ψ_2, ψ_3]):
+        ψ_t = iterate_ψ(ψ_0, P, n+1)
+        
+        for i, point in enumerate(ψ_t):
+            ax.scatter(point[0], point[1], point[2], color=colors[idx], s=60, alpha=(i+1)/len(ψ_t))
+            
     mc = qe.MarkovChain(P)
     ψ_star = mc.stationary_distributions[0]
-    ax.scatter(ψ_star[0], ψ_star[1], ψ_star[2], c='k', s=60)
+    ax.scatter(ψ_star[0], ψ_star[1], ψ_star[2], c='yellow', s=60)
     
     return fig,
 
