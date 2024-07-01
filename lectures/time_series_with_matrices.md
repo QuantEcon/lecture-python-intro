@@ -132,7 +132,7 @@ The vector $y$ is a complete time path $\{y_t\}_{t=1}^T$.
 Let’s put Python to work on an example that captures the flavor of
 Samuelson’s multiplier-accelerator model.
 
-We'll set parameters equal to the same values we used in [this QuantEcon lecture](https://python.quantecon.org/samuelson.html).
+We'll set parameters equal to the same values we used in {doc}`intermediate:samuelson`.
 
 ```{code-cell} ipython3
 T = 80
