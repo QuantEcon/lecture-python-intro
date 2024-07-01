@@ -21,11 +21,6 @@ kernelspec:
 (ar1_processes)=
 # AR(1) Processes
 
-```{admonition} Migrated lecture
-:class: warning
-
-This lecture has moved from our [Intermediate Quantitative Economics with Python](https://python.quantecon.org/intro.html) lecture series and is now a part of [A First Course in Quantitative Economics](https://intro.quantecon.org/intro.html).
-```
 
 ```{index} single: Autoregressive processes
 ```
@@ -41,10 +36,8 @@ These simple models are used again and again in economic research to represent t
 * dividends
 * productivity, etc.
 
-AR(1) processes can take negative values but are easily converted into positive processes when necessary by a transformation such as exponentiation.
-
 We are going to study AR(1) processes partly because they are useful and
-partly because they help us understand important concepts. Specifically, AR(1) processes are valuable as they can measure the persistence of shocks over time.
+partly because they help us understand important concepts. 
 
 Let's start with some imports:
 
@@ -66,16 +59,28 @@ X_{t+1} = a X_t + b + c W_{t+1}
 
 where $a, b, c$ are scalar-valued parameters.
 
-This law of motion generates a time series $\{ X_t\}$ as soon as we
-specify an initial condition $X_0$.
+For example, $X_t$ might be 
 
-This is called the **state process** and the state space is $\mathbb R$.
+* the log of labor income for a given household, or
+* the log of money demand in a given economy.
+
+In either case, {eq}`can_ar1` shows that the current value evolves as a linear function
+of the previous value and an IID shock $W_{t+1}$.
+
+(We use $t+1$ for the subscript of $W_{t+1}$ because this random variable is not
+observed at time $t$.)
+
+The specification {eq}`can_ar1` generates a time series $\{ X_t\}$ as soon as we
+specify an initial condition $X_0$.
 
 To make things even simpler, we will assume that
 
 * the process $\{ W_t \}$ is {ref}`IID <iid-theorem>` and standard normal,
 * the initial condition $X_0$ is drawn from the normal distribution $N(\mu_0, v_0)$ and
 * the initial condition $X_0$ is independent of $\{ W_t \}$.
+
+
+
 
 ### Moving average representation
 
@@ -118,8 +123,7 @@ normal random variables are normal.
 Given that $X_t$ is normally distributed, we will know the full distribution
 $\psi_t$ if we can pin down its first two [moments](https://en.wikipedia.org/wiki/Moment_(mathematics)).
 
-Let $\mu_t$ and $v_t$ denote the mean and variance
-of $X_t$ respectively.
+Let $\mu_t$ and $v_t$ denote the mean and variance of $X_t$ respectively.
 
 We can pin down these values from {eq}`ar1_ma` or we can use the following
 recursive expressions:
@@ -146,8 +150,7 @@ $$
 \psi_t = N(\mu_t, v_t)
 $$
 
-The following code uses these facts to track the sequence of marginal
-distributions $\{ \psi_t \}$.
+The following code uses these facts to track the sequence of marginal distributions $\{ \psi_t \}$.
 
 The parameters are
 
@@ -179,9 +182,19 @@ ax.legend(bbox_to_anchor=[1.05,1],loc=2,borderaxespad=1)
 plt.show()
 ```
 
+
+
 ## Stationarity and asymptotic stability
 
-In Distribution Dynamics, stationarity and asymptotic stability ensure that a single long-term prediction remains valid over time.
+When we use models to study the real world, it is generally preferable that our
+models have clear, sharp predictions.
+
+For dynamic problems, sharp predictions are related to stability.
+
+For example, if a dynamic model predicts that inflation always converges to some
+kind of steady state, then the model gives a sharp prediction.
+
+(The prediction might be wrong, but even this is helpful, because we can judge 
 
 Notice that, in the figure above, the sequence $\{ \psi_t \}$ seems to be converging to a limiting distribution.
 
