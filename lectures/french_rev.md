@@ -20,120 +20,78 @@ kernelspec:
 This lecture describes some monetary and fiscal  features of the French Revolution
 described by {cite}`sargent_velde1995`.
 
+In order to finance public expenditures and service debts issued by earlier French governments, 
+successive French governments performed several policy experiments.
+
+Authors of these experiments were guided by their having decided to put in place monetary-fiscal policies recommended by particular theories.  
+
+As a consequence, data on money growth and inflation from the period 1789 to 1787 at least temorarily illustrated outcomes  predicted by these   arrangements:
+
+* some *unpleasant monetarist arithmetic* like that described in this quanteon lecture XXXX
+that governed French government debt dynamics in the decades preceding 1789 
+
+* a *real bills* theory of the effects of government open market operations in which the government *backs* its issues of paper money with valuable real property or financial assets
+
+* a classical **gold**  or **silver** standard
+
+* a classical inflation-tax theory of inflation in which Philip Cagan's  demand for money studied 
+in this lecture XXXX is a key component
+
+* a *legal restrictions*  or *financial repression* theory of the demand for real balances 
+
 We use matplotlib to replicate several of the graphs that they used to present salient patterns.
 
+Certainly! Here's a 3-page summary of Thomas Sargent and Francois Velde's paper "Macroeconomic Features of the French Revolution" from the 1995 Journal of Political Economy:
 
+---
 
-## Fiscal Situation and Response of National Assembly
+### Introduction
 
+Sargent and Velde's study delves into the macroeconomic implications of the French Revolution, focusing on the tumultuous period between 1789 and 1796. This era is marked by significant political upheaval, monetary instability, and economic transformation. The paper seeks to analyze the macroeconomic policies, particularly those related to the issuance of paper money (assignats), and their impact on the economy, including inflation, public finance, and economic activity.
 
-In response to a motion by Catholic Bishop Talleyrand,
-the National Assembly confiscated and nationalized  Church lands. 
+### Historical Context and Monetary Policies
 
-But the National Assembly was dominated by free market advocates, not socialists.
+**Pre-Revolutionary Fiscal Crisis:**
+France entered the revolutionary period with a significant fiscal deficit, primarily due to extensive war expenditures and a cumbersome taxation system. The monarchy's inability to reform taxes and control expenditures led to escalating debts and the eventual fiscal crisis.
 
-The National Assembly intended to use earnings from  Church lands to service its national debt.
+**Introduction of Assignats:**
+In response to the financial crisis, the revolutionary government introduced assignats in 1789. Initially, these were land-backed paper money intended to be a temporary solution for fiscal shortages. Assignats were first issued as interest-bearing notes but soon became non-interest-bearing and were used as legal tender.
 
-To do this, it  began to implement a ''privatization plan'' that would let it service its debt while
-not raising taxes.
+### Macroeconomic Consequences of Assignat Issuance
 
-Their plan involved issuing paper notes called ''assignats'' that entitled bearers to use them to purchase state lands.  
+**Inflation Dynamics:**
+The uncontrolled issuance of assignats led to severe inflation. Sargent and Velde highlight how the overproduction of these notes eroded their value, causing hyperinflation. The price level skyrocketed, creating widespread economic disarray and reducing the real value of debts and savings.
 
-These paper notes would be ''as good as silver coins'' in the sense that both were acceptable means of payment in exchange for those (formerly) church lands.  
+**Impact on Public Finance:**
+The revolutionary government's reliance on assignats to finance its expenditures without corresponding fiscal reforms exacerbated the fiscal imbalance. While initially providing temporary relief, the overissuance undermined confidence in the currency, leading to a vicious cycle of devaluation and increasing monetary emissions.
 
-Finance Minister Necker and the Constituants planned
-to solve the privatization problem **and** the debt problem simultaneously
-by creating a new currency. 
+**Price Controls and Economic Distortions:**
+In an attempt to control inflation, the government imposed price controls, notably the "Law of the Maximum." These measures, however, led to market distortions, shortages, and black markets. The disruption of traditional economic activities further aggravated the economic crisis.
 
-They devised a scheme to raise revenues by auctioning
-the confiscated lands, thereby withdrawing paper notes issued on the security of
-the lands sold by the government.
+### The Role of War and Political Instability
 
- This ''tax-backed money'' scheme propelled the National Assembly  into the domain of monetary experimentation.
- 
-Records of their debates show
-how members of the Assembly marshaled theory and evidence to assess the likely
-effects of their innovation. 
+**War Financing:**
+The Revolutionary Wars significantly influenced economic policy. The need to finance military expenditures drove the government to print more assignats, exacerbating inflationary pressures. The war effort also disrupted trade and agricultural production, further straining the economy.
 
-They quoted David Hume and Adam Smith and cited John
-Law's System of 1720 and the American experiences with paper money fifteen years
-earlier as examples of how paper money schemes can go awry.
+**Political Instability:**
+The period was marked by rapid political changes, with various factions vying for control. This instability affected economic policy consistency and enforcement, contributing to the chaotic economic environment. The lack of a stable government made it challenging to implement long-term economic reforms.
 
+### Consequences and Reforms
 
-### Necker's plan and how it was tweaked
+**Economic Collapse and Recovery Attempts:**
+By 1796, the assignats had become nearly worthless, leading to a collapse of the monetary system. In response, the government introduced the mandats territoriaux, another form of land-backed currency, which also failed due to similar overissuance and loss of confidence.
 
-Necker's original plan embodied two components: a national bank and a new
-financial instrument, the ''assignat''. 
+**Fiscal and Monetary Reforms:**
+The eventual stabilization of the French economy required substantial reforms. The Directory government initiated measures to restore fiscal discipline, including tax reforms and reducing the reliance on paper money. The establishment of the Banque de France in 1800 under Napoleon provided a more stable monetary system, which helped in the recovery.
 
+### Conclusion
 
-Necker's national
-bank was patterned after the Bank of England. He proposed to transform the *Caisse d'Escompte* into a national bank by granting it a monopoly on issuing
-notes and marketing government debt. The *Caisse*  was a
-discount bank founded in 1776 whose main function was to discount commercial bills
-and issue convertible notes. Although independent of the government in principle,
-it had occasionally been used as a source of loans. Its notes had been declared
-inconvertible in August 1788, and by the time of Necker's proposal, its reserves
-were exhausted. Necker's plan placed the National Estates (as the Church lands
-became known after the addition of the royal demesne) at the center of the financial
-picture: a ''Bank of France'' would issue a $5\%$ security mortgaged on the prospective
-receipts from the modest sale of some 400 millions' worth of National Estates in
-the years 1791 to 1793.
-```{note}
- Only 170 million was to be used initially
-to cover the deficits of 1789 and 1790.
-```
+Sargent and Velde's analysis illustrates the complex interplay between monetary policy, political stability, and economic performance during the French Revolution. The experience of the assignats serves as a cautionary tale about the dangers of excessive reliance on fiat money without adequate fiscal backing. The authors emphasize the importance of credible and consistent economic policies in maintaining monetary stability and fostering economic growth.
 
+---
 
-By mid-1790, members of the National Assembly had agreed to sell the National
-Estates and to use the proceeds to service the debt in a ``tax-backed money'' scheme 
-```{note}
-Debt service costs absorbed 
- over 60\% of French government expenditures. 
-```
+This summary encapsulates the main points and findings of Sargent and Velde's paper, providing an overview of the macroeconomic challenges and policies during the French Revolution.
 
-The government would issue securities with which it would reimburse debt.
-
-The securities
-were acceptable as payment for National Estates purchased at auctions; once received
-in payment, they were to be burned. 
-
-```{note} 
-The appendix to {cite}`sargent_velde1995` describes  the
-auction rules in detail.
-```
-The Estates available for sale were thought to be worth about 2,400
-million, while the exactable debt (essentially fixed-term loans, unpaid arrears,
-and liquidated offices) stood at about 2,000 million. The value of the land was
-sufficient to let the Assembly retire all of the exactable debt and thereby eliminate
-the interest payments on it. After lengthy debates, in August 1790, the Assembly set the denomination
-and interest rate structure of the debt. 
-
-
-```{note} Two distinct
-aspects of monetary theory help in thinking about the assignat plan. First, a system
-beginning with a commodity standard typically has room for a once-and-for-all emission
-of (an unbacked) paper currency that can replace the commodity money without generating
-inflation. \citet{Sargent/Wallace:1983} describe models with this property. That
-commodity money systems are wasteful underlies Milton Friedman's (1960) TOM:ADD REFERENCE preference
-for a fiat money regime over a commodity money. Second, in a small country on a
-commodity money system that starts with restrictions on intermediation, those restrictions
-can be relaxed by letting the government issue bank notes on the security of safe
-private indebtedness, while leaving bank notes convertible into gold at par. See
-Adam Smith  and Sargent and Wallace (1982) for expressions of this idea. TOM: ADD REFERENCES HEREAND IN BIBTEX FILE.
-```
-
-
-```{note} 
-The
-National Assembly debated many now classic questions in monetary economics. Under
-what conditions would money creation generate inflation, with what consequences
-for business conditions? Distinctions were made between issue of money to pay off
-debt, on one hand, and monetization of deficits, on the other. Would *assignats* be akin
-to notes emitted under a real bills regime, and cause loss of specie, or would
-they circulate alongside specie, thus increasing the money stock? Would inflation
-affect real wages? How would it impact foreign trade, competitiveness of French
-industry and agriculture, balance of trade, foreign exchange?
-```
 
 ## Data Sources
 
@@ -194,7 +152,7 @@ plt.show()
 ```
 
 
-TO TEACH TOM:  By staring at {numref}`fig1` carefully
+TOM ADD MORE:   By staring at {numref}`fig1` carefully 
 <!-- #region user_expressions=[] -->
 
 ## Figure 2
@@ -239,6 +197,8 @@ plt.show()
 #plt.savefig('frfinfig2.pdf', dpi=600)
 ```
 
+
+TOM ADD MORE:   Figure  {numref}`fig2` shows blah 
 <!-- #region user_expressions=[] -->
 ## Figure 3 
 
@@ -287,9 +247,15 @@ plt.show()
 ```
 
 
-TO TEACH TOM:  By staring at {numref}`fr_fig3` carefully
+TO TEACH TOM:  Figure  {numref}`fr_fig3` shows
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: "Government Spending and Tax Revenues in France"
+    name: fr_fig3a
+---
 # Plot the data
 plt.figure()
 
@@ -316,6 +282,7 @@ plt.show()
 #plt.savefig('frfinfig3_ignore_nan.jpg', dpi=600)
 ```
 
+TO TEACH TOM:  Figure  {numref}`fr_fig3a` shows
 <!-- #region user_expressions=[] -->
 ## Figure 4
 <!-- #endregion -->
@@ -1028,4 +995,118 @@ plt.show()
 
 ```{code-cell} ipython3
 
+```
+
+STUFF FROM SV 1995
+
+
+## Fiscal Situation and Response of National Assembly
+
+
+In response to a motion by Catholic Bishop Talleyrand,
+the National Assembly confiscated and nationalized  Church lands. 
+
+But the National Assembly was dominated by free market advocates, not socialists.
+
+The National Assembly intended to use earnings from  Church lands to service its national debt.
+
+To do this, it  began to implement a ''privatization plan'' that would let it service its debt while
+not raising taxes.
+
+Their plan involved issuing paper notes called ''assignats'' that entitled bearers to use them to purchase state lands.  
+
+These paper notes would be ''as good as silver coins'' in the sense that both were acceptable means of payment in exchange for those (formerly) church lands.  
+
+Finance Minister Necker and the Constituants planned
+to solve the privatization problem **and** the debt problem simultaneously
+by creating a new currency. 
+
+They devised a scheme to raise revenues by auctioning
+the confiscated lands, thereby withdrawing paper notes issued on the security of
+the lands sold by the government.
+
+ This ''tax-backed money'' scheme propelled the National Assembly  into the domain of monetary experimentation.
+ 
+Records of their debates show
+how members of the Assembly marshaled theory and evidence to assess the likely
+effects of their innovation. 
+
+They quoted David Hume and Adam Smith and cited John
+Law's System of 1720 and the American experiences with paper money fifteen years
+earlier as examples of how paper money schemes can go awry.
+
+
+### Necker's plan and how it was tweaked
+
+Necker's original plan embodied two components: a national bank and a new
+financial instrument, the ''assignat''. 
+
+
+Necker's national
+bank was patterned after the Bank of England. He proposed to transform the *Caisse d'Escompte* into a national bank by granting it a monopoly on issuing
+notes and marketing government debt. The *Caisse*  was a
+discount bank founded in 1776 whose main function was to discount commercial bills
+and issue convertible notes. Although independent of the government in principle,
+it had occasionally been used as a source of loans. Its notes had been declared
+inconvertible in August 1788, and by the time of Necker's proposal, its reserves
+were exhausted. Necker's plan placed the National Estates (as the Church lands
+became known after the addition of the royal demesne) at the center of the financial
+picture: a ''Bank of France'' would issue a $5\%$ security mortgaged on the prospective
+receipts from the modest sale of some 400 millions' worth of National Estates in
+the years 1791 to 1793.
+```{note}
+ Only 170 million was to be used initially
+to cover the deficits of 1789 and 1790.
+```
+
+
+By mid-1790, members of the National Assembly had agreed to sell the National
+Estates and to use the proceeds to service the debt in a ``tax-backed money'' scheme 
+```{note}
+Debt service costs absorbed 
+ over 60\% of French government expenditures. 
+```
+
+The government would issue securities with which it would reimburse debt.
+
+The securities
+were acceptable as payment for National Estates purchased at auctions; once received
+in payment, they were to be burned. 
+
+```{note} 
+The appendix to {cite}`sargent_velde1995` describes  the
+auction rules in detail.
+```
+The Estates available for sale were thought to be worth about 2,400
+million, while the exactable debt (essentially fixed-term loans, unpaid arrears,
+and liquidated offices) stood at about 2,000 million. The value of the land was
+sufficient to let the Assembly retire all of the exactable debt and thereby eliminate
+the interest payments on it. After lengthy debates, in August 1790, the Assembly set the denomination
+and interest rate structure of the debt. 
+
+
+```{note} Two distinct
+aspects of monetary theory help in thinking about the assignat plan. First, a system
+beginning with a commodity standard typically has room for a once-and-for-all emission
+of (an unbacked) paper currency that can replace the commodity money without generating
+inflation. \citet{Sargent/Wallace:1983} describe models with this property. That
+commodity money systems are wasteful underlies Milton Friedman's (1960) TOM:ADD REFERENCE preference
+for a fiat money regime over a commodity money. Second, in a small country on a
+commodity money system that starts with restrictions on intermediation, those restrictions
+can be relaxed by letting the government issue bank notes on the security of safe
+private indebtedness, while leaving bank notes convertible into gold at par. See
+Adam Smith  and Sargent and Wallace (1982) for expressions of this idea. TOM: ADD REFERENCES HEREAND IN BIBTEX FILE.
+```
+
+
+```{note} 
+The
+National Assembly debated many now classic questions in monetary economics. Under
+what conditions would money creation generate inflation, with what consequences
+for business conditions? Distinctions were made between issue of money to pay off
+debt, on one hand, and monetization of deficits, on the other. Would *assignats* be akin
+to notes emitted under a real bills regime, and cause loss of specie, or would
+they circulate alongside specie, thus increasing the money stock? Would inflation
+affect real wages? How would it impact foreign trade, competitiveness of French
+industry and agriculture, balance of trade, foreign exchange?
 ```
