@@ -345,7 +345,7 @@ The code below implements this iterative process, starting from $p_0 = P$.
 The distribution $\phi$ is set to a shifted Beta distribution (although many
 other choices are possible).
 
-The integral in [](eq:dopf3) is computed via {doc}`monte_carlo`.
+The integral in [](eq:dopf3) is computed via {ref}`Monte Carlo <monte-carlo>`.
 
 
 ```{code-cell} ipython3

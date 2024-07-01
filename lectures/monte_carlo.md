@@ -12,7 +12,7 @@ kernelspec:
 ---
 
 
-
+(monte-carlo)=
 # Monte Carlo and Option Pricing
 
 ## Overview
