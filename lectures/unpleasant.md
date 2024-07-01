@@ -494,8 +494,7 @@ mystnb:
 plot_path([80, 100], msm)
 ```
 
-{numref}`fig:unpl1` summarizes outcomes of  two experiments that convey   messages of 
-Sargent and Wallace's **unpleasant monetarist arithmetic** {cite}`sargent1981`.
+{numref}`fig:unpl1` summarizes outcomes of  two experiments that convey   messages of {cite}`sargent1981`.
 
 * An open market operation that reduces the supply of money at time $t=0$ reduces  the price level at time $t=0$
 
