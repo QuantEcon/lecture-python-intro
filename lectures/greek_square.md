@@ -11,22 +11,20 @@ kernelspec:
   name: python3
 ---
 
-+++ {"user_expressions": []}
-
 # Computing Square Roots
 
 
 ## Introduction
 
 
-This lecture can be viewed as a sequel to this QuantEcon lecture {doc}`eigen_I`
+This lecture can be viewed as a sequel to {doc}`eigen_I`
 
 It  provides an  example of how eigenvectors isolate  *invariant subspaces* that help construct and analyze solutions of linear difference equations. 
 
 When vector $x_t$ starts in an invariant subspace, iterating the different equation keeps $x_{t+j}$
 in that subspace for all $j \geq 1$.  
 
-Invariant subspace methods are used throughout applied economic dynamics, for example, in this QuantEcon lecture {doc}`money_inflation`
+Invariant subspace methods are used throughout applied economic dynamics, for example, in the lecture {doc}`money_inflation`
 
 Our approach here  is to illustrate the method with an ancient example, one that ancient Greek mathematicians used to compute square roots of positive integers.
 
@@ -76,7 +74,7 @@ $\{y_t\}_{t=0}^\infty$.
 
 There is one equation each for $t = 0, 1, 2, \ldots$.  
 
-We could follow an approach taken in this QuantEcon lecture {doc}`present values<pv>` and stack all of these equations into a single matrix equation that we would then solve by using matrix inversion.
+We could follow an approach taken in the lecture on {doc}`present values<pv>` and stack all of these equations into a single matrix equation that we would then solve by using matrix inversion.
 
 ```{note} 
 In the present instance, the matrix equation would multiply a countably infinite dimensional square matrix by  a countably infinite dimensional vector.  With some qualifications, matrix multiplication and inversion tools apply to such an equation.
@@ -172,11 +170,9 @@ If we choose $(y_{-1}, y_{-2})$ to set $(\eta_1, \eta_2) = (1, 0)$, then $y_t = 
 
 If we choose $(y_{-1}, y_{-2})$ to set $(\eta_1, \eta_2) = (0, 1)$, then $y_t = \delta_2^t$ for all $t \geq 0$.
 
-Soon we'll relate the preceding calculations to components an eigen decomposition of a transition
-matrix that represents difference equation {eq}`eq:2diff1` in a very convenient way.
+Soon we'll relate the preceding calculations to components an eigen decomposition of a transition matrix that represents difference equation {eq}`eq:2diff1` in a very convenient way.
 
-We'll turn to that after we describe how Ancient Greeks figured out how to compute square roots of
-positive integers that are not perfect squares.
+We'll turn to that after we describe how Ancient Greeks figured out how to compute square roots of positive integers that are not perfect squares.
 
 
 ## Algorithm of the Ancient Greeks
@@ -201,8 +197,7 @@ $$ (eq:second_order)
 
 together with a pair of integers that are  initial conditions for   $y_{-1}, y_{-2}$.
 
-First, we'll deploy some techniques for solving the difference equations that are also deployed in this QuantEcon lecture about the multiplier-accelerator model:
-<https://python.quantecon.org/samuelson.html>
+First, we'll deploy some techniques for solving the difference equations that are also deployed in {doc}`dynam:samuelson`
 
 
 
@@ -212,7 +207,7 @@ $$
 c(x) \equiv x^2 - 2 x + (1 - \sigma) = 0
 $$ (eq:cha_eq0)
 
-+++
+
 
 (Notice how this is an instance of equation {eq}`eq:2diff6` above.)
 
@@ -424,8 +419,6 @@ print(f"For η_1, η_2 = (1, 0), sqrt_σ = {sqrt_σ:.5f}")
 ```
 
 We find that convergence is immediate.
-
-+++
 
 Next, we'll  represent the preceding analysis by first vectorizing our second-order difference equation {eq}`eq:second_order` and then using  eigendecompositions of an  associated  state transition matrix.
 
@@ -650,8 +643,6 @@ $$ (eq:deactivate2)
 
 Let's verify {eq}`eq:deactivate1` and {eq}`eq:deactivate2` below
 
-+++
-
 To deactivate $\lambda_1$ we use {eq}`eq:deactivate1`
 
 ```{code-cell} ipython3
@@ -664,8 +655,6 @@ np.round(V_inv @ xd_1, 8)
 ```
 
 We find $x_{1,0}^* = 0$.
-
-+++
 
 Now we deactivate $\lambda_2$ using {eq}`eq:deactivate2`
 
@@ -690,6 +679,10 @@ xs_λ2 = iterate_M(xd_2, M, num_steps)[0]
 ratios_λ1 = xs_λ1[1, 1:] / xs_λ1[1, :-1]
 ratios_λ2 = xs_λ2[1, 1:] / xs_λ2[1, :-1] 
 ```
+
+The following graph shows the ratios $y_t / y_{t-1}$ for the two cases.
+
+We find that the ratios converge to $\lambda_2$ in the first case and $\lambda_1$ in the second case.
 
 ```{code-cell} ipython3
 :tags: [hide-input]
@@ -730,5 +723,4 @@ This lecture sets the stage  for many other applications of the *invariant subsp
 All of these exploit very similar equations based on eigen decompositions. 
 
 We shall encounter equations very similar to {eq}`eq:deactivate1` and {eq}`eq:deactivate2`
-in  this QuantEcon lecture {doc}`money_inflation`
-and in many other places in dynamic economic theory.
+in {doc}`money_inflation` and in many other places in dynamic economic theory.
