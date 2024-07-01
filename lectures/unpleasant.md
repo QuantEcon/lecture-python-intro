@@ -93,7 +93,7 @@ $$
 Just before the beginning of time $0$, the  public owns  $\check m_0$ units of currency (measured in dollars)
 and $\widetilde R \check B_{-1}$ units of one-period indexed bonds (measured in time $0$ goods); these two quantities are initial conditions set outside the model.
 
-Notice that $\check m_0$ is a *nominal* quantity, being measured in dollar, while
+Notice that $\check m_0$ is a *nominal* quantity, being measured in dollars, while
 $\widetilde R \check B_{-1}$ is a *real* quantity, being measured in time $0$ goods.
 
 
@@ -154,7 +154,7 @@ running monetary and fiscal policies.
 
 Here, by **fiscal policy** we mean the collection of actions that determine a sequence of net-of-interest government deficits $\{g_t\}_{t=0}^\infty$ that must be financed by issuing to the public  either money or interest bearing bonds.
 
-By **monetary policy** or *debt-management policy*, we  mean the collection of actions that determine how the government divides its  portolio of debts to the public  between interest-bearing parts (government bonds) and non-interest-bearing parts (money).
+By **monetary policy** or **debt-management policy**, we  mean the collection of actions that determine how the government divides its  portolio of debts to the public  between interest-bearing parts (government bonds) and non-interest-bearing parts (money).
 
 By an **open market operation**, we mean a government monetary policy action in which the government
 (or its delegate, say, a central bank) either buys  government bonds from the public for newly issued money, or sells  bonds to the public and withdraws the money it receives from public circulation.  
