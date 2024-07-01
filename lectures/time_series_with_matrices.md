@@ -78,7 +78,7 @@ equations in the $T$ variables $y_1, y_2, \ldots, y_T$.
 ```{note}
 To be able to solve a second-order linear difference
 equation, we require two *boundary conditions* that can take the form
-either of two *initial conditions* or two *terminal conditions* or
+either of two *initial conditions*, two *terminal conditions* or
 possibly one of each.
 ```
 
