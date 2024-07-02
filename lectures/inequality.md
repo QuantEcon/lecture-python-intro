@@ -436,6 +436,7 @@ Let's examine the Gini coefficient in some simulations.
 The code below computes the Gini coefficient from a sample.
 
 ```{code-cell} ipython3
+:label:gini-coefficient
 
 def gini_coefficient(y):
     r"""
