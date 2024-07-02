@@ -76,7 +76,7 @@ Required per unit material and labor  inputs and  revenues  are shown in table b
 
 A firm's problem is to construct a  production plan that uses its  30 units of materials and 20 units of labor to maximize its revenue.
 
-Let $x_i$ denote the quantity of Product $i$ that the firm produces.
+Let $x_i$ denote the quantity of Product $i$ that the firm produces and $z$ denote the total revenue.
 
 This problem can be formulated as:
 
@@ -132,11 +132,11 @@ plt.show()
 
 The blue region is the feasible set within which all constraints are satisfied.
 
-Parallel orange lines are iso-revenue lines.
+Parallel black lines are iso-revenue lines.
 
-The firm's objective is to find the  parallel orange lines to the upper boundary of the feasible set.
+The firm's objective is to find the  parallel black lines to the upper boundary of the feasible set.
 
-The intersection of the feasible set and the highest orange line delineates the optimal set.
+The intersection of the feasible set and the highest black line delineates the optimal set.
 
 In this example, the optimal set is the point $(2.5, 5)$.
 
@@ -450,6 +450,8 @@ $$
  & l \le x \le u \\
 \end{aligned}
 $$
+
+$A_{eq}, b_{eq}$ denote the equality constraint matrix and vector, and $A_{ub}, b_{ub}$ denote the inequality constraint matrix and vector.
 
 ```{note}
 By default $l = 0$ and $u = \text{None}$ unless explicitly specified with the argument `bounds`.
