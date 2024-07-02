@@ -21,6 +21,7 @@ The `xlrd` package is used by `pandas` to perform operations on Excel files.
 
 ```{code-cell} ipython3
 :tags: [hide-output]
+
 !pip install xlrd
 ```
 
@@ -28,6 +29,7 @@ The `xlrd` package is used by `pandas` to perform operations on Excel files.
 
 ```{code-cell} ipython3
 :tags: [hide-cell]
+
 from importlib.metadata import version
 from packaging.version import Version
 
@@ -100,16 +102,16 @@ mystnb:
     caption: Long run time series of the price level
     name: lrpl
 ---
-df_fig5_bef1914 = df_fig5[df_fig5.index <= 1915]
+df_fig5_befe1914 = df_fig5[df_fig5.index <= 1914]
 
 # Create plot
 cols = ['UK', 'US', 'France', 'Castile']
 
-fig, ax = plt.subplots(dpi=200)
+fig, ax = plt.subplots(figsize=(10,6))
 
 for col in cols:
-    ax.plot(df_fig5_bef1914.index, 
-            df_fig5_bef1914[col], label=col, lw=2)
+    ax.plot(df_fig5_befe1914.index, 
+            df_fig5_befe1914[col], label=col, lw=2)
 
 ax.legend()
 ax.set_ylabel('Index  1913 = 100')
@@ -463,7 +465,6 @@ mystnb:
     caption: Price index and exchange rate (Hungary)
     name: pi_xrate_hungary
 ---
-m_seq = df_hun['Notes in circulation']
 p_seq = df_hun['Hungarian index of prices']
 e_seq = 1 / df_hun['Cents per crown in New York']
 
