@@ -167,6 +167,7 @@ $$
 
 The next theorem is called Kolmogorov's strong law of large numbers.
 
+(iid-theorem)=
 ````{prf:theorem}
 If $X_1, \ldots, X_n$ are IID and $\mathbb E |X|$ is finite, then
 
