@@ -105,9 +105,12 @@ $$
 1 + c + c^2 + c^3 + \cdots + c^T  = \frac{1 - c^{T+1}}{1-c}
 $$
 
-**Remark:** The above formula works for any value of the scalar
+```{prf:remark}
+:label: geom_formula
+The above formula works for any value of the scalar
 $c$. We don't have to restrict $c$ to be in the
 set $(-1,1)$.
+```
 
 We now move on to describe some famous economic applications of
 geometric series.
