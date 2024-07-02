@@ -16,7 +16,7 @@ kernelspec:
 ## Overview
 
 
-This lecture builds on concepts and issues introduced in our  lecture on **Money Supplies and Price Levels**.
+This lecture builds on concepts and issues introduced in our lecture on {doc}`money supplies and price levels<money_inflation>`.
 
 That lecture describes stationary equilibria that reveal a [*Laffer curve*](https://en.wikipedia.org/wiki/Laffer_curve) in the inflation tax rate and the associated  stationary rate of return 
 on currency.  
@@ -36,18 +36,20 @@ by printing money at times $t \geq T$.
 
 These outcomes are the essential finding of Sargent and Wallace's **unpleasant monetarist arithmetic** {cite}`sargent1981`.
 
-**Reader's Guide:** Please read our lecture on Money Supplies and Price levels before diving into this lecture.
+```{tip}
+Please read our lecture on {doc}`money supplies and price levels<money_inflation>` before diving into this lecture.
+```
 
 That lecture  described  supplies and demands for money that appear in lecture.
 
 It also   characterized the steady state equilibrium from which we work backwards in this lecture. 
 
-In addition to learning about ''unpleasant monetarist arithmetic", in this lecture we'll learn how to implement a **fixed point** algorithm for computing an initial price level.
+In addition to learning about **unpleasant monetarist arithmetic**, in this lecture we'll learn how to implement a *fixed point* algorithm for computing an initial price level.
 
 
 ## Setup
 
-Let's start with quick reminders of the model's components set out in our lecture on **Money Supplies and Price Levels**.
+Let's start with quick reminders of the model's components set out in {doc}`money_inflation`.
 
 Please consult that lecture for more details and Python code that we'll also use in this lecture.
 
@@ -79,7 +81,7 @@ where $\gamma_1 > \gamma_2 > 0$.
 
 ## Monetary-Fiscal Policy
 
-To the basic model of our lecture on **Money Supplies and Price Levels**, we add inflation-indexed one-period government bonds as an additional  way for the government to finance government expenditures. 
+To the basic model of {doc}`money_inflation`, we add inflation-indexed one-period government bonds as an additional way for the government to finance government expenditures. 
 
 Let $\widetilde R > 1$ be a time-invariant gross real rate of return on government one-period inflation-indexed bonds.
 
@@ -114,11 +116,11 @@ $$ (eq:openmarketconstraint)
 This equation says that the government (e.g., the central bank) can *decrease* $m_0$ relative to 
 $\check m_0$ by *increasing* $B_{-1}$ relative to $\check B_{-1}$. 
 
-This is a version of a standard constraint on a central bank's **open market operations** in which it expands the stock of money by buying government bonds from  the public. 
+This is a version of a standard constraint on a central bank's [**open market operations**](https://www.federalreserve.gov/monetarypolicy/openmarket.htm) in which it expands the stock of money by buying government bonds from  the public. 
 
 ## An open market operation at $t=0$
 
-Following Sargent and Wallace (1981), we analyze consequences of a central bank policy that 
+Following {cite:t}`sargent1981`, we analyze consequences of a central bank policy that 
 uses an open market operation to lower the price level in the face of a persistent fiscal
 deficit that takes the form of a positive $g$.
 
@@ -242,9 +244,10 @@ $$
 p_T =   \frac{m_0}{\gamma_1 - \overline g - \gamma_2 R_u^{-1}}  = \gamma_1^{-1} m_0  \left\{\frac{1}{R_u-\lambda} \right\}
 $$ (eq:pTformula)
 
-**Remark:**
+```{prf:remark}
 We can verify the equivalence of the two formulas on the right sides of {eq}`eq:pTformula` by recalling that 
 $R_u$ is a root of the quadratic equation {eq}`eq:up_steadyquadratic` that determines steady state rates of return on currency.
+```
  
 ## Algorithm (pseudo code)
 
@@ -254,6 +257,7 @@ Python coder.
 
 To compute an equilibrium, we deploy the following algorithm.
 
+```{prf:algorithm}
 Given *parameters* include $g, \check m_0, \check B_{-1}, \widetilde R >1, T $.
 
 We define a mapping from $p_0$ to $\widehat p_0$ as follows.
@@ -282,7 +286,6 @@ $$
 
 * Compute a new estimate of $p_0$, call it $\widehat p_0$,  from equation {eq}`eq:allts` above
 
-
 * Note that the preceding steps define a mapping
 
 $$
@@ -298,7 +301,7 @@ p_{0,j+1} = (1-\theta)  {\mathcal S}(p_{0,j})  + \theta  p_{0,j},
 $$
 
 where $\theta \in [0,1)$ is a relaxation parameter.
-
+```
 
 ## Example Calculations
 
@@ -318,7 +321,7 @@ That leaves the public with less currency but more government interest-bearing b
 
 Since the public has less currency (it's supply has diminished) it is plausible to anticipate that the price level at time $0$ will be driven downward.
 
-But that is not the end of the story, because this ''open market operation'' at time $0$ has consequences for future settings of $m_{t+1}$ and the gross-of-interest government deficit $\bar g_t$. 
+But that is not the end of the story, because this **open market operation** at time $0$ has consequences for future settings of $m_{t+1}$ and the gross-of-interest government deficit $\bar g_t$. 
 
 
 Let's start with some imports:
@@ -329,7 +332,7 @@ import matplotlib.pyplot as plt
 from collections import namedtuple
 ```
 
-Now let's dive in and implement our ''pseudo code'' in Python.
+Now let's dive in and implement our pseudo code in Python.
 
 ```{code-cell} ipython3
 # Create a namedtuple that contains parameters
@@ -395,14 +398,15 @@ def compute_fixed_point(m0, p0_guess, model, θ=0.5, tol=1e-6):
 
     return p0
 ```
+
 Let's look at how  price level $p_0$  in the stationary  $R_u$ equilibrium  depends on the initial
 money supply $m_0$.  
 
 Notice that the slope of $p_0$ as a function of $m_0$ is constant.
 
-This outcome indicates that our model verifies a ''quantity theory of money'' outcome,
-something that Sargent and Wallace {cite}`sargent1981` purposefully built into their model to justify
-the adjective **monetarist** in their title.
+This outcome indicates that our model verifies a quantity theory of money outcome,
+something that {cite:t}`sargent1981` purposefully built into their model to justify
+the adjective *monetarist* in their title.
 
 
 ```{code-cell} ipython3
@@ -494,7 +498,7 @@ mystnb:
 plot_path([80, 100], msm)
 ```
 
-{numref}`fig:unpl1` summarizes outcomes of  two experiments that convey   messages of {cite}`sargent1981`.
+{numref}`fig:unpl1` summarizes outcomes of  two experiments that convey   messages of {cite:t}`sargent1981`.
 
 * An open market operation that reduces the supply of money at time $t=0$ reduces  the price level at time $t=0$
 
