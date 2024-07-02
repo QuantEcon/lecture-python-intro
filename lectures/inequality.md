@@ -1093,3 +1093,89 @@ plt.show()
 
 ```{solution-end}
 ```
+
+```{exercise}
+:label: inequality_ex3
+
+The {ref}`code to compute the Gini coefficient is listed in the lecture above <code:gini-coefficient>`.
+
+This code uses loops to calculate the coefficient based on income or wealth data.
+
+This function can be re-written using vectorization which will greatly improve the computational efficiency when using `python`.
+
+Re-write the function `gini_coefficient` using `numpy` and vectorized code.
+
+You can compare the output of this new function with the one above, and note the speed differences. 
+```
+
+```{solution-start} inequality_ex3
+:class: dropdown
+```
+
+Let's take a look at some raw data for the US that is stored in `df_income_wealth`
+
+```{code-cell} ipython3
+df_income_wealth.describe()
+```
+
+```{code-cell} ipython3
+df_income_wealth.head(n=4)
+```
+
+We will focus on wealth variable `n_wealth` to compute a Gini coefficient for the year 1990.
+
+```{code-cell} ipython3
+data = df_income_wealth[df_income_wealth.year == 2016]
+```
+
+```{code-cell} ipython3
+data.head(n=2)
+```
+
+We can first compute the Gini coefficient using the function defined in the lecture above.
+
+```{code-cell} ipython3
+gini_coefficient(data.n_wealth.values)
+```
+
+Now we can write a vectorized version using `numpy`
+
+```{code-cell} ipython3
+def gini(y):
+    n = len(y)
+    y_1 = np.reshape(y, (n, 1))
+    y_2 = np.reshape(y, (1, n))
+    g_sum = np.sum(np.abs(y_1 - y_2))
+    return g_sum / (2 * n * np.sum(y))
+```
+```{code-cell} ipython3
+gini(data.n_wealth.values)
+```
+Let's simulate five populations by drawing from a lognormal distribution as before
+
+```{code-cell} ipython3
+k = 5
+σ_vals = np.linspace(0.2, 4, k)
+n = 2_000
+σ_vals = σ_vals.reshape((k,1))
+μ_vals = -σ_vals**2/2
+y_vals = np.exp(μ_vals + σ_vals*np.random.randn(n))
+```
+We can compute the Gini coefficient for these five populations using the vectorized function as follows,
+
+```{code-cell} ipython3
+gini_coefficients =[]
+for i in range(k):
+     gini_coefficients.append(gini(simulated_data[i]))
+```
+
+This gives us the Gini coefficients for these five households.
+
+```{code-cell} ipython3
+gini_coefficients
+```
+```{solution-end}
+```
+
+
+
