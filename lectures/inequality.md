@@ -481,6 +481,7 @@ You can check this by looking up the expression for the mean of a lognormal
 distribution.
 
 ```{code-cell} ipython3
+%%time
 k = 5
 σ_vals = np.linspace(0.2, 4, k)
 n = 2_000
@@ -1161,14 +1162,15 @@ n = 2_000
 μ_vals = -σ_vals**2/2
 y_vals = np.exp(μ_vals + σ_vals*np.random.randn(n))
 ```
-We can compute the Gini coefficient for these five populations using the vectorized function as follows,
+We can compute the Gini coefficient for these five populations using the vectorized function, the computation time is shown below:
 
 ```{code-cell} ipython3
+%%time
 gini_coefficients =[]
 for i in range(k):
-     gini_coefficients.append(gini(simulated_data[i]))
+     gini_coefficients.append(gini(y_vals[i]))
 ```
-
+This shows the vectorized function is much faster.
 This gives us the Gini coefficients for these five households.
 
 ```{code-cell} ipython3
