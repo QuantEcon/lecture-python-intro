@@ -60,12 +60,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
@@ -81,9 +81,9 @@
     <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
-  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
@@ -288,7 +288,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="simple">
 <li><p>Minimum cost for supplier to reach a destination.</p></li>
 <li><p>Routing of packets on the internet (minimize time).</p></li>
-<li><p>Etc., etc.</p></li>
+<li><p>etc., etc.</p></li>
 </ul>
 <p>For this simple graph, a quick scan of the edges shows that the optimal paths are</p>
 <ul class="simple">
@@ -308,7 +308,7 @@ const thebe_selector_output = ".output, .cell_output"
 <h2><span class="section-number">37.3. </span>Finding least-cost paths<a class="headerlink" href="#finding-least-cost-paths" title="Permalink to this heading">#</a></h2>
 <p>For large graphs, we need a systematic solution.</p>
 <p>Let <span class="math notranslate nohighlight">\(J(v)\)</span> denote the minimum cost-to-go from node <span class="math notranslate nohighlight">\(v\)</span>, understood as the total cost from <span class="math notranslate nohighlight">\(v\)</span> if we take the best route.</p>
-<p>Suppose that we know <span class="math notranslate nohighlight">\(J(v)\)</span> for each node <span class="math notranslate nohighlight">\(v\)</span>, as shown below for the graph from the preceding example</p>
+<p>Suppose that we know <span class="math notranslate nohighlight">\(J(v)\)</span> for each node <span class="math notranslate nohighlight">\(v\)</span>, as shown below for the graph from the preceding example.</p>
 <figure class="align-default">
 <img alt="_images/graph2.png" src="_images/graph2.png" />
 </figure>
@@ -331,7 +331,7 @@ const thebe_selector_output = ".output, .cell_output"
 the function <span class="math notranslate nohighlight">\(J\)</span> satisfies</p>
 <div class="math notranslate nohighlight" id="equation-spbell">
 <span class="eqno">(37.2)<a class="headerlink" href="#equation-spbell" title="Permalink to this equation">#</a></span>\[J(v) = \min_{w \in F_v} \{ c(v, w) + J(w) \}\]</div>
-<p>This is known as the <em>Bellman equation</em>, after the mathematician Richard Bellman.</p>
+<p>This is known as the <strong>Bellman equation</strong>, after the mathematician <a class="reference external" href="https://en.wikipedia.org/wiki/Richard_E._Bellman">Richard Bellman</a>.</p>
 <p>The Bellman equation can be thought of as a restriction that <span class="math notranslate nohighlight">\(J\)</span> must
 satisfy.</p>
 <p>What we want to do now is use this restriction to compute <span class="math notranslate nohighlight">\(J\)</span>.</p>
@@ -399,7 +399,7 @@ Q(1, 2)
 </div>
 <p>Notice that the cost of staying still (on the principle diagonal) is set to</p>
 <ul class="simple">
-<li><p>np.inf for non-destination nodes — moving on is required.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">np.inf</span></code> for non-destination nodes — moving on is required.</p></li>
 <li><p>0 for the destination node — here is where we stop.</p></li>
 </ul>
 <p>For the sequence of approximations <span class="math notranslate nohighlight">\(\{J_n\}\)</span> of the cost-to-go functions, we can use NumPy arrays.</p>
@@ -415,18 +415,14 @@ Q(1, 2)
 
 <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">max_iter</span><span class="p">:</span>
     <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">nodes</span><span class="p">:</span>
-        <span class="c1"># minimize Q[v, w] + J[w] over all choices of w</span>
-        <span class="n">lowest_cost</span> <span class="o">=</span> <span class="n">inf</span>
-        <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">nodes</span><span class="p">:</span>
-            <span class="n">cost</span> <span class="o">=</span> <span class="n">Q</span><span class="p">[</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">]</span> <span class="o">+</span> <span class="n">J</span><span class="p">[</span><span class="n">w</span><span class="p">]</span>
-            <span class="k">if</span> <span class="n">cost</span> <span class="o">&lt;</span> <span class="n">lowest_cost</span><span class="p">:</span>
-                <span class="n">lowest_cost</span> <span class="o">=</span> <span class="n">cost</span>
-        <span class="n">next_J</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">lowest_cost</span>
-    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">equal</span><span class="p">(</span><span class="n">next_J</span><span class="p">,</span> <span class="n">J</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">():</span>
+        <span class="c1"># Minimize Q[v, w] + J[w] over all choices of w</span>
+        <span class="n">next_J</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">Q</span><span class="p">[</span><span class="n">v</span><span class="p">,</span> <span class="p">:]</span> <span class="o">+</span> <span class="n">J</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">array_equal</span><span class="p">(</span><span class="n">next_J</span><span class="p">,</span> <span class="n">J</span><span class="p">):</span>                
         <span class="k">break</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">J</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">next_J</span>   <span class="c1"># Copy contents of next_J to J</span>
-        <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+    
+    <span class="n">J</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">next_J</span>                                <span class="c1"># Copy contents of next_J to J</span>
+    <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The cost-to-go function is&quot;</span><span class="p">,</span> <span class="n">J</span><span class="p">)</span>
 </pre></div>
@@ -619,11 +615,7 @@ integers, so consider replacing <code class="docutils literal notranslate"><span
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">bellman</span><span class="p">(</span><span class="n">J</span><span class="p">,</span> <span class="n">Q</span><span class="p">):</span>
-    <span class="n">num_nodes</span> <span class="o">=</span> <span class="n">Q</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="n">next_J</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty_like</span><span class="p">(</span><span class="n">J</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_nodes</span><span class="p">):</span>
-        <span class="n">next_J</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">Q</span><span class="p">[</span><span class="n">v</span><span class="p">,</span> <span class="p">:]</span> <span class="o">+</span> <span class="n">J</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">next_J</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">Q</span> <span class="o">+</span> <span class="n">J</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
 
 <span class="k">def</span> <span class="nf">compute_cost_to_go</span><span class="p">(</span><span class="n">Q</span><span class="p">):</span>
@@ -965,7 +957,7 @@ Cost:  160.55000000000007
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="unpleasant.html">
-   28. Unpleasant Monetarist Arithmetic
+   28. Some Unpleasant Monetarist Arithmetic
   </a>
  </li>
  <li class="toctree-l1">

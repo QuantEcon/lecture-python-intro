@@ -60,12 +60,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
@@ -81,9 +81,9 @@
     <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
-  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
@@ -244,7 +244,7 @@ const thebe_selector_output = ".output, .cell_output"
 <p>The cobweb model dates back to the 1930s and, while simple, it remains significant
 because it shows the fundamental importance of <em>expectations</em>.</p>
 <p>To give some idea of how the model operates, and why expectations matter, imagine the following scenario.</p>
-<p>There is a market for soy beans, say, where prices and traded quantities
+<p>There is a market for soybeans, say, where prices and traded quantities
 depend on the choices of buyers and sellers.</p>
 <p>The buyers are represented by a demand curve — they buy more at low prices
 and less at high prices.</p>
@@ -253,16 +253,16 @@ less at low prices.</p>
 <p>However, the sellers (who are farmers) need time to grow their crops.</p>
 <p>Suppose now that the price is currently high.</p>
 <p>Seeing this high price, and perhaps expecting that the high price will remain
-for some time, the farmers plant many fields with soy beans.</p>
+for some time, the farmers plant many fields with soybeans.</p>
 <p>Next period the resulting high supply floods the market, causing the price to drop.</p>
-<p>Seeing this low price, the farmers now shift out of soy beans, restricting
+<p>Seeing this low price, the farmers now shift out of soybeans, restricting
 supply and causing the price to climb again.</p>
 <p>You can imagine how these dynamics could cause cycles in prices and quantities
 that persist over time.</p>
 <p>The cobweb model puts these ideas into equations so we can try to quantify
 them, and to study conditions under which cycles persist (or disappear).</p>
 <p>In this lecture, we investigate and simulate the basic model under different
-assumptions regarding the way that produces form expectations.</p>
+assumptions regarding the way that producers form expectations.</p>
 <p>Our discussion and simulations draw on <a class="reference external" href="https://comp-econ.org/CEF_2013/downloads/Complex%20Econ%20Systems%20Lecture%20II.pdf">high quality lectures</a> by <a class="reference external" href="https://www.uva.nl/en/profile/h/o/c.h.hommes/c.h.hommes.html">Cars Hommes</a>.</p>
 <p>We will use the following imports.</p>
 <div class="cell docutils container">
@@ -277,7 +277,7 @@ assumptions regarding the way that produces form expectations.</p>
 <section id="history">
 <h2><span class="section-number">24.2. </span>History<a class="headerlink" href="#history" title="Permalink to this heading">#</a></h2>
 <p>Early papers on the cobweb cycle include <span id="id1">[<a class="reference internal" href="zreferences.html#id275" title="Frederick V. Waugh. Cobweb models. Journal of Farm Economics, 46(4):732–750, 1964.">Waugh, 1964</a>]</span> and <span id="id2">[<a class="reference internal" href="zreferences.html#id276" title="Arthur A. Harlow. The hog cycle and the cobweb theorem. American Journal of Agricultural Economics, 42(4):842-853, 1960. doi:https://doi.org/10.2307/1235116.">Harlow, 1960</a>]</span>.</p>
-<p>The paper <span id="id3">[<a class="reference internal" href="zreferences.html#id276" title="Arthur A. Harlow. The hog cycle and the cobweb theorem. American Journal of Agricultural Economics, 42(4):842-853, 1960. doi:https://doi.org/10.2307/1235116.">Harlow, 1960</a>]</span> uses the cobweb theorem to explain the prices of hog in the US over 1920–1950</p>
+<p>The paper <span id="id3">[<a class="reference internal" href="zreferences.html#id276" title="Arthur A. Harlow. The hog cycle and the cobweb theorem. American Journal of Agricultural Economics, 42(4):842-853, 1960. doi:https://doi.org/10.2307/1235116.">Harlow, 1960</a>]</span> uses the cobweb theorem to explain the prices of hog in the US over 1920–1950.</p>
 <p>The next plot replicates part of Figure 2 from that paper, which plots the price of hogs at yearly frequency.</p>
 <p>Notice the cyclical price dynamics, which match the kind of cyclical soybean price dynamics discussed above.</p>
 <div class="cell docutils container">
@@ -303,21 +303,21 @@ assumptions regarding the way that produces form expectations.</p>
 </section>
 <section id="the-model">
 <h2><span class="section-number">24.3. </span>The model<a class="headerlink" href="#the-model" title="Permalink to this heading">#</a></h2>
-<p>Let’s return to our discussion of a hypothetical soy bean market, where price is determined by supply and demand.</p>
-<p>We suppose that demand for soy beans is given by</p>
+<p>Let’s return to our discussion of a hypothetical soybean market, where price is determined by supply and demand.</p>
+<p>We suppose that demand for soybeans is given by</p>
 <div class="math notranslate nohighlight">
 \[
     D(p_t) = a - b p_t
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(a, b\)</span> are nonnegative constants and <span class="math notranslate nohighlight">\(p_t\)</span> is the spot (i.e, current market) price at time <span class="math notranslate nohighlight">\(t\)</span>.</p>
 <p>(<span class="math notranslate nohighlight">\(D(p_t)\)</span> is the quantity demanded in some fixed unit, such as thousands of tons.)</p>
-<p>Because the crop of soy beans for time <span class="math notranslate nohighlight">\(t\)</span> is planted at <span class="math notranslate nohighlight">\(t-1\)</span>, supply of soy beans at time <span class="math notranslate nohighlight">\(t\)</span> depends on <em>expected</em> prices at time <span class="math notranslate nohighlight">\(t\)</span>, which we denote <span class="math notranslate nohighlight">\(p^e_{t-1}\)</span>.</p>
+<p>Because the crop of soybeans for time <span class="math notranslate nohighlight">\(t\)</span> is planted at <span class="math notranslate nohighlight">\(t-1\)</span>, supply of soybeans at time <span class="math notranslate nohighlight">\(t\)</span> depends on <em>expected</em> prices at time <span class="math notranslate nohighlight">\(t\)</span>, which we denote <span class="math notranslate nohighlight">\(p^e_t\)</span>.</p>
 <p>We suppose that supply is nonlinear in expected prices, and takes the form</p>
 <div class="math notranslate nohighlight">
 \[
-    S(p^e_{t-1}) = \tanh(\lambda(p^e_{t-1} - c)) + d
+    S(p^e_t) = \tanh(\lambda(p^e_t - c)) + d
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(\lambda\)</span> is a positive constant and <span class="math notranslate nohighlight">\(c, d \geq 0\)</span>.</p>
+<p>where <span class="math notranslate nohighlight">\(\lambda\)</span> is a positive constant, <span class="math notranslate nohighlight">\(c, d\)</span> are nonnegative constants and <span class="math notranslate nohighlight">\(\tanh\)</span> is a type of <a class="reference external" href="https://en.wikipedia.org/wiki/Hyperbolic_functions">hyperbolic function</a>.</p>
 <p>Let’s make a plot of supply and demand for particular choices of the parameter values.</p>
 <p>First we store the parameters in a class and define the functions above as methods.</p>
 <div class="cell docutils container">
@@ -352,7 +352,7 @@ assumptions regarding the way that produces form expectations.</p>
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">p_grid</span><span class="p">,</span> <span class="n">m</span><span class="o">.</span><span class="n">demand</span><span class="p">(</span><span class="n">p_grid</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;$D$&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">p_grid</span><span class="p">,</span> <span class="n">m</span><span class="o">.</span><span class="n">supply</span><span class="p">(</span><span class="n">p_grid</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;S&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">p_grid</span><span class="p">,</span> <span class="n">m</span><span class="o">.</span><span class="n">supply</span><span class="p">(</span><span class="n">p_grid</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;$S$&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;price&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;quantity&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
@@ -362,24 +362,24 @@ assumptions regarding the way that produces form expectations.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/7b9c7e6fd95474b2c9e69eacad7a35132c5a21c1fabbb26f9eb15b78156b548e.png"><img alt="_images/7b9c7e6fd95474b2c9e69eacad7a35132c5a21c1fabbb26f9eb15b78156b548e.png" src="_images/7b9c7e6fd95474b2c9e69eacad7a35132c5a21c1fabbb26f9eb15b78156b548e.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/337bb7c4637263655e05def83e475e5501344d67804fa8ef2c95ea997d9965f9.png"><img alt="_images/337bb7c4637263655e05def83e475e5501344d67804fa8ef2c95ea997d9965f9.png" src="_images/337bb7c4637263655e05def83e475e5501344d67804fa8ef2c95ea997d9965f9.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>Market equilibrium requires that supply equals demand, or</p>
 <div class="math notranslate nohighlight">
 \[
-    a - b p_t = S(p^e_{t-1})
+    a - b p_t = S(p^e_t)
 \]</div>
 <p>Rewriting in terms of <span class="math notranslate nohighlight">\(p_t\)</span> gives</p>
 <div class="math notranslate nohighlight">
 \[
-    p_t = - \frac{1}{b} [S(p^e_{t-1}) - a]
+    p_t = - \frac{1}{b} [S(p^e_t) - a]
 \]</div>
 <p>Finally, to complete the model, we need to describe how price expectations are formed.</p>
 <p>We will assume that expected prices at time <span class="math notranslate nohighlight">\(t\)</span> depend on past prices.</p>
 <p>In particular, we suppose that</p>
 <div class="math notranslate nohighlight" id="equation-p-et">
-<span class="eqno">(24.1)<a class="headerlink" href="#equation-p-et" title="Permalink to this equation">#</a></span>\[    p^e_{t-1} = f(p_{t-1}, p_{t-2})\]</div>
+<span class="eqno">(24.1)<a class="headerlink" href="#equation-p-et" title="Permalink to this equation">#</a></span>\[    p^e_t = f(p_{t-1}, p_{t-2})\]</div>
 <p>where <span class="math notranslate nohighlight">\(f\)</span> is some function.</p>
 <p>Thus, we are assuming that producers expect the time-<span class="math notranslate nohighlight">\(t\)</span> price to be some function of lagged prices, up to <span class="math notranslate nohighlight">\(2\)</span> lags.</p>
 <p>(We could of course add additional lags and readers are encouraged to experiment with such cases.)</p>
@@ -394,7 +394,9 @@ assumptions regarding the way that produces form expectations.</p>
 <p>Let’s start with naive expectations, which refers to the case where producers expect the next period spot price to be whatever the price is in the current period.</p>
 <p>In other words,</p>
 <div class="math notranslate nohighlight">
-\[ p_{t-1}^e = p_{t-1} \]</div>
+\[ 
+p_t^e = p_{t-1} 
+\]</div>
 <p>Using <a class="reference internal" href="#equation-price-t">(24.2)</a>, we then have</p>
 <div class="math notranslate nohighlight">
 \[
@@ -423,8 +425,8 @@ assumptions regarding the way that produces form expectations.</p>
 </div>
 </div>
 </div>
-<p>Let’s try to understand how prices will evolve using a 45 degree diagram, which is a tool for studying one-dimensional dynamics.</p>
-<p>The function <code class="docutils literal notranslate"><span class="pre">plot45</span></code> defined below helps us draw the 45 degree diagram.</p>
+<p>Let’s try to understand how prices will evolve using a 45-degree diagram, which is a tool for studying one-dimensional dynamics.</p>
+<p>The function <code class="docutils literal notranslate"><span class="pre">plot45</span></code> defined below helps us draw the 45-degree diagram.</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -463,7 +465,7 @@ assumptions regarding the way that produces form expectations.</p>
 
     <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">pgrid</span><span class="p">,</span> <span class="n">g</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">pgrid</span><span class="p">),</span> <span class="s1">&#39;b-&#39;</span><span class="p">,</span>
             <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">pgrid</span><span class="p">,</span> <span class="n">pgrid</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;45&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">pgrid</span><span class="p">,</span> <span class="n">pgrid</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$45\degree$&#39;</span><span class="p">)</span>
 
     <span class="n">x</span> <span class="o">=</span> <span class="n">p0</span>
     <span class="n">xticks</span> <span class="o">=</span> <span class="p">[</span><span class="n">pmin</span><span class="p">]</span>
@@ -505,7 +507,7 @@ assumptions regarding the way that produces form expectations.</p>
 </div>
 </details>
 </div>
-<p>Now we can set up a market and plot the 45 degree diagram.</p>
+<p>Now we can set up a market and plot the 45-degree diagram.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m</span> <span class="o">=</span> <span class="n">Market</span><span class="p">()</span>
@@ -520,20 +522,20 @@ assumptions regarding the way that produces form expectations.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/aa087d401ecc328039b441a77d146a8f3ef14e11c5c3ec72248c6dc61a15f333.png"><img alt="_images/aa087d401ecc328039b441a77d146a8f3ef14e11c5c3ec72248c6dc61a15f333.png" src="_images/aa087d401ecc328039b441a77d146a8f3ef14e11c5c3ec72248c6dc61a15f333.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/9abd3f8b181e290523297ae286d0a5d64dc045ce3fb5b24352697badbb355613.png"><img alt="_images/9abd3f8b181e290523297ae286d0a5d64dc045ce3fb5b24352697badbb355613.png" src="_images/9abd3f8b181e290523297ae286d0a5d64dc045ce3fb5b24352697badbb355613.png" style="width: 80%;" /></a>
 </div>
 </div>
-<p>The plot shows the function <span class="math notranslate nohighlight">\(g\)</span> defined in <a class="reference internal" href="#equation-def-g">(24.3)</a> and the <span class="math notranslate nohighlight">\(45\)</span> degree line.</p>
+<p>The plot shows the function <span class="math notranslate nohighlight">\(g\)</span> defined in <a class="reference internal" href="#equation-def-g">(24.3)</a> and the 45-degree line.</p>
 <p>Think of <span class="math notranslate nohighlight">\( p_t \)</span> as a value on the horizontal axis.</p>
 <p>Since <span class="math notranslate nohighlight">\(p_{t+1} = g(p_t)\)</span>, we use the graph of <span class="math notranslate nohighlight">\(g\)</span> to see <span class="math notranslate nohighlight">\(p_{t+1}\)</span> on the vertical axis.</p>
 <p>Clearly,</p>
 <ul class="simple">
-<li><p>If <span class="math notranslate nohighlight">\( g \)</span> lies above the 45 degree line at <span class="math notranslate nohighlight">\(p_t\)</span>, then we have <span class="math notranslate nohighlight">\( p_{t+1} &gt; p_t \)</span>.</p></li>
-<li><p>If <span class="math notranslate nohighlight">\( g \)</span> lies below the 45 degree line at <span class="math notranslate nohighlight">\(p_t\)</span>, then we have <span class="math notranslate nohighlight">\( p_{t+1} &lt; p_t \)</span>.</p></li>
-<li><p>If <span class="math notranslate nohighlight">\( g \)</span> hits the 45 degree line at <span class="math notranslate nohighlight">\(p_t\)</span>, then we have <span class="math notranslate nohighlight">\( p_{t+1} = p_t \)</span>, so <span class="math notranslate nohighlight">\( p_t \)</span> is a steady state.</p></li>
+<li><p>If <span class="math notranslate nohighlight">\( g \)</span> lies above the 45-degree line at <span class="math notranslate nohighlight">\(p_t\)</span>, then we have <span class="math notranslate nohighlight">\( p_{t+1} &gt; p_t \)</span>.</p></li>
+<li><p>If <span class="math notranslate nohighlight">\( g \)</span> lies below the 45-degree line at <span class="math notranslate nohighlight">\(p_t\)</span>, then we have <span class="math notranslate nohighlight">\( p_{t+1} &lt; p_t \)</span>.</p></li>
+<li><p>If <span class="math notranslate nohighlight">\( g \)</span> hits the 45-degree line at <span class="math notranslate nohighlight">\(p_t\)</span>, then we have <span class="math notranslate nohighlight">\( p_{t+1} = p_t \)</span>, so <span class="math notranslate nohighlight">\( p_t \)</span> is a steady state.</p></li>
 </ul>
 <p>Consider the sequence of prices starting at <span class="math notranslate nohighlight">\(p_0\)</span>, as shown in the figure.</p>
-<p>We find <span class="math notranslate nohighlight">\(p_1\)</span> on the vertical axis and then shift it to the horizontal axis using the 45 degree line (where values on the two axes are equal).</p>
+<p>We find <span class="math notranslate nohighlight">\(p_1\)</span> on the vertical axis and then shift it to the horizontal axis using the 45-degree line (where values on the two axes are equal).</p>
 <p>Then from <span class="math notranslate nohighlight">\(p_1\)</span> we obtain <span class="math notranslate nohighlight">\(p_2\)</span> and continue.</p>
 <p>We can see the start of a cycle.</p>
 <p>To confirm this, let’s plot a time series.</p>
@@ -603,11 +605,11 @@ the next period price as a weighted average of their last guess and the
 current spot price.</p>
 <p>That is,</p>
 <div class="math notranslate nohighlight" id="equation-pe-adaptive">
-<span class="eqno">(24.4)<a class="headerlink" href="#equation-pe-adaptive" title="Permalink to this equation">#</a></span>\[p_{t-1}^e = \alpha p_{t-1} + (1-\alpha) p^e_{t-2}
+<span class="eqno">(24.4)<a class="headerlink" href="#equation-pe-adaptive" title="Permalink to this equation">#</a></span>\[p_t^e = \alpha p_{t-1} + (1-\alpha) p^e_{t-1}
 \qquad (0 \leq \alpha \leq 1)\]</div>
 <p>Another way to write this is</p>
 <div class="math notranslate nohighlight" id="equation-pe-adaptive-2">
-<span class="eqno">(24.5)<a class="headerlink" href="#equation-pe-adaptive-2" title="Permalink to this equation">#</a></span>\[p_{t-1}^e = p^e_{t-2} + \alpha (p_{t-1} - p_{t-2}^e)\]</div>
+<span class="eqno">(24.5)<a class="headerlink" href="#equation-pe-adaptive-2" title="Permalink to this equation">#</a></span>\[p_t^e = p^e_{t-1} + \alpha (p_{t-1} - p_{t-1}^e)\]</div>
 <p>This equation helps to show that expectations shift</p>
 <ol class="arabic simple">
 <li><p>up when prices last period were above expectations</p></li>
@@ -616,7 +618,7 @@ current spot price.</p>
 <p>Using <a class="reference internal" href="#equation-pe-adaptive">(24.4)</a>, we obtain the dynamics</p>
 <div class="math notranslate nohighlight">
 \[
-    p_t = - \frac{1}{b} [ S(\alpha p_{t-1} + (1-\alpha) p^e_{t-2}) - a]
+    p_t = - \frac{1}{b} [ S(\alpha p_{t-1} + (1-\alpha) p^e_{t-1}) - a]
 \]</div>
 <p>Let’s try to simulate the price and observe the dynamics using different values of <span class="math notranslate nohighlight">\(\alpha\)</span>.</p>
 <div class="cell docutils container">
@@ -654,7 +656,6 @@ current spot price.</p>
 </div>
 </div>
 <p>Let’s call the function with prices starting at <span class="math notranslate nohighlight">\(p_0 = 5\)</span>.</p>
-<p>TODO does this fit well in the page, even in the pdf? If not should it be stacked vertically?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ts_price_plot_adaptive</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">ts_length</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
@@ -669,7 +670,6 @@ current spot price.</p>
 <p>Decreasing the value of <span class="math notranslate nohighlight">\(\alpha\)</span> shifts more weight to the previous
 expectations, which stabilizes expected prices.</p>
 <p>This increased stability can be seen in the figures.</p>
-<p>TODO check / fix exercises</p>
 </section>
 <section id="exercises">
 <h2><span class="section-number">24.6. </span>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h2>
@@ -741,7 +741,7 @@ expectations for the next period price as a linear combination of their last
 guess and the second last guess.</p>
 <p>That is,</p>
 <div class="math notranslate nohighlight" id="equation-pe-blae">
-<span class="eqno">(24.6)<a class="headerlink" href="#equation-pe-blae" title="Permalink to this equation">#</a></span>\[p_{t-1}^e = \alpha p_{t-1} + (1-\alpha) p_{t-2}\]</div>
+<span class="eqno">(24.6)<a class="headerlink" href="#equation-pe-blae" title="Permalink to this equation">#</a></span>\[p_t^e = \alpha p_{t-1} + (1-\alpha) p_{t-2}\]</div>
 <p>Simulate and plot the price dynamics for <span class="math notranslate nohighlight">\(\alpha \in \{0.1, 0.3, 0.5, 0.8\}\)</span> where <span class="math notranslate nohighlight">\(p_0=1\)</span> and <span class="math notranslate nohighlight">\(p_1=2.5\)</span>.</p>
 </section>
 </div>
@@ -1051,7 +1051,7 @@ guess and the second last guess.</p>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="unpleasant.html">
-   28. Unpleasant Monetarist Arithmetic
+   28. Some Unpleasant Monetarist Arithmetic
   </a>
  </li>
  <li class="toctree-l1">
