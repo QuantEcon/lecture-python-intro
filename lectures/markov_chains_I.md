@@ -646,6 +646,10 @@ The distributions we have been studying can be viewed either
 1. as probabilities or
 1. as cross-sectional frequencies that the law of large numbers leads us to anticipate for large samples.
 
+ ```{note}
+A cross-sectional frequency measures how a particular variable (e.g., employment status) is distributed across a population at a specific time, providing information of the proportions of individuals in each possible state of that variable.
+```
+
 To illustrate, recall our model of employment/unemployment dynamics for a given worker discussed in {prf:ref}`Example 2: Unemployment <mc_eg1>`.
 
 Consider a large population of workers, each of whose lifetime experience is
