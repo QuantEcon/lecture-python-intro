@@ -303,24 +303,6 @@ The next figure plots the supply of capital, as in [](saving_log_2_olg), as well
 
 (For the special case of log utility, supply does not depend on the interest rate, so we have a constant function.)
 
-```{code-cell} ipython3
-R_vals = np.linspace(0.3, 1)
-α, β = 0.5, 0.9
-w = 2.0
-
-fig, ax = plt.subplots()
-
-ax.plot(R_vals, capital_demand(R_vals, α), 
-        label="aggregate demand")
-ax.plot(R_vals, capital_supply(R_vals, β, w), 
-        label="aggregate supply")
-
-ax.set_xlabel("$R_{t+1}$")
-ax.set_ylabel("$k_{t+1}$")
-ax.legend()
-plt.show()
-```
-
 ## Equilibrium
 
 In this section we derive equilibrium conditions and investigate an example.
@@ -409,15 +391,7 @@ ax.plot(R_vals, capital_supply(R_vals, β, w),
 R_e = equilibrium_R_log_utility(α, β, w)
 k_e = (β / (1 + β)) * w
 
-ax.plot(R_e, k_e, 'go', ms=6, alpha=0.6)
-
-ax.annotate(r'equilibrium',
-             xy=(R_e, k_e),
-             xycoords='data',
-             xytext=(0, 60),
-             textcoords='offset points',
-             fontsize=12,
-             arrowprops=dict(arrowstyle="->"))
+ax.plot(R_e, k_e, 'o',label='equilibrium')
 
 ax.set_xlabel("$R_{t+1}$")
 ax.set_ylabel("$k_{t+1}$")
