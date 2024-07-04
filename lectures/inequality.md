@@ -655,15 +655,10 @@ for var in varlist:
 
 # Convert to DataFrame
 results = pd.DataFrame(results, index=years)
-results.to_csv("_static/lecture_specific/inequality/usa-gini-nwealth-tincome-lincome.csv", index_label='year')
 ```
 
-However, to speed up execution we will import a pre-computed dataset from the lecture repository.
-
-<!-- TODO: update from csv to github location -->
-
 ```{code-cell} ipython3
-ginis = pd.read_csv("_static/lecture_specific/inequality/usa-gini-nwealth-tincome-lincome.csv", index_col='year')
+ginis = results
 ginis.head(n=5)
 ```
 
