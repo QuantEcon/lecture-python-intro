@@ -155,7 +155,7 @@ The first-order condition for a maximum can be obtained
 by plugging $c_{t+1}$ into the objective function, taking the derivative
 with respect to $c_t$, and setting it to zero.
 
-This leads to the **Euler equation** of the OLG model, which is
+This leads to the **Euler equation** of the OLG model, which describes the optimal intertemporal consumption dynamics:
 
 ```{math}
 :label: euler_1_olg
@@ -539,7 +539,7 @@ The interest rate reflects the marginal product of capital, which is high when c
 
 Previously, in our examples, we looked at the case of log utility.
 
-Log utility is a rather special case.
+Log utility is a rather special case of CRRA utility with $\gamma \to 1$.
 
 In this section, we are going to assume that $u(c) = \frac{ c^{1-
 \gamma}-1}{1-\gamma}$, where $\gamma >0, \gamma\neq 1$.
