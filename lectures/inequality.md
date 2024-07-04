@@ -1091,6 +1091,12 @@ data = df_income_wealth[df_income_wealth.year == 2016]
 data.head(n=2)
 ```
 
+We can first compute the Gini coefficient using the function defined in the lecture above.
+
+```{code-cell} ipython3
+gini_coefficient(data.n_wealth.values)
+```
+
 Now we can write a vectorized version using `numpy`
 
 ```{code-cell} ipython3
