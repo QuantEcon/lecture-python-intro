@@ -247,7 +247,7 @@ The following code block imports a subset of the dataset `SCF_plus` for 2016,
 which is derived from the [Survey of Consumer Finances](https://en.wikipedia.org/wiki/Survey_of_Consumer_Finances) (SCF).
 
 ```{code-cell} ipython3
-url = 'https://media.githubusercontent.com/media/QuantEcon/high_dim_data/main/SCF_plus/SCF_plus_mini.csv'
+url = 'https://github.com/QuantEcon/high_dim_data/raw/main/SCF_plus/SCF_plus_mini.csv'
 df = pd.read_csv(url)
 df_income_wealth = df.dropna()
 ```
@@ -619,46 +619,11 @@ We will use US data from the {ref}`Survey of Consumer Finances<data:survey-consu
 df_income_wealth.year.describe()
 ```
 
-This code can be used to compute this information over the full dataset.
+{download}`This notebook <_static/lecture_specific/inequality/data.ipynb>` can be used to compute this information over the full dataset.
 
 ```{code-cell} ipython3
-:tags: [skip-execution, hide-input, hide-output]
-
-!pip install quantecon
-import quantecon as qe
-
-varlist = ['n_wealth',   # net wealth 
-           't_income',   # total income
-           'l_income']   # labor income
-
-df = df_income_wealth
-
-# create lists to store Gini for each inequality measure
-results = {}
-
-for var in varlist:
-    # create lists to store Gini
-    gini_yr = []
-    for year in years:
-        # repeat the observations according to their weights
-        counts = list(round(df[df['year'] == year]['weights'] ))
-        y = df[df['year'] == year][var].repeat(counts)
-        y = np.asarray(y)
-        
-        rd.shuffle(y)    # shuffle the sequence
-      
-        # calculate and store Gini
-        gini = qe.gini_coefficient(y)
-        gini_yr.append(gini)
-        
-    results[var] = gini_yr
-
-# Convert to DataFrame
-results = pd.DataFrame(results, index=years)
-```
-
-```{code-cell} ipython3
-ginis = results
+data_url = 'https://github.com/QuantEcon/lecture-python-intro/raw/main/lectures/_static/lecture_specific/inequality/usa-gini-nwealth-tincome-lincome.csv'
+ginis = pd.read_csv(data_url, index_col='year')
 ginis.head(n=5)
 ```
 
@@ -684,10 +649,6 @@ The time series for the wealth Gini exhibits a U-shape, falling until the early
 One possibility is that this change is mainly driven by technology.
 
 However, we will see below that not all advanced economies experienced similar growth of inequality.
-
-
-
-
 
 ### Cross-country comparisons of income inequality
 
