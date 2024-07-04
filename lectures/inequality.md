@@ -1094,7 +1094,7 @@ data.head(n=2)
 We can first compute the Gini coefficient using the function defined in the lecture above.
 
 ```{code-cell} ipython3
-gini_coefficient(data.n_wealth.values)
+gini_coefficient(data.n_wealth.values[1:3000])
 ```
 
 Now we can write a vectorized version using `numpy`
@@ -1108,7 +1108,7 @@ def gini(y):
     return g_sum / (2 * n * np.sum(y))
 ```
 ```{code-cell} ipython3
-gini(data.n_wealth.values)
+gini(data.n_wealth.values[1:3000])
 ```
 Let's simulate five populations by drawing from a lognormal distribution as before
 
