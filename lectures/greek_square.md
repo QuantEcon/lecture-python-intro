@@ -17,18 +17,16 @@ kernelspec:
 ## Introduction
 
 
-This lecture can be viewed as a sequel to {doc}`eigen_I`
+This lecture can be viewed as a sequel to {doc}`eigen_I`.
 
 It  provides an  example of how eigenvectors isolate  *invariant subspaces* that help construct and analyze solutions of linear difference equations. 
 
 When vector $x_t$ starts in an invariant subspace, iterating the different equation keeps $x_{t+j}$
 in that subspace for all $j \geq 1$.  
 
-Invariant subspace methods are used throughout applied economic dynamics, for example, in the lecture {doc}`money_inflation`
+Invariant subspace methods are used throughout applied economic dynamics, for example, in the lecture {doc}`money_inflation`.
 
 Our approach here  is to illustrate the method with an ancient example, one that ancient Greek mathematicians used to compute square roots of positive integers.
-
-In this lecture we assume that we have yet
 
 ## Perfect squares and irrational numbers
 
@@ -46,11 +44,11 @@ The ancient Greeks invented an algorithm to compute square roots of integers, in
 
 Their method involved
 
- * computing a particular sequence of integers $\{y_t\}_{t=0}^\infty$
+ * computing a particular sequence of integers $\{y_t\}_{t=0}^\infty$;
  
- * computing $\lim_{t \rightarrow \infty} \left(\frac{y_{t+1}}{y_t}\right) = \bar r$
+ * computing $\lim_{t \rightarrow \infty} \left(\frac{y_{t+1}}{y_t}\right) = \bar r$;
  
- * deducing the desired square root from $\bar r$
+ * deducing the desired square root from $\bar r$.
  
 In this lecture, we'll describe this method.
 
@@ -90,7 +88,7 @@ equation {eq}`eq:2diff1` for each $t \geq 0$.
 We seek an expression  for $y_t, t \geq 0$ as functions of the initial conditions  $(y_{-1},  y_{-2})$:
 
 $$ 
-y_t = g((y_{-1},  y_{-2});t), \quad t \geq 0
+y_t = g((y_{-1},  y_{-2});t), \quad t \geq 0.
 $$ (eq:2diff2)
 
 We call such a function $g$ a *solution* of the difference equation {eq}`eq:2diff1`.
@@ -110,7 +108,7 @@ For initial condition that satisfy {eq}`eq:2diff3`
 equation {eq}`eq:2diff1` impllies that
 
 $$
-y_0 = \left(a_1 + \frac{a_2}{\delta}\right) y_{-1}
+y_0 = \left(a_1 + \frac{a_2}{\delta}\right) y_{-1}.
 $$ (eq:2diff4)
 
 We want 
@@ -122,13 +120,13 @@ $$ (eq:2diff5)
 which we can rewrite as the *characteristic equation* 
 
 $$
-\delta^2 - a_1 \delta - a_2 = 0
+\delta^2 - a_1 \delta - a_2 = 0.
 $$ (eq:2diff6)
 
 Applying the quadratic formula to solve for the roots of {eq}`eq:2diff6` we find that
 
 $$
-\delta = \frac{ a_1 \pm \sqrt{a_1^2 + 4 a_2}}{2}
+\delta = \frac{ a_1 \pm \sqrt{a_1^2 + 4 a_2}}{2}.
 $$ (eq:2diff7)
 
 For either of the two $\delta$'s that satisfy equation {eq}`eq:2diff7`, 
@@ -177,9 +175,9 @@ We'll turn to that after we describe how Ancient Greeks figured out how to compu
 
 ## Algorithm of the Ancient Greeks
 
-Let $\sigma$ be a positive  integer greater than $1$
+Let $\sigma$ be a positive  integer greater than $1$.
 
-So $\sigma \in {\mathcal I} \equiv  \{2, 3, \ldots \}$ 
+So $\sigma \in {\mathcal I} \equiv  \{2, 3, \ldots \}$.
 
 We want an algorithm to compute the square root of $\sigma \in {\mathcal I}$.
 
@@ -195,19 +193,15 @@ $$
 y_{t} = 2 y_{t-1} - (1 - \sigma) y_{t-2}, \quad t \geq 0
 $$ (eq:second_order)
 
-together with a pair of integers that are  initial conditions for   $y_{-1}, y_{-2}$.
+together with a pair of integers that are initial conditions for $y_{-1}, y_{-2}$.
 
-First, we'll deploy some techniques for solving the difference equations that are also deployed in {doc}`dynam:samuelson`
-
-
+First, we'll deploy some techniques for solving the difference equations that are also deployed in {doc}`dynam:samuelson`.
 
 The characteristic equation associated with difference equation {eq}`eq:second_order` is
 
 $$
 c(x) \equiv x^2 - 2 x + (1 - \sigma) = 0
 $$ (eq:cha_eq0)
-
-
 
 (Notice how this is an instance of equation {eq}`eq:2diff6` above.)
 
@@ -233,11 +227,11 @@ By applying the quadratic formula to solve for the roots  the characteristic equ
 {eq}`eq:cha_eq0`, we find that
 
 $$
-\lambda_1 = 1 + \sqrt{\sigma}, \quad \lambda_2 = 1 - \sqrt{\sigma} 
+\lambda_1 = 1 + \sqrt{\sigma}, \quad \lambda_2 = 1 - \sqrt{\sigma}.
 $$ (eq:secretweapon)
 
 Formulas {eq}`eq:secretweapon` indicate that  $\lambda_1$ and  $\lambda_2$ are each functions
-of a single variable, namely,  $\sqrt{\sigma}$, the object that we along with some  Ancient Greeks   want to compute.
+of a single variable, namely,  $\sqrt{\sigma}$, the object that we along with some Ancient Greeks want to compute.
 
 Ancient Greeks had an indirect way of exploiting this fact to compute square roots of a positive integer.
 
@@ -265,13 +259,13 @@ Since $\lambda_1 = 1 + \sqrt{\sigma} > 1 > \lambda_2 = 1 - \sqrt{\sigma} $,
 it follows that for *almost all* (but not all) initial conditions
 
 $$
-\lim_{t \rightarrow \infty} \left(\frac{y_{t+1}}{y_t}\right) = 1 + \sqrt{\sigma}
+\lim_{t \rightarrow \infty} \left(\frac{y_{t+1}}{y_t}\right) = 1 + \sqrt{\sigma}.
 $$
 
 Thus,
 
 $$
-\sqrt{\sigma} = \lim_{t \rightarrow \infty} \left(\frac{y_{t+1}}{y_t}\right) - 1
+\sqrt{\sigma} = \lim_{t \rightarrow \infty} \left(\frac{y_{t+1}}{y_t}\right) - 1.
 $$
 
 However, notice that if $\eta_1 = 0$, then
@@ -283,7 +277,7 @@ $$
 so that 
 
 $$
-\sqrt{\sigma} = 1 - \lim_{t \rightarrow \infty} \left(\frac{y_{t+1}}{y_t}\right)
+\sqrt{\sigma} = 1 - \lim_{t \rightarrow \infty} \left(\frac{y_{t+1}}{y_t}\right).
 $$
 
 Actually, if $\eta_1 =0$, it follows that
@@ -306,9 +300,9 @@ so again, convergence is immediate, and we have no need to compute a limit.
 
 System {eq}`eq:leq_sq` of simultaneous linear equations can be used in various ways.
 
- * we can take $y_{-1}, y_{-2}$ as given initial conditions and solve for $\eta_1, \eta_2$
+ * we can take $y_{-1}, y_{-2}$ as given initial conditions and solve for $\eta_1, \eta_2$;
  
- * we can instead take $\eta_1, \eta_2$ as given and solve for initial conditions  $y_{-1}, y_{-2}$ 
+ * we can instead take $\eta_1, \eta_2$ as given and solve for initial conditions  $y_{-1}, y_{-2}$.
  
 Notice how we used the  second approach above when we set  $\eta_1, \eta_2$  either to $(0, 1)$, for example, or $(1, 0)$, for example.
 
@@ -329,7 +323,6 @@ But first let's write some Python code to iterate on equation {eq}`eq:second_ord
 ## Implementation
 
 We now implement the above algorithm to compute the square root of $\sigma$.
-
 
 In this lecture, we use the following import:
 
@@ -594,8 +587,6 @@ $$
 
 that
 
- 
-
 $$
 V^{2,1} V_{1,1} + V^{2,2} V_{2,1} = 0
 $$
@@ -603,7 +594,7 @@ $$
 and
 
 $$
-V^{1,1}V_{1,2} + V^{1,2} V_{2,2} = 0
+V^{1,1}V_{1,2} + V^{1,2} V_{2,2} = 0.
 $$
 
 These equations will be very useful soon.
@@ -619,7 +610,7 @@ $$
 To deactivate $\lambda_1$ we want to set
 
 $$
-x_{1,0}^* = 0
+x_{1,0}^* = 0.
 $$
 
 
@@ -638,7 +629,7 @@ $$
 This can be achieved by setting 
 
 $$
-x_{2,0} = -(V^{2,2})^{-1} V^{2,1} x_{1,0} = V_{2,1} V_{1,1}^{-1} x_{1,0}
+x_{2,0} = -(V^{2,2})^{-1} V^{2,1} x_{1,0} = V_{2,1} V_{1,1}^{-1} x_{1,0}.
 $$ (eq:deactivate2)
 
 Let's verify {eq}`eq:deactivate1` and {eq}`eq:deactivate2` below
@@ -687,30 +678,30 @@ We find that the ratios converge to $\lambda_2$ in the first case and $\lambda_1
 ```{code-cell} ipython3
 :tags: [hide-input]
 
-# Plot the ratios for y_t 
-plt.figure(figsize=(14, 6))
+# Plot the ratios for y_t / y_{t-1}
+fig, axs = plt.subplots(1, 2, figsize=(14, 6))
 
-plt.subplot(1, 2, 1)
-plt.plot(np.round(ratios_λ1, 6), 
-         label=r'$\frac{y_t}{y_{t-1}}$', linewidth=3)
-plt.axhline(y=Λ[1], color='red', 
-            linestyle='--', label='$\lambda_2$', alpha=0.5)
-plt.xlabel('t', size=18)
-plt.ylabel(r'$\frac{y_t}{y_{t-1}}$', size=18)
-plt.title(r'$\frac{y_t}{y_{t-1}}$ after Muting $\lambda_1$', 
-          size=13)
-plt.legend()
+# First subplot
+axs[0].plot(np.round(ratios_λ1, 6), 
+            label=r'$\frac{y_t}{y_{t-1}}$', linewidth=3)
+axs[0].axhline(y=Λ[1], color='red', linestyle='--', 
+               label='$\lambda_2$', alpha=0.5)
+axs[0].set_xlabel('t', size=18)
+axs[0].set_ylabel(r'$\frac{y_t}{y_{t-1}}$', size=18)
+axs[0].set_title(r'$\frac{y_t}{y_{t-1}}$ after Muting $\lambda_1$', 
+                 size=13)
+axs[0].legend()
 
-plt.subplot(1, 2, 2)
-plt.plot(ratios_λ2, 
-         label=r'$\frac{y_t}{y_{t-1}}$', linewidth=3)
-plt.axhline(y=Λ[0], color='green', 
-            linestyle='--', label='$\lambda_1$', alpha=0.5)
-plt.xlabel('t', size=18)
-plt.ylabel(r'$\frac{y_t}{y_{t-1}}$', size=18)
-plt.title(r'$\frac{y_t}{y_{t-1}}$ after Muting $\lambda_2$', 
-          size=13)
-plt.legend()
+# Second subplot
+axs[1].plot(ratios_λ2, label=r'$\frac{y_t}{y_{t-1}}$', 
+            linewidth=3)
+axs[1].axhline(y=Λ[0], color='green', linestyle='--', 
+               label='$\lambda_1$', alpha=0.5)
+axs[1].set_xlabel('t', size=18)
+axs[1].set_ylabel(r'$\frac{y_t}{y_{t-1}}$', size=18)
+axs[1].set_title(r'$\frac{y_t}{y_{t-1}}$ after Muting $\lambda_2$', 
+                 size=13)
+axs[1].legend()
 
 plt.tight_layout()
 plt.show()
