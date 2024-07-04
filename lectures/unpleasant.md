@@ -16,7 +16,7 @@ kernelspec:
 ## Overview
 
 
-This lecture builds on concepts and issues introduced in our lecture on {doc}`money supplies and price levels<money_inflation>`.
+This lecture builds on concepts and issues introduced in {doc}`money_inflation`.
 
 That lecture describes stationary equilibria that reveal a [*Laffer curve*](https://en.wikipedia.org/wiki/Laffer_curve) in the inflation tax rate and the associated  stationary rate of return 
 on currency.  
@@ -34,17 +34,13 @@ The critical **money-to-bonds** ratio stabilizes only at time $T$ and afterwards
 And the larger is $T$, the higher is the gross-of-interest government deficit that must be financed
 by printing money at times $t \geq T$. 
 
-These outcomes are the essential finding of Sargent and Wallace's **unpleasant monetarist arithmetic** {cite}`sargent1981`.
-
-```{tip}
-Please read our lecture on {doc}`money supplies and price levels<money_inflation>` before diving into this lecture.
-```
+These outcomes are the essential finding of Sargent and Wallace's "unpleasant monetarist arithmetic" {cite}`sargent1981`.
 
 That lecture  described  supplies and demands for money that appear in lecture.
 
 It also   characterized the steady state equilibrium from which we work backwards in this lecture. 
 
-In addition to learning about **unpleasant monetarist arithmetic**, in this lecture we'll learn how to implement a *fixed point* algorithm for computing an initial price level.
+In addition to learning about "unpleasant monetarist arithmetic", in this lecture we'll learn how to implement a [*fixed point*](https://en.wikipedia.org/wiki/Fixed_point_(mathematics)) algorithm for computing an initial price level.
 
 
 ## Setup
@@ -120,7 +116,7 @@ This is a version of a standard constraint on a central bank's [**open market op
 
 ## An open market operation at $t=0$
 
-Following {cite:t}`sargent1981`, we analyze consequences of a central bank policy that 
+Following Sargent and Wallace {cite}`sargent1981`, we analyze consequences of a central bank policy that 
 uses an open market operation to lower the price level in the face of a persistent fiscal
 deficit that takes the form of a positive $g$.
 
@@ -252,7 +248,7 @@ $R_u$ is a root of the quadratic equation {eq}`eq:up_steadyquadratic` that deter
 ## Algorithm (pseudo code)
 
 Now let's describe a computational algorithm in more detail in the form of a description
-that constitutes  ''pseudo code'' because it approaches a set of instructions we could provide to a 
+that constitutes pseudo code because it approaches a set of instructions we could provide to a 
 Python coder.
 
 To compute an equilibrium, we deploy the following algorithm.
@@ -284,7 +280,7 @@ $$
 
 * Compute $R_u, p_T$ from formulas {eq}`eq:up_steadyquadratic`  and {eq}`eq:LafferTstationary` above
 
-* Compute a new estimate of $p_0$, call it $\widehat p_0$,  from equation {eq}`eq:allts` above
+* Compute a new estimate of $p_0$, call it $\widehat p_0$, from equation {eq}`eq:allts` above
 
 * Note that the preceding steps define a mapping
 
@@ -405,7 +401,7 @@ money supply $m_0$.
 Notice that the slope of $p_0$ as a function of $m_0$ is constant.
 
 This outcome indicates that our model verifies a quantity theory of money outcome,
-something that {cite:t}`sargent1981` purposefully built into their model to justify
+something that Sargent and Wallace {cite}`sargent1981` purposefully built into their model to justify
 the adjective *monetarist* in their title.
 
 
@@ -498,7 +494,7 @@ mystnb:
 plot_path([80, 100], msm)
 ```
 
-{numref}`fig:unpl1` summarizes outcomes of  two experiments that convey   messages of {cite:t}`sargent1981`.
+{numref}`fig:unpl1` summarizes outcomes of two experiments that convey messages of Sargent and Wallace {cite}`sargent1981`.
 
 * An open market operation that reduces the supply of money at time $t=0$ reduces  the price level at time $t=0$
 
