@@ -619,7 +619,7 @@ We will use US data from the {ref}`Survey of Consumer Finances<data:survey-consu
 df_income_wealth.year.describe()
 ```
 
-{download}`This notebook <_static/lecture_specific/inequality/data.ipynb>` can be used to compute this information over the full dataset.
+[This notebook](https://github.com/QuantEcon/lecture-python-intro/tree/main/lectures/_static/lecture_specific/inequality/data.ipynb) can be used to compute this information over the full dataset.
 
 ```{code-cell} ipython3
 data_url = 'https://github.com/QuantEcon/lecture-python-intro/raw/main/lectures/_static/lecture_specific/inequality/usa-gini-nwealth-tincome-lincome.csv'
