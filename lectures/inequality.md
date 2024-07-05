@@ -1081,7 +1081,7 @@ df_income_wealth.describe()
 df_income_wealth.head(n=4)
 ```
 
-We will focus on wealth variable `n_wealth` to compute a Gini coefficient for the year 1990.
+We will focus on wealth variable `n_wealth` to compute a Gini coefficient for the year 2016.
 
 ```{code-cell} ipython3
 data = df_income_wealth[df_income_wealth.year == 2016].sample(3000, random_state=1)
