@@ -336,7 +336,7 @@ The French constitution and prevailing arrangements had empowered three constitu
 * government creditors (i.e., owners of government bonds)
 
 When the French government had confronted a similar situation around 1720 after King  Louis XIV's
-Wars had left it with a debt crisis, it had ``solved'' the problem at the expense of 
+Wars had left it with a debt crisis, it had sacrificed the interests of  
 government creditors, i.e., by defaulting enough of its debt to bring  reduce interest payments down enough to balance the budget.
 
 Somehow, in 1789, creditors of the French government were more powerful than they had been in 1720.
@@ -350,6 +350,78 @@ The King called the Estates General together in an effort to promote the reforms
 would bring sustained budget balance.  
 
 {cite}`sargent_velde1995` describe how the French Revolutionaries set out to accomplish that.
+
+
+## Nationalization, Privatization, Debt Reduction 
+
+In 1789, the Revolutionaries quickly reorganized the Estates General  into a National Assembly.
+
+A first piece of business was to address the fiscal crisis, the situation that had motivated the King to convence the Estates General.
+
+
+The Revolutionaries were not socialists or communists.
+
+To the contrary, they respected  private property and knew state-of-the-art economics.  
+
+They knew that to honor government debts, they would have to raise new revenues or reduce expenditures.
+
+A coincidence was that the Catholic Church owned vast income-producing properties.  
+
+Indeed, the capitalized value of those income streams put estimates of the value of church lands at 
+about the same amount as the entire French government debt. 
+
+This coincidence fostered a three step plan for servicing the French government debt
+
+ * nationalize the church lands -- i.e., sequester or confiscate it without paying for it
+ * sell the church lands 
+ * use the proceeds from those sales to service or even retire French government debt
+
+The monetary theory underlying this plan had been set out by Adam Smith in his analysis of what he called **real bills**  in his  1776 book
+**The Wealth of Nations**   {cite}`smith2010wealth`, which many of the revolutionaries had read.
+
+Adam Smith defined a **real bill** as a paper money note that is backed by a claims on a real asset like productive capital or inventories. 
+
+
+
+The National Assembly put togethere an ingenious institutional  arrangement to implement this plan.
+
+
+In response to a motion by Catholic Bishop Talleyrand (an atheist),
+the National Assembly confiscated and nationalized  Church lands. 
+
+
+The National Assembly intended to use earnings from  Church lands to service its national debt.
+
+To do this, it  began to implement a ''privatization plan'' that would let it service its debt while
+not raising taxes.
+
+Their plan involved issuing paper notes called ''assignats'' that entitled bearers to use them to purchase state lands.  
+
+These paper notes would be ''as good as silver coins'' in the sense that both were acceptable means of payment in exchange for those (formerly) church lands.  
+
+Finance Minister Necker and the Constituants of the National Assembly thus  planned
+to solve the privatization problem **and** the debt problem simultaneously
+by creating a new currency. 
+
+They devised a scheme to raise revenues by auctioning
+the confiscated lands, thereby withdrawing paper notes issued on the security of
+the lands sold by the government.
+
+ This ''tax-backed money'' scheme propelled the National Assembly  into the domains of then modern monetary theories.
+ 
+Records of  debates show
+how members of the Assembly marshaled theory and evidence to assess the likely
+effects of their innovation. 
+
+  * Members of the Natioanl Assembly quoted David Hume and Adam Smith
+  * They  cited John Law's System of 1720 and the American experiences with paper money fifteen years
+earlier as examples of how paper money schemes can go awry
+  * Knowing pitfalls, they set out to avoid them
+
+They succeeded for two or three years.
+
+But after that, France entered a big War that disrupted the plan in ways that completely altered the character of France's paper money. {cite}`sargent_velde1995` describe what happened.
+
 
 
 
@@ -829,6 +901,16 @@ plt.show()
 #plt.savefig('frfinfig7_line1.pdf', dpi=600)
 ```
 
+The regression line in Figure {numref}`fig104c` shows that large increases in real balances of
+assignats (paper money) were accompanied by only modest rises in the price level, an outcome in line
+with the real bills theory. 
+
+During this period, assignats were claims on church lands. 
+
+But towards the end of this period, the price level started to rise and real balances to fall
+as the government continued to print money but stopped selling church land. 
+
+To get people to hold that paper money, the government forced people to hold it by using legal restrictions.
 
 Now let's regress real balances on inflation  during the terror  and plot the regression
 line.
@@ -863,6 +945,13 @@ plt.tight_layout()
 plt.show()
 #plt.savefig('frfinfig7_line2_rev.pdf', dpi=600)
 ```
+
+The regression line in Figure {numref}`fig104d` shows that large increases in real balances of
+assignats (paper money) were accompanied by little upward price  level pressure, even some declines in prices.  
+
+This reflects how well legal restrictions -- financial repression -- was working during the period of the Terror. 
+
+But the Terror ended in July 1794.  That unleashed a big inflation as people tried to find other ways to transact and store values. 
 
 The following two graphs are for the classical hyperinflation period.
 
@@ -901,7 +990,8 @@ plt.show()
 #plt.savefig('frfinfig7_line3.pdf', dpi=600)
 ```
 
-
+Figure {numref}`fig104e` shows the results of regressing inflation on real balances during the
+period of the hyperinflation. 
 
 ```{code-cell} ipython3
 ---
@@ -932,118 +1022,5 @@ plt.tight_layout()
 plt.show()
 #plt.savefig('frfinfig7_line3_rev.pdf', dpi=600)
 ```
-
-
-STUFF FROM SV 1995
-
-
-## Fiscal Situation and Response of National Assembly
-
-
-In response to a motion by Catholic Bishop Talleyrand,
-the National Assembly confiscated and nationalized  Church lands. 
-
-But the National Assembly was dominated by free market advocates, not socialists.
-
-The National Assembly intended to use earnings from  Church lands to service its national debt.
-
-To do this, it  began to implement a ''privatization plan'' that would let it service its debt while
-not raising taxes.
-
-Their plan involved issuing paper notes called ''assignats'' that entitled bearers to use them to purchase state lands.  
-
-These paper notes would be ''as good as silver coins'' in the sense that both were acceptable means of payment in exchange for those (formerly) church lands.  
-
-Finance Minister Necker and the Constituants planned
-to solve the privatization problem **and** the debt problem simultaneously
-by creating a new currency. 
-
-They devised a scheme to raise revenues by auctioning
-the confiscated lands, thereby withdrawing paper notes issued on the security of
-the lands sold by the government.
-
- This ''tax-backed money'' scheme propelled the National Assembly  into the domain of monetary experimentation.
- 
-Records of their debates show
-how members of the Assembly marshaled theory and evidence to assess the likely
-effects of their innovation. 
-
-They quoted David Hume and Adam Smith and cited John
-Law's System of 1720 and the American experiences with paper money fifteen years
-earlier as examples of how paper money schemes can go awry.
-
-
-### Necker's plan and how it was tweaked
-
-Necker's original plan embodied two components: a national bank and a new
-financial instrument, the ''assignat''. 
-
-
-Necker's national
-bank was patterned after the Bank of England. He proposed to transform the *Caisse d'Escompte* into a national bank by granting it a monopoly on issuing
-notes and marketing government debt. The *Caisse*  was a
-discount bank founded in 1776 whose main function was to discount commercial bills
-and issue convertible notes. Although independent of the government in principle,
-it had occasionally been used as a source of loans. Its notes had been declared
-inconvertible in August 1788, and by the time of Necker's proposal, its reserves
-were exhausted. Necker's plan placed the National Estates (as the Church lands
-became known after the addition of the royal demesne) at the center of the financial
-picture: a ''Bank of France'' would issue a $5\%$ security mortgaged on the prospective
-receipts from the modest sale of some 400 millions' worth of National Estates in
-the years 1791 to 1793.
-```{note}
- Only 170 million was to be used initially
-to cover the deficits of 1789 and 1790.
-```
-
-
-By mid-1790, members of the National Assembly had agreed to sell the National
-Estates and to use the proceeds to service the debt in a ``tax-backed money'' scheme 
-```{note}
-Debt service costs absorbed 
- over 60\% of French government expenditures. 
-```
-
-The government would issue securities with which it would reimburse debt.
-
-The securities
-were acceptable as payment for National Estates purchased at auctions; once received
-in payment, they were to be burned. 
-
-```{note} 
-The appendix to {cite}`sargent_velde1995` describes  the
-auction rules in detail.
-```
-The Estates available for sale were thought to be worth about 2,400
-million, while the exactable debt (essentially fixed-term loans, unpaid arrears,
-and liquidated offices) stood at about 2,000 million. The value of the land was
-sufficient to let the Assembly retire all of the exactable debt and thereby eliminate
-the interest payments on it. After lengthy debates, in August 1790, the Assembly set the denomination
-and interest rate structure of the debt. 
-
-
-```{note} Two distinct
-aspects of monetary theory help in thinking about the assignat plan. First, a system
-beginning with a commodity standard typically has room for a once-and-for-all emission
-of (an unbacked) paper currency that can replace the commodity money without generating
-inflation. \citet{Sargent/Wallace:1983} describe models with this property. That
-commodity money systems are wasteful underlies Milton Friedman's (1960) TOM:ADD REFERENCE preference
-for a fiat money regime over a commodity money. Second, in a small country on a
-commodity money system that starts with restrictions on intermediation, those restrictions
-can be relaxed by letting the government issue bank notes on the security of safe
-private indebtedness, while leaving bank notes convertible into gold at par. See
-Adam Smith  and Sargent and Wallace (1982) for expressions of this idea. TOM: ADD REFERENCES HEREAND IN BIBTEX FILE.
-```
-
-
-```{note} 
-The
-National Assembly debated many now classic questions in monetary economics. Under
-what conditions would money creation generate inflation, with what consequences
-for business conditions? Distinctions were made between issue of money to pay off
-debt, on one hand, and monetization of deficits, on the other. Would *assignats* be akin
-to notes emitted under a real bills regime, and cause loss of specie, or would
-they circulate alongside specie, thus increasing the money stock? Would inflation
-affect real wages? How would it impact foreign trade, competitiveness of French
-industry and agriculture, balance of trade, foreign exchange?
-```
+Figure {numref}`fig104e` shows the results of regressing  real balances on inflation during the
+period of the hyperinflation.
