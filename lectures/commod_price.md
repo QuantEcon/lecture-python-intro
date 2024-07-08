@@ -32,7 +32,7 @@ We will solve an equation where the price function is the unknown.
 
 This is harder than solving an equation for an unknown number, or vector.
 
-The lecture will discuss one way to solve a *functional equation* (the equation where the unknown object is a function).
+The lecture will discuss one way to solve a [functional equation](https://en.wikipedia.org/wiki/Functional_equation) (an equation where the unknown object is a function).
 
 For this lecture we need the `yfinance` library.
 
@@ -133,12 +133,12 @@ $p_t$.
 
 The harvest of the commodity at time $t$ is $Z_t$.
 
-We assume that the sequence $\{ Z_t \}_{t \geq 1}$ is {ref}`IID <iid-theorem>` with common density function $\phi$, where $\phi$ is nonnegative.
+We assume that the sequence $\{ Z_t \}_{t \geq 1}$ is IID with common density function $\phi$, where $\phi$ is nonnegative.
 
 Speculators can store the commodity between periods, with $I_t$ units
 purchased in the current period yielding $\alpha I_t$ units in the next.
 
-In general, $\alpha$ is a factor. Here $\alpha \in (0,1)$ is a depreciation rate for the commodity.
+Here the parameter $\alpha \in (0,1)$ is a depreciation rate for the commodity.
 
 For simplicity, the risk free interest rate is taken to be
 zero, so expected profit on purchasing $I_t$ units is
@@ -219,6 +219,8 @@ How can we find an equilibrium?
 Our path of attack will be to seek a system of prices that depend only on the
 current state.
 
+(Our solution method involves using an [ansatz](https://en.wikipedia.org/wiki/Ansatz), which is an educated guess --- in this case for the price function.)
+
 In other words, we take a function $p$ on $S$ and set $p_t = p(X_t)$ for every $t$.
 
 Prices and quantities then follow
@@ -234,8 +236,6 @@ conditions above.
 More precisely, we seek a $p$ such that [](eq:arbi) and [](eq:pmco) hold for
 the corresponding system [](eq:eosy).
 
-To this end, we apply the idea of [**ansatz**](https://en.wikipedia.org/wiki/Ansatz) here by supposing that there exists a function $p^*$ on $S$
-satisfying
 
 $$
   p^*(x) = \max
