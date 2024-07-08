@@ -61,6 +61,8 @@ import matplotlib as mpl
 from mpl_toolkits.mplot3d import Axes3D
 from matplotlib.animation import FuncAnimation
 from IPython.display import HTML
+from matplotlib.patches import Polygon
+from mpl_toolkits.mplot3d.art3d import Poly3DCollection
 ```
 
 ## Definitions and examples
@@ -743,6 +745,11 @@ This is, in some sense, a steady state probability of unemployment.
 
 Not surprisingly it tends to zero as $\beta \to 0$, and to one as $\alpha \to 0$.
 
+
+
+
+
+
 ### Calculating stationary distributions
 
 A stable algorithm for computing stationary distributions is implemented in [QuantEcon.py](http://quantecon.org/quantecon-py).
@@ -757,6 +764,11 @@ mc = qe.MarkovChain(P)
 mc.stationary_distributions  # Show all stationary distributions
 ```
 
+
+
+
+
+
 ### Asymptotic stationarity
 
 Consider an everywhere positive stochastic matrix with unique stationary distribution $\psi^*$.
@@ -768,16 +780,21 @@ For example, we have the following result
 (strict_stationary)=
 ```{prf:theorem}
 If there exists an integer $m$ such that all entries of $P^m$ are
-strictly positive, with unique stationary distribution $\psi^*$, then
+strictly positive, then
 
 $$
     \psi_0 P^t \to \psi^*
     \quad \text{ as } t \to \infty
 $$
+
+where $\psi^*$ is the unique stationary distribution.
 ```
 
+This situation is often referred to as **asymptotic stationarity** or **global stability**.
 
-See, for example, {cite}`sargent2023economic` Chapter 4.
+A proof of the theorem can be found in Chapter 4 of {cite}`sargent2023economic`, as well as many other sources.
+
+
 
 
 
@@ -848,80 +865,12 @@ Here
 You might like to try experimenting with different initial conditions.
 
 
-#### An alternative illustration
-
-We can show this in a slightly different way by focusing on the probability that $\psi_t$ puts on each state.
-
-First, we write a function to draw initial distributions $\psi_0$ of size `num_distributions`
-
-```{code-cell} ipython3
-def generate_initial_values(num_distributions):
-    n = len(P)
-    
-    draws = np.random.randint(1, 10_000_000, size=(num_distributions,n))
-    ψ_0s = draws/draws.sum(axis=1)[:, None]
-
-    return ψ_0s
-```
-
-We then write a function to plot the dynamics of  $(\psi_0 P^t)(i)$ as $t$ gets large, for each state $i$ with different initial distributions
-
-```{code-cell} ipython3
-def plot_distribution(P, ts_length, num_distributions):
-
-    # Get parameters of transition matrix
-    n = len(P)
-    mc = qe.MarkovChain(P)
-    ψ_star = mc.stationary_distributions[0]
-
-    ## Draw the plot
-    fig, axes = plt.subplots(nrows=1, ncols=n, figsize=[11, 5])
-    plt.subplots_adjust(wspace=0.35)
-
-    ψ_0s = generate_initial_values(num_distributions)
-
-    # Get the path for each starting value
-    for ψ_0 in ψ_0s:
-        ψ_t = iterate_ψ(ψ_0, P, ts_length)
-
-        # Obtain and plot distributions at each state
-        for i in range(n):
-            axes[i].plot(range(0, ts_length), ψ_t[:,i], alpha=0.3)
-
-    # Add labels
-    for i in range(n):
-        axes[i].axhline(ψ_star[i], linestyle='dashed', lw=2, color = 'black',
-                        label = fr'$\psi^*({i})$')
-        axes[i].set_xlabel('t')
-        axes[i].set_ylabel(fr'$\psi_t({i})$')
-        axes[i].legend()
-
-    plt.show()
-```
-
-The following figure shows
-
-```{code-cell} ipython3
-# Define the number of iterations
-# and initial distributions
-ts_length = 50
-num_distributions = 25
-
-P = np.array([[0.971, 0.029, 0.000],
-              [0.145, 0.778, 0.077],
-              [0.000, 0.508, 0.492]])
-
-plot_distribution(P, ts_length, num_distributions)
-```
-
-The convergence to $\psi^*$ holds for different initial distributions.
-
 
 
 #### Example: failure of convergence
 
 
-In the case of a periodic chain, with
+Consider the periodic chain with stochastic matrix
 
 $$
 P = 
@@ -931,20 +880,79 @@ P =
 \end{bmatrix}
 $$
 
-we find the distribution oscillates
+This matrix does not satisfy the conditions of 
+{ref}`prf:theorem` because, as you can readily check, $P^m = P$ when $m$ is odd
+and $P^m = I$, the identity matrix, when $m$ is even.
+
+Hence there is no $m$ such that all elements of $P^m$ are strictly positive.
+
+Moreover, we can see that global stability does not hold.
+
+For instance, if we start at $\psi_0 = (1,0)$, then $\psi_m = \psi_0 P^m$ is $(1, 0)$ when $m$ is even and $(0,1)$ when $m$ is odd.
+
+We can see similar phenomena in higher dimensions.
+
+The next figure illustrates this for a periodic Markov chain with three states.
 
 ```{code-cell} ipython3
-P = np.array([[0, 1],
-              [1, 0]])
+ψ_1 = (0.0, 0.0, 1.0)
+ψ_2 = (0.5, 0.5, 0.0)
+ψ_3 = (0.25, 0.25, 0.5)
+ψ_4 = (1/3, 1/3, 1/3)
 
-ts_length = 20
-num_distributions = 30
+P = np.array([[0.0, 1.0, 0.0],
+              [0.0, 0.0, 1.0],
+              [1.0, 0.0, 0.0]])
 
-plot_distribution(P, ts_length, num_distributions)
+fig = plt.figure()
+ax = fig.add_subplot(projection='3d')
+colors = ['red','yellow', 'green', 'blue']  # Different colors for each initial point
+
+# Define the vertices of the unit simplex
+v = np.array([[1, 0, 0], [0, 1, 0], [0, 0, 1], [0, 0, 0]])
+
+# Define the faces of the unit simplex
+faces = [
+    [v[0], v[1], v[2]],
+    [v[0], v[1], v[3]],
+    [v[0], v[2], v[3]],
+    [v[1], v[2], v[3]]
+]
+
+def update(n):
+    ax.clear()
+    ax.set_xlim([0, 1])
+    ax.set_ylim([0, 1])
+    ax.set_zlim([0, 1])
+    ax.view_init(45, 45)
+    
+    # Plot the 3D unit simplex as planes
+    simplex = Poly3DCollection(faces,alpha=0.05)
+    ax.add_collection3d(simplex)
+    
+    for idx, ψ_0 in enumerate([ψ_1, ψ_2, ψ_3, ψ_4]):
+        ψ_t = iterate_ψ(ψ_0, P, n+1)
+        
+        point = ψ_t[-1]
+        ax.scatter(point[0], point[1], point[2], color=colors[idx], s=60)
+        points = np.array(ψ_t)
+        ax.plot(points[:, 0], points[:, 1], points[:, 2], color=colors[idx],linewidth=0.75)
+    
+    return fig,
+
+anim = FuncAnimation(fig, update, frames=range(20), blit=False, repeat=False)
+plt.close()
+HTML(anim.to_jshtml())
 ```
+This animation demonstrates the behavior of an irreducible and periodic stochastic matrix.
 
-Indeed, this $P$ fails our asymptotic stationarity condition, since, as you can
-verify, $P^t$ is not everywhere positive for any $t$.
+The red, yellow, and green dots represent different initial probability distributions.
+
+The blue dot represents the unique stationary distribution.
+
+Unlike Hamilton’s Markov chain, these initial distributions do not converge to the unique stationary distribution.
+
+Instead, they cycle periodically around the probability simplex, illustrating that asymptotic stability fails.
 
 
 (finite_mc_expec)=
