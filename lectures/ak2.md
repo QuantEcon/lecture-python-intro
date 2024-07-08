@@ -4,7 +4,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.14.1
+    jupytext_version: 1.16.1
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
@@ -15,8 +15,9 @@ kernelspec:
 
 In addition to what’s in Anaconda, this lecture will need the following libraries:
 
-```{code-cell} ipython3
+```{code-cell}
 :tags: [hide-output]
+
 !pip install --upgrade quantecon
 ```
 
@@ -28,6 +29,7 @@ This lecture presents a  life-cycle model consisting of overlapping generations 
 
 We'll present the version  that was   analyzed  in chapter 2 of Auerbach and 
 Kotlikoff (1987) {cite}`auerbach1987dynamic`.
+
 
 Auerbach and Kotlikoff (1987) used their  two period model as a warm-up for their analysis of  overlapping generation models of long-lived people that is the main topic of their book.
 
@@ -214,10 +216,10 @@ We take output at time $t$ as *numeraire*, so the price of output at time $t$ is
 The firm's profits at time $t$ are 
 
 $$
-K_t^\alpha L_t^{1-\alpha} - r_t K_t - W_t L_t . 
+\pi_t = K_t^\alpha L_t^{1-\alpha} - r_t K_t - W_t L_t . 
 $$
 
-To maximize profits a firm equates marginal products to rental rates:
+To maximize profits a firm equates marginal products to rental rates, which can be done by taking the first-order derivatives of the profit function $\pi_t$:
 
 $$
 \begin{aligned}
@@ -289,7 +291,7 @@ $$
 C_{yt} + \frac{C_{ot+1}}{1 + r_{t+1}(1 - \tau_{t+1})} = W_t (1 - \tau_t) - \delta_{yt} - \frac{\delta_{ot}}{1 + r_{t+1}(1 - \tau_{t+1})}
 $$ (eq:onebudgetc)
 
-To solve the young person's choice problem, form a Lagrangian 
+To solve the young person's choice problem, form a [Lagrangian](https://en.wikipedia.org/wiki/Lagrange_multiplier)
 
 $$ 
 \begin{aligned}
@@ -405,17 +407,15 @@ $$
 
 ### Implementation
 
-```{code-cell} ipython3
+```{code-cell}
 import numpy as np
 import matplotlib.pyplot as plt
-from numba import njit
 from quantecon.optimize import brent_max
 ```
 
-
 For parameters $\alpha = 0.3$ and $\beta = 0.5$, let's compute  $\hat{K}$:
 
-```{code-cell} ipython3
+```{code-cell}
 # parameters
 α = 0.3
 β = 0.5
@@ -428,27 +428,28 @@ D_hat = 0.
 K_hat = ((1 - τ_hat) * (1 - α) * (1 - β)) ** (1 / (1 - α))
 K_hat
 ```
+
 Knowing $\hat K$, we can calculate other equilibrium objects. 
 
 Let's first define  some Python helper functions.
 
-```{code-cell} ipython3
-@njit
+```{code-cell}
+
 def K_to_Y(K, α):
 
     return K ** α
 
-@njit
+
 def K_to_r(K, α):
 
     return α * K ** (α - 1)
 
-@njit
+
 def K_to_W(K, α):
 
     return (1 - α) * K ** α
 
-@njit
+
 def K_to_C(K, D, τ, r, α, β):
 
     # optimal consumption for the old when δ=0
@@ -464,34 +465,33 @@ def K_to_C(K, D, τ, r, α, β):
 
 We can use these helper functions to obtain steady state values $\hat{Y}$, $\hat{r}$, and $\hat{W}$ associated with  steady state values $\hat{K}$ and $\hat{r}$.
 
-```{code-cell} ipython3
+```{code-cell}
 Y_hat, r_hat, W_hat = K_to_Y(K_hat, α), K_to_r(K_hat, α), K_to_W(K_hat, α)
 Y_hat, r_hat, W_hat
 ```
 
 Since  steady state government debt $\hat{D}$ is  $0$, all taxes are  used to pay for government expenditures
 
-```{code-cell} ipython3
+```{code-cell}
 G_hat = τ_hat * Y_hat
 G_hat
 ```
 
 We use the optimal consumption plans to find  steady state consumptions for  young and  old
 
-```{code-cell} ipython3
+```{code-cell}
 Cy_hat, Co_hat = K_to_C(K_hat, D_hat, τ_hat, r_hat, α, β)
 Cy_hat, Co_hat
 ```
 
-Let's store the steady state quantities and prices using an array called `init_ss` 
+Let's store the steady state quantities and prices using an array called `init_ss`
 
-```{code-cell} ipython3
+```{code-cell}
 init_ss = np.array([K_hat, Y_hat, Cy_hat, Co_hat,     # quantities
                     W_hat, r_hat,                     # prices
                     τ_hat, D_hat, G_hat               # policies
                     ])
 ```
-
 
 ### Transitions
 
@@ -534,9 +534,9 @@ In each policy experiment below, we will pass two out of three as inputs require
 
 We'll then compute the single remaining undetermined policy variable from the government budget constraint.
 
-When we simulate  transition paths, it is useful to distinguish  **state variables** at time $t$  such as $K_t, Y_t, D_t, W_t, r_t$ from  **control variables** that include $C_{yt}, C_{ot}, \tau_{t}, G_t$. 
+When we simulate  transition paths, it is useful to distinguish  **state variables** at time $t$  such as $K_t, Y_t, D_t, W_t, r_t$ from  **control variables** that include $C_{yt}, C_{ot}, \tau_{t}, G_t$.
 
-```{code-cell} ipython3
+```{code-cell}
 class ClosedFormTrans:
     """
     This class simulates length T transitional path of a economy
@@ -681,8 +681,7 @@ class ClosedFormTrans:
 
 We can create an instance `closed` for model parameters $\{\alpha, \beta\}$ and use it for various fiscal policy experiments.
 
-
-```{code-cell} ipython3
+```{code-cell}
 closed = ClosedFormTrans(α, β)
 ```
 
@@ -712,7 +711,7 @@ The first step is to prepare sequences of policy variables that describe  fiscal
 
 We must define  sequences of government expenditure $\{G_t\}_{t=0}^{T}$ and debt level $\{D_t\}_{t=0}^{T+1}$ in advance, then pass them  to the solver.
 
-```{code-cell} ipython3
+```{code-cell}
 T = 20
 
 # tax cut
@@ -731,16 +730,16 @@ Let's use the `simulate` method of `closed` to compute dynamic transitions.
 
 Note that we leave `τ_pol` as `None`, since the tax rates need to be determined to satisfy the government budget constraint.
 
-```{code-cell} ipython3
+```{code-cell}
 quant_seq1, price_seq1, policy_seq1 = closed.simulate(T, init_ss,
                                                       D_pol=D_seq,
                                                       G_pol=G_seq)
 closed.plot()
 ```
 
-We can also  experiment with a lower tax cut rate, such as $0.2$. 
+We can also  experiment with a lower tax cut rate, such as $0.2$.
 
-```{code-cell} ipython3
+```{code-cell}
 # lower tax cut rate
 τ0 = 0.15 * (1 - 0.2)
 
@@ -754,7 +753,7 @@ quant_seq2, price_seq2, policy_seq2 = closed.simulate(T, init_ss,
                                                       G_pol=G_seq)
 ```
 
-```{code-cell} ipython3
+```{code-cell}
 fig, axs = plt.subplots(3, 3, figsize=(14, 10))
 
 # quantities
@@ -798,7 +797,7 @@ The government targets  the same tax rate $\tau_t=\hat{\tau}$ and to accumulate 
 
 To conduct  this experiment, we pass `τ_seq` and `G_seq` as inputs  and let `D_pol`  be determined along the path by satisfying the government budget constraint.
 
-```{code-cell} ipython3
+```{code-cell}
 # government expenditure cut by a half
 G_seq = τ_hat * 0.5 * Y_hat * np.ones(T+1)
 
@@ -813,7 +812,7 @@ As the government accumulates the asset and uses it in production, the  rental r
 
 As a result,  the ratio  $-\frac{D_t}{K_t}$ of the  government asset to  physical capital used in production will increase over time
 
-```{code-cell} ipython3
+```{code-cell}
 plt.plot(range(T+1), -closed.policy_seq[:-1, 1] / closed.quant_seq[:, 0])
 plt.xlabel('t')
 plt.title('-D/K');
@@ -840,7 +839,7 @@ But now let  the government cut its  expenditures only  at $t=0$.
 
 From $t \geq 1$, the government expeditures  return to  $\hat{G}$  and  $\tau_t$ adjusts to maintain the   asset level $-D_t = -D_1$.
 
-```{code-cell} ipython3
+```{code-cell}
 # sequence of government purchase
 G_seq = τ_hat * Y_hat * np.ones(T+1)
 G_seq[0] = 0
@@ -912,8 +911,7 @@ Let's implement this "guess and verify" approach
 
 We start by defining the Cobb-Douglas utility function
 
-```{code-cell} ipython3
-@njit
+```{code-cell}
 def U(Cy, Co, β):
 
     return (Cy ** β) * (Co ** (1-β))
@@ -923,8 +921,7 @@ We use `Cy_val` to compute the lifetime value of an arbitrary consumption plan, 
 
 Note that it requires knowing future prices $r_{t+1}$ and tax rate $\tau_{t+1}$.
 
-```{code-cell} ipython3
-@njit
+```{code-cell}
 def Cy_val(Cy, W, r_next, τ, τ_next, δy, δo_next, β):
 
     # Co given by the budget constraint
@@ -937,7 +934,7 @@ An optimal consumption plan $C_y^*$ can be found by maximizing `Cy_val`.
 
 Here is an example that computes optimal consumption $C_y^*=\hat{C}_y$ in the steady state  with $\delta_{yt}=\delta_{ot}=0,$ like one that we studied earlier
 
-```{code-cell} ipython3
+```{code-cell}
 W, r_next, τ, τ_next = W_hat, r_hat, τ_hat, τ_hat
 δy, δo_next = 0, 0
 
@@ -953,7 +950,7 @@ Let's define a Python class `AK2` that  computes the transition paths  with the 
 
 It can handle   nonzero lump sum taxes
 
-```{code-cell} ipython3
+```{code-cell}
 class AK2():
     """
     This class simulates length T transitional path of a economy
@@ -1124,13 +1121,13 @@ class AK2():
 
 We can initialize an instance of class `AK2` with model parameters $\{\alpha, \beta\}$ and then use it to conduct fiscal policy experiments.
 
-```{code-cell} ipython3
+```{code-cell}
 ak2 = AK2(α, β)
 ```
 
 We first examine that the "guess and verify" method leads to the same numerical results as we obtain with the closed form solution when lump sum taxes are muted
 
-```{code-cell} ipython3
+```{code-cell}
 δy_seq = np.ones(T+2) * 0.
 δo_seq = np.ones(T+2) * 0.
 
@@ -1144,22 +1141,22 @@ D_pol[0] = D_hat
 D_pol[1:] = D1
 ```
 
-```{code-cell} ipython3
+```{code-cell}
 quant_seq3, price_seq3, policy_seq3 = ak2.simulate(T, init_ss,
                                                    δy_seq, δo_seq,
                                                    D_pol=D_pol, G_pol=G_pol,
                                                    verbose=True)
 ```
 
-```{code-cell} ipython3
+```{code-cell}
 ak2.plot()
 ```
 
 Next, we  activate  lump sum taxes. 
 
-Let's alter  our  {ref}`exp-tax-cut`  fiscal policy experiment by assuming that  the government also increases  lump sum taxes for both  young and old  people $\delta_{yt}=\delta_{ot}=0.005, t\geq0$. 
+Let's alter  our  {ref}`exp-tax-cut`  fiscal policy experiment by assuming that  the government also increases  lump sum taxes for both  young and old  people $\delta_{yt}=\delta_{ot}=0.005, t\geq0$.
 
-```{code-cell} ipython3
+```{code-cell}
 δy_seq = np.ones(T+2) * 0.005
 δo_seq = np.ones(T+2) * 0.005
 
@@ -1173,7 +1170,7 @@ quant_seq4, price_seq4, policy_seq4 = ak2.simulate(T, init_ss,
 
 Note how   "crowding out"  has been  mitigated.
 
-```{code-cell} ipython3
+```{code-cell}
 fig, axs = plt.subplots(3, 3, figsize=(14, 10))
 
 # quantities
@@ -1227,7 +1224,7 @@ We can  use our code to compute the transition ignited by  launching this system
 
 Let's compare the results to the {ref}`exp-tax-cut`.
 
-```{code-cell} ipython3
+```{code-cell}
 δy_seq = np.ones(T+2) * Cy_hat * 0.1
 δo_seq = np.ones(T+2) * -Cy_hat * 0.1
 
@@ -1238,7 +1235,7 @@ quant_seq5, price_seq5, policy_seq5 = ak2.simulate(T, init_ss,
                                                    D_pol=D_pol, G_pol=G_pol)
 ```
 
-```{code-cell} ipython3
+```{code-cell}
 fig, axs = plt.subplots(3, 3, figsize=(14, 10))
 
 # quantities
