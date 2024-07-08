@@ -173,13 +173,13 @@ const thebe_selector_output = ".output, .cell_output"
                         <nav id="bd-toc-nav" class="qe-page__toc-nav">
                             <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">16.1. Introduction</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#primer-on-second-order-linear-difference-equation">16.2. Primer on second order linear difference equation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup">16.3. Setup</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation">16.4. Implementation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vectorizing-the-difference-equation">16.5. Vectorizing the difference equation</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">16.5.1. Implementation</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#perfect-squares-and-irrational-numbers">16.2. Perfect squares and irrational numbers</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#second-order-linear-difference-equations">16.3. Second-order linear difference equations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algorithm-of-the-ancient-greeks">16.4. Algorithm of the Ancient Greeks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation">16.5. Implementation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vectorizing-the-difference-equation">16.6. Vectorizing the difference equation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#invariant-subspace-approach">16.7. Invariant subspace approach</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#concluding-remarks">16.8. Concluding remarks</a></li>
 </ul>
                             <p class="logo">
                                 
@@ -242,9 +242,15 @@ const thebe_selector_output = ".output, .cell_output"
 <h1><span class="section-number">16. </span>Computing Square Roots<a class="headerlink" href="#computing-square-roots" title="Permalink to this heading">#</a></h1>
 <section id="introduction">
 <h2><span class="section-number">16.1. </span>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
-<p>This lectures provides an  example of <strong>invariant subspace</strong> methods for analyzing linear difference equations.</p>
-<p>These methods are applied throughout applied economic dynamics, for example, in this QuantEcon lecture <a class="reference internal" href="money_inflation.html"><span class="doc">money financed government deficits and inflation</span></a></p>
-<p>Our approach in this lecture is to illustrate the method with an ancient example, one that ancient Greek mathematicians used to compute square roots of positive integers.</p>
+<p>This lecture can be viewed as a sequel to <a class="reference internal" href="eigen_I.html"><span class="doc">Eigenvalues and Eigenvectors</span></a>.</p>
+<p>It  provides an  example of how eigenvectors isolate  <em>invariant subspaces</em> that help construct and analyze solutions of linear difference equations.</p>
+<p>When vector <span class="math notranslate nohighlight">\(x_t\)</span> starts in an invariant subspace, iterating the different equation keeps <span class="math notranslate nohighlight">\(x_{t+j}\)</span>
+in that subspace for all <span class="math notranslate nohighlight">\(j \geq 1\)</span>.</p>
+<p>Invariant subspace methods are used throughout applied economic dynamics, for example, in the lecture <a class="reference internal" href="money_inflation.html"><span class="doc">Money Financed Government Deficits and Price Levels</span></a>.</p>
+<p>Our approach here  is to illustrate the method with an ancient example, one that ancient Greek mathematicians used to compute square roots of positive integers.</p>
+</section>
+<section id="perfect-squares-and-irrational-numbers">
+<h2><span class="section-number">16.2. </span>Perfect squares and irrational numbers<a class="headerlink" href="#perfect-squares-and-irrational-numbers" title="Permalink to this heading">#</a></h2>
 <p>An integer is called a <strong>perfect square</strong> if its square root is also an integer.</p>
 <p>An ordered sequence of  perfect squares starts with</p>
 <div class="math notranslate nohighlight">
@@ -255,27 +261,41 @@ const thebe_selector_output = ".output, .cell_output"
 <p>The ancient Greeks invented an algorithm to compute square roots of integers, including integers that are not perfect squares.</p>
 <p>Their method involved</p>
 <ul class="simple">
-<li><p>computing a particular sequence of integers <span class="math notranslate nohighlight">\(\{y_t\}_{t=0}^\infty\)</span></p></li>
-<li><p>computing <span class="math notranslate nohighlight">\(\lim_{t \rightarrow \infty} \left(\frac{y_{t+1}}{y_t}\right) = \bar r\)</span></p></li>
-<li><p>deducing the desired square root from <span class="math notranslate nohighlight">\(\bar r\)</span></p></li>
+<li><p>computing a particular sequence of integers <span class="math notranslate nohighlight">\(\{y_t\}_{t=0}^\infty\)</span>;</p></li>
+<li><p>computing <span class="math notranslate nohighlight">\(\lim_{t \rightarrow \infty} \left(\frac{y_{t+1}}{y_t}\right) = \bar r\)</span>;</p></li>
+<li><p>deducing the desired square root from <span class="math notranslate nohighlight">\(\bar r\)</span>.</p></li>
 </ul>
 <p>In this lecture, we’ll describe this method.</p>
 <p>We’ll also use invariant subspaces to describe variations on this method that are faster.</p>
 </section>
-<section id="primer-on-second-order-linear-difference-equation">
-<h2><span class="section-number">16.2. </span>Primer on second order linear difference equation<a class="headerlink" href="#primer-on-second-order-linear-difference-equation" title="Permalink to this heading">#</a></h2>
-<p>Consider the following second-order linear difference equation</p>
+<section id="second-order-linear-difference-equations">
+<h2><span class="section-number">16.3. </span>Second-order linear difference equations<a class="headerlink" href="#second-order-linear-difference-equations" title="Permalink to this heading">#</a></h2>
+<p>Before telling how the ancient Greeks computed square roots, we’ll provide a quick introduction
+to second-order linear difference equations.</p>
+<p>We’ll study  the following second-order linear difference equation</p>
 <div class="math notranslate nohighlight" id="equation-eq-2diff1">
 <span class="eqno">(16.1)<a class="headerlink" href="#equation-eq-2diff1" title="Permalink to this equation">#</a></span>\[
 y_t = a_1 y_{t-1} + a_2 y_{t-2}, \quad t \geq 0
 \]</div>
 <p>where <span class="math notranslate nohighlight">\((y_{-1},  y_{-2})\)</span> is a pair of given initial conditions.</p>
-<p>We want to find expressions for <span class="math notranslate nohighlight">\(y_t, t \geq 0\)</span> as functions of the initial conditions  <span class="math notranslate nohighlight">\((y_{-1},  y_{-2})\)</span>:</p>
+<p>Equation <a class="reference internal" href="#equation-eq-2diff1">(16.1)</a> is actually an infinite number of linear equations in the sequence
+<span class="math notranslate nohighlight">\(\{y_t\}_{t=0}^\infty\)</span>.</p>
+<p>There is one equation each for <span class="math notranslate nohighlight">\(t = 0, 1, 2, \ldots\)</span>.</p>
+<p>We could follow an approach taken in the lecture on <a class="reference internal" href="pv.html"><span class="doc">present values</span></a> and stack all of these equations into a single matrix equation that we would then solve by using matrix inversion.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In the present instance, the matrix equation would multiply a countably infinite dimensional square matrix by  a countably infinite dimensional vector.  With some qualifications, matrix multiplication and inversion tools apply to such an equation.</p>
+</div>
+<p>But we won’t pursue that approach here.</p>
+<p>Instead, we’ll seek to find a time-invariant function that <em>solves</em> our difference equation, meaning
+that it provides a formula for a <span class="math notranslate nohighlight">\(\{y_t\}_{t=0}^\infty\)</span> sequence that satisfies
+equation <a class="reference internal" href="#equation-eq-2diff1">(16.1)</a> for each <span class="math notranslate nohighlight">\(t \geq 0\)</span>.</p>
+<p>We seek an expression  for <span class="math notranslate nohighlight">\(y_t, t \geq 0\)</span> as functions of the initial conditions  <span class="math notranslate nohighlight">\((y_{-1},  y_{-2})\)</span>:</p>
 <div class="math notranslate nohighlight" id="equation-eq-2diff2">
 <span class="eqno">(16.2)<a class="headerlink" href="#equation-eq-2diff2" title="Permalink to this equation">#</a></span>\[ 
-y_t = g((y_{-1},  y_{-2});t), \quad t \geq 0
+y_t = g((y_{-1},  y_{-2});t), \quad t \geq 0.
 \]</div>
-<p>We call such a function <span class="math notranslate nohighlight">\(g\)</span> a <strong>solution</strong> of the difference equation <a class="reference internal" href="#equation-eq-2diff1">(16.1)</a>.</p>
+<p>We call such a function <span class="math notranslate nohighlight">\(g\)</span> a <em>solution</em> of the difference equation <a class="reference internal" href="#equation-eq-2diff1">(16.1)</a>.</p>
 <p>One way to discover a solution is to use a guess and verify method.</p>
 <p>We shall begin by considering a special initial pair of initial  conditions
 that satisfy</p>
@@ -288,22 +308,22 @@ y_{-1} = \delta y_{-2}
 equation <a class="reference internal" href="#equation-eq-2diff1">(16.1)</a> impllies that</p>
 <div class="math notranslate nohighlight" id="equation-eq-2diff4">
 <span class="eqno">(16.4)<a class="headerlink" href="#equation-eq-2diff4" title="Permalink to this equation">#</a></span>\[
-y_0 = \left(a_1 + \frac{a_2}{\delta}\right) y_{-1}
+y_0 = \left(a_1 + \frac{a_2}{\delta}\right) y_{-1}.
 \]</div>
 <p>We want</p>
 <div class="math notranslate nohighlight" id="equation-eq-2diff5">
 <span class="eqno">(16.5)<a class="headerlink" href="#equation-eq-2diff5" title="Permalink to this equation">#</a></span>\[
 \left(a_1 + \frac{a_2}{\delta}\right) = \delta
 \]</div>
-<p>which we can rewrite as the <strong>characteristic equation</strong></p>
+<p>which we can rewrite as the <em>characteristic equation</em></p>
 <div class="math notranslate nohighlight" id="equation-eq-2diff6">
 <span class="eqno">(16.6)<a class="headerlink" href="#equation-eq-2diff6" title="Permalink to this equation">#</a></span>\[
-\delta^2 - a_1 \delta - a_2 = 0
+\delta^2 - a_1 \delta - a_2 = 0.
 \]</div>
 <p>Applying the quadratic formula to solve for the roots of <a class="reference internal" href="#equation-eq-2diff6">(16.6)</a> we find that</p>
 <div class="math notranslate nohighlight" id="equation-eq-2diff7">
 <span class="eqno">(16.7)<a class="headerlink" href="#equation-eq-2diff7" title="Permalink to this equation">#</a></span>\[
-\delta = \frac{ a_1 \pm \sqrt{a_1^2 + 4 a_2}}{2}
+\delta = \frac{ a_1 \pm \sqrt{a_1^2 + 4 a_2}}{2}.
 \]</div>
 <p>For either of the two <span class="math notranslate nohighlight">\(\delta\)</span>’s that satisfy equation <a class="reference internal" href="#equation-eq-2diff7">(16.7)</a>,
 a solution of difference equation <a class="reference internal" href="#equation-eq-2diff1">(16.1)</a> is</p>
@@ -311,8 +331,12 @@ a solution of difference equation <a class="reference internal" href="#equation-
 <span class="eqno">(16.8)<a class="headerlink" href="#equation-eq-2diff8" title="Permalink to this equation">#</a></span>\[
 y_t = \delta^t y_0 , \forall t \geq 0
 \]</div>
-<p>and <span class="math notranslate nohighlight">\(y_0 = a_1 y_{-1} + a_2 y_{-2}\)</span></p>
-<p>The <strong>general</strong> solution of difference equation <a class="reference internal" href="#equation-eq-2diff1">(16.1)</a> takes the form</p>
+<p>provided that we set</p>
+<div class="math notranslate nohighlight">
+\[
+y_0 = \delta  y_{-1} . 
+\]</div>
+<p>The <em>general</em> solution of difference equation <a class="reference internal" href="#equation-eq-2diff1">(16.1)</a> takes the form</p>
 <div class="math notranslate nohighlight" id="equation-eq-2diff9">
 <span class="eqno">(16.9)<a class="headerlink" href="#equation-eq-2diff9" title="Permalink to this equation">#</a></span>\[
 y_t = \eta_1 \delta_1^t + \eta_2 \delta_2^t
@@ -331,30 +355,31 @@ y_t = \eta_1 \delta_1^t + \eta_2 \delta_2^t
 use system <a class="reference internal" href="#equation-eq-2diff10">(16.10)</a> to find the associated <span class="math notranslate nohighlight">\((\eta_1, \eta_2)\)</span>.</p>
 <p>If we choose <span class="math notranslate nohighlight">\((y_{-1}, y_{-2})\)</span> to set <span class="math notranslate nohighlight">\((\eta_1, \eta_2) = (1, 0)\)</span>, then <span class="math notranslate nohighlight">\(y_t = \delta_1^t\)</span> for all <span class="math notranslate nohighlight">\(t \geq 0\)</span>.</p>
 <p>If we choose <span class="math notranslate nohighlight">\((y_{-1}, y_{-2})\)</span> to set <span class="math notranslate nohighlight">\((\eta_1, \eta_2) = (0, 1)\)</span>, then <span class="math notranslate nohighlight">\(y_t = \delta_2^t\)</span> for all <span class="math notranslate nohighlight">\(t \geq 0\)</span>.</p>
+<p>Soon we’ll relate the preceding calculations to components an eigen decomposition of a transition matrix that represents difference equation <a class="reference internal" href="#equation-eq-2diff1">(16.1)</a> in a very convenient way.</p>
+<p>We’ll turn to that after we describe how Ancient Greeks figured out how to compute square roots of positive integers that are not perfect squares.</p>
 </section>
-<section id="setup">
-<h2><span class="section-number">16.3. </span>Setup<a class="headerlink" href="#setup" title="Permalink to this heading">#</a></h2>
-<p>Let <span class="math notranslate nohighlight">\(\sigma\)</span> be a positive  integer greater than <span class="math notranslate nohighlight">\(1\)</span></p>
-<p>So <span class="math notranslate nohighlight">\(\sigma \in {\mathcal I} \equiv  \{2, 3, \ldots \}\)</span></p>
+<section id="algorithm-of-the-ancient-greeks">
+<h2><span class="section-number">16.4. </span>Algorithm of the Ancient Greeks<a class="headerlink" href="#algorithm-of-the-ancient-greeks" title="Permalink to this heading">#</a></h2>
+<p>Let <span class="math notranslate nohighlight">\(\sigma\)</span> be a positive  integer greater than <span class="math notranslate nohighlight">\(1\)</span>.</p>
+<p>So <span class="math notranslate nohighlight">\(\sigma \in {\mathcal I} \equiv  \{2, 3, \ldots \}\)</span>.</p>
 <p>We want an algorithm to compute the square root of <span class="math notranslate nohighlight">\(\sigma \in {\mathcal I}\)</span>.</p>
-<p>If <span class="math notranslate nohighlight">\(\sqrt{\sigma} \in {\mathcal I}\)</span>, <span class="math notranslate nohighlight">\(\sigma \)</span> is said to be a <strong>perfect square</strong>.</p>
+<p>If <span class="math notranslate nohighlight">\(\sqrt{\sigma} \in {\mathcal I}\)</span>, <span class="math notranslate nohighlight">\(\sigma \)</span> is said to be a <em>perfect square</em>.</p>
 <p>If <span class="math notranslate nohighlight">\(\sqrt{\sigma} \not\in {\mathcal I}\)</span>, it turns out that it is irrational.</p>
 <p>Ancient Greeks used a recursive algorithm to compute square roots of integers that are not perfect squares.</p>
-<p>The algorithm iterates on a  second order  linear  difference equation in the sequence <span class="math notranslate nohighlight">\(\{y_t\}_{t=0}^\infty\)</span>:</p>
+<p>The algorithm iterates on a  second-order  linear  difference equation in the sequence <span class="math notranslate nohighlight">\(\{y_t\}_{t=0}^\infty\)</span>:</p>
 <div class="math notranslate nohighlight" id="equation-eq-second-order">
 <span class="eqno">(16.12)<a class="headerlink" href="#equation-eq-second-order" title="Permalink to this equation">#</a></span>\[
 y_{t} = 2 y_{t-1} - (1 - \sigma) y_{t-2}, \quad t \geq 0
 \]</div>
-<p>together with a pair of integers that are  initial conditions for   <span class="math notranslate nohighlight">\(y_{-1}, y_{-2}\)</span>.</p>
-<p>First, we’ll deploy some techniques for solving difference equations that are also deployed in this QuantEcon lecture about the multiplier-accelerator model:
-<a class="reference external" href="https://python.quantecon.org/samuelson.html">https://python.quantecon.org/samuelson.html</a></p>
+<p>together with a pair of integers that are initial conditions for <span class="math notranslate nohighlight">\(y_{-1}, y_{-2}\)</span>.</p>
+<p>First, we’ll deploy some techniques for solving the difference equations that are also deployed in <a class="reference external" href="https://dynamics.quantecon.org/samuelson.html" title="(in Python)"><span>Samuelson Multiplier-Accelerator</span></a>.</p>
 <p>The characteristic equation associated with difference equation <a class="reference internal" href="#equation-eq-second-order">(16.12)</a> is</p>
 <div class="math notranslate nohighlight" id="equation-eq-cha-eq0">
 <span class="eqno">(16.13)<a class="headerlink" href="#equation-eq-cha-eq0" title="Permalink to this equation">#</a></span>\[
 c(x) \equiv x^2 - 2 x + (1 - \sigma) = 0
 \]</div>
-<p>(This is an instance of equation <a class="reference internal" href="#equation-eq-2diff6">(16.6)</a> above.)</p>
-<p>If we factor the right side of the  equation <a class="reference internal" href="#equation-eq-cha-eq0">(16.13)</a>, we obtain</p>
+<p>(Notice how this is an instance of equation <a class="reference internal" href="#equation-eq-2diff6">(16.6)</a> above.)</p>
+<p>Factoring the right side of   equation <a class="reference internal" href="#equation-eq-cha-eq0">(16.13)</a>, we obtain</p>
 <div class="math notranslate nohighlight" id="equation-eq-cha-eq">
 <span class="eqno">(16.14)<a class="headerlink" href="#equation-eq-cha-eq" title="Permalink to this equation">#</a></span>\[
 c(x)= (x - \lambda_1) (x-\lambda_2) = 0
@@ -370,10 +395,10 @@ c(x) = 0
 <a class="reference internal" href="#equation-eq-cha-eq0">(16.13)</a>, we find that</p>
 <div class="math notranslate nohighlight" id="equation-eq-secretweapon">
 <span class="eqno">(16.15)<a class="headerlink" href="#equation-eq-secretweapon" title="Permalink to this equation">#</a></span>\[
-\lambda_1 = 1 + \sqrt{\sigma}, \quad \lambda_2 = 1 - \sqrt{\sigma} 
+\lambda_1 = 1 + \sqrt{\sigma}, \quad \lambda_2 = 1 - \sqrt{\sigma}.
 \]</div>
-<p>Formulas <a class="reference internal" href="#equation-eq-secretweapon">(16.15)</a> indicate that  <span class="math notranslate nohighlight">\(\lambda_1\)</span> and  <span class="math notranslate nohighlight">\(\lambda_2\)</span> are both simple functions
-of a single variable, namely,  <span class="math notranslate nohighlight">\(\sqrt{\sigma}\)</span>, the object that some Ancient Greeks   wanted to compute.</p>
+<p>Formulas <a class="reference internal" href="#equation-eq-secretweapon">(16.15)</a> indicate that  <span class="math notranslate nohighlight">\(\lambda_1\)</span> and  <span class="math notranslate nohighlight">\(\lambda_2\)</span> are each functions
+of a single variable, namely,  <span class="math notranslate nohighlight">\(\sqrt{\sigma}\)</span>, the object that we along with some Ancient Greeks want to compute.</p>
 <p>Ancient Greeks had an indirect way of exploiting this fact to compute square roots of a positive integer.</p>
 <p>They did this by starting from particular initial conditions <span class="math notranslate nohighlight">\(y_{-1}, y_{-2}\)</span> and iterating on the difference equation <a class="reference internal" href="#equation-eq-second-order">(16.12)</a>.</p>
 <p>Solutions  of  difference equation <a class="reference internal" href="#equation-eq-second-order">(16.12)</a> take the form</p>
@@ -381,7 +406,7 @@ of a single variable, namely,  <span class="math notranslate nohighlight">\(\sqr
 \[
 y_t = \lambda_1^t \eta_1 + \lambda_2^t \eta_2
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(\eta_1\)</span> and <span class="math notranslate nohighlight">\(\eta_2\)</span> are chosen to satisfy the  prescribed initial conditions <span class="math notranslate nohighlight">\(y_{-1}, y_{-2}\)</span>:</p>
+<p>where <span class="math notranslate nohighlight">\(\eta_1\)</span> and <span class="math notranslate nohighlight">\(\eta_2\)</span> are chosen to satisfy   prescribed initial conditions <span class="math notranslate nohighlight">\(y_{-1}, y_{-2}\)</span>:</p>
 <div class="math notranslate nohighlight" id="equation-eq-leq-sq">
 <span class="eqno">(16.16)<a class="headerlink" href="#equation-eq-leq-sq" title="Permalink to this equation">#</a></span>\[
 \begin{aligned}
@@ -390,16 +415,16 @@ y_t = \lambda_1^t \eta_1 + \lambda_2^t \eta_2
 \end{aligned}
 \]</div>
 <p>System <a class="reference internal" href="#equation-eq-leq-sq">(16.16)</a> of simultaneous linear equations will play a big role in the remainder of this lecture.</p>
-<p>Since <span class="math notranslate nohighlight">\(\lambda_1 = 1 + \sqrt{\sigma} &gt; 1 &gt; \lambda_2 = 1 - \sqrt{\sigma} \)</span>
-it follows that for <strong>almost all</strong> (but not all) initial conditions</p>
+<p>Since <span class="math notranslate nohighlight">\(\lambda_1 = 1 + \sqrt{\sigma} &gt; 1 &gt; \lambda_2 = 1 - \sqrt{\sigma} \)</span>,
+it follows that for <em>almost all</em> (but not all) initial conditions</p>
 <div class="math notranslate nohighlight">
 \[
-\lim_{t \rightarrow \infty} \left(\frac{y_{t+1}}{y_t}\right) = 1 + \sqrt{\sigma}
+\lim_{t \rightarrow \infty} \left(\frac{y_{t+1}}{y_t}\right) = 1 + \sqrt{\sigma}.
 \]</div>
 <p>Thus,</p>
 <div class="math notranslate nohighlight">
 \[
-\sqrt{\sigma} = \lim_{t \rightarrow \infty} \left(\frac{y_{t+1}}{y_t}\right) - 1
+\sqrt{\sigma} = \lim_{t \rightarrow \infty} \left(\frac{y_{t+1}}{y_t}\right) - 1.
 \]</div>
 <p>However, notice that if <span class="math notranslate nohighlight">\(\eta_1 = 0\)</span>, then</p>
 <div class="math notranslate nohighlight">
@@ -409,7 +434,7 @@ it follows that for <strong>almost all</strong> (but not all) initial conditions
 <p>so that</p>
 <div class="math notranslate nohighlight">
 \[
-\sqrt{\sigma} = 1 - \lim_{t \rightarrow \infty} \left(\frac{y_{t+1}}{y_t}\right)
+\sqrt{\sigma} = 1 - \lim_{t \rightarrow \infty} \left(\frac{y_{t+1}}{y_t}\right).
 \]</div>
 <p>Actually, if <span class="math notranslate nohighlight">\(\eta_1 =0\)</span>, it follows that</p>
 <div class="math notranslate nohighlight">
@@ -425,24 +450,26 @@ it follows that for <strong>almost all</strong> (but not all) initial conditions
 <p>so again, convergence is immediate, and we have no need to compute a limit.</p>
 <p>System <a class="reference internal" href="#equation-eq-leq-sq">(16.16)</a> of simultaneous linear equations can be used in various ways.</p>
 <ul class="simple">
-<li><p>we can take <span class="math notranslate nohighlight">\(y_{-1}, y_{-2}\)</span> as given initial conditions and solve for <span class="math notranslate nohighlight">\(\eta_1, \eta_2\)</span></p></li>
-<li><p>we can instead take <span class="math notranslate nohighlight">\(\eta_1, \eta_2\)</span> as given and solve for initial conditions  <span class="math notranslate nohighlight">\(y_{-1}, y_{-2}\)</span></p></li>
+<li><p>we can take <span class="math notranslate nohighlight">\(y_{-1}, y_{-2}\)</span> as given initial conditions and solve for <span class="math notranslate nohighlight">\(\eta_1, \eta_2\)</span>;</p></li>
+<li><p>we can instead take <span class="math notranslate nohighlight">\(\eta_1, \eta_2\)</span> as given and solve for initial conditions  <span class="math notranslate nohighlight">\(y_{-1}, y_{-2}\)</span>.</p></li>
 </ul>
 <p>Notice how we used the  second approach above when we set  <span class="math notranslate nohighlight">\(\eta_1, \eta_2\)</span>  either to <span class="math notranslate nohighlight">\((0, 1)\)</span>, for example, or <span class="math notranslate nohighlight">\((1, 0)\)</span>, for example.</p>
-<p>In taking this second approach, we were in effect finding  an <strong>invariant subspace</strong> of <span class="math notranslate nohighlight">\({\bf R}^2\)</span>.</p>
+<p>In taking this second approach, we constructed an <em>invariant subspace</em> of <span class="math notranslate nohighlight">\({\bf R}^2\)</span>.</p>
 <p>Here is what is going on.</p>
-<p>For <span class="math notranslate nohighlight">\( t \geq 0\)</span> and for most pairs of  initial conditions <span class="math notranslate nohighlight">\((y_{-1}, y_{-2}) \in {\bf R}^2\)</span> for equation {eq}`eq:second_order’, <span class="math notranslate nohighlight">\(y_t\)</span> can be expressed as a linear combination  of <span class="math notranslate nohighlight">\(y_{t-1}\)</span> and <span class="math notranslate nohighlight">\(y_{t-2}\)</span>.</p>
+<p>For <span class="math notranslate nohighlight">\( t \geq 0\)</span> and for most pairs of  initial conditions <span class="math notranslate nohighlight">\((y_{-1}, y_{-2}) \in {\bf R}^2\)</span> for equation <a class="reference internal" href="#equation-eq-second-order">(16.12)</a>, <span class="math notranslate nohighlight">\(y_t\)</span> can be expressed as a linear combination  of <span class="math notranslate nohighlight">\(y_{t-1}\)</span> and <span class="math notranslate nohighlight">\(y_{t-2}\)</span>.</p>
 <p>But for some special initial conditions <span class="math notranslate nohighlight">\((y_{-1}, y_{-2}) \in {\bf R}^2\)</span>, <span class="math notranslate nohighlight">\(y_t\)</span> can be expressed as a linear function  of <span class="math notranslate nohighlight">\(y_{t-1}\)</span> only.</p>
 <p>These special initial conditions require that <span class="math notranslate nohighlight">\(y_{-1}\)</span> be a linear function of <span class="math notranslate nohighlight">\(y_{-2}\)</span>.</p>
-<p>We’ll study these special initial conditions soon.  But first let’s write some Python code to iterate on equation <a class="reference internal" href="#equation-eq-second-order">(16.12)</a> starting from an arbitrary <span class="math notranslate nohighlight">\((y_{-1}, y_{-2}) \in {\bf R}^2\)</span>.</p>
+<p>We’ll study these special initial conditions soon.</p>
+<p>But first let’s write some Python code to iterate on equation <a class="reference internal" href="#equation-eq-second-order">(16.12)</a> starting from an arbitrary <span class="math notranslate nohighlight">\((y_{-1}, y_{-2}) \in {\bf R}^2\)</span>.</p>
 </section>
 <section id="implementation">
-<h2><span class="section-number">16.4. </span>Implementation<a class="headerlink" href="#implementation" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">16.5. </span>Implementation<a class="headerlink" href="#implementation" title="Permalink to this heading">#</a></h2>
 <p>We now implement the above algorithm to compute the square root of <span class="math notranslate nohighlight">\(\sigma\)</span>.</p>
 <p>In this lecture, we use the following import:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 </pre></div>
 </div>
 </div>
@@ -544,7 +571,7 @@ it follows that for <strong>almost all</strong> (but not all) initial conditions
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Case 2: η_1, η_2 = (0, 1)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Case 2: η_1, η_2 = (1, 0)</span>
 <span class="n">ηs</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 <span class="n">sqrt_σ</span> <span class="o">=</span> <span class="n">y</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">ηs</span><span class="p">)</span> <span class="o">/</span> <span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">ηs</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
 
@@ -559,10 +586,10 @@ it follows that for <strong>almost all</strong> (but not all) initial conditions
 </div>
 </div>
 <p>We find that convergence is immediate.</p>
-<p>Let’s represent the preceding analysis by vectorizing our second order difference equation <a class="reference internal" href="#equation-eq-second-order">(16.12)</a> and then using  eigendecompositions of a state transition matrix.</p>
+<p>Next, we’ll  represent the preceding analysis by first vectorizing our second-order difference equation <a class="reference internal" href="#equation-eq-second-order">(16.12)</a> and then using  eigendecompositions of an  associated  state transition matrix.</p>
 </section>
 <section id="vectorizing-the-difference-equation">
-<h2><span class="section-number">16.5. </span>Vectorizing the difference equation<a class="headerlink" href="#vectorizing-the-difference-equation" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">16.6. </span>Vectorizing the difference equation<a class="headerlink" href="#vectorizing-the-difference-equation" title="Permalink to this heading">#</a></h2>
 <p>Represent <a class="reference internal" href="#equation-eq-second-order">(16.12)</a> with the first-order matrix difference equation</p>
 <div class="math notranslate nohighlight">
 \[
@@ -591,117 +618,59 @@ M = V \begin{bmatrix} \lambda_1 &amp; 0 \cr 0 &amp; \lambda_2  \end{bmatrix} V^{
 \[
 x_{t+1} = V \Lambda V^{-1} x_t
 \]</div>
-<p>Define</p>
-<div class="math notranslate nohighlight">
-\[
-x_t^* = V^{-1} x_t
-\]</div>
-<p>We can recover <span class="math notranslate nohighlight">\(x_t\)</span> from <span class="math notranslate nohighlight">\(x_t^*\)</span>:</p>
-<div class="math notranslate nohighlight">
-\[
-x_t = V x_t^*
-\]</div>
-<p>The following notations and equations will help us.</p>
-<p>Let</p>
-<div class="math notranslate nohighlight">
-\[V = \begin{bmatrix} V_{1,1} &amp; V_{1,2} \cr 
-                         V_{2,2} &amp; V_{2,2} \end{bmatrix}, \quad
-V^{-1} = \begin{bmatrix} V^{1,1} &amp; V^{1,2} \cr 
-                         V^{2,2} &amp; V^{2,2} \end{bmatrix}
-\]</div>
-<p>Notice that it follows from</p>
-<div class="math notranslate nohighlight">
-\[
- \begin{bmatrix} V^{1,1} &amp; V^{1,2} \cr 
-                         V^{2,2} &amp; V^{2,2} \end{bmatrix} \begin{bmatrix} V_{1,1} &amp; V_{1,2} \cr 
-                         V_{2,2} &amp; V_{2,2} \end{bmatrix} = \begin{bmatrix} 1  &amp; 0 \cr 0 &amp; 1 \end{bmatrix}
-\]</div>
-<p>that</p>
-<div class="math notranslate nohighlight">
-\[
-V^{2,1} V_{1,1} + V^{2,2} V_{2,1} = 0
-\]</div>
-<p>and</p>
-<div class="math notranslate nohighlight">
-\[
-V^{1,1}V_{1,2} + V^{1,2} V_{2,2} = 0
-\]</div>
-<p>These equations will be very useful soon.</p>
-<p>Notice that</p>
-<div class="math notranslate nohighlight">
-\[
-\begin{bmatrix} x_{1,t+1}^* \cr x_{2,t+1}^* \end{bmatrix} = \begin{bmatrix} \lambda_1  &amp; 0 \cr 0 &amp; \lambda_2 \end{bmatrix}
-\begin{bmatrix} x_{1,t}^* \cr x_{2,t}^* \end{bmatrix}
-\]</div>
-<p>To deactivate <span class="math notranslate nohighlight">\(\lambda_1\)</span> we want to set</p>
-<div class="math notranslate nohighlight">
-\[
-x_{1,0}^* = 0
-\]</div>
-<p>This can be achieved by setting</p>
-<div class="math notranslate nohighlight" id="equation-eq-deactivate1">
-<span class="eqno">(16.18)<a class="headerlink" href="#equation-eq-deactivate1" title="Permalink to this equation">#</a></span>\[
-x_{2,0} =  -( V^{1,2})^{-1} V^{1,1} = V_{2,1} V_{1,1}^{-1} x_{1,0}.
-\]</div>
-<p>To deactivate <span class="math notranslate nohighlight">\(\lambda_2\)</span>, we want to  set</p>
-<div class="math notranslate nohighlight">
-\[
-x_{2,0}^* = 0
-\]</div>
-<p>This can be achieved by setting</p>
-<div class="math notranslate nohighlight" id="equation-eq-deactivate2">
-<span class="eqno">(16.19)<a class="headerlink" href="#equation-eq-deactivate2" title="Permalink to this equation">#</a></span>\[
-x_{2,0} = -(V^{2,2})^{-1} V^{2,1} = V_{2,1} V_{1,1}^{-1} x_{1,0}
-\]</div>
-<p>We shall encounter equations very similar to <a class="reference internal" href="#equation-eq-deactivate1">(16.18)</a> and <a class="reference internal" href="#equation-eq-deactivate2">(16.19)</a>
-in  this QuantEcon lecture <a class="reference internal" href="money_inflation.html"><span class="doc">money financed government deficits and inflation</span></a>
-and in many other places in dynamic economic theory.</p>
-<section id="id1">
-<h3><span class="section-number">16.5.1. </span>Implementation<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
 <p>Now we implement the algorithm above.</p>
 <p>First we write a function that iterates <span class="math notranslate nohighlight">\(M\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">iterate_M</span><span class="p">(</span><span class="n">x_0</span><span class="p">,</span> <span class="n">M</span><span class="p">,</span> <span class="n">num_steps</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">iterate_M</span><span class="p">(</span><span class="n">x_0</span><span class="p">,</span> <span class="n">M</span><span class="p">,</span> <span class="n">num_steps</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">):</span>
+    
     <span class="c1"># Eigendecomposition of M</span>
     <span class="n">Λ</span><span class="p">,</span> <span class="n">V</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eig</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>
     <span class="n">V_inv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>
     
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;eigenvalue:</span><span class="se">\n</span><span class="si">{</span><span class="n">Λ</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;eigenvector:</span><span class="se">\n</span><span class="si">{</span><span class="n">V</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    
     <span class="c1"># Initialize the array to store results</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">x_0</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">num_steps</span><span class="p">))</span>
+    <span class="n">xs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">x_0</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> 
+                   <span class="n">num_steps</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
     
     <span class="c1"># Perform the iterations</span>
+    <span class="n">xs</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">x_0</span>
     <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_steps</span><span class="p">):</span>
-        <span class="n">x</span><span class="p">[:,</span> <span class="n">t</span><span class="p">]</span> <span class="o">=</span> <span class="n">V</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">Λ</span><span class="o">**</span><span class="n">t</span><span class="p">)</span> <span class="o">@</span> <span class="n">V_inv</span> <span class="o">@</span> <span class="n">x_0</span>
+        <span class="n">xs</span><span class="p">[:,</span> <span class="n">t</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">M</span> <span class="o">@</span> <span class="n">xs</span><span class="p">[:,</span> <span class="n">t</span><span class="p">]</span>
     
-    <span class="k">return</span> <span class="n">x</span>
+    <span class="k">return</span> <span class="n">xs</span><span class="p">,</span> <span class="n">Λ</span><span class="p">,</span> <span class="n">V</span><span class="p">,</span> <span class="n">V_inv</span>
 
 <span class="c1"># Define the state transition matrix M</span>
-<span class="n">M</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">σ</span><span class="p">)],</span>
-              <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+<span class="n">M</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+      <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">σ</span><span class="p">)],</span>
+      <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
 
 <span class="c1"># Initial condition vector x_0</span>
-<span class="n">x_0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="n">x_0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
 
 <span class="c1"># Perform the iteration</span>
-<span class="n">xs</span> <span class="o">=</span> <span class="n">iterate_M</span><span class="p">(</span><span class="n">x_0</span><span class="p">,</span> <span class="n">M</span><span class="p">,</span> <span class="n">num_steps</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">xs</span><span class="p">,</span> <span class="n">Λ</span><span class="p">,</span> <span class="n">V</span><span class="p">,</span> <span class="n">V_inv</span> <span class="o">=</span> <span class="n">iterate_M</span><span class="p">(</span><span class="n">x_0</span><span class="p">,</span> <span class="n">M</span><span class="p">,</span> <span class="n">num_steps</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;eigenvalues:</span><span class="se">\n</span><span class="si">{</span><span class="n">Λ</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;eigenvectors:</span><span class="se">\n</span><span class="si">{</span><span class="n">V</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;inverse eigenvectors:</span><span class="se">\n</span><span class="si">{</span><span class="n">V_inv</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>eigenvalue:
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>eigenvalues:
 [ 2.41421356 -0.41421356]
-eigenvector:
+eigenvectors:
 [[ 0.92387953 -0.38268343]
  [ 0.38268343  0.92387953]]
+inverse eigenvectors:
+[[ 0.92387953  0.38268343]
+ [-0.38268343  0.92387953]]
 </pre></div>
 </div>
 </div>
 </div>
-<p>Compare the eigenvector to the roots we obtained above</p>
+<p>Let’s compare the eigenvalues to the roots <a class="reference internal" href="#equation-eq-secretweapon">(16.15)</a> of equation
+<a class="reference internal" href="#equation-eq-cha-eq0">(16.13)</a> that  we computed above.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">roots</span> <span class="o">=</span> <span class="n">solve_λs</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">σ</span><span class="p">)))</span>
@@ -716,7 +685,226 @@ eigenvector:
 </div>
 </div>
 <p>Hence we confirmed <a class="reference internal" href="#equation-eq-eigen-sqrt">(16.17)</a>.</p>
+<p>Information about the square root we are after is also contained
+in the two  eigenvectors.</p>
+<p>Indeed, each  eigenvector is just a two-dimensional subspace of <span class="math notranslate nohighlight">\({\mathbb R}^3\)</span> pinned down by dynamics of the form</p>
+<div class="math notranslate nohighlight" id="equation-eq-invariantsub101">
+<span class="eqno">(16.18)<a class="headerlink" href="#equation-eq-invariantsub101" title="Permalink to this equation">#</a></span>\[
+y_{t} = \lambda_i y_{t-1}, \quad i = 1, 2 
+\]</div>
+<p>that we encountered above in equation <a class="reference internal" href="#equation-eq-2diff8">(16.8)</a> above.</p>
+<p>In equation <a class="reference internal" href="#equation-eq-invariantsub101">(16.18)</a>, the <span class="math notranslate nohighlight">\(i\)</span>th <span class="math notranslate nohighlight">\(\lambda_i\)</span>  equals the <span class="math notranslate nohighlight">\(V_{i, 1}/V_{i,2}\)</span>.</p>
+<p>The following graph verifies this for our example.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plotting the eigenvectors</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">V</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">V</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">angles</span><span class="o">=</span><span class="s1">&#39;xy&#39;</span><span class="p">,</span> <span class="n">scale_units</span><span class="o">=</span><span class="s1">&#39;xy&#39;</span><span class="p">,</span> 
+           <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;C0&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">fr</span><span class="s1">&#39;$\lambda_1=</span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">Λ</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span><span class="si">}</span><span class="s1">$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">V</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">V</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">angles</span><span class="o">=</span><span class="s1">&#39;xy&#39;</span><span class="p">,</span> <span class="n">scale_units</span><span class="o">=</span><span class="s1">&#39;xy&#39;</span><span class="p">,</span> 
+           <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;C1&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">fr</span><span class="s1">&#39;$\lambda_2=</span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">Λ</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span><span class="si">}</span><span class="s1">$&#39;</span><span class="p">)</span>
+
+<span class="c1"># Annotating the slopes</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">V</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">V</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mf">1.2</span><span class="p">,</span> 
+         <span class="sa">r</span><span class="s1">&#39;slope=$\frac{V_{1,1}}{V_{1,2}}=$&#39;</span><span class="o">+</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">V</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">V</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">],</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> 
+         <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;C0&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">V</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">V</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="mf">1.2</span><span class="p">,</span> 
+         <span class="sa">r</span><span class="s1">&#39;slope=$\frac{V_{2,1}}{V_{2,2}}=$&#39;</span><span class="o">+</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">V</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">V</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> 
+         <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;C1&#39;</span><span class="p">)</span>
+
+<span class="c1"># Adding labels</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;grey&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;grey&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/f27e85ff315d3629f8ede04cf560fe4aad0bcc837ad59207decfbdbea51e2b41.png"><img alt="_images/f27e85ff315d3629f8ede04cf560fe4aad0bcc837ad59207decfbdbea51e2b41.png" src="_images/f27e85ff315d3629f8ede04cf560fe4aad0bcc837ad59207decfbdbea51e2b41.png" style="width: 80%;" /></a>
+</div>
+</div>
 </section>
+<section id="invariant-subspace-approach">
+<h2><span class="section-number">16.7. </span>Invariant subspace approach<a class="headerlink" href="#invariant-subspace-approach" title="Permalink to this heading">#</a></h2>
+<p>The preceding  calculation indicates that we can use the eigenvectors <span class="math notranslate nohighlight">\(V\)</span> to construct 2-dimensional  <em>invariant subspaces</em>.</p>
+<p>We’ll pursue that possibility now.</p>
+<p>Define the transformed variables</p>
+<div class="math notranslate nohighlight">
+\[
+x_t^* = V^{-1} x_t
+\]</div>
+<p>Evidently, we can recover <span class="math notranslate nohighlight">\(x_t\)</span> from <span class="math notranslate nohighlight">\(x_t^*\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+x_t = V x_t^*
+\]</div>
+<p>The following notations and equations will help us.</p>
+<p>Let</p>
+<div class="math notranslate nohighlight">
+\[V = \begin{bmatrix} V_{1,1} &amp; V_{1,2} \cr 
+                         V_{2,1} &amp; V_{2,2} \end{bmatrix}, \quad
+V^{-1} = \begin{bmatrix} V^{1,1} &amp; V^{1,2} \cr 
+                         V^{2,1} &amp; V^{2,2} \end{bmatrix}
+\]</div>
+<p>Notice that it follows from</p>
+<div class="math notranslate nohighlight">
+\[
+ \begin{bmatrix} V^{1,1} &amp; V^{1,2} \cr 
+                         V^{2,1} &amp; V^{2,2} \end{bmatrix} \begin{bmatrix} V_{1,1} &amp; V_{1,2} \cr 
+                         V_{2,1} &amp; V_{2,2} \end{bmatrix} = \begin{bmatrix} 1  &amp; 0 \cr 0 &amp; 1 \end{bmatrix}
+\]</div>
+<p>that</p>
+<div class="math notranslate nohighlight">
+\[
+V^{2,1} V_{1,1} + V^{2,2} V_{2,1} = 0
+\]</div>
+<p>and</p>
+<div class="math notranslate nohighlight">
+\[
+V^{1,1}V_{1,2} + V^{1,2} V_{2,2} = 0.
+\]</div>
+<p>These equations will be very useful soon.</p>
+<p>Notice that</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{bmatrix} x_{1,t+1}^* \cr x_{2,t+1}^* \end{bmatrix} = \begin{bmatrix} \lambda_1  &amp; 0 \cr 0 &amp; \lambda_2 \end{bmatrix}
+\begin{bmatrix} x_{1,t}^* \cr x_{2,t}^* \end{bmatrix}
+\]</div>
+<p>To deactivate <span class="math notranslate nohighlight">\(\lambda_1\)</span> we want to set</p>
+<div class="math notranslate nohighlight">
+\[
+x_{1,0}^* = 0.
+\]</div>
+<p>This can be achieved by setting</p>
+<div class="math notranslate nohighlight" id="equation-eq-deactivate1">
+<span class="eqno">(16.19)<a class="headerlink" href="#equation-eq-deactivate1" title="Permalink to this equation">#</a></span>\[
+x_{2,0} =  -( V^{1,2})^{-1} V^{1,1} x_{1,0} = V_{2,2} V_{1,2}^{-1} x_{1,0}.
+\]</div>
+<p>To deactivate <span class="math notranslate nohighlight">\(\lambda_2\)</span>, we want to  set</p>
+<div class="math notranslate nohighlight">
+\[
+x_{2,0}^* = 0
+\]</div>
+<p>This can be achieved by setting</p>
+<div class="math notranslate nohighlight" id="equation-eq-deactivate2">
+<span class="eqno">(16.20)<a class="headerlink" href="#equation-eq-deactivate2" title="Permalink to this equation">#</a></span>\[
+x_{2,0} = -(V^{2,2})^{-1} V^{2,1} x_{1,0} = V_{2,1} V_{1,1}^{-1} x_{1,0}.
+\]</div>
+<p>Let’s verify <a class="reference internal" href="#equation-eq-deactivate1">(16.19)</a> and <a class="reference internal" href="#equation-eq-deactivate2">(16.20)</a> below</p>
+<p>To deactivate <span class="math notranslate nohighlight">\(\lambda_1\)</span> we use <a class="reference internal" href="#equation-eq-deactivate1">(16.19)</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xd_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">((</span><span class="n">x_0</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> 
+                 <span class="n">V</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">V</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">x_0</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span>
+                <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+
+<span class="c1"># Compute x_{1,0}^*</span>
+<span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">V_inv</span> <span class="o">@</span> <span class="n">xd_1</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-0.        , -5.22625186])
+</pre></div>
+</div>
+</div>
+</div>
+<p>We find <span class="math notranslate nohighlight">\(x_{1,0}^* = 0\)</span>.</p>
+<p>Now we deactivate <span class="math notranslate nohighlight">\(\lambda_2\)</span> using <a class="reference internal" href="#equation-eq-deactivate2">(16.20)</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xd_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">((</span><span class="n">x_0</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> 
+                 <span class="n">V</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="n">V</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">x_0</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> 
+                 <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+
+<span class="c1"># Compute x_{2,0}^*</span>
+<span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">V_inv</span> <span class="o">@</span> <span class="n">xd_2</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([2.1647844, 0.       ])
+</pre></div>
+</div>
+</div>
+</div>
+<p>We find <span class="math notranslate nohighlight">\(x_{2,0}^* = 0\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Simulate with muted λ1 λ2.</span>
+<span class="n">num_steps</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">xs_λ1</span> <span class="o">=</span> <span class="n">iterate_M</span><span class="p">(</span><span class="n">xd_1</span><span class="p">,</span> <span class="n">M</span><span class="p">,</span> <span class="n">num_steps</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">xs_λ2</span> <span class="o">=</span> <span class="n">iterate_M</span><span class="p">(</span><span class="n">xd_2</span><span class="p">,</span> <span class="n">M</span><span class="p">,</span> <span class="n">num_steps</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># Compute ratios y_t / y_{t-1}</span>
+<span class="n">ratios_λ1</span> <span class="o">=</span> <span class="n">xs_λ1</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">:]</span> <span class="o">/</span> <span class="n">xs_λ1</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">ratios_λ2</span> <span class="o">=</span> <span class="n">xs_λ2</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">:]</span> <span class="o">/</span> <span class="n">xs_λ2</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<p>The following graph shows the ratios <span class="math notranslate nohighlight">\(y_t / y_{t-1}\)</span> for the two cases.</p>
+<p>We find that the ratios converge to <span class="math notranslate nohighlight">\(\lambda_2\)</span> in the first case and <span class="math notranslate nohighlight">\(\lambda_1\)</span> in the second case.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the ratios for y_t / y_{t-1}</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+<span class="c1"># First subplot</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">ratios_λ1</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> 
+            <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$\frac</span><span class="si">{y_t}</span><span class="s1">{y_{t-1}}$&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">Λ</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> 
+               <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$\lambda_2$&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\frac</span><span class="si">{y_t}</span><span class="s1">{y_{t-1}}$&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\frac</span><span class="si">{y_t}</span><span class="s1">{y_{t-1}}$ after Muting $\lambda_1$&#39;</span><span class="p">,</span> 
+                 <span class="n">size</span><span class="o">=</span><span class="mi">13</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="c1"># Second subplot</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ratios_λ2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$\frac</span><span class="si">{y_t}</span><span class="s1">{y_{t-1}}$&#39;</span><span class="p">,</span> 
+            <span class="n">linewidth</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">Λ</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> 
+               <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$\lambda_1$&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\frac</span><span class="si">{y_t}</span><span class="s1">{y_{t-1}}$&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\frac</span><span class="si">{y_t}</span><span class="s1">{y_{t-1}}$ after Muting $\lambda_2$&#39;</span><span class="p">,</span> 
+                 <span class="n">size</span><span class="o">=</span><span class="mi">13</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/38ffd7b65a3a6b5e6590c16c9694352a436a09975e1590f6b7711625afa7f9f3.png"><img alt="_images/38ffd7b65a3a6b5e6590c16c9694352a436a09975e1590f6b7711625afa7f9f3.png" src="_images/38ffd7b65a3a6b5e6590c16c9694352a436a09975e1590f6b7711625afa7f9f3.png" style="width: 80%;" /></a>
+</div>
+</div>
+</section>
+<section id="concluding-remarks">
+<h2><span class="section-number">16.8. </span>Concluding remarks<a class="headerlink" href="#concluding-remarks" title="Permalink to this heading">#</a></h2>
+<p>This lecture sets the stage  for many other applications of the <em>invariant subspace</em> methods.</p>
+<p>All of these exploit very similar equations based on eigen decompositions.</p>
+<p>We shall encounter equations very similar to <a class="reference internal" href="#equation-eq-deactivate1">(16.19)</a> and <a class="reference internal" href="#equation-eq-deactivate2">(16.20)</a>
+in <a class="reference internal" href="money_inflation.html"><span class="doc">Money Financed Government Deficits and Price Levels</span></a> and in many other places in dynamic economic theory.</p>
 </section>
 </section>
 
@@ -988,7 +1176,7 @@ eigenvector:
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="ar1_processes.html">
-   32. AR1 Processes
+   32. AR(1) Processes
   </a>
  </li>
  <li class="toctree-l1">
