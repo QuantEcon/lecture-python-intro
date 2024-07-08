@@ -48,7 +48,7 @@ plt.rcParams["figure.figsize"] = (11, 5)  #set default figure size
 
 ## The AR(1) model
 
-The *AR(1) model* (autoregressive model of order 1) takes the form
+The **AR(1) model** (autoregressive model of order 1) takes the form
 
 ```{math}
 :label: can_ar1
@@ -56,7 +56,9 @@ The *AR(1) model* (autoregressive model of order 1) takes the form
 X_{t+1} = a X_t + b + c W_{t+1}
 ```
 
-where $a, b, c$ are scalar-valued parameters and the equation is a *stochastic recurrence relations*.
+where $a, b, c$ are scalar-valued parameters 
+
+(Equation {eq}`can_ar1` is sometimes called a **stochastic difference equation**.)
 
 For example, $X_t$ might be 
 
