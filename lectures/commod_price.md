@@ -69,7 +69,7 @@ s = yf.download('CT=F', '2016-1-1', '2023-4-1')['Adj Close']
 fig, ax = plt.subplots()
 
 ax.plot(s, marker='o', alpha=0.5, ms=1)
-ax.set_ylabel('price', fontsize=12)
+ax.set_ylabel('cotton price in USD', fontsize=12)
 ax.set_xlabel('date', fontsize=12)
 
 plt.show()
@@ -138,7 +138,7 @@ We assume that the sequence $\{ Z_t \}_{t \geq 1}$ is {ref}`IID <iid-theorem>` w
 Speculators can store the commodity between periods, with $I_t$ units
 purchased in the current period yielding $\alpha I_t$ units in the next.
 
-Here $\alpha \in (0,1)$ is a depreciation rate for the commodity.
+In general, $\alpha$ is a factor. Here $\alpha \in (0,1)$ is a depreciation rate for the commodity.
 
 For simplicity, the risk free interest rate is taken to be
 zero, so expected profit on purchasing $I_t$ units is
@@ -173,6 +173,7 @@ $$
   \alpha \mathbb{E}_t \, p_{t+1}  - p_t \leq 0
 $$ (eq:arbi)
 
+This means that if the expected price is lower than the current price, there is no room for arbitrage.
 
 Profit maximization gives the additional condition
 
@@ -181,7 +182,7 @@ $$
 $$ (eq:pmco)
 
 
-We also require that the market clears in each period.
+We also require that the market clears, with supply equaling demand in each period.
 
 We assume that consumers generate demand quantity $D(p)$ corresponding to
 price $p$.
@@ -233,7 +234,7 @@ conditions above.
 More precisely, we seek a $p$ such that [](eq:arbi) and [](eq:pmco) hold for
 the corresponding system [](eq:eosy).
 
-To this end, suppose that there exists a function $p^*$ on $S$
+To this end, we apply the idea of [**ansatz**](https://en.wikipedia.org/wiki/Ansatz) here by supposing that there exists a function $p^*$ on $S$
 satisfying
 
 $$
@@ -283,7 +284,7 @@ But then $D(p^*(X_t)) = X_t$ and $I_t = I(X_t) = 0$.
 
 As a consequence, both [](eq:arbi) and [](eq:pmco) hold.
 
-We have found an equilibrium.
+We have found an equilibrium, which verifies the ansatz.
 
 
 ### Computing the equilibrium
