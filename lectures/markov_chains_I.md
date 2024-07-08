@@ -1113,42 +1113,6 @@ mc = qe.MarkovChain(P)
 ψ_star
 ```
 
-Solution 3:
-
-We find the distribution $\psi$ converges to the stationary distribution more quickly compared to the {ref}`hamilton's chain <hamilton>`.
-
-```{code-cell} ipython3
-ts_length = 10
-num_distributions = 25
-plot_distribution(P, ts_length, num_distributions)
-```
-
-In fact, the rate of convergence is governed by {ref}`eigenvalues<eigen>` {cite}`sargent2023economic`.
-
-```{code-cell} ipython3
-P_eigenvals = np.linalg.eigvals(P)
-P_eigenvals
-```
-
-```{code-cell} ipython3
-P_hamilton = np.array([[0.971, 0.029, 0.000],
-                       [0.145, 0.778, 0.077],
-                       [0.000, 0.508, 0.492]])
-
-hamilton_eigenvals = np.linalg.eigvals(P_hamilton)
-hamilton_eigenvals
-```
-
-More specifically, it is governed by the spectral gap, the difference between the largest and the second largest eigenvalue.
-
-```{code-cell} ipython3
-sp_gap_P = P_eigenvals[0] - np.diff(P_eigenvals)[0]
-sp_gap_hamilton = hamilton_eigenvals[0] - np.diff(hamilton_eigenvals)[0]
-
-sp_gap_P > sp_gap_hamilton
-```
-
-We will come back to this when we discuss {ref}`spectral theory<spec_markov>`.
 
 ```{solution-end}
 ```
