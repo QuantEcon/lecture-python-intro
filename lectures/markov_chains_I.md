@@ -61,6 +61,8 @@ import matplotlib as mpl
 from mpl_toolkits.mplot3d import Axes3D
 from matplotlib.animation import FuncAnimation
 from IPython.display import HTML
+from matplotlib.patches import Polygon
+from mpl_toolkits.mplot3d.art3d import Poly3DCollection
 ```
 
 ## Definitions and examples
@@ -931,21 +933,67 @@ P =
 \end{bmatrix}
 $$
 
-we find the distribution oscillates
+We observe that certain initial distributions cycle periodically rather than converging. 
+
+For instance, the distribution (1,0) alternates to (0,1) and back again. 
+
+To further illustrate this lack of asymptotic stationarity, let's examine a similar 3D periodic stochastic matrix using an animated visualization.
 
 ```{code-cell} ipython3
-P = np.array([[0, 1],
-              [1, 0]])
+ψ_1 = (0.0, 0.0, 1.0)
+ψ_2 = (0.5, 0.5, 0.0)
+ψ_3 = (0.25, 0.25, 0.5)
+ψ_4 = (1/3, 1/3, 1/3)
 
-ts_length = 20
-num_distributions = 30
+P = np.array([[0.0, 1.0, 0.0],
+              [0.0, 0.0, 1.0],
+              [1.0, 0.0, 0.0]])
 
-plot_distribution(P, ts_length, num_distributions)
+fig = plt.figure()
+ax = fig.add_subplot(projection='3d')
+colors = ['red','yellow', 'green', 'blue']  # Different colors for each initial point
+
+# Define the vertices of the unit simplex
+v = np.array([[1, 0, 0], [0, 1, 0], [0, 0, 1], [0, 0, 0]])
+
+# Define the faces of the unit simplex
+faces = [
+    [v[0], v[1], v[2]],
+    [v[0], v[1], v[3]],
+    [v[0], v[2], v[3]],
+    [v[1], v[2], v[3]]
+]
+
+def update(n):
+    ax.clear()
+    ax.set_xlim([0, 1])
+    ax.set_ylim([0, 1])
+    ax.set_zlim([0, 1])
+    ax.view_init(45, 45)
+    
+    # Plot the 3D unit simplex as planes
+    simplex = Poly3DCollection(faces,alpha=0.05)
+    ax.add_collection3d(simplex)
+    
+    for idx, ψ_0 in enumerate([ψ_1, ψ_2, ψ_3, ψ_4]):
+        ψ_t = iterate_ψ(ψ_0, P, n+1)
+        
+        point = ψ_t[-1]
+        ax.scatter(point[0], point[1], point[2], color=colors[idx], s=60)
+        points = np.array(ψ_t)
+        ax.plot(points[:, 0], points[:, 1], points[:, 2], color=colors[idx],linewidth=0.75)
+    
+    return fig,
+
+anim = FuncAnimation(fig, update, frames=range(20), blit=False, repeat=False)
+plt.close()
+HTML(anim.to_jshtml())
 ```
-
-Indeed, this $P$ fails our asymptotic stationarity condition, since, as you can
-verify, $P^t$ is not everywhere positive for any $t$.
-
+This animation demonstrates the behavior of an irreducible and periodic stochastic matrix. 
+The red, yellow, and green dots represent different initial probability distributions. 
+The blue dot represents the unique stationary distribution. 
+Unlike Hamilton’s Markov chain, these initial distributions do not converge to the unique stationary distribution. 
+Instead, they cycle periodically around the probability simplex, illustrating that asymptotic stability fails.
 
 (finite_mc_expec)=
 ## Computing expectations
