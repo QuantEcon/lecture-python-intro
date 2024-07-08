@@ -777,6 +777,7 @@ Sometimes the distribution $\psi_t = \psi_0 P^t$ of $X_t$ converges to $\psi^*$ 
 
 For example, we have the following result
 
+(strict_stationary)=
 ```{prf:theorem}
 :label: mc_gs_thm
 
