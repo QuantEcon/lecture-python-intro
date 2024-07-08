@@ -56,7 +56,7 @@ The *AR(1) model* (autoregressive model of order 1) takes the form
 X_{t+1} = a X_t + b + c W_{t+1}
 ```
 
-where $a, b, c$ are scalar-valued parameters and the equation is a **stochastic recurrence relations**.
+where $a, b, c$ are scalar-valued parameters and the equation is a *stochastic recurrence relations*.
 
 For example, $X_t$ might be 
 
