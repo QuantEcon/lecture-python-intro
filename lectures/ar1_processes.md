@@ -194,9 +194,9 @@ For dynamic problems, sharp predictions are related to stability.
 For example, if a dynamic model predicts that inflation always converges to some
 kind of steady state, then the model gives a sharp prediction.
 
-(The prediction might be wrong, but even this is helpful, because we can judge 
+(The prediction might be wrong, but even this is helpful, because we can judge the quality of the model.)
 
-Notice that, in the figure above, the sequence $\{ \psi_t \}$ seems to be converging to a limiting distribution.
+Notice that, in the figure above, the sequence $\{ \psi_t \}$ seems to be converging to a limiting distribution, suggesting some kind of stability.
 
 This is even clearer if we project forward further into the future:
 
@@ -269,16 +269,21 @@ plt.show()
 
 As claimed, the sequence $\{ \psi_t \}$ converges to $\psi^*$.
 
+We see that, at least for these parameters, the AR(1) model has strong stability
+properties.
+
+
+
+
 ### Stationary distributions
 
-A stationary distribution is a distribution that is a fixed
-point of the update rule for distributions.
+Let's try to better understand the limiting distribution $\psi^*$.
 
-In other words, if $\psi_t$ is stationary, then $\psi_{t+j} =
-\psi_t$ for all $j$ in $\mathbb N$.
+A stationary distribution is a distribution that is a "fixed point" of the update rule for the AR(1) process.
 
-A different way to put this, specialized to the current setting, is as follows: a
-density $\psi$ on $\mathbb R$ is **stationary** for the AR(1) process if
+In other words, if $\psi_t$ is stationary, then $\psi_{t+j} = \psi_t$ for all $j$ in $\mathbb N$.
+
+A different way to put this, specialized to the current setting, is as follows: a density $\psi$ on $\mathbb R$ is **stationary** for the AR(1) process if
 
 $$
 X_t \sim \psi
@@ -331,15 +336,21 @@ $$
     \quad \text{as } m \to \infty
 $$
 
-In other words, the time series sample mean converges to the mean of the
-stationary distribution.
+In other words, the time series sample mean converges to the mean of the stationary distribution.
 
-In reality, if an economy is ergodic, its long-term average growth rate is stable. For example, observing an economy's behavior over time can give a reliable estimate of its long-term growth potential. 
 
-However, ergodicity fails when persistent shocks or structural changes affect growth dynamics, making past observations unreliable for predicting future growth.
+Ergodicity is important for a range of reasons.
 
-As will become clear over the next few lectures, ergodicity is a very
-important concept for statistics and simulation.
+For example, {eq}`ar1_ergo` can be used to test theory.
+
+In this equation, we can use observed data to evaluate the left hand side of {eq}`ar1_ergo`.
+
+And we can use a theoretical AR(1) model to calculate the right hand side.
+
+If $\frac{1}{m} \sum_{t = 1}^m X_t$ is not close to $\psi^(x)$, even for many
+observations, then our theory seems to be incorrect and we will need to revise
+it.
+
 
 ## Exercises
 
