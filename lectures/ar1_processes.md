@@ -56,7 +56,7 @@ The *AR(1) model* (autoregressive model of order 1) takes the form
 X_{t+1} = a X_t + b + c W_{t+1}
 ```
 
-where $a, b, c$ are scalar-valued parameters.
+where $a, b, c$ are scalar-valued parameters and the equation is a **stochastic recurrence relations**.
 
 For example, $X_t$ might be 
 
@@ -88,6 +88,7 @@ Iterating backwards from time $t$, we obtain
 $$
 X_t = a X_{t-1} + b +  c W_t
         = a^2 X_{t-2} + a b + a c W_{t-1} + b + c W_t
+        = a^3 X_{t-3} + a^2 b + a^2 c W_{t-2} + b + c W_t
         = \cdots
 $$
 
@@ -200,7 +201,7 @@ Notice that, in the figure above, the sequence $\{ \psi_t \}$ seems to be conver
 This is even clearer if we project forward further into the future:
 
 ```{code-cell} python3
-def plot_density_seq(ax, mu_0=-3.0, v_0=0.6, sim_length=60):
+def plot_density_seq(ax, mu_0=-3.0, v_0=0.6, sim_length=40):
     mu, v = mu_0, v_0
     for t in range(sim_length):
         mu = a * mu + b
@@ -220,7 +221,7 @@ For example, this alternative density sequence also converges to the same limit.
 
 ```{code-cell} python3
 fig, ax = plt.subplots()
-plot_density_seq(ax, mu_0=3.0)
+plot_density_seq(ax, mu_0=4.0)
 plt.show()
 ```
 
@@ -255,7 +256,7 @@ We can confirm this is valid for the sequence above using the following code.
 
 ```{code-cell} python3
 fig, ax = plt.subplots()
-plot_density_seq(ax, mu_0=3.0)
+plot_density_seq(ax, mu_0=4.0)
 
 mu_star = b / (1 - a)
 std_star = np.sqrt(c**2 / (1 - a**2))  # square root of v_star
