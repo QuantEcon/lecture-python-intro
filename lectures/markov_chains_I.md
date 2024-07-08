@@ -933,7 +933,7 @@ P =
 \end{bmatrix}
 $$
 
-We observe that certain initial distributions cycle periodically rather than converge. 
+We observe that certain initial distributions cycle periodically rather than converging. 
 
 For instance, the distribution (1,0) alternates to (0,1) and back again. 
 
