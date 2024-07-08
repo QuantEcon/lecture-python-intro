@@ -883,7 +883,7 @@ P =
 $$
 
 This matrix does not satisfy the conditions of 
-{ref}`mc_gs_thm` because, as you can readily check, 
+{ref}`strict_stationary` because, as you can readily check, 
 
 * $P^m = P$ when $m$ is odd and 
 * $P^m = I$, the identity matrix, when $m$ is even.
