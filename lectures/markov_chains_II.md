@@ -4,7 +4,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.14.4
+    jupytext_version: 1.16.1
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
@@ -58,14 +58,9 @@ import numpy as np
 
 To explain irreducibility, let's take $P$ to be a fixed stochastic matrix.
 
-Two states $x$ and $y$ are said to **communicate** with each other if
-there exist positive integers $j$ and $k$ such that
+State $x$ is called **accessible** (or **reachable**) from state $y$ if $P^t(x,y)>0$ for some integer $t\ge 0$. 
 
-$$
-P^j(x, y) > 0
-\quad \text{and} \quad
-P^k(y, x) > 0
-$$
+Two states, $x$ and $y$, are said to **communicate** if $x$ and $y$ are accessible from each other.
 
 In view of our discussion {ref}`above <finite_mc_mstp>`, this means precisely
 that
@@ -142,7 +137,7 @@ We'll come back to this a bit later.
 
 ### Irreducibility and stationarity
 
-We discussed uniqueness of stationary distributions our {doc}`earlier lecture on Markov chains <markov_chains_I>` 
+We discussed uniqueness of stationary distributions in our earlier lecture {doc}`markov_chains_I`.
 
 There we {prf:ref}`stated <mc_po_conv_thm>` that uniqueness holds when the transition matrix is everywhere positive.
 
@@ -174,7 +169,7 @@ distribution, then, for all $x \in S$,
 ```{math}
 :label: llnfmc0
 
-\frac{1}{m} \sum_{t = 1}^m \mathbf{1}\{X_t = x\}  \to \psi^*(x)
+\frac{1}{m} \sum_{t = 1}^m \mathbb{1}\{X_t = x\}  \to \psi^*(x)
     \quad \text{as } m \to \infty
 ```
 
@@ -182,8 +177,8 @@ distribution, then, for all $x \in S$,
 
 Here
 
-* $\{X_t\}$ is a Markov chain with stochastic matrix $P$ and initial.
-  distribution $\psi_0$
+* $\{X_t\}$ is a Markov chain with stochastic matrix $P$ and initial distribution $\psi_0$
+
 * $\mathbb{1} \{X_t = x\} = 1$ if $X_t = x$ and zero otherwise.
 
 The result in [theorem 4.3](llnfmc0) is sometimes called **ergodicity**.
@@ -196,16 +191,16 @@ This gives us another way to interpret the stationary distribution (provided irr
 
 Importantly, the result is valid for any choice of $\psi_0$.
 
-The theorem is related to {doc}`the Law of Large Numbers <lln_clt>`.
+The theorem is related to {doc}`the law of large numbers <lln_clt>`.
 
 It tells us that, in some settings, the law of large numbers sometimes holds even when the
 sequence of random variables is [not IID](iid_violation).
 
 
 (mc_eg1-2)=
-### Example: Ergodicity and unemployment
+### Example: ergodicity and unemployment
 
-Recall our cross-sectional interpretation of the employment/unemployment model {ref}`discussed above <mc_eg1-1>`.
+Recall our cross-sectional interpretation of the employment/unemployment model {ref}`discussed before <mc_eg1-1>`.
 
 Assume that $\alpha \in (0,1)$ and $\beta \in (0,1)$, so that irreducibility holds.
 
@@ -235,7 +230,7 @@ Let's denote the fraction of time spent in state $x$ over the period $t=1,
 \ldots, n$ by $\hat p_n(x)$, so that 
 
 $$
-    \hat p_n(x) := \frac{1}{n} \sum_{t = 1}^n \mathbf{1}\{X_t = x\}
+    \hat p_n(x) := \frac{1}{n} \sum_{t = 1}^n \mathbb{1}\{X_t = x\}
     \qquad (x \in \{0, 1, 2\})
 $$
 
@@ -247,8 +242,6 @@ Hence we expect that $\hat p_n(x) \approx \psi^*(x)$ when $n$ is large.
 
 The next figure shows convergence of $\hat p_n(x)$ to $\psi^*(x)$ when $x=1$ and
 $X_0$ is either $0, 1$ or $2$.
-
-
 
 ```{code-cell} ipython3
 P = np.array([[0.971, 0.029, 0.000],
@@ -263,9 +256,9 @@ fig, ax = plt.subplots()
 ax.axhline(ψ_star[x], linestyle='dashed', color='black', 
                 label = fr'$\psi^*({x})$')
 # Compute the fraction of time spent in state 0, starting from different x_0s
-for x0 in range(3):
+for x0 in range(len(P)):
     X = mc.simulate(ts_length, init=x0)
-    p_hat = (X == x).cumsum() / (1 + np.arange(ts_length))
+    p_hat = (X == x).cumsum() / np.arange(1, ts_length+1)
     ax.plot(p_hat, label=fr'$\hat p_n({x})$ when $X_0 = \, {x0}$')
 ax.set_xlabel('t')
 ax.set_ylabel(fr'$\hat p_n({x})$')
@@ -309,14 +302,13 @@ The following figure illustrates
 ```{code-cell} ipython3
 P = np.array([[0, 1],
               [1, 0]])
-ts_length = 10_000
+ts_length = 100
 mc = qe.MarkovChain(P)
 n = len(P)
 fig, axes = plt.subplots(nrows=1, ncols=n)
 ψ_star = mc.stationary_distributions[0]
 
 for i in range(n):
-    axes[i].set_ylim(0.45, 0.55)
     axes[i].axhline(ψ_star[i], linestyle='dashed', lw=2, color='black', 
                     label = fr'$\psi^*({i})$')
     axes[i].set_xlabel('t')
@@ -326,10 +318,11 @@ for i in range(n):
     for x0 in range(n):
         # Generate time series starting at different x_0
         X = mc.simulate(ts_length, init=x0)
-        p_hat = (X == i).cumsum() / (1 + np.arange(ts_length))
+        p_hat = (X == i).cumsum() / np.arange(1, ts_length+1)
         axes[i].plot(p_hat, label=f'$x_0 = \, {x0} $')
 
     axes[i].legend()
+plt.tight_layout()
 plt.show()
 ```
 
@@ -341,7 +334,7 @@ However, the distribution at each state does not.
 
 ### Example:  political institutions
 
-Let's go back to the political institutions mode with six states discussed {ref}`in a previous lecture <mc_eg3>` and study ergodicity.
+Let's go back to the political institutions model with six states discussed {ref}`in a previous lecture <mc_eg3>` and study ergodicity.
 
 
 Here's the transition matrix.
@@ -374,19 +367,18 @@ P = [[0.86, 0.11, 0.03, 0.00, 0.00, 0.00],
      [0.00, 0.00, 0.09, 0.11, 0.55, 0.25],
      [0.00, 0.00, 0.09, 0.15, 0.26, 0.50]]
 
-ts_length = 10_000
+ts_length = 2500
 mc = qe.MarkovChain(P)
 ψ_star = mc.stationary_distributions[0]
-fig, ax = plt.subplots(figsize=(9, 6))
-X = mc.simulate(ts_length)
+fig, ax = plt.subplots()
+X = mc.simulate(ts_length, random_state=1)
 # Center the plot at 0
-ax.set_ylim(-0.25, 0.25)
-ax.axhline(0, linestyle='dashed', lw=2, color='black', alpha=0.4)
+ax.axhline(linestyle='dashed', lw=2, color='black')
 
 
 for x0 in range(len(P)):
     # Calculate the fraction of time for each state
-    p_hat = (X == x0).cumsum() / (1 + np.arange(ts_length))
+    p_hat = (X == x0).cumsum() / np.arange(1, ts_length+1)
     ax.plot(p_hat - ψ_star[x0], label=f'$x = {x0+1} $')
     ax.set_xlabel('t')
     ax.set_ylabel(r'$\hat p_n(x) - \psi^* (x)$')
@@ -394,31 +386,6 @@ for x0 in range(len(P)):
 ax.legend()
 plt.show()
 ```
-
-
-
-### Expectations of geometric sums
-
-Sometimes we want to compute the mathematical expectation of a geometric sum, such as
-$\sum_t \beta^t h(X_t)$.
-
-In view of the preceding discussion, this is
-
-$$
-\mathbb{E} 
-    \left[
-        \sum_{j=0}^\infty \beta^j h(X_{t+j}) \mid X_t 
-        = x
-    \right]
-    = x + \beta (Ph)(x) + \beta^2 (P^2 h)(x) + \cdots
-$$
-
-By the {ref}`Neumann series lemma <la_neumann>`, this sum can be calculated using 
-
-$$
-    I + \beta P + \beta^2 P^2 + \cdots = (I - \beta P)^{-1}
-$$
-
 
 ## Exercises
 
@@ -508,14 +475,13 @@ Part 2:
 ```{code-cell} ipython3
 ts_length = 1000
 mc = qe.MarkovChain(P)
-fig, ax = plt.subplots(figsize=(9, 6))
-X = mc.simulate(ts_length)
-ax.set_ylim(-0.25, 0.25)
-ax.axhline(0, linestyle='dashed', lw=2, color='black', alpha=0.4)
+fig, ax = plt.subplots()
+X = mc.simulate(ts_length, random_state=1)
+ax.axhline(linestyle='dashed', lw=2, color='black')
 
-for x0 in range(8):
+for x0 in range(len(P)):
     # Calculate the fraction of time for each worker
-    p_hat = (X == x0).cumsum() / (1 + np.arange(ts_length))
+    p_hat = (X == x0).cumsum() / np.arange(1, ts_length+1)
     ax.plot(p_hat - ψ_star[x0], label=f'$x = {x0+1} $')
     ax.set_xlabel('t')
     ax.set_ylabel(r'$\hat p_n(x) - \psi^* (x)$')
@@ -555,7 +521,7 @@ In other words, if $\{X_t\}$ represents the Markov chain for
 employment, then $\bar X_m \to p$ as $m \to \infty$, where
 
 $$
-\bar X_m := \frac{1}{m} \sum_{t = 1}^m \mathbf{1}\{X_t = 0\}
+\bar X_m := \frac{1}{m} \sum_{t = 1}^m \mathbb{1}\{X_t = 0\}
 $$
 
 This exercise asks you to illustrate convergence by computing
@@ -582,31 +548,27 @@ As $m$ gets large, both series converge to zero.
 
 ```{code-cell} ipython3
 α = β = 0.1
-ts_length = 10000
+ts_length = 3000
 p = β / (α + β)
 
 P = ((1 - α,       α),               # Careful: P and p are distinct
      (    β,   1 - β))
 mc = qe.MarkovChain(P)
 
-fig, ax = plt.subplots(figsize=(9, 6))
-ax.set_ylim(-0.25, 0.25)
-ax.axhline(0, linestyle='dashed', lw=2, color='black', alpha=0.4)
+fig, ax = plt.subplots()
+ax.axhline(linestyle='dashed', lw=2, color='black')
 
-for x0, col in ((0, 'blue'), (1, 'green')):
+for x0 in range(len(P)):
     # Generate time series for worker that starts at x0
     X = mc.simulate(ts_length, init=x0)
     # Compute fraction of time spent unemployed, for each n
-    X_bar = (X == 0).cumsum() / (1 + np.arange(ts_length))
+    X_bar = (X == 0).cumsum() / np.arange(1, ts_length+1)
     # Plot
-    ax.fill_between(range(ts_length), np.zeros(ts_length), X_bar - p, color=col, alpha=0.1)
-    ax.plot(X_bar - p, color=col, label=f'$x_0 = \, {x0} $')
-    # Overlay in black--make lines clearer
-    ax.plot(X_bar - p, 'k-', alpha=0.6)
+    ax.plot(X_bar - p, label=f'$x_0 = \, {x0} $')
     ax.set_xlabel('t')
     ax.set_ylabel(r'$\bar X_m - \psi^* (x)$')
     
-ax.legend(loc='upper right')
+ax.legend()
 plt.show()
 ```
 
