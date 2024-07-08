@@ -58,6 +58,9 @@ import numpy as np
 import networkx as nx
 from matplotlib import cm
 import matplotlib as mpl
+from mpl_toolkits.mplot3d import Axes3D
+from matplotlib.animation import FuncAnimation
+from IPython.display import HTML
 ```
 
 ## Definitions and examples
@@ -812,16 +815,27 @@ Now we plot the sequence
 fig = plt.figure()
 ax = fig.add_subplot(projection='3d')
 
-ψ_t = iterate_ψ(ψ_0, P, 20)
+def update(n):
+    ψ_t = iterate_ψ(ψ_0, P, n+1)
+    
+    ax.clear()
+    ax.set_xlim([0, 1])
+    ax.set_ylim([0, 1])
+    ax.set_zlim([0, 1])
+    ax.view_init(30, 210)
+    
+    for i, point in enumerate(ψ_t):
+        ax.scatter(point[0], point[1], point[2], color='r', s=60, alpha=(i+1)/len(ψ_t))
+    
+    mc = qe.MarkovChain(P)
+    ψ_star = mc.stationary_distributions[0]
+    ax.scatter(ψ_star[0], ψ_star[1], ψ_star[2], c='k', s=60)
+    
+    return fig,
 
-ax.scatter(ψ_t[:,0], ψ_t[:,1], ψ_t[:,2], c='r', s=60)
-ax.view_init(30, 210)
-
-mc = qe.MarkovChain(P)
-ψ_star = mc.stationary_distributions[0]
-ax.scatter(ψ_star[0], ψ_star[1], ψ_star[2], c='k', s=60)
-
-plt.show()
+anim = FuncAnimation(fig, update, frames=range(20), blit=False, repeat=False)
+plt.close()
+HTML(anim.to_jshtml())
 ```
 
 Here

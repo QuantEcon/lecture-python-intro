@@ -21,7 +21,6 @@ kernelspec:
 (ar1_processes)=
 # AR(1) Processes
 
-
 ```{index} single: Autoregressive processes
 ```
 

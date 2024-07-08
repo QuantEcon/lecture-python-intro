@@ -170,7 +170,7 @@ We shall describe two distinct but closely related ways of computing a pair   $\
 
 But first it is instructive to describe a special type of equilibrium known as a **steady state**.
 
-In a  steady state equilibrium, a subset of key variables remain constant or **invariant** over time, while remaining variables can be expressed as functions of  those constant variables.
+In a  steady-state equilibrium, a subset of key variables remain constant or **invariant** over time, while remaining variables can be expressed as functions of  those constant variables.
 
 Finding such state variables is something of an art.  
 
@@ -180,7 +180,7 @@ This is true in the present model.
 
 ### Steady states
 
-In a **steady state** equilibrium of the  model we are studying, 
+In a steady-state equilibrium of the  model we are studying, 
 
 $$
 \begin{aligned}
@@ -229,7 +229,7 @@ $$
 R_t \in  [\underline R, \overline R],  \quad t \geq 0. 
 $$
 
-Maximizing steady state seigniorage  {eq}`eq:SSsigng` with respect to $\bar R$, we find that the maximizing rate of return on currency is 
+Maximizing steady-state seigniorage  {eq}`eq:SSsigng` with respect to $\bar R$, we find that the maximizing rate of return on currency is 
 
 $$
 \bar R_{\rm max} = \sqrt{\frac{\gamma_2}{\gamma_1}}
@@ -263,7 +263,7 @@ plt.rcParams['figure.dpi'] = 300
 from collections import namedtuple
 ```
 
-Let's set some parameter values and compute possible steady state rates of return on currency $\bar R$, the  seigniorage maximizing rate of return on currency, and an object that we'll discuss later, namely, an initial price level $p_0$ associated with the maximum steady state rate of return on currency.
+Let's set some parameter values and compute possible steady-state rates of return on currency $\bar R$, the  seigniorage maximizing rate of return on currency, and an object that we'll discuss later, namely, an initial price level $p_0$ associated with the maximum steady-state rate of return on currency.
 
 First, we create a `namedtuple` to store parameters so that we can reuse this `namedtuple` in our functions throughout this lecture
 
@@ -337,7 +337,7 @@ plt.show()
 
 Let's print the two steady-state rates of return $\bar R$ and the associated seigniorage revenues that the government collects.
 
-(By construction, both steady state rates of return should raise the same amounts real revenue.)
+(By construction, both steady-state rates of return should raise the same amounts real revenue.)
 
 We hope that the following code will  confirm this.
 
@@ -349,7 +349,7 @@ g2 = seign(msm.R_l, msm)
 print(f'R_l, g_l = {msm.R_l:.4f}, {g2:.4f}')
 ```
 
-Now let's compute the maximum steady state amount of seigniorage that could be gathered by printing money and the state state rate of return on money that attains it.
+Now let's compute the maximum steady-state amount of seigniorage that could be gathered by printing money and the state state rate of return on money that attains it.
 
 ## Two  computation strategies
 
@@ -434,7 +434,7 @@ As we shall see soon, selecting an initial $p_0$ in method 2 is intimately tied 
 %b_0 = \gamma_1 - \gamma_0 R_0^{-1} 
 %$$
 
-Remember that there exist  two steady state equilibrium  values $ R_\ell <  R_u$  of the rate of return on currency  $R_t$.
+Remember that there exist  two steady-state equilibrium  values $ R_\ell <  R_u$  of the rate of return on currency  $R_t$.
 
 We proceed as follows.
 
@@ -460,7 +460,7 @@ condition $R_0$.
   
 The quantity $1 - R_t$ can be interpreted as an **inflation tax rate** that the government imposes on holders of its currency.
 
-We shall soon  see that the existence of two steady state rates of return on currency
+We shall soon  see that the existence of two steady-state rates of return on currency
 that serve to finance the government deficit of $g$ indicates the presence of a **Laffer curve** in the inflation tax rate.  
 
 ```{note}
@@ -746,7 +746,7 @@ y^*_{t+1} = \Lambda^t y^*_t .
 $$ (eq:stardynamics)
 
 This equation represents the dynamics of our system  in a way that lets us  isolate the
-force that causes  gross inflation to converge to the inverse of the lower steady state rate
+force that causes  gross inflation to converge to the inverse of the lower steady-state rate
 of inflation $R_\ell$ that we discovered earlier. 
 
 Staring at  equation {eq}`eq:stardynamics` indicates that unless

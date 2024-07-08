@@ -18,7 +18,7 @@ is used by policy makers and researchers to examine
 
 * fiscal policy
 * monetary policy 
-* long run growth
+* long-run growth
 
 and many other topics.
 
@@ -57,7 +57,7 @@ prices, etc.)
 The OLG model takes up this challenge.
 
 We will present a simple version of the OLG model that clarifies the decision
-problem of households and studies the implications for long run growth.
+problem of households and studies the implications for long-run growth.
 
 Let's start with some imports.
 
@@ -70,7 +70,7 @@ import matplotlib.pyplot as plt
 
 ## Environment
 
-We assume that time is discrete, so that $t=0, 1, \ldots$,
+We assume that time is discrete, so that $t=0, 1, \ldots$.
 
 An individual born at time $t$ lives for two periods, $t$ and $t + 1$.
 
@@ -144,7 +144,7 @@ Here
 
 - $s_t$ is savings by an individual born at time $t$ 
 - $w_t$ is the wage rate at time $t$
-- $R_{t+1}$ is the interest rate on savings invested at time $t$, paid at time $t+1$
+- $R_{t+1}$ is the gross interest rate on savings invested at time $t$, paid at time $t+1$
 
 Since $u$ is strictly increasing, both of these constraints will hold as equalities at the maximum.
 
@@ -155,7 +155,7 @@ The first-order condition for a maximum can be obtained
 by plugging $c_{t+1}$ into the objective function, taking the derivative
 with respect to $c_t$, and setting it to zero.
 
-This leads to the **Euler equation** of the OLG model, which is
+This leads to the **Euler equation** of the OLG model, which describes the optimal intertemporal consumption dynamics:
 
 ```{math}
 :label: euler_1_olg
@@ -225,7 +225,7 @@ economy.
 
 ## Demand for capital
 
-First we describe the firm problem and then we write down an equation
+First we describe the firm's problem and then we write down an equation
 describing demand for capital given prices.
 
 
@@ -246,7 +246,7 @@ The profit maximization problem of the firm is
 
 ```{math}
 :label: opt_profit_olg
-    \max_{k_t, \ell_t} \{ k^{\alpha}_t \ell_t^{1-\alpha} - R_t k_t - \ell_t w_t   \}
+    \max_{k_t, \ell_t} \{ k^{\alpha}_t \ell_t^{1-\alpha} - R_t k_t -w_t \ell_t  \}
 ```
 
 The first-order conditions are obtained by taking the derivative of the
@@ -302,24 +302,6 @@ def capital_supply(R, β, w):
 The next figure plots the supply of capital, as in [](saving_log_2_olg), as well as the demand for capital, as in [](aggregate_demand_capital_olg), as functions of the interest rate $R_{t+1}$.
 
 (For the special case of log utility, supply does not depend on the interest rate, so we have a constant function.)
-
-```{code-cell} ipython3
-R_vals = np.linspace(0.3, 1)
-α, β = 0.5, 0.9
-w = 2.0
-
-fig, ax = plt.subplots()
-
-ax.plot(R_vals, capital_demand(R_vals, α), 
-        label="aggregate demand")
-ax.plot(R_vals, capital_supply(R_vals, β, w), 
-        label="aggregate supply")
-
-ax.set_xlabel("$R_{t+1}$")
-ax.set_ylabel("$k_{t+1}$")
-ax.legend()
-plt.show()
-```
 
 ## Equilibrium
 
@@ -409,15 +391,7 @@ ax.plot(R_vals, capital_supply(R_vals, β, w),
 R_e = equilibrium_R_log_utility(α, β, w)
 k_e = (β / (1 + β)) * w
 
-ax.plot(R_e, k_e, 'go', ms=6, alpha=0.6)
-
-ax.annotate(r'equilibrium',
-             xy=(R_e, k_e),
-             xycoords='data',
-             xytext=(0, 60),
-             textcoords='offset points',
-             fontsize=12,
-             arrowprops=dict(arrowstyle="->"))
+ax.plot(R_e, k_e, 'o',label='equilibrium')
 
 ax.set_xlabel("$R_{t+1}$")
 ax.set_ylabel("$k_{t+1}$")
@@ -447,7 +421,7 @@ In particular, since $w_t = (1-\alpha)k_t^\alpha$, we have
 If we iterate on this equation, we get a sequence for capital stock.
 
 
-Let's plot the 45 degree diagram of these dynamics, which we write as
+Let's plot the 45-degree diagram of these dynamics, which we write as
 
 $$
     k_{t+1} = g(k_t)
@@ -463,12 +437,9 @@ def k_update(k, α, β):
 ```{code-cell} ipython3
 α, β = 0.5, 0.9
 kmin, kmax = 0, 0.1
-x = 1000
-k_grid = np.linspace(kmin, kmax, x)
-k_grid_next = np.empty_like(k_grid)
-
-for i in range(x):
-    k_grid_next[i] = k_update(k_grid[i], α, β)
+n = 1000
+k_grid = np.linspace(kmin, kmax, n)
+k_grid_next = k_update(k_grid,α,β)
 
 fig, ax = plt.subplots(figsize=(6, 6))
 
@@ -520,7 +491,7 @@ R_star = (α/(1 - α)) * ((1 + β) / β)
 
 ### Time series
 
-The 45 degree diagram above shows that time series of capital with positive initial conditions converge to this steady state.
+The 45-degree diagram above shows that time series of capital with positive initial conditions converge to this steady state.
 
 Let's plot some time series that visualize this.
 
@@ -554,6 +525,7 @@ fig, ax = plt.subplots()
 ax.plot(R_series, label="gross interest rate")
 ax.plot(range(ts_length), np.full(ts_length, R_star), 'k--', label="$R^*$")
 ax.set_ylim(0, 4)
+ax.set_ylabel("gross interest rate")
 ax.set_xlabel("$t$")
 ax.legend()
 plt.show()
@@ -567,7 +539,7 @@ The interest rate reflects the marginal product of capital, which is high when c
 
 Previously, in our examples, we looked at the case of log utility.
 
-Log utility is a rather special case.
+Log utility is a rather special case of CRRA utility with $\gamma \to 1$.
 
 In this section, we are going to assume that $u(c) = \frac{ c^{1-
 \gamma}-1}{1-\gamma}$, where $\gamma >0, \gamma\neq 1$.
@@ -629,7 +601,6 @@ def savings_crra(w, R, model):
 ```
 
 ```{code-cell} ipython3
-R_vals = np.linspace(0.3, 1)
 model = create_olg_model()
 w = 2.0
 
@@ -685,7 +656,7 @@ In the exercise below, you will be asked to solve these equations numerically.
 
 Solve for the dynamics of equilibrium capital stock in the CRRA case numerically using [](law_of_motion_capital_crra).
 
-Visualize the dynamics using a 45 degree diagram.
+Visualize the dynamics using a 45-degree diagram.
 
 ```
 
@@ -735,15 +706,15 @@ def k_update(k, model):
     return optimize.newton(lambda k_prime: f(k_prime, k, model), 0.1)
 ```
 
-Finally, here is the 45 degree diagram.
+Finally, here is the 45-degree diagram.
 
 ```{code-cell} ipython3
 kmin, kmax = 0, 0.5
-x = 1000
-k_grid = np.linspace(kmin, kmax, x)
+n = 1000
+k_grid = np.linspace(kmin, kmax, n)
 k_grid_next = np.empty_like(k_grid)
 
-for i in range(x):
+for i in range(n):
     k_grid_next[i] = k_update(k_grid[i], model)
 
 fig, ax = plt.subplots(figsize=(6, 6))
@@ -768,7 +739,7 @@ plt.show()
 ```{exercise}
 :label: olg_ex2
 
-The 45 degree diagram from the last exercise shows that there is a unique
+The 45-degree diagram from the last exercise shows that there is a unique
 positive steady state.
 
 The positive steady state can be obtained by setting  $k_{t+1} = k_t = k^*$ in [](law_of_motion_capital_crra), which yields
