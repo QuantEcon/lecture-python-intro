@@ -779,6 +779,8 @@ For example, we have the following result
 
 (strict_stationary)=
 ```{prf:theorem}
+:label: mc_gs_thm
+
 If there exists an integer $m$ such that all entries of $P^m$ are
 strictly positive, then
 
@@ -881,8 +883,10 @@ P =
 $$
 
 This matrix does not satisfy the conditions of 
-{ref}`prf:theorem` because, as you can readily check, $P^m = P$ when $m$ is odd
-and $P^m = I$, the identity matrix, when $m$ is even.
+{ref}`mc_gs_thm` because, as you can readily check, 
+
+* $P^m = P$ when $m$ is odd and 
+* $P^m = I$, the identity matrix, when $m$ is even.
 
 Hence there is no $m$ such that all elements of $P^m$ are strictly positive.
 
