@@ -4,14 +4,13 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.16.1
+    jupytext_version: 1.16.2
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
   name: python3
 ---
 
-<!-- #region user_expressions=[] -->
 # Inflation During French Revolution 
 
 
@@ -31,18 +30,18 @@ Some of those theories make contact with modern theories about monetary and fisc
 
    * this normative (i.e., prescriptive mode) advises a government to finance temporary war-time surges in government expenditures mostly by issuing government debt; after the war to roll over whatever debt accumulated during the war, and  to increase taxes permanently by enough to finance interest payments on that post-war debt
 
-*  *unpleasant monetarist arithmetic* like that described in this quanteon lecture  {doc}`unpleasant`
+*  *unpleasant monetarist arithmetic* like that described in {doc}`unpleasant`
    
     * this arithmetic governed French government debt dynamics in the decades preceding 1789 and according to leading historians set the stage for the French Revolution 
 
-* a *real bills* theory of the effects of government open market operations in which the government *backs* its issues of paper money with valuable real property or financial assets
+* a **real bills** theory of the effects of government open market operations in which the government *backs* its issues of paper money with valuable real property or financial assets
 
     * the Revolutionaries learned about this theory from Adam Smith's 1776 book The Wealth of Nations
      and other contemporary sources
 
     * It shaped how the Revolutionaries issued paper money called assignats from 1789 to 1791 
 
-* a classical **gold**  or **silver** standard
+* a classical **gold**  or **silver standard**
   
     * Napoleon, who became head of government in 1799 used this theory to guide his monetary and fiscal policies
 
@@ -64,37 +63,45 @@ We use matplotlib to replicate several of the graphs that {cite}`sargent_velde19
 ## Data Sources
 
 This lecture uses data from three spreadsheets:
-
-  * datasets/fig_3.ods
-  * datasets/dette.xlsx
-  * datasets/assignat.xlsx
+  * [datasets/fig_3.xlsx](https://github.com/QuantEcon/lecture-python-intro/blob/main/lectures/datasets/fig_3.xlsx)
+  * [datasets/dette.xlsx](https://github.com/QuantEcon/lecture-python-intro/blob/main/lectures/datasets/dette.xlsx)
+  * [datasets/assignat.xlsx](https://github.com/QuantEcon/lecture-python-intro/blob/main/lectures/datasets/assignat.xlsx)
 
 ```{code-cell} ipython3
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 plt.rcParams.update({'font.size': 12})
+
+base_url = 'https://github.com/QuantEcon/lecture-python-intro/raw/'\
+           + 'main/lectures/datasets/'
+
+fig_3_url = f'{base_url}fig_3.xlsx'
+dette_url = f'{base_url}dette.xlsx'
+assignat_url = f'{base_url}assignat.xlsx'
 ```
 
 ## Government Expenditures and Taxes Collected
 
-
-
-We'll start by using matplotlib to construct two graphs that will provide important historical context.
-
-
+We'll start by using `matplotlib` to construct two graphs that will provide important historical context.
 
 ```{code-cell} ipython3
 ---
 mystnb:
   figure:
-    caption: "Military Spending in Britain and France"
-    name: fig4
+    caption: Military Spending in Britain and France
+    name: fr_fig4
 ---
 # Read the data from Excel file
-data2 = pd.read_excel('datasets/dette.xlsx', sheet_name='Militspe', usecols='M:X', skiprows=7, nrows=102, header=None)
+data2 = pd.read_excel(dette_url, 
+        sheet_name='Militspe', usecols='M:X', 
+        skiprows=7, nrows=102, header=None)
+
 # French military spending, 1685-1789, in 1726 livres
-data4 = pd.read_excel('datasets/dette.xlsx', sheet_name='Militspe', usecols='D', skiprows=3, nrows=105, header=None).squeeze()
+data4 = pd.read_excel(dette_url, 
+        sheet_name='Militspe', usecols='D', 
+        skiprows=3, nrows=105, header=None).squeeze()
+        
 years = range(1685, 1790)
 
 plt.figure()
@@ -112,8 +119,6 @@ plt.ylim([0, 475])
 
 plt.tight_layout()
 plt.show()
-
-#plt.savefig('frfinfig4.pdf', dpi=600)
 ```
 
 During the 18th century, Britain and France fought four large wars.
@@ -122,35 +127,31 @@ Britain won the first three wars and lost the fourth.
 
 Each  of those wars  produced surges in both countries government expenditures that each country somehow had to finance.
 
-Figure {numref}`fig4` shows surges in military expenditures in France (in blue) and Great Britain.
+Figure {numref}`fr_fig4` shows surges in military expenditures in France (in blue) and Great Britain.
 during those four wars.  
 
-A remarkable aspect of figure {numref}`fig4` is that despite having a population less than half of France's, Britain was able to finance military expenses of about the same amount as France's.
+A remarkable aspect of figure {numref}`fr_fig4` is that despite having a population less than half of France's, Britain was able to finance military expenses of about the same amount as France's.
 
-This testifies to Britain's success in having created state institutions that could tax, spend, and borrow.  
-
-
-
-
-
+This testifies to Britain's success in having created state institutions that could tax, spend, and borrow.
 
 ```{code-cell} ipython3
 ---
 mystnb:
   figure:
-    caption: "Government Expenditures and Tax Revenues in Britain"
-    name: fig2
+    caption: Government Expenditures and Tax Revenues in Britain
+    name: fr_fig2
 ---
-
 # Read the data from Excel file
-data2 = pd.read_excel('datasets/dette.xlsx', sheet_name='Militspe', usecols='M:X', skiprows=7, nrows=102, header=None)
+data2 = pd.read_excel(dette_url, sheet_name='Militspe', usecols='M:X', 
+                      skiprows=7, nrows=102, header=None)
 
 # Plot the data
 plt.figure()
 plt.plot(range(1689, 1791), data2.iloc[:, 5], linewidth=0.8)
 plt.plot(range(1689, 1791), data2.iloc[:, 11], linewidth=0.8, color='red')
 plt.plot(range(1689, 1791), data2.iloc[:, 9], linewidth=0.8, color='orange')
-plt.plot(range(1689, 1791), data2.iloc[:, 8], 'o-', markerfacecolor='none', linewidth=0.8, color='purple')
+plt.plot(range(1689, 1791), data2.iloc[:, 8], 'o-', 
+         markerfacecolor='none', linewidth=0.8, color='purple')
 
 # Customize the plot
 plt.gca().spines['top'].set_visible(False)
@@ -168,24 +169,20 @@ plt.text(1759, 7.3, 'revenues', fontsize=10)
 
 plt.tight_layout()
 plt.show()
-
-# Save the figure as a PDF
-#plt.savefig('frfinfig2.pdf', dpi=600)
 ```
 
-
-Figures  {numref}`fig2` and  {numref}`fr_fig3` summarize British and French government   fiscal policies  during the century before the start the French Revolution in 1789.
+Figures  {numref}`fr_fig2` and  {numref}`fr_fig3` summarize British and French government   fiscal policies  during the century before the start the French Revolution in 1789.
 
 
 Progressive forces in France before 1789 thought admired how  Britain had financed its government expenditures and advocated reforms in French institutions designed to make them more like Britain's.
 
-Figure  {numref}`fig2` shows government expenditures and how it was distributed among expenditures for 
+Figure  {numref}`fr_fig2` shows government expenditures and how it was distributed among expenditures for 
 
    * civil (non military) activities
    * debt service, i.e., interest payments 
    * military expenditures (the yellow line minus the red line) 
 
-Figure  {numref}`fig2` also plots total government revenues from tax collections (the purple circled line)
+Figure  {numref}`fr_fig2` also plots total government revenues from tax collections (the purple circled line)
 
 Notice the surges in total government expenditures associated with surges in military expenditures
 in these four wars
@@ -195,20 +192,20 @@ in these four wars
    * The French and Indian War in the 1750's and 1760s
    * The American War for Independence from 1775 to 1783
 
-Figure {numref}`fig2` indicates that
+Figure {numref}`fr_fig2` indicates that
 
    * during times of peace, the expenditures approximately equal taxes and debt service payments neither grow nor decline over time
    * during times of wars, government expenditures exceed tax revenues
       * the government finances the deficit of revenues relative to expenditures by issuing debt
    * after a war is over, the government's tax revenues exceed its non-interest expenditures by just enough to service the debt that the government issued to finance earlier deficits
-      * thus, after a war, the government does **not** raise taxes by enough to pay off its debt
+      * thus, after a war, the government does *not* raise taxes by enough to pay off its debt
       * instead, it just rolls over whatever debt it inherits, raising taxes by just enough to service the interest payments on that debt
 
-Eighteenth century British fiscal policy portrayed Figure {numref}`fig2` thus looks very much like a text-book example of a **tax-smoothing** model like Robert Barro's {cite}`Barro1979`.  
+Eighteenth century British fiscal policy portrayed Figure {numref}`fr_fig2` thus looks very much like a text-book example of a *tax-smoothing* model like Robert Barro's {cite}`Barro1979`.  
 
 A striking feature of the graph is what we'll nick name a  **law of gravity** for taxes and expenditures. 
 
-   * levels of government expenditures at taxes  attract each other
+   * levels of government expenditures at taxes attract each other
    * while they can temporarily differ -- as they do during wars -- they come back together when peace returns
 
 
@@ -219,13 +216,12 @@ Next we'll plot data on debt service costs as fractions of government revenues i
 ---
 mystnb:
   figure:
-    caption: "Ratio of debt service to taxes, Britain and France"
-    name: fig1
+    caption: Ratio of debt service to taxes, Britain and France
+    name: fr_fig1
 ---
-
 # Read the data from the Excel file
-data1 = pd.read_excel('datasets/dette.xlsx', sheet_name='Debt', usecols='R:S', skiprows=5, nrows=99, header=None)
-data1a = pd.read_excel('datasets/dette.xlsx', sheet_name='Debt', usecols='P', skiprows=89, nrows=15, header=None)
+data1 = pd.read_excel(dette_url, sheet_name='Debt', usecols='R:S', skiprows=5, nrows=99, header=None)
+data1a = pd.read_excel(dette_url, sheet_name='Debt', usecols='P', skiprows=89, nrows=15, header=None)
 
 # Plot the data
 plt.figure()
@@ -249,31 +245,18 @@ plt.ylabel('% of Taxes')
 
 plt.tight_layout()
 plt.show()
-
-#plt.savefig('frfinfig1.pdf', dpi=600)
-#plt.savefig('frfinfig1.jpg', dpi=600)
 ```
 
+Figure  {numref}`fr_fig1` shows that interest payments on government debt (i.e., so-called ``debt service'') were high fractions of government tax revenues in both Great Britain and France.  
 
-Figure  {numref}`fig1` shows that interest payments on government debt (i.e., so-called ``debt service'') were high fractions of government tax revenues in both Great Britain and France.  
-
-Figure {numref}`fig2` showed us that Britain managed to balance its budget despite those large 
+Figure {numref}`fr_fig2` showed us that Britain managed to balance its budget despite those large 
 interest costs. 
-<!-- #region user_expressions=[] -->
 
-
-
-
-
-But as  we'll see in our next graph, on the eve of the French Revolution in 1788, that  fiscal policy   **law of gravity** that worked so well in Britain, did not seem to be working in France.
-
-
-
-<!-- #endregion -->
+But as  we'll see in our next graph, on the eve of the French Revolution in 1788, that fiscal policy   *law of gravity* that worked so well in Britain, did not seem to be working in France.
 
 ```{code-cell} ipython3
 # Read the data from the Excel file
-data1 = pd.read_excel('datasets/fig_3.xlsx', sheet_name='Sheet1', usecols='C:F', skiprows=5, nrows=30, header=None)
+data1 = pd.read_excel(fig_3_url, sheet_name='Sheet1', usecols='C:F', skiprows=5, nrows=30, header=None)
 
 data1.replace(0, np.nan, inplace=True)
 ```
@@ -282,7 +265,7 @@ data1.replace(0, np.nan, inplace=True)
 ---
 mystnb:
   figure:
-    caption: "Government Spending and Tax Revenues in France"
+    caption: Government Spending and Tax Revenues in France
     name: fr_fig3
 ---
 # Plot the data
@@ -308,8 +291,6 @@ plt.ylabel('millions of livres')
 
 plt.tight_layout()
 plt.show()
-
-#plt.savefig('frfinfig3.jpg', dpi=600)
 ```
 
 Figure {numref}`fr_fig3` shows that in 1788  on the eve of the French Revolution government expenditures exceeded   tax revenues.   
@@ -400,7 +381,7 @@ Their plan involved issuing paper notes called ''assignats'' that entitled beare
 These paper notes would be ''as good as silver coins'' in the sense that both were acceptable means of payment in exchange for those (formerly) church lands.  
 
 Finance Minister Necker and the Constituants of the National Assembly thus  planned
-to solve the privatization problem **and** the debt problem simultaneously
+to solve the privatization problem *and* the debt problem simultaneously
 by creating a new currency. 
 
 They devised a scheme to raise revenues by auctioning
@@ -436,7 +417,7 @@ They wanted to honor government debts -- interests of French government creditor
 But they set out to remake  the French tax code and the administrative machinery for collecting taxes.
 
   * they abolished all sorts of taxes
-  * they abolished the Ancient Regimes scheme for ``tax farming''
+  * they abolished the Ancient Regimes scheme for ''tax farming''
       * tax farming meant that the government had privatized tax collection by hiring private citizes -- so called  tax farmers to collect taxes, while retaining a fraction of them as payment for their services
       * the great chemist Lavoisier was also a tax farmer, one of the reasons that the Committee for Public Safety sent him to the guillotine in 1794
 
@@ -448,11 +429,11 @@ The next figure shows this
 ---
 mystnb:
   figure:
-    caption: "Index of real per capital revenues, France"
-    name: fig5
+    caption: Index of real per capital revenues, France
+    name: fr_fig5
 ---
 # Read data from Excel file
-data5 = pd.read_excel('datasets/dette.xlsx', sheet_name='Debt', usecols='K', skiprows=41, nrows=120, header=None)
+data5 = pd.read_excel(dette_url, sheet_name='Debt', usecols='K', skiprows=41, nrows=120, header=None)
 
 # Plot the data
 plt.figure()
@@ -467,12 +448,9 @@ plt.ylabel('1726 = 1', fontsize=12)
 
 plt.tight_layout()
 plt.show()
-
-# Save the figure as a PDF
-#plt.savefig('frfinfig5.pdf', dpi=600)
 ```
 
-According to Figure {numref}`fig5`, tax revenues per capita did not rise to their pre 1789 levels
+According to Figure {numref}`fr_fig5`, tax revenues per capita did not rise to their pre 1789 levels
 until after 1815, when Napoleon Bonaparte was exiled to St Helena and King Louis XVIII was restored to the French Crown.
 
 
@@ -484,14 +462,12 @@ until after 1815, when Napoleon Bonaparte was exiled to St Helena and King Louis
 And as the next figure shows, government expenditures exceeded tax revenues by substantial
 amounts during the period form 1789 to 1799.
 
-
-
 ```{code-cell} ipython3
 ---
 mystnb:
   figure:
-    caption: "Spending (blue) and Revenues (orange), (real values)"
-    name: fig11
+    caption: Spending (blue) and Revenues (orange), (real values)
+    name: fr_fig11
 ---
 # Read data from Excel file
 data11 = pd.read_excel('datasets/assignat.xlsx', sheet_name='Budgets', usecols='J:K', skiprows=22, nrows=52, header=None)
@@ -528,24 +504,20 @@ plt.ylabel('millions of livres', fontsize=12)
 
 plt.tight_layout()
 plt.show()
-
-#plt.savefig('frfinfig11.pdf', dpi=600)
 ```
-To cover the disrepancies between government expenditures and tax revenues revealed in Figure {numref}`fig11`, the French revolutionaries  printed paper money and spent it.  
+
+To cover the disrepancies between government expenditures and tax revenues revealed in Figure {numref}`fr_fig11`, the French revolutionaries  printed paper money and spent it.  
 
 The next figure shows that by printing money, they were able to finance substantial purchases 
 of goods and services, including military goods and soldiers' pay.
-
-
 
 ```{code-cell} ipython3
 ---
 mystnb:
   figure:
-    caption: "Revenues raised by printing paper money notes"
-    name: fig24
+    caption: Revenues raised by printing paper money notes
+    name: fr_fig24
 ---
-
 # Read data from Excel file
 data12 = pd.read_excel('datasets/assignat.xlsx', sheet_name='seignor', usecols='F', skiprows=6, nrows=75, header=None).squeeze()
 
@@ -566,11 +538,9 @@ plt.text(pd.Timestamp('1793-11'), 39.5, 'revenues in 1788', verticalalignment='t
 
 plt.tight_layout()
 plt.show()
-
-#plt.savefig('frfinfig12.pdf', dpi=600)
 ```
 
-Figure {numref}`fig24` compares the revenues raised by printing money from 1789 to 1796 with tax revenues that the Ancient Regime had raised in 1788.
+Figure {numref}`fr_fig24` compares the revenues raised by printing money from 1789 to 1796 with tax revenues that the Ancient Regime had raised in 1788.
 
 Measured in goods, revenues raised at time $t$ by printing new money equal
 
@@ -610,10 +580,9 @@ Note that we use a log scale because the price level rose so much.
 ---
 mystnb:
   figure:
-    caption: "Price Level and Price of Gold (log scale)"
-    name: fig9
+    caption: Price Level and Price of Gold (log scale)
+    name: fr_fig9
 ---
-
 # Read the data from Excel file
 data7 = pd.read_excel('datasets/assignat.xlsx', sheet_name='Data', usecols='P:Q', skiprows=4, nrows=80, header=None)
 data7a = pd.read_excel('datasets/assignat.xlsx', sheet_name='Data', usecols='L', skiprows=4, nrows=80, header=None)
@@ -642,11 +611,9 @@ plt.text(1794.9, 40, 'gold', fontsize=12)
 
 plt.tight_layout()
 plt.show()
-#plt.savefig('frfinfig9.pdf', dpi=600)
 ```
 
-
-We have partioned  {numref}`fig9` that shows the log of the price level and   Figure {numref}`fig8`
+We have partioned  {numref}`fr_fig9` that shows the log of the price level and   Figure {numref}`fr_fig8`
 below  that plots real balances $\frac{M_t}{p_t}$ into three periods that correspond to 
 to different monetary  experiments. 
 
@@ -659,8 +626,8 @@ roughly stable prices. The fall of Robespierre in late July 1794 begins the thir
 of our episodes, in which real balances decline and prices rise rapidly.
 
 We interpret
-these three episodes in terms of three separate theories about money: a ``backing''
-or ''real bills'' theory (the text is Adam Smith  {cite}`smith2010wealth`),
+these three episodes in terms of three separate theories about money: a ''backing''
+or ''**real bills**'' theory (the text is Adam Smith  {cite}`smith2010wealth`),
 a legal restrictions theory ( {cite}`keynes1940pay`, {cite}`bryant1984price` )
 and a classical hyperinflation theory ({cite}`Cagan`).%
 ```{note}
@@ -671,17 +638,16 @@ for at least a year, the *assignat*  experienced a hyperinflation from May to De
 1795.
 ```
 We view these
-theories not as competitors but as alternative collections of ``if-then''
+theories not as competitors but as alternative collections of ''if-then''
 statements about government note issues, each of which finds its conditions more
 nearly met in one of these episodes than in the other two.
-
 
 ```{code-cell} ipython3
 ---
 mystnb:
   figure:
-    caption: "Real balances of assignats (in gold and goods)"
-    name: fig8
+    caption: Real balances of assignats (in gold and goods)
+    name: fr_fig8
 ---
 # Read the data from Excel file
 data7 = pd.read_excel('datasets/assignat.xlsx', sheet_name='Data', usecols='P:Q', skiprows=4, nrows=80, header=None)
@@ -713,14 +679,10 @@ plt.text(pd.Timestamp('1794-10-01'), 2500, 'real value', fontsize=12)
 
 plt.tight_layout()
 plt.show()
-
-# Save the figure as a PDF
-#plt.savefig('frfinfig8.pdf', dpi=600)
 ```
 
-
 The three clouds of points in Figure
-{numref}`fig104`
+{numref}`fr_fig104`
  depict different real balance-inflation relationships. 
  
 Only the cloud for the
@@ -730,18 +692,11 @@ hyperinflations.
 
 
 
-* subperiod 1: ("real bills period): January 1791 to July 1793
+* subperiod 1: ("**real bills** period): January 1791 to July 1793
 
 * subperiod 2: ("terror:):  August 1793 - July 1794
 
 * subperiod 3: ("classic Cagan hyperinflation): August 1794 - March 1796
-
-
-
-
-<!-- #endregion -->
-
-
 
 ```{code-cell} ipython3
 def fit(x, y):
@@ -764,12 +719,12 @@ bal = nom_balances[14:77, 1] * caron[:, 1] / 1000
 ```{code-cell} ipython3
 # fit data
 
-# reg y on x for three periods
+# Regress y on x for three periods
 a1, b1 = fit(bal[1:31], infl[1:31])
 a2, b2 = fit(bal[31:44], infl[31:44])
 a3, b3 = fit(bal[44:63], infl[44:63])
 
-# reg x on y for three periods
+# Regress x on y for three periods
 a1_rev, b1_rev = fit(infl[1:31], bal[1:31])
 a2_rev, b2_rev = fit(infl[31:44], bal[31:44])
 a3_rev, b3_rev = fit(infl[44:63], bal[44:63])
@@ -779,8 +734,8 @@ a3_rev, b3_rev = fit(infl[44:63], bal[44:63])
 ---
 mystnb:
   figure:
-    caption: "Inflation and Real Balances"
-    name: fig104
+    caption: Inflation and Real Balances
+    name: fr_fig104
 ---
 plt.figure()
 plt.gca().spines['top'].set_visible(False)
@@ -801,35 +756,31 @@ plt.legend()
 
 plt.tight_layout()
 plt.show()
-#plt.savefig('frfinfig7.pdf', dpi=600)
 ```
 
-
 The three clouds of points in Figure
-{numref}`fig104` evidently 
+{numref}`fr_fig104` evidently 
  depict different real balance-inflation relationships. 
 
 Only the cloud for the
 third period has the inverse relationship familiar to us now from twentieth-century
 hyperinflations.
 
-
  To bring this out, we'll use linear regressions to draw straight lines that compress the 
  inflation-real balance relationship for our three sub periods. 
 
  Before we do that, we'll drop some of the early observations during the terror period 
  to obtain the following graph.
- 
 
 ```{code-cell} ipython3
 # fit data
 
-# reg y on x for three periods
+# Regress y on x for three periods
 a1, b1 = fit(bal[1:31], infl[1:31])
 a2, b2 = fit(bal[31:44], infl[31:44])
 a3, b3 = fit(bal[44:63], infl[44:63])
 
-# reg x on y for three periods
+# Regress x on y for three periods
 a1_rev, b1_rev = fit(infl[1:31], bal[1:31])
 a2_rev, b2_rev = fit(infl[31:44], bal[31:44])
 a3_rev, b3_rev = fit(infl[44:63], bal[44:63])
@@ -839,8 +790,8 @@ a3_rev, b3_rev = fit(infl[44:63], bal[44:63])
 ---
 mystnb:
   figure:
-    caption: "Inflation and Real Balances"
-    name: fig104b
+    caption: Inflation and Real Balances
+    name: fr_fig104b
 ---
 plt.figure()
 plt.gca().spines['top'].set_visible(False)
@@ -852,7 +803,7 @@ plt.plot(bal[1:31], infl[1:31], 'o', markerfacecolor='none', color='blue', label
 # second subsample
 plt.plot(bal[34:44], infl[34:44], '+', color='red', label='terror')
 
-# third subsample  # Tom tinkered with subsample period
+# third subsample
 plt.plot(bal[44:63], infl[44:63], '*', color='orange', label='classic Cagan hyperinflation')
 
 plt.xlabel('real balances')
@@ -861,22 +812,17 @@ plt.legend()
 
 plt.tight_layout()
 plt.show()
-#plt.savefig('frfinfig7.pdf', dpi=600)
 ```
 
-
-
-Now let's regress inflation on real balances during the real bills period and plot the regression
+Now let's regress inflation on real balances during the **real bills** period and plot the regression
 line.
-
-
 
 ```{code-cell} ipython3
 ---
 mystnb:
   figure:
-    caption: "Inflation and Real Balances"
-    name: fig104c
+    caption: Inflation and Real Balances
+    name: fr_fig104c
 ---
 plt.figure()
 plt.gca().spines['top'].set_visible(False)
@@ -898,12 +844,11 @@ plt.legend()
 
 plt.tight_layout()
 plt.show()
-#plt.savefig('frfinfig7_line1.pdf', dpi=600)
 ```
 
-The regression line in Figure {numref}`fig104c` shows that large increases in real balances of
+The regression line in Figure {numref}`fr_fig104c` shows that large increases in real balances of
 assignats (paper money) were accompanied by only modest rises in the price level, an outcome in line
-with the real bills theory. 
+with the **real bills** theory. 
 
 During this period, assignats were claims on church lands. 
 
@@ -915,13 +860,12 @@ To get people to hold that paper money, the government forced people to hold it 
 Now let's regress real balances on inflation  during the terror  and plot the regression
 line.
 
-
 ```{code-cell} ipython3
 ---
 mystnb:
   figure:
-    caption: "Inflation and Real Balances"
-    name: fig104d
+    caption: Inflation and Real Balances
+    name: fr_fig104d
 ---
 plt.figure()
 plt.gca().spines['top'].set_visible(False)
@@ -943,10 +887,9 @@ plt.legend()
 
 plt.tight_layout()
 plt.show()
-#plt.savefig('frfinfig7_line2_rev.pdf', dpi=600)
 ```
 
-The regression line in Figure {numref}`fig104d` shows that large increases in real balances of
+The regression line in Figure {numref}`fr_fig104d` shows that large increases in real balances of
 assignats (paper money) were accompanied by little upward price  level pressure, even some declines in prices.  
 
 This reflects how well legal restrictions -- financial repression -- was working during the period of the Terror. 
@@ -964,8 +907,8 @@ Cagan {cite}`Cagan`.
 ---
 mystnb:
   figure:
-    caption: "Inflation and Real Balances"
-    name: fig104e
+    caption: Inflation and Real Balances
+    name: fr_fig104e
 ---
 plt.figure()
 plt.gca().spines['top'].set_visible(False)
@@ -987,18 +930,17 @@ plt.legend()
 
 plt.tight_layout()
 plt.show()
-#plt.savefig('frfinfig7_line3.pdf', dpi=600)
 ```
 
-Figure {numref}`fig104e` shows the results of regressing inflation on real balances during the
-period of the hyperinflation. 
+Figure {numref}`fr_fig104e` shows the results of regressing inflation on real balances during the
+period of the hyperinflation.
 
 ```{code-cell} ipython3
 ---
 mystnb:
   figure:
-    caption: "Inflation and Real Balances"
-    name: fig104f
+    caption: Inflation and Real Balances
+    name: fr_fig104f
 ---
 plt.figure()
 plt.gca().spines['top'].set_visible(False)
@@ -1020,7 +962,7 @@ plt.legend()
 
 plt.tight_layout()
 plt.show()
-#plt.savefig('frfinfig7_line3_rev.pdf', dpi=600)
 ```
-Figure {numref}`fig104e` shows the results of regressing  real balances on inflation during the
+
+Figure {numref}`fr_fig104e` shows the results of regressing  real balances on inflation during the
 period of the hyperinflation.
