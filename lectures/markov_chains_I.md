@@ -636,16 +636,14 @@ The probability of being in recession (either mild or severe) in 6 months' time 
 $$
 (\psi_t P^6)(1) + (\psi_t P^6)(2)
 $$
-```{index} single: Markov Chains; Cross-Sectional Distributions
+
 ```
 
 ```{index} single: Markov Chains; Cross-Sectional Distributions
 ```
 
-```{prf:example} Cross-Sectional Distributions
+````{prf:example} Cross-Sectional Distributions
 :label: cross-sectional-distributions
-
-### Example 2: Cross-Sectional Distributions
 
 The distributions we have been studying can be viewed either
 
@@ -674,15 +672,14 @@ So for a very large (tending to infinite) population, $\psi_t P^{10}$ also repre
 
 This is exactly the cross-sectional distribution.
 
- ```{note}
+```{note}
 A cross-sectional frequency measures how a particular variable (e.g., employment status) is distributed across a population at a specific time, providing information on the proportions of individuals in each possible state of that variable.
 ```
 
-
+````
 
 (stationary)=
 ## Stationary distributions
-
 
 As seen in {eq}`fin_mc_fr`, we can shift a distribution forward one
 unit of time via postmultiplication by $P$.
@@ -697,8 +694,6 @@ P = np.array([[0.4, 0.6],
 ```
 
 Notice that `ψ @ P` is the same as `ψ`.
-
-
 
 Such distributions are called **stationary** or **invariant**.
 
@@ -753,7 +748,7 @@ corresponds to unemployment (state 0).
 Using $\psi^* = \psi^* P$ and a bit of algebra yields
 
 $$
-    p = \frac{\beta}{\alpha + \beta}
+p = \frac{\beta}{\alpha + \beta}
 $$
 
 This is, in some sense, a steady state probability of unemployment.
