@@ -619,43 +619,43 @@ $$
 $$
 
 
-### Example: probability of recession
-
 ```{index} single: Markov Chains; Future Probabilities
 ```
 
+```{prf:example} Probability of Recession
+:label: prob-recesession
+
 Recall the stochastic matrix $P$ for recession and growth considered in {ref}`Example 1: Economic states <mc_eg2>`.
 
-Suppose that the current state is unknown --- perhaps statistics are available only at the *end* of the current month.
+Suppose that the current state is unknown — perhaps statistics are available only at the *end* of the current month.
 
-We guess that the probability that the economy is in state $x$ is $\psi_t(x)$ at time t.
+We guess that the probability that the economy is in state $x$ is $\psi_t(x)$ at time $t$.
 
-The probability of being in recession (either mild or severe) in 6 months time is given by
+The probability of being in recession (either mild or severe) in 6 months' time is given by
 
 $$
 (\psi_t P^6)(1) + (\psi_t P^6)(2)
 $$
+```{index} single: Markov Chains; Cross-Sectional Distributions
+```
 
+```{prf:example} Cross-Sectional Distributions
+:label: cross-sectional-distributions
 
-
-(mc_eg1-1)=
-### Example 2: cross-sectional distributions
+### Example 2: Cross-Sectional Distributions
 
 The distributions we have been studying can be viewed either
 
 1. as probabilities or
-1. as cross-sectional frequencies that the law of large numbers leads us to anticipate for large samples.
+2. as cross-sectional frequencies that the law of large numbers leads us to anticipate for large samples.
 
  ```{note}
-A cross-sectional frequency measures how a particular variable (e.g., employment status) is distributed across a population at a specific time, providing information of the proportions of individuals in each possible state of that variable.
+A cross-sectional frequency measures how a particular variable (e.g., employment status) is distributed across a population at a specific time, providing information on the proportions of individuals in each possible state of t variable.
 ```
 
 To illustrate, recall our model of employment/unemployment dynamics for a given worker discussed in {ref}`Example 2: Unemployment <mc_eg1>`.
 
-Consider a large population of workers, each of whose lifetime experience is
-described by the specified dynamics, with each worker's outcomes being
-realizations of processes that are statistically independent of all other
-workers' processes.
+Consider a large population of workers, each of whose lifetime experience is described by the specified dynamics, with each worker's outcomes being realizations of processes that are statistically independent of all other workers' processes.
 
 Let $\psi_t$ be the current *cross-sectional* distribution over $\{ 0, 1 \}$.
 
@@ -665,28 +665,22 @@ The cross-sectional distribution records fractions of workers employed and unemp
 
 What will the cross-sectional distribution be in 10 periods hence?
 
-The answer is $\psi_t P^{10}$, where $P$ is the stochastic matrix in
-{eq}`p_unempemp`.
+The answer is $\psi_t P^{10}$, where $P$ is the stochastic matrix in {eq}`p_unempemp`.
 
-This is because each worker's state evolves according to $P$, so
-$\psi_t P^{10}$ is a [marginal distribution](https://en.wikipedia.org/wiki/Marginal_distribution)  for a single randomly selected
-worker.
+This is because each worker's state evolves according to $P$, so $\psi_t P^{10}$ is a [marginal distribution](https://en.wikipedia.org/wiki/Marginal_distribution) for a single randomly selected worker.
 
-But when the sample is large, outcomes and probabilities are roughly equal (by an application of the law
-of large numbers).
+But when the sample is large, outcomes and probabilities are roughly equal (by an application of the law of large numbers).
 
-So for a very large (tending to infinite) population,
-$\psi_t P^{10}$ also represents  fractions of workers in
-each state.
+So for a very large (tending to infinite) population, $\psi_t P^{10}$ also represents fractions of workers in each state.
 
-This is exactly the cross-sectional distribution.
-
-(stationary)=
+This is exactly the(stationary)=
 ## Stationary distributions
 
 
 As seen in {eq}`fin_mc_fr`, we can shift a distribution forward one
 unit of time via postmultiplication by $P$.
+
+Some distributions are invariant under this updating process --- for example,nit of time via postmultiplication by $P$.
 
 Some distributions are invariant under this updating process --- for example,
 
