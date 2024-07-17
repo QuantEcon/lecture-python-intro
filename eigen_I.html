@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>15. Eigenvalues and Eigenvectors &#8212; A First Course in Quantitative Economics with Python</title>
+    <title>16. Eigenvalues and Eigenvectors &#8212; A First Course in Quantitative Economics with Python</title>
     <script src="https://unpkg.com/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://unpkg.com/tippy.js@6.3.1/dist/tippy-bundle.umd.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
@@ -123,8 +123,8 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="16. Computing Square Roots" href="greek_square.html" />
-    <link rel="prev" title="14. Monetarist Theory of Price Levels with Adaptive Expectations" href="cagan_adaptive.html" />
+    <link rel="next" title="17. Computing Square Roots" href="greek_square.html" />
+    <link rel="prev" title="15. Monetarist Theory of Price Levels with Adaptive Expectations" href="cagan_adaptive.html" />
 
 <!-- Normal Meta Tags -->
 <meta name="author" context="Thomas J. Sargent &amp; John Stachurski" />
@@ -172,43 +172,43 @@ const thebe_selector_output = ".output, .cell_output"
 
                         <nav id="bd-toc-nav" class="qe-page__toc-nav">
                             <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">15.1. Overview</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matrices-as-transformations">15.2. Matrices as transformations</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mapping-vectors-to-vectors">15.2.1. Mapping vectors to vectors</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#square-matrices">15.2.2. Square matrices</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">16.1. Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matrices-as-transformations">16.2. Matrices as transformations</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mapping-vectors-to-vectors">16.2.1. Mapping vectors to vectors</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#square-matrices">16.2.2. Square matrices</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#types-of-transformations">15.3. Types of transformations</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scaling">15.3.1. Scaling</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#shearing">15.3.2. Shearing</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rotation">15.3.3. Rotation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#permutation">15.3.4. Permutation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#types-of-transformations">16.3. Types of transformations</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scaling">16.3.1. Scaling</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#shearing">16.3.2. Shearing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rotation">16.3.3. Rotation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#permutation">16.3.4. Permutation</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-multiplication-as-composition">15.4. Matrix multiplication as composition</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-compositions">15.4.1. Linear compositions</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">15.4.2. Examples</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shear-then-rotate">15.4.2.1. Shear then rotate</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#rotate-then-shear">15.4.2.2. Rotate then shear</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-multiplication-as-composition">16.4. Matrix multiplication as composition</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-compositions">16.4.1. Linear compositions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">16.4.2. Examples</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shear-then-rotate">16.4.2.1. Shear then rotate</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#rotate-then-shear">16.4.2.2. Rotate then shear</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iterating-on-a-fixed-map">15.5. Iterating on a fixed map</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eigenvalues">15.6. Eigenvalues</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definitions">15.6.1. Definitions</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#complex-values">15.6.2. Complex values</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#some-mathematical-details">15.6.3. Some mathematical details</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#facts">15.6.4. Facts</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#computation">15.6.5. Computation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iterating-on-a-fixed-map">16.5. Iterating on a fixed map</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eigenvalues">16.6. Eigenvalues</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definitions">16.6.1. Definitions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#complex-values">16.6.2. Complex values</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#some-mathematical-details">16.6.3. Some mathematical details</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#facts">16.6.4. Facts</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#computation">16.6.5. Computation</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-neumann-series-lemma">15.7. The Neumann Series Lemma</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scalar-series">15.7.1. Scalar series</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-series">15.7.2. Matrix series</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-neumann-series-lemma">16.7. The Neumann Series Lemma</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scalar-series">16.7.1. Scalar series</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-series">16.7.2. Matrix series</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">15.8. Exercises</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">16.8. Exercises</a></li>
 </ul>
                             <p class="logo">
                                 
@@ -268,9 +268,9 @@ const thebe_selector_output = ".output, .cell_output"
                     <div>
                         
   <section class="tex2jax_ignore mathjax_ignore" id="eigenvalues-and-eigenvectors">
-<span id="eigen"></span><h1><span class="section-number">15. </span>Eigenvalues and Eigenvectors<a class="headerlink" href="#eigenvalues-and-eigenvectors" title="Permalink to this heading">#</a></h1>
+<span id="eigen"></span><h1><span class="section-number">16. </span>Eigenvalues and Eigenvectors<a class="headerlink" href="#eigenvalues-and-eigenvectors" title="Permalink to this heading">#</a></h1>
 <section id="overview">
-<span id="index-0"></span><h2><span class="section-number">15.1. </span>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
+<span id="index-0"></span><h2><span class="section-number">16.1. </span>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
 <p>Eigenvalues and eigenvectors are a relatively advanced topic in linear algebra.</p>
 <p>At the same time, these concepts are extremely useful for</p>
 <ul class="simple">
@@ -298,10 +298,10 @@ and understand <a class="reference internal" href="linear_equations.html"><span 
 </div>
 </section>
 <section id="matrices-as-transformations">
-<span id="matrices-as-transformation"></span><h2><span class="section-number">15.2. </span>Matrices as transformations<a class="headerlink" href="#matrices-as-transformations" title="Permalink to this heading">#</a></h2>
+<span id="matrices-as-transformation"></span><h2><span class="section-number">16.2. </span>Matrices as transformations<a class="headerlink" href="#matrices-as-transformations" title="Permalink to this heading">#</a></h2>
 <p>Let’s start by discussing an important concept concerning matrices.</p>
 <section id="mapping-vectors-to-vectors">
-<h3><span class="section-number">15.2.1. </span>Mapping vectors to vectors<a class="headerlink" href="#mapping-vectors-to-vectors" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">16.2.1. </span>Mapping vectors to vectors<a class="headerlink" href="#mapping-vectors-to-vectors" title="Permalink to this heading">#</a></h3>
 <p>One way to think about a matrix is as a rectangular collection of
 numbers.</p>
 <p>Another way to think about a matrix is as a <em>map</em> (i.e., as a function) that
@@ -321,7 +321,7 @@ a map transforming <span class="math notranslate nohighlight">\(x\)</span> to <s
 <span class="math notranslate nohighlight">\(A(x) = y\)</span> rather than <span class="math notranslate nohighlight">\(Ax = y\)</span> but the second notation is more conventional.</p>
 </section>
 <section id="square-matrices">
-<h3><span class="section-number">15.2.2. </span>Square matrices<a class="headerlink" href="#square-matrices" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">16.2.2. </span>Square matrices<a class="headerlink" href="#square-matrices" title="Permalink to this heading">#</a></h3>
 <p>Let’s restrict our discussion to square matrices.</p>
 <p>In the above discussion, this means that <span class="math notranslate nohighlight">\(m=n\)</span> and <span class="math notranslate nohighlight">\(A\)</span> maps <span class="math notranslate nohighlight">\(\mathbb R^n\)</span> to
 itself.</p>
@@ -416,7 +416,7 @@ itself.</p>
 </section>
 </section>
 <section id="types-of-transformations">
-<h2><span class="section-number">15.3. </span>Types of transformations<a class="headerlink" href="#types-of-transformations" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">16.3. </span>Types of transformations<a class="headerlink" href="#types-of-transformations" title="Permalink to this heading">#</a></h2>
 <p>Let’s examine some standard transformations we can perform with matrices.</p>
 <p>Below we visualize transformations by thinking of vectors as points
 instead of arrows.</p>
@@ -526,7 +526,7 @@ instead of arrows.</p>
 </details>
 </div>
 <section id="scaling">
-<h3><span class="section-number">15.3.1. </span>Scaling<a class="headerlink" href="#scaling" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">16.3.1. </span>Scaling<a class="headerlink" href="#scaling" title="Permalink to this heading">#</a></h3>
 <p>A matrix of the form</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -554,7 +554,7 @@ a factor <span class="math notranslate nohighlight">\(\beta\)</span>.</p>
 </div>
 </section>
 <section id="shearing">
-<h3><span class="section-number">15.3.2. </span>Shearing<a class="headerlink" href="#shearing" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">16.3.2. </span>Shearing<a class="headerlink" href="#shearing" title="Permalink to this heading">#</a></h3>
 <p>A “shear” matrix of the form</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -581,7 +581,7 @@ y-coordinate of a point.</p>
 </div>
 </section>
 <section id="rotation">
-<h3><span class="section-number">15.3.3. </span>Rotation<a class="headerlink" href="#rotation" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">16.3.3. </span>Rotation<a class="headerlink" href="#rotation" title="Permalink to this heading">#</a></h3>
 <p>A matrix of the form</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -607,7 +607,7 @@ y-coordinate of a point.</p>
 </div>
 </section>
 <section id="permutation">
-<h3><span class="section-number">15.3.4. </span>Permutation<a class="headerlink" href="#permutation" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">16.3.4. </span>Permutation<a class="headerlink" href="#permutation" title="Permalink to this heading">#</a></h3>
 <p>The permutation matrix</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -632,11 +632,11 @@ y-coordinate of a point.</p>
 </section>
 </section>
 <section id="matrix-multiplication-as-composition">
-<h2><span class="section-number">15.4. </span>Matrix multiplication as composition<a class="headerlink" href="#matrix-multiplication-as-composition" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">16.4. </span>Matrix multiplication as composition<a class="headerlink" href="#matrix-multiplication-as-composition" title="Permalink to this heading">#</a></h2>
 <p>Since matrices act as functions that transform one vector to another, we can
 apply the concept of function composition to matrices as well.</p>
 <section id="linear-compositions">
-<h3><span class="section-number">15.4.1. </span>Linear compositions<a class="headerlink" href="#linear-compositions" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">16.4.1. </span>Linear compositions<a class="headerlink" href="#linear-compositions" title="Permalink to this heading">#</a></h3>
 <p>Consider the two matrices</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -753,7 +753,7 @@ understand why, under matrix multiplication, <span class="math notranslate nohig
 <p>(After all, when we compose functions, the order usually matters.)</p>
 </section>
 <section id="examples">
-<h3><span class="section-number">15.4.2. </span>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">16.4.2. </span>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">#</a></h3>
 <p>Let <span class="math notranslate nohighlight">\(A\)</span> be the <span class="math notranslate nohighlight">\(90^{\circ}\)</span> clockwise rotation matrix given by
 <span class="math notranslate nohighlight">\(\begin{bmatrix} 0 &amp; 1 \\ -1 &amp; 0 \end{bmatrix}\)</span> and let <span class="math notranslate nohighlight">\(B\)</span> be a shear matrix
 along the x-axis given by <span class="math notranslate nohighlight">\(\begin{bmatrix} 1 &amp; 2 \\ 0 &amp; 1 \end{bmatrix}\)</span>.</p>
@@ -816,7 +816,7 @@ transformation <span class="math notranslate nohighlight">\(AB\)</span> and then
 </div>
 </div>
 <section id="shear-then-rotate">
-<h4><span class="section-number">15.4.2.1. </span>Shear then rotate<a class="headerlink" href="#shear-then-rotate" title="Permalink to this heading">#</a></h4>
+<h4><span class="section-number">16.4.2.1. </span>Shear then rotate<a class="headerlink" href="#shear-then-rotate" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grid_composition_transform</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">)</span>  <span class="c1"># transformation AB</span>
@@ -829,7 +829,7 @@ transformation <span class="math notranslate nohighlight">\(AB\)</span> and then
 </div>
 </section>
 <section id="rotate-then-shear">
-<h4><span class="section-number">15.4.2.2. </span>Rotate then shear<a class="headerlink" href="#rotate-then-shear" title="Permalink to this heading">#</a></h4>
+<h4><span class="section-number">16.4.2.2. </span>Rotate then shear<a class="headerlink" href="#rotate-then-shear" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grid_composition_transform</span><span class="p">(</span><span class="n">B</span><span class="p">,</span><span class="n">A</span><span class="p">)</span>         <span class="c1"># transformation BA</span>
@@ -845,7 +845,7 @@ transformation <span class="math notranslate nohighlight">\(AB\)</span> and then
 </section>
 </section>
 <section id="iterating-on-a-fixed-map">
-<h2><span class="section-number">15.5. </span>Iterating on a fixed map<a class="headerlink" href="#iterating-on-a-fixed-map" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">16.5. </span>Iterating on a fixed map<a class="headerlink" href="#iterating-on-a-fixed-map" title="Permalink to this heading">#</a></h2>
 <p>In economics (and especially in dynamic modeling), we are often interested in
 analyzing behavior where we repeatedly apply a fixed matrix.</p>
 <p>For example, given a vector <span class="math notranslate nohighlight">\(v\)</span> and a matrix <span class="math notranslate nohighlight">\(A\)</span>, we are interested in
@@ -966,10 +966,10 @@ origin.</p>
 <p>We now discuss the property of A that determines this behavior.</p>
 </section>
 <section id="eigenvalues">
-<span id="la-eigenvalues"></span><h2><span class="section-number">15.6. </span>Eigenvalues<a class="headerlink" href="#eigenvalues" title="Permalink to this heading">#</a></h2>
+<span id="la-eigenvalues"></span><h2><span class="section-number">16.6. </span>Eigenvalues<a class="headerlink" href="#eigenvalues" title="Permalink to this heading">#</a></h2>
 <p id="index-1">In this section we introduce the notions of eigenvalues and eigenvectors.</p>
 <section id="definitions">
-<h3><span class="section-number">15.6.1. </span>Definitions<a class="headerlink" href="#definitions" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">16.6.1. </span>Definitions<a class="headerlink" href="#definitions" title="Permalink to this heading">#</a></h3>
 <p>Let <span class="math notranslate nohighlight">\(A\)</span> be an <span class="math notranslate nohighlight">\(n \times n\)</span> square matrix.</p>
 <p>If <span class="math notranslate nohighlight">\(\lambda\)</span> is scalar and <span class="math notranslate nohighlight">\(v\)</span> is a non-zero <span class="math notranslate nohighlight">\(n\)</span>-vector such that</p>
 <div class="math notranslate nohighlight">
@@ -1037,7 +1037,7 @@ applied, <span class="math notranslate nohighlight">\(v\)</span> is merely scale
 </div>
 </section>
 <section id="complex-values">
-<h3><span class="section-number">15.6.2. </span>Complex values<a class="headerlink" href="#complex-values" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">16.6.2. </span>Complex values<a class="headerlink" href="#complex-values" title="Permalink to this heading">#</a></h3>
 <p>So far our definition of eigenvalues and eigenvectors seems straightforward.</p>
 <p>There is one complication we haven’t mentioned yet:</p>
 <p>When solving <span class="math notranslate nohighlight">\(Av = \lambda v\)</span>,</p>
@@ -1048,7 +1048,7 @@ applied, <span class="math notranslate nohighlight">\(v\)</span> is merely scale
 <p>We will see some examples below.</p>
 </section>
 <section id="some-mathematical-details">
-<h3><span class="section-number">15.6.3. </span>Some mathematical details<a class="headerlink" href="#some-mathematical-details" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">16.6.3. </span>Some mathematical details<a class="headerlink" href="#some-mathematical-details" title="Permalink to this heading">#</a></h3>
 <p>We note some mathematical details for more advanced readers.</p>
 <p>(Other readers can skip to the next section.)</p>
 <p>The eigenvalue equation is equivalent to <span class="math notranslate nohighlight">\((A - \lambda I) v = 0\)</span>.</p>
@@ -1062,7 +1062,7 @@ in <span class="math notranslate nohighlight">\(\lambda\)</span> of degree <span
 plane, although some might be repeated.</p>
 </section>
 <section id="facts">
-<h3><span class="section-number">15.6.4. </span>Facts<a class="headerlink" href="#facts" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">16.6.4. </span>Facts<a class="headerlink" href="#facts" title="Permalink to this heading">#</a></h3>
 <p>Some nice facts about the eigenvalues of a square matrix <span class="math notranslate nohighlight">\(A\)</span> are as follows:</p>
 <ol class="arabic simple">
 <li><p>the determinant of <span class="math notranslate nohighlight">\(A\)</span> equals the product of the eigenvalues</p></li>
@@ -1073,7 +1073,7 @@ plane, although some might be repeated.</p>
 <p>A corollary of the last statement is that a matrix is invertible if and only if all its eigenvalues are nonzero.</p>
 </section>
 <section id="computation">
-<h3><span class="section-number">15.6.5. </span>Computation<a class="headerlink" href="#computation" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">16.6.5. </span>Computation<a class="headerlink" href="#computation" title="Permalink to this heading">#</a></h3>
 <p>Using NumPy, we can solve for the eigenvalues and eigenvectors of a matrix as follows</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1116,15 +1116,15 @@ to one.</p>
 </section>
 </section>
 <section id="the-neumann-series-lemma">
-<span id="la-neumann"></span><h2><span class="section-number">15.7. </span>The Neumann Series Lemma<a class="headerlink" href="#the-neumann-series-lemma" title="Permalink to this heading">#</a></h2>
+<span id="la-neumann"></span><h2><span class="section-number">16.7. </span>The Neumann Series Lemma<a class="headerlink" href="#the-neumann-series-lemma" title="Permalink to this heading">#</a></h2>
 <p id="index-2">In this section we present a famous result about series of matrices that has
 many applications in economics.</p>
 <section id="scalar-series">
-<h3><span class="section-number">15.7.1. </span>Scalar series<a class="headerlink" href="#scalar-series" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">16.7.1. </span>Scalar series<a class="headerlink" href="#scalar-series" title="Permalink to this heading">#</a></h3>
 <p>Here’s a fundamental result about series:</p>
 <p>If <span class="math notranslate nohighlight">\(a\)</span> is a number and <span class="math notranslate nohighlight">\(|a| &lt; 1\)</span>, then</p>
 <div class="math notranslate nohighlight" id="equation-gp-sum">
-<span class="eqno">(15.1)<a class="headerlink" href="#equation-gp-sum" title="Permalink to this equation">#</a></span>\[    \sum_{k=0}^{\infty} a^k =\frac{1}{1-a} = (1 - a)^{-1}\]</div>
+<span class="eqno">(16.1)<a class="headerlink" href="#equation-gp-sum" title="Permalink to this equation">#</a></span>\[    \sum_{k=0}^{\infty} a^k =\frac{1}{1-a} = (1 - a)^{-1}\]</div>
 <p>For a one-dimensional linear equation <span class="math notranslate nohighlight">\(x = ax + b\)</span> where x is unknown we can thus conclude that the solution <span class="math notranslate nohighlight">\(x^{*}\)</span> is given by:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1132,19 +1132,19 @@ many applications in economics.</p>
 \]</div>
 </section>
 <section id="matrix-series">
-<h3><span class="section-number">15.7.2. </span>Matrix series<a class="headerlink" href="#matrix-series" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">16.7.2. </span>Matrix series<a class="headerlink" href="#matrix-series" title="Permalink to this heading">#</a></h3>
 <p>A generalization of this idea exists in the matrix setting.</p>
 <p>Consider the system of equations <span class="math notranslate nohighlight">\(x = Ax + b\)</span> where <span class="math notranslate nohighlight">\(A\)</span> is an <span class="math notranslate nohighlight">\(n \times n\)</span>
 square matrix and <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(b\)</span> are both column vectors in <span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span>.</p>
 <p>Using matrix algebra we can conclude that the solution to this system of equations will be given by:</p>
 <div class="math notranslate nohighlight" id="equation-neumann-eqn">
-<span class="eqno">(15.2)<a class="headerlink" href="#equation-neumann-eqn" title="Permalink to this equation">#</a></span>\[    x^{*} = (I-A)^{-1}b\]</div>
+<span class="eqno">(16.2)<a class="headerlink" href="#equation-neumann-eqn" title="Permalink to this equation">#</a></span>\[    x^{*} = (I-A)^{-1}b\]</div>
 <p>What guarantees the existence of a unique vector <span class="math notranslate nohighlight">\(x^{*}\)</span> that satisfies
-<a class="reference internal" href="#equation-neumann-eqn">(15.2)</a>?</p>
+<a class="reference internal" href="#equation-neumann-eqn">(16.2)</a>?</p>
 <p>The following is a fundamental result in functional analysis that generalizes
-<a class="reference internal" href="#equation-gp-sum">(15.1)</a> to a multivariate case.</p>
+<a class="reference internal" href="#equation-gp-sum">(16.1)</a> to a multivariate case.</p>
 <div class="proof theorem admonition" id="neumann_series_lemma">
-<span id="neumann-series-lemma"></span><p class="admonition-title"><span class="caption-number">Theorem 15.1 </span> (Neumann Series Lemma)</p>
+<span id="neumann-series-lemma"></span><p class="admonition-title"><span class="caption-number">Theorem 16.1 </span> (Neumann Series Lemma)</p>
 <section class="theorem-content" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(A\)</span> be a square matrix and let <span class="math notranslate nohighlight">\(A^k\)</span> be the <span class="math notranslate nohighlight">\(k\)</span>-th power of <span class="math notranslate nohighlight">\(A\)</span>.</p>
 <p>Let <span class="math notranslate nohighlight">\(r(A)\)</span> be the <strong>spectral radius</strong> of <span class="math notranslate nohighlight">\(A\)</span>, defined as <span class="math notranslate nohighlight">\(\max_i |\lambda_i|\)</span>, where</p>
@@ -1223,10 +1223,10 @@ result which illustrates the result of the Neumann Series Lemma.</p>
 </section>
 </section>
 <section id="exercises">
-<h2><span class="section-number">15.8. </span>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">16.8. </span>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h2>
 <div class="exercise admonition" id="eig1_ex1">
 
-<p class="admonition-title"><span class="caption-number">Exercise 15.1 </span></p>
+<p class="admonition-title"><span class="caption-number">Exercise 16.1 </span></p>
 <section id="exercise-content">
 <p>Power iteration is a method for finding the greatest absolute eigenvalue of a diagonalizable matrix.</p>
 <p>The method starts with a random vector <span class="math notranslate nohighlight">\(b_0\)</span> and repeatedly applies the matrix <span class="math notranslate nohighlight">\(A\)</span> to it</p>
@@ -1241,7 +1241,7 @@ b_{k+1}=\frac{A b_k}{\left\|A b_k\right\|}
 </div>
 <div class="solution dropdown admonition" id="eigen_I-solution-2">
 
-<p class="admonition-title">Solution to<a class="reference internal" href="#eig1_ex1"> Exercise 15.1</a></p>
+<p class="admonition-title">Solution to<a class="reference internal" href="#eig1_ex1"> Exercise 16.1</a></p>
 <section id="solution-content">
 <p>Here is one solution.</p>
 <p>We start by looking into the distance between the eigenvector approximation and the true eigenvector.</p>
@@ -1294,9 +1294,9 @@ The real eigenvalue is [ 4. -2.  2.]
 </pre></div>
 </div>
 <figure class="align-default" id="pow-dist">
-<a class="reference internal image-reference" href="_images/179233b4710606b3a29a76df8006625b5800034664456f9fa54e2b07f866147c.png"><img alt="_images/179233b4710606b3a29a76df8006625b5800034664456f9fa54e2b07f866147c.png" src="_images/179233b4710606b3a29a76df8006625b5800034664456f9fa54e2b07f866147c.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/5df30b06ddfd631c5481412cc7b90091c537ccd6fa32952cd3c5127d2cb564e7.png"><img alt="_images/5df30b06ddfd631c5481412cc7b90091c537ccd6fa32952cd3c5127d2cb564e7.png" src="_images/5df30b06ddfd631c5481412cc7b90091c537ccd6fa32952cd3c5127d2cb564e7.png" style="width: 80%;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 15.1 </span><span class="caption-text">Power iteration</span><a class="headerlink" href="#pow-dist" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 16.1 </span><span class="caption-text">Power iteration</span><a class="headerlink" href="#pow-dist" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </div>
@@ -1337,9 +1337,9 @@ The real eigenvalue is [ 4. -2.  2.]
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="pow-trajectory">
-<a class="reference internal image-reference" href="_images/fbaaabba6d0b84079d9c4ce3efccb07d2ca4594fbbea31dffc09e1ca82245f9f.png"><img alt="_images/fbaaabba6d0b84079d9c4ce3efccb07d2ca4594fbbea31dffc09e1ca82245f9f.png" src="_images/fbaaabba6d0b84079d9c4ce3efccb07d2ca4594fbbea31dffc09e1ca82245f9f.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/441107be2de03afc895f43c51de2ca1e4734dbc259217665d1d2fbaec71eab54.png"><img alt="_images/441107be2de03afc895f43c51de2ca1e4734dbc259217665d1d2fbaec71eab54.png" src="_images/441107be2de03afc895f43c51de2ca1e4734dbc259217665d1d2fbaec71eab54.png" style="width: 80%;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 15.2 </span><span class="caption-text">Power iteration trajectory</span><a class="headerlink" href="#pow-trajectory" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 16.2 </span><span class="caption-text">Power iteration trajectory</span><a class="headerlink" href="#pow-trajectory" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </div>
@@ -1348,7 +1348,7 @@ The real eigenvalue is [ 4. -2.  2.]
 </div>
 <div class="exercise admonition" id="eig1_ex2">
 
-<p class="admonition-title"><span class="caption-number">Exercise 15.2 </span></p>
+<p class="admonition-title"><span class="caption-number">Exercise 16.2 </span></p>
 <section id="exercise-content">
 <p>We have discussed the trajectory of the vector <span class="math notranslate nohighlight">\(v\)</span> after being transformed by <span class="math notranslate nohighlight">\(A\)</span>.</p>
 <p>Consider the matrix <span class="math notranslate nohighlight">\(A = \begin{bmatrix} 1 &amp; 2 \\ 1 &amp; 1 \end{bmatrix}\)</span> and the vector <span class="math notranslate nohighlight">\(v = \begin{bmatrix} 2 \\ -2 \end{bmatrix}\)</span>.</p>
@@ -1357,7 +1357,7 @@ The real eigenvalue is [ 4. -2.  2.]
 </div>
 <div class="solution dropdown admonition" id="eigen_I-solution-4">
 
-<p class="admonition-title">Solution to<a class="reference internal" href="#eig1_ex2"> Exercise 15.2</a></p>
+<p class="admonition-title">Solution to<a class="reference internal" href="#eig1_ex2"> Exercise 16.2</a></p>
 <section id="solution-content">
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1433,7 +1433,7 @@ eigenvectors:
 <figure class="align-default" id="eigen-conv">
 <a class="reference internal image-reference" href="_images/ecbdfad50f361cf20f38dcdaa7a4b461e68e42125a6e798bf8131d0bdb993568.png"><img alt="_images/ecbdfad50f361cf20f38dcdaa7a4b461e68e42125a6e798bf8131d0bdb993568.png" src="_images/ecbdfad50f361cf20f38dcdaa7a4b461e68e42125a6e798bf8131d0bdb993568.png" style="width: 80%;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 15.3 </span><span class="caption-text">Convergence towards eigenvectors</span><a class="headerlink" href="#eigen-conv" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 16.3 </span><span class="caption-text">Convergence towards eigenvectors</span><a class="headerlink" href="#eigen-conv" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </div>
@@ -1446,7 +1446,7 @@ eigenvectors:
 </div>
 <div class="exercise admonition" id="eig1_ex3">
 
-<p class="admonition-title"><span class="caption-number">Exercise 15.3 </span></p>
+<p class="admonition-title"><span class="caption-number">Exercise 16.3 </span></p>
 <section id="exercise-content">
 <p><a class="reference internal" href="#plot-series"><span class="std std-ref">Previously</span></a>, we demonstrated the trajectory of the vector <span class="math notranslate nohighlight">\(v\)</span> after being transformed by <span class="math notranslate nohighlight">\(A\)</span> for three different matrices.</p>
 <p>Use the visualization in the previous exercise to explain the trajectory of the vector <span class="math notranslate nohighlight">\(v\)</span> after being transformed by <span class="math notranslate nohighlight">\(A\)</span> for the three different matrices.</p>
@@ -1454,7 +1454,7 @@ eigenvectors:
 </div>
 <div class="solution dropdown admonition" id="eigen_I-solution-6">
 
-<p class="admonition-title">Solution to<a class="reference internal" href="#eig1_ex3"> Exercise 15.3</a></p>
+<p class="admonition-title">Solution to<a class="reference internal" href="#eig1_ex3"> Exercise 16.3</a></p>
 <section id="solution-content">
 <p>Here is one solution</p>
 <div class="cell docutils container">
@@ -1551,7 +1551,7 @@ eigenvectors:
 <figure class="align-default" id="vector-field">
 <a class="reference internal image-reference" href="_images/9f0a8f5daa462f9cd364bb1965d69072d25252ae588dc6a176f443862aac2ade.png"><img alt="_images/9f0a8f5daa462f9cd364bb1965d69072d25252ae588dc6a176f443862aac2ade.png" src="_images/9f0a8f5daa462f9cd364bb1965d69072d25252ae588dc6a176f443862aac2ade.png" style="width: 80%;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 15.4 </span><span class="caption-text">Vector fields of the three matrices</span><a class="headerlink" href="#vector-field" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 16.4 </span><span class="caption-text">Vector fields of the three matrices</span><a class="headerlink" href="#vector-field" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </div>
@@ -1622,7 +1622,7 @@ eigenvectors:
 <figure class="align-default" id="d-vector-field">
 <a class="reference internal image-reference" href="_images/22ec83f6bff588a28382620eccf249f51dfb05ea52d86bec8a86f422171c4bef.png"><img alt="_images/22ec83f6bff588a28382620eccf249f51dfb05ea52d86bec8a86f422171c4bef.png" src="_images/22ec83f6bff588a28382620eccf249f51dfb05ea52d86bec8a86f422171c4bef.png" style="width: 80%;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 15.5 </span><span class="caption-text">3D plot of the vector field</span><a class="headerlink" href="#d-vector-field" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 16.5 </span><span class="caption-text">3D plot of the vector field</span><a class="headerlink" href="#d-vector-field" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </div>
@@ -1715,8 +1715,13 @@ eigenvectors:
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="french_rev.html">
+   5. Inflation During French Revolution
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="inequality.html">
-   5. Income and Wealth Inequality
+   6. Income and Wealth Inequality
   </a>
  </li>
 </ul>
@@ -1728,22 +1733,22 @@ eigenvectors:
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="intro_supply_demand.html">
-   6. Introduction to Supply and Demand
+   7. Introduction to Supply and Demand
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="linear_equations.html">
-   7. Linear Equations and Matrix Algebra
+   8. Linear Equations and Matrix Algebra
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="complex_and_trig.html">
-   8. Complex Numbers and Trigonometry
+   9. Complex Numbers and Trigonometry
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="geom_series.html">
-   9. Geometric Series for Elementary Economics
+   10. Geometric Series for Elementary Economics
   </a>
  </li>
 </ul>
@@ -1755,27 +1760,27 @@ eigenvectors:
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="pv.html">
-   10. Present Values
+   11. Present Values
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cons_smooth.html">
-   11. Consumption Smoothing
+   12. Consumption Smoothing
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="equalizing_difference.html">
-   12. Equalizing Difference Model
+   13. Equalizing Difference Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cagan_ree.html">
-   13. A Monetarist Theory of Price Levels
+   14. A Monetarist Theory of Price Levels
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cagan_adaptive.html">
-   14. Monetarist Theory of Price Levels with Adaptive Expectations
+   15. Monetarist Theory of Price Levels with Adaptive Expectations
   </a>
  </li>
 </ul>
@@ -1787,12 +1792,12 @@ eigenvectors:
 <ul class="current nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1 current active active">
   <a class="current reference internal" href="#">
-   15. Eigenvalues and Eigenvectors
+   16. Eigenvalues and Eigenvectors
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="greek_square.html">
-   16. Computing Square Roots
+   17. Computing Square Roots
   </a>
  </li>
 </ul>
@@ -1804,27 +1809,27 @@ eigenvectors:
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="prob_dist.html">
-   17. Distributions and Probabilities
+   18. Distributions and Probabilities
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="lln_clt.html">
-   18. LLN and CLT
+   19. LLN and CLT
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="monte_carlo.html">
-   19. Monte Carlo and Option Pricing
+   20. Monte Carlo and Option Pricing
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="heavy_tails.html">
-   20. Heavy-Tailed Distributions
+   21. Heavy-Tailed Distributions
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="schelling.html">
-   21. Racial Segregation
+   22. Racial Segregation
   </a>
  </li>
 </ul>
@@ -1836,27 +1841,27 @@ eigenvectors:
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="scalar_dynam.html">
-   22. Dynamics in One Dimension
+   23. Dynamics in One Dimension
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="solow.html">
-   23. The Solow-Swan Growth Model
+   24. The Solow-Swan Growth Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cobweb.html">
-   24. The Cobweb Model
+   25. The Cobweb Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="olg.html">
-   25. The Overlapping Generations Model
+   26. The Overlapping Generations Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="commod_price.html">
-   26. Commodity Prices
+   27. Commodity Prices
   </a>
  </li>
 </ul>
@@ -1868,27 +1873,27 @@ eigenvectors:
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="money_inflation.html">
-   27. Money Financed Government Deficits and Price Levels
+   28. Money Financed Government Deficits and Price Levels
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="unpleasant.html">
-   28. Some Unpleasant Monetarist Arithmetic
+   29. Some Unpleasant Monetarist Arithmetic
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="money_inflation_nonlinear.html">
-   29. Inflation Rate Laffer Curves
+   30. Inflation Rate Laffer Curves
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="laffer_adaptive.html">
-   30. Laffer Curves  with Adaptive Expectations
+   31. Laffer Curves  with Adaptive Expectations
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ak2.html">
-   31. Transitions in an Overlapping Generations Model
+   32. Transitions in an Overlapping Generations Model
   </a>
  </li>
 </ul>
@@ -1900,22 +1905,22 @@ eigenvectors:
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="ar1_processes.html">
-   32. AR(1) Processes
+   33. AR(1) Processes
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="markov_chains_I.html">
-   33. Markov Chains: Basic Concepts
+   34. Markov Chains: Basic Concepts
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="markov_chains_II.html">
-   34. Markov Chains: Irreducibility and Ergodicity
+   35. Markov Chains: Irreducibility and Ergodicity
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="time_series_with_matrices.html">
-   35. Univariate Time Series with Matrix Algebra
+   36. Univariate Time Series with Matrix Algebra
   </a>
  </li>
 </ul>
@@ -1927,12 +1932,12 @@ eigenvectors:
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="lp_intro.html">
-   36. Linear Programming
+   37. Linear Programming
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="short_path.html">
-   37. Shortest Paths
+   38. Shortest Paths
   </a>
  </li>
 </ul>
@@ -1944,22 +1949,22 @@ eigenvectors:
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="eigen_II.html">
-   38. The Perron-Frobenius Theorem
+   39. The Perron-Frobenius Theorem
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="input_output.html">
-   39. Input-Output Models
+   40. Input-Output Models
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="lake_model.html">
-   40. A Lake Model of Employment
+   41. A Lake Model of Employment
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="networks.html">
-   41. Networks
+   42. Networks
   </a>
  </li>
 </ul>
@@ -1971,12 +1976,12 @@ eigenvectors:
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="supply_demand_multiple_goods.html">
-   42. Supply and Demand with Many Goods
+   43. Supply and Demand with Many Goods
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="supply_demand_heterogeneity.html">
-   43. Market Equilibrium with Heterogeneity
+   44. Market Equilibrium with Heterogeneity
   </a>
  </li>
 </ul>
@@ -1988,12 +1993,12 @@ eigenvectors:
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="simple_linear_regression.html">
-   44. Simple Linear Regression Model
+   45. Simple Linear Regression Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="mle.html">
-   45. Maximum Likelihood Estimation
+   46. Maximum Likelihood Estimation
   </a>
  </li>
 </ul>
@@ -2005,17 +2010,17 @@ eigenvectors:
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="troubleshooting.html">
-   46. Troubleshooting
+   47. Troubleshooting
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="zreferences.html">
-   47. References
+   48. References
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="status.html">
-   48. Execution Statistics
+   49. Execution Statistics
   </a>
  </li>
 </ul>

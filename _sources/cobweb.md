@@ -298,6 +298,8 @@ def plot45(model, pmin, pmax, p0, num_arrows=5):
 
     xticks.append(pmax)
     xtick_labels.append(pmax)
+    ax.set_ylabel(r'$p_{t+1}$')
+    ax.set_xlabel(r'$p_t$')
     ax.set_xticks(xticks)
     ax.set_yticks(xticks)
     ax.set_xticklabels(xtick_labels)

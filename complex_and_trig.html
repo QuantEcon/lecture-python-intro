@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>8. Complex Numbers and Trigonometry &#8212; A First Course in Quantitative Economics with Python</title>
+    <title>9. Complex Numbers and Trigonometry &#8212; A First Course in Quantitative Economics with Python</title>
     <script src="https://unpkg.com/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://unpkg.com/tippy.js@6.3.1/dist/tippy-bundle.umd.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
@@ -123,8 +123,8 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="9. Geometric Series for Elementary Economics" href="geom_series.html" />
-    <link rel="prev" title="7. Linear Equations and Matrix Algebra" href="linear_equations.html" />
+    <link rel="next" title="10. Geometric Series for Elementary Economics" href="geom_series.html" />
+    <link rel="prev" title="8. Linear Equations and Matrix Algebra" href="linear_equations.html" />
 
 <!-- Normal Meta Tags -->
 <meta name="author" context="Thomas J. Sargent &amp; John Stachurski" />
@@ -172,19 +172,19 @@ const thebe_selector_output = ".output, .cell_output"
 
                         <nav id="bd-toc-nav" class="qe-page__toc-nav">
                             <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">8.1. Overview</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#complex-numbers">8.1.1. Complex Numbers</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#an-example">8.1.2. An Example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">9.1. Overview</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#complex-numbers">9.1.1. Complex Numbers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#an-example">9.1.2. An Example</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#de-moivres-theorem">8.2. De Moivre’s Theorem</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#applications-of-de-moivres-theorem">8.3. Applications of de Moivre’s Theorem</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-1">8.3.1. Example 1</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2">8.3.2. Example 2</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-3">8.3.3. Example 3</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#trigonometric-identities">8.3.4. Trigonometric Identities</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#trigonometric-integrals">8.3.5. Trigonometric Integrals</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">8.3.6. Exercises</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#de-moivres-theorem">9.2. De Moivre’s Theorem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#applications-of-de-moivres-theorem">9.3. Applications of de Moivre’s Theorem</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-1">9.3.1. Example 1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2">9.3.2. Example 2</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-3">9.3.3. Example 3</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#trigonometric-identities">9.3.4. Trigonometric Identities</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#trigonometric-integrals">9.3.5. Trigonometric Integrals</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">9.3.6. Exercises</a></li>
 </ul>
 </li>
 </ul>
@@ -250,14 +250,14 @@ const thebe_selector_output = ".output, .cell_output"
                 <img style="width:250px;display:inline;" src="https://assets.quantecon.org/img/qe-menubar-logo.svg" alt="QuantEcon">
         </a>
 </div><section class="tex2jax_ignore mathjax_ignore" id="complex-numbers-and-trigonometry">
-<span id="index-0"></span><h1><span class="section-number">8. </span>Complex Numbers and Trigonometry<a class="headerlink" href="#complex-numbers-and-trigonometry" title="Permalink to this heading">#</a></h1>
+<span id="index-0"></span><h1><span class="section-number">9. </span>Complex Numbers and Trigonometry<a class="headerlink" href="#complex-numbers-and-trigonometry" title="Permalink to this heading">#</a></h1>
 <section id="overview">
-<h2><span class="section-number">8.1. </span>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">9.1. </span>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
 <p>This lecture introduces some elementary mathematics and trigonometry.</p>
 <p>Useful and interesting in its own right, these concepts reap substantial rewards when studying dynamics generated
 by linear difference equations or linear differential equations.</p>
 <p>For example, these tools are keys to understanding outcomes attained by Paul
-Samuelson (1939) <span id="id1">[<a class="reference internal" href="zreferences.html#id103" title="Paul A. Samuelson. Interactions between the multiplier analysis and the principle of acceleration. Review of Economic Studies, 21(2):75–78, 1939.">Samuelson, 1939</a>]</span> in his classic paper on interactions
+Samuelson (1939) <span id="id1">[<a class="reference internal" href="zreferences.html#id105" title="Paul A. Samuelson. Interactions between the multiplier analysis and the principle of acceleration. Review of Economic Studies, 21(2):75–78, 1939.">Samuelson, 1939</a>]</span> in his classic paper on interactions
 between the investment accelerator and the Keynesian consumption function, our
 topic in the lecture <a class="reference external" href="https://dynamics.quantecon.org/samuelson.html" title="(in Python)"><span class="xref std std-doc">Samuelson Multiplier Accelerator</span></a>.</p>
 <p>In addition to providing foundations for Samuelson’s work and extensions of
@@ -265,7 +265,7 @@ it, this lecture can be read as a stand-alone quick reminder of key results
 from elementary high school trigonometry.</p>
 <p>So let’s dive in.</p>
 <section id="complex-numbers">
-<h3><span class="section-number">8.1.1. </span>Complex Numbers<a class="headerlink" href="#complex-numbers" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">9.1.1. </span>Complex Numbers<a class="headerlink" href="#complex-numbers" title="Permalink to this heading">#</a></h3>
 <p>A complex number has a <strong>real part</strong> <span class="math notranslate nohighlight">\(x\)</span> and a purely <strong>imaginary part</strong> <span class="math notranslate nohighlight">\(y\)</span>.</p>
 <p>The Euclidean, polar, and trigonometric forms of a complex number <span class="math notranslate nohighlight">\(z\)</span> are:</p>
 <div class="math notranslate nohighlight">
@@ -318,7 +318,7 @@ r = |z| = \sqrt{x^2 + y^2}
 </div>
 </section>
 <section id="an-example">
-<h3><span class="section-number">8.1.2. </span>An Example<a class="headerlink" href="#an-example" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">9.1.2. </span>An Example<a class="headerlink" href="#an-example" title="Permalink to this heading">#</a></h3>
 <p>Consider the complex number <span class="math notranslate nohighlight">\(z = 1 + \sqrt{3} i\)</span>.</p>
 <p>For <span class="math notranslate nohighlight">\(z = 1 + \sqrt{3} i\)</span>, <span class="math notranslate nohighlight">\(x = 1\)</span>, <span class="math notranslate nohighlight">\(y = \sqrt{3}\)</span>.</p>
 <p>It follows that <span class="math notranslate nohighlight">\(r = 2\)</span> and
@@ -374,7 +374,7 @@ r = |z| = \sqrt{x^2 + y^2}
 </section>
 </section>
 <section id="de-moivres-theorem">
-<h2><span class="section-number">8.2. </span>De Moivre’s Theorem<a class="headerlink" href="#de-moivres-theorem" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">9.2. </span>De Moivre’s Theorem<a class="headerlink" href="#de-moivres-theorem" title="Permalink to this heading">#</a></h2>
 <p>de Moivre’s theorem states that:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -390,9 +390,9 @@ r^n(\cos{n\theta} + i \sin{n\theta})
 <p>and compute.</p>
 </section>
 <section id="applications-of-de-moivres-theorem">
-<h2><span class="section-number">8.3. </span>Applications of de Moivre’s Theorem<a class="headerlink" href="#applications-of-de-moivres-theorem" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">9.3. </span>Applications of de Moivre’s Theorem<a class="headerlink" href="#applications-of-de-moivres-theorem" title="Permalink to this heading">#</a></h2>
 <section id="example-1">
-<h3><span class="section-number">8.3.1. </span>Example 1<a class="headerlink" href="#example-1" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">9.3.1. </span>Example 1<a class="headerlink" href="#example-1" title="Permalink to this heading">#</a></h3>
 <p>We can use de Moivre’s theorem to show that
 <span class="math notranslate nohighlight">\(r = \sqrt{x^2 + y^2}\)</span>.</p>
 <p>We have</p>
@@ -414,7 +414,7 @@ x^2 + y^2 = r^2
 <p>We recognize this as a theorem of <strong>Pythagoras</strong>.</p>
 </section>
 <section id="example-2">
-<h3><span class="section-number">8.3.2. </span>Example 2<a class="headerlink" href="#example-2" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">9.3.2. </span>Example 2<a class="headerlink" href="#example-2" title="Permalink to this heading">#</a></h3>
 <p>Let <span class="math notranslate nohighlight">\(z = re^{i\theta}\)</span> and <span class="math notranslate nohighlight">\(\bar{z} = re^{-i\theta}\)</span> so that <span class="math notranslate nohighlight">\(\bar{z}\)</span> is the <strong>complex conjugate</strong> of <span class="math notranslate nohighlight">\(z\)</span>.</p>
 <p><span class="math notranslate nohighlight">\((z, \bar z)\)</span> form a <strong>complex conjugate pair</strong> of complex numbers.</p>
 <p>Let <span class="math notranslate nohighlight">\(a = pe^{i\omega}\)</span> and <span class="math notranslate nohighlight">\(\bar{a} = pe^{-i\omega}\)</span> be
@@ -435,8 +435,8 @@ x_n &amp;= az^n + \bar{a}\bar{z}^n \\
 \end{split}\]</div>
 </section>
 <section id="example-3">
-<h3><span class="section-number">8.3.3. </span>Example 3<a class="headerlink" href="#example-3" title="Permalink to this heading">#</a></h3>
-<p>This example provides  machinery that is at the heard of Samuelson’s analysis of his multiplier-accelerator model <span id="id2">[<a class="reference internal" href="zreferences.html#id103" title="Paul A. Samuelson. Interactions between the multiplier analysis and the principle of acceleration. Review of Economic Studies, 21(2):75–78, 1939.">Samuelson, 1939</a>]</span>.</p>
+<h3><span class="section-number">9.3.3. </span>Example 3<a class="headerlink" href="#example-3" title="Permalink to this heading">#</a></h3>
+<p>This example provides  machinery that is at the heard of Samuelson’s analysis of his multiplier-accelerator model <span id="id2">[<a class="reference internal" href="zreferences.html#id105" title="Paul A. Samuelson. Interactions between the multiplier analysis and the principle of acceleration. Review of Economic Studies, 21(2):75–78, 1939.">Samuelson, 1939</a>]</span>.</p>
 <p>Thus, consider a <strong>second-order linear difference equation</strong></p>
 <div class="math notranslate nohighlight">
 \[
@@ -563,7 +563,7 @@ and plot the dynamic.</p>
 </div>
 </section>
 <section id="trigonometric-identities">
-<h3><span class="section-number">8.3.4. </span>Trigonometric Identities<a class="headerlink" href="#trigonometric-identities" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">9.3.4. </span>Trigonometric Identities<a class="headerlink" href="#trigonometric-identities" title="Permalink to this heading">#</a></h3>
 <p>We can obtain a complete suite of trigonometric identities by
 appropriately manipulating polar forms of complex numbers.</p>
 <p>We’ll get many of them by deducing implications of the equality</p>
@@ -628,7 +628,7 @@ cos(ω)sin(θ) + sin(ω)cos(θ) = sin(θ + ω)
 </div>
 </section>
 <section id="trigonometric-integrals">
-<h3><span class="section-number">8.3.5. </span>Trigonometric Integrals<a class="headerlink" href="#trigonometric-integrals" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">9.3.5. </span>Trigonometric Integrals<a class="headerlink" href="#trigonometric-integrals" title="Permalink to this heading">#</a></h3>
 <p>We can also compute the trigonometric integrals using polar forms of
 complex numbers.</p>
 <p>For example, we want to solve the following integral:</p>
@@ -709,10 +709,10 @@ e^{2i\omega} - e^{-2i\omega}
 </div>
 </section>
 <section id="exercises">
-<h3><span class="section-number">8.3.6. </span>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">9.3.6. </span>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h3>
 <div class="exercise admonition" id="complex_ex1">
 
-<p class="admonition-title"><span class="caption-number">Exercise 8.1 </span></p>
+<p class="admonition-title"><span class="caption-number">Exercise 9.1 </span></p>
 <section id="exercise-content">
 <p>We invite the reader to verify analytically and with the <code class="docutils literal notranslate"><span class="pre">sympy</span></code> package the following two equalities:</p>
 <div class="math notranslate nohighlight">
@@ -727,7 +727,7 @@ e^{2i\omega} - e^{-2i\omega}
 </div>
 <div class="solution dropdown admonition" id="complex_and_trig-solution-1">
 
-<p class="admonition-title">Solution to<a class="reference internal" href="#complex_ex1"> Exercise 8.1</a></p>
+<p class="admonition-title">Solution to<a class="reference internal" href="#complex_ex1"> Exercise 9.1</a></p>
 <section id="solution-content">
 <p>Let’s import symbolic <span class="math notranslate nohighlight">\(\pi\)</span> from <code class="docutils literal notranslate"><span class="pre">sympy</span></code></p>
 <div class="cell docutils container">
@@ -861,8 +861,13 @@ e^{2i\omega} - e^{-2i\omega}
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="french_rev.html">
+   5. Inflation During French Revolution
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="inequality.html">
-   5. Income and Wealth Inequality
+   6. Income and Wealth Inequality
   </a>
  </li>
 </ul>
@@ -874,22 +879,22 @@ e^{2i\omega} - e^{-2i\omega}
 <ul class="current nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="intro_supply_demand.html">
-   6. Introduction to Supply and Demand
+   7. Introduction to Supply and Demand
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="linear_equations.html">
-   7. Linear Equations and Matrix Algebra
+   8. Linear Equations and Matrix Algebra
   </a>
  </li>
  <li class="toctree-l1 current active active">
   <a class="current reference internal" href="#">
-   8. Complex Numbers and Trigonometry
+   9. Complex Numbers and Trigonometry
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="geom_series.html">
-   9. Geometric Series for Elementary Economics
+   10. Geometric Series for Elementary Economics
   </a>
  </li>
 </ul>
@@ -901,27 +906,27 @@ e^{2i\omega} - e^{-2i\omega}
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="pv.html">
-   10. Present Values
+   11. Present Values
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cons_smooth.html">
-   11. Consumption Smoothing
+   12. Consumption Smoothing
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="equalizing_difference.html">
-   12. Equalizing Difference Model
+   13. Equalizing Difference Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cagan_ree.html">
-   13. A Monetarist Theory of Price Levels
+   14. A Monetarist Theory of Price Levels
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cagan_adaptive.html">
-   14. Monetarist Theory of Price Levels with Adaptive Expectations
+   15. Monetarist Theory of Price Levels with Adaptive Expectations
   </a>
  </li>
 </ul>
@@ -933,12 +938,12 @@ e^{2i\omega} - e^{-2i\omega}
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="eigen_I.html">
-   15. Eigenvalues and Eigenvectors
+   16. Eigenvalues and Eigenvectors
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="greek_square.html">
-   16. Computing Square Roots
+   17. Computing Square Roots
   </a>
  </li>
 </ul>
@@ -950,27 +955,27 @@ e^{2i\omega} - e^{-2i\omega}
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="prob_dist.html">
-   17. Distributions and Probabilities
+   18. Distributions and Probabilities
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="lln_clt.html">
-   18. LLN and CLT
+   19. LLN and CLT
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="monte_carlo.html">
-   19. Monte Carlo and Option Pricing
+   20. Monte Carlo and Option Pricing
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="heavy_tails.html">
-   20. Heavy-Tailed Distributions
+   21. Heavy-Tailed Distributions
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="schelling.html">
-   21. Racial Segregation
+   22. Racial Segregation
   </a>
  </li>
 </ul>
@@ -982,27 +987,27 @@ e^{2i\omega} - e^{-2i\omega}
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="scalar_dynam.html">
-   22. Dynamics in One Dimension
+   23. Dynamics in One Dimension
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="solow.html">
-   23. The Solow-Swan Growth Model
+   24. The Solow-Swan Growth Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cobweb.html">
-   24. The Cobweb Model
+   25. The Cobweb Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="olg.html">
-   25. The Overlapping Generations Model
+   26. The Overlapping Generations Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="commod_price.html">
-   26. Commodity Prices
+   27. Commodity Prices
   </a>
  </li>
 </ul>
@@ -1014,27 +1019,27 @@ e^{2i\omega} - e^{-2i\omega}
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="money_inflation.html">
-   27. Money Financed Government Deficits and Price Levels
+   28. Money Financed Government Deficits and Price Levels
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="unpleasant.html">
-   28. Some Unpleasant Monetarist Arithmetic
+   29. Some Unpleasant Monetarist Arithmetic
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="money_inflation_nonlinear.html">
-   29. Inflation Rate Laffer Curves
+   30. Inflation Rate Laffer Curves
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="laffer_adaptive.html">
-   30. Laffer Curves  with Adaptive Expectations
+   31. Laffer Curves  with Adaptive Expectations
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ak2.html">
-   31. Transitions in an Overlapping Generations Model
+   32. Transitions in an Overlapping Generations Model
   </a>
  </li>
 </ul>
@@ -1046,22 +1051,22 @@ e^{2i\omega} - e^{-2i\omega}
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="ar1_processes.html">
-   32. AR(1) Processes
+   33. AR(1) Processes
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="markov_chains_I.html">
-   33. Markov Chains: Basic Concepts
+   34. Markov Chains: Basic Concepts
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="markov_chains_II.html">
-   34. Markov Chains: Irreducibility and Ergodicity
+   35. Markov Chains: Irreducibility and Ergodicity
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="time_series_with_matrices.html">
-   35. Univariate Time Series with Matrix Algebra
+   36. Univariate Time Series with Matrix Algebra
   </a>
  </li>
 </ul>
@@ -1073,12 +1078,12 @@ e^{2i\omega} - e^{-2i\omega}
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="lp_intro.html">
-   36. Linear Programming
+   37. Linear Programming
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="short_path.html">
-   37. Shortest Paths
+   38. Shortest Paths
   </a>
  </li>
 </ul>
@@ -1090,22 +1095,22 @@ e^{2i\omega} - e^{-2i\omega}
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="eigen_II.html">
-   38. The Perron-Frobenius Theorem
+   39. The Perron-Frobenius Theorem
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="input_output.html">
-   39. Input-Output Models
+   40. Input-Output Models
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="lake_model.html">
-   40. A Lake Model of Employment
+   41. A Lake Model of Employment
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="networks.html">
-   41. Networks
+   42. Networks
   </a>
  </li>
 </ul>
@@ -1117,12 +1122,12 @@ e^{2i\omega} - e^{-2i\omega}
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="supply_demand_multiple_goods.html">
-   42. Supply and Demand with Many Goods
+   43. Supply and Demand with Many Goods
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="supply_demand_heterogeneity.html">
-   43. Market Equilibrium with Heterogeneity
+   44. Market Equilibrium with Heterogeneity
   </a>
  </li>
 </ul>
@@ -1134,12 +1139,12 @@ e^{2i\omega} - e^{-2i\omega}
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="simple_linear_regression.html">
-   44. Simple Linear Regression Model
+   45. Simple Linear Regression Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="mle.html">
-   45. Maximum Likelihood Estimation
+   46. Maximum Likelihood Estimation
   </a>
  </li>
 </ul>
@@ -1151,17 +1156,17 @@ e^{2i\omega} - e^{-2i\omega}
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="troubleshooting.html">
-   46. Troubleshooting
+   47. Troubleshooting
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="zreferences.html">
-   47. References
+   48. References
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="status.html">
-   48. Execution Statistics
+   49. Execution Statistics
   </a>
  </li>
 </ul>

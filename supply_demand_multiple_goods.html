@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>42. Supply and Demand with Many Goods &#8212; A First Course in Quantitative Economics with Python</title>
+    <title>43. Supply and Demand with Many Goods &#8212; A First Course in Quantitative Economics with Python</title>
     <script src="https://unpkg.com/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://unpkg.com/tippy.js@6.3.1/dist/tippy-bundle.umd.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
@@ -123,8 +123,8 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="43. Market Equilibrium with Heterogeneity" href="supply_demand_heterogeneity.html" />
-    <link rel="prev" title="41. Networks" href="networks.html" />
+    <link rel="next" title="44. Market Equilibrium with Heterogeneity" href="supply_demand_heterogeneity.html" />
+    <link rel="prev" title="42. Networks" href="networks.html" />
 
 <!-- Normal Meta Tags -->
 <meta name="author" context="Thomas J. Sargent &amp; John Stachurski" />
@@ -172,40 +172,40 @@ const thebe_selector_output = ".output, .cell_output"
 
                         <nav id="bd-toc-nav" class="qe-page__toc-nav">
                             <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">42.1. Overview</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#formulas-from-linear-algebra">42.2. Formulas from linear algebra</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#from-utility-function-to-demand-curve">42.3. From utility function to demand curve</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#demand-curve-implied-by-constrained-utility-maximization">42.3.1. Demand curve implied by constrained utility maximization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">43.1. Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#formulas-from-linear-algebra">43.2. Formulas from linear algebra</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#from-utility-function-to-demand-curve">43.3. From utility function to demand curve</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#demand-curve-implied-by-constrained-utility-maximization">43.3.1. Demand curve implied by constrained utility maximization</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#endowment-economy">42.4. Endowment economy</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#digression-marshallian-and-hicksian-demand-curves">42.5. Digression: Marshallian and Hicksian demand curves</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dynamics-and-risk-as-special-cases">42.6. Dynamics and risk as special cases</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dynamics">42.6.1. Dynamics</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#risk-and-state-contingent-claims">42.6.2. Risk and state-contingent claims</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#endowment-economy">43.4. Endowment economy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#digression-marshallian-and-hicksian-demand-curves">43.5. Digression: Marshallian and Hicksian demand curves</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dynamics-and-risk-as-special-cases">43.6. Dynamics and risk as special cases</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dynamics">43.6.1. Dynamics</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#risk-and-state-contingent-claims">43.6.2. Risk and state-contingent claims</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#economies-with-endogenous-supplies-of-goods">42.7. Economies with endogenous supplies of goods</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#supply-curve-of-a-competitive-firm">42.7.1. Supply curve of a competitive firm</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#competitive-equilibrium">42.7.2. Competitive equilibrium</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mu-1-warmup">42.7.2.1. <span class="math notranslate nohighlight">\(\mu=1\)</span> warmup</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#general-mu-neq-1-case">42.7.2.2. General <span class="math notranslate nohighlight">\(\mu\neq 1\)</span> case</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#economies-with-endogenous-supplies-of-goods">43.7. Economies with endogenous supplies of goods</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#supply-curve-of-a-competitive-firm">43.7.1. Supply curve of a competitive firm</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#competitive-equilibrium">43.7.2. Competitive equilibrium</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mu-1-warmup">43.7.2.1. <span class="math notranslate nohighlight">\(\mu=1\)</span> warmup</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#general-mu-neq-1-case">43.7.2.2. General <span class="math notranslate nohighlight">\(\mu\neq 1\)</span> case</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation">42.7.3. Implementation</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-single-agent-with-one-good-and-production">42.7.3.1. Example: single agent with one good and production</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-single-agent-two-good-economy-with-production">42.7.3.2. Example: single agent two-good economy with production</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation">43.7.3. Implementation</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-single-agent-with-one-good-and-production">43.7.3.1. Example: single agent with one good and production</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-single-agent-two-good-economy-with-production">43.7.3.2. Example: single agent two-good economy with production</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#digression-a-supplier-who-is-a-monopolist">42.7.4. Digression: a supplier who is a monopolist</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-monopolist">42.7.5. A monopolist</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#a-multiple-good-example">42.7.5.1. A multiple good example</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#a-single-good-example">42.7.5.2. A single-good example</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#digression-a-supplier-who-is-a-monopolist">43.7.4. Digression: a supplier who is a monopolist</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-monopolist">43.7.5. A monopolist</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#a-multiple-good-example">43.7.5.1. A multiple good example</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#a-single-good-example">43.7.5.2. A single-good example</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-good-welfare-maximization-problem">42.8. Multi-good welfare maximization problem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-good-welfare-maximization-problem">43.8. Multi-good welfare maximization problem</a></li>
 </ul>
                             <p class="logo">
                                 
@@ -265,9 +265,9 @@ const thebe_selector_output = ".output, .cell_output"
                     <div>
                         
   <section class="tex2jax_ignore mathjax_ignore" id="supply-and-demand-with-many-goods">
-<span id="supply-demand-multiple-goods"></span><h1><span class="section-number">42. </span>Supply and Demand with Many Goods<a class="headerlink" href="#supply-and-demand-with-many-goods" title="Permalink to this heading">#</a></h1>
+<span id="supply-demand-multiple-goods"></span><h1><span class="section-number">43. </span>Supply and Demand with Many Goods<a class="headerlink" href="#supply-and-demand-with-many-goods" title="Permalink to this heading">#</a></h1>
 <section id="overview">
-<h2><span class="section-number">42.1. </span>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">43.1. </span>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
 <p>In a <a class="reference internal" href="intro_supply_demand.html"><span class="doc">previous lecture</span></a> we studied supply, demand
 and welfare in a market with a single consumption good.</p>
 <p>In this lecture, we study a setting with <span class="math notranslate nohighlight">\(n\)</span> goods and <span class="math notranslate nohighlight">\(n\)</span> corresponding prices.</p>
@@ -313,7 +313,7 @@ and welfare in a market with a single consumption good.</p>
 </div>
 </section>
 <section id="formulas-from-linear-algebra">
-<h2><span class="section-number">42.2. </span>Formulas from linear algebra<a class="headerlink" href="#formulas-from-linear-algebra" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">43.2. </span>Formulas from linear algebra<a class="headerlink" href="#formulas-from-linear-algebra" title="Permalink to this heading">#</a></h2>
 <p>We shall apply formulas from linear algebra that</p>
 <ul class="simple">
 <li><p>differentiate an inner product with respect to each vector</p></li>
@@ -335,7 +335,7 @@ and welfare in a market with a single consumption good.</p>
 \]</div>
 </section>
 <section id="from-utility-function-to-demand-curve">
-<h2><span class="section-number">42.3. </span>From utility function to demand curve<a class="headerlink" href="#from-utility-function-to-demand-curve" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">43.3. </span>From utility function to demand curve<a class="headerlink" href="#from-utility-function-to-demand-curve" title="Permalink to this heading">#</a></h2>
 <p>Our study of consumers will use the following primitives</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(\Pi\)</span> be an <span class="math notranslate nohighlight">\(m \times n\)</span> matrix,</p></li>
@@ -359,26 +359,26 @@ and welfare in a market with a single consumption good.</p>
 \]</div>
 <p>A consumer faces <span class="math notranslate nohighlight">\(p\)</span> as a price taker and chooses <span class="math notranslate nohighlight">\(c\)</span> to maximize the utility function</p>
 <div class="math notranslate nohighlight" id="equation-eq-old0">
-<span class="eqno">(42.1)<a class="headerlink" href="#equation-eq-old0" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(43.1)<a class="headerlink" href="#equation-eq-old0" title="Permalink to this equation">#</a></span>\[
     - \frac{1}{2} (\Pi c -b) ^\top (\Pi c -b )
 \]</div>
 <p>subject to the budget constraint</p>
 <div class="math notranslate nohighlight" id="equation-eq-old2">
-<span class="eqno">(42.2)<a class="headerlink" href="#equation-eq-old2" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(43.2)<a class="headerlink" href="#equation-eq-old2" title="Permalink to this equation">#</a></span>\[
     p^\top (c -e ) = 0
 \]</div>
 <p>We shall specify examples in which <span class="math notranslate nohighlight">\(\Pi\)</span> and <span class="math notranslate nohighlight">\(b\)</span> are such that it typically happens that</p>
 <div class="math notranslate nohighlight" id="equation-eq-bversusc">
-<span class="eqno">(42.3)<a class="headerlink" href="#equation-eq-bversusc" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(43.3)<a class="headerlink" href="#equation-eq-bversusc" title="Permalink to this equation">#</a></span>\[
     \Pi c \ll b
 \]</div>
 <p>This means that the consumer has much less of each good than he wants.</p>
-<p>The deviation in <a class="reference internal" href="#equation-eq-bversusc">(42.3)</a> will ultimately assure us that competitive equilibrium prices are positive.</p>
+<p>The deviation in <a class="reference internal" href="#equation-eq-bversusc">(43.3)</a> will ultimately assure us that competitive equilibrium prices are positive.</p>
 <section id="demand-curve-implied-by-constrained-utility-maximization">
-<h3><span class="section-number">42.3.1. </span>Demand curve implied by constrained utility maximization<a class="headerlink" href="#demand-curve-implied-by-constrained-utility-maximization" title="Permalink to this heading">#</a></h3>
-<p>For now, we assume that the budget constraint is <a class="reference internal" href="#equation-eq-old2">(42.2)</a>.</p>
+<h3><span class="section-number">43.3.1. </span>Demand curve implied by constrained utility maximization<a class="headerlink" href="#demand-curve-implied-by-constrained-utility-maximization" title="Permalink to this heading">#</a></h3>
+<p>For now, we assume that the budget constraint is <a class="reference internal" href="#equation-eq-old2">(43.2)</a>.</p>
 <p>So we’ll be deriving what is known as  a <strong>Marshallian</strong> demand curve.</p>
-<p>Our aim is to maximize <a class="reference internal" href="#equation-eq-old0">(42.1)</a> subject to <a class="reference internal" href="#equation-eq-old2">(42.2)</a>.</p>
+<p>Our aim is to maximize <a class="reference internal" href="#equation-eq-old0">(43.1)</a> subject to <a class="reference internal" href="#equation-eq-old2">(43.2)</a>.</p>
 <p>Form a Lagrangian</p>
 <div class="math notranslate nohighlight">
 \[ L = - \frac{1}{2} (\Pi c -b)^\top (\Pi c -b ) + \mu [p^\top (e-c)] \]</div>
@@ -392,25 +392,25 @@ and welfare in a market with a single consumption good.</p>
 \]</div>
 <p>so that, given <span class="math notranslate nohighlight">\(\mu\)</span>, the consumer chooses</p>
 <div class="math notranslate nohighlight" id="equation-eq-old3">
-<span class="eqno">(42.4)<a class="headerlink" href="#equation-eq-old3" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(43.4)<a class="headerlink" href="#equation-eq-old3" title="Permalink to this equation">#</a></span>\[
     c = (\Pi^\top \Pi )^{-1}(\Pi^\top b -  \mu p )
 \]</div>
-<p>Substituting <a class="reference internal" href="#equation-eq-old3">(42.4)</a> into budget constraint <a class="reference internal" href="#equation-eq-old2">(42.2)</a> and solving for <span class="math notranslate nohighlight">\(\mu\)</span> gives</p>
+<p>Substituting <a class="reference internal" href="#equation-eq-old3">(43.4)</a> into budget constraint <a class="reference internal" href="#equation-eq-old2">(43.2)</a> and solving for <span class="math notranslate nohighlight">\(\mu\)</span> gives</p>
 <div class="math notranslate nohighlight" id="equation-eq-old4">
-<span class="eqno">(42.5)<a class="headerlink" href="#equation-eq-old4" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(43.5)<a class="headerlink" href="#equation-eq-old4" title="Permalink to this equation">#</a></span>\[
     \mu(p,e) = \frac{p^\top ( \Pi^\top \Pi )^{-1} \Pi^\top b - p^\top e}{p^\top (\Pi^\top \Pi )^{-1} p}.
 \]</div>
-<p>Equation <a class="reference internal" href="#equation-eq-old4">(42.5)</a> tells how marginal utility of wealth depends on the endowment vector <span class="math notranslate nohighlight">\(e\)</span> and the price vector <span class="math notranslate nohighlight">\(p\)</span>.</p>
+<p>Equation <a class="reference internal" href="#equation-eq-old4">(43.5)</a> tells how marginal utility of wealth depends on the endowment vector <span class="math notranslate nohighlight">\(e\)</span> and the price vector <span class="math notranslate nohighlight">\(p\)</span>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Equation <a class="reference internal" href="#equation-eq-old4">(42.5)</a> is a consequence of imposing that <span class="math notranslate nohighlight">\(p^\top (c - e) = 0\)</span>.</p>
-<p>We could instead take <span class="math notranslate nohighlight">\(\mu\)</span> as a parameter and use <a class="reference internal" href="#equation-eq-old3">(42.4)</a> and the budget constraint <a class="reference internal" href="#equation-eq-old2p">(42.6)</a> to solve for wealth.</p>
+<p>Equation <a class="reference internal" href="#equation-eq-old4">(43.5)</a> is a consequence of imposing that <span class="math notranslate nohighlight">\(p^\top (c - e) = 0\)</span>.</p>
+<p>We could instead take <span class="math notranslate nohighlight">\(\mu\)</span> as a parameter and use <a class="reference internal" href="#equation-eq-old3">(43.4)</a> and the budget constraint <a class="reference internal" href="#equation-eq-old2p">(43.6)</a> to solve for wealth.</p>
 <p>Which way we proceed determines whether we are constructing a <strong>Marshallian</strong> or <strong>Hicksian</strong> demand curve.</p>
 </div>
 </section>
 </section>
 <section id="endowment-economy">
-<h2><span class="section-number">42.4. </span>Endowment economy<a class="headerlink" href="#endowment-economy" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">43.4. </span>Endowment economy<a class="headerlink" href="#endowment-economy" title="Permalink to this heading">#</a></h2>
 <p>We now study a pure-exchange economy, or what is sometimes called an endowment economy.</p>
 <p>Consider a single-consumer, multiple-goods economy without production.</p>
 <p>The only source of goods is the single consumer’s endowment vector <span class="math notranslate nohighlight">\(e\)</span>.</p>
@@ -420,23 +420,23 @@ and welfare in a market with a single consumption good.</p>
 \[
 p = \mu^{-1} (\Pi^\top b - \Pi^\top \Pi e)
 \]</div>
-<p>In the present case where we have imposed budget constraint in the form <a class="reference internal" href="#equation-eq-old2">(42.2)</a>, we are free to normalize the price vector by setting the marginal utility of wealth <span class="math notranslate nohighlight">\(\mu =1\)</span> (or any other value for that matter).</p>
+<p>In the present case where we have imposed budget constraint in the form <a class="reference internal" href="#equation-eq-old2">(43.2)</a>, we are free to normalize the price vector by setting the marginal utility of wealth <span class="math notranslate nohighlight">\(\mu =1\)</span> (or any other value for that matter).</p>
 <p>This amounts to choosing a common unit (or numeraire) in which prices of all goods are expressed.</p>
 <p>(Doubling all prices will affect neither quantities nor relative prices.)</p>
 <p>We’ll set <span class="math notranslate nohighlight">\(\mu=1\)</span>.</p>
 <div class="exercise admonition" id="sdm_ex1">
 
-<p class="admonition-title"><span class="caption-number">Exercise 42.1 </span></p>
+<p class="admonition-title"><span class="caption-number">Exercise 43.1 </span></p>
 <section id="exercise-content">
-<p>Verify that setting <span class="math notranslate nohighlight">\(\mu=1\)</span> in <a class="reference internal" href="#equation-eq-old3">(42.4)</a> implies that formula <a class="reference internal" href="#equation-eq-old4">(42.5)</a> is satisfied.</p>
+<p>Verify that setting <span class="math notranslate nohighlight">\(\mu=1\)</span> in <a class="reference internal" href="#equation-eq-old3">(43.4)</a> implies that formula <a class="reference internal" href="#equation-eq-old4">(43.5)</a> is satisfied.</p>
 </section>
 </div>
 <div class="exercise admonition" id="sdm_ex2">
 
-<p class="admonition-title"><span class="caption-number">Exercise 42.2 </span></p>
+<p class="admonition-title"><span class="caption-number">Exercise 43.2 </span></p>
 <section id="exercise-content">
-<p>Verify that setting  <span class="math notranslate nohighlight">\(\mu=2\)</span> in <a class="reference internal" href="#equation-eq-old3">(42.4)</a> also implies that formula
-<a class="reference internal" href="#equation-eq-old4">(42.5)</a> is satisfied.</p>
+<p>Verify that setting  <span class="math notranslate nohighlight">\(\mu=2\)</span> in <a class="reference internal" href="#equation-eq-old3">(43.4)</a> also implies that formula
+<a class="reference internal" href="#equation-eq-old4">(43.5)</a> is satisfied.</p>
 </section>
 </div>
 <p>Here is a class that computes competitive equilibria for our economy.</p>
@@ -492,19 +492,19 @@ p = \mu^{-1} (\Pi^\top b - \Pi^\top \Pi e)
 </div>
 </section>
 <section id="digression-marshallian-and-hicksian-demand-curves">
-<h2><span class="section-number">42.5. </span>Digression: Marshallian and Hicksian demand curves<a class="headerlink" href="#digression-marshallian-and-hicksian-demand-curves" title="Permalink to this heading">#</a></h2>
-<p>Sometimes we’ll use budget constraint <a class="reference internal" href="#equation-eq-old2">(42.2)</a> in situations in which a consumer’s endowment vector <span class="math notranslate nohighlight">\(e\)</span> is his <strong>only</strong> source of income.</p>
+<h2><span class="section-number">43.5. </span>Digression: Marshallian and Hicksian demand curves<a class="headerlink" href="#digression-marshallian-and-hicksian-demand-curves" title="Permalink to this heading">#</a></h2>
+<p>Sometimes we’ll use budget constraint <a class="reference internal" href="#equation-eq-old2">(43.2)</a> in situations in which a consumer’s endowment vector <span class="math notranslate nohighlight">\(e\)</span> is his <strong>only</strong> source of income.</p>
 <p>Other times we’ll instead assume that the consumer has another source of income (positive or negative) and write his budget constraint as</p>
 <div class="math notranslate nohighlight" id="equation-eq-old2p">
-<span class="eqno">(42.6)<a class="headerlink" href="#equation-eq-old2p" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(43.6)<a class="headerlink" href="#equation-eq-old2p" title="Permalink to this equation">#</a></span>\[
 p ^\top (c -e ) = w
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(w\)</span> is measured in “dollars” (or some other <strong>numeraire</strong>) and component <span class="math notranslate nohighlight">\(p_i\)</span> of the price vector is measured in dollars per unit of good <span class="math notranslate nohighlight">\(i\)</span>.</p>
-<p>Whether the consumer’s budget constraint is <a class="reference internal" href="#equation-eq-old2">(42.2)</a> or <a class="reference internal" href="#equation-eq-old2p">(42.6)</a> and whether we take <span class="math notranslate nohighlight">\(w\)</span> as a free parameter or instead as an endogenous variable will affect the consumer’s marginal utility of wealth.</p>
+<p>Whether the consumer’s budget constraint is <a class="reference internal" href="#equation-eq-old2">(43.2)</a> or <a class="reference internal" href="#equation-eq-old2p">(43.6)</a> and whether we take <span class="math notranslate nohighlight">\(w\)</span> as a free parameter or instead as an endogenous variable will affect the consumer’s marginal utility of wealth.</p>
 <p>Consequently, how we set <span class="math notranslate nohighlight">\(\mu\)</span> determines whether we are constructing</p>
 <ul class="simple">
-<li><p>a <strong>Marshallian</strong> demand curve, as when we use <a class="reference internal" href="#equation-eq-old2">(42.2)</a> and solve for <span class="math notranslate nohighlight">\(\mu\)</span> using equation <a class="reference internal" href="#equation-eq-old4">(42.5)</a> above, or</p></li>
-<li><p>a <strong>Hicksian</strong> demand curve, as when we treat <span class="math notranslate nohighlight">\(\mu\)</span> as a fixed parameter and solve for <span class="math notranslate nohighlight">\(w\)</span> from <a class="reference internal" href="#equation-eq-old2p">(42.6)</a>.</p></li>
+<li><p>a <strong>Marshallian</strong> demand curve, as when we use <a class="reference internal" href="#equation-eq-old2">(43.2)</a> and solve for <span class="math notranslate nohighlight">\(\mu\)</span> using equation <a class="reference internal" href="#equation-eq-old4">(43.5)</a> above, or</p></li>
+<li><p>a <strong>Hicksian</strong> demand curve, as when we treat <span class="math notranslate nohighlight">\(\mu\)</span> as a fixed parameter and solve for <span class="math notranslate nohighlight">\(w\)</span> from <a class="reference internal" href="#equation-eq-old2p">(43.6)</a>.</p></li>
 </ul>
 <p>Marshallian and Hicksian demand curves contemplate different mental experiments:</p>
 <p>For a Marshallian demand curve, hypothetical changes in a price vector have both <strong>substitution</strong> and <strong>income</strong> effects</p>
@@ -519,7 +519,7 @@ p ^\top (c -e ) = w
 <p>We’ll discuss these distinct demand curves more below.</p>
 </section>
 <section id="dynamics-and-risk-as-special-cases">
-<h2><span class="section-number">42.6. </span>Dynamics and risk as special cases<a class="headerlink" href="#dynamics-and-risk-as-special-cases" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">43.6. </span>Dynamics and risk as special cases<a class="headerlink" href="#dynamics-and-risk-as-special-cases" title="Permalink to this heading">#</a></h2>
 <p>Special cases of our <span class="math notranslate nohighlight">\(n\)</span>-good pure exchange model can be created to represent</p>
 <ul class="simple">
 <li><p><strong>dynamics</strong> — by putting different dates on different commodities</p></li>
@@ -527,14 +527,14 @@ p ^\top (c -e ) = w
 </ul>
 <p>Let’s illustrate how.</p>
 <section id="dynamics">
-<h3><span class="section-number">42.6.1. </span>Dynamics<a class="headerlink" href="#dynamics" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">43.6.1. </span>Dynamics<a class="headerlink" href="#dynamics" title="Permalink to this heading">#</a></h3>
 <p>Suppose that we want to represent a utility function</p>
 <div class="math notranslate nohighlight">
 \[
   - \frac{1}{2} [(c_1 - b_1)^2 + \beta (c_2 - b_2)^2]
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(\beta \in (0,1)\)</span> is a discount factor, <span class="math notranslate nohighlight">\(c_1\)</span> is consumption at time <span class="math notranslate nohighlight">\(1\)</span> and <span class="math notranslate nohighlight">\(c_2\)</span> is consumption at time 2.</p>
-<p>To capture this with our quadratic utility function <a class="reference internal" href="#equation-eq-old0">(42.1)</a>, set</p>
+<p>To capture this with our quadratic utility function <a class="reference internal" href="#equation-eq-old0">(43.1)</a>, set</p>
 <div class="math notranslate nohighlight">
 \[
 \Pi = \begin{bmatrix} 1 &amp; 0 \cr
@@ -550,7 +550,7 @@ e = \begin{bmatrix} e_1 \cr e_2 \end{bmatrix}
 b = \begin{bmatrix} b_1 \cr \sqrt{\beta} b_2
 \end{bmatrix}
 \]</div>
-<p>The budget constraint <a class="reference internal" href="#equation-eq-old2">(42.2)</a> becomes</p>
+<p>The budget constraint <a class="reference internal" href="#equation-eq-old2">(43.2)</a> becomes</p>
 <div class="math notranslate nohighlight">
 \[
 p_1 c_1 + p_2 c_2 = p_1 e_1 + p_2 e_2
@@ -593,7 +593,7 @@ Competitive equilibrium allocation: [1. 1.]
 </div>
 </section>
 <section id="risk-and-state-contingent-claims">
-<h3><span class="section-number">42.6.2. </span>Risk and state-contingent claims<a class="headerlink" href="#risk-and-state-contingent-claims" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">43.6.2. </span>Risk and state-contingent claims<a class="headerlink" href="#risk-and-state-contingent-claims" title="Permalink to this heading">#</a></h3>
 <p>We study risk in the context of a <strong>static</strong> environment, meaning that there is only one period.</p>
 <p>By <strong>risk</strong> we mean that an outcome is not known in advance, but that it is governed by a known probability distribution.</p>
 <p>As an example, our consumer confronts <strong>risk</strong> means in particular that</p>
@@ -670,7 +670,7 @@ Competitive equilibrium allocation: [1. 1.]
 </div>
 <div class="exercise admonition" id="sdm_ex3">
 
-<p class="admonition-title"><span class="caption-number">Exercise 42.3 </span></p>
+<p class="admonition-title"><span class="caption-number">Exercise 43.3 </span></p>
 <section id="exercise-content">
 <p>Consider the instance above.</p>
 <p>Please numerically study how each of the following cases affects the equilibrium prices and allocations:</p>
@@ -684,7 +684,7 @@ Competitive equilibrium allocation: [1. 1.]
 </div>
 <div class="solution dropdown admonition" id="supply_demand_multiple_goods-solution-3">
 
-<p class="admonition-title">Solution to<a class="reference internal" href="#sdm_ex3"> Exercise 42.3</a></p>
+<p class="admonition-title">Solution to<a class="reference internal" href="#sdm_ex3"> Exercise 43.3</a></p>
 <section id="solution-content">
 <p>First consider when the consumer is poorer.</p>
 <p>Here we just decrease the endowment.</p>
@@ -756,10 +756,10 @@ Competitive equilibrium allocation: [1. 1.]
 </section>
 </section>
 <section id="economies-with-endogenous-supplies-of-goods">
-<h2><span class="section-number">42.7. </span>Economies with endogenous supplies of goods<a class="headerlink" href="#economies-with-endogenous-supplies-of-goods" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">43.7. </span>Economies with endogenous supplies of goods<a class="headerlink" href="#economies-with-endogenous-supplies-of-goods" title="Permalink to this heading">#</a></h2>
 <p>Up to now we have described a pure exchange economy in which endowments of goods are exogenous, meaning that they are taken as given from outside the model.</p>
 <section id="supply-curve-of-a-competitive-firm">
-<h3><span class="section-number">42.7.1. </span>Supply curve of a competitive firm<a class="headerlink" href="#supply-curve-of-a-competitive-firm" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">43.7.1. </span>Supply curve of a competitive firm<a class="headerlink" href="#supply-curve-of-a-competitive-firm" title="Permalink to this heading">#</a></h3>
 <p>A competitive firm that can produce goods takes a price vector <span class="math notranslate nohighlight">\(p\)</span> as given and chooses a quantity <span class="math notranslate nohighlight">\(q\)</span>
 to maximize total revenue minus total costs.</p>
 <p>The firm’s total revenue equals <span class="math notranslate nohighlight">\(p^\top q\)</span> and its total cost equals <span class="math notranslate nohighlight">\(C(q)\)</span> where <span class="math notranslate nohighlight">\(C(q)\)</span> is a total cost function</p>
@@ -770,7 +770,7 @@ C(q) = h ^\top q +  \frac{1}{2} q^\top J q
 <p>and <span class="math notranslate nohighlight">\(J\)</span> is a positive definite matrix.</p>
 <p>So the firm’s profits are</p>
 <div class="math notranslate nohighlight" id="equation-eq-compprofits">
-<span class="eqno">(42.7)<a class="headerlink" href="#equation-eq-compprofits" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(43.7)<a class="headerlink" href="#equation-eq-compprofits" title="Permalink to this equation">#</a></span>\[
 p^\top q - C(q)
 \]</div>
 <p>An <span class="math notranslate nohighlight">\(n\times 1\)</span> vector of <strong>marginal costs</strong> is</p>
@@ -794,11 +794,11 @@ p = h + H q
 \]</div>
 </section>
 <section id="competitive-equilibrium">
-<h3><span class="section-number">42.7.2. </span>Competitive equilibrium<a class="headerlink" href="#competitive-equilibrium" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">43.7.2. </span>Competitive equilibrium<a class="headerlink" href="#competitive-equilibrium" title="Permalink to this heading">#</a></h3>
 <p>To compute a competitive equilibrium for a production economy where demand curve is pinned down by the marginal utility of wealth <span class="math notranslate nohighlight">\(\mu\)</span>, we first compute an allocation by solving a planning problem.</p>
 <p>Then we compute the equilibrium price vector using the inverse demand or supply curve.</p>
 <section id="mu-1-warmup">
-<h4><span class="section-number">42.7.2.1. </span><span class="math notranslate nohighlight">\(\mu=1\)</span> warmup<a class="headerlink" href="#mu-1-warmup" title="Permalink to this heading">#</a></h4>
+<h4><span class="section-number">43.7.2.1. </span><span class="math notranslate nohighlight">\(\mu=1\)</span> warmup<a class="headerlink" href="#mu-1-warmup" title="Permalink to this heading">#</a></h4>
 <p>As a special case, let’s pin down a demand curve by setting the marginal utility of wealth <span class="math notranslate nohighlight">\(\mu =1\)</span>.</p>
 <p>Equating supply price to demand price and letting <span class="math notranslate nohighlight">\(q=c\)</span> we get</p>
 <div class="math notranslate nohighlight">
@@ -807,30 +807,30 @@ p = h + H c = \Pi^\top b - \Pi^\top \Pi c ,
 \]</div>
 <p>which implies the equilibrium quantity vector</p>
 <div class="math notranslate nohighlight" id="equation-eq-old5">
-<span class="eqno">(42.8)<a class="headerlink" href="#equation-eq-old5" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(43.8)<a class="headerlink" href="#equation-eq-old5" title="Permalink to this equation">#</a></span>\[
 c = (\Pi^\top \Pi + H )^{-1} ( \Pi^\top b - h)
 \]</div>
-<p>This equation is the counterpart of equilibrium quantity <a class="reference internal" href="intro_supply_demand.html#equation-eq-old1">(6.3)</a> for the scalar <span class="math notranslate nohighlight">\(n=1\)</span> model with which we began.</p>
+<p>This equation is the counterpart of equilibrium quantity <a class="reference internal" href="intro_supply_demand.html#equation-eq-old1">(7.3)</a> for the scalar <span class="math notranslate nohighlight">\(n=1\)</span> model with which we began.</p>
 </section>
 <section id="general-mu-neq-1-case">
-<h4><span class="section-number">42.7.2.2. </span>General <span class="math notranslate nohighlight">\(\mu\neq 1\)</span> case<a class="headerlink" href="#general-mu-neq-1-case" title="Permalink to this heading">#</a></h4>
+<h4><span class="section-number">43.7.2.2. </span>General <span class="math notranslate nohighlight">\(\mu\neq 1\)</span> case<a class="headerlink" href="#general-mu-neq-1-case" title="Permalink to this heading">#</a></h4>
 <p>Now let’s extend the preceding analysis to a more
 general case by allowing <span class="math notranslate nohighlight">\(\mu \neq 1\)</span>.</p>
 <p>Then the inverse demand curve is</p>
 <div class="math notranslate nohighlight" id="equation-eq-old5pa">
-<span class="eqno">(42.9)<a class="headerlink" href="#equation-eq-old5pa" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(43.9)<a class="headerlink" href="#equation-eq-old5pa" title="Permalink to this equation">#</a></span>\[
 p = \mu^{-1} [\Pi^\top b - \Pi^\top \Pi c]
 \]</div>
 <p>Equating this to the inverse supply curve, letting <span class="math notranslate nohighlight">\(q=c\)</span> and solving
 for <span class="math notranslate nohighlight">\(c\)</span> gives</p>
 <div class="math notranslate nohighlight" id="equation-eq-old5p">
-<span class="eqno">(42.10)<a class="headerlink" href="#equation-eq-old5p" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(43.10)<a class="headerlink" href="#equation-eq-old5p" title="Permalink to this equation">#</a></span>\[
 c = [\Pi^\top \Pi + \mu H]^{-1} [ \Pi^\top b - \mu h]
 \]</div>
 </section>
 </section>
 <section id="implementation">
-<h3><span class="section-number">42.7.3. </span>Implementation<a class="headerlink" href="#implementation" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">43.7.3. </span>Implementation<a class="headerlink" href="#implementation" title="Permalink to this heading">#</a></h3>
 <p>A Production Economy will consist of</p>
 <ul class="simple">
 <li><p>a single <strong>person</strong> that we’ll interpret as a representative consumer</p></li>
@@ -966,7 +966,7 @@ c = [\Pi^\top \Pi + \mu H]^{-1} [ \Pi^\top b - \mu h]
 </details>
 </div>
 <section id="example-single-agent-with-one-good-and-production">
-<h4><span class="section-number">42.7.3.1. </span>Example: single agent with one good and production<a class="headerlink" href="#example-single-agent-with-one-good-and-production" title="Permalink to this heading">#</a></h4>
+<h4><span class="section-number">43.7.3.1. </span>Example: single agent with one good and production<a class="headerlink" href="#example-single-agent-with-one-good-and-production" title="Permalink to this heading">#</a></h4>
 <p>Now let’s construct an example of a production economy with one good.</p>
 <p>To do this we</p>
 <ul class="simple">
@@ -1082,7 +1082,7 @@ Competitive equilibrium allocation: 7.25
 <p>This raises both the equilibrium price and quantity.</p>
 </section>
 <section id="example-single-agent-two-good-economy-with-production">
-<h4><span class="section-number">42.7.3.2. </span>Example: single agent two-good economy with production<a class="headerlink" href="#example-single-agent-two-good-economy-with-production" title="Permalink to this heading">#</a></h4>
+<h4><span class="section-number">43.7.3.2. </span>Example: single agent two-good economy with production<a class="headerlink" href="#example-single-agent-two-good-economy-with-production" title="Permalink to this heading">#</a></h4>
 <ul class="simple">
 <li><p>we’ll do some experiments like those above</p></li>
 <li><p>we can do experiments with a <strong>diagonal</strong> <span class="math notranslate nohighlight">\(\Pi\)</span> and also with a <strong>non-diagonal</strong> <span class="math notranslate nohighlight">\(\Pi\)</span> matrices to study how cross-slopes affect responses of <span class="math notranslate nohighlight">\(p\)</span> and <span class="math notranslate nohighlight">\(c\)</span> to various shifts in <span class="math notranslate nohighlight">\(b\)</span> (TODO)</p></li>
@@ -1174,23 +1174,23 @@ Competitive equilibrium allocation: [4.93333333 3.6       ]
 </section>
 </section>
 <section id="digression-a-supplier-who-is-a-monopolist">
-<h3><span class="section-number">42.7.4. </span>Digression: a supplier who is a monopolist<a class="headerlink" href="#digression-a-supplier-who-is-a-monopolist" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">43.7.4. </span>Digression: a supplier who is a monopolist<a class="headerlink" href="#digression-a-supplier-who-is-a-monopolist" title="Permalink to this heading">#</a></h3>
 <p>A competitive firm is a <strong>price-taker</strong> who regards the price and therefore its marginal revenue as being beyond its control.</p>
 <p>A monopolist knows that it has no competition and can influence the price and its marginal revenue by
 setting quantity.</p>
 <p>A monopolist takes a <strong>demand curve</strong> and not the <strong>price</strong> as beyond its control.</p>
 <p>Thus, instead of being a price-taker, a monopolist sets prices to maximize profits subject to the inverse demand curve
-<a class="reference internal" href="#equation-eq-old5pa">(42.9)</a>.</p>
+<a class="reference internal" href="#equation-eq-old5pa">(43.9)</a>.</p>
 <p>So the monopolist’s total profits as a function of its output <span class="math notranslate nohighlight">\(q\)</span> is</p>
 <div class="math notranslate nohighlight" id="equation-eq-monopprof">
-<span class="eqno">(42.11)<a class="headerlink" href="#equation-eq-monopprof" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(43.11)<a class="headerlink" href="#equation-eq-monopprof" title="Permalink to this equation">#</a></span>\[
 [\mu^{-1} \Pi^\top (b - \Pi q)]^\top  q - h^\top q -  \frac{1}{2} q^\top J q
 \]</div>
 <p>After finding
 first-order necessary conditions for maximizing monopoly profits with respect to <span class="math notranslate nohighlight">\(q\)</span>
 and solving them for <span class="math notranslate nohighlight">\(q\)</span>, we find that the monopolist sets</p>
 <div class="math notranslate nohighlight" id="equation-eq-qmonop">
-<span class="eqno">(42.12)<a class="headerlink" href="#equation-eq-qmonop" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(43.12)<a class="headerlink" href="#equation-eq-qmonop" title="Permalink to this equation">#</a></span>\[
 q = (H + 2 \mu^{-1} \Pi^\top \Pi)^{-1} (\mu^{-1} \Pi^\top b - h)
 \]</div>
 <p>We’ll soon see that a monopolist sets a <strong>lower output</strong> <span class="math notranslate nohighlight">\(q\)</span> than does either a</p>
@@ -1200,14 +1200,14 @@ q = (H + 2 \mu^{-1} \Pi^\top \Pi)^{-1} (\mu^{-1} \Pi^\top b - h)
 </ul>
 <div class="exercise admonition" id="sdm_ex4">
 
-<p class="admonition-title"><span class="caption-number">Exercise 42.4 </span></p>
+<p class="admonition-title"><span class="caption-number">Exercise 43.4 </span></p>
 <section id="exercise-content">
-<p>Please  verify the monopolist’s supply curve <a class="reference internal" href="#equation-eq-qmonop">(42.12)</a>.</p>
+<p>Please  verify the monopolist’s supply curve <a class="reference internal" href="#equation-eq-qmonop">(43.12)</a>.</p>
 </section>
 </div>
 </section>
 <section id="a-monopolist">
-<h3><span class="section-number">42.7.5. </span>A monopolist<a class="headerlink" href="#a-monopolist" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">43.7.5. </span>A monopolist<a class="headerlink" href="#a-monopolist" title="Permalink to this heading">#</a></h3>
 <p>Let’s consider a monopolist supplier.</p>
 <p>We have included a method in our <code class="docutils literal notranslate"><span class="pre">ProductionEconomy</span></code> class to compute an equilibrium price and allocation when the supplier is a monopolist.</p>
 <p>Since the supplier now has the price-setting power</p>
@@ -1331,7 +1331,7 @@ MR(q) = -2\mu^{-1}\Pi^{\top}\Pi q+\mu^{-1}\Pi^{\top}b,
 </details>
 </div>
 <section id="a-multiple-good-example">
-<h4><span class="section-number">42.7.5.1. </span>A multiple good example<a class="headerlink" href="#a-multiple-good-example" title="Permalink to this heading">#</a></h4>
+<h4><span class="section-number">43.7.5.1. </span>A multiple good example<a class="headerlink" href="#a-multiple-good-example" title="Permalink to this heading">#</a></h4>
 <p>Let’s compare competitive equilibrium and monopoly outcomes in a multiple goods economy.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1369,7 +1369,7 @@ Equilibrium with monopolist supplier allocation: [2.73134328 2.6119403 ]
 </div>
 </section>
 <section id="a-single-good-example">
-<h4><span class="section-number">42.7.5.2. </span>A single-good example<a class="headerlink" href="#a-single-good-example" title="Permalink to this heading">#</a></h4>
+<h4><span class="section-number">43.7.5.2. </span>A single-good example<a class="headerlink" href="#a-single-good-example" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Π</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">]])</span>  <span class="c1"># the matrix now is a singleton</span>
@@ -1407,7 +1407,7 @@ Equilibrium with monopolist supplier allocation: 3.1666666666666665
 </section>
 </section>
 <section id="multi-good-welfare-maximization-problem">
-<h2><span class="section-number">42.8. </span>Multi-good welfare maximization problem<a class="headerlink" href="#multi-good-welfare-maximization-problem" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">43.8. </span>Multi-good welfare maximization problem<a class="headerlink" href="#multi-good-welfare-maximization-problem" title="Permalink to this heading">#</a></h2>
 <p>Our welfare maximization problem – also sometimes called a social planning problem  – is to choose <span class="math notranslate nohighlight">\(c\)</span> to maximize</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1430,7 +1430,7 @@ Equilibrium with monopolist supplier allocation: 3.1666666666666665
 \[
 - \mu^{-1} \Pi^\top \Pi c + \mu^{-1}\Pi^\top b - h -  H c = 0
 \]</div>
-<p>which implies <a class="reference internal" href="#equation-eq-old5p">(42.10)</a>.</p>
+<p>which implies <a class="reference internal" href="#equation-eq-old5p">(43.10)</a>.</p>
 <p>Thus, as for the single-good case, with multiple goods a competitive equilibrium quantity vector solves a planning problem.</p>
 <p>(This is another version of the first welfare theorem.)</p>
 <p>We can deduce a competitive equilibrium price vector from either</p>
@@ -1524,8 +1524,13 @@ Equilibrium with monopolist supplier allocation: 3.1666666666666665
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="french_rev.html">
+   5. Inflation During French Revolution
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="inequality.html">
-   5. Income and Wealth Inequality
+   6. Income and Wealth Inequality
   </a>
  </li>
 </ul>
@@ -1537,22 +1542,22 @@ Equilibrium with monopolist supplier allocation: 3.1666666666666665
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="intro_supply_demand.html">
-   6. Introduction to Supply and Demand
+   7. Introduction to Supply and Demand
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="linear_equations.html">
-   7. Linear Equations and Matrix Algebra
+   8. Linear Equations and Matrix Algebra
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="complex_and_trig.html">
-   8. Complex Numbers and Trigonometry
+   9. Complex Numbers and Trigonometry
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="geom_series.html">
-   9. Geometric Series for Elementary Economics
+   10. Geometric Series for Elementary Economics
   </a>
  </li>
 </ul>
@@ -1564,27 +1569,27 @@ Equilibrium with monopolist supplier allocation: 3.1666666666666665
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="pv.html">
-   10. Present Values
+   11. Present Values
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cons_smooth.html">
-   11. Consumption Smoothing
+   12. Consumption Smoothing
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="equalizing_difference.html">
-   12. Equalizing Difference Model
+   13. Equalizing Difference Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cagan_ree.html">
-   13. A Monetarist Theory of Price Levels
+   14. A Monetarist Theory of Price Levels
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cagan_adaptive.html">
-   14. Monetarist Theory of Price Levels with Adaptive Expectations
+   15. Monetarist Theory of Price Levels with Adaptive Expectations
   </a>
  </li>
 </ul>
@@ -1596,12 +1601,12 @@ Equilibrium with monopolist supplier allocation: 3.1666666666666665
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="eigen_I.html">
-   15. Eigenvalues and Eigenvectors
+   16. Eigenvalues and Eigenvectors
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="greek_square.html">
-   16. Computing Square Roots
+   17. Computing Square Roots
   </a>
  </li>
 </ul>
@@ -1613,27 +1618,27 @@ Equilibrium with monopolist supplier allocation: 3.1666666666666665
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="prob_dist.html">
-   17. Distributions and Probabilities
+   18. Distributions and Probabilities
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="lln_clt.html">
-   18. LLN and CLT
+   19. LLN and CLT
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="monte_carlo.html">
-   19. Monte Carlo and Option Pricing
+   20. Monte Carlo and Option Pricing
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="heavy_tails.html">
-   20. Heavy-Tailed Distributions
+   21. Heavy-Tailed Distributions
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="schelling.html">
-   21. Racial Segregation
+   22. Racial Segregation
   </a>
  </li>
 </ul>
@@ -1645,27 +1650,27 @@ Equilibrium with monopolist supplier allocation: 3.1666666666666665
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="scalar_dynam.html">
-   22. Dynamics in One Dimension
+   23. Dynamics in One Dimension
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="solow.html">
-   23. The Solow-Swan Growth Model
+   24. The Solow-Swan Growth Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cobweb.html">
-   24. The Cobweb Model
+   25. The Cobweb Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="olg.html">
-   25. The Overlapping Generations Model
+   26. The Overlapping Generations Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="commod_price.html">
-   26. Commodity Prices
+   27. Commodity Prices
   </a>
  </li>
 </ul>
@@ -1677,27 +1682,27 @@ Equilibrium with monopolist supplier allocation: 3.1666666666666665
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="money_inflation.html">
-   27. Money Financed Government Deficits and Price Levels
+   28. Money Financed Government Deficits and Price Levels
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="unpleasant.html">
-   28. Some Unpleasant Monetarist Arithmetic
+   29. Some Unpleasant Monetarist Arithmetic
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="money_inflation_nonlinear.html">
-   29. Inflation Rate Laffer Curves
+   30. Inflation Rate Laffer Curves
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="laffer_adaptive.html">
-   30. Laffer Curves  with Adaptive Expectations
+   31. Laffer Curves  with Adaptive Expectations
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ak2.html">
-   31. Transitions in an Overlapping Generations Model
+   32. Transitions in an Overlapping Generations Model
   </a>
  </li>
 </ul>
@@ -1709,22 +1714,22 @@ Equilibrium with monopolist supplier allocation: 3.1666666666666665
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="ar1_processes.html">
-   32. AR(1) Processes
+   33. AR(1) Processes
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="markov_chains_I.html">
-   33. Markov Chains: Basic Concepts
+   34. Markov Chains: Basic Concepts
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="markov_chains_II.html">
-   34. Markov Chains: Irreducibility and Ergodicity
+   35. Markov Chains: Irreducibility and Ergodicity
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="time_series_with_matrices.html">
-   35. Univariate Time Series with Matrix Algebra
+   36. Univariate Time Series with Matrix Algebra
   </a>
  </li>
 </ul>
@@ -1736,12 +1741,12 @@ Equilibrium with monopolist supplier allocation: 3.1666666666666665
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="lp_intro.html">
-   36. Linear Programming
+   37. Linear Programming
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="short_path.html">
-   37. Shortest Paths
+   38. Shortest Paths
   </a>
  </li>
 </ul>
@@ -1753,22 +1758,22 @@ Equilibrium with monopolist supplier allocation: 3.1666666666666665
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="eigen_II.html">
-   38. The Perron-Frobenius Theorem
+   39. The Perron-Frobenius Theorem
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="input_output.html">
-   39. Input-Output Models
+   40. Input-Output Models
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="lake_model.html">
-   40. A Lake Model of Employment
+   41. A Lake Model of Employment
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="networks.html">
-   41. Networks
+   42. Networks
   </a>
  </li>
 </ul>
@@ -1780,12 +1785,12 @@ Equilibrium with monopolist supplier allocation: 3.1666666666666665
 <ul class="current nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1 current active active">
   <a class="current reference internal" href="#">
-   42. Supply and Demand with Many Goods
+   43. Supply and Demand with Many Goods
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="supply_demand_heterogeneity.html">
-   43. Market Equilibrium with Heterogeneity
+   44. Market Equilibrium with Heterogeneity
   </a>
  </li>
 </ul>
@@ -1797,12 +1802,12 @@ Equilibrium with monopolist supplier allocation: 3.1666666666666665
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="simple_linear_regression.html">
-   44. Simple Linear Regression Model
+   45. Simple Linear Regression Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="mle.html">
-   45. Maximum Likelihood Estimation
+   46. Maximum Likelihood Estimation
   </a>
  </li>
 </ul>
@@ -1814,17 +1819,17 @@ Equilibrium with monopolist supplier allocation: 3.1666666666666665
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="troubleshooting.html">
-   46. Troubleshooting
+   47. Troubleshooting
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="zreferences.html">
-   47. References
+   48. References
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="status.html">
-   48. Execution Statistics
+   49. Execution Statistics
   </a>
  </li>
 </ul>

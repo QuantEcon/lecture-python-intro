@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>18. LLN and CLT &#8212; A First Course in Quantitative Economics with Python</title>
+    <title>19. LLN and CLT &#8212; A First Course in Quantitative Economics with Python</title>
     <script src="https://unpkg.com/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://unpkg.com/tippy.js@6.3.1/dist/tippy-bundle.umd.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
@@ -123,8 +123,8 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="19. Monte Carlo and Option Pricing" href="monte_carlo.html" />
-    <link rel="prev" title="17. Distributions and Probabilities" href="prob_dist.html" />
+    <link rel="next" title="20. Monte Carlo and Option Pricing" href="monte_carlo.html" />
+    <link rel="prev" title="18. Distributions and Probabilities" href="prob_dist.html" />
 
 <!-- Normal Meta Tags -->
 <meta name="author" context="Thomas J. Sargent &amp; John Stachurski" />
@@ -172,25 +172,25 @@ const thebe_selector_output = ".output, .cell_output"
 
                         <nav id="bd-toc-nav" class="qe-page__toc-nav">
                             <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">18.1. Overview</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-law-of-large-numbers">18.2. The law of large numbers</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-lln-in-action">18.2.1. The LLN in action</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#statement-of-the-lln">18.2.2. Statement of the LLN</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comments-on-the-theorem">18.2.3. Comments on the theorem</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#illustration">18.2.4. Illustration</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">19.1. Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-law-of-large-numbers">19.2. The law of large numbers</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-lln-in-action">19.2.1. The LLN in action</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#statement-of-the-lln">19.2.2. Statement of the LLN</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comments-on-the-theorem">19.2.3. Comments on the theorem</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#illustration">19.2.4. Illustration</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#breaking-the-lln">18.3. Breaking the LLN</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#infinite-first-moment">18.3.1. Infinite first moment</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#failure-of-the-iid-condition">18.3.2. Failure of the IID condition</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#breaking-the-lln">19.3. Breaking the LLN</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#infinite-first-moment">19.3.1. Infinite first moment</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#failure-of-the-iid-condition">19.3.2. Failure of the IID condition</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#central-limit-theorem">18.4. Central limit theorem</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#statement-of-the-theorem">18.4.1. Statement of the theorem</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulation-1">18.4.2. Simulation 1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#central-limit-theorem">19.4. Central limit theorem</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#statement-of-the-theorem">19.4.1. Statement of the theorem</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulation-1">19.4.2. Simulation 1</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">18.5. Exercises</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">19.5. Exercises</a></li>
 </ul>
                             <p class="logo">
                                 
@@ -250,9 +250,9 @@ const thebe_selector_output = ".output, .cell_output"
                     <div>
                         
   <section class="tex2jax_ignore mathjax_ignore" id="lln-and-clt">
-<h1><span class="section-number">18. </span>LLN and CLT<a class="headerlink" href="#lln-and-clt" title="Permalink to this heading">#</a></h1>
+<h1><span class="section-number">19. </span>LLN and CLT<a class="headerlink" href="#lln-and-clt" title="Permalink to this heading">#</a></h1>
 <section id="overview">
-<h2><span class="section-number">18.1. </span>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">19.1. </span>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
 <p>This lecture illustrates two of the most important results in probability and statistics:</p>
 <ol class="arabic simple">
 <li><p>the law of large numbers (LLN) and</p></li>
@@ -276,11 +276,11 @@ are based on do not hold.</p>
 </div>
 </section>
 <section id="the-law-of-large-numbers">
-<span id="lln-mr"></span><h2><span class="section-number">18.2. </span>The law of large numbers<a class="headerlink" href="#the-law-of-large-numbers" title="Permalink to this heading">#</a></h2>
+<span id="lln-mr"></span><h2><span class="section-number">19.2. </span>The law of large numbers<a class="headerlink" href="#the-law-of-large-numbers" title="Permalink to this heading">#</a></h2>
 <p id="index-0">We begin with the law of large numbers, which tells us when sample averages
 will converge to their population means.</p>
 <section id="the-lln-in-action">
-<h3><span class="section-number">18.2.1. </span>The LLN in action<a class="headerlink" href="#the-lln-in-action" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">19.2.1. </span>The LLN in action<a class="headerlink" href="#the-lln-in-action" title="Permalink to this heading">#</a></h3>
 <p>Let’s see an example of the LLN in action before we go further.</p>
 <p>Consider a <a class="reference external" href="https://en.wikipedia.org/wiki/Bernoulli_distribution">Bernoulli random variable</a> <span class="math notranslate nohighlight">\(X\)</span> with parameter <span class="math notranslate nohighlight">\(p\)</span>.</p>
 <p>This means that <span class="math notranslate nohighlight">\(X\)</span> takes values in <span class="math notranslate nohighlight">\(\{0,1\}\)</span> and <span class="math notranslate nohighlight">\(\mathbb P\{X=1\} = p\)</span>.</p>
@@ -306,7 +306,7 @@ will converge to their population means.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
 </pre></div>
 </div>
 </div>
@@ -324,7 +324,7 @@ of heads that we see will be close to the mean <span class="math notranslate noh
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.800226
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.800016
 </pre></div>
 </div>
 </div>
@@ -339,7 +339,7 @@ of heads that we see will be close to the mean <span class="math notranslate noh
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.299991
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.299985
 </pre></div>
 </div>
 </div>
@@ -357,12 +357,12 @@ expectation <span class="math notranslate nohighlight">\(\mathbb E X\)</span>.</
 <p>In this case, it is the fraction of draws that equal one (the number of heads divided by <span class="math notranslate nohighlight">\(n\)</span>).</p>
 <p>Thus, the LLN tells us that for the Bernoulli trials above</p>
 <div class="math notranslate nohighlight" id="equation-exp">
-<span class="eqno">(18.1)<a class="headerlink" href="#equation-exp" title="Permalink to this equation">#</a></span>\[    \bar X_n \to \mathbb E X = p
+<span class="eqno">(19.1)<a class="headerlink" href="#equation-exp" title="Permalink to this equation">#</a></span>\[    \bar X_n \to \mathbb E X = p
     \qquad (n \to \infty)\]</div>
 <p>This is exactly what we illustrated in the code.</p>
 </section>
 <section id="statement-of-the-lln">
-<span id="lln-ksl"></span><h3><span class="section-number">18.2.2. </span>Statement of the LLN<a class="headerlink" href="#statement-of-the-lln" title="Permalink to this heading">#</a></h3>
+<span id="lln-ksl"></span><h3><span class="section-number">19.2.2. </span>Statement of the LLN<a class="headerlink" href="#statement-of-the-lln" title="Permalink to this heading">#</a></h3>
 <p>Let’s state the LLN more carefully.</p>
 <p>Let <span class="math notranslate nohighlight">\(X_1, \ldots, X_n\)</span> be random variables, all of which have the same
 distribution.</p>
@@ -393,11 +393,11 @@ functions and integrals with sums.)</p>
 \]</div>
 <p>The next theorem is called Kolmogorov’s strong law of large numbers.</p>
 <div class="proof theorem admonition" id="theorem-0">
-<span id="iid-theorem"></span><p class="admonition-title"><span class="caption-number">Theorem 18.1 </span></p>
+<span id="iid-theorem"></span><p class="admonition-title"><span class="caption-number">Theorem 19.1 </span></p>
 <section class="theorem-content" id="proof-content">
 <p>If <span class="math notranslate nohighlight">\(X_1, \ldots, X_n\)</span> are IID and <span class="math notranslate nohighlight">\(\mathbb E |X|\)</span> is finite, then</p>
 <div class="math notranslate nohighlight" id="equation-lln-as">
-<span class="eqno">(18.2)<a class="headerlink" href="#equation-lln-as" title="Permalink to this equation">#</a></span>\[\mathbb P \left\{ \bar X_n \to \mu \text{ as } n \to \infty \right\} = 1\]</div>
+<span class="eqno">(19.2)<a class="headerlink" href="#equation-lln-as" title="Permalink to this equation">#</a></span>\[\mathbb P \left\{ \bar X_n \to \mu \text{ as } n \to \infty \right\} = 1\]</div>
 </section>
 </div><p>Here</p>
 <ul class="simple">
@@ -406,18 +406,18 @@ functions and integrals with sums.)</p>
 </ul>
 </section>
 <section id="comments-on-the-theorem">
-<h3><span class="section-number">18.2.3. </span>Comments on the theorem<a class="headerlink" href="#comments-on-the-theorem" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">19.2.3. </span>Comments on the theorem<a class="headerlink" href="#comments-on-the-theorem" title="Permalink to this heading">#</a></h3>
 <p>What does the probability one statement in the theorem mean?</p>
 <p>Let’s think about it from a simulation perspective, imagining for a moment that
 our computer can generate perfect random samples (although this <a class="reference external" href="https://en.wikipedia.org/wiki/Pseudorandom_number_generator">isn’t strictly true</a>).</p>
 <p>Let’s also imagine that we can generate infinite sequences so that the
 statement <span class="math notranslate nohighlight">\(\bar X_n \to \mu\)</span> can be evaluated.</p>
-<p>In this setting, <a class="reference internal" href="#equation-lln-as">(18.2)</a> should be interpreted as meaning that the
+<p>In this setting, <a class="reference internal" href="#equation-lln-as">(19.2)</a> should be interpreted as meaning that the
 probability of the computer producing a sequence where <span class="math notranslate nohighlight">\(\bar X_n \to \mu\)</span>
 fails to occur is zero.</p>
 </section>
 <section id="illustration">
-<h3><span class="section-number">18.2.4. </span>Illustration<a class="headerlink" href="#illustration" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">19.2.4. </span>Illustration<a class="headerlink" href="#illustration" title="Permalink to this heading">#</a></h3>
 <p id="index-1">Let’s illustrate the LLN using simulation.</p>
 <p>When we illustrate it, we will use a key idea: the sample mean <span class="math notranslate nohighlight">\(\bar X_n\)</span> is
 itself a random variable.</p>
@@ -494,7 +494,7 @@ random variables <span class="math notranslate nohighlight">\(X_1, \ldots, X_n\)
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/c1831110dd80648a36e0ca16fbcf2b64786ffca2e6f11b15df6e6c5b8083a539.png"><img alt="_images/c1831110dd80648a36e0ca16fbcf2b64786ffca2e6f11b15df6e6c5b8083a539.png" src="_images/c1831110dd80648a36e0ca16fbcf2b64786ffca2e6f11b15df6e6c5b8083a539.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/47a28d72e780507bf6ea612d6e8f3390250393e7ed415afdcec38d4365e06008.png"><img alt="_images/47a28d72e780507bf6ea612d6e8f3390250393e7ed415afdcec38d4365e06008.png" src="_images/47a28d72e780507bf6ea612d6e8f3390250393e7ed415afdcec38d4365e06008.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>We can see that the distribution of <span class="math notranslate nohighlight">\(\bar X\)</span> is clustered around <span class="math notranslate nohighlight">\(\mathbb E X\)</span>
@@ -542,7 +542,7 @@ as expected.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/85b5a8ab844d1bb1cf8ee253e26cf4aedb45637e1fc8c1a9a85281efdfb6eec1.png"><img alt="_images/85b5a8ab844d1bb1cf8ee253e26cf4aedb45637e1fc8c1a9a85281efdfb6eec1.png" src="_images/85b5a8ab844d1bb1cf8ee253e26cf4aedb45637e1fc8c1a9a85281efdfb6eec1.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/e09c9431f83427311b5415ff456c75dc3fa2f9fe92c68fbb5694e80f3f0f9645.png"><img alt="_images/e09c9431f83427311b5415ff456c75dc3fa2f9fe92c68fbb5694e80f3f0f9645.png" src="_images/e09c9431f83427311b5415ff456c75dc3fa2f9fe92c68fbb5694e80f3f0f9645.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>As <span class="math notranslate nohighlight">\(n\)</span> gets large, more probability mass clusters around the population mean <span class="math notranslate nohighlight">\(\mu\)</span>.</p>
@@ -554,18 +554,18 @@ as expected.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/14ee7072e4e94d5108b3977b26df43e58d444220cf482df21da8c9c614995eb8.png"><img alt="_images/14ee7072e4e94d5108b3977b26df43e58d444220cf482df21da8c9c614995eb8.png" src="_images/14ee7072e4e94d5108b3977b26df43e58d444220cf482df21da8c9c614995eb8.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/25091684844ceb09d6cdd977aae4eb88858b26f3c0a10d8f12198e3441af0dde.png"><img alt="_images/25091684844ceb09d6cdd977aae4eb88858b26f3c0a10d8f12198e3441af0dde.png" src="_images/25091684844ceb09d6cdd977aae4eb88858b26f3c0a10d8f12198e3441af0dde.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>We get a similar result.</p>
 </section>
 </section>
 <section id="breaking-the-lln">
-<h2><span class="section-number">18.3. </span>Breaking the LLN<a class="headerlink" href="#breaking-the-lln" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">19.3. </span>Breaking the LLN<a class="headerlink" href="#breaking-the-lln" title="Permalink to this heading">#</a></h2>
 <p>We have to pay attention to the assumptions in the statement of the LLN.</p>
 <p>If these assumptions do not hold, then the LLN might fail.</p>
 <section id="infinite-first-moment">
-<h3><span class="section-number">18.3.1. </span>Infinite first moment<a class="headerlink" href="#infinite-first-moment" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">19.3.1. </span>Infinite first moment<a class="headerlink" href="#infinite-first-moment" title="Permalink to this heading">#</a></h3>
 <p>As indicated by the theorem, the LLN can break when <span class="math notranslate nohighlight">\(\mathbb E |X|\)</span> is not finite.</p>
 <p>We can demonstrate this using the <a class="reference external" href="https://en.wikipedia.org/wiki/Cauchy_distribution">Cauchy distribution</a>.</p>
 <p>The Cauchy distribution has the following property:</p>
@@ -575,7 +575,7 @@ as expected.</p>
 <p>The LLN fails to hold here because the assumption <span class="math notranslate nohighlight">\(\mathbb E|X| &lt; \infty\)</span> is violated by the Cauchy distribution.</p>
 </section>
 <section id="failure-of-the-iid-condition">
-<h3><span class="section-number">18.3.2. </span>Failure of the IID condition<a class="headerlink" href="#failure-of-the-iid-condition" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">19.3.2. </span>Failure of the IID condition<a class="headerlink" href="#failure-of-the-iid-condition" title="Permalink to this heading">#</a></h3>
 <p>The LLN can also fail to hold when the IID assumption is violated.</p>
 <p>For example, suppose that</p>
 <div class="math notranslate nohighlight">
@@ -604,20 +604,20 @@ where IID fails but the LLN still holds.</p>
 </section>
 </section>
 <section id="central-limit-theorem">
-<h2><span class="section-number">18.4. </span>Central limit theorem<a class="headerlink" href="#central-limit-theorem" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">19.4. </span>Central limit theorem<a class="headerlink" href="#central-limit-theorem" title="Permalink to this heading">#</a></h2>
 <p id="index-2">Next, we turn to the central limit theorem (CLT), which tells us about the
 distribution of the deviation between sample averages and population means.</p>
 <section id="statement-of-the-theorem">
-<h3><span class="section-number">18.4.1. </span>Statement of the theorem<a class="headerlink" href="#statement-of-the-theorem" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">19.4.1. </span>Statement of the theorem<a class="headerlink" href="#statement-of-the-theorem" title="Permalink to this heading">#</a></h3>
 <p>The central limit theorem is one of the most remarkable results in all of mathematics.</p>
 <p>In the IID setting, it tells us the following:</p>
 <div class="proof theorem admonition" id="statement_clt">
-<p class="admonition-title"><span class="caption-number">Theorem 18.2 </span></p>
+<p class="admonition-title"><span class="caption-number">Theorem 19.2 </span></p>
 <section class="theorem-content" id="proof-content">
 <p>If <span class="math notranslate nohighlight">\(X_1, \ldots, X_n\)</span> is IID with common mean <span class="math notranslate nohighlight">\(\mu\)</span> and common variance
 <span class="math notranslate nohighlight">\(\sigma^2 \in (0, \infty)\)</span>, then</p>
 <div class="math notranslate nohighlight" id="equation-lln-clt">
-<span class="eqno">(18.3)<a class="headerlink" href="#equation-lln-clt" title="Permalink to this equation">#</a></span>\[\sqrt{n} ( \bar X_n - \mu ) \stackrel { d } {\to} N(0, \sigma^2)
+<span class="eqno">(19.3)<a class="headerlink" href="#equation-lln-clt" title="Permalink to this equation">#</a></span>\[\sqrt{n} ( \bar X_n - \mu ) \stackrel { d } {\to} N(0, \sigma^2)
 \quad \text{as} \quad
 n \to \infty\]</div>
 </section>
@@ -627,7 +627,7 @@ finite <a class="reference external" href="https://en.wikipedia.org/wiki/Moment_
 copies <strong>always</strong> leads to a Gaussian(Normal) curve.</p>
 </section>
 <section id="simulation-1">
-<h3><span class="section-number">18.4.2. </span>Simulation 1<a class="headerlink" href="#simulation-1" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">19.4.2. </span>Simulation 1<a class="headerlink" href="#simulation-1" title="Permalink to this heading">#</a></h3>
 <p>Since the CLT seems almost magical, running simulations that verify its implications is one good way to build understanding.</p>
 <p>To this end, we now perform the following simulation</p>
 <ol class="arabic simple">
@@ -672,7 +672,7 @@ copies <strong>always</strong> leads to a Gaussian(Normal) curve.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/57386d496c21a0292ba2b7628c150195a54f3d38ba93df5adec4ca0ca3396616.png"><img alt="_images/57386d496c21a0292ba2b7628c150195a54f3d38ba93df5adec4ca0ca3396616.png" src="_images/57386d496c21a0292ba2b7628c150195a54f3d38ba93df5adec4ca0ca3396616.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/501d237a5a4a7804b5a13476ce6d74df7aa25aaa51fdb04324205a03498742f7.png"><img alt="_images/501d237a5a4a7804b5a13476ce6d74df7aa25aaa51fdb04324205a03498742f7.png" src="_images/501d237a5a4a7804b5a13476ce6d74df7aa25aaa51fdb04324205a03498742f7.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>(Notice the absence of for loops — every operation is vectorized, meaning that the major calculations are all shifted to fast C code.)</p>
@@ -680,10 +680,10 @@ copies <strong>always</strong> leads to a Gaussian(Normal) curve.</p>
 </section>
 </section>
 <section id="exercises">
-<h2><span class="section-number">18.5. </span>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">19.5. </span>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h2>
 <div class="exercise admonition" id="lln_ex1">
 
-<p class="admonition-title"><span class="caption-number">Exercise 18.1 </span></p>
+<p class="admonition-title"><span class="caption-number">Exercise 19.1 </span></p>
 <section id="exercise-content">
 <p>Repeat the simulation <a class="reference internal" href="#sim-one"><span class="std std-ref">above</span></a> with the <a class="reference external" href="https://en.wikipedia.org/wiki/Beta_distribution">Beta distribution</a>.</p>
 <p>You can choose any <span class="math notranslate nohighlight">\(\alpha &gt; 0\)</span> and <span class="math notranslate nohighlight">\(\beta &gt; 0\)</span>.</p>
@@ -691,7 +691,7 @@ copies <strong>always</strong> leads to a Gaussian(Normal) curve.</p>
 </div>
 <div class="solution dropdown admonition" id="lln_clt-solution-3">
 
-<p class="admonition-title">Solution to<a class="reference internal" href="#lln_ex1"> Exercise 18.1</a></p>
+<p class="admonition-title">Solution to<a class="reference internal" href="#lln_ex1"> Exercise 19.1</a></p>
 <section id="solution-content">
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -724,14 +724,14 @@ copies <strong>always</strong> leads to a Gaussian(Normal) curve.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/2096abf2f79254bac3e2a3a316ff5e3d2df81179c4a8b419c0437c9ef07d1bad.png"><img alt="_images/2096abf2f79254bac3e2a3a316ff5e3d2df81179c4a8b419c0437c9ef07d1bad.png" src="_images/2096abf2f79254bac3e2a3a316ff5e3d2df81179c4a8b419c0437c9ef07d1bad.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/80e99fe9c4e3430fafce7ac65f2251f7a4f65ea6b9181f6b5cb8666403ab0d7c.png"><img alt="_images/80e99fe9c4e3430fafce7ac65f2251f7a4f65ea6b9181f6b5cb8666403ab0d7c.png" src="_images/80e99fe9c4e3430fafce7ac65f2251f7a4f65ea6b9181f6b5cb8666403ab0d7c.png" style="width: 80%;" /></a>
 </div>
 </div>
 </section>
 </div>
 <div class="exercise admonition" id="lln_ex2">
 
-<p class="admonition-title"><span class="caption-number">Exercise 18.2 </span></p>
+<p class="admonition-title"><span class="caption-number">Exercise 19.2 </span></p>
 <section id="exercise-content">
 <p>At the start of this lecture we discussed Bernoulli random variables.</p>
 <p>NumPy doesn’t provide a <code class="docutils literal notranslate"><span class="pre">bernoulli</span></code> function that we can sample from.</p>
@@ -746,7 +746,7 @@ copies <strong>always</strong> leads to a Gaussian(Normal) curve.</p>
 </div>
 <div class="solution dropdown admonition" id="lln_clt-solution-5">
 
-<p class="admonition-title">Solution to<a class="reference internal" href="#lln_ex2"> Exercise 18.2</a></p>
+<p class="admonition-title">Solution to<a class="reference internal" href="#lln_ex2"> Exercise 19.2</a></p>
 <section id="solution-content">
 <p>We can write <span class="math notranslate nohighlight">\(X\)</span> as <span class="math notranslate nohighlight">\(X = \mathbf 1\{U &lt; p\}\)</span> where <span class="math notranslate nohighlight">\(\mathbf 1\)</span> is the
 <a class="reference external" href="https://en.wikipedia.org/wiki/Indicator_function">indicator function</a> (i.e.,
@@ -761,7 +761,7 @@ copies <strong>always</strong> leads to a Gaussian(Normal) curve.</p>
 </div>
 <div class="exercise admonition" id="lln_ex3">
 
-<p class="admonition-title"><span class="caption-number">Exercise 18.3 </span></p>
+<p class="admonition-title"><span class="caption-number">Exercise 19.3 </span></p>
 <section id="exercise-content">
 <p>We mentioned above that LLN can still hold sometimes when IID is violated.</p>
 <p>Let’s investigate this claim further.</p>
@@ -789,7 +789,7 @@ mean to the population mean still occurs.</p>
 </div>
 <div class="solution dropdown admonition" id="lln_clt-solution-7">
 
-<p class="admonition-title">Solution to<a class="reference internal" href="#lln_ex3"> Exercise 18.3</a></p>
+<p class="admonition-title">Solution to<a class="reference internal" href="#lln_ex3"> Exercise 19.3</a></p>
 <section id="solution-content">
 <p><strong>Q1 Solution</strong></p>
 <p>Regarding part 1, we claim that <span class="math notranslate nohighlight">\(X_t\)</span> has the same distribution as <span class="math notranslate nohighlight">\(X_0\)</span> for
@@ -859,7 +859,7 @@ identically distributed.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/ff5d86663634aa536065d9cc367edec750814c908d6631e59fa32c5c37aec0a9.png"><img alt="_images/ff5d86663634aa536065d9cc367edec750814c908d6631e59fa32c5c37aec0a9.png" src="_images/ff5d86663634aa536065d9cc367edec750814c908d6631e59fa32c5c37aec0a9.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/1239921f35a3dec227f017a7125f1c0a526bf420e861a6608eae29986de1da38.png"><img alt="_images/1239921f35a3dec227f017a7125f1c0a526bf420e861a6608eae29986de1da38.png" src="_images/1239921f35a3dec227f017a7125f1c0a526bf420e861a6608eae29986de1da38.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>We see the convergence of <span class="math notranslate nohighlight">\(\bar x\)</span> around <span class="math notranslate nohighlight">\(\mu\)</span> even when the independence assumption is violated.</p>
@@ -951,8 +951,13 @@ identically distributed.</p>
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="french_rev.html">
+   5. Inflation During French Revolution
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="inequality.html">
-   5. Income and Wealth Inequality
+   6. Income and Wealth Inequality
   </a>
  </li>
 </ul>
@@ -964,22 +969,22 @@ identically distributed.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="intro_supply_demand.html">
-   6. Introduction to Supply and Demand
+   7. Introduction to Supply and Demand
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="linear_equations.html">
-   7. Linear Equations and Matrix Algebra
+   8. Linear Equations and Matrix Algebra
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="complex_and_trig.html">
-   8. Complex Numbers and Trigonometry
+   9. Complex Numbers and Trigonometry
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="geom_series.html">
-   9. Geometric Series for Elementary Economics
+   10. Geometric Series for Elementary Economics
   </a>
  </li>
 </ul>
@@ -991,27 +996,27 @@ identically distributed.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="pv.html">
-   10. Present Values
+   11. Present Values
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cons_smooth.html">
-   11. Consumption Smoothing
+   12. Consumption Smoothing
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="equalizing_difference.html">
-   12. Equalizing Difference Model
+   13. Equalizing Difference Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cagan_ree.html">
-   13. A Monetarist Theory of Price Levels
+   14. A Monetarist Theory of Price Levels
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cagan_adaptive.html">
-   14. Monetarist Theory of Price Levels with Adaptive Expectations
+   15. Monetarist Theory of Price Levels with Adaptive Expectations
   </a>
  </li>
 </ul>
@@ -1023,12 +1028,12 @@ identically distributed.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="eigen_I.html">
-   15. Eigenvalues and Eigenvectors
+   16. Eigenvalues and Eigenvectors
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="greek_square.html">
-   16. Computing Square Roots
+   17. Computing Square Roots
   </a>
  </li>
 </ul>
@@ -1040,27 +1045,27 @@ identically distributed.</p>
 <ul class="current nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="prob_dist.html">
-   17. Distributions and Probabilities
+   18. Distributions and Probabilities
   </a>
  </li>
  <li class="toctree-l1 current active active">
   <a class="current reference internal" href="#">
-   18. LLN and CLT
+   19. LLN and CLT
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="monte_carlo.html">
-   19. Monte Carlo and Option Pricing
+   20. Monte Carlo and Option Pricing
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="heavy_tails.html">
-   20. Heavy-Tailed Distributions
+   21. Heavy-Tailed Distributions
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="schelling.html">
-   21. Racial Segregation
+   22. Racial Segregation
   </a>
  </li>
 </ul>
@@ -1072,27 +1077,27 @@ identically distributed.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="scalar_dynam.html">
-   22. Dynamics in One Dimension
+   23. Dynamics in One Dimension
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="solow.html">
-   23. The Solow-Swan Growth Model
+   24. The Solow-Swan Growth Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cobweb.html">
-   24. The Cobweb Model
+   25. The Cobweb Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="olg.html">
-   25. The Overlapping Generations Model
+   26. The Overlapping Generations Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="commod_price.html">
-   26. Commodity Prices
+   27. Commodity Prices
   </a>
  </li>
 </ul>
@@ -1104,27 +1109,27 @@ identically distributed.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="money_inflation.html">
-   27. Money Financed Government Deficits and Price Levels
+   28. Money Financed Government Deficits and Price Levels
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="unpleasant.html">
-   28. Some Unpleasant Monetarist Arithmetic
+   29. Some Unpleasant Monetarist Arithmetic
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="money_inflation_nonlinear.html">
-   29. Inflation Rate Laffer Curves
+   30. Inflation Rate Laffer Curves
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="laffer_adaptive.html">
-   30. Laffer Curves  with Adaptive Expectations
+   31. Laffer Curves  with Adaptive Expectations
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ak2.html">
-   31. Transitions in an Overlapping Generations Model
+   32. Transitions in an Overlapping Generations Model
   </a>
  </li>
 </ul>
@@ -1136,22 +1141,22 @@ identically distributed.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="ar1_processes.html">
-   32. AR(1) Processes
+   33. AR(1) Processes
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="markov_chains_I.html">
-   33. Markov Chains: Basic Concepts
+   34. Markov Chains: Basic Concepts
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="markov_chains_II.html">
-   34. Markov Chains: Irreducibility and Ergodicity
+   35. Markov Chains: Irreducibility and Ergodicity
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="time_series_with_matrices.html">
-   35. Univariate Time Series with Matrix Algebra
+   36. Univariate Time Series with Matrix Algebra
   </a>
  </li>
 </ul>
@@ -1163,12 +1168,12 @@ identically distributed.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="lp_intro.html">
-   36. Linear Programming
+   37. Linear Programming
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="short_path.html">
-   37. Shortest Paths
+   38. Shortest Paths
   </a>
  </li>
 </ul>
@@ -1180,22 +1185,22 @@ identically distributed.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="eigen_II.html">
-   38. The Perron-Frobenius Theorem
+   39. The Perron-Frobenius Theorem
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="input_output.html">
-   39. Input-Output Models
+   40. Input-Output Models
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="lake_model.html">
-   40. A Lake Model of Employment
+   41. A Lake Model of Employment
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="networks.html">
-   41. Networks
+   42. Networks
   </a>
  </li>
 </ul>
@@ -1207,12 +1212,12 @@ identically distributed.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="supply_demand_multiple_goods.html">
-   42. Supply and Demand with Many Goods
+   43. Supply and Demand with Many Goods
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="supply_demand_heterogeneity.html">
-   43. Market Equilibrium with Heterogeneity
+   44. Market Equilibrium with Heterogeneity
   </a>
  </li>
 </ul>
@@ -1224,12 +1229,12 @@ identically distributed.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="simple_linear_regression.html">
-   44. Simple Linear Regression Model
+   45. Simple Linear Regression Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="mle.html">
-   45. Maximum Likelihood Estimation
+   46. Maximum Likelihood Estimation
   </a>
  </li>
 </ul>
@@ -1241,17 +1246,17 @@ identically distributed.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="troubleshooting.html">
-   46. Troubleshooting
+   47. Troubleshooting
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="zreferences.html">
-   47. References
+   48. References
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="status.html">
-   48. Execution Statistics
+   49. Execution Statistics
   </a>
  </li>
 </ul>

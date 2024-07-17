@@ -12,7 +12,7 @@ kernelspec:
 ---
 
 
-
+(monte-carlo)=
 # Monte Carlo and Option Pricing
 
 ## Overview
@@ -47,7 +47,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 from numpy.random import randn
 ```
-
 
 
 ## An introduction to Monte Carlo
