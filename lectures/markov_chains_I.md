@@ -812,7 +812,7 @@ P = np.array([[0.971, 0.029, 0.000],
 P @ P
 ```
 
-Let's pick an initial distribution $\psi_0$ and trace out the sequence of distributions $\psi_0 P^t$ for $t = 0, 1, 2, \ldots$
+Let's pick an initial distribution $\psi_1, \psi_2, \psi_3$ and trace out the sequence of distributions $\psi_i P^t$ for $t = 0, 1, 2, \ldots$, for $i=1, 2, 3$.
 
 First, we write a function to iterate the sequence of distributions for `ts_length` period
 
@@ -829,26 +829,44 @@ def iterate_ψ(ψ_0, P, ts_length):
 Now we plot the sequence
 
 ```{code-cell} ipython3
-ψ_0 = (0.0, 0.2, 0.8)        # Initial condition
+ψ_1 = (0.0, 0.0, 1.0)
+ψ_2 = (1.0, 0.0, 0.0)
+ψ_3 = (0.0, 1.0, 0.0)                   # Three initial conditions
+colors = ['blue','red', 'green']   # Different colors for each initial point
+
+# Define the vertices of the unit simplex
+v = np.array([[1, 0, 0], [0, 1, 0], [0, 0, 1], [0, 0, 0]])
+
+# Define the faces of the unit simplex
+faces = [
+    [v[0], v[1], v[2]],
+    [v[0], v[1], v[3]],
+    [v[0], v[2], v[3]],
+    [v[1], v[2], v[3]]
+]
 
 fig = plt.figure()
 ax = fig.add_subplot(projection='3d')
 
-def update(n):
-    ψ_t = iterate_ψ(ψ_0, P, n+1)
-    
+def update(n):    
     ax.clear()
     ax.set_xlim([0, 1])
     ax.set_ylim([0, 1])
     ax.set_zlim([0, 1])
-    ax.view_init(30, 210)
+    ax.view_init(45, 45)
     
-    for i, point in enumerate(ψ_t):
-        ax.scatter(point[0], point[1], point[2], color='r', s=60, alpha=(i+1)/len(ψ_t))
+    simplex = Poly3DCollection(faces, alpha=0.03)
+    ax.add_collection3d(simplex)
     
+    for idx, ψ_0 in enumerate([ψ_1, ψ_2, ψ_3]):
+        ψ_t = iterate_ψ(ψ_0, P, n+1)
+        
+        for i, point in enumerate(ψ_t):
+            ax.scatter(point[0], point[1], point[2], color=colors[idx], s=60, alpha=(i+1)/len(ψ_t))
+            
     mc = qe.MarkovChain(P)
     ψ_star = mc.stationary_distributions[0]
-    ax.scatter(ψ_star[0], ψ_star[1], ψ_star[2], c='k', s=60)
+    ax.scatter(ψ_star[0], ψ_star[1], ψ_star[2], c='yellow', s=60)
     
     return fig,
 
@@ -860,9 +878,9 @@ HTML(anim.to_jshtml())
 Here
 
 * $P$ is the stochastic matrix for recession and growth {ref}`considered above <mc_eg2>`.
-* The highest red dot is an arbitrarily chosen initial marginal probability distribution  $\psi_0$, represented as a vector in $\mathbb R^3$.
-* The other red dots are the marginal distributions $\psi_0 P^t$ for $t = 1, 2, \ldots$.
-* The black dot is $\psi^*$.
+* The red, blue and green dots are initial marginal probability distribution  $\psi_1, \psi_2, \psi_3$, represented as a vector in $\mathbb R^3$.
+* The transparent dots are the marginal distributions $\psi_i P^t$ for $t = 1, 2, \ldots$, for $i=1,2,3.$.
+* The yellow dot is $\psi^*$.
 
 You might like to try experimenting with different initial conditions.
 
