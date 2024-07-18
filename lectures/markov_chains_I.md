@@ -829,7 +829,7 @@ def iterate_ψ(ψ_0, P, ts_length):
 Now we plot the sequence
 
 ```{code-cell} ipython3
-:tags: hide-input
+:tags: [hide-input]
 
 ψ_1 = (0.0, 0.0, 1.0)
 ψ_2 = (1.0, 0.0, 0.0)
@@ -919,7 +919,7 @@ We can see similar phenomena in higher dimensions.
 The next figure illustrates this for a periodic Markov chain with three states.
 
 ```{code-cell} ipython3
-:tags: hide-input
+:tags: [hide-input]
 
 ψ_1 = (0.0, 0.0, 1.0)
 ψ_2 = (0.5, 0.5, 0.0)
