@@ -829,6 +829,8 @@ def iterate_ψ(ψ_0, P, ts_length):
 Now we plot the sequence
 
 ```{code-cell} ipython3
+:tags: hide-input
+
 ψ_1 = (0.0, 0.0, 1.0)
 ψ_2 = (1.0, 0.0, 0.0)
 ψ_3 = (0.0, 1.0, 0.0)                   # Three initial conditions
@@ -878,7 +880,7 @@ HTML(anim.to_jshtml())
 Here
 
 * $P$ is the stochastic matrix for recession and growth {ref}`considered above <mc_eg2>`.
-* The red, blue and green dots are initial marginal probability distribution  $\psi_1, \psi_2, \psi_3$, represented as a vector in $\mathbb R^3$.
+* The red, blue and green dots are initial marginal probability distributions  $\psi_1, \psi_2, \psi_3$, each of which is represented as a vector in $\mathbb R^3$.
 * The transparent dots are the marginal distributions $\psi_i P^t$ for $t = 1, 2, \ldots$, for $i=1,2,3.$.
 * The yellow dot is $\psi^*$.
 
@@ -917,6 +919,8 @@ We can see similar phenomena in higher dimensions.
 The next figure illustrates this for a periodic Markov chain with three states.
 
 ```{code-cell} ipython3
+:tags: hide-input
+
 ψ_1 = (0.0, 0.0, 1.0)
 ψ_2 = (0.5, 0.5, 0.0)
 ψ_3 = (0.25, 0.25, 0.5)
