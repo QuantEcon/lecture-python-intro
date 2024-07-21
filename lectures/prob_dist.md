@@ -289,20 +289,12 @@ The mean and variance are:
 ```{code-cell} ipython3
 λ = 2
 u = scipy.stats.poisson(λ)
-```
-    
-```{code-cell} ipython3
 u.mean(), u.var()
 ```
-
-The the expectation of Poisson distribution is $\lambda$ and the variance is also $\lambda$.
+    
+The expectation of Poisson distribution is $\lambda$ and the variance is also $\lambda$.
 
 Here's the PMF:
-
-```{code-cell} ipython3
-λ = 2
-u = scipy.stats.poisson(λ)
-```
 
 ```{code-cell} ipython3
 u.pmf(1)
