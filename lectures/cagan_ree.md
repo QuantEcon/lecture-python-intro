@@ -94,7 +94,7 @@ m_t^d - p_t = -\alpha \pi_t^* \: , \: \alpha > 0 ; \quad t = 0, 1, \ldots, T .
 $$ (eq:caganmd)
 
 This equation asserts that the demand for real balances
-is inversely related to the public's expected rate of inflation.
+is inversely related to the public's expected rate of inflation with sensitivity $\alpha$.
 
 People somehow acquire **perfect foresight** by their having solved a forecasting
 problem.
@@ -296,7 +296,7 @@ $$
 \mu_t = \mu^* , \quad t \geq T_1
 $$
 
-so that, in terms of our notation and formula for $\pi_{T+1}^*$ above, $\tilde \gamma = 1$. 
+so that, in terms of our notation and formula for $\pi_{T+1}^*$ above, $\gamma^* = 1$. 
 
 #### Experiment 1: Foreseen sudden stabilization
 
