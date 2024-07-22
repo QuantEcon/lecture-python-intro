@@ -276,86 +276,6 @@ plt.ylabel(r'wage gap')
 plt.show()
 ```
 
-## Entrepreneur-worker interpretation
-
-We can add a parameter and reinterpret variables to get a model of entrepreneurs versus workers.
-
-We now let $h$ be  the present value of a "worker".
-
-We define the present value of an entrepreneur to be
-
-$$
-c_0 = \pi \sum_{t=4}^T R^{-t} w_t^c
-$$
-
-where $\pi \in (0,1) $ is  the probability that an entrepreneur's "project" succeeds.
-
-For our model of workers and firms, we'll interpret $D$ as the cost of becoming an entrepreneur.  
-
-This cost might include costs of hiring workers, office space, and lawyers. 
-
-What we used to call the college, high school wage gap $\phi$ now becomes the ratio
-of a successful entrepreneur's earnings to a worker's earnings.  
-
-We'll find that as $\pi$ decreases, $\phi$ increases, indicating that the riskier it is to
-be an entrepreuner, the higher must be the reward for a successful project. 
-
-Now let's adopt the entrepreneur-worker interpretation of our model
-
-```{code-cell} ipython3
-# Define a model of entrepreneur-worker interpretation
-EqDiffModel = namedtuple('EqDiffModel', 'R T γ_h γ_c w_h0 D π')
-
-def create_edm_π(R=1.05,   # gross rate of return
-                 T=40,     # time horizon
-                 γ_h=1.01, # high-school wage growth
-                 γ_c=1.01, # college wage growth
-                 w_h0=1,   # initial wage (high school)
-                 D=10,     # cost for college
-                 π=0       # chance of business success
-              ):
-    
-    return EqDiffModel(R, T, γ_h, γ_c, w_h0, D, π)
-
-
-def compute_gap(model):
-    R, T, γ_h, γ_c, w_h0, D, π = model
-    
-    A_h = (1 - (γ_h/R)**(T+1)) / (1 - γ_h/R)
-    A_c = (1 - (γ_c/R)**(T-3)) / (1 - γ_c/R) * (γ_c/R)**4
-    
-    # Incorprate chance of success
-    A_c = π * A_c
-    
-    ϕ = A_h / A_c + D / (w_h0 * A_c)
-    return ϕ
-```
-
-If the probability that a new business succeeds is $0.2$, let's compute the initial wage premium for successful entrepreneurs.
-
-```{code-cell} ipython3
-ex3 = create_edm_π(π=0.2)
-gap3 = compute_gap(ex3)
-
-gap3
-```
-
-Now let's study how the initial wage premium for successful entrepreneurs depend on the success probability.
-
-```{code-cell} ipython3
-π_arr = np.linspace(0.2, 1, 50)
-models = [create_edm_π(π=π) for π in π_arr]
-gaps = [compute_gap(model) for model in models]
-
-plt.plot(π_arr, gaps)
-plt.ylabel(r'wage gap')
-plt.xlabel(r'$\pi$')
-plt.show()
-```
-
-Does the graph make sense to you?
-
-
 
 ## An application of calculus
 
@@ -488,3 +408,100 @@ Let's compute $\frac{\partial \phi}{\partial R}$ and evaluate it numerically at 
 ```
 
 We find that raising the gross interest rate $R$ increases the initial college wage premium $\phi$, in line with our earlier graphical analysis.
+
+
+## Exercise
+```{exercise-start}
+:label: edm_ex1
+```
+In this exercise, We can add a parameter and reinterpret variables to get a model of entrepreneurs versus workers.
+
+We now let $h$ be  the present value of a "worker".
+
+We define the present value of an entrepreneur to be
+
+$$
+c_0 = \pi \sum_{t=4}^T R^{-t} w_t^c
+$$
+
+where $\pi \in (0,1) $ is  the probability that an entrepreneur's "project" succeeds.
+
+For our model of workers and firms, we'll interpret $D$ as the cost of becoming an entrepreneur.  
+
+This cost might include costs of hiring workers, office space, and lawyers. 
+
+What we used to call the college, high school wage gap $\phi$ now becomes the ratio
+of a successful entrepreneur's earnings to a worker's earnings.  
+
+We'll find that as $\pi$ decreases, $\phi$ increases, indicating that the riskier it is to
+be an entrepreuner, the higher must be the reward for a successful project. 
+
+Now adopt the entrepreneur-worker interpretation of our model.
+
+```{exercise-end}
+```
+
+```{solution-start} edm_ex1
+:class: dropdown
+```
+
+Here is one solution
+
+```{code-cell} ipython3
+# Define a model of entrepreneur-worker interpretation
+EqDiffModel = namedtuple('EqDiffModel', 'R T γ_h γ_c w_h0 D π')
+
+def create_edm_π(R=1.05,   # gross rate of return
+                 T=40,     # time horizon
+                 γ_h=1.01, # high-school wage growth
+                 γ_c=1.01, # college wage growth
+                 w_h0=1,   # initial wage (high school)
+                 D=10,     # cost for college
+                 π=0       # chance of business success
+              ):
+    
+    return EqDiffModel(R, T, γ_h, γ_c, w_h0, D, π)
+
+
+def compute_gap(model):
+    R, T, γ_h, γ_c, w_h0, D, π = model
+    
+    A_h = (1 - (γ_h/R)**(T+1)) / (1 - γ_h/R)
+    A_c = (1 - (γ_c/R)**(T-3)) / (1 - γ_c/R) * (γ_c/R)**4
+    
+    # Incorprate chance of success
+    A_c = π * A_c
+    
+    ϕ = A_h / A_c + D / (w_h0 * A_c)
+    return ϕ
+```
+
+If the probability that a new business succeeds is $0.2$, let's compute the initial wage premium for successful entrepreneurs.
+
+```{code-cell} ipython3
+ex3 = create_edm_π(π=0.2)
+gap3 = compute_gap(ex3)
+
+gap3ex3 = create_edm_π(π=0.2)
+gap3 = compute_gap(ex3)
+
+gap3
+```
+
+Now let's study how the initial wage premium for successful entrepreneurs depend on the success probability.
+
+```{code-cell} ipython3
+π_arr = np.linspace(0.2, 1, 50)
+models = [create_edm_π(π=π) for π in π_arr]
+gaps = [compute_gap(model) for model in models]
+
+plt.plot(π_arr, gaps)
+plt.ylabel(r'wage gap')
+plt.xlabel(r'$\pi$')
+plt.show()
+```
+
+Does the graph make sense to you?
+
+```{solution-end}
+```
