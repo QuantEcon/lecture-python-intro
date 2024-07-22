@@ -62,7 +62,7 @@ $$ (eq:caganmd_ad)
 
 
 This equation  asserts that the demand for real balances
-is inversely related to the public's expected rate of inflation.
+is inversely related to the public's expected rate of inflation with sensitivity $\alpha$.
 
 Equating the logarithm $m_t^d$ of the demand for money  to the logarithm  $m_t$ of the supply of money in equation {eq}`eq:caganmd_ad` and solving for the logarithm $p_t$
 of the price level gives
@@ -79,7 +79,7 @@ $$
 $$ (eq:eqpipi)
 
 We assume that the expected rate of inflation $\pi_t^*$ is governed
-by the following adaptive expectations scheme proposed by {cite}`Friedman1956` and {cite}`Cagan`:
+by the following adaptive expectations scheme proposed by {cite}`Friedman1956` and {cite}`Cagan`, where $\lambda\in [0,1]$ denotes the weight on expected inflation.
 
 $$
 \pi_{t+1}^* = \lambda \pi_t^* + (1 -\lambda) \pi_t 
