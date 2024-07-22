@@ -329,11 +329,6 @@ def pr_plot(p_seq, index, ax):
     #  Calculate the difference of log p_seq
     log_diff_p = np.diff(np.log(p_seq))
     
-    # Graph for the difference of log p_seq
-    ax.scatter(index[1:], log_diff_p, 
-               label='Monthly inflation rate', 
-               color='tab:grey')
-    
     # Calculate and plot moving average
     diff_smooth = pd.DataFrame(log_diff_p).rolling(3, center=True).mean()
     ax.plot(index[1:], diff_smooth, label='Moving average (3 period)', alpha=0.5, lw=2)
@@ -347,7 +342,7 @@ def pr_plot(p_seq, index, ax):
     for label in ax.get_xticklabels():
         label.set_rotation(45)
     
-    ax.legend(loc='upper left')
+    ax.legend()
     
     return ax
 ```
