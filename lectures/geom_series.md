@@ -856,11 +856,20 @@ so $\frac{\partial p_0}{\partial r}$ will always be negative.
 Similarly, $\frac{\partial p_0}{\partial g}>0$ as long as $r>g$, $r>0$ and $g>0$ and $x_0$ is positive, so $\frac{\partial p_0}{\partial g}$
 will always be positive.
 
-## Back to the Keynesian multiplier
+## Exercise
 
-We will now go back to the case of the Keynesian multiplier and plot the
+```{exercise}
+:label: solow_ex1
+
+Now go back to the case of the Keynesian multiplier and plot the
 time path of $y_t$, given that consumption is a constant fraction
 of national income, and investment is fixed.
+
+```
+
+```{solution-start} solow_ex1
+:class: dropdown
+```
 
 ```{code-cell} ipython3
 ---
@@ -959,3 +968,6 @@ plt.show()
 Notice here, whether government spending increases from 0.3 to 0.4 or
 investment increases from 0.3 to 0.4, the shifts in the graphs are
 identical.
+
+```{solution-end}
+```
