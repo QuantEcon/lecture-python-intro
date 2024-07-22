@@ -410,7 +410,7 @@ Let's compute $\frac{\partial \phi}{\partial R}$ and evaluate it numerically at 
 We find that raising the gross interest rate $R$ increases the initial college wage premium $\phi$, in line with our earlier graphical analysis.
 
 
-## Exercise
+## Exercises
 ```{exercise-start}
 :label: edm_ex1
 ```
