@@ -742,8 +742,8 @@ We can histogram the income distribution we just constructed as follows
 x = df['income']
 fig, ax = plt.subplots()
 ax.hist(x, bins=5, density=True, histtype='bar')
-ax.set_xlabel('Income')
-ax.set_ylabel('Density')
+ax.set_xlabel('income')
+ax.set_ylabel('density')
 plt.show()
 ```
 
@@ -785,7 +785,7 @@ x_amazon = np.asarray(data)
 fig, ax = plt.subplots()
 ax.hist(x_amazon, bins=20)
 ax.set_xlabel('monthly return (percent change)')
-ax.set_ylabel('Density')
+ax.set_ylabel('density')
 plt.show()
 ```
 
@@ -800,7 +800,7 @@ KDE will generate a smooth curve that approximates the PDF.
 ```{code-cell} ipython3
 fig, ax = plt.subplots()
 sns.kdeplot(x_amazon, ax=ax)
-ax.set_xlabel('Monthly Return (Percent Change)')
+ax.set_xlabel('monthly return (percent change)')
 ax.set_ylabel('KDE')
 plt.show()
 ```
@@ -812,7 +812,7 @@ fig, ax = plt.subplots()
 sns.kdeplot(x_amazon, ax=ax, bw_adjust=0.1, alpha=0.5, label="bw=0.1")
 sns.kdeplot(x_amazon, ax=ax, bw_adjust=0.5, alpha=0.5, label="bw=0.5")
 sns.kdeplot(x_amazon, ax=ax, bw_adjust=1, alpha=0.5, label="bw=1")
-ax.set_xlabel('Monthly Return (Percent Change)')
+ax.set_xlabel('monthly return (percent change)')
 ax.set_ylabel('KDE')
 plt.legend()
 plt.show()
@@ -832,7 +832,7 @@ Yet another way to display an observed distribution is via a violin plot.
 ```{code-cell} ipython3
 fig, ax = plt.subplots()
 ax.violinplot(x_amazon)
-ax.set_ylabel('Monthly Return (Percent Change)')
+ax.set_ylabel('monthly return (percent change)')
 ax.set_xlabel('KDE')
 plt.show()
 ```
@@ -854,7 +854,7 @@ x_apple = np.asarray(data)
 ```{code-cell} ipython3
 fig, ax = plt.subplots()
 ax.violinplot([x_amazon, x_apple])
-ax.set_ylabel('Monthly Return (Percent Change)')
+ax.set_ylabel('monthly return (percent change)')
 ax.set_xlabel('KDE')
 plt.show()
 ```
@@ -889,8 +889,8 @@ x_grid = np.linspace(-50, 65, 200)
 fig, ax = plt.subplots()
 ax.plot(x_grid, u.pdf(x_grid))
 ax.hist(x_amazon, density=True, bins=40)
-ax.set_xlabel('Monthly Return (Percent Change)')
-ax.set_ylabel('Density')
+ax.set_xlabel('monthly return (percent change)')
+ax.set_ylabel('density')
 plt.show()
 ```
 
@@ -919,7 +919,7 @@ fig, ax = plt.subplots()
 ax.plot(x_grid, u.pdf(x_grid))
 ax.hist(x_draws, density=True, bins=40)
 ax.set_xlabel('x')
-ax.set_ylabel('Density')
+ax.set_ylabel('density')
 plt.show()
 ```
 
