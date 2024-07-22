@@ -860,11 +860,12 @@ will always be positive.
 
 ```{exercise}
 :label: solow_ex1
-
+```
 Now go back to the case of the Keynesian multiplier and plot the
 time path of $y_t$, given that consumption is a constant fraction
 of national income, and investment is fixed.
 
+```{exercise-end}
 ```
 
 ```{solution-start} solow_ex1
