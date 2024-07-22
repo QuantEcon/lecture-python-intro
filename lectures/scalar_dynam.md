@@ -293,12 +293,17 @@ $$
 
 Obviously every globally stable steady state is also locally stable.
 
-We will see examples below where the converse is not true.
+Here is an example where the converse is not true.
 
+```{prf:example}
+Consider the self-map $g$ on $\mathbb{R}$ defined by $g(x)=x^2$. The fixed point $1$ is not stable.
 
+For example, $g^t (x)\to\infty$ for any $x>1$.
 
+However, $0$ is locally stable, because $-1<x<1$ implies that $g^t (x)\to 0$ as $t\to\infty$.
 
-
+Since we have more than one fixed point, $0$ is not globally stable.
+```
 
 
 ## Graphical analysis
