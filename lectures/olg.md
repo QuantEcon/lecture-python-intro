@@ -155,7 +155,7 @@ The first-order condition for a maximum can be obtained
 by plugging $c_{t+1}$ into the objective function, taking the derivative
 with respect to $c_t$, and setting it to zero.
 
-This leads to the **Euler equation** of the OLG model, which is
+This leads to the **Euler equation** of the OLG model, which describes the optimal intertemporal consumption dynamics:
 
 ```{math}
 :label: euler_1_olg
@@ -303,24 +303,6 @@ The next figure plots the supply of capital, as in [](saving_log_2_olg), as well
 
 (For the special case of log utility, supply does not depend on the interest rate, so we have a constant function.)
 
-```{code-cell} ipython3
-R_vals = np.linspace(0.3, 1)
-α, β = 0.5, 0.9
-w = 2.0
-
-fig, ax = plt.subplots()
-
-ax.plot(R_vals, capital_demand(R_vals, α), 
-        label="aggregate demand")
-ax.plot(R_vals, capital_supply(R_vals, β, w), 
-        label="aggregate supply")
-
-ax.set_xlabel("$R_{t+1}$")
-ax.set_ylabel("$k_{t+1}$")
-ax.legend()
-plt.show()
-```
-
 ## Equilibrium
 
 In this section we derive equilibrium conditions and investigate an example.
@@ -409,15 +391,7 @@ ax.plot(R_vals, capital_supply(R_vals, β, w),
 R_e = equilibrium_R_log_utility(α, β, w)
 k_e = (β / (1 + β)) * w
 
-ax.plot(R_e, k_e, 'go', ms=6, alpha=0.6)
-
-ax.annotate(r'equilibrium',
-             xy=(R_e, k_e),
-             xycoords='data',
-             xytext=(0, 60),
-             textcoords='offset points',
-             fontsize=12,
-             arrowprops=dict(arrowstyle="->"))
+ax.plot(R_e, k_e, 'o',label='equilibrium')
 
 ax.set_xlabel("$R_{t+1}$")
 ax.set_ylabel("$k_{t+1}$")
@@ -565,7 +539,7 @@ The interest rate reflects the marginal product of capital, which is high when c
 
 Previously, in our examples, we looked at the case of log utility.
 
-Log utility is a rather special case.
+Log utility is a rather special case of CRRA utility with $\gamma \to 1$.
 
 In this section, we are going to assume that $u(c) = \frac{ c^{1-
 \gamma}-1}{1-\gamma}$, where $\gamma >0, \gamma\neq 1$.

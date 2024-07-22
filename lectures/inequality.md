@@ -247,7 +247,7 @@ The following code block imports a subset of the dataset `SCF_plus` for 2016,
 which is derived from the [Survey of Consumer Finances](https://en.wikipedia.org/wiki/Survey_of_Consumer_Finances) (SCF).
 
 ```{code-cell} ipython3
-url = 'https://media.githubusercontent.com/media/QuantEcon/high_dim_data/main/SCF_plus/SCF_plus_mini.csv'
+url = 'https://github.com/QuantEcon/high_dim_data/raw/main/SCF_plus/SCF_plus_mini.csv'
 df = pd.read_csv(url)
 df_income_wealth = df.dropna()
 ```
@@ -435,6 +435,8 @@ Let's examine the Gini coefficient in some simulations.
 
 The code below computes the Gini coefficient from a sample.
 
+(code:gini-coefficient)=
+
 ```{code-cell} ipython3
 
 def gini_coefficient(y):
@@ -481,6 +483,7 @@ You can check this by looking up the expression for the mean of a lognormal
 distribution.
 
 ```{code-cell} ipython3
+%%time
 k = 5
 σ_vals = np.linspace(0.2, 4, k)
 n = 2_000
@@ -616,51 +619,11 @@ We will use US data from the {ref}`Survey of Consumer Finances<data:survey-consu
 df_income_wealth.year.describe()
 ```
 
-This code can be used to compute this information over the full dataset.
+[This notebook](https://github.com/QuantEcon/lecture-python-intro/tree/main/lectures/_static/lecture_specific/inequality/data.ipynb) can be used to compute this information over the full dataset.
 
 ```{code-cell} ipython3
-:tags: [skip-execution, hide-input, hide-output]
-
-!pip install quantecon
-import quantecon as qe
-
-varlist = ['n_wealth',   # net wealth 
-           't_income',   # total income
-           'l_income']   # labor income
-
-df = df_income_wealth
-
-# create lists to store Gini for each inequality measure
-results = {}
-
-for var in varlist:
-    # create lists to store Gini
-    gini_yr = []
-    for year in years:
-        # repeat the observations according to their weights
-        counts = list(round(df[df['year'] == year]['weights'] ))
-        y = df[df['year'] == year][var].repeat(counts)
-        y = np.asarray(y)
-        
-        rd.shuffle(y)    # shuffle the sequence
-      
-        # calculate and store Gini
-        gini = qe.gini_coefficient(y)
-        gini_yr.append(gini)
-        
-    results[var] = gini_yr
-
-# Convert to DataFrame
-results = pd.DataFrame(results, index=years)
-results.to_csv("_static/lecture_specific/inequality/usa-gini-nwealth-tincome-lincome.csv", index_label='year')
-```
-
-However, to speed up execution we will import a pre-computed dataset from the lecture repository.
-
-<!-- TODO: update from csv to github location -->
-
-```{code-cell} ipython3
-ginis = pd.read_csv("_static/lecture_specific/inequality/usa-gini-nwealth-tincome-lincome.csv", index_col='year')
+data_url = 'https://github.com/QuantEcon/lecture-python-intro/raw/main/lectures/_static/lecture_specific/inequality/usa-gini-nwealth-tincome-lincome.csv'
+ginis = pd.read_csv(data_url, index_col='year')
 ginis.head(n=5)
 ```
 
@@ -686,10 +649,6 @@ The time series for the wealth Gini exhibits a U-shape, falling until the early
 One possibility is that this change is mainly driven by technology.
 
 However, we will see below that not all advanced economies experienced similar growth of inequality.
-
-
-
-
 
 ### Cross-country comparisons of income inequality
 
@@ -1093,3 +1052,90 @@ plt.show()
 
 ```{solution-end}
 ```
+
+```{exercise}
+:label: inequality_ex3
+
+The {ref}`code to compute the Gini coefficient is listed in the lecture above <code:gini-coefficient>`.
+
+This code uses loops to calculate the coefficient based on income or wealth data.
+
+This function can be re-written using vectorization which will greatly improve the computational efficiency when using `python`.
+
+Re-write the function `gini_coefficient` using `numpy` and vectorized code.
+
+You can compare the output of this new function with the one above, and note the speed differences. 
+```
+
+```{solution-start} inequality_ex3
+:class: dropdown
+```
+
+Let's take a look at some raw data for the US that is stored in `df_income_wealth`
+
+```{code-cell} ipython3
+df_income_wealth.describe()
+```
+
+```{code-cell} ipython3
+df_income_wealth.head(n=4)
+```
+
+We will focus on wealth variable `n_wealth` to compute a Gini coefficient for the year 2016.
+
+```{code-cell} ipython3
+data = df_income_wealth[df_income_wealth.year == 2016].sample(3000, random_state=1)
+```
+
+```{code-cell} ipython3
+data.head(n=2)
+```
+
+We can first compute the Gini coefficient using the function defined in the lecture above.
+
+```{code-cell} ipython3
+gini_coefficient(data.n_wealth.values)
+```
+
+Now we can write a vectorized version using `numpy`
+
+```{code-cell} ipython3
+def gini(y):
+    n = len(y)
+    y_1 = np.reshape(y, (n, 1))
+    y_2 = np.reshape(y, (1, n))
+    g_sum = np.sum(np.abs(y_1 - y_2))
+    return g_sum / (2 * n * np.sum(y))
+```
+```{code-cell} ipython3
+gini(data.n_wealth.values)
+```
+Let's simulate five populations by drawing from a lognormal distribution as before
+
+```{code-cell} ipython3
+k = 5
+σ_vals = np.linspace(0.2, 4, k)
+n = 2_000
+σ_vals = σ_vals.reshape((k,1))
+μ_vals = -σ_vals**2/2
+y_vals = np.exp(μ_vals + σ_vals*np.random.randn(n))
+```
+We can compute the Gini coefficient for these five populations using the vectorized function, the computation time is shown below:
+
+```{code-cell} ipython3
+%%time
+gini_coefficients =[]
+for i in range(k):
+     gini_coefficients.append(gini(y_vals[i]))
+```
+This shows the vectorized function is much faster.
+This gives us the Gini coefficients for these five households.
+
+```{code-cell} ipython3
+gini_coefficients
+```
+```{solution-end}
+```
+
+
+
