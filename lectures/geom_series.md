@@ -856,7 +856,7 @@ so $\frac{\partial p_0}{\partial r}$ will always be negative.
 Similarly, $\frac{\partial p_0}{\partial g}>0$ as long as $r>g$, $r>0$ and $g>0$ and $x_0$ is positive, so $\frac{\partial p_0}{\partial g}$
 will always be positive.
 
-## Exercise
+## Exercises
 
 ```{exercise-start}
 :label: geom_ex1
