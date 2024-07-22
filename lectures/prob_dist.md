@@ -784,7 +784,7 @@ x_amazon = np.asarray(data)
 ```{code-cell} ipython3
 fig, ax = plt.subplots()
 ax.hist(x_amazon, bins=20)
-ax.set_xlabel('Monthly Return (Percent Change)')
+ax.set_xlabel('monthly return (percent change)')
 ax.set_ylabel('Density')
 plt.show()
 ```
