@@ -131,6 +131,10 @@ By staring at {numref}`lrpl` carefully, you might be able to guess when these te
 
 During these episodes, the gold/silver standard was temporarily abandoned when a government printed paper money to pay for war expenditures.
 
+```{note}
+This quantecon lecture {doc}`french_rev` describes circumstances leading up to and during the big inflation that occurred during the French Revolution.
+```
+
 Despite these temporary lapses, a striking thing about the figure is that price levels were roughly constant over three centuries.  
 
 In the early century, two other features of this data attracted the attention of [Irving Fisher](https://en.wikipedia.org/wiki/Irving_Fisher) of Yale University and [John Maynard Keynes](https://en.wikipedia.org/wiki/John_Maynard_Keynes) of Cambridge University.
@@ -665,6 +669,6 @@ Chapter 3 of {cite}`sargent2002big`  described deliberate changes in policy that
 
 Each government stopped printing money to pay for goods and services once again and made its currency convertible to the US dollar or the UK pound.
 
-The story told in {cite}`sargent2002big` is grounded in a "monetarist theory of the price level" described in {doc}`cagan_ree` and {doc}`cagan_adaptive`.
+The story told in {cite}`sargent2002big` is grounded in a ``monetarist theory of the price level`` described in {doc}`cagan_ree` and {doc}`cagan_adaptive`.
 
 Those lectures discuss theories about what owners of those rapidly depreciating currencies were thinking and how their beliefs shaped responses of inflation to government monetary and fiscal policies.

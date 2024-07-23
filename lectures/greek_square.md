@@ -17,7 +17,17 @@ kernelspec:
 ## Introduction
 
 
-This lecture can be viewed as a sequel to {doc}`eigen_I`.
+
+Chapter 24 of {cite}`russell2004history` about early Greek mathematics and astronomy contains this
+fascinating passage:
+
+ ```{note} 
+ The square root of 2, which was the first irrational to be discovered, was known to the early Pythagoreans, and ingenious methods of approximating to its value were discovered. The best was as follows: Form two columns of numbers, which we will call the $a$'s and the $b$'s; each starts with a $1$. The next $a$, at each stage, is formed by adding the last $a$ and the $b$ already obtained; the next $b$ is formed by adding twice the previous $a$ to the previous $b$. The first 6 pairs so obtained are $(1,1), (2,3), (5,7), (12,17), (29,41), (70,99)$. In each pair, $2 a - b$ is $1$ or $-1$. Thus $b/a$ is nearly the square root of two, and at each fresh step it gets nearer. For instance, the reader may satisy himself that the square of $99/70$ is very nearly equal to $2$.
+ ```
+
+This lecture drills down and studies this ancient method for computing square roots by using some of the matrix algebra that we've learned in earlier quantecon lectures. 
+
+In particular, this lecture can be viewed as a sequel to {doc}`eigen_I`.
 
 It  provides an  example of how eigenvectors isolate  *invariant subspaces* that help construct and analyze solutions of linear difference equations. 
 
@@ -715,3 +725,27 @@ All of these exploit very similar equations based on eigen decompositions.
 
 We shall encounter equations very similar to {eq}`eq:deactivate1` and {eq}`eq:deactivate2`
 in {doc}`money_inflation` and in many other places in dynamic economic theory.
+
+
+
+```{exercise-start} 
+:label: greek_square_ex_a
+```
+Please use matrix algebra to formulate the method described by Bertrand Russell at the beginning of this lecture.  
+
+1.  Define a state vector $x_t = \begin{bmatrix} a_t \cr b_t \end{bmatrix}$.
+2.  Formulate a first-order vector difference equation for $x_t$ of the form $x_{t+1} = A x_t$ and
+compute the matrix $A$.
+3.  Use the system $x_{t+1} = A x_t$ to replicate the sequence of $a_t$'s and $b_t$'s described by Bertrand Russell.
+4.  Compute the eigenvectors and eigenvalues of $A$ and compare them to corresponding objects computed in the text of this lecture. 
+
+```{exercise-end} 
+```
+
+```{solution-start} greek_square_ex_a
+:class: dropdown
+```
+Here is the answer
+
+```{solution-end}
+```

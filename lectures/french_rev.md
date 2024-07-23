@@ -16,21 +16,20 @@ kernelspec:
 
 ## Overview 
 
-This lecture describes some monetary and fiscal  features of the French Revolution (1789-1799)
-described by {cite}`sargent_velde1995`.
+This lecture describes some  of the monetary and fiscal  features of the French Revolution (1789-1799) described by {cite}`sargent_velde1995`.
 
 To finance public expenditures and service its debts, 
-the French government embarked on several distinct  policy experiments.
+the French government embarked on   policy experiments.
 
 The authors of these experiments  had in mind theories about how government  monetary and fiscal policies affected economic outcomes.
 
 Some of those theories about monetary and fiscal policies still interest us today.
 
-* a *tax-smoothing* model like Robert Barro's {cite}`Barro1979`
+* a **tax-smoothing** model like Robert Barro's {cite}`Barro1979`
 
    * this normative (i.e., prescriptive model) advises a government to finance temporary war-time surges in expenditures mostly by issuing government debt, raising taxes by just enough to service the additional debt issued during the wary; then,   after the war,  to roll over whatever debt the government had accumulated during the war;  and  to increase taxes after the war permanently by just enough to finance interest payments on that post-war government  debt
 
-*  *unpleasant monetarist arithmetic* like that described in this quanteon lecture  {doc}`unpleasant`
+*  **unpleasant monetarist arithmetic** like that described in this quanteon lecture  {doc}`unpleasant`
    
     * mathematics involving compound interest  governed French government debt dynamics in the decades preceding 1789; according to leading historians, that arithmetic set the stage for the French Revolution 
 
@@ -45,11 +44,11 @@ Some of those theories about monetary and fiscal policies still interest us toda
   
     * Napoleon Bonaparte became head of the French government in 1799. He  used this theory to guide his monetary and fiscal policies
 
-* a classical inflation-tax theory of inflation in which Philip Cagan's ({cite}`Cagan`) demand for money studied in this lecture  {doc}`cagan_ree` is a key component
+* a classical **inflation-tax** theory of inflation in which Philip Cagan's ({cite}`Cagan`) demand for money studied in this lecture  {doc}`cagan_ree` is a key component
 
    * This theory helps  explain French price level and money supply data from 1794 to 1797  
 
-* a *legal restrictions*  or *financial repression* theory of the demand for real balances 
+* a **legal restrictions**  or **financial repression** theory of the demand for real balances 
  
     * the Twelve Members comprising the Committee of Public Safety who adminstered the Terror from June 1793 to July 1794 used this theory to shape their monetary policy 
 
@@ -418,8 +417,8 @@ They wanted to honor government debts -- interests of French government creditor
 
 But they set out to remake  the French tax code and the administrative machinery for collecting taxes.
 
-  * they abolished all sorts of taxes
-  * they abolished the Ancient Regimes scheme for ''tax farming''
+  * they abolished many taxes
+  * they abolished the Ancient Regimes scheme for ``tax farming``
       * tax farming meant that the government had privatized tax collection by hiring private citizes -- so called  tax farmers to collect taxes, while retaining a fraction of them as payment for their services
       * the great chemist Lavoisier was also a tax farmer, one of the reasons that the Committee for Public Safety sent him to the guillotine in 1794
 
@@ -974,5 +973,24 @@ plt.tight_layout()
 plt.show()
 ```
 
-{numref}`fr_fig104e` shows the results of regressing  real balances on inflation during the
+{numref}`fr_fig104e` shows the results of regressing  real money balances on inflation during the
 period of the hyperinflation.
+
+## Hyperinflation Ends
+
+{cite}`sargent_velde1995` tell how in 1797 the Revolutionary government abruptly ended the inflation by 
+
+  * repudiating 2/3 of the national debt, and thereby
+  * eliminating the net-of-interest government defict
+  * no longer printing money, but instead
+  * using gold and silver coins as money
+
+In 1799, Napoleon Bonaparte became first consul and for the next 15 years used resources confiscated from conquered territories to help pay for French government expenditures.
+
+## Underlying Theories
+
+This lecture  sets the stage for studying  theories of inflation and the  government monetary and fiscal policies that bring it about.
+
+A  ``monetarist theory of the price level`` is described in this quantecon lecture {doc}`cagan_ree`.
+
+That lecture sets the stage for these quantecon lectures {doc}`money_inflation` and {doc}`unpleasant`.  
