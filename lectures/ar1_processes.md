@@ -19,13 +19,7 @@ kernelspec:
 ```
 
 (ar1_processes)=
-# AR1 Processes
-
-```{admonition} Migrated lecture
-:class: warning
-
-This lecture has moved from our [Intermediate Quantitative Economics with Python](https://python.quantecon.org/intro.html) lecture series and is now a part of [A First Course in Quantitative Economics](https://intro.quantecon.org/intro.html).
-```
+# AR(1) Processes
 
 ```{index} single: Autoregressive processes
 ```
@@ -41,21 +35,18 @@ These simple models are used again and again in economic research to represent t
 * dividends
 * productivity, etc.
 
-AR(1) processes can take negative values but are easily converted into positive processes when necessary by a transformation such as exponentiation.
-
 We are going to study AR(1) processes partly because they are useful and
-partly because they help us understand important concepts.
+partly because they help us understand important concepts. 
 
 Let's start with some imports:
 
 ```{code-cell} ipython
 import numpy as np
-%matplotlib inline
 import matplotlib.pyplot as plt
 plt.rcParams["figure.figsize"] = (11, 5)  #set default figure size
 ```
 
-## The AR(1) Model
+## The AR(1) model
 
 The **AR(1) model** (autoregressive model of order 1) takes the form
 
@@ -65,26 +56,41 @@ The **AR(1) model** (autoregressive model of order 1) takes the form
 X_{t+1} = a X_t + b + c W_{t+1}
 ```
 
-where $a, b, c$ are scalar-valued parameters.
+where $a, b, c$ are scalar-valued parameters 
 
-This law of motion generates a time series $\{ X_t\}$ as soon as we
+(Equation {eq}`can_ar1` is sometimes called a **stochastic difference equation**.)
+
+For example, $X_t$ might be 
+
+* the log of labor income for a given household, or
+* the log of money demand in a given economy.
+
+In either case, {eq}`can_ar1` shows that the current value evolves as a linear function
+of the previous value and an IID shock $W_{t+1}$.
+
+(We use $t+1$ for the subscript of $W_{t+1}$ because this random variable is not
+observed at time $t$.)
+
+The specification {eq}`can_ar1` generates a time series $\{ X_t\}$ as soon as we
 specify an initial condition $X_0$.
-
-This is called the **state process** and the state space is $\mathbb R$.
 
 To make things even simpler, we will assume that
 
-* the process $\{ W_t \}$ is IID and standard normal,
+* the process $\{ W_t \}$ is {ref}`IID <iid-theorem>` and standard normal,
 * the initial condition $X_0$ is drawn from the normal distribution $N(\mu_0, v_0)$ and
 * the initial condition $X_0$ is independent of $\{ W_t \}$.
 
-### Moving Average Representation
+
+
+
+### Moving average representation
 
 Iterating backwards from time $t$, we obtain
 
 $$
 X_t = a X_{t-1} + b +  c W_t
         = a^2 X_{t-2} + a b + a c W_{t-1} + b + c W_t
+        = a^3 X_{t-3} + a^2 b + a^2 c W_{t-2} + b + c W_t
         = \cdots
 $$
 
@@ -106,7 +112,7 @@ Equation {eq}`ar1_ma` shows that $X_t$ is a well defined random variable, the va
 Throughout, the symbol $\psi_t$ will be used to refer to the
 density of this random variable $X_t$.
 
-### Distribution Dynamics
+### Distribution dynamics
 
 One of the nice things about this model is that it's so easy to trace out the sequence of distributions $\{ \psi_t \}$ corresponding to the time
 series $\{ X_t\}$.
@@ -117,10 +123,9 @@ This is immediate from {eq}`ar1_ma`, since linear combinations of independent
 normal random variables are normal.
 
 Given that $X_t$ is normally distributed, we will know the full distribution
-$\psi_t$ if we can pin down its first two moments.
+$\psi_t$ if we can pin down its first two [moments](https://en.wikipedia.org/wiki/Moment_(mathematics)).
 
-Let $\mu_t$ and $v_t$ denote the mean and variance
-of $X_t$ respectively.
+Let $\mu_t$ and $v_t$ denote the mean and variance of $X_t$ respectively.
 
 We can pin down these values from {eq}`ar1_ma` or we can use the following
 recursive expressions:
@@ -147,8 +152,7 @@ $$
 \psi_t = N(\mu_t, v_t)
 $$
 
-The following code uses these facts to track the sequence of marginal
-distributions $\{ \psi_t \}$.
+The following code uses these facts to track the sequence of marginal distributions $\{ \psi_t \}$.
 
 The parameters are
 
@@ -180,14 +184,26 @@ ax.legend(bbox_to_anchor=[1.05,1],loc=2,borderaxespad=1)
 plt.show()
 ```
 
-## Stationarity and Asymptotic Stability
 
-Notice that, in the figure above, the sequence $\{ \psi_t \}$ seems to be converging to a limiting distribution.
+
+## Stationarity and asymptotic stability
+
+When we use models to study the real world, it is generally preferable that our
+models have clear, sharp predictions.
+
+For dynamic problems, sharp predictions are related to stability.
+
+For example, if a dynamic model predicts that inflation always converges to some
+kind of steady state, then the model gives a sharp prediction.
+
+(The prediction might be wrong, but even this is helpful, because we can judge the quality of the model.)
+
+Notice that, in the figure above, the sequence $\{ \psi_t \}$ seems to be converging to a limiting distribution, suggesting some kind of stability.
 
 This is even clearer if we project forward further into the future:
 
 ```{code-cell} python3
-def plot_density_seq(ax, mu_0=-3.0, v_0=0.6, sim_length=60):
+def plot_density_seq(ax, mu_0=-3.0, v_0=0.6, sim_length=40):
     mu, v = mu_0, v_0
     for t in range(sim_length):
         mu = a * mu + b
@@ -207,7 +223,7 @@ For example, this alternative density sequence also converges to the same limit.
 
 ```{code-cell} python3
 fig, ax = plt.subplots()
-plot_density_seq(ax, mu_0=3.0)
+plot_density_seq(ax, mu_0=4.0)
 plt.show()
 ```
 
@@ -242,7 +258,7 @@ We can confirm this is valid for the sequence above using the following code.
 
 ```{code-cell} python3
 fig, ax = plt.subplots()
-plot_density_seq(ax, mu_0=3.0)
+plot_density_seq(ax, mu_0=4.0)
 
 mu_star = b / (1 - a)
 std_star = np.sqrt(c**2 / (1 - a**2))  # square root of v_star
@@ -255,16 +271,21 @@ plt.show()
 
 As claimed, the sequence $\{ \psi_t \}$ converges to $\psi^*$.
 
-### Stationary Distributions
+We see that, at least for these parameters, the AR(1) model has strong stability
+properties.
 
-A stationary distribution is a distribution that is a fixed
-point of the update rule for distributions.
 
-In other words, if $\psi_t$ is stationary, then $\psi_{t+j} =
-\psi_t$ for all $j$ in $\mathbb N$.
 
-A different way to put this, specialized to the current setting, is as follows: a
-density $\psi$ on $\mathbb R$ is **stationary** for the AR(1) process if
+
+### Stationary distributions
+
+Let's try to better understand the limiting distribution $\psi^*$.
+
+A stationary distribution is a distribution that is a "fixed point" of the update rule for the AR(1) process.
+
+In other words, if $\psi_t$ is stationary, then $\psi_{t+j} = \psi_t$ for all $j$ in $\mathbb N$.
+
+A different way to put this, specialized to the current setting, is as follows: a density $\psi$ on $\mathbb R$ is **stationary** for the AR(1) process if
 
 $$
 X_t \sim \psi
@@ -286,8 +307,8 @@ Thus, when $|a| < 1$, the AR(1) model has exactly one stationary density and tha
 
 The concept of ergodicity is used in different ways by different authors.
 
-One way to understand it in the present setting is that a version of the Law
-of Large Numbers is valid for $\{X_t\}$, even though it is not IID.
+One way to understand it in the present setting is that a version of the law
+of large numbers is valid for $\{X_t\}$, even though it is not IID.
 
 In particular, averages over time series converge to expectations under the
 stationary distribution.
@@ -317,11 +338,21 @@ $$
     \quad \text{as } m \to \infty
 $$
 
-In other words, the time series sample mean converges to the mean of the
-stationary distribution.
+In other words, the time series sample mean converges to the mean of the stationary distribution.
 
-As will become clear over the next few lectures, ergodicity is a very
-important concept for statistics and simulation.
+
+Ergodicity is important for a range of reasons.
+
+For example, {eq}`ar1_ergo` can be used to test theory.
+
+In this equation, we can use observed data to evaluate the left hand side of {eq}`ar1_ergo`.
+
+And we can use a theoretical AR(1) model to calculate the right hand side.
+
+If $\frac{1}{m} \sum_{t = 1}^m X_t$ is not close to $\psi^(x)$, even for many
+observations, then our theory seems to be incorrect and we will need to revise
+it.
+
 
 ## Exercises
 
@@ -346,7 +377,7 @@ M_k =
 \end{cases}
 $$
 
-Here $n!!$ is the double factorial.
+Here $n!!$ is the [double factorial](https://en.wikipedia.org/wiki/Double_factorial).
 
 According to {eq}`ar1_ergo`, we should have, for any $k \in \mathbb N$,
 

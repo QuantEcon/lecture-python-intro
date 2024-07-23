@@ -20,30 +20,39 @@ kernelspec:
 (scalar_dynam)=
 # Dynamics in One Dimension
 
-```{admonition} Migrated lecture
-:class: warning
-
-This lecture has moved from our [Intermediate Quantitative Economics with Python](https://python.quantecon.org/intro.html) lecture series and is now a part of [A First Course in Quantitative Economics](https://intro.quantecon.org/intro.html).
-```
 
 ## Overview
 
-In this lecture we give a quick introduction to discrete time dynamics in one dimension.
+In economics many variables depend on their past values
 
-* In one-dimensional models, the state of the system is described by a single variable.
-* The variable is a number (that is, a point in $\mathbb R$).
+For example, it seems reasonable to believe that inflation last year with affects inflation this year.
 
-While most quantitative models have two or more state variables, the
-one-dimensional setting is a good place to learn the foundations of dynamics
-and understand key concepts.
+(Perhaps high inflation last year will lead people to demand higher wages to
+compensate, which will feed into higher prices this year.)
+
+Letting $\pi_t$ be inflation this year and $\pi_{t-1}$ be inflation last year, we
+can write this relationship in a general form as
+
+$$ \pi_t = f(\pi_{t-1}) $$
+
+where $f$ is some function describing the relationship between the variables.
+
+This equation is an example of one-dimensional discrete time dynamic system.
+
+In this lecture we cover the foundations of one-dimensional discrete time
+dynamics.
+
+(While most quantitative models have two or more state variables, the
+one-dimensional setting is a good place to learn foundations 
+and understand key concepts.)
 
 Let's start with some standard imports:
 
 ```{code-cell} ipython
-%matplotlib inline
 import matplotlib.pyplot as plt
 import numpy as np
 ```
+
 
 ## Some definitions
 
@@ -79,7 +88,7 @@ $$
     f^2(x) = \sqrt{\sqrt{x}} = x^{1/4}
 $$
 
-Similarly, if $n$ is an integer, then $f^n$ is $n$ compositions of $f$ with
+Similarly, if $n$ is a positive integer, then $f^n$ is $n$ compositions of $f$ with
 itself.
 
 In the example above, $f^n(x) = x^{1/(2^n)}$.
@@ -103,10 +112,6 @@ On the other hand, if  $S = (-1, 1)$ and $g(x) = x+1$, then $S$ and $g$ do not
 form a dynamic system, since $g(1) = 2$.
 
 * $g$ does not always send points in $S$ back into $S$.
-
-
-
-### Dynamic systems
 
 We care about dynamic systems because we can use them to study dynamics!
 
@@ -138,7 +143,7 @@ Recalling that $g^n$ is the $n$ compositions of $g$ with itself,
 we can write the trajectory more simply as 
 
 $$
-    x_t = g^t(x_0) \quad \text{ for } t \geq 0.
+    x_t = g^t(x_0) \quad \text{ for } t = 0, 1, 2, \ldots
 $$
 
 In all of what follows, we are going to assume that $S$ is a subset of
@@ -150,10 +155,10 @@ Equation {eq}`sdsod` is sometimes called a **first order difference equation**
 
 
 
-### Example: A Linear Model
+### Example: a linear model
 
 One simple example of a dynamic system is when $S=\mathbb R$ and $g(x)=ax +
-b$, where $a, b$ are fixed constants.
+b$, where $a, b$ are constants (sometimes called ``parameters'').
 
 This leads to the **linear difference equation**
 
@@ -175,14 +180,14 @@ a^2 x_0 + a b + b, \quad \text{etc.}
 ```
 
 Continuing in this way, and using our knowledge of {doc}`geometric series
-<geom_series>`, we find that, for any $t \geq 0$,
+<geom_series>`, we find that, for any $t = 0, 1, 2, \ldots$,
 
 ```{math}
 :label: sdslinmod
     x_t = a^t x_0 + b \frac{1 - a^t}{1 - a}
 ```
 
-We have an exact expression for $x_t$ for all $t$ and hence a full
+We have an exact expression for $x_t$ for all non-negative integer $t$ and hence a full
 understanding of the dynamics.
 
 Notice in particular that $|a| < 1$, then, by {eq}`sdslinmod`, we have
@@ -193,7 +198,7 @@ Notice in particular that $|a| < 1$, then, by {eq}`sdslinmod`, we have
 x_t \to  \frac{b}{1 - a} \text{ as } t \to \infty
 ```
 
-regardless of $x_0$
+regardless of $x_0$.
 
 This is an example of what is called global stability, a topic we return to
 below.
@@ -201,16 +206,16 @@ below.
 
 
 
-### Example: A Nonlinear Model
+### Example: a nonlinear model
 
 In the linear example above, we obtained an exact analytical expression for
-$x_t$ in terms of arbitrary $t$ and $x_0$.
+$x_t$ in terms of arbitrary non-negative integer $t$ and $x_0$.
 
 This made analysis of dynamics very easy.
 
 When models are nonlinear, however, the situation can be quite different.
 
-For example, recall how we [previously studied](https://python-programming.quantecon.org/python_oop.html#example-the-solow-growth-model) the law of motion for the Solow growth model, a simplified version of which is
+For example, in a later lecture {doc}`solow`, we will study the Solow-Swan growth model, which has dynamics 
 
 ```{math}
 :label: solow_lom2
@@ -218,7 +223,7 @@ For example, recall how we [previously studied](https://python-programming.quant
 k_{t+1} = s z k_t^{\alpha} + (1 - \delta) k_t
 ```
 
-Here $k$ is capital stock and $s, z, \alpha, \delta$ are positive
+Here $k$ is the per capita capital stock and $s, z, \alpha, \delta$ are positive
 parameters with $0 < \alpha, \delta < 1$.
 
 If you try to iterate like we did in {eq}`sdslinmodpath`, you will find that
@@ -233,9 +238,10 @@ Analyzing the dynamics of this model requires a different method (see below).
 
 ## Stability
 
-Consider a fixed dynamic system consisting of set $S \subset \mathbb R$ and
+Consider a dynamic system consisting of set $S \subset \mathbb R$ and
 $g$ mapping $S$ to $S$.
 
+(scalar-dynam:steady-state)=
 ### Steady states
 
 A **steady state** of this system is a
@@ -247,14 +253,15 @@ $S$.
 For example, for the linear model $x_{t+1} = a x_t + b$, you can use the
 definition to check that
 
-* $x^* := b/(1-a)$ is a steady state whenever $a \not= 1$.
+* $x^* := b/(1-a)$ is a steady state whenever $a \not= 1$,
 * if $a = 1$ and $b=0$, then every $x \in \mathbb R$ is a
-  steady state.
+  steady state,
 * if $a = 1$ and $b \not= 0$, then the linear model has no steady
   state in $\mathbb R$.
 
 
 
+(scalar-dynam:global-stability)=
 ### Global stability
 
 A steady state $x^*$ of the dynamic system is called
@@ -286,12 +293,17 @@ $$
 
 Obviously every globally stable steady state is also locally stable.
 
-We will see examples below where the converse is not true.
+Here is an example where the converse is not true.
 
+```{prf:example}
+Consider the self-map $g$ on $\mathbb{R}$ defined by $g(x)=x^2$. The fixed point $1$ is not stable.
 
+For example, $g^t (x)\to\infty$ for any $x>1$.
 
+However, $0$ is locally stable, because $-1<x<1$ implies that $g^t (x)\to 0$ as $t\to\infty$.
 
-
+Since we have more than one fixed point, $0$ is not globally stable.
+```
 
 
 ## Graphical analysis
@@ -303,13 +315,13 @@ There is no single way to tackle all nonlinear models.
 However, there is one technique for one-dimensional models that provides a
 great deal of intuition.
 
-This is a graphical approach based on **45 degree diagrams**.
+This is a graphical approach based on **45-degree diagrams**.
 
-Let's look at an example: the Solow model with dynamics given in {eq}`solow_lom2`.
+Let's look at an example: the Solow-Swan model with dynamics given in {eq}`solow_lom2`.
 
 We begin with some plotting code that you can ignore at first reading.
 
-The function of the code is to produce 45 degree diagrams and time series
+The function of the code is to produce 45-degree diagrams and time series
 plots.
 
 
@@ -340,6 +352,8 @@ def plot45(g, xmin, xmax, x0, num_arrows=6, var='x'):
     fig, ax = subplots()
     ax.set_xlim(xmin, xmax)
     ax.set_ylim(xmin, xmax)
+    ax.set_xlabel(r'${}_t$'.format(var), fontsize=14)
+    ax.set_ylabel(r'${}_{}$'.format(var, str('{t+1}')), fontsize=14)
 
     hw = (xmax - xmin) * 0.01
     hl = 2 * hw
@@ -403,21 +417,15 @@ def ts_plot(g, xmin, xmax, x0, ts_length=6, var='x'):
     plt.show()
 ```
 
-Let's create a 45 degree diagram for the Solow model with a fixed set of
-parameters
+Let's create a 45-degree diagram for the Solow-Swan model with a fixed set of
+parameters. Here's the update function corresponding to the model.
 
 ```{code-cell} ipython
-A, s, alpha, delta = 2, 0.3, 0.3, 0.4
-```
-
-Here's the update function corresponding to the model.
-
-```{code-cell} ipython
-def g(k):
+def g(k, A = 2, s = 0.3, alpha = 0.3, delta = 0.4):
     return A * s * k**alpha + (1 - delta) * k
 ```
 
-Here is the 45 degree plot.
+Here is the 45-degree plot.
 
 ```{code-cell} ipython
 xmin, xmax = 0, 4  # Suitable plotting region.
@@ -425,7 +433,7 @@ xmin, xmax = 0, 4  # Suitable plotting region.
 plot45(g, xmin, xmax, 0, num_arrows=0)
 ```
 
-The plot shows the function $g$ and the 45 degree line.
+The plot shows the function $g$ and the 45-degree line.
 
 Think of $k_t$ as a value on the horizontal axis.
 
@@ -434,11 +442,11 @@ value on the vertical axis.
 
 Clearly,
 
-* If $g$ lies above the 45 degree line at this point, then we have $k_{t+1} > k_t$.
-* If $g$ lies below the 45 degree line at this point, then we have $k_{t+1} < k_t$.
-* If $g$ hits the 45 degree line at this point, then we have $k_{t+1} = k_t$, so $k_t$ is a steady state.
+* If $g$ lies above the 45-degree line at this point, then we have $k_{t+1} > k_t$.
+* If $g$ lies below the 45-degree line at this point, then we have $k_{t+1} < k_t$.
+* If $g$ hits the 45-degree line at this point, then we have $k_{t+1} = k_t$, so $k_t$ is a steady state.
 
-For the Solow model, there are two steady states when $S = \mathbb R_+ =
+For the Solow-Swan model, there are two steady states when $S = \mathbb R_+ =
 [0, \infty)$.
 
 * the origin $k=0$
@@ -452,7 +460,7 @@ $$
 
 ### Trajectories
 
-By the preceding discussion, in regions where $g$ lies above the 45 degree line, we know that the trajectory is increasing.
+By the preceding discussion, in regions where $g$ lies above the 45-degree line, we know that the trajectory is increasing.
 
 The next figure traces out a trajectory in such a region so we can see this more clearly.
 
@@ -464,7 +472,7 @@ k0 = 0.25
 plot45(g, xmin, xmax, k0, num_arrows=5, var='k')
 ```
 
-We can plot the time series of capital corresponding to the figure above as
+We can plot the time series of per capita capital corresponding to the figure above as
 follows:
 
 ```{code-cell} ipython
@@ -477,7 +485,7 @@ Here's a somewhat longer view:
 ts_plot(g, xmin, xmax, k0, ts_length=20, var='k')
 ```
 
-When capital stock is higher than the unique positive steady state, we see that
+When per capita capital stock is higher than the unique positive steady state, we see that
 it declines:
 
 ```{code-cell} ipython
@@ -494,7 +502,7 @@ ts_plot(g, xmin, xmax, k0, var='k')
 
 ### Complex dynamics
 
-The Solow model is nonlinear but still generates very regular dynamics.
+The Solow-Swan model is nonlinear but still generates very regular dynamics.
 
 One model that generates irregular dynamics is the **quadratic map**
 
@@ -503,7 +511,7 @@ g(x) = 4 x (1 - x),
 \qquad x \in [0, 1]
 $$
 
-Let's have a look at the 45 degree diagram.
+Let's have a look at the 45-degree diagram.
 
 ```{code-cell} ipython
 xmin, xmax = 0, 1
@@ -550,7 +558,7 @@ Try to illustrate this graphically by looking at a range of initial conditions.
 What differences do you notice in the cases $a \in (-1, 0)$ and $a
 \in (0, 1)$?
 
-Use $a=0.5$ and then $a=-0.5$ and study the trajectories
+Use $a=0.5$ and then $a=-0.5$ and study the trajectories.
 
 Set $b=1$ throughout.
 ```
