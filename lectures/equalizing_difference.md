@@ -411,6 +411,7 @@ We find that raising the gross interest rate $R$ increases the initial college w
 
 
 ## Exercises
+
 ```{exercise-start}
 :label: edm_ex1
 ```
@@ -434,7 +435,7 @@ What we used to call the college, high school wage gap $\phi$ now becomes the ra
 of a successful entrepreneur's earnings to a worker's earnings.  
 
 We'll find that as $\pi$ decreases, $\phi$ increases, indicating that the riskier it is to
-be an entrepreuner, the higher must be the reward for a successful project. 
+be an entrepreneur, the higher must be the reward for a successful project. 
 
 Now adopt the entrepreneur-worker interpretation of our model.
 
