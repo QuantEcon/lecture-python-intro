@@ -311,7 +311,8 @@ plt.tight_layout()
 plt.show()
 ```
 
-{numref}`fr_fig3` shows that in 1788  on the eve of the French Revolution government expenditures exceeded   tax revenues.   
+{numref}`fr_fig3` shows that on the eve of the French Revolution in 1788, government expenditures exceeded tax revenues.   
+
 
 Especially during and after France's expenditures to help the Americans in their War of Independence from Great Britain,   growing government debt service (i.e., interest payments) 
 contributed to this situation. 
