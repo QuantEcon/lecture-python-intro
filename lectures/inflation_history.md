@@ -416,7 +416,7 @@ p_seq = df_aus['Retail price index, 52 commodities']
 e_seq = df_aus['Exchange Rate']
 
 lab = ['Retail price index', 
-       '1/cents per Austrian Krone (Crown)']
+       'Austrian Krones (Crowns) per US cent']
 
 # Create plot
 fig, ax = plt.subplots(dpi=200)
@@ -464,7 +464,7 @@ p_seq = df_hun['Hungarian index of prices']
 e_seq = 1 / df_hun['Cents per crown in New York']
 
 lab = ['Hungarian index of prices', 
-       '1/cents per Hungarian Korona (Crown)']
+       'Hungarian Koronas (Crowns) per US cent']
 
 # Create plot
 fig, ax = plt.subplots(dpi=200)
@@ -533,7 +533,7 @@ e_seq[e_seq.index > '05-01-1924'] = np.nan
 
 ```{code-cell} ipython3
 lab = ['Wholesale price index', 
-       '1/cents per polish mark']
+       'Polish marks per US cent']
 
 # Create plot
 fig, ax = plt.subplots(dpi=200)
@@ -575,7 +575,7 @@ p_seq = df_deu['Price index (on basis of marks before July 1924,'
 e_seq = 1/df_deu['Cents per mark']
 
 lab = ['Price index', 
-       '1/cents per mark']
+       'Marks per US cent']
 
 # Create plot
 fig, ax = plt.subplots(dpi=200)
@@ -602,7 +602,7 @@ e_seq[e_seq.index > '12-01-1923'] = e_seq[e_seq.index
                                           > '12-01-1923'] * 1e12
 
 lab = ['Price index (marks or converted to marks)', 
-       '1/cents per mark (or reichsmark converted to mark)']
+       'Marks per US cent(or reichsmark converted to mark)']
 
 # Create plot
 fig, ax = plt.subplots(dpi=200)
