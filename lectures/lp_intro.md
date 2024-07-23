@@ -91,6 +91,8 @@ $$
 
 The following graph illustrates the firm's constraints and iso-revenue lines.
 
+Iso-revenue lines show all the combinations of materials and labor producing the same revenue.
+
 ```{code-cell} ipython3
 ---
 tags: [hide-input]
