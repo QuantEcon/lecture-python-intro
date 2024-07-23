@@ -272,7 +272,7 @@ plt.show()
 
 Scalar multiplication is an operation that multiplies a vector $x$ with a scalar elementwise.
 
-```{prf: example}
+```{prf:example}
 $$
 -2
 \begin{bmatrix}
@@ -428,7 +428,7 @@ matrices.
 
 Scalar multiplication and addition are generalizations of the vector case:
 
-```{prf: example}
+```{prf:example}
 $$
 3
 \begin{bmatrix}
@@ -460,7 +460,7 @@ $$
 \end{bmatrix}.
 $$
 
-```{prf: example}
+```{prf:example}
 Consider this example of matrix addition,
 
 $$
@@ -519,7 +519,7 @@ $j$-th column of $B$.
 If $A$ is $n \times k$ and $B$ is $j \times m$, then to multiply $A$ and $B$
 we require $k = j$, and the resulting matrix $A B$ is $n \times m$.
 
-```{prf: example}
+```{prf:example}
 Here's an example of a $2 \times 2$ matrix multiplied by a $2 \times 1$ vector.
 
 $$
