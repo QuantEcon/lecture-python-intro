@@ -900,9 +900,22 @@ plt.show()
 In this model, income grows over time, until it gradually converges to
 the infinite geometric series sum of income.
 
+```{solution-end}
+```
+
+```{exercise-start}
+:label: geom_ex2
+```
 We now examine what will
 happen if we vary the so-called **marginal propensity to consume**,
 i.e., the fraction of income that is consumed
+
+```{exercise-end}
+```
+
+```{solution-start} geom_ex2
+:class: dropdown
+```
 
 ```{code-cell} ipython3
 ---
@@ -927,7 +940,20 @@ plt.show()
 Increasing the marginal propensity to consume $b$ increases the
 path of output over time.
 
+```{solution-end}
+```
+
+
+```{exercise-start}
+:label: geom_ex3
+```
 Now we will compare the effects on output of increases in investment and government spending.
+```{exercise-end}
+```
+
+```{solution-start} geom_ex3
+:class: dropdown
+```
 
 ```{code-cell} ipython3
 ---
