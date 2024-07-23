@@ -57,7 +57,9 @@ Production functions with this property include
 * the **Cobb-Douglas** function $F(K, L) = A K^{\alpha}
   L^{1-\alpha}$ with $0 \leq \alpha \leq 1$. Here, $\alpha$ is the output elasticity of capital.
 * the **CES** function $F(K, L) = \left\{ a K^\rho + b L^\rho \right\}^{1/\rho}$
-        with $a, b, \rho > 0$. Here, $\rho$ is a parameter that determines the elasticity of substitution between capital and labor.
+        with $a, b, \rho > 0$. 
+        
+Here, $\rho$ is a parameter that determines the elasticity of substitution between capital and labor.
 
 We assume a closed economy, so aggregate domestic investment equals aggregate domestic
 saving.
