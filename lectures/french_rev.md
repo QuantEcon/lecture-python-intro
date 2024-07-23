@@ -140,12 +140,7 @@ during those four wars.
 
 A remarkable aspect of figure {numref}`fr_fig4` is that despite having a population less than half of France's, Britain was able to finance military expenses of about the same amounts as France's.
 
-This testifies to Britain's  having created state institutions that could sustain high  tax collections, government spending , and government borrowing.  See  {cite}`north1989constitutions`. 
-
-
-
-
-
+This testifies to Britain's  having created state institutions that could sustain high  tax collections, government spending , and government borrowing. See  {cite}`north1989`. 
 
 ```{code-cell} ipython3
 ---
