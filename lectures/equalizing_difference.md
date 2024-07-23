@@ -415,7 +415,7 @@ We find that raising the gross interest rate $R$ increases the initial college w
 ```{exercise-start}
 :label: edm_ex1
 ```
-In this exercise, We can add a parameter and reinterpret variables to get a model of entrepreneurs versus workers.
+In this exercise, we add a parameter and reinterpret variables to get a model of entrepreneurs versus workers and do some computations like before.
 
 We now let $h$ be  the present value of a "worker".
 
@@ -437,7 +437,19 @@ of a successful entrepreneur's earnings to a worker's earnings.
 We'll find that as $\pi$ decreases, $\phi$ increases, indicating that the riskier it is to
 be an entrepreneur, the higher must be the reward for a successful project. 
 
-Now adopt the entrepreneur-worker interpretation of our model.
+Now define `create_edm_π` and `compute_gap` following the previous *Computations* section, adopting the entrepreneur-worker interpretation of our model.
+
+Given:
+
+```{code-cell} ipython3
+R=1.05,   # gross rate of return
+T=40,     # time horizon
+γ_h=1.01, # high-school wage growth
+γ_c=1.01, # college wage growth
+w_h0=1,   # initial wage (high school)
+D=10,     # cost for college
+π=0       # chance of business success
+```
 
 ```{exercise-end}
 ```
@@ -445,8 +457,6 @@ Now adopt the entrepreneur-worker interpretation of our model.
 ```{solution-start} edm_ex1
 :class: dropdown
 ```
-
-Here is one solution
 
 ```{code-cell} ipython3
 # Define a model of entrepreneur-worker interpretation
@@ -476,8 +486,20 @@ def compute_gap(model):
     ϕ = A_h / A_c + D / (w_h0 * A_c)
     return ϕ
 ```
+```{solution-end}
+```
 
-If the probability that a new business succeeds is $0.2$, let's compute the initial wage premium for successful entrepreneurs.
+```{exercise-start}
+:label: edm_ex2
+```
+If the probability that a new business succeeds is $0.2$, what is the initial wage premium for successful entrepreneurs?
+
+```{exercise-end}
+```
+
+```{solution-start} edm_ex2
+:class: dropdown
+```
 
 ```{code-cell} ipython3
 ex3 = create_edm_π(π=0.2)
@@ -489,8 +511,28 @@ gap3 = compute_gap(ex3)
 gap3
 ```
 
+```{solution-end}
+```
+
+```{exercise-start}
+:label: edm_ex3
+```
 Now let's study how the initial wage premium for successful entrepreneurs depend on the success probability.
 
+Given
+
+```{code-cell} ipython3
+π_arr = np.linspace(0.2, 1, 50)
+```
+
+Plot the relationship between the wage gap and the values of $\pi$.
+
+```{exercise-end}
+```
+
+```{solution-start} edm_ex3
+:class: dropdown
+```
 ```{code-cell} ipython3
 π_arr = np.linspace(0.2, 1, 50)
 models = [create_edm_π(π=π) for π in π_arr]
