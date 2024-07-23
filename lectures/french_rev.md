@@ -98,7 +98,7 @@ These graphs show that during the 18th century
 mystnb:
   figure:
     caption: "Military Spending in Britain and France"
-    name: fig4
+    name: fr_fig4
 ---
 # Read the data from Excel file
 data2 = pd.read_excel(dette_url, 
@@ -147,7 +147,7 @@ This testifies to Britain's  having created state institutions that could sustai
 mystnb:
   figure:
     caption: "Government Expenditures and Tax Revenues in Britain"
-    name: fig2
+    name: fr_fig2
 ---
 
 # Read the data from Excel file
@@ -226,7 +226,7 @@ Next we'll plot data on debt service costs as fractions of government revenues i
 mystnb:
   figure:
     caption: "Ratio of debt service to taxes, Britain and France"
-    name: fig1
+    name: fr_fig1
 ---
 
 # Read the data from the Excel file
