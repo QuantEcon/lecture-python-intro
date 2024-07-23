@@ -147,6 +147,7 @@ The set of all $n$-vectors is denoted by $\mathbb R^n$.
 * $\mathbb R^2$ is the plane --- the set of pairs $(x_1, x_2)$.
 * $\mathbb R^3$ is 3 dimensional space --- the set of vectors $(x_1, x_2, x_3)$.
 ```
+
 Often vectors are represented visually as arrows from the origin to the point.
 
 Here's a visualization.
