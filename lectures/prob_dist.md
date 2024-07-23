@@ -302,7 +302,7 @@ u = scipy.stats.poisson(λ)
 u.mean(), u.var()
 ```
     
-The expectation of Poisson distribution is $\lambda$ and the variance is also $\lambda$.
+The expectation of the Poisson distribution is $\lambda$ and the variance is also $\lambda$.
 
 Here's the PMF:
 
