@@ -124,6 +124,8 @@ S = np.arange(1, n+1)
 ax.plot(S, u.pmf(S), linestyle='', marker='o', alpha=0.8, ms=4)
 ax.vlines(S, 0, u.pmf(S), lw=0.2)
 ax.set_xticks(S)
+ax.set_xlabel('S')
+ax.set_ylabel('PMF')
 plt.show()
 ```
 
@@ -136,6 +138,8 @@ S = np.arange(1, n+1)
 ax.step(S, u.cdf(S))
 ax.vlines(S, 0, u.cdf(S), lw=0.2)
 ax.set_xticks(S)
+ax.set_xlabel('S')
+ax.set_ylabel('CDF')
 plt.show()
 ```
 
@@ -232,6 +236,8 @@ S = np.arange(1, n+1)
 ax.plot(S, u.pmf(S), linestyle='', marker='o', alpha=0.8, ms=4)
 ax.vlines(S, 0, u.pmf(S), lw=0.2)
 ax.set_xticks(S)
+ax.set_xlabel('S')
+ax.set_ylabel('PMF')
 plt.show()
 ```
 
@@ -244,6 +250,8 @@ S = np.arange(1, n+1)
 ax.step(S, u.cdf(S))
 ax.vlines(S, 0, u.cdf(S), lw=0.2)
 ax.set_xticks(S)
+ax.set_xlabel('S')
+ax.set_ylabel('CDF')
 plt.show()
 ```
 
@@ -267,6 +275,8 @@ u_sum = np.cumsum(u.pmf(S))
 ax.step(S, u_sum)
 ax.vlines(S, 0, u_sum, lw=0.2)
 ax.set_xticks(S)
+ax.set_xlabel('S')
+ax.set_ylabel('CDF')
 plt.show()
 ```
 
@@ -289,20 +299,12 @@ The mean and variance are:
 ```{code-cell} ipython3
 λ = 2
 u = scipy.stats.poisson(λ)
-```
-    
-```{code-cell} ipython3
 u.mean(), u.var()
 ```
-
-The the expectation of Poisson distribution is $\lambda$ and the variance is also $\lambda$.
+    
+The expectation of the Poisson distribution is $\lambda$ and the variance is also $\lambda$.
 
 Here's the PMF:
-
-```{code-cell} ipython3
-λ = 2
-u = scipy.stats.poisson(λ)
-```
 
 ```{code-cell} ipython3
 u.pmf(1)
@@ -314,6 +316,8 @@ S = np.arange(1, n+1)
 ax.plot(S, u.pmf(S), linestyle='', marker='o', alpha=0.8, ms=4)
 ax.vlines(S, 0, u.pmf(S), lw=0.2)
 ax.set_xticks(S)
+ax.set_xlabel('S')
+ax.set_ylabel('PMF')
 plt.show()
 ```
 
@@ -386,7 +390,8 @@ for μ, σ in zip(μ_vals, σ_vals):
     ax.plot(x_grid, u.pdf(x_grid),
     alpha=0.5, lw=2,
     label=f'$\mu={μ}, \sigma={σ}$')
-
+ax.set_xlabel('x')
+ax.set_ylabel('PDF')
 plt.legend()
 plt.show()
 ```
@@ -402,6 +407,8 @@ for μ, σ in zip(μ_vals, σ_vals):
     alpha=0.5, lw=2,
     label=f'$\mu={μ}, \sigma={σ}$')
     ax.set_ylim(0, 1)
+ax.set_xlabel('x')
+ax.set_ylabel('CDF')
 plt.legend()
 plt.show()
 ```
@@ -446,7 +453,8 @@ for μ, σ in zip(μ_vals, σ_vals):
     ax.plot(x_grid, u.pdf(x_grid),
     alpha=0.5, lw=2,
     label=f'$\mu={μ}, \sigma={σ}$')
-
+ax.set_xlabel('x')
+ax.set_ylabel('PDF')
 plt.legend()
 plt.show()
 ```
@@ -461,6 +469,8 @@ for σ in σ_vals:
     label=f'$\mu={μ}, \sigma={σ}$')
     ax.set_ylim(0, 1)
     ax.set_xlim(0, 3)
+ax.set_xlabel('x')
+ax.set_ylabel('CDF')
 plt.legend()
 plt.show()
 ```
@@ -500,6 +510,8 @@ for λ in λ_vals:
     ax.plot(x_grid, u.pdf(x_grid),
     alpha=0.5, lw=2,
     label=f'$\lambda={λ}$')
+ax.set_xlabel('x')
+ax.set_ylabel('PDF')
 plt.legend()
 plt.show()
 ```
@@ -512,6 +524,8 @@ for λ in λ_vals:
     alpha=0.5, lw=2,
     label=f'$\lambda={λ}$')
     ax.set_ylim(0, 1)
+ax.set_xlabel('x')
+ax.set_ylabel('CDF')
 plt.legend()
 plt.show()
 ```
@@ -557,6 +571,8 @@ for α, β in zip(α_vals, β_vals):
     ax.plot(x_grid, u.pdf(x_grid),
     alpha=0.5, lw=2,
     label=fr'$\alpha={α}, \beta={β}$')
+ax.set_xlabel('x')
+ax.set_ylabel('PDF')
 plt.legend()
 plt.show()
 ```
@@ -569,6 +585,8 @@ for α, β in zip(α_vals, β_vals):
     alpha=0.5, lw=2,
     label=fr'$\alpha={α}, \beta={β}$')
     ax.set_ylim(0, 1)
+ax.set_xlabel('x')
+ax.set_ylabel('CDF')
 plt.legend()
 plt.show()
 ```
@@ -614,6 +632,8 @@ for α, β in zip(α_vals, β_vals):
     ax.plot(x_grid, u.pdf(x_grid),
     alpha=0.5, lw=2,
     label=fr'$\alpha={α}, \beta={β}$')
+ax.set_xlabel('x')
+ax.set_ylabel('PDF')
 plt.legend()
 plt.show()
 ```
@@ -626,6 +646,8 @@ for α, β in zip(α_vals, β_vals):
     alpha=0.5, lw=2,
     label=fr'$\alpha={α}, \beta={β}$')
     ax.set_ylim(0, 1)
+ax.set_xlabel('x')
+ax.set_ylabel('CDF')
 plt.legend()
 plt.show()
 ```
@@ -720,6 +742,8 @@ We can histogram the income distribution we just constructed as follows
 x = df['income']
 fig, ax = plt.subplots()
 ax.hist(x, bins=5, density=True, histtype='bar')
+ax.set_xlabel('income')
+ax.set_ylabel('density')
 plt.show()
 ```
 
@@ -760,6 +784,8 @@ x_amazon = np.asarray(data)
 ```{code-cell} ipython3
 fig, ax = plt.subplots()
 ax.hist(x_amazon, bins=20)
+ax.set_xlabel('monthly return (percent change)')
+ax.set_ylabel('density')
 plt.show()
 ```
 
@@ -774,6 +800,8 @@ KDE will generate a smooth curve that approximates the PDF.
 ```{code-cell} ipython3
 fig, ax = plt.subplots()
 sns.kdeplot(x_amazon, ax=ax)
+ax.set_xlabel('monthly return (percent change)')
+ax.set_ylabel('KDE')
 plt.show()
 ```
 
@@ -784,6 +812,8 @@ fig, ax = plt.subplots()
 sns.kdeplot(x_amazon, ax=ax, bw_adjust=0.1, alpha=0.5, label="bw=0.1")
 sns.kdeplot(x_amazon, ax=ax, bw_adjust=0.5, alpha=0.5, label="bw=0.5")
 sns.kdeplot(x_amazon, ax=ax, bw_adjust=1, alpha=0.5, label="bw=1")
+ax.set_xlabel('monthly return (percent change)')
+ax.set_ylabel('KDE')
 plt.legend()
 plt.show()
 ```
@@ -802,6 +832,8 @@ Yet another way to display an observed distribution is via a violin plot.
 ```{code-cell} ipython3
 fig, ax = plt.subplots()
 ax.violinplot(x_amazon)
+ax.set_ylabel('monthly return (percent change)')
+ax.set_xlabel('KDE')
 plt.show()
 ```
 
@@ -822,6 +854,8 @@ x_apple = np.asarray(data)
 ```{code-cell} ipython3
 fig, ax = plt.subplots()
 ax.violinplot([x_amazon, x_apple])
+ax.set_ylabel('monthly return (percent change)')
+ax.set_xlabel('KDE')
 plt.show()
 ```
 
@@ -855,6 +889,8 @@ x_grid = np.linspace(-50, 65, 200)
 fig, ax = plt.subplots()
 ax.plot(x_grid, u.pdf(x_grid))
 ax.hist(x_amazon, density=True, bins=40)
+ax.set_xlabel('monthly return (percent change)')
+ax.set_ylabel('density')
 plt.show()
 ```
 
@@ -882,6 +918,8 @@ x_grid = np.linspace(-4, 4, 200)
 fig, ax = plt.subplots()
 ax.plot(x_grid, u.pdf(x_grid))
 ax.hist(x_draws, density=True, bins=40)
+ax.set_xlabel('x')
+ax.set_ylabel('density')
 plt.show()
 ```
 
