@@ -854,9 +854,19 @@ will always be positive.
 ```{exercise-start}
 :label: geom_ex1
 ```
-Now go back to the case of the Keynesian multiplier and plot the
-time path of $y_t$, given that consumption is a constant fraction
-of national income, and investment is fixed.
+In this exercise, we go back to the case of the Keynesian multiplier.
+
+Now try to plot the time path of $y_t$, given that consumption is a constant fraction of national income, and investment is fixed.
+
+Given intial values:
+
+```{code-cell} ipython3
+i_0 = 0.3
+g_0 = 0.3
+b = 2/3
+y_init = 0
+T = 100
+```
 
 ```{exercise-end}
 ```
@@ -906,9 +916,17 @@ the infinite geometric series sum of income.
 ```{exercise-start}
 :label: geom_ex2
 ```
-We now examine what will
+Continuing to explore the model, we now examine what will
 happen if we vary the so-called **marginal propensity to consume**,
-i.e., the fraction of income that is consumed
+i.e., the fraction of income that is consumed.
+
+Here, b can take four different numbers.
+
+Given:
+
+```{code-cell} ipython3
+bs = (1/3, 2/3, 5/6, 0.9)
+```
 
 ```{exercise-end}
 ```
@@ -947,7 +965,17 @@ path of output over time.
 ```{exercise-start}
 :label: geom_ex3
 ```
-Now we will compare the effects on output of increases in investment and government spending.
+
+Use the same initial values:
+
+```{code-cell} ipython3
+b = 2/3
+y_init = 0
+T = 100
+```
+
+Compare the effects on $y$ of increasing investment $i$ from $0.3$ to $0.4$ and government spending $g$ from $0.3$ to $0.4$.
+
 ```{exercise-end}
 ```
 
