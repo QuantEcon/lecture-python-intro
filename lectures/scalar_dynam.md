@@ -220,11 +220,10 @@ For example, in a later lecture {doc}`solow`, we will study the Solow-Swan growt
 ```{math}
 :label: solow_lom2
 
-k_{t+1} = s z k_t^{\alpha} + (1 - \delta) k_t
+k_{t+1} = s A k_t^{\alpha} + (1 - \delta) k_t
 ```
 
-Here $k$ is the per capita capital stock and $s, z, \alpha, \delta$ are positive
-parameters with $0 < \alpha, \delta < 1$.
+Here $k=K/L$ is the per capita capital stock, $s$ is the saving rate, $A$ is the total factor productivity, $\alpha$ is the capital share, and $\delta$ is the depreciation rate. All these parameter are positive and $0 < \alpha, \delta < 1$.
 
 If you try to iterate like we did in {eq}`sdslinmodpath`, you will find that
 the algebra gets messy quickly.
