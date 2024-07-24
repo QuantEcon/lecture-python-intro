@@ -434,7 +434,7 @@ In the following exercises, we extend our previous model to a model of entrepren
 ```{exercise-start}
 :label: edm_ex1
 ```
-We add a parameter $\pi \in (0,1)$ representing the probability that an entrepreneur's "project" succeeds.
+We add a parameter $\pi \in (0,1]$ representing the probability that an entrepreneur's "project" succeeds.
 
 We now let $h$ be the present value of a "worker".
 
