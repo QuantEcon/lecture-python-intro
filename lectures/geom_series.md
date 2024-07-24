@@ -854,11 +854,15 @@ will always be positive.
 ```{exercise-start}
 :label: geom_ex1
 ```
-In this exercise, we go back to the case of the Keynesian multiplier.
+Consider a dynamic Keynesian multiplier model
 
-Now try to plot the time path of $y_t$, given that consumption is a constant fraction of national income, and investment is fixed.
+$$
+ y_t = c_t + i_t + g_t \ \ \textrm { and } \ \ c_t = b y_{t-1}.
+$$
 
-Given intial values:
+Assume that $i_t=i_0$ and $g_t=g_0$ for all $t \geq 0$.
+
+Plot the time path of $y_t$ with the following initial values:
 
 ```{code-cell} ipython3
 i_0 = 0.3
@@ -874,7 +878,6 @@ T = 100
 ```{solution-start} geom_ex1
 :class: dropdown
 ```
-
 ```{code-cell} ipython3
 ---
 mystnb:
@@ -889,14 +892,6 @@ def calculate_y(i, b, g, T, y_init):
     for t in range(1, T+1):
         y[t] = b * y[t-1] + i + g
     return y
-
-# Initial values
-i_0 = 0.3
-g_0 = 0.3
-# 2/3 of income goes towards consumption
-b = 2/3
-y_init = 0
-T = 100
 
 fig, ax = plt.subplots()
 ax.set_xlabel('$t$')
@@ -916,17 +911,16 @@ the infinite geometric series sum of income.
 ```{exercise-start}
 :label: geom_ex2
 ```
-Continuing to explore the model, we now examine what will
-happen if we vary the so-called **marginal propensity to consume**,
-i.e., the fraction of income that is consumed.
 
-Here, b can take four different numbers.
+Continue from [exercise 1](#geom_ex1). 
 
-Given:
+Plot the time paths of $y_t$ with the same initial values but varying $b$ values:
 
 ```{code-cell} ipython3
 bs = (1/3, 2/3, 5/6, 0.9)
 ```
+
+Interpret the economic effect on $y_t$ of increasing $b$.
 
 ```{exercise-end}
 ```
@@ -942,7 +936,6 @@ mystnb:
     caption: "Changing consumption as a fraction of income"
     name: changing_consumption_as_fraction_of_income
 ---
-bs = (1/3, 2/3, 5/6, 0.9)
 
 fig,ax = plt.subplots()
 ax.set_ylabel('$y_t$')
@@ -965,17 +958,19 @@ path of output over time.
 ```{exercise-start}
 :label: geom_ex3
 ```
-
-Use the same initial values:
+Continue from [exercise 1](#geom_ex1) with the following values
 
 ```{code-cell} ipython3
-b = 2/3
-y_init = 0
-T = 100
+values = [0.3, 0.4]
 ```
 
-Compare the effects on $y$ of increasing investment $i$ from $0.3$ to $0.4$ and government spending $g$ from $0.3$ to $0.4$.
+First, plot the time paths of $y_t$ using the same initial valuesm but with $i$ 
+taking the values mentioned above.
 
+Next, plot the time paths of $y_t$ with the same initial values but let $g$ take
+the values abovementioned.
+
+Are the effects on $y_t$ of increasing $i$ and $g$ in these plots the same?
 ```{exercise-end}
 ```
 
@@ -994,7 +989,6 @@ fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(6, 10))
 fig.subplots_adjust(hspace=0.3)
 
 x = np.arange(0, T+1)
-values = [0.3, 0.4]
 
 for i in values:
     y = calculate_y(i, b, g_0, T, y_init)
