@@ -142,7 +142,7 @@ column vectors.
 The set of all $n$-vectors is denoted by $\mathbb R^n$.
 
 ```{prf:example}
-:label: ex_dim
+:label: le_ex_dim
 
 * $\mathbb R^2$ is the plane --- the set of pairs $(x_1, x_2)$.
 * $\mathbb R^3$ is 3 dimensional space --- the set of vectors $(x_1, x_2, x_3)$.
@@ -188,7 +188,7 @@ multiplication, which we now describe.
 When we add two vectors, we add them element-by-element.
 
 ```{prf:example}
-:label: ex_add
+:label: le_ex_add
 
 $$
 \begin{bmatrix}
@@ -278,7 +278,7 @@ plt.show()
 Scalar multiplication is an operation that multiplies a vector $x$ with a scalar elementwise.
 
 ```{prf:example}
-:label: ex_mul
+:label: le_ex_mul
 
 $$
 -2
@@ -436,7 +436,7 @@ matrices.
 Scalar multiplication and addition are generalizations of the vector case:
 
 ```{prf:example}
-:label: ex_asm
+:label: le_ex_asm
 
 $$
 3
@@ -470,7 +470,7 @@ $$
 $$
 
 ```{prf:example}
-:label: ex_ma
+:label: le_ex_ma
 
 Consider this example of matrix addition,
 
@@ -531,7 +531,7 @@ If $A$ is $n \times k$ and $B$ is $j \times m$, then to multiply $A$ and $B$
 we require $k = j$, and the resulting matrix $A B$ is $n \times m$.
 
 ```{prf:example}
-:label: ex_2dmul
+:label: le_ex_2dmul
 
 Here's an example of a $2 \times 2$ matrix multiplied by a $2 \times 1$ vector.
 
@@ -856,7 +856,7 @@ In matrix form, the system {eq}`la_se` becomes
 ```
 
 ```{prf:example}
-:label: ex_gls
+:label: le_ex_gls
 For example, {eq}`n_eq_sys_la` has this form with 
 
 $$ 
