@@ -744,6 +744,7 @@ compute the matrix $A$.
 ```{solution-start} greek_square_ex_a
 :class: dropdown
 ```
+
 Here is one soluition.
 
 According to the quote, we can formulate 
@@ -757,14 +758,14 @@ $$ (eq:gs_ex1system)
 
 with $x_0 = \begin{bmatrix}  a_0 \cr b_0 \end{bmatrix} = \begin{bmatrix}  1 \cr 1 \end{bmatrix}$
 
-By {eq}`eq:gs_ex1system`, we can write matix $A$ as 
+By {eq}`eq:gs_ex1system`, we can write matrix $A$ as 
 
 $$
 A = \begin{bmatrix} 1 & 1 \cr 
                 2 & 1 \end{bmatrix}
 $$
 
-Then $x_{t+1} = A x_t$ with $t \in \{0, \dots, 5\}$
+Then $x_{t+1} = A x_t$ for $t \in \{0, \dots, 5\}$
 
 ```{code-cell} ipython3
 # Define the matrix A
