@@ -912,7 +912,7 @@ the infinite geometric series sum of income.
 :label: geom_ex2
 ```
 
-Continue from {ref}`geom_ex1`. 
+As an extension to {ref}`geom_ex1`. 
 
 Plot the time paths of $y_t$ with the same initial values but varying $b$ values:
 
