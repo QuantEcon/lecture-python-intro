@@ -740,7 +740,7 @@ the value of a lease of duration $T$ approaches the value of a
 perpetual lease.
 
 Now we consider two different views of what happens as $r$ and
-$g$ covary
+$g$ covary.
 
 ```{code-cell} ipython3
 ---
@@ -964,7 +964,7 @@ Continue from {ref}`geom_ex1` with the following values
 values = [0.3, 0.4]
 ```
 
-First, plot the time paths of $y_t$ using the same initial valuesm but with $i$ 
+First, plot the time paths of $y_t$ using the same initial values but with $i$ 
 taking the values mentioned above.
 
 Next, plot the time paths of $y_t$ with the same initial values but let $g$ take
