@@ -912,7 +912,7 @@ the infinite geometric series sum of income.
 :label: geom_ex2
 ```
 
-Continue from [exercise 1](#geom_ex1). 
+Continue from {ref}`geom_ex1`. 
 
 Plot the time paths of $y_t$ with the same initial values but varying $b$ values:
 
@@ -958,7 +958,7 @@ path of output over time.
 ```{exercise-start}
 :label: geom_ex3
 ```
-Continue from [exercise 1](#geom_ex1) with the following values
+Continue from {ref}`geom_ex1` with the following values
 
 ```{code-cell} ipython3
 values = [0.3, 0.4]
