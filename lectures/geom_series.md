@@ -882,7 +882,7 @@ T = 100
 ---
 mystnb:
   figure:
-    caption: "Path of aggregate output tver time"
+    caption: "Path of aggregate output over time"
     name: path_of_aggregate_output_over_time
 ---
 # Function that calculates a path of y
