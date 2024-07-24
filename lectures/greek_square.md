@@ -687,7 +687,7 @@ We find that the ratios converge to $\lambda_2$ in the first case and $\lambda_1
 :tags: [hide-input]
 
 # Plot the ratios for y_t / y_{t-1}
-fig, axs = plt.subplots(1, 2, figsize=(14, 6))
+fig, axs = plt.subplots(1, 2, figsize=(12, 6), dpi=500)
 
 # First subplot
 axs[0].plot(np.round(ratios_λ1, 6), 
