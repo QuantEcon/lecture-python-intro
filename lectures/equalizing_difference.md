@@ -451,7 +451,7 @@ This cost might include costs of hiring workers, office space, and lawyers.
 What we used to call the college, high school wage gap $\phi$ now becomes the ratio
 of a successful entrepreneur's earnings to a worker's earnings.  
 
-In this exercise, update `create_edm_π` and `compute_gap` to formulate our entrepreneur-worker model with parameters below
+In this exercise, update `create_edm` and `compute_gap` to formulate our entrepreneur-worker model with parameters below
 
 ```{code-cell} ipython3
 R=1.05,   # gross rate of return
