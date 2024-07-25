@@ -41,9 +41,8 @@ We provide a standard form of a linear program and methods to transform other fo
 We tell how to solve a linear programming problem using [SciPy](https://scipy.org/) and [Google OR-Tools](https://developers.google.com/optimization).
 
 ```{seealso}
-In a {doc}`lecture <opt_transport>` of our another lecture series,
-we will employ the linear programming method to solve the 
-[optimal transport problem](https://en.wikipedia.org/wiki/Transportation_theory_(mathematics)).
+In another lecture, we will employ the linear programming method to solve the 
+{doc}`optimal transport problem <intro:opt_transport>`.
 ```
 
 Let's start with some standard imports.
