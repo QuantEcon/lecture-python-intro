@@ -653,7 +653,7 @@ The US government stood ready to convert a dollar into a specified amount of gol
 
 Immediately after World War I, Hungary, Austria, Poland, and Germany were not on the gold standard. 
 
-Their currencies were “fiat” or "unbacked", meaning that they were not backed by credible government promises to convert them into gold or silver coins on demand.
+Their currencies were "fiat" or "unbacked", meaning that they were not backed by credible government promises to convert them into gold or silver coins on demand.
 
 The governments printed new paper notes to pay for goods and services. 
 
@@ -669,6 +669,6 @@ Chapter 3 of {cite}`sargent2002big`  described deliberate changes in policy that
 
 Each government stopped printing money to pay for goods and services once again and made its currency convertible to the US dollar or the UK pound.
 
-The story told in {cite}`sargent2002big` is grounded in a ``monetarist theory of the price level`` described in {doc}`cagan_ree` and {doc}`cagan_adaptive`.
+The story told in {cite}`sargent2002big` is grounded in a *monetarist theory of the price level* described in {doc}`cagan_ree` and {doc}`cagan_adaptive`.
 
 Those lectures discuss theories about what owners of those rapidly depreciating currencies were thinking and how their beliefs shaped responses of inflation to government monetary and fiscal policies.

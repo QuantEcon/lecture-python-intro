@@ -35,7 +35,7 @@ Some of those theories about monetary and fiscal policies still interest us toda
 
 * a **real bills** theory of the effects of government open market operations in which the government *backs* new  issues of paper money with government holdings of valuable real property or financial assets that holders of money can purchase from the government in exchange for their money.
 
-    * the Revolutionaries learned about this theory from Adam Smith's 1776 book The Wealth of Nations
+    * The Revolutionaries learned about this theory from Adam Smith's 1776 book The Wealth of Nations
      {cite}`smith2010wealth` and other contemporary sources
 
     * It shaped how the Revolutionaries issued a paper money called **assignats** from 1789 to 1791 
@@ -50,7 +50,7 @@ Some of those theories about monetary and fiscal policies still interest us toda
 
 * a **legal restrictions**  or **financial repression** theory of the demand for real balances 
  
-    * the Twelve Members comprising the Committee of Public Safety who adminstered the Terror from June 1793 to July 1794 used this theory to shape their monetary policy 
+    * The Twelve Members comprising the Committee of Public Safety who adminstered the Terror from June 1793 to July 1794 used this theory to shape their monetary policy 
 
 We use matplotlib to replicate several of the graphs with which  {cite}`sargent_velde1995` portrayed outcomes of these experiments 
 
@@ -79,7 +79,7 @@ assignat_url = f'{base_url}assignat.xlsx'
 
 
 
-We'll start by using matplotlib to construct several  graphs that will provide important historical context.
+We'll start by using `matplotlib` to construct several  graphs that will provide important historical context.
 
 These graphs are versions of ones that appear in {cite}`sargent_velde1995`.
 
@@ -132,7 +132,7 @@ During the 18th century, Britain and France fought four large wars.
 
 Britain won the first three wars and lost the fourth.
 
-Each  of those wars  produced surges in both countries government expenditures that each country somehow had to finance.
+Each  of those wars  produced surges in both countries' government expenditures that each country somehow had to finance.
 
 Figure {numref}`fr_fig4` shows surges in military expenditures in France (in blue) and Great Britain.
 during those four wars.  
@@ -179,14 +179,14 @@ plt.show()
 ```
 
 
-Figures  {numref}`fr_fig2` and  {numref}`fr_fig3` summarize British and French government   fiscal policies  during the century before the start the French Revolution in 1789.
+Figures  {numref}`fr_fig2` and  {numref}`fr_fig3` summarize British and French government   fiscal policies  during the century before the start of the French Revolution in 1789.
 
 
 Before 1789, progressive forces in France  admired how  Britain had financed its government expenditures and wanted to redesign French fiscal arrangements to make them more like Britain's.
 
 Figure  {numref}`fr_fig2` shows government expenditures and how it was distributed among expenditures for 
 
-   * civil (non military) activities
+   * civil (non-military) activities
    * debt service, i.e., interest payments 
    * military expenditures (the yellow line minus the red line) 
 
@@ -209,7 +209,7 @@ Figure {numref}`fr_fig2` indicates that
       * thus, after a war, the government does *not* raise taxes by enough to pay off its debt
       * instead, it just rolls over whatever debt it inherits, raising taxes by just enough to service the interest payments on that debt
 
-Eighteenth century British fiscal policy portrayed Figure {numref}`fr_fig2` thus looks very much like a text-book example of a *tax-smoothing* model like Robert Barro's {cite}`Barro1979`.  
+Eighteenth-century British fiscal policy portrayed Figure {numref}`fr_fig2` thus looks very much like a text-book example of a *tax-smoothing* model like Robert Barro's {cite}`Barro1979`.  
 
 A striking feature of the graph is what we'll lagel a *law of gravity* between tax collections and government expenditures. 
 
@@ -320,7 +320,7 @@ Powerful contending interests had prevented from the government from closing the
 total expenditures and its tax revenues by either
 
  * raising taxes, or
- * lowering government's non debt service (i.e., non-interest)   expenditures, or 
+ * lowering government's non-debt service (i.e., non-interest)   expenditures, or 
  * lowering debt service (i.e., interest) costs by rescheduling, i.e., defaulting on some  debts
 
 Precedents and prevailing French arrangements had empowered three constituencies to block adjustments to components of the government budget constraint that they cared especially about
@@ -347,7 +347,7 @@ would bring sustained budget balance.
 
 In 1789, the Revolutionaries quickly reorganized the Estates General  into a National Assembly.
 
-A first piece of business was to address the fiscal crisis, the situation that had motivated the King to convence the Estates General.
+A first piece of business was to address the fiscal crisis, the situation that had motivated the King to convene the Estates General.
 
 The Revolutionaries were not socialists or communists.
 
@@ -371,7 +371,7 @@ The monetary theory underlying this plan had been set out by Adam Smith in his a
 
 Adam Smith defined a **real bill** as a paper money note that is backed by a claims on a real asset like productive capital or inventories. 
 
-The National Assembly put togethere an ingenious institutional  arrangement to implement this plan.
+The National Assembly put together an ingenious institutional  arrangement to implement this plan.
 
 In response to a motion by Catholic Bishop Talleyrand (an atheist),
 the National Assembly confiscated and nationalized  Church lands. 
@@ -385,7 +385,7 @@ Their plan involved issuing paper notes called ''assignats'' that entitled beare
 
 These paper notes would be ''as good as silver coins'' in the sense that both were acceptable means of payment in exchange for those (formerly) church lands.  
 
-Finance Minister Necker and the Constituants of the National Assembly thus  planned
+Finance Minister Necker and the Constituents of the National Assembly thus  planned
 to solve the privatization problem *and* the debt problem simultaneously
 by creating a new currency. 
 
@@ -399,7 +399,7 @@ Records of  debates show
 how members of the Assembly marshaled theory and evidence to assess the likely
 effects of their innovation. 
 
-  * Members of the Natioanl Assembly quoted David Hume and Adam Smith
+  * Members of the National Assembly quoted David Hume and Adam Smith
   * They  cited John Law's System of 1720 and the American experiences with paper money fifteen years
 earlier as examples of how paper money schemes can go awry
   * Knowing pitfalls, they set out to avoid them
@@ -418,8 +418,8 @@ They wanted to honor government debts -- interests of French government creditor
 But they set out to remake  the French tax code and the administrative machinery for collecting taxes.
 
   * they abolished many taxes
-  * they abolished the Ancient Regimes scheme for ``tax farming``
-      * tax farming meant that the government had privatized tax collection by hiring private citizes -- so called  tax farmers to collect taxes, while retaining a fraction of them as payment for their services
+  * they abolished the Ancient Regimes scheme for *tax farming*
+      * tax farming meant that the government had privatized tax collection by hiring private citizens -- so-called  tax farmers to collect taxes, while retaining a fraction of them as payment for their services
       * the great chemist Lavoisier was also a tax farmer, one of the reasons that the Committee for Public Safety sent him to the guillotine in 1794
 
 As a consequence of these tax reforms, government tax revenues declined
@@ -503,7 +503,7 @@ plt.tight_layout()
 plt.show()
 ```
 
-To cover the disrepancies between government expenditures and tax revenues revealed in {numref}`fr_fig11`, the French revolutionaries  printed paper money and spent it.  
+To cover the discrepancies between government expenditures and tax revenues revealed in {numref}`fr_fig11`, the French revolutionaries  printed paper money and spent it.  
 
 The next figure shows that by printing money, they were able to finance substantial purchases 
 of goods and services, including military goods and soldiers' pay.
@@ -556,11 +556,11 @@ where
 
 Notice the 1793-1794  surge in revenues raised by printing money. 
 
-* this reflects extraordinary measures that the Committee for Public Safety adopted to force citizens to accept paper money, or else.
+* This reflects extraordinary measures that the Committee for Public Safety adopted to force citizens to accept paper money, or else.
 
 Also note the abrupt fall off in revenues raised by 1797 and the absence of further observations after 1797. 
 
-* this reflects the end using the printing press to raise revenues.
+* This reflects the end of using the printing press to raise revenues.
 
 What French paper money  entitled its holders to changed over time in interesting ways.
 
@@ -611,13 +611,13 @@ plt.show()
 ```
 
 We have partioned  {numref}`fr_fig9` that shows the log of the price level and   {numref}`fr_fig8`
-below  that plots real balances $\frac{M_t}{p_t}$ into three periods that correspond to  different monetary  experiments or ``regimes``. 
+below  that plots real balances $\frac{M_t}{p_t}$ into three periods that correspond to  different monetary  experiments or *regimes*. 
 
 The first period ends in the late summer of 1793, and is characterized
 by growing real balances and moderate inflation. 
 
 The second period begins and ends
-with the Terror. It is marked by high real balances, around 2,500 millions, and
+with the Terror. It is marked by high real balances, around 2,500 million, and
 roughly stable prices. The fall of Robespierre in late July 1794 begins the third
 of our episodes, in which real balances decline and prices rise rapidly.
 
@@ -770,7 +770,7 @@ third period has the inverse relationship familiar to us now from twentieth-cent
 hyperinflations.
 
  To bring this out, we'll use linear regressions to draw straight lines that compress the 
- inflation-real balance relationship for our three sub periods. 
+ inflation-real balance relationship for our three sub-periods. 
 
  Before we do that, we'll drop some of the early observations during the terror period 
  to obtain the following graph.
@@ -991,6 +991,6 @@ In 1799, Napoleon Bonaparte became first consul and for the next 15 years used r
 
 This lecture  sets the stage for studying  theories of inflation and the  government monetary and fiscal policies that bring it about.
 
-A  ``monetarist theory of the price level`` is described in this quantecon lecture {doc}`cagan_ree`.
+A  *monetarist theory of the price level* is described in this quantecon lecture {doc}`cagan_ree`.
 
 That lecture sets the stage for these quantecon lectures {doc}`money_inflation` and {doc}`unpleasant`.  
