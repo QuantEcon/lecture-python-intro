@@ -97,7 +97,7 @@ $\widetilde R \check B_{-1}$ is a *real* quantity, being measured in time $0$ go
 
 ### Open market operations
 
-At time $0$, government can rearrange its portolio of debts with subject to the following constraint (on open-market operations):
+At time $0$, government can rearrange its portfolio of debts subject to the following constraint (on open-market operations):
 
 $$
 \widetilde R B_{-1} + \frac{m_0}{p_0} = \widetilde R \check B_{-1} + \frac{\check m_0}{p_0}
@@ -152,7 +152,7 @@ running monetary and fiscal policies.
 
 Here, by **fiscal policy** we mean the collection of actions that determine a sequence of net-of-interest government deficits $\{g_t\}_{t=0}^\infty$ that must be financed by issuing to the public  either money or interest bearing bonds.
 
-By **monetary policy** or **debt-management policy**, we  mean the collection of actions that determine how the government divides its  portolio of debts to the public  between interest-bearing parts (government bonds) and non-interest-bearing parts (money).
+By **monetary policy** or **debt-management policy**, we  mean the collection of actions that determine how the government divides its  portfolio of debts to the public  between interest-bearing parts (government bonds) and non-interest-bearing parts (money).
 
 By an **open market operation**, we mean a government monetary policy action in which the government
 (or its delegate, say, a central bank) either buys  government bonds from the public for newly issued money, or sells  bonds to the public and withdraws the money it receives from public circulation.  
@@ -315,7 +315,7 @@ These parameter settings mean that just before time $0$, the "central bank" sell
 
 That leaves the public with less currency but more government interest-bearing bonds.
 
-Since the public has less currency (it's supply has diminished) it is plausible to anticipate that the price level at time $0$ will be driven downward.
+Since the public has less currency (its supply has diminished) it is plausible to anticipate that the price level at time $0$ will be driven downward.
 
 But that is not the end of the story, because this **open market operation** at time $0$ has consequences for future settings of $m_{t+1}$ and the gross-of-interest government deficit $\bar g_t$. 
 
@@ -418,7 +418,7 @@ plt.xlabel('$m_0$')
 plt.show()
 ```
 
-Now let's write and implement code that let's us experiment with the time $0$ open market operation described earlier.
+Now let's write and implement code that lets us experiment with the time $0$ open market operation described earlier.
 
 ```{code-cell} ipython3
 def simulate(m0, model, length=15, p0_guess=1):
