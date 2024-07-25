@@ -141,10 +141,12 @@ column vectors.
 
 The set of all $n$-vectors is denoted by $\mathbb R^n$.
 
-For example, 
+```{prf:example}
+:label: le_ex_dim
 
 * $\mathbb R^2$ is the plane --- the set of pairs $(x_1, x_2)$.
 * $\mathbb R^3$ is 3 dimensional space --- the set of vectors $(x_1, x_2, x_3)$.
+```
 
 Often vectors are represented visually as arrows from the origin to the point.
 
@@ -185,7 +187,8 @@ multiplication, which we now describe.
 
 When we add two vectors, we add them element-by-element.
 
-For example,
+```{prf:example}
+:label: le_ex_add
 
 $$
 \begin{bmatrix}
@@ -208,6 +211,7 @@ $$
     1
 \end{bmatrix}.
 $$
+```
 
 In general,
 
@@ -273,7 +277,8 @@ plt.show()
 
 Scalar multiplication is an operation that multiplies a vector $x$ with a scalar elementwise.
 
-For example,
+```{prf:example}
+:label: le_ex_mul
 
 $$
 -2
@@ -292,6 +297,7 @@ $$
     14
 \end{bmatrix}.
 $$
+```
 
 More generally, it takes a number $\gamma$ and a vector $x$ and produces
 
@@ -429,7 +435,8 @@ matrices.
 
 Scalar multiplication and addition are generalizations of the vector case:
 
-Here is an example of scalar multiplication
+```{prf:example}
+:label: le_ex_asm
 
 $$
 3
@@ -443,6 +450,7 @@ $$
     0 & 15
 \end{bmatrix}.
 $$
+```
 
 In general for a number $\gamma$ and any matrix $A$,
 
@@ -460,6 +468,9 @@ $$
     \gamma a_{n1} & \cdots & \gamma a_{nk}
 \end{bmatrix}.
 $$
+
+```{prf:example}
+:label: le_ex_ma
 
 Consider this example of matrix addition,
 
@@ -479,6 +490,7 @@ $$
     7 & 12
 \end{bmatrix}.
 $$
+```
 
 In general,
 
@@ -518,6 +530,9 @@ $j$-th column of $B$.
 If $A$ is $n \times k$ and $B$ is $j \times m$, then to multiply $A$ and $B$
 we require $k = j$, and the resulting matrix $A B$ is $n \times m$.
 
+```{prf:example}
+:label: le_ex_2dmul
+
 Here's an example of a $2 \times 2$ matrix multiplied by a $2 \times 1$ vector.
 
 $$
@@ -536,6 +551,7 @@ Ax =
     a_{21}x_1 + a_{22}x_2
 \end{bmatrix}
 $$
+```
 
 As an important special case, consider multiplying $n \times k$
 matrix $A$ and $k \times 1$ column vector $x$.
@@ -839,6 +855,8 @@ In matrix form, the system {eq}`la_se` becomes
     \end{bmatrix}.
 ```
 
+```{prf:example}
+:label: le_ex_gls
 For example, {eq}`n_eq_sys_la` has this form with 
 
 $$ 
@@ -848,7 +866,7 @@ $$
     \quad \text{and} \quad
     x = p.
 $$
-
+```
 
 When considering problems such as {eq}`la_gf`, we need to ask at least some of
 the following questions
