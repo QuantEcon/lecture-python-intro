@@ -49,7 +49,10 @@ We will use the following imports:
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib import cm
-plt.rcParams["figure.figsize"] = (11, 5)  # Set default figure size
+
+# Custom figsize required for this lecture
+plt.rcParams["figure.figsize"] = (11, 5)
+
 # Set decimal printing to 3 decimal places
 np.set_printoptions(precision=3, suppress=True)
 ```
