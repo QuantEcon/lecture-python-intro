@@ -50,7 +50,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib import cm
 
-# Custom figsize required for this lecture
+# Custom figsize for this lecture
 plt.rcParams["figure.figsize"] = (11, 5)
 
 # Set decimal printing to 3 decimal places
