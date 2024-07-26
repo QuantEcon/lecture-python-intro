@@ -96,6 +96,8 @@ $$
 
 The following graph illustrates the firm's constraints and iso-revenue lines.
 
+Iso-revenue lines show all the combinations of materials and labor that produce the same revenue.
+
 ```{code-cell} ipython3
 ---
 tags: [hide-input]
@@ -340,7 +342,7 @@ OR-Tools tells us that  the best investment strategy is:
 
 3. At the beginning of the third year, the bank balance should be $ \$75,072.245 $.
 
-4. At the end of the third year, the mutual fund will get payouts from the annuity and corporate bond and repay its loan from the bank. At the end  it will own $ \$141018.24 $, so that it's total net  rate of return over the three periods is $ 41.02\%$.
+4. At the end of the third year, the mutual fund will get payouts from the annuity and corporate bond and repay its loan from the bank. At the end  it will own $ \$141,018.24 $, so that it's total net  rate of return over the three periods is $ 41.02\%$.
 
 
 
@@ -547,14 +549,14 @@ c_ex2 = np.array([1.30*3, 0, 0, 1.06, 1.30])
 A_ex2 = np.array([[1,  1,  0,  0,  0],
                   [1, -rate, 1, 0, 1],
                   [1, 0, -rate, 1, 0]])
-b_ex2 = np.array([100000, 0, 0])
+b_ex2 = np.array([100_000, 0, 0])
 
 # Bounds on decision variables
 bounds_ex2 = [(  0,    None),
-              (-20000, None),
-              (-20000, None),
-              (-20000, None),
-              (  0,   50000)]
+              (-20_000, None),
+              (-20_000, None),
+              (-20_000, None),
+              (  0,   50_000)]
 ```
 
 Let's solve the problem and check the status using `success` attribute.
@@ -586,7 +588,7 @@ SciPy tells us that  the best investment strategy is:
 
 3. At the beginning of the third year, the mutual fund should borrow $ \$20,000$ from the bank and invest in the annuity.
 
-4. At the end of the third year, the mutual fund will get payouts from the annuity and corporate bond and repay its loan from the bank. At the end  it will own $ \$141018.24 $, so that it's total net  rate of return over the three periods is $ 41.02\% $.
+4. At the end of the third year, the mutual fund will get payouts from the annuity and corporate bond and repay its loan from the bank. At the end  it will own $ \$141,018.24 $, so that it's total net  rate of return over the three periods is $ 41.02\% $.
 
 
 
