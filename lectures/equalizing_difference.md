@@ -429,7 +429,7 @@ We find that raising the gross interest rate $R$ increases the initial college w
 
 ## Exercises
 
-In the following exercises, we extend our previous model to a model of entrepreneurs versus workers. 
+In the following exercises, we extend our previous model to include a choice between being an entrepreneur or a worker.
 
 ```{exercise-start}
 :label: edm_ex1
