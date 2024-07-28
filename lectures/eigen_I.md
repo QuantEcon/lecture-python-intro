@@ -88,7 +88,8 @@ itself.
 This means $A$ is an $n \times n$ matrix that maps (or "transforms") a vector
 $x$ in $\mathbb{R}^n$ to a new vector $y=Ax$ also in $\mathbb{R}^n$.
 
-Here's one example:
+```{prf:example}
+:label: eigen1_ex_sq
 
 $$
     \begin{bmatrix}
@@ -116,6 +117,7 @@ $$
 
 transforms the vector $x = \begin{bmatrix} 1 \\ 3 \end{bmatrix}$ to the vector
 $y = \begin{bmatrix} 5 \\ 2 \end{bmatrix}$.
+```
 
 Let's visualize this using Python:
 
