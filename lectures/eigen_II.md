@@ -64,6 +64,9 @@ An $n \times n$ nonnegative matrix $A$ is called irreducible if $A + A^2 + A^3 +
 
 In other words, for each $i,j$ with $1 \leq i, j \leq n$, there exists a $k \geq 0$ such that $a^{k}_{ij} > 0$.
 
+```{prf:example}
+:label: eigen2_ex_irr
+
 Here are some examples to illustrate this further:
 
 $$
@@ -94,6 +97,7 @@ $$
 
 $C$ is not irreducible since $C^k = C$ for all $k \geq 0$ and thus
    $c^{k}_{12},c^{k}_{21} = 0$ for all $k \geq 0$.
+```
 
 ### Left eigenvectors
 
@@ -188,7 +192,7 @@ Let's build our intuition for the theorem using a simple example we have seen [b
 
 Now let's consider examples for each case.
 
-#### Example: Irreducible matrix
+#### Example: irreducible matrix
 
 Consider the following irreducible matrix $A$:
 
@@ -223,6 +227,9 @@ Let $A$ be a square nonnegative matrix and let $A^k$ be the $k^{th}$ power of $A
 
 A matrix is called **primitive** if there exists a $k \in \mathbb{N}$ such that $A^k$ is everywhere positive.
 
+```{prf:example}
+:label: eigen2_ex_prim
+
 Recall the examples given in irreducible matrices:
 
 $$
@@ -244,6 +251,7 @@ B^2 = \begin{bmatrix} 1 & 0 \\
 $$
 
 $B$ is irreducible but not primitive since there are always zeros in either principal diagonal or secondary diagonal.
+```
 
 We can see that if a matrix is primitive, then it implies the matrix is irreducible but not vice versa.
 
