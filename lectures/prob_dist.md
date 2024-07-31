@@ -46,18 +46,22 @@ Let's start with discrete distributions.
 
 A discrete distribution is defined by a set of numbers $S = \{x_1, \ldots, x_n\}$ and a **probability mass function** (PMF) on $S$, which is a function $p$ from $S$ to $[0,1]$ with the property 
 
-$$ \sum_{i=1}^n p(x_i) = 1 $$
+$$ 
+\sum_{i=1}^n p(x_i) = 1 
+$$
 
 We say that a random variable $X$ **has distribution** $p$ if $X$ takes value $x_i$ with probability $p(x_i)$.
 
 That is,
 
-$$ \mathbb P\{X = x_i\} = p(x_i) \quad \text{for } i= 1, \ldots, n $$
+$$ 
+\mathbb P\{X = x_i\} = p(x_i) \quad \text{for } i= 1, \ldots, n 
+$$
 
 The **mean** or **expected value** of a random variable $X$ with distribution $p$ is 
 
 $$ 
-    \mathbb{E}[X] = \sum_{i=1}^n x_i p(x_i)
+\mathbb{E}[X] = \sum_{i=1}^n x_i p(x_i)
 $$
 
 Expectation is also called the *first moment* of the distribution.
@@ -67,7 +71,7 @@ We also refer to this number as the mean of the distribution (represented by) $p
 The **variance** of $X$ is defined as 
 
 $$ 
-    \mathbb{V}[X] = \sum_{i=1}^n (x_i - \mathbb{E}[X])^2 p(x_i)
+\mathbb{V}[X] = \sum_{i=1}^n (x_i - \mathbb{E}[X])^2 p(x_i)
 $$
 
 Variance is also called the *second central moment* of the distribution.
@@ -75,8 +79,8 @@ Variance is also called the *second central moment* of the distribution.
 The **cumulative distribution function** (CDF) of $X$ is defined by
 
 $$
-    F(x) = \mathbb{P}\{X \leq x\}
-         = \sum_{i=1}^n \mathbb 1\{x_i \leq x\} p(x_i)
+F(x) = \mathbb{P}\{X \leq x\}
+        = \sum_{i=1}^n \mathbb 1\{x_i \leq x\} p(x_i)
 $$
 
 Here $\mathbb 1\{ \textrm{statement} \} = 1$ if "statement" is true and zero otherwise.
@@ -115,7 +119,6 @@ u.pmf(1)
 u.pmf(2)
 ```
 
-
 Here's a plot of the probability mass function:
 
 ```{code-cell} ipython3
@@ -128,7 +131,6 @@ ax.set_xlabel('S')
 ax.set_ylabel('PMF')
 plt.show()
 ```
-
 
 Here's a plot of the CDF:
 
@@ -143,9 +145,7 @@ ax.set_ylabel('CDF')
 plt.show()
 ```
 
-
 The CDF jumps up by $p(x_i)$ at $x_i$.
-
 
 ```{exercise}
 :label: prob_ex1
@@ -179,7 +179,7 @@ We can import the Bernoulli distribution on $S = \{0,1\}$ from SciPy like so:
 
 ```{code-cell} ipython3
 θ = 0.4
-u = scipy.stats.bernoulli(p)
+u = scipy.stats.bernoulli(θ)
 ```
 
 Here's the mean and variance at $\theta=0.4$
@@ -201,7 +201,7 @@ u.pmf(1)
 Another useful (and more interesting) distribution is the **binomial distribution** on $S=\{0, \ldots, n\}$, which has PMF:
 
 $$ 
-    p(i) = \binom{n}{i} \theta^i (1-\theta)^{n-i}
+p(i) = \binom{n}{i} \theta^i (1-\theta)^{n-i}
 $$
 
 Again, $\theta \in [0,1]$ is a parameter.
@@ -299,7 +299,7 @@ We can see that the output graph is the same as the one above.
 The geometric distribution has infinite support $S = \{0, 1, 2, \ldots\}$ and its PMF is given by 
 
 $$
-    p(i) = (1 - \theta)^i \theta
+p(i) = (1 - \theta)^i \theta
 $$
 
 where $\lambda \in [0,1]$ is a parameter
@@ -338,7 +338,7 @@ plt.show()
 The Poisson distribution on $S = \{0, 1, \ldots\}$ with parameter $\lambda > 0$ has PMF
 
 $$
-    p(i) = \frac{\lambda^i}{i!} e^{-\lambda}
+p(i) = \frac{\lambda^i}{i!} e^{-\lambda}
 $$
 
 The interpretation of $p(i)$ is: the probability of $i$ events in a fixed time interval, where the events occur independently at a constant rate $\lambda$.
@@ -376,12 +376,14 @@ plt.show()
 
 A continuous distribution is represented by a **probability density function**, which is a function $p$ over $\mathbb R$ (the set of all real numbers) such that $p(x) \geq 0$ for all $x$ and
 
-$$ \int_{-\infty}^\infty p(x) dx = 1 $$
+$$ 
+\int_{-\infty}^\infty p(x) dx = 1 
+$$
 
 We say that random variable $X$ has distribution $p$ if
 
 $$
-    \mathbb P\{a < X < b\} = \int_a^b p(x) dx
+\mathbb P\{a < X < b\} = \int_a^b p(x) dx
 $$
 
 for all $a \leq b$.
@@ -391,14 +393,14 @@ The definition of the mean and variance of a random variable $X$ with distributi
 For example, the mean of $X$ is
 
 $$
-    \mathbb{E}[X] = \int_{-\infty}^\infty x p(x) dx
+\mathbb{E}[X] = \int_{-\infty}^\infty x p(x) dx
 $$
 
 The **cumulative distribution function** (CDF) of $X$ is defined by
 
 $$
-    F(x) = \mathbb P\{X \leq x\}
-         = \int_{-\infty}^x p(x) dx
+F(x) = \mathbb P\{X \leq x\}
+        = \int_{-\infty}^x p(x) dx
 $$
 
 
@@ -407,8 +409,8 @@ $$
 Perhaps the most famous distribution is the **normal distribution**, which has density
 
 $$
-    p(x) = \frac{1}{\sqrt{2\pi}\sigma}
-              \exp\left(-\frac{(x-\mu)^2}{2\sigma^2}\right)
+p(x) = \frac{1}{\sqrt{2\pi}\sigma}
+            \exp\left(-\frac{(x-\mu)^2}{2\sigma^2}\right)
 $$
 
 This distribution has two parameters, $\mu \in \mathbb R$ and $\sigma \in (0, \infty)$.  
@@ -468,8 +470,8 @@ plt.show()
 The **lognormal distribution** is a distribution on $\left(0, \infty\right)$ with density
 
 $$
-    p(x) = \frac{1}{\sigma x \sqrt{2\pi}}
-        \exp \left(- \frac{\left(\log x - \mu\right)^2}{2 \sigma^2} \right)
+p(x) = \frac{1}{\sigma x \sqrt{2\pi}}
+    \exp \left(- \frac{\left(\log x - \mu\right)^2}{2 \sigma^2} \right)
 $$
 
 This distribution has two parameters, $\mu$ and $\sigma$.
@@ -530,8 +532,8 @@ plt.show()
 The **exponential distribution** is a distribution supported on $\left(0, \infty\right)$ with density
 
 $$
-    p(x) = \lambda \exp \left( - \lambda x \right)
-    \qquad (x > 0)
+p(x) = \lambda \exp \left( - \lambda x \right)
+\qquad (x > 0)
 $$
 
 This distribution has one parameter $\lambda$.
@@ -586,8 +588,8 @@ plt.show()
 The **beta distribution** is a distribution on $(0, 1)$ with density
 
 $$
-    p(x) = \frac{\Gamma(\alpha + \beta)}{\Gamma(\alpha) \Gamma(\beta)}
-        x^{\alpha - 1} (1 - x)^{\beta - 1}
+p(x) = \frac{\Gamma(\alpha + \beta)}{\Gamma(\alpha) \Gamma(\beta)}
+    x^{\alpha - 1} (1 - x)^{\beta - 1}
 $$
 
 where $\Gamma$ is the [gamma function](https://en.wikipedia.org/wiki/Gamma_function).
@@ -648,8 +650,8 @@ plt.show()
 The **gamma distribution** is a distribution on $\left(0, \infty\right)$ with density
 
 $$
-    p(x) = \frac{\beta^\alpha}{\Gamma(\alpha)}
-        x^{\alpha - 1} \exp(-\beta x)
+p(x) = \frac{\beta^\alpha}{\Gamma(\alpha)}
+    x^{\alpha - 1} \exp(-\beta x)
 $$
 
 This distribution has two parameters, $\alpha > 0$ and $\beta > 0$.
@@ -745,13 +747,13 @@ Suppose we have an observed distribution with values $\{x_1, \ldots, x_n\}$
 The **sample mean** of this distribution is defined as
 
 $$
-    \bar x = \frac{1}{n} \sum_{i=1}^n x_i
+\bar x = \frac{1}{n} \sum_{i=1}^n x_i
 $$
 
 The **sample variance** is defined as 
 
 $$
-    \frac{1}{n} \sum_{i=1}^n (x_i - \bar x)^2
+\frac{1}{n} \sum_{i=1}^n (x_i - \bar x)^2
 $$
 
 For the income distribution given above, we can calculate these numbers via
