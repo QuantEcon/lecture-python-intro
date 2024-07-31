@@ -162,33 +162,33 @@ Check that your answers agree with `u.mean()` and `u.var()`.
 Another useful distribution is the Bernoulli distribution on $S = \{0,1\}$, which has PMF:
 
 $$
-p(x_i)=
-\begin{cases}
-p & \text{if $x_i = 1$}\\
-1-p & \text{if $x_i = 0$}
-\end{cases}
+p(i) = \theta^{i-1} (1 - \theta)^i
 $$
 
-Here $x_i \in S$ is the outcome of the random variable.
+Here $\theta \in [0,1]$ is a parameter.
+
+We can think of this distribution as modeling probabilities for a random trial with success probability $\theta$.
+
+* $p(1) = \theta$ means that the trial succeeds (takes value 1) with probability $\theta$
+* $p(0) = 1 - \theta$ means that the trial fails (takes value 0) with
+  probability $1-\theta$
+
+The formula for the mean is $p$, and the formula for the variance is $p(1-p)$.
 
 We can import the Bernoulli distribution on $S = \{0,1\}$ from SciPy like so:
 
 ```{code-cell} ipython3
-p = 0.4 
+θ = 0.4
 u = scipy.stats.bernoulli(p)
 ```
 
-
-Here's the mean and variance:
+Here's the mean and variance at $\theta=0.4$
 
 ```{code-cell} ipython3
 u.mean(), u.var()
 ```
 
-The formula for the mean is $p$, and the formula for the variance is $p(1-p)$.
-
-
-Now let's evaluate the PMF:
+Now let's evaluate the PMF
 
 ```{code-cell} ipython3
 u.pmf(0)
@@ -204,13 +204,15 @@ $$
     p(i) = \binom{n}{i} \theta^i (1-\theta)^{n-i}
 $$
 
-Here $\theta \in [0,1]$ is a parameter.
+Again, $\theta \in [0,1]$ is a parameter.
 
 The interpretation of $p(i)$ is: the probability of $i$ successes in $n$ independent trials with success probability $\theta$.
 
 For example, if $\theta=0.5$, then $p(i)$ is the probability of $i$ heads in $n$ flips of a fair coin.
 
-The mean and variance are:
+The formula for the mean is $n \theta$ and the formula for the variance is $n \theta (1-\theta)$.
+
+Let's investigate an example
 
 ```{code-cell} ipython3
 n = 10
@@ -218,11 +220,18 @@ n = 10
 u = scipy.stats.binom(n, θ)
 ```
 
+According to our formulas, the mean and variance are
+
+```{code-cell} ipython3
+n * θ,  n *  θ * (1 - θ)  
+```
+
+Let's see if SciPy gives us the same results:
+
 ```{code-cell} ipython3
 u.mean(), u.var()
 ```
 
-The formula for the mean is $n \theta$ and the formula for the variance is $n \theta (1-\theta)$.
 
 Here's the PMF:
 
@@ -285,24 +294,64 @@ We can see that the output graph is the same as the one above.
 ```{solution-end}
 ```
 
+#### Geometric distribution
+
+The geometric distribution has infinite support $S = \{0, 1, 2, \ldots\}$ and its PMF is given by 
+
+$$
+    p(i) = (1 - \theta)^i \theta
+$$
+
+where $\lambda \in [0,1]$ is a parameter
+
+To understand the distribution, think of repeated independent random trials, each with success probability $\theta$.
+
+The interpretation of $p(i)$ is: the probability there are $i$ failures before the first success occurs.
+
+It can be shown that the mean of the distribution is $1/\theta$ and the variance is $(1-\theta)/\theta$.
+
+Here's an example.
+
+```{code-cell} ipython3
+θ = 0.1
+u = scipy.stats.geom(θ)
+u.mean(), u.var()
+```
+
+Here's part of the PMF:
+
+```{code-cell} ipython3
+fig, ax = plt.subplots()
+n = 20
+S = np.arange(n)
+ax.plot(S, u.pmf(S), linestyle='', marker='o', alpha=0.8, ms=4)
+ax.vlines(S, 0, u.pmf(S), lw=0.2)
+ax.set_xticks(S)
+ax.set_xlabel('S')
+ax.set_ylabel('PMF')
+plt.show()
+```
+
+
 #### Poisson distribution
 
-Poisson distribution on $S = \{0, 1, \ldots\}$ with parameter $\lambda > 0$ has PMF
+The Poisson distribution on $S = \{0, 1, \ldots\}$ with parameter $\lambda > 0$ has PMF
 
 $$
     p(i) = \frac{\lambda^i}{i!} e^{-\lambda}
 $$
 
-The interpretation of $p(i)$ is: the probability of $i$ events in a fixed time interval, where the events occur at a constant rate $\lambda$ and independently of each other.
+The interpretation of $p(i)$ is: the probability of $i$ events in a fixed time interval, where the events occur independently at a constant rate $\lambda$.
 
-The mean and variance are:
+It can be shown that the mean is $\lambda$ and the variance is also $\lambda$.
+
+Here's an example.
+
 ```{code-cell} ipython3
 λ = 2
 u = scipy.stats.poisson(λ)
 u.mean(), u.var()
 ```
-    
-The expectation of the Poisson distribution is $\lambda$ and the variance is also $\lambda$.
 
 Here's the PMF:
 
@@ -325,7 +374,7 @@ plt.show()
 ### Continuous distributions
 
 
-Continuous distributions are represented by a **probability density function**, which is a function $p$ over $\mathbb R$ (the set of all real numbers) such that $p(x) \geq 0$ for all $x$ and
+A continuous distribution is represented by a **probability density function**, which is a function $p$ over $\mathbb R$ (the set of all real numbers) such that $p(x) \geq 0$ for all $x$ and
 
 $$ \int_{-\infty}^\infty p(x) dx = 1 $$
 
@@ -362,11 +411,11 @@ $$
               \exp\left(-\frac{(x-\mu)^2}{2\sigma^2}\right)
 $$
 
-This distribution has two parameters, $\mu$ and $\sigma$.  
+This distribution has two parameters, $\mu \in \mathbb R$ and $\sigma \in (0, \infty)$.  
 
-It can be shown that, for this distribution, the mean is $\mu$ and the variance is $\sigma^2$.
+Using calculus, it can be shown that, for this distribution, the mean is $\mu$ and the variance is $\sigma^2$.
 
-We can obtain the moments, PDF and CDF of the normal density as follows:
+We can obtain the moments, PDF and CDF of the normal density via SciPy as follows:
 
 ```{code-cell} ipython3
 μ, σ = 0.0, 1.0
@@ -427,9 +476,10 @@ This distribution has two parameters, $\mu$ and $\sigma$.
 
 It can be shown that, for this distribution, the mean is $\exp\left(\mu + \sigma^2/2\right)$ and the variance is $\left[\exp\left(\sigma^2\right) - 1\right] \exp\left(2\mu + \sigma^2\right)$.
 
-It has a nice interpretation: if $X$ is lognormally distributed, then $\log X$ is normally distributed.
+It can be proved that 
 
-It is often used to model variables that are "multiplicative" in nature, such as income or asset prices.
+* if $X$ is lognormally distributed, then $\log X$ is normally distributed, and
+* if $X$ is normally distributed, then $\exp X$ is lognormally distributed.
 
 We can obtain the moments, PDF, and CDF of the lognormal density as follows:
 
@@ -477,15 +527,16 @@ plt.show()
 
 #### Exponential distribution
 
-The **exponential distribution** is a distribution on $\left(0, \infty\right)$ with density
+The **exponential distribution** is a distribution supported on $\left(0, \infty\right)$ with density
 
 $$
     p(x) = \lambda \exp \left( - \lambda x \right)
+    \qquad (x > 0)
 $$
 
-This distribution has one parameter, $\lambda$.
+This distribution has one parameter $\lambda$.
 
-It is related to the Poisson distribution as it describes the distribution of the length of the time interval between two consecutive events in a Poisson process.
+The exponential distribution can be thought of as the continuous analog of the geometric distribution.
 
 It can be shown that, for this distribution, the mean is $1/\lambda$ and the variance is $1/\lambda^2$.
 
@@ -706,7 +757,7 @@ $$
 For the income distribution given above, we can calculate these numbers via
 
 ```{code-cell} ipython3
-x = np.asarray(df['income'])
+x = np.asarray(df['income'])   # Pull out income as a NumPy array
 ```
 
 ```{code-cell} ipython3
@@ -720,6 +771,7 @@ x.mean(), x.var()
 Check that the formulas given above produce the same numbers.
 ```
 
+
 ### Visualization
 
 Let's look at different ways that we can visualize one or more observed distributions.
@@ -730,11 +782,8 @@ We will cover
 - kernel density estimates and
 - violin plots
 
-+++ {"user_expressions": []}
 
 #### Histograms
-
-+++ {"user_expressions": []}
 
 We can histogram the income distribution we just constructed as follows
 
@@ -747,11 +796,10 @@ ax.set_ylabel('density')
 plt.show()
 ```
 
-+++ {"user_expressions": []}
 
 Let's look at a distribution from real data.
 
-In particular, we will look at the monthly return on Amazon shares between 2000/1/1 and 2023/1/1.
+In particular, we will look at the monthly return on Amazon shares between 2000/1/1 and 2024/1/1.
 
 The monthly return is calculated as the percent change in the share price over each month.
 
@@ -759,21 +807,18 @@ So we will have one observation for each month.
 
 ```{code-cell} ipython3
 :tags: [hide-output]
-df = yf.download('AMZN', '2000-1-1', '2023-1-1', interval='1mo' )
+df = yf.download('AMZN', '2000-1-1', '2024-1-1', interval='1mo' )
 prices = df['Adj Close']
 data = prices.pct_change()[1:] * 100
 data.head()
 ```
 
-+++ {"user_expressions": []}
 
 The first observation is the monthly return (percent change) over January 2000, which was
 
 ```{code-cell} ipython3
 data[0] 
 ```
-
-+++ {"user_expressions": []}
 
 Let's turn the return observations into an array and histogram it.
 
@@ -789,13 +834,15 @@ ax.set_ylabel('density')
 plt.show()
 ```
 
-+++ {"user_expressions": []}
 
 #### Kernel density estimates
 
-Kernel density estimate (KDE) is a non-parametric way to estimate and visualize the PDF of a distribution.
+Kernel density estimates (KDE) provide a simple way to estimate and visualize the density of a distribution.
 
-KDE will generate a smooth curve that approximates the PDF.
+If you are not familiar with KDEs, you can think of them as a smoothed
+histogram.
+
+Let's have a look at a KDE formed from the Amazon return data.
 
 ```{code-cell} ipython3
 fig, ax = plt.subplots()
@@ -825,9 +872,8 @@ A suitable bandwidth is not too smooth (underfitting) or too wiggly (overfitting
 
 #### Violin plots
 
-+++ {"user_expressions": []}
 
-Yet another way to display an observed distribution is via a violin plot.
+Another way to display an observed distribution is via a violin plot.
 
 ```{code-cell} ipython3
 fig, ax = plt.subplots()
@@ -837,33 +883,28 @@ ax.set_xlabel('KDE')
 plt.show()
 ```
 
-+++ {"user_expressions": []}
-
 Violin plots are particularly useful when we want to compare different distributions.
 
-For example, let's compare the monthly returns on Amazon shares with the monthly return on Apple shares.
+For example, let's compare the monthly returns on Amazon shares with the monthly return on Costco shares.
 
 ```{code-cell} ipython3
 :tags: [hide-output]
-df = yf.download('AAPL', '2000-1-1', '2023-1-1', interval='1mo' )
+df = yf.download('COST', '2000-1-1', '2024-1-1', interval='1mo' )
 prices = df['Adj Close']
 data = prices.pct_change()[1:] * 100
-x_apple = np.asarray(data)
+x_costco = np.asarray(data)
 ```
 
 ```{code-cell} ipython3
 fig, ax = plt.subplots()
-ax.violinplot([x_amazon, x_apple])
+ax.violinplot([x_amazon, x_costco])
 ax.set_ylabel('monthly return (percent change)')
 ax.set_xlabel('KDE')
 plt.show()
 ```
 
-+++ {"user_expressions": []}
 
 ### Connection to probability distributions
-
-+++ {"user_expressions": []}
 
 Let's discuss the connection between observed distributions and probability distributions.
 
@@ -871,9 +912,11 @@ Sometimes it's helpful to imagine that an observed distribution is generated by 
 
 For example, we might look at the returns from Amazon above and imagine that they were generated by a normal distribution.
 
-Even though this is not true, it might be a helpful way to think about the data.
+(Even though this is not true, it *might* be a helpful way to think about the data.)
 
-Here we match a normal distribution to the Amazon monthly returns by setting the sample mean to the mean of the normal distribution and the sample variance equal to the variance.
+Here we match a normal distribution to the Amazon monthly returns by setting the
+sample mean to the mean of the normal distribution and the sample variance equal
+to the variance.
 
 Then we plot the density and the histogram.
 
@@ -894,13 +937,10 @@ ax.set_ylabel('density')
 plt.show()
 ```
 
-+++ {"user_expressions": []}
 
-The match between the histogram and the density is not very bad but also not very good.
+The match between the histogram and the density is not bad but also not very good.
 
 One reason is that the normal distribution is not really a good fit for this observed data --- we will discuss this point again when we talk about {ref}`heavy tailed distributions<heavy_tail>`.
-
-+++ {"user_expressions": []}
 
 Of course, if the data really *is* generated by the normal distribution, then the fit will be better.
 
@@ -923,7 +963,6 @@ ax.set_ylabel('density')
 plt.show()
 ```
 
-+++ {"user_expressions": []}
 
 Note that if you keep increasing $N$, which is the number of observations, the fit will get better and better.
 
