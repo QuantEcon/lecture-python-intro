@@ -229,10 +229,6 @@ Let's see if SciPy gives us the same results:
 u.mean(), u.var()
 ```
 
-<<<<<<< HEAD
-=======
-
->>>>>>> main
 Here's the PMF:
 
 ```{code-cell} ipython3
@@ -332,10 +328,6 @@ ax.set_ylabel('PMF')
 plt.show()
 ```
 
-<<<<<<< HEAD
-=======
-
->>>>>>> main
 #### Poisson distribution
 
 The Poisson distribution on $S = \{0, 1, \ldots\}$ with parameter $\lambda > 0$ has PMF
