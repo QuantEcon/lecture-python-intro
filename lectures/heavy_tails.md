@@ -45,7 +45,7 @@ In the natural sciences (and in more traditional economics courses), heavy-taile
 
 However, it turns out that heavy-tailed distributions play a crucial role in economics.
 
-In fact many -- if not most -- of the important distributions in economics are heavy tailed.
+In fact many -- if not most -- of the important distributions in economics are heavy-tailed.
 
 In this lecture we explain what heavy tails are and why they are -- or at least
 why they should be -- central to economic analysis.
@@ -828,7 +828,7 @@ plt.show()
 
 ### City size
 
-Here are plots of the city size distribution for the US and Brazil in 2023 from world population review.
+Here are plots of the city size distribution for the US and Brazil in 2023 from the World Population Review.
 
 The size is measured by population.
 
@@ -943,7 +943,7 @@ One impact of heavy tails is that sample averages can be poor estimators of
 the underlying mean of the distribution.
 
 To understand this point better, recall {doc}`our earlier discussion <lln_clt>` 
-of the Law of Large Numbers, which considered IID $X_1, \ldots, X_n$ with common distribution $F$
+of the law of large numbers, which considered IID $X_1, \ldots, X_n$ with common distribution $F$
 
 If $\mathbb E |X_i|$ is finite, then
 the sample mean $\bar X_n := \frac{1}{n} \sum_{i=1}^n X_i$ satisfies
@@ -957,7 +957,7 @@ the sample mean $\bar X_n := \frac{1}{n} \sum_{i=1}^n X_i$ satisfies
 where $\mu := \mathbb E X_i = \int x F(dx)$ is the common mean of the sample.
 
 The condition $\mathbb E | X_i | = \int |x| F(dx) < \infty$ holds
-in most cases but can fail if the distribution $F$ is very heavy tailed.
+in most cases but can fail if the distribution $F$ is very heavy-tailed.
 
 For example, it fails for the Cauchy distribution.
 
@@ -1006,7 +1006,7 @@ We return to this point in the exercises.
 We have now seen that 
 
 1. heavy tails are frequent in economics and
-2. the Law of Large Numbers fails when tails are very heavy.
+2. the law of large numbers fails when tails are very heavy.
 
 But what about in the real world?  Do heavy tails matter?
 
@@ -1261,7 +1261,7 @@ Present discounted value of tax revenue will be estimated by
 
 The Pareto distribution is assumed to take the form {eq}`pareto` with $\bar x = 1$ and $\alpha = 1.05$.
 
-(The value the tail index $\alpha$ is plausible given the data {cite}`gabaix2016power`.)
+(The value of the tail index $\alpha$ is plausible given the data {cite}`gabaix2016power`.)
 
 To make the lognormal option as similar as possible to the Pareto option, choose 
 its parameters such that the mean and median of both distributions are the same.
@@ -1315,7 +1315,7 @@ $$
 
 which we solve for $\mu$ and $\sigma$ given $\alpha = 1.05$.
 
-Here is code that generates the two samples, produces the violin plot and
+Here is the code that generates the two samples, produces the violin plot and
 prints the mean and standard deviation of the two samples.
 
 ```{code-cell} ipython3
