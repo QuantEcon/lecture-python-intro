@@ -884,7 +884,10 @@ x_costco = prices.pct_change()[1:] * 100
 fig, ax = plt.subplots()
 ax.violinplot([x_amazon, x_costco])
 ax.set_ylabel('monthly return (percent change)')
-ax.set_xlabel('KDE')
+ax.set_xlabel('Retailer')
+
+ax.set_xticks([1, 2])
+ax.set_xticklabels(['Amazon', 'Costco'])
 plt.show()
 ```
 
