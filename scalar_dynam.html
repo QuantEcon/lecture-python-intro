@@ -395,9 +395,9 @@ below.</p>
 <p>When models are nonlinear, however, the situation can be quite different.</p>
 <p>For example, in a later lecture <a class="reference internal" href="solow.html"><span class="doc">The Solow-Swan Growth Model</span></a>, we will study the Solow-Swan growth model, which has dynamics</p>
 <div class="math notranslate nohighlight" id="equation-solow-lom2">
-<span class="eqno">(23.6)<a class="headerlink" href="#equation-solow-lom2" title="Permalink to this equation">#</a></span>\[k_{t+1} = s z k_t^{\alpha} + (1 - \delta) k_t\]</div>
-<p>Here <span class="math notranslate nohighlight">\(k\)</span> is the per capita capital stock and <span class="math notranslate nohighlight">\(s, z, \alpha, \delta\)</span> are positive
-parameters with <span class="math notranslate nohighlight">\(0 &lt; \alpha, \delta &lt; 1\)</span>.</p>
+<span class="eqno">(23.6)<a class="headerlink" href="#equation-solow-lom2" title="Permalink to this equation">#</a></span>\[k_{t+1} = s A k_t^{\alpha} + (1 - \delta) k_t\]</div>
+<p>Here <span class="math notranslate nohighlight">\(k=K/L\)</span> is the per capita capital stock, <span class="math notranslate nohighlight">\(s\)</span> is the saving rate, <span class="math notranslate nohighlight">\(A\)</span> is the total factor productivity, <span class="math notranslate nohighlight">\(\alpha\)</span> is the capital share, and <span class="math notranslate nohighlight">\(\delta\)</span> is the depreciation rate.</p>
+<p>All these parameter are positive and <span class="math notranslate nohighlight">\(0 &lt; \alpha, \delta &lt; 1\)</span>.</p>
 <p>If you try to iterate like we did in <a class="reference internal" href="#equation-sdslinmodpath">(23.3)</a>, you will find that
 the algebra gets messy quickly.</p>
 <p>Analyzing the dynamics of this model requires a different method (see below).</p>
@@ -450,8 +450,16 @@ x_t = g^t(x_0) \to x^* \text{ as } t \to \infty
 x_t = g^t(x_0) \to x^* \text{ as } t \to \infty
 \]</div>
 <p>Obviously every globally stable steady state is also locally stable.</p>
-<p>We will see examples below where the converse is not true.</p>
+<p>Here is an example where the converse is not true.</p>
+<div class="proof example admonition" id="example-0">
+<p class="admonition-title"><span class="caption-number">Example 23.1 </span></p>
+<section class="example-content" id="proof-content">
+<p>Consider the self-map <span class="math notranslate nohighlight">\(g\)</span> on <span class="math notranslate nohighlight">\(\mathbb{R}\)</span> defined by <span class="math notranslate nohighlight">\(g(x)=x^2\)</span>. The fixed point <span class="math notranslate nohighlight">\(1\)</span> is not stable.</p>
+<p>For example, <span class="math notranslate nohighlight">\(g^t (x)\to\infty\)</span> for any <span class="math notranslate nohighlight">\(x&gt;1\)</span>.</p>
+<p>However, <span class="math notranslate nohighlight">\(0\)</span> is locally stable, because <span class="math notranslate nohighlight">\(-1&lt;x&lt;1\)</span> implies that <span class="math notranslate nohighlight">\(g^t (x)\to 0\)</span> as <span class="math notranslate nohighlight">\(t\to\infty\)</span>.</p>
+<p>Since we have more than one fixed point, <span class="math notranslate nohighlight">\(0\)</span> is not globally stable.</p>
 </section>
+</div></section>
 </section>
 <section id="graphical-analysis">
 <h2><span class="section-number">23.4. </span>Graphical analysis<a class="headerlink" href="#graphical-analysis" title="Permalink to this heading">#</a></h2>
@@ -580,7 +588,7 @@ parameters. Here’s the update function corresponding to the model.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/3956eaeea4572564e75b8a6b3f7d2dfdec770541e63dde1285a5dd9ee83b2ddb.png"><img alt="_images/3956eaeea4572564e75b8a6b3f7d2dfdec770541e63dde1285a5dd9ee83b2ddb.png" src="_images/3956eaeea4572564e75b8a6b3f7d2dfdec770541e63dde1285a5dd9ee83b2ddb.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/71f39564576777c73182cf1af7224740805162768dfed838c306b16013dee83d.png"><img alt="_images/71f39564576777c73182cf1af7224740805162768dfed838c306b16013dee83d.png" src="_images/71f39564576777c73182cf1af7224740805162768dfed838c306b16013dee83d.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>The plot shows the function <span class="math notranslate nohighlight">\(g\)</span> and the 45-degree line.</p>
@@ -618,7 +626,7 @@ k^* = \left( \frac{sz}{\delta} \right)^{1/(1-\alpha)}
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/2a424d2c73f5da96ba27d0429942811fff608b62e94c6239fe04626b28a46523.png"><img alt="_images/2a424d2c73f5da96ba27d0429942811fff608b62e94c6239fe04626b28a46523.png" src="_images/2a424d2c73f5da96ba27d0429942811fff608b62e94c6239fe04626b28a46523.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/6c826502d0f49a7339770b72603eaafa51d81d462fe7e127291729879f0930b7.png"><img alt="_images/6c826502d0f49a7339770b72603eaafa51d81d462fe7e127291729879f0930b7.png" src="_images/6c826502d0f49a7339770b72603eaafa51d81d462fe7e127291729879f0930b7.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>We can plot the time series of per capita capital corresponding to the figure above as
@@ -630,7 +638,7 @@ follows:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/c983f073efe55311fd9b7ac968257528dccbb969c1470d55c89a85260fd3e582.png"><img alt="_images/c983f073efe55311fd9b7ac968257528dccbb969c1470d55c89a85260fd3e582.png" src="_images/c983f073efe55311fd9b7ac968257528dccbb969c1470d55c89a85260fd3e582.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/812058b0fd1e411dd60244ff1439e449c5381c02983348c39fc206624d36399f.png"><img alt="_images/812058b0fd1e411dd60244ff1439e449c5381c02983348c39fc206624d36399f.png" src="_images/812058b0fd1e411dd60244ff1439e449c5381c02983348c39fc206624d36399f.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>Here’s a somewhat longer view:</p>
@@ -641,7 +649,7 @@ follows:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/cfb6125dad70910e85566533c0e20db7f8aae2e8076521af8448a4f31f7b9fd8.png"><img alt="_images/cfb6125dad70910e85566533c0e20db7f8aae2e8076521af8448a4f31f7b9fd8.png" src="_images/cfb6125dad70910e85566533c0e20db7f8aae2e8076521af8448a4f31f7b9fd8.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/9c237f2e74c3c66260bf37cc0dd131b30a36407326bee18ebe51df81f40b0ec8.png"><img alt="_images/9c237f2e74c3c66260bf37cc0dd131b30a36407326bee18ebe51df81f40b0ec8.png" src="_images/9c237f2e74c3c66260bf37cc0dd131b30a36407326bee18ebe51df81f40b0ec8.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>When per capita capital stock is higher than the unique positive steady state, we see that
@@ -655,7 +663,7 @@ it declines:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/6bb5f849b2c4fa6160854b7217b09359254d2003277d2eb42c61bebd4dd1dc67.png"><img alt="_images/6bb5f849b2c4fa6160854b7217b09359254d2003277d2eb42c61bebd4dd1dc67.png" src="_images/6bb5f849b2c4fa6160854b7217b09359254d2003277d2eb42c61bebd4dd1dc67.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/05b5f6510c490ff5b9b8976a29ed6a1c9e2058aafc02e8a0f9c961f6abb5e6da.png"><img alt="_images/05b5f6510c490ff5b9b8976a29ed6a1c9e2058aafc02e8a0f9c961f6abb5e6da.png" src="_images/05b5f6510c490ff5b9b8976a29ed6a1c9e2058aafc02e8a0f9c961f6abb5e6da.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>Here is the time series:</p>
@@ -666,7 +674,7 @@ it declines:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/7ff2d0b4bd86964149a49368c4a3263a34ac1703f487f674e3a74178a87944ac.png"><img alt="_images/7ff2d0b4bd86964149a49368c4a3263a34ac1703f487f674e3a74178a87944ac.png" src="_images/7ff2d0b4bd86964149a49368c4a3263a34ac1703f487f674e3a74178a87944ac.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/e0cf3bc07b3a1c055fc5652bb1e0ecfa186adf677226197fe9839e0081a514e7.png"><img alt="_images/e0cf3bc07b3a1c055fc5652bb1e0ecfa186adf677226197fe9839e0081a514e7.png" src="_images/e0cf3bc07b3a1c055fc5652bb1e0ecfa186adf677226197fe9839e0081a514e7.png" style="width: 80%;" /></a>
 </div>
 </div>
 </section>
@@ -691,7 +699,7 @@ g(x) = 4 x (1 - x),
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/77cbf47ef7603641e292053f41735286ca8e9584faad2b321f85c137c49841a6.png"><img alt="_images/77cbf47ef7603641e292053f41735286ca8e9584faad2b321f85c137c49841a6.png" src="_images/77cbf47ef7603641e292053f41735286ca8e9584faad2b321f85c137c49841a6.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/f74ea5b38323c9ec5ed7d8a97242d586502009ad3640c9bd99844d30911939f2.png"><img alt="_images/f74ea5b38323c9ec5ed7d8a97242d586502009ad3640c9bd99844d30911939f2.png" src="_images/f74ea5b38323c9ec5ed7d8a97242d586502009ad3640c9bd99844d30911939f2.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>Now let’s look at a typical trajectory.</p>
@@ -702,7 +710,7 @@ g(x) = 4 x (1 - x),
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/ed9e9f7ec1b842879fb146c14da6998a321eed49751e7e7e4bbb438c5b87da50.png"><img alt="_images/ed9e9f7ec1b842879fb146c14da6998a321eed49751e7e7e4bbb438c5b87da50.png" src="_images/ed9e9f7ec1b842879fb146c14da6998a321eed49751e7e7e4bbb438c5b87da50.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/c9416655f6d6c0cd5591e64b63f42ed40232f83071f23c41937acb2cbbf1f820.png"><img alt="_images/c9416655f6d6c0cd5591e64b63f42ed40232f83071f23c41937acb2cbbf1f820.png" src="_images/c9416655f6d6c0cd5591e64b63f42ed40232f83071f23c41937acb2cbbf1f820.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>Notice how irregular it is.</p>
@@ -714,7 +722,7 @@ g(x) = 4 x (1 - x),
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/86bc799b86d86a25a54662096f22a54ac8987b3820f752a5069cc0cadd1d4a35.png"><img alt="_images/86bc799b86d86a25a54662096f22a54ac8987b3820f752a5069cc0cadd1d4a35.png" src="_images/86bc799b86d86a25a54662096f22a54ac8987b3820f752a5069cc0cadd1d4a35.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/f824e31421f7d43e3cef727368f5bea698d28dbd0df8f229c56bc66958ba3818.png"><img alt="_images/f824e31421f7d43e3cef727368f5bea698d28dbd0df8f229c56bc66958ba3818.png" src="_images/f824e31421f7d43e3cef727368f5bea698d28dbd0df8f229c56bc66958ba3818.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>The irregularity is even clearer over a longer time horizon:</p>
@@ -725,7 +733,7 @@ g(x) = 4 x (1 - x),
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/5633b6ab462156ef6701788c713d084e3656162f436562a6862c2b09e5eb8061.png"><img alt="_images/5633b6ab462156ef6701788c713d084e3656162f436562a6862c2b09e5eb8061.png" src="_images/5633b6ab462156ef6701788c713d084e3656162f436562a6862c2b09e5eb8061.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/52530bed49cd4dad408d99ffe92c23cd3ec8b44fe74fb041c31b1bd5f54ca1d8.png"><img alt="_images/52530bed49cd4dad408d99ffe92c23cd3ec8b44fe74fb041c31b1bd5f54ca1d8.png" src="_images/52530bed49cd4dad408d99ffe92c23cd3ec8b44fe74fb041c31b1bd5f54ca1d8.png" style="width: 80%;" /></a>
 </div>
 </div>
 </section>
@@ -747,7 +755,7 @@ g(x) = 4 x (1 - x),
 <p>Set <span class="math notranslate nohighlight">\(b=1\)</span> throughout.</p>
 </section>
 </div>
-<div class="solution dropdown admonition" id="scalar_dynam-solution-1">
+<div class="solution dropdown admonition" id="scalar_dynam-solution-2">
 
 <p class="admonition-title">Solution to<a class="reference internal" href="#sd_ex1"> Exercise 23.1</a></p>
 <section id="solution-content">
@@ -771,7 +779,7 @@ g(x) = 4 x (1 - x),
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/cf7cf8d83ea087486d2fb45a1fc77295e16a9e01129266bc3fb533bc5847f94b.png"><img alt="_images/cf7cf8d83ea087486d2fb45a1fc77295e16a9e01129266bc3fb533bc5847f94b.png" src="_images/cf7cf8d83ea087486d2fb45a1fc77295e16a9e01129266bc3fb533bc5847f94b.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/619e618ed534a22dce0201ef46c0ab9189f9886ec0406e0c91e21472b339e746.png"><img alt="_images/619e618ed534a22dce0201ef46c0ab9189f9886ec0406e0c91e21472b339e746.png" src="_images/619e618ed534a22dce0201ef46c0ab9189f9886ec0406e0c91e21472b339e746.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>Here is the corresponding time series, which converges towards the steady
@@ -783,7 +791,7 @@ state.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/75f6cad78a63dcd2fe9350afbcda42fdc9efd06dc7c0072bd03ca5e21917376d.png"><img alt="_images/75f6cad78a63dcd2fe9350afbcda42fdc9efd06dc7c0072bd03ca5e21917376d.png" src="_images/75f6cad78a63dcd2fe9350afbcda42fdc9efd06dc7c0072bd03ca5e21917376d.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/98d7efc269b432e83f19c3120b9d00e45193c860748a492ae3706f7ca3520396.png"><img alt="_images/98d7efc269b432e83f19c3120b9d00e45193c860748a492ae3706f7ca3520396.png" src="_images/98d7efc269b432e83f19c3120b9d00e45193c860748a492ae3706f7ca3520396.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>Now let’s try <span class="math notranslate nohighlight">\(a=-0.5\)</span> and see what differences we observe.</p>
@@ -806,7 +814,7 @@ state.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/123e14b601a7251d6a0841f82d1be3888125b960bc2ddbf42092881f709932f9.png"><img alt="_images/123e14b601a7251d6a0841f82d1be3888125b960bc2ddbf42092881f709932f9.png" src="_images/123e14b601a7251d6a0841f82d1be3888125b960bc2ddbf42092881f709932f9.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/5f1b9c83f0e28801fd9a270109f0bd9a008861a5777d79833d10047f63dd4e17.png"><img alt="_images/5f1b9c83f0e28801fd9a270109f0bd9a008861a5777d79833d10047f63dd4e17.png" src="_images/5f1b9c83f0e28801fd9a270109f0bd9a008861a5777d79833d10047f63dd4e17.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>Here is the corresponding time series, which converges towards the steady
@@ -818,7 +826,7 @@ state.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/1f16f9f6fa86ad9d8efb1511f7a51d10cb49d4696f3f5612395a2bd2e8d4aa90.png"><img alt="_images/1f16f9f6fa86ad9d8efb1511f7a51d10cb49d4696f3f5612395a2bd2e8d4aa90.png" src="_images/1f16f9f6fa86ad9d8efb1511f7a51d10cb49d4696f3f5612395a2bd2e8d4aa90.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/de45b0efd16c72786678a0a7882a1cd677027978101b61f55afa413a24114906.png"><img alt="_images/de45b0efd16c72786678a0a7882a1cd677027978101b61f55afa413a24114906.png" src="_images/de45b0efd16c72786678a0a7882a1cd677027978101b61f55afa413a24114906.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>Once again, we have convergence to the steady state but the nature of

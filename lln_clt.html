@@ -282,6 +282,9 @@ will converge to their population means.</p>
 <section id="the-lln-in-action">
 <h3><span class="section-number">19.2.1. </span>The LLN in action<a class="headerlink" href="#the-lln-in-action" title="Permalink to this heading">#</a></h3>
 <p>Let’s see an example of the LLN in action before we go further.</p>
+<div class="proof example admonition" id="lln_ex_ber">
+<p class="admonition-title"><span class="caption-number">Example 19.1 </span></p>
+<section class="example-content" id="proof-content">
 <p>Consider a <a class="reference external" href="https://en.wikipedia.org/wiki/Bernoulli_distribution">Bernoulli random variable</a> <span class="math notranslate nohighlight">\(X\)</span> with parameter <span class="math notranslate nohighlight">\(p\)</span>.</p>
 <p>This means that <span class="math notranslate nohighlight">\(X\)</span> takes values in <span class="math notranslate nohighlight">\(\{0,1\}\)</span> and <span class="math notranslate nohighlight">\(\mathbb P\{X=1\} = p\)</span>.</p>
 <p>We can think of drawing <span class="math notranslate nohighlight">\(X\)</span> as tossing a biased coin where</p>
@@ -296,7 +299,8 @@ will converge to their population means.</p>
     \mathbb E X 
     = 0 \cdot \mathbb P\{X=0\} + 1 \cdot \mathbb P\{X=1\} = \mathbb P\{X=1\} = p
 \]</div>
-<p>We can generate a draw of <span class="math notranslate nohighlight">\(X\)</span> with <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code> (imported as <code class="docutils literal notranslate"><span class="pre">st</span></code>) as follows:</p>
+</section>
+</div><p>We can generate a draw of <span class="math notranslate nohighlight">\(X\)</span> with <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code> (imported as <code class="docutils literal notranslate"><span class="pre">st</span></code>) as follows:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="mf">0.8</span>
@@ -324,7 +328,7 @@ of heads that we see will be close to the mean <span class="math notranslate noh
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.800016
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.800645
 </pre></div>
 </div>
 </div>
@@ -339,7 +343,7 @@ of heads that we see will be close to the mean <span class="math notranslate noh
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.299985
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.300874
 </pre></div>
 </div>
 </div>
@@ -392,7 +396,7 @@ functions and integrals with sums.)</p>
     \bar X_n := \frac{1}{n} \sum_{i=1}^n X_i
 \]</div>
 <p>The next theorem is called Kolmogorov’s strong law of large numbers.</p>
-<div class="proof theorem admonition" id="theorem-0">
+<div class="proof theorem admonition" id="theorem-1">
 <span id="iid-theorem"></span><p class="admonition-title"><span class="caption-number">Theorem 19.1 </span></p>
 <section class="theorem-content" id="proof-content">
 <p>If <span class="math notranslate nohighlight">\(X_1, \ldots, X_n\)</span> are IID and <span class="math notranslate nohighlight">\(\mathbb E |X|\)</span> is finite, then</p>
@@ -494,7 +498,7 @@ random variables <span class="math notranslate nohighlight">\(X_1, \ldots, X_n\)
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/47a28d72e780507bf6ea612d6e8f3390250393e7ed415afdcec38d4365e06008.png"><img alt="_images/47a28d72e780507bf6ea612d6e8f3390250393e7ed415afdcec38d4365e06008.png" src="_images/47a28d72e780507bf6ea612d6e8f3390250393e7ed415afdcec38d4365e06008.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/6659d43871fcac210fdb41824a4066ec9a583874a7df05bc29a8456cc2841b64.png"><img alt="_images/6659d43871fcac210fdb41824a4066ec9a583874a7df05bc29a8456cc2841b64.png" src="_images/6659d43871fcac210fdb41824a4066ec9a583874a7df05bc29a8456cc2841b64.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>We can see that the distribution of <span class="math notranslate nohighlight">\(\bar X\)</span> is clustered around <span class="math notranslate nohighlight">\(\mathbb E X\)</span>
@@ -542,7 +546,7 @@ as expected.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/e09c9431f83427311b5415ff456c75dc3fa2f9fe92c68fbb5694e80f3f0f9645.png"><img alt="_images/e09c9431f83427311b5415ff456c75dc3fa2f9fe92c68fbb5694e80f3f0f9645.png" src="_images/e09c9431f83427311b5415ff456c75dc3fa2f9fe92c68fbb5694e80f3f0f9645.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/5517785b8600a732a57a4dca4ddf7385a40739e55e3109408edaf5355a236311.png"><img alt="_images/5517785b8600a732a57a4dca4ddf7385a40739e55e3109408edaf5355a236311.png" src="_images/5517785b8600a732a57a4dca4ddf7385a40739e55e3109408edaf5355a236311.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>As <span class="math notranslate nohighlight">\(n\)</span> gets large, more probability mass clusters around the population mean <span class="math notranslate nohighlight">\(\mu\)</span>.</p>
@@ -554,7 +558,7 @@ as expected.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/25091684844ceb09d6cdd977aae4eb88858b26f3c0a10d8f12198e3441af0dde.png"><img alt="_images/25091684844ceb09d6cdd977aae4eb88858b26f3c0a10d8f12198e3441af0dde.png" src="_images/25091684844ceb09d6cdd977aae4eb88858b26f3c0a10d8f12198e3441af0dde.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/c57e90a59adbbeba39a34590c5cbba83e4bfedcbc2152dbc88cba2044c46c0e7.png"><img alt="_images/c57e90a59adbbeba39a34590c5cbba83e4bfedcbc2152dbc88cba2044c46c0e7.png" src="_images/c57e90a59adbbeba39a34590c5cbba83e4bfedcbc2152dbc88cba2044c46c0e7.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>We get a similar result.</p>
@@ -577,7 +581,9 @@ as expected.</p>
 <section id="failure-of-the-iid-condition">
 <h3><span class="section-number">19.3.2. </span>Failure of the IID condition<a class="headerlink" href="#failure-of-the-iid-condition" title="Permalink to this heading">#</a></h3>
 <p>The LLN can also fail to hold when the IID assumption is violated.</p>
-<p>For example, suppose that</p>
+<div class="proof example admonition" id="lln_ex_fail">
+<p class="admonition-title"><span class="caption-number">Example 19.2 </span></p>
+<section class="example-content" id="proof-content">
 <div class="math notranslate nohighlight">
 \[
     X_0 \sim N(0,1)
@@ -590,7 +596,8 @@ as expected.</p>
     \bar X_n = \frac{1}{n} \sum_{i=1}^n X_i = X_0 \sim N(0,1)
 \]</div>
 <p>Therefore, the distribution of <span class="math notranslate nohighlight">\(\bar X_n\)</span> is <span class="math notranslate nohighlight">\(N(0,1)\)</span> for all <span class="math notranslate nohighlight">\(n\)</span>!</p>
-<p>Does this contradict the LLN, which says that the distribution of <span class="math notranslate nohighlight">\(\bar X_n\)</span>
+</section>
+</div><p>Does this contradict the LLN, which says that the distribution of <span class="math notranslate nohighlight">\(\bar X_n\)</span>
 collapses to the single point <span class="math notranslate nohighlight">\(\mu\)</span>?</p>
 <p>No, the LLN is correct — the issue is that its assumptions are not
 satisfied.</p>
@@ -622,9 +629,9 @@ distribution of the deviation between sample averages and population means.</p>
 n \to \infty\]</div>
 </section>
 </div><p>Here <span class="math notranslate nohighlight">\(\stackrel { d } {\to} N(0, \sigma^2)\)</span> indicates <a class="reference external" href="https://en.wikipedia.org/wiki/Convergence_of_random_variables#Convergence_in_distribution">convergence in distribution</a> to a centered (i.e., zero mean) normal with standard deviation <span class="math notranslate nohighlight">\(\sigma\)</span>.</p>
-<p>The striking implication of the CLT is that for <strong>any</strong> distribution with
+<p>The striking implication of the CLT is that for any distribution with
 finite <a class="reference external" href="https://en.wikipedia.org/wiki/Moment_(mathematics)">second moment</a>, the simple operation of adding independent
-copies <strong>always</strong> leads to a Gaussian(Normal) curve.</p>
+copies always leads to a Gaussian(Normal) curve.</p>
 </section>
 <section id="simulation-1">
 <h3><span class="section-number">19.4.2. </span>Simulation 1<a class="headerlink" href="#simulation-1" title="Permalink to this heading">#</a></h3>
@@ -672,7 +679,7 @@ copies <strong>always</strong> leads to a Gaussian(Normal) curve.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/501d237a5a4a7804b5a13476ce6d74df7aa25aaa51fdb04324205a03498742f7.png"><img alt="_images/501d237a5a4a7804b5a13476ce6d74df7aa25aaa51fdb04324205a03498742f7.png" src="_images/501d237a5a4a7804b5a13476ce6d74df7aa25aaa51fdb04324205a03498742f7.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/9cb16b91c2cd60e09ac92d3a5165ae470e7e8afb0922af95befc7d8e1db4a7b3.png"><img alt="_images/9cb16b91c2cd60e09ac92d3a5165ae470e7e8afb0922af95befc7d8e1db4a7b3.png" src="_images/9cb16b91c2cd60e09ac92d3a5165ae470e7e8afb0922af95befc7d8e1db4a7b3.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>(Notice the absence of for loops — every operation is vectorized, meaning that the major calculations are all shifted to fast C code.)</p>
@@ -689,7 +696,7 @@ copies <strong>always</strong> leads to a Gaussian(Normal) curve.</p>
 <p>You can choose any <span class="math notranslate nohighlight">\(\alpha &gt; 0\)</span> and <span class="math notranslate nohighlight">\(\beta &gt; 0\)</span>.</p>
 </section>
 </div>
-<div class="solution dropdown admonition" id="lln_clt-solution-3">
+<div class="solution dropdown admonition" id="lln_clt-solution-5">
 
 <p class="admonition-title">Solution to<a class="reference internal" href="#lln_ex1"> Exercise 19.1</a></p>
 <section id="solution-content">
@@ -724,7 +731,7 @@ copies <strong>always</strong> leads to a Gaussian(Normal) curve.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/80e99fe9c4e3430fafce7ac65f2251f7a4f65ea6b9181f6b5cb8666403ab0d7c.png"><img alt="_images/80e99fe9c4e3430fafce7ac65f2251f7a4f65ea6b9181f6b5cb8666403ab0d7c.png" src="_images/80e99fe9c4e3430fafce7ac65f2251f7a4f65ea6b9181f6b5cb8666403ab0d7c.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/3b620f04c42f5ce1caa7c0af947841e591114b12e3c1b747539cb4cac68703fd.png"><img alt="_images/3b620f04c42f5ce1caa7c0af947841e591114b12e3c1b747539cb4cac68703fd.png" src="_images/3b620f04c42f5ce1caa7c0af947841e591114b12e3c1b747539cb4cac68703fd.png" style="width: 80%;" /></a>
 </div>
 </div>
 </section>
@@ -744,7 +751,7 @@ copies <strong>always</strong> leads to a Gaussian(Normal) curve.</p>
 <p>Explain why this provides a random variable <span class="math notranslate nohighlight">\(X\)</span> with the right distribution.</p>
 </section>
 </div>
-<div class="solution dropdown admonition" id="lln_clt-solution-5">
+<div class="solution dropdown admonition" id="lln_clt-solution-7">
 
 <p class="admonition-title">Solution to<a class="reference internal" href="#lln_ex2"> Exercise 19.2</a></p>
 <section id="solution-content">
@@ -771,7 +778,7 @@ copies <strong>always</strong> leads to a Gaussian(Normal) curve.</p>
     X_{t+1} = \alpha + \beta X_t + \sigma \epsilon _{t+1}
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(\alpha, \beta, \sigma\)</span> are constants and <span class="math notranslate nohighlight">\(\epsilon_1, \epsilon_2,
-\ldots\)</span> is IID and standard norma.</p>
+\ldots\)</span> are IID and standard normal.</p>
 <p>Suppose that</p>
 <div class="math notranslate nohighlight">
 \[
@@ -787,7 +794,7 @@ mean to the population mean still occurs.</p>
 </ol>
 </section>
 </div>
-<div class="solution dropdown admonition" id="lln_clt-solution-7">
+<div class="solution dropdown admonition" id="lln_clt-solution-9">
 
 <p class="admonition-title">Solution to<a class="reference internal" href="#lln_ex3"> Exercise 19.3</a></p>
 <section id="solution-content">
@@ -859,7 +866,7 @@ identically distributed.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/1239921f35a3dec227f017a7125f1c0a526bf420e861a6608eae29986de1da38.png"><img alt="_images/1239921f35a3dec227f017a7125f1c0a526bf420e861a6608eae29986de1da38.png" src="_images/1239921f35a3dec227f017a7125f1c0a526bf420e861a6608eae29986de1da38.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/291ffc6db6475707586547ea3c5c090530f835436824213e200b7de46f81f691.png"><img alt="_images/291ffc6db6475707586547ea3c5c090530f835436824213e200b7de46f81f691.png" src="_images/291ffc6db6475707586547ea3c5c090530f835436824213e200b7de46f81f691.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>We see the convergence of <span class="math notranslate nohighlight">\(\bar x\)</span> around <span class="math notranslate nohighlight">\(\mu\)</span> even when the independence assumption is violated.</p>

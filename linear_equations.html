@@ -354,12 +354,15 @@ basics of vectors and matrices, in both theory and computation.</p>
 <p>But when we use matrix operations, our default assumption is that vectors are
 column vectors.</p>
 <p>The set of all <span class="math notranslate nohighlight">\(n\)</span>-vectors is denoted by <span class="math notranslate nohighlight">\(\mathbb R^n\)</span>.</p>
-<p>For example,</p>
+<div class="proof example admonition" id="le_ex_dim">
+<p class="admonition-title"><span class="caption-number">Example 8.1 </span></p>
+<section class="example-content" id="proof-content">
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(\mathbb R^2\)</span> is the plane — the set of pairs <span class="math notranslate nohighlight">\((x_1, x_2)\)</span>.</p></li>
 <li><p><span class="math notranslate nohighlight">\(\mathbb R^3\)</span> is 3 dimensional space — the set of vectors <span class="math notranslate nohighlight">\((x_1, x_2, x_3)\)</span>.</p></li>
 </ul>
-<p>Often vectors are represented visually as arrows from the origin to the point.</p>
+</section>
+</div><p>Often vectors are represented visually as arrows from the origin to the point.</p>
 <p>Here’s a visualization.</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
@@ -391,7 +394,7 @@ column vectors.</p>
 </div>
 </details>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/f5e2b4b11491e14fe59b7fe35624e5b940f50c4eea04840ca3c2362039a6258a.png"><img alt="_images/f5e2b4b11491e14fe59b7fe35624e5b940f50c4eea04840ca3c2362039a6258a.png" src="_images/f5e2b4b11491e14fe59b7fe35624e5b940f50c4eea04840ca3c2362039a6258a.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/d7291f771c1ec763fefe4e2a7668e2c4cf4c60bea1a5493370446caf692a9fa0.png"><img alt="_images/d7291f771c1ec763fefe4e2a7668e2c4cf4c60bea1a5493370446caf692a9fa0.png" src="_images/d7291f771c1ec763fefe4e2a7668e2c4cf4c60bea1a5493370446caf692a9fa0.png" style="width: 80%;" /></a>
 </div>
 </div>
 <section id="vector-operations">
@@ -400,7 +403,9 @@ column vectors.</p>
 <p>The two most common operators on vectors are addition and scalar
 multiplication, which we now describe.</p>
 <p>When we add two vectors, we add them element-by-element.</p>
-<p>For example,</p>
+<div class="proof example admonition" id="le_ex_add">
+<p class="admonition-title"><span class="caption-number">Example 8.2 </span></p>
+<section class="example-content" id="proof-content">
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{bmatrix}
@@ -423,7 +428,8 @@ multiplication, which we now describe.</p>
     1
 \end{bmatrix}.
 \end{split}\]</div>
-<p>In general,</p>
+</section>
+</div><p>In general,</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 x + y =
@@ -490,11 +496,13 @@ x + y =
 </div>
 </details>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/23d8dbf914c1322527e2a592034c8c995590123a351426acb7f634e868ceda58.png"><img alt="_images/23d8dbf914c1322527e2a592034c8c995590123a351426acb7f634e868ceda58.png" src="_images/23d8dbf914c1322527e2a592034c8c995590123a351426acb7f634e868ceda58.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/d26c3ff9217b642e19ec2eb3584036673de13d69eec84542bc76d76437360248.png"><img alt="_images/d26c3ff9217b642e19ec2eb3584036673de13d69eec84542bc76d76437360248.png" src="_images/d26c3ff9217b642e19ec2eb3584036673de13d69eec84542bc76d76437360248.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>Scalar multiplication is an operation that multiplies a vector <span class="math notranslate nohighlight">\(x\)</span> with a scalar elementwise.</p>
-<p>For example,</p>
+<div class="proof example admonition" id="le_ex_mul">
+<p class="admonition-title"><span class="caption-number">Example 8.3 </span></p>
+<section class="example-content" id="proof-content">
 <div class="math notranslate nohighlight">
 \[\begin{split}
 -2
@@ -513,7 +521,8 @@ x + y =
     14
 \end{bmatrix}.
 \end{split}\]</div>
-<p>More generally, it takes a number <span class="math notranslate nohighlight">\(\gamma\)</span> and a vector <span class="math notranslate nohighlight">\(x\)</span> and produces</p>
+</section>
+</div><p>More generally, it takes a number <span class="math notranslate nohighlight">\(\gamma\)</span> and a vector <span class="math notranslate nohighlight">\(x\)</span> and produces</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \gamma x :=
@@ -565,7 +574,7 @@ x + y =
 </div>
 </details>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/2b0bfd7518a4cbf6fb0e313f3e12bf87729e70f095f189af51f2e40955720206.png"><img alt="_images/2b0bfd7518a4cbf6fb0e313f3e12bf87729e70f095f189af51f2e40955720206.png" src="_images/2b0bfd7518a4cbf6fb0e313f3e12bf87729e70f095f189af51f2e40955720206.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/c6b596225dacfeef35a448b5f4de0d31c50fcbf13367fe7e236d260e6b3447d8.png"><img alt="_images/c6b596225dacfeef35a448b5f4de0d31c50fcbf13367fe7e236d260e6b3447d8.png" src="_images/c6b596225dacfeef35a448b5f4de0d31c50fcbf13367fe7e236d260e6b3447d8.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>In Python, a vector can be represented as a list or tuple,
@@ -687,7 +696,9 @@ the zero vector) and is defined as</p>
 <p>Just as was the case for vectors, we can add, subtract and scalar multiply
 matrices.</p>
 <p>Scalar multiplication and addition are generalizations of the vector case:</p>
-<p>Here is an example of scalar multiplication</p>
+<div class="proof example admonition" id="le_ex_asm">
+<p class="admonition-title"><span class="caption-number">Example 8.4 </span></p>
+<section class="example-content" id="proof-content">
 <div class="math notranslate nohighlight">
 \[\begin{split}
 3
@@ -701,7 +712,8 @@ matrices.</p>
     0 &amp; 15
 \end{bmatrix}.
 \end{split}\]</div>
-<p>In general for a number <span class="math notranslate nohighlight">\(\gamma\)</span> and any matrix <span class="math notranslate nohighlight">\(A\)</span>,</p>
+</section>
+</div><p>In general for a number <span class="math notranslate nohighlight">\(\gamma\)</span> and any matrix <span class="math notranslate nohighlight">\(A\)</span>,</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \gamma A =
@@ -717,6 +729,9 @@ matrices.</p>
     \gamma a_{n1} &amp; \cdots &amp; \gamma a_{nk}
 \end{bmatrix}.
 \end{split}\]</div>
+<div class="proof example admonition" id="le_ex_ma">
+<p class="admonition-title"><span class="caption-number">Example 8.5 </span></p>
+<section class="example-content" id="proof-content">
 <p>Consider this example of matrix addition,</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -735,7 +750,8 @@ matrices.</p>
     7 &amp; 12
 \end{bmatrix}.
 \end{split}\]</div>
-<p>In general,</p>
+</section>
+</div><p>In general,</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 A + B =
@@ -768,6 +784,9 @@ as its <span class="math notranslate nohighlight">\(i,j\)</span>-th element the 
 <span class="math notranslate nohighlight">\(j\)</span>-th column of <span class="math notranslate nohighlight">\(B\)</span>.</p>
 <p>If <span class="math notranslate nohighlight">\(A\)</span> is <span class="math notranslate nohighlight">\(n \times k\)</span> and <span class="math notranslate nohighlight">\(B\)</span> is <span class="math notranslate nohighlight">\(j \times m\)</span>, then to multiply <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span>
 we require <span class="math notranslate nohighlight">\(k = j\)</span>, and the resulting matrix <span class="math notranslate nohighlight">\(A B\)</span> is <span class="math notranslate nohighlight">\(n \times m\)</span>.</p>
+<div class="proof example admonition" id="le_ex_2dmul">
+<p class="admonition-title"><span class="caption-number">Example 8.6 </span></p>
+<section class="example-content" id="proof-content">
 <p>Here’s an example of a <span class="math notranslate nohighlight">\(2 \times 2\)</span> matrix multiplied by a <span class="math notranslate nohighlight">\(2 \times 1\)</span> vector.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -786,7 +805,8 @@ Ax =
     a_{21}x_1 + a_{22}x_2
 \end{bmatrix}
 \end{split}\]</div>
-<p>As an important special case, consider multiplying <span class="math notranslate nohighlight">\(n \times k\)</span>
+</section>
+</div><p>As an important special case, consider multiplying <span class="math notranslate nohighlight">\(n \times k\)</span>
 matrix <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(k \times 1\)</span> column vector <span class="math notranslate nohighlight">\(x\)</span>.</p>
 <p>According to the preceding rule, this gives us an <span class="math notranslate nohighlight">\(n \times 1\)</span> column vector.</p>
 <div class="math notranslate nohighlight" id="equation-la-atx">
@@ -1067,6 +1087,9 @@ of equations — we defer discussion of these cases until later lectures.)</p>
         \vdots \\
         b_n
     \end{bmatrix}.\end{split}\]</div>
+<div class="proof example admonition" id="le_ex_gls">
+<p class="admonition-title"><span class="caption-number">Example 8.7 </span></p>
+<section class="example-content" id="proof-content">
 <p>For example, <a class="reference internal" href="#equation-n-eq-sys-la">(8.8)</a> has this form with</p>
 <div class="math notranslate nohighlight">
 \[ 
@@ -1076,7 +1099,8 @@ of equations — we defer discussion of these cases until later lectures.)</p>
     \quad \text{and} \quad
     x = p.
 \]</div>
-<p>When considering problems such as <a class="reference internal" href="#equation-la-gf">(8.10)</a>, we need to ask at least some of
+</section>
+</div><p>When considering problems such as <a class="reference internal" href="#equation-la-gf">(8.10)</a>, we need to ask at least some of
 the following questions</p>
 <ul class="simple">
 <li><p>Does a solution actually exist?</p></li>
@@ -1117,7 +1141,7 @@ the following questions</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/fa0be15280fdf81e6a37db59bd243493ada1eb7ae035152fd0acb7d7ea69346a.png"><img alt="_images/fa0be15280fdf81e6a37db59bd243493ada1eb7ae035152fd0acb7d7ea69346a.png" src="_images/fa0be15280fdf81e6a37db59bd243493ada1eb7ae035152fd0acb7d7ea69346a.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/b65e249afa0c9a23ed0021c50076ee79aeea295bbe79519abadb932e990abdd0.png"><img alt="_images/b65e249afa0c9a23ed0021c50076ee79aeea295bbe79519abadb932e990abdd0.png" src="_images/b65e249afa0c9a23ed0021c50076ee79aeea295bbe79519abadb932e990abdd0.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>Clearly, these are parallel lines and hence we will never find a point <span class="math notranslate nohighlight">\(x \in \mathbb{R}^2\)</span>
@@ -1370,7 +1394,7 @@ and <code class="docutils literal notranslate"><span class="pre">inv(A)</span></
 </ol>
 </section>
 </div>
-<div class="solution dropdown admonition" id="linear_equations-solution-1">
+<div class="solution dropdown admonition" id="linear_equations-solution-8">
 
 <p class="admonition-title">Solution to<a class="reference internal" href="#lin_eqs_ex1"> Exercise 8.1</a></p>
 <section id="solution-content">
@@ -1547,7 +1571,7 @@ following three equations:</p>
 </ol>
 </section>
 </div>
-<div class="solution dropdown admonition" id="linear_equations-solution-3">
+<div class="solution dropdown admonition" id="linear_equations-solution-10">
 
 <p class="admonition-title">Solution to<a class="reference internal" href="#lin_eqs_ex2"> Exercise 8.2</a></p>
 <section id="solution-content">
@@ -1632,7 +1656,7 @@ following three equations:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/220cb4abe936eef0fec4b8f095d3db83cd6eab2e4cea32fda8b3544979033aee.png"><img alt="_images/220cb4abe936eef0fec4b8f095d3db83cd6eab2e4cea32fda8b3544979033aee.png" src="_images/220cb4abe936eef0fec4b8f095d3db83cd6eab2e4cea32fda8b3544979033aee.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/c2c655087b413d2a18eb6371eea72213001d7930cfd454b7481042288f102777.png"><img alt="_images/c2c655087b413d2a18eb6371eea72213001d7930cfd454b7481042288f102777.png" src="_images/c2c655087b413d2a18eb6371eea72213001d7930cfd454b7481042288f102777.png" style="width: 80%;" /></a>
 </div>
 </div>
 </section>

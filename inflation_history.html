@@ -262,9 +262,7 @@ const thebe_selector_output = ".output, .cell_output"
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Downloading xlrd-2.0.1-py2.py3-none-any.whl.metadata (3.4 kB)
 Downloading xlrd-2.0.1-py2.py3-none-any.whl (96 kB)
 ?25l   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/96.5 kB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">96.5/96.5 kB</span> <span class=" -Color -Color-Red">5.8 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">96.5/96.5 kB</span> <span class=" -Color -Color-Red">4.8 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
 ?25h
 </pre></div>
 </div>
@@ -348,16 +346,16 @@ Downloading xlrd-2.0.1-py2.py3-none-any.whl (96 kB)
 <p>During most years in this time interval, the countries were on a gold or silver standard.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_fig5_bef1914</span> <span class="o">=</span> <span class="n">df_fig5</span><span class="p">[</span><span class="n">df_fig5</span><span class="o">.</span><span class="n">index</span> <span class="o">&lt;=</span> <span class="mi">1915</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_fig5_befe1914</span> <span class="o">=</span> <span class="n">df_fig5</span><span class="p">[</span><span class="n">df_fig5</span><span class="o">.</span><span class="n">index</span> <span class="o">&lt;=</span> <span class="mi">1914</span><span class="p">]</span>
 
 <span class="c1"># Create plot</span>
 <span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;UK&#39;</span><span class="p">,</span> <span class="s1">&#39;US&#39;</span><span class="p">,</span> <span class="s1">&#39;France&#39;</span><span class="p">,</span> <span class="s1">&#39;Castile&#39;</span><span class="p">]</span>
 
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
 
 <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">cols</span><span class="p">:</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df_fig5_bef1914</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> 
-            <span class="n">df_fig5_bef1914</span><span class="p">[</span><span class="n">col</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="n">col</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df_fig5_befe1914</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> 
+            <span class="n">df_fig5_befe1914</span><span class="p">[</span><span class="n">col</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="n">col</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 
 <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Index  1913 = 100&#39;</span><span class="p">)</span>
@@ -370,7 +368,7 @@ Downloading xlrd-2.0.1-py2.py3-none-any.whl (96 kB)
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="lrpl">
-<a class="reference internal image-reference" href="_images/aee07628dd9e82cf891c9fb260718131a8355f299876d14883b400b8033caff8.png"><img alt="_images/aee07628dd9e82cf891c9fb260718131a8355f299876d14883b400b8033caff8.png" src="_images/aee07628dd9e82cf891c9fb260718131a8355f299876d14883b400b8033caff8.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/ad67a4404cd64c4072b1bad1ba20750868e4e3a130e6ef5f371c58bde456b74b.png"><img alt="_images/ad67a4404cd64c4072b1bad1ba20750868e4e3a130e6ef5f371c58bde456b74b.png" src="_images/ad67a4404cd64c4072b1bad1ba20750868e4e3a130e6ef5f371c58bde456b74b.png" style="width: 80%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 4.1 </span><span class="caption-text">Long run time series of the price level</span><a class="headerlink" href="#lrpl" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -434,7 +432,7 @@ Downloading xlrd-2.0.1-py2.py3-none-any.whl (96 kB)
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="lrpl-lg">
-<a class="reference internal image-reference" href="_images/09ccf1c010b8edb3b13c02ebcec3dbba8a1745d1c9d7bc1b95bfa1c04d6a9098.png"><img alt="_images/09ccf1c010b8edb3b13c02ebcec3dbba8a1745d1c9d7bc1b95bfa1c04d6a9098.png" src="_images/09ccf1c010b8edb3b13c02ebcec3dbba8a1745d1c9d7bc1b95bfa1c04d6a9098.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/7395db0eee1862ae343feba24cf856056ab407573f6da80a2f73224db02205f7.png"><img alt="_images/7395db0eee1862ae343feba24cf856056ab407573f6da80a2f73224db02205f7.png" src="_images/7395db0eee1862ae343feba24cf856056ab407573f6da80a2f73224db02205f7.png" style="width: 80%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 4.2 </span><span class="caption-text">Long run time series of the price level (log)</span><a class="headerlink" href="#lrpl-lg" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -579,11 +577,6 @@ and inflation rates, for each country of interest.</p>
     <span class="c1">#  Calculate the difference of log p_seq</span>
     <span class="n">log_diff_p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">p_seq</span><span class="p">))</span>
     
-    <span class="c1"># Graph for the difference of log p_seq</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">index</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="n">log_diff_p</span><span class="p">,</span> 
-               <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Monthly inflation rate&#39;</span><span class="p">,</span> 
-               <span class="n">color</span><span class="o">=</span><span class="s1">&#39;tab:grey&#39;</span><span class="p">)</span>
-    
     <span class="c1"># Calculate and plot moving average</span>
     <span class="n">diff_smooth</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">log_diff_p</span><span class="p">)</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">index</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="n">diff_smooth</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Moving average (3 period)&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
@@ -597,7 +590,7 @@ and inflation rates, for each country of interest.</p>
     <span class="k">for</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_xticklabels</span><span class="p">():</span>
         <span class="n">label</span><span class="o">.</span><span class="n">set_rotation</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>
     
-    <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
     
     <span class="k">return</span> <span class="n">ax</span>
 </pre></div>
@@ -667,7 +660,7 @@ and inflation rates, for each country of interest.</p>
 <span class="n">e_seq</span> <span class="o">=</span> <span class="n">df_aus</span><span class="p">[</span><span class="s1">&#39;Exchange Rate&#39;</span><span class="p">]</span>
 
 <span class="n">lab</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Retail price index&#39;</span><span class="p">,</span> 
-       <span class="s1">&#39;1/cents per Austrian Krone (Crown)&#39;</span><span class="p">]</span>
+       <span class="s1">&#39;Austrian Krones (Crowns) per US cent&#39;</span><span class="p">]</span>
 
 <span class="c1"># Create plot</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
@@ -679,7 +672,7 @@ and inflation rates, for each country of interest.</p>
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="pi-xrate-austria">
-<a class="reference internal image-reference" href="_images/bc4b116000a32ce196a6c0081b973e5b4c8db82c25b8d69b76d152f858706565.png"><img alt="_images/bc4b116000a32ce196a6c0081b973e5b4c8db82c25b8d69b76d152f858706565.png" src="_images/bc4b116000a32ce196a6c0081b973e5b4c8db82c25b8d69b76d152f858706565.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/8f1e58b8464f044f84364177adbd3e7af49f98863e2b32b028d93d42d5f054c7.png"><img alt="_images/8f1e58b8464f044f84364177adbd3e7af49f98863e2b32b028d93d42d5f054c7.png" src="_images/8f1e58b8464f044f84364177adbd3e7af49f98863e2b32b028d93d42d5f054c7.png" style="width: 80%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 4.3 </span><span class="caption-text">Price index and exchange rate (Austria)</span><a class="headerlink" href="#pi-xrate-austria" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -698,7 +691,7 @@ and inflation rates, for each country of interest.</p>
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="inflationrate-austria">
-<a class="reference internal image-reference" href="_images/1a2b257349ad5fc2a9aa5059787218c2719b1ad3b26795e03548526577b71153.png"><img alt="_images/1a2b257349ad5fc2a9aa5059787218c2719b1ad3b26795e03548526577b71153.png" src="_images/1a2b257349ad5fc2a9aa5059787218c2719b1ad3b26795e03548526577b71153.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/290297e94d4cc9bb86d15129684876ab26dd750dc9044fffac70fa7175036116.png"><img alt="_images/290297e94d4cc9bb86d15129684876ab26dd750dc9044fffac70fa7175036116.png" src="_images/290297e94d4cc9bb86d15129684876ab26dd750dc9044fffac70fa7175036116.png" style="width: 80%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 4.4 </span><span class="caption-text">Monthly inflation rate (Austria)</span><a class="headerlink" href="#inflationrate-austria" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -721,12 +714,11 @@ and inflation rates, for each country of interest.</p>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m_seq</span> <span class="o">=</span> <span class="n">df_hun</span><span class="p">[</span><span class="s1">&#39;Notes in circulation&#39;</span><span class="p">]</span>
-<span class="n">p_seq</span> <span class="o">=</span> <span class="n">df_hun</span><span class="p">[</span><span class="s1">&#39;Hungarian index of prices&#39;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p_seq</span> <span class="o">=</span> <span class="n">df_hun</span><span class="p">[</span><span class="s1">&#39;Hungarian index of prices&#39;</span><span class="p">]</span>
 <span class="n">e_seq</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">df_hun</span><span class="p">[</span><span class="s1">&#39;Cents per crown in New York&#39;</span><span class="p">]</span>
 
 <span class="n">lab</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Hungarian index of prices&#39;</span><span class="p">,</span> 
-       <span class="s1">&#39;1/cents per Hungarian Korona (Crown)&#39;</span><span class="p">]</span>
+       <span class="s1">&#39;Hungarian Koronas (Crowns) per US cent&#39;</span><span class="p">]</span>
 
 <span class="c1"># Create plot</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
@@ -738,7 +730,7 @@ and inflation rates, for each country of interest.</p>
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="pi-xrate-hungary">
-<a class="reference internal image-reference" href="_images/bf837642290a60b0a050e19ab612c4b04f69269ab0835a4328158af0f9643539.png"><img alt="_images/bf837642290a60b0a050e19ab612c4b04f69269ab0835a4328158af0f9643539.png" src="_images/bf837642290a60b0a050e19ab612c4b04f69269ab0835a4328158af0f9643539.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/0471e81b6cd587e70735366889aab5f27c23c5e7ed3b5642195c192a3d736240.png"><img alt="_images/0471e81b6cd587e70735366889aab5f27c23c5e7ed3b5642195c192a3d736240.png" src="_images/0471e81b6cd587e70735366889aab5f27c23c5e7ed3b5642195c192a3d736240.png" style="width: 80%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 4.5 </span><span class="caption-text">Price index and exchange rate (Hungary)</span><a class="headerlink" href="#pi-xrate-hungary" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -757,7 +749,7 @@ and inflation rates, for each country of interest.</p>
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="inflationrate-hungary">
-<a class="reference internal image-reference" href="_images/0f5163a7b0c963015759567287634f494d62e05806d75c0447cb14f08cd586fa.png"><img alt="_images/0f5163a7b0c963015759567287634f494d62e05806d75c0447cb14f08cd586fa.png" src="_images/0f5163a7b0c963015759567287634f494d62e05806d75c0447cb14f08cd586fa.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/0474be318d18f7fd9a4dfeb6504acc30bd64db2dc0ee95cf3a5930a5f82c487b.png"><img alt="_images/0474be318d18f7fd9a4dfeb6504acc30bd64db2dc0ee95cf3a5930a5f82c487b.png" src="_images/0474be318d18f7fd9a4dfeb6504acc30bd64db2dc0ee95cf3a5930a5f82c487b.png" style="width: 80%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 4.6 </span><span class="caption-text">Monthly inflation rate (Hungary)</span><a class="headerlink" href="#inflationrate-hungary" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -809,7 +801,7 @@ We dropped the exchange rate after June 1924, when the zloty was adopted. We did
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lab</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Wholesale price index&#39;</span><span class="p">,</span> 
-       <span class="s1">&#39;1/cents per polish mark&#39;</span><span class="p">]</span>
+       <span class="s1">&#39;Polish marks per US cent&#39;</span><span class="p">]</span>
 
 <span class="c1"># Create plot</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
@@ -820,7 +812,7 @@ We dropped the exchange rate after June 1924, when the zloty was adopted. We did
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/d548a18858de754af1e817c6f918fc085c62dfb7ecbd5d27e9d85b0ad92aa44f.png"><img alt="_images/d548a18858de754af1e817c6f918fc085c62dfb7ecbd5d27e9d85b0ad92aa44f.png" src="_images/d548a18858de754af1e817c6f918fc085c62dfb7ecbd5d27e9d85b0ad92aa44f.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/5847980482c2069df8f8d8c7117290bf3ff72d531af456d5a3b8754ae25ca744.png"><img alt="_images/5847980482c2069df8f8d8c7117290bf3ff72d531af456d5a3b8754ae25ca744.png" src="_images/5847980482c2069df8f8d8c7117290bf3ff72d531af456d5a3b8754ae25ca744.png" style="width: 80%;" /></a>
 </div>
 </div>
 <div class="cell docutils container">
@@ -835,7 +827,7 @@ We dropped the exchange rate after June 1924, when the zloty was adopted. We did
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="inflationrate-poland">
-<a class="reference internal image-reference" href="_images/39f79b1a8d3e1f6d15f3586f102cf5f577e96286e4761e3b80de3e4a4c8bcdc0.png"><img alt="_images/39f79b1a8d3e1f6d15f3586f102cf5f577e96286e4761e3b80de3e4a4c8bcdc0.png" src="_images/39f79b1a8d3e1f6d15f3586f102cf5f577e96286e4761e3b80de3e4a4c8bcdc0.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/c9c8443e71fc93a34268f2a1cb63aa54b5889952b2ba0f7513b2b471bf128e15.png"><img alt="_images/c9c8443e71fc93a34268f2a1cb63aa54b5889952b2ba0f7513b2b471bf128e15.png" src="_images/c9c8443e71fc93a34268f2a1cb63aa54b5889952b2ba0f7513b2b471bf128e15.png" style="width: 80%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 4.7 </span><span class="caption-text">Monthly inflation rate (Poland)</span><a class="headerlink" href="#inflationrate-poland" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -857,7 +849,7 @@ We dropped the exchange rate after June 1924, when the zloty was adopted. We did
 <span class="n">e_seq</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">df_deu</span><span class="p">[</span><span class="s1">&#39;Cents per mark&#39;</span><span class="p">]</span>
 
 <span class="n">lab</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Price index&#39;</span><span class="p">,</span> 
-       <span class="s1">&#39;1/cents per mark&#39;</span><span class="p">]</span>
+       <span class="s1">&#39;Marks per US cent&#39;</span><span class="p">]</span>
 
 <span class="c1"># Create plot</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
@@ -869,7 +861,7 @@ We dropped the exchange rate after June 1924, when the zloty was adopted. We did
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="pi-xrate-germany">
-<a class="reference internal image-reference" href="_images/4fb34731f428c4f5f145a8732d2cbb591a7d22766fc6adacd23a002471e909ab.png"><img alt="_images/4fb34731f428c4f5f145a8732d2cbb591a7d22766fc6adacd23a002471e909ab.png" src="_images/4fb34731f428c4f5f145a8732d2cbb591a7d22766fc6adacd23a002471e909ab.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/80a99259bc73a6c62bba8c98f8308da675660c3b81b451aca923e1a5ea6e61a9.png"><img alt="_images/80a99259bc73a6c62bba8c98f8308da675660c3b81b451aca923e1a5ea6e61a9.png" src="_images/80a99259bc73a6c62bba8c98f8308da675660c3b81b451aca923e1a5ea6e61a9.png" style="width: 80%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 4.8 </span><span class="caption-text">Price index and exchange rate (Germany)</span><a class="headerlink" href="#pi-xrate-germany" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -889,7 +881,7 @@ We dropped the exchange rate after June 1924, when the zloty was adopted. We did
                                           <span class="o">&gt;</span> <span class="s1">&#39;12-01-1923&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="mf">1e12</span>
 
 <span class="n">lab</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Price index (marks or converted to marks)&#39;</span><span class="p">,</span> 
-       <span class="s1">&#39;1/cents per mark (or reichsmark converted to mark)&#39;</span><span class="p">]</span>
+       <span class="s1">&#39;Marks per US cent(or reichsmark converted to mark)&#39;</span><span class="p">]</span>
 
 <span class="c1"># Create plot</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
@@ -901,7 +893,7 @@ We dropped the exchange rate after June 1924, when the zloty was adopted. We did
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="piadj-xrate-germany">
-<a class="reference internal image-reference" href="_images/ecaa90eb631caf9c2f199ab18ff9366e996f2f6c618447cdee55a0058999a24a.png"><img alt="_images/ecaa90eb631caf9c2f199ab18ff9366e996f2f6c618447cdee55a0058999a24a.png" src="_images/ecaa90eb631caf9c2f199ab18ff9366e996f2f6c618447cdee55a0058999a24a.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/4801b6d6965869ec41e904a11994bba4ee6c649e7552a5e39bc48ad09378c3cd.png"><img alt="_images/4801b6d6965869ec41e904a11994bba4ee6c649e7552a5e39bc48ad09378c3cd.png" src="_images/4801b6d6965869ec41e904a11994bba4ee6c649e7552a5e39bc48ad09378c3cd.png" style="width: 80%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 4.9 </span><span class="caption-text">Price index (adjusted) and exchange rate (Germany)</span><a class="headerlink" href="#piadj-xrate-germany" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -920,7 +912,7 @@ We dropped the exchange rate after June 1924, when the zloty was adopted. We did
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="inflationrate-germany">
-<a class="reference internal image-reference" href="_images/bf17d411489996ed871483561327e3b9c2f1420a0562f550ea3ec76299072061.png"><img alt="_images/bf17d411489996ed871483561327e3b9c2f1420a0562f550ea3ec76299072061.png" src="_images/bf17d411489996ed871483561327e3b9c2f1420a0562f550ea3ec76299072061.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/0a50fcbefc69616866a423960e864ac9d263e402836da5b963b927b21f061d8e.png"><img alt="_images/0a50fcbefc69616866a423960e864ac9d263e402836da5b963b927b21f061d8e.png" src="_images/0a50fcbefc69616866a423960e864ac9d263e402836da5b963b927b21f061d8e.png" style="width: 80%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 4.10 </span><span class="caption-text">Monthly inflation rate (Germany)</span><a class="headerlink" href="#inflationrate-germany" title="Permalink to this image">#</a></p>
 </figcaption>

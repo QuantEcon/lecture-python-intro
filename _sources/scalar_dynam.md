@@ -220,11 +220,12 @@ For example, in a later lecture {doc}`solow`, we will study the Solow-Swan growt
 ```{math}
 :label: solow_lom2
 
-k_{t+1} = s z k_t^{\alpha} + (1 - \delta) k_t
+k_{t+1} = s A k_t^{\alpha} + (1 - \delta) k_t
 ```
 
-Here $k$ is the per capita capital stock and $s, z, \alpha, \delta$ are positive
-parameters with $0 < \alpha, \delta < 1$.
+Here $k=K/L$ is the per capita capital stock, $s$ is the saving rate, $A$ is the total factor productivity, $\alpha$ is the capital share, and $\delta$ is the depreciation rate. 
+
+All these parameter are positive and $0 < \alpha, \delta < 1$.
 
 If you try to iterate like we did in {eq}`sdslinmodpath`, you will find that
 the algebra gets messy quickly.
@@ -293,12 +294,17 @@ $$
 
 Obviously every globally stable steady state is also locally stable.
 
-We will see examples below where the converse is not true.
+Here is an example where the converse is not true.
 
+```{prf:example}
+Consider the self-map $g$ on $\mathbb{R}$ defined by $g(x)=x^2$. The fixed point $1$ is not stable.
 
+For example, $g^t (x)\to\infty$ for any $x>1$.
 
+However, $0$ is locally stable, because $-1<x<1$ implies that $g^t (x)\to 0$ as $t\to\infty$.
 
-
+Since we have more than one fixed point, $0$ is not globally stable.
+```
 
 
 ## Graphical analysis

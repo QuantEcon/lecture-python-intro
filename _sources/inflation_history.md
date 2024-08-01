@@ -21,6 +21,7 @@ The `xlrd` package is used by `pandas` to perform operations on Excel files.
 
 ```{code-cell} ipython3
 :tags: [hide-output]
+
 !pip install xlrd
 ```
 
@@ -28,6 +29,7 @@ The `xlrd` package is used by `pandas` to perform operations on Excel files.
 
 ```{code-cell} ipython3
 :tags: [hide-cell]
+
 from importlib.metadata import version
 from packaging.version import Version
 
@@ -100,16 +102,16 @@ mystnb:
     caption: Long run time series of the price level
     name: lrpl
 ---
-df_fig5_bef1914 = df_fig5[df_fig5.index <= 1915]
+df_fig5_befe1914 = df_fig5[df_fig5.index <= 1914]
 
 # Create plot
 cols = ['UK', 'US', 'France', 'Castile']
 
-fig, ax = plt.subplots(dpi=200)
+fig, ax = plt.subplots(figsize=(10,6))
 
 for col in cols:
-    ax.plot(df_fig5_bef1914.index, 
-            df_fig5_bef1914[col], label=col, lw=2)
+    ax.plot(df_fig5_befe1914.index, 
+            df_fig5_befe1914[col], label=col, lw=2)
 
 ax.legend()
 ax.set_ylabel('Index  1913 = 100')
@@ -327,11 +329,6 @@ def pr_plot(p_seq, index, ax):
     #  Calculate the difference of log p_seq
     log_diff_p = np.diff(np.log(p_seq))
     
-    # Graph for the difference of log p_seq
-    ax.scatter(index[1:], log_diff_p, 
-               label='Monthly inflation rate', 
-               color='tab:grey')
-    
     # Calculate and plot moving average
     diff_smooth = pd.DataFrame(log_diff_p).rolling(3, center=True).mean()
     ax.plot(index[1:], diff_smooth, label='Moving average (3 period)', alpha=0.5, lw=2)
@@ -345,7 +342,7 @@ def pr_plot(p_seq, index, ax):
     for label in ax.get_xticklabels():
         label.set_rotation(45)
     
-    ax.legend(loc='upper left')
+    ax.legend()
     
     return ax
 ```
@@ -419,7 +416,7 @@ p_seq = df_aus['Retail price index, 52 commodities']
 e_seq = df_aus['Exchange Rate']
 
 lab = ['Retail price index', 
-       '1/cents per Austrian Krone (Crown)']
+       'Austrian Krones (Crowns) per US cent']
 
 # Create plot
 fig, ax = plt.subplots(dpi=200)
@@ -463,12 +460,11 @@ mystnb:
     caption: Price index and exchange rate (Hungary)
     name: pi_xrate_hungary
 ---
-m_seq = df_hun['Notes in circulation']
 p_seq = df_hun['Hungarian index of prices']
 e_seq = 1 / df_hun['Cents per crown in New York']
 
 lab = ['Hungarian index of prices', 
-       '1/cents per Hungarian Korona (Crown)']
+       'Hungarian Koronas (Crowns) per US cent']
 
 # Create plot
 fig, ax = plt.subplots(dpi=200)
@@ -537,7 +533,7 @@ e_seq[e_seq.index > '05-01-1924'] = np.nan
 
 ```{code-cell} ipython3
 lab = ['Wholesale price index', 
-       '1/cents per polish mark']
+       'Polish marks per US cent']
 
 # Create plot
 fig, ax = plt.subplots(dpi=200)
@@ -579,7 +575,7 @@ p_seq = df_deu['Price index (on basis of marks before July 1924,'
 e_seq = 1/df_deu['Cents per mark']
 
 lab = ['Price index', 
-       '1/cents per mark']
+       'Marks per US cent']
 
 # Create plot
 fig, ax = plt.subplots(dpi=200)
@@ -606,7 +602,7 @@ e_seq[e_seq.index > '12-01-1923'] = e_seq[e_seq.index
                                           > '12-01-1923'] * 1e12
 
 lab = ['Price index (marks or converted to marks)', 
-       '1/cents per mark (or reichsmark converted to mark)']
+       'Marks per US cent(or reichsmark converted to mark)']
 
 # Create plot
 fig, ax = plt.subplots(dpi=200)
