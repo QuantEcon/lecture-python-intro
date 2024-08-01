@@ -18,15 +18,16 @@ kernelspec:
 In the lecture {doc}`long_run_growth` we studied how GDP per capita has changed
 for certain countries and regions.
 
-Per capital GDP is important because it gives us an idea of average income for
+Per capita GDP is important because it gives us an idea of average income for
 households in a given country.
 
 However, when we study income and wealth, averages are only part of the story.
 
+
 For example, imagine two societies, each with one million people, where
 
 * in the first society, the yearly income of one man is $100,000,000 and the income of the
-  others is zero
+  others are zero
 * in the second society, the yearly income of everyone is $100
 
 These countries have the same income per capita (average income is $100) but the lives of the people will be very different (e.g., almost everyone in the first society is
@@ -532,7 +533,7 @@ Let's look at the Gini coefficient for the distribution of income in the US.
 
 We will get pre-computed Gini coefficients (based on income) from the World Bank using the [wbgapi](https://blogs.worldbank.org/opendata/introducing-wbgapi-new-python-package-accessing-world-bank-data).
 
-Let's use the `wbgapi` package we imported earlier to search the world bank data for Gini to find the Series ID.
+Let's use the `wbgapi` package we imported earlier to search the World Bank data for Gini to find the Series ID.
 
 ```{code-cell} ipython3
 wb.search("gini")
@@ -755,8 +756,9 @@ min_year = plot_data.year.min()
 max_year = plot_data.year.max()
 ```
 
-The time series for all three countries start and stop in different years. We will add a year mask to the data to
-improve clarity in the chart including the different end years associated with each countries time series.
+The time series for all three countries start and stop in different years. 
+
+We will add a year mask to the data to improve clarity in the chart including the different end years associated with each country's time series.
 
 ```{code-cell} ipython3
 labels = [1979, 1986, 1991, 1995, 2000, 2020, 2021, 2022] + \
@@ -783,7 +785,7 @@ fig.show()
 This figure is built using `plotly` and is {ref}` available on the website <fig:plotly-gini-gdppc-years>`
 ```
 
-This plot shows that all three Western economies GDP per capita has grown over
+This plot shows that all three Western economies' GDP per capita has grown over
 time with some fluctuations in the Gini coefficient. 
 
 From the early 80's the United Kingdom and the US economies both saw increases
