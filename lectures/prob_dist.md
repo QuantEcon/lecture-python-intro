@@ -4,13 +4,12 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.14.5
+    jupytext_version: 1.16.1
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
   name: python3
 ---
-
 
 # Distributions and Probabilities
 
@@ -23,6 +22,7 @@ In this lecture we give a quick introduction to data and probability distributio
 
 ```{code-cell} ipython3
 :tags: [hide-output]
+
 !pip install --upgrade yfinance  
 ```
 
@@ -34,7 +34,6 @@ import yfinance as yf
 import scipy.stats
 import seaborn as sns
 ```
-
 
 ## Common distributions
 
@@ -98,7 +97,6 @@ We can import the uniform distribution on $S = \{1, \ldots, n\}$  from SciPy lik
 n = 10
 u = scipy.stats.randint(1, n+1)
 ```
-
 
 Here's the mean and variance:
 
@@ -195,7 +193,6 @@ u.pmf(0)
 u.pmf(1)
 ```
 
-
 #### Binomial distribution
 
 Another useful (and more interesting) distribution is the **binomial distribution** on $S=\{0, \ldots, n\}$, which has PMF:
@@ -232,7 +229,6 @@ Let's see if SciPy gives us the same results:
 u.mean(), u.var()
 ```
 
-
 Here's the PMF:
 
 ```{code-cell} ipython3
@@ -250,7 +246,6 @@ ax.set_ylabel('PMF')
 plt.show()
 ```
 
-
 Here's the CDF:
 
 ```{code-cell} ipython3
@@ -263,7 +258,6 @@ ax.set_xlabel('S')
 ax.set_ylabel('CDF')
 plt.show()
 ```
-
 
 ```{exercise}
 :label: prob_ex3
@@ -334,7 +328,6 @@ ax.set_ylabel('PMF')
 plt.show()
 ```
 
-
 #### Poisson distribution
 
 The Poisson distribution on $S = \{0, 1, \ldots\}$ with parameter $\lambda > 0$ has PMF
@@ -371,7 +364,6 @@ ax.set_xlabel('S')
 ax.set_ylabel('PMF')
 plt.show()
 ```
-
 
 ### Continuous distributions
 
@@ -449,7 +441,6 @@ plt.legend()
 plt.show()
 ```
 
-
 Here's a plot of the CDF:
 
 ```{code-cell} ipython3
@@ -465,7 +456,6 @@ ax.set_ylabel('CDF')
 plt.legend()
 plt.show()
 ```
-
 
 #### Lognormal distribution
 
@@ -646,7 +636,6 @@ plt.legend()
 plt.show()
 ```
 
-
 #### Gamma distribution
 
 The **gamma distribution** is a distribution on $\left(0, \infty\right)$ with density
@@ -730,7 +719,6 @@ df = pd.DataFrame(data, columns=['name', 'income'])
 df
 ```
 
-
 In this situation, we might refer to the set of their incomes as the "income distribution."
 
 The terminology is confusing because this set is not a probability distribution
@@ -761,13 +749,9 @@ $$
 For the income distribution given above, we can calculate these numbers via
 
 ```{code-cell} ipython3
-x = np.asarray(df['income'])   # Pull out income as a NumPy array
-```
-
-```{code-cell} ipython3
+x = df['income']
 x.mean(), x.var()
 ```
-
 
 ```{exercise}
 :label: prob_ex4
@@ -792,14 +776,12 @@ We will cover
 We can histogram the income distribution we just constructed as follows
 
 ```{code-cell} ipython3
-x = df['income']
 fig, ax = plt.subplots()
 ax.hist(x, bins=5, density=True, histtype='bar')
 ax.set_xlabel('income')
 ax.set_ylabel('density')
 plt.show()
 ```
-
 
 Let's look at a distribution from real data.
 
@@ -811,24 +793,20 @@ So we will have one observation for each month.
 
 ```{code-cell} ipython3
 :tags: [hide-output]
-df = yf.download('AMZN', '2000-1-1', '2024-1-1', interval='1mo' )
-prices = df['Adj Close']
-data = prices.pct_change()[1:] * 100
-data.head()
-```
 
+df = yf.download('AMZN', '2000-1-1', '2024-1-1', interval='1mo')
+prices = df['Adj Close']
+x_amazon = prices.pct_change()[1:] * 100
+x_amazon.head()
+```
 
 The first observation is the monthly return (percent change) over January 2000, which was
 
 ```{code-cell} ipython3
-data[0] 
+x_amazon.iloc[0]
 ```
 
 Let's turn the return observations into an array and histogram it.
-
-```{code-cell} ipython3
-x_amazon = np.asarray(data)
-```
 
 ```{code-cell} ipython3
 fig, ax = plt.subplots()
@@ -837,7 +815,6 @@ ax.set_xlabel('monthly return (percent change)')
 ax.set_ylabel('density')
 plt.show()
 ```
-
 
 #### Kernel density estimates
 
@@ -893,10 +870,10 @@ For example, let's compare the monthly returns on Amazon shares with the monthly
 
 ```{code-cell} ipython3
 :tags: [hide-output]
-df = yf.download('COST', '2000-1-1', '2024-1-1', interval='1mo' )
+
+df = yf.download('COST', '2000-1-1', '2024-1-1', interval='1mo')
 prices = df['Adj Close']
-data = prices.pct_change()[1:] * 100
-x_costco = np.asarray(data)
+x_costco = prices.pct_change()[1:] * 100
 ```
 
 ```{code-cell} ipython3
@@ -906,7 +883,6 @@ ax.set_ylabel('monthly return (percent change)')
 ax.set_xlabel('KDE')
 plt.show()
 ```
-
 
 ### Connection to probability distributions
 
@@ -941,7 +917,6 @@ ax.set_ylabel('density')
 plt.show()
 ```
 
-
 The match between the histogram and the density is not bad but also not very good.
 
 One reason is that the normal distribution is not really a good fit for this observed data --- we will discuss this point again when we talk about {ref}`heavy tailed distributions<heavy_tail>`.
@@ -967,8 +942,6 @@ ax.set_ylabel('density')
 plt.show()
 ```
 
-
 Note that if you keep increasing $N$, which is the number of observations, the fit will get better and better.
 
 This convergence is a version of the "law of large numbers", which we will discuss {ref}`later<lln_mr>`.
-
