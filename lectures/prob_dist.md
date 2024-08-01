@@ -296,7 +296,7 @@ $$
 p(i) = (1 - \theta)^i \theta
 $$
 
-where $\lambda \in [0,1]$ is a parameter
+where $\theta \in [0,1]$ is a parameter
 
 (A discrete distribution has infinite support if the set of points to which it assigns positive probability is infinite.)
 
@@ -884,7 +884,10 @@ x_costco = prices.pct_change()[1:] * 100
 fig, ax = plt.subplots()
 ax.violinplot([x_amazon, x_costco])
 ax.set_ylabel('monthly return (percent change)')
-ax.set_xlabel('KDE')
+ax.set_xlabel('retailers')
+
+ax.set_xticks([1, 2])
+ax.set_xticklabels(['Amazon', 'Costco'])
 plt.show()
 ```
 
