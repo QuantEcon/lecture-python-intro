@@ -281,6 +281,7 @@ d =
     2
 \end{bmatrix}
 $$ (eq:inout_ex)
+```
 
 ```{code-cell} ipython3
 A = np.array([[0.1, 40],
@@ -292,7 +293,6 @@ d = np.array([50, 2]).reshape((2, 1))
 I = np.identity(2)
 B = I - A
 B
-```
 ```
 
 Let's check the **Hawkins-Simon conditions**
@@ -351,6 +351,7 @@ a_0^\top = \begin{bmatrix}
 4 & 100
 \end{bmatrix}
 $$
+```
 
 Then we can find $A_0^\top$ by
 
@@ -367,7 +368,6 @@ Thus, the production possibility frontier for this economy is
 $$
 10d_1 + 500d_2 = x_0
 $$
-```
 
 +++ {"user_expressions": []}
 
