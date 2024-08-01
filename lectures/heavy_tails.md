@@ -58,6 +58,9 @@ the natural sciences have "light tails."
 
 To explain this concept, let's look first at examples.
 
+```{prf:example}
+:label: ht_ex_nd
+
 The classic example is the [normal distribution](https://en.wikipedia.org/wiki/Normal_distribution), which has density
 
 $$ 
@@ -73,6 +76,7 @@ respectively.
 
 As $x$ deviates from $\mu$, the value of $f(x)$ goes to zero extremely
 quickly.
+```
 
 We can see this when we plot the density and show a histogram of observations,
 as with the following code (which assumes $\mu=0$ and $\sigma=1$).
@@ -277,6 +281,9 @@ The data we have just seen is said to be "heavy-tailed".
 With heavy-tailed distributions, extreme outcomes occur relatively
 frequently.
 
+```{prf:example}
+:label: ht_ex_od
+
 Importantly, there are many examples of heavy-tailed distributions
 observed in economic and financial settings!
 
@@ -292,6 +299,7 @@ The firm size distribution is also heavy-tailed
 The distribution of town and city sizes is heavy-tailed 
 
 * Most towns and cities are small but some are very large.
+```
 
 Later in this lecture, we examine heavy tails in these distributions.
 
