@@ -263,6 +263,8 @@ $$
 $$
 
 
+```{prf:example}
+:label: io_ex_tg
 
 For example a two-good economy described by
 
@@ -290,6 +292,7 @@ d = np.array([50, 2]).reshape((2, 1))
 I = np.identity(2)
 B = I - A
 B
+```
 ```
 
 Let's check the **Hawkins-Simon conditions**
@@ -336,6 +339,9 @@ $$
 
 Equation {eq}`eq:inout_frontier` sweeps out a  **production possibility frontier** of final consumption bundles $d$ that can be produced with exogenous labor input $x_0$.
 
+```{prf:example}
+:label: io_ex_ppf
+
 Consider the example in {eq}`eq:inout_ex`.
 
 Suppose we are now given
@@ -361,6 +367,7 @@ Thus, the production possibility frontier for this economy is
 $$
 10d_1 + 500d_2 = x_0
 $$
+```
 
 +++ {"user_expressions": []}
 
