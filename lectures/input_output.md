@@ -120,7 +120,7 @@ A basic framework for their analysis is
 After  introducing the input-output model, we describe some of its connections to {doc}`linear programming lecture <lp_intro>`.
 
 
-## Input output analysis
+## Input-output analysis
 
 Let
 
@@ -184,7 +184,7 @@ plt.text(1.6, -0.5, r'$d_{2}$')
 plt.show()
 ```
 
-**Feasible allocations must satisfy**
+*Feasible allocations must satisfy*
 
 $$
 \begin{aligned}
@@ -264,7 +264,7 @@ $$
 
 
 
-For example a two good economy described by
+For example a two-good economy described by
 
 $$
 A =
@@ -507,9 +507,9 @@ This illustrates that an element $l_{ij}$ of $L$ shows the total impact on secto
 
 ## Applications of graph theory
 
-We can further study input output networks through applications of {doc}`graph theory <networks>`.
+We can further study input-output networks through applications of {doc}`graph theory <networks>`.
 
-An input output network can be represented by a weighted directed graph induced by the adjacency matrix $A$.
+An input-output network can be represented by a weighted directed graph induced by the adjacency matrix $A$.
 
 The set of nodes $V = [n]$ is the list of sectors and the set of edges is given by
 
@@ -550,7 +550,7 @@ The above figure indicates that manufacturing is the most dominant sector in the
 
 ### Output multipliers
 
-Another way to rank sectors in input output networks is via output multipliers.
+Another way to rank sectors in input-output networks is via output multipliers.
 
 The **output multiplier** of sector $j$ denoted by $\mu_j$ is usually defined as the
 total sector-wide impact of a unit change of demand in sector $j$.
