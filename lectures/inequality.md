@@ -23,6 +23,8 @@ households in a given country.
 
 However, when we study income and wealth, averages are only part of the story.
 
+```{prf:example}
+:label: ie_ex_av
 
 For example, imagine two societies, each with one million people, where
 
@@ -32,6 +34,7 @@ For example, imagine two societies, each with one million people, where
 
 These countries have the same income per capita (average income is $100) but the lives of the people will be very different (e.g., almost everyone in the first society is
 starving, even though one person is fabulously rich).
+```
 
 The example above suggests that we should go beyond simple averages when we study income and wealth.
 
