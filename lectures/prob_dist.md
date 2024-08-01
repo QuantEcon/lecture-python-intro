@@ -296,7 +296,7 @@ $$
 p(i) = (1 - \theta)^i \theta
 $$
 
-where $\lambda \in [0,1]$ is a parameter
+where $\theta \in [0,1]$ is a parameter
 
 (A discrete distribution has infinite support if the set of points to which it assigns positive probability is infinite.)
 
