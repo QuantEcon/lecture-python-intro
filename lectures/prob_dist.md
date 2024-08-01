@@ -160,7 +160,8 @@ Check that your answers agree with `u.mean()` and `u.var()`.
 Another useful distribution is the Bernoulli distribution on $S = \{0,1\}$, which has PMF:
 
 $$
-p(i) = \theta^{i-1} (1 - \theta)^i
+p(i) = \theta^i (1 - \theta)^{1-i}
+\qquad (i = 0, 1)
 $$
 
 Here $\theta \in [0,1]$ is a parameter.
@@ -171,7 +172,7 @@ We can think of this distribution as modeling probabilities for a random trial w
 * $p(0) = 1 - \theta$ means that the trial fails (takes value 0) with
   probability $1-\theta$
 
-The formula for the mean is $p$, and the formula for the variance is $p(1-p)$.
+The formula for the mean is $\theta$, and the formula for the variance is $\theta(1-\theta)$.
 
 We can import the Bernoulli distribution on $S = \{0,1\}$ from SciPy like so:
 
@@ -186,11 +187,10 @@ Here's the mean and variance at $\theta=0.4$
 u.mean(), u.var()
 ```
 
-Now let's evaluate the PMF
+We can evaluate the PMF as follows
 
 ```{code-cell} ipython3
-u.pmf(0)
-u.pmf(1)
+u.pmf(0), u.pmf(1)
 ```
 
 #### Binomial distribution
@@ -756,7 +756,11 @@ x.mean(), x.var()
 ```{exercise}
 :label: prob_ex4
 
-Check that the formulas given above produce the same numbers.
+If you try to check that the formulas given above for the sample mean and sample
+variance produce the same numbers, you will see that the variance isn't quite
+right.  This is because SciPy uses $1/(n-1)$ instead of $1/n$ as the term at the
+front of the variance. (Some books define the sample variance this way.)
+Confirm.
 ```
 
 
