@@ -776,7 +776,6 @@ We will cover
 We can histogram the income distribution we just constructed as follows
 
 ```{code-cell} ipython3
-x = df['income']
 fig, ax = plt.subplots()
 ax.hist(x, bins=5, density=True, histtype='bar')
 ax.set_xlabel('income')
