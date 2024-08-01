@@ -304,6 +304,8 @@ $$
 
 where $\lambda \in [0,1]$ is a parameter
 
+(A discrete distribution has infinite support if the set of points to which it assigns positive probability is infinite.)
+
 To understand the distribution, think of repeated independent random trials, each with success probability $\theta$.
 
 The interpretation of $p(i)$ is: the probability there are $i$ failures before the first success occurs.
