@@ -749,10 +749,7 @@ $$
 For the income distribution given above, we can calculate these numbers via
 
 ```{code-cell} ipython3
-x = np.asarray(df['income'])   # Pull out income as a NumPy array
-```
-
-```{code-cell} ipython3
+x = df['income']
 x.mean(), x.var()
 ```
 
