@@ -229,6 +229,10 @@ Let's see if SciPy gives us the same results:
 u.mean(), u.var()
 ```
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> main
 Here's the PMF:
 
 ```{code-cell} ipython3
@@ -328,6 +332,10 @@ ax.set_ylabel('PMF')
 plt.show()
 ```
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> main
 #### Poisson distribution
 
 The Poisson distribution on $S = \{0, 1, \ldots\}$ with parameter $\lambda > 0$ has PMF
@@ -795,7 +803,7 @@ So we will have one observation for each month.
 ```{code-cell} ipython3
 :tags: [hide-output]
 
-df = yf.download('AMZN', '2000-1-1', '2024-1-1', interval='1mo' )
+df = yf.download('AMZN', '2000-1-1', '2024-1-1', interval='1mo')
 prices = df['Adj Close']
 x_amazon = prices.pct_change()[1:] * 100
 x_amazon.head()
@@ -872,7 +880,7 @@ For example, let's compare the monthly returns on Amazon shares with the monthly
 ```{code-cell} ipython3
 :tags: [hide-output]
 
-df = yf.download('COST', '2000-1-1', '2024-1-1', interval='1mo' )
+df = yf.download('COST', '2000-1-1', '2024-1-1', interval='1mo')
 prices = df['Adj Close']
 x_costco = prices.pct_change()[1:] * 100
 ```
