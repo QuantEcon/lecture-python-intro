@@ -29,6 +29,7 @@ In this lecture we give a quick introduction to data and probability distributio
 ```{code-cell} ipython3
 import matplotlib.pyplot as plt
 import pandas as pd
+pd.option_context('mode.use_inf_as_na', False)
 import numpy as np
 import yfinance as yf
 import scipy.stats
