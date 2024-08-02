@@ -26,7 +26,7 @@ In addition to what's in Anaconda, this lecture will need the following librarie
 
 In this lecture we will begin with the foundational concepts in spectral theory.
 
-Then we will explore the Perron-Frobenius Theorem and connect it to applications in Markov chains and networks.
+Then we will explore the Perron-Frobenius theorem and connect it to applications in Markov chains and networks.
 
 We will use the following imports:
 
@@ -64,6 +64,9 @@ An $n \times n$ nonnegative matrix $A$ is called irreducible if $A + A^2 + A^3 +
 
 In other words, for each $i,j$ with $1 \leq i, j \leq n$, there exists a $k \geq 0$ such that $a^{k}_{ij} > 0$.
 
+```{prf:example}
+:label: eigen2_ex_irr
+
 Here are some examples to illustrate this further:
 
 $$
@@ -94,6 +97,7 @@ $$
 
 $C$ is not irreducible since $C^k = C$ for all $k \geq 0$ and thus
    $c^{k}_{12},c^{k}_{21} = 0$ for all $k \geq 0$.
+```
 
 ### Left eigenvectors
 
@@ -159,7 +163,7 @@ This is a more common expression and where the name left eigenvectors originates
 For a square nonnegative matrix $A$, the behavior of $A^k$ as $k \to \infty$ is controlled by the eigenvalue with the largest
 absolute value, often called the **dominant eigenvalue**.
 
-For any such matrix $A$, the Perron-Frobenius Theorem characterizes certain
+For any such matrix $A$, the Perron-Frobenius theorem characterizes certain
 properties of the dominant eigenvalue and its corresponding eigenvector.
 
 ```{prf:Theorem} Perron-Frobenius Theorem
@@ -188,7 +192,7 @@ Let's build our intuition for the theorem using a simple example we have seen [b
 
 Now let's consider examples for each case.
 
-#### Example: Irreducible matrix
+#### Example: irreducible matrix
 
 Consider the following irreducible matrix $A$:
 
@@ -204,7 +208,7 @@ We can compute the dominant eigenvalue and the corresponding eigenvector
 eig(A)
 ```
 
-Now we can see the claims of the Perron-Frobenius Theorem holds for the irreducible matrix $A$:
+Now we can see the claims of the Perron-Frobenius theorem holds for the irreducible matrix $A$:
 
 1. The dominant eigenvalue is real-valued and non-negative.
 2. All other eigenvalues have absolute values less than or equal to the dominant eigenvalue.
@@ -222,6 +226,9 @@ The primitive matrices, however, can still give us helpful properties with loose
 Let $A$ be a square nonnegative matrix and let $A^k$ be the $k^{th}$ power of $A$.
 
 A matrix is called **primitive** if there exists a $k \in \mathbb{N}$ such that $A^k$ is everywhere positive.
+
+```{prf:example}
+:label: eigen2_ex_prim
 
 Recall the examples given in irreducible matrices:
 
@@ -244,10 +251,11 @@ B^2 = \begin{bmatrix} 1 & 0 \\
 $$
 
 $B$ is irreducible but not primitive since there are always zeros in either principal diagonal or secondary diagonal.
+```
 
 We can see that if a matrix is primitive, then it implies the matrix is irreducible but not vice versa.
 
-Now let's step back to the primitive matrices part of the Perron-Frobenius Theorem
+Now let's step back to the primitive matrices part of the Perron-Frobenius theorem
 
 ```{prf:Theorem} Continous of Perron-Frobenius Theorem
 :label: con-perron-frobenius
@@ -259,7 +267,7 @@ If $A$ is primitive then,
 $ r(A)^{-m} A^m$ converges to $v w^{\top}$ when $m \rightarrow \infty$. The matrix $v w^{\top}$ is called the **Perron projection** of $A$.
 ```
 
-#### Example 1: Primitive matrix
+#### Example 1: primitive matrix
 
 Consider the following primitive matrix $B$:
 
@@ -277,7 +285,7 @@ We compute the dominant eigenvalue and the corresponding eigenvector
 eig(B)
 ```
 
-Now let's give some examples to see if the claims of the Perron-Frobenius Theorem hold for the primitive matrix $B$:
+Now let's give some examples to see if the claims of the Perron-Frobenius theorem hold for the primitive matrix $B$:
 
 1. The dominant eigenvalue is real-valued and non-negative.
 2. All other eigenvalues have absolute values strictly less than the dominant eigenvalue.
@@ -373,18 +381,18 @@ check_convergence(B)
 
 The result shows that the matrix is not primitive as it is not everywhere positive.
 
-These examples show how the Perron-Frobenius Theorem relates to the eigenvalues and eigenvectors of positive matrices and the convergence of the power of matrices.
+These examples show how the Perron-Frobenius theorem relates to the eigenvalues and eigenvectors of positive matrices and the convergence of the power of matrices.
 
 In fact we have already seen the theorem in action before in {ref}`the Markov chain lecture <mc1_ex_1>`.
 
 (spec_markov)=
-#### Example 2: Connection to Markov chains
+#### Example 2: connection to Markov chains
 
 We are now prepared to bridge the languages spoken in the two lectures.
 
 A primitive matrix is both irreducible and aperiodic.
 
-So Perron-Frobenius Theorem explains why both {ref}`Imam and Temple matrix <mc_eg3>` and [Hamilton matrix](https://en.wikipedia.org/wiki/Hamiltonian_matrix) converge to a stationary distribution, which is the Perron projection of the two matrices
+So Perron-Frobenius theorem explains why both {ref}`Imam and Temple matrix <mc_eg3>` and [Hamilton matrix](https://en.wikipedia.org/wiki/Hamiltonian_matrix) converge to a stationary distribution, which is the Perron projection of the two matrices
 
 ```{code-cell} ipython3
 P = np.array([[0.68, 0.12, 0.20],
@@ -449,7 +457,7 @@ As we have seen, the largest eigenvalue for a primitive stochastic matrix is one
 This can be proven using [Gershgorin Circle Theorem](https://en.wikipedia.org/wiki/Gershgorin_circle_theorem),
 but it is out of the scope of this lecture.
 
-So by the statement (6) of Perron-Frobenius Theorem, $\lambda_i<1$ for all $i<n$, and $\lambda_n=1$ when $P$ is primitive.
+So by the statement (6) of Perron-Frobenius theorem, $\lambda_i<1$ for all $i<n$, and $\lambda_n=1$ when $P$ is primitive.
 
 Hence, after taking the Euclidean norm deviation, we obtain
 
