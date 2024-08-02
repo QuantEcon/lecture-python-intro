@@ -68,6 +68,9 @@ Before we look at the model of supply and demand, it will be helpful to have som
 
 ### A discrete example
 
+```{prf:example}
+:label: isd_ex_cs
+
 Regarding consumer surplus, suppose that we have a single good and 10 consumers.
 
 These 10 consumers have different preferences; in particular, the amount they would be willing to pay for one unit of the good differs.
@@ -79,6 +82,7 @@ Suppose that the willingness to pay for each of the 10 consumers is as follows:
 | willing to pay | 98 | 72 | 41 | 38 | 29 | 21 | 17 | 12 | 11 | 10  |
 
 (We have ordered consumers by willingness to pay, in descending order.)
+```
 
 If $p$ is the price of the good and  $w_i$ is the amount that consumer $i$ is willing to pay, then $i$ buys when $w_i \geq p$.
 
@@ -253,6 +257,9 @@ Let $v_i$ be the price at which producer $i$ is willing to sell the good.
 
 When the price is $p$, producer surplus for producer $i$ is $\max\{p - v_i, 0\}$.
 
+```{prf:example}
+:label: isd_ex_dc
+
 For example, a producer willing to sell at \$10 and selling at price \$20 makes a surplus of \$10. 
 
 Total producer surplus is given by
@@ -273,6 +280,7 @@ p = 2 q^2
 $$
 
 The shaded area is the total producer surplus in this continuous model.
+```
 
 ```{code-cell} ipython3
 ---
