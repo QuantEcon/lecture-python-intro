@@ -735,9 +735,7 @@ distribution.
 We will come back to this when we introduce irreducibility in the {doc}`next lecture <markov_chains_II>` on Markov chains.
 
 
-
-### Example
-
+```{prf:example} Steady-State Unemployment Probability
 Recall our model of the employment/unemployment dynamics of a particular worker discussed in {ref}`Example 2: Unemployment <mc_eg1>`.
 
 If $\alpha \in (0,1)$ and $\beta \in (0,1)$, then the transition matrix is everywhere positive.
@@ -754,6 +752,7 @@ $$
 This is, in some sense, a steady state probability of unemployment.
 
 Not surprisingly it tends to zero as $\beta \to 0$, and to one as $\alpha \to 0$.
+```
 
 ### Calculating stationary distributions
 
