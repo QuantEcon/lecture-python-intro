@@ -4,7 +4,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.16.2
+    jupytext_version: 1.16.1
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
@@ -16,8 +16,16 @@ kernelspec:
 
 ## Introduction
 
+Chapter 24 of {cite}`russell2004history` about early Greek mathematics and astronomy contains this
+fascinating passage:
 
-This lecture can be viewed as a sequel to {doc}`eigen_I`.
+ ```{epigraph} 
+ The square root of 2, which was the first irrational to be discovered, was known to the early Pythagoreans, and ingenious methods of approximating to its value were discovered. The best was as follows: Form two columns of numbers, which we will call the $a$'s and the $b$'s; each starts with a $1$. The next $a$, at each stage, is formed by adding the last $a$ and the $b$ already obtained; the next $b$ is formed by adding twice the previous $a$ to the previous $b$. The first 6 pairs so obtained are $(1,1), (2,3), (5,7), (12,17), (29,41), (70,99)$. In each pair, $2 a - b$ is $1$ or $-1$. Thus $b/a$ is nearly the square root of two, and at each fresh step it gets nearer. For instance, the reader may satisy himself that the square of $99/70$ is very nearly equal to $2$.
+ ```
+
+This lecture drills down and studies this ancient method for computing square roots by using some of the matrix algebra that we've learned in earlier quantecon lectures. 
+
+In particular, this lecture can be viewed as a sequel to {doc}`eigen_I`.
 
 It  provides an  example of how eigenvectors isolate  *invariant subspaces* that help construct and analyze solutions of linear difference equations. 
 
@@ -679,7 +687,7 @@ We find that the ratios converge to $\lambda_2$ in the first case and $\lambda_1
 :tags: [hide-input]
 
 # Plot the ratios for y_t / y_{t-1}
-fig, axs = plt.subplots(1, 2, figsize=(14, 6))
+fig, axs = plt.subplots(1, 2, figsize=(12, 6), dpi=500)
 
 # First subplot
 axs[0].plot(np.round(ratios_λ1, 6), 
@@ -715,3 +723,78 @@ All of these exploit very similar equations based on eigen decompositions.
 
 We shall encounter equations very similar to {eq}`eq:deactivate1` and {eq}`eq:deactivate2`
 in {doc}`money_inflation` and in many other places in dynamic economic theory.
+
+
+## Exercise
+
+```{exercise-start} 
+:label: greek_square_ex_a
+```
+Please use matrix algebra to formulate the method described by Bertrand Russell at the beginning of this lecture.  
+
+1.  Define a state vector $x_t = \begin{bmatrix} a_t \cr b_t \end{bmatrix}$.
+2.  Formulate a first-order vector difference equation for $x_t$ of the form $x_{t+1} = A x_t$ and
+compute the matrix $A$.
+3.  Use the system $x_{t+1} = A x_t$ to replicate the sequence of $a_t$'s and $b_t$'s described by Bertrand Russell.
+4.  Compute the eigenvectors and eigenvalues of $A$ and compare them to corresponding objects computed in the text of this lecture. 
+
+```{exercise-end} 
+```
+
+```{solution-start} greek_square_ex_a
+:class: dropdown
+```
+
+Here is one soluition.
+
+According to the quote, we can formulate 
+
+$$
+\begin{aligned}
+a_{t+1} &= a_t + b_t \\
+b_{t+1} &= 2a_t + b_t
+\end{aligned}
+$$ (eq:gs_ex1system)
+
+with $x_0 = \begin{bmatrix}  a_0 \cr b_0 \end{bmatrix} = \begin{bmatrix}  1 \cr 1 \end{bmatrix}$
+
+By {eq}`eq:gs_ex1system`, we can write matrix $A$ as 
+
+$$
+A = \begin{bmatrix} 1 & 1 \cr 
+                2 & 1 \end{bmatrix}
+$$
+
+Then $x_{t+1} = A x_t$ for $t \in \{0, \dots, 5\}$
+
+```{code-cell} ipython3
+# Define the matrix A
+A = np.array([[1, 1],
+              [2, 1]])
+
+# Initial vector x_0
+x_0 = np.array([1, 1])
+
+# Number of iterations
+n = 6
+
+# Generate the sequence
+xs = np.array([x_0])
+x_t = x_0
+for _ in range(1, n):
+    x_t = A @ x_t
+    xs = np.vstack([xs, x_t])
+
+# Print the sequence
+for i, (a_t, b_t) in enumerate(xs):
+    print(f"Iter {i}: a_t = {a_t}, b_t = {b_t}")
+
+# Compute eigenvalues and eigenvectors of A
+eigenvalues, eigenvectors = np.linalg.eig(A)
+
+print(f'\nEigenvalues:\n{eigenvalues}')
+print(f'\nEigenvectors:\n{eigenvectors}')
+```
+
+```{solution-end}
+```
