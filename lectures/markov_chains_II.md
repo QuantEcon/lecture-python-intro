@@ -107,6 +107,9 @@ mc = qe.MarkovChain(P, ('poor', 'middle', 'rich'))
 mc.is_irreducible
 ```
 
+```{prf:example}
+:label: mc2_ex_pf
+
 Here's a more pessimistic scenario in which  poor people remain poor forever
 
 ```{image} /_static/lecture_specific/markov_chains_II/Irre_2.png
@@ -116,6 +119,7 @@ Here's a more pessimistic scenario in which  poor people remain poor forever
 
 This stochastic matrix is not irreducible since, for example, rich is not
 accessible from poor.
+```
 
 Let's confirm this
 
@@ -272,6 +276,9 @@ In any of these cases, ergodicity will hold.
 
 ### Example: a periodic chain
 
+```{prf:example}
+:label: mc2_ex_pc
+
 Let's look at the following example with states 0 and 1:
 
 $$
@@ -291,7 +298,7 @@ The transition graph shows that this model is irreducible.
 ```
 
 Notice that there is a periodic cycle --- the state cycles between the two states in a regular way.
-
+```
 Not surprisingly, this property 
 is called [periodicity](https://stats.libretexts.org/Bookshelves/Probability_Theory/Probability_Mathematical_Statistics_and_Stochastic_Processes_(Siegrist)/16%3A_Markov_Processes/16.05%3A_Periodicity_of_Discrete-Time_Chains).
 
