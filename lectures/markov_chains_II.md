@@ -71,6 +71,8 @@ that
 The stochastic matrix $P$ is called **irreducible** if all states communicate;
 that is, if $x$ and $y$ communicate for all $(x, y)$ in $S \times S$.
 
+```{prf:example}
+:label: mc2_ex_ir
 For example, consider the following transition probabilities for wealth of a
 fictitious set of households
 
@@ -95,6 +97,7 @@ $$
 
 It's clear from the graph that this stochastic matrix is irreducible: we can  eventually
 reach any state from any other state.
+```
 
 We can also test this using [QuantEcon.py](http://quantecon.org/quantecon-py)'s MarkovChain class
 
@@ -107,6 +110,9 @@ mc = qe.MarkovChain(P, ('poor', 'middle', 'rich'))
 mc.is_irreducible
 ```
 
+```{prf:example}
+:label: mc2_ex_pf
+
 Here's a more pessimistic scenario in which  poor people remain poor forever
 
 ```{image} /_static/lecture_specific/markov_chains_II/Irre_2.png
@@ -116,6 +122,7 @@ Here's a more pessimistic scenario in which  poor people remain poor forever
 
 This stochastic matrix is not irreducible since, for example, rich is not
 accessible from poor.
+```
 
 Let's confirm this
 
@@ -272,6 +279,9 @@ In any of these cases, ergodicity will hold.
 
 ### Example: a periodic chain
 
+```{prf:example}
+:label: mc2_ex_pc
+
 Let's look at the following example with states 0 and 1:
 
 $$
@@ -291,7 +301,7 @@ The transition graph shows that this model is irreducible.
 ```
 
 Notice that there is a periodic cycle --- the state cycles between the two states in a regular way.
-
+```
 Not surprisingly, this property 
 is called [periodicity](https://stats.libretexts.org/Bookshelves/Probability_Theory/Probability_Mathematical_Statistics_and_Stochastic_Processes_(Siegrist)/16%3A_Markov_Processes/16.05%3A_Periodicity_of_Discrete-Time_Chains).
 
@@ -392,7 +402,7 @@ plt.show()
 ````{exercise}
 :label: mc_ex1
 
-Benhabib el al. {cite}`benhabib_wealth_2019` estimated that the transition matrix for social mobility as the following
+Benhabib et al. {cite}`benhabib_wealth_2019` estimated that the transition matrix for social mobility as the following
 
 $$
 P:=
