@@ -392,7 +392,7 @@ plt.show()
 ````{exercise}
 :label: mc_ex1
 
-Benhabib el al. {cite}`benhabib_wealth_2019` estimated that the transition matrix for social mobility as the following
+Benhabib et al. {cite}`benhabib_wealth_2019` estimated that the transition matrix for social mobility as the following
 
 $$
 P:=
