@@ -71,6 +71,8 @@ that
 The stochastic matrix $P$ is called **irreducible** if all states communicate;
 that is, if $x$ and $y$ communicate for all $(x, y)$ in $S \times S$.
 
+```{prf:example}
+:label: mc2_ex_ir
 For example, consider the following transition probabilities for wealth of a
 fictitious set of households
 
@@ -95,6 +97,7 @@ $$
 
 It's clear from the graph that this stochastic matrix is irreducible: we can  eventually
 reach any state from any other state.
+```
 
 We can also test this using [QuantEcon.py](http://quantecon.org/quantecon-py)'s MarkovChain class
 
