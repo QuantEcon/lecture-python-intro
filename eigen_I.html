@@ -327,7 +327,9 @@ a map transforming <span class="math notranslate nohighlight">\(x\)</span> to <s
 itself.</p>
 <p>This means <span class="math notranslate nohighlight">\(A\)</span> is an <span class="math notranslate nohighlight">\(n \times n\)</span> matrix that maps (or “transforms”) a vector
 <span class="math notranslate nohighlight">\(x\)</span> in <span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span> to a new vector <span class="math notranslate nohighlight">\(y=Ax\)</span> also in <span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span>.</p>
-<p>Here’s one example:</p>
+<div class="proof example admonition" id="eigen1_ex_sq">
+<p class="admonition-title"><span class="caption-number">Example 16.1 </span></p>
+<section class="example-content" id="proof-content">
 <div class="math notranslate nohighlight">
 \[\begin{split}
     \begin{bmatrix}
@@ -353,7 +355,8 @@ itself.</p>
 \end{split}\]</div>
 <p>transforms the vector <span class="math notranslate nohighlight">\(x = \begin{bmatrix} 1 \\ 3 \end{bmatrix}\)</span> to the vector
 <span class="math notranslate nohighlight">\(y = \begin{bmatrix} 5 \\ 2 \end{bmatrix}\)</span>.</p>
-<p>Let’s visualize this using Python:</p>
+</section>
+</div><p>Let’s visualize this using Python:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">2</span><span class="p">,</span>  <span class="mi">1</span><span class="p">],</span>
@@ -1239,7 +1242,7 @@ b_{k+1}=\frac{A b_k}{\left\|A b_k\right\|}
 <p>Then visualize the convergence.</p>
 </section>
 </div>
-<div class="solution dropdown admonition" id="eigen_I-solution-2">
+<div class="solution dropdown admonition" id="eigen_I-solution-3">
 
 <p class="admonition-title">Solution to<a class="reference internal" href="#eig1_ex1"> Exercise 16.1</a></p>
 <section id="solution-content">
@@ -1294,7 +1297,7 @@ The real eigenvalue is [ 4. -2.  2.]
 </pre></div>
 </div>
 <figure class="align-default" id="pow-dist">
-<a class="reference internal image-reference" href="_images/649fb08c714d6edaec6f61755585032b735686ab879935f3aabe54169a7cdaea.png"><img alt="_images/649fb08c714d6edaec6f61755585032b735686ab879935f3aabe54169a7cdaea.png" src="_images/649fb08c714d6edaec6f61755585032b735686ab879935f3aabe54169a7cdaea.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/49dff63694ae448a713203649c25748bc7f3ab34cd51cf39812c0aebe57d49b6.png"><img alt="_images/49dff63694ae448a713203649c25748bc7f3ab34cd51cf39812c0aebe57d49b6.png" src="_images/49dff63694ae448a713203649c25748bc7f3ab34cd51cf39812c0aebe57d49b6.png" style="width: 80%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 16.1 </span><span class="caption-text">Power iteration</span><a class="headerlink" href="#pow-dist" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -1337,7 +1340,7 @@ The real eigenvalue is [ 4. -2.  2.]
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="pow-trajectory">
-<a class="reference internal image-reference" href="_images/946c7d5929b3e0833820f92c118fe955921f20d2cac9f79d6f71622444eb947a.png"><img alt="_images/946c7d5929b3e0833820f92c118fe955921f20d2cac9f79d6f71622444eb947a.png" src="_images/946c7d5929b3e0833820f92c118fe955921f20d2cac9f79d6f71622444eb947a.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/985ae82122f2a6b64a2d0af80942aa7007147d917d49f696cb10fd7debe320e3.png"><img alt="_images/985ae82122f2a6b64a2d0af80942aa7007147d917d49f696cb10fd7debe320e3.png" src="_images/985ae82122f2a6b64a2d0af80942aa7007147d917d49f696cb10fd7debe320e3.png" style="width: 80%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 16.2 </span><span class="caption-text">Power iteration trajectory</span><a class="headerlink" href="#pow-trajectory" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -1355,7 +1358,7 @@ The real eigenvalue is [ 4. -2.  2.]
 <p>Try to compute the trajectory of <span class="math notranslate nohighlight">\(v\)</span> after being transformed by <span class="math notranslate nohighlight">\(A\)</span> for <span class="math notranslate nohighlight">\(n=4\)</span> iterations and plot the result.</p>
 </section>
 </div>
-<div class="solution dropdown admonition" id="eigen_I-solution-4">
+<div class="solution dropdown admonition" id="eigen_I-solution-5">
 
 <p class="admonition-title">Solution to<a class="reference internal" href="#eig1_ex2"> Exercise 16.2</a></p>
 <section id="solution-content">
@@ -1452,7 +1455,7 @@ eigenvectors:
 <p>Use the visualization in the previous exercise to explain the trajectory of the vector <span class="math notranslate nohighlight">\(v\)</span> after being transformed by <span class="math notranslate nohighlight">\(A\)</span> for the three different matrices.</p>
 </section>
 </div>
-<div class="solution dropdown admonition" id="eigen_I-solution-6">
+<div class="solution dropdown admonition" id="eigen_I-solution-7">
 
 <p class="admonition-title">Solution to<a class="reference internal" href="#eig1_ex3"> Exercise 16.3</a></p>
 <section id="solution-content">

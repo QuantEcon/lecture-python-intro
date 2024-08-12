@@ -278,6 +278,9 @@ partly because they help us understand important concepts.</p>
 <span class="eqno">(33.1)<a class="headerlink" href="#equation-can-ar1" title="Permalink to this equation">#</a></span>\[X_{t+1} = a X_t + b + c W_{t+1}\]</div>
 <p>where <span class="math notranslate nohighlight">\(a, b, c\)</span> are scalar-valued parameters</p>
 <p>(Equation <a class="reference internal" href="#equation-can-ar1">(33.1)</a> is sometimes called a <strong>stochastic difference equation</strong>.)</p>
+<div class="proof example admonition" id="ar1_ex_ar">
+<p class="admonition-title"><span class="caption-number">Example 33.1 </span></p>
+<section class="example-content" id="proof-content">
 <p>For example, <span class="math notranslate nohighlight">\(X_t\)</span> might be</p>
 <ul class="simple">
 <li><p>the log of labor income for a given household, or</p></li>
@@ -287,7 +290,8 @@ partly because they help us understand important concepts.</p>
 of the previous value and an IID shock <span class="math notranslate nohighlight">\(W_{t+1}\)</span>.</p>
 <p>(We use <span class="math notranslate nohighlight">\(t+1\)</span> for the subscript of <span class="math notranslate nohighlight">\(W_{t+1}\)</span> because this random variable is not
 observed at time <span class="math notranslate nohighlight">\(t\)</span>.)</p>
-<p>The specification <a class="reference internal" href="#equation-can-ar1">(33.1)</a> generates a time series <span class="math notranslate nohighlight">\(\{ X_t\}\)</span> as soon as we
+</section>
+</div><p>The specification <a class="reference internal" href="#equation-can-ar1">(33.1)</a> generates a time series <span class="math notranslate nohighlight">\(\{ X_t\}\)</span> as soon as we
 specify an initial condition <span class="math notranslate nohighlight">\(X_0\)</span>.</p>
 <p>To make things even simpler, we will assume that</p>
 <ul class="simple">
@@ -504,7 +508,10 @@ stationary distribution.</p>
 <li><p>In <a class="reference internal" href="#equation-ar1-ergo">(33.6)</a>, convergence holds with probability one.</p></li>
 <li><p>The textbook by <span id="id1">[<a class="reference internal" href="zreferences.html#id213" title="S P Meyn and R L Tweedie. Markov Chains and Stochastic Stability. Cambridge University Press, 2009.">Meyn and Tweedie, 2009</a>]</span> is a classic reference on ergodicity.</p></li>
 </ul>
-<p>For example, if we consider the identity function <span class="math notranslate nohighlight">\(h(x) = x\)</span>, we get</p>
+<div class="proof example admonition" id="ar1_ex_id">
+<p class="admonition-title"><span class="caption-number">Example 33.2 </span></p>
+<section class="example-content" id="proof-content">
+<p>If we consider the identity function <span class="math notranslate nohighlight">\(h(x) = x\)</span>, we get</p>
 <div class="math notranslate nohighlight">
 \[
 \frac{1}{m} \sum_{t = 1}^m X_t  \to
@@ -512,7 +519,8 @@ stationary distribution.</p>
     \quad \text{as } m \to \infty
 \]</div>
 <p>In other words, the time series sample mean converges to the mean of the stationary distribution.</p>
-<p>Ergodicity is important for a range of reasons.</p>
+</section>
+</div><p>Ergodicity is important for a range of reasons.</p>
 <p>For example, <a class="reference internal" href="#equation-ar1-ergo">(33.6)</a> can be used to test theory.</p>
 <p>In this equation, we can use observed data to evaluate the left hand side of <a class="reference internal" href="#equation-ar1-ergo">(33.6)</a>.</p>
 <p>And we can use a theoretical AR(1) model to calculate the right hand side.</p>
@@ -553,7 +561,7 @@ M_k =
 <p>Confirm this by simulation at a range of <span class="math notranslate nohighlight">\(k\)</span> using the default parameters from the lecture.</p>
 </section>
 </div>
-<div class="solution dropdown admonition" id="ar1_processes-solution-1">
+<div class="solution dropdown admonition" id="ar1_processes-solution-3">
 
 <p class="admonition-title">Solution to<a class="reference internal" href="#ar1p_ex1"> Exercise 33.1</a></p>
 <section id="solution-content">
@@ -644,7 +652,7 @@ with <span class="math notranslate nohighlight">\(\alpha = \beta = 0.5\)</span><
 of these distributions?)</p>
 </section>
 </div>
-<div class="solution dropdown admonition" id="ar1_processes-solution-3">
+<div class="solution dropdown admonition" id="ar1_processes-solution-5">
 
 <p class="admonition-title">Solution to<a class="reference internal" href="#ar1p_ex2"> Exercise 33.2</a></p>
 <section id="solution-content">
@@ -704,9 +712,9 @@ of these distributions?)</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/544808bc6a9b19eedeb8edea439cdf5dd329de65025bbd450b1a6ac939fbcba9.png"><img alt="_images/544808bc6a9b19eedeb8edea439cdf5dd329de65025bbd450b1a6ac939fbcba9.png" src="_images/544808bc6a9b19eedeb8edea439cdf5dd329de65025bbd450b1a6ac939fbcba9.png" style="width: 80%;" /></a>
-<a class="reference internal image-reference" href="_images/475898eaf0458587778300bc9ea9929eeaabb5b3028528f39a215697e106dbfb.png"><img alt="_images/475898eaf0458587778300bc9ea9929eeaabb5b3028528f39a215697e106dbfb.png" src="_images/475898eaf0458587778300bc9ea9929eeaabb5b3028528f39a215697e106dbfb.png" style="width: 80%;" /></a>
-<a class="reference internal image-reference" href="_images/0a4479846c44d14539584df8e598f2bf3a987d5a395b5868e341f3f819d2bf90.png"><img alt="_images/0a4479846c44d14539584df8e598f2bf3a987d5a395b5868e341f3f819d2bf90.png" src="_images/0a4479846c44d14539584df8e598f2bf3a987d5a395b5868e341f3f819d2bf90.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/5f1777801d1fa1eb9c34e8151f90c5b6cd2257719fc63098c74cf22194c28037.png"><img alt="_images/5f1777801d1fa1eb9c34e8151f90c5b6cd2257719fc63098c74cf22194c28037.png" src="_images/5f1777801d1fa1eb9c34e8151f90c5b6cd2257719fc63098c74cf22194c28037.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/30e98214edf1309cda6133567bc8d6c06a292dbb109bfefd7ac66751c7b57307.png"><img alt="_images/30e98214edf1309cda6133567bc8d6c06a292dbb109bfefd7ac66751c7b57307.png" src="_images/30e98214edf1309cda6133567bc8d6c06a292dbb109bfefd7ac66751c7b57307.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/79bfff50ff657cfbcb47884ebed4eed491384b3b4a53ebc909cb0434b1578ba5.png"><img alt="_images/79bfff50ff657cfbcb47884ebed4eed491384b3b4a53ebc909cb0434b1578ba5.png" src="_images/79bfff50ff657cfbcb47884ebed4eed491384b3b4a53ebc909cb0434b1578ba5.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>We see that the kernel density estimator is effective when the underlying
@@ -753,7 +761,7 @@ simulation based estimate of <span class="math notranslate nohighlight">\(\psi_{
 theoretical distribution.</p>
 </section>
 </div>
-<div class="solution dropdown admonition" id="ar1_processes-solution-5">
+<div class="solution dropdown admonition" id="ar1_processes-solution-7">
 
 <p class="admonition-title">Solution to<a class="reference internal" href="#ar1p_ex3"> Exercise 33.3</a></p>
 <section id="solution-content">
@@ -813,7 +821,7 @@ theoretical distribution.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/cbec90abeb7cc4fc1d2d467f94565252aa13cba99c9a981f4b8dc3eaa3dcb611.png"><img alt="_images/cbec90abeb7cc4fc1d2d467f94565252aa13cba99c9a981f4b8dc3eaa3dcb611.png" src="_images/cbec90abeb7cc4fc1d2d467f94565252aa13cba99c9a981f4b8dc3eaa3dcb611.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/54737265a4599e45e2d771142b19cddc58cbb9ca9429293ef7578e5bc06c72ed.png"><img alt="_images/54737265a4599e45e2d771142b19cddc58cbb9ca9429293ef7578e5bc06c72ed.png" src="_images/54737265a4599e45e2d771142b19cddc58cbb9ca9429293ef7578e5bc06c72ed.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>The simulated distribution approximately coincides with the theoretical

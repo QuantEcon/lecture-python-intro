@@ -272,7 +272,7 @@ many goods.</p>
 <p>In the 15th, 16th, 17th and 18th centuries, mercantilist ideas held sway among most rulers of European countries.</p>
 <p>Exports were regarded as good because they brought in bullion (gold flowed into the country).</p>
 <p>Imports were regarded as bad because bullion was required to pay for them (gold flowed out).</p>
-<p>This <a class="reference external" href="https://en.wikipedia.org/wiki/Zero-sum_game">zero-sum</a> view of economics was eventually overturned by the work of the classical economists such as <a class="reference external" href="https://en.wikipedia.org/wiki/Adam_Smith">Adam Smith</a> and <a class="reference external" href="https://en.wikipedia.org/wiki/David_Ricardo">David Ricado</a>, who showed how freeing domestic and international trade can enhance welfare.</p>
+<p>This <a class="reference external" href="https://en.wikipedia.org/wiki/Zero-sum_game">zero-sum</a> view of economics was eventually overturned by the work of the classical economists such as <a class="reference external" href="https://en.wikipedia.org/wiki/Adam_Smith">Adam Smith</a> and <a class="reference external" href="https://en.wikipedia.org/wiki/David_Ricardo">David Ricardo</a>, who showed how freeing domestic and international trade can enhance welfare.</p>
 <p>There are many different expressions of this idea in economics.</p>
 <p>This lecture discusses one of the simplest: how free adjustment of prices can maximize a measure of social welfare in the market for a single good.</p>
 </section>
@@ -306,6 +306,9 @@ many goods.</p>
 <p>(If you are comfortable with both topics you can jump to the <a class="reference internal" href="#integration"><span class="std std-ref">next section</span></a>.)</p>
 <section id="a-discrete-example">
 <h3><span class="section-number">7.2.1. </span>A discrete example<a class="headerlink" href="#a-discrete-example" title="Permalink to this heading">#</a></h3>
+<div class="proof example admonition" id="isd_ex_cs">
+<p class="admonition-title"><span class="caption-number">Example 7.1 </span></p>
+<section class="example-content" id="proof-content">
 <p>Regarding consumer surplus, suppose that we have a single good and 10 consumers.</p>
 <p>These 10 consumers have different preferences; in particular, the amount they would be willing to pay for one unit of the good differs.</p>
 <p>Suppose that the willingness to pay for each of the 10 consumers is as follows:</p>
@@ -341,7 +344,8 @@ many goods.</p>
 </table>
 </div>
 <p>(We have ordered consumers by willingness to pay, in descending order.)</p>
-<p>If <span class="math notranslate nohighlight">\(p\)</span> is the price of the good and  <span class="math notranslate nohighlight">\(w_i\)</span> is the amount that consumer <span class="math notranslate nohighlight">\(i\)</span> is willing to pay, then <span class="math notranslate nohighlight">\(i\)</span> buys when <span class="math notranslate nohighlight">\(w_i \geq p\)</span>.</p>
+</section>
+</div><p>If <span class="math notranslate nohighlight">\(p\)</span> is the price of the good and  <span class="math notranslate nohighlight">\(w_i\)</span> is the amount that consumer <span class="math notranslate nohighlight">\(i\)</span> is willing to pay, then <span class="math notranslate nohighlight">\(i\)</span> buys when <span class="math notranslate nohighlight">\(w_i \geq p\)</span>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>If <span class="math notranslate nohighlight">\(p=w_i\)</span> the consumer is indifferent between buying and not buying; we arbitrarily assume that they buy.</p>
@@ -514,6 +518,9 @@ p = 100 e^{-q}
 </div>
 <p>Let <span class="math notranslate nohighlight">\(v_i\)</span> be the price at which producer <span class="math notranslate nohighlight">\(i\)</span> is willing to sell the good.</p>
 <p>When the price is <span class="math notranslate nohighlight">\(p\)</span>, producer surplus for producer <span class="math notranslate nohighlight">\(i\)</span> is <span class="math notranslate nohighlight">\(\max\{p - v_i, 0\}\)</span>.</p>
+<div class="proof example admonition" id="isd_ex_dc">
+<p class="admonition-title"><span class="caption-number">Example 7.2 </span></p>
+<section class="example-content" id="proof-content">
 <p>For example, a producer willing to sell at $10 and selling at price $20 makes a surplus of $10.</p>
 <p>Total producer surplus is given by</p>
 <div class="math notranslate nohighlight">
@@ -529,7 +536,8 @@ p = 100 e^{-q}
 p = 2 q^2
 \]</div>
 <p>The shaded area is the total producer surplus in this continuous model.</p>
-<div class="cell docutils container">
+</section>
+</div><div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">inverse_supply</span><span class="p">(</span><span class="n">q</span><span class="p">):</span>
     <span class="k">return</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">q</span><span class="o">**</span><span class="mi">2</span>
@@ -608,7 +616,7 @@ p = 2 q^2
 <p>There are many rules for calculating integrals, with different rules applying to different choices of <span class="math notranslate nohighlight">\(f\)</span>.</p>
 <p>Many of these rules relate to one of the most beautiful and powerful results in all of mathematics: the <a class="reference external" href="https://en.wikipedia.org/wiki/Fundamental_theorem_of_calculus">fundamental theorem of calculus</a>.</p>
 <p>We will not try to cover these ideas here, partly because the subject is too big, and partly because you only need to know one rule for this lecture, stated below.</p>
-<p>If <span class="math notranslate nohighlight">\(f(x) = c + \mathrm{d} x\)</span>, then</p>
+<p>If <span class="math notranslate nohighlight">\(f(x) = c + dx\)</span>, then</p>
 <div class="math notranslate nohighlight">
 \[ 
 \int_a^b f(x) \mathrm{d} x = c (b - a) + \frac{d}{2}(b^2 - a^2) 
@@ -926,7 +934,7 @@ q = \frac{ d_0 - s_0}{s_1 + d_1}
 <p>This is the competitive equilibrium quantity.</p>
 <p>Observe that the equilibrium quantity equals the same <span class="math notranslate nohighlight">\(q\)</span> given by equation  <a class="reference internal" href="#equation-eq-old1">(7.3)</a>.</p>
 <p>The outcome that the quantity determined by equation <a class="reference internal" href="#equation-eq-old1">(7.3)</a> equates
-supply to demand brings us a <strong>key finding:</strong></p>
+supply to demand brings us a <em>key finding</em>:</p>
 <ul class="simple">
 <li><p>a competitive equilibrium quantity maximizes our welfare criterion</p></li>
 </ul>
@@ -944,10 +952,10 @@ generalizations of the above demand and supply curves from other objects.</p>
 <p>Our generalizations will extend the preceding analysis of a market for a single good to the analysis of <span class="math notranslate nohighlight">\(n\)</span> simultaneous markets in <span class="math notranslate nohighlight">\(n\)</span> goods.</p>
 <p>In addition</p>
 <ul class="simple">
-<li><p>we’ll derive  <strong>demand curves</strong> from a consumer problem that maximizes a
-<strong>utility function</strong> subject to a <strong>budget constraint</strong>.</p></li>
-<li><p>we’ll derive  <strong>supply curves</strong> from the problem of a producer who is price
-taker and maximizes his profits minus total costs that are described by a <strong>cost function</strong>.</p></li>
+<li><p>we’ll derive  <em>demand curves</em> from a consumer problem that maximizes a
+<em>utility function</em> subject to a <em>budget constraint</em>.</p></li>
+<li><p>we’ll derive  <em>supply curves</em> from the problem of a producer who is price
+taker and maximizes his profits minus total costs that are described by a <em>cost function</em>.</p></li>
 </ul>
 </section>
 <section id="exercises">
@@ -972,7 +980,7 @@ make new <code class="docutils literal notranslate"><span class="pre">inverse_de
 <p>Then plot the inverse demand and supply curves <span class="math notranslate nohighlight">\(i_d\)</span> and <span class="math notranslate nohighlight">\(i_s\)</span>.</p>
 </section>
 </div>
-<div class="solution dropdown admonition" id="intro_supply_demand-solution-1">
+<div class="solution dropdown admonition" id="intro_supply_demand-solution-3">
 
 <p class="admonition-title">Solution to<a class="reference internal" href="#isd_ex1"> Exercise 7.1</a></p>
 <section id="solution-content">
@@ -1047,7 +1055,7 @@ at given <span class="math notranslate nohighlight">\(q\)</span>.</p>
 <p>Plot welfare as a function of <span class="math notranslate nohighlight">\(q\)</span>.</p>
 </section>
 </div>
-<div class="solution dropdown admonition" id="intro_supply_demand-solution-3">
+<div class="solution dropdown admonition" id="intro_supply_demand-solution-5">
 
 <p class="admonition-title">Solution to<a class="reference internal" href="#isd_ex2"> Exercise 7.2</a></p>
 <section id="solution-content">
@@ -1102,7 +1110,7 @@ is a useful resource to find out more.</p>
 </div>
 </section>
 </div>
-<div class="solution dropdown admonition" id="intro_supply_demand-solution-5">
+<div class="solution dropdown admonition" id="intro_supply_demand-solution-7">
 
 <p class="admonition-title">Solution to<a class="reference internal" href="#isd_ex3"> Exercise 7.3</a></p>
 <section id="solution-content">
@@ -1163,7 +1171,7 @@ is a useful resource to find out more.</p>
 price, in line with the first fundamental welfare theorem.</p>
 </section>
 </div>
-<div class="solution dropdown admonition" id="intro_supply_demand-solution-7">
+<div class="solution dropdown admonition" id="intro_supply_demand-solution-9">
 
 <p class="admonition-title">Solution to<a class="reference internal" href="#isd_ex4"> Exercise 7.4</a></p>
 <section id="solution-content">

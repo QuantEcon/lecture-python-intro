@@ -298,16 +298,16 @@ Requirement already satisfied: frozendict&gt;=2.3.4 in /home/runner/miniconda3/e
 Requirement already satisfied: peewee&gt;=3.16.2 in /home/runner/miniconda3/envs/quantecon/lib/python3.11/site-packages (from yfinance) (3.17.6)
 Requirement already satisfied: beautifulsoup4&gt;=4.11.1 in /home/runner/miniconda3/envs/quantecon/lib/python3.11/site-packages (from yfinance) (4.12.3)
 Requirement already satisfied: html5lib&gt;=1.1 in /home/runner/miniconda3/envs/quantecon/lib/python3.11/site-packages (from yfinance) (1.1)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: soupsieve&gt;1.2 in /home/runner/miniconda3/envs/quantecon/lib/python3.11/site-packages (from beautifulsoup4&gt;=4.11.1-&gt;yfinance) (2.5)
+Requirement already satisfied: soupsieve&gt;1.2 in /home/runner/miniconda3/envs/quantecon/lib/python3.11/site-packages (from beautifulsoup4&gt;=4.11.1-&gt;yfinance) (2.5)
 Requirement already satisfied: six&gt;=1.9 in /home/runner/miniconda3/envs/quantecon/lib/python3.11/site-packages (from html5lib&gt;=1.1-&gt;yfinance) (1.16.0)
 Requirement already satisfied: webencodings in /home/runner/miniconda3/envs/quantecon/lib/python3.11/site-packages (from html5lib&gt;=1.1-&gt;yfinance) (0.5.1)
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: python-dateutil&gt;=2.8.2 in /home/runner/miniconda3/envs/quantecon/lib/python3.11/site-packages (from pandas&gt;=1.3.0-&gt;yfinance) (2.9.0.post0)
 Requirement already satisfied: tzdata&gt;=2022.7 in /home/runner/miniconda3/envs/quantecon/lib/python3.11/site-packages (from pandas&gt;=1.3.0-&gt;yfinance) (2023.3)
-Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in /home/runner/miniconda3/envs/quantecon/lib/python3.11/site-packages (from requests&gt;=2.31-&gt;yfinance) (2.0.4)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in /home/runner/miniconda3/envs/quantecon/lib/python3.11/site-packages (from requests&gt;=2.31-&gt;yfinance) (2.0.4)
 Requirement already satisfied: idna&lt;4,&gt;=2.5 in /home/runner/miniconda3/envs/quantecon/lib/python3.11/site-packages (from requests&gt;=2.31-&gt;yfinance) (3.7)
 Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in /home/runner/miniconda3/envs/quantecon/lib/python3.11/site-packages (from requests&gt;=2.31-&gt;yfinance) (2.2.2)
 Requirement already satisfied: certifi&gt;=2017.4.17 in /home/runner/miniconda3/envs/quantecon/lib/python3.11/site-packages (from requests&gt;=2.31-&gt;yfinance) (2024.6.2)
@@ -338,7 +338,7 @@ Requirement already satisfied: certifi&gt;=2017.4.17 in /home/runner/miniconda3/
 <p>Heavy-tailed distributions are a class of distributions that generate “extreme” outcomes.</p>
 <p>In the natural sciences (and in more traditional economics courses), heavy-tailed distributions are seen as quite exotic and non-standard.</p>
 <p>However, it turns out that heavy-tailed distributions play a crucial role in economics.</p>
-<p>In fact many – if not most – of the important distributions in economics are heavy tailed.</p>
+<p>In fact many – if not most – of the important distributions in economics are heavy-tailed.</p>
 <p>In this lecture we explain what heavy tails are and why they are – or at least
 why they should be – central to economic analysis.</p>
 <section id="introduction-light-tails">
@@ -346,6 +346,9 @@ why they should be – central to economic analysis.</p>
 <p>Most <a class="reference internal" href="prob_dist.html"><span class="doc">commonly used probability distributions</span></a> in classical statistics and
 the natural sciences have “light tails.”</p>
 <p>To explain this concept, let’s look first at examples.</p>
+<div class="proof example admonition" id="ht_ex_nd">
+<p class="admonition-title"><span class="caption-number">Example 21.1 </span></p>
+<section class="example-content" id="proof-content">
 <p>The classic example is the <a class="reference external" href="https://en.wikipedia.org/wiki/Normal_distribution">normal distribution</a>, which has density</p>
 <div class="math notranslate nohighlight">
 \[ 
@@ -358,7 +361,8 @@ f(x) = \frac{1}{\sqrt{2\pi}\sigma}
 respectively.</p>
 <p>As <span class="math notranslate nohighlight">\(x\)</span> deviates from <span class="math notranslate nohighlight">\(\mu\)</span>, the value of <span class="math notranslate nohighlight">\(f(x)\)</span> goes to zero extremely
 quickly.</p>
-<p>We can see this when we plot the density and show a histogram of observations,
+</section>
+</div><p>We can see this when we plot the density and show a histogram of observations,
 as with the following code (which assumes <span class="math notranslate nohighlight">\(\mu=0\)</span> and <span class="math notranslate nohighlight">\(\sigma=1\)</span>).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -374,7 +378,7 @@ as with the following code (which assumes <span class="math notranslate nohighli
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="hist-obs">
-<a class="reference internal image-reference" href="_images/b9b62fd6165268993d1e2d0afddb405916e1397b0a55be50fb34f5031c883bbf.png"><img alt="_images/b9b62fd6165268993d1e2d0afddb405916e1397b0a55be50fb34f5031c883bbf.png" src="_images/b9b62fd6165268993d1e2d0afddb405916e1397b0a55be50fb34f5031c883bbf.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/a5335c0b063d906feb764e8000946f962d9776bcdf0e5a7aac5cdfe7f8813f42.png"><img alt="_images/a5335c0b063d906feb764e8000946f962d9776bcdf0e5a7aac5cdfe7f8813f42.png" src="_images/a5335c0b063d906feb764e8000946f962d9776bcdf0e5a7aac5cdfe7f8813f42.png" style="width: 80%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 21.1 </span><span class="caption-text">Histogram of observations</span><a class="headerlink" href="#hist-obs" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -394,7 +398,7 @@ as with the following code (which assumes <span class="math notranslate nohighli
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-4.651065457197108, 4.990078444836221)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-4.996581906299406, 4.941371289733906)
 </pre></div>
 </div>
 </div>
@@ -416,7 +420,7 @@ as with the following code (which assumes <span class="math notranslate nohighli
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="hist-obs2">
-<a class="reference internal image-reference" href="_images/e9347de5db8092b4fd382d696dc255c9244aef8e6a475ce39534450a9a9f4aca.png"><img alt="_images/e9347de5db8092b4fd382d696dc255c9244aef8e6a475ce39534450a9a9f4aca.png" src="_images/e9347de5db8092b4fd382d696dc255c9244aef8e6a475ce39534450a9a9f4aca.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/77f30a710536f90f4777c17c096da2988435772e3799d9c21759c332cbe5b506.png"><img alt="_images/77f30a710536f90f4777c17c096da2988435772e3799d9c21759c332cbe5b506.png" src="_images/77f30a710536f90f4777c17c096da2988435772e3799d9c21759c332cbe5b506.png" style="width: 80%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 21.2 </span><span class="caption-text">Histogram of observations</span><a class="headerlink" href="#hist-obs2" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -577,7 +581,7 @@ distribution:</p>
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="hist-normal-btc">
-<a class="reference internal image-reference" href="_images/7b977a4131cabaa2224c6d967ff1bf055ec732530befd428d3451a78097329aa.png"><img alt="_images/7b977a4131cabaa2224c6d967ff1bf055ec732530befd428d3451a78097329aa.png" src="_images/7b977a4131cabaa2224c6d967ff1bf055ec732530befd428d3451a78097329aa.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/d0d76d5ca81b883456b7dfbec276c915f0911456afa71442232eb032aed34595.png"><img alt="_images/d0d76d5ca81b883456b7dfbec276c915f0911456afa71442232eb032aed34595.png" src="_images/d0d76d5ca81b883456b7dfbec276c915f0911456afa71442232eb032aed34595.png" style="width: 80%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 21.5 </span><span class="caption-text">Histogram (normal vs bitcoin returns)</span><a class="headerlink" href="#hist-normal-btc" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -593,6 +597,9 @@ even more extreme observations.</p>
 <p>The data we have just seen is said to be “heavy-tailed”.</p>
 <p>With heavy-tailed distributions, extreme outcomes occur relatively
 frequently.</p>
+<div class="proof example admonition" id="ht_ex_od">
+<p class="admonition-title"><span class="caption-number">Example 21.2 </span></p>
+<section class="example-content" id="proof-content">
 <p>Importantly, there are many examples of heavy-tailed distributions
 observed in economic and financial settings!</p>
 <p>For example, the income and the wealth distributions are heavy-tailed</p>
@@ -608,7 +615,8 @@ are extremely rich.</p></li>
 <ul class="simple">
 <li><p>Most towns and cities are small but some are very large.</p></li>
 </ul>
-<p>Later in this lecture, we examine heavy tails in these distributions.</p>
+</section>
+</div><p>Later in this lecture, we examine heavy tails in these distributions.</p>
 </section>
 <section id="why-should-we-care">
 <h3><span class="section-number">21.1.5. </span>Why should we care?<a class="headerlink" href="#why-should-we-care" title="Permalink to this heading">#</a></h3>
@@ -802,7 +810,7 @@ G_P(x) = x^{- \alpha}
 <p>Show how the CCDF of the standard Pareto distribution can be derived from the CCDF of the exponential distribution.</p>
 </section>
 </div>
-<div class="solution dropdown admonition" id="heavy_tails-solution-1">
+<div class="solution dropdown admonition" id="heavy_tails-solution-3">
 
 <p class="admonition-title">Solution to<a class="reference internal" href="#ht_ex_x1"> Exercise 21.1</a></p>
 <section id="solution-content">
@@ -1145,7 +1153,7 @@ readers are of course welcome to explore the code (perhaps after examining the f
 </section>
 <section id="city-size">
 <h3><span class="section-number">21.3.2. </span>City size<a class="headerlink" href="#city-size" title="Permalink to this heading">#</a></h3>
-<p>Here are plots of the city size distribution for the US and Brazil in 2023 from world population review.</p>
+<p>Here are plots of the city size distribution for the US and Brazil in 2023 from the World Population Review.</p>
 <p>The size is measured by population.</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
@@ -1253,7 +1261,7 @@ readers are of course welcome to explore the code (perhaps after examining the f
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_6377/3215967216.py:12: FutureWarning: errors=&#39;ignore&#39; is deprecated and will raise in a future version. Use to_numeric without passing `errors` and catch exceptions explicitly instead
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_6226/3215967216.py:12: FutureWarning: errors=&#39;ignore&#39; is deprecated and will raise in a future version. Use to_numeric without passing `errors` and catch exceptions explicitly instead
   df = wb.download(indicator=varlist, country=c, start=s, end=e).stack().unstack(0).reset_index()
 </pre></div>
 </div>
@@ -1296,14 +1304,14 @@ averaging in its definition.</p>
 <p>One impact of heavy tails is that sample averages can be poor estimators of
 the underlying mean of the distribution.</p>
 <p>To understand this point better, recall <a class="reference internal" href="lln_clt.html"><span class="doc">our earlier discussion</span></a>
-of the Law of Large Numbers, which considered IID <span class="math notranslate nohighlight">\(X_1, \ldots, X_n\)</span> with common distribution <span class="math notranslate nohighlight">\(F\)</span></p>
+of the law of large numbers, which considered IID <span class="math notranslate nohighlight">\(X_1, \ldots, X_n\)</span> with common distribution <span class="math notranslate nohighlight">\(F\)</span></p>
 <p>If <span class="math notranslate nohighlight">\(\mathbb E |X_i|\)</span> is finite, then
 the sample mean <span class="math notranslate nohighlight">\(\bar X_n := \frac{1}{n} \sum_{i=1}^n X_i\)</span> satisfies</p>
 <div class="math notranslate nohighlight" id="equation-lln-as2">
 <span class="eqno">(21.3)<a class="headerlink" href="#equation-lln-as2" title="Permalink to this equation">#</a></span>\[\mathbb P \left\{ \bar X_n \to \mu \text{ as } n \to \infty \right\} = 1\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mu := \mathbb E X_i = \int x F(dx)\)</span> is the common mean of the sample.</p>
 <p>The condition <span class="math notranslate nohighlight">\(\mathbb E | X_i | = \int |x| F(dx) &lt; \infty\)</span> holds
-in most cases but can fail if the distribution <span class="math notranslate nohighlight">\(F\)</span> is very heavy tailed.</p>
+in most cases but can fail if the distribution <span class="math notranslate nohighlight">\(F\)</span> is very heavy-tailed.</p>
 <p>For example, it fails for the Cauchy distribution.</p>
 <p>Let’s have a look at the behavior of the sample mean in this case, and see
 whether or not the LLN is still valid.</p>
@@ -1351,7 +1359,7 @@ whether or not the LLN is still valid.</p>
 <p>We have now seen that</p>
 <ol class="arabic simple">
 <li><p>heavy tails are frequent in economics and</p></li>
-<li><p>the Law of Large Numbers fails when tails are very heavy.</p></li>
+<li><p>the law of large numbers fails when tails are very heavy.</p></li>
 </ol>
 <p>But what about in the real world?  Do heavy tails matter?</p>
 <p>Let’s briefly discuss why they do.</p>
@@ -1451,7 +1459,7 @@ discussed above.</p>
 <span class="math notranslate nohighlight">\(\mathbb E[X^r] = \infty\)</span> for all <span class="math notranslate nohighlight">\(r \geq \alpha\)</span>.</p>
 </section>
 </div>
-<div class="solution dropdown admonition" id="heavy_tails-solution-3">
+<div class="solution dropdown admonition" id="heavy_tails-solution-5">
 
 <p class="admonition-title">Solution to<a class="reference internal" href="#ht_ex2"> Exercise 21.2</a></p>
 <section id="solution-content">
@@ -1485,7 +1493,7 @@ Cauchy) with three Pareto distributions using different choices of
 <p>Use <code class="docutils literal notranslate"><span class="pre">np.random.seed(11)</span></code> to set the seed.</p>
 </section>
 </div>
-<div class="solution dropdown admonition" id="heavy_tails-solution-5">
+<div class="solution dropdown admonition" id="heavy_tails-solution-7">
 
 <p class="admonition-title">Solution to<a class="reference internal" href="#ht_ex3"> Exercise 21.3</a></p>
 <section id="solution-content">
@@ -1546,7 +1554,7 @@ tax revenue over the next 10 years.</p>
 <li><p>summing the results with discounting to obtain present value.</p></li>
 </ol>
 <p>The Pareto distribution is assumed to take the form <a class="reference internal" href="#equation-pareto">(21.1)</a> with <span class="math notranslate nohighlight">\(\bar x = 1\)</span> and <span class="math notranslate nohighlight">\(\alpha = 1.05\)</span>.</p>
-<p>(The value the tail index <span class="math notranslate nohighlight">\(\alpha\)</span> is plausible given the data <span id="id16">[<a class="reference internal" href="zreferences.html#id85" title="Xavier Gabaix. Power laws in economics: an introduction. Journal of Economic Perspectives, 30(1):185–206, 2016.">Gabaix, 2016</a>]</span>.)</p>
+<p>(The value of the tail index <span class="math notranslate nohighlight">\(\alpha\)</span> is plausible given the data <span id="id16">[<a class="reference internal" href="zreferences.html#id85" title="Xavier Gabaix. Power laws in economics: an introduction. Journal of Economic Perspectives, 30(1):185–206, 2016.">Gabaix, 2016</a>]</span>.)</p>
 <p>To make the lognormal option as similar as possible to the Pareto option, choose
 its parameters such that the mean and median of both distributions are the same.</p>
 <p>Note that, for each distribution, your estimate of tax revenue will be random
@@ -1564,7 +1572,7 @@ try to track individual firms given the current distribution.  We will discuss
 firm dynamics in later lectures.)</p>
 </section>
 </div>
-<div class="solution dropdown admonition" id="heavy_tails-solution-7">
+<div class="solution dropdown admonition" id="heavy_tails-solution-9">
 
 <p class="admonition-title">Solution to<a class="reference internal" href="#ht_ex5"> Exercise 21.4</a></p>
 <section id="solution-content">
@@ -1590,7 +1598,7 @@ the equations</p>
 2^{1/\alpha} = \exp(\mu)
 \]</div>
 <p>which we solve for <span class="math notranslate nohighlight">\(\mu\)</span> and <span class="math notranslate nohighlight">\(\sigma\)</span> given <span class="math notranslate nohighlight">\(\alpha = 1.05\)</span>.</p>
-<p>Here is code that generates the two samples, produces the violin plot and
+<p>Here is the code that generates the two samples, produces the violin plot and
 prints the mean and standard deviation of the two samples.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1711,7 +1719,7 @@ X_n\)</span> from the Cauchy distribution has the same characteristic function a
 <p>(This means that the sample mean never converges.)</p>
 </section>
 </div>
-<div class="solution dropdown admonition" id="heavy_tails-solution-9">
+<div class="solution dropdown admonition" id="heavy_tails-solution-11">
 
 <p class="admonition-title">Solution to<a class="reference internal" href="#ht_ex_cauchy"> Exercise 21.5</a></p>
 <section id="solution-content">

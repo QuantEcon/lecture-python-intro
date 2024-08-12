@@ -175,7 +175,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">12.1. Overview</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis">12.2. Analysis</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#friedman-hall-consumption-smoothing-model">12.3. Friedman-Hall consumption-smoothing model</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mechanics-of-consumption-smoothing-model">12.4. Mechanics of Consumption smoothing model</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mechanics-of-consumption-smoothing-model">12.4. Mechanics of consumption-smoothing model</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1">12.4.1. Step 1</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2">12.4.2. Step 2</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3">12.4.3. Step 3</a></li>
@@ -192,7 +192,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wrapping-up-the-consumption-smoothing-model">12.5. Wrapping up the consumption-smoothing model</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#appendix-solving-difference-equations-with-linear-algebra">12.6. Appendix: solving difference equations with linear algebra</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#first-order-difference-equation">12.6.1. First-order difference equation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#second-order-difference-equation">12.6.2. Second order difference equation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#second-order-difference-equation">12.6.2. Second-order difference equation</a></li>
 </ul>
 </li>
 </ul>
@@ -259,7 +259,7 @@ const thebe_selector_output = ".output, .cell_output"
 <h2><span class="section-number">12.1. </span>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
 <p>In this lecture, we’ll study a famous model of the “consumption function” that Milton Friedman <span id="id1">[<a class="reference internal" href="zreferences.html#id181" title="M. Friedman. A Theory of the Consumption Function. Princeton University Press, 1956.">Friedman, 1956</a>]</span> and Robert Hall <span id="id2">[<a class="reference internal" href="zreferences.html#id182" title="Robert E Hall. Stochastic Implications of the Life Cycle-Permanent Income Hypothesis: Theory and Evidence. Journal of Political Economy, 86(6):971–987, 1978.">Hall, 1978</a>]</span>)  proposed to fit some empirical data patterns that the original  Keynesian consumption function  described in this QuantEcon lecture <a class="reference internal" href="geom_series.html"><span class="doc">geometric series</span></a>  missed.</p>
 <p>In this lecture, we’ll study what is often  called the “consumption-smoothing model”  using  matrix multiplication and matrix inversion, the same tools that we used in this QuantEcon lecture <a class="reference internal" href="pv.html"><span class="doc">present values</span></a>.</p>
-<p>Formulas presented in  <a class="reference internal" href="pv.html"><span class="doc">present value formulas</span></a> are at the core of the consumption smoothing model because we shall use them to define a consumer’s “human wealth”.</p>
+<p>Formulas presented in  <a class="reference internal" href="pv.html"><span class="doc">present value formulas</span></a> are at the core of the consumption-smoothing model because we shall use them to define a consumer’s “human wealth”.</p>
 <p>The  key idea that inspired Milton Friedman was that a person’s non-financial income, i.e., his or
 her wages from working, could be viewed as a dividend stream from that person’s ‘‘human capital’’
 and that standard asset-pricing formulas could be applied to compute a person’s
@@ -274,7 +274,7 @@ eventually published as <span id="id3">[<a class="reference internal" href="zref
 </section>
 <section id="analysis">
 <h2><span class="section-number">12.2. </span>Analysis<a class="headerlink" href="#analysis" title="Permalink to this heading">#</a></h2>
-<p>As usual, we’ll start with by importing some Python modules.</p>
+<p>As usual, we’ll start by importing some Python modules.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -339,7 +339,7 @@ with the exogenous non-financial income stream <span class="math notranslate noh
 <p>When <span class="math notranslate nohighlight">\(\beta R \approx 1\)</span>, the fact that the utility function <span class="math notranslate nohighlight">\(g_1 c_t - \frac{g_2}{2} c_t^2\)</span> has diminishing marginal utility imparts a preference for consumption that is very smooth.</p>
 <p>Indeed, we shall see that when <span class="math notranslate nohighlight">\(\beta R = 1\)</span> (a condition assumed by Milton Friedman <span id="id5">[<a class="reference internal" href="zreferences.html#id181" title="M. Friedman. A Theory of the Consumption Function. Princeton University Press, 1956.">Friedman, 1956</a>]</span> and Robert Hall <span id="id6">[<a class="reference internal" href="zreferences.html#id182" title="Robert E Hall. Stochastic Implications of the Life Cycle-Permanent Income Hypothesis: Theory and Evidence. Journal of Political Economy, 86(6):971–987, 1978.">Hall, 1978</a>]</span>),  criterion <a class="reference internal" href="#equation-welfare">(12.2)</a> assigns higher welfare to smoother consumption paths.</p>
 <p>By <strong>smoother</strong> we mean as close as possible to being constant over time.</p>
-<p>The preference for smooth consumption paths that is built into the model gives it the  name “consumption smoothing model”.</p>
+<p>The preference for smooth consumption paths that is built into the model gives it the  name “consumption-smoothing model”.</p>
 <p>Let’s dive in and do some calculations that will help us understand how the model works.</p>
 <p>Here we use default parameters <span class="math notranslate nohighlight">\(R = 1.05\)</span>, <span class="math notranslate nohighlight">\(g_1 = 1\)</span>, <span class="math notranslate nohighlight">\(g_2 = 1/2\)</span>, and <span class="math notranslate nohighlight">\(T = 65\)</span>.</p>
 <p>We create a Python <strong>namedtuple</strong> to store these parameters with default values.</p>
@@ -379,7 +379,7 @@ a_{T+1} = 0,
 <span class="eqno">(12.3)<a class="headerlink" href="#equation-eq-budget-intertemp" title="Permalink to this equation">#</a></span>\[ 
 \sum_{t=0}^T R^{-t} c_t = a_0 + h_0. 
 \]</div>
-<p>Equation <a class="reference internal" href="#equation-eq-budget-intertemp">(12.3)</a>  says that the present value of the consumption stream equals the sum of finanical and non-financial (or human) wealth.</p>
+<p>Equation <a class="reference internal" href="#equation-eq-budget-intertemp">(12.3)</a>  says that the present value of the consumption stream equals the sum of financial and non-financial (or human) wealth.</p>
 <p>Robert Hall <span id="id7">[<a class="reference internal" href="zreferences.html#id182" title="Robert E Hall. Stochastic Implications of the Life Cycle-Permanent Income Hypothesis: Theory and Evidence. Journal of Political Economy, 86(6):971–987, 1978.">Hall, 1978</a>]</span> showed that when <span class="math notranslate nohighlight">\(\beta R = 1\)</span>, a condition Milton Friedman had also  assumed, it is “optimal” for a consumer to smooth consumption by setting</p>
 <div class="math notranslate nohighlight">
 \[ 
@@ -395,7 +395,7 @@ c_t = c_0  = \left(\sum_{t=0}^T R^{-t}\right)^{-1} (a_0 + h_0), \quad t= 0, 1, \
 <p>Equation <a class="reference internal" href="#equation-eq-conssmoothing">(12.4)</a> is the consumption-smoothing model in a nutshell.</p>
 </section>
 <section id="mechanics-of-consumption-smoothing-model">
-<h2><span class="section-number">12.4. </span>Mechanics of Consumption smoothing model<a class="headerlink" href="#mechanics-of-consumption-smoothing-model" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">12.4. </span>Mechanics of consumption-smoothing model<a class="headerlink" href="#mechanics-of-consumption-smoothing-model" title="Permalink to this heading">#</a></h2>
 <p>As promised, we’ll provide step-by-step instructions on how to use linear algebra, readily implemented in Python, to compute all  objects in play in  the consumption-smoothing model.</p>
 <p>In the calculations below,  we’ll  set default values of  <span class="math notranslate nohighlight">\(R &gt; 1\)</span>, e.g., <span class="math notranslate nohighlight">\(R = 1.05\)</span>, and <span class="math notranslate nohighlight">\(\beta = R^{-1}\)</span>.</p>
 <section id="step-1">
@@ -544,12 +544,12 @@ a_{T+1} = 0.
 </section>
 <section id="experiments">
 <h3><span class="section-number">12.4.4. </span>Experiments<a class="headerlink" href="#experiments" title="Permalink to this heading">#</a></h3>
-<p>In this section we decribe  how a  consumption sequence would optimally respond to different  sequences sequences of non-financial income.</p>
-<p>First we create  a function <code class="docutils literal notranslate"><span class="pre">plot_cs</span></code> that generate graphs for different instances of the  consumption smoothing model <code class="docutils literal notranslate"><span class="pre">cs_model</span></code>.</p>
+<p>In this section we describe  how a  consumption sequence would optimally respond to different  sequences sequences of non-financial income.</p>
+<p>First we create  a function <code class="docutils literal notranslate"><span class="pre">plot_cs</span></code> that generates graphs for different instances of the  consumption-smoothing model <code class="docutils literal notranslate"><span class="pre">cs_model</span></code>.</p>
 <p>This will  help us avoid rewriting code to plot outcomes for different non-financial income sequences.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_cs</span><span class="p">(</span><span class="n">model</span><span class="p">,</span>    <span class="c1"># consumption smoothing model      </span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_cs</span><span class="p">(</span><span class="n">model</span><span class="p">,</span>    <span class="c1"># consumption-smoothing model      </span>
             <span class="n">a0</span><span class="p">,</span>       <span class="c1"># initial financial wealth</span>
             <span class="n">y_seq</span>     <span class="c1"># non-financial income process</span>
            <span class="p">):</span>
@@ -574,7 +574,7 @@ a_{T+1} = 0.
 </div>
 </div>
 </div>
-<p>In the experiments below, please study how consumption and financial asset sequences vary accross different sequences for non-financial income.</p>
+<p>In the experiments below, please study how consumption and financial asset sequences vary across different sequences for non-financial income.</p>
 <section id="experiment-1-one-time-gain-loss">
 <h4><span class="section-number">12.4.4.1. </span>Experiment 1: one-time gain/loss<a class="headerlink" href="#experiment-1-one-time-gain-loss" title="Permalink to this heading">#</a></h4>
 <p>We first assume a one-time windfall of <span class="math notranslate nohighlight">\(W_0\)</span> in year 21 of the income sequence <span class="math notranslate nohighlight">\(y\)</span>.</p>
@@ -855,7 +855,7 @@ welfare=13.28156768298361
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">welfare_rel</span><span class="p">(</span><span class="n">ξ1</span><span class="p">,</span> <span class="n">ϕ</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Compute welfare of variation sequence </span>
-<span class="sd">    for given ϕ, ξ1 with a consumption smoothing model</span>
+<span class="sd">    for given ϕ, ξ1 with a consumption-smoothing model</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     
     <span class="n">cvar_seq</span> <span class="o">=</span> <span class="n">compute_variation</span><span class="p">(</span><span class="n">cs_model</span><span class="p">,</span> <span class="n">ξ1</span><span class="o">=</span><span class="n">ξ1</span><span class="p">,</span> 
@@ -926,12 +926,12 @@ welfare=13.28156768298361
 QuantEcon lecture <a class="reference internal" href="geom_series.html"><span class="doc">geometric series</span></a>.</p>
 <p>In particular,  it  <strong>lowers</strong> the government expenditure  multiplier relative to  one implied by
 the original Keynesian consumption function presented in <a class="reference internal" href="geom_series.html"><span class="doc">geometric series</span></a>.</p>
-<p>Friedman’s   work opened the door to an enlighening literature on the aggregate consumption function and associated government expenditure  multipliers that
+<p>Friedman’s   work opened the door to an enlightening literature on the aggregate consumption function and associated government expenditure  multipliers that
 remains  active today.</p>
 </section>
 <section id="appendix-solving-difference-equations-with-linear-algebra">
 <h2><span class="section-number">12.6. </span>Appendix: solving difference equations with linear algebra<a class="headerlink" href="#appendix-solving-difference-equations-with-linear-algebra" title="Permalink to this heading">#</a></h2>
-<p>In the preceding sections we have used linear algebra to solve a consumption smoothing model.</p>
+<p>In the preceding sections we have used linear algebra to solve a consumption-smoothing model.</p>
 <p>The same tools from linear algebra – matrix multiplication and matrix inversion – can be used  to study many other dynamic models.</p>
 <p>We’ll conclude this lecture by giving a couple of examples.</p>
 <p>We’ll describe a useful way of representing and “solving” linear difference equations.</p>
@@ -999,7 +999,7 @@ y_1 \cr y_2 \cr y_3 \cr \vdots \cr y_T
 </div>
 </section>
 <section id="second-order-difference-equation">
-<h3><span class="section-number">12.6.2. </span>Second order difference equation<a class="headerlink" href="#second-order-difference-equation" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">12.6.2. </span>Second-order difference equation<a class="headerlink" href="#second-order-difference-equation" title="Permalink to this heading">#</a></h3>
 <p>A second-order linear difference equation for <span class="math notranslate nohighlight">\(\{y_t\}_{t=0}^T\)</span> is</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1029,7 +1029,7 @@ y_1 \cr y_2 \cr y_3 \cr \vdots \cr y_T
 
 <p class="admonition-title"><span class="caption-number">Exercise 12.2 </span></p>
 <section id="exercise-content">
-<p>As an exercise, we ask you to represent and solve a <strong>third order linear difference equation</strong>.
+<p>As an exercise, we ask you to represent and solve a <strong>third-order linear difference equation</strong>.
 How many initial conditions must you specify?</p>
 </section>
 </div>
