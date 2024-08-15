@@ -33,7 +33,7 @@ that we adopted in lectures {doc}`money_inflation` and lectures {doc}`money_infl
 We shall discover that changing our hypothesis about expectations formation in this way will change some our findings and leave others intact.  In particular, we shall discover that
 
 * replacing rational expectations with adaptive expectations leaves the two stationary inflation rates unchanged, but that $\ldots$ 
-* it reverse the perverse dynamics by making the **lower** stationary inflation rate the one to which the system typically converges
+* it reverses the perverse dynamics by making the **lower** stationary inflation rate the one to which the system typically converges
 * a more plausible comparative dynamic outcome emerges in which now inflation can be **reduced** by running **lower**  government deficits
 
 These more plausible comparative dynamics underlie the "old time religion" that states that 
@@ -50,7 +50,7 @@ by dropping rational expectations and instead assuming that people form  expecta
  {cite}`marcet2003recurrent` and  {cite}`sargent2009conquest` extended that work and applied it to study recurrent high-inflation episodes in Latin America.
 ``` 
 
-## The Model
+## The model
 
 Let  
 
@@ -88,9 +88,9 @@ $$ (eq:adaptex)
 
 where $\delta \in (0,1)$
 
-## Computing An Equilibrium Sequence 
+## Computing an equilibrium sequence 
 
-Equation the expressions for $m_{t+1}$ promided  by {eq}`eq:ada_mdemand` and {eq}`eq:ada_msupply2` and use equation {eq}`eq:adaptex` to eliminate $\pi_t^*$ to obtain
+Equation the expressions for $m_{t+1}$ provided  by {eq}`eq:ada_mdemand` and {eq}`eq:ada_msupply2` and use equation {eq}`eq:adaptex` to eliminate $\pi_t^*$ to obtain
 the following equation for $p_t$:
 
 $$
@@ -99,7 +99,7 @@ $$ (eq:pequation)
 
 **Pseudo-code**
 
-Here is pseudo code for our algorithm.
+Here is the pseudo-code for our algorithm.
 
 Starting at time $0$ with initial conditions $(m_0, \pi_{-1}^*, p_{-1})$, for each $t \geq 0$
 deploy the following steps in order:
@@ -111,14 +111,14 @@ deploy the following steps in order:
 This completes the algorithm.
 
 
-## Claims or Conjectures
+## Claims or conjectures
   
   
 It will turn out that 
 
 * if they exist, limiting values $\overline \pi$ and $\overline \mu$ will be equal
 
-* if  limiting values exists, there are two possible limiting values, one high, one low
+* if  limiting values exist, there are two possible limiting values, one high, one low
 
 * unlike the outcome in lecture {doc}`money_inflation_nonlinear`, for almost all initial log price levels and expected inflation rates $p_0, \pi_{t}^*$, the limiting $\overline \pi = \overline \mu$ is  the **lower** steady state  value
 
@@ -128,7 +128,7 @@ It will turn out that
   
   * the preceding equation for $p_0$ comes from $m_1 - p_0 = -  \alpha \bar \pi$
 
-## Limiting Values of Inflation Rate
+## Limiting values of inflation rate
 
 As in our earlier lecture {doc}`money_inflation_nonlinear`, we can compute the two prospective limiting values for $\bar \pi$ by studying the steady-state Laffer curve.
 
@@ -213,15 +213,15 @@ print(f'The two steady state of π are: {π_l, π_u}')
 
 We find two steady state $\bar \pi$ values
 
-## Steady State Laffer Curve
+## Steady-state Laffer curve
 
-The following figure plots the steady state Laffer curve together with the two stationary inflation rates.
+The following figure plots the steady-state Laffer curve together with the two stationary inflation rates.
 
 ```{code-cell} ipython3
 ---
 mystnb:
   figure:
-    caption: Seigniorage as function of steady state inflation. The dashed brown lines
+    caption: Seigniorage as function of steady-state inflation. The dashed brown lines
       indicate $\pi_l$ and $\pi_u$.
     name: laffer_curve_adaptive
     width: 500px
@@ -258,11 +258,11 @@ def plot_laffer(model, πs):
 plot_laffer(model, (π_l, π_u))
 ```
 
-## Associated Initial Price Levels
+## Associated initial price levels
 
 Now that we have our hands on the two possible steady states, we can compute two initial log price levels $p_{-1}$, which as initial conditions, imply that $\pi_t = \bar \pi $ for all $t \geq 0$.
 
-In particular, to initiate a fixed point of the dynamic Laffer curve dynamics we set 
+In particular, to initiate a fixed point of the dynamic Laffer curve dynamics, we set 
 
 $$
 p_{-1} = m_0 + \alpha \pi^*
@@ -348,7 +348,7 @@ eq_g = lambda x: np.exp(-model.α * x) - np.exp(-(1 + model.α) * x)
 print('eq_g == g:', np.isclose(eq_g(m_seq[-1] - m_seq[-2]), model.g))
 ```
 
-## Slippery Side of Laffer Curve Dynamics
+## Slippery side of Laffer curve dynamics
 
 We are now equipped  to compute  time series starting from different $p_{-1}, \pi_{-1}^*$ settings, analogous to those in this lecture  {doc}`money_inflation` and this lecture  {doc}`money_inflation_nonlinear`. 
 

@@ -35,14 +35,14 @@ As in that  lecture,  we discussed these topics:
 * an **inflation tax** that a government gathers by printing paper or electronic money
 * a dynamic **Laffer curve** in the inflation tax rate that has two stationary equilibria
 * perverse dynamics under rational expectations in which the system converges to the higher stationary inflation tax rate
-* a peculiar comparative stationary-state analysis connected with that stationary inflation rate that assert that inflation can be *reduced* by running *higher*  government deficits 
+* a peculiar comparative stationary-state analysis connected with that stationary inflation rate that asserts that inflation can be *reduced* by running *higher*  government deficits 
 
 These outcomes will set the stage for the analysis of {doc}`laffer_adaptive` that studies a version of the present model that  uses a version of "adaptive expectations" instead of rational expectations.
 
 That lecture will show that 
 
 * replacing rational expectations with adaptive expectations leaves the two stationary inflation rates unchanged, but that $\ldots$ 
-* it reverse the pervese dynamics by making the *lower* stationary inflation rate the one to which the system typically converges
+* it reverses the perverse dynamics by making the *lower* stationary inflation rate the one to which the system typically converges
 * a more plausible comparative dynamic outcome emerges in which now inflation can be *reduced* by running *lower*  government deficits
 
 ## The model
@@ -399,7 +399,7 @@ Those dynamics are "perverse" not only in the sense that they imply that the mon
 * the figure indicates that inflation can be *reduced* by running *higher*  government deficits, i.e., by raising more resources through  printing money. 
 
 ```{note}
-The same qualitive outcomes prevail in {doc}`money_inflation` that studies a linear version of the model in this lecture.
+The same qualitative outcomes prevail in {doc}`money_inflation` that studies a linear version of the model in this lecture.
 ```
 
 We discovered that 
