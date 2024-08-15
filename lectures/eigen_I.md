@@ -973,118 +973,55 @@ result which illustrates the result of the Neumann Series Lemma.
 ```{exercise}
 :label: eig1_ex1
 
-Power iteration is a method for finding the greatest absolute eigenvalue of a diagonalizable matrix.
+Power iteration is an algorithm used to compute the dominant eigenvalue of a diagonalizable $n \times n$ matrix $A$. 
 
-The method starts with a random vector $b_0$ and repeatedly applies the matrix $A$ to it
+The method proceeds as follows:
 
-$$
-b_{k+1}=\frac{A b_k}{\left\|A b_k\right\|}
-$$
+1. Choose an initial random $n \times 1$ vector $b_0$.
+2. At the $k$-th iteration, multiply $A$ by $b_k$ to obtain $Ab_k$.
+3. Approximate the eigenvalue as $\lambda_k = \max|Ab_k|$.
+4. Normalize the result: $b_{k+1} = \frac{Ab_k}{\max|Ab_k|}$.
+5. Repeat steps 2-4 for $m$ iterations and $\lambda_k$, $b_k$ will converge to the dominant eigenvalue and its eigenvectors of $A$.
 
 A thorough discussion of the method can be found [here](https://pythonnumericalmethods.berkeley.edu/notebooks/chapter15.02-The-Power-Method.html).
 
-In this exercise, first implement the power iteration method and use it to find the greatest absolute eigenvalue and its corresponding eigenvector.
+Implement the power iteration method using the following matrix and initial vector:
 
-Then visualize the convergence.
+$$
+A = \begin{bmatrix}
+1 & 0 & 3 \\
+0 & 2 & 0 \\
+3 & 0 & 1
+\end{bmatrix}, \quad
+b_0 = \begin{bmatrix}
+1 \\ 
+1 \\ 
+1
+\end{bmatrix}
+$$
+
+Set the number of iterations to $m = 20$ and compute the dominant eigenvalue of $A$.
 ```
 
 ```{solution-start} eig1_ex1
 :class: dropdown
 ```
 
-Here is one solution.
-
-We start by looking into the distance between the eigenvector approximation and the true eigenvector.
-
 ```{code-cell} ipython3
----
-mystnb:
-  figure:
-    caption: Power iteration
-    name: pow-dist
----
-# Define a matrix A
-A = np.array([[1, 0, 3],
+def power_iteration(A=np.array([[1, 0, 3],
               [0, 2, 0],
-              [3, 0, 1]])
+              [3, 0, 1]]), b=np.array([1,1,1]), m=20):
+    
+    for i in range(m):
+        b = np.dot(A, b)
+        lambda_1 = abs(b).max()
+        b = b/ b.max()
+    
+    print('Eigenvalue:', lambda_1)
+    print('Eigenvector:', b)
 
-num_iters = 20
-
-# Define a random starting vector b
-b = np.random.rand(A.shape[1])
-
-# Get the leading eigenvector of matrix A
-eigenvector = np.linalg.eig(A)[1][:, 0]
-
-errors = []
-res = []
-
-# Power iteration loop
-for i in range(num_iters):
-    # Multiply b by A
-    b = A @ b
-    # Normalize b
-    b = b / np.linalg.norm(b)
-    # Append b to the list of eigenvector approximations
-    res.append(b)
-    err = np.linalg.norm(np.array(b)
-                         - eigenvector)
-    errors.append(err)
-
-greatest_eigenvalue = np.dot(A @ b, b) / np.dot(b, b)
-print(f'The approximated greatest absolute eigenvalue is \
-        {greatest_eigenvalue:.2f}')
-print('The real eigenvalue is', np.linalg.eig(A)[0])
-
-# Plot the eigenvector approximations for each iteration
-plt.figure(figsize=(10, 6))
-plt.xlabel('iterations')
-plt.ylabel('error')
-_ = plt.plot(errors)
+power_iteration()
 ```
-
-+++ {"user_expressions": []}
-
-Then we can look at the trajectory of the eigenvector approximation.
-
-```{code-cell} ipython3
----
-mystnb:
-  figure:
-    caption: Power iteration trajectory
-    name: pow-trajectory
----
-# Set up the figure and axis for 3D plot
-fig = plt.figure()
-ax = fig.add_subplot(111, projection='3d')
-
-# Plot the eigenvectors
-ax.scatter(eigenvector[0],
-           eigenvector[1],
-           eigenvector[2],
-           color='r', s=80)
-
-for i, vec in enumerate(res):
-    ax.scatter(vec[0], vec[1], vec[2],
-               color='b',
-               alpha=(i+1)/(num_iters+1),
-               s=80)
-
-ax.set_xlabel('x')
-ax.set_ylabel('y')
-ax.set_zlabel('z')
-ax.tick_params(axis='both', which='major', labelsize=7)
-
-points = [plt.Line2D([0], [0], linestyle='none',
-                     c=i, marker='o') for i in ['r', 'b']]
-ax.legend(points, ['actual eigenvector',
-                   r'approximated eigenvector ($b_k$)'])
-ax.set_box_aspect(aspect=None, zoom=0.8)
-
-plt.show()
-```
-
-+++ {"user_expressions": []}
 
 ```{solution-end}
 ```
