@@ -33,7 +33,7 @@ Some of those theories about monetary and fiscal policies still interest us toda
    
     * mathematics involving compound interest  governed French government debt dynamics in the decades preceding 1789; according to leading historians, that arithmetic set the stage for the French Revolution 
 
-* a **real bills** theory of the effects of government open market operations in which the government *backs* new  issues of paper money with government holdings of valuable real property or financial assets that holders of money can purchase from the government in exchange for their money.
+* a *real bills* theory of the effects of government open market operations in which the government *backs* new  issues of paper money with government holdings of valuable real property or financial assets that holders of money can purchase from the government in exchange for their money.
 
     * The Revolutionaries learned about this theory from Adam Smith's 1776 book The Wealth of Nations
      {cite}`smith2010wealth` and other contemporary sources
@@ -211,7 +211,7 @@ Figure {numref}`fr_fig2` indicates that
 
 Eighteenth-century British fiscal policy portrayed Figure {numref}`fr_fig2` thus looks very much like a text-book example of a *tax-smoothing* model like Robert Barro's {cite}`Barro1979`.  
 
-A striking feature of the graph is what we'll lagel a *law of gravity* between tax collections and government expenditures. 
+A striking feature of the graph is what we'll label a *law of gravity* between tax collections and government expenditures. 
 
    * levels of government expenditures at taxes attract each other
    * while they can temporarily differ -- as they do during wars -- they come back together when peace returns
@@ -366,10 +366,10 @@ This coincidence fostered a three step plan for servicing the French government 
  * sell the church lands 
  * use the proceeds from those sales to service or even retire French government debt
 
-The monetary theory underlying this plan had been set out by Adam Smith in his analysis of what he called **real bills**  in his  1776 book
+The monetary theory underlying this plan had been set out by Adam Smith in his analysis of what he called *real bills*  in his  1776 book
 **The Wealth of Nations**   {cite}`smith2010wealth`, which many of the revolutionaries had read.
 
-Adam Smith defined a **real bill** as a paper money note that is backed by a claims on a real asset like productive capital or inventories. 
+Adam Smith defined a *real bill* as a paper money note that is backed by a claims on a real asset like productive capital or inventories. 
 
 The National Assembly put together an ingenious institutional  arrangement to implement this plan.
 
@@ -624,7 +624,7 @@ of our episodes, in which real balances decline and prices rise rapidly.
 We interpret
 these three episodes in terms of distinct  theories
 
-*  a **backing** or **real bills** theory (the classic text for this theory is  Adam Smith  {cite}`smith2010wealth`)
+*  a *backing* or *real bills* theory (the classic text for this theory is  Adam Smith  {cite}`smith2010wealth`)
 * a legal restrictions theory ( {cite}`keynes1940pay`, {cite}`bryant1984price` )
 * a classical hyperinflation theory ({cite}`Cagan`)
 * 
@@ -695,7 +695,7 @@ hyperinflations.
 
 
 
-* subperiod 1: ("**real bills** period): January 1791 to July 1793
+* subperiod 1: ("*real bills* period): January 1791 to July 1793
 
 * subperiod 2: ("terror"):  August 1793 - July 1794
 
@@ -815,7 +815,7 @@ plt.tight_layout()
 plt.show()
 ```
 
-Now let's regress inflation on real balances during the **real bills** period and plot the regression
+Now let's regress inflation on real balances during the *real bills* period and plot the regression
 line.
 
 ```{code-cell} ipython3
@@ -851,7 +851,7 @@ plt.show()
 
 The regression line in {numref}`fr_fig104c` shows that large increases in real balances of
 assignats (paper money) were accompanied by only modest rises in the price level, an outcome in line
-with the **real bills** theory. 
+with the *real bills* theory. 
 
 During this period, assignats were claims on church lands. 
 
