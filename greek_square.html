@@ -180,6 +180,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vectorizing-the-difference-equation">17.6. Vectorizing the difference equation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#invariant-subspace-approach">17.7. Invariant subspace approach</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#concluding-remarks">17.8. Concluding remarks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise">17.9. Exercise</a></li>
 </ul>
                             <p class="logo">
                                 
@@ -242,7 +243,13 @@ const thebe_selector_output = ".output, .cell_output"
 <h1><span class="section-number">17. </span>Computing Square Roots<a class="headerlink" href="#computing-square-roots" title="Permalink to this heading">#</a></h1>
 <section id="introduction">
 <h2><span class="section-number">17.1. </span>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
-<p>This lecture can be viewed as a sequel to <a class="reference internal" href="eigen_I.html"><span class="doc">Eigenvalues and Eigenvectors</span></a>.</p>
+<p>Chapter 24 of <span id="id1">[<a class="reference internal" href="zreferences.html#id3" title="Bertrand Russell. History of western philosophy. Routledge, 2004.">Russell, 2004</a>]</span> about early Greek mathematics and astronomy contains this
+fascinating passage:</p>
+<blockquote class="epigraph">
+<div><p>The square root of 2, which was the first irrational to be discovered, was known to the early Pythagoreans, and ingenious methods of approximating to its value were discovered. The best was as follows: Form two columns of numbers, which we will call the <span class="math notranslate nohighlight">\(a\)</span>’s and the <span class="math notranslate nohighlight">\(b\)</span>’s; each starts with a <span class="math notranslate nohighlight">\(1\)</span>. The next <span class="math notranslate nohighlight">\(a\)</span>, at each stage, is formed by adding the last <span class="math notranslate nohighlight">\(a\)</span> and the <span class="math notranslate nohighlight">\(b\)</span> already obtained; the next <span class="math notranslate nohighlight">\(b\)</span> is formed by adding twice the previous <span class="math notranslate nohighlight">\(a\)</span> to the previous <span class="math notranslate nohighlight">\(b\)</span>. The first 6 pairs so obtained are <span class="math notranslate nohighlight">\((1,1), (2,3), (5,7), (12,17), (29,41), (70,99)\)</span>. In each pair, <span class="math notranslate nohighlight">\(2 a - b\)</span> is <span class="math notranslate nohighlight">\(1\)</span> or <span class="math notranslate nohighlight">\(-1\)</span>. Thus <span class="math notranslate nohighlight">\(b/a\)</span> is nearly the square root of two, and at each fresh step it gets nearer. For instance, the reader may satisy himself that the square of <span class="math notranslate nohighlight">\(99/70\)</span> is very nearly equal to <span class="math notranslate nohighlight">\(2\)</span>.</p>
+</div></blockquote>
+<p>This lecture drills down and studies this ancient method for computing square roots by using some of the matrix algebra that we’ve learned in earlier quantecon lectures.</p>
+<p>In particular, this lecture can be viewed as a sequel to <a class="reference internal" href="eigen_I.html"><span class="doc">Eigenvalues and Eigenvectors</span></a>.</p>
 <p>It  provides an  example of how eigenvectors isolate  <em>invariant subspaces</em> that help construct and analyze solutions of linear difference equations.</p>
 <p>When vector <span class="math notranslate nohighlight">\(x_t\)</span> starts in an invariant subspace, iterating the different equation keeps <span class="math notranslate nohighlight">\(x_{t+j}\)</span>
 in that subspace for all <span class="math notranslate nohighlight">\(j \geq 1\)</span>.</p>
@@ -864,7 +871,7 @@ x_{2,0} = -(V^{2,2})^{-1} V^{2,1} x_{1,0} = V_{2,1} V_{1,1}^{-1} x_{1,0}.
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the ratios for y_t / y_{t-1}</span>
-<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
 
 <span class="c1"># First subplot</span>
 <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">ratios_λ1</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> 
@@ -895,7 +902,7 @@ x_{2,0} = -(V^{2,2})^{-1} V^{2,1} x_{1,0} = V_{2,1} V_{1,1}^{-1} x_{1,0}.
 </div>
 </details>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/5b94a554c99346713c0881329922d7f02a47b3d06a8e7f722f2a7662664b9f25.png"><img alt="_images/5b94a554c99346713c0881329922d7f02a47b3d06a8e7f722f2a7662664b9f25.png" src="_images/5b94a554c99346713c0881329922d7f02a47b3d06a8e7f722f2a7662664b9f25.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/4d3e58da2560ec8aae4b26047d534af79443f479fd78152d85ee1f417ed3fd5a.png"><img alt="_images/4d3e58da2560ec8aae4b26047d534af79443f479fd78152d85ee1f417ed3fd5a.png" src="_images/4d3e58da2560ec8aae4b26047d534af79443f479fd78152d85ee1f417ed3fd5a.png" style="width: 80%;" /></a>
 </div>
 </div>
 </section>
@@ -905,6 +912,95 @@ x_{2,0} = -(V^{2,2})^{-1} V^{2,1} x_{1,0} = V_{2,1} V_{1,1}^{-1} x_{1,0}.
 <p>All of these exploit very similar equations based on eigen decompositions.</p>
 <p>We shall encounter equations very similar to <a class="reference internal" href="#equation-eq-deactivate1">(17.19)</a> and <a class="reference internal" href="#equation-eq-deactivate2">(17.20)</a>
 in <a class="reference internal" href="money_inflation.html"><span class="doc">Money Financed Government Deficits and Price Levels</span></a> and in many other places in dynamic economic theory.</p>
+</section>
+<section id="exercise">
+<h2><span class="section-number">17.9. </span>Exercise<a class="headerlink" href="#exercise" title="Permalink to this heading">#</a></h2>
+<div class="exercise admonition" id="greek_square_ex_a">
+
+<p class="admonition-title"><span class="caption-number">Exercise 17.1 </span></p>
+<section id="exercise-content">
+<p>Please use matrix algebra to formulate the method described by Bertrand Russell at the beginning of this lecture.</p>
+<ol class="arabic simple">
+<li><p>Define a state vector <span class="math notranslate nohighlight">\(x_t = \begin{bmatrix} a_t \cr b_t \end{bmatrix}\)</span>.</p></li>
+<li><p>Formulate a first-order vector difference equation for <span class="math notranslate nohighlight">\(x_t\)</span> of the form <span class="math notranslate nohighlight">\(x_{t+1} = A x_t\)</span> and
+compute the matrix <span class="math notranslate nohighlight">\(A\)</span>.</p></li>
+<li><p>Use the system <span class="math notranslate nohighlight">\(x_{t+1} = A x_t\)</span> to replicate the sequence of <span class="math notranslate nohighlight">\(a_t\)</span>’s and <span class="math notranslate nohighlight">\(b_t\)</span>’s described by Bertrand Russell.</p></li>
+<li><p>Compute the eigenvectors and eigenvalues of <span class="math notranslate nohighlight">\(A\)</span> and compare them to corresponding objects computed in the text of this lecture.</p></li>
+</ol>
+</section>
+</div>
+<div class="solution dropdown admonition" id="greek_square-solution-1">
+
+<p class="admonition-title">Solution to<a class="reference internal" href="#greek_square_ex_a"> Exercise 17.1</a></p>
+<section id="solution-content">
+<p>Here is one soluition.</p>
+<p>According to the quote, we can formulate</p>
+<div class="math notranslate nohighlight" id="equation-eq-gs-ex1system">
+<span class="eqno">(17.21)<a class="headerlink" href="#equation-eq-gs-ex1system" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{aligned}
+a_{t+1} &amp;= a_t + b_t \\
+b_{t+1} &amp;= 2a_t + b_t
+\end{aligned}
+\end{split}\]</div>
+<p>with <span class="math notranslate nohighlight">\(x_0 = \begin{bmatrix}  a_0 \cr b_0 \end{bmatrix} = \begin{bmatrix}  1 \cr 1 \end{bmatrix}\)</span></p>
+<p>By <a class="reference internal" href="#equation-eq-gs-ex1system">(17.21)</a>, we can write matrix <span class="math notranslate nohighlight">\(A\)</span> as</p>
+<div class="math notranslate nohighlight">
+\[
+A = \begin{bmatrix} 1 &amp; 1 \cr 
+                2 &amp; 1 \end{bmatrix}
+\]</div>
+<p>Then <span class="math notranslate nohighlight">\(x_{t+1} = A x_t\)</span> for <span class="math notranslate nohighlight">\(t \in \{0, \dots, 5\}\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the matrix A</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+              <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
+
+<span class="c1"># Initial vector x_0</span>
+<span class="n">x_0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+
+<span class="c1"># Number of iterations</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">6</span>
+
+<span class="c1"># Generate the sequence</span>
+<span class="n">xs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">x_0</span><span class="p">])</span>
+<span class="n">x_t</span> <span class="o">=</span> <span class="n">x_0</span>
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+    <span class="n">x_t</span> <span class="o">=</span> <span class="n">A</span> <span class="o">@</span> <span class="n">x_t</span>
+    <span class="n">xs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">xs</span><span class="p">,</span> <span class="n">x_t</span><span class="p">])</span>
+
+<span class="c1"># Print the sequence</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">a_t</span><span class="p">,</span> <span class="n">b_t</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">xs</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Iter </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">: a_t = </span><span class="si">{</span><span class="n">a_t</span><span class="si">}</span><span class="s2">, b_t = </span><span class="si">{</span><span class="n">b_t</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Compute eigenvalues and eigenvectors of A</span>
+<span class="n">eigenvalues</span><span class="p">,</span> <span class="n">eigenvectors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eig</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Eigenvalues:</span><span class="se">\n</span><span class="si">{</span><span class="n">eigenvalues</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Eigenvectors:</span><span class="se">\n</span><span class="si">{</span><span class="n">eigenvectors</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Iter 0: a_t = 1, b_t = 1
+Iter 1: a_t = 2, b_t = 3
+Iter 2: a_t = 5, b_t = 7
+Iter 3: a_t = 12, b_t = 17
+Iter 4: a_t = 29, b_t = 41
+Iter 5: a_t = 70, b_t = 99
+
+Eigenvalues:
+[ 2.41421356 -0.41421356]
+
+Eigenvectors:
+[[ 0.57735027 -0.57735027]
+ [ 0.81649658  0.81649658]]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</div>
 </section>
 </section>
 
@@ -1167,11 +1263,6 @@ in <a class="reference internal" href="money_inflation.html"><span class="doc">M
    31. Laffer Curves  with Adaptive Expectations
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="ak2.html">
-   32. Transitions in an Overlapping Generations Model
-  </a>
- </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
@@ -1181,22 +1272,22 @@ in <a class="reference internal" href="money_inflation.html"><span class="doc">M
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="ar1_processes.html">
-   33. AR(1) Processes
+   32. AR(1) Processes
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="markov_chains_I.html">
-   34. Markov Chains: Basic Concepts
+   33. Markov Chains: Basic Concepts
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="markov_chains_II.html">
-   35. Markov Chains: Irreducibility and Ergodicity
+   34. Markov Chains: Irreducibility and Ergodicity
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="time_series_with_matrices.html">
-   36. Univariate Time Series with Matrix Algebra
+   35. Univariate Time Series with Matrix Algebra
   </a>
  </li>
 </ul>
@@ -1208,12 +1299,12 @@ in <a class="reference internal" href="money_inflation.html"><span class="doc">M
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="lp_intro.html">
-   37. Linear Programming
+   36. Linear Programming
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="short_path.html">
-   38. Shortest Paths
+   37. Shortest Paths
   </a>
  </li>
 </ul>
@@ -1225,22 +1316,22 @@ in <a class="reference internal" href="money_inflation.html"><span class="doc">M
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="eigen_II.html">
-   39. The Perron-Frobenius Theorem
+   38. The Perron-Frobenius Theorem
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="input_output.html">
-   40. Input-Output Models
+   39. Input-Output Models
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="lake_model.html">
-   41. A Lake Model of Employment
+   40. A Lake Model of Employment
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="networks.html">
-   42. Networks
+   41. Networks
   </a>
  </li>
 </ul>
@@ -1252,12 +1343,12 @@ in <a class="reference internal" href="money_inflation.html"><span class="doc">M
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="supply_demand_multiple_goods.html">
-   43. Supply and Demand with Many Goods
+   42. Supply and Demand with Many Goods
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="supply_demand_heterogeneity.html">
-   44. Market Equilibrium with Heterogeneity
+   43. Market Equilibrium with Heterogeneity
   </a>
  </li>
 </ul>
@@ -1269,12 +1360,12 @@ in <a class="reference internal" href="money_inflation.html"><span class="doc">M
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="simple_linear_regression.html">
-   45. Simple Linear Regression Model
+   44. Simple Linear Regression Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="mle.html">
-   46. Maximum Likelihood Estimation
+   45. Maximum Likelihood Estimation
   </a>
  </li>
 </ul>
@@ -1286,17 +1377,17 @@ in <a class="reference internal" href="money_inflation.html"><span class="doc">M
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="troubleshooting.html">
-   47. Troubleshooting
+   46. Troubleshooting
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="zreferences.html">
-   48. References
+   47. References
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="status.html">
-   49. Execution Statistics
+   48. Execution Statistics
   </a>
  </li>
 </ul>
