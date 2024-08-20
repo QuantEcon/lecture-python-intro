@@ -51,7 +51,9 @@ As usual, we'll start by importing some Python modules.
 import numpy as np
 import matplotlib.pyplot as plt
 from collections import namedtuple
-from sympy import Symbol, Lambda, symbols
+from sympy import Symbol, Lambda, symbols, refine, \
+                  Sum, simplify, Eq, solve, Lambda,\
+                  lambdify, And
 ```
 
 ## The indifference condition
@@ -276,11 +278,165 @@ plt.ylabel(r'wage gap')
 plt.show()
 ```
 
-## Entrepreneur-worker interpretation
+## An application of calculus
 
-We can add a parameter and reinterpret variables to get a model of entrepreneurs versus workers.
+So far, we have used only linear algebra and it has been a good enough tool for us to  figure out how our model works.
 
-We now let $h$ be  the present value of a "worker".
+However, someone who knows calculus might want us  just to  take partial derivatives.
+
+We'll do that now.
+
+A reader who doesn't know calculus could read no further and feel confident that applying linear algebra has taught us the main properties of the model.
+
+But for a reader interested in how we can get Python to do all the hard work involved in computing partial derivatives, we'll say a few things about that now.  
+
+We'll use the Python module 'sympy' to compute partial derivatives of $\phi$ with respect to the parameters that determine it.
+
+Define symbols
+
+```{code-cell} ipython3
+R, w_h0, w_c0, γ_c, γ_h, ϕ, D, t, T = symbols(
+    'R w^h_0 w^c_0 gamma_c gamma_h phi D t T', positive=True)
+
+refine(γ_c, γ_c>1)
+refine(γ_h, γ_h>1)
+refine(R, R>1)
+
+# Define the wage for college 
+# and high school graduates at time t
+w_ct = w_c0 * γ_c**t
+w_ht = w_h0 * γ_h**t
+```
+
+Define function $A_h$
+
+```{code-cell} ipython3
+h_0 = Sum(R**-t * w_ht, (t, 0, T))
+A_h = simplify(h_0.doit() / w_h0)
+A_h = simplify(A_h.args[1][0])
+A_h
+```
+
+Define function $A_c$
+
+```{code-cell} ipython3
+c_0 = Sum(R**-t * w_ct, (t, 4, T))
+A_c = simplify(c_0.doit() / w_c0)
+A_c = simplify(A_c.args[1][0])
+A_c
+```
+
+Now, define $\phi$
+
+```{code-cell} ipython3
+ϕ = A_h/A_c + D/(w_h0*A_c)
+```
+
+```{code-cell} ipython3
+ϕ
+```
+
+We begin by setting  default parameter values.
+
+```{code-cell} ipython3
+R_value = 1.05
+T_value = 40
+γ_h_value, γ_c_value = 1.01, 1.01
+w_h0_value = 1
+D_value = 10
+
+symbol_subs = {D: D_value,
+               γ_h: γ_h_value,
+               γ_c: γ_c_value,
+               R: R_value,
+               T: T_value,
+               w_h0: w_h0_value}
+
+ϕ.subs(symbol_subs)
+```
+
+Now let's compute $\frac{\partial \phi}{\partial D}$ and then evaluate it at the default values
+
+```{code-cell} ipython3
+ϕ_D = ϕ.diff(D)
+ϕ_D
+```
+
+```{code-cell} ipython3
+# Numerical value at default parameters
+ϕ_D.subs(symbol_subs)
+```
+
+Thus, as with our earlier graph, we find that raising $R$ increases the initial college wage premium $\phi$.
+
+Compute $\frac{\partial \phi}{\partial T}$ and evaluate it at default parameters
+
+```{code-cell} ipython3
+ϕ_T = ϕ.diff(T)
+ϕ_T
+```
+
+```{code-cell} ipython3
+# Numerical value at default parameters
+ϕ_T.subs(symbol_subs)
+```
+
+We find that raising $T$ decreases the initial college wage premium $\phi$. 
+
+This is because college graduates now have longer career lengths to "pay off" the time and other costs they paid to go to college
+
+Let's compute $\frac{\partial \phi}{\partial γ_h}$ and evaluate it at default parameters.
+
+```{code-cell} ipython3
+ϕ_γ_h = ϕ.diff(γ_h)
+ϕ_γ_h
+```
+
+```{code-cell} ipython3
+# Numerical value at default parameters
+ϕ_γ_h.subs(symbol_subs)
+```
+
+We find that raising $\gamma_h$ increases the initial college wage premium $\phi$, in line with our earlier graphical analysis.
+
+Compute $\frac{\partial \phi}{\partial γ_c}$ and evaluate it numerically at default parameter values
+
+```{code-cell} ipython3
+ϕ_γ_c = ϕ.diff(γ_c)
+ϕ_γ_c
+```
+
+```{code-cell} ipython3
+# Numerical value at default parameters
+ϕ_γ_c.subs(symbol_subs)
+```
+
+We find that raising $\gamma_c$ decreases the initial college wage premium $\phi$, in line with our earlier graphical analysis.
+
+Let's compute $\frac{\partial \phi}{\partial R}$ and evaluate it numerically at default parameter values
+
+```{code-cell} ipython3
+ϕ_R = ϕ.diff(R)
+ϕ_R
+```
+
+```{code-cell} ipython3
+# Numerical value at default parameters
+ϕ_R.subs(symbol_subs)
+```
+
+We find that raising the gross interest rate $R$ increases the initial college wage premium $\phi$, in line with our earlier graphical analysis.
+
+## Exercises
+
+In the following exercises, we extend our previous model to include a choice between being an entrepreneur or a worker.
+
+```{exercise-start}
+:label: edm_ex1
+```
+We add a parameter $\pi \in (0,1]$ representing the probability that an entrepreneur's "project" succeeds.
+
+We now let $h$ be the present value of a "worker".
 
 We define the present value of an entrepreneur to be
 
@@ -288,19 +444,37 @@ $$
 c_0 = \pi \sum_{t=4}^T R^{-t} w_t^c
 $$
 
-where $\pi \in (0,1) $ is  the probability that an entrepreneur's "project" succeeds.
-
-For our model of workers and firms, we'll interpret $D$ as the cost of becoming an entrepreneur.  
+We interpret $D$ in the previous model as the cost of becoming an entrepreneur.  
 
 This cost might include costs of hiring workers, office space, and lawyers. 
 
 What we used to call the college, high school wage gap $\phi$ now becomes the ratio
 of a successful entrepreneur's earnings to a worker's earnings.  
 
-We'll find that as $\pi$ decreases, $\phi$ increases, indicating that the riskier it is to
-be an entrepreneur, the higher must be the reward for a successful project. 
+In this exercise, update `create_edm` and `compute_gap` to formulate our entrepreneur-worker model with parameters below
 
-Now let's adopt the entrepreneur-worker interpretation of our model
+```{code-cell} ipython3
+R=1.05,   # gross rate of return
+T=40,     # time horizon
+γ_h=1.01, # high-school wage growth
+γ_c=1.01, # college wage growth
+w_h0=1,   # initial wage (high school)
+D=10,     # cost for college
+π=1       # chance of business success
+```
+
+and verify that when $\pi = 1$, the result is the same as our old model.
+
++++
+
+```{exercise-end}
+```
+
+```{solution-start} edm_ex1
+:class: dropdown
+```
+
+Here is one solution
 
 ```{code-cell} ipython3
 # Define a model of entrepreneur-worker interpretation
@@ -312,7 +486,7 @@ def create_edm_π(R=1.05,   # gross rate of return
                  γ_c=1.01, # college wage growth
                  w_h0=1,   # initial wage (high school)
                  D=10,     # cost for college
-                 π=0       # chance of business success
+                 π=1       # chance of business success
               ):
     
     return EqDiffModel(R, T, γ_h, γ_c, w_h0, D, π)
@@ -331,7 +505,29 @@ def compute_gap(model):
     return ϕ
 ```
 
-If the probability that a new business succeeds is $0.2$, let's compute the initial wage premium for successful entrepreneurs.
+We validate our result by checking the result with $\pi = 1$
+
+```{code-cell} ipython3
+ex_π = create_edm_π()
+gap_π = compute_gap(ex_π)
+
+gap_π
+```
+
+```{solution-end}
+```
+
+```{exercise-start}
+:label: edm_ex2
+```
+If the probability that a new business succeeds is $0.2$, what is the initial wage premium for successful entrepreneurs?
+
+```{exercise-end}
+```
+
+```{solution-start} edm_ex2
+:class: dropdown
+```
 
 ```{code-cell} ipython3
 ex3 = create_edm_π(π=0.2)
@@ -340,7 +536,28 @@ gap3 = compute_gap(ex3)
 gap3
 ```
 
+```{solution-end}
+```
+
+```{exercise-start}
+:label: edm_ex3
+```
 Now let's study how the initial wage premium for successful entrepreneurs depend on the success probability.
+
+With $\pi \in [0.2, 1]$,
+
+```{code-cell} ipython3
+π_arr = np.linspace(0.2, 1, 50)
+```
+
+plot the relationship between the wage gap and the values of $\pi$.
+
+```{exercise-end}
+```
+
+```{solution-start} edm_ex3
+:class: dropdown
+```
 
 ```{code-cell} ipython3
 π_arr = np.linspace(0.2, 1, 50)
@@ -353,138 +570,8 @@ plt.xlabel(r'$\pi$')
 plt.show()
 ```
 
-Does the graph make sense to you?
+We find that as $\pi$ decreases, $\phi$ increases, indicating that the riskier it is to
+be an entrepreneur, the higher must be the reward for a successful project. 
 
-
-
-## An application of calculus
-
-So far, we have used only linear algebra and it has been a good enough tool for us to  figure out how our model works.
-
-However, someone who knows calculus might want us  just to  take partial derivatives.
-
-We'll do that now.
-
-A reader who doesn't know calculus could read no further and feel confident that applying linear algebra has taught us the main properties of the model.
-
-But for a reader interested in how we can get Python to do all the hard work involved in computing partial derivatives, we'll say a few things about that now.  
-
-We'll use the Python module 'sympy' to compute partial derivatives of $\phi$ with respect to the parameters that determine it.
-
-Define symbols
-
-```{code-cell} ipython3
-γ_h, γ_c, w_h0, D = symbols('\gamma_h, \gamma_c, w_0^h, D', real=True)
-R, T = Symbol('R', real=True), Symbol('T', integer=True)
+```{solution-end}
 ```
-
-Define function $A_h$
-
-```{code-cell} ipython3
-A_h = Lambda((γ_h, R, T), (1 - (γ_h/R)**(T+1)) / (1 - γ_h/R))
-A_h
-```
-
-Define function $A_c$
-
-```{code-cell} ipython3
-A_c = Lambda((γ_c, R, T), (1 - (γ_c/R)**(T-3)) / (1 - γ_c/R) * (γ_c/R)**4)
-A_c
-```
-
-Now, define $\phi$
-
-```{code-cell} ipython3
-ϕ = Lambda((D, γ_h, γ_c, R, T, w_h0), A_h(γ_h, R, T)/A_c(γ_c, R, T) + D/(w_h0*A_c(γ_c, R, T)))
-```
-
-```{code-cell} ipython3
-ϕ
-```
-
-We begin by setting  default parameter values.
-
-```{code-cell} ipython3
-R_value = 1.05
-T_value = 40
-γ_h_value, γ_c_value = 1.01, 1.01
-w_h0_value = 1
-D_value = 10
-```
-
-Now let's compute $\frac{\partial \phi}{\partial D}$ and then evaluate it at the default values
-
-```{code-cell} ipython3
-ϕ_D = ϕ(D, γ_h, γ_c, R, T, w_h0).diff(D)
-ϕ_D
-```
-
-```{code-cell} ipython3
-# Numerical value at default parameters
-ϕ_D_func = Lambda((D, γ_h, γ_c, R, T, w_h0), ϕ_D)
-ϕ_D_func(D_value, γ_h_value, γ_c_value, R_value, T_value, w_h0_value)
-```
-
-Thus, as with our earlier graph, we find that raising $R$ increases the initial college wage premium $\phi$.
-
-Compute $\frac{\partial \phi}{\partial T}$ and evaluate it at default parameters
-
-```{code-cell} ipython3
-ϕ_T = ϕ(D, γ_h, γ_c, R, T, w_h0).diff(T)
-ϕ_T
-```
-
-```{code-cell} ipython3
-# Numerical value at default parameters
-ϕ_T_func = Lambda((D, γ_h, γ_c, R, T, w_h0), ϕ_T)
-ϕ_T_func(D_value, γ_h_value, γ_c_value, R_value, T_value, w_h0_value)
-```
-
-We find that raising $T$ decreases the initial college wage premium $\phi$. 
-
-This is because college graduates now have longer career lengths to "pay off" the time and other costs they paid to go to college
-
-Let's compute $\frac{\partial \phi}{\partial γ_h}$ and evaluate it at default parameters.
-
-```{code-cell} ipython3
-ϕ_γ_h = ϕ(D, γ_h, γ_c, R, T, w_h0).diff(γ_h)
-ϕ_γ_h
-```
-
-```{code-cell} ipython3
-# Numerical value at default parameters
-ϕ_γ_h_func = Lambda((D, γ_h, γ_c, R, T, w_h0), ϕ_γ_h)
-ϕ_γ_h_func(D_value, γ_h_value, γ_c_value, R_value, T_value, w_h0_value)
-```
-
-We find that raising $\gamma_h$ increases the initial college wage premium $\phi$, in line with our earlier graphical analysis.
-
-Compute $\frac{\partial \phi}{\partial γ_c}$ and evaluate it numerically at default parameter values
-
-```{code-cell} ipython3
-ϕ_γ_c = ϕ(D, γ_h, γ_c, R, T, w_h0).diff(γ_c)
-ϕ_γ_c
-```
-
-```{code-cell} ipython3
-# Numerical value at default parameters
-ϕ_γ_c_func = Lambda((D, γ_h, γ_c, R, T, w_h0), ϕ_γ_c)
-ϕ_γ_c_func(D_value, γ_h_value, γ_c_value, R_value, T_value, w_h0_value)
-```
-
-We find that raising $\gamma_c$ decreases the initial college wage premium $\phi$, in line with our earlier graphical analysis.
-
-Let's compute $\frac{\partial \phi}{\partial R}$ and evaluate it numerically at default parameter values
-
-```{code-cell} ipython3
-ϕ_R = ϕ(D, γ_h, γ_c, R, T, w_h0).diff(R)
-ϕ_R
-```
-
-```{code-cell} ipython3
-# Numerical value at default parameters
-ϕ_R_func = Lambda((D, γ_h, γ_c, R, T, w_h0), ϕ_R)
-ϕ_R_func(D_value, γ_h_value, γ_c_value, R_value, T_value, w_h0_value)
-```
-
-We find that raising the gross interest rate $R$ increases the initial college wage premium $\phi$, in line with our earlier graphical analysis.
