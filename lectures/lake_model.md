@@ -36,7 +36,7 @@ The "flows" between the two lakes are as follows:
 3. employed workers separate from their jobs at rate $\alpha$.
 4. unemployed workers find jobs at rate $\lambda$.
 
-The below graph illustrates the lake model.
+The graph below illustrates the lake model.
 
 ```{figure} /_static/lecture_specific/lake_model/lake_model_worker.png
 :name: lake_model_graphviz
@@ -216,7 +216,7 @@ Moreover, the times series of unemployment and employment seems to grow at some 
 
 Since by intuition if we consider unemployment pool and employment pool as a closed system, the growth should be similar to the labor force.
 
-We next ask whether the long run growth rates of $e_t$ and $u_t$
+We next ask whether the long-run growth rates of $e_t$ and $u_t$
 also dominated by $1+b-d$ as labor force.
 
 The answer will be clearer if we appeal to {ref}`Perron-Frobenius theorem<perron-frobe>`.

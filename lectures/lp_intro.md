@@ -32,15 +32,18 @@ Linear programs come in pairs:
 
 * an associated **dual** problem.
 
-If a primal problem involves **maximization**, the dual problem involves **minimization**.
+If a primal problem involves *maximization*, the dual problem involves *minimization*.
 
-If a primal problem involves  **minimization**, the dual problem involves **maximization**.
+If a primal problem involves  *minimization**, the dual problem involves **maximization*.
 
 We provide a standard form of a linear program and methods to transform other forms of linear programming problems  into a standard form.
 
 We tell how to solve a linear programming problem using [SciPy](https://scipy.org/) and [Google OR-Tools](https://developers.google.com/optimization).
 
-We describe the important concept of complementary slackness and how it relates to the dual problem.
+```{seealso}
+In another lecture, we will employ the linear programming method to solve the 
+{doc}`optimal transport problem <tools:opt_transport>`.
+```
 
 Let's start with some standard imports.
 
@@ -56,7 +59,7 @@ Let's start with some examples of linear programming problem.
 
 
 
-## Example 1: Production Problem
+## Example 1: production problem
 
 This example was created by {cite}`bertsimas_tsitsiklis1997`
 
@@ -78,7 +81,7 @@ Required per unit material and labor  inputs and  revenues  are shown in table b
 
 A firm's problem is to construct a  production plan that uses its  30 units of materials and 20 units of labor to maximize its revenue.
 
-Let $x_i$ denote the quantity of Product $i$ that the firm produces.
+Let $x_i$ denote the quantity of Product $i$ that the firm produces and $z$ denote the total revenue.
 
 This problem can be formulated as:
 
@@ -92,6 +95,8 @@ $$
 $$
 
 The following graph illustrates the firm's constraints and iso-revenue lines.
+
+Iso-revenue lines show all the combinations of materials and labor that produce the same revenue.
 
 ```{code-cell} ipython3
 ---
@@ -126,19 +131,19 @@ plt.show()
 
 The blue region is the feasible set within which all constraints are satisfied.
 
-Parallel orange lines are iso-revenue lines.
+Parallel black lines are iso-revenue lines.
 
-The firm's objective is to find the  parallel orange lines to the upper boundary of the feasible set.
+The firm's objective is to find the  parallel black lines to the upper boundary of the feasible set.
 
-The intersection of the feasible set and the highest orange line delineates the optimal set.
+The intersection of the feasible set and the highest black line delineates the optimal set.
 
 In this example, the optimal set is the point $(2.5, 5)$.
 
 
 
-### Computation: Using OR-Tools
+### Computation: using OR-Tools
 
-Let's try to solve the same problem using the package *ortools.linear_solver*
+Let's try to solve the same problem using the package `ortools.linear_solver`.
 
 
 
@@ -149,7 +154,7 @@ The following cell instantiates a solver and creates two variables specifying th
 solver = pywraplp.Solver.CreateSolver('GLOP')
 ```
 
-Let's us create two variables $x_1$ and $x_2$ such that they can only have nonnegative values.
+Let's create two variables $x_1$ and $x_2$ such that they can only have nonnegative values.
 
 ```{code-cell} ipython3
 # Create the two variables and let them take on any non-negative value.
@@ -174,7 +179,7 @@ Let's specify the objective function. We use `solver.Maximize` method in the cas
 solver.Maximize(3 * x1 + 4 * x2)
 ```
 
-Once we solve the problem, we can check whether the solver was successful in solving the problem using it's status. If it's successful, then the status will be equal to `pywraplp.Solver.OPTIMAL`.
+Once we solve the problem, we can check whether the solver was successful in solving the problem using its status. If it's successful, then the status will be equal to `pywraplp.Solver.OPTIMAL`.
 
 ```{code-cell} ipython3
 # Solve the system.
@@ -182,26 +187,24 @@ status = solver.Solve()
 
 if status == pywraplp.Solver.OPTIMAL:
     print('Objective value =', solver.Objective().Value())
-    x1_sol = round(x1.solution_value(), 2)
-    x2_sol = round(x2.solution_value(), 2)
-    print(f'(x1, x2): ({x1_sol}, {x2_sol})')
+    print(f'(x1, x2): ({x1.solution_value():.2}, {x2.solution_value():.2})')
 else:
     print('The problem does not have an optimal solution.')
 ```
 
-## Example 2: Investment Problem
+## Example 2: investment problem
 
 We now consider a problem posed and solved by  {cite}`hu_guo2018`.
 
-A mutual fund has $ \$ 100,000$ to be invested over a three year horizon.
+A mutual fund has $ \$ 100,000$ to be invested over a three-year horizon.
 
 Three investment options are available:
 
-1. **Annuity:**  the fund can  pay a same amount of new capital at the beginning of each of three years and receive a payoff of 130\% of **total capital** invested  at the end of the third year. Once the mutual fund decides to invest in this annuity, it has to keep investing in all subsequent  years in the three year horizon.
+1. Annuity:  the fund can  pay a same amount of new capital at the beginning of each of three years and receive a payoff of 130\% of total capital invested  at the end of the third year. Once the mutual fund decides to invest in this annuity, it has to keep investing in all subsequent  years in the three year horizon.
 
-2. **Bank account:** the fund can deposit any amount  into a bank at the beginning of each year and receive its capital plus 6\% interest at the end of that year. In addition, the mutual fund is permitted to borrow no more than $20,000 at the beginning of each year and is asked to pay back the amount borrowed plus 6\% interest at the end of the year. The mutual fund can choose whether to deposit or borrow at the beginning of each year.
+2. Bank account: the fund can deposit any amount  into a bank at the beginning of each year and receive its capital plus 6\% interest at the end of that year. In addition, the mutual fund is permitted to borrow no more than $20,000 at the beginning of each year and is asked to pay back the amount borrowed plus 6\% interest at the end of the year. The mutual fund can choose whether to deposit or borrow at the beginning of each year.
 
-3. **Corporate bond:** At the beginning of the second year, a  corporate bond becomes available.
+3. Corporate bond: At the beginning of the second year, a  corporate bond becomes available.
 The fund can buy an amount
 that is no more than $ \$ $50,000 of this bond at the beginning of the second year and  at the end of the third year receive a payout of 130\% of the amount invested in the bond.
 
@@ -271,9 +274,9 @@ $$
 
 
 
-### Computation: Using OR-Tools
+### Computation: using OR-Tools
 
-Let's try to solve the above problem using the package *ortools.linear_solver*.
+Let's try to solve the above problem using the package `ortools.linear_solver`.
 
 The following cell instantiates a solver and creates two variables specifying the range of values that they can have.
 
@@ -282,7 +285,7 @@ The following cell instantiates a solver and creates two variables specifying th
 solver = pywraplp.Solver.CreateSolver('GLOP')
 ```
 
-Let's us create five variables $x_1, x_2, x_3, x_4,$ and $x_5$ such that they can only have the values defined in the above constraints.
+Let's create five variables $x_1, x_2, x_3, x_4,$ and $x_5$ such that they can only have the values defined in the above constraints.
 
 ```{code-cell} ipython3
 # Create the variables using the ranges available from constraints
@@ -339,7 +342,7 @@ OR-Tools tells us that  the best investment strategy is:
 
 3. At the beginning of the third year, the bank balance should be $ \$75,072.245 $.
 
-4. At the end of the third year, the mutual fund will get payouts from the annuity and corporate bond and repay its loan from the bank. At the end  it will own $ \$141018.24 $, so that it's total net  rate of return over the three periods is $ 41.02\%$.
+4. At the end of the third year, the mutual fund will get payouts from the annuity and corporate bond and repay its loan from the bank. At the end  it will own $ \$141,018.24 $, so that it's total net  rate of return over the three periods is $ 41.02\%$.
 
 
 
@@ -380,7 +383,7 @@ c = \begin{bmatrix} c_1 \\ c_2 \\ \vdots \\ c_n \\ \end{bmatrix}, \quad
 x = \begin{bmatrix} x_1 \\ x_2 \\ \vdots \\ x_n \\ \end{bmatrix}. \quad
 $$
 
-The standard form LP problem can be expressed concisely as:
+The standard form linear programming problem can be expressed concisely as:
 
 $$
 \begin{aligned}
@@ -400,15 +403,15 @@ It is useful to know how to transform a problem that initially is not stated in 
 
 By deploying the following steps, any linear programming problem can be transformed into an  equivalent  standard form linear programming problem.
 
-1. **Objective Function:** If a problem is originally a constrained **maximization** problem, we can construct a new objective function that  is the additive inverse of the original objective function. The transformed problem is then a **minimization** problem.
+1. Objective function: If a problem is originally a constrained *maximization* problem, we can construct a new objective function that  is the additive inverse of the original objective function. The transformed problem is then a *minimization* problem.
 
-2. **Decision Variables:** Given a variable $x_j$ satisfying $x_j \le 0$, we can introduce a new variable $x_j' = - x_j$ and substitute it into original problem. Given a free variable $x_i$ with no restriction on its sign, we can introduce two new variables $x_j^+$ and $x_j^-$ satisfying $x_j^+, x_j^- \ge 0$ and replace $x_j$ by $x_j^+ - x_j^-$.
+2. Decision variables: Given a variable $x_j$ satisfying $x_j \le 0$, we can introduce a new variable $x_j' = - x_j$ and substitute it into original problem. Given a free variable $x_i$ with no restriction on its sign, we can introduce two new variables $x_j^+$ and $x_j^-$ satisfying $x_j^+, x_j^- \ge 0$ and replace $x_j$ by $x_j^+ - x_j^-$.
 
-3. **Inequality constraints:** Given an inequality constraint $\sum_{j=1}^n a_{ij}x_j \le 0$, we can introduce a new variable $s_i$, called a **slack variable** that satisfies $s_i \ge 0$ and replace the original constraint by $\sum_{j=1}^n a_{ij}x_j + s_i = 0$.
+3. Inequality constraints: Given an inequality constraint $\sum_{j=1}^n a_{ij}x_j \le 0$, we can introduce a new variable $s_i$, called a **slack variable** that satisfies $s_i \ge 0$ and replace the original constraint by $\sum_{j=1}^n a_{ij}x_j + s_i = 0$.
 
 Let's apply the above steps to the two examples described above.
 
-### Example 1: Production Problem
+### Example 1: production problem
 
 The original problem is:
 
@@ -434,9 +437,9 @@ $$
 
 
 
-### Computation: Using SciPy
+### Computation: using SciPy
 
-The package *scipy.optimize* provides a function ***linprog*** to solve linear programming problems with a form below:
+The package `scipy.optimize` provides a function `linprog` to solve linear programming problems with a form below:
 
 $$
 \begin{aligned}
@@ -447,8 +450,10 @@ $$
 \end{aligned}
 $$
 
+$A_{eq}, b_{eq}$ denote the equality constraint matrix and vector, and $A_{ub}, b_{ub}$ denote the inequality constraint matrix and vector.
+
 ```{note}
-By default $l = 0$ and $u = \text{None}$ unless explicitly specified with the argument 'bounds'.
+By default $l = 0$ and $u = \text{None}$ unless explicitly specified with the argument `bounds`.
 ```
 
 Let's now try to solve the Problem 1 using SciPy.
@@ -480,7 +485,7 @@ else:
 
 The optimal plan tells the  factory to produce $2.5$ units of Product 1 and $5$ units of  Product 2; that  generates a maximizing value of  revenue of $27.5$.
 
-We are using the *linprog* function as a **black box**.
+We are using the `linprog` function as a *black box*.
 
 Inside it, Python first  transforms the problem into  standard form.
 
@@ -491,12 +496,12 @@ Here the vector of slack variables is a two-dimensional NumPy array that  equals
 See the [official documentation](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.linprog.html#scipy.optimize.linprog) for more details.
 
 ```{note}
-This problem is to maximize the objective, so that we need to put a minus sign in front of parameter vector c.
+This problem is to maximize the objective, so that we need to put a minus sign in front of parameter vector $c$.
 ```
 
 
 
-### Example 2: Investment Problem
+### Example 2: investment problem
 
 The original problem is:
 
@@ -544,14 +549,14 @@ c_ex2 = np.array([1.30*3, 0, 0, 1.06, 1.30])
 A_ex2 = np.array([[1,  1,  0,  0,  0],
                   [1, -rate, 1, 0, 1],
                   [1, 0, -rate, 1, 0]])
-b_ex2 = np.array([100000, 0, 0])
+b_ex2 = np.array([100_000, 0, 0])
 
 # Bounds on decision variables
 bounds_ex2 = [(  0,    None),
-              (-20000, None),
-              (-20000, None),
-              (-20000, None),
-              (  0,   50000)]
+              (-20_000, None),
+              (-20_000, None),
+              (-20_000, None),
+              (  0,   50_000)]
 ```
 
 Let's solve the problem and check the status using `success` attribute.
@@ -583,7 +588,7 @@ SciPy tells us that  the best investment strategy is:
 
 3. At the beginning of the third year, the mutual fund should borrow $ \$20,000$ from the bank and invest in the annuity.
 
-4. At the end of the third year, the mutual fund will get payouts from the annuity and corporate bond and repay its loan from the bank. At the end  it will own $ \$141018.24 $, so that it's total net  rate of return over the three periods is $ 41.02\% $.
+4. At the end of the third year, the mutual fund will get payouts from the annuity and corporate bond and repay its loan from the bank. At the end  it will own $ \$141,018.24 $, so that it's total net  rate of return over the three periods is $ 41.02\% $.
 
 
 
@@ -702,7 +707,7 @@ $$
 # Instantiate a GLOP(Google Linear Optimization Package) solver
 solver = pywraplp.Solver.CreateSolver('GLOP')
 ```
-Let's us create two variables $x_1$ and $x_2$ such that they can only have nonnegative values.
+Let's create two variables $x_1$ and $x_2$ such that they can only have nonnegative values.
 
 ```{code-cell} ipython3
 # Create the two variables and let them take on any non-negative value.

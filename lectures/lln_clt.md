@@ -51,6 +51,9 @@ will converge to their population means.
 
 Let's see an example of the LLN in action before we go further.
 
+```{prf:example}
+:label: lln_ex_ber
+
 Consider a [Bernoulli random variable](https://en.wikipedia.org/wiki/Bernoulli_distribution) $X$ with parameter $p$.
 
 This means that $X$ takes values in $\{0,1\}$ and $\mathbb P\{X=1\} = p$.
@@ -68,6 +71,7 @@ $$
     \mathbb E X 
     = 0 \cdot \mathbb P\{X=0\} + 1 \cdot \mathbb P\{X=1\} = \mathbb P\{X=1\} = p
 $$
+```
 
 We can generate a draw of $X$ with `scipy.stats` (imported as `st`) as follows:
 
@@ -167,6 +171,7 @@ $$
 
 The next theorem is called Kolmogorov's strong law of large numbers.
 
+(iid-theorem)=
 ````{prf:theorem}
 If $X_1, \ldots, X_n$ are IID and $\mathbb E |X|$ is finite, then
 
@@ -368,7 +373,8 @@ The LLN fails to hold here because the assumption $\mathbb E|X| < \infty$ is vio
 
 The LLN can also fail to hold when the IID assumption is violated.
 
-For example, suppose that
+```{prf:example}
+:label: lln_ex_fail
 
 $$
     X_0 \sim N(0,1)
@@ -383,6 +389,7 @@ $$
 $$
 
 Therefore, the distribution of $\bar X_n$ is $N(0,1)$ for all $n$!
+```
 
 Does this contradict the LLN, which says that the distribution of $\bar X_n$
 collapses to the single point $\mu$?
@@ -438,9 +445,9 @@ n \to \infty
 Here $\stackrel { d } {\to} N(0, \sigma^2)$ indicates [convergence in distribution](https://en.wikipedia.org/wiki/Convergence_of_random_variables#Convergence_in_distribution) to a centered (i.e., zero mean) normal with standard deviation $\sigma$.
 
 
-The striking implication of the CLT is that for **any** distribution with
+The striking implication of the CLT is that for any distribution with
 finite [second moment](https://en.wikipedia.org/wiki/Moment_(mathematics)), the simple operation of adding independent
-copies **always** leads to a Gaussian(Normal) curve.
+copies always leads to a Gaussian(Normal) curve.
 
 
 
@@ -598,7 +605,7 @@ $$
 $$
 
 where $\alpha, \beta, \sigma$ are constants and $\epsilon_1, \epsilon_2,
-\ldots$ is IID and standard norma.
+\ldots$ are IID and standard normal.
 
 Suppose that
 

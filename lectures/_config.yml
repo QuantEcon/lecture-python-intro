@@ -35,7 +35,7 @@ latex:
     targetname: quantecon-python-intro.tex
 
 sphinx:
-  extra_extensions: [sphinx_multitoc_numbering, sphinxext.rediraffe, sphinx_exercise, sphinx_togglebutton, sphinx.ext.intersphinx, sphinx_proof, sphinx_tojupyter] 
+  extra_extensions: [sphinx_multitoc_numbering, sphinxext.rediraffe, sphinx_exercise, sphinx_togglebutton, sphinx.ext.intersphinx, sphinx_proof, sphinx_tojupyter, sphinx_reredirects] 
   config:
     bibtex_reference_style: author_year
     # false-positive links
@@ -76,6 +76,9 @@ sphinx:
         colab_url                 : https://colab.research.google.com
         thebe                     : false  # Add a thebe button to pages (requires the repository to run on Binder)
     intersphinx_mapping:
+      intermediate: 
+        - https://python.quantecon.org/
+        - null
       pyprog:
         - https://python-programming.quantecon.org/
         - null
@@ -108,6 +111,9 @@ sphinx:
     mathjax_path: https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
     rediraffe_redirects:
       index_toc.md: intro.md
+    # Remote Redirects
+    redirects:
+      ak2:   https://python.quantecon.org/ak2.html
     tojupyter_static_file_path: ["_static"]
     tojupyter_target_html: true
     tojupyter_urlpath: "https://intro.quantecon.org/"

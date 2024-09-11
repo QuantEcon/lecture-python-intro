@@ -18,7 +18,7 @@ kernelspec:
 
 We'll use linear algebra first to explain and then do some experiments with a "monetarist theory of price levels".
 
-Economists call it a "monetary" or "monetarist" theory of price levels because effects on price levels occur via a central banks's decisions to print money supply. 
+Economists call it a "monetary" or "monetarist" theory of price levels because effects on price levels occur via a central bank's decisions to print money supply. 
 
   * a goverment's fiscal policies determine whether its _expenditures_ exceed its _tax collections_
   * if its expenditures exceed its tax collections, the government can instruct the central bank to cover the difference by _printing money_
@@ -27,7 +27,7 @@ Economists call it a "monetary" or "monetarist" theory of price levels because e
 Such a theory of price levels was described by Thomas Sargent and Neil Wallace in chapter 5 of 
 {cite}`sargent2013rational`, which reprints a 1981 Federal Reserve Bank of Minneapolis article entitled "Unpleasant Monetarist Arithmetic". 
 
-Sometimes this theory is also called a "fiscal theory of price levels" to emphasize the importance of fisal deficits in shaping changes in the money supply. 
+Sometimes this theory is also called a "fiscal theory of price levels" to emphasize the importance of fiscal deficits in shaping changes in the money supply. 
 
 The theory has been extended, criticized, and applied by John Cochrane {cite}`cochrane2023fiscal`.
 
@@ -41,7 +41,7 @@ persistent inflation.
 
 The "monetarist" or "fiscal theory of price levels" asserts that 
 
-* to _start_ a persistent inflation the government beings persistently to run a money-financed government deficit
+* to _start_ a persistent inflation the government begins persistently to run a money-financed government deficit
 
 * to _stop_ a persistent inflation the government stops persistently running a money-financed government deficit
 
@@ -94,7 +94,7 @@ m_t^d - p_t = -\alpha \pi_t^* \: , \: \alpha > 0 ; \quad t = 0, 1, \ldots, T .
 $$ (eq:caganmd)
 
 This equation asserts that the demand for real balances
-is inversely related to the public's expected rate of inflation.
+is inversely related to the public's expected rate of inflation with sensitivity $\alpha$.
 
 People somehow acquire **perfect foresight** by their having solved a forecasting
 problem.
@@ -296,7 +296,7 @@ $$
 \mu_t = \mu^* , \quad t \geq T_1
 $$
 
-so that, in terms of our notation and formula for $\pi_{T+1}^*$ above, $\tilde \gamma = 1$. 
+so that, in terms of our notation and formula for $\pi_{T+1}^*$ above, $\gamma^* = 1$. 
 
 #### Experiment 1: Foreseen sudden stabilization
 
