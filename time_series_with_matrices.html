@@ -71,7 +71,7 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/quantecon-book-theme.css?digest=b09b2da44b9015b4fa76ea072fa2d8f7faee5492" type="text/css" />
+    <link rel="stylesheet" href="_static/styles/quantecon-book-theme.css?digest=f77998adf44a3f900caaca31caf410c810f6f245" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
@@ -258,7 +258,12 @@ a “forward-looking” linear difference equation.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">cm</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;figure.figsize&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>  <span class="c1">#set default figure size</span>
+
+<span class="c1"># Custom figsize for this lecture</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;figure.figsize&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+
+<span class="c1"># Set decimal printing to 3 decimal places</span>
+<span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">suppress</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -338,8 +343,8 @@ Samuelson’s multiplier-accelerator model.</p>
 <span class="n">α_1</span> <span class="o">=</span> <span class="mf">1.53</span>
 <span class="n">α_2</span> <span class="o">=</span> <span class="o">-</span><span class="mf">.9</span>
 
-<span class="n">y_neg1</span> <span class="o">=</span> <span class="mf">28.</span> <span class="c1"># y_{-1}</span>
-<span class="n">y_0</span> <span class="o">=</span> <span class="mf">24.</span>
+<span class="n">y_neg1</span> <span class="o">=</span> <span class="mf">28.0</span> <span class="c1"># y_{-1}</span>
+<span class="n">y_0</span> <span class="o">=</span> <span class="mf">24.0</span>
 </pre></div>
 </div>
 </div>
@@ -420,6 +425,20 @@ point precision:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">y_second_method</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<p><span class="math notranslate nohighlight">\(A\)</span> is invertible as it is lower triangular and <a class="reference external" href="https://www.statlect.com/matrix-algebra/triangular-matrix">its diagonal entries are non-zero</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check if A is lower triangular</span>
+<span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">tril</span><span class="p">(</span><span class="n">A</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -549,7 +568,7 @@ y = A^{-1} \left(b + u\right)
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/0944f34da0c5170685ddbbe5a13748bf00d82957336fbdea5e65c112e4b89fed.png"><img alt="_images/0944f34da0c5170685ddbbe5a13748bf00d82957336fbdea5e65c112e4b89fed.png" src="_images/0944f34da0c5170685ddbbe5a13748bf00d82957336fbdea5e65c112e4b89fed.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/c3dc62d4cb1ab754a69fc2c10ee2af326319386bb68393f019d3766e67387f13.png"><img alt="_images/c3dc62d4cb1ab754a69fc2c10ee2af326319386bb68393f019d3766e67387f13.png" src="_images/c3dc62d4cb1ab754a69fc2c10ee2af326319386bb68393f019d3766e67387f13.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>The above time series looks a lot like (detrended) GDP series for a
@@ -573,7 +592,7 @@ number of advanced countries in recent decades.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/33dae21f8aa50bad0345c606112daac5a1dbdfe2277b07199698ab40a904881c.png"><img alt="_images/33dae21f8aa50bad0345c606112daac5a1dbdfe2277b07199698ab40a904881c.png" src="_images/33dae21f8aa50bad0345c606112daac5a1dbdfe2277b07199698ab40a904881c.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/36bd104d3cb9092dc939726594405bd3bb804ff30954897aa047e9af73c25121.png"><img alt="_images/36bd104d3cb9092dc939726594405bd3bb804ff30954897aa047e9af73c25121.png" src="_images/36bd104d3cb9092dc939726594405bd3bb804ff30954897aa047e9af73c25121.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>Also consider the case when <span class="math notranslate nohighlight">\(y_{0}\)</span> and <span class="math notranslate nohighlight">\(y_{-1}\)</span> are at
@@ -596,7 +615,7 @@ steady state.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/c8398863f3eb3a8643163e34b3d3627900660163f0bb8701707d12a9870e597c.png"><img alt="_images/c8398863f3eb3a8643163e34b3d3627900660163f0bb8701707d12a9870e597c.png" src="_images/c8398863f3eb3a8643163e34b3d3627900660163f0bb8701707d12a9870e597c.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/695d73afb5cbedb285d43daab6586350313750ff37eae7304ee77bb198c9794f.png"><img alt="_images/695d73afb5cbedb285d43daab6586350313750ff37eae7304ee77bb198c9794f.png" src="_images/695d73afb5cbedb285d43daab6586350313750ff37eae7304ee77bb198c9794f.png" style="width: 80%;" /></a>
 </div>
 </div>
 </section>
@@ -640,7 +659,13 @@ y \sim {\mathcal N}(\mu_y, \Sigma_y)
 <span class="sd">    Parameters:</span>
 <span class="sd">    α_0, α_1, α_2, T, y_neg1, y_0</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">α_0</span><span class="p">,</span> <span class="n">α_1</span><span class="p">,</span> <span class="n">α_2</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">y_neg1</span><span class="p">,</span> <span class="n">y_0</span><span class="p">,</span> <span class="n">σ_u</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">α_0</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span> 
+                       <span class="n">α_1</span><span class="o">=</span><span class="mf">1.53</span><span class="p">,</span> 
+                       <span class="n">α_2</span><span class="o">=-</span><span class="mf">.9</span><span class="p">,</span> 
+                       <span class="n">T</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> 
+                       <span class="n">y_neg1</span><span class="o">=</span><span class="mf">28.0</span><span class="p">,</span> 
+                       <span class="n">y_0</span><span class="o">=</span><span class="mf">24.0</span><span class="p">,</span> 
+                       <span class="n">σ_u</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
 
         <span class="c1"># compute A</span>
         <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">identity</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
@@ -685,8 +710,7 @@ y \sim {\mathcal N}(\mu_y, \Sigma_y)
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">μ_y</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Σ_y</span>
 
 
-<span class="n">series_process</span> <span class="o">=</span> <span class="n">population_moments</span><span class="p">(</span>
-    <span class="n">α_0</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span> <span class="n">α_1</span><span class="o">=</span><span class="mf">1.53</span><span class="p">,</span> <span class="n">α_2</span><span class="o">=-</span><span class="mf">.9</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">y_neg1</span><span class="o">=</span><span class="mf">28.</span><span class="p">,</span> <span class="n">y_0</span><span class="o">=</span><span class="mf">24.</span><span class="p">,</span> <span class="n">σ_u</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">series_process</span> <span class="o">=</span> <span class="n">population_moments</span><span class="p">()</span>
     
 <span class="n">μ_y</span><span class="p">,</span> <span class="n">Σ_y</span> <span class="o">=</span> <span class="n">series_process</span><span class="o">.</span><span class="n">get_moments</span><span class="p">()</span>
 <span class="n">A_inv</span> <span class="o">=</span> <span class="n">series_process</span><span class="o">.</span><span class="n">A_inv</span>
@@ -716,7 +740,7 @@ y \sim {\mathcal N}(\mu_y, \Sigma_y)
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/ec84d5ac2d29ea7dea4c52ea69a194f6fb207758aeb0e966ed3c19f305cbeeb8.png"><img alt="_images/ec84d5ac2d29ea7dea4c52ea69a194f6fb207758aeb0e966ed3c19f305cbeeb8.png" src="_images/ec84d5ac2d29ea7dea4c52ea69a194f6fb207758aeb0e966ed3c19f305cbeeb8.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/93a6237a5850444040ba2fcf4de419b6249935a1963ccd28282b9d6d5f6ee53e.png"><img alt="_images/93a6237a5850444040ba2fcf4de419b6249935a1963ccd28282b9d6d5f6ee53e.png" src="_images/93a6237a5850444040ba2fcf4de419b6249935a1963ccd28282b9d6d5f6ee53e.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>Visually, notice how the  variance across realizations of <span class="math notranslate nohighlight">\(y_t\)</span> decreases as <span class="math notranslate nohighlight">\(t\)</span> increases.</p>
@@ -737,23 +761,29 @@ y \sim {\mathcal N}(\mu_y, \Sigma_y)
 <p>Let’s print out the covariance matrix <span class="math notranslate nohighlight">\(\Sigma_y\)</span> for a  time series <span class="math notranslate nohighlight">\(y\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">series_process</span> <span class="o">=</span> <span class="n">population_moments</span><span class="p">(</span>
-    <span class="n">α_0</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">α_1</span><span class="o">=</span><span class="mf">.8</span><span class="p">,</span> <span class="n">α_2</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">y_neg1</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">y_0</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">σ_u</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">series_process</span> <span class="o">=</span> <span class="n">population_moments</span><span class="p">(</span><span class="n">α_0</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> 
+                                    <span class="n">α_1</span><span class="o">=</span><span class="mf">.8</span><span class="p">,</span> 
+                                    <span class="n">α_2</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> 
+                                    <span class="n">T</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span>
+                                    <span class="n">y_neg1</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> 
+                                    <span class="n">y_0</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> 
+                                    <span class="n">σ_u</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
 <span class="n">μ_y</span><span class="p">,</span> <span class="n">Σ_y</span> <span class="o">=</span> <span class="n">series_process</span><span class="o">.</span><span class="n">get_moments</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;μ_y = &quot;</span><span class="p">,</span> <span class="n">μ_y</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Σ_y = &quot;</span><span class="p">,</span> <span class="n">Σ_y</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Σ_y = </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">Σ_y</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>μ_y =  [0. 0. 0. 0. 0. 0.]
-Σ_y =  [[1.         0.8        0.64       0.512      0.4096     0.32768   ]
- [0.8        1.64       1.312      1.0496     0.83968    0.671744  ]
- [0.64       1.312      2.0496     1.63968    1.311744   1.0493952 ]
- [0.512      1.0496     1.63968    2.311744   1.8493952  1.47951616]
- [0.4096     0.83968    1.311744   1.8493952  2.47951616 1.98361293]
- [0.32768    0.671744   1.0493952  1.47951616 1.98361293 2.58689034]]
+Σ_y = 
+ [[1.    0.8   0.64  0.512 0.41  0.328]
+ [0.8   1.64  1.312 1.05  0.84  0.672]
+ [0.64  1.312 2.05  1.64  1.312 1.049]
+ [0.512 1.05  1.64  2.312 1.849 1.48 ]
+ [0.41  0.84  1.312 1.849 2.48  1.984]
+ [0.328 0.672 1.049 1.48  1.984 2.587]]
 </pre></div>
 </div>
 </div>
@@ -765,31 +795,23 @@ y \sim {\mathcal N}(\mu_y, \Sigma_y)
 <p>But just to set the stage for that analysis, let’s  print out the bottom right corner of <span class="math notranslate nohighlight">\(\Sigma_y\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">series_process</span> <span class="o">=</span> <span class="n">population_moments</span><span class="p">(</span>
-    <span class="n">α_0</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span> <span class="n">α_1</span><span class="o">=</span><span class="mf">1.53</span><span class="p">,</span> <span class="n">α_2</span><span class="o">=-</span><span class="mf">.9</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">y_neg1</span><span class="o">=</span><span class="mf">28.</span><span class="p">,</span> <span class="n">y_0</span><span class="o">=</span><span class="mf">24.</span><span class="p">,</span> <span class="n">σ_u</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">series_process</span> <span class="o">=</span> <span class="n">population_moments</span><span class="p">()</span>
 <span class="n">μ_y</span><span class="p">,</span> <span class="n">Σ_y</span> <span class="o">=</span> <span class="n">series_process</span><span class="o">.</span><span class="n">get_moments</span><span class="p">()</span>
+
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;bottom right corner of Σ_y = </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">Σ_y</span><span class="p">[</span><span class="mi">72</span><span class="p">:,</span><span class="mi">72</span><span class="p">:])</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>bottom right corner of Σ_y = 
- [[ 14.96526785  12.05113208   4.96949102  -3.24269762  -9.43386927
-  -11.51539213  -9.12806761  -3.60209053]
- [ 12.05113208  14.96538003  12.05101258   4.96920722  -3.24302428
-   -9.43411364 -11.51547202  -9.12796991]
- [  4.96949102  12.05101258  14.96550733  12.0513149    4.96955519
-   -3.24276396  -9.43402853 -11.51557609]
- [ -3.24269762   4.96920722  12.0513149   14.9662253   12.0521413
-    4.97017342  -3.24256184  -9.43427569]
- [ -9.43386927  -3.24302428   4.96955519  12.0521413   14.96717651
-   12.05285289   4.97040607  -3.24284632]
- [-11.51539213  -9.43411364  -3.24276396   4.97017342  12.05285289
-   14.96770885  12.05302694   4.97019325]
- [ -9.12806761 -11.51547202  -9.43402853  -3.24256184   4.97040607
-   12.05302694  14.96776576  12.05295736]
- [ -3.60209053  -9.12796991 -11.51557609  -9.43427569  -3.24284632
-    4.97019325  12.05295736  14.96785084]]
+ [[ 14.965  12.051   4.969  -3.243  -9.434 -11.515  -9.128  -3.602]
+ [ 12.051  14.965  12.051   4.969  -3.243  -9.434 -11.515  -9.128]
+ [  4.969  12.051  14.966  12.051   4.97   -3.243  -9.434 -11.516]
+ [ -3.243   4.969  12.051  14.966  12.052   4.97   -3.243  -9.434]
+ [ -9.434  -3.243   4.97   12.052  14.967  12.053   4.97   -3.243]
+ [-11.515  -9.434  -3.243   4.97   12.053  14.968  12.053   4.97 ]
+ [ -9.128 -11.515  -9.434  -3.243   4.97   12.053  14.968  12.053]
+ [ -3.602  -9.128 -11.516  -9.434  -3.243   4.97   12.053  14.968]]
 </pre></div>
 </div>
 </div>
@@ -809,8 +831,7 @@ y \sim {\mathcal N}(\mu_y, \Sigma_y)
 <p>Let’s begin by printing out just the upper left hand corner of <span class="math notranslate nohighlight">\(A^{-1}\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">np</span><span class="o">.</span><span class="n">printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">suppress</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">A_inv</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">7</span><span class="p">,</span><span class="mi">0</span><span class="p">:</span><span class="mi">7</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">A_inv</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">7</span><span class="p">,</span><span class="mi">0</span><span class="p">:</span><span class="mi">7</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -827,27 +848,6 @@ y \sim {\mathcal N}(\mu_y, \Sigma_y)
 </div>
 </div>
 <p>Evidently, <span class="math notranslate nohighlight">\(A^{-1}\)</span> is a lower triangular matrix.</p>
-<p>Let’s print out the lower right hand corner of <span class="math notranslate nohighlight">\(A^{-1}\)</span> and stare at it.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">np</span><span class="o">.</span><span class="n">printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">suppress</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">A_inv</span><span class="p">[</span><span class="mi">72</span><span class="p">:,</span><span class="mi">72</span><span class="p">:])</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 1.     0.     0.     0.     0.     0.     0.     0.   ]
- [ 1.53   1.    -0.    -0.     0.    -0.    -0.    -0.   ]
- [ 1.441  1.53   1.     0.     0.     0.     0.     0.   ]
- [ 0.828  1.441  1.53   1.     0.     0.     0.     0.   ]
- [-0.031  0.828  1.441  1.53   1.    -0.    -0.    -0.   ]
- [-0.792 -0.031  0.828  1.441  1.53   1.     0.     0.   ]
- [-1.184 -0.792 -0.031  0.828  1.441  1.53   1.     0.   ]
- [-1.099 -1.184 -0.792 -0.031  0.828  1.441  1.53   1.   ]]
-</pre></div>
-</div>
-</div>
-</div>
 <p>Notice how  every row ends with the previous row’s pre-diagonal entries.</p>
 <p>Since <span class="math notranslate nohighlight">\(A^{-1}\)</span> is lower triangular,  each  row represents  <span class="math notranslate nohighlight">\( y_t\)</span> for a particular <span class="math notranslate nohighlight">\(t\)</span> as the sum of</p>
 <ul class="simple">
@@ -931,24 +931,18 @@ y_{T}
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">B</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[1.        , 0.96      , 0.9216    , ..., 0.04314048, 0.04141486,
-        0.03975826],
-       [0.        , 1.        , 0.96      , ..., 0.044938  , 0.04314048,
-        0.04141486],
-       [0.        , 0.        , 1.        , ..., 0.04681041, 0.044938  ,
-        0.04314048],
-       ...,
-       [0.        , 0.        , 0.        , ..., 1.        , 0.96      ,
-        0.9216    ],
-       [0.        , 0.        , 0.        , ..., 0.        , 1.        ,
-        0.96      ],
-       [0.        , 0.        , 0.        , ..., 0.        , 0.        ,
-        1.        ]])
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[1.    0.96  0.922 ... 0.043 0.041 0.04 ]
+ [0.    1.    0.96  ... 0.045 0.043 0.041]
+ [0.    0.    1.    ... 0.047 0.045 0.043]
+ ...
+ [0.    0.    0.    ... 1.    0.96  0.922]
+ [0.    0.    0.    ... 0.    1.    0.96 ]
+ [0.    0.    0.    ... 0.    0.    1.   ]]
 </pre></div>
 </div>
 </div>
@@ -1461,20 +1455,18 @@ steady state.</p>
                 <span class="label">Public</span>
                 <select id="launcher-public-input">
                 
-                    <option value="https://mybinder.org/v2/gh/QuantEcon/lecture-python-intro.notebooks/master?urlpath=tree/time_series_with_matrices.ipynb">BinderHub</option>
-                
-                    <option value="https://colab.research.google.com/github/QuantEcon/lecture-python-intro.notebooks/blob/master/time_series_with_matrices.ipynb">Colab</option>
+                    <option value="https://colab.research.google.com/github/QuantEcon/lecture-python-intro.notebooks/blob/main/time_series_with_matrices.ipynb">Colab</option>
                 
                 </select>
                 <i class="fas fa-check-circle"></i>
             </li>
             <li class="launcher-private">
                 <span class="label">Private</span>
-                <input type="text" id="launcher-private-input" data-repourl="https://github.com/QuantEcon/lecture-python-intro.notebooks" data-urlpath="tree/lecture-python-intro.notebooks/time_series_with_matrices.ipynb" data-branch=master>
+                <input type="text" id="launcher-private-input" data-repourl="https://github.com/QuantEcon/lecture-python-intro.notebooks" data-urlpath="tree/lecture-python-intro.notebooks/time_series_with_matrices.ipynb" data-branch=main>
                 <i class="fas fa-check-circle"></i>
             </li>
             </ul>
-            <p class="launch"><a href="https://colab.research.google.com/github/QuantEcon/lecture-python-intro.notebooks/blob/master/time_series_with_matrices.ipynb" id="advancedLaunchButton" target="_blank">Launch Notebook</a></p>
+            <p class="launch"><a href="https://colab.research.google.com/github/QuantEcon/lecture-python-intro.notebooks/blob/main/time_series_with_matrices.ipynb" id="advancedLaunchButton" target="_blank">Launch Notebook</a></p>
             <script>
                 // QuantEcon Notebook Launcher
                 const launcherTypeElements = document.querySelectorAll('#settingsModal .modal-servers li');
@@ -1507,7 +1499,7 @@ steady state.</p>
                 const pageName = "time_series_with_matrices";
                 const repoURL = "https://github.com/QuantEcon/lecture-python-intro.notebooks";
                 const urlPath = "tree/lecture-python-intro.notebooks/time_series_with_matrices.ipynb";
-                const branch = "master"
+                const branch = "main"
                 const launchNotebookLink = document.getElementById('advancedLaunchButton');
 
                 // Highlight public server option if previous selection exists
