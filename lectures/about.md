@@ -64,7 +64,9 @@ In particular, we sincerely thank and give credit to
 - [Smit Lunagariya](https://github.com/Smit-create)
 - [Matthew McKay](https://github.com/mmcky)
 - [Maanasee Sharma](https://github.com/maanasee)
+- [Longye Tian](https://github.com/longye-tian)
 - [Humphrey Yang](https://github.com/HumphreyYang)
+- [Sylvia Zhao](https://github.com/SylviaZhaooo)
 
 We also thank Noritaka Kudoh for encouraging us to start this project and providing thoughtful suggestions.
 
