@@ -968,7 +968,7 @@ First, plot the time paths of $y_t$ using the same initial values but with $i$
 taking the values mentioned above.
 
 Next, plot the time paths of $y_t$ with the same initial values but let $g$ take
-the values abovementioned.
+the values mentioned above.
 
 Are the effects on $y_t$ of increasing $i$ and $g$ in these plots the same?
 ```{exercise-end}
