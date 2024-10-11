@@ -4,7 +4,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.16.2
+    jupytext_version: 1.16.1
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
@@ -49,7 +49,12 @@ We will use the following imports:
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib import cm
-plt.rcParams["figure.figsize"] = (11, 5)  #set default figure size
+
+# Custom figsize for this lecture
+plt.rcParams["figure.figsize"] = (11, 5)
+
+# Set decimal printing to 3 decimal places
+np.set_printoptions(precision=3, suppress=True)
 ```
 
 ## Samuelson's model
@@ -142,8 +147,8 @@ T = 80
 α_1 = 1.53
 α_2 = -.9
 
-y_neg1 = 28. # y_{-1}
-y_0 = 24.
+y_neg1 = 28.0 # y_{-1}
+y_0 = 24.0
 ```
 
 Now we construct $A$ and $b$.
@@ -195,6 +200,13 @@ point precision:
 
 ```{code-cell} ipython3
 np.allclose(y, y_second_method)
+```
+
+$A$ is invertible as it is lower triangular and [its diagonal entries are non-zero](https://www.statlect.com/matrix-algebra/triangular-matrix)
+
+```{code-cell} ipython3
+# Check if A is lower triangular
+np.allclose(A, np.tril(A))
 ```
 
 ```{note}
@@ -392,7 +404,13 @@ class population_moments:
     Parameters:
     α_0, α_1, α_2, T, y_neg1, y_0
     """
-    def __init__(self, α_0, α_1, α_2, T, y_neg1, y_0, σ_u):
+    def __init__(self, α_0=10.0, 
+                       α_1=1.53, 
+                       α_2=-.9, 
+                       T=80, 
+                       y_neg1=28.0, 
+                       y_0=24.0, 
+                       σ_u=1):
 
         # compute A
         A = np.identity(T)
@@ -437,8 +455,7 @@ class population_moments:
         return self.μ_y, self.Σ_y
 
 
-series_process = population_moments(
-    α_0=10.0, α_1=1.53, α_2=-.9, T=80, y_neg1=28., y_0=24., σ_u=1)
+series_process = population_moments()
     
 μ_y, Σ_y = series_process.get_moments()
 A_inv = series_process.A_inv
@@ -483,12 +500,17 @@ Notice how the population variance increases and asymptotes.
 Let's print out the covariance matrix $\Sigma_y$ for a  time series $y$.
 
 ```{code-cell} ipython3
-series_process = population_moments(
-    α_0=0, α_1=.8, α_2=0, T=6, y_neg1=0., y_0=0., σ_u=1)
+series_process = population_moments(α_0=0, 
+                                    α_1=.8, 
+                                    α_2=0, 
+                                    T=6,
+                                    y_neg1=0., 
+                                    y_0=0., 
+                                    σ_u=1)
 
 μ_y, Σ_y = series_process.get_moments()
 print("μ_y = ", μ_y)
-print("Σ_y = ", Σ_y)
+print("Σ_y = \n", Σ_y)
 ```
 
 Notice that  the covariance between $y_t$ and $y_{t-1}$ -- the elements on the superdiagonal -- are *not* identical.
@@ -502,9 +524,9 @@ We describe how to do that in [Linear State Space Models](https://python.quantec
 But just to set the stage for that analysis, let's  print out the bottom right corner of $\Sigma_y$.
 
 ```{code-cell} ipython3
-series_process = population_moments(
-    α_0=10.0, α_1=1.53, α_2=-.9, T=80, y_neg1=28., y_0=24., σ_u=1)
+series_process = population_moments()
 μ_y, Σ_y = series_process.get_moments()
+
 print("bottom right corner of Σ_y = \n", Σ_y[72:,72:])
 ```
 
@@ -529,25 +551,12 @@ To study the structure of $A^{-1}$, we shall print just  up to $3$ decimals.
 Let's begin by printing out just the upper left hand corner of $A^{-1}$.
 
 ```{code-cell} ipython3
-with np.printoptions(precision=3, suppress=True):
-    print(A_inv[0:7,0:7])
+print(A_inv[0:7,0:7])
 ```
 
 Evidently, $A^{-1}$ is a lower triangular matrix. 
 
-
-Let's print out the lower right hand corner of $A^{-1}$ and stare at it.
-
-```{code-cell} ipython3
-with np.printoptions(precision=3, suppress=True):
-    print(A_inv[72:,72:])
-```
-
 Notice how  every row ends with the previous row's pre-diagonal entries.
-
-
-
- 
 
 Since $A^{-1}$ is lower triangular,  each  row represents  $ y_t$ for a particular $t$ as the sum of 
 - a time-dependent function $A^{-1} b$ of the initial conditions incorporated in $b$, and 
@@ -565,9 +574,6 @@ This is  a **moving average** representation with time-varying coefficients.
 
 Just as system {eq}`eq:eqma` constitutes  a 
 **moving average** representation for $y$, system  {eq}`eq:eqar` constitutes  an **autoregressive** representation for $y$.
-
-
-
 
 ## A forward looking model
 
@@ -638,7 +644,7 @@ for i in range(T):
 ```
 
 ```{code-cell} ipython3
-B
+print(B)
 ```
 
 ```{code-cell} ipython3
