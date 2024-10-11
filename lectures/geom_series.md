@@ -105,9 +105,12 @@ $$
 1 + c + c^2 + c^3 + \cdots + c^T  = \frac{1 - c^{T+1}}{1-c}
 $$
 
-**Remark:** The above formula works for any value of the scalar
+```{prf:remark}
+:label: geom_formula
+The above formula works for any value of the scalar
 $c$. We don't have to restrict $c$ to be in the
 set $(-1,1)$.
+```
 
 We now move on to describe some famous economic applications of
 geometric series.
@@ -965,7 +968,7 @@ values = [0.3, 0.4]
 ```
 
 First, plot the time paths of $y_t$ using the same initial values but with $i$ 
-taking the values mentioned above.
+taking the values above.
 
 Next, plot the time paths of $y_t$ with the same initial values but let $g$ take
 the values mentioned above.

@@ -21,7 +21,7 @@ In this lecture, we'll study a famous model of the "consumption function" that M
 
 In this lecture, we'll study what is often  called the "consumption-smoothing model"  using  matrix multiplication and matrix inversion, the same tools that we used in this QuantEcon lecture {doc}`present values <pv>`. 
 
-Formulas presented in  {doc}`present value formulas<pv>` are at the core of the consumption smoothing model because we shall use them to define a consumer's "human wealth".
+Formulas presented in  {doc}`present value formulas<pv>` are at the core of the consumption-smoothing model because we shall use them to define a consumer's "human wealth".
 
 The  key idea that inspired Milton Friedman was that a person's non-financial income, i.e., his or
 her wages from working, could be viewed as a dividend stream from that person's ''human capital''
@@ -39,7 +39,7 @@ It will take a while for a "present value" or asset price explicilty to appear i
 
 ## Analysis
 
-As usual, we'll start with by importing some Python modules.
+As usual, we'll start by importing some Python modules.
 
 ```{code-cell} ipython3
 import numpy as np
@@ -128,7 +128,7 @@ Indeed, we shall see that when $\beta R = 1$ (a condition assumed by Milton Frie
 
 By **smoother** we mean as close as possible to being constant over time.  
 
-The preference for smooth consumption paths that is built into the model gives it the  name "consumption smoothing model".
+The preference for smooth consumption paths that is built into the model gives it the  name "consumption-smoothing model".
 
 Let's dive in and do some calculations that will help us understand how the model works. 
 
@@ -176,7 +176,7 @@ $$
 \sum_{t=0}^T R^{-t} c_t = a_0 + h_0. 
 $$ (eq:budget_intertemp)
 
-Equation {eq}`eq:budget_intertemp`  says that the present value of the consumption stream equals the sum of finanical and non-financial (or human) wealth.
+Equation {eq}`eq:budget_intertemp`  says that the present value of the consumption stream equals the sum of financial and non-financial (or human) wealth.
 
 Robert Hall {cite}`Hall1978` showed that when $\beta R = 1$, a condition Milton Friedman had also  assumed, it is "optimal" for a consumer to smooth consumption by setting 
 
@@ -196,7 +196,7 @@ $$ (eq:conssmoothing)
 Equation {eq}`eq:conssmoothing` is the consumption-smoothing model in a nutshell.
 
 
-## Mechanics of Consumption smoothing model  
+## Mechanics of consumption-smoothing model  
 
 As promised, we'll provide step-by-step instructions on how to use linear algebra, readily implemented in Python, to compute all  objects in play in  the consumption-smoothing model.
 
@@ -338,14 +338,14 @@ print('Welfare:', welfare(cs_model, c_seq))
 
 ### Experiments
 
-In this section we decribe  how a  consumption sequence would optimally respond to different  sequences sequences of non-financial income.
+In this section we describe  how a  consumption sequence would optimally respond to different  sequences sequences of non-financial income.
 
-First we create  a function `plot_cs` that generate graphs for different instances of the  consumption smoothing model `cs_model`.
+First we create  a function `plot_cs` that generates graphs for different instances of the  consumption-smoothing model `cs_model`.
 
 This will  help us avoid rewriting code to plot outcomes for different non-financial income sequences.
 
 ```{code-cell} ipython3
-def plot_cs(model,    # consumption smoothing model      
+def plot_cs(model,    # consumption-smoothing model      
             a0,       # initial financial wealth
             y_seq     # non-financial income process
            ):
@@ -368,7 +368,7 @@ def plot_cs(model,    # consumption smoothing model
     plt.show()
 ```
 
-In the experiments below, please study how consumption and financial asset sequences vary accross different sequences for non-financial income.
+In the experiments below, please study how consumption and financial asset sequences vary across different sequences for non-financial income.
 
 #### Experiment 1: one-time gain/loss
 
@@ -602,7 +602,7 @@ First, we define the welfare with respect to $\xi_1$ and $\phi$
 def welfare_rel(ξ1, ϕ):
     """
     Compute welfare of variation sequence 
-    for given ϕ, ξ1 with a consumption smoothing model
+    for given ϕ, ξ1 with a consumption-smoothing model
     """
     
     cvar_seq = compute_variation(cs_model, ξ1=ξ1, 
@@ -661,13 +661,13 @@ QuantEcon lecture {doc}`geometric series <geom_series>`.
 In particular,  it  **lowers** the government expenditure  multiplier relative to  one implied by
 the original Keynesian consumption function presented in {doc}`geometric series <geom_series>`.
 
-Friedman's   work opened the door to an enlighening literature on the aggregate consumption function and associated government expenditure  multipliers that
+Friedman's   work opened the door to an enlightening literature on the aggregate consumption function and associated government expenditure  multipliers that
 remains  active today.  
 
 
 ## Appendix: solving difference equations with linear algebra
 
-In the preceding sections we have used linear algebra to solve a consumption smoothing model.  
+In the preceding sections we have used linear algebra to solve a consumption-smoothing model.  
 
 The same tools from linear algebra -- matrix multiplication and matrix inversion -- can be used  to study many other dynamic models.
 
@@ -749,7 +749,7 @@ is the inverse of $A$ and check that $A A^{-1} = I$
 
 ```
 
-### Second order difference equation
+### Second-order difference equation
 
 A second-order linear difference equation for $\{y_t\}_{t=0}^T$ is
 
@@ -783,6 +783,6 @@ Multiplying both sides by  inverse of the matrix on the left again provides the 
 ```{exercise}
 :label: consmooth_ex2
 
-As an exercise, we ask you to represent and solve a **third order linear difference equation**.
+As an exercise, we ask you to represent and solve a **third-order linear difference equation**.
 How many initial conditions must you specify?
 ```

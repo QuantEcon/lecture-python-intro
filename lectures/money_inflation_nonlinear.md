@@ -35,17 +35,17 @@ As in that  lecture,  we discussed these topics:
 * an **inflation tax** that a government gathers by printing paper or electronic money
 * a dynamic **Laffer curve** in the inflation tax rate that has two stationary equilibria
 * perverse dynamics under rational expectations in which the system converges to the higher stationary inflation tax rate
-* a peculiar comparative stationary-state analysis connected with that stationary inflation rate that assert that inflation can be *reduced* by running *higher*  government deficits 
+* a peculiar comparative stationary-state analysis connected with that stationary inflation rate that asserts that inflation can be *reduced* by running *higher*  government deficits 
 
 These outcomes will set the stage for the analysis of {doc}`laffer_adaptive` that studies a version of the present model that  uses a version of "adaptive expectations" instead of rational expectations.
 
 That lecture will show that 
 
 * replacing rational expectations with adaptive expectations leaves the two stationary inflation rates unchanged, but that $\ldots$ 
-* it reverse the pervese dynamics by making the *lower* stationary inflation rate the one to which the system typically converges
+* it reverses the perverse dynamics by making the *lower* stationary inflation rate the one to which the system typically converges
 * a more plausible comparative dynamic outcome emerges in which now inflation can be *reduced* by running *lower*  government deficits
 
-## The model
+## The Model
 
 Let  
 
@@ -68,58 +68,14 @@ $$ (eq:msupply)
 
 where $g$ is the part of government expenditures financed by printing money.
 
-**Remark:** Please notice that while equation {eq}`eq:mdemand` is linear in logs of the money supply and price level, equation {eq}`eq:msupply` is linear in levels. This will require adapting the equilibrium computation methods that we deployed in {doc}`money_inflation`.
+```{prf:remark}
+:label: linear_log
+Please notice that while equation {eq}`eq:mdemand` is linear in logs of the money supply and price level, equation {eq}`eq:msupply` is linear in levels. This will require adapting the equilibrium computation methods that we deployed in {doc}`money_inflation`.
+```
 
-## Computing an equilibrium sequence 
 
-We'll deploy a method similar to *Method 2* used in {doc}`money_inflation`.  
 
-We'll take the time $t$ state vector to be $m_t, p_t$.
-
-* we'll treat $m_t$ as a ''natural state variable'' and $p_t$ as a ''jump'' variable.
-  
-Let
-
-$$
-\lambda \equiv \frac{\alpha}{1+ \alpha}
-$$
-
-Let's rewrite equation {eq}`eq:mdemand`, respectively,  as
-
-$$
-p_t = (1-\lambda) m_{t+1} + \lambda p_{t+1} 
-$$ (eq:mdemand2)
-
-We'll summarize our algorithm with the following pseudo-code.
-
-**Pseudo-code**
-
-* start for $m_0, p_0$ at time $t =0$
-
-* solve {eq}`eq:msupply` for $m_{t+1}$
-
-* solve {eq}`eq:mdemand2` for $p_{t+1} = \lambda^{-1} p_t + (1 - \lambda^{-1}) m_{t+1}$
-
-* compute the inflation rate $\pi_t = p_{t+1} - p_t$ and growth of money supply $\mu_t = m_{t+1} - m_t $
-
-* iterate on $t$ to convergence of $\pi_t \rightarrow \overline \pi$ and $\mu_t \rightarrow \overline \mu$
-  
-It will turn out that 
-
-* if they exist, limiting values $\overline \pi$ and $\overline \mu$ will be equal
-
-* if  limiting values exist, there are two possible limiting values, one high, one low
-
-* for almost all initial log price levels $p_0$, the limiting $\overline \pi = \overline \mu$ is 
-the higher value
-
-* for each of the two possible limiting values $\overline \pi$ ,there is a unique initial log price level $p_0$ that implies that $\pi_t = \mu_t = \overline \mu$ for all  $t \geq 0$
-
-  * this unique initial log price level solves $\log(\exp(m_0) + g \exp(p_0)) - p_0 = - \alpha \overline \pi $
-  
-  * the preceding equation for $p_0$ comes from $m_1 - p_0 = -  \alpha \overline \pi$
-
-## Limiting values of inflation rate
+## Limiting Values of Inflation Rate
 
 We can compute the two prospective limiting values for $\overline \pi$ by studying the steady-state Laffer curve.
 
@@ -203,7 +159,7 @@ print(f'The two steady state of π are: {π_l, π_u}')
 
 We find two steady state $\overline \pi$ values.
 
-## Steady state Laffer curve
+## Steady State Laffer curve
 
 The following figure plots the steady state Laffer curve together with the two stationary inflation rates.
 
@@ -247,9 +203,16 @@ def plot_laffer(model, πs):
 plot_laffer(model, (π_l, π_u))
 ```
 
-## Associated initial price levels
+## Initial Price Levels
 
-Now that we have our hands on the two possible steady states, we can compute two initial log price levels $p_0$, which as initial conditions, imply that $\pi_t = \overline \pi $ for all $t \geq 0$.
+Now that we have our hands on the two possible steady states, we can compute two functions  $\underline p(m_0)$ and
+$\overline p(m_0)$, which as initial conditions for $p_t$ at time $t$, imply that $\pi_t = \overline \pi $ for all $t \geq 0$.
+
+The function $\underline p(m_0)$ will be associated with $\pi_l$ the lower steady-state inflation rate.
+
+The function $\overline p(m_0)$ will be associated with $\pi_u$ the lower steady-state inflation rate.
+
+
 
 ```{code-cell} ipython3
 def solve_p0(p0, m0, α, g, π):
@@ -312,7 +275,68 @@ eq_g = lambda x: np.exp(-model.α * x) - np.exp(-(1 + model.α) * x)
 print('eq_g == g:', np.isclose(eq_g(m_seq[-1] - m_seq[-2]), model.g))
 ```
 
-## Slippery side of Laffer curve dynamics
+## Computing an Equilibrium Sequence 
+
+We'll deploy a method similar to *Method 2* used in {doc}`money_inflation`.  
+
+We'll take the time $t$ state vector to be the pair $(m_t, p_t)$.
+
+We'll treat $m_t$ as a ``natural state variable`` and $p_t$ as a ``jump`` variable.
+  
+Let
+
+$$
+\lambda \equiv \frac{\alpha}{1+ \alpha}
+$$
+
+Let's rewrite equation {eq}`eq:mdemand`  as
+
+$$
+p_t = (1-\lambda) m_{t+1} + \lambda p_{t+1} 
+$$ (eq:mdemand2)
+
+We'll summarize our algorithm with the following pseudo-code.
+
+**Pseudo-code**
+
+The heart of the pseudo-code iterates on the following mapping from state vector $(m_t, p_t)$ at time $t$
+to state vector $(m_{t+1}, p_{t+1})$ at time $t+1$.
+
+
+* starting from a given pair $(m_t, p_t)$ at time $t \geq 0$
+
+  * solve {eq}`eq:msupply` for $m_{t+1}$
+
+  * solve {eq}`eq:mdemand2` for $p_{t+1} = \lambda^{-1} p_t + (1 - \lambda^{-1}) m_{t+1}$
+
+  * compute the inflation rate $\pi_t = p_{t+1} - p_t$ and growth of money supply $\mu_t = m_{t+1} - m_t $
+
+Next,   compute the two functions $\underline p(m_0)$ and $\overline p(m_0)$ described above
+
+Now  initiate the algorithm as follows.
+
+  * set   $m_0 >0$
+  * set a value of $p_0 \in [\underline p(m_0), \overline p(m_0)]$  and form the pair  $(m_0, p_0)$ at time $t =0$
+  
+Starting from $(m_0, p_0)$ iterate on $t$ to convergence of $\pi_t \rightarrow \overline \pi$ and $\mu_t \rightarrow \overline \mu$
+  
+It will turn out that 
+
+* if they exist, limiting values $\overline \pi$ and $\overline \mu$ will be equal
+
+* if  limiting values exist, there are two possible limiting values, one high, one low
+
+* for almost all initial log price levels $p_0$, the limiting $\overline \pi = \overline \mu$ is 
+the higher value
+
+* for each of the two possible limiting values $\overline \pi$ ,there is a unique initial log price level $p_0$ that implies that $\pi_t = \mu_t = \overline \mu$ for all  $t \geq 0$
+
+  * this unique initial log price level solves $\log(\exp(m_0) + g \exp(p_0)) - p_0 = - \alpha \overline \pi $
+  
+  * the preceding equation for $p_0$ comes from $m_1 - p_0 = -  \alpha \overline \pi$
+
+
+## Slippery Side of Laffer Curve Dynamics
 
 We are now equipped  to compute  time series starting from different $p_0$ settings, like those in {doc}`money_inflation`.
 
@@ -399,7 +423,7 @@ Those dynamics are "perverse" not only in the sense that they imply that the mon
 * the figure indicates that inflation can be *reduced* by running *higher*  government deficits, i.e., by raising more resources through  printing money. 
 
 ```{note}
-The same qualitive outcomes prevail in {doc}`money_inflation` that studies a linear version of the model in this lecture.
+The same qualitative outcomes prevail in {doc}`money_inflation` that studies a linear version of the model in this lecture.
 ```
 
 We discovered that 

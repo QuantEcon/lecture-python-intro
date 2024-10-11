@@ -241,6 +241,7 @@ p_T =   \frac{m_0}{\gamma_1 - \overline g - \gamma_2 R_u^{-1}}  = \gamma_1^{-1} 
 $$ (eq:pTformula)
 
 ```{prf:remark}
+:label: equivalence
 We can verify the equivalence of the two formulas on the right sides of {eq}`eq:pTformula` by recalling that 
 $R_u$ is a root of the quadratic equation {eq}`eq:up_steadyquadratic` that determines steady state rates of return on currency.
 ```

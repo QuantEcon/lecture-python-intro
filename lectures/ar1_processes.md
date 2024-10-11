@@ -60,6 +60,9 @@ where $a, b, c$ are scalar-valued parameters
 
 (Equation {eq}`can_ar1` is sometimes called a **stochastic difference equation**.)
 
+```{prf:example}
+:label: ar1_ex_ar
+
 For example, $X_t$ might be 
 
 * the log of labor income for a given household, or
@@ -70,6 +73,7 @@ of the previous value and an IID shock $W_{t+1}$.
 
 (We use $t+1$ for the subscript of $W_{t+1}$ because this random variable is not
 observed at time $t$.)
+```
 
 The specification {eq}`can_ar1` generates a time series $\{ X_t\}$ as soon as we
 specify an initial condition $X_0$.
@@ -330,7 +334,10 @@ Notes:
 * In {eq}`ar1_ergo`, convergence holds with probability one.
 * The textbook by {cite}`MeynTweedie2009` is a classic reference on ergodicity.
 
-For example, if we consider the identity function $h(x) = x$, we get
+```{prf:example}
+:label: ar1_ex_id
+
+If we consider the identity function $h(x) = x$, we get
 
 $$
 \frac{1}{m} \sum_{t = 1}^m X_t  \to
@@ -339,7 +346,7 @@ $$
 $$
 
 In other words, the time series sample mean converges to the mean of the stationary distribution.
-
+```
 
 Ergodicity is important for a range of reasons.
 

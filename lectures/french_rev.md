@@ -16,53 +16,47 @@ kernelspec:
 
 ## Overview 
 
-This lecture describes some monetary and fiscal  features of the French Revolution (1789-1799)
-described by {cite}`sargent_velde1995`.
+This lecture describes some  of the monetary and fiscal  features of the French Revolution (1789-1799) described by {cite}`sargent_velde1995`.
 
 To finance public expenditures and service its debts, 
-the French Revolutionaries  performed several policy experiments.
+the French government embarked on   policy experiments.
 
-The Revolutionary legislators who authored these experiments were guided by their having decided to put in place monetary-fiscal policies recommended to them  by theories that they believed.
+The authors of these experiments  had in mind theories about how government  monetary and fiscal policies affected economic outcomes.
 
-Some of those theories make contact with modern theories about monetary and fiscal policies that interest us today.
+Some of those theories about monetary and fiscal policies still interest us today.
 
-* a *tax-smoothing* model like Robert Barro's {cite}`Barro1979`
+* a **tax-smoothing** model like Robert Barro's {cite}`Barro1979`
 
-   * this normative (i.e., prescriptive mode) advises a government to finance temporary war-time surges in government expenditures mostly by issuing government debt; after the war to roll over whatever debt accumulated during the war, and  to increase taxes permanently by enough to finance interest payments on that post-war debt
+   * this normative (i.e., prescriptive model) advises a government to finance temporary war-time surges in expenditures mostly by issuing government debt, raising taxes by just enough to service the additional debt issued during the wary; then,   after the war,  to roll over whatever debt the government had accumulated during the war;  and  to increase taxes after the war permanently by just enough to finance interest payments on that post-war government  debt
 
-*  *unpleasant monetarist arithmetic* like that described in {doc}`unpleasant`
+*  **unpleasant monetarist arithmetic** like that described in this quanteon lecture  {doc}`unpleasant`
    
-    * this arithmetic governed French government debt dynamics in the decades preceding 1789 and according to leading historians set the stage for the French Revolution 
+    * mathematics involving compound interest  governed French government debt dynamics in the decades preceding 1789; according to leading historians, that arithmetic set the stage for the French Revolution 
 
-* a **real bills** theory of the effects of government open market operations in which the government *backs* its issues of paper money with valuable real property or financial assets
+* a *real bills* theory of the effects of government open market operations in which the government *backs* new  issues of paper money with government holdings of valuable real property or financial assets that holders of money can purchase from the government in exchange for their money.
 
-    * the Revolutionaries learned about this theory from Adam Smith's 1776 book The Wealth of Nations
-     and other contemporary sources
+    * The Revolutionaries learned about this theory from Adam Smith's 1776 book The Wealth of Nations
+     {cite}`smith2010wealth` and other contemporary sources
 
-    * It shaped how the Revolutionaries issued paper money called assignats from 1789 to 1791 
+    * It shaped how the Revolutionaries issued a paper money called **assignats** from 1789 to 1791 
 
 * a classical **gold**  or **silver standard**
   
-    * Napoleon, who became head of government in 1799 used this theory to guide his monetary and fiscal policies
+    * Napoleon Bonaparte became head of the French government in 1799. He  used this theory to guide his monetary and fiscal policies
 
-* a classical inflation-tax theory of inflation in which Philip Cagan's  demand for money studied 
-in this lecture  {doc}`cagan_ree` is a key component
+* a classical **inflation-tax** theory of inflation in which Philip Cagan's ({cite}`Cagan`) demand for money studied in this lecture  {doc}`cagan_ree` is a key component
 
-   * This theory helps us explain French price level and money supply data from 1794 to 1797  s
+   * This theory helps  explain French price level and money supply data from 1794 to 1797  
 
-* a *legal restrictions*  or *financial repression* theory of the demand for real balances 
+* a **legal restrictions**  or **financial repression** theory of the demand for real balances 
  
-    * the Twelve Members comprising the Committee of Public Safety who adminstered the Terror from June 1793 to July 1794 used this theory to guide their monetary policy 
+    * The Twelve Members comprising the Committee of Public Safety who adminstered the Terror from June 1793 to July 1794 used this theory to shape their monetary policy 
 
-We use matplotlib to replicate several of the graphs that {cite}`sargent_velde1995` used to portray outcomes of these experiments 
-
----
-
-
+We use matplotlib to replicate several of the graphs with which  {cite}`sargent_velde1995` portrayed outcomes of these experiments 
 
 ## Data Sources
 
-This lecture uses data from three spreadsheets:
+This lecture uses data from three spreadsheets assembled by {cite}`sargent_velde1995`:
   * [datasets/fig_3.xlsx](https://github.com/QuantEcon/lecture-python-intro/blob/main/lectures/datasets/fig_3.xlsx)
   * [datasets/dette.xlsx](https://github.com/QuantEcon/lecture-python-intro/blob/main/lectures/datasets/dette.xlsx)
   * [datasets/assignat.xlsx](https://github.com/QuantEcon/lecture-python-intro/blob/main/lectures/datasets/assignat.xlsx)
@@ -83,13 +77,26 @@ assignat_url = f'{base_url}assignat.xlsx'
 
 ## Government Expenditures and Taxes Collected
 
-We'll start by using `matplotlib` to construct two graphs that will provide important historical context.
+
+
+We'll start by using `matplotlib` to construct several  graphs that will provide important historical context.
+
+These graphs are versions of ones that appear in {cite}`sargent_velde1995`.
+
+These graphs show that during the 18th century
+
+ * government expenditures in France and Great Britain both surged during four big wars, and by comparable amounts
+ * In Britain, tax revenues were approximately equal to government expenditures during peace times,
+  but were substantially less than government expenditures during wars
+ * In France, even in peace time, tax revenues were substantially less than government expenditures
+
+
 
 ```{code-cell} ipython3
 ---
 mystnb:
   figure:
-    caption: Military Spending in Britain and France
+    caption: "Military Spending in Britain and France"
     name: fr_fig4
 ---
 # Read the data from Excel file
@@ -125,22 +132,23 @@ During the 18th century, Britain and France fought four large wars.
 
 Britain won the first three wars and lost the fourth.
 
-Each  of those wars  produced surges in both countries government expenditures that each country somehow had to finance.
+Each  of those wars  produced surges in both countries' government expenditures that each country somehow had to finance.
 
-{numref}`fr_fig4` shows surges in military expenditures in France (in blue) and Great Britain.
+Figure {numref}`fr_fig4` shows surges in military expenditures in France (in blue) and Great Britain.
 during those four wars.  
 
-A remarkable aspect of {numref}`fr_fig4` is that despite having a population less than half of France's, Britain was able to finance military expenses of about the same amount as France's.
+A remarkable aspect of figure {numref}`fr_fig4` is that despite having a population less than half of France's, Britain was able to finance military expenses of about the same amounts as France's.
 
-This testifies to Britain's success in having created state institutions that could tax, spend, and borrow.
+This testifies to Britain's  having created state institutions that could sustain high  tax collections, government spending , and government borrowing. See  {cite}`north1989`. 
 
 ```{code-cell} ipython3
 ---
 mystnb:
   figure:
-    caption: Government Expenditures and Tax Revenues in Britain
+    caption: "Government Expenditures and Tax Revenues in Britain"
     name: fr_fig2
 ---
+
 # Read the data from Excel file
 data2 = pd.read_excel(dette_url, sheet_name='Militspe', usecols='M:X', 
                       skiprows=7, nrows=102, header=None)
@@ -170,14 +178,15 @@ plt.tight_layout()
 plt.show()
 ```
 
-Figures  {numref}`fr_fig2` and  {numref}`fr_fig3` summarize British and French government   fiscal policies  during the century before the start the French Revolution in 1789.
+
+Figures  {numref}`fr_fig2` and  {numref}`fr_fig3` summarize British and French government   fiscal policies  during the century before the start of the French Revolution in 1789.
 
 
-Progressive forces in France before 1789 thought admired how  Britain had financed its government expenditures and advocated reforms in French institutions designed to make them more like Britain's.
+Before 1789, progressive forces in France  admired how  Britain had financed its government expenditures and wanted to redesign French fiscal arrangements to make them more like Britain's.
 
 Figure  {numref}`fr_fig2` shows government expenditures and how it was distributed among expenditures for 
 
-   * civil (non military) activities
+   * civil (non-military) activities
    * debt service, i.e., interest payments 
    * military expenditures (the yellow line minus the red line) 
 
@@ -187,25 +196,27 @@ Notice the surges in total government expenditures associated with surges in mil
 in these four wars
 
    * Wars against France's King Louis XIV early in the 18th century
-   * The War of the Spanish Succession in the 1740s
+   * The War of the Austrian Succession in the 1740s
    * The French and Indian War in the 1750's and 1760s
    * The American War for Independence from 1775 to 1783
 
-{numref}`fr_fig2` indicates that
+Figure {numref}`fr_fig2` indicates that
 
-   * during times of peace, the expenditures approximately equal taxes and debt service payments neither grow nor decline over time
+   * during times of peace, government expenditures approximately equal taxes and debt service payments neither grow nor decline over time
    * during times of wars, government expenditures exceed tax revenues
       * the government finances the deficit of revenues relative to expenditures by issuing debt
    * after a war is over, the government's tax revenues exceed its non-interest expenditures by just enough to service the debt that the government issued to finance earlier deficits
       * thus, after a war, the government does *not* raise taxes by enough to pay off its debt
       * instead, it just rolls over whatever debt it inherits, raising taxes by just enough to service the interest payments on that debt
 
-Eighteenth century British fiscal policy portrayed {numref}`fr_fig2` thus looks very much like a text-book example of a *tax-smoothing* model like Robert Barro's {cite}`Barro1979`.  
+Eighteenth-century British fiscal policy portrayed Figure {numref}`fr_fig2` thus looks very much like a text-book example of a *tax-smoothing* model like Robert Barro's {cite}`Barro1979`.  
 
-A striking feature of the graph is what we'll nick name a  **law of gravity** for taxes and expenditures. 
+A striking feature of the graph is what we'll label a *law of gravity* between tax collections and government expenditures. 
 
    * levels of government expenditures at taxes attract each other
    * while they can temporarily differ -- as they do during wars -- they come back together when peace returns
+
+
 
 Next we'll plot data on debt service costs as fractions of government revenues in Great Britain and France during the 18th century.
 
@@ -213,9 +224,10 @@ Next we'll plot data on debt service costs as fractions of government revenues i
 ---
 mystnb:
   figure:
-    caption: Ratio of debt service to taxes, Britain and France
+    caption: "Ratio of debt service to taxes, Britain and France"
     name: fr_fig1
 ---
+
 # Read the data from the Excel file
 data1 = pd.read_excel(dette_url, sheet_name='Debt', 
             usecols='R:S', skiprows=5, nrows=99, header=None)
@@ -234,6 +246,8 @@ plt.plot(date[index], 100 * data1[index].iloc[:, 0],
 # Plot the additional data
 plt.plot(range(1774, 1789), 100 * data1a, '*:', color='orange')
 
+# Note about the data
+# The French data before 1720 don't match up with the published version
 # Set the plot properties
 plt.gca().spines['top'].set_visible(False)
 plt.gca().spines['right'].set_visible(False)
@@ -245,12 +259,12 @@ plt.tight_layout()
 plt.show()
 ```
 
-Figure  {numref}`fr_fig1` shows that interest payments on government debt (i.e., so-called ''debt service'') were high fractions of government tax revenues in both Great Britain and France.  
+Figure  {numref}`fr_fig1` shows that interest payments on government debt (i.e., so-called ''debt service'') were high fractions of government tax revenues in both Great Britain and France. 
 
-{numref}`fr_fig2` showed us that Britain managed to balance its budget despite those large 
-interest costs. 
+{numref}`fr_fig2` showed us that in peace times Britain managed to balance its budget despite those large interest costs. 
 
-But as  we'll see in our next graph, on the eve of the French Revolution in 1788, that fiscal policy   *law of gravity* that worked so well in Britain, did not seem to be working in France.
+But as  we'll see in our next graph, on the eve of the French Revolution in 1788, the  fiscal  *law of gravity* that worked so well in Britain did not  working very well in  France.
+
 
 ```{code-cell} ipython3
 # Read the data from the Excel file
@@ -264,7 +278,7 @@ data1.replace(0, np.nan, inplace=True)
 ---
 mystnb:
   figure:
-    caption: Government Spending and Tax Revenues in France
+    caption: "Government Spending and Tax Revenues in France"
     name: fr_fig3
 ---
 # Plot the data
@@ -291,23 +305,25 @@ plt.tight_layout()
 plt.show()
 ```
 
-{numref}`fr_fig3` shows that in 1788  on the eve of the French Revolution government expenditures exceeded   tax revenues.   
+{numref}`fr_fig3` shows that on the eve of the French Revolution in 1788, government expenditures exceeded tax revenues.   
+
 
 Especially during and after France's expenditures to help the Americans in their War of Independence from Great Britain,   growing government debt service (i.e., interest payments) 
 contributed to this situation. 
 
 This was partly a consequence of the unfolding of the debt dynamics that underlies the Unpleasant Arithmetic discussed in this quantecon lecture  {doc}`unpleasant`.  
 
+
 {cite}`sargent_velde1995` describe how the Ancient Regime that until 1788 had  governed France  had stable institutional features that made it difficult for the government to balance its budget.
 
 Powerful contending interests had prevented from the government from closing the gap between its
-total expenditures and its tax revenues by 
+total expenditures and its tax revenues by either
 
- * raising taxes 
- * lowering government's non debt service (i.e., non-interest)   expenditures 
- * lowering its debt service (i.e., interest) costs by rescheduling its debt, i.e., defaulting on on part of its debt
+ * raising taxes, or
+ * lowering government's non-debt service (i.e., non-interest)   expenditures, or 
+ * lowering debt service (i.e., interest) costs by rescheduling, i.e., defaulting on some  debts
 
-The French constitution and prevailing arrangements had empowered three constituencies to block adjustments to components of the government budget constraint that they cared especially about
+Precedents and prevailing French arrangements had empowered three constituencies to block adjustments to components of the government budget constraint that they cared especially about
 
 * tax payers
 * beneficiaries of government expenditures
@@ -331,7 +347,7 @@ would bring sustained budget balance.
 
 In 1789, the Revolutionaries quickly reorganized the Estates General  into a National Assembly.
 
-A first piece of business was to address the fiscal crisis, the situation that had motivated the King to convence the Estates General.
+A first piece of business was to address the fiscal crisis, the situation that had motivated the King to convene the Estates General.
 
 The Revolutionaries were not socialists or communists.
 
@@ -350,12 +366,12 @@ This coincidence fostered a three step plan for servicing the French government 
  * sell the church lands 
  * use the proceeds from those sales to service or even retire French government debt
 
-The monetary theory underlying this plan had been set out by Adam Smith in his analysis of what he called **real bills**  in his  1776 book
-**The Wealth of Nations** {cite}`smith2010wealth`, which many of the revolutionaries had read.
+The monetary theory underlying this plan had been set out by Adam Smith in his analysis of what he called *real bills*  in his  1776 book
+**The Wealth of Nations**   {cite}`smith2010wealth`, which many of the revolutionaries had read.
 
-Adam Smith defined a **real bill** as a paper money note that is backed by a claims on a real asset like productive capital or inventories. 
+Adam Smith defined a *real bill* as a paper money note that is backed by a claims on a real asset like productive capital or inventories. 
 
-The National Assembly put togethere an ingenious institutional  arrangement to implement this plan.
+The National Assembly put together an ingenious institutional  arrangement to implement this plan.
 
 In response to a motion by Catholic Bishop Talleyrand (an atheist),
 the National Assembly confiscated and nationalized  Church lands. 
@@ -369,7 +385,7 @@ Their plan involved issuing paper notes called ''assignats'' that entitled beare
 
 These paper notes would be ''as good as silver coins'' in the sense that both were acceptable means of payment in exchange for those (formerly) church lands.  
 
-Finance Minister Necker and the Constituants of the National Assembly thus  planned
+Finance Minister Necker and the Constituents of the National Assembly thus  planned
 to solve the privatization problem *and* the debt problem simultaneously
 by creating a new currency. 
 
@@ -383,7 +399,7 @@ Records of  debates show
 how members of the Assembly marshaled theory and evidence to assess the likely
 effects of their innovation. 
 
-  * Members of the Natioanl Assembly quoted David Hume and Adam Smith
+  * Members of the National Assembly quoted David Hume and Adam Smith
   * They  cited John Law's System of 1720 and the American experiences with paper money fifteen years
 earlier as examples of how paper money schemes can go awry
   * Knowing pitfalls, they set out to avoid them
@@ -401,9 +417,9 @@ They wanted to honor government debts -- interests of French government creditor
 
 But they set out to remake  the French tax code and the administrative machinery for collecting taxes.
 
-  * they abolished all sorts of taxes
-  * they abolished the Ancient Regimes scheme for ''tax farming''
-      * tax farming meant that the government had privatized tax collection by hiring private citizes -- so called  tax farmers to collect taxes, while retaining a fraction of them as payment for their services
+  * they abolished many taxes
+  * they abolished the Ancient Regimes scheme for *tax farming*
+      * tax farming meant that the government had privatized tax collection by hiring private citizens -- so-called  tax farmers to collect taxes, while retaining a fraction of them as payment for their services
       * the great chemist Lavoisier was also a tax farmer, one of the reasons that the Committee for Public Safety sent him to the guillotine in 1794
 
 As a consequence of these tax reforms, government tax revenues declined
@@ -414,7 +430,7 @@ The next figure shows this
 ---
 mystnb:
   figure:
-    caption: Index of real per capital revenues, France
+    caption: "Index of real per capital revenues, France"
     name: fr_fig5
 ---
 # Read data from Excel file
@@ -450,7 +466,7 @@ amounts during the period form 1789 to 1799.
 ---
 mystnb:
   figure:
-    caption: Spending (blue) and Revenues (orange), (real values)
+    caption: "Spending (blue) and Revenues (orange), (real values)"
     name: fr_fig11
 ---
 # Read data from Excel file
@@ -487,7 +503,7 @@ plt.tight_layout()
 plt.show()
 ```
 
-To cover the disrepancies between government expenditures and tax revenues revealed in {numref}`fr_fig11`, the French revolutionaries  printed paper money and spent it.  
+To cover the discrepancies between government expenditures and tax revenues revealed in {numref}`fr_fig11`, the French revolutionaries  printed paper money and spent it.  
 
 The next figure shows that by printing money, they were able to finance substantial purchases 
 of goods and services, including military goods and soldiers' pay.
@@ -496,7 +512,7 @@ of goods and services, including military goods and soldiers' pay.
 ---
 mystnb:
   figure:
-    caption: Revenues raised by printing paper money notes
+    caption: "Revenues raised by printing paper money notes"
     name: fr_fig24
 ---
 # Read data from Excel file
@@ -540,11 +556,11 @@ where
 
 Notice the 1793-1794  surge in revenues raised by printing money. 
 
-* this reflects extraordinary measures that the Committee for Public Safety adopted to force citizens to accept paper money, or else.
+* This reflects extraordinary measures that the Committee for Public Safety adopted to force citizens to accept paper money, or else.
 
 Also note the abrupt fall off in revenues raised by 1797 and the absence of further observations after 1797. 
 
-* this reflects the end using the printing press to raise revenues.
+* This reflects the end of using the printing press to raise revenues.
 
 What French paper money  entitled its holders to changed over time in interesting ways.
 
@@ -559,7 +575,7 @@ Note that we use a log scale because the price level rose so much.
 ---
 mystnb:
   figure:
-    caption: Price Level and Price of Gold (log scale)
+    caption: "Price Level and Price of Gold (log scale)"
     name: fr_fig9
 ---
 # Read the data from Excel file
@@ -595,22 +611,23 @@ plt.show()
 ```
 
 We have partioned  {numref}`fr_fig9` that shows the log of the price level and   {numref}`fr_fig8`
-below  that plots real balances $\frac{M_t}{p_t}$ into three periods that correspond to 
-to different monetary  experiments. 
+below  that plots real balances $\frac{M_t}{p_t}$ into three periods that correspond to  different monetary  experiments or *regimes*. 
 
 The first period ends in the late summer of 1793, and is characterized
 by growing real balances and moderate inflation. 
 
 The second period begins and ends
-with the Terror. It is marked by high real balances, around 2,500 millions, and
+with the Terror. It is marked by high real balances, around 2,500 million, and
 roughly stable prices. The fall of Robespierre in late July 1794 begins the third
 of our episodes, in which real balances decline and prices rise rapidly.
 
 We interpret
-these three episodes in terms of three separate theories about money: a ''backing''
-or ''**real bills**'' theory (the text is Adam Smith  {cite}`smith2010wealth`),
-a legal restrictions theory ( {cite}`keynes1940pay`, {cite}`bryant1984price` )
-and a classical hyperinflation theory ({cite}`Cagan`).%
+these three episodes in terms of distinct  theories
+
+*  a *backing* or *real bills* theory (the classic text for this theory is  Adam Smith  {cite}`smith2010wealth`)
+* a legal restrictions theory ( {cite}`keynes1940pay`, {cite}`bryant1984price` )
+* a classical hyperinflation theory ({cite}`Cagan`)
+* 
 ```{note}
 According to the empirical  definition of hyperinflation adopted by {cite}`Cagan`,
 beginning in the month that inflation exceeds 50 percent
@@ -627,7 +644,7 @@ nearly met in one of these episodes than in the other two.
 ---
 mystnb:
   figure:
-    caption: Real balances of assignats (in gold and goods)
+    caption: "Real balances of assignats (in gold and goods)"
     name: fr_fig8
 ---
 # Read the data from Excel file
@@ -678,11 +695,11 @@ hyperinflations.
 
 
 
-* subperiod 1: ("**real bills** period): January 1791 to July 1793
+* subperiod 1: ("*real bills* period): January 1791 to July 1793
 
-* subperiod 2: ("terror:):  August 1793 - July 1794
+* subperiod 2: ("terror"):  August 1793 - July 1794
 
-* subperiod 3: ("classic Cagan hyperinflation): August 1794 - March 1796
+* subperiod 3: ("classic Cagan hyperinflation"): August 1794 - March 1796
 
 ```{code-cell} ipython3
 def fit(x, y):
@@ -719,7 +736,7 @@ a3_rev, b3_rev = fit(infl[44:63], bal[44:63])
 ---
 mystnb:
   figure:
-    caption: Inflation and Real Balances
+    caption: "Inflation and Real Balances"
     name: fr_fig104
 ---
 plt.figure()
@@ -745,8 +762,7 @@ plt.tight_layout()
 plt.show()
 ```
 
-The three clouds of points in Figure
-{numref}`fr_fig104` evidently 
+The three clouds of points in {numref}`fr_fig104` evidently 
  depict different real balance-inflation relationships. 
 
 Only the cloud for the
@@ -754,7 +770,7 @@ third period has the inverse relationship familiar to us now from twentieth-cent
 hyperinflations.
 
  To bring this out, we'll use linear regressions to draw straight lines that compress the 
- inflation-real balance relationship for our three sub periods. 
+ inflation-real balance relationship for our three sub-periods. 
 
  Before we do that, we'll drop some of the early observations during the terror period 
  to obtain the following graph.
@@ -775,7 +791,7 @@ a3_rev, b3_rev = fit(infl[44:63], bal[44:63])
 ---
 mystnb:
   figure:
-    caption: Inflation and Real Balances
+    caption: "Inflation and Real Balances"
     name: fr_fig104b
 ---
 plt.figure()
@@ -799,14 +815,14 @@ plt.tight_layout()
 plt.show()
 ```
 
-Now let's regress inflation on real balances during the **real bills** period and plot the regression
+Now let's regress inflation on real balances during the *real bills* period and plot the regression
 line.
 
 ```{code-cell} ipython3
 ---
 mystnb:
   figure:
-    caption: Inflation and Real Balances
+    caption: "Inflation and Real Balances"
     name: fr_fig104c
 ---
 plt.figure()
@@ -835,7 +851,7 @@ plt.show()
 
 The regression line in {numref}`fr_fig104c` shows that large increases in real balances of
 assignats (paper money) were accompanied by only modest rises in the price level, an outcome in line
-with the **real bills** theory. 
+with the *real bills* theory. 
 
 During this period, assignats were claims on church lands. 
 
@@ -851,7 +867,7 @@ line.
 ---
 mystnb:
   figure:
-    caption: Inflation and Real Balances
+    caption: "Inflation and Real Balances"
     name: fr_fig104d
 ---
 plt.figure()
@@ -896,7 +912,7 @@ Cagan {cite}`Cagan`.
 ---
 mystnb:
   figure:
-    caption: Inflation and Real Balances
+    caption: "Inflation and Real Balances"
     name: fr_fig104e
 ---
 plt.figure()
@@ -930,7 +946,7 @@ period of the hyperinflation.
 ---
 mystnb:
   figure:
-    caption: Inflation and Real Balances
+    caption: "Inflation and Real Balances"
     name: fr_fig104f
 ---
 plt.figure()
@@ -957,5 +973,24 @@ plt.tight_layout()
 plt.show()
 ```
 
-{numref}`fr_fig104e` shows the results of regressing  real balances on inflation during the
+{numref}`fr_fig104e` shows the results of regressing  real money balances on inflation during the
 period of the hyperinflation.
+
+## Hyperinflation Ends
+
+{cite}`sargent_velde1995` tell how in 1797 the Revolutionary government abruptly ended the inflation by 
+
+  * repudiating 2/3 of the national debt, and thereby
+  * eliminating the net-of-interest government defict
+  * no longer printing money, but instead
+  * using gold and silver coins as money
+
+In 1799, Napoleon Bonaparte became first consul and for the next 15 years used resources confiscated from conquered territories to help pay for French government expenditures.
+
+## Underlying Theories
+
+This lecture  sets the stage for studying  theories of inflation and the  government monetary and fiscal policies that bring it about.
+
+A  *monetarist theory of the price level* is described in this quantecon lecture {doc}`cagan_ree`.
+
+That lecture sets the stage for these quantecon lectures {doc}`money_inflation` and {doc}`unpleasant`.  
