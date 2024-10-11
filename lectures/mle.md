@@ -39,6 +39,8 @@ $$
 
 where $w$ is wealth.
 
+```{prf:example}
+:label: mle_ex_wt
 
 For example, if $a = 0.05$, $b = 0.1$, and $\bar w = 2.5$, this means 
 
@@ -46,7 +48,7 @@ For example, if $a = 0.05$, $b = 0.1$, and $\bar w = 2.5$, this means
 * a 10% tax on wealth in excess of 2.5.
 
 The unit is 100,000, so $w= 2.5$ means 250,000 dollars.
-
+```
 Let's go ahead and define $h$:
 
 ```{code-cell} ipython3
@@ -242,7 +244,7 @@ num = (ln_sample - μ_hat)**2
 σ_hat
 ```
 
-Let's plot the log-normal pdf using the estimated parameters against our sample data.
+Let's plot the lognormal pdf using the estimated parameters against our sample data.
 
 ```{code-cell} ipython3
 dist_lognorm = lognorm(σ_hat, scale = exp(μ_hat))

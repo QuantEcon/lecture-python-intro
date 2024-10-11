@@ -18,19 +18,23 @@ kernelspec:
 In the lecture {doc}`long_run_growth` we studied how GDP per capita has changed
 for certain countries and regions.
 
-Per capital GDP is important because it gives us an idea of average income for
+Per capita GDP is important because it gives us an idea of average income for
 households in a given country.
 
 However, when we study income and wealth, averages are only part of the story.
 
+```{prf:example}
+:label: ie_ex_av
+
 For example, imagine two societies, each with one million people, where
 
 * in the first society, the yearly income of one man is $100,000,000 and the income of the
-  others is zero
+  others are zero
 * in the second society, the yearly income of everyone is $100
 
 These countries have the same income per capita (average income is $100) but the lives of the people will be very different (e.g., almost everyone in the first society is
 starving, even though one person is fabulously rich).
+```
 
 The example above suggests that we should go beyond simple averages when we study income and wealth.
 
@@ -247,7 +251,7 @@ The following code block imports a subset of the dataset `SCF_plus` for 2016,
 which is derived from the [Survey of Consumer Finances](https://en.wikipedia.org/wiki/Survey_of_Consumer_Finances) (SCF).
 
 ```{code-cell} ipython3
-url = 'https://media.githubusercontent.com/media/QuantEcon/high_dim_data/main/SCF_plus/SCF_plus_mini.csv'
+url = 'https://github.com/QuantEcon/high_dim_data/raw/main/SCF_plus/SCF_plus_mini.csv'
 df = pd.read_csv(url)
 df_income_wealth = df.dropna()
 ```
@@ -435,6 +439,8 @@ Let's examine the Gini coefficient in some simulations.
 
 The code below computes the Gini coefficient from a sample.
 
+(code:gini-coefficient)=
+
 ```{code-cell} ipython3
 
 def gini_coefficient(y):
@@ -481,6 +487,7 @@ You can check this by looking up the expression for the mean of a lognormal
 distribution.
 
 ```{code-cell} ipython3
+%%time
 k = 5
 σ_vals = np.linspace(0.2, 4, k)
 n = 2_000
@@ -529,7 +536,7 @@ Let's look at the Gini coefficient for the distribution of income in the US.
 
 We will get pre-computed Gini coefficients (based on income) from the World Bank using the [wbgapi](https://blogs.worldbank.org/opendata/introducing-wbgapi-new-python-package-accessing-world-bank-data).
 
-Let's use the `wbgapi` package we imported earlier to search the world bank data for Gini to find the Series ID.
+Let's use the `wbgapi` package we imported earlier to search the World Bank data for Gini to find the Series ID.
 
 ```{code-cell} ipython3
 wb.search("gini")
@@ -616,51 +623,11 @@ We will use US data from the {ref}`Survey of Consumer Finances<data:survey-consu
 df_income_wealth.year.describe()
 ```
 
-This code can be used to compute this information over the full dataset.
+[This notebook](https://github.com/QuantEcon/lecture-python-intro/tree/main/lectures/_static/lecture_specific/inequality/data.ipynb) can be used to compute this information over the full dataset.
 
 ```{code-cell} ipython3
-:tags: [skip-execution, hide-input, hide-output]
-
-!pip install quantecon
-import quantecon as qe
-
-varlist = ['n_wealth',   # net wealth 
-           't_income',   # total income
-           'l_income']   # labor income
-
-df = df_income_wealth
-
-# create lists to store Gini for each inequality measure
-results = {}
-
-for var in varlist:
-    # create lists to store Gini
-    gini_yr = []
-    for year in years:
-        # repeat the observations according to their weights
-        counts = list(round(df[df['year'] == year]['weights'] ))
-        y = df[df['year'] == year][var].repeat(counts)
-        y = np.asarray(y)
-        
-        rd.shuffle(y)    # shuffle the sequence
-      
-        # calculate and store Gini
-        gini = qe.gini_coefficient(y)
-        gini_yr.append(gini)
-        
-    results[var] = gini_yr
-
-# Convert to DataFrame
-results = pd.DataFrame(results, index=years)
-results.to_csv("_static/lecture_specific/inequality/usa-gini-nwealth-tincome-lincome.csv", index_label='year')
-```
-
-However, to speed up execution we will import a pre-computed dataset from the lecture repository.
-
-<!-- TODO: update from csv to github location -->
-
-```{code-cell} ipython3
-ginis = pd.read_csv("_static/lecture_specific/inequality/usa-gini-nwealth-tincome-lincome.csv", index_col='year')
+data_url = 'https://github.com/QuantEcon/lecture-python-intro/raw/main/lectures/_static/lecture_specific/inequality/usa-gini-nwealth-tincome-lincome.csv'
+ginis = pd.read_csv(data_url, index_col='year')
 ginis.head(n=5)
 ```
 
@@ -686,10 +653,6 @@ The time series for the wealth Gini exhibits a U-shape, falling until the early
 One possibility is that this change is mainly driven by technology.
 
 However, we will see below that not all advanced economies experienced similar growth of inequality.
-
-
-
-
 
 ### Cross-country comparisons of income inequality
 
@@ -796,8 +759,9 @@ min_year = plot_data.year.min()
 max_year = plot_data.year.max()
 ```
 
-The time series for all three countries start and stop in different years. We will add a year mask to the data to
-improve clarity in the chart including the different end years associated with each countries time series.
+The time series for all three countries start and stop in different years. 
+
+We will add a year mask to the data to improve clarity in the chart including the different end years associated with each country's time series.
 
 ```{code-cell} ipython3
 labels = [1979, 1986, 1991, 1995, 2000, 2020, 2021, 2022] + \
@@ -824,7 +788,7 @@ fig.show()
 This figure is built using `plotly` and is {ref}` available on the website <fig:plotly-gini-gdppc-years>`
 ```
 
-This plot shows that all three Western economies GDP per capita has grown over
+This plot shows that all three Western economies' GDP per capita has grown over
 time with some fluctuations in the Gini coefficient. 
 
 From the early 80's the United Kingdom and the US economies both saw increases
@@ -1093,3 +1057,90 @@ plt.show()
 
 ```{solution-end}
 ```
+
+```{exercise}
+:label: inequality_ex3
+
+The {ref}`code to compute the Gini coefficient is listed in the lecture above <code:gini-coefficient>`.
+
+This code uses loops to calculate the coefficient based on income or wealth data.
+
+This function can be re-written using vectorization which will greatly improve the computational efficiency when using `python`.
+
+Re-write the function `gini_coefficient` using `numpy` and vectorized code.
+
+You can compare the output of this new function with the one above, and note the speed differences. 
+```
+
+```{solution-start} inequality_ex3
+:class: dropdown
+```
+
+Let's take a look at some raw data for the US that is stored in `df_income_wealth`
+
+```{code-cell} ipython3
+df_income_wealth.describe()
+```
+
+```{code-cell} ipython3
+df_income_wealth.head(n=4)
+```
+
+We will focus on wealth variable `n_wealth` to compute a Gini coefficient for the year 2016.
+
+```{code-cell} ipython3
+data = df_income_wealth[df_income_wealth.year == 2016].sample(3000, random_state=1)
+```
+
+```{code-cell} ipython3
+data.head(n=2)
+```
+
+We can first compute the Gini coefficient using the function defined in the lecture above.
+
+```{code-cell} ipython3
+gini_coefficient(data.n_wealth.values)
+```
+
+Now we can write a vectorized version using `numpy`
+
+```{code-cell} ipython3
+def gini(y):
+    n = len(y)
+    y_1 = np.reshape(y, (n, 1))
+    y_2 = np.reshape(y, (1, n))
+    g_sum = np.sum(np.abs(y_1 - y_2))
+    return g_sum / (2 * n * np.sum(y))
+```
+```{code-cell} ipython3
+gini(data.n_wealth.values)
+```
+Let's simulate five populations by drawing from a lognormal distribution as before
+
+```{code-cell} ipython3
+k = 5
+σ_vals = np.linspace(0.2, 4, k)
+n = 2_000
+σ_vals = σ_vals.reshape((k,1))
+μ_vals = -σ_vals**2/2
+y_vals = np.exp(μ_vals + σ_vals*np.random.randn(n))
+```
+We can compute the Gini coefficient for these five populations using the vectorized function, the computation time is shown below:
+
+```{code-cell} ipython3
+%%time
+gini_coefficients =[]
+for i in range(k):
+     gini_coefficients.append(gini(y_vals[i]))
+```
+This shows the vectorized function is much faster.
+This gives us the Gini coefficients for these five households.
+
+```{code-cell} ipython3
+gini_coefficients
+```
+```{solution-end}
+```
+
+
+

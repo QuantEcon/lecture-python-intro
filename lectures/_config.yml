@@ -35,7 +35,7 @@ latex:
     targetname: quantecon-python-intro.tex
 
 sphinx:
-  extra_extensions: [sphinx_multitoc_numbering, sphinxext.rediraffe, sphinx_exercise, sphinx_togglebutton, sphinx.ext.intersphinx, sphinx_proof, sphinx_tojupyter] 
+  extra_extensions: [sphinx_multitoc_numbering, sphinxext.rediraffe, sphinx_exercise, sphinx_togglebutton, sphinx.ext.intersphinx, sphinx_proof, sphinx_tojupyter, sphinx_reredirects] 
   config:
     bibtex_reference_style: author_year
     # false-positive links
@@ -45,6 +45,7 @@ sphinx:
       width: 80%
     nb_code_prompt_show: "Show {type}"
     suppress_warnings: [mystnb.unknown_mime_type, myst.domains]
+    proof_minimal_theme: true
     # -------------
     html_js_files:
       - https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js
@@ -70,11 +71,12 @@ sphinx:
       analytics:
         google_analytics_id: G-QDS1YRJNGM
       launch_buttons:
-        notebook_interface        : classic  # The interface interactive links will activate ["classic", "jupyterlab"]
-        binderhub_url             : https://mybinder.org  # The URL of the BinderHub (e.g., https://mybinder.org)
         colab_url                 : https://colab.research.google.com
         thebe                     : false  # Add a thebe button to pages (requires the repository to run on Binder)
     intersphinx_mapping:
+      intermediate: 
+        - https://python.quantecon.org/
+        - null
       pyprog:
         - https://python-programming.quantecon.org/
         - null
@@ -107,6 +109,9 @@ sphinx:
     mathjax_path: https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
     rediraffe_redirects:
       index_toc.md: intro.md
+    # Remote Redirects
+    redirects:
+      ak2:   https://python.quantecon.org/ak2.html
     tojupyter_static_file_path: ["_static"]
     tojupyter_target_html: true
     tojupyter_urlpath: "https://intro.quantecon.org/"
