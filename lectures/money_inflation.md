@@ -35,7 +35,7 @@ Our model equates the demand for money to the supply at each time $t \geq 0$.
 Equality between those demands and supply gives a *dynamic* model in which   money supply
 and  price level *sequences* are simultaneously determined by a  set of simultaneous linear  equations.
 
-These equations take the form of what are often called vector linear **difference equations**.  
+These equations take the form of what is often called vector linear **difference equations**.  
 
 In this lecture, we'll roll up our sleeves and solve those equations in two different ways.
 
@@ -49,19 +49,19 @@ In this lecture we will encounter these concepts from macroeconomics:
 * perverse dynamics under rational expectations in which the system converges to the higher stationary inflation tax rate
 * a peculiar comparative stationary-state outcome connected with that stationary inflation rate: it asserts that inflation can be *reduced* by running *higher*  government deficits, i.e., by raising more resources by printing money. 
 
-The same qualitive outcomes prevail in this lecture {doc}`money_inflation_nonlinear` that studies a nonlinear version of the model in this lecture.  
+The same qualitative outcomes prevail in this lecture {doc}`money_inflation_nonlinear` that studies a nonlinear version of the model in this lecture.  
 
 These outcomes  set the stage for the analysis to be presented in this lecture {doc}`laffer_adaptive` that studies a nonlinear version of the present model; it   assumes a version of "adaptive expectations" instead of rational expectations.
 
 That lecture will show that 
 
 * replacing rational expectations with adaptive expectations leaves the two stationary inflation rates unchanged, but that $\ldots$ 
-* it reverse the pervese dynamics by making the *lower* stationary inflation rate the one to which the system typically converges
+* it reverses the perverse dynamics by making the *lower* stationary inflation rate the one to which the system typically converges
 * a more plausible comparative dynamic outcome emerges in which now inflation can be *reduced* by running *lower*  government deficits
 
-This outcome will be used to justify a selection of a stationary inflation rate that underlies the analysis of unpleasant monetarist arithmetic to be studies in this lecture {doc}`unpleasant`.
+This outcome will be used to justify a selection of a stationary inflation rate that underlies the analysis of unpleasant monetarist arithmetic to be studied in this lecture {doc}`unpleasant`.
 
-We'll use theses tools from linear algebra:
+We'll use these tools from linear algebra:
 
 * matrix multiplication
 * matrix inversion
@@ -349,7 +349,7 @@ g2 = seign(msm.R_l, msm)
 print(f'R_l, g_l = {msm.R_l:.4f}, {g2:.4f}')
 ```
 
-Now let's compute the maximum steady-state amount of seigniorage that could be gathered by printing money and the state state rate of return on money that attains it.
+Now let's compute the maximum steady-state amount of seigniorage that could be gathered by printing money and the state-state rate of return on money that attains it.
 
 ## Two  computation strategies
 
@@ -385,13 +385,21 @@ m_t & = b_{t-1} p_t
 \end{aligned}
 $$ (eq:method1) 
    
-**Remark 1:** method 1 uses an indirect approach to computing an equilibrium by first computing an equilibrium  $\{R_t, b_t\}_{t=0}^\infty$ sequence and then using it to back out an equilibrium  $\{p_t, m_t\}_{t=0}^\infty$  sequence.
+```{prf:remark}
+:label: method_1
+Method 1 uses an indirect approach to computing an equilibrium by first computing an equilibrium  $\{R_t, b_t\}_{t=0}^\infty$ sequence and then using it to back out an equilibrium  $\{p_t, m_t\}_{t=0}^\infty$  sequence.
+```
 
+```{prf:remark}
+:label: initial_condition
+Notice that  method 1 starts by picking an **initial condition** $R_0$ from a set $[\frac{\gamma_2}{\gamma_1}, R_u]$. Equilibrium $\{p_t, m_t\}_{t=0}^\infty$ sequences are not unique.  There is actually a continuum of equilibria indexed by a choice of $R_0$ from the set $[\frac{\gamma_2}{\gamma_1}, R_u]$. 
+```
 
-**Remark 2:** notice that  method 1 starts by picking an **initial condition** $R_0$ from a set $[\frac{\gamma_2}{\gamma_1}, R_u]$. Equilibrium $\{p_t, m_t\}_{t=0}^\infty$ sequences are not unique.  There is actually a continuum of equilibria indexed by a choice of $R_0$ from the set $[\frac{\gamma_2}{\gamma_1}, R_u]$. 
-
-**Remark 3:** associated with each selection of $R_0$ there is a unique $p_0$ described by
+```{prf:remark}
+:label: unique_selection
+Associated with each selection of $R_0$ there is a unique $p_0$ described by
 equation {eq}`eq:p0fromR0`.
+```
  
 ### Method 2
 
@@ -950,7 +958,7 @@ Those dynamics are "perverse" not only in the sense that they imply that the mon
 
 
 ```{note}
-The same qualitive outcomes prevail in this lecture {doc}`money_inflation_nonlinear` that studies a nonlinear version of the model in this lecture.
+The same qualitative outcomes prevail in this lecture {doc}`money_inflation_nonlinear` that studies a nonlinear version of the model in this lecture.
 ```
 
 
