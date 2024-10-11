@@ -61,9 +61,12 @@ In particular, we sincerely thank and give credit to
 - [Aakash Gupta](https://github.com/AakashGfude)
 - [Shu Hu](https://github.com/shlff)
 - Jiacheng Li
+- [Jiarui Zhang](https://github.com/Jiarui-ZH)
 - [Smit Lunagariya](https://github.com/Smit-create)
-- [Matthew McKay](https://github.com/mmcky)
 - [Maanasee Sharma](https://github.com/maanasee)
+- [Matthew McKay](https://github.com/mmcky)
+- [Margaret Beisenbek](https://github.com/mbek0605)
+- [Phoebe Grosser](https://github.com/pgrosser1)
 - [Longye Tian](https://github.com/longye-tian)
 - [Humphrey Yang](https://github.com/HumphreyYang)
 - [Sylvia Zhao](https://github.com/SylviaZhaooo)
