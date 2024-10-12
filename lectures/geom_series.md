@@ -962,7 +962,8 @@ path of output over time.
 :label: geom_ex3
 ```
 Continue from {ref}`geom_ex1`.
-
+First, plot the time paths of $y_t$ using the same initial values but with $i$ 
+taking the values below.
 ```{code-cell} ipython3
 values = [0.3, 0.4]
 ```
