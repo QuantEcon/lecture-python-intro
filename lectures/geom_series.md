@@ -961,7 +961,7 @@ path of output over time.
 ```{exercise-start}
 :label: geom_ex3
 ```
-Continue from {ref}`geom_ex1` with the following values
+Continue from {ref}`geom_ex1`.
 
 ```{code-cell} ipython3
 values = [0.3, 0.4]
