@@ -968,7 +968,6 @@ taking the values below.
 values = [0.3, 0.4]
 ```
 
-taking the values above.
 
 Next, plot the time paths of $y_t$ with the same initial values but let $g$ take
 the values mentioned above.
