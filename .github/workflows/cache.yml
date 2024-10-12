@@ -2,7 +2,7 @@ name: Build Cache [using jupyter-book]
 on:
   push:
     branches:
-      - main
+      - cache_test_1
 jobs:
   tests:
     runs-on: ubuntu-latest
@@ -34,6 +34,11 @@ jobs:
             xindy                     \
             dvipng                    \
             cm-super
+      # Build Assets (Download Notebooks and PDF via LaTeX)
+      - name: Build PDF from LaTeX
+        shell: bash -l {0}
+        run: |
+          jb build lectures --builder pdflatex --path-output ./ -n --keep-going
       - name: Build HTML
         shell: bash -l {0}
         run: |
