@@ -743,7 +743,7 @@ the value of a lease of duration $T$ approaches the value of a
 perpetual lease.
 
 Now we consider two different views of what happens as $r$ and
-$g$ covary
+$g$ covary.
 
 ```{code-cell} ipython3
 ---
@@ -852,17 +852,40 @@ so $\frac{\partial p_0}{\partial r}$ will always be negative.
 Similarly, $\frac{\partial p_0}{\partial g}>0$ as long as $r>g$, $r>0$ and $g>0$ and $x_0$ is positive, so $\frac{\partial p_0}{\partial g}$
 will always be positive.
 
-## Back to the Keynesian multiplier
+## Exercises
 
-We will now go back to the case of the Keynesian multiplier and plot the
-time path of $y_t$, given that consumption is a constant fraction
-of national income, and investment is fixed.
+```{exercise-start}
+:label: geom_ex1
+```
+Consider a dynamic Keynesian multiplier model
 
+$$
+ y_t = c_t + i_t + g_t \ \ \textrm { and } \ \ c_t = b y_{t-1}.
+$$
+
+Assume that $i_t=i_0$ and $g_t=g_0$ for all $t \geq 0$.
+
+Plot the time path of $y_t$ with the following initial values:
+
+```{code-cell} ipython3
+i_0 = 0.3
+g_0 = 0.3
+b = 2/3
+y_init = 0
+T = 100
+```
+
+```{exercise-end}
+```
+
+```{solution-start} geom_ex1
+:class: dropdown
+```
 ```{code-cell} ipython3
 ---
 mystnb:
   figure:
-    caption: "Path of aggregate output tver time"
+    caption: "Path of aggregate output over time"
     name: path_of_aggregate_output_over_time
 ---
 # Function that calculates a path of y
@@ -872,14 +895,6 @@ def calculate_y(i, b, g, T, y_init):
     for t in range(1, T+1):
         y[t] = b * y[t-1] + i + g
     return y
-
-# Initial values
-i_0 = 0.3
-g_0 = 0.3
-# 2/3 of income goes towards consumption
-b = 2/3
-y_init = 0
-T = 100
 
 fig, ax = plt.subplots()
 ax.set_xlabel('$t$')
@@ -893,9 +908,29 @@ plt.show()
 In this model, income grows over time, until it gradually converges to
 the infinite geometric series sum of income.
 
-We now examine what will
-happen if we vary the so-called **marginal propensity to consume**,
-i.e., the fraction of income that is consumed
+```{solution-end}
+```
+
+```{exercise-start}
+:label: geom_ex2
+```
+
+As an extension to {ref}`geom_ex1`. 
+
+Plot the time paths of $y_t$ with the same initial values but varying $b$ values:
+
+```{code-cell} ipython3
+bs = (1/3, 2/3, 5/6, 0.9)
+```
+
+Interpret the economic effect on $y_t$ of increasing $b$.
+
+```{exercise-end}
+```
+
+```{solution-start} geom_ex2
+:class: dropdown
+```
 
 ```{code-cell} ipython3
 ---
@@ -904,7 +939,6 @@ mystnb:
     caption: "Changing consumption as a fraction of income"
     name: changing_consumption_as_fraction_of_income
 ---
-bs = (1/3, 2/3, 5/6, 0.9)
 
 fig,ax = plt.subplots()
 ax.set_ylabel('$y_t$')
@@ -920,7 +954,31 @@ plt.show()
 Increasing the marginal propensity to consume $b$ increases the
 path of output over time.
 
-Now we will compare the effects on output of increases in investment and government spending.
+```{solution-end}
+```
+
+
+```{exercise-start}
+:label: geom_ex3
+```
+Continue from {ref}`geom_ex1`.
+First, plot the time paths of $y_t$ using the same initial values but with $i$ 
+taking the values below.
+```{code-cell} ipython3
+values = [0.3, 0.4]
+```
+
+
+Next, plot the time paths of $y_t$ with the same initial values but let $g$ take
+the values mentioned above.
+
+Are the effects on $y_t$ of increasing $i$ and $g$ in these plots the same?
+```{exercise-end}
+```
+
+```{solution-start} geom_ex3
+:class: dropdown
+```
 
 ```{code-cell} ipython3
 ---
@@ -933,7 +991,6 @@ fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(6, 10))
 fig.subplots_adjust(hspace=0.3)
 
 x = np.arange(0, T+1)
-values = [0.3, 0.4]
 
 for i in values:
     y = calculate_y(i, b, g_0, T, y_init)
@@ -955,3 +1012,6 @@ plt.show()
 Notice here, whether government spending increases from 0.3 to 0.4 or
 investment increases from 0.3 to 0.4, the shifts in the graphs are
 identical.
+
+```{solution-end}
+```
