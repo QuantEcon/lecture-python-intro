@@ -882,7 +882,7 @@ x_costco = prices.pct_change()[1:] * 100
 
 ```{code-cell} ipython3
 fig, ax = plt.subplots()
-ax.violinplot([x_amazon, x_costco])
+ax.violinplot([x_amazon['AMZN'], x_costco['COST']])
 ax.set_ylabel('monthly return (percent change)')
 ax.set_xlabel('retailers')
 
