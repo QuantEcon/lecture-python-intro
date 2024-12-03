@@ -71,14 +71,14 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/quantecon-book-theme.css?digest=f77998adf44a3f900caaca31caf410c810f6f245" type="text/css" />
+    <link rel="stylesheet" href="_static/styles/quantecon-book-theme.css?digest=bd0785fbb14d8d2bd4d9ae501d79ed8d3bc089ec" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="_static/exercise.css" />
     <link rel="stylesheet" type="text/css" href="_static/proof.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.5ea377869091fd0449014c60fc090103.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
@@ -91,14 +91,15 @@
     <script src="_static/underscore.js"></script>
     <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="_static/scripts/sphinx-book-theme.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="_static/togglebutton.js"></script>
-    <script src="_static/scripts/quantecon-book-theme.js?digest=eed9c059a3ee152aae2353ec732f0a6d12e6aa07"></script>
+    <script src="_static/scripts/quantecon-book-theme.js?digest=d6d86bce9979111653c4c495e33499e1796e172a"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="_static/design-tabs.js"></script>
@@ -109,11 +110,7 @@
                 gtag('js', new Date());
                 gtag('config', 'G-QDS1YRJNGM');
             </script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"tex": {"macros": {"argmax": "arg\\,max", "argmin": "arg\\,min"}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -385,11 +382,11 @@ v_0\)</span>, we obtain <span class="math notranslate nohighlight">\(\mu_t, v_t\
 <div class="cell_output docutils container">
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;&gt;:12: SyntaxWarning: invalid escape sequence &#39;\p&#39;
 &lt;&gt;:12: SyntaxWarning: invalid escape sequence &#39;\p&#39;
-/tmp/ipykernel_5177/1737174689.py:12: SyntaxWarning: invalid escape sequence &#39;\p&#39;
+/tmp/ipykernel_5770/1737174689.py:12: SyntaxWarning: invalid escape sequence &#39;\p&#39;
   label=f&quot;$\psi_{t}$&quot;,
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="_images/ca5d15b3c87a70fc341399f7e91658ce7141fbe961965b0518cbade0fad68fbb.png"><img alt="_images/ca5d15b3c87a70fc341399f7e91658ce7141fbe961965b0518cbade0fad68fbb.png" src="_images/ca5d15b3c87a70fc341399f7e91658ce7141fbe961965b0518cbade0fad68fbb.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/8db60a2b124d2473ca0d9b88fef705a33356c88304fdfcaad3c1a55309459aa7.png"><img alt="_images/8db60a2b124d2473ca0d9b88fef705a33356c88304fdfcaad3c1a55309459aa7.png" src="_images/8db60a2b124d2473ca0d9b88fef705a33356c88304fdfcaad3c1a55309459aa7.png" style="width: 80%;" /></a>
 </div>
 </div>
 </section>
@@ -422,7 +419,7 @@ kind of steady state, then the model gives a sharp prediction.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/88183024acda6460a65dae6bcca16d214d907c07260934b72a58633d421629b2.png"><img alt="_images/88183024acda6460a65dae6bcca16d214d907c07260934b72a58633d421629b2.png" src="_images/88183024acda6460a65dae6bcca16d214d907c07260934b72a58633d421629b2.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/6295177d66ec5822fb42fd749821807a1d291d69bd1cf5782672693cbfcc49a9.png"><img alt="_images/6295177d66ec5822fb42fd749821807a1d291d69bd1cf5782672693cbfcc49a9.png" src="_images/6295177d66ec5822fb42fd749821807a1d291d69bd1cf5782672693cbfcc49a9.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>Moreover, the limit does not depend on the initial condition.</p>
@@ -436,7 +433,7 @@ kind of steady state, then the model gives a sharp prediction.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/d55488b0c7075d2181e02de513c68275ea0f2e3e554bffe779631af778b3ea44.png"><img alt="_images/d55488b0c7075d2181e02de513c68275ea0f2e3e554bffe779631af778b3ea44.png" src="_images/d55488b0c7075d2181e02de513c68275ea0f2e3e554bffe779631af778b3ea44.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/50807281e41cf1cc9ca00c2b850c770500e6e00601e8aca34f5ef22e25a1c40f.png"><img alt="_images/50807281e41cf1cc9ca00c2b850c770500e6e00601e8aca34f5ef22e25a1c40f.png" src="_images/50807281e41cf1cc9ca00c2b850c770500e6e00601e8aca34f5ef22e25a1c40f.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>In fact it’s easy to show that such convergence will occur, regardless of the initial condition, whenever <span class="math notranslate nohighlight">\(|a| &lt; 1\)</span>.</p>
@@ -472,11 +469,11 @@ t \to \infty\]</div>
 <div class="cell_output docutils container">
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;&gt;:7: SyntaxWarning: invalid escape sequence &#39;\p&#39;
 &lt;&gt;:7: SyntaxWarning: invalid escape sequence &#39;\p&#39;
-/tmp/ipykernel_5177/3420803857.py:7: SyntaxWarning: invalid escape sequence &#39;\p&#39;
+/tmp/ipykernel_5770/3420803857.py:7: SyntaxWarning: invalid escape sequence &#39;\p&#39;
   ax.plot(grid, psi_star, &#39;k-&#39;, lw=2, label=&quot;$\psi^*$&quot;)
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="_images/ff218eb377b75199fea552684c06b82ea0f8962b60cd48e64d0dec6a9ab3a03b.png"><img alt="_images/ff218eb377b75199fea552684c06b82ea0f8962b60cd48e64d0dec6a9ab3a03b.png" src="_images/ff218eb377b75199fea552684c06b82ea0f8962b60cd48e64d0dec6a9ab3a03b.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/00ec94e4259ade6e30e501a349175e925646cfaa308db64935a10c3b64b47d05.png"><img alt="_images/00ec94e4259ade6e30e501a349175e925646cfaa308db64935a10c3b64b47d05.png" src="_images/00ec94e4259ade6e30e501a349175e925646cfaa308db64935a10c3b64b47d05.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>As claimed, the sequence <span class="math notranslate nohighlight">\(\{ \psi_t \}\)</span> converges to <span class="math notranslate nohighlight">\(\psi^*\)</span>.</p>
@@ -617,7 +614,7 @@ M_k =
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/b5cc70ff5c64449c9ad655a55e2593bb61b35d4beb86222ab0dfb07e24be60af.png"><img alt="_images/b5cc70ff5c64449c9ad655a55e2593bb61b35d4beb86222ab0dfb07e24be60af.png" src="_images/b5cc70ff5c64449c9ad655a55e2593bb61b35d4beb86222ab0dfb07e24be60af.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/0c8e3f05948fbd6e349164b933b891a9333b389abeecb9a248e7cf3c55f4abcc.png"><img alt="_images/0c8e3f05948fbd6e349164b933b891a9333b389abeecb9a248e7cf3c55f4abcc.png" src="_images/0c8e3f05948fbd6e349164b933b891a9333b389abeecb9a248e7cf3c55f4abcc.png" style="width: 80%;" /></a>
 </div>
 </div>
 </section>
@@ -724,9 +721,9 @@ of these distributions?)</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/35d8f595bd0c7b2b9135e99107a575415b3c0ded079c95838a8c23476c610650.png"><img alt="_images/35d8f595bd0c7b2b9135e99107a575415b3c0ded079c95838a8c23476c610650.png" src="_images/35d8f595bd0c7b2b9135e99107a575415b3c0ded079c95838a8c23476c610650.png" style="width: 80%;" /></a>
-<a class="reference internal image-reference" href="_images/fe1a8f2568b7f278233627e7e2dd73c8f3c478bc32d90e08547fd26c1edc228a.png"><img alt="_images/fe1a8f2568b7f278233627e7e2dd73c8f3c478bc32d90e08547fd26c1edc228a.png" src="_images/fe1a8f2568b7f278233627e7e2dd73c8f3c478bc32d90e08547fd26c1edc228a.png" style="width: 80%;" /></a>
-<a class="reference internal image-reference" href="_images/c0b61a7e6a1baadc7cc9f6d3a5405c39009854a38623e89bafa000167676306c.png"><img alt="_images/c0b61a7e6a1baadc7cc9f6d3a5405c39009854a38623e89bafa000167676306c.png" src="_images/c0b61a7e6a1baadc7cc9f6d3a5405c39009854a38623e89bafa000167676306c.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/b76871621d3202739d046a27903b30c8274e362ecc2cb17757a3987aa97befc3.png"><img alt="_images/b76871621d3202739d046a27903b30c8274e362ecc2cb17757a3987aa97befc3.png" src="_images/b76871621d3202739d046a27903b30c8274e362ecc2cb17757a3987aa97befc3.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/3936aa77d859a263cf1f5c08d39873761295879514748910b12176c1a954ebea.png"><img alt="_images/3936aa77d859a263cf1f5c08d39873761295879514748910b12176c1a954ebea.png" src="_images/3936aa77d859a263cf1f5c08d39873761295879514748910b12176c1a954ebea.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/99a1188480178f993c3c2aa2afbfe43491c886a2cbd415efbb127df4c07f325f.png"><img alt="_images/99a1188480178f993c3c2aa2afbfe43491c886a2cbd415efbb127df4c07f325f.png" src="_images/99a1188480178f993c3c2aa2afbfe43491c886a2cbd415efbb127df4c07f325f.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>We see that the kernel density estimator is effective when the underlying
@@ -839,15 +836,15 @@ theoretical distribution.</p>
 &lt;&gt;:9: SyntaxWarning: invalid escape sequence &#39;\p&#39;
 &lt;&gt;:10: SyntaxWarning: invalid escape sequence &#39;\p&#39;
 &lt;&gt;:11: SyntaxWarning: invalid escape sequence &#39;\p&#39;
-/tmp/ipykernel_5177/2830449538.py:9: SyntaxWarning: invalid escape sequence &#39;\p&#39;
+/tmp/ipykernel_5770/2830449538.py:9: SyntaxWarning: invalid escape sequence &#39;\p&#39;
   ax.plot(x_grid, ψ.pdf(x_grid), label=&quot;$\psi_t$&quot;)
-/tmp/ipykernel_5177/2830449538.py:10: SyntaxWarning: invalid escape sequence &#39;\p&#39;
+/tmp/ipykernel_5770/2830449538.py:10: SyntaxWarning: invalid escape sequence &#39;\p&#39;
   ax.plot(x_grid, ψ_next.pdf(x_grid), label=&quot;$\psi_{t+1}$&quot;)
-/tmp/ipykernel_5177/2830449538.py:11: SyntaxWarning: invalid escape sequence &#39;\p&#39;
+/tmp/ipykernel_5770/2830449538.py:11: SyntaxWarning: invalid escape sequence &#39;\p&#39;
   ax.plot(x_grid, kde.f(x_grid), label=&quot;estimate of $\psi_{t+1}$&quot;)
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="_images/142bdd3ffdd16170e3465e4f32eeb49b29a0b8fe2c07c1d8111f397d299ceab4.png"><img alt="_images/142bdd3ffdd16170e3465e4f32eeb49b29a0b8fe2c07c1d8111f397d299ceab4.png" src="_images/142bdd3ffdd16170e3465e4f32eeb49b29a0b8fe2c07c1d8111f397d299ceab4.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/4f33aa17e98bedf0af66c384b44de55a42ad38b62d43a75d7491b7c0ebdde54f.png"><img alt="_images/4f33aa17e98bedf0af66c384b44de55a42ad38b62d43a75d7491b7c0ebdde54f.png" src="_images/4f33aa17e98bedf0af66c384b44de55a42ad38b62d43a75d7491b7c0ebdde54f.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>The simulated distribution approximately coincides with the theoretical
@@ -1279,7 +1276,11 @@ distribution, as predicted.</p>
                     <li data-tippy-content="Download Notebook"><a href="/_notebooks/ar1_processes.ipynb" download><i data-feather="download-cloud"></i></a></li>
                     <li class="settings-button" id="settingsButton"><div data-tippy-content="Launch Notebook"><i data-feather="play-circle"></i></div></li>
                         <li class="download-pdf" id="downloadButton"><i data-feather="file"></i></li>
+                    <!--
+                    # Enable if looking for link to specific document hosted on GitHub
                     <li data-tippy-content="View Source"><a target="_blank" href="https://github.com/QuantEcon/lecture-python-intro/blob/main/lectures/ar1_processes.md" download><i data-feather="github"></i></a></li>
+                    -->
+                    <li data-tippy-content="View Source"><a target="_blank" href="https://github.com/QuantEcon/lecture-python-intro" download><i data-feather="github"></i></a></li>
                 </ul>
 
             </div>

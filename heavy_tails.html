@@ -71,14 +71,14 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/quantecon-book-theme.css?digest=f77998adf44a3f900caaca31caf410c810f6f245" type="text/css" />
+    <link rel="stylesheet" href="_static/styles/quantecon-book-theme.css?digest=bd0785fbb14d8d2bd4d9ae501d79ed8d3bc089ec" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="_static/exercise.css" />
     <link rel="stylesheet" type="text/css" href="_static/proof.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.5ea377869091fd0449014c60fc090103.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
@@ -91,14 +91,15 @@
     <script src="_static/underscore.js"></script>
     <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="_static/scripts/sphinx-book-theme.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="_static/togglebutton.js"></script>
-    <script src="_static/scripts/quantecon-book-theme.js?digest=eed9c059a3ee152aae2353ec732f0a6d12e6aa07"></script>
+    <script src="_static/scripts/quantecon-book-theme.js?digest=d6d86bce9979111653c4c495e33499e1796e172a"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="_static/design-tabs.js"></script>
@@ -109,11 +110,7 @@
                 gtag('js', new Date());
                 gtag('config', 'G-QDS1YRJNGM');
             </script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"tex": {"macros": {"argmax": "arg\\,max", "argmin": "arg\\,min"}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -283,7 +280,7 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="expanded">Hide code cell output</span>
 </summary>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: yfinance in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (0.2.48)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: yfinance in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (0.2.50)
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: pandas_datareader in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (0.10.0)
@@ -291,28 +288,24 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: pandas&gt;=1.3.0 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from yfinance) (2.2.2)
 Requirement already satisfied: numpy&gt;=1.16.5 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from yfinance) (1.26.4)
-Requirement already satisfied: requests&gt;=2.31 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from yfinance) (2.32.2)
+Requirement already satisfied: requests&gt;=2.31 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from yfinance) (2.32.3)
 Requirement already satisfied: multitasking&gt;=0.0.7 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from yfinance) (0.0.11)
 Requirement already satisfied: lxml&gt;=4.9.1 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from yfinance) (5.2.1)
 Requirement already satisfied: platformdirs&gt;=2.0.0 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from yfinance) (3.10.0)
 Requirement already satisfied: pytz&gt;=2022.5 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from yfinance) (2024.1)
 Requirement already satisfied: frozendict&gt;=2.3.4 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from yfinance) (2.4.6)
-Requirement already satisfied: peewee&gt;=3.16.2 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from yfinance) (3.17.7)
+Requirement already satisfied: peewee&gt;=3.16.2 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from yfinance) (3.17.8)
 Requirement already satisfied: beautifulsoup4&gt;=4.11.1 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from yfinance) (4.12.3)
 Requirement already satisfied: html5lib&gt;=1.1 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from yfinance) (1.1)
 Requirement already satisfied: soupsieve&gt;1.2 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from beautifulsoup4&gt;=4.11.1-&gt;yfinance) (2.5)
 Requirement already satisfied: six&gt;=1.9 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from html5lib&gt;=1.1-&gt;yfinance) (1.16.0)
 Requirement already satisfied: webencodings in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from html5lib&gt;=1.1-&gt;yfinance) (0.5.1)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: python-dateutil&gt;=2.8.2 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from pandas&gt;=1.3.0-&gt;yfinance) (2.9.0.post0)
+Requirement already satisfied: python-dateutil&gt;=2.8.2 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from pandas&gt;=1.3.0-&gt;yfinance) (2.9.0.post0)
 Requirement already satisfied: tzdata&gt;=2022.7 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from pandas&gt;=1.3.0-&gt;yfinance) (2023.3)
-Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from requests&gt;=2.31-&gt;yfinance) (2.0.4)
+Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from requests&gt;=2.31-&gt;yfinance) (3.3.2)
 Requirement already satisfied: idna&lt;4,&gt;=2.5 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from requests&gt;=2.31-&gt;yfinance) (3.7)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from requests&gt;=2.31-&gt;yfinance) (2.2.2)
-Requirement already satisfied: certifi&gt;=2017.4.17 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from requests&gt;=2.31-&gt;yfinance) (2024.6.2)
+Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from requests&gt;=2.31-&gt;yfinance) (2.2.3)
+Requirement already satisfied: certifi&gt;=2017.4.17 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from requests&gt;=2.31-&gt;yfinance) (2024.8.30)
 </pre></div>
 </div>
 </div>
@@ -380,7 +373,7 @@ as with the following code (which assumes <span class="math notranslate nohighli
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="hist-obs">
-<a class="reference internal image-reference" href="_images/da65c1c455edb1f1bb51b7f2f2b4fc53f254c05c421c8491b2847688561ae7cf.png"><img alt="_images/da65c1c455edb1f1bb51b7f2f2b4fc53f254c05c421c8491b2847688561ae7cf.png" src="_images/da65c1c455edb1f1bb51b7f2f2b4fc53f254c05c421c8491b2847688561ae7cf.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/503fe2cd6e6293c8e75d75a984936f780f3a46b067467171fb3ca38889d3a4ff.png"><img alt="_images/503fe2cd6e6293c8e75d75a984936f780f3a46b067467171fb3ca38889d3a4ff.png" src="_images/503fe2cd6e6293c8e75d75a984936f780f3a46b067467171fb3ca38889d3a4ff.png" style="width: 80%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 21.1 </span><span class="caption-text">Histogram of observations</span><a class="headerlink" href="#hist-obs" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -400,7 +393,7 @@ as with the following code (which assumes <span class="math notranslate nohighli
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-4.920007574488814, 5.395124385446436)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-4.558589890359529, 4.475096007802963)
 </pre></div>
 </div>
 </div>
@@ -422,7 +415,7 @@ as with the following code (which assumes <span class="math notranslate nohighli
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="hist-obs2">
-<a class="reference internal image-reference" href="_images/30bfcbb86895fedba2fe0c4b9b1c1a196a18928312b80248a02ca0ff38377455.png"><img alt="_images/30bfcbb86895fedba2fe0c4b9b1c1a196a18928312b80248a02ca0ff38377455.png" src="_images/30bfcbb86895fedba2fe0c4b9b1c1a196a18928312b80248a02ca0ff38377455.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/7d67aa462cbe1388387d6242d611071015970a003e36af939d6f9b06f132a13f.png"><img alt="_images/7d67aa462cbe1388387d6242d611071015970a003e36af939d6f9b06f132a13f.png" src="_images/7d67aa462cbe1388387d6242d611071015970a003e36af939d6f9b06f132a13f.png" style="width: 80%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 21.2 </span><span class="caption-text">Histogram of observations</span><a class="headerlink" href="#hist-obs2" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -504,7 +497,7 @@ the period from 1st January 2015 to 1st July 2022.</p>
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="dailyreturns-amzn">
-<a class="reference internal image-reference" href="_images/8367cb1e8441b182d2c9cd6da4b1cef17491f2ffe07ad654407b7f3b78411681.png"><img alt="_images/8367cb1e8441b182d2c9cd6da4b1cef17491f2ffe07ad654407b7f3b78411681.png" src="_images/8367cb1e8441b182d2c9cd6da4b1cef17491f2ffe07ad654407b7f3b78411681.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/7354a2ee3ae33279e134e0aad6dae22d6362a5fa04a73d58b10783d100de717e.png"><img alt="_images/7354a2ee3ae33279e134e0aad6dae22d6362a5fa04a73d58b10783d100de717e.png" src="_images/7354a2ee3ae33279e134e0aad6dae22d6362a5fa04a73d58b10783d100de717e.png" style="width: 80%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 21.3 </span><span class="caption-text">Daily Amazon returns</span><a class="headerlink" href="#dailyreturns-amzn" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -553,7 +546,7 @@ the period from 1st January 2015 to 1st July 2022.</p>
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="dailyreturns-btc">
-<a class="reference internal image-reference" href="_images/dfe457e3b346a23ba87869dbd72afbc049ec19b7fb750e22a34b1b5311bfc247.png"><img alt="_images/dfe457e3b346a23ba87869dbd72afbc049ec19b7fb750e22a34b1b5311bfc247.png" src="_images/dfe457e3b346a23ba87869dbd72afbc049ec19b7fb750e22a34b1b5311bfc247.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/384d9220b59974e51d461aafc4310f13659766a30559064ea84e6c6fcc68a734.png"><img alt="_images/384d9220b59974e51d461aafc4310f13659766a30559064ea84e6c6fcc68a734.png" src="_images/384d9220b59974e51d461aafc4310f13659766a30559064ea84e6c6fcc68a734.png" style="width: 80%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 21.4 </span><span class="caption-text">Daily Bitcoin returns</span><a class="headerlink" href="#dailyreturns-btc" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -583,7 +576,7 @@ distribution:</p>
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="hist-normal-btc">
-<a class="reference internal image-reference" href="_images/63fcf85d537fa686599a951046239ed71da25a0c6d2b204217bddfcefc13f951.png"><img alt="_images/63fcf85d537fa686599a951046239ed71da25a0c6d2b204217bddfcefc13f951.png" src="_images/63fcf85d537fa686599a951046239ed71da25a0c6d2b204217bddfcefc13f951.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/8e10992f7b0f730f7120d129feaa3700731ad96d2c6e07f0eaaff2b158da105f.png"><img alt="_images/8e10992f7b0f730f7120d129feaa3700731ad96d2c6e07f0eaaff2b158da105f.png" src="_images/8e10992f7b0f730f7120d129feaa3700731ad96d2c6e07f0eaaff2b158da105f.png" style="width: 80%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 21.5 </span><span class="caption-text">Histogram (normal vs bitcoin returns)</span><a class="headerlink" href="#hist-normal-btc" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -683,12 +676,12 @@ heavy-tailed.</p>
 <div class="cell_output docutils container">
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;&gt;:15: SyntaxWarning: invalid escape sequence &#39;\s&#39;
 &lt;&gt;:15: SyntaxWarning: invalid escape sequence &#39;\s&#39;
-/tmp/ipykernel_5591/1034380002.py:15: SyntaxWarning: invalid escape sequence &#39;\s&#39;
+/tmp/ipykernel_6167/1034380002.py:15: SyntaxWarning: invalid escape sequence &#39;\s&#39;
   ax.set_title(f&quot;draws from $N(0, \sigma^2)$ with $\sigma = {s}$&quot;, fontsize=11)
 </pre></div>
 </div>
 <figure class="align-default" id="draws-normal-cauchy">
-<a class="reference internal image-reference" href="_images/4e35344903106e36743b96bb25cddab5ddbe6d9ecc3ff81242f3872a619f9931.png"><img alt="_images/4e35344903106e36743b96bb25cddab5ddbe6d9ecc3ff81242f3872a619f9931.png" src="_images/4e35344903106e36743b96bb25cddab5ddbe6d9ecc3ff81242f3872a619f9931.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/860630e11ac1a72ad6861921a81c84a0624ed6fddef146b7ba6bf343cc8d8a6c.png"><img alt="_images/860630e11ac1a72ad6861921a81c84a0624ed6fddef146b7ba6bf343cc8d8a6c.png" src="_images/860630e11ac1a72ad6861921a81c84a0624ed6fddef146b7ba6bf343cc8d8a6c.png" style="width: 80%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 21.6 </span><span class="caption-text">Draws from normal and Cauchy distributions</span><a class="headerlink" href="#draws-normal-cauchy" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -728,7 +721,7 @@ with a few sudden large deviations from the mean.</p>
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="draws-exponential">
-<a class="reference internal image-reference" href="_images/fc3d5804b1dda5b1c6794d3bd7939ae86ecc0a1c2d34a5f37602f94d163df2fb.png"><img alt="_images/fc3d5804b1dda5b1c6794d3bd7939ae86ecc0a1c2d34a5f37602f94d163df2fb.png" src="_images/fc3d5804b1dda5b1c6794d3bd7939ae86ecc0a1c2d34a5f37602f94d163df2fb.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/d7c52bafb94ab5a0c2d214029eac7d80dcf6423135a6d3b31d6414ae92be3767.png"><img alt="_images/d7c52bafb94ab5a0c2d214029eac7d80dcf6423135a6d3b31d6414ae92be3767.png" src="_images/d7c52bafb94ab5a0c2d214029eac7d80dcf6423135a6d3b31d6414ae92be3767.png" style="width: 80%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 21.7 </span><span class="caption-text">Draws of exponential distribution</span><a class="headerlink" href="#draws-exponential" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -778,7 +771,7 @@ Y = \bar x \exp(X)
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="draws-pareto">
-<a class="reference internal image-reference" href="_images/05de27994f8ecc8d8c4d03c72c750ea0c691cde37f0150c795004e866b30ae8f.png"><img alt="_images/05de27994f8ecc8d8c4d03c72c750ea0c691cde37f0150c795004e866b30ae8f.png" src="_images/05de27994f8ecc8d8c4d03c72c750ea0c691cde37f0150c795004e866b30ae8f.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/3f2589dd2812edd6227f4b54b694aab3e8860650b20e66172b6b3ebccff756b0.png"><img alt="_images/3f2589dd2812edd6227f4b54b694aab3e8860650b20e66172b6b3ebccff756b0.png" src="_images/3f2589dd2812edd6227f4b54b694aab3e8860650b20e66172b6b3ebccff756b0.png" style="width: 80%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 21.8 </span><span class="caption-text">Draws from Pareto distribution</span><a class="headerlink" href="#draws-pareto" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -854,7 +847,7 @@ distributed with rate parameter <span class="math notranslate nohighlight">\(\al
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="compare-pareto-exponential">
-<a class="reference internal image-reference" href="_images/37ada8622f408650cfb145e487421c74c14b31cac1d0f02dc3120f01a7b80db3.png"><img alt="_images/37ada8622f408650cfb145e487421c74c14b31cac1d0f02dc3120f01a7b80db3.png" src="_images/37ada8622f408650cfb145e487421c74c14b31cac1d0f02dc3120f01a7b80db3.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/8650913bdb81371109a680ea6f6baf7ff42f0d1914d50b5efe56602c8e718e08.png"><img alt="_images/8650913bdb81371109a680ea6f6baf7ff42f0d1914d50b5efe56602c8e718e08.png" src="_images/8650913bdb81371109a680ea6f6baf7ff42f0d1914d50b5efe56602c8e718e08.png" style="width: 80%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 21.9 </span><span class="caption-text">Pareto and exponential distribution comparison</span><a class="headerlink" href="#compare-pareto-exponential" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -878,7 +871,7 @@ easier.</p>
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="compare-pareto-exponential-log-log">
-<a class="reference internal image-reference" href="_images/ab9feb3215bbfcada25da504aaf0271278bdc560b41e5480138ee6c380bceb44.png"><img alt="_images/ab9feb3215bbfcada25da504aaf0271278bdc560b41e5480138ee6c380bceb44.png" src="_images/ab9feb3215bbfcada25da504aaf0271278bdc560b41e5480138ee6c380bceb44.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/a7311ee7153ac262038ef90f7b20377dfc953697758e236d2c0452b4079acbe6.png"><img alt="_images/a7311ee7153ac262038ef90f7b20377dfc953697758e236d2c0452b4079acbe6.png" src="_images/a7311ee7153ac262038ef90f7b20377dfc953697758e236d2c0452b4079acbe6.png" style="width: 80%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 21.10 </span><span class="caption-text">Pareto and exponential distribution comparison (log-log)</span><a class="headerlink" href="#compare-pareto-exponential-log-log" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -947,7 +940,7 @@ visualisations — we return to this point below.</p>
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="ccdf-empirics">
-<a class="reference internal image-reference" href="_images/60b9d4c91958ea9491b10d90e2d94e3c55b01f8dc84ed9e552c58c71ceb1d910.png"><img alt="_images/60b9d4c91958ea9491b10d90e2d94e3c55b01f8dc84ed9e552c58c71ceb1d910.png" src="_images/60b9d4c91958ea9491b10d90e2d94e3c55b01f8dc84ed9e552c58c71ceb1d910.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/97ce8e5865983bd388936f0166efe180adc8a8609c2d5f1a444f2e7c9da48e3e.png"><img alt="_images/97ce8e5865983bd388936f0166efe180adc8a8609c2d5f1a444f2e7c9da48e3e.png" src="_images/97ce8e5865983bd388936f0166efe180adc8a8609c2d5f1a444f2e7c9da48e3e.png" style="width: 80%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 21.11 </span><span class="caption-text">Empirical CCDFs</span><a class="headerlink" href="#ccdf-empirics" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -971,7 +964,7 @@ approximately linear in a log-log plot.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/940c786a8d066e2ba8a59fa2cf6d60deb5b2c5f16be9306c6e29a0485946139e.png"><img alt="_images/940c786a8d066e2ba8a59fa2cf6d60deb5b2c5f16be9306c6e29a0485946139e.png" src="_images/940c786a8d066e2ba8a59fa2cf6d60deb5b2c5f16be9306c6e29a0485946139e.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/1629423512e36cbbaf61e1607fa0032fbc561b10e89bcaf3d52007f6daef76d9.png"><img alt="_images/1629423512e36cbbaf61e1607fa0032fbc561b10e89bcaf3d52007f6daef76d9.png" src="_images/1629423512e36cbbaf61e1607fa0032fbc561b10e89bcaf3d52007f6daef76d9.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>We can now compare this with the exponential, log-normal, and Pareto distributions</p>
@@ -990,7 +983,7 @@ approximately linear in a log-log plot.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/cdd1b06b7ce0ba86e218dfdc8d7c9eb74d5d335c85833bfc2c27049b5088dbdb.png"><img alt="_images/cdd1b06b7ce0ba86e218dfdc8d7c9eb74d5d335c85833bfc2c27049b5088dbdb.png" src="_images/cdd1b06b7ce0ba86e218dfdc8d7c9eb74d5d335c85833bfc2c27049b5088dbdb.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/db9ba119ea57bf7c4a73c33eb23ef9bbf717a9645cb1b54ecadb02e217ec026f.png"><img alt="_images/db9ba119ea57bf7c4a73c33eb23ef9bbf717a9645cb1b54ecadb02e217ec026f.png" src="_images/db9ba119ea57bf7c4a73c33eb23ef9bbf717a9645cb1b54ecadb02e217ec026f.png" style="width: 80%;" /></a>
 </div>
 </div>
 </section>
@@ -1151,7 +1144,7 @@ readers are of course welcome to explore the code (perhaps after examining the f
 </details>
 <div class="cell_output docutils container">
 <figure class="align-default" id="firm-size-dist">
-<a class="reference internal image-reference" href="_images/82173f0ad03ed990e1677b961a6f5a20e6f57284900125672a64aece73e43fcc.png"><img alt="_images/82173f0ad03ed990e1677b961a6f5a20e6f57284900125672a64aece73e43fcc.png" src="_images/82173f0ad03ed990e1677b961a6f5a20e6f57284900125672a64aece73e43fcc.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/63a7b7a7922d898ebd1f6e2ef25ff79bf5409b7f71f278c1ca55275dbdce4a22.png"><img alt="_images/63a7b7a7922d898ebd1f6e2ef25ff79bf5409b7f71f278c1ca55275dbdce4a22.png" src="_images/63a7b7a7922d898ebd1f6e2ef25ff79bf5409b7f71f278c1ca55275dbdce4a22.png" style="width: 80%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 21.12 </span><span class="caption-text">Firm size distribution</span><a class="headerlink" href="#firm-size-dist" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -1186,7 +1179,7 @@ readers are of course welcome to explore the code (perhaps after examining the f
 </details>
 <div class="cell_output docutils container">
 <figure class="align-default" id="city-size-dist">
-<a class="reference internal image-reference" href="_images/bf451b860f235c7456e85cacbfd5aaa7961ecc2c266bc858cdb061fb980f2f01.png"><img alt="_images/bf451b860f235c7456e85cacbfd5aaa7961ecc2c266bc858cdb061fb980f2f01.png" src="_images/bf451b860f235c7456e85cacbfd5aaa7961ecc2c266bc858cdb061fb980f2f01.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/02692c40bdbc574a151e1859c2492ae8a8790199e128b69e4dcc05532215eacb.png"><img alt="_images/02692c40bdbc574a151e1859c2492ae8a8790199e128b69e4dcc05532215eacb.png" src="_images/02692c40bdbc574a151e1859c2492ae8a8790199e128b69e4dcc05532215eacb.png" style="width: 80%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 21.13 </span><span class="caption-text">City size distribution</span><a class="headerlink" href="#city-size-dist" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -1234,7 +1227,7 @@ readers are of course welcome to explore the code (perhaps after examining the f
 </details>
 <div class="cell_output docutils container">
 <figure class="align-default" id="wealth-dist">
-<a class="reference internal image-reference" href="_images/f6bc7b0d5728a9114fa971b36e33d7becaa55b654adab3a6d0a5a5db239ef548.png"><img alt="_images/f6bc7b0d5728a9114fa971b36e33d7becaa55b654adab3a6d0a5a5db239ef548.png" src="_images/f6bc7b0d5728a9114fa971b36e33d7becaa55b654adab3a6d0a5a5db239ef548.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/560a3b8ebe25dd26c11d32c3e8eb0c8fc2e3aac4e95e70a6125f5f5114d6cd51.png"><img alt="_images/560a3b8ebe25dd26c11d32c3e8eb0c8fc2e3aac4e95e70a6125f5f5114d6cd51.png" src="_images/560a3b8ebe25dd26c11d32c3e8eb0c8fc2e3aac4e95e70a6125f5f5114d6cd51.png" style="width: 80%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 21.14 </span><span class="caption-text">Wealth distribution (Forbes billionaires in 2020)</span><a class="headerlink" href="#wealth-dist" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -1269,7 +1262,7 @@ readers are of course welcome to explore the code (perhaps after examining the f
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_5591/3215967216.py:12: FutureWarning: errors=&#39;ignore&#39; is deprecated and will raise in a future version. Use to_numeric without passing `errors` and catch exceptions explicitly instead
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_6167/3215967216.py:12: FutureWarning: errors=&#39;ignore&#39; is deprecated and will raise in a future version. Use to_numeric without passing `errors` and catch exceptions explicitly instead
   df = wb.download(indicator=varlist, country=c, start=s, end=e).stack().unstack(0).reset_index()
 </pre></div>
 </div>
@@ -1294,7 +1287,7 @@ readers are of course welcome to explore the code (perhaps after examining the f
 </details>
 <div class="cell_output docutils container">
 <figure class="align-default" id="gdppc-dist">
-<a class="reference internal image-reference" href="_images/9df8d81516615e485682540863794cbe12199b505bac98cbd65a9215e794d3a8.png"><img alt="_images/9df8d81516615e485682540863794cbe12199b505bac98cbd65a9215e794d3a8.png" src="_images/9df8d81516615e485682540863794cbe12199b505bac98cbd65a9215e794d3a8.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/46063ae6abe2fdc6c77ba960b8bbdcbb1c5eef51387d8ffa23f604e0043536f8.png"><img alt="_images/46063ae6abe2fdc6c77ba960b8bbdcbb1c5eef51387d8ffa23f604e0043536f8.png" src="_images/46063ae6abe2fdc6c77ba960b8bbdcbb1c5eef51387d8ffa23f604e0043536f8.png" style="width: 80%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 21.15 </span><span class="caption-text">GDP per capita distribution</span><a class="headerlink" href="#gdppc-dist" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -1352,7 +1345,7 @@ whether or not the LLN is still valid.</p>
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="fail-lln">
-<a class="reference internal image-reference" href="_images/faf6685be7099a836e45c03e75fceff8317fac2846ed6f3f09fbcd4948f901c5.png"><img alt="_images/faf6685be7099a836e45c03e75fceff8317fac2846ed6f3f09fbcd4948f901c5.png" src="_images/faf6685be7099a836e45c03e75fceff8317fac2846ed6f3f09fbcd4948f901c5.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/429f602ace4e3f5e217667df7a1e5909a6954f87265fd1573a9c3f5d7664e45f.png"><img alt="_images/429f602ace4e3f5e217667df7a1e5909a6954f87265fd1573a9c3f5d7664e45f.png" src="_images/429f602ace4e3f5e217667df7a1e5909a6954f87265fd1573a9c3f5d7664e45f.png" style="width: 80%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 21.16 </span><span class="caption-text">LLN failure</span><a class="headerlink" href="#fail-lln" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -1530,7 +1523,7 @@ Cauchy) with three Pareto distributions using different choices of
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/6592733d1712be04ad55f8cf8dfa5959c81cd8d31dd9a4101da9258ea85a530b.png"><img alt="_images/6592733d1712be04ad55f8cf8dfa5959c81cd8d31dd9a4101da9258ea85a530b.png" src="_images/6592733d1712be04ad55f8cf8dfa5959c81cd8d31dd9a4101da9258ea85a530b.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/085a2aafdc7c2fe06e984704b3f13de2abea7c772320f305d99fd036945fe97c.png"><img alt="_images/085a2aafdc7c2fe06e984704b3f13de2abea7c772320f305d99fd036945fe97c.png" src="_images/085a2aafdc7c2fe06e984704b3f13de2abea7c772320f305d99fd036945fe97c.png" style="width: 80%;" /></a>
 </div>
 </div>
 </section>
@@ -1680,7 +1673,7 @@ choice of distribution <code class="docutils literal notranslate"><span class="p
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/9beda163e0474122c707f11a2e52dd7b0d08814933c74d83b78ab489ba23ec3a.png"><img alt="_images/9beda163e0474122c707f11a2e52dd7b0d08814933c74d83b78ab489ba23ec3a.png" src="_images/9beda163e0474122c707f11a2e52dd7b0d08814933c74d83b78ab489ba23ec3a.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/23b41a9a12ebf6da34fdcbb003e180d73bc3c0fdedfdf94c6e7149348ec1d3dd.png"><img alt="_images/23b41a9a12ebf6da34fdcbb003e180d73bc3c0fdedfdf94c6e7149348ec1d3dd.png" src="_images/23b41a9a12ebf6da34fdcbb003e180d73bc3c0fdedfdf94c6e7149348ec1d3dd.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>Finally, let’s print the means and standard deviations.</p>
@@ -2173,7 +2166,11 @@ X_n\)</span> from the Cauchy distribution has the same characteristic function a
                     <li data-tippy-content="Download Notebook"><a href="/_notebooks/heavy_tails.ipynb" download><i data-feather="download-cloud"></i></a></li>
                     <li class="settings-button" id="settingsButton"><div data-tippy-content="Launch Notebook"><i data-feather="play-circle"></i></div></li>
                         <li class="download-pdf" id="downloadButton"><i data-feather="file"></i></li>
+                    <!--
+                    # Enable if looking for link to specific document hosted on GitHub
                     <li data-tippy-content="View Source"><a target="_blank" href="https://github.com/QuantEcon/lecture-python-intro/blob/main/lectures/heavy_tails.md" download><i data-feather="github"></i></a></li>
+                    -->
+                    <li data-tippy-content="View Source"><a target="_blank" href="https://github.com/QuantEcon/lecture-python-intro" download><i data-feather="github"></i></a></li>
                 </ul>
 
             </div>

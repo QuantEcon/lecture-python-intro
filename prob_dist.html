@@ -71,14 +71,14 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/quantecon-book-theme.css?digest=f77998adf44a3f900caaca31caf410c810f6f245" type="text/css" />
+    <link rel="stylesheet" href="_static/styles/quantecon-book-theme.css?digest=bd0785fbb14d8d2bd4d9ae501d79ed8d3bc089ec" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="_static/exercise.css" />
     <link rel="stylesheet" type="text/css" href="_static/proof.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.5ea377869091fd0449014c60fc090103.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
@@ -91,14 +91,15 @@
     <script src="_static/underscore.js"></script>
     <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="_static/scripts/sphinx-book-theme.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="_static/togglebutton.js"></script>
-    <script src="_static/scripts/quantecon-book-theme.js?digest=eed9c059a3ee152aae2353ec732f0a6d12e6aa07"></script>
+    <script src="_static/scripts/quantecon-book-theme.js?digest=d6d86bce9979111653c4c495e33499e1796e172a"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="_static/design-tabs.js"></script>
@@ -109,11 +110,7 @@
                 gtag('js', new Date());
                 gtag('config', 'G-QDS1YRJNGM');
             </script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"tex": {"macros": {"argmax": "arg\\,max", "argmin": "arg\\,min"}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -278,31 +275,31 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="expanded">Hide code cell output</span>
 </summary>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: yfinance in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (0.2.48)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: yfinance in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (0.2.50)
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: pandas&gt;=1.3.0 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from yfinance) (2.2.2)
 Requirement already satisfied: numpy&gt;=1.16.5 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from yfinance) (1.26.4)
-Requirement already satisfied: requests&gt;=2.31 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from yfinance) (2.32.2)
+Requirement already satisfied: requests&gt;=2.31 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from yfinance) (2.32.3)
 Requirement already satisfied: multitasking&gt;=0.0.7 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from yfinance) (0.0.11)
 Requirement already satisfied: lxml&gt;=4.9.1 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from yfinance) (5.2.1)
 Requirement already satisfied: platformdirs&gt;=2.0.0 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from yfinance) (3.10.0)
 Requirement already satisfied: pytz&gt;=2022.5 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from yfinance) (2024.1)
 Requirement already satisfied: frozendict&gt;=2.3.4 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from yfinance) (2.4.6)
-Requirement already satisfied: peewee&gt;=3.16.2 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from yfinance) (3.17.7)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: peewee&gt;=3.16.2 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from yfinance) (3.17.8)
 Requirement already satisfied: beautifulsoup4&gt;=4.11.1 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from yfinance) (4.12.3)
 Requirement already satisfied: html5lib&gt;=1.1 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from yfinance) (1.1)
 Requirement already satisfied: soupsieve&gt;1.2 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from beautifulsoup4&gt;=4.11.1-&gt;yfinance) (2.5)
 Requirement already satisfied: six&gt;=1.9 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from html5lib&gt;=1.1-&gt;yfinance) (1.16.0)
 Requirement already satisfied: webencodings in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from html5lib&gt;=1.1-&gt;yfinance) (0.5.1)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: python-dateutil&gt;=2.8.2 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from pandas&gt;=1.3.0-&gt;yfinance) (2.9.0.post0)
+Requirement already satisfied: python-dateutil&gt;=2.8.2 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from pandas&gt;=1.3.0-&gt;yfinance) (2.9.0.post0)
 Requirement already satisfied: tzdata&gt;=2022.7 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from pandas&gt;=1.3.0-&gt;yfinance) (2023.3)
-Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from requests&gt;=2.31-&gt;yfinance) (2.0.4)
+Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from requests&gt;=2.31-&gt;yfinance) (3.3.2)
 Requirement already satisfied: idna&lt;4,&gt;=2.5 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from requests&gt;=2.31-&gt;yfinance) (3.7)
-Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from requests&gt;=2.31-&gt;yfinance) (2.2.2)
-Requirement already satisfied: certifi&gt;=2017.4.17 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from requests&gt;=2.31-&gt;yfinance) (2024.6.2)
+Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from requests&gt;=2.31-&gt;yfinance) (2.2.3)
+Requirement already satisfied: certifi&gt;=2017.4.17 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from requests&gt;=2.31-&gt;yfinance) (2024.8.30)
 </pre></div>
 </div>
 </div>
@@ -425,7 +422,7 @@ F(x) = \mathbb{P}\{X \leq x\}
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/241ed0318957be219f74e62c2288879df0a87281d1a91e64b6133cf2ec065808.png"><img alt="_images/241ed0318957be219f74e62c2288879df0a87281d1a91e64b6133cf2ec065808.png" src="_images/241ed0318957be219f74e62c2288879df0a87281d1a91e64b6133cf2ec065808.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/5977a163e334a895153fa4e6e317457ebff88e2a1db01f7a876e16fcbaf7bd9f.png"><img alt="_images/5977a163e334a895153fa4e6e317457ebff88e2a1db01f7a876e16fcbaf7bd9f.png" src="_images/5977a163e334a895153fa4e6e317457ebff88e2a1db01f7a876e16fcbaf7bd9f.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>Here’s a plot of the CDF:</p>
@@ -443,7 +440,7 @@ F(x) = \mathbb{P}\{X \leq x\}
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/ba4ed8a90f864d5d5816ddc3d625f32da06f28a7e9f3619d60276c4343578c58.png"><img alt="_images/ba4ed8a90f864d5d5816ddc3d625f32da06f28a7e9f3619d60276c4343578c58.png" src="_images/ba4ed8a90f864d5d5816ddc3d625f32da06f28a7e9f3619d60276c4343578c58.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/7d73f65633d026a5e6f42fee0e26c81ab138e1b75834d0b0712bf2e0cb02d16d.png"><img alt="_images/7d73f65633d026a5e6f42fee0e26c81ab138e1b75834d0b0712bf2e0cb02d16d.png" src="_images/7d73f65633d026a5e6f42fee0e26c81ab138e1b75834d0b0712bf2e0cb02d16d.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>The CDF jumps up by <span class="math notranslate nohighlight">\(p(x_i)\)</span> at <span class="math notranslate nohighlight">\(x_i\)</span>.</p>
@@ -583,7 +580,7 @@ p(i) = \binom{n}{i} \theta^i (1-\theta)^{n-i}
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/1743ed6860853aefa8272b8eb6348dfc73023626154f4e59e2dc6c16188528c4.png"><img alt="_images/1743ed6860853aefa8272b8eb6348dfc73023626154f4e59e2dc6c16188528c4.png" src="_images/1743ed6860853aefa8272b8eb6348dfc73023626154f4e59e2dc6c16188528c4.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/7fc31d160c3b479539f9506591c6ca02857149604a6ab80ebd1fbdf112781d0c.png"><img alt="_images/7fc31d160c3b479539f9506591c6ca02857149604a6ab80ebd1fbdf112781d0c.png" src="_images/7fc31d160c3b479539f9506591c6ca02857149604a6ab80ebd1fbdf112781d0c.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>Here’s the CDF:</p>
@@ -601,7 +598,7 @@ p(i) = \binom{n}{i} \theta^i (1-\theta)^{n-i}
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/bae624676b807fbefa394081492be8f397bb701958764bbc50ba040bb4f92f76.png"><img alt="_images/bae624676b807fbefa394081492be8f397bb701958764bbc50ba040bb4f92f76.png" src="_images/bae624676b807fbefa394081492be8f397bb701958764bbc50ba040bb4f92f76.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/45ed557909199fd34b33e57aea41cfe4fe097015416adbf25c4966483edb869b.png"><img alt="_images/45ed557909199fd34b33e57aea41cfe4fe097015416adbf25c4966483edb869b.png" src="_images/45ed557909199fd34b33e57aea41cfe4fe097015416adbf25c4966483edb869b.png" style="width: 80%;" /></a>
 </div>
 </div>
 <div class="exercise admonition" id="prob_ex3">
@@ -631,7 +628,7 @@ p(i) = \binom{n}{i} \theta^i (1-\theta)^{n-i}
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/6bf10fe4acb3709383deb633ab76ed760e4a85f5fc750cbc74cbb088b1cc6edd.png"><img alt="_images/6bf10fe4acb3709383deb633ab76ed760e4a85f5fc750cbc74cbb088b1cc6edd.png" src="_images/6bf10fe4acb3709383deb633ab76ed760e4a85f5fc750cbc74cbb088b1cc6edd.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/c322ca5f8178fa145efac993eb946e300c834ace47a7801640b0fb4eb01d19fd.png"><img alt="_images/c322ca5f8178fa145efac993eb946e300c834ace47a7801640b0fb4eb01d19fd.png" src="_images/c322ca5f8178fa145efac993eb946e300c834ace47a7801640b0fb4eb01d19fd.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>We can see that the output graph is the same as the one above.</p>
@@ -681,7 +678,7 @@ p(i) = (1 - \theta)^i \theta
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/1f85d43f1179dbbefaaa775cfee8dea17cfd0c871678a7a7e2cd86ab05004aff.png"><img alt="_images/1f85d43f1179dbbefaaa775cfee8dea17cfd0c871678a7a7e2cd86ab05004aff.png" src="_images/1f85d43f1179dbbefaaa775cfee8dea17cfd0c871678a7a7e2cd86ab05004aff.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/e44a623a699bef27f8264ef6cf3cd4008c933e4f239509f05be755996d43a659.png"><img alt="_images/e44a623a699bef27f8264ef6cf3cd4008c933e4f239509f05be755996d43a659.png" src="_images/e44a623a699bef27f8264ef6cf3cd4008c933e4f239509f05be755996d43a659.png" style="width: 80%;" /></a>
 </div>
 </div>
 </section>
@@ -736,7 +733,7 @@ p(i) = \frac{\lambda^i}{i!} e^{-\lambda}
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/65bfd9ee30c088a5a55d36e59a54982c34878cb1a4af48579510c90cdf46de54.png"><img alt="_images/65bfd9ee30c088a5a55d36e59a54982c34878cb1a4af48579510c90cdf46de54.png" src="_images/65bfd9ee30c088a5a55d36e59a54982c34878cb1a4af48579510c90cdf46de54.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/62a25d6e59cdaa36e8dd1fe11368ec8ea874c894692118d617737e99d387f15f.png"><img alt="_images/62a25d6e59cdaa36e8dd1fe11368ec8ea874c894692118d617737e99d387f15f.png" src="_images/62a25d6e59cdaa36e8dd1fe11368ec8ea874c894692118d617737e99d387f15f.png" style="width: 80%;" /></a>
 </div>
 </div>
 </section>
@@ -822,13 +819,13 @@ p(x) = \frac{1}{\sqrt{2\pi}\sigma}
 &lt;&gt;:10: SyntaxWarning: invalid escape sequence &#39;\s&#39;
 &lt;&gt;:10: SyntaxWarning: invalid escape sequence &#39;\m&#39;
 &lt;&gt;:10: SyntaxWarning: invalid escape sequence &#39;\s&#39;
-/tmp/ipykernel_6299/1317477318.py:10: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+/tmp/ipykernel_6799/1317477318.py:10: SyntaxWarning: invalid escape sequence &#39;\m&#39;
   label=f&#39;$\mu={μ}, \sigma={σ}$&#39;)
-/tmp/ipykernel_6299/1317477318.py:10: SyntaxWarning: invalid escape sequence &#39;\s&#39;
+/tmp/ipykernel_6799/1317477318.py:10: SyntaxWarning: invalid escape sequence &#39;\s&#39;
   label=f&#39;$\mu={μ}, \sigma={σ}$&#39;)
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="_images/bbcbc63b9346b6bef9aca49feea6d0c5fa6d42f7cac5d6ee5577f161963e80ca.png"><img alt="_images/bbcbc63b9346b6bef9aca49feea6d0c5fa6d42f7cac5d6ee5577f161963e80ca.png" src="_images/bbcbc63b9346b6bef9aca49feea6d0c5fa6d42f7cac5d6ee5577f161963e80ca.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/531528715437cff8d80d5061e185526055ecf589d55fb25a195255d01f40599e.png"><img alt="_images/531528715437cff8d80d5061e185526055ecf589d55fb25a195255d01f40599e.png" src="_images/531528715437cff8d80d5061e185526055ecf589d55fb25a195255d01f40599e.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>Here’s a plot of the CDF:</p>
@@ -853,13 +850,13 @@ p(x) = \frac{1}{\sqrt{2\pi}\sigma}
 &lt;&gt;:6: SyntaxWarning: invalid escape sequence &#39;\s&#39;
 &lt;&gt;:6: SyntaxWarning: invalid escape sequence &#39;\m&#39;
 &lt;&gt;:6: SyntaxWarning: invalid escape sequence &#39;\s&#39;
-/tmp/ipykernel_6299/1122760664.py:6: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+/tmp/ipykernel_6799/1122760664.py:6: SyntaxWarning: invalid escape sequence &#39;\m&#39;
   label=f&#39;$\mu={μ}, \sigma={σ}$&#39;)
-/tmp/ipykernel_6299/1122760664.py:6: SyntaxWarning: invalid escape sequence &#39;\s&#39;
+/tmp/ipykernel_6799/1122760664.py:6: SyntaxWarning: invalid escape sequence &#39;\s&#39;
   label=f&#39;$\mu={μ}, \sigma={σ}$&#39;)
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="_images/5d7d403496f7bd4d61f3a044e5b6cd24eed5f648841a5503b9963566beb30e50.png"><img alt="_images/5d7d403496f7bd4d61f3a044e5b6cd24eed5f648841a5503b9963566beb30e50.png" src="_images/5d7d403496f7bd4d61f3a044e5b6cd24eed5f648841a5503b9963566beb30e50.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/b3838826b50365b34cb2c301e8151db6b20091b5779986e9fa584166388b5fd6.png"><img alt="_images/b3838826b50365b34cb2c301e8151db6b20091b5779986e9fa584166388b5fd6.png" src="_images/b3838826b50365b34cb2c301e8151db6b20091b5779986e9fa584166388b5fd6.png" style="width: 80%;" /></a>
 </div>
 </div>
 </section>
@@ -923,13 +920,13 @@ p(x) = \frac{1}{\sigma x \sqrt{2\pi}}
 &lt;&gt;:10: SyntaxWarning: invalid escape sequence &#39;\s&#39;
 &lt;&gt;:10: SyntaxWarning: invalid escape sequence &#39;\m&#39;
 &lt;&gt;:10: SyntaxWarning: invalid escape sequence &#39;\s&#39;
-/tmp/ipykernel_6299/3570180206.py:10: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+/tmp/ipykernel_6799/3570180206.py:10: SyntaxWarning: invalid escape sequence &#39;\m&#39;
   label=f&#39;$\mu={μ}, \sigma={σ}$&#39;)
-/tmp/ipykernel_6299/3570180206.py:10: SyntaxWarning: invalid escape sequence &#39;\s&#39;
+/tmp/ipykernel_6799/3570180206.py:10: SyntaxWarning: invalid escape sequence &#39;\s&#39;
   label=f&#39;$\mu={μ}, \sigma={σ}$&#39;)
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="_images/95b416cc624c8aac19b6a0024a8dc94d0465506eab91b92b25bc7b5e3865a643.png"><img alt="_images/95b416cc624c8aac19b6a0024a8dc94d0465506eab91b92b25bc7b5e3865a643.png" src="_images/95b416cc624c8aac19b6a0024a8dc94d0465506eab91b92b25bc7b5e3865a643.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/34d4f51e6b6509cac624c87ddf2b3e789a278beee11ae5a0894c3e79c12b6a0e.png"><img alt="_images/34d4f51e6b6509cac624c87ddf2b3e789a278beee11ae5a0894c3e79c12b6a0e.png" src="_images/34d4f51e6b6509cac624c87ddf2b3e789a278beee11ae5a0894c3e79c12b6a0e.png" style="width: 80%;" /></a>
 </div>
 </div>
 <div class="cell docutils container">
@@ -955,13 +952,13 @@ p(x) = \frac{1}{\sigma x \sqrt{2\pi}}
 &lt;&gt;:7: SyntaxWarning: invalid escape sequence &#39;\s&#39;
 &lt;&gt;:7: SyntaxWarning: invalid escape sequence &#39;\m&#39;
 &lt;&gt;:7: SyntaxWarning: invalid escape sequence &#39;\s&#39;
-/tmp/ipykernel_6299/2055863192.py:7: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+/tmp/ipykernel_6799/2055863192.py:7: SyntaxWarning: invalid escape sequence &#39;\m&#39;
   label=f&#39;$\mu={μ}, \sigma={σ}$&#39;)
-/tmp/ipykernel_6299/2055863192.py:7: SyntaxWarning: invalid escape sequence &#39;\s&#39;
+/tmp/ipykernel_6799/2055863192.py:7: SyntaxWarning: invalid escape sequence &#39;\s&#39;
   label=f&#39;$\mu={μ}, \sigma={σ}$&#39;)
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="_images/1c03b2452eecfdef0b4bc8be0bcf95e88d13906e600d2ca08ad7279dc0b5e752.png"><img alt="_images/1c03b2452eecfdef0b4bc8be0bcf95e88d13906e600d2ca08ad7279dc0b5e752.png" src="_images/1c03b2452eecfdef0b4bc8be0bcf95e88d13906e600d2ca08ad7279dc0b5e752.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/916afb64b3932ec276d53db091178a587505d8935431aaab692a5512133c0f62.png"><img alt="_images/916afb64b3932ec276d53db091178a587505d8935431aaab692a5512133c0f62.png" src="_images/916afb64b3932ec276d53db091178a587505d8935431aaab692a5512133c0f62.png" style="width: 80%;" /></a>
 </div>
 </div>
 </section>
@@ -1018,11 +1015,11 @@ p(x) = \lambda \exp \left( - \lambda x \right)
 <div class="cell_output docutils container">
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;&gt;:9: SyntaxWarning: invalid escape sequence &#39;\l&#39;
 &lt;&gt;:9: SyntaxWarning: invalid escape sequence &#39;\l&#39;
-/tmp/ipykernel_6299/2284785198.py:9: SyntaxWarning: invalid escape sequence &#39;\l&#39;
+/tmp/ipykernel_6799/2284785198.py:9: SyntaxWarning: invalid escape sequence &#39;\l&#39;
   label=f&#39;$\lambda={λ}$&#39;)
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="_images/603f914131be96d80c151e2357dc692d77f16121ce1dadea0b77271be77eea54.png"><img alt="_images/603f914131be96d80c151e2357dc692d77f16121ce1dadea0b77271be77eea54.png" src="_images/603f914131be96d80c151e2357dc692d77f16121ce1dadea0b77271be77eea54.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/361a471d1627af11c97bace5e12ddaaff909b01b012d022f18d38e69febce298.png"><img alt="_images/361a471d1627af11c97bace5e12ddaaff909b01b012d022f18d38e69febce298.png" src="_images/361a471d1627af11c97bace5e12ddaaff909b01b012d022f18d38e69febce298.png" style="width: 80%;" /></a>
 </div>
 </div>
 <div class="cell docutils container">
@@ -1044,11 +1041,11 @@ p(x) = \lambda \exp \left( - \lambda x \right)
 <div class="cell_output docutils container">
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;&gt;:6: SyntaxWarning: invalid escape sequence &#39;\l&#39;
 &lt;&gt;:6: SyntaxWarning: invalid escape sequence &#39;\l&#39;
-/tmp/ipykernel_6299/1006068562.py:6: SyntaxWarning: invalid escape sequence &#39;\l&#39;
+/tmp/ipykernel_6799/1006068562.py:6: SyntaxWarning: invalid escape sequence &#39;\l&#39;
   label=f&#39;$\lambda={λ}$&#39;)
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="_images/f1b49d8ae9a6a064bfae706a661bff108906dfa59b6508256e6e2854688827d9.png"><img alt="_images/f1b49d8ae9a6a064bfae706a661bff108906dfa59b6508256e6e2854688827d9.png" src="_images/f1b49d8ae9a6a064bfae706a661bff108906dfa59b6508256e6e2854688827d9.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/2a2175d95bb9d955b415239edb173e1c48a66e76a125f0274a8ca6dc6f241ca1.png"><img alt="_images/2a2175d95bb9d955b415239edb173e1c48a66e76a125f0274a8ca6dc6f241ca1.png" src="_images/2a2175d95bb9d955b415239edb173e1c48a66e76a125f0274a8ca6dc6f241ca1.png" style="width: 80%;" /></a>
 </div>
 </div>
 </section>
@@ -1107,7 +1104,7 @@ the variance is <span class="math notranslate nohighlight">\(\alpha \beta / (\al
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/16a5409c1756fa890377db728ecbab7a8dcef5f6bab0ab41b125b90e03846387.png"><img alt="_images/16a5409c1756fa890377db728ecbab7a8dcef5f6bab0ab41b125b90e03846387.png" src="_images/16a5409c1756fa890377db728ecbab7a8dcef5f6bab0ab41b125b90e03846387.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/2a63bb76f58428cc00b4931c40fd5d38a80e146595f1f8cd0aabd0d359590de7.png"><img alt="_images/2a63bb76f58428cc00b4931c40fd5d38a80e146595f1f8cd0aabd0d359590de7.png" src="_images/2a63bb76f58428cc00b4931c40fd5d38a80e146595f1f8cd0aabd0d359590de7.png" style="width: 80%;" /></a>
 </div>
 </div>
 <div class="cell docutils container">
@@ -1127,7 +1124,7 @@ the variance is <span class="math notranslate nohighlight">\(\alpha \beta / (\al
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/a72ac4c87109f4e014bdecde5e1cfb535145abed5a4b724c0f2e3fab7e0331c4.png"><img alt="_images/a72ac4c87109f4e014bdecde5e1cfb535145abed5a4b724c0f2e3fab7e0331c4.png" src="_images/a72ac4c87109f4e014bdecde5e1cfb535145abed5a4b724c0f2e3fab7e0331c4.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/e5a450de2af4bcf1c022f490e273821acb4e775d4f05085268d400de5479d2a3.png"><img alt="_images/e5a450de2af4bcf1c022f490e273821acb4e775d4f05085268d400de5479d2a3.png" src="_images/e5a450de2af4bcf1c022f490e273821acb4e775d4f05085268d400de5479d2a3.png" style="width: 80%;" /></a>
 </div>
 </div>
 </section>
@@ -1186,7 +1183,7 @@ random variables with mean <span class="math notranslate nohighlight">\(1/\beta\
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/16ce09014848094a027448e9ae06f5a14ad8042518357c48371c327ab8f5b5cd.png"><img alt="_images/16ce09014848094a027448e9ae06f5a14ad8042518357c48371c327ab8f5b5cd.png" src="_images/16ce09014848094a027448e9ae06f5a14ad8042518357c48371c327ab8f5b5cd.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/8b5986be40cba5f9deb001db81c44857cf7b02f2f1d31eb364cee64dd900c4e3.png"><img alt="_images/8b5986be40cba5f9deb001db81c44857cf7b02f2f1d31eb364cee64dd900c4e3.png" src="_images/8b5986be40cba5f9deb001db81c44857cf7b02f2f1d31eb364cee64dd900c4e3.png" style="width: 80%;" /></a>
 </div>
 </div>
 <div class="cell docutils container">
@@ -1206,7 +1203,7 @@ random variables with mean <span class="math notranslate nohighlight">\(1/\beta\
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/991bc142067a50138ed8709d4a2ff4babdd2f345398af95b8930c26cd467d7f8.png"><img alt="_images/991bc142067a50138ed8709d4a2ff4babdd2f345398af95b8930c26cd467d7f8.png" src="_images/991bc142067a50138ed8709d4a2ff4babdd2f345398af95b8930c26cd467d7f8.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/cc064bc6d61bb8ab531cc279cfba95cd44fbbe527e0d2d4fb550d64ddd5f3319.png"><img alt="_images/cc064bc6d61bb8ab531cc279cfba95cd44fbbe527e0d2d4fb550d64ddd5f3319.png" src="_images/cc064bc6d61bb8ab531cc279cfba95cd44fbbe527e0d2d4fb550d64ddd5f3319.png" style="width: 80%;" /></a>
 </div>
 </div>
 </section>
@@ -1380,7 +1377,7 @@ Confirm.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/901251b4e317409b1d885849d12e17c129ad12a83ae7b2aedb61fb636aa09a25.png"><img alt="_images/901251b4e317409b1d885849d12e17c129ad12a83ae7b2aedb61fb636aa09a25.png" src="_images/901251b4e317409b1d885849d12e17c129ad12a83ae7b2aedb61fb636aa09a25.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/05c12e4604731d4f382aa8604c9d2dc40d7996fcf5dbce7de9c4f8792d774e29.png"><img alt="_images/05c12e4604731d4f382aa8604c9d2dc40d7996fcf5dbce7de9c4f8792d774e29.png" src="_images/05c12e4604731d4f382aa8604c9d2dc40d7996fcf5dbce7de9c4f8792d774e29.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>Let’s look at a distribution from real data.</p>
@@ -1435,23 +1432,23 @@ Confirm.</p>
   </thead>
   <tbody>
     <tr>
-      <th>2000-02-01 00:00:00+00:00</th>
+      <th>2000-02-01</th>
       <td>6.679568</td>
     </tr>
     <tr>
-      <th>2000-03-01 00:00:00+00:00</th>
+      <th>2000-03-01</th>
       <td>-2.722323</td>
     </tr>
     <tr>
-      <th>2000-04-01 00:00:00+00:00</th>
+      <th>2000-04-01</th>
       <td>-17.630592</td>
     </tr>
     <tr>
-      <th>2000-05-01 00:00:00+00:00</th>
+      <th>2000-05-01</th>
       <td>-12.457531</td>
     </tr>
     <tr>
-      <th>2000-06-01 00:00:00+00:00</th>
+      <th>2000-06-01</th>
       <td>-24.838297</td>
     </tr>
   </tbody>
@@ -1469,7 +1466,7 @@ Confirm.</p>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Ticker
 AMZN    6.679568
-Name: 2000-02-01 00:00:00+00:00, dtype: float64
+Name: 2000-02-01 00:00:00, dtype: float64
 </pre></div>
 </div>
 </div>
@@ -1486,7 +1483,7 @@ Name: 2000-02-01 00:00:00+00:00, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/c7fd377a309508ec7729caaad78d9e8cc35d85949bd8aadd993852582b65ff96.png"><img alt="_images/c7fd377a309508ec7729caaad78d9e8cc35d85949bd8aadd993852582b65ff96.png" src="_images/c7fd377a309508ec7729caaad78d9e8cc35d85949bd8aadd993852582b65ff96.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/5d48767550cf2599c5d42ec075d8bd7787b8ca9d67f123cb68e60c27e024ce8f.png"><img alt="_images/5d48767550cf2599c5d42ec075d8bd7787b8ca9d67f123cb68e60c27e024ce8f.png" src="_images/5d48767550cf2599c5d42ec075d8bd7787b8ca9d67f123cb68e60c27e024ce8f.png" style="width: 80%;" /></a>
 </div>
 </div>
 </section>
@@ -1507,7 +1504,7 @@ histogram.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/3d4ea885439f3ab4ef5e691080da03f7a51228b47e728a0fbd29b1f9ab84703d.png"><img alt="_images/3d4ea885439f3ab4ef5e691080da03f7a51228b47e728a0fbd29b1f9ab84703d.png" src="_images/3d4ea885439f3ab4ef5e691080da03f7a51228b47e728a0fbd29b1f9ab84703d.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/5147c7198de81a440c747151df0107d9bab45451856c9726d5a6e572f0c99c6a.png"><img alt="_images/5147c7198de81a440c747151df0107d9bab45451856c9726d5a6e572f0c99c6a.png" src="_images/5147c7198de81a440c747151df0107d9bab45451856c9726d5a6e572f0c99c6a.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>The smoothness of the KDE is dependent on how we choose the bandwidth.</p>
@@ -1525,7 +1522,7 @@ histogram.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/805b1e1463368305cdcec50700b45bce602ed080e5af1b3d041a5b3a14cd520d.png"><img alt="_images/805b1e1463368305cdcec50700b45bce602ed080e5af1b3d041a5b3a14cd520d.png" src="_images/805b1e1463368305cdcec50700b45bce602ed080e5af1b3d041a5b3a14cd520d.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/b0c32857c2ede7d6bef5820285a6bf189b9394d8e1e2dea42419ef03b6b89a2d.png"><img alt="_images/b0c32857c2ede7d6bef5820285a6bf189b9394d8e1e2dea42419ef03b6b89a2d.png" src="_images/b0c32857c2ede7d6bef5820285a6bf189b9394d8e1e2dea42419ef03b6b89a2d.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>When we use a larger bandwidth, the KDE is smoother.</p>
@@ -1545,7 +1542,7 @@ histogram.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/51fe5b6d87ef7189101cb578f47847622b963a3bcb7c0bca052a0fb70fad9d5b.png"><img alt="_images/51fe5b6d87ef7189101cb578f47847622b963a3bcb7c0bca052a0fb70fad9d5b.png" src="_images/51fe5b6d87ef7189101cb578f47847622b963a3bcb7c0bca052a0fb70fad9d5b.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/41514c7c742fcb8364509cdd8d8d2b0ad19dff4a4ee8b3dc05f7d9ca688f846e.png"><img alt="_images/41514c7c742fcb8364509cdd8d8d2b0ad19dff4a4ee8b3dc05f7d9ca688f846e.png" src="_images/41514c7c742fcb8364509cdd8d8d2b0ad19dff4a4ee8b3dc05f7d9ca688f846e.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>Violin plots are particularly useful when we want to compare different distributions.</p>
@@ -1587,7 +1584,7 @@ histogram.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/610f82368e9e3ddb2cb2a235f05bfadf4af9ba6e3b1e4f19a5859bacd7da870b.png"><img alt="_images/610f82368e9e3ddb2cb2a235f05bfadf4af9ba6e3b1e4f19a5859bacd7da870b.png" src="_images/610f82368e9e3ddb2cb2a235f05bfadf4af9ba6e3b1e4f19a5859bacd7da870b.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/ff39b23e241eda423483f046973e48f43ef6aa0292469840a5064dd05861beda.png"><img alt="_images/ff39b23e241eda423483f046973e48f43ef6aa0292469840a5064dd05861beda.png" src="_images/ff39b23e241eda423483f046973e48f43ef6aa0292469840a5064dd05861beda.png" style="width: 80%;" /></a>
 </div>
 </div>
 </section>
@@ -1625,7 +1622,7 @@ to the variance.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/87aee6219c0ef325c07f38fe8bf1d6400144b3988a95bc317ae8676877a13503.png"><img alt="_images/87aee6219c0ef325c07f38fe8bf1d6400144b3988a95bc317ae8676877a13503.png" src="_images/87aee6219c0ef325c07f38fe8bf1d6400144b3988a95bc317ae8676877a13503.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/0b9a2cc8b01404da55f594e9d8796e5a72961eceee47b8deaba13f8c700475e7.png"><img alt="_images/0b9a2cc8b01404da55f594e9d8796e5a72961eceee47b8deaba13f8c700475e7.png" src="_images/0b9a2cc8b01404da55f594e9d8796e5a72961eceee47b8deaba13f8c700475e7.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>The match between the histogram and the density is not bad but also not very good.</p>
@@ -1653,7 +1650,7 @@ to the variance.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/aed104532f6a64c2d4b1532d8743ab78dd174a89e31e57086c62b96af18a68e2.png"><img alt="_images/aed104532f6a64c2d4b1532d8743ab78dd174a89e31e57086c62b96af18a68e2.png" src="_images/aed104532f6a64c2d4b1532d8743ab78dd174a89e31e57086c62b96af18a68e2.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/9dcf1161489efdbb01c31aa1ff58488fdb52120294c160323861b48e5dc2c76c.png"><img alt="_images/9dcf1161489efdbb01c31aa1ff58488fdb52120294c160323861b48e5dc2c76c.png" src="_images/9dcf1161489efdbb01c31aa1ff58488fdb52120294c160323861b48e5dc2c76c.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>Note that if you keep increasing <span class="math notranslate nohighlight">\(N\)</span>, which is the number of observations, the fit will get better and better.</p>
@@ -2084,7 +2081,11 @@ to the variance.</p>
                     <li data-tippy-content="Download Notebook"><a href="/_notebooks/prob_dist.ipynb" download><i data-feather="download-cloud"></i></a></li>
                     <li class="settings-button" id="settingsButton"><div data-tippy-content="Launch Notebook"><i data-feather="play-circle"></i></div></li>
                         <li class="download-pdf" id="downloadButton"><i data-feather="file"></i></li>
+                    <!--
+                    # Enable if looking for link to specific document hosted on GitHub
                     <li data-tippy-content="View Source"><a target="_blank" href="https://github.com/QuantEcon/lecture-python-intro/blob/main/lectures/prob_dist.md" download><i data-feather="github"></i></a></li>
+                    -->
+                    <li data-tippy-content="View Source"><a target="_blank" href="https://github.com/QuantEcon/lecture-python-intro" download><i data-feather="github"></i></a></li>
                 </ul>
 
             </div>

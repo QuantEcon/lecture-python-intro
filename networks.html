@@ -71,14 +71,14 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/quantecon-book-theme.css?digest=f77998adf44a3f900caaca31caf410c810f6f245" type="text/css" />
+    <link rel="stylesheet" href="_static/styles/quantecon-book-theme.css?digest=bd0785fbb14d8d2bd4d9ae501d79ed8d3bc089ec" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="_static/exercise.css" />
     <link rel="stylesheet" type="text/css" href="_static/proof.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.5ea377869091fd0449014c60fc090103.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
@@ -91,14 +91,15 @@
     <script src="_static/underscore.js"></script>
     <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="_static/scripts/sphinx-book-theme.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="_static/togglebutton.js"></script>
-    <script src="_static/scripts/quantecon-book-theme.js?digest=eed9c059a3ee152aae2353ec732f0a6d12e6aa07"></script>
+    <script src="_static/scripts/quantecon-book-theme.js?digest=d6d86bce9979111653c4c495e33499e1796e172a"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="_static/design-tabs.js"></script>
@@ -109,11 +110,7 @@
                 gtag('js', new Date());
                 gtag('config', 'G-QDS1YRJNGM');
             </script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"tex": {"macros": {"argmax": "arg\\,max", "argmin": "arg\\,min"}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -274,42 +271,36 @@ const thebe_selector_output = ".output, .cell_output"
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: quantecon-book-networks in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (1.1)
 Requirement already satisfied: pandas-datareader in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (0.10.0)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: numpy in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from quantecon-book-networks) (1.26.4)
+Requirement already satisfied: numpy in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from quantecon-book-networks) (1.26.4)
 Requirement already satisfied: scipy in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from quantecon-book-networks) (1.13.1)
 Requirement already satisfied: pandas in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from quantecon-book-networks) (2.2.2)
-Requirement already satisfied: matplotlib in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from quantecon-book-networks) (3.8.4)
-Requirement already satisfied: networkx in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from quantecon-book-networks) (3.2.1)
+Requirement already satisfied: matplotlib in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from quantecon-book-networks) (3.9.2)
+Requirement already satisfied: networkx in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from quantecon-book-networks) (3.3)
 Requirement already satisfied: quantecon in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from quantecon-book-networks) (0.7.2)
-Requirement already satisfied: POT in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from quantecon-book-networks) (0.9.4)
+Requirement already satisfied: POT in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from quantecon-book-networks) (0.9.5)
 Requirement already satisfied: lxml in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from pandas-datareader) (5.2.1)
-Requirement already satisfied: requests&gt;=2.19.0 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from pandas-datareader) (2.32.2)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: python-dateutil&gt;=2.8.2 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from pandas-&gt;quantecon-book-networks) (2.9.0.post0)
+Requirement already satisfied: requests&gt;=2.19.0 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from pandas-datareader) (2.32.3)
+Requirement already satisfied: python-dateutil&gt;=2.8.2 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from pandas-&gt;quantecon-book-networks) (2.9.0.post0)
 Requirement already satisfied: pytz&gt;=2020.1 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from pandas-&gt;quantecon-book-networks) (2024.1)
 Requirement already satisfied: tzdata&gt;=2022.7 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from pandas-&gt;quantecon-book-networks) (2023.3)
-Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from requests&gt;=2.19.0-&gt;pandas-datareader) (2.0.4)
+Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from requests&gt;=2.19.0-&gt;pandas-datareader) (3.3.2)
 Requirement already satisfied: idna&lt;4,&gt;=2.5 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from requests&gt;=2.19.0-&gt;pandas-datareader) (3.7)
-Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from requests&gt;=2.19.0-&gt;pandas-datareader) (2.2.2)
-Requirement already satisfied: certifi&gt;=2017.4.17 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from requests&gt;=2.19.0-&gt;pandas-datareader) (2024.6.2)
+Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from requests&gt;=2.19.0-&gt;pandas-datareader) (2.2.3)
+Requirement already satisfied: certifi&gt;=2017.4.17 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from requests&gt;=2.19.0-&gt;pandas-datareader) (2024.8.30)
 Requirement already satisfied: contourpy&gt;=1.0.1 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from matplotlib-&gt;quantecon-book-networks) (1.2.0)
 Requirement already satisfied: cycler&gt;=0.10 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from matplotlib-&gt;quantecon-book-networks) (0.11.0)
 Requirement already satisfied: fonttools&gt;=4.22.0 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from matplotlib-&gt;quantecon-book-networks) (4.51.0)
 Requirement already satisfied: kiwisolver&gt;=1.3.1 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from matplotlib-&gt;quantecon-book-networks) (1.4.4)
-Requirement already satisfied: packaging&gt;=20.0 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from matplotlib-&gt;quantecon-book-networks) (23.2)
-Requirement already satisfied: pillow&gt;=8 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from matplotlib-&gt;quantecon-book-networks) (10.3.0)
-Requirement already satisfied: pyparsing&gt;=2.3.1 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from matplotlib-&gt;quantecon-book-networks) (3.0.9)
+Requirement already satisfied: packaging&gt;=20.0 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from matplotlib-&gt;quantecon-book-networks) (24.1)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: numba&gt;=0.49.0 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from quantecon-&gt;quantecon-book-networks) (0.59.1)
-Requirement already satisfied: sympy in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from quantecon-&gt;quantecon-book-networks) (1.12)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: llvmlite&lt;0.43,&gt;=0.42.0dev0 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from numba&gt;=0.49.0-&gt;quantecon-&gt;quantecon-book-networks) (0.42.0)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: pillow&gt;=8 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from matplotlib-&gt;quantecon-book-networks) (10.4.0)
+Requirement already satisfied: pyparsing&gt;=2.3.1 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from matplotlib-&gt;quantecon-book-networks) (3.1.2)
+Requirement already satisfied: numba&gt;=0.49.0 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from quantecon-&gt;quantecon-book-networks) (0.60.0)
+Requirement already satisfied: sympy in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from quantecon-&gt;quantecon-book-networks) (1.13.2)
+Requirement already satisfied: llvmlite&lt;0.44,&gt;=0.43.0dev0 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from numba&gt;=0.49.0-&gt;quantecon-&gt;quantecon-book-networks) (0.43.0)
 Requirement already satisfied: six&gt;=1.5 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from python-dateutil&gt;=2.8.2-&gt;pandas-&gt;quantecon-book-networks) (1.16.0)
-Requirement already satisfied: mpmath&gt;=0.19 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from sympy-&gt;quantecon-&gt;quantecon-book-networks) (1.3.0)
+Requirement already satisfied: mpmath&lt;1.4,&gt;=1.1.0 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from sympy-&gt;quantecon-&gt;quantecon-book-networks) (1.3.0)
 </pre></div>
 </div>
 </div>
@@ -431,7 +422,7 @@ introductory.</p>
 </details>
 <div class="cell_output docutils container">
 <figure class="align-default" id="aircraft-network">
-<a class="reference internal image-reference" href="_images/4f4d46c5d1d7e0cbc5455a307e20f2c5c039bb75c21887972f2f338d5f6c4523.png"><img alt="_images/4f4d46c5d1d7e0cbc5455a307e20f2c5c039bb75c21887972f2f338d5f6c4523.png" src="_images/4f4d46c5d1d7e0cbc5455a307e20f2c5c039bb75c21887972f2f338d5f6c4523.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/78b00b52ca0fbb1c676cde09decfbcd4e6dc04267c763b2fd21c4ef7fc80465a.png"><img alt="_images/78b00b52ca0fbb1c676cde09decfbcd4e6dc04267c763b2fd21c4ef7fc80465a.png" src="_images/78b00b52ca0fbb1c676cde09decfbcd4e6dc04267c763b2fd21c4ef7fc80465a.png" style="width: 80%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 41.1 </span><span class="caption-text">Commercial Aircraft Network</span><a class="headerlink" href="#aircraft-network" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -584,7 +575,7 @@ correct representation of our graph.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/742b830bf5fba0b49770225fe335635d2a3c12e91969d50a7cf2cdc5261734c5.png"><img alt="_images/742b830bf5fba0b49770225fe335635d2a3c12e91969d50a7cf2cdc5261734c5.png" src="_images/742b830bf5fba0b49770225fe335635d2a3c12e91969d50a7cf2cdc5261734c5.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/8eddb5d4c7a4f64698b355323d7c11d4e1581608f0e1923c31108410c94b2cf4.png"><img alt="_images/8eddb5d4c7a4f64698b355323d7c11d4e1581608f0e1923c31108410c94b2cf4.png" src="_images/8eddb5d4c7a4f64698b355323d7c11d4e1581608f0e1923c31108410c94b2cf4.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>The figure obtained above matches the original directed graph in <a class="reference internal" href="#poverty-trap-2"><span class="std std-numref">Fig. 41.3</span></a>.</p>
@@ -639,7 +630,7 @@ however in <a class="reference internal" href="#poverty-trap-2"><span class="std
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/a4b5d48ae9e138656790bde86bbd82c8e12481372f05f9cec04e2bc9b19725f0.png"><img alt="_images/a4b5d48ae9e138656790bde86bbd82c8e12481372f05f9cec04e2bc9b19725f0.png" src="_images/a4b5d48ae9e138656790bde86bbd82c8e12481372f05f9cec04e2bc9b19725f0.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/b388e414f31495af6321aae86137cbb7666e888cab3efd99442fb48140fac171.png"><img alt="_images/b388e414f31495af6321aae86137cbb7666e888cab3efd99442fb48140fac171.png" src="_images/b388e414f31495af6321aae86137cbb7666e888cab3efd99442fb48140fac171.png" style="width: 80%;" /></a>
 </div>
 </div>
 <div class="cell docutils container">
@@ -668,7 +659,7 @@ however in <a class="reference internal" href="#poverty-trap-2"><span class="std
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/1016a7192d9e1351b604e52a996dff10c845ce6a5303f42732960813ce69f05c.png"><img alt="_images/1016a7192d9e1351b604e52a996dff10c845ce6a5303f42732960813ce69f05c.png" src="_images/1016a7192d9e1351b604e52a996dff10c845ce6a5303f42732960813ce69f05c.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/026ce74f8870f9c1febd3718abec3e64ad33cc7b4a88564dcd13df977f267cee.png"><img alt="_images/026ce74f8870f9c1febd3718abec3e64ad33cc7b4a88564dcd13df977f267cee.png" src="_images/026ce74f8870f9c1febd3718abec3e64ad33cc7b4a88564dcd13df977f267cee.png" style="width: 80%;" /></a>
 </div>
 </div>
 <div class="cell docutils container">
@@ -758,7 +749,7 @@ loans) between private banks, grouped by country of origin.</p>
 </details>
 <div class="cell_output docutils container">
 <figure class="align-default" id="financial-network">
-<a class="reference internal image-reference" href="_images/9f65d969876eb9d14c13b773bee584923c351ecf76194adc1bf6f6e2ac8f59f5.png"><img alt="_images/9f65d969876eb9d14c13b773bee584923c351ecf76194adc1bf6f6e2ac8f59f5.png" src="_images/9f65d969876eb9d14c13b773bee584923c351ecf76194adc1bf6f6e2ac8f59f5.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/aec93beef883c2580a97eb8331f2a9dbebd0954b6bed94568d7c9262e7c117cb.png"><img alt="_images/aec93beef883c2580a97eb8331f2a9dbebd0954b6bed94568d7c9262e7c117cb.png" src="_images/aec93beef883c2580a97eb8331f2a9dbebd0954b6bed94568d7c9262e7c117cb.png" style="width: 80%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 41.4 </span><span class="caption-text">International Credit Network</span><a class="headerlink" href="#financial-network" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -927,7 +918,7 @@ and edges showing the flow of funds.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/eac05fc1324689a63814c99a4ee79415ddf4e08d49b0eeec234efff88a872cf7.png"><img alt="_images/eac05fc1324689a63814c99a4ee79415ddf4e08d49b0eeec234efff88a872cf7.png" src="_images/eac05fc1324689a63814c99a4ee79415ddf4e08d49b0eeec234efff88a872cf7.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/6ac10e3d96569fa478b665772876447f27cceb3519ecbad0ec3d75da1f26b9d0.png"><img alt="_images/6ac10e3d96569fa478b665772876447f27cceb3519ecbad0ec3d75da1f26b9d0.png" src="_images/6ac10e3d96569fa478b665772876447f27cceb3519ecbad0ec3d75da1f26b9d0.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>We see that bank 2 extends a loan of size 200 to bank 3.</p>
@@ -983,7 +974,7 @@ A^\top =
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/ec21bdbc9095ecaed478218cded3a58112d0337e0a360247668e4ce0f5e6905b.png"><img alt="_images/ec21bdbc9095ecaed478218cded3a58112d0337e0a360247668e4ce0f5e6905b.png" src="_images/ec21bdbc9095ecaed478218cded3a58112d0337e0a360247668e4ce0f5e6905b.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/5bbb209ce3e475bf471e0d846a188af18c041cd773a2d382a1fe0e4027c1efc4.png"><img alt="_images/5bbb209ce3e475bf471e0d846a188af18c041cd773a2d382a1fe0e4027c1efc4.png" src="_images/5bbb209ce3e475bf471e0d846a188af18c041cd773a2d382a1fe0e4027c1efc4.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>In general, every nonnegative <span class="math notranslate nohighlight">\(n \times n\)</span> matrix <span class="math notranslate nohighlight">\(A = (a_{ij})\)</span> can be
@@ -1139,7 +1130,7 @@ the graph.</p>
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="sample-gph-1">
-<a class="reference internal image-reference" href="_images/a727c405d8eba6cb137fa128f534304a277e7bfd5b30c1083b91b745530b9e00.png"><img alt="_images/a727c405d8eba6cb137fa128f534304a277e7bfd5b30c1083b91b745530b9e00.png" src="_images/a727c405d8eba6cb137fa128f534304a277e7bfd5b30c1083b91b745530b9e00.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/9d32759530ed6631cf87aa247ce64144fa600c4b67a4a71915e3bf2fb6929278.png"><img alt="_images/9d32759530ed6631cf87aa247ce64144fa600c4b67a4a71915e3bf2fb6929278.png" src="_images/9d32759530ed6631cf87aa247ce64144fa600c4b67a4a71915e3bf2fb6929278.png" style="width: 80%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 41.6 </span><span class="caption-text">Sample Graph</span><a class="headerlink" href="#sample-gph-1" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -1208,7 +1199,7 @@ the graph.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/972b8b130ff43e02a06a99e401f4342286523e2f107ea8970ebe7bb580f666f5.png"><img alt="_images/972b8b130ff43e02a06a99e401f4342286523e2f107ea8970ebe7bb580f666f5.png" src="_images/972b8b130ff43e02a06a99e401f4342286523e2f107ea8970ebe7bb580f666f5.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/9cc5bb46dcda0e1460670e4d504b1a09aa8cfbe717fe69bb1499f8dc3f0ab7a4.png"><img alt="_images/9cc5bb46dcda0e1460670e4d504b1a09aa8cfbe717fe69bb1499f8dc3f0ab7a4.png" src="_images/9cc5bb46dcda0e1460670e4d504b1a09aa8cfbe717fe69bb1499f8dc3f0ab7a4.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>Unfortunately, while in-degree and out-degree centrality are simple to
@@ -1347,7 +1338,7 @@ highest eigenvector centrality.</p>
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="eigenvctr-centrality">
-<a class="reference internal image-reference" href="_images/f137b5c9578e4f513d89da43e4180f961ae8163ded65b481ba599f21e7f09619.png"><img alt="_images/f137b5c9578e4f513d89da43e4180f961ae8163ded65b481ba599f21e7f09619.png" src="_images/f137b5c9578e4f513d89da43e4180f961ae8163ded65b481ba599f21e7f09619.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/be96e3e6ec39439a480649f062980e4f60900876b21b4d4c286e3ac4c2d98362.png"><img alt="_images/be96e3e6ec39439a480649f062980e4f60900876b21b4d4c286e3ac4c2d98362.png" src="_images/be96e3e6ec39439a480649f062980e4f60900876b21b4d4c286e3ac4c2d98362.png" style="width: 80%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 41.7 </span><span class="caption-text">Eigenvector centrality</span><a class="headerlink" href="#eigenvctr-centrality" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -1458,7 +1449,7 @@ credit network shown in <a class="reference internal" href="#financial-network">
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="id3">
-<a class="reference internal image-reference" href="_images/0466667e0e15caa796518ad5dbf4b1db07a872cc88c5460a0ced33cd23112b49.png"><img alt="_images/0466667e0e15caa796518ad5dbf4b1db07a872cc88c5460a0ced33cd23112b49.png" src="_images/0466667e0e15caa796518ad5dbf4b1db07a872cc88c5460a0ced33cd23112b49.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/ebadf622946ac62e7b88604c357941763375847ea14ea941f618e9bae0bde1d7.png"><img alt="_images/ebadf622946ac62e7b88604c357941763375847ea14ea941f618e9bae0bde1d7.png" src="_images/ebadf622946ac62e7b88604c357941763375847ea14ea941f618e9bae0bde1d7.png" style="width: 80%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 41.8 </span><span class="caption-text">Eigenvector authority</span><a class="headerlink" href="#id3" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -1559,7 +1550,7 @@ of G.</p></li>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/4f6dc40cfc1a4ad3b7ac3f5d2e0907a82aea15d5734f6f4628db9231f54717e7.png"><img alt="_images/4f6dc40cfc1a4ad3b7ac3f5d2e0907a82aea15d5734f6f4628db9231f54717e7.png" src="_images/4f6dc40cfc1a4ad3b7ac3f5d2e0907a82aea15d5734f6f4628db9231f54717e7.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/1815bd4222aa3089d31744613b3108681ad0d24323c0312cf24d565ae0079ce5.png"><img alt="_images/1815bd4222aa3089d31744613b3108681ad0d24323c0312cf24d565ae0079ce5.png" src="_images/1815bd4222aa3089d31744613b3108681ad0d24323c0312cf24d565ae0079ce5.png" style="width: 80%;" /></a>
 </div>
 </div>
 <div class="cell docutils container">
@@ -2135,7 +2126,11 @@ of G.</p></li>
                     <li data-tippy-content="Download Notebook"><a href="/_notebooks/networks.ipynb" download><i data-feather="download-cloud"></i></a></li>
                     <li class="settings-button" id="settingsButton"><div data-tippy-content="Launch Notebook"><i data-feather="play-circle"></i></div></li>
                         <li class="download-pdf" id="downloadButton"><i data-feather="file"></i></li>
+                    <!--
+                    # Enable if looking for link to specific document hosted on GitHub
                     <li data-tippy-content="View Source"><a target="_blank" href="https://github.com/QuantEcon/lecture-python-intro/blob/main/lectures/networks.md" download><i data-feather="github"></i></a></li>
+                    -->
+                    <li data-tippy-content="View Source"><a target="_blank" href="https://github.com/QuantEcon/lecture-python-intro" download><i data-feather="github"></i></a></li>
                 </ul>
 
             </div>

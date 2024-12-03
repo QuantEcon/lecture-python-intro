@@ -71,14 +71,14 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/quantecon-book-theme.css?digest=f77998adf44a3f900caaca31caf410c810f6f245" type="text/css" />
+    <link rel="stylesheet" href="_static/styles/quantecon-book-theme.css?digest=bd0785fbb14d8d2bd4d9ae501d79ed8d3bc089ec" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="_static/exercise.css" />
     <link rel="stylesheet" type="text/css" href="_static/proof.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.5ea377869091fd0449014c60fc090103.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
@@ -91,14 +91,15 @@
     <script src="_static/underscore.js"></script>
     <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="_static/scripts/sphinx-book-theme.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="_static/togglebutton.js"></script>
-    <script src="_static/scripts/quantecon-book-theme.js?digest=eed9c059a3ee152aae2353ec732f0a6d12e6aa07"></script>
+    <script src="_static/scripts/quantecon-book-theme.js?digest=d6d86bce9979111653c4c495e33499e1796e172a"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="_static/design-tabs.js"></script>
@@ -109,11 +110,7 @@
                 gtag('js', new Date());
                 gtag('config', 'G-QDS1YRJNGM');
             </script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'business_cycle';</script>
     <link rel="canonical" href="https://intro.quantecon.org/business_cycle.html" />
@@ -262,16 +259,18 @@ const thebe_selector_output = ".output, .cell_output"
 </summary>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting wbgapi
-  Downloading wbgapi-1.0.12-py3-none-any.whl.metadata (13 kB)
-Requirement already satisfied: requests in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from wbgapi) (2.32.2)
-Requirement already satisfied: PyYAML in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from wbgapi) (6.0.1)
-Requirement already satisfied: tabulate in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from wbgapi) (0.9.0)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from requests-&gt;wbgapi) (2.0.4)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Downloading wbgapi-1.0.12-py3-none-any.whl.metadata (13 kB)
+Requirement already satisfied: requests in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from wbgapi) (2.32.3)
+Requirement already satisfied: PyYAML in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from wbgapi) (6.0.1)
+Requirement already satisfied: tabulate in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from wbgapi) (0.9.0)
+Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from requests-&gt;wbgapi) (3.3.2)
 Requirement already satisfied: idna&lt;4,&gt;=2.5 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from requests-&gt;wbgapi) (3.7)
-Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from requests-&gt;wbgapi) (2.2.2)
-Requirement already satisfied: certifi&gt;=2017.4.17 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from requests-&gt;wbgapi) (2024.6.2)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from requests-&gt;wbgapi) (2.2.3)
+Requirement already satisfied: certifi&gt;=2017.4.17 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from requests-&gt;wbgapi) (2024.8.30)
 Downloading wbgapi-1.0.12-py3-none-any.whl (36 kB)
 </pre></div>
 </div>
@@ -285,24 +284,19 @@ Successfully installed wbgapi-1.0.12
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Downloading pandas_datareader-0.10.0-py3-none-any.whl.metadata (2.9 kB)
 Requirement already satisfied: lxml in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from pandas-datareader) (5.2.1)
 Requirement already satisfied: pandas&gt;=0.23 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from pandas-datareader) (2.2.2)
-Requirement already satisfied: requests&gt;=2.19.0 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from pandas-datareader) (2.32.2)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: numpy&gt;=1.26.0 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from pandas&gt;=0.23-&gt;pandas-datareader) (1.26.4)
+Requirement already satisfied: requests&gt;=2.19.0 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from pandas-datareader) (2.32.3)
+Requirement already satisfied: numpy&gt;=1.26.0 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from pandas&gt;=0.23-&gt;pandas-datareader) (1.26.4)
 Requirement already satisfied: python-dateutil&gt;=2.8.2 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from pandas&gt;=0.23-&gt;pandas-datareader) (2.9.0.post0)
 Requirement already satisfied: pytz&gt;=2020.1 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from pandas&gt;=0.23-&gt;pandas-datareader) (2024.1)
 Requirement already satisfied: tzdata&gt;=2022.7 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from pandas&gt;=0.23-&gt;pandas-datareader) (2023.3)
-Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from requests&gt;=2.19.0-&gt;pandas-datareader) (2.0.4)
+Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from requests&gt;=2.19.0-&gt;pandas-datareader) (3.3.2)
 Requirement already satisfied: idna&lt;4,&gt;=2.5 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from requests&gt;=2.19.0-&gt;pandas-datareader) (3.7)
-Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from requests&gt;=2.19.0-&gt;pandas-datareader) (2.2.2)
-Requirement already satisfied: certifi&gt;=2017.4.17 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from requests&gt;=2.19.0-&gt;pandas-datareader) (2024.6.2)
+Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from requests&gt;=2.19.0-&gt;pandas-datareader) (2.2.3)
+Requirement already satisfied: certifi&gt;=2017.4.17 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from requests&gt;=2.19.0-&gt;pandas-datareader) (2024.8.30)
 Requirement already satisfied: six&gt;=1.5 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from python-dateutil&gt;=2.8.2-&gt;pandas&gt;=0.23-&gt;pandas-datareader) (1.16.0)
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading pandas_datareader-0.10.0-py3-none-any.whl (109 kB)
-?25l   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/109.5 kB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">109.5/109.5 kB</span> <span class=" -Color -Color-Red">8.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
-?25h
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Installing collected packages: pandas-datareader
@@ -928,7 +922,7 @@ Growth rates of GDP and its components are calculated using the least squares me
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="us-gdp">
-<a class="reference internal image-reference" href="_images/d51a3aeb3659a72c123d4171505f8c78acdd5e425823e8ccf255262a96678b96.png"><img alt="_images/d51a3aeb3659a72c123d4171505f8c78acdd5e425823e8ccf255262a96678b96.png" src="_images/d51a3aeb3659a72c123d4171505f8c78acdd5e425823e8ccf255262a96678b96.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/12c50a6937a600b4f4ff698437996b4cfe2e8eeb85dd86090a2aac8d3d599975.png"><img alt="_images/12c50a6937a600b4f4ff698437996b4cfe2e8eeb85dd86090a2aac8d3d599975.png" src="_images/12c50a6937a600b4f4ff698437996b4cfe2e8eeb85dd86090a2aac8d3d599975.png" style="width: 80%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 3.1 </span><span class="caption-text">United States (GDP growth rate %)</span><a class="headerlink" href="#us-gdp" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -955,7 +949,7 @@ in the growth rate and significant fluctuations.</p>
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="uk-gdp">
-<a class="reference internal image-reference" href="_images/7a9b90a2570c7764ad5e898d938577f8cee9b23592c9836ad0dfb87942c6b7ff.png"><img alt="_images/7a9b90a2570c7764ad5e898d938577f8cee9b23592c9836ad0dfb87942c6b7ff.png" src="_images/7a9b90a2570c7764ad5e898d938577f8cee9b23592c9836ad0dfb87942c6b7ff.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/e31e6ad2fe3f5bff0a77976b05954fbab2dd0f171d6226aa10c3d58f73b4091e.png"><img alt="_images/e31e6ad2fe3f5bff0a77976b05954fbab2dd0f171d6226aa10c3d58f73b4091e.png" src="_images/e31e6ad2fe3f5bff0a77976b05954fbab2dd0f171d6226aa10c3d58f73b4091e.png" style="width: 80%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 3.2 </span><span class="caption-text">United Kingdom (GDP growth rate %)</span><a class="headerlink" href="#uk-gdp" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -980,7 +974,7 @@ Global Financial Crisis (GFC) and the Covid-19 pandemic.</p>
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="jp-gdp">
-<a class="reference internal image-reference" href="_images/e6fb6bf5c85ccb0e6878060f54ae05dcdd7ccade92b6b9768d13062ee4f440e7.png"><img alt="_images/e6fb6bf5c85ccb0e6878060f54ae05dcdd7ccade92b6b9768d13062ee4f440e7.png" src="_images/e6fb6bf5c85ccb0e6878060f54ae05dcdd7ccade92b6b9768d13062ee4f440e7.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/21a14269efc6ebb46db1ea04900a5718ce18e047b9298df0e50da999031655fd.png"><img alt="_images/21a14269efc6ebb46db1ea04900a5718ce18e047b9298df0e50da999031655fd.png" src="_images/21a14269efc6ebb46db1ea04900a5718ce18e047b9298df0e50da999031655fd.png" style="width: 80%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 3.3 </span><span class="caption-text">Japan (GDP growth rate %)</span><a class="headerlink" href="#jp-gdp" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -1002,7 +996,7 @@ Global Financial Crisis (GFC) and the Covid-19 pandemic.</p>
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="gc-gdp">
-<a class="reference internal image-reference" href="_images/a9be152f6048e8bd519829815f0f3a225e064caa30c32fa6bc1d8c1ea82118b1.png"><img alt="_images/a9be152f6048e8bd519829815f0f3a225e064caa30c32fa6bc1d8c1ea82118b1.png" src="_images/a9be152f6048e8bd519829815f0f3a225e064caa30c32fa6bc1d8c1ea82118b1.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/2bdd42b219fe60aa596e6daad55dc8d7e3bbb2c3f9cc0a8bff6b9a932f4de854.png"><img alt="_images/2bdd42b219fe60aa596e6daad55dc8d7e3bbb2c3f9cc0a8bff6b9a932f4de854.png" src="_images/2bdd42b219fe60aa596e6daad55dc8d7e3bbb2c3f9cc0a8bff6b9a932f4de854.png" style="width: 80%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 3.4 </span><span class="caption-text">Greece (GDP growth rate %)</span><a class="headerlink" href="#gc-gdp" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -1026,7 +1020,7 @@ of the Greek debt crisis.</p>
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="arg-gdp">
-<a class="reference internal image-reference" href="_images/5bb8dac4dab0c180f5cad272654cdb818298a8085d6fa881fc38a4c3088833b8.png"><img alt="_images/5bb8dac4dab0c180f5cad272654cdb818298a8085d6fa881fc38a4c3088833b8.png" src="_images/5bb8dac4dab0c180f5cad272654cdb818298a8085d6fa881fc38a4c3088833b8.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/31c83a208039c217670755c9cd8aec838811a8597c266b77c11a1c8a15da815d.png"><img alt="_images/31c83a208039c217670755c9cd8aec838811a8597c266b77c11a1c8a15da815d.png" src="_images/31c83a208039c217670755c9cd8aec838811a8597c266b77c11a1c8a15da815d.png" style="width: 80%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 3.5 </span><span class="caption-text">Argentina (GDP growth rate %)</span><a class="headerlink" href="#arg-gdp" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -1122,7 +1116,7 @@ defined by the NBER.</p>
 </details>
 <div class="cell_output docutils container">
 <figure class="align-default" id="lrunrate">
-<a class="reference internal image-reference" href="_images/7fb7e60e4e801246bb2d1eb3615225094cd2f9f842696269a971169a2eb17c47.png"><img alt="_images/7fb7e60e4e801246bb2d1eb3615225094cd2f9f842696269a971169a2eb17c47.png" src="_images/7fb7e60e4e801246bb2d1eb3615225094cd2f9f842696269a971169a2eb17c47.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/efb5c11163a618b00856b910e5c2ae41039793d80fea458716cfb41a2263a510.png"><img alt="_images/efb5c11163a618b00856b910e5c2ae41039793d80fea458716cfb41a2263a510.png" src="_images/efb5c11163a618b00856b910e5c2ae41039793d80fea458716cfb41a2263a510.png" style="width: 80%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 3.6 </span><span class="caption-text">Long-run unemployment rate, US (%)</span><a class="headerlink" href="#lrunrate" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -1270,7 +1264,7 @@ that includes multiple countries.</p>
 </details>
 <div class="cell_output docutils container">
 <figure class="align-default" id="adv-gdp">
-<a class="reference internal image-reference" href="_images/831ed08418995eb9a2958a4f79da35358aca36ea4e5638b873035fb5c53d7dee.png"><img alt="_images/831ed08418995eb9a2958a4f79da35358aca36ea4e5638b873035fb5c53d7dee.png" src="_images/831ed08418995eb9a2958a4f79da35358aca36ea4e5638b873035fb5c53d7dee.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/83ac21889601f3312c67309941cd324d320ca2fb2bcd4d1502b8e65ef03e4515.png"><img alt="_images/83ac21889601f3312c67309941cd324d320ca2fb2bcd4d1502b8e65ef03e4515.png" src="_images/83ac21889601f3312c67309941cd324d320ca2fb2bcd4d1502b8e65ef03e4515.png" style="width: 80%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 3.7 </span><span class="caption-text">Developed economies (GDP growth rate %)</span><a class="headerlink" href="#adv-gdp" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -1298,7 +1292,7 @@ that includes multiple countries.</p>
 </details>
 <div class="cell_output docutils container">
 <figure class="align-default" id="deve-gdp">
-<a class="reference internal image-reference" href="_images/b0942cd3c4e36b0c4401893c1303a3be20f54ff35d9804262bf634a3d2a1f14f.png"><img alt="_images/b0942cd3c4e36b0c4401893c1303a3be20f54ff35d9804262bf634a3d2a1f14f.png" src="_images/b0942cd3c4e36b0c4401893c1303a3be20f54ff35d9804262bf634a3d2a1f14f.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/5ca65b058a7c93cae736d8ec13ffa403774e483fb5172722ddf9ad170cc016e1.png"><img alt="_images/5ca65b058a7c93cae736d8ec13ffa403774e483fb5172722ddf9ad170cc016e1.png" src="_images/5ca65b058a7c93cae736d8ec13ffa403774e483fb5172722ddf9ad170cc016e1.png" style="width: 80%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 3.8 </span><span class="caption-text">Developing economies (GDP growth rate %)</span><a class="headerlink" href="#deve-gdp" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -1341,7 +1335,7 @@ the United Kingdom, Japan, and France.</p>
 </details>
 <div class="cell_output docutils container">
 <figure class="align-default" id="adv-unemp">
-<a class="reference internal image-reference" href="_images/11eba119d49bb20f6b7d46b7b15918beb6d3690fa7dfde1c25bdbafc51f471d1.png"><img alt="_images/11eba119d49bb20f6b7d46b7b15918beb6d3690fa7dfde1c25bdbafc51f471d1.png" src="_images/11eba119d49bb20f6b7d46b7b15918beb6d3690fa7dfde1c25bdbafc51f471d1.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/5f49da0b9a513ffed822dd221c5c09c8bac1bf9894b3870d9cfa4cad07074ecb.png"><img alt="_images/5f49da0b9a513ffed822dd221c5c09c8bac1bf9894b3870d9cfa4cad07074ecb.png" src="_images/5f49da0b9a513ffed822dd221c5c09c8bac1bf9894b3870d9cfa4cad07074ecb.png" style="width: 80%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 3.9 </span><span class="caption-text">Developed economies (unemployment rate %)</span><a class="headerlink" href="#adv-unemp" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -1430,7 +1424,7 @@ year-on-year
 </details>
 <div class="cell_output docutils container">
 <figure class="align-default" id="csicpi">
-<a class="reference internal image-reference" href="_images/428199e495fb788537059fe89affb1f25629d98ee0b9d9c3581a69fa182d7648.png"><img alt="_images/428199e495fb788537059fe89affb1f25629d98ee0b9d9c3581a69fa182d7648.png" src="_images/428199e495fb788537059fe89affb1f25629d98ee0b9d9c3581a69fa182d7648.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/4581bf9488edbc275b5e69edc940f6df0fb43ddcf27b23722843094f21329a9a.png"><img alt="_images/4581bf9488edbc275b5e69edc940f6df0fb43ddcf27b23722843094f21329a9a.png" src="_images/4581bf9488edbc275b5e69edc940f6df0fb43ddcf27b23722843094f21329a9a.png" style="width: 80%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 3.10 </span><span class="caption-text">Consumer sentiment index and YoY CPI change, US</span><a class="headerlink" href="#csicpi" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -1487,7 +1481,7 @@ from 1919 to 2022 in the US to show this trend.</p>
 </details>
 <div class="cell_output docutils container">
 <figure class="align-default" id="roc">
-<a class="reference internal image-reference" href="_images/47a52969ea3f0a626194952c59dd253f73f3f22254eac7bb9f74ec52b4408fc2.png"><img alt="_images/47a52969ea3f0a626194952c59dd253f73f3f22254eac7bb9f74ec52b4408fc2.png" src="_images/47a52969ea3f0a626194952c59dd253f73f3f22254eac7bb9f74ec52b4408fc2.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/5f9fa0f687db4d27a848b8b16312c6ec7ab32399eecff677bef61c4e8c9c0b0f.png"><img alt="_images/5f9fa0f687db4d27a848b8b16312c6ec7ab32399eecff677bef61c4e8c9c0b0f.png" src="_images/5f9fa0f687db4d27a848b8b16312c6ec7ab32399eecff677bef61c4e8c9c0b0f.png" style="width: 80%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 3.11 </span><span class="caption-text">YoY real output change, US (%)</span><a class="headerlink" href="#roc" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -1531,7 +1525,7 @@ percentage of GDP by banks from 1970 to 2022 in the UK.</p>
 </details>
 <div class="cell_output docutils container">
 <figure class="align-default" id="dcpc">
-<a class="reference internal image-reference" href="_images/8e29e668421c7f17bf8a56ba33a1de92c74c04356768f4465f812916639bd543.png"><img alt="_images/8e29e668421c7f17bf8a56ba33a1de92c74c04356768f4465f812916639bd543.png" src="_images/8e29e668421c7f17bf8a56ba33a1de92c74c04356768f4465f812916639bd543.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/0ce1632825930f95104e0eb9f04412511758f8b3c93d9d0fe2627420995c0b6d.png"><img alt="_images/0ce1632825930f95104e0eb9f04412511758f8b3c93d9d0fe2627420995c0b6d.png" src="_images/0ce1632825930f95104e0eb9f04412511758f8b3c93d9d0fe2627420995c0b6d.png" style="width: 80%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 3.12 </span><span class="caption-text">Domestic credit to private sector by banks (% of GDP)</span><a class="headerlink" href="#dcpc" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -1966,7 +1960,11 @@ and stagnates or even contracts after recessions.</p>
                     <li data-tippy-content="Download Notebook"><a href="/_notebooks/business_cycle.ipynb" download><i data-feather="download-cloud"></i></a></li>
                     <li class="settings-button" id="settingsButton"><div data-tippy-content="Launch Notebook"><i data-feather="play-circle"></i></div></li>
                         <li class="download-pdf" id="downloadButton"><i data-feather="file"></i></li>
+                    <!--
+                    # Enable if looking for link to specific document hosted on GitHub
                     <li data-tippy-content="View Source"><a target="_blank" href="https://github.com/QuantEcon/lecture-python-intro/blob/main/lectures/business_cycle.md" download><i data-feather="github"></i></a></li>
+                    -->
+                    <li data-tippy-content="View Source"><a target="_blank" href="https://github.com/QuantEcon/lecture-python-intro" download><i data-feather="github"></i></a></li>
                 </ul>
 
             </div>
