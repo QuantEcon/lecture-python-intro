@@ -197,7 +197,7 @@ mystnb:
     caption: Daily Amazon returns
     name: dailyreturns-amzn
 ---
-s = data['Adj Close']
+s = data['Close']
 r = s.pct_change()
 
 fig, ax = plt.subplots()
@@ -229,7 +229,7 @@ mystnb:
     caption: Daily Bitcoin returns
     name: dailyreturns-btc
 ---
-s = data['Adj Close']
+s = data['Close']
 r = s.pct_change()
 
 fig, ax = plt.subplots()
