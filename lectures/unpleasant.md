@@ -481,7 +481,7 @@ def plot_path(m0_arr, model, length=15):
             ax.set_title(titles[i])
     
     axs[0, 1].hlines(model.m0_check, 0, length, color='r', linestyle='--')
-    axs[0, 1].text(length * 0.8, model.m0_check * 0.9, '$\check{m}_0$')
+    axs[0, 1].text(length * 0.8, model.m0_check * 0.9, r'$\check{m}_0$')
     plt.show()
 ```
 

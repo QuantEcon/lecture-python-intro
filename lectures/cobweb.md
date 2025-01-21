@@ -271,7 +271,7 @@ def plot45(model, pmin, pmax, p0, num_arrows=5):
 
     ax.plot(pgrid, g(model, pgrid), 'b-',
             lw=2, alpha=0.6, label='g')
-    ax.plot(pgrid, pgrid, lw=1, alpha=0.7, label='$45\degree$')
+    ax.plot(pgrid, pgrid, lw=1, alpha=0.7, label=r'$45\degree$')
 
     x = p0
     xticks = [pmin]

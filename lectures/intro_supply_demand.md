@@ -348,7 +348,7 @@ ab_grid = np.linspace(a, b, 400)
 fig, ax = plt.subplots()
 ax.plot(x_grid, f(x_grid), label="$f$", color="k")
 ax.fill_between(ab_grid, [0] * len(ab_grid), f(ab_grid), 
-                label="$\int_a^b f(x) dx$")
+                label=r"$\int_a^b f(x) dx$")
 ax.legend()
 plt.show()
 ```

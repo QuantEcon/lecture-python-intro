@@ -328,7 +328,7 @@ for i in range(n):
         # Generate time series starting at different x_0
         X = mc.simulate(ts_length, init=x0)
         p_hat = (X == i).cumsum() / np.arange(1, ts_length+1)
-        axes[i].plot(p_hat, label=f'$x_0 = \, {x0} $')
+        axes[i].plot(p_hat, label=fr'$x_0 = \, {x0} $')
 
     axes[i].legend()
 plt.tight_layout()

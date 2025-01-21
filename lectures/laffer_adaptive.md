@@ -379,15 +379,15 @@ def draw_iterations(π0s, model, line_params, π_bars, num_steps):
             
     axes[2].axhline(y=π_bars[0], color='grey', linestyle='--', lw=1.5, alpha=0.6)
     axes[2].axhline(y=π_bars[1], color='grey', linestyle='--', lw=1.5, alpha=0.6)
-    axes[2].text(num_steps * 1.07, π_bars[0], '$\pi_l$', verticalalignment='center', 
+    axes[2].text(num_steps * 1.07, π_bars[0], r'$\pi_l$', verticalalignment='center', 
                      color='grey', size=10)
-    axes[2].text(num_steps * 1.07, π_bars[1], '$\pi_u$', verticalalignment='center', 
+    axes[2].text(num_steps * 1.07, π_bars[1], r'$\pi_u$', verticalalignment='center', 
                          color='grey', size=10)
 
     axes[0].set_ylabel('$m_t$')
     axes[1].set_ylabel('$p_t$')
-    axes[2].set_ylabel('$\pi_t$')
-    axes[3].set_ylabel('$\mu_t$')
+    axes[2].set_ylabel(r'$\pi_t$')
+    axes[3].set_ylabel(r'$\mu_t$')
     axes[3].set_xlabel('timestep')
     axes[3].xaxis.set_major_locator(MaxNLocator(integer=True))
 

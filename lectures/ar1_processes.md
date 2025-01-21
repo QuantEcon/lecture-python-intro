@@ -180,7 +180,7 @@ for t in range(sim_length):
     mu = a * mu + b
     v = a**2 * v + c**2
     ax.plot(grid, norm.pdf(grid, loc=mu, scale=np.sqrt(v)),
-            label=f"$\psi_{t}$",
+            label=fr"$\psi_{t}$",
             alpha=0.7)
 
 ax.legend(bbox_to_anchor=[1.05,1],loc=2,borderaxespad=1)
@@ -267,7 +267,7 @@ plot_density_seq(ax, mu_0=4.0)
 mu_star = b / (1 - a)
 std_star = np.sqrt(c**2 / (1 - a**2))  # square root of v_star
 psi_star = norm.pdf(grid, loc=mu_star, scale=std_star)
-ax.plot(grid, psi_star, 'k-', lw=2, label="$\psi^*$")
+ax.plot(grid, psi_star, 'k-', lw=2, label=r"$\psi^*$")
 ax.legend()
 
 plt.show()
