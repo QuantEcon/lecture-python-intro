@@ -4,7 +4,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.16.1
+    jupytext_version: 1.16.6
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
@@ -434,7 +434,7 @@ for μ, σ in zip(μ_vals, σ_vals):
     u = scipy.stats.norm(μ, σ)
     ax.plot(x_grid, u.pdf(x_grid),
     alpha=0.5, lw=2,
-    label=f'$\mu={μ}, \sigma={σ}$')
+    label=rf'$\mu={μ}, \sigma={σ}$')
 ax.set_xlabel('x')
 ax.set_ylabel('PDF')
 plt.legend()
@@ -449,7 +449,7 @@ for μ, σ in zip(μ_vals, σ_vals):
     u = scipy.stats.norm(μ, σ)
     ax.plot(x_grid, u.cdf(x_grid),
     alpha=0.5, lw=2,
-    label=f'$\mu={μ}, \sigma={σ}$')
+    label=rf'$\mu={μ}, \sigma={σ}$')
     ax.set_ylim(0, 1)
 ax.set_xlabel('x')
 ax.set_ylabel('CDF')
@@ -496,7 +496,7 @@ for μ, σ in zip(μ_vals, σ_vals):
     u = scipy.stats.lognorm(σ, scale=np.exp(μ))
     ax.plot(x_grid, u.pdf(x_grid),
     alpha=0.5, lw=2,
-    label=f'$\mu={μ}, \sigma={σ}$')
+    label=fr'$\mu={μ}, \sigma={σ}$')
 ax.set_xlabel('x')
 ax.set_ylabel('PDF')
 plt.legend()
@@ -510,7 +510,7 @@ for σ in σ_vals:
     u = scipy.stats.norm(μ, σ)
     ax.plot(x_grid, u.cdf(x_grid),
     alpha=0.5, lw=2,
-    label=f'$\mu={μ}, \sigma={σ}$')
+    label=rf'$\mu={μ}, \sigma={σ}$')
     ax.set_ylim(0, 1)
     ax.set_xlim(0, 3)
 ax.set_xlabel('x')
@@ -554,7 +554,7 @@ for λ in λ_vals:
     u = scipy.stats.expon(scale=1/λ)
     ax.plot(x_grid, u.pdf(x_grid),
     alpha=0.5, lw=2,
-    label=f'$\lambda={λ}$')
+    label=rf'$\lambda={λ}$')
 ax.set_xlabel('x')
 ax.set_ylabel('PDF')
 plt.legend()
@@ -567,7 +567,7 @@ for λ in λ_vals:
     u = scipy.stats.expon(scale=1/λ)
     ax.plot(x_grid, u.cdf(x_grid),
     alpha=0.5, lw=2,
-    label=f'$\lambda={λ}$')
+    label=rf'$\lambda={λ}$')
     ax.set_ylim(0, 1)
 ax.set_xlabel('x')
 ax.set_ylabel('CDF')
@@ -615,7 +615,7 @@ for α, β in zip(α_vals, β_vals):
     u = scipy.stats.beta(α, β)
     ax.plot(x_grid, u.pdf(x_grid),
     alpha=0.5, lw=2,
-    label=fr'$\alpha={α}, \beta={β}$')
+    label=rf'$\alpha={α}, \beta={β}$')
 ax.set_xlabel('x')
 ax.set_ylabel('PDF')
 plt.legend()
@@ -628,7 +628,7 @@ for α, β in zip(α_vals, β_vals):
     u = scipy.stats.beta(α, β)
     ax.plot(x_grid, u.cdf(x_grid),
     alpha=0.5, lw=2,
-    label=fr'$\alpha={α}, \beta={β}$')
+    label=rf'$\alpha={α}, \beta={β}$')
     ax.set_ylim(0, 1)
 ax.set_xlabel('x')
 ax.set_ylabel('CDF')
@@ -675,7 +675,7 @@ for α, β in zip(α_vals, β_vals):
     u = scipy.stats.gamma(α, scale=1/β)
     ax.plot(x_grid, u.pdf(x_grid),
     alpha=0.5, lw=2,
-    label=fr'$\alpha={α}, \beta={β}$')
+    label=rf'$\alpha={α}, \beta={β}$')
 ax.set_xlabel('x')
 ax.set_ylabel('PDF')
 plt.legend()
@@ -688,7 +688,7 @@ for α, β in zip(α_vals, β_vals):
     u = scipy.stats.gamma(α, scale=1/β)
     ax.plot(x_grid, u.cdf(x_grid),
     alpha=0.5, lw=2,
-    label=fr'$\alpha={α}, \beta={β}$')
+    label=rf'$\alpha={α}, \beta={β}$')
     ax.set_ylim(0, 1)
 ax.set_xlabel('x')
 ax.set_ylabel('CDF')
@@ -799,7 +799,7 @@ So we will have one observation for each month.
 :tags: [hide-output]
 
 df = yf.download('AMZN', '2000-1-1', '2024-1-1', interval='1mo')
-prices = df['Adj Close']
+prices = df['Close']
 x_amazon = prices.pct_change()[1:] * 100
 x_amazon.head()
 ```
@@ -876,7 +876,7 @@ For example, let's compare the monthly returns on Amazon shares with the monthly
 :tags: [hide-output]
 
 df = yf.download('COST', '2000-1-1', '2024-1-1', interval='1mo')
-prices = df['Adj Close']
+prices = df['Close']
 x_costco = prices.pct_change()[1:] * 100
 ```
 

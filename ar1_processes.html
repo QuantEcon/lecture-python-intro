@@ -370,7 +370,7 @@ v_0\)</span>, we obtain <span class="math notranslate nohighlight">\(\mu_t, v_t\
     <span class="n">mu</span> <span class="o">=</span> <span class="n">a</span> <span class="o">*</span> <span class="n">mu</span> <span class="o">+</span> <span class="n">b</span>
     <span class="n">v</span> <span class="o">=</span> <span class="n">a</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">v</span> <span class="o">+</span> <span class="n">c</span><span class="o">**</span><span class="mi">2</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> <span class="n">norm</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="n">mu</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">v</span><span class="p">)),</span>
-            <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;$\psi_</span><span class="si">{</span><span class="n">t</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">,</span>
+            <span class="n">label</span><span class="o">=</span><span class="sa">fr</span><span class="s2">&quot;$\psi_</span><span class="si">{</span><span class="n">t</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">,</span>
             <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
 
 <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">[</span><span class="mf">1.05</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span><span class="n">loc</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">borderaxespad</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
@@ -380,12 +380,6 @@ v_0\)</span>, we obtain <span class="math notranslate nohighlight">\(\mu_t, v_t\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;&gt;:12: SyntaxWarning: invalid escape sequence &#39;\p&#39;
-&lt;&gt;:12: SyntaxWarning: invalid escape sequence &#39;\p&#39;
-/tmp/ipykernel_5770/1737174689.py:12: SyntaxWarning: invalid escape sequence &#39;\p&#39;
-  label=f&quot;$\psi_{t}$&quot;,
-</pre></div>
-</div>
 <a class="reference internal image-reference" href="_images/8db60a2b124d2473ca0d9b88fef705a33356c88304fdfcaad3c1a55309459aa7.png"><img alt="_images/8db60a2b124d2473ca0d9b88fef705a33356c88304fdfcaad3c1a55309459aa7.png" src="_images/8db60a2b124d2473ca0d9b88fef705a33356c88304fdfcaad3c1a55309459aa7.png" style="width: 80%;" /></a>
 </div>
 </div>
@@ -459,7 +453,7 @@ t \to \infty\]</div>
 <span class="n">mu_star</span> <span class="o">=</span> <span class="n">b</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">a</span><span class="p">)</span>
 <span class="n">std_star</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">c</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">a</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>  <span class="c1"># square root of v_star</span>
 <span class="n">psi_star</span> <span class="o">=</span> <span class="n">norm</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="n">mu_star</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">std_star</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> <span class="n">psi_star</span><span class="p">,</span> <span class="s1">&#39;k-&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;$\psi^*$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> <span class="n">psi_star</span><span class="p">,</span> <span class="s1">&#39;k-&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$\psi^*$&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -467,12 +461,6 @@ t \to \infty\]</div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;&gt;:7: SyntaxWarning: invalid escape sequence &#39;\p&#39;
-&lt;&gt;:7: SyntaxWarning: invalid escape sequence &#39;\p&#39;
-/tmp/ipykernel_5770/3420803857.py:7: SyntaxWarning: invalid escape sequence &#39;\p&#39;
-  ax.plot(grid, psi_star, &#39;k-&#39;, lw=2, label=&quot;$\psi^*$&quot;)
-</pre></div>
-</div>
 <a class="reference internal image-reference" href="_images/00ec94e4259ade6e30e501a349175e925646cfaa308db64935a10c3b64b47d05.png"><img alt="_images/00ec94e4259ade6e30e501a349175e925646cfaa308db64935a10c3b64b47d05.png" src="_images/00ec94e4259ade6e30e501a349175e925646cfaa308db64935a10c3b64b47d05.png" style="width: 80%;" /></a>
 </div>
 </div>
@@ -721,9 +709,9 @@ of these distributions?)</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/b76871621d3202739d046a27903b30c8274e362ecc2cb17757a3987aa97befc3.png"><img alt="_images/b76871621d3202739d046a27903b30c8274e362ecc2cb17757a3987aa97befc3.png" src="_images/b76871621d3202739d046a27903b30c8274e362ecc2cb17757a3987aa97befc3.png" style="width: 80%;" /></a>
-<a class="reference internal image-reference" href="_images/3936aa77d859a263cf1f5c08d39873761295879514748910b12176c1a954ebea.png"><img alt="_images/3936aa77d859a263cf1f5c08d39873761295879514748910b12176c1a954ebea.png" src="_images/3936aa77d859a263cf1f5c08d39873761295879514748910b12176c1a954ebea.png" style="width: 80%;" /></a>
-<a class="reference internal image-reference" href="_images/99a1188480178f993c3c2aa2afbfe43491c886a2cbd415efbb127df4c07f325f.png"><img alt="_images/99a1188480178f993c3c2aa2afbfe43491c886a2cbd415efbb127df4c07f325f.png" src="_images/99a1188480178f993c3c2aa2afbfe43491c886a2cbd415efbb127df4c07f325f.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/476e74020d04bd02bd190d3a366420a19caae8b810b70ce89d2dee8d7e465bfb.png"><img alt="_images/476e74020d04bd02bd190d3a366420a19caae8b810b70ce89d2dee8d7e465bfb.png" src="_images/476e74020d04bd02bd190d3a366420a19caae8b810b70ce89d2dee8d7e465bfb.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/9f4f5b8dca64f7b739ae1410481e8338b8029dbd0bc6051f0b13ac883f25effb.png"><img alt="_images/9f4f5b8dca64f7b739ae1410481e8338b8029dbd0bc6051f0b13ac883f25effb.png" src="_images/9f4f5b8dca64f7b739ae1410481e8338b8029dbd0bc6051f0b13ac883f25effb.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/e9a61d47849ae4bae3ae7963790a9f89b7a8b8935011dc35624ce11f388ba3b1.png"><img alt="_images/e9a61d47849ae4bae3ae7963790a9f89b7a8b8935011dc35624ce11f388ba3b1.png" src="_images/e9a61d47849ae4bae3ae7963790a9f89b7a8b8935011dc35624ce11f388ba3b1.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>We see that the kernel density estimator is effective when the underlying
@@ -836,15 +824,15 @@ theoretical distribution.</p>
 &lt;&gt;:9: SyntaxWarning: invalid escape sequence &#39;\p&#39;
 &lt;&gt;:10: SyntaxWarning: invalid escape sequence &#39;\p&#39;
 &lt;&gt;:11: SyntaxWarning: invalid escape sequence &#39;\p&#39;
-/tmp/ipykernel_5770/2830449538.py:9: SyntaxWarning: invalid escape sequence &#39;\p&#39;
+/tmp/ipykernel_7217/2830449538.py:9: SyntaxWarning: invalid escape sequence &#39;\p&#39;
   ax.plot(x_grid, ψ.pdf(x_grid), label=&quot;$\psi_t$&quot;)
-/tmp/ipykernel_5770/2830449538.py:10: SyntaxWarning: invalid escape sequence &#39;\p&#39;
+/tmp/ipykernel_7217/2830449538.py:10: SyntaxWarning: invalid escape sequence &#39;\p&#39;
   ax.plot(x_grid, ψ_next.pdf(x_grid), label=&quot;$\psi_{t+1}$&quot;)
-/tmp/ipykernel_5770/2830449538.py:11: SyntaxWarning: invalid escape sequence &#39;\p&#39;
+/tmp/ipykernel_7217/2830449538.py:11: SyntaxWarning: invalid escape sequence &#39;\p&#39;
   ax.plot(x_grid, kde.f(x_grid), label=&quot;estimate of $\psi_{t+1}$&quot;)
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="_images/4f33aa17e98bedf0af66c384b44de55a42ad38b62d43a75d7491b7c0ebdde54f.png"><img alt="_images/4f33aa17e98bedf0af66c384b44de55a42ad38b62d43a75d7491b7c0ebdde54f.png" src="_images/4f33aa17e98bedf0af66c384b44de55a42ad38b62d43a75d7491b7c0ebdde54f.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/717f7cbfbd4ca62c56d7dad8b03dd8bc303720e9c6308d02768fc9669c005200.png"><img alt="_images/717f7cbfbd4ca62c56d7dad8b03dd8bc303720e9c6308d02768fc9669c005200.png" src="_images/717f7cbfbd4ca62c56d7dad8b03dd8bc303720e9c6308d02768fc9669c005200.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>The simulated distribution approximately coincides with the theoretical

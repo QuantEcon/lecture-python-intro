@@ -505,7 +505,7 @@ instead of arrows.</p>
     <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
     <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">a_1</span><span class="p">,</span> <span class="n">b_1</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">colors</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span>
                   <span class="n">edgecolors</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;unit circle in $\mathbb</span><span class="si">{R}</span><span class="s2">^2$&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;unit circle in $\mathbb</span><span class="si">{R}</span><span class="s2">^2$&quot;</span><span class="p">)</span>
 
     <span class="n">x1</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
     <span class="n">y1</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
@@ -527,16 +527,12 @@ instead of arrows.</p>
 <div class="cell_output docutils container">
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;&gt;:31: SyntaxWarning: invalid escape sequence &#39;\c&#39;
 &lt;&gt;:37: SyntaxWarning: invalid escape sequence &#39;\c&#39;
-&lt;&gt;:72: SyntaxWarning: invalid escape sequence &#39;\m&#39;
 &lt;&gt;:31: SyntaxWarning: invalid escape sequence &#39;\c&#39;
 &lt;&gt;:37: SyntaxWarning: invalid escape sequence &#39;\c&#39;
-&lt;&gt;:72: SyntaxWarning: invalid escape sequence &#39;\m&#39;
-/tmp/ipykernel_6024/1188859409.py:31: SyntaxWarning: invalid escape sequence &#39;\c&#39;
+/tmp/ipykernel_7520/2923067778.py:31: SyntaxWarning: invalid escape sequence &#39;\c&#39;
   ax[0].set_title(&quot;points $x_1, x_2, \cdots, x_k$&quot;)
-/tmp/ipykernel_6024/1188859409.py:37: SyntaxWarning: invalid escape sequence &#39;\c&#39;
+/tmp/ipykernel_7520/2923067778.py:37: SyntaxWarning: invalid escape sequence &#39;\c&#39;
   ax[1].set_title(&quot;points $Ax_1, Ax_2, \cdots, Ax_k$&quot;)
-/tmp/ipykernel_6024/1188859409.py:72: SyntaxWarning: invalid escape sequence &#39;\m&#39;
-  ax[0].set_title(&quot;unit circle in $\mathbb{R}^2$&quot;)
 </pre></div>
 </div>
 </div>
@@ -805,37 +801,21 @@ transformation <span class="math notranslate nohighlight">\(AB\)</span> and then
 
     <span class="c1"># Plot grid points</span>
     <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">xygrid</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">xygrid</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">36</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">colors</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">)</span>
-    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;points $x_1, x_2, \cdots, x_k$&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;points $x_1, x_2, \cdots, x_k$&quot;</span><span class="p">)</span>
 
     <span class="c1"># Plot intermediate grid points</span>
     <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">uvgrid</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">uvgrid</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">36</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">colors</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">)</span>
-    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;points $Bx_1, Bx_2, \cdots, Bx_k$&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;points $Bx_1, Bx_2, \cdots, Bx_k$&quot;</span><span class="p">)</span>
 
     <span class="c1"># Plot transformed grid points</span>
     <span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">abgrid</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">abgrid</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">36</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">colors</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">)</span>
-    <span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;points $ABx_1, ABx_2, \cdots, ABx_k$&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;points $ABx_1, ABx_2, \cdots, ABx_k$&quot;</span><span class="p">)</span>
 
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </details>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;&gt;:24: SyntaxWarning: invalid escape sequence &#39;\c&#39;
-&lt;&gt;:28: SyntaxWarning: invalid escape sequence &#39;\c&#39;
-&lt;&gt;:32: SyntaxWarning: invalid escape sequence &#39;\c&#39;
-&lt;&gt;:24: SyntaxWarning: invalid escape sequence &#39;\c&#39;
-&lt;&gt;:28: SyntaxWarning: invalid escape sequence &#39;\c&#39;
-&lt;&gt;:32: SyntaxWarning: invalid escape sequence &#39;\c&#39;
-/tmp/ipykernel_6024/2452742297.py:24: SyntaxWarning: invalid escape sequence &#39;\c&#39;
-  ax[0].set_title(&quot;points $x_1, x_2, \cdots, x_k$&quot;)
-/tmp/ipykernel_6024/2452742297.py:28: SyntaxWarning: invalid escape sequence &#39;\c&#39;
-  ax[1].set_title(&quot;points $Bx_1, Bx_2, \cdots, Bx_k$&quot;)
-/tmp/ipykernel_6024/2452742297.py:32: SyntaxWarning: invalid escape sequence &#39;\c&#39;
-  ax[2].set_title(&quot;points $ABx_1, ABx_2, \cdots, ABx_k$&quot;)
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1326,7 +1306,7 @@ The real eigenvalue is [ 4. -2.  2.]
 </pre></div>
 </div>
 <figure class="align-default" id="pow-dist">
-<a class="reference internal image-reference" href="_images/0e5120c35fb287473a31ea89ab7191d10c4f3041241ca668cba9d14a813c8764.png"><img alt="_images/0e5120c35fb287473a31ea89ab7191d10c4f3041241ca668cba9d14a813c8764.png" src="_images/0e5120c35fb287473a31ea89ab7191d10c4f3041241ca668cba9d14a813c8764.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/285414ae8a27e60d2f1b91f73e7926dae1e26954e0ba8c8b016b269a9a5fa071.png"><img alt="_images/285414ae8a27e60d2f1b91f73e7926dae1e26954e0ba8c8b016b269a9a5fa071.png" src="_images/285414ae8a27e60d2f1b91f73e7926dae1e26954e0ba8c8b016b269a9a5fa071.png" style="width: 80%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 16.1 </span><span class="caption-text">Power iteration</span><a class="headerlink" href="#pow-dist" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -1369,7 +1349,7 @@ The real eigenvalue is [ 4. -2.  2.]
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="pow-trajectory">
-<a class="reference internal image-reference" href="_images/fcc9846e57c029e79148d324d27a089c0f602c4cbf947ee14e5c625b85e3f5d0.png"><img alt="_images/fcc9846e57c029e79148d324d27a089c0f602c4cbf947ee14e5c625b85e3f5d0.png" src="_images/fcc9846e57c029e79148d324d27a089c0f602c4cbf947ee14e5c625b85e3f5d0.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/c1e5a054834439ece51da0d386c9a9ed51923b847afec408881b223e695efa34.png"><img alt="_images/c1e5a054834439ece51da0d386c9a9ed51923b847afec408881b223e695efa34.png" src="_images/c1e5a054834439ece51da0d386c9a9ed51923b847afec408881b223e695efa34.png" style="width: 80%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 16.2 </span><span class="caption-text">Power iteration trajectory</span><a class="headerlink" href="#pow-trajectory" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -1570,9 +1550,8 @@ eigenvalues:
 eigenvectors:
  [[0.81649658+0.j         0.81649658-0.j        ]
  [0.40824829-0.40824829j 0.40824829+0.40824829j]]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Example 3:
+
+Example 3:
 
 eigenvalues:
  [1.22474487+0.70710678j 1.22474487-0.70710678j]

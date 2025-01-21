@@ -289,7 +289,9 @@ Requirement already satisfied: requests in /home/runner/miniconda3/envs/quanteco
 Requirement already satisfied: scipy&gt;=1.5.0 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from quantecon) (1.13.1)
 Requirement already satisfied: sympy in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from quantecon) (1.13.2)
 Requirement already satisfied: llvmlite&lt;0.44,&gt;=0.43.0dev0 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from numba&gt;=0.49.0-&gt;quantecon) (0.43.0)
-Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from requests-&gt;quantecon) (3.3.2)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from requests-&gt;quantecon) (3.3.2)
 Requirement already satisfied: idna&lt;4,&gt;=2.5 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from requests-&gt;quantecon) (3.7)
 Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from requests-&gt;quantecon) (2.2.3)
 Requirement already satisfied: certifi&gt;=2017.4.17 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from requests-&gt;quantecon) (2024.8.30)
@@ -602,7 +604,7 @@ to a cumulative distribution</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 0, 0, 1, 1])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1, 0, 0, 1, 0])
 </pre></div>
 </div>
 </div>
@@ -657,7 +659,7 @@ to a cumulative distribution</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 1, 1, 1, 0, 1, 1, 1, 1, 1])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 0, 1, 0, 1, 1, 1, 1, 1, 1])
 </pre></div>
 </div>
 </div>
@@ -676,7 +678,7 @@ sample that takes value 0 will be about 0.25.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.250098
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.250418
 </pre></div>
 </div>
 </div>
@@ -697,7 +699,7 @@ always close to 0.25 (for the <code class="docutils literal notranslate"><span c
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.250063
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.24981
 </pre></div>
 </div>
 </div>
@@ -710,11 +712,11 @@ always close to 0.25 (for the <code class="docutils literal notranslate"><span c
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 1.17 s, sys: 815 μs, total: 1.17 s
-Wall time: 1.17 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 1.19 s, sys: 894 μs, total: 1.19 s
+Wall time: 1.19 s
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 1, 1, ..., 1, 0, 1])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 0, 1, ..., 0, 1, 1])
 </pre></div>
 </div>
 </div>
@@ -726,11 +728,11 @@ Wall time: 1.17 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 10 ms, sys: 4.13 ms, total: 14.2 ms
-Wall time: 13.9 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 11.4 ms, sys: 2.97 ms, total: 14.4 ms
+Wall time: 14 ms
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 1, 1, ..., 0, 0, 1])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 1, 1, ..., 1, 1, 1])
 </pre></div>
 </div>
 </div>
@@ -748,7 +750,7 @@ Wall time: 13.9 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;employed&#39;, &#39;employed&#39;, &#39;employed&#39;, &#39;employed&#39;], dtype=&#39;&lt;U10&#39;)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;employed&#39;, &#39;employed&#39;, &#39;employed&#39;, &#39;unemployed&#39;], dtype=&#39;&lt;U10&#39;)
 </pre></div>
 </div>
 </div>
@@ -760,7 +762,7 @@ Wall time: 13.9 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;unemployed&#39;, &#39;employed&#39;, &#39;employed&#39;, &#39;employed&#39;], dtype=&#39;&lt;U10&#39;)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;unemployed&#39;, &#39;unemployed&#39;, &#39;employed&#39;, &#39;employed&#39;], dtype=&#39;&lt;U10&#39;)
 </pre></div>
 </div>
 </div>
@@ -772,7 +774,7 @@ Wall time: 13.9 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;employed&#39;, &#39;unemployed&#39;, &#39;employed&#39;, &#39;unemployed&#39;], dtype=&#39;&lt;U10&#39;)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;unemployed&#39;, &#39;unemployed&#39;, &#39;unemployed&#39;, &#39;employed&#39;], dtype=&#39;&lt;U10&#39;)
 </pre></div>
 </div>
 </div>
@@ -785,7 +787,7 @@ Wall time: 13.9 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1, 1, 1, 1])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 1, 1, 0])
 </pre></div>
 </div>
 </div>
@@ -1272,42 +1274,42 @@ input[type=range].anim-slider {
 </style>
 
 <div class="animation">
-  <img id="_anim_imge746920fd6414340b707e01668342aa7">
+  <img id="_anim_img842cae19ebaf41bfaee23d6fa4d693a8">
   <div class="anim-controls">
-    <input id="_anim_slidere746920fd6414340b707e01668342aa7" type="range" class="anim-slider"
+    <input id="_anim_slider842cae19ebaf41bfaee23d6fa4d693a8" type="range" class="anim-slider"
            name="points" min="0" max="1" step="1" value="0"
-           oninput="anime746920fd6414340b707e01668342aa7.set_frame(parseInt(this.value));">
+           oninput="anim842cae19ebaf41bfaee23d6fa4d693a8.set_frame(parseInt(this.value));">
     <div class="anim-buttons">
-      <button title="Decrease speed" aria-label="Decrease speed" onclick="anime746920fd6414340b707e01668342aa7.slower()">
+      <button title="Decrease speed" aria-label="Decrease speed" onclick="anim842cae19ebaf41bfaee23d6fa4d693a8.slower()">
           <i class="fa fa-minus"></i></button>
-      <button title="First frame" aria-label="First frame" onclick="anime746920fd6414340b707e01668342aa7.first_frame()">
+      <button title="First frame" aria-label="First frame" onclick="anim842cae19ebaf41bfaee23d6fa4d693a8.first_frame()">
         <i class="fa fa-fast-backward"></i></button>
-      <button title="Previous frame" aria-label="Previous frame" onclick="anime746920fd6414340b707e01668342aa7.previous_frame()">
+      <button title="Previous frame" aria-label="Previous frame" onclick="anim842cae19ebaf41bfaee23d6fa4d693a8.previous_frame()">
           <i class="fa fa-step-backward"></i></button>
-      <button title="Play backwards" aria-label="Play backwards" onclick="anime746920fd6414340b707e01668342aa7.reverse_animation()">
+      <button title="Play backwards" aria-label="Play backwards" onclick="anim842cae19ebaf41bfaee23d6fa4d693a8.reverse_animation()">
           <i class="fa fa-play fa-flip-horizontal"></i></button>
-      <button title="Pause" aria-label="Pause" onclick="anime746920fd6414340b707e01668342aa7.pause_animation()">
+      <button title="Pause" aria-label="Pause" onclick="anim842cae19ebaf41bfaee23d6fa4d693a8.pause_animation()">
           <i class="fa fa-pause"></i></button>
-      <button title="Play" aria-label="Play" onclick="anime746920fd6414340b707e01668342aa7.play_animation()">
+      <button title="Play" aria-label="Play" onclick="anim842cae19ebaf41bfaee23d6fa4d693a8.play_animation()">
           <i class="fa fa-play"></i></button>
-      <button title="Next frame" aria-label="Next frame" onclick="anime746920fd6414340b707e01668342aa7.next_frame()">
+      <button title="Next frame" aria-label="Next frame" onclick="anim842cae19ebaf41bfaee23d6fa4d693a8.next_frame()">
           <i class="fa fa-step-forward"></i></button>
-      <button title="Last frame" aria-label="Last frame" onclick="anime746920fd6414340b707e01668342aa7.last_frame()">
+      <button title="Last frame" aria-label="Last frame" onclick="anim842cae19ebaf41bfaee23d6fa4d693a8.last_frame()">
           <i class="fa fa-fast-forward"></i></button>
-      <button title="Increase speed" aria-label="Increase speed" onclick="anime746920fd6414340b707e01668342aa7.faster()">
+      <button title="Increase speed" aria-label="Increase speed" onclick="anim842cae19ebaf41bfaee23d6fa4d693a8.faster()">
           <i class="fa fa-plus"></i></button>
     </div>
-    <form title="Repetition mode" aria-label="Repetition mode" action="#n" name="_anim_loop_selecte746920fd6414340b707e01668342aa7"
+    <form title="Repetition mode" aria-label="Repetition mode" action="#n" name="_anim_loop_select842cae19ebaf41bfaee23d6fa4d693a8"
           class="anim-state">
-      <input type="radio" name="state" value="once" id="_anim_radio1_e746920fd6414340b707e01668342aa7"
+      <input type="radio" name="state" value="once" id="_anim_radio1_842cae19ebaf41bfaee23d6fa4d693a8"
              checked>
-      <label for="_anim_radio1_e746920fd6414340b707e01668342aa7">Once</label>
-      <input type="radio" name="state" value="loop" id="_anim_radio2_e746920fd6414340b707e01668342aa7"
+      <label for="_anim_radio1_842cae19ebaf41bfaee23d6fa4d693a8">Once</label>
+      <input type="radio" name="state" value="loop" id="_anim_radio2_842cae19ebaf41bfaee23d6fa4d693a8"
              >
-      <label for="_anim_radio2_e746920fd6414340b707e01668342aa7">Loop</label>
-      <input type="radio" name="state" value="reflect" id="_anim_radio3_e746920fd6414340b707e01668342aa7"
+      <label for="_anim_radio2_842cae19ebaf41bfaee23d6fa4d693a8">Loop</label>
+      <input type="radio" name="state" value="reflect" id="_anim_radio3_842cae19ebaf41bfaee23d6fa4d693a8"
              >
-      <label for="_anim_radio3_e746920fd6414340b707e01668342aa7">Reflect</label>
+      <label for="_anim_radio3_842cae19ebaf41bfaee23d6fa4d693a8">Reflect</label>
     </form>
   </div>
 </div>
@@ -1317,9 +1319,9 @@ input[type=range].anim-slider {
   /* Instantiate the Animation class. */
   /* The IDs given should match those used in the template above. */
   (function() {
-    var img_id = "_anim_imge746920fd6414340b707e01668342aa7";
-    var slider_id = "_anim_slidere746920fd6414340b707e01668342aa7";
-    var loop_select_id = "_anim_loop_selecte746920fd6414340b707e01668342aa7";
+    var img_id = "_anim_img842cae19ebaf41bfaee23d6fa4d693a8";
+    var slider_id = "_anim_slider842cae19ebaf41bfaee23d6fa4d693a8";
+    var loop_select_id = "_anim_loop_select842cae19ebaf41bfaee23d6fa4d693a8";
     var frames = new Array(20);
     
   frames[0] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAoAAAAHgCAYAAAA10dzkAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
@@ -25535,7 +25537,7 @@ JI+OjgAAAABJRU5ErkJggg==\
     /* set a timeout to make sure all the above elements are created before
        the object is initialized. */
     setTimeout(function() {
-        anime746920fd6414340b707e01668342aa7 = new Animation(frames, img_id, slider_id, 200.0,
+        anim842cae19ebaf41bfaee23d6fa4d693a8 = new Animation(frames, img_id, slider_id, 200.0,
                                  loop_select_id);
     }, 0);
   })()
@@ -25818,42 +25820,42 @@ input[type=range].anim-slider {
 </style>
 
 <div class="animation">
-  <img id="_anim_img242724fbeae246d784cd7e44a75a38d6">
+  <img id="_anim_img415a4986cb4d41d9be6d1f755cfbf06f">
   <div class="anim-controls">
-    <input id="_anim_slider242724fbeae246d784cd7e44a75a38d6" type="range" class="anim-slider"
+    <input id="_anim_slider415a4986cb4d41d9be6d1f755cfbf06f" type="range" class="anim-slider"
            name="points" min="0" max="1" step="1" value="0"
-           oninput="anim242724fbeae246d784cd7e44a75a38d6.set_frame(parseInt(this.value));">
+           oninput="anim415a4986cb4d41d9be6d1f755cfbf06f.set_frame(parseInt(this.value));">
     <div class="anim-buttons">
-      <button title="Decrease speed" aria-label="Decrease speed" onclick="anim242724fbeae246d784cd7e44a75a38d6.slower()">
+      <button title="Decrease speed" aria-label="Decrease speed" onclick="anim415a4986cb4d41d9be6d1f755cfbf06f.slower()">
           <i class="fa fa-minus"></i></button>
-      <button title="First frame" aria-label="First frame" onclick="anim242724fbeae246d784cd7e44a75a38d6.first_frame()">
+      <button title="First frame" aria-label="First frame" onclick="anim415a4986cb4d41d9be6d1f755cfbf06f.first_frame()">
         <i class="fa fa-fast-backward"></i></button>
-      <button title="Previous frame" aria-label="Previous frame" onclick="anim242724fbeae246d784cd7e44a75a38d6.previous_frame()">
+      <button title="Previous frame" aria-label="Previous frame" onclick="anim415a4986cb4d41d9be6d1f755cfbf06f.previous_frame()">
           <i class="fa fa-step-backward"></i></button>
-      <button title="Play backwards" aria-label="Play backwards" onclick="anim242724fbeae246d784cd7e44a75a38d6.reverse_animation()">
+      <button title="Play backwards" aria-label="Play backwards" onclick="anim415a4986cb4d41d9be6d1f755cfbf06f.reverse_animation()">
           <i class="fa fa-play fa-flip-horizontal"></i></button>
-      <button title="Pause" aria-label="Pause" onclick="anim242724fbeae246d784cd7e44a75a38d6.pause_animation()">
+      <button title="Pause" aria-label="Pause" onclick="anim415a4986cb4d41d9be6d1f755cfbf06f.pause_animation()">
           <i class="fa fa-pause"></i></button>
-      <button title="Play" aria-label="Play" onclick="anim242724fbeae246d784cd7e44a75a38d6.play_animation()">
+      <button title="Play" aria-label="Play" onclick="anim415a4986cb4d41d9be6d1f755cfbf06f.play_animation()">
           <i class="fa fa-play"></i></button>
-      <button title="Next frame" aria-label="Next frame" onclick="anim242724fbeae246d784cd7e44a75a38d6.next_frame()">
+      <button title="Next frame" aria-label="Next frame" onclick="anim415a4986cb4d41d9be6d1f755cfbf06f.next_frame()">
           <i class="fa fa-step-forward"></i></button>
-      <button title="Last frame" aria-label="Last frame" onclick="anim242724fbeae246d784cd7e44a75a38d6.last_frame()">
+      <button title="Last frame" aria-label="Last frame" onclick="anim415a4986cb4d41d9be6d1f755cfbf06f.last_frame()">
           <i class="fa fa-fast-forward"></i></button>
-      <button title="Increase speed" aria-label="Increase speed" onclick="anim242724fbeae246d784cd7e44a75a38d6.faster()">
+      <button title="Increase speed" aria-label="Increase speed" onclick="anim415a4986cb4d41d9be6d1f755cfbf06f.faster()">
           <i class="fa fa-plus"></i></button>
     </div>
-    <form title="Repetition mode" aria-label="Repetition mode" action="#n" name="_anim_loop_select242724fbeae246d784cd7e44a75a38d6"
+    <form title="Repetition mode" aria-label="Repetition mode" action="#n" name="_anim_loop_select415a4986cb4d41d9be6d1f755cfbf06f"
           class="anim-state">
-      <input type="radio" name="state" value="once" id="_anim_radio1_242724fbeae246d784cd7e44a75a38d6"
+      <input type="radio" name="state" value="once" id="_anim_radio1_415a4986cb4d41d9be6d1f755cfbf06f"
              checked>
-      <label for="_anim_radio1_242724fbeae246d784cd7e44a75a38d6">Once</label>
-      <input type="radio" name="state" value="loop" id="_anim_radio2_242724fbeae246d784cd7e44a75a38d6"
+      <label for="_anim_radio1_415a4986cb4d41d9be6d1f755cfbf06f">Once</label>
+      <input type="radio" name="state" value="loop" id="_anim_radio2_415a4986cb4d41d9be6d1f755cfbf06f"
              >
-      <label for="_anim_radio2_242724fbeae246d784cd7e44a75a38d6">Loop</label>
-      <input type="radio" name="state" value="reflect" id="_anim_radio3_242724fbeae246d784cd7e44a75a38d6"
+      <label for="_anim_radio2_415a4986cb4d41d9be6d1f755cfbf06f">Loop</label>
+      <input type="radio" name="state" value="reflect" id="_anim_radio3_415a4986cb4d41d9be6d1f755cfbf06f"
              >
-      <label for="_anim_radio3_242724fbeae246d784cd7e44a75a38d6">Reflect</label>
+      <label for="_anim_radio3_415a4986cb4d41d9be6d1f755cfbf06f">Reflect</label>
     </form>
   </div>
 </div>
@@ -25863,9 +25865,9 @@ input[type=range].anim-slider {
   /* Instantiate the Animation class. */
   /* The IDs given should match those used in the template above. */
   (function() {
-    var img_id = "_anim_img242724fbeae246d784cd7e44a75a38d6";
-    var slider_id = "_anim_slider242724fbeae246d784cd7e44a75a38d6";
-    var loop_select_id = "_anim_loop_select242724fbeae246d784cd7e44a75a38d6";
+    var img_id = "_anim_img415a4986cb4d41d9be6d1f755cfbf06f";
+    var slider_id = "_anim_slider415a4986cb4d41d9be6d1f755cfbf06f";
+    var loop_select_id = "_anim_loop_select415a4986cb4d41d9be6d1f755cfbf06f";
     var frames = new Array(20);
     
   frames[0] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAoAAAAHgCAYAAAA10dzkAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
@@ -50550,7 +50552,7 @@ giAIgiCsMSIAFARBEARBWGNEACgIgiAIgrDGiABQEARBEARhjREBoCAIgiAIwhojAkBBEARBEIQ1\
     /* set a timeout to make sure all the above elements are created before
        the object is initialized. */
     setTimeout(function() {
-        anim242724fbeae246d784cd7e44a75a38d6 = new Animation(frames, img_id, slider_id, 200.0,
+        anim415a4986cb4d41d9be6d1f755cfbf06f = new Animation(frames, img_id, slider_id, 200.0,
                                  loop_select_id);
     }, 0);
   })()

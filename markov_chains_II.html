@@ -256,7 +256,9 @@
 </summary>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: quantecon in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (0.7.2)
-Requirement already satisfied: numba&gt;=0.49.0 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from quantecon) (0.60.0)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: numba&gt;=0.49.0 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from quantecon) (0.60.0)
 Requirement already satisfied: numpy&gt;=1.17.0 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from quantecon) (1.26.4)
 Requirement already satisfied: requests in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from quantecon) (2.32.3)
 Requirement already satisfied: scipy&gt;=1.5.0 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from quantecon) (1.13.1)
@@ -299,7 +301,7 @@ law of large numbers.</p></li>
 <section id="irreducibility">
 <span id="mc-irreducible"></span><h2><span class="section-number">34.2. </span>Irreducibility<a class="headerlink" href="#irreducibility" title="Permalink to this heading">#</a></h2>
 <p>To explain irreducibility, let’s take <span class="math notranslate nohighlight">\(P\)</span> to be a fixed stochastic matrix.</p>
-<p>State <span class="math notranslate nohighlight">\(x\)</span> is called <strong>accessible</strong> (or <strong>reachable</strong>) from state <span class="math notranslate nohighlight">\(y\)</span> if <span class="math notranslate nohighlight">\(P^t(x,y)&gt;0\)</span> for some integer <span class="math notranslate nohighlight">\(t\ge 0\)</span>.</p>
+<p>State <span class="math notranslate nohighlight">\(y\)</span> is called <strong>accessible</strong> (or <strong>reachable</strong>) from state <span class="math notranslate nohighlight">\(x\)</span> if <span class="math notranslate nohighlight">\(P^t(x,y)&gt;0\)</span> for some integer <span class="math notranslate nohighlight">\(t\ge 0\)</span>.</p>
 <p>Two states, <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span>, are said to <strong>communicate</strong> if <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> are accessible from each other.</p>
 <p>In view of our discussion <a class="reference internal" href="markov_chains_I.html#finite-mc-mstp"><span class="std std-ref">above</span></a>, this means precisely
 that</p>
@@ -473,7 +475,7 @@ ergodicity holds.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/86f148c6100d1ecd4d2cc2108825dcef6363c652139e9fdd99d643b5c79a1f3e.png"><img alt="_images/86f148c6100d1ecd4d2cc2108825dcef6363c652139e9fdd99d643b5c79a1f3e.png" src="_images/86f148c6100d1ecd4d2cc2108825dcef6363c652139e9fdd99d643b5c79a1f3e.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/f4974c2eeefb02e834a67b866c742004bf46e41db276343ee0c472521ed022f4.png"><img alt="_images/f4974c2eeefb02e834a67b866c742004bf46e41db276343ee0c472521ed022f4.png" src="_images/f4974c2eeefb02e834a67b866c742004bf46e41db276343ee0c472521ed022f4.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>You might like to try changing <span class="math notranslate nohighlight">\(x=1\)</span> to either <span class="math notranslate nohighlight">\(x=0\)</span> or <span class="math notranslate nohighlight">\(x=2\)</span>.</p>
@@ -522,7 +524,7 @@ is called <a class="reference external" href="https://stats.libretexts.org/Books
         <span class="c1"># Generate time series starting at different x_0</span>
         <span class="n">X</span> <span class="o">=</span> <span class="n">mc</span><span class="o">.</span><span class="n">simulate</span><span class="p">(</span><span class="n">ts_length</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="n">x0</span><span class="p">)</span>
         <span class="n">p_hat</span> <span class="o">=</span> <span class="p">(</span><span class="n">X</span> <span class="o">==</span> <span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">cumsum</span><span class="p">()</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">ts_length</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-        <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">p_hat</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;$x_0 = \, </span><span class="si">{</span><span class="n">x0</span><span class="si">}</span><span class="s1"> $&#39;</span><span class="p">)</span>
+        <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">p_hat</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">fr</span><span class="s1">&#39;$x_0 = \, </span><span class="si">{</span><span class="n">x0</span><span class="si">}</span><span class="s1"> $&#39;</span><span class="p">)</span>
 
     <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
@@ -531,12 +533,6 @@ is called <a class="reference external" href="https://stats.libretexts.org/Books
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;&gt;:20: SyntaxWarning: invalid escape sequence &#39;\,&#39;
-&lt;&gt;:20: SyntaxWarning: invalid escape sequence &#39;\,&#39;
-/tmp/ipykernel_6579/3006802380.py:20: SyntaxWarning: invalid escape sequence &#39;\,&#39;
-  axes[i].plot(p_hat, label=f&#39;$x_0 = \, {x0} $&#39;)
-</pre></div>
-</div>
 <a class="reference internal image-reference" href="_images/35e15f95aad62d7d72a86dd3e381c28e82e0fd7d9d42d11023940c56f76cfe05.png"><img alt="_images/35e15f95aad62d7d72a86dd3e381c28e82e0fd7d9d42d11023940c56f76cfe05.png" src="_images/35e15f95aad62d7d72a86dd3e381c28e82e0fd7d9d42d11023940c56f76cfe05.png" style="width: 80%;" /></a>
 </div>
 </div>
@@ -812,11 +808,11 @@ conditions.</p>
 <div class="cell_output docutils container">
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;&gt;:18: SyntaxWarning: invalid escape sequence &#39;\,&#39;
 &lt;&gt;:18: SyntaxWarning: invalid escape sequence &#39;\,&#39;
-/tmp/ipykernel_6579/4115541328.py:18: SyntaxWarning: invalid escape sequence &#39;\,&#39;
+/tmp/ipykernel_8197/4115541328.py:18: SyntaxWarning: invalid escape sequence &#39;\,&#39;
   ax.plot(X_bar - p, label=f&#39;$x_0 = \, {x0} $&#39;)
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="_images/a2d6e26c8ed3fc6b8bb55a7964b1ee68c0772548afe6a32491afd5482cf62696.png"><img alt="_images/a2d6e26c8ed3fc6b8bb55a7964b1ee68c0772548afe6a32491afd5482cf62696.png" src="_images/a2d6e26c8ed3fc6b8bb55a7964b1ee68c0772548afe6a32491afd5482cf62696.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/2658b4a89cd20aefed65b9c4e8a34c10d0857d71a29c185a4193f43c9e51db42.png"><img alt="_images/2658b4a89cd20aefed65b9c4e8a34c10d0857d71a29c185a4193f43c9e51db42.png" src="_images/2658b4a89cd20aefed65b9c4e8a34c10d0857d71a29c185a4193f43c9e51db42.png" style="width: 80%;" /></a>
 </div>
 </div>
 </section>

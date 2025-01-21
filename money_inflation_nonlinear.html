@@ -390,14 +390,14 @@ g \leq \max_{x \geq 0} \{\exp(-\alpha x) - \exp(-(1 + \alpha) x) \},
     <span class="c1"># Plot the function</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_values</span><span class="p">,</span> <span class="n">y_values</span><span class="p">,</span> 
             <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Laffer curve&#39;</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">π</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">πs</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;$\pi_l$&#39;</span><span class="p">,</span> <span class="s1">&#39;$\pi_u$&#39;</span><span class="p">]):</span>
+    <span class="k">for</span> <span class="n">π</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">πs</span><span class="p">,</span> <span class="p">[</span><span class="sa">r</span><span class="s1">&#39;$\pi_l$&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$\pi_u$&#39;</span><span class="p">]):</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">π</span><span class="p">,</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">get_ylim</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">2</span><span class="p">,</span> 
                  <span class="n">label</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span>
                  <span class="n">color</span><span class="o">=</span><span class="s1">&#39;brown&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">π</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;brown&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> 
                 <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$\pi$&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\pi$&#39;</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;seigniorage&#39;</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -408,20 +408,6 @@ g \leq \max_{x \geq 0} \{\exp(-\alpha x) - \exp(-(1 + \alpha) x) \},
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;&gt;:16: SyntaxWarning: invalid escape sequence &#39;\p&#39;
-&lt;&gt;:16: SyntaxWarning: invalid escape sequence &#39;\p&#39;
-&lt;&gt;:23: SyntaxWarning: invalid escape sequence &#39;\p&#39;
-&lt;&gt;:16: SyntaxWarning: invalid escape sequence &#39;\p&#39;
-&lt;&gt;:16: SyntaxWarning: invalid escape sequence &#39;\p&#39;
-&lt;&gt;:23: SyntaxWarning: invalid escape sequence &#39;\p&#39;
-/tmp/ipykernel_6656/3899257789.py:16: SyntaxWarning: invalid escape sequence &#39;\p&#39;
-  for π, label in zip(πs, [&#39;$\pi_l$&#39;, &#39;$\pi_u$&#39;]):
-/tmp/ipykernel_6656/3899257789.py:16: SyntaxWarning: invalid escape sequence &#39;\p&#39;
-  for π, label in zip(πs, [&#39;$\pi_l$&#39;, &#39;$\pi_u$&#39;]):
-/tmp/ipykernel_6656/3899257789.py:23: SyntaxWarning: invalid escape sequence &#39;\p&#39;
-  plt.xlabel(&#39;$\pi$&#39;)
-</pre></div>
-</div>
 <figure class="align-default" id="laffer-curve-nonlinear">
 <a class="reference internal image-reference" href="_images/7a2927967b99512dbdfb2ec6bee0fc94fdc8388c5c1fba0d8a650cc9260e6170.png"><img alt="_images/7a2927967b99512dbdfb2ec6bee0fc94fdc8388c5c1fba0d8a650cc9260e6170.png" src="_images/7a2927967b99512dbdfb2ec6bee0fc94fdc8388c5c1fba0d8a650cc9260e6170.png" style="width: 80%;" /></a>
 <figcaption>
@@ -609,8 +595,8 @@ the higher value</p></li>
     <span class="c1"># Draw labels</span>
     <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$m_t$&#39;</span><span class="p">)</span>
     <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$p_t$&#39;</span><span class="p">)</span>
-    <span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$\pi_t$&#39;</span><span class="p">)</span>
-    <span class="n">axes</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$\mu_t$&#39;</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\pi_t$&#39;</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\mu_t$&#39;</span><span class="p">)</span>
     <span class="n">axes</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;timestep&#39;</span><span class="p">)</span>
     
     <span class="k">for</span> <span class="n">p_0</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="p">[(</span><span class="n">p0_bars</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;$p_0=p_l$&#39;</span><span class="p">),</span> <span class="p">(</span><span class="n">p0_bars</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;$p_0=p_u$&#39;</span><span class="p">)]:</span>
@@ -625,18 +611,6 @@ the higher value</p></li>
 
     <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;&gt;:31: SyntaxWarning: invalid escape sequence &#39;\p&#39;
-&lt;&gt;:32: SyntaxWarning: invalid escape sequence &#39;\m&#39;
-&lt;&gt;:31: SyntaxWarning: invalid escape sequence &#39;\p&#39;
-&lt;&gt;:32: SyntaxWarning: invalid escape sequence &#39;\m&#39;
-/tmp/ipykernel_6656/1418451704.py:31: SyntaxWarning: invalid escape sequence &#39;\p&#39;
-  axes[2].set_ylabel(&#39;$\pi_t$&#39;)
-/tmp/ipykernel_6656/1418451704.py:32: SyntaxWarning: invalid escape sequence &#39;\m&#39;
-  axes[3].set_ylabel(&#39;$\mu_t$&#39;)
 </pre></div>
 </div>
 </div>
