@@ -187,14 +187,14 @@ def plot_laffer(model, πs):
     # Plot the function
     plt.plot(x_values, y_values, 
             label=f'Laffer curve')
-    for π, label in zip(πs, ['$\pi_l$', '$\pi_u$']):
+    for π, label in zip(πs, [r'$\pi_l$', r'$\pi_u$']):
         plt.text(π, plt.gca().get_ylim()[0]*2, 
                  label, horizontalalignment='center',
                  color='brown', size=10)
         plt.axvline(π, color='brown', linestyle='--')
     plt.axhline(g, color='red', linewidth=0.5, 
                 linestyle='--', label='g')
-    plt.xlabel('$\pi$')
+    plt.xlabel(r'$\pi$')
     plt.ylabel('seigniorage')
     plt.legend()
     plt.show()
@@ -373,8 +373,8 @@ def draw_iterations(p0s, model, line_params, p0_bars, num_steps):
     # Draw labels
     axes[0].set_ylabel('$m_t$')
     axes[1].set_ylabel('$p_t$')
-    axes[2].set_ylabel('$\pi_t$')
-    axes[3].set_ylabel('$\mu_t$')
+    axes[2].set_ylabel(r'$\pi_t$')
+    axes[3].set_ylabel(r'$\mu_t$')
     axes[3].set_xlabel('timestep')
     
     for p_0, label in [(p0_bars[0], '$p_0=p_l$'), (p0_bars[1], '$p_0=p_u$')]:

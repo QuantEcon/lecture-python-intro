@@ -210,9 +210,9 @@ ax.plot(np.linspace(55, 380, 100), (50-0.9*np.linspace(55, 380, 100))/(-1.46), c
 ax.plot(np.linspace(-1, 400, 100), (60+0.16*np.linspace(-1, 400, 100))/0.83, color="r")
 ax.plot(np.linspace(250, 395, 100), (62-0.04*np.linspace(250, 395, 100))/0.33, color="b")
 
-ax.text(130, 38, "$(1-a_{11})x_1 + a_{12}x_2 \geq d_1$", size=10)
-ax.text(10, 105, "$-a_{21}x_1 + (1-a_{22})x_2 \geq d_2$", size=10)
-ax.text(150, 150, "$a_{01}x_1 +a_{02}x_2 \leq x_0$", size=10)
+ax.text(130, 38, r"$(1-a_{11})x_1 + a_{12}x_2 \geq d_1$", size=10)
+ax.text(10, 105, r"$-a_{21}x_1 + (1-a_{22})x_2 \geq d_2$", size=10)
+ax.text(150, 150, r"$a_{01}x_1 +a_{02}x_2 \leq x_0$", size=10)
 
 # Draw the feasible region
 feasible_set = Polygon(np.array([[301, 151],
@@ -466,8 +466,8 @@ ax.vlines(0, -1, 250)
 ax.plot(np.linspace(4.75, 49, 100), (4-0.9*np.linspace(4.75, 49, 100))/(-0.16), color="r")
 ax.plot(np.linspace(0, 50, 100), (33+1.46*np.linspace(0, 50, 100))/0.83, color="r")
 
-ax.text(15, 175, "$(1-a_{11})p_1 - a_{21}p_2 \leq a_{01}w$", size=10)
-ax.text(30, 85, "$-a_{12}p_1 + (1-a_{22})p_2 \leq a_{02}w$", size=10)
+ax.text(15, 175, r"$(1-a_{11})p_1 - a_{21}p_2 \leq a_{01}w$", size=10)
+ax.text(30, 85, r"$-a_{12}p_1 + (1-a_{22})p_2 \leq a_{02}w$", size=10)
 
 # Draw the feasible region
 feasible_set = Polygon(np.array([[17, 69],
