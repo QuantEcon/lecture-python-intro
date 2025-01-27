@@ -172,7 +172,7 @@ $$
         0 \\
         0 \\
         \vdots \\
-        p^*_{T+1}
+        \delta p^*_{T+1}
     \end{bmatrix}
 $$
 
