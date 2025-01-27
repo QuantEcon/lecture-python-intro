@@ -34,7 +34,7 @@ Milton Friedman had used this idea  in his PhD thesis at Columbia University,
 eventually published as {cite}`kuznets1939incomes` and {cite}`friedman1954incomes`.
 ```
 
-It will take a while for a "present value" or asset price explicilty to appear in this lecture, but when it does it will be a key actor.
+It will take a while for a "present value" or asset price explicitly to appear in this lecture, but when it does it will be a key actor.
 
 
 ## Analysis
