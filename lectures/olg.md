@@ -446,7 +446,7 @@ fig, ax = plt.subplots(figsize=(6, 6))
 ymin, ymax = np.min(k_grid_next), np.max(k_grid_next)
 
 ax.plot(k_grid, k_grid_next,  lw=2, alpha=0.6, label='$g$')
-ax.plot(k_grid, k_grid, 'k-', lw=1, alpha=0.7, label='$45^{\circ}$')
+ax.plot(k_grid, k_grid, 'k-', lw=1, alpha=0.7, label=r'$45^{\circ}$')
 
 
 ax.legend(loc='upper left', frameon=False, fontsize=12)
@@ -722,7 +722,7 @@ fig, ax = plt.subplots(figsize=(6, 6))
 ymin, ymax = np.min(k_grid_next), np.max(k_grid_next)
 
 ax.plot(k_grid, k_grid_next,  lw=2, alpha=0.6, label='$g$')
-ax.plot(k_grid, k_grid, 'k-', lw=1, alpha=0.7, label='$45^{\circ}$')
+ax.plot(k_grid, k_grid, 'k-', lw=1, alpha=0.7, label=r'$45^{\circ}$')
 
 
 ax.legend(loc='upper left', frameon=False, fontsize=12)

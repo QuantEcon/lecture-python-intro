@@ -60,7 +60,7 @@ The figure below shows the price of cotton in USD since the start of 2016.
 ```{code-cell} ipython3
 :tags: [hide-input, hide-output]
 
-s = yf.download('CT=F', '2016-1-1', '2023-4-1')['Adj Close']
+s = yf.download('CT=F', '2016-1-1', '2023-4-1')['Close']
 ```
 
 ```{code-cell} ipython3

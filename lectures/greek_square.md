@@ -693,7 +693,7 @@ fig, axs = plt.subplots(1, 2, figsize=(12, 6), dpi=500)
 axs[0].plot(np.round(ratios_λ1, 6), 
             label=r'$\frac{y_t}{y_{t-1}}$', linewidth=3)
 axs[0].axhline(y=Λ[1], color='red', linestyle='--', 
-               label='$\lambda_2$', alpha=0.5)
+               label=r'$\lambda_2$', alpha=0.5)
 axs[0].set_xlabel('t', size=18)
 axs[0].set_ylabel(r'$\frac{y_t}{y_{t-1}}$', size=18)
 axs[0].set_title(r'$\frac{y_t}{y_{t-1}}$ after Muting $\lambda_1$', 
@@ -704,7 +704,7 @@ axs[0].legend()
 axs[1].plot(ratios_λ2, label=r'$\frac{y_t}{y_{t-1}}$', 
             linewidth=3)
 axs[1].axhline(y=Λ[0], color='green', linestyle='--', 
-               label='$\lambda_1$', alpha=0.5)
+               label=r'$\lambda_1$', alpha=0.5)
 axs[1].set_xlabel('t', size=18)
 axs[1].set_ylabel(r'$\frac{y_t}{y_{t-1}}$', size=18)
 axs[1].set_title(r'$\frac{y_t}{y_{t-1}}$ after Muting $\lambda_2$', 
