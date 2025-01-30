@@ -20,13 +20,15 @@ In this lecture, we'll study a famous model of optimal tax policy that Robert Ba
 
 In this lecture, we'll study what is often called the "tax-smoothing model" using matrix multiplication and matrix inversion, the same tools that we used in this QuantEcon lecture {doc}`present values <pv>`. 
 
-This lecture is a sister lecture to the consumption-smoothing model of Milton Friedman {cite}`Friedman1956` and Robert Hall {cite}`Hall1978` that we studied in this QuantEcon lecture {doc}`consumption-smoothing <cons_smooth>`.
+This lecture is a sister lecture to our previous lecture on {doc}`consumption-smoothing <cons_smooth>`.
+
+We will see how "reinterpretating" the paramters in the consumption-smoothing model can lead to the tax-smoothing model.
 
 Formulas presented in {doc}`present value formulas<pv>` are again at the core of the tax-smoothing model because we shall use them to compute the present value of government expenditures.
 
 The government's optimization problem is to choose a tax collection path that minimizes the present value of the costs of raising revenue.
 
-The key idea that inspired Barro was that temporary government spending surges (like wars or natural disasters) create a stream of expenditure requirements that could be optimally financed by issuing debt and raising taxes gradually over time.
+The key idea that inspired Barro was that temporary government spending surges (like wars or natural disasters) create a stream of expenditure requirements that could be optimally financed by issuing debt and raising taxes *gradually* over time.
 
 This approach allows the government to minimize the distortionary costs of taxation by keeping tax rates relatively stable.
 
@@ -44,7 +46,7 @@ The model describes a government that operates from time $t=0, 1, \ldots, S$, fa
 
 The government expenditure stream is exogenous spending requirements that the government must finance.
 
-Analogous to {doc}`consumption-smoothing <cons_smooth>`, The model takes a government expenditure stream as an input, regarding it as "exogenous" in the sense of not being determined by the model.
+Analogous to {doc}`consumption-smoothing <cons_smooth>`, the model takes a government expenditure stream as an input, regarding it as "exogenous" in the sense of not being determined by the model.
 
 The government faces a gross interest rate of $R >1$ that is constant over time, at which it is free to borrow or lend, subject to limits that we'll describe below.
 
@@ -106,26 +108,37 @@ To answer this question, we shall eventually evaluate alternative budget feasibl
 ```{math}
 :label: cost
 
-L = \sum_{t=0}^S \beta^t (g_1 T_t - \frac{g_2}{2} T_t^2 )
+L = - \sum_{t=0}^S \beta^t (g_1 T_t - \frac{g_2}{2} T_t^2 )
 ```
 
 where $g_1 > 0, g_2 > 0$.  
 
+
 This is called the "present value of revenue-raising costs" in {cite}`Barro1979`.
 
-When $\beta R \approx 1$, the quadratic term $-\frac{g_2}{2} T_t^2$ captures increasing marginal costs of taxation, implying that tax distortions rise more than proportionally with tax rates. This creates an incentive for tax smoothing.  
+When $\beta R \approx 1$, the quadratic term $-\frac{g_2}{2} T_t^2$ captures increasing marginal costs of taxation, implying that tax distortions rise more than proportionally with tax rates. 
 
-Indeed, we shall see that when $\beta R = 1$ (a condition assumed in many public finance models), criterion {eq}`cost` leads to smoother tax paths.
+This creates an incentive for tax smoothing.  
+
+Indeed, we shall see that when $\beta R = 1$, criterion {eq}`cost` leads to smoother tax paths.
 
 By **smoother** we mean tax rates that are as close as possible to being constant over time.  
 
 The preference for smooth tax paths that is built into the model gives it the name "tax-smoothing model", following {cite}`Barro1979`'s seminal work.
 
+Or equivalently, we can transform this into the same problem as in the {doc}`consumption-smoothing <cons_smooth>` lecture by maximizing the welfare criterion:
+
+```{math}
+:label: welfare_tax
+
+J = \sum_{t=0}^S \beta^t (g_1 T_t - \frac{g_2}{2} T_t^2 )
+```
+
 Let's dive in and do some calculations that will help us understand how the model works. 
 
 Here we use default parameters $R = 1.05$, $g_1 = 1$, $g_2 = 1/2$, and $S = 65$. 
 
-We create a Python **namedtuple** to store these parameters with default values.
+We create a Python ``namedtuple`` to store these parameters with default values.
 
 ```{code-cell} ipython3
 TaxSmoothing = namedtuple("TaxSmoothing", 
@@ -141,7 +154,7 @@ def create_tax_smoothing_model(R=1.05, g1=1, g2=1/2, S=65):
     return TaxSmoothing(R, g1, g2, β_seq, S)
 ```
 
-## Barro Tax-Smoothing Model
+## Barro tax-smoothing model
 
 A key object is the present value of government expenditures at time $0$:
 
@@ -177,7 +190,7 @@ T_t = T_0 \quad t =0, 1, \ldots, S
 $$
 
 (Later we'll present a "variational argument" that shows that this constant path minimizes
-criterion {eq}`cost` when $\beta R =1$.)
+criterion {eq}`cost` and maximizes {eq}`welfare_tax` when $\beta R =1$.)
 
 In this case, we can use the intertemporal budget constraint to write
 
@@ -187,7 +200,7 @@ $$ (eq:taxsmoothing)
 
 Equation {eq}`eq:taxsmoothing` is the tax-smoothing model in a nutshell.
 
-## Mechanics of Tax-Smoothing Model 
+## Mechanics of tax-smoothing model 
 
 As promised, we'll provide step-by-step instructions on how to use linear algebra, readily implemented in Python, to compute all objects in play in the tax-smoothing model.
 
@@ -262,7 +275,6 @@ def compute_optimal(model, B0, G_seq):
     T0 = (1 - 1/R) / (1 - (1/R)**(S+1)) * (B0 + h0)
     T_seq = T0*np.ones(S+1)
 
-    # verify
     A = np.diag(-R*np.ones(S), k=-1) + np.eye(S+1)
     b = G_seq - T_seq
     b[0] = b[0] + B0
@@ -282,7 +294,7 @@ The drop in government expenditures could reflect a change in spending requireme
 
 ```{code-cell} ipython3
 # Initial debt
-B0 = -2     # initial government debt
+B0 = 2     # initial government debt
 
 # Government expenditure process
 G_seq = np.concatenate([np.ones(46), np.zeros(20)])
@@ -313,15 +325,20 @@ plt.show()
 
 Note that $B_{S+1} = 0$, as anticipated.
 
-We can evaluate cost criterion {eq}`cost` which measures the total cost of taxation
+We can evaluate cost criterion {eq}`cost` which measures the total cost / welfare of taxation
 
 ```{code-cell} ipython3
 def cost(model, T_seq):
     β_seq, g1, g2 = model.β_seq, model.g1, model.g2
     cost_seq = g1 * T_seq - g2/2 * T_seq**2
-    return β_seq @ cost_seq
+    return - β_seq @ cost_seq
 
 print('Cost:', cost(tax_model, T_seq))
+
+def welfare(model, T_seq):
+    return - cost(model, T_seq)
+
+print('Welfare:', welfare(tax_model, T_seq))
 ```
 
 ### Experiments
@@ -370,14 +387,6 @@ G_seq_pos = np.concatenate([np.ones(21), np.array([2.5]),
 np.ones(24), np.zeros(20)])
 
 plot_ts(tax_model, B0, G_seq_pos)
-```
-
-```{code-cell} ipython3
-# Spending cut W_0 = -2.5
-G_seq_neg = np.concatenate([np.ones(21), np.array([-2.5]), 
-np.ones(24), np.zeros(20)])
-
-plot_ts(tax_model, B0, G_seq_neg)
 ```
 
 #### Experiment 2: permanent expenditure shift
@@ -466,7 +475,7 @@ The approach we'll take is an elementary example of the "calculus of variations"
 
 Let's dive in and see what the key idea is.  
 
-To explore what types of tax paths are welfare-improving, we shall create an **admissible tax path variation sequence** $\{v_t\}_{t=0}^S$
+To explore what types of tax paths are cost-minimizing / welfare-improving, we shall create an **admissible tax path variation sequence** $\{v_t\}_{t=0}^S$
 that satisfies
 
 $$
@@ -547,6 +556,7 @@ fig, ax = plt.subplots()
 ϕs= [.95, 1.02]
 colors = {.01: 'tab:blue', .05: 'tab:green'}
 params = np.array(np.meshgrid(ξ1s, ϕs)).T.reshape(-1, 2)
+wel_opt = welfare(tax_model, T_seq)
 
 for i, param in enumerate(params):
     ξ1, ϕ = param
@@ -555,7 +565,8 @@ for i, param in enumerate(params):
     Tvar_seq = compute_variation(model=tax_model, 
                                  ξ1=ξ1, ϕ=ϕ, B0=B0, 
                                  G_seq=G_seq)
-    print(f'cost={cost(tax_model, Tvar_seq)}')
+    print(f'welfare={welfare(tax_model, Tvar_seq)}')
+    print(f'welfare < optimal: {welfare(tax_model, Tvar_seq) < wel_opt}')
     print('-'*64)
 
     if i % 2 == 0:
