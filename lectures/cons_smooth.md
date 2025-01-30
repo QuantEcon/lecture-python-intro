@@ -4,13 +4,12 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.16.1
+    jupytext_version: 1.16.6
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
   name: python3
 ---
-
 
 # Consumption Smoothing
 
@@ -47,8 +46,7 @@ import matplotlib.pyplot as plt
 from collections import namedtuple
 ```
 
-
-The model describes  a consumer who lives from time $t=0, 1, \ldots, S$, receives a stream $\{y_t\}_{t=0}^S$ of non-financial income and chooses a consumption stream $\{T_t\}_{t=0}^S$.
+The model describes  a consumer who lives from time $t=0, 1, \ldots, S$, receives a stream $\{G_t\}_{t=0}^S$ of non-financial income and chooses a consumption stream $\{T_t\}_{t=0}^S$.
 
 We usually think of the non-financial income stream as coming from the person's salary from supplying labor.  
 
@@ -59,19 +57,19 @@ The consumer faces a gross interest rate of $R >1$ that is constant over time, a
 To set up the model, let 
 
  * $S \geq 2$  be a positive integer that constitutes a time-horizon. 
- * $G = \{G_t\}_{t=0}^S$ be an exogenous  sequence of non-negative non-financial incomes $G_t$. 
- * $B = \{B_t\}_{t=0}^{S+1}$ be a sequence of financial wealth.  
- * $T = \{T_t\}_{t=0}^S$ be a sequence of non-negative consumption rates. 
- * $R \geq 1$ be a fixed gross one period rate of return on financial assets. 
+ * $G = \{G_t\}_{t=0}^S$ be a sequence of government expenditures. 
+ * $B = \{B_t\}_{t=0}^{S+1}$ be a sequence of government debt.  
+ * $T = \{T_t\}_{t=0}^S$ be a sequence of tax collections. 
+ * $R \geq 1$ be a fixed gross one period interest rate. 
  * $\beta \in (0,1)$ be a fixed discount factor.  
- * $a_0$ be a given initial level of financial assets
- * $B_{S+1} \geq 0$  be a terminal condition on final assets. 
+ * $B_0$ be a given initial level of government debt
+ * $B_{S+1} \geq 0$  be a terminal condition on final government debt. 
 
 The sequence of financial wealth $a$ is to be determined by the model.
 
 We require it to satisfy  two  **boundary conditions**:
 
-   * it must  equal an exogenous value  $a_0$ at time $0$ 
+   * it must  equal an exogenous value  $B_0$ at time $0$ 
    * it must equal or exceed an exogenous value  $B_{S+1}$ at time $S+1$.
 
 The **terminal condition** $B_{S+1} \geq 0$ requires that the consumer not leave the model in debt.
@@ -91,7 +89,7 @@ Given a sequence $G$ of non-financial incomes, a large  set of pairs $(a, c)$ of
 
 Our model has the following logical flow.
 
- * start with an exogenous non-financial income sequence $G$, an initial financial wealth $a_0$, and 
+ * start with an exogenous non-financial income sequence $G$, an initial financial wealth $B_0$, and 
  a candidate consumption path $c$.
  
  * use the system of equations {eq}`eq:B_t` for $t=0, \ldots, S$ to compute a path $a$ of financial wealth
@@ -105,7 +103,7 @@ Our model has the following logical flow.
 Below, we'll describe how to execute these steps using linear algebra -- matrix inversion and multiplication.
 
 The above procedure seems like a sensible way to find "budget-feasible" consumption paths $c$, i.e., paths that are consistent
-with the exogenous non-financial income stream $G$, the initial financial  asset level $a_0$, and the terminal asset level $B_{S+1}$.
+with the exogenous non-financial income stream $G$, the initial financial  asset level $B_0$, and the terminal asset level $B_{S+1}$.
 
 In general, there are **many** budget feasible consumption paths $c$.
 
@@ -117,7 +115,7 @@ To answer this question, we shall eventually evaluate alternative budget feasibl
 ```{math}
 :label: welfare
 
-W = \sum_{t=0}^S \beta^t (g_1 T_t - \frac{g_2}{2} T_t^2 )
+L = \sum_{t=0}^S \beta^t (g_1 T_t - \frac{g_2}{2} T_t^2 )
 ```
 
 where $g_1 > 0, g_2 > 0$.  
@@ -137,16 +135,15 @@ Here we use default parameters $R = 1.05$, $g_1 = 1$, $g_2 = 1/2$, and $S = 65$.
 We create a Python **namedtuple** to store these parameters with default values.
 
 ```{code-cell} ipython3
-ConsumptionSmoothing = namedtuple("ConsumptionSmoothing", 
+TaxSmoothing = namedtuple("TaxSmoothing", 
                         ["R", "g1", "g2", "β_seq", "S"])
 
-def create_consumption_smoothing_model(R=1.05, g1=1, g2=1/2, S=65):
+def create_tax_smoothing_model(R=1.05, g1=1, g2=1/2, S=65):
     β = 1/R
     β_seq = np.array([β**i for i in range(S+1)])
-    return ConsumptionSmoothing(R, g1, g2, 
+    return TaxSmoothing(R, g1, g2, 
                                 β_seq, S)
 ```
-
 
 ## Friedman-Hall consumption-smoothing model
 
@@ -154,8 +151,8 @@ A key object is what Milton Friedman called "human" or "non-financial" wealth at
 
 
 $$
-h_0 \equiv \sum_{t=0}^S R^{-t} y_t = \begin{bmatrix} 1 & R^{-1} & \cdots & R^{-S} \end{bmatrix}
-\begin{bmatrix} y_0 \cr y_1  \cr \vdots \cr y_S \end{bmatrix}
+h_0 \equiv \sum_{t=0}^S R^{-t} G_t = \begin{bmatrix} 1 & R^{-1} & \cdots & R^{-S} \end{bmatrix}
+\begin{bmatrix} G_0 \cr G_1  \cr \vdots \cr G_S \end{bmatrix}
 $$
 
 Human or non-financial wealth  at time $0$ is evidently just the present value of the consumer's non-financial income stream $G$. 
@@ -173,7 +170,7 @@ $$
 it is possible to convert a sequence of budget constraints {eq}`eq:B_t` into a single intertemporal constraint
 
 $$ 
-\sum_{t=0}^S R^{-t} T_t = a_0 + h_0. 
+\sum_{t=0}^S R^{-t} T_t = B_0 + h_0. 
 $$ (eq:budget_intertemp)
 
 Equation {eq}`eq:budget_intertemp`  says that the present value of the consumption stream equals the sum of financial and non-financial (or human) wealth.
@@ -190,7 +187,7 @@ criterion {eq}`welfare` when $\beta R =1$.)
 In this case, we can use the intertemporal budget constraint to write 
 
 $$
-T_t = T_0  = \left(\sum_{t=0}^S R^{-t}\right)^{-1} (a_0 + h_0), \quad t= 0, 1, \ldots, S.
+T_t = T_0  = \left(\sum_{t=0}^S R^{-t}\right)^{-1} (B_0 + h_0), \quad t= 0, 1, \ldots, S.
 $$ (eq:conssmoothing)
 
 Equation {eq}`eq:conssmoothing` is the consumption-smoothing model in a nutshell.
@@ -207,8 +204,8 @@ In the calculations below,  we'll  set default values of  $R > 1$, e.g., $R = 1.
 For a $(S+1) \times 1$  vector $G$, use matrix algebra to compute $h_0$
 
 $$
-h_0 = \sum_{t=0}^S R^{-t} y_t = \begin{bmatrix} 1 & R^{-1} & \cdots & R^{-S} \end{bmatrix}
-\begin{bmatrix} y_0 \cr y_1  \cr \vdots \cr y_S \end{bmatrix}
+h_0 = \sum_{t=0}^S R^{-t} G_t = \begin{bmatrix} 1 & R^{-1} & \cdots & R^{-S} \end{bmatrix}
+\begin{bmatrix} G_0 \cr G_1  \cr \vdots \cr G_S \end{bmatrix}
 $$
 
 ### Step 2
@@ -216,7 +213,7 @@ $$
 Compute an  time $0$   consumption $T_0 $ :
 
 $$
-T_t = T_0 = \left( \frac{1 - R^{-1}}{1 - R^{-(S+1)}} \right) (a_0 + \sum_{t=0}^S R^{-t} y_t ) , \quad t = 0, 1, \ldots, S
+T_t = T_0 = \left( \frac{1 - R^{-1}}{1 - R^{-(S+1)}} \right) (B_0 + \sum_{t=0}^S R^{-t} G_t ) , \quad t = 0, 1, \ldots, S
 $$
 
 ### Step 3
@@ -235,17 +232,17 @@ $$
 0 & 0 & 0 & \cdots & -R & 1 & 0 \cr
 0 & 0 & 0 & \cdots & 0 & -R & 1
 \end{bmatrix} 
-\begin{bmatrix} a_1 \cr a_2 \cr a_3 \cr \vdots \cr a_S \cr B_{S+1} 
+\begin{bmatrix} B_1 \cr B_2 \cr B_3 \cr \vdots \cr B_S \cr B_{S+1} 
 \end{bmatrix}
 = R 
-\begin{bmatrix} y_0 + a_0 - T_0 \cr y_1 - T_0 \cr y_2 - T_0 \cr \vdots\cr y_{S-1} - T_0 \cr y_S - T_0
+\begin{bmatrix} G_0 + B_0 - T_0 \cr G_1 - T_0 \cr G_2 - T_0 \cr \vdots\cr G_{S-1} - T_0 \cr G_S - T_0
 \end{bmatrix}
 $$
 
 Multiply both sides by the inverse of the matrix on the left side to compute
 
 $$
- \begin{bmatrix} a_1 \cr a_2 \cr a_3 \cr \vdots \cr a_S \cr B_{S+1} \end{bmatrix}
+ \begin{bmatrix} B_1 \cr B_2 \cr B_3 \cr \vdots \cr B_S \cr B_{S+1} \end{bmatrix}
 $$
 
 
@@ -262,47 +259,47 @@ Let's verify this with  Python code.
 First we implement the model with `compute_optimal`
 
 ```{code-cell} ipython3
-def compute_optimal(model, a0, y_seq):
+def compute_optimal(model, B0, G_seq):
     R, S = model.R, model.S
 
     # non-financial wealth
-    h0 = model.β_seq @ y_seq     # since β = 1/R
+    h0 = model.β_seq @ G_seq     # since β = 1/R
 
     # c0
-    c0 = (1 - 1/R) / (1 - (1/R)**(S+1)) * (a0 + h0)
+    c0 = (1 - 1/R) / (1 - (1/R)**(S+1)) * (B0 + h0)
     T_seq = c0*np.ones(S+1)
 
     # verify
     A = np.diag(-R*np.ones(S), k=-1) + np.eye(S+1)
-    b = y_seq - T_seq
-    b[0] = b[0] + a0
+    b = G_seq - T_seq
+    b[0] = b[0] + B0
 
-    a_seq = np.linalg.inv(A) @ b
-    a_seq = np.concatenate([[a0], a_seq])
+    B_seq = np.linalg.inv(A) @ b
+    B_seq = np.concatenate([[B0], B_seq])
 
-    return T_seq, a_seq, h0
+    return T_seq, B_seq, h0
 ```
 
-We use an example where the consumer inherits $a_0<0$.
+We use an example where the consumer inherits $B_0<0$.
 
 This  can be interpreted as a student debt.
 
-The non-financial process $\{y_t\}_{t=0}^{S}$ is constant and positive up to $t=45$ and then becomes zero afterward.
+The non-financial process $\{G_t\}_{t=0}^{S}$ is constant and positive up to $t=45$ and then becomes zero afterward.
 
 The drop in non-financial income late in life reflects retirement from work.
 
 ```{code-cell} ipython3
 # Financial wealth
-a0 = -2     # such as "student debt"
+B0 = -2     # such as "student debt"
 
 # non-financial Income process
-y_seq = np.concatenate([np.ones(46), np.zeros(20)])
+G_seq = np.concatenate([np.ones(46), np.zeros(20)])
 
-cs_model = create_consumption_smoothing_model()
-T_seq, a_seq, h0 = compute_optimal(cs_model, a0, y_seq)
+cs_model = create_tax_smoothing_model()
+T_seq, B_seq, h0 = compute_optimal(cs_model, B0, G_seq)
 
-print('check a_S+1=0:', 
-      np.abs(a_seq[-1] - 0) <= 1e-8)
+print('check B_S+1=0:', 
+      np.abs(B_seq[-1] - 0) <= 1e-8)
 ```
 
 The graphs below  show  paths of non-financial income, consumption, and financial assets.
@@ -311,14 +308,14 @@ The graphs below  show  paths of non-financial income, consumption, and financia
 # Sequence Length
 S = cs_model.S
 
-plt.plot(range(S+1), y_seq, label='non-financial income')
+plt.plot(range(S+1), G_seq, label='non-financial income')
 plt.plot(range(S+1), T_seq, label='consumption')
-plt.plot(range(S+2), a_seq, label='financial wealth')
+plt.plot(range(S+2), B_seq, label='financial wealth')
 plt.plot(range(S+2), np.zeros(S+2), '--')
 
 plt.legend()
 plt.xlabel(r'$t$')
-plt.ylabel(r'$T_t,y_t,B_t$')
+plt.ylabel(r'$T_t,G_t,B_t$')
 plt.show()
 ```
 
@@ -346,25 +343,25 @@ This will  help us avoid rewriting code to plot outcomes for different non-finan
 
 ```{code-cell} ipython3
 def plot_cs(model,    # consumption-smoothing model      
-            a0,       # initial financial wealth
-            y_seq     # non-financial income process
+            B0,       # initial financial wealth
+            G_seq     # non-financial income process
            ):
     
     # Compute optimal consumption
-    T_seq, a_seq, h0 = compute_optimal(model, a0, y_seq)
+    T_seq, B_seq, h0 = compute_optimal(model, B0, G_seq)
     
     # Sequence length
     S = cs_model.S
     
     # Generate plot
-    plt.plot(range(S+1), y_seq, label='non-financial income')
+    plt.plot(range(S+1), G_seq, label='non-financial income')
     plt.plot(range(S+1), T_seq, label='consumption')
-    plt.plot(range(S+2), a_seq, label='financial wealth')
+    plt.plot(range(S+2), B_seq, label='financial wealth')
     plt.plot(range(S+2), np.zeros(S+2), '--')
     
     plt.legend()
     plt.xlabel(r'$t$')
-    plt.ylabel(r'$T_t,y_t,B_t$')
+    plt.ylabel(r'$T_t,G_t,B_t$')
     plt.show()
 ```
 
@@ -378,38 +375,38 @@ We'll make $W_0$ big - positive to indicate a one-time windfall, and negative to
 
 ```{code-cell} ipython3
 # Windfall W_0 = 2.5
-y_seq_pos = np.concatenate([np.ones(21), np.array([2.5]), np.ones(24), np.zeros(20)])
+G_seq_pos = np.concatenate([np.ones(21), np.array([2.5]), np.ones(24), np.zeros(20)])
 
-plot_cs(cs_model, a0, y_seq_pos)
+plot_cs(cs_model, B0, G_seq_pos)
 ```
 
 ```{code-cell} ipython3
 # Disaster W_0 = -2.5
-y_seq_neg = np.concatenate([np.ones(21), np.array([-2.5]), np.ones(24), np.zeros(20)])
+G_seq_neg = np.concatenate([np.ones(21), np.array([-2.5]), np.ones(24), np.zeros(20)])
 
-plot_cs(cs_model, a0, y_seq_neg)
+plot_cs(cs_model, B0, G_seq_neg)
 ```
 
 #### Experiment 2: permanent wage gain/loss
 
-Now we assume a permanent  increase in income of $W$ in year 21 of the $G$-sequence.
+Now we assume a permanent  increase in income of $L$ in year 21 of the $G$-sequence.
 
 Again we can study positive and negative cases
 
 ```{code-cell} ipython3
-# Positive permanent income change W = 0.5 when t >= 21
-y_seq_pos = np.concatenate(
+# Positive permanent income change L = 0.5 when t >= 21
+G_seq_pos = np.concatenate(
     [np.ones(21), 1.5*np.ones(25), np.zeros(20)])
 
-plot_cs(cs_model, a0, y_seq_pos)
+plot_cs(cs_model, B0, G_seq_pos)
 ```
 
 ```{code-cell} ipython3
-# Negative permanent income change W = -0.5 when t >= 21
-y_seq_neg = np.concatenate(
+# Negative permanent income change L = -0.5 when t >= 21
+G_seq_neg = np.concatenate(
     [np.ones(21), .5*np.ones(25), np.zeros(20)])
 
-plot_cs(cs_model, a0, y_seq_neg)
+plot_cs(cs_model, B0, G_seq_neg)
 ```
 
 #### Experiment 3: a late starter
@@ -418,30 +415,30 @@ Now we simulate a $G$ sequence in which a person gets zero for 46 years, and the
 
 ```{code-cell} ipython3
 # Late starter
-y_seq_late = np.concatenate(
+G_seq_late = np.concatenate(
     [np.zeros(46), np.ones(20)])
 
-plot_cs(cs_model, a0, y_seq_late)
+plot_cs(cs_model, B0, G_seq_late)
 ```
 
 #### Experiment 4: geometric earner
 
-Now we simulate a geometric $G$ sequence in which a person gets $y_t = \lambda^t y_0$ in first 46 years.
+Now we simulate a geometric $G$ sequence in which a person gets $G_t = \lambda^t G_0$ in first 46 years.
 
 We first experiment with $\lambda = 1.05$
 
 ```{code-cell} ipython3
 # Geometric earner parameters where λ = 1.05
 λ = 1.05
-y_0 = 1
+G_0 = 1
 t_max = 46
 
 # Generate geometric G sequence
-geo_seq = λ ** np.arange(t_max) * y_0 
-y_seq_geo = np.concatenate(
+geo_seq = λ ** np.arange(t_max) * G_0 
+G_seq_geo = np.concatenate(
             [geo_seq, np.zeros(20)])
 
-plot_cs(cs_model, a0, y_seq_geo)
+plot_cs(cs_model, B0, G_seq_geo)
 ```
 
 Now we show the behavior when $\lambda = 0.95$
@@ -449,11 +446,11 @@ Now we show the behavior when $\lambda = 0.95$
 ```{code-cell} ipython3
 λ = 0.95
 
-geo_seq = λ ** np.arange(t_max) * y_0 
-y_seq_geo = np.concatenate(
+geo_seq = λ ** np.arange(t_max) * G_0 
+G_seq_geo = np.concatenate(
             [geo_seq, np.zeros(20)])
 
-plot_cs(cs_model, a0, y_seq_geo)
+plot_cs(cs_model, B0, G_seq_geo)
 ```
 
 What happens when $\lambda$ is negative
@@ -461,13 +458,12 @@ What happens when $\lambda$ is negative
 ```{code-cell} ipython3
 λ = -0.95
 
-geo_seq = λ ** np.arange(t_max) * y_0 
-y_seq_geo = np.concatenate(
+geo_seq = λ ** np.arange(t_max) * G_0 
+G_seq_geo = np.concatenate(
             [geo_seq, np.zeros(20)])
 
-plot_cs(cs_model, a0, y_seq_geo)
+plot_cs(cs_model, B0, G_seq_geo)
 ```
-
 
 ### Feasible consumption variations
 
@@ -539,7 +535,7 @@ to compute alternative consumption paths, then evaluate their welfare.
 Now let's compute and plot consumption path variations
 
 ```{code-cell} ipython3
-def compute_variation(model, ξ1, ϕ, a0, y_seq, verbose=1):
+def compute_variation(model, ξ1, ϕ, B0, G_seq, verbose=1):
     R, S, β_seq = model.R, model.S, model.β_seq
 
     ξ0 = ξ1*((1 - 1/R) / (1 - (1/R)**(S+1))) * ((1 - (ϕ/R)**(S+1)) / (1 - ϕ/R))
@@ -548,12 +544,11 @@ def compute_variation(model, ξ1, ϕ, a0, y_seq, verbose=1):
     if verbose == 1:
         print('check feasible:', np.isclose(β_seq @ v_seq, 0))     # since β = 1/R
 
-    T_opt, _, _ = compute_optimal(model, a0, y_seq)
+    T_opt, _, _ = compute_optimal(model, B0, G_seq)
     cvar_seq = T_opt + v_seq
 
     return cvar_seq
 ```
-
 
 We visualize variations for $\xi_1 \in \{.01, .05\}$ and $\phi \in \{.95, 1.02\}$
 
@@ -564,14 +559,14 @@ fig, ax = plt.subplots()
 ϕs= [.95, 1.02]
 colors = {.01: 'tab:blue', .05: 'tab:green'}
 
-params = np.array(np.meshgrid(ξ1s, ϕs)).S.reshape(-1, 2)
+params = np.array(np.meshgrid(ξ1s, ϕs)).T.reshape(-1, 2)
 
 for i, param in enumerate(params):
     ξ1, ϕ = param
     print(f'variation {i}: ξ1={ξ1}, ϕ={ϕ}')
     cvar_seq = compute_variation(model=cs_model, 
-                                 ξ1=ξ1, ϕ=ϕ, a0=a0, 
-                                 y_seq=y_seq)
+                                 ξ1=ξ1, ϕ=ϕ, B0=B0, 
+                                 G_seq=G_seq)
     print(f'welfare={welfare(cs_model, cvar_seq)}')
     print('-'*64)
     if i % 2 == 0:
@@ -591,7 +586,6 @@ plt.ylabel(r'$T_t$')
 plt.show()
 ```
 
-
 We can even use the Python `np.gradient` command to compute derivatives of welfare with respect to our two parameters.  
 
 We are teaching the key idea beneath the **calculus of variations**.
@@ -606,15 +600,14 @@ def welfare_rel(ξ1, ϕ):
     """
     
     cvar_seq = compute_variation(cs_model, ξ1=ξ1, 
-                                 ϕ=ϕ, a0=a0, 
-                                 y_seq=y_seq, 
+                                 ϕ=ϕ, B0=B0, 
+                                 G_seq=G_seq, 
                                  verbose=0)
     return welfare(cs_model, cvar_seq)
 
 # Vectorize the function to allow array input
 welfare_vec = np.vectorize(welfare_rel)
 ```
-
 
 Then we can visualize the relationship between welfare and $\xi_1$ and compute its derivatives
 
@@ -633,7 +626,6 @@ plt.ylabel('derivative of welfare')
 plt.xlabel(r'$\xi_1$')
 plt.show()
 ```
-
 
 The same can be done on $\phi$
 
