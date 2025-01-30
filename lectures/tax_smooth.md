@@ -325,9 +325,13 @@ print('Cost:', cost(tax_model, T_seq))
 ```
 
 ### Experiments
+
 In this section we describe how a tax sequence would optimally respond to different sequences of government expenditures.
+
 First we create a function `plot_ts` that generates graphs for different instances of the tax-smoothing model `tax_model`.
+
 This will help us avoid rewriting code to plot outcomes for different government expenditure sequences.
+
 ```{code-cell} ipython3
 def plot_ts(model,    # tax-smoothing model      
             B0,       # initial government debt
@@ -351,6 +355,7 @@ def plot_ts(model,    # tax-smoothing model
     plt.ylabel(r'$T_t,G_t,B_t$')
     plt.show()
 ```
+
 In the experiments below, please study how tax and government debt sequences vary across different sequences for government expenditures.
 
 #### Experiment 1: one-time spending shock
@@ -361,14 +366,16 @@ We'll make $W_0$ big - positive to indicate a spending surge (like a war or disa
 
 ```{code-cell} ipython3
 # Spending surge W_0 = 2.5
-G_seq_pos = np.concatenate([np.ones(21), np.array([2.5]), np.ones(24), np.zeros(20)])
+G_seq_pos = np.concatenate([np.ones(21), np.array([2.5]), 
+np.ones(24), np.zeros(20)])
 
 plot_ts(tax_model, B0, G_seq_pos)
 ```
 
 ```{code-cell} ipython3
 # Spending cut W_0 = -2.5
-G_seq_neg = np.concatenate([np.ones(21), np.array([-2.5]), np.ones(24), np.zeros(20)])
+G_seq_neg = np.concatenate([np.ones(21), np.array([-2.5]), 
+np.ones(24), np.zeros(20)])
 
 plot_ts(tax_model, B0, G_seq_neg)
 ```
@@ -454,6 +461,7 @@ plot_ts(tax_model, B0, G_seq_geo)
 We promised to justify our claim that a constant tax rate $T_t = T_0$ for all $t$ is optimal.  
 
 Let's do that now.
+
 The approach we'll take is an elementary example of the "calculus of variations". 
 
 Let's dive in and see what the key idea is.  
@@ -462,7 +470,7 @@ To explore what types of tax paths are welfare-improving, we shall create an **a
 that satisfies
 
 $$
-\sum_{t=0}^S R^{-t} v_t = 0
+\sum_{t=0}^S R^{-t} v_t = 0.
 $$
 
 This equation says that the **present value** of admissible tax path variations must be zero.
@@ -474,7 +482,7 @@ So once again, we encounter a formula for the present value:
 Here we'll restrict ourselves to a two-parameter class of admissible tax path variations of the form
 
 $$
-v_t = \xi_1 \phi^t - \xi_0
+v_t = \xi_1 \phi^t - \xi_0.
 $$
 
 We say two and not three-parameter class because $\xi_0$ will be a function of $(\phi, \xi_1; R)$ that guarantees that the variation sequence is feasible. 
@@ -566,6 +574,7 @@ plt.xlabel(r'$t$')
 plt.ylabel(r'$T_t$')
 plt.show()
 ```
+
 We can even use the Python `np.gradient` command to compute derivatives of cost with respect to our two parameters.  
 
 We are teaching the key idea beneath the **calculus of variations**.
@@ -583,9 +592,11 @@ def cost_rel(ξ1, ϕ):
                                  G_seq=G_seq, 
                                  verbose=0)
     return cost(tax_model, Tvar_seq)
+
 # Vectorize the function to allow array input
 cost_vec = np.vectorize(cost_rel)
 ```
+
 Then we can visualize the relationship between cost and $\xi_1$ and compute its derivatives
 
 ```{code-cell} ipython3
@@ -749,5 +760,6 @@ Multiplying both sides by inverse of the matrix on the left again provides the s
 :label: taxsmooth_ex2
 
 As an exercise, we ask you to represent and solve a **third-order linear difference equation**.
+
 How many initial conditions must you specify?
 ```
