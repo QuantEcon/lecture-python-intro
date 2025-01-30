@@ -16,25 +16,15 @@ kernelspec:
 ## Overview
 
 
-In this lecture, we'll study a famous model of the "consumption function" that Milton Friedman {cite}`Friedman1956` and Robert Hall {cite}`Hall1978`)  proposed to fit some empirical data patterns that the original  Keynesian consumption function  described in this QuantEcon lecture {doc}`geometric series <geom_series>`  missed.
+In this lecture, we'll study a famous model of optimal tax policy that Robert Barro {cite}`Barro1979` proposed to explain why governments might want to use debt to smooth tax rates over time rather than balancing their budgets period by period.
 
-In this lecture, we'll study what is often  called the "consumption-smoothing model"  using  matrix multiplication and matrix inversion, the same tools that we used in this QuantEcon lecture {doc}`present values <pv>`. 
+In this lecture, we'll study what is often called the "tax-smoothing model" using matrix multiplication and matrix inversion, the same tools that we used in this QuantEcon lecture {doc}`present values <pv>`. 
 
-Formulas presented in  {doc}`present value formulas<pv>` are at the core of the consumption-smoothing model because we shall use them to define a consumer's "human wealth".
+Formulas presented in {doc}`present value formulas<pv>` are at the core of the tax-smoothing model because we shall use them to compute the present value of government expenditures.
 
-The  key idea that inspired Milton Friedman was that a person's non-financial income, i.e., his or
-her wages from working, could be viewed as a dividend stream from that person's ''human capital''
-and that standard asset-pricing formulas could be applied to compute a person's
-''non-financial wealth'' that capitalizes the  earnings stream.  
+The key idea that inspired Barro was that temporary government spending surges (like wars or natural disasters) create a stream of expenditure requirements that could be optimally financed by issuing debt and raising taxes gradually over time.
 
-```{note}
-As we'll see in this QuantEcon lecture  {doc}`equalizing difference model <equalizing_difference>`,
-Milton Friedman had used this idea  in his PhD thesis at Columbia University, 
-eventually published as {cite}`kuznets1939incomes` and {cite}`friedman1954incomes`.
-```
-
-It will take a while for a "present value" or asset price explicitly to appear in this lecture, but when it does it will be a key actor.
-
+This approach allows the government to minimize the distortionary costs of taxation by keeping tax rates relatively stable.
 
 ## Analysis
 
@@ -46,15 +36,15 @@ import matplotlib.pyplot as plt
 from collections import namedtuple
 ```
 
-The model describes  a consumer who lives from time $t=0, 1, \ldots, S$, receives a stream $\{G_t\}_{t=0}^S$ of non-financial income and chooses a consumption stream $\{T_t\}_{t=0}^S$.
+The model describes a government that operates from time $t=0, 1, \ldots, S$, faces a stream of expenditures $\{G_t\}_{t=0}^S$ and chooses a stream of tax collections $\{T_t\}_{t=0}^S$.
 
-We usually think of the non-financial income stream as coming from the person's salary from supplying labor.  
+We usually think of the government expenditure stream as exogenous spending requirements that the government must finance.
 
-The model  takes a non-financial income stream as an input, regarding it as "exogenous" in the sense of not being determined by the model. 
+The model takes a government expenditure stream as an input, regarding it as "exogenous" in the sense of not being determined by the model.
 
-The consumer faces a gross interest rate of $R >1$ that is constant over time, at which she is free to borrow or lend, up to  limits that we'll describe below.
+The government faces a gross interest rate of $R >1$ that is constant over time, at which it is free to borrow or lend, subject to limits that we'll describe below.
 
-To set up the model, let 
+To set up the model, let
 
  * $S \geq 2$  be a positive integer that constitutes a time-horizon. 
  * $G = \{G_t\}_{t=0}^S$ be a sequence of government expenditures. 
@@ -65,68 +55,67 @@ To set up the model, let
  * $B_0$ be a given initial level of government debt
  * $B_{S+1} \geq 0$  be a terminal condition on final government debt. 
 
-The sequence of financial wealth $a$ is to be determined by the model.
+The sequence of government debt $B$ is to be determined by the model.
 
-We require it to satisfy  two  **boundary conditions**:
+We require it to satisfy two **boundary conditions**:
+   * it must equal an exogenous value $B_0$ at time $0$
+   * it must equal or exceed an exogenous value $B_{S+1}$ at time $S+1$.
 
-   * it must  equal an exogenous value  $B_0$ at time $0$ 
-   * it must equal or exceed an exogenous value  $B_{S+1}$ at time $S+1$.
+The **terminal condition** $B_{S+1} \geq 0$ is a constraint that prevents the government from running Ponzi schemes by requiring that it not end with negative assets.
 
-The **terminal condition** $B_{S+1} \geq 0$ requires that the consumer not leave the model in debt.
+(This no-Ponzi condition ensures that the government must ultimately pay off its debts rather than rolling them over indefinitely.)
 
-(We'll soon see that a utility maximizing consumer won't want to die leaving positive assets, so she'll arrange her affairs to make
-$B_{S+1} = 0$.)
-
-The consumer faces a sequence of budget constraints that  constrains   sequences $(G, T, B)$
+The government faces a sequence of budget constraints that constrains sequences $(G, T, B)$
 
 $$
-B_{t+1} = R (B_t+ G_t - T_t), \quad t =0, 1, \ldots S
+B_{t+1} = R (B_t + G_t - T_t), \quad t =0, 1, \ldots S
 $$ (eq:B_t)
 
-Equations {eq}`eq:B_t` constitute  $S+1$ such budget constraints, one for each $t=0, 1, \ldots, S$. 
+Equations {eq}`eq:B_t` constitute $S+1$ such budget constraints, one for each $t=0, 1, \ldots, S$.
 
-Given a sequence $G$ of non-financial incomes, a large  set of pairs $(a, c)$ of (financial wealth, consumption) sequences  satisfy the sequence of budget constraints {eq}`eq:B_t`. 
+Given a sequence $G$ of government expenditures, a large set of pairs $(B, T)$ of (government debt, tax collections) sequences satisfy the sequence of budget constraints {eq}`eq:B_t`.
 
-Our model has the following logical flow.
+Our model has the following logical flow:
 
- * start with an exogenous non-financial income sequence $G$, an initial financial wealth $B_0$, and 
- a candidate consumption path $c$.
+ * start with an exogenous government expenditure sequence $G$, an initial government debt $B_0$, and 
+ a candidate tax collection path $T$.
  
- * use the system of equations {eq}`eq:B_t` for $t=0, \ldots, S$ to compute a path $a$ of financial wealth
+ * use the system of equations {eq}`eq:B_t` for $t=0, \ldots, S$ to compute a path $B$ of government debt
  
- * verify that $B_{S+1}$ satisfies the terminal wealth constraint $B_{S+1} \geq 0$. 
+ * verify that $B_{S+1}$ satisfies the terminal debt constraint $B_{S+1} \geq 0$. 
     
      * If it does, declare that the candidate path is **budget feasible**. 
  
-     * if the candidate consumption path is not budget feasible, propose a less greedy consumption  path and start over
+     * if the candidate tax path is not budget feasible, propose a different tax path and start over
      
 Below, we'll describe how to execute these steps using linear algebra -- matrix inversion and multiplication.
 
-The above procedure seems like a sensible way to find "budget-feasible" consumption paths $c$, i.e., paths that are consistent
-with the exogenous non-financial income stream $G$, the initial financial  asset level $B_0$, and the terminal asset level $B_{S+1}$.
+The above procedure seems like a sensible way to find "budget-feasible" tax paths $T$, i.e., paths that are consistent
+with the exogenous government expenditure stream $G$, the initial debt level $B_0$, and the terminal debt level $B_{S+1}$.
 
-In general, there are **many** budget feasible consumption paths $c$.
+In general, there are **many** budget feasible tax paths $T$.
 
-Among all budget-feasible consumption paths, which one should a consumer want?
+Among all budget-feasible tax paths, which one should a government choose?
 
-
-To answer this question, we shall eventually evaluate alternative budget feasible consumption paths $c$ using the following utility functional or **welfare criterion**:
+To answer this question, we shall eventually evaluate alternative budget feasible tax paths $T$ using the following cost functional:
 
 ```{math}
-:label: welfare
+:label: cost
 
 L = \sum_{t=0}^S \beta^t (g_1 T_t - \frac{g_2}{2} T_t^2 )
 ```
 
 where $g_1 > 0, g_2 > 0$.  
 
-When $\beta R \approx 1$, the fact that the utility function $g_1 T_t - \frac{g_2}{2} T_t^2$ has diminishing marginal utility imparts a preference for consumption that is very smooth.  
+This is called the "present value of revenue-raising costs" in {citep}`Barro1979`
 
-Indeed, we shall see that when $\beta R = 1$ (a condition assumed by Milton Friedman {cite}`Friedman1956` and Robert Hall {cite}`Hall1978`),  criterion {eq}`welfare` assigns higher welfare to smoother consumption paths.
+When $\beta R \approx 1$, the quadratic term $-\frac{g_2}{2} T_t^2$ captures increasing marginal costs of taxation, implying that tax distortions rise more than proportionally with tax rates. This creates an incentive for tax smoothing.  
 
-By **smoother** we mean as close as possible to being constant over time.  
+Indeed, we shall see that when $\beta R = 1$ (a condition assumed in many public finance models), criterion {eq}`cost` leads to smoother tax paths.
 
-The preference for smooth consumption paths that is built into the model gives it the  name "consumption-smoothing model".
+By **smoother** we mean tax rates that are as close as possible to being constant over time.  
+
+The preference for smooth tax paths that is built into the model gives it the name "tax-smoothing model", following {citep}`Barro1979`'s seminal work.
 
 Let's dive in and do some calculations that will help us understand how the model works. 
 
@@ -139,27 +128,29 @@ TaxSmoothing = namedtuple("TaxSmoothing",
                         ["R", "g1", "g2", "β_seq", "S"])
 
 def create_tax_smoothing_model(R=1.05, g1=1, g2=1/2, S=65):
+    """
+    Creates an instance of the tax smoothing model.
+    """
     β = 1/R
     β_seq = np.array([β**i for i in range(S+1)])
-    return TaxSmoothing(R, g1, g2, 
-                                β_seq, S)
+
+    return TaxSmoothing(R, g1, g2, β_seq, S)
 ```
 
-## Friedman-Hall consumption-smoothing model
+## Barro Tax-Smoothing Model
 
-A key object is what Milton Friedman called "human" or "non-financial" wealth at time $0$:
-
+A key object is the present value of government expenditures at time $0$:
 
 $$
 h_0 \equiv \sum_{t=0}^S R^{-t} G_t = \begin{bmatrix} 1 & R^{-1} & \cdots & R^{-S} \end{bmatrix}
 \begin{bmatrix} G_0 \cr G_1  \cr \vdots \cr G_S \end{bmatrix}
 $$
 
-Human or non-financial wealth  at time $0$ is evidently just the present value of the consumer's non-financial income stream $G$. 
+This sum represents the present value of all future government expenditures that must be financed.
 
-Formally it very much resembles the asset price that we computed in this QuantEcon lecture {doc}`present values <pv>`.
+Formally it resembles the present value calculations we saw in this QuantEcon lecture {doc}`present values <pv>`.
 
-Indeed, this is why Milton Friedman called it "human capital". 
+This present value calculation is crucial for determining the government's total financing needs.
 
 By iterating on equation {eq}`eq:B_t` and imposing the terminal condition 
 
@@ -173,35 +164,34 @@ $$
 \sum_{t=0}^S R^{-t} T_t = B_0 + h_0. 
 $$ (eq:budget_intertemp)
 
-Equation {eq}`eq:budget_intertemp`  says that the present value of the consumption stream equals the sum of financial and non-financial (or human) wealth.
+Equation {eq}`eq:budget_intertemp` says that the present value of tax collections must equal the sum of initial debt and the present value of government expenditures.
 
-Robert Hall {cite}`Hall1978` showed that when $\beta R = 1$, a condition Milton Friedman had also  assumed, it is "optimal" for a consumer to smooth consumption by setting 
+When $\beta R = 1$, it is optimal for a government to smooth taxes by setting 
 
 $$ 
 T_t = T_0 \quad t =0, 1, \ldots, S
 $$
 
-(Later we'll present a "variational argument" that shows that this constant path maximizes
-criterion {eq}`welfare` when $\beta R =1$.)
+(Later we'll present a "variational argument" that shows that this constant path minimizes
+criterion {eq}`cost` when $\beta R =1$.)
 
-In this case, we can use the intertemporal budget constraint to write 
+In this case, we can use the intertemporal budget constraint to write
 
 $$
 T_t = T_0  = \left(\sum_{t=0}^S R^{-t}\right)^{-1} (B_0 + h_0), \quad t= 0, 1, \ldots, S.
-$$ (eq:conssmoothing)
+$$ (eq:taxsmoothing)
 
-Equation {eq}`eq:conssmoothing` is the consumption-smoothing model in a nutshell.
+Equation {eq}`eq:taxsmoothing` is the tax-smoothing model in a nutshell.
 
+## Mechanics of Tax-Smoothing Model 
 
-## Mechanics of consumption-smoothing model  
+As promised, we'll provide step-by-step instructions on how to use linear algebra, readily implemented in Python, to compute all objects in play in the tax-smoothing model.
 
-As promised, we'll provide step-by-step instructions on how to use linear algebra, readily implemented in Python, to compute all  objects in play in  the consumption-smoothing model.
-
-In the calculations below,  we'll  set default values of  $R > 1$, e.g., $R = 1.05$, and $\beta = R^{-1}$.
+In the calculations below, we'll set default values of $R > 1$, e.g., $R = 1.05$, and $\beta = R^{-1}$.
 
 ### Step 1
 
-For a $(S+1) \times 1$  vector $G$, use matrix algebra to compute $h_0$
+For a $(S+1) \times 1$ vector $G$ of government expenditures, use matrix algebra to compute the present value
 
 $$
 h_0 = \sum_{t=0}^S R^{-t} G_t = \begin{bmatrix} 1 & R^{-1} & \cdots & R^{-S} \end{bmatrix}
@@ -210,7 +200,7 @@ $$
 
 ### Step 2
 
-Compute an  time $0$   consumption $T_0 $ :
+Compute a constant tax rate $T_0$:
 
 $$
 T_t = T_0 = \left( \frac{1 - R^{-1}}{1 - R^{-(S+1)}} \right) (B_0 + \sum_{t=0}^S R^{-t} G_t ) , \quad t = 0, 1, \ldots, S
@@ -218,10 +208,9 @@ $$
 
 ### Step 3
 
-Use  the system of equations {eq}`eq:B_t` for $t=0, \ldots, S$ to compute a path $a$ of financial wealth.
+Use the system of equations {eq}`eq:B_t` for $t=0, \ldots, S$ to compute a path $B$ of government debt.
 
 To do this, we translate that system of difference equations into a single matrix equation as follows:
-
 
 $$
 \begin{bmatrix} 
@@ -245,72 +234,71 @@ $$
  \begin{bmatrix} B_1 \cr B_2 \cr B_3 \cr \vdots \cr B_S \cr B_{S+1} \end{bmatrix}
 $$
 
-
-Because we have built into  our calculations that the consumer leaves the model  with exactly zero assets, just barely satisfying the
-terminal condition that $B_{S+1} \geq 0$, it should turn out   that 
+Because we have built into our calculations that the government must satisfy its intertemporal budget constraint and end with zero debt, just barely satisfying the
+terminal condition that $B_{S+1} \geq 0$, it should turn out that 
 
 $$
 B_{S+1} = 0.
 $$
  
-
-Let's verify this with  Python code.
+Let's verify this with Python code.
 
 First we implement the model with `compute_optimal`
 
 ```{code-cell} ipython3
+
 def compute_optimal(model, B0, G_seq):
+
     R, S = model.R, model.S
 
-    # non-financial wealth
+    # present value of government expenditures
     h0 = model.β_seq @ G_seq     # since β = 1/R
 
-    # c0
-    c0 = (1 - 1/R) / (1 - (1/R)**(S+1)) * (B0 + h0)
-    T_seq = c0*np.ones(S+1)
+    # optimal constant tax rate
+    T0 = (1 - 1/R) / (1 - (1/R)**(S+1)) * (B0 + h0)
+    T_seq = T0*np.ones(S+1)
 
     # verify
     A = np.diag(-R*np.ones(S), k=-1) + np.eye(S+1)
     b = G_seq - T_seq
     b[0] = b[0] + B0
-
     B_seq = np.linalg.inv(A) @ b
     B_seq = np.concatenate([[B0], B_seq])
 
     return T_seq, B_seq, h0
 ```
 
-We use an example where the consumer inherits $B_0<0$.
+We use an example where the government starts with initial debt $B_0>0$.
 
-This  can be interpreted as a student debt.
+This represents the government's inherited debt burden.
 
-The non-financial process $\{G_t\}_{t=0}^{S}$ is constant and positive up to $t=45$ and then becomes zero afterward.
+The government expenditure process $\{G_t\}_{t=0}^{S}$ is constant and positive up to $t=45$ and then drops to zero afterward.
 
-The drop in non-financial income late in life reflects retirement from work.
+The drop in government expenditures could reflect a change in spending requirements or demographic shifts.
 
 ```{code-cell} ipython3
-# Financial wealth
-B0 = -2     # such as "student debt"
+# Initial debt
+B0 = -2     # initial government debt
 
-# non-financial Income process
+# Government expenditure process
 G_seq = np.concatenate([np.ones(46), np.zeros(20)])
-
-cs_model = create_tax_smoothing_model()
-T_seq, B_seq, h0 = compute_optimal(cs_model, B0, G_seq)
+tax_model = create_tax_smoothing_model()
+T_seq, B_seq, h0 = compute_optimal(tax_model, B0, G_seq)
 
 print('check B_S+1=0:', 
       np.abs(B_seq[-1] - 0) <= 1e-8)
 ```
 
-The graphs below  show  paths of non-financial income, consumption, and financial assets.
+The graphs below show paths of government expenditures, tax collections, and government debt.
 
 ```{code-cell} ipython3
-# Sequence Length
-S = cs_model.S
 
-plt.plot(range(S+1), G_seq, label='non-financial income')
-plt.plot(range(S+1), T_seq, label='consumption')
-plt.plot(range(S+2), B_seq, label='financial wealth')
+# Sequence Length
+S = tax_model.S
+
+plt.plot(range(S+1), G_seq, label='government expenditures')
+plt.plot(range(S+1), T_seq, label='tax collections')
+plt.plot(range(S+2), B_seq, label='government debt')
 plt.plot(range(S+2), np.zeros(S+2), '--')
 
 plt.legend()
@@ -321,42 +309,37 @@ plt.show()
 
 Note that $B_{S+1} = 0$, as anticipated.
 
-We can  evaluate  welfare criterion {eq}`welfare`
+We can evaluate cost criterion {eq}`cost` which measures the total cost of taxation
 
 ```{code-cell} ipython3
-def welfare(model, T_seq):
+def cost(model, T_seq):
     β_seq, g1, g2 = model.β_seq, model.g1, model.g2
+    cost_seq = g1 * T_seq - g2/2 * T_seq**2
+    return β_seq @ cost_seq
 
-    u_seq = g1 * T_seq - g2/2 * T_seq**2
-    return β_seq @ u_seq
-
-print('Welfare:', welfare(cs_model, T_seq))
+print('Cost:', cost(tax_model, T_seq))
 ```
 
 ### Experiments
-
-In this section we describe  how a  consumption sequence would optimally respond to different  sequences sequences of non-financial income.
-
-First we create  a function `plot_cs` that generates graphs for different instances of the  consumption-smoothing model `cs_model`.
-
-This will  help us avoid rewriting code to plot outcomes for different non-financial income sequences.
-
+In this section we describe how a tax sequence would optimally respond to different sequences of government expenditures.
+First we create a function `plot_ts` that generates graphs for different instances of the tax-smoothing model `tax_model`.
+This will help us avoid rewriting code to plot outcomes for different government expenditure sequences.
 ```{code-cell} ipython3
-def plot_cs(model,    # consumption-smoothing model      
-            B0,       # initial financial wealth
-            G_seq     # non-financial income process
+def plot_ts(model,    # tax-smoothing model      
+            B0,       # initial government debt
+            G_seq     # government expenditure process
            ):
     
-    # Compute optimal consumption
+    # Compute optimal tax path
     T_seq, B_seq, h0 = compute_optimal(model, B0, G_seq)
     
     # Sequence length
-    S = cs_model.S
+    S = tax_model.S
     
     # Generate plot
-    plt.plot(range(S+1), G_seq, label='non-financial income')
-    plt.plot(range(S+1), T_seq, label='consumption')
-    plt.plot(range(S+2), B_seq, label='financial wealth')
+    plt.plot(range(S+1), G_seq, label='government expenditures')
+    plt.plot(range(S+1), T_seq, label='tax collections')
+    plt.plot(range(S+2), B_seq, label='government debt')
     plt.plot(range(S+2), np.zeros(S+2), '--')
     
     plt.legend()
@@ -364,71 +347,70 @@ def plot_cs(model,    # consumption-smoothing model
     plt.ylabel(r'$T_t,G_t,B_t$')
     plt.show()
 ```
+In the experiments below, please study how tax and government debt sequences vary across different sequences for government expenditures.
 
-In the experiments below, please study how consumption and financial asset sequences vary across different sequences for non-financial income.
+#### Experiment 1: one-time spending shock
 
-#### Experiment 1: one-time gain/loss
+We first assume a one-time spending shock of $W_0$ in year 21 of the expenditure sequence $G$.  
 
-We first assume a one-time windfall of $W_0$ in year 21 of the income sequence $G$.  
-
-We'll make $W_0$ big - positive to indicate a one-time windfall, and negative to indicate a one-time "disaster".
+We'll make $W_0$ big - positive to indicate a spending surge (like a war or disaster), and negative to indicate a spending cut.
 
 ```{code-cell} ipython3
-# Windfall W_0 = 2.5
+# Spending surge W_0 = 2.5
 G_seq_pos = np.concatenate([np.ones(21), np.array([2.5]), np.ones(24), np.zeros(20)])
 
-plot_cs(cs_model, B0, G_seq_pos)
+plot_ts(tax_model, B0, G_seq_pos)
 ```
 
 ```{code-cell} ipython3
-# Disaster W_0 = -2.5
+# Spending cut W_0 = -2.5
 G_seq_neg = np.concatenate([np.ones(21), np.array([-2.5]), np.ones(24), np.zeros(20)])
 
-plot_cs(cs_model, B0, G_seq_neg)
+plot_ts(tax_model, B0, G_seq_neg)
 ```
 
-#### Experiment 2: permanent wage gain/loss
+#### Experiment 2: permanent expenditure shift
 
-Now we assume a permanent  increase in income of $L$ in year 21 of the $G$-sequence.
+Now we assume a permanent increase in government expenditures of $L$ in year 21 of the $G$-sequence.
 
 Again we can study positive and negative cases
 
 ```{code-cell} ipython3
-# Positive permanent income change L = 0.5 when t >= 21
+# Positive permanent expenditure shift L = 0.5 when t >= 21
 G_seq_pos = np.concatenate(
     [np.ones(21), 1.5*np.ones(25), np.zeros(20)])
 
-plot_cs(cs_model, B0, G_seq_pos)
+plot_ts(tax_model, B0, G_seq_pos)
 ```
 
 ```{code-cell} ipython3
-# Negative permanent income change L = -0.5 when t >= 21
+# Negative permanent expenditure shift L = -0.5 when t >= 21
 G_seq_neg = np.concatenate(
     [np.ones(21), .5*np.ones(25), np.zeros(20)])
 
-plot_cs(cs_model, B0, G_seq_neg)
+plot_ts(tax_model, B0, G_seq_neg)
 ```
 
-#### Experiment 3: a late starter
+#### Experiment 3: delayed spending
 
-Now we simulate a $G$ sequence in which a person gets zero for 46 years, and then works and gets 1 for the last 20 years of life (a "late starter")
+Now we simulate a $G$ sequence in which government expenditures are zero for 46 years, and then rise to 1 for the last 20 years (perhaps due to demographic aging)
 
 ```{code-cell} ipython3
-# Late starter
+# Delayed spending
 G_seq_late = np.concatenate(
     [np.zeros(46), np.ones(20)])
 
-plot_cs(cs_model, B0, G_seq_late)
+plot_ts(tax_model, B0, G_seq_late)
 ```
 
-#### Experiment 4: geometric earner
+#### Experiment 4: growing expenditures
 
-Now we simulate a geometric $G$ sequence in which a person gets $G_t = \lambda^t G_0$ in first 46 years.
+Now we simulate a geometric $G$ sequence in which government expenditures grow at rate $G_t = \lambda^t G_0$ in first 46 years.
 
-We first experiment with $\lambda = 1.05$
+We first experiment with $\lambda = 1.05$ (growing expenditures)
 
 ```{code-cell} ipython3
-# Geometric earner parameters where λ = 1.05
+# Geometric growth parameters where λ = 1.05
 λ = 1.05
 G_0 = 1
 t_max = 46
@@ -438,59 +420,54 @@ geo_seq = λ ** np.arange(t_max) * G_0
 G_seq_geo = np.concatenate(
             [geo_seq, np.zeros(20)])
 
-plot_cs(cs_model, B0, G_seq_geo)
+plot_ts(tax_model, B0, G_seq_geo)
 ```
 
-Now we show the behavior when $\lambda = 0.95$
+Now we show the behavior when $\lambda = 0.95$ (declining expenditures)
 
 ```{code-cell} ipython3
 λ = 0.95
-
 geo_seq = λ ** np.arange(t_max) * G_0 
 G_seq_geo = np.concatenate(
             [geo_seq, np.zeros(20)])
 
-plot_cs(cs_model, B0, G_seq_geo)
+plot_ts(tax_model, B0, G_seq_geo)
 ```
 
-What happens when $\lambda$ is negative
+What happens with oscillating expenditures
 
 ```{code-cell} ipython3
 λ = -0.95
-
 geo_seq = λ ** np.arange(t_max) * G_0 
 G_seq_geo = np.concatenate(
             [geo_seq, np.zeros(20)])
 
-plot_cs(cs_model, B0, G_seq_geo)
+plot_ts(tax_model, B0, G_seq_geo)
 ```
 
-### Feasible consumption variations
+### Feasible Tax Variations
 
-We promised to justify  our claim that a constant consumption play $T_t = T_0$ for all
-$t$ is optimal.  
+We promised to justify our claim that a constant tax rate $T_t = T_0$ for all $t$ is optimal.  
 
 Let's do that now.
-
-The approach we'll take is  an elementary  example  of the "calculus of variations". 
+The approach we'll take is an elementary example of the "calculus of variations". 
 
 Let's dive in and see what the key idea is.  
 
-To explore what types of consumption paths are welfare-improving, we shall create an **admissible consumption path variation sequence** $\{v_t\}_{t=0}^S$
+To explore what types of tax paths are welfare-improving, we shall create an **admissible tax path variation sequence** $\{v_t\}_{t=0}^S$
 that satisfies
 
 $$
 \sum_{t=0}^S R^{-t} v_t = 0
 $$
 
-This equation says that the **present value** of admissible consumption path variations must be zero.
+This equation says that the **present value** of admissible tax path variations must be zero.
 
-So once again, we encounter a formula for the present value of an "asset":
+So once again, we encounter a formula for the present value:
 
-   * we require that the present value of consumption path variations be zero.
+   * we require that the present value of tax path variations be zero to maintain budget balance.
 
-Here we'll restrict ourselves to  a two-parameter class of admissible consumption path variations
-of the form
+Here we'll restrict ourselves to a two-parameter class of admissible tax path variations of the form
 
 $$
 v_t = \xi_1 \phi^t - \xi_0
@@ -526,13 +503,13 @@ $$
 
 This is our formula for $\xi_0$.  
 
-**Key Idea:** if $c^o$ is a budget-feasible consumption path, then so is $c^o + v$,
+**Key Idea:** if $T^o$ is a budget-feasible tax path, then so is $T^o + v$,
 where $v$ is a budget-feasible variation.
 
 Given $R$, we thus have a two parameter class of budget feasible variations $v$ that we can use
-to compute alternative consumption paths, then evaluate their welfare.
+to compute alternative tax paths, then evaluate their welfare costs.
 
-Now let's compute and plot consumption path variations
+Now let's compute and plot tax path variations
 
 ```{code-cell} ipython3
 def compute_variation(model, ξ1, ϕ, B0, G_seq, verbose=1):
@@ -542,87 +519,83 @@ def compute_variation(model, ξ1, ϕ, B0, G_seq, verbose=1):
     v_seq = np.array([(ξ1*ϕ**t - ξ0) for t in range(S+1)])
     
     if verbose == 1:
-        print('check feasible:', np.isclose(β_seq @ v_seq, 0))     # since β = 1/R
+        print('check feasible:', np.isclose(β_seq @ v_seq, 0))     
 
     T_opt, _, _ = compute_optimal(model, B0, G_seq)
-    cvar_seq = T_opt + v_seq
+    Tvar_seq = T_opt + v_seq
 
-    return cvar_seq
+    return Tvar_seq
 ```
 
 We visualize variations for $\xi_1 \in \{.01, .05\}$ and $\phi \in \{.95, 1.02\}$
 
 ```{code-cell} ipython3
 fig, ax = plt.subplots()
-
 ξ1s = [.01, .05]
 ϕs= [.95, 1.02]
 colors = {.01: 'tab:blue', .05: 'tab:green'}
-
 params = np.array(np.meshgrid(ξ1s, ϕs)).T.reshape(-1, 2)
 
 for i, param in enumerate(params):
     ξ1, ϕ = param
     print(f'variation {i}: ξ1={ξ1}, ϕ={ϕ}')
-    cvar_seq = compute_variation(model=cs_model, 
+
+    Tvar_seq = compute_variation(model=tax_model, 
                                  ξ1=ξ1, ϕ=ϕ, B0=B0, 
                                  G_seq=G_seq)
-    print(f'welfare={welfare(cs_model, cvar_seq)}')
+    print(f'cost={cost(tax_model, Tvar_seq)}')
     print('-'*64)
+
     if i % 2 == 0:
         ls = '-.'
     else: 
         ls = '-'  
-    ax.plot(range(S+1), cvar_seq, ls=ls, 
+    ax.plot(range(S+1), Tvar_seq, ls=ls, 
             color=colors[ξ1], 
             label=fr'$\xi_1 = {ξ1}, \phi = {ϕ}$')
 
 plt.plot(range(S+1), T_seq, 
-         color='orange', label=r'Optimal $\vec{c}$ ')
+         color='orange', label=r'Optimal $\vec{T}$ ')
 
 plt.legend()
 plt.xlabel(r'$t$')
 plt.ylabel(r'$T_t$')
 plt.show()
 ```
-
-We can even use the Python `np.gradient` command to compute derivatives of welfare with respect to our two parameters.  
+We can even use the Python `np.gradient` command to compute derivatives of cost with respect to our two parameters.  
 
 We are teaching the key idea beneath the **calculus of variations**.
-
-First, we define the welfare with respect to $\xi_1$ and $\phi$
+First, we define the cost with respect to $\xi_1$ and $\phi$
 
 ```{code-cell} ipython3
-def welfare_rel(ξ1, ϕ):
+def cost_rel(ξ1, ϕ):
     """
-    Compute welfare of variation sequence 
-    for given ϕ, ξ1 with a consumption-smoothing model
+    Compute cost of variation sequence 
+    for given ϕ, ξ1 with a tax-smoothing model
     """
     
-    cvar_seq = compute_variation(cs_model, ξ1=ξ1, 
+    Tvar_seq = compute_variation(tax_model, ξ1=ξ1, 
                                  ϕ=ϕ, B0=B0, 
                                  G_seq=G_seq, 
                                  verbose=0)
-    return welfare(cs_model, cvar_seq)
-
+    return cost(tax_model, Tvar_seq)
 # Vectorize the function to allow array input
-welfare_vec = np.vectorize(welfare_rel)
+cost_vec = np.vectorize(cost_rel)
 ```
-
-Then we can visualize the relationship between welfare and $\xi_1$ and compute its derivatives
+Then we can visualize the relationship between cost and $\xi_1$ and compute its derivatives
 
 ```{code-cell} ipython3
 ξ1_arr = np.linspace(-0.5, 0.5, 20)
 
-plt.plot(ξ1_arr, welfare_vec(ξ1_arr, 1.02))
-plt.ylabel('welfare')
+plt.plot(ξ1_arr, cost_vec(ξ1_arr, 1.02))
+plt.ylabel('cost')
 plt.xlabel(r'$\xi_1$')
 plt.show()
 
-welfare_grad = welfare_vec(ξ1_arr, 1.02)
-welfare_grad = np.gradient(welfare_grad)
-plt.plot(ξ1_arr, welfare_grad)
-plt.ylabel('derivative of welfare')
+cost_grad = cost_vec(ξ1_arr, 1.02)
+cost_grad = np.gradient(cost_grad)
+plt.plot(ξ1_arr, cost_grad)
+plt.ylabel('derivative of cost')
 plt.xlabel(r'$\xi_1$')
 plt.show()
 ```
@@ -632,20 +605,20 @@ The same can be done on $\phi$
 ```{code-cell} ipython3
 ϕ_arr = np.linspace(-0.5, 0.5, 20)
 
-plt.plot(ξ1_arr, welfare_vec(0.05, ϕ_arr))
-plt.ylabel('welfare')
+plt.plot(ξ1_arr, cost_vec(0.05, ϕ_arr))
+plt.ylabel('cost')
 plt.xlabel(r'$\phi$')
 plt.show()
 
-welfare_grad = welfare_vec(0.05, ϕ_arr)
-welfare_grad = np.gradient(welfare_grad)
-plt.plot(ξ1_arr, welfare_grad)
-plt.ylabel('derivative of welfare')
+cost_grad = cost_vec(0.05, ϕ_arr)
+cost_grad = np.gradient(cost_grad)
+plt.plot(ξ1_arr, cost_grad)
+plt.ylabel('derivative of cost')
 plt.xlabel(r'$\phi$')
 plt.show()
 ```
 
-## Wrapping up the consumption-smoothing model
+<!-- ## Wrapping up the consumption-smoothing model
 
 The consumption-smoothing model of Milton Friedman {cite}`Friedman1956` and Robert Hall {cite}`Hall1978`) is a cornerstone of modern macro that has important ramifications for the size of the Keynesian  "fiscal policy multiplier" described briefly in
 QuantEcon lecture {doc}`geometric series <geom_series>`.  
@@ -654,21 +627,21 @@ In particular,  it  **lowers** the government expenditure  multiplier relative t
 the original Keynesian consumption function presented in {doc}`geometric series <geom_series>`.
 
 Friedman's   work opened the door to an enlightening literature on the aggregate consumption function and associated government expenditure  multipliers that
-remains  active today.  
+remains  active today.   -->
 
 
 ## Appendix: solving difference equations with linear algebra
 
-In the preceding sections we have used linear algebra to solve a consumption-smoothing model.  
+In the preceding sections we have used linear algebra to solve a tax-smoothing model.  
 
-The same tools from linear algebra -- matrix multiplication and matrix inversion -- can be used  to study many other dynamic models.
+The same tools from linear algebra -- matrix multiplication and matrix inversion -- can be used to study many other dynamic models.
 
 We'll conclude this lecture by giving a couple of examples.
 
 We'll describe a useful way of representing and "solving" linear difference equations. 
 
 To generate some $G$ vectors, we'll just write down a linear difference equation
-with appropriate initial conditions and then   use linear algebra to solve it.
+with appropriate initial conditions and then use linear algebra to solve it.
 
 ### First-order difference equation
 
@@ -678,10 +651,9 @@ $$
 G_{t} = \lambda G_{t-1}, \quad t = 1, 2, \ldots, S
 $$
 
-where  $G_0$ is a given  initial condition.
+where $G_0$ is a given initial government expenditure.
 
-
-We can cast this set of $S$ equations as a single  matrix equation
+We can cast this set of $S$ equations as a single matrix equation
 
 $$
 \begin{bmatrix} 
@@ -700,12 +672,10 @@ G_1 \cr G_2 \cr G_3 \cr \vdots \cr G_S
 \end{bmatrix}
 $$ (eq:first_order_lin_diff)
 
-
-Multiplying both sides of {eq}`eq:first_order_lin_diff`  by the  inverse of the matrix on the left provides the solution
+Multiplying both sides of {eq}`eq:first_order_lin_diff` by the inverse of the matrix on the left provides the solution
 
 ```{math}
 :label: fst_ord_inverse
-
 \begin{bmatrix} 
 G_1 \cr G_2 \cr G_3 \cr \vdots \cr G_S 
 \end{bmatrix} 
@@ -723,9 +693,9 @@ G_1 \cr G_2 \cr G_3 \cr \vdots \cr G_S
 ```
 
 ```{exercise}
-:label: consmooth_ex1
+:label: taxsmooth_ex1
 
-To get {eq}`fst_ord_inverse`, we multiplied both sides of  {eq}`eq:first_order_lin_diff` by  the inverse of the matrix $A$. Please confirm that 
+To get {eq}`fst_ord_inverse`, we multiplied both sides of {eq}`eq:first_order_lin_diff` by the inverse of the matrix $A$. Please confirm that 
 
 $$
 \begin{bmatrix} 
@@ -738,7 +708,6 @@ $$
 $$
 
 is the inverse of $A$ and check that $A A^{-1} = I$
-
 ```
 
 ### Second-order difference equation
@@ -749,7 +718,7 @@ $$
 G_{t} = \lambda_1 G_{t-1} + \lambda_2 G_{t-2}, \quad t = 1, 2, \ldots, S
 $$
 
-where now $G_0$ and $G_{-1}$ are two given initial equations determined outside the model. 
+where now $G_0$ and $G_{-1}$ are two given initial expenditure levels determined outside the model. 
 
 As we did with the first-order difference equation, we can cast this set of $S$ equations as a single matrix equation
 
@@ -770,10 +739,10 @@ G_1 \cr G_2 \cr G_3 \cr \vdots \cr G_S
 \end{bmatrix}
 $$
 
-Multiplying both sides by  inverse of the matrix on the left again provides the solution.
+Multiplying both sides by inverse of the matrix on the left again provides the solution.
 
 ```{exercise}
-:label: consmooth_ex2
+:label: taxsmooth_ex2
 
 As an exercise, we ask you to represent and solve a **third-order linear difference equation**.
 How many initial conditions must you specify?
