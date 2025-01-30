@@ -20,7 +20,11 @@ In this lecture, we'll study a famous model of optimal tax policy that Robert Ba
 
 In this lecture, we'll study what is often called the "tax-smoothing model" using matrix multiplication and matrix inversion, the same tools that we used in this QuantEcon lecture {doc}`present values <pv>`. 
 
-Formulas presented in {doc}`present value formulas<pv>` are at the core of the tax-smoothing model because we shall use them to compute the present value of government expenditures.
+This lecture is a sister lecture to the consumption-smoothing model of Milton Friedman {cite}`Friedman1956` and Robert Hall {cite}`Hall1978` that we studied in this QuantEcon lecture {doc}`consumption-smoothing <cons_smooth>`.
+
+Formulas presented in {doc}`present value formulas<pv>` are again at the core of the tax-smoothing model because we shall use them to compute the present value of government expenditures.
+
+The government's optimization problem is to choose a tax collection path that minimizes the present value of the costs of raising revenue.
 
 The key idea that inspired Barro was that temporary government spending surges (like wars or natural disasters) create a stream of expenditure requirements that could be optimally financed by issuing debt and raising taxes gradually over time.
 
@@ -38,9 +42,9 @@ from collections import namedtuple
 
 The model describes a government that operates from time $t=0, 1, \ldots, S$, faces a stream of expenditures $\{G_t\}_{t=0}^S$ and chooses a stream of tax collections $\{T_t\}_{t=0}^S$.
 
-We usually think of the government expenditure stream as exogenous spending requirements that the government must finance.
+The government expenditure stream is exogenous spending requirements that the government must finance.
 
-The model takes a government expenditure stream as an input, regarding it as "exogenous" in the sense of not being determined by the model.
+Analogous to {doc}`consumption-smoothing <cons_smooth>`, The model takes a government expenditure stream as an input, regarding it as "exogenous" in the sense of not being determined by the model.
 
 The government faces a gross interest rate of $R >1$ that is constant over time, at which it is free to borrow or lend, subject to limits that we'll describe below.
 
@@ -107,7 +111,7 @@ L = \sum_{t=0}^S \beta^t (g_1 T_t - \frac{g_2}{2} T_t^2 )
 
 where $g_1 > 0, g_2 > 0$.  
 
-This is called the "present value of revenue-raising costs" in {citep}`Barro1979`
+This is called the "present value of revenue-raising costs" in {cite}`Barro1979`.
 
 When $\beta R \approx 1$, the quadratic term $-\frac{g_2}{2} T_t^2$ captures increasing marginal costs of taxation, implying that tax distortions rise more than proportionally with tax rates. This creates an incentive for tax smoothing.  
 
@@ -115,7 +119,7 @@ Indeed, we shall see that when $\beta R = 1$ (a condition assumed in many public
 
 By **smoother** we mean tax rates that are as close as possible to being constant over time.  
 
-The preference for smooth tax paths that is built into the model gives it the name "tax-smoothing model", following {citep}`Barro1979`'s seminal work.
+The preference for smooth tax paths that is built into the model gives it the name "tax-smoothing model", following {cite}`Barro1979`'s seminal work.
 
 Let's dive in and do some calculations that will help us understand how the model works. 
 
@@ -162,9 +166,9 @@ it is possible to convert a sequence of budget constraints {eq}`eq:B_t` into a s
 
 $$ 
 \sum_{t=0}^S R^{-t} T_t = B_0 + h_0. 
-$$ (eq:budget_intertemp)
+$$ (eq:budget_intertemp_tax)
 
-Equation {eq}`eq:budget_intertemp` says that the present value of tax collections must equal the sum of initial debt and the present value of government expenditures.
+Equation {eq}`eq:budget_intertemp_tax` says that the present value of tax collections must equal the sum of initial debt and the present value of government expenditures.
 
 When $\beta R = 1$, it is optimal for a government to smooth taxes by setting 
 
@@ -670,12 +674,12 @@ G_1 \cr G_2 \cr G_3 \cr \vdots \cr G_S
 \begin{bmatrix} 
 \lambda G_0 \cr 0 \cr 0 \cr \vdots \cr 0 
 \end{bmatrix}
-$$ (eq:first_order_lin_diff)
+$$ (eq:first_order_lin_diff_tax)
 
-Multiplying both sides of {eq}`eq:first_order_lin_diff` by the inverse of the matrix on the left provides the solution
+Multiplying both sides of {eq}`eq:first_order_lin_diff_tax` by the inverse of the matrix on the left provides the solution
 
 ```{math}
-:label: fst_ord_inverse
+:label: eq:fst_ord_inverse_tax
 \begin{bmatrix} 
 G_1 \cr G_2 \cr G_3 \cr \vdots \cr G_S 
 \end{bmatrix} 
@@ -695,7 +699,7 @@ G_1 \cr G_2 \cr G_3 \cr \vdots \cr G_S
 ```{exercise}
 :label: taxsmooth_ex1
 
-To get {eq}`fst_ord_inverse`, we multiplied both sides of {eq}`eq:first_order_lin_diff` by the inverse of the matrix $A$. Please confirm that 
+To get {eq}`eq:fst_ord_inverse_tax`, we multiplied both sides of {eq}`eq:first_order_lin_diff_tax` by the inverse of the matrix $A$. Please confirm that 
 
 $$
 \begin{bmatrix} 
