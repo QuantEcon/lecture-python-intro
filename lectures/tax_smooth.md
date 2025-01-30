@@ -131,7 +131,7 @@ Or equivalently, we can transform this into the same problem as in the {doc}`con
 ```{math}
 :label: welfare_tax
 
-J = \sum_{t=0}^S \beta^t (g_1 T_t - \frac{g_2}{2} T_t^2 )
+W = \sum_{t=0}^S \beta^t (g_1 T_t - \frac{g_2}{2} T_t^2 )
 ```
 
 Let's dive in and do some calculations that will help us understand how the model works. 
