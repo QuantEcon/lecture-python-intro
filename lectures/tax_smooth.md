@@ -16,21 +16,26 @@ kernelspec:
 ## Overview
 
 
-In this lecture, we'll study a famous model of optimal tax policy that Robert Barro {cite}`Barro1979` proposed to explain why governments might want to use debt to smooth tax rates over time rather than balancing their budgets period by period.
+This  is a sister lecture to our  lecture on {doc}`consumption-smoothing <cons_smooth>`.
 
-In this lecture, we'll study what is often called the "tax-smoothing model" using matrix multiplication and matrix inversion, the same tools that we used in this QuantEcon lecture {doc}`present values <pv>`. 
 
-This lecture is a sister lecture to our previous lecture on {doc}`consumption-smoothing <cons_smooth>`.
+By renaming variables, we  obtain  a a version of a model "tax-smoothing model" that  Robert Barro {cite}`Barro1979` used  to explain why governments sometimes choose not to balance their budgets every period but instead use issue debt to smooth tax rates over time.
 
-We will see how "reinterpretating" the paramters in the consumption-smoothing model can lead to the tax-smoothing model.
+The government chooses a tax collection path that minimizes the present value of its costs of raising revenue.
 
-Formulas presented in {doc}`present value formulas<pv>` are again at the core of the tax-smoothing model because we shall use them to compute the present value of government expenditures.
 
-The government's optimization problem is to choose a tax collection path that minimizes the present value of the costs of raising revenue.
+The government minimize those costs by varying  tax collections little over time.
 
-The key idea that inspired Barro was that temporary government spending surges (like wars or natural disasters) create a stream of expenditure requirements that could be optimally financed by issuing debt and raising taxes *gradually* over time.
 
-This approach allows the government to minimize the distortionary costs of taxation by keeping tax rates relatively stable.
+The present value of government expenditures is at the core of the tax-smoothing model,
+so we'll again use formulas presented in {doc}`present value formulas<pv>`.
+
+We'll use the matrix multiplication and matrix inversion tools that we used in  {doc}`present value formulas <pv>`. 
+
+
+
+
+
 
 ## Analysis
 
@@ -42,15 +47,17 @@ import matplotlib.pyplot as plt
 from collections import namedtuple
 ```
 
-The model describes a government that operates from time $t=0, 1, \ldots, S$, faces a stream of expenditures $\{G_t\}_{t=0}^S$ and chooses a stream of tax collections $\{T_t\}_{t=0}^S$.
+A government exists at times $t=0, 1, \ldots, S$ and  faces an exogenous stream of expenditures $\{G_t\}_{t=0}^S$.
 
-The government expenditure stream is exogenous spending requirements that the government must finance.
+It chooses  chooses a stream of tax collections $\{T_t\}_{t=0}^S$.
 
-Analogous to {doc}`consumption-smoothing <cons_smooth>`, the model takes a government expenditure stream as an input, regarding it as "exogenous" in the sense of not being determined by the model.
+The model takes a government expenditure stream as an "exogenous" input that is somehow determined  outside the model.
 
-The government faces a gross interest rate of $R >1$ that is constant over time, at which it is free to borrow or lend, subject to limits that we'll describe below.
+The government faces a gross interest rate of $R >1$ that is constant over time.
 
-To set up the model, let
+The government can borrow or lend at interest rate $R$, subject to some limits on the amount of debt that it can issue  that we'll describe below.
+
+Let
 
  * $S \geq 2$  be a positive integer that constitutes a time-horizon. 
  * $G = \{G_t\}_{t=0}^S$ be a sequence of government expenditures. 
@@ -59,7 +66,7 @@ To set up the model, let
  * $R \geq 1$ be a fixed gross one period interest rate. 
  * $\beta \in (0,1)$ be a fixed discount factor.  
  * $B_0$ be a given initial level of government debt
- * $B_{S+1} \geq 0$  be a terminal condition on final government debt. 
+ * $B_{S+1} \geq 0$  be a terminal condition. 
 
 The sequence of government debt $B$ is to be determined by the model.
 
@@ -67,11 +74,11 @@ We require it to satisfy two **boundary conditions**:
    * it must equal an exogenous value $B_0$ at time $0$
    * it must equal or exceed an exogenous value $B_{S+1}$ at time $S+1$.
 
-The **terminal condition** $B_{S+1} \geq 0$ is a constraint that prevents the government from running Ponzi schemes by requiring that it not end with negative assets.
+The **terminal condition** $B_{S+1} \geq 0$   requires that it not end with negative assets.
 
-(This no-Ponzi condition ensures that the government must ultimately pay off its debts rather than rolling them over indefinitely.)
+(This no-Ponzi condition ensures that the government  ultimately pays off its debts -- it can't simply roll them over indefinitely.)
 
-The government faces a sequence of budget constraints that constrains sequences $(G, T, B)$
+The government faces a sequence of budget constraints that constrain sequences $(G, T, B)$
 
 $$
 B_{t+1} = R (B_t + G_t - T_t), \quad t =0, 1, \ldots S
@@ -81,7 +88,7 @@ Equations {eq}`eq:B_t` constitute $S+1$ such budget constraints, one for each $t
 
 Given a sequence $G$ of government expenditures, a large set of pairs $(B, T)$ of (government debt, tax collections) sequences satisfy the sequence of budget constraints {eq}`eq:B_t`.
 
-Our model has the following logical flow:
+The  model follows the following logical flow:
 
  * start with an exogenous government expenditure sequence $G$, an initial government debt $B_0$, and 
  a candidate tax collection path $T$.
@@ -96,14 +103,13 @@ Our model has the following logical flow:
      
 Below, we'll describe how to execute these steps using linear algebra -- matrix inversion and multiplication.
 
-The above procedure seems like a sensible way to find "budget-feasible" tax paths $T$, i.e., paths that are consistent
-with the exogenous government expenditure stream $G$, the initial debt level $B_0$, and the terminal debt level $B_{S+1}$.
+The above procedure seems like a sensible way to find "budget-feasible" tax paths $T$, i.e., paths that are consistent with the exogenous government expenditure stream $G$, the initial debt level $B_0$, and the terminal debt level $B_{S+1}$.
 
 In general, there are **many** budget feasible tax paths $T$.
 
 Among all budget-feasible tax paths, which one should a government choose?
 
-To answer this question, we shall eventually evaluate alternative budget feasible tax paths $T$ using the following cost functional:
+To answer this question, we assess  alternative budget feasible tax paths $T$ using the following cost functional:
 
 ```{math}
 :label: cost
@@ -144,7 +150,7 @@ We create a Python ``namedtuple`` to store these parameters with default values.
 TaxSmoothing = namedtuple("TaxSmoothing", 
                         ["R", "g1", "g2", "β_seq", "S"])
 
-def create_tax_smoothing_model(R=1.05, g1=1, g2=1/2, S=65):
+def create_tax_smoothing_model(R=1.01, g1=1, g2=1/2, S=65):
     """
     Creates an instance of the tax smoothing model.
     """
@@ -200,7 +206,7 @@ $$ (eq:taxsmoothing)
 
 Equation {eq}`eq:taxsmoothing` is the tax-smoothing model in a nutshell.
 
-## Mechanics of tax-smoothing model 
+## Mechanics of tax-smoothing 
 
 As promised, we'll provide step-by-step instructions on how to use linear algebra, readily implemented in Python, to compute all objects in play in the tax-smoothing model.
 
@@ -294,10 +300,10 @@ The drop in government expenditures could reflect a change in spending requireme
 
 ```{code-cell} ipython3
 # Initial debt
-B0 = 2     # initial government debt
+B0 = 0     # initial government debt
 
 # Government expenditure process
-G_seq = np.concatenate([np.ones(46), np.zeros(20)])
+G_seq = np.concatenate([np.ones(46), 5*np.ones(5),np.ones(15)])
 tax_model = create_tax_smoothing_model()
 T_seq, B_seq, h0 = compute_optimal(tax_model, B0, G_seq)
 
@@ -655,122 +661,3 @@ the original Keynesian consumption function presented in {doc}`geometric series 
 Friedman's   work opened the door to an enlightening literature on the aggregate consumption function and associated government expenditure  multipliers that
 remains  active today.   -->
 
-
-## Appendix: solving difference equations with linear algebra
-
-In the preceding sections we have used linear algebra to solve a tax-smoothing model.  
-
-The same tools from linear algebra -- matrix multiplication and matrix inversion -- can be used to study many other dynamic models.
-
-We'll conclude this lecture by giving a couple of examples.
-
-We'll describe a useful way of representing and "solving" linear difference equations. 
-
-To generate some $G$ vectors, we'll just write down a linear difference equation
-with appropriate initial conditions and then use linear algebra to solve it.
-
-### First-order difference equation
-
-We'll start with a first-order linear difference equation for $\{G_t\}_{t=0}^S$:
-
-$$
-G_{t} = \lambda G_{t-1}, \quad t = 1, 2, \ldots, S
-$$
-
-where $G_0$ is a given initial government expenditure.
-
-We can cast this set of $S$ equations as a single matrix equation
-
-$$
-\begin{bmatrix} 
-1 & 0 & 0 & \cdots & 0 & 0 \cr
--\lambda & 1 & 0 & \cdots & 0 & 0 \cr
-0 & -\lambda & 1 & \cdots & 0 & 0 \cr
- \vdots & \vdots & \vdots & \cdots & \vdots & \vdots \cr
-0 & 0 & 0 & \cdots & -\lambda & 1 
-\end{bmatrix} 
-\begin{bmatrix}
-G_1 \cr G_2 \cr G_3 \cr \vdots \cr G_S 
-\end{bmatrix}
-= 
-\begin{bmatrix} 
-\lambda G_0 \cr 0 \cr 0 \cr \vdots \cr 0 
-\end{bmatrix}
-$$ (eq:first_order_lin_diff_tax)
-
-Multiplying both sides of {eq}`eq:first_order_lin_diff_tax` by the inverse of the matrix on the left provides the solution
-
-```{math}
-:label: eq:fst_ord_inverse_tax
-\begin{bmatrix} 
-G_1 \cr G_2 \cr G_3 \cr \vdots \cr G_S 
-\end{bmatrix} 
-= 
-\begin{bmatrix} 
-1 & 0 & 0 & \cdots & 0 & 0 \cr
-\lambda & 1 & 0 & \cdots & 0 & 0 \cr
-\lambda^2 & \lambda & 1 & \cdots & 0 & 0 \cr
- \vdots & \vdots & \vdots & \cdots & \vdots & \vdots \cr
-\lambda^{S-1} & \lambda^{S-2} & \lambda^{S-3} & \cdots & \lambda & 1 
-\end{bmatrix}
-\begin{bmatrix} 
-\lambda G_0 \cr 0 \cr 0 \cr \vdots \cr 0 
-\end{bmatrix}
-```
-
-```{exercise}
-:label: taxsmooth_ex1
-
-To get {eq}`eq:fst_ord_inverse_tax`, we multiplied both sides of {eq}`eq:first_order_lin_diff_tax` by the inverse of the matrix $A$. Please confirm that 
-
-$$
-\begin{bmatrix} 
-1 & 0 & 0 & \cdots & 0 & 0 \cr
-\lambda & 1 & 0 & \cdots & 0 & 0 \cr
-\lambda^2 & \lambda & 1 & \cdots & 0 & 0 \cr
- \vdots & \vdots & \vdots & \cdots & \vdots & \vdots \cr
-\lambda^{S-1} & \lambda^{S-2} & \lambda^{S-3} & \cdots & \lambda & 1 
-\end{bmatrix}
-$$
-
-is the inverse of $A$ and check that $A A^{-1} = I$
-```
-
-### Second-order difference equation
-
-A second-order linear difference equation for $\{G_t\}_{t=0}^S$ is
-
-$$
-G_{t} = \lambda_1 G_{t-1} + \lambda_2 G_{t-2}, \quad t = 1, 2, \ldots, S
-$$
-
-where now $G_0$ and $G_{-1}$ are two given initial expenditure levels determined outside the model. 
-
-As we did with the first-order difference equation, we can cast this set of $S$ equations as a single matrix equation
-
-$$
-\begin{bmatrix} 
-1 & 0 & 0 & \cdots & 0 & 0 & 0 \cr
--\lambda_1 & 1 & 0 & \cdots & 0 & 0 & 0 \cr
--\lambda_2 & -\lambda_1 & 1 & \cdots & 0 & 0 & 0 \cr
- \vdots & \vdots & \vdots & \cdots & \vdots & \vdots \cr
-0 & 0 & 0 & \cdots & -\lambda_2 & -\lambda_1 & 1 
-\end{bmatrix} 
-\begin{bmatrix} 
-G_1 \cr G_2 \cr G_3 \cr \vdots \cr G_S 
-\end{bmatrix}
-= 
-\begin{bmatrix} 
-\lambda_1 G_0 + \lambda_2 G_{-1} \cr \lambda_2 G_0 \cr 0 \cr \vdots \cr 0 
-\end{bmatrix}
-$$
-
-Multiplying both sides by inverse of the matrix on the left again provides the solution.
-
-```{exercise}
-:label: taxsmooth_ex2
-
-As an exercise, we ask you to represent and solve a **third-order linear difference equation**.
-
-How many initial conditions must you specify?
-```
