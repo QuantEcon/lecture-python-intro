@@ -116,15 +116,15 @@ where $g_1 > 0, g_2 > 0$.
 
 This is called the "present value of revenue-raising costs" in {cite}`Barro1979`.
 
-When $\beta R \approx 1$, the quadratic term $-\frac{g_2}{2} T_t^2$ captures increasing marginal costs of taxation, implying that tax distortions rise more than proportionally with tax rates. 
+The quadratic term $-\frac{g_2}{2} T_t^2$ captures increasing marginal costs of taxation, implying that tax distortions rise more than proportionally with tax rates. 
 
-This creates an incentive for tax smoothing.  
+This creates an incentive for tax smoothing.
 
 Indeed, we shall see that when $\beta R = 1$, criterion {eq}`cost` leads to smoother tax paths.
 
 By **smoother** we mean tax rates that are as close as possible to being constant over time.  
 
-The preference for smooth tax paths that is built into the model gives it the name "tax-smoothing model", following {cite}`Barro1979`'s seminal work.
+The preference for smooth tax paths that is built into the model gives it the name "tax-smoothing model".
 
 Or equivalently, we can transform this into the same problem as in the {doc}`consumption-smoothing <cons_smooth>` lecture by maximizing the welfare criterion:
 
