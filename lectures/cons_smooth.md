@@ -4,13 +4,12 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.16.1
+    jupytext_version: 1.16.4
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
   name: python3
 ---
-
 
 # Consumption Smoothing
 
@@ -19,14 +18,16 @@ kernelspec:
 
 In this lecture, we'll study a famous model of the "consumption function" that Milton Friedman {cite}`Friedman1956` and Robert Hall {cite}`Hall1978`)  proposed to fit some empirical data patterns that the original  Keynesian consumption function  described in this QuantEcon lecture {doc}`geometric series <geom_series>`  missed.
 
-In this lecture, we'll study what is often  called the "consumption-smoothing model"  using  matrix multiplication and matrix inversion, the same tools that we used in this QuantEcon lecture {doc}`present values <pv>`. 
+We'll study what is often  called the "consumption-smoothing model." 
+
+We'll use  matrix multiplication and matrix inversion, the same tools that we used in this QuantEcon lecture {doc}`present values <pv>`. 
 
 Formulas presented in  {doc}`present value formulas<pv>` are at the core of the consumption-smoothing model because we shall use them to define a consumer's "human wealth".
 
 The  key idea that inspired Milton Friedman was that a person's non-financial income, i.e., his or
-her wages from working, could be viewed as a dividend stream from that person's ''human capital''
-and that standard asset-pricing formulas could be applied to compute a person's
-''non-financial wealth'' that capitalizes the  earnings stream.  
+her wages from working, can be viewed as a dividend stream from ''human capital''
+and that standard asset-pricing formulas can be applied to compute 
+''non-financial wealth'' that capitalizes that  earnings stream.  
 
 ```{note}
 As we'll see in this QuantEcon lecture  {doc}`equalizing difference model <equalizing_difference>`,
@@ -47,16 +48,15 @@ import matplotlib.pyplot as plt
 from collections import namedtuple
 ```
 
-
 The model describes  a consumer who lives from time $t=0, 1, \ldots, T$, receives a stream $\{y_t\}_{t=0}^T$ of non-financial income and chooses a consumption stream $\{c_t\}_{t=0}^T$.
 
-We usually think of the non-financial income stream as coming from the person's salary from supplying labor.  
+We usually think of the non-financial income stream as coming from the person's earnings from supplying labor.  
 
-The model  takes a non-financial income stream as an input, regarding it as "exogenous" in the sense of not being determined by the model. 
+The model  takes a non-financial income stream as an input, regarding it as "exogenous" in the sense that it is  determined outside the model. 
 
-The consumer faces a gross interest rate of $R >1$ that is constant over time, at which she is free to borrow or lend, up to  limits that we'll describe below.
+The consumer faces a gross interest rate of $R >1$ that is constant over time, at which she is free to borrow or lend, up to  limits  that we'll describe below.
 
-To set up the model, let 
+Let 
 
  * $T \geq 2$  be a positive integer that constitutes a time-horizon. 
  * $y = \{y_t\}_{t=0}^T$ be an exogenous  sequence of non-negative non-financial incomes $y_t$. 
@@ -130,7 +130,10 @@ By **smoother** we mean as close as possible to being constant over time.
 
 The preference for smooth consumption paths that is built into the model gives it the  name "consumption-smoothing model".
 
-Let's dive in and do some calculations that will help us understand how the model works. 
+We'll postpone verifying our claim that a constant consumption path is optimal when $\beta R=1$
+by comparing welfare levels that comes from a constant path with ones that involve non-constant paths. 
+
+Before doing that, let's dive in and do some calculations that will help us understand how the model works in practice when we provide the consumer with some different streams on non-financial income.
 
 Here we use default parameters $R = 1.05$, $g_1 = 1$, $g_2 = 1/2$, and $T = 65$. 
 
@@ -146,7 +149,6 @@ def create_consumption_smoothing_model(R=1.05, g1=1, g2=1/2, T=65):
     return ConsumptionSmoothing(R, g1, g2, 
                                 β_seq, T)
 ```
-
 
 ## Friedman-Hall consumption-smoothing model
 
@@ -285,7 +287,7 @@ def compute_optimal(model, a0, y_seq):
 
 We use an example where the consumer inherits $a_0<0$.
 
-This  can be interpreted as a student debt.
+This  can be interpreted as  student debt with which the consumer begins his or her working life.
 
 The non-financial process $\{y_t\}_{t=0}^{T}$ is constant and positive up to $t=45$ and then becomes zero afterward.
 
@@ -308,17 +310,22 @@ print('check a_T+1=0:',
 The graphs below  show  paths of non-financial income, consumption, and financial assets.
 
 ```{code-cell} ipython3
-# Sequence Length
+# Sequence length
 T = cs_model.T
 
-plt.plot(range(T+1), y_seq, label='non-financial income')
-plt.plot(range(T+1), c_seq, label='consumption')
-plt.plot(range(T+2), a_seq, label='financial wealth')
-plt.plot(range(T+2), np.zeros(T+2), '--')
+fig, axes = plt.subplots(1, 2, figsize=(12,5))
 
-plt.legend()
-plt.xlabel(r'$t$')
-plt.ylabel(r'$c_t,y_t,a_t$')
+axes[0].plot(range(T+1), y_seq, label='non-financial income', lw=2)
+axes[0].plot(range(T+1), c_seq, label='consumption', lw=2)
+axes[1].plot(range(T+2), a_seq, label='financial wealth', color='green', lw=2)
+axes[0].set_ylabel(r'$c_t,y_t$')
+axes[1].set_ylabel(r'$a_t$')
+
+for ax in axes:
+    ax.plot(range(T+2), np.zeros(T+2), '--', lw=1, color='black')
+    ax.legend()
+    ax.set_xlabel(r'$t$')
+
 plt.show()
 ```
 
@@ -356,15 +363,19 @@ def plot_cs(model,    # consumption-smoothing model
     # Sequence length
     T = cs_model.T
     
-    # Generate plot
-    plt.plot(range(T+1), y_seq, label='non-financial income')
-    plt.plot(range(T+1), c_seq, label='consumption')
-    plt.plot(range(T+2), a_seq, label='financial wealth')
-    plt.plot(range(T+2), np.zeros(T+2), '--')
+    fig, axes = plt.subplots(1, 2, figsize=(12,5))
     
-    plt.legend()
-    plt.xlabel(r'$t$')
-    plt.ylabel(r'$c_t,y_t,a_t$')
+    axes[0].plot(range(T+1), y_seq, label='non-financial income', lw=2)
+    axes[0].plot(range(T+1), c_seq, label='consumption', lw=2)
+    axes[1].plot(range(T+2), a_seq, label='financial wealth', color='green', lw=2)
+    axes[0].set_ylabel(r'$c_t,y_t$')
+    axes[1].set_ylabel(r'$a_t$')
+    
+    for ax in axes:
+        ax.plot(range(T+2), np.zeros(T+2), '--', lw=1, color='black')
+        ax.legend()
+        ax.set_xlabel(r'$t$')
+    
     plt.show()
 ```
 
@@ -419,7 +430,7 @@ Now we simulate a $y$ sequence in which a person gets zero for 46 years, and the
 ```{code-cell} ipython3
 # Late starter
 y_seq_late = np.concatenate(
-    [np.zeros(46), np.ones(20)])
+    [np.ones(46), 2*np.ones(20)])
 
 plot_cs(cs_model, a0, y_seq_late)
 ```
@@ -461,18 +472,16 @@ What happens when $\lambda$ is negative
 ```{code-cell} ipython3
 λ = -0.95
 
-geo_seq = λ ** np.arange(t_max) * y_0 
+geo_seq = λ ** np.arange(t_max) * y_0 + 1
 y_seq_geo = np.concatenate(
-            [geo_seq, np.zeros(20)])
+            [geo_seq, np.ones(20)])
 
 plot_cs(cs_model, a0, y_seq_geo)
 ```
 
-
 ### Feasible consumption variations
 
-We promised to justify  our claim that a constant consumption play $c_t = c_0$ for all
-$t$ is optimal.  
+We promised to justify  our claim that when $\beta R =1$ as Friedman assumed, a constant consumption play $c_t = c_0$ for all $t$ is optimal.  
 
 Let's do that now.
 
@@ -554,7 +563,6 @@ def compute_variation(model, ξ1, ϕ, a0, y_seq, verbose=1):
     return cvar_seq
 ```
 
-
 We visualize variations for $\xi_1 \in \{.01, .05\}$ and $\phi \in \{.95, 1.02\}$
 
 ```{code-cell} ipython3
@@ -591,10 +599,9 @@ plt.ylabel(r'$c_t$')
 plt.show()
 ```
 
-
 We can even use the Python `np.gradient` command to compute derivatives of welfare with respect to our two parameters.  
 
-We are teaching the key idea beneath the **calculus of variations**.
+(We are actually discovering  the key idea beneath the **calculus of variations**.)
 
 First, we define the welfare with respect to $\xi_1$ and $\phi$
 
@@ -615,7 +622,6 @@ def welfare_rel(ξ1, ϕ):
 welfare_vec = np.vectorize(welfare_rel)
 ```
 
-
 Then we can visualize the relationship between welfare and $\xi_1$ and compute its derivatives
 
 ```{code-cell} ipython3
@@ -633,7 +639,6 @@ plt.ylabel('derivative of welfare')
 plt.xlabel(r'$\xi_1$')
 plt.show()
 ```
-
 
 The same can be done on $\phi$
 
@@ -655,14 +660,12 @@ plt.show()
 
 ## Wrapping up the consumption-smoothing model
 
-The consumption-smoothing model of Milton Friedman {cite}`Friedman1956` and Robert Hall {cite}`Hall1978`) is a cornerstone of modern macro that has important ramifications for the size of the Keynesian  "fiscal policy multiplier" described briefly in
+The consumption-smoothing model of Milton Friedman {cite}`Friedman1956` and Robert Hall {cite}`Hall1978`) is a cornerstone of modern economics that has important ramifications for the size of the Keynesian  "fiscal policy multiplier" that we  described in
 QuantEcon lecture {doc}`geometric series <geom_series>`.  
 
-In particular,  it  **lowers** the government expenditure  multiplier relative to  one implied by
-the original Keynesian consumption function presented in {doc}`geometric series <geom_series>`.
+The consumption-smoothingmodel   **lowers** the government expenditure  multiplier relative to  one implied by the original Keynesian consumption function presented in {doc}`geometric series <geom_series>`.
 
-Friedman's   work opened the door to an enlightening literature on the aggregate consumption function and associated government expenditure  multipliers that
-remains  active today.  
+Friedman's   work opened the door to an enlightening literature on the aggregate consumption function and associated government expenditure  multipliers that remains  active today.  
 
 
 ## Appendix: solving difference equations with linear algebra
