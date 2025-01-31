@@ -4,7 +4,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.16.6
+    jupytext_version: 1.16.4
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
@@ -269,7 +269,6 @@ Let's verify this with Python code.
 First we implement the model with `compute_optimal`
 
 ```{code-cell} ipython3
-
 def compute_optimal(model, B0, G_seq):
 
     R, S = model.R, model.S
@@ -300,10 +299,10 @@ The drop in government expenditures could reflect a change in spending requireme
 
 ```{code-cell} ipython3
 # Initial debt
-B0 = 0     # initial government debt
+B0 = 2     # initial government debt
 
 # Government expenditure process
-G_seq = np.concatenate([np.ones(46), 5*np.ones(5),np.ones(15)])
+G_seq = np.concatenate([np.ones(46), 4*np.ones(5), np.ones(15)])
 tax_model = create_tax_smoothing_model()
 T_seq, B_seq, h0 = compute_optimal(tax_model, B0, G_seq)
 
@@ -314,18 +313,24 @@ print('check B_S+1=0:',
 The graphs below show paths of government expenditures, tax collections, and government debt.
 
 ```{code-cell} ipython3
-
 # Sequence Length
 S = tax_model.S
 
-plt.plot(range(S+1), G_seq, label='government expenditures')
-plt.plot(range(S+1), T_seq, label='tax collections')
-plt.plot(range(S+2), B_seq, label='government debt')
-plt.plot(range(S+2), np.zeros(S+2), '--')
+fig, axes = plt.subplots(1, 2, figsize=(12,5))
 
-plt.legend()
+axes[0].plot(range(S+1), G_seq, label='expenditures', lw=2)
+axes[0].plot(range(S+1), T_seq, label='tax', lw=2)
+axes[1].plot(range(S+2), B_seq, label='debt', color='green', lw=2)
+axes[0].set_ylabel(r'$T_t,G_t$')
+axes[1].set_ylabel(r'$B_t$')
+
+for ax in axes:
+    ax.plot(range(S+2), np.zeros(S+2), '--', lw=1, color='black')
+    ax.legend()
+    ax.set_xlabel(r'$t$')
+
+
 plt.xlabel(r'$t$')
-plt.ylabel(r'$T_t,G_t,B_t$')
 plt.show()
 ```
 
@@ -364,18 +369,24 @@ def plot_ts(model,    # tax-smoothing model
     # Compute optimal tax path
     T_seq, B_seq, h0 = compute_optimal(model, B0, G_seq)
     
-    # Sequence length
+    # Sequence Length
     S = tax_model.S
     
-    # Generate plot
-    plt.plot(range(S+1), G_seq, label='government expenditures')
-    plt.plot(range(S+1), T_seq, label='tax collections')
-    plt.plot(range(S+2), B_seq, label='government debt')
-    plt.plot(range(S+2), np.zeros(S+2), '--')
+    fig, axes = plt.subplots(1, 2, figsize=(12,5))
     
-    plt.legend()
+    axes[0].plot(range(S+1), G_seq, label='expenditures', lw=2)
+    axes[0].plot(range(S+1), T_seq, label='tax', lw=2)
+    axes[1].plot(range(S+2), B_seq, label='debt', color='green', lw=2)
+    axes[0].set_ylabel(r'$T_t,G_t$')
+    axes[1].set_ylabel(r'$B_t$')
+    
+    for ax in axes:
+        ax.plot(range(S+2), np.zeros(S+2), '--', lw=1, color='black')
+        ax.legend()
+        ax.set_xlabel(r'$t$')
+    
+    
     plt.xlabel(r'$t$')
-    plt.ylabel(r'$T_t,G_t,B_t$')
     plt.show()
 ```
 
@@ -464,9 +475,9 @@ What happens with oscillating expenditures
 
 ```{code-cell} ipython3
 λ = -0.95
-geo_seq = λ ** np.arange(t_max) * G_0 
+geo_seq = λ ** np.arange(t_max) * G_0 + 1
 G_seq_geo = np.concatenate(
-            [geo_seq, np.zeros(20)])
+            [geo_seq, np.ones(20)])
 
 plot_ts(tax_model, B0, G_seq_geo)
 ```
@@ -649,15 +660,3 @@ plt.ylabel('derivative of cost')
 plt.xlabel(r'$\phi$')
 plt.show()
 ```
-
-<!-- ## Wrapping up the consumption-smoothing model
-
-The consumption-smoothing model of Milton Friedman {cite}`Friedman1956` and Robert Hall {cite}`Hall1978`) is a cornerstone of modern macro that has important ramifications for the size of the Keynesian  "fiscal policy multiplier" described briefly in
-QuantEcon lecture {doc}`geometric series <geom_series>`.  
-
-In particular,  it  **lowers** the government expenditure  multiplier relative to  one implied by
-the original Keynesian consumption function presented in {doc}`geometric series <geom_series>`.
-
-Friedman's   work opened the door to an enlightening literature on the aggregate consumption function and associated government expenditure  multipliers that
-remains  active today.   -->
-
