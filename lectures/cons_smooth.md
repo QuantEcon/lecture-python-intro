@@ -4,13 +4,12 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.16.1
+    jupytext_version: 1.16.4
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
   name: python3
 ---
-
 
 # Consumption Smoothing
 
@@ -46,7 +45,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 from collections import namedtuple
 ```
-
 
 The model describes  a consumer who lives from time $t=0, 1, \ldots, T$, receives a stream $\{y_t\}_{t=0}^T$ of non-financial income and chooses a consumption stream $\{c_t\}_{t=0}^T$.
 
@@ -146,7 +144,6 @@ def create_consumption_smoothing_model(R=1.05, g1=1, g2=1/2, T=65):
     return ConsumptionSmoothing(R, g1, g2, 
                                 β_seq, T)
 ```
-
 
 ## Friedman-Hall consumption-smoothing model
 
@@ -311,14 +308,19 @@ The graphs below  show  paths of non-financial income, consumption, and financia
 # Sequence Length
 T = cs_model.T
 
-plt.plot(range(T+1), y_seq, label='non-financial income')
-plt.plot(range(T+1), c_seq, label='consumption')
-plt.plot(range(T+2), a_seq, label='financial wealth')
-plt.plot(range(T+2), np.zeros(T+2), '--')
+fig, axes = plt.subplots(1, 2, figsize=(12,5))
 
-plt.legend()
-plt.xlabel(r'$t$')
-plt.ylabel(r'$c_t,y_t,a_t$')
+axes[0].plot(range(T+1), y_seq, label='non-financial income', lw=2)
+axes[0].plot(range(T+1), c_seq, label='consumption', lw=2)
+axes[1].plot(range(T+2), a_seq, label='financial wealth', color='green', lw=2)
+axes[0].set_ylabel(r'$c_t,y_t$')
+axes[1].set_ylabel(r'$a_t$')
+
+for ax in axes:
+    ax.plot(range(T+2), np.zeros(T+2), '--', lw=1, color='black')
+    ax.legend()
+    ax.set_xlabel(r'$t$')
+
 plt.show()
 ```
 
@@ -353,18 +355,22 @@ def plot_cs(model,    # consumption-smoothing model
     # Compute optimal consumption
     c_seq, a_seq, h0 = compute_optimal(model, a0, y_seq)
     
-    # Sequence length
+    # Sequence Length
     T = cs_model.T
     
-    # Generate plot
-    plt.plot(range(T+1), y_seq, label='non-financial income')
-    plt.plot(range(T+1), c_seq, label='consumption')
-    plt.plot(range(T+2), a_seq, label='financial wealth')
-    plt.plot(range(T+2), np.zeros(T+2), '--')
+    fig, axes = plt.subplots(1, 2, figsize=(12,5))
     
-    plt.legend()
-    plt.xlabel(r'$t$')
-    plt.ylabel(r'$c_t,y_t,a_t$')
+    axes[0].plot(range(T+1), y_seq, label='non-financial income', lw=2)
+    axes[0].plot(range(T+1), c_seq, label='consumption', lw=2)
+    axes[1].plot(range(T+2), a_seq, label='financial wealth', color='green', lw=2)
+    axes[0].set_ylabel(r'$c_t,y_t$')
+    axes[1].set_ylabel(r'$a_t$')
+    
+    for ax in axes:
+        ax.plot(range(T+2), np.zeros(T+2), '--', lw=1, color='black')
+        ax.legend()
+        ax.set_xlabel(r'$t$')
+    
     plt.show()
 ```
 
@@ -419,7 +425,7 @@ Now we simulate a $y$ sequence in which a person gets zero for 46 years, and the
 ```{code-cell} ipython3
 # Late starter
 y_seq_late = np.concatenate(
-    [np.zeros(46), np.ones(20)])
+    [np.ones(46), 2*np.ones(20)])
 
 plot_cs(cs_model, a0, y_seq_late)
 ```
@@ -461,13 +467,12 @@ What happens when $\lambda$ is negative
 ```{code-cell} ipython3
 λ = -0.95
 
-geo_seq = λ ** np.arange(t_max) * y_0 
+geo_seq = λ ** np.arange(t_max) * y_0 + 1
 y_seq_geo = np.concatenate(
-            [geo_seq, np.zeros(20)])
+            [geo_seq, np.ones(20)])
 
 plot_cs(cs_model, a0, y_seq_geo)
 ```
-
 
 ### Feasible consumption variations
 
@@ -554,7 +559,6 @@ def compute_variation(model, ξ1, ϕ, a0, y_seq, verbose=1):
     return cvar_seq
 ```
 
-
 We visualize variations for $\xi_1 \in \{.01, .05\}$ and $\phi \in \{.95, 1.02\}$
 
 ```{code-cell} ipython3
@@ -591,7 +595,6 @@ plt.ylabel(r'$c_t$')
 plt.show()
 ```
 
-
 We can even use the Python `np.gradient` command to compute derivatives of welfare with respect to our two parameters.  
 
 We are teaching the key idea beneath the **calculus of variations**.
@@ -615,7 +618,6 @@ def welfare_rel(ξ1, ϕ):
 welfare_vec = np.vectorize(welfare_rel)
 ```
 
-
 Then we can visualize the relationship between welfare and $\xi_1$ and compute its derivatives
 
 ```{code-cell} ipython3
@@ -633,7 +635,6 @@ plt.ylabel('derivative of welfare')
 plt.xlabel(r'$\xi_1$')
 plt.show()
 ```
-
 
 The same can be done on $\phi$
 

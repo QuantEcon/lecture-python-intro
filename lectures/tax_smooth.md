@@ -329,8 +329,6 @@ for ax in axes:
     ax.legend()
     ax.set_xlabel(r'$t$')
 
-
-plt.xlabel(r'$t$')
 plt.show()
 ```
 
@@ -386,7 +384,6 @@ def plot_ts(model,    # tax-smoothing model
         ax.set_xlabel(r'$t$')
     
     
-    plt.xlabel(r'$t$')
     plt.show()
 ```
 
@@ -660,3 +657,14 @@ plt.ylabel('derivative of cost')
 plt.xlabel(r'$\phi$')
 plt.show()
 ```
+
+<!-- ## Wrapping up the consumption-smoothing model
+
+The consumption-smoothing model of Milton Friedman {cite}`Friedman1956` and Robert Hall {cite}`Hall1978`) is a cornerstone of modern macro that has important ramifications for the size of the Keynesian  "fiscal policy multiplier" described briefly in
+QuantEcon lecture {doc}`geometric series <geom_series>`.  
+
+In particular,  it  **lowers** the government expenditure  multiplier relative to  one implied by
+the original Keynesian consumption function presented in {doc}`geometric series <geom_series>`.
+
+Friedman's   work opened the door to an enlightening literature on the aggregate consumption function and associated government expenditure  multipliers that
+remains  active today.   -->
