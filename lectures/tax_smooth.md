@@ -24,13 +24,13 @@ By renaming variables, we  obtain  a a version of a model "tax-smoothing model" 
 The government chooses a tax collection path that minimizes the present value of its costs of raising revenue.
 
 
-The government minimize those costs by varying  tax collections little over time.
+The government minimizes those costs by smoothing  tax collections  over time and by issuing government debt during temporary surges in government expenditures.
 
 
 The present value of government expenditures is at the core of the tax-smoothing model,
 so we'll again use formulas presented in {doc}`present value formulas<pv>`.
 
-We'll use the matrix multiplication and matrix inversion tools that we used in  {doc}`present value formulas <pv>`. 
+We'll again use the matrix multiplication and matrix inversion tools that we used in  {doc}`present value formulas <pv>`. 
 
 
 
@@ -74,7 +74,7 @@ We require it to satisfy two **boundary conditions**:
    * it must equal an exogenous value $B_0$ at time $0$
    * it must equal or exceed an exogenous value $B_{S+1}$ at time $S+1$.
 
-The **terminal condition** $B_{S+1} \geq 0$   requires that it not end with negative assets.
+The **terminal condition** $B_{S+1} \geq 0$   requires that the government  not end up with negative assets.
 
 (This no-Ponzi condition ensures that the government  ultimately pays off its debts -- it can't simply roll them over indefinitely.)
 
@@ -291,7 +291,7 @@ def compute_optimal(model, B0, G_seq):
 
 We use an example where the government starts with initial debt $B_0>0$.
 
-This represents the government's inherited debt burden.
+This represents the government's initial debt burden.
 
 The government expenditure process $\{G_t\}_{t=0}^{S}$ is constant and positive up to $t=45$ and then drops to zero afterward.
 
@@ -373,7 +373,7 @@ def plot_ts(model,    # tax-smoothing model
     fig, axes = plt.subplots(1, 2, figsize=(12,5))
     
     axes[0].plot(range(S+1), G_seq, label='expenditures', lw=2)
-    axes[0].plot(range(S+1), T_seq, label='tax', lw=2)
+    axes[0].plot(range(S+1), T_seq, label='taxes', lw=2)
     axes[1].plot(range(S+2), B_seq, label='debt', color='green', lw=2)
     axes[0].set_ylabel(r'$T_t,G_t$')
     axes[1].set_ylabel(r'$B_t$')
@@ -410,29 +410,29 @@ Now we assume a permanent increase in government expenditures of $L$ in year 21 
 Again we can study positive and negative cases
 
 ```{code-cell} ipython3
-# Positive permanent expenditure shift L = 0.5 when t >= 21
+# Positive temporary expenditure shift L = 0.5 when t >= 21
 G_seq_pos = np.concatenate(
-    [np.ones(21), 1.5*np.ones(25), np.zeros(20)])
+    [np.ones(21), 1.5*np.ones(25), np.ones(20)])
 
 plot_ts(tax_model, B0, G_seq_pos)
 ```
 
 ```{code-cell} ipython3
-# Negative permanent expenditure shift L = -0.5 when t >= 21
+# Negative temporary expenditure shift L = -0.5 when t >= 21
 G_seq_neg = np.concatenate(
-    [np.ones(21), .5*np.ones(25), np.zeros(20)])
+    [np.ones(21), .5*np.ones(25), np.ones(20)])
 
 plot_ts(tax_model, B0, G_seq_neg)
 ```
 
-#### Experiment 3: delayed spending
+#### Experiment 3: delayed spending surge
 
 Now we simulate a $G$ sequence in which government expenditures are zero for 46 years, and then rise to 1 for the last 20 years (perhaps due to demographic aging)
 
 ```{code-cell} ipython3
 # Delayed spending
 G_seq_late = np.concatenate(
-    [np.zeros(46), np.ones(20)])
+    [np.ones(46), 2*np.ones(20)])
 
 plot_ts(tax_model, B0, G_seq_late)
 ```
@@ -452,7 +452,7 @@ t_max = 46
 # Generate geometric G sequence
 geo_seq = λ ** np.arange(t_max) * G_0 
 G_seq_geo = np.concatenate(
-            [geo_seq, np.zeros(20)])
+            [geo_seq, np.max(geo_seq)*np.ones(20)])
 
 plot_ts(tax_model, B0, G_seq_geo)
 ```

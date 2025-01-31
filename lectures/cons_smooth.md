@@ -18,14 +18,16 @@ kernelspec:
 
 In this lecture, we'll study a famous model of the "consumption function" that Milton Friedman {cite}`Friedman1956` and Robert Hall {cite}`Hall1978`)  proposed to fit some empirical data patterns that the original  Keynesian consumption function  described in this QuantEcon lecture {doc}`geometric series <geom_series>`  missed.
 
-In this lecture, we'll study what is often  called the "consumption-smoothing model"  using  matrix multiplication and matrix inversion, the same tools that we used in this QuantEcon lecture {doc}`present values <pv>`. 
+We'll study what is often  called the "consumption-smoothing model." 
+
+We'll use  matrix multiplication and matrix inversion, the same tools that we used in this QuantEcon lecture {doc}`present values <pv>`. 
 
 Formulas presented in  {doc}`present value formulas<pv>` are at the core of the consumption-smoothing model because we shall use them to define a consumer's "human wealth".
 
 The  key idea that inspired Milton Friedman was that a person's non-financial income, i.e., his or
-her wages from working, could be viewed as a dividend stream from that person's ''human capital''
-and that standard asset-pricing formulas could be applied to compute a person's
-''non-financial wealth'' that capitalizes the  earnings stream.  
+her wages from working, can be viewed as a dividend stream from ''human capital''
+and that standard asset-pricing formulas can be applied to compute 
+''non-financial wealth'' that capitalizes that  earnings stream.  
 
 ```{note}
 As we'll see in this QuantEcon lecture  {doc}`equalizing difference model <equalizing_difference>`,
@@ -48,13 +50,13 @@ from collections import namedtuple
 
 The model describes  a consumer who lives from time $t=0, 1, \ldots, T$, receives a stream $\{y_t\}_{t=0}^T$ of non-financial income and chooses a consumption stream $\{c_t\}_{t=0}^T$.
 
-We usually think of the non-financial income stream as coming from the person's salary from supplying labor.  
+We usually think of the non-financial income stream as coming from the person's earnings from supplying labor.  
 
-The model  takes a non-financial income stream as an input, regarding it as "exogenous" in the sense of not being determined by the model. 
+The model  takes a non-financial income stream as an input, regarding it as "exogenous" in the sense that it is  determined outside the model. 
 
-The consumer faces a gross interest rate of $R >1$ that is constant over time, at which she is free to borrow or lend, up to  limits that we'll describe below.
+The consumer faces a gross interest rate of $R >1$ that is constant over time, at which she is free to borrow or lend, up to  limits  that we'll describe below.
 
-To set up the model, let 
+Let 
 
  * $T \geq 2$  be a positive integer that constitutes a time-horizon. 
  * $y = \{y_t\}_{t=0}^T$ be an exogenous  sequence of non-negative non-financial incomes $y_t$. 
@@ -128,7 +130,10 @@ By **smoother** we mean as close as possible to being constant over time.
 
 The preference for smooth consumption paths that is built into the model gives it the  name "consumption-smoothing model".
 
-Let's dive in and do some calculations that will help us understand how the model works. 
+We'll postpone verifying our claim that a constant consumption path is optimal when $\beta R=1$
+by comparing welfare levels that comes from a constant path with ones that involve non-constant paths. 
+
+Before doing that, let's dive in and do some calculations that will help us understand how the model works in practice when we provide the consumer with some different streams on non-financial income.
 
 Here we use default parameters $R = 1.05$, $g_1 = 1$, $g_2 = 1/2$, and $T = 65$. 
 
@@ -282,7 +287,7 @@ def compute_optimal(model, a0, y_seq):
 
 We use an example where the consumer inherits $a_0<0$.
 
-This  can be interpreted as a student debt.
+This  can be interpreted as  student debt with which the consumer begins his or her working life.
 
 The non-financial process $\{y_t\}_{t=0}^{T}$ is constant and positive up to $t=45$ and then becomes zero afterward.
 
@@ -476,8 +481,7 @@ plot_cs(cs_model, a0, y_seq_geo)
 
 ### Feasible consumption variations
 
-We promised to justify  our claim that a constant consumption play $c_t = c_0$ for all
-$t$ is optimal.  
+We promised to justify  our claim that when $\beta R =1$ as Friedman assumed, a constant consumption play $c_t = c_0$ for all $t$ is optimal.  
 
 Let's do that now.
 
@@ -597,7 +601,7 @@ plt.show()
 
 We can even use the Python `np.gradient` command to compute derivatives of welfare with respect to our two parameters.  
 
-We are teaching the key idea beneath the **calculus of variations**.
+(We are actually discovering  the key idea beneath the **calculus of variations**.)
 
 First, we define the welfare with respect to $\xi_1$ and $\phi$
 
@@ -656,14 +660,12 @@ plt.show()
 
 ## Wrapping up the consumption-smoothing model
 
-The consumption-smoothing model of Milton Friedman {cite}`Friedman1956` and Robert Hall {cite}`Hall1978`) is a cornerstone of modern macro that has important ramifications for the size of the Keynesian  "fiscal policy multiplier" described briefly in
+The consumption-smoothing model of Milton Friedman {cite}`Friedman1956` and Robert Hall {cite}`Hall1978`) is a cornerstone of modern economics that has important ramifications for the size of the Keynesian  "fiscal policy multiplier" that we  described in
 QuantEcon lecture {doc}`geometric series <geom_series>`.  
 
-In particular,  it  **lowers** the government expenditure  multiplier relative to  one implied by
-the original Keynesian consumption function presented in {doc}`geometric series <geom_series>`.
+The consumption-smoothingmodel   **lowers** the government expenditure  multiplier relative to  one implied by the original Keynesian consumption function presented in {doc}`geometric series <geom_series>`.
 
-Friedman's   work opened the door to an enlightening literature on the aggregate consumption function and associated government expenditure  multipliers that
-remains  active today.  
+Friedman's   work opened the door to an enlightening literature on the aggregate consumption function and associated government expenditure  multipliers that remains  active today.  
 
 
 ## Appendix: solving difference equations with linear algebra
