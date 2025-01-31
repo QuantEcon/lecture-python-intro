@@ -305,7 +305,7 @@ print('check a_T+1=0:',
 The graphs below  show  paths of non-financial income, consumption, and financial assets.
 
 ```{code-cell} ipython3
-# Sequence Length
+# Sequence length
 T = cs_model.T
 
 fig, axes = plt.subplots(1, 2, figsize=(12,5))
@@ -355,7 +355,7 @@ def plot_cs(model,    # consumption-smoothing model
     # Compute optimal consumption
     c_seq, a_seq, h0 = compute_optimal(model, a0, y_seq)
     
-    # Sequence Length
+    # Sequence length
     T = cs_model.T
     
     fig, axes = plt.subplots(1, 2, figsize=(12,5))

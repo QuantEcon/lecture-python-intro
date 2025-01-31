@@ -313,7 +313,7 @@ print('check B_S+1=0:',
 The graphs below show paths of government expenditures, tax collections, and government debt.
 
 ```{code-cell} ipython3
-# Sequence Length
+# Sequence length
 S = tax_model.S
 
 fig, axes = plt.subplots(1, 2, figsize=(12,5))
@@ -367,7 +367,7 @@ def plot_ts(model,    # tax-smoothing model
     # Compute optimal tax path
     T_seq, B_seq, h0 = compute_optimal(model, B0, G_seq)
     
-    # Sequence Length
+    # Sequence length
     S = tax_model.S
     
     fig, axes = plt.subplots(1, 2, figsize=(12,5))
