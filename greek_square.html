@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>17. Computing Square Roots &#8212; A First Course in Quantitative Economics with Python</title>
+    <title>18. Computing Square Roots &#8212; A First Course in Quantitative Economics with Python</title>
     <script src="https://unpkg.com/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://unpkg.com/tippy.js@6.3.1/dist/tippy-bundle.umd.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
@@ -120,8 +120,8 @@
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="18. Distributions and Probabilities" href="prob_dist.html" />
-    <link rel="prev" title="16. Eigenvalues and Eigenvectors" href="eigen_I.html" />
+    <link rel="next" title="19. Distributions and Probabilities" href="prob_dist.html" />
+    <link rel="prev" title="17. Eigenvalues and Eigenvectors" href="eigen_I.html" />
 
 <!-- Normal Meta Tags -->
 <meta name="author" context="Thomas J. Sargent &amp; John Stachurski" />
@@ -169,15 +169,15 @@
 
                         <nav id="bd-toc-nav" class="qe-page__toc-nav">
                             <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">17.1. Introduction</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#perfect-squares-and-irrational-numbers">17.2. Perfect squares and irrational numbers</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#second-order-linear-difference-equations">17.3. Second-order linear difference equations</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algorithm-of-the-ancient-greeks">17.4. Algorithm of the Ancient Greeks</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation">17.5. Implementation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vectorizing-the-difference-equation">17.6. Vectorizing the difference equation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#invariant-subspace-approach">17.7. Invariant subspace approach</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#concluding-remarks">17.8. Concluding remarks</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise">17.9. Exercise</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">18.1. Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#perfect-squares-and-irrational-numbers">18.2. Perfect squares and irrational numbers</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#second-order-linear-difference-equations">18.3. Second-order linear difference equations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algorithm-of-the-ancient-greeks">18.4. Algorithm of the Ancient Greeks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation">18.5. Implementation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vectorizing-the-difference-equation">18.6. Vectorizing the difference equation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#invariant-subspace-approach">18.7. Invariant subspace approach</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#concluding-remarks">18.8. Concluding remarks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise">18.9. Exercise</a></li>
 </ul>
                             <p class="logo">
                                 
@@ -237,9 +237,9 @@
                     <div>
                         
   <section class="tex2jax_ignore mathjax_ignore" id="computing-square-roots">
-<h1><span class="section-number">17. </span>Computing Square Roots<a class="headerlink" href="#computing-square-roots" title="Permalink to this heading">#</a></h1>
+<h1><span class="section-number">18. </span>Computing Square Roots<a class="headerlink" href="#computing-square-roots" title="Permalink to this heading">#</a></h1>
 <section id="introduction">
-<h2><span class="section-number">17.1. </span>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">18.1. </span>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
 <p>Chapter 24 of <span id="id1">[<a class="reference internal" href="zreferences.html#id3" title="Bertrand Russell. History of western philosophy. Routledge, 2004.">Russell, 2004</a>]</span> about early Greek mathematics and astronomy contains this
 fascinating passage:</p>
 <blockquote class="epigraph">
@@ -254,7 +254,7 @@ in that subspace for all <span class="math notranslate nohighlight">\(j \geq 1\)
 <p>Our approach here  is to illustrate the method with an ancient example, one that ancient Greek mathematicians used to compute square roots of positive integers.</p>
 </section>
 <section id="perfect-squares-and-irrational-numbers">
-<h2><span class="section-number">17.2. </span>Perfect squares and irrational numbers<a class="headerlink" href="#perfect-squares-and-irrational-numbers" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">18.2. </span>Perfect squares and irrational numbers<a class="headerlink" href="#perfect-squares-and-irrational-numbers" title="Permalink to this heading">#</a></h2>
 <p>An integer is called a <strong>perfect square</strong> if its square root is also an integer.</p>
 <p>An ordered sequence of  perfect squares starts with</p>
 <div class="math notranslate nohighlight">
@@ -273,16 +273,16 @@ in that subspace for all <span class="math notranslate nohighlight">\(j \geq 1\)
 <p>We’ll also use invariant subspaces to describe variations on this method that are faster.</p>
 </section>
 <section id="second-order-linear-difference-equations">
-<h2><span class="section-number">17.3. </span>Second-order linear difference equations<a class="headerlink" href="#second-order-linear-difference-equations" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">18.3. </span>Second-order linear difference equations<a class="headerlink" href="#second-order-linear-difference-equations" title="Permalink to this heading">#</a></h2>
 <p>Before telling how the ancient Greeks computed square roots, we’ll provide a quick introduction
 to second-order linear difference equations.</p>
 <p>We’ll study  the following second-order linear difference equation</p>
 <div class="math notranslate nohighlight" id="equation-eq-2diff1">
-<span class="eqno">(17.1)<a class="headerlink" href="#equation-eq-2diff1" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(18.1)<a class="headerlink" href="#equation-eq-2diff1" title="Permalink to this equation">#</a></span>\[
 y_t = a_1 y_{t-1} + a_2 y_{t-2}, \quad t \geq 0
 \]</div>
 <p>where <span class="math notranslate nohighlight">\((y_{-1},  y_{-2})\)</span> is a pair of given initial conditions.</p>
-<p>Equation <a class="reference internal" href="#equation-eq-2diff1">(17.1)</a> is actually an infinite number of linear equations in the sequence
+<p>Equation <a class="reference internal" href="#equation-eq-2diff1">(18.1)</a> is actually an infinite number of linear equations in the sequence
 <span class="math notranslate nohighlight">\(\{y_t\}_{t=0}^\infty\)</span>.</p>
 <p>There is one equation each for <span class="math notranslate nohighlight">\(t = 0, 1, 2, \ldots\)</span>.</p>
 <p>We could follow an approach taken in the lecture on <a class="reference internal" href="pv.html"><span class="doc">present values</span></a> and stack all of these equations into a single matrix equation that we would then solve by using matrix inversion.</p>
@@ -293,46 +293,46 @@ y_t = a_1 y_{t-1} + a_2 y_{t-2}, \quad t \geq 0
 <p>But we won’t pursue that approach here.</p>
 <p>Instead, we’ll seek to find a time-invariant function that <em>solves</em> our difference equation, meaning
 that it provides a formula for a <span class="math notranslate nohighlight">\(\{y_t\}_{t=0}^\infty\)</span> sequence that satisfies
-equation <a class="reference internal" href="#equation-eq-2diff1">(17.1)</a> for each <span class="math notranslate nohighlight">\(t \geq 0\)</span>.</p>
+equation <a class="reference internal" href="#equation-eq-2diff1">(18.1)</a> for each <span class="math notranslate nohighlight">\(t \geq 0\)</span>.</p>
 <p>We seek an expression  for <span class="math notranslate nohighlight">\(y_t, t \geq 0\)</span> as functions of the initial conditions  <span class="math notranslate nohighlight">\((y_{-1},  y_{-2})\)</span>:</p>
 <div class="math notranslate nohighlight" id="equation-eq-2diff2">
-<span class="eqno">(17.2)<a class="headerlink" href="#equation-eq-2diff2" title="Permalink to this equation">#</a></span>\[ 
+<span class="eqno">(18.2)<a class="headerlink" href="#equation-eq-2diff2" title="Permalink to this equation">#</a></span>\[ 
 y_t = g((y_{-1},  y_{-2});t), \quad t \geq 0.
 \]</div>
-<p>We call such a function <span class="math notranslate nohighlight">\(g\)</span> a <em>solution</em> of the difference equation <a class="reference internal" href="#equation-eq-2diff1">(17.1)</a>.</p>
+<p>We call such a function <span class="math notranslate nohighlight">\(g\)</span> a <em>solution</em> of the difference equation <a class="reference internal" href="#equation-eq-2diff1">(18.1)</a>.</p>
 <p>One way to discover a solution is to use a guess and verify method.</p>
 <p>We shall begin by considering a special initial pair of initial  conditions
 that satisfy</p>
 <div class="math notranslate nohighlight" id="equation-eq-2diff3">
-<span class="eqno">(17.3)<a class="headerlink" href="#equation-eq-2diff3" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(18.3)<a class="headerlink" href="#equation-eq-2diff3" title="Permalink to this equation">#</a></span>\[
 y_{-1} = \delta y_{-2}
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(\delta\)</span> is a scalar to be determined.</p>
-<p>For initial condition that satisfy <a class="reference internal" href="#equation-eq-2diff3">(17.3)</a>
-equation <a class="reference internal" href="#equation-eq-2diff1">(17.1)</a> impllies that</p>
+<p>For initial condition that satisfy <a class="reference internal" href="#equation-eq-2diff3">(18.3)</a>
+equation <a class="reference internal" href="#equation-eq-2diff1">(18.1)</a> impllies that</p>
 <div class="math notranslate nohighlight" id="equation-eq-2diff4">
-<span class="eqno">(17.4)<a class="headerlink" href="#equation-eq-2diff4" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(18.4)<a class="headerlink" href="#equation-eq-2diff4" title="Permalink to this equation">#</a></span>\[
 y_0 = \left(a_1 + \frac{a_2}{\delta}\right) y_{-1}.
 \]</div>
 <p>We want</p>
 <div class="math notranslate nohighlight" id="equation-eq-2diff5">
-<span class="eqno">(17.5)<a class="headerlink" href="#equation-eq-2diff5" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(18.5)<a class="headerlink" href="#equation-eq-2diff5" title="Permalink to this equation">#</a></span>\[
 \left(a_1 + \frac{a_2}{\delta}\right) = \delta
 \]</div>
 <p>which we can rewrite as the <em>characteristic equation</em></p>
 <div class="math notranslate nohighlight" id="equation-eq-2diff6">
-<span class="eqno">(17.6)<a class="headerlink" href="#equation-eq-2diff6" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(18.6)<a class="headerlink" href="#equation-eq-2diff6" title="Permalink to this equation">#</a></span>\[
 \delta^2 - a_1 \delta - a_2 = 0.
 \]</div>
-<p>Applying the quadratic formula to solve for the roots of <a class="reference internal" href="#equation-eq-2diff6">(17.6)</a> we find that</p>
+<p>Applying the quadratic formula to solve for the roots of <a class="reference internal" href="#equation-eq-2diff6">(18.6)</a> we find that</p>
 <div class="math notranslate nohighlight" id="equation-eq-2diff7">
-<span class="eqno">(17.7)<a class="headerlink" href="#equation-eq-2diff7" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(18.7)<a class="headerlink" href="#equation-eq-2diff7" title="Permalink to this equation">#</a></span>\[
 \delta = \frac{ a_1 \pm \sqrt{a_1^2 + 4 a_2}}{2}.
 \]</div>
-<p>For either of the two <span class="math notranslate nohighlight">\(\delta\)</span>’s that satisfy equation <a class="reference internal" href="#equation-eq-2diff7">(17.7)</a>,
-a solution of difference equation <a class="reference internal" href="#equation-eq-2diff1">(17.1)</a> is</p>
+<p>For either of the two <span class="math notranslate nohighlight">\(\delta\)</span>’s that satisfy equation <a class="reference internal" href="#equation-eq-2diff7">(18.7)</a>,
+a solution of difference equation <a class="reference internal" href="#equation-eq-2diff1">(18.1)</a> is</p>
 <div class="math notranslate nohighlight" id="equation-eq-2diff8">
-<span class="eqno">(17.8)<a class="headerlink" href="#equation-eq-2diff8" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(18.8)<a class="headerlink" href="#equation-eq-2diff8" title="Permalink to this equation">#</a></span>\[
 y_t = \delta^t y_0 , \forall t \geq 0
 \]</div>
 <p>provided that we set</p>
@@ -340,30 +340,30 @@ y_t = \delta^t y_0 , \forall t \geq 0
 \[
 y_0 = \delta  y_{-1} . 
 \]</div>
-<p>The <em>general</em> solution of difference equation <a class="reference internal" href="#equation-eq-2diff1">(17.1)</a> takes the form</p>
+<p>The <em>general</em> solution of difference equation <a class="reference internal" href="#equation-eq-2diff1">(18.1)</a> takes the form</p>
 <div class="math notranslate nohighlight" id="equation-eq-2diff9">
-<span class="eqno">(17.9)<a class="headerlink" href="#equation-eq-2diff9" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(18.9)<a class="headerlink" href="#equation-eq-2diff9" title="Permalink to this equation">#</a></span>\[
 y_t = \eta_1 \delta_1^t + \eta_2 \delta_2^t
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(\delta_1, \delta_2\)</span> are the two solutions <a class="reference internal" href="#equation-eq-2diff7">(17.7)</a> of the characteristic equation <a class="reference internal" href="#equation-eq-2diff6">(17.6)</a>, and  <span class="math notranslate nohighlight">\(\eta_1, \eta_2\)</span> are two constants chosen to satisfy</p>
+<p>where <span class="math notranslate nohighlight">\(\delta_1, \delta_2\)</span> are the two solutions <a class="reference internal" href="#equation-eq-2diff7">(18.7)</a> of the characteristic equation <a class="reference internal" href="#equation-eq-2diff6">(18.6)</a>, and  <span class="math notranslate nohighlight">\(\eta_1, \eta_2\)</span> are two constants chosen to satisfy</p>
 <div class="math notranslate nohighlight" id="equation-eq-2diff10">
-<span class="eqno">(17.10)<a class="headerlink" href="#equation-eq-2diff10" title="Permalink to this equation">#</a></span>\[ 
+<span class="eqno">(18.10)<a class="headerlink" href="#equation-eq-2diff10" title="Permalink to this equation">#</a></span>\[ 
     \begin{bmatrix} y_{-1} \cr y_{-2} \end{bmatrix} = \begin{bmatrix} \delta_1^{-1}  &amp; \delta_2^{-1} \cr \delta_1^{-2} &amp; \delta_2^{-2} \end{bmatrix} \begin{bmatrix} \eta_1 \cr \eta_2 \end{bmatrix} 
 \]</div>
 <p>or</p>
 <div class="math notranslate nohighlight" id="equation-eq-2diff11">
-<span class="eqno">(17.11)<a class="headerlink" href="#equation-eq-2diff11" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(18.11)<a class="headerlink" href="#equation-eq-2diff11" title="Permalink to this equation">#</a></span>\[
 \begin{bmatrix} \eta_1 \cr \eta_2 \end{bmatrix} = \begin{bmatrix} \delta_1^{-1}  &amp; \delta_2^{-1} \cr \delta_1^{-2} &amp; \delta_2^{-2} \end{bmatrix}^{-1} \begin{bmatrix} y_{-1} \cr y_{-2} \end{bmatrix}
 \]</div>
 <p>Sometimes we are free to choose the initial conditions <span class="math notranslate nohighlight">\((y_{-1}, y_{-2})\)</span>, in which case we
-use system <a class="reference internal" href="#equation-eq-2diff10">(17.10)</a> to find the associated <span class="math notranslate nohighlight">\((\eta_1, \eta_2)\)</span>.</p>
+use system <a class="reference internal" href="#equation-eq-2diff10">(18.10)</a> to find the associated <span class="math notranslate nohighlight">\((\eta_1, \eta_2)\)</span>.</p>
 <p>If we choose <span class="math notranslate nohighlight">\((y_{-1}, y_{-2})\)</span> to set <span class="math notranslate nohighlight">\((\eta_1, \eta_2) = (1, 0)\)</span>, then <span class="math notranslate nohighlight">\(y_t = \delta_1^t\)</span> for all <span class="math notranslate nohighlight">\(t \geq 0\)</span>.</p>
 <p>If we choose <span class="math notranslate nohighlight">\((y_{-1}, y_{-2})\)</span> to set <span class="math notranslate nohighlight">\((\eta_1, \eta_2) = (0, 1)\)</span>, then <span class="math notranslate nohighlight">\(y_t = \delta_2^t\)</span> for all <span class="math notranslate nohighlight">\(t \geq 0\)</span>.</p>
-<p>Soon we’ll relate the preceding calculations to components an eigen decomposition of a transition matrix that represents difference equation <a class="reference internal" href="#equation-eq-2diff1">(17.1)</a> in a very convenient way.</p>
+<p>Soon we’ll relate the preceding calculations to components an eigen decomposition of a transition matrix that represents difference equation <a class="reference internal" href="#equation-eq-2diff1">(18.1)</a> in a very convenient way.</p>
 <p>We’ll turn to that after we describe how Ancient Greeks figured out how to compute square roots of positive integers that are not perfect squares.</p>
 </section>
 <section id="algorithm-of-the-ancient-greeks">
-<h2><span class="section-number">17.4. </span>Algorithm of the Ancient Greeks<a class="headerlink" href="#algorithm-of-the-ancient-greeks" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">18.4. </span>Algorithm of the Ancient Greeks<a class="headerlink" href="#algorithm-of-the-ancient-greeks" title="Permalink to this heading">#</a></h2>
 <p>Let <span class="math notranslate nohighlight">\(\sigma\)</span> be a positive  integer greater than <span class="math notranslate nohighlight">\(1\)</span>.</p>
 <p>So <span class="math notranslate nohighlight">\(\sigma \in {\mathcal I} \equiv  \{2, 3, \ldots \}\)</span>.</p>
 <p>We want an algorithm to compute the square root of <span class="math notranslate nohighlight">\(\sigma \in {\mathcal I}\)</span>.</p>
@@ -372,20 +372,20 @@ use system <a class="reference internal" href="#equation-eq-2diff10">(17.10)</a>
 <p>Ancient Greeks used a recursive algorithm to compute square roots of integers that are not perfect squares.</p>
 <p>The algorithm iterates on a  second-order  linear  difference equation in the sequence <span class="math notranslate nohighlight">\(\{y_t\}_{t=0}^\infty\)</span>:</p>
 <div class="math notranslate nohighlight" id="equation-eq-second-order">
-<span class="eqno">(17.12)<a class="headerlink" href="#equation-eq-second-order" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(18.12)<a class="headerlink" href="#equation-eq-second-order" title="Permalink to this equation">#</a></span>\[
 y_{t} = 2 y_{t-1} - (1 - \sigma) y_{t-2}, \quad t \geq 0
 \]</div>
 <p>together with a pair of integers that are initial conditions for <span class="math notranslate nohighlight">\(y_{-1}, y_{-2}\)</span>.</p>
 <p>First, we’ll deploy some techniques for solving the difference equations that are also deployed in <a class="reference external" href="https://dynamics.quantecon.org/samuelson.html" title="(in Python)"><span>Samuelson Multiplier-Accelerator</span></a>.</p>
-<p>The characteristic equation associated with difference equation <a class="reference internal" href="#equation-eq-second-order">(17.12)</a> is</p>
+<p>The characteristic equation associated with difference equation <a class="reference internal" href="#equation-eq-second-order">(18.12)</a> is</p>
 <div class="math notranslate nohighlight" id="equation-eq-cha-eq0">
-<span class="eqno">(17.13)<a class="headerlink" href="#equation-eq-cha-eq0" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(18.13)<a class="headerlink" href="#equation-eq-cha-eq0" title="Permalink to this equation">#</a></span>\[
 c(x) \equiv x^2 - 2 x + (1 - \sigma) = 0
 \]</div>
-<p>(Notice how this is an instance of equation <a class="reference internal" href="#equation-eq-2diff6">(17.6)</a> above.)</p>
-<p>Factoring the right side of   equation <a class="reference internal" href="#equation-eq-cha-eq0">(17.13)</a>, we obtain</p>
+<p>(Notice how this is an instance of equation <a class="reference internal" href="#equation-eq-2diff6">(18.6)</a> above.)</p>
+<p>Factoring the right side of   equation <a class="reference internal" href="#equation-eq-cha-eq0">(18.13)</a>, we obtain</p>
 <div class="math notranslate nohighlight" id="equation-eq-cha-eq">
-<span class="eqno">(17.14)<a class="headerlink" href="#equation-eq-cha-eq" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(18.14)<a class="headerlink" href="#equation-eq-cha-eq" title="Permalink to this equation">#</a></span>\[
 c(x)= (x - \lambda_1) (x-\lambda_2) = 0
 \]</div>
 <p>where</p>
@@ -396,29 +396,29 @@ c(x) = 0
 <p>for <span class="math notranslate nohighlight">\(x = \lambda_1\)</span> or <span class="math notranslate nohighlight">\(x = \lambda_2\)</span>.</p>
 <p>These two special values of <span class="math notranslate nohighlight">\(x\)</span> are sometimes called zeros or roots of <span class="math notranslate nohighlight">\(c(x)\)</span>.</p>
 <p>By applying the quadratic formula to solve for the roots  the characteristic equation
-<a class="reference internal" href="#equation-eq-cha-eq0">(17.13)</a>, we find that</p>
+<a class="reference internal" href="#equation-eq-cha-eq0">(18.13)</a>, we find that</p>
 <div class="math notranslate nohighlight" id="equation-eq-secretweapon">
-<span class="eqno">(17.15)<a class="headerlink" href="#equation-eq-secretweapon" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(18.15)<a class="headerlink" href="#equation-eq-secretweapon" title="Permalink to this equation">#</a></span>\[
 \lambda_1 = 1 + \sqrt{\sigma}, \quad \lambda_2 = 1 - \sqrt{\sigma}.
 \]</div>
-<p>Formulas <a class="reference internal" href="#equation-eq-secretweapon">(17.15)</a> indicate that  <span class="math notranslate nohighlight">\(\lambda_1\)</span> and  <span class="math notranslate nohighlight">\(\lambda_2\)</span> are each functions
+<p>Formulas <a class="reference internal" href="#equation-eq-secretweapon">(18.15)</a> indicate that  <span class="math notranslate nohighlight">\(\lambda_1\)</span> and  <span class="math notranslate nohighlight">\(\lambda_2\)</span> are each functions
 of a single variable, namely,  <span class="math notranslate nohighlight">\(\sqrt{\sigma}\)</span>, the object that we along with some Ancient Greeks want to compute.</p>
 <p>Ancient Greeks had an indirect way of exploiting this fact to compute square roots of a positive integer.</p>
-<p>They did this by starting from particular initial conditions <span class="math notranslate nohighlight">\(y_{-1}, y_{-2}\)</span> and iterating on the difference equation <a class="reference internal" href="#equation-eq-second-order">(17.12)</a>.</p>
-<p>Solutions  of  difference equation <a class="reference internal" href="#equation-eq-second-order">(17.12)</a> take the form</p>
+<p>They did this by starting from particular initial conditions <span class="math notranslate nohighlight">\(y_{-1}, y_{-2}\)</span> and iterating on the difference equation <a class="reference internal" href="#equation-eq-second-order">(18.12)</a>.</p>
+<p>Solutions  of  difference equation <a class="reference internal" href="#equation-eq-second-order">(18.12)</a> take the form</p>
 <div class="math notranslate nohighlight">
 \[
 y_t = \lambda_1^t \eta_1 + \lambda_2^t \eta_2
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(\eta_1\)</span> and <span class="math notranslate nohighlight">\(\eta_2\)</span> are chosen to satisfy   prescribed initial conditions <span class="math notranslate nohighlight">\(y_{-1}, y_{-2}\)</span>:</p>
 <div class="math notranslate nohighlight" id="equation-eq-leq-sq">
-<span class="eqno">(17.16)<a class="headerlink" href="#equation-eq-leq-sq" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(18.16)<a class="headerlink" href="#equation-eq-leq-sq" title="Permalink to this equation">#</a></span>\[
 \begin{aligned}
 \lambda_1^{-1} \eta_1 + \lambda_2^{-1} \eta_2 &amp; =  y_{-1} \cr
 \lambda_1^{-2} \eta_1 + \lambda_2^{-2} \eta_2 &amp; =  y_{-2}
 \end{aligned}
 \]</div>
-<p>System <a class="reference internal" href="#equation-eq-leq-sq">(17.16)</a> of simultaneous linear equations will play a big role in the remainder of this lecture.</p>
+<p>System <a class="reference internal" href="#equation-eq-leq-sq">(18.16)</a> of simultaneous linear equations will play a big role in the remainder of this lecture.</p>
 <p>Since <span class="math notranslate nohighlight">\(\lambda_1 = 1 + \sqrt{\sigma} &gt; 1 &gt; \lambda_2 = 1 - \sqrt{\sigma} \)</span>,
 it follows that for <em>almost all</em> (but not all) initial conditions</p>
 <div class="math notranslate nohighlight">
@@ -452,7 +452,7 @@ it follows that for <em>almost all</em> (but not all) initial conditions</p>
 \sqrt{\sigma} =  \left(\frac{y_{t+1}}{y_t}\right) - 1 \quad \forall t \geq 0
 \]</div>
 <p>so again, convergence is immediate, and we have no need to compute a limit.</p>
-<p>System <a class="reference internal" href="#equation-eq-leq-sq">(17.16)</a> of simultaneous linear equations can be used in various ways.</p>
+<p>System <a class="reference internal" href="#equation-eq-leq-sq">(18.16)</a> of simultaneous linear equations can be used in various ways.</p>
 <ul class="simple">
 <li><p>we can take <span class="math notranslate nohighlight">\(y_{-1}, y_{-2}\)</span> as given initial conditions and solve for <span class="math notranslate nohighlight">\(\eta_1, \eta_2\)</span>;</p></li>
 <li><p>we can instead take <span class="math notranslate nohighlight">\(\eta_1, \eta_2\)</span> as given and solve for initial conditions  <span class="math notranslate nohighlight">\(y_{-1}, y_{-2}\)</span>.</p></li>
@@ -460,14 +460,14 @@ it follows that for <em>almost all</em> (but not all) initial conditions</p>
 <p>Notice how we used the  second approach above when we set  <span class="math notranslate nohighlight">\(\eta_1, \eta_2\)</span>  either to <span class="math notranslate nohighlight">\((0, 1)\)</span>, for example, or <span class="math notranslate nohighlight">\((1, 0)\)</span>, for example.</p>
 <p>In taking this second approach, we constructed an <em>invariant subspace</em> of <span class="math notranslate nohighlight">\({\bf R}^2\)</span>.</p>
 <p>Here is what is going on.</p>
-<p>For <span class="math notranslate nohighlight">\( t \geq 0\)</span> and for most pairs of  initial conditions <span class="math notranslate nohighlight">\((y_{-1}, y_{-2}) \in {\bf R}^2\)</span> for equation <a class="reference internal" href="#equation-eq-second-order">(17.12)</a>, <span class="math notranslate nohighlight">\(y_t\)</span> can be expressed as a linear combination  of <span class="math notranslate nohighlight">\(y_{t-1}\)</span> and <span class="math notranslate nohighlight">\(y_{t-2}\)</span>.</p>
+<p>For <span class="math notranslate nohighlight">\( t \geq 0\)</span> and for most pairs of  initial conditions <span class="math notranslate nohighlight">\((y_{-1}, y_{-2}) \in {\bf R}^2\)</span> for equation <a class="reference internal" href="#equation-eq-second-order">(18.12)</a>, <span class="math notranslate nohighlight">\(y_t\)</span> can be expressed as a linear combination  of <span class="math notranslate nohighlight">\(y_{t-1}\)</span> and <span class="math notranslate nohighlight">\(y_{t-2}\)</span>.</p>
 <p>But for some special initial conditions <span class="math notranslate nohighlight">\((y_{-1}, y_{-2}) \in {\bf R}^2\)</span>, <span class="math notranslate nohighlight">\(y_t\)</span> can be expressed as a linear function  of <span class="math notranslate nohighlight">\(y_{t-1}\)</span> only.</p>
 <p>These special initial conditions require that <span class="math notranslate nohighlight">\(y_{-1}\)</span> be a linear function of <span class="math notranslate nohighlight">\(y_{-2}\)</span>.</p>
 <p>We’ll study these special initial conditions soon.</p>
-<p>But first let’s write some Python code to iterate on equation <a class="reference internal" href="#equation-eq-second-order">(17.12)</a> starting from an arbitrary <span class="math notranslate nohighlight">\((y_{-1}, y_{-2}) \in {\bf R}^2\)</span>.</p>
+<p>But first let’s write some Python code to iterate on equation <a class="reference internal" href="#equation-eq-second-order">(18.12)</a> starting from an arbitrary <span class="math notranslate nohighlight">\((y_{-1}, y_{-2}) \in {\bf R}^2\)</span>.</p>
 </section>
 <section id="implementation">
-<h2><span class="section-number">17.5. </span>Implementation<a class="headerlink" href="#implementation" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">18.5. </span>Implementation<a class="headerlink" href="#implementation" title="Permalink to this heading">#</a></h2>
 <p>We now implement the above algorithm to compute the square root of <span class="math notranslate nohighlight">\(\sigma\)</span>.</p>
 <p>In this lecture, we use the following import:</p>
 <div class="cell docutils container">
@@ -590,11 +590,11 @@ it follows that for <em>almost all</em> (but not all) initial conditions</p>
 </div>
 </div>
 <p>We find that convergence is immediate.</p>
-<p>Next, we’ll  represent the preceding analysis by first vectorizing our second-order difference equation <a class="reference internal" href="#equation-eq-second-order">(17.12)</a> and then using  eigendecompositions of an  associated  state transition matrix.</p>
+<p>Next, we’ll  represent the preceding analysis by first vectorizing our second-order difference equation <a class="reference internal" href="#equation-eq-second-order">(18.12)</a> and then using  eigendecompositions of an  associated  state transition matrix.</p>
 </section>
 <section id="vectorizing-the-difference-equation">
-<h2><span class="section-number">17.6. </span>Vectorizing the difference equation<a class="headerlink" href="#vectorizing-the-difference-equation" title="Permalink to this heading">#</a></h2>
-<p>Represent <a class="reference internal" href="#equation-eq-second-order">(17.12)</a> with the first-order matrix difference equation</p>
+<h2><span class="section-number">18.6. </span>Vectorizing the difference equation<a class="headerlink" href="#vectorizing-the-difference-equation" title="Permalink to this heading">#</a></h2>
+<p>Represent <a class="reference internal" href="#equation-eq-second-order">(18.12)</a> with the first-order matrix difference equation</p>
 <div class="math notranslate nohighlight">
 \[
 \begin{bmatrix} y_{t+1} \cr y_{t} \end{bmatrix}
@@ -612,12 +612,12 @@ M = \begin{bmatrix} 2 &amp; - (1 - \sigma )  \cr 1 &amp; 0 \end{bmatrix},  \quad
 \]</div>
 <p>Construct an eigendecomposition of <span class="math notranslate nohighlight">\(M\)</span>:</p>
 <div class="math notranslate nohighlight" id="equation-eq-eigen-sqrt">
-<span class="eqno">(17.17)<a class="headerlink" href="#equation-eq-eigen-sqrt" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(18.17)<a class="headerlink" href="#equation-eq-eigen-sqrt" title="Permalink to this equation">#</a></span>\[
 M = V \begin{bmatrix} \lambda_1 &amp; 0 \cr 0 &amp; \lambda_2  \end{bmatrix} V^{-1} 
 \]</div>
 <p>where columns of <span class="math notranslate nohighlight">\(V\)</span> are eigenvectors corresponding to  eigenvalues <span class="math notranslate nohighlight">\(\lambda_1\)</span> and <span class="math notranslate nohighlight">\(\lambda_2\)</span>.</p>
 <p>The eigenvalues can be ordered so that  <span class="math notranslate nohighlight">\(\lambda_1 &gt; 1 &gt; \lambda_2\)</span>.</p>
-<p>Write equation <a class="reference internal" href="#equation-eq-second-order">(17.12)</a> as</p>
+<p>Write equation <a class="reference internal" href="#equation-eq-second-order">(18.12)</a> as</p>
 <div class="math notranslate nohighlight">
 \[
 x_{t+1} = V \Lambda V^{-1} x_t
@@ -673,8 +673,8 @@ inverse eigenvectors:
 </div>
 </div>
 </div>
-<p>Let’s compare the eigenvalues to the roots <a class="reference internal" href="#equation-eq-secretweapon">(17.15)</a> of equation
-<a class="reference internal" href="#equation-eq-cha-eq0">(17.13)</a> that  we computed above.</p>
+<p>Let’s compare the eigenvalues to the roots <a class="reference internal" href="#equation-eq-secretweapon">(18.15)</a> of equation
+<a class="reference internal" href="#equation-eq-cha-eq0">(18.13)</a> that  we computed above.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">roots</span> <span class="o">=</span> <span class="n">solve_λs</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">σ</span><span class="p">)))</span>
@@ -688,16 +688,16 @@ inverse eigenvectors:
 </div>
 </div>
 </div>
-<p>Hence we confirmed <a class="reference internal" href="#equation-eq-eigen-sqrt">(17.17)</a>.</p>
+<p>Hence we confirmed <a class="reference internal" href="#equation-eq-eigen-sqrt">(18.17)</a>.</p>
 <p>Information about the square root we are after is also contained
 in the two  eigenvectors.</p>
 <p>Indeed, each  eigenvector is just a two-dimensional subspace of <span class="math notranslate nohighlight">\({\mathbb R}^3\)</span> pinned down by dynamics of the form</p>
 <div class="math notranslate nohighlight" id="equation-eq-invariantsub101">
-<span class="eqno">(17.18)<a class="headerlink" href="#equation-eq-invariantsub101" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(18.18)<a class="headerlink" href="#equation-eq-invariantsub101" title="Permalink to this equation">#</a></span>\[
 y_{t} = \lambda_i y_{t-1}, \quad i = 1, 2 
 \]</div>
-<p>that we encountered above in equation <a class="reference internal" href="#equation-eq-2diff8">(17.8)</a> above.</p>
-<p>In equation <a class="reference internal" href="#equation-eq-invariantsub101">(17.18)</a>, the <span class="math notranslate nohighlight">\(i\)</span>th <span class="math notranslate nohighlight">\(\lambda_i\)</span>  equals the <span class="math notranslate nohighlight">\(V_{i, 1}/V_{i,2}\)</span>.</p>
+<p>that we encountered above in equation <a class="reference internal" href="#equation-eq-2diff8">(18.8)</a> above.</p>
+<p>In equation <a class="reference internal" href="#equation-eq-invariantsub101">(18.18)</a>, the <span class="math notranslate nohighlight">\(i\)</span>th <span class="math notranslate nohighlight">\(\lambda_i\)</span>  equals the <span class="math notranslate nohighlight">\(V_{i, 1}/V_{i,2}\)</span>.</p>
 <p>The following graph verifies this for our example.</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
@@ -740,7 +740,7 @@ y_{t} = \lambda_i y_{t-1}, \quad i = 1, 2
 </div>
 </section>
 <section id="invariant-subspace-approach">
-<h2><span class="section-number">17.7. </span>Invariant subspace approach<a class="headerlink" href="#invariant-subspace-approach" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">18.7. </span>Invariant subspace approach<a class="headerlink" href="#invariant-subspace-approach" title="Permalink to this heading">#</a></h2>
 <p>The preceding  calculation indicates that we can use the eigenvectors <span class="math notranslate nohighlight">\(V\)</span> to construct 2-dimensional  <em>invariant subspaces</em>.</p>
 <p>We’ll pursue that possibility now.</p>
 <p>Define the transformed variables</p>
@@ -792,7 +792,7 @@ x_{1,0}^* = 0.
 \]</div>
 <p>This can be achieved by setting</p>
 <div class="math notranslate nohighlight" id="equation-eq-deactivate1">
-<span class="eqno">(17.19)<a class="headerlink" href="#equation-eq-deactivate1" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(18.19)<a class="headerlink" href="#equation-eq-deactivate1" title="Permalink to this equation">#</a></span>\[
 x_{2,0} =  -( V^{1,2})^{-1} V^{1,1} x_{1,0} = V_{2,2} V_{1,2}^{-1} x_{1,0}.
 \]</div>
 <p>To deactivate <span class="math notranslate nohighlight">\(\lambda_2\)</span>, we want to  set</p>
@@ -802,11 +802,11 @@ x_{2,0}^* = 0
 \]</div>
 <p>This can be achieved by setting</p>
 <div class="math notranslate nohighlight" id="equation-eq-deactivate2">
-<span class="eqno">(17.20)<a class="headerlink" href="#equation-eq-deactivate2" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(18.20)<a class="headerlink" href="#equation-eq-deactivate2" title="Permalink to this equation">#</a></span>\[
 x_{2,0} = -(V^{2,2})^{-1} V^{2,1} x_{1,0} = V_{2,1} V_{1,1}^{-1} x_{1,0}.
 \]</div>
-<p>Let’s verify <a class="reference internal" href="#equation-eq-deactivate1">(17.19)</a> and <a class="reference internal" href="#equation-eq-deactivate2">(17.20)</a> below</p>
-<p>To deactivate <span class="math notranslate nohighlight">\(\lambda_1\)</span> we use <a class="reference internal" href="#equation-eq-deactivate1">(17.19)</a></p>
+<p>Let’s verify <a class="reference internal" href="#equation-eq-deactivate1">(18.19)</a> and <a class="reference internal" href="#equation-eq-deactivate2">(18.20)</a> below</p>
+<p>To deactivate <span class="math notranslate nohighlight">\(\lambda_1\)</span> we use <a class="reference internal" href="#equation-eq-deactivate1">(18.19)</a></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xd_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">((</span><span class="n">x_0</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> 
@@ -825,7 +825,7 @@ x_{2,0} = -(V^{2,2})^{-1} V^{2,1} x_{1,0} = V_{2,1} V_{1,1}^{-1} x_{1,0}.
 </div>
 </div>
 <p>We find <span class="math notranslate nohighlight">\(x_{1,0}^* = 0\)</span>.</p>
-<p>Now we deactivate <span class="math notranslate nohighlight">\(\lambda_2\)</span> using <a class="reference internal" href="#equation-eq-deactivate2">(17.20)</a></p>
+<p>Now we deactivate <span class="math notranslate nohighlight">\(\lambda_2\)</span> using <a class="reference internal" href="#equation-eq-deactivate2">(18.20)</a></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xd_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">((</span><span class="n">x_0</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> 
@@ -904,17 +904,17 @@ x_{2,0} = -(V^{2,2})^{-1} V^{2,1} x_{1,0} = V_{2,1} V_{1,1}^{-1} x_{1,0}.
 </div>
 </section>
 <section id="concluding-remarks">
-<h2><span class="section-number">17.8. </span>Concluding remarks<a class="headerlink" href="#concluding-remarks" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">18.8. </span>Concluding remarks<a class="headerlink" href="#concluding-remarks" title="Permalink to this heading">#</a></h2>
 <p>This lecture sets the stage  for many other applications of the <em>invariant subspace</em> methods.</p>
 <p>All of these exploit very similar equations based on eigen decompositions.</p>
-<p>We shall encounter equations very similar to <a class="reference internal" href="#equation-eq-deactivate1">(17.19)</a> and <a class="reference internal" href="#equation-eq-deactivate2">(17.20)</a>
+<p>We shall encounter equations very similar to <a class="reference internal" href="#equation-eq-deactivate1">(18.19)</a> and <a class="reference internal" href="#equation-eq-deactivate2">(18.20)</a>
 in <a class="reference internal" href="money_inflation.html"><span class="doc">Money Financed Government Deficits and Price Levels</span></a> and in many other places in dynamic economic theory.</p>
 </section>
 <section id="exercise">
-<h2><span class="section-number">17.9. </span>Exercise<a class="headerlink" href="#exercise" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">18.9. </span>Exercise<a class="headerlink" href="#exercise" title="Permalink to this heading">#</a></h2>
 <div class="exercise admonition" id="greek_square_ex_a">
 
-<p class="admonition-title"><span class="caption-number">Exercise 17.1 </span></p>
+<p class="admonition-title"><span class="caption-number">Exercise 18.1 </span></p>
 <section id="exercise-content">
 <p>Please use matrix algebra to formulate the method described by Bertrand Russell at the beginning of this lecture.</p>
 <ol class="arabic simple">
@@ -928,19 +928,19 @@ compute the matrix <span class="math notranslate nohighlight">\(A\)</span>.</p><
 </div>
 <div class="solution dropdown admonition" id="greek_square-solution-1">
 
-<p class="admonition-title">Solution to<a class="reference internal" href="#greek_square_ex_a"> Exercise 17.1</a></p>
+<p class="admonition-title">Solution to<a class="reference internal" href="#greek_square_ex_a"> Exercise 18.1</a></p>
 <section id="solution-content">
 <p>Here is one soluition.</p>
 <p>According to the quote, we can formulate</p>
 <div class="math notranslate nohighlight" id="equation-eq-gs-ex1system">
-<span class="eqno">(17.21)<a class="headerlink" href="#equation-eq-gs-ex1system" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(18.21)<a class="headerlink" href="#equation-eq-gs-ex1system" title="Permalink to this equation">#</a></span>\[\begin{split}
 \begin{aligned}
 a_{t+1} &amp;= a_t + b_t \\
 b_{t+1} &amp;= 2a_t + b_t
 \end{aligned}
 \end{split}\]</div>
 <p>with <span class="math notranslate nohighlight">\(x_0 = \begin{bmatrix}  a_0 \cr b_0 \end{bmatrix} = \begin{bmatrix}  1 \cr 1 \end{bmatrix}\)</span></p>
-<p>By <a class="reference internal" href="#equation-eq-gs-ex1system">(17.21)</a>, we can write matrix <span class="math notranslate nohighlight">\(A\)</span> as</p>
+<p>By <a class="reference internal" href="#equation-eq-gs-ex1system">(18.21)</a>, we can write matrix <span class="math notranslate nohighlight">\(A\)</span> as</p>
 <div class="math notranslate nohighlight">
 \[
 A = \begin{bmatrix} 1 &amp; 1 \cr 
@@ -1138,18 +1138,23 @@ Eigenvectors:
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="tax_smooth.html">
+   13. Tax Smoothing
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="equalizing_difference.html">
-   13. Equalizing Difference Model
+   14. Equalizing Difference Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cagan_ree.html">
-   14. A Monetarist Theory of Price Levels
+   15. A Monetarist Theory of Price Levels
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cagan_adaptive.html">
-   15. Monetarist Theory of Price Levels with Adaptive Expectations
+   16. Monetarist Theory of Price Levels with Adaptive Expectations
   </a>
  </li>
 </ul>
@@ -1161,12 +1166,12 @@ Eigenvectors:
 <ul class="current nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="eigen_I.html">
-   16. Eigenvalues and Eigenvectors
+   17. Eigenvalues and Eigenvectors
   </a>
  </li>
  <li class="toctree-l1 current active active">
   <a class="current reference internal" href="#">
-   17. Computing Square Roots
+   18. Computing Square Roots
   </a>
  </li>
 </ul>
@@ -1178,27 +1183,27 @@ Eigenvectors:
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="prob_dist.html">
-   18. Distributions and Probabilities
+   19. Distributions and Probabilities
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="lln_clt.html">
-   19. LLN and CLT
+   20. LLN and CLT
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="monte_carlo.html">
-   20. Monte Carlo and Option Pricing
+   21. Monte Carlo and Option Pricing
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="heavy_tails.html">
-   21. Heavy-Tailed Distributions
+   22. Heavy-Tailed Distributions
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="schelling.html">
-   22. Racial Segregation
+   23. Racial Segregation
   </a>
  </li>
 </ul>
@@ -1210,27 +1215,27 @@ Eigenvectors:
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="scalar_dynam.html">
-   23. Dynamics in One Dimension
+   24. Dynamics in One Dimension
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="solow.html">
-   24. The Solow-Swan Growth Model
+   25. The Solow-Swan Growth Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cobweb.html">
-   25. The Cobweb Model
+   26. The Cobweb Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="olg.html">
-   26. The Overlapping Generations Model
+   27. The Overlapping Generations Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="commod_price.html">
-   27. Commodity Prices
+   28. Commodity Prices
   </a>
  </li>
 </ul>
@@ -1242,22 +1247,22 @@ Eigenvectors:
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="money_inflation.html">
-   28. Money Financed Government Deficits and Price Levels
+   29. Money Financed Government Deficits and Price Levels
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="unpleasant.html">
-   29. Some Unpleasant Monetarist Arithmetic
+   30. Some Unpleasant Monetarist Arithmetic
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="money_inflation_nonlinear.html">
-   30. Inflation Rate Laffer Curves
+   31. Inflation Rate Laffer Curves
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="laffer_adaptive.html">
-   31. Laffer Curves  with Adaptive Expectations
+   32. Laffer Curves  with Adaptive Expectations
   </a>
  </li>
 </ul>
@@ -1269,22 +1274,22 @@ Eigenvectors:
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="ar1_processes.html">
-   32. AR(1) Processes
+   33. AR(1) Processes
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="markov_chains_I.html">
-   33. Markov Chains: Basic Concepts
+   34. Markov Chains: Basic Concepts
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="markov_chains_II.html">
-   34. Markov Chains: Irreducibility and Ergodicity
+   35. Markov Chains: Irreducibility and Ergodicity
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="time_series_with_matrices.html">
-   35. Univariate Time Series with Matrix Algebra
+   36. Univariate Time Series with Matrix Algebra
   </a>
  </li>
 </ul>
@@ -1296,12 +1301,12 @@ Eigenvectors:
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="lp_intro.html">
-   36. Linear Programming
+   37. Linear Programming
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="short_path.html">
-   37. Shortest Paths
+   38. Shortest Paths
   </a>
  </li>
 </ul>
@@ -1313,22 +1318,22 @@ Eigenvectors:
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="eigen_II.html">
-   38. The Perron-Frobenius Theorem
+   39. The Perron-Frobenius Theorem
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="input_output.html">
-   39. Input-Output Models
+   40. Input-Output Models
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="lake_model.html">
-   40. A Lake Model of Employment
+   41. A Lake Model of Employment
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="networks.html">
-   41. Networks
+   42. Networks
   </a>
  </li>
 </ul>
@@ -1340,12 +1345,12 @@ Eigenvectors:
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="supply_demand_multiple_goods.html">
-   42. Supply and Demand with Many Goods
+   43. Supply and Demand with Many Goods
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="supply_demand_heterogeneity.html">
-   43. Market Equilibrium with Heterogeneity
+   44. Market Equilibrium with Heterogeneity
   </a>
  </li>
 </ul>
@@ -1357,12 +1362,12 @@ Eigenvectors:
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="simple_linear_regression.html">
-   44. Simple Linear Regression Model
+   45. Simple Linear Regression Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="mle.html">
-   45. Maximum Likelihood Estimation
+   46. Maximum Likelihood Estimation
   </a>
  </li>
 </ul>
@@ -1374,17 +1379,17 @@ Eigenvectors:
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="troubleshooting.html">
-   46. Troubleshooting
+   47. Troubleshooting
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="zreferences.html">
-   47. References
+   48. References
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="status.html">
-   48. Execution Statistics
+   49. Execution Statistics
   </a>
  </li>
 </ul>

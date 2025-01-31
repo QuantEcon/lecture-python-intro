@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>27. Commodity Prices &#8212; A First Course in Quantitative Economics with Python</title>
+    <title>28. Commodity Prices &#8212; A First Course in Quantitative Economics with Python</title>
     <script src="https://unpkg.com/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://unpkg.com/tippy.js@6.3.1/dist/tippy-bundle.umd.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
@@ -120,8 +120,8 @@
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="28. Money Financed Government Deficits and Price Levels" href="money_inflation.html" />
-    <link rel="prev" title="26. The Overlapping Generations Model" href="olg.html" />
+    <link rel="next" title="29. Money Financed Government Deficits and Price Levels" href="money_inflation.html" />
+    <link rel="prev" title="27. The Overlapping Generations Model" href="olg.html" />
 
 <!-- Normal Meta Tags -->
 <meta name="author" context="Thomas J. Sargent &amp; John Stachurski" />
@@ -169,17 +169,17 @@
 
                         <nav id="bd-toc-nav" class="qe-page__toc-nav">
                             <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#outline">27.1. Outline</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data">27.2. Data</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-competitive-storage-model">27.3. The competitive storage model</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-model">27.4. The model</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#equilibrium">27.5. Equilibrium</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#equilibrium-conditions">27.5.1. Equilibrium conditions</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#an-equilibrium-function">27.5.2. An equilibrium function</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#computing-the-equilibrium">27.5.3. Computing the equilibrium</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#outline">28.1. Outline</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data">28.2. Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-competitive-storage-model">28.3. The competitive storage model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-model">28.4. The model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#equilibrium">28.5. Equilibrium</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#equilibrium-conditions">28.5.1. Equilibrium conditions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#an-equilibrium-function">28.5.2. An equilibrium function</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#computing-the-equilibrium">28.5.3. Computing the equilibrium</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code">27.6. Code</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code">28.6. Code</a></li>
 </ul>
                             <p class="logo">
                                 
@@ -239,9 +239,9 @@
                     <div>
                         
   <section class="tex2jax_ignore mathjax_ignore" id="commodity-prices">
-<h1><span class="section-number">27. </span>Commodity Prices<a class="headerlink" href="#commodity-prices" title="Permalink to this heading">#</a></h1>
+<h1><span class="section-number">28. </span>Commodity Prices<a class="headerlink" href="#commodity-prices" title="Permalink to this heading">#</a></h1>
 <section id="outline">
-<h2><span class="section-number">27.1. </span>Outline<a class="headerlink" href="#outline" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">28.1. </span>Outline<a class="headerlink" href="#outline" title="Permalink to this heading">#</a></h2>
 <p>For more than half of all countries around the globe, <a class="reference external" href="https://en.wikipedia.org/wiki/Commodity">commodities</a> account for <a class="reference external" href="https://unctad.org/publication/commodities-and-development-report-2019">the majority of total exports</a>.</p>
 <p>Examples of commodities include copper, diamonds, iron ore, lithium, cotton
 and coffee beans.</p>
@@ -279,16 +279,18 @@ Collecting multitasking&gt;=0.0.7 (from yfinance)
 Requirement already satisfied: lxml&gt;=4.9.1 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from yfinance) (5.2.1)
 Requirement already satisfied: platformdirs&gt;=2.0.0 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from yfinance) (3.10.0)
 Requirement already satisfied: pytz&gt;=2022.5 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from yfinance) (2024.1)
-Collecting frozendict&gt;=2.3.4 (from yfinance)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Downloading frozendict-2.4.6-py312-none-any.whl.metadata (23 kB)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting frozendict&gt;=2.3.4 (from yfinance)
+  Downloading frozendict-2.4.6-py312-none-any.whl.metadata (23 kB)
 Collecting peewee&gt;=3.16.2 (from yfinance)
-  Downloading peewee-3.17.8.tar.gz (948 kB)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Downloading peewee-3.17.8.tar.gz (948 kB)
 ?25l     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/948.2 kB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">948.2/948.2 kB</span> <span class=" -Color -Color-Red">51.4 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">948.2/948.2 kB</span> <span class=" -Color -Color-Red">29.3 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
 ?25h
 </pre></div>
 </div>
@@ -304,13 +306,22 @@ Collecting peewee&gt;=3.16.2 (from yfinance)
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> /
 </pre></div>
 </div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> -
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> \
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> |
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> /
+</pre></div>
+</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> done
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>?25h  Getting requirements to build wheel ... ?25l-
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> done
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>?25h  Getting requirements to build wheel ... ?25l- done
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>?25h  Preparing metadata (pyproject.toml) ... ?25l-
@@ -318,11 +329,11 @@ Collecting peewee&gt;=3.16.2 (from yfinance)
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> done
 ?25hRequirement already satisfied: beautifulsoup4&gt;=4.11.1 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from yfinance) (4.12.3)
-Collecting html5lib&gt;=1.1 (from yfinance)
-  Downloading html5lib-1.1-py2.py3-none-any.whl.metadata (16 kB)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: soupsieve&gt;1.2 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from beautifulsoup4&gt;=4.11.1-&gt;yfinance) (2.5)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting html5lib&gt;=1.1 (from yfinance)
+  Downloading html5lib-1.1-py2.py3-none-any.whl.metadata (16 kB)
+Requirement already satisfied: soupsieve&gt;1.2 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from beautifulsoup4&gt;=4.11.1-&gt;yfinance) (2.5)
 Requirement already satisfied: six&gt;=1.9 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from html5lib&gt;=1.1-&gt;yfinance) (1.16.0)
 Requirement already satisfied: webencodings in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from html5lib&gt;=1.1-&gt;yfinance) (0.5.1)
 Requirement already satisfied: python-dateutil&gt;=2.8.2 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from pandas&gt;=1.3.0-&gt;yfinance) (2.9.0.post0)
@@ -331,12 +342,14 @@ Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in /home/runner/mi
 Requirement already satisfied: idna&lt;4,&gt;=2.5 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from requests&gt;=2.31-&gt;yfinance) (3.7)
 Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from requests&gt;=2.31-&gt;yfinance) (2.2.3)
 Requirement already satisfied: certifi&gt;=2017.4.17 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from requests&gt;=2.31-&gt;yfinance) (2024.8.30)
-Downloading yfinance-0.2.52-py2.py3-none-any.whl (108 kB)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading frozendict-2.4.6-py312-none-any.whl (16 kB)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading yfinance-0.2.52-py2.py3-none-any.whl (108 kB)
+Downloading frozendict-2.4.6-py312-none-any.whl (16 kB)
 Downloading html5lib-1.1-py2.py3-none-any.whl (112 kB)
-Downloading multitasking-0.0.11-py3-none-any.whl (8.5 kB)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading multitasking-0.0.11-py3-none-any.whl (8.5 kB)
 Building wheels for collected packages: peewee
 </pre></div>
 </div>
@@ -350,7 +363,7 @@ Building wheels for collected packages: peewee
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> done
-?25h  Created wheel for peewee: filename=peewee-3.17.8-cp312-cp312-linux_x86_64.whl size=303809 sha256=5d2a033714615c1d0453e7ce04d8311296ce56bad34a4913d39907be20a2916d
+?25h  Created wheel for peewee: filename=peewee-3.17.8-cp312-cp312-linux_x86_64.whl size=303809 sha256=63031434a2d6cd9327f6d8ec10ef0d507a4f11ff83af55e8012b5d1a02ae1d21
   Stored in directory: /home/runner/.cache/pip/wheels/8f/65/34/456800445efeafb05164fe95285c70e81ba1d96bae30f43917
 Successfully built peewee
 </pre></div>
@@ -379,7 +392,7 @@ Successfully built peewee
 </div>
 </section>
 <section id="data">
-<h2><span class="section-number">27.2. </span>Data<a class="headerlink" href="#data" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">28.2. </span>Data<a class="headerlink" href="#data" title="Permalink to this heading">#</a></h2>
 <p>The figure below shows the price of cotton in USD since the start of 2016.</p>
 <div class="cell tag_hide-input tag_hide-output docutils container">
 <details class="hide above-input">
@@ -448,7 +461,7 @@ the <em>competitive storage model</em>.</p>
 <span id="id6">[<a class="reference internal" href="zreferences.html#id17" title="Marcus J Chambers and Roy E Bailey. A theory of commodity price fluctuations. Journal of Political Economy, 104(5):924–957, 1996.">Chambers and Bailey, 1996</a>]</span>.</p>
 </section>
 <section id="the-competitive-storage-model">
-<h2><span class="section-number">27.3. </span>The competitive storage model<a class="headerlink" href="#the-competitive-storage-model" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">28.3. </span>The competitive storage model<a class="headerlink" href="#the-competitive-storage-model" title="Permalink to this heading">#</a></h2>
 <p>In the competitive storage model, commodities are assets that</p>
 <ol class="arabic simple">
 <li><p>can be traded by speculators and</p></li>
@@ -469,7 +482,7 @@ appropriate.</p>
 current harvests and predicts future harvests).</p>
 </section>
 <section id="the-model">
-<h2><span class="section-number">27.4. </span>The model<a class="headerlink" href="#the-model" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">28.4. </span>The model<a class="headerlink" href="#the-model" title="Permalink to this heading">#</a></h2>
 <p>Consider a market for a single commodity, whose price is given at <span class="math notranslate nohighlight">\(t\)</span> by
 <span class="math notranslate nohighlight">\(p_t\)</span>.</p>
 <p>The harvest of the commodity at time <span class="math notranslate nohighlight">\(t\)</span> is <span class="math notranslate nohighlight">\(Z_t\)</span>.</p>
@@ -488,10 +501,10 @@ zero, so expected profit on purchasing <span class="math notranslate nohighlight
 <span class="math notranslate nohighlight">\(t\)</span>.</p>
 </section>
 <section id="equilibrium">
-<h2><span class="section-number">27.5. </span>Equilibrium<a class="headerlink" href="#equilibrium" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">28.5. </span>Equilibrium<a class="headerlink" href="#equilibrium" title="Permalink to this heading">#</a></h2>
 <p>In this section we define the equilibrium and discuss how to compute it.</p>
 <section id="equilibrium-conditions">
-<h3><span class="section-number">27.5.1. </span>Equilibrium conditions<a class="headerlink" href="#equilibrium-conditions" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">28.5.1. </span>Equilibrium conditions<a class="headerlink" href="#equilibrium-conditions" title="Permalink to this heading">#</a></h3>
 <p>Speculators are assumed to be risk neutral, which means that they buy the
 commodity whenever expected profits are positive.</p>
 <p>As a consequence, if expected profits are positive, then the market is not in
@@ -499,13 +512,13 @@ equilibrium.</p>
 <p>Hence, to be in equilibrium, prices must satisfy the “no-arbitrage”
 condition</p>
 <div class="math notranslate nohighlight" id="equation-eq-arbi">
-<span class="eqno">(27.1)<a class="headerlink" href="#equation-eq-arbi" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(28.1)<a class="headerlink" href="#equation-eq-arbi" title="Permalink to this equation">#</a></span>\[
   \alpha \mathbb{E}_t \, p_{t+1}  - p_t \leq 0
 \]</div>
 <p>This means that if the expected price is lower than the current price, there is no room for arbitrage.</p>
 <p>Profit maximization gives the additional condition</p>
 <div class="math notranslate nohighlight" id="equation-eq-pmco">
-<span class="eqno">(27.2)<a class="headerlink" href="#equation-eq-pmco" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(28.2)<a class="headerlink" href="#equation-eq-pmco" title="Permalink to this equation">#</a></span>\[
   \alpha \mathbb{E}_t \, p_{t+1}  - p_t  &lt; 0 \text{ implies } I_t = 0
 \]</div>
 <p>We also require that the market clears, with supply equaling demand in each period.</p>
@@ -524,13 +537,13 @@ price <span class="math notranslate nohighlight">\(p\)</span>.</p>
 </ul>
 <p>Thus, the market equilibrium condition is</p>
 <div class="math notranslate nohighlight" id="equation-eq-mkeq">
-<span class="eqno">(27.3)<a class="headerlink" href="#equation-eq-mkeq" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(28.3)<a class="headerlink" href="#equation-eq-mkeq" title="Permalink to this equation">#</a></span>\[
   \alpha I_{t-1} + Z_t =  D(p_t) + I_t
 \]</div>
 <p>The initial condition <span class="math notranslate nohighlight">\(X_0 \in S\)</span> is treated as given.</p>
 </section>
 <section id="an-equilibrium-function">
-<h3><span class="section-number">27.5.2. </span>An equilibrium function<a class="headerlink" href="#an-equilibrium-function" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">28.5.2. </span>An equilibrium function<a class="headerlink" href="#an-equilibrium-function" title="Permalink to this heading">#</a></h3>
 <p>How can we find an equilibrium?</p>
 <p>Our path of attack will be to seek a system of prices that depend only on the
 current state.</p>
@@ -538,15 +551,15 @@ current state.</p>
 <p>In other words, we take a function <span class="math notranslate nohighlight">\(p\)</span> on <span class="math notranslate nohighlight">\(S\)</span> and set <span class="math notranslate nohighlight">\(p_t = p(X_t)\)</span> for every <span class="math notranslate nohighlight">\(t\)</span>.</p>
 <p>Prices and quantities then follow</p>
 <div class="math notranslate nohighlight" id="equation-eq-eosy">
-<span class="eqno">(27.4)<a class="headerlink" href="#equation-eq-eosy" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(28.4)<a class="headerlink" href="#equation-eq-eosy" title="Permalink to this equation">#</a></span>\[
   p_t = p(X_t), \quad I_t = X_t - D(p_t), \quad X_{t+1} = \alpha I_t + Z_{t+1}
 \]</div>
 <p>We choose <span class="math notranslate nohighlight">\(p\)</span> so that these prices and quantities satisfy the equilibrium
 conditions above.</p>
-<p>More precisely, we seek a <span class="math notranslate nohighlight">\(p\)</span> such that <a class="reference internal" href="#equation-eq-arbi">(27.1)</a> and <a class="reference internal" href="#equation-eq-pmco">(27.2)</a> hold for
-the corresponding system <a class="reference internal" href="#equation-eq-eosy">(27.4)</a>.</p>
+<p>More precisely, we seek a <span class="math notranslate nohighlight">\(p\)</span> such that <a class="reference internal" href="#equation-eq-arbi">(28.1)</a> and <a class="reference internal" href="#equation-eq-pmco">(28.2)</a> hold for
+the corresponding system <a class="reference internal" href="#equation-eq-eosy">(28.4)</a>.</p>
 <div class="math notranslate nohighlight" id="equation-eq-dopf">
-<span class="eqno">(27.5)<a class="headerlink" href="#equation-eq-dopf" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(28.5)<a class="headerlink" href="#equation-eq-dopf" title="Permalink to this equation">#</a></span>\[
   p^*(x) = \max
     \left\{
     \alpha \int_0^\infty p^*(\alpha I(x) + z) \phi(z)dz, P(x)
@@ -555,12 +568,12 @@ the corresponding system <a class="reference internal" href="#equation-eq-eosy">
 \]</div>
 <p>where</p>
 <div class="math notranslate nohighlight" id="equation-eq-einvf">
-<span class="eqno">(27.6)<a class="headerlink" href="#equation-eq-einvf" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(28.6)<a class="headerlink" href="#equation-eq-einvf" title="Permalink to this equation">#</a></span>\[
   I(x) := x - D(p^*(x))
     \qquad (x \in S)
 \]</div>
-<p>It turns out that such a <span class="math notranslate nohighlight">\(p^*\)</span> will suffice, in the sense that <a class="reference internal" href="#equation-eq-arbi">(27.1)</a>
-and <a class="reference internal" href="#equation-eq-pmco">(27.2)</a> hold for the corresponding system <a class="reference internal" href="#equation-eq-eosy">(27.4)</a>.</p>
+<p>It turns out that such a <span class="math notranslate nohighlight">\(p^*\)</span> will suffice, in the sense that <a class="reference internal" href="#equation-eq-arbi">(28.1)</a>
+and <a class="reference internal" href="#equation-eq-pmco">(28.2)</a> hold for the corresponding system <a class="reference internal" href="#equation-eq-eosy">(28.4)</a>.</p>
 <p>To see this, observe first that</p>
 <div class="math notranslate nohighlight">
 \[
@@ -569,40 +582,40 @@ and <a class="reference internal" href="#equation-eq-pmco">(27.2)</a> hold for t
    = \mathbb{E}_t \, p^*(\alpha I(X_t) + Z_{t+1})
    = \int_0^\infty p^*(\alpha I(X_t) + z) \phi(z)dz
 \]</div>
-<p>Thus <a class="reference internal" href="#equation-eq-arbi">(27.1)</a> requires that</p>
+<p>Thus <a class="reference internal" href="#equation-eq-arbi">(28.1)</a> requires that</p>
 <div class="math notranslate nohighlight">
 \[
    \alpha \int_0^\infty p^*(\alpha I(X_t) + z) \phi(z)dz \leq p^*(X_t)
 \]</div>
-<p>This inequality is immediate from <a class="reference internal" href="#equation-eq-dopf">(27.5)</a>.</p>
-<p>Second, regarding <a class="reference internal" href="#equation-eq-pmco">(27.2)</a>, suppose that</p>
+<p>This inequality is immediate from <a class="reference internal" href="#equation-eq-dopf">(28.5)</a>.</p>
+<p>Second, regarding <a class="reference internal" href="#equation-eq-pmco">(28.2)</a>, suppose that</p>
 <div class="math notranslate nohighlight">
 \[
    \alpha \int_0^\infty p^*(\alpha I(X_t) + z) \phi(z)dz &lt; p^*(X_t)
 \]</div>
-<p>Then by <a class="reference internal" href="#equation-eq-dopf">(27.5)</a> we have <span class="math notranslate nohighlight">\(p^*(X_t) = P(X_t)\)</span></p>
+<p>Then by <a class="reference internal" href="#equation-eq-dopf">(28.5)</a> we have <span class="math notranslate nohighlight">\(p^*(X_t) = P(X_t)\)</span></p>
 <p>But then <span class="math notranslate nohighlight">\(D(p^*(X_t)) = X_t\)</span> and <span class="math notranslate nohighlight">\(I_t = I(X_t) = 0\)</span>.</p>
-<p>As a consequence, both <a class="reference internal" href="#equation-eq-arbi">(27.1)</a> and <a class="reference internal" href="#equation-eq-pmco">(27.2)</a> hold.</p>
+<p>As a consequence, both <a class="reference internal" href="#equation-eq-arbi">(28.1)</a> and <a class="reference internal" href="#equation-eq-pmco">(28.2)</a> hold.</p>
 <p>We have found an equilibrium, which verifies the ansatz.</p>
 </section>
 <section id="computing-the-equilibrium">
-<h3><span class="section-number">27.5.3. </span>Computing the equilibrium<a class="headerlink" href="#computing-the-equilibrium" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">28.5.3. </span>Computing the equilibrium<a class="headerlink" href="#computing-the-equilibrium" title="Permalink to this heading">#</a></h3>
 <p>We now know that an equilibrium can be obtained by finding a function <span class="math notranslate nohighlight">\(p^*\)</span>
-that satisfies <a class="reference internal" href="#equation-eq-dopf">(27.5)</a>.</p>
+that satisfies <a class="reference internal" href="#equation-eq-dopf">(28.5)</a>.</p>
 <p>It can be shown that, under mild conditions there is exactly one function on
-<span class="math notranslate nohighlight">\(S\)</span> satisfying <a class="reference internal" href="#equation-eq-dopf">(27.5)</a>.</p>
+<span class="math notranslate nohighlight">\(S\)</span> satisfying <a class="reference internal" href="#equation-eq-dopf">(28.5)</a>.</p>
 <p>Moreover, we can compute this function using successive approximation.</p>
 <p>This means that we start with a guess of the function and then update it using
-<a class="reference internal" href="#equation-eq-dopf">(27.5)</a>.</p>
+<a class="reference internal" href="#equation-eq-dopf">(28.5)</a>.</p>
 <p>This generates a sequence of functions <span class="math notranslate nohighlight">\(p_1, p_2, \ldots\)</span></p>
 <p>We continue until this process converges, in the sense that <span class="math notranslate nohighlight">\(p_k\)</span> and
 <span class="math notranslate nohighlight">\(p_{k+1}\)</span> are very close together.</p>
 <p>Then we take the final <span class="math notranslate nohighlight">\(p_k\)</span> that we computed as our approximation of <span class="math notranslate nohighlight">\(p^*\)</span>.</p>
-<p>To implement our update step, it is helpful if we put <a class="reference internal" href="#equation-eq-dopf">(27.5)</a> and
-<a class="reference internal" href="#equation-eq-einvf">(27.6)</a> together.</p>
+<p>To implement our update step, it is helpful if we put <a class="reference internal" href="#equation-eq-dopf">(28.5)</a> and
+<a class="reference internal" href="#equation-eq-einvf">(28.6)</a> together.</p>
 <p>This leads us to the update rule</p>
 <div class="math notranslate nohighlight" id="equation-eq-dopf2">
-<span class="eqno">(27.7)<a class="headerlink" href="#equation-eq-dopf2" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(28.7)<a class="headerlink" href="#equation-eq-dopf2" title="Permalink to this equation">#</a></span>\[
   p_{k+1}(x) = \max
     \left\{
     \alpha \int_0^\infty p_k(\alpha ( x - D(p_{k+1}(x))) + z) \phi(z)dz, P(x)
@@ -610,7 +623,7 @@ that satisfies <a class="reference internal" href="#equation-eq-dopf">(27.5)</a>
 \]</div>
 <p>In other words, we take <span class="math notranslate nohighlight">\(p_k\)</span> as given and, at each <span class="math notranslate nohighlight">\(x\)</span>, solve for <span class="math notranslate nohighlight">\(q\)</span> in</p>
 <div class="math notranslate nohighlight" id="equation-eq-dopf3">
-<span class="eqno">(27.8)<a class="headerlink" href="#equation-eq-dopf3" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(28.8)<a class="headerlink" href="#equation-eq-dopf3" title="Permalink to this equation">#</a></span>\[
   q = \max
     \left\{
     \alpha \int_0^\infty p_k(\alpha ( x - D(q)) + z) \phi(z)dz, P(x)
@@ -625,11 +638,11 @@ the values <span class="math notranslate nohighlight">\(q_1, \ldots, q_n\)</span
 </section>
 </section>
 <section id="code">
-<h2><span class="section-number">27.6. </span>Code<a class="headerlink" href="#code" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">28.6. </span>Code<a class="headerlink" href="#code" title="Permalink to this heading">#</a></h2>
 <p>The code below implements this iterative process, starting from <span class="math notranslate nohighlight">\(p_0 = P\)</span>.</p>
 <p>The distribution <span class="math notranslate nohighlight">\(\phi\)</span> is set to a shifted Beta distribution (although many
 other choices are possible).</p>
-<p>The integral in <a class="reference internal" href="#equation-eq-dopf3">(27.8)</a> is computed via <a class="reference internal" href="monte_carlo.html#monte-carlo"><span class="std std-ref">Monte Carlo</span></a>.</p>
+<p>The integral in <a class="reference internal" href="#equation-eq-dopf3">(28.8)</a> is computed via <a class="reference internal" href="monte_carlo.html#monte-carlo"><span class="std std-ref">Monte Carlo</span></a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">α</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span>
@@ -684,7 +697,7 @@ other choices are possible).</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/e91f99dd3eb97c3747bcc620486cad2d1e2459d6c6c1e6b7166725a239631468.png"><img alt="_images/e91f99dd3eb97c3747bcc620486cad2d1e2459d6c6c1e6b7166725a239631468.png" src="_images/e91f99dd3eb97c3747bcc620486cad2d1e2459d6c6c1e6b7166725a239631468.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/c60ccd88b861c05d57c3530aca2423c656ededb4b50fe99994fdb1ffbd66fc72.png"><img alt="_images/c60ccd88b861c05d57c3530aca2423c656ededb4b50fe99994fdb1ffbd66fc72.png" src="_images/c60ccd88b861c05d57c3530aca2423c656ededb4b50fe99994fdb1ffbd66fc72.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>The figure above shows the inverse demand curve <span class="math notranslate nohighlight">\(P\)</span>, which is also <span class="math notranslate nohighlight">\(p_0\)</span>, as
@@ -719,7 +732,7 @@ prices.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/17294d731dec94f0cfcc551ab030e932f36165c82b18d9c125a938a6597302c3.png"><img alt="_images/17294d731dec94f0cfcc551ab030e932f36165c82b18d9c125a938a6597302c3.png" src="_images/17294d731dec94f0cfcc551ab030e932f36165c82b18d9c125a938a6597302c3.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/d1b0fe75310c56da7ebf3a94008873fc8c4a0ba614ae34cb2831ee43ffc87973.png"><img alt="_images/d1b0fe75310c56da7ebf3a94008873fc8c4a0ba614ae34cb2831ee43ffc87973.png" src="_images/d1b0fe75310c56da7ebf3a94008873fc8c4a0ba614ae34cb2831ee43ffc87973.png" style="width: 80%;" /></a>
 </div>
 </div>
 </section>
@@ -862,18 +875,23 @@ prices.</p>
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="tax_smooth.html">
+   13. Tax Smoothing
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="equalizing_difference.html">
-   13. Equalizing Difference Model
+   14. Equalizing Difference Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cagan_ree.html">
-   14. A Monetarist Theory of Price Levels
+   15. A Monetarist Theory of Price Levels
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cagan_adaptive.html">
-   15. Monetarist Theory of Price Levels with Adaptive Expectations
+   16. Monetarist Theory of Price Levels with Adaptive Expectations
   </a>
  </li>
 </ul>
@@ -885,12 +903,12 @@ prices.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="eigen_I.html">
-   16. Eigenvalues and Eigenvectors
+   17. Eigenvalues and Eigenvectors
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="greek_square.html">
-   17. Computing Square Roots
+   18. Computing Square Roots
   </a>
  </li>
 </ul>
@@ -902,27 +920,27 @@ prices.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="prob_dist.html">
-   18. Distributions and Probabilities
+   19. Distributions and Probabilities
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="lln_clt.html">
-   19. LLN and CLT
+   20. LLN and CLT
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="monte_carlo.html">
-   20. Monte Carlo and Option Pricing
+   21. Monte Carlo and Option Pricing
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="heavy_tails.html">
-   21. Heavy-Tailed Distributions
+   22. Heavy-Tailed Distributions
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="schelling.html">
-   22. Racial Segregation
+   23. Racial Segregation
   </a>
  </li>
 </ul>
@@ -934,27 +952,27 @@ prices.</p>
 <ul class="current nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="scalar_dynam.html">
-   23. Dynamics in One Dimension
+   24. Dynamics in One Dimension
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="solow.html">
-   24. The Solow-Swan Growth Model
+   25. The Solow-Swan Growth Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cobweb.html">
-   25. The Cobweb Model
+   26. The Cobweb Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="olg.html">
-   26. The Overlapping Generations Model
+   27. The Overlapping Generations Model
   </a>
  </li>
  <li class="toctree-l1 current active active">
   <a class="current reference internal" href="#">
-   27. Commodity Prices
+   28. Commodity Prices
   </a>
  </li>
 </ul>
@@ -966,22 +984,22 @@ prices.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="money_inflation.html">
-   28. Money Financed Government Deficits and Price Levels
+   29. Money Financed Government Deficits and Price Levels
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="unpleasant.html">
-   29. Some Unpleasant Monetarist Arithmetic
+   30. Some Unpleasant Monetarist Arithmetic
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="money_inflation_nonlinear.html">
-   30. Inflation Rate Laffer Curves
+   31. Inflation Rate Laffer Curves
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="laffer_adaptive.html">
-   31. Laffer Curves  with Adaptive Expectations
+   32. Laffer Curves  with Adaptive Expectations
   </a>
  </li>
 </ul>
@@ -993,22 +1011,22 @@ prices.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="ar1_processes.html">
-   32. AR(1) Processes
+   33. AR(1) Processes
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="markov_chains_I.html">
-   33. Markov Chains: Basic Concepts
+   34. Markov Chains: Basic Concepts
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="markov_chains_II.html">
-   34. Markov Chains: Irreducibility and Ergodicity
+   35. Markov Chains: Irreducibility and Ergodicity
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="time_series_with_matrices.html">
-   35. Univariate Time Series with Matrix Algebra
+   36. Univariate Time Series with Matrix Algebra
   </a>
  </li>
 </ul>
@@ -1020,12 +1038,12 @@ prices.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="lp_intro.html">
-   36. Linear Programming
+   37. Linear Programming
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="short_path.html">
-   37. Shortest Paths
+   38. Shortest Paths
   </a>
  </li>
 </ul>
@@ -1037,22 +1055,22 @@ prices.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="eigen_II.html">
-   38. The Perron-Frobenius Theorem
+   39. The Perron-Frobenius Theorem
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="input_output.html">
-   39. Input-Output Models
+   40. Input-Output Models
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="lake_model.html">
-   40. A Lake Model of Employment
+   41. A Lake Model of Employment
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="networks.html">
-   41. Networks
+   42. Networks
   </a>
  </li>
 </ul>
@@ -1064,12 +1082,12 @@ prices.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="supply_demand_multiple_goods.html">
-   42. Supply and Demand with Many Goods
+   43. Supply and Demand with Many Goods
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="supply_demand_heterogeneity.html">
-   43. Market Equilibrium with Heterogeneity
+   44. Market Equilibrium with Heterogeneity
   </a>
  </li>
 </ul>
@@ -1081,12 +1099,12 @@ prices.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="simple_linear_regression.html">
-   44. Simple Linear Regression Model
+   45. Simple Linear Regression Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="mle.html">
-   45. Maximum Likelihood Estimation
+   46. Maximum Likelihood Estimation
   </a>
  </li>
 </ul>
@@ -1098,17 +1116,17 @@ prices.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="troubleshooting.html">
-   46. Troubleshooting
+   47. Troubleshooting
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="zreferences.html">
-   47. References
+   48. References
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="status.html">
-   48. Execution Statistics
+   49. Execution Statistics
   </a>
  </li>
 </ul>

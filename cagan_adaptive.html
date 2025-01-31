@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>15. Monetarist Theory of Price Levels with Adaptive Expectations &#8212; A First Course in Quantitative Economics with Python</title>
+    <title>16. Monetarist Theory of Price Levels with Adaptive Expectations &#8212; A First Course in Quantitative Economics with Python</title>
     <script src="https://unpkg.com/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://unpkg.com/tippy.js@6.3.1/dist/tippy-bundle.umd.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
@@ -120,8 +120,8 @@
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="16. Eigenvalues and Eigenvectors" href="eigen_I.html" />
-    <link rel="prev" title="14. A Monetarist Theory of Price Levels" href="cagan_ree.html" />
+    <link rel="next" title="17. Eigenvalues and Eigenvectors" href="eigen_I.html" />
+    <link rel="prev" title="15. A Monetarist Theory of Price Levels" href="cagan_ree.html" />
 
 <!-- Normal Meta Tags -->
 <meta name="author" context="Thomas J. Sargent &amp; John Stachurski" />
@@ -169,15 +169,15 @@
 
                         <nav id="bd-toc-nav" class="qe-page__toc-nav">
                             <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">15.1. Overview</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#structure-of-the-model">15.2. Structure of the model</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#representing-key-equations-with-linear-algebra">15.3. Representing key equations with linear algebra</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#harvesting-insights-from-our-matrix-formulation">15.4. Harvesting insights from our matrix formulation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#forecast-errors-and-model-computation">15.5. Forecast errors and model computation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-condition-for-stability">15.6. Technical condition for stability</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#experiments">15.7. Experiments</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#experiment-1">15.7.1. Experiment 1</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#experiment-2">15.7.2. Experiment 2</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">16.1. Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#structure-of-the-model">16.2. Structure of the model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#representing-key-equations-with-linear-algebra">16.3. Representing key equations with linear algebra</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#harvesting-insights-from-our-matrix-formulation">16.4. Harvesting insights from our matrix formulation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#forecast-errors-and-model-computation">16.5. Forecast errors and model computation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-condition-for-stability">16.6. Technical condition for stability</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#experiments">16.7. Experiments</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#experiment-1">16.7.1. Experiment 1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#experiment-2">16.7.2. Experiment 2</a></li>
 </ul>
 </li>
 </ul>
@@ -239,9 +239,9 @@
                     <div>
                         
   <section class="tex2jax_ignore mathjax_ignore" id="monetarist-theory-of-price-levels-with-adaptive-expectations">
-<h1><span class="section-number">15. </span>Monetarist Theory of Price Levels with Adaptive Expectations<a class="headerlink" href="#monetarist-theory-of-price-levels-with-adaptive-expectations" title="Permalink to this heading">#</a></h1>
+<h1><span class="section-number">16. </span>Monetarist Theory of Price Levels with Adaptive Expectations<a class="headerlink" href="#monetarist-theory-of-price-levels-with-adaptive-expectations" title="Permalink to this heading">#</a></h1>
 <section id="overview">
-<h2><span class="section-number">15.1. </span>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">16.1. </span>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
 <p>This lecture is a sequel or prequel to <a class="reference internal" href="cagan_ree.html"><span class="doc">A Monetarist Theory of Price Levels</span></a>.</p>
 <p>We’ll use linear algebra to do some experiments with  an alternative “monetarist” or  “fiscal” theory of  price levels.</p>
 <p>Like the model in <a class="reference internal" href="cagan_ree.html"><span class="doc">A Monetarist Theory of Price Levels</span></a>, the model asserts that when a government persistently spends more than it collects in taxes and prints money to finance the shortfall, it puts upward pressure on the price level and generates persistent inflation.</p>
@@ -259,7 +259,7 @@
 the model.</p>
 </section>
 <section id="structure-of-the-model">
-<h2><span class="section-number">15.2. </span>Structure of the model<a class="headerlink" href="#structure-of-the-model" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">16.2. </span>Structure of the model<a class="headerlink" href="#structure-of-the-model" title="Permalink to this heading">#</a></h2>
 <p>Let</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\( m_t \)</span> be the log of the supply of  nominal money balances;</p></li>
@@ -272,27 +272,27 @@ the model.</p>
 </ul>
 <p>The demand for real balances <span class="math notranslate nohighlight">\(\exp\left(m_t^d-p_t\right)\)</span> is governed by the following  version of the Cagan demand function</p>
 <div class="math notranslate nohighlight" id="equation-eq-caganmd-ad">
-<span class="eqno">(15.1)<a class="headerlink" href="#equation-eq-caganmd-ad" title="Permalink to this equation">#</a></span>\[  
+<span class="eqno">(16.1)<a class="headerlink" href="#equation-eq-caganmd-ad" title="Permalink to this equation">#</a></span>\[  
 m_t^d - p_t = -\alpha \pi_t^* \: , \: \alpha &gt; 0 ; \quad t = 0, 1, \ldots, T .
 \]</div>
 <p>This equation  asserts that the demand for real balances
 is inversely related to the public’s expected rate of inflation with sensitivity <span class="math notranslate nohighlight">\(\alpha\)</span>.</p>
-<p>Equating the logarithm <span class="math notranslate nohighlight">\(m_t^d\)</span> of the demand for money  to the logarithm  <span class="math notranslate nohighlight">\(m_t\)</span> of the supply of money in equation <a class="reference internal" href="#equation-eq-caganmd-ad">(15.1)</a> and solving for the logarithm <span class="math notranslate nohighlight">\(p_t\)</span>
+<p>Equating the logarithm <span class="math notranslate nohighlight">\(m_t^d\)</span> of the demand for money  to the logarithm  <span class="math notranslate nohighlight">\(m_t\)</span> of the supply of money in equation <a class="reference internal" href="#equation-eq-caganmd-ad">(16.1)</a> and solving for the logarithm <span class="math notranslate nohighlight">\(p_t\)</span>
 of the price level gives</p>
 <div class="math notranslate nohighlight" id="equation-eq-eqfiscth1">
-<span class="eqno">(15.2)<a class="headerlink" href="#equation-eq-eqfiscth1" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(16.2)<a class="headerlink" href="#equation-eq-eqfiscth1" title="Permalink to this equation">#</a></span>\[
 p_t = m_t + \alpha \pi_t^*
 \]</div>
-<p>Taking the difference between equation <a class="reference internal" href="#equation-eq-eqfiscth1">(15.2)</a> at time <span class="math notranslate nohighlight">\(t+1\)</span> and at time
+<p>Taking the difference between equation <a class="reference internal" href="#equation-eq-eqfiscth1">(16.2)</a> at time <span class="math notranslate nohighlight">\(t+1\)</span> and at time
 <span class="math notranslate nohighlight">\(t\)</span> gives</p>
 <div class="math notranslate nohighlight" id="equation-eq-eqpipi">
-<span class="eqno">(15.3)<a class="headerlink" href="#equation-eq-eqpipi" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(16.3)<a class="headerlink" href="#equation-eq-eqpipi" title="Permalink to this equation">#</a></span>\[
 \pi_t = \mu_t + \alpha \pi_{t+1}^* - \alpha \pi_t^*
 \]</div>
 <p>We assume that the expected rate of inflation <span class="math notranslate nohighlight">\(\pi_t^*\)</span> is governed
 by the following adaptive expectations scheme proposed by <span id="id2">[<a class="reference internal" href="zreferences.html#id183" title="M. Friedman. A Theory of the Consumption Function. Princeton University Press, 1956.">Friedman, 1956</a>]</span> and <span id="id3">[<a class="reference internal" href="zreferences.html#id112" title="Philip Cagan. The monetary dynamics of hyperinflation. In Milton Friedman, editor, Studies in the Quantity Theory of Money, pages 25–117. University of Chicago Press, Chicago, 1956.">Cagan, 1956</a>]</span>, where <span class="math notranslate nohighlight">\(\lambda\in [0,1]\)</span> denotes the weight on expected inflation.</p>
 <div class="math notranslate nohighlight" id="equation-eq-adaptexpn">
-<span class="eqno">(15.4)<a class="headerlink" href="#equation-eq-adaptexpn" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(16.4)<a class="headerlink" href="#equation-eq-adaptexpn" title="Permalink to this equation">#</a></span>\[
 \pi_{t+1}^* = \lambda \pi_t^* + (1 -\lambda) \pi_t 
 \]</div>
 <p>As exogenous inputs into the model, we take initial conditions <span class="math notranslate nohighlight">\(m_0, \pi_0^*\)</span>
@@ -302,8 +302,8 @@ and a money growth sequence <span class="math notranslate nohighlight">\(\mu = \
 the model inputs.</p>
 </section>
 <section id="representing-key-equations-with-linear-algebra">
-<h2><span class="section-number">15.3. </span>Representing key equations with linear algebra<a class="headerlink" href="#representing-key-equations-with-linear-algebra" title="Permalink to this heading">#</a></h2>
-<p>We begin by writing the equation <a class="reference internal" href="#equation-eq-adaptexpn">(15.4)</a>  adaptive expectations model for <span class="math notranslate nohighlight">\(\pi_t^*\)</span> for <span class="math notranslate nohighlight">\(t=0, \ldots, T\)</span> as</p>
+<h2><span class="section-number">16.3. </span>Representing key equations with linear algebra<a class="headerlink" href="#representing-key-equations-with-linear-algebra" title="Permalink to this heading">#</a></h2>
+<p>We begin by writing the equation <a class="reference internal" href="#equation-eq-adaptexpn">(16.4)</a>  adaptive expectations model for <span class="math notranslate nohighlight">\(\pi_t^*\)</span> for <span class="math notranslate nohighlight">\(t=0, \ldots, T\)</span> as</p>
 <div class="math notranslate nohighlight">
 \[
 \begin{bmatrix} 1 &amp; 0 &amp; 0 &amp; \cdots &amp; 0 &amp; 0 \cr
@@ -330,12 +330,12 @@ the model inputs.</p>
 \]</div>
 <p>Write this equation as</p>
 <div class="math notranslate nohighlight" id="equation-eq-eq1">
-<span class="eqno">(15.5)<a class="headerlink" href="#equation-eq-eq1" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(16.5)<a class="headerlink" href="#equation-eq-eq1" title="Permalink to this equation">#</a></span>\[
  A \pi^* = (1-\lambda) B \pi + \pi_0^*
 \]</div>
 <p>where the <span class="math notranslate nohighlight">\((T+2) \times (T+2) \)</span>matrix <span class="math notranslate nohighlight">\(A\)</span>, the <span class="math notranslate nohighlight">\((T+2)\times (T+1)\)</span> matrix <span class="math notranslate nohighlight">\(B\)</span>, and the vectors <span class="math notranslate nohighlight">\(\pi^* , \pi_0, \pi_0^*\)</span>
 are defined implicitly by aligning these two equations.</p>
-<p>Next we write the key equation <a class="reference internal" href="#equation-eq-eqpipi">(15.3)</a> in matrix notation as</p>
+<p>Next we write the key equation <a class="reference internal" href="#equation-eq-eqpipi">(16.3)</a> in matrix notation as</p>
 <div class="math notranslate nohighlight">
 \[ 
 \begin{bmatrix}
@@ -357,17 +357,17 @@ are defined implicitly by aligning these two equations.</p>
 \]</div>
 <p>Represent the previous equation system in terms of vectors and matrices as</p>
 <div class="math notranslate nohighlight" id="equation-eq-eq2">
-<span class="eqno">(15.6)<a class="headerlink" href="#equation-eq-eq2" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(16.6)<a class="headerlink" href="#equation-eq-eq2" title="Permalink to this equation">#</a></span>\[
 \pi = \mu + C \pi^*
 \]</div>
 <p>where the <span class="math notranslate nohighlight">\((T+1) \times (T+2)\)</span> matrix <span class="math notranslate nohighlight">\(C\)</span> is defined implicitly to align this equation with the preceding
 equation system.</p>
 </section>
 <section id="harvesting-insights-from-our-matrix-formulation">
-<h2><span class="section-number">15.4. </span>Harvesting insights from our matrix formulation<a class="headerlink" href="#harvesting-insights-from-our-matrix-formulation" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">16.4. </span>Harvesting insights from our matrix formulation<a class="headerlink" href="#harvesting-insights-from-our-matrix-formulation" title="Permalink to this heading">#</a></h2>
 <p>We now have all of the ingredients we need to solve for <span class="math notranslate nohighlight">\(\pi\)</span> as
 a function of <span class="math notranslate nohighlight">\(\mu, \pi_0, \pi_0^*\)</span>.</p>
-<p>Combine equations <a class="reference internal" href="#equation-eq-eq1">(15.5)</a>and <a class="reference internal" href="#equation-eq-eq2">(15.6)</a>  to get</p>
+<p>Combine equations <a class="reference internal" href="#equation-eq-eq1">(16.5)</a>and <a class="reference internal" href="#equation-eq-eq2">(16.6)</a>  to get</p>
 <div class="math notranslate nohighlight">
 \[
 \begin{aligned}
@@ -382,10 +382,10 @@ A \pi^* &amp; = (1-\lambda) B \pi + \pi_0^* \cr
 \]</div>
 <p>Multiplying both sides of the above equation by the inverse of the matrix on the left side gives</p>
 <div class="math notranslate nohighlight" id="equation-eq-eq4">
-<span class="eqno">(15.7)<a class="headerlink" href="#equation-eq-eq4" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(16.7)<a class="headerlink" href="#equation-eq-eq4" title="Permalink to this equation">#</a></span>\[
 \pi^* = \left[ A - (1-\lambda) B C \right]^{-1} \left[ (1-\lambda) B \mu+ \pi_0^* \right]
 \]</div>
-<p>Having solved equation <a class="reference internal" href="#equation-eq-eq4">(15.7)</a> for <span class="math notranslate nohighlight">\(\pi^*\)</span>, we can use  equation <a class="reference internal" href="#equation-eq-eq2">(15.6)</a>  to solve for <span class="math notranslate nohighlight">\(\pi\)</span>:</p>
+<p>Having solved equation <a class="reference internal" href="#equation-eq-eq4">(16.7)</a> for <span class="math notranslate nohighlight">\(\pi^*\)</span>, we can use  equation <a class="reference internal" href="#equation-eq-eq2">(16.6)</a>  to solve for <span class="math notranslate nohighlight">\(\pi\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[
 \pi = \mu + C \pi^*
@@ -393,7 +393,7 @@ A \pi^* &amp; = (1-\lambda) B \pi + \pi_0^* \cr
 <p>We have thus solved for two of the key endogenous time series determined by our model, namely, the sequence <span class="math notranslate nohighlight">\(\pi^*\)</span>
 of expected inflation rates and the sequence <span class="math notranslate nohighlight">\(\pi\)</span> of actual inflation rates.</p>
 <p>Knowing these, we can then quickly calculate the associated sequence <span class="math notranslate nohighlight">\(p\)</span>  of the logarithm of the  price level
-from equation <a class="reference internal" href="#equation-eq-eqfiscth1">(15.2)</a>.</p>
+from equation <a class="reference internal" href="#equation-eq-eqfiscth1">(16.2)</a>.</p>
 <p>Let’s fill in the details for this step.</p>
 <p>Since we now know <span class="math notranslate nohighlight">\(\mu\)</span>  it is easy to compute <span class="math notranslate nohighlight">\(m\)</span>.</p>
 <p>Thus, notice that we can represent the equations</p>
@@ -403,7 +403,7 @@ m_{t+1} = m_t + \mu_t , \quad t = 0, 1, \ldots, T
 \]</div>
 <p>as the matrix equation</p>
 <div class="math notranslate nohighlight" id="equation-eq-eq101-ad">
-<span class="eqno">(15.8)<a class="headerlink" href="#equation-eq-eq101-ad" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(16.8)<a class="headerlink" href="#equation-eq-eq101-ad" title="Permalink to this equation">#</a></span>\[
 \begin{bmatrix}
 1 &amp; 0 &amp; 0 &amp; \cdots &amp; 0 &amp; 0 \cr
 -1 &amp; 1 &amp; 0 &amp; \cdots &amp; 0 &amp; 0 \cr
@@ -422,14 +422,14 @@ m_1 \cr m_2 \cr m_3 \cr \vdots \cr m_T \cr m_{T+1}
 m_0 \cr 0 \cr 0 \cr \vdots \cr 0 \cr 0
 \end{bmatrix}
 \]</div>
-<p>Multiplying both sides of equation <a class="reference internal" href="#equation-eq-eq101-ad">(15.8)</a>  with the inverse of the matrix on the left will give</p>
+<p>Multiplying both sides of equation <a class="reference internal" href="#equation-eq-eq101-ad">(16.8)</a>  with the inverse of the matrix on the left will give</p>
 <div class="math notranslate nohighlight" id="equation-eq-mcum-ad">
-<span class="eqno">(15.9)<a class="headerlink" href="#equation-eq-mcum-ad" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(16.9)<a class="headerlink" href="#equation-eq-mcum-ad" title="Permalink to this equation">#</a></span>\[
 m_t = m_0 + \sum_{s=0}^{t-1} \mu_s, \quad t =1, \ldots, T+1
 \]</div>
-<p>Equation <a class="reference internal" href="#equation-eq-mcum-ad">(15.9)</a> shows that the log of the money supply at <span class="math notranslate nohighlight">\(t\)</span> equals the log <span class="math notranslate nohighlight">\(m_0\)</span> of the initial money supply
+<p>Equation <a class="reference internal" href="#equation-eq-mcum-ad">(16.9)</a> shows that the log of the money supply at <span class="math notranslate nohighlight">\(t\)</span> equals the log <span class="math notranslate nohighlight">\(m_0\)</span> of the initial money supply
 plus accumulation of rates of money growth between times <span class="math notranslate nohighlight">\(0\)</span> and <span class="math notranslate nohighlight">\(t\)</span>.</p>
-<p>We can then compute <span class="math notranslate nohighlight">\(p_t\)</span> for each <span class="math notranslate nohighlight">\(t\)</span> from equation <a class="reference internal" href="#equation-eq-eqfiscth1">(15.2)</a>.</p>
+<p>We can then compute <span class="math notranslate nohighlight">\(p_t\)</span> for each <span class="math notranslate nohighlight">\(t\)</span> from equation <a class="reference internal" href="#equation-eq-eqfiscth1">(16.2)</a>.</p>
 <p>We can write a compact formula for <span class="math notranslate nohighlight">\(p \)</span> as</p>
 <div class="math notranslate nohighlight">
 \[ 
@@ -448,7 +448,7 @@ p = m + \alpha \hat \pi^*
 <p>which is just <span class="math notranslate nohighlight">\(\pi^*\)</span> with the last element dropped.</p>
 </section>
 <section id="forecast-errors-and-model-computation">
-<h2><span class="section-number">15.5. </span>Forecast errors and model computation<a class="headerlink" href="#forecast-errors-and-model-computation" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">16.5. </span>Forecast errors and model computation<a class="headerlink" href="#forecast-errors-and-model-computation" title="Permalink to this heading">#</a></h2>
 <p>Our computations will verify that</p>
 <div class="math notranslate nohighlight">
 \[
@@ -456,12 +456,12 @@ p = m + \alpha \hat \pi^*
 \]</div>
 <p>so that in general</p>
 <div class="math notranslate nohighlight" id="equation-eq-notre">
-<span class="eqno">(15.10)<a class="headerlink" href="#equation-eq-notre" title="Permalink to this equation">#</a></span>\[ 
+<span class="eqno">(16.10)<a class="headerlink" href="#equation-eq-notre" title="Permalink to this equation">#</a></span>\[ 
 \pi_t^* \neq \pi_t, \quad t = 0, 1, \ldots , T
 \]</div>
-<p>This outcome is typical in models in which adaptive expectations hypothesis like equation <a class="reference internal" href="#equation-eq-adaptexpn">(15.4)</a> appear as a
+<p>This outcome is typical in models in which adaptive expectations hypothesis like equation <a class="reference internal" href="#equation-eq-adaptexpn">(16.4)</a> appear as a
 component.</p>
-<p>In <a class="reference internal" href="cagan_ree.html"><span class="doc">A Monetarist Theory of Price Levels</span></a>, we studied a version of the model that replaces hypothesis <a class="reference internal" href="#equation-eq-adaptexpn">(15.4)</a> with
+<p>In <a class="reference internal" href="cagan_ree.html"><span class="doc">A Monetarist Theory of Price Levels</span></a>, we studied a version of the model that replaces hypothesis <a class="reference internal" href="#equation-eq-adaptexpn">(16.4)</a> with
 a “perfect foresight” or “rational expectations” hypothesis.</p>
 <p>But now, let’s dive in and do some computations with the adaptive expectations version of the model.</p>
 <p>As usual, we’ll start by importing some Python modules.</p>
@@ -555,10 +555,10 @@ a “perfect foresight” or “rational expectations” hypothesis.</p>
 </div>
 </section>
 <section id="technical-condition-for-stability">
-<h2><span class="section-number">15.6. </span>Technical condition for stability<a class="headerlink" href="#technical-condition-for-stability" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">16.6. </span>Technical condition for stability<a class="headerlink" href="#technical-condition-for-stability" title="Permalink to this heading">#</a></h2>
 <p>In constructing our examples, we shall assume that <span class="math notranslate nohighlight">\((\lambda, \alpha)\)</span> satisfy</p>
 <div class="math notranslate nohighlight" id="equation-eq-suffcond">
-<span class="eqno">(15.11)<a class="headerlink" href="#equation-eq-suffcond" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(16.11)<a class="headerlink" href="#equation-eq-suffcond" title="Permalink to this equation">#</a></span>\[
 \Bigl| \frac{\lambda-\alpha(1-\lambda)}{1-\alpha(1-\lambda)} \Bigr| &lt; 1
 \]</div>
 <p>The  source of this condition is the following string of deductions:</p>
@@ -568,8 +568,8 @@ a “perfect foresight” or “rational expectations” hypothesis.</p>
 \pi_{t}&amp;=\mu_{t}+\alpha\pi_{t+1}^{*}-\alpha\pi_{t}^{*}\\\pi_{t+1}^{*}&amp;=\lambda\pi_{t}^{*}+(1-\lambda)\pi_{t}\\\pi_{t}&amp;=\frac{\mu_{t}}{1-\alpha(1-\lambda)}-\frac{\alpha(1-\lambda)}{1-\alpha(1-\lambda)}\pi_{t}^{*}\\\implies\pi_{t}^{*}&amp;=\frac{1}{\alpha(1-\lambda)}\mu_{t}-\frac{1-\alpha(1-\lambda)}{\alpha(1-\lambda)}\pi_{t}\\\pi_{t+1}&amp;=\frac{\mu_{t+1}}{1-\alpha(1-\lambda)}-\frac{\alpha(1-\lambda)}{1-\alpha(1-\lambda)}\left(\lambda\pi_{t}^{*}+(1-\lambda)\pi_{t}\right)\\&amp;=\frac{\mu_{t+1}}{1-\alpha(1-\lambda)}-\frac{\lambda}{1-\alpha(1-\lambda)}\mu_{t}+\frac{\lambda-\alpha(1-\lambda)}{1-\alpha(1-\lambda)}\pi_{t}
 \end{aligned}
 \end{split}\]</div>
-<p>By assuring that the coefficient on <span class="math notranslate nohighlight">\(\pi_t\)</span> is less than one in absolute value, condition <a class="reference internal" href="#equation-eq-suffcond">(15.11)</a> assures stability of the dynamics of <span class="math notranslate nohighlight">\(\{\pi_t\}\)</span> described by the last line of our string of deductions.</p>
-<p>The reader is free to study outcomes in examples that violate condition <a class="reference internal" href="#equation-eq-suffcond">(15.11)</a>.</p>
+<p>By assuring that the coefficient on <span class="math notranslate nohighlight">\(\pi_t\)</span> is less than one in absolute value, condition <a class="reference internal" href="#equation-eq-suffcond">(16.11)</a> assures stability of the dynamics of <span class="math notranslate nohighlight">\(\{\pi_t\}\)</span> described by the last line of our string of deductions.</p>
+<p>The reader is free to study outcomes in examples that violate condition <a class="reference internal" href="#equation-eq-suffcond">(16.11)</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">((</span><span class="n">md</span><span class="o">.</span><span class="n">λ</span> <span class="o">-</span> <span class="n">md</span><span class="o">.</span><span class="n">α</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">md</span><span class="o">.</span><span class="n">λ</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">md</span><span class="o">.</span><span class="n">α</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">md</span><span class="o">.</span><span class="n">λ</span><span class="p">))))</span>
@@ -584,10 +584,10 @@ a “perfect foresight” or “rational expectations” hypothesis.</p>
 </div>
 </section>
 <section id="experiments">
-<h2><span class="section-number">15.7. </span>Experiments<a class="headerlink" href="#experiments" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">16.7. </span>Experiments<a class="headerlink" href="#experiments" title="Permalink to this heading">#</a></h2>
 <p>Now we’ll turn to some experiments.</p>
 <section id="experiment-1">
-<h3><span class="section-number">15.7.1. </span>Experiment 1<a class="headerlink" href="#experiment-1" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">16.7.1. </span>Experiment 1<a class="headerlink" href="#experiment-1" title="Permalink to this heading">#</a></h3>
 <p>We’ll study a situation in which the rate of growth of the money supply is <span class="math notranslate nohighlight">\(\mu_0\)</span>
 from <span class="math notranslate nohighlight">\(t=0\)</span> to <span class="math notranslate nohighlight">\(t= T_1\)</span> and then permanently falls to <span class="math notranslate nohighlight">\(\mu^*\)</span> at <span class="math notranslate nohighlight">\(t=T_1\)</span>.</p>
 <p>Thus, let <span class="math notranslate nohighlight">\(T_1 \in (0, T)\)</span>.</p>
@@ -624,7 +624,7 @@ from <span class="math notranslate nohighlight">\(t=0\)</span> to <span class="m
 <p>We invite you to explain to  yourself the source of this overshooting and why it does not occur in  the rational expectations version of the model.</p>
 </section>
 <section id="experiment-2">
-<h3><span class="section-number">15.7.2. </span>Experiment 2<a class="headerlink" href="#experiment-2" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">16.7.2. </span>Experiment 2<a class="headerlink" href="#experiment-2" title="Permalink to this heading">#</a></h3>
 <p>Now we’ll do a different experiment, namely, a gradual stabilization in which the rate of growth of the money supply smoothly
 decline from a high value to a persistently low value.</p>
 <p>While price level inflation eventually falls, it falls more slowly than the driving  force that ultimately causes it to fall, namely, the falling rate of growth of the money supply.</p>
@@ -787,18 +787,23 @@ decline from a high value to a persistently low value.</p>
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="tax_smooth.html">
+   13. Tax Smoothing
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="equalizing_difference.html">
-   13. Equalizing Difference Model
+   14. Equalizing Difference Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cagan_ree.html">
-   14. A Monetarist Theory of Price Levels
+   15. A Monetarist Theory of Price Levels
   </a>
  </li>
  <li class="toctree-l1 current active active">
   <a class="current reference internal" href="#">
-   15. Monetarist Theory of Price Levels with Adaptive Expectations
+   16. Monetarist Theory of Price Levels with Adaptive Expectations
   </a>
  </li>
 </ul>
@@ -810,12 +815,12 @@ decline from a high value to a persistently low value.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="eigen_I.html">
-   16. Eigenvalues and Eigenvectors
+   17. Eigenvalues and Eigenvectors
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="greek_square.html">
-   17. Computing Square Roots
+   18. Computing Square Roots
   </a>
  </li>
 </ul>
@@ -827,27 +832,27 @@ decline from a high value to a persistently low value.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="prob_dist.html">
-   18. Distributions and Probabilities
+   19. Distributions and Probabilities
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="lln_clt.html">
-   19. LLN and CLT
+   20. LLN and CLT
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="monte_carlo.html">
-   20. Monte Carlo and Option Pricing
+   21. Monte Carlo and Option Pricing
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="heavy_tails.html">
-   21. Heavy-Tailed Distributions
+   22. Heavy-Tailed Distributions
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="schelling.html">
-   22. Racial Segregation
+   23. Racial Segregation
   </a>
  </li>
 </ul>
@@ -859,27 +864,27 @@ decline from a high value to a persistently low value.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="scalar_dynam.html">
-   23. Dynamics in One Dimension
+   24. Dynamics in One Dimension
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="solow.html">
-   24. The Solow-Swan Growth Model
+   25. The Solow-Swan Growth Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cobweb.html">
-   25. The Cobweb Model
+   26. The Cobweb Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="olg.html">
-   26. The Overlapping Generations Model
+   27. The Overlapping Generations Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="commod_price.html">
-   27. Commodity Prices
+   28. Commodity Prices
   </a>
  </li>
 </ul>
@@ -891,22 +896,22 @@ decline from a high value to a persistently low value.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="money_inflation.html">
-   28. Money Financed Government Deficits and Price Levels
+   29. Money Financed Government Deficits and Price Levels
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="unpleasant.html">
-   29. Some Unpleasant Monetarist Arithmetic
+   30. Some Unpleasant Monetarist Arithmetic
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="money_inflation_nonlinear.html">
-   30. Inflation Rate Laffer Curves
+   31. Inflation Rate Laffer Curves
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="laffer_adaptive.html">
-   31. Laffer Curves  with Adaptive Expectations
+   32. Laffer Curves  with Adaptive Expectations
   </a>
  </li>
 </ul>
@@ -918,22 +923,22 @@ decline from a high value to a persistently low value.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="ar1_processes.html">
-   32. AR(1) Processes
+   33. AR(1) Processes
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="markov_chains_I.html">
-   33. Markov Chains: Basic Concepts
+   34. Markov Chains: Basic Concepts
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="markov_chains_II.html">
-   34. Markov Chains: Irreducibility and Ergodicity
+   35. Markov Chains: Irreducibility and Ergodicity
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="time_series_with_matrices.html">
-   35. Univariate Time Series with Matrix Algebra
+   36. Univariate Time Series with Matrix Algebra
   </a>
  </li>
 </ul>
@@ -945,12 +950,12 @@ decline from a high value to a persistently low value.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="lp_intro.html">
-   36. Linear Programming
+   37. Linear Programming
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="short_path.html">
-   37. Shortest Paths
+   38. Shortest Paths
   </a>
  </li>
 </ul>
@@ -962,22 +967,22 @@ decline from a high value to a persistently low value.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="eigen_II.html">
-   38. The Perron-Frobenius Theorem
+   39. The Perron-Frobenius Theorem
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="input_output.html">
-   39. Input-Output Models
+   40. Input-Output Models
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="lake_model.html">
-   40. A Lake Model of Employment
+   41. A Lake Model of Employment
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="networks.html">
-   41. Networks
+   42. Networks
   </a>
  </li>
 </ul>
@@ -989,12 +994,12 @@ decline from a high value to a persistently low value.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="supply_demand_multiple_goods.html">
-   42. Supply and Demand with Many Goods
+   43. Supply and Demand with Many Goods
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="supply_demand_heterogeneity.html">
-   43. Market Equilibrium with Heterogeneity
+   44. Market Equilibrium with Heterogeneity
   </a>
  </li>
 </ul>
@@ -1006,12 +1011,12 @@ decline from a high value to a persistently low value.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="simple_linear_regression.html">
-   44. Simple Linear Regression Model
+   45. Simple Linear Regression Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="mle.html">
-   45. Maximum Likelihood Estimation
+   46. Maximum Likelihood Estimation
   </a>
  </li>
 </ul>
@@ -1023,17 +1028,17 @@ decline from a high value to a persistently low value.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="troubleshooting.html">
-   46. Troubleshooting
+   47. Troubleshooting
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="zreferences.html">
-   47. References
+   48. References
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="status.html">
-   48. Execution Statistics
+   49. Execution Statistics
   </a>
  </li>
 </ul>

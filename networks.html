@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>41. Networks &#8212; A First Course in Quantitative Economics with Python</title>
+    <title>42. Networks &#8212; A First Course in Quantitative Economics with Python</title>
     <script src="https://unpkg.com/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://unpkg.com/tippy.js@6.3.1/dist/tippy-bundle.umd.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
@@ -120,8 +120,8 @@
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="42. Supply and Demand with Many Goods" href="supply_demand_multiple_goods.html" />
-    <link rel="prev" title="40. A Lake Model of Employment" href="lake_model.html" />
+    <link rel="next" title="43. Supply and Demand with Many Goods" href="supply_demand_multiple_goods.html" />
+    <link rel="prev" title="41. A Lake Model of Employment" href="lake_model.html" />
 
 <!-- Normal Meta Tags -->
 <meta name="author" context="Thomas J. Sargent &amp; John Stachurski" />
@@ -169,34 +169,34 @@
 
                         <nav id="bd-toc-nav" class="qe-page__toc-nav">
                             <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#outline">41.1. Outline</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#economic-and-financial-networks">41.2. Economic and financial networks</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-aircraft-exports">41.2.1. Example: Aircraft Exports</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-a-markov-chain">41.2.2. Example: A Markov Chain</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#outline">42.1. Outline</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#economic-and-financial-networks">42.2. Economic and financial networks</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-aircraft-exports">42.2.1. Example: Aircraft Exports</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-a-markov-chain">42.2.2. Example: A Markov Chain</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#an-introduction-to-graph-theory">41.3. An introduction to graph theory</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-definitions">41.3.1. Key definitions</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#digraphs-in-networkx">41.3.2. Digraphs in Networkx</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#communication">41.3.3. Communication</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#an-introduction-to-graph-theory">42.3. An introduction to graph theory</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-definitions">42.3.1. Key definitions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#digraphs-in-networkx">42.3.2. Digraphs in Networkx</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#communication">42.3.3. Communication</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#weighted-graphs">41.4. Weighted graphs</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#international-private-credit-flows-by-country">41.4.1. International private credit flows by country</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definitions">41.4.2. Definitions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#weighted-graphs">42.4. Weighted graphs</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#international-private-credit-flows-by-country">42.4.1. International private credit flows by country</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definitions">42.4.2. Definitions</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adjacency-matrices">41.5. Adjacency matrices</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#properties">41.6. Properties</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#network-centrality">41.7. Network centrality</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#degree-centrality">41.7.1. Degree centrality</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eigenvector-centrality">41.7.2. Eigenvector centrality</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#katz-centrality">41.7.3. Katz centrality</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#authorities-vs-hubs">41.7.4. Authorities vs hubs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adjacency-matrices">42.5. Adjacency matrices</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#properties">42.6. Properties</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#network-centrality">42.7. Network centrality</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#degree-centrality">42.7.1. Degree centrality</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eigenvector-centrality">42.7.2. Eigenvector centrality</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#katz-centrality">42.7.3. Katz centrality</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#authorities-vs-hubs">42.7.4. Authorities vs hubs</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#further-reading">41.8. Further reading</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">41.9. Exercises</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#further-reading">42.8. Further reading</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">42.9. Exercises</a></li>
 </ul>
                             <p class="logo">
                                 
@@ -256,7 +256,7 @@
                     <div>
                         
   <section class="tex2jax_ignore mathjax_ignore" id="networks">
-<h1><span class="section-number">41. </span>Networks<a class="headerlink" href="#networks" title="Permalink to this heading">#</a></h1>
+<h1><span class="section-number">42. </span>Networks<a class="headerlink" href="#networks" title="Permalink to this heading">#</a></h1>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input above-output-prompt docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>quantecon-book-networks<span class="w"> </span>pandas-datareader
@@ -296,10 +296,10 @@ Requirement already satisfied: pillow&gt;=8 in /home/runner/miniconda3/envs/quan
 Requirement already satisfied: pyparsing&gt;=2.3.1 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from matplotlib-&gt;quantecon-book-networks) (3.1.2)
 Requirement already satisfied: numba&gt;=0.49.0 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from quantecon-&gt;quantecon-book-networks) (0.60.0)
 Requirement already satisfied: sympy in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from quantecon-&gt;quantecon-book-networks) (1.13.2)
+Requirement already satisfied: llvmlite&lt;0.44,&gt;=0.43.0dev0 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from numba&gt;=0.49.0-&gt;quantecon-&gt;quantecon-book-networks) (0.43.0)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: llvmlite&lt;0.44,&gt;=0.43.0dev0 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from numba&gt;=0.49.0-&gt;quantecon-&gt;quantecon-book-networks) (0.43.0)
-Requirement already satisfied: six&gt;=1.5 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from python-dateutil&gt;=2.8.2-&gt;pandas-&gt;quantecon-book-networks) (1.16.0)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: six&gt;=1.5 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from python-dateutil&gt;=2.8.2-&gt;pandas-&gt;quantecon-book-networks) (1.16.0)
 Requirement already satisfied: mpmath&lt;1.4,&gt;=1.1.0 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from sympy-&gt;quantecon-&gt;quantecon-book-networks) (1.3.0)
 </pre></div>
 </div>
@@ -307,7 +307,7 @@ Requirement already satisfied: mpmath&lt;1.4,&gt;=1.1.0 in /home/runner/minicond
 </details>
 </div>
 <section id="outline">
-<h2><span class="section-number">41.1. </span>Outline<a class="headerlink" href="#outline" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">42.1. </span>Outline<a class="headerlink" href="#outline" title="Permalink to this heading">#</a></h2>
 <p>In recent years there has been rapid growth in a field called <a class="reference external" href="https://en.wikipedia.org/wiki/Network_science">network science</a>.</p>
 <p>Network science studies relationships between groups of objects.</p>
 <p>One important example is the <a class="reference external" href="https://en.wikipedia.org/wiki/World_Wide_Web#Linking">world wide web</a>
@@ -345,7 +345,7 @@ introductory.</p>
 </div>
 </section>
 <section id="economic-and-financial-networks">
-<h2><span class="section-number">41.2. </span>Economic and financial networks<a class="headerlink" href="#economic-and-financial-networks" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">42.2. </span>Economic and financial networks<a class="headerlink" href="#economic-and-financial-networks" title="Permalink to this heading">#</a></h2>
 <p>Within economics, important examples of networks include</p>
 <ul class="simple">
 <li><p>financial networks</p></li>
@@ -359,7 +359,7 @@ introductory.</p>
 <p>The structure of production networks affects trade, innovation and the propagation of local shocks.</p>
 <p>To better understand such networks, let’s look at some examples in more depth.</p>
 <section id="example-aircraft-exports">
-<h3><span class="section-number">41.2.1. </span>Example: Aircraft Exports<a class="headerlink" href="#example-aircraft-exports" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">42.2.1. </span>Example: Aircraft Exports<a class="headerlink" href="#example-aircraft-exports" title="Permalink to this heading">#</a></h3>
 <p>The following figure shows international trade in large commercial aircraft in 2019 based on International Trade Data SITC Revision 2.</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
@@ -424,7 +424,7 @@ introductory.</p>
 <figure class="align-default" id="aircraft-network">
 <a class="reference internal image-reference" href="_images/78b00b52ca0fbb1c676cde09decfbcd4e6dc04267c763b2fd21c4ef7fc80465a.png"><img alt="_images/78b00b52ca0fbb1c676cde09decfbcd4e6dc04267c763b2fd21c4ef7fc80465a.png" src="_images/78b00b52ca0fbb1c676cde09decfbcd4e6dc04267c763b2fd21c4ef7fc80465a.png" style="width: 80%;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 41.1 </span><span class="caption-text">Commercial Aircraft Network</span><a class="headerlink" href="#aircraft-network" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 42.1 </span><span class="caption-text">Commercial Aircraft Network</span><a class="headerlink" href="#aircraft-network" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </div>
@@ -437,7 +437,7 @@ introductory.</p>
 <p>In the discussion below, we learn to quantify such ideas.</p>
 </section>
 <section id="example-a-markov-chain">
-<h3><span class="section-number">41.2.2. </span>Example: A Markov Chain<a class="headerlink" href="#example-a-markov-chain" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">42.2.2. </span>Example: A Markov Chain<a class="headerlink" href="#example-a-markov-chain" title="Permalink to this heading">#</a></h3>
 <p>Recall that, in our lecture on <a class="reference internal" href="markov_chains_I.html#mc-eg2"><span class="std std-ref">Markov chains</span></a> we studied a dynamic model of business cycles
 where the states are</p>
 <ul class="simple">
@@ -456,7 +456,7 @@ where the states are</p>
 </section>
 </section>
 <section id="an-introduction-to-graph-theory">
-<h2><span class="section-number">41.3. </span>An introduction to graph theory<a class="headerlink" href="#an-introduction-to-graph-theory" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">42.3. </span>An introduction to graph theory<a class="headerlink" href="#an-introduction-to-graph-theory" title="Permalink to this heading">#</a></h2>
 <p>Now we’ve looked at some examples, let’s move on to theory.</p>
 <p>This theory will allow us to better organize our thoughts.</p>
 <p>The theoretical part of network science is constructed using a major branch of
@@ -476,7 +476,7 @@ important ideas on economic and financial networks.</p>
 case of directed graphs — we just need to insist that each arrow pointing
 from <span class="math notranslate nohighlight">\(A\)</span> to <span class="math notranslate nohighlight">\(B\)</span> is paired with another arrow pointing from <span class="math notranslate nohighlight">\(B\)</span> to <span class="math notranslate nohighlight">\(A\)</span>.)</p>
 <section id="key-definitions">
-<h3><span class="section-number">41.3.1. </span>Key definitions<a class="headerlink" href="#key-definitions" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">42.3.1. </span>Key definitions<a class="headerlink" href="#key-definitions" title="Permalink to this heading">#</a></h3>
 <p>A <strong>directed graph</strong> consists of two things:</p>
 <ol class="arabic simple">
 <li><p>a finite set <span class="math notranslate nohighlight">\(V\)</span> and</p></li>
@@ -487,7 +487,7 @@ from <span class="math notranslate nohighlight">\(A\)</span> to <span class="mat
 <p>Intuitively and visually, an edge <span class="math notranslate nohighlight">\((u,v)\)</span> is understood as an arrow from node <span class="math notranslate nohighlight">\(u\)</span> to node <span class="math notranslate nohighlight">\(v\)</span>.</p>
 <p>(A neat way to represent an arrow is to record the location of the tail and
 head of the arrow, and that’s exactly what an edge does.)</p>
-<p>In the aircraft export example shown in <a class="reference internal" href="#aircraft-network"><span class="std std-numref">Fig. 41.1</span></a></p>
+<p>In the aircraft export example shown in <a class="reference internal" href="#aircraft-network"><span class="std std-numref">Fig. 42.1</span></a></p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(V\)</span> is all countries included in the data set.</p></li>
 <li><p><span class="math notranslate nohighlight">\(E\)</span> is all the arrows in the figure, each indicating some positive amount of aircraft exports from one country to another.</p></li>
@@ -497,14 +497,14 @@ head of the arrow, and that’s exactly what an edge does.)</p>
 <figure class="align-default" id="poverty-trap-1">
 <img alt="_images/poverty_trap_1.png" src="_images/poverty_trap_1.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 41.2 </span><span class="caption-text">Poverty Trap</span><a class="headerlink" href="#poverty-trap-1" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 42.2 </span><span class="caption-text">Poverty Trap</span><a class="headerlink" href="#poverty-trap-1" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>We now construct a graph with the same nodes but different edges.</p>
 <figure class="align-default" id="poverty-trap-2">
 <img alt="_images/poverty_trap_2.png" src="_images/poverty_trap_2.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 41.3 </span><span class="caption-text">Poverty Trap</span><a class="headerlink" href="#poverty-trap-2" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 42.3 </span><span class="caption-text">Poverty Trap</span><a class="headerlink" href="#poverty-trap-2" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>For these graphs, the arrows (edges) can be thought of as representing
@@ -518,11 +518,11 @@ positive transition probabilities over a given unit of time.</p>
 </ul>
 </section>
 <section id="digraphs-in-networkx">
-<h3><span class="section-number">41.3.2. </span>Digraphs in Networkx<a class="headerlink" href="#digraphs-in-networkx" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">42.3.2. </span>Digraphs in Networkx<a class="headerlink" href="#digraphs-in-networkx" title="Permalink to this heading">#</a></h3>
 <p>The Python package <a class="reference external" href="https://networkx.org/">Networkx</a> provides a convenient
 data structure for representing directed graphs and implements many common
 routines for analyzing them.</p>
-<p>As an example, let us recreate <a class="reference internal" href="#poverty-trap-2"><span class="std std-numref">Fig. 41.3</span></a> using Networkx.</p>
+<p>As an example, let us recreate <a class="reference internal" href="#poverty-trap-2"><span class="std std-numref">Fig. 42.3</span></a> using Networkx.</p>
 <p>To do so, we first create an empty <code class="docutils literal notranslate"><span class="pre">DiGraph</span></code> object:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -575,10 +575,10 @@ correct representation of our graph.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/7e81892fed6c51758d16dc43e6a4776934f30c61f8bb251e3a525c23f812f5ef.png"><img alt="_images/7e81892fed6c51758d16dc43e6a4776934f30c61f8bb251e3a525c23f812f5ef.png" src="_images/7e81892fed6c51758d16dc43e6a4776934f30c61f8bb251e3a525c23f812f5ef.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/fc5d5ad37d581287779103d644ed9cffe6c22d287d66caf41de0a070fbbab5ab.png"><img alt="_images/fc5d5ad37d581287779103d644ed9cffe6c22d287d66caf41de0a070fbbab5ab.png" src="_images/fc5d5ad37d581287779103d644ed9cffe6c22d287d66caf41de0a070fbbab5ab.png" style="width: 80%;" /></a>
 </div>
 </div>
-<p>The figure obtained above matches the original directed graph in <a class="reference internal" href="#poverty-trap-2"><span class="std std-numref">Fig. 41.3</span></a>.</p>
+<p>The figure obtained above matches the original directed graph in <a class="reference internal" href="#poverty-trap-2"><span class="std std-numref">Fig. 42.3</span></a>.</p>
 <p><code class="docutils literal notranslate"><span class="pre">DiGraph</span></code> objects have methods that calculate in-degree and out-degree
 of nodes.</p>
 <p>For example,</p>
@@ -596,7 +596,7 @@ of nodes.</p>
 </div>
 </section>
 <section id="communication">
-<span id="strongly-connected"></span><h3><span class="section-number">41.3.3. </span>Communication<a class="headerlink" href="#communication" title="Permalink to this heading">#</a></h3>
+<span id="strongly-connected"></span><h3><span class="section-number">42.3.3. </span>Communication<a class="headerlink" href="#communication" title="Permalink to this heading">#</a></h3>
 <p>Next, we study communication and connectedness, which have important
 implications for economic networks.</p>
 <p>Node <span class="math notranslate nohighlight">\(v\)</span> is called <strong>accessible</strong> from node <span class="math notranslate nohighlight">\(u\)</span> if either <span class="math notranslate nohighlight">\(u=v\)</span> or there
@@ -613,8 +613,8 @@ exists a sequence of edges that lead from <span class="math notranslate nohighli
 <p>Then <span class="math notranslate nohighlight">\(m \to \ell\)</span> means that sector <span class="math notranslate nohighlight">\(m\)</span> is an upstream supplier of sector <span class="math notranslate nohighlight">\(\ell\)</span>.</p>
 <p>Two nodes <span class="math notranslate nohighlight">\(u\)</span> and <span class="math notranslate nohighlight">\(v\)</span> are said to <strong>communicate</strong> if both <span class="math notranslate nohighlight">\(u \to v\)</span> and <span class="math notranslate nohighlight">\(v \to u\)</span>.</p>
 <p>A graph is called <strong>strongly connected</strong> if all nodes communicate.</p>
-<p>For example, <a class="reference internal" href="#poverty-trap-1"><span class="std std-numref">Fig. 41.2</span></a> is strongly connected
-however in <a class="reference internal" href="#poverty-trap-2"><span class="std std-numref">Fig. 41.3</span></a> rich is not accessible from poor, thus it is not strongly connected.</p>
+<p>For example, <a class="reference internal" href="#poverty-trap-1"><span class="std std-numref">Fig. 42.2</span></a> is strongly connected
+however in <a class="reference internal" href="#poverty-trap-2"><span class="std std-numref">Fig. 42.3</span></a> rich is not accessible from poor, thus it is not strongly connected.</p>
 <p>We can verify this by first constructing the graphs using Networkx and then using <code class="docutils literal notranslate"><span class="pre">nx.is_strongly_connected</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -630,7 +630,7 @@ however in <a class="reference internal" href="#poverty-trap-2"><span class="std
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/8fca8e2d3917268c00e04458ff5c4d1c8f1df27a2dafc72e31a285b82faa86da.png"><img alt="_images/8fca8e2d3917268c00e04458ff5c4d1c8f1df27a2dafc72e31a285b82faa86da.png" src="_images/8fca8e2d3917268c00e04458ff5c4d1c8f1df27a2dafc72e31a285b82faa86da.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/42ee6704e98320553d4a6ba16222cb6256a133a8cd4cc563886a3ff88c1fceb3.png"><img alt="_images/42ee6704e98320553d4a6ba16222cb6256a133a8cd4cc563886a3ff88c1fceb3.png" src="_images/42ee6704e98320553d4a6ba16222cb6256a133a8cd4cc563886a3ff88c1fceb3.png" style="width: 80%;" /></a>
 </div>
 </div>
 <div class="cell docutils container">
@@ -659,7 +659,7 @@ however in <a class="reference internal" href="#poverty-trap-2"><span class="std
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/3f84a233aba9a53dc871142c4e671d656f910cb4f96893d5b94d9aee57d24949.png"><img alt="_images/3f84a233aba9a53dc871142c4e671d656f910cb4f96893d5b94d9aee57d24949.png" src="_images/3f84a233aba9a53dc871142c4e671d656f910cb4f96893d5b94d9aee57d24949.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/0199d726dfa4d69ec0c81a89f4c3bf4eea64feb5e44e540f30ac771d88fbea42.png"><img alt="_images/0199d726dfa4d69ec0c81a89f4c3bf4eea64feb5e44e540f30ac771d88fbea42.png" src="_images/0199d726dfa4d69ec0c81a89f4c3bf4eea64feb5e44e540f30ac771d88fbea42.png" style="width: 80%;" /></a>
 </div>
 </div>
 <div class="cell docutils container">
@@ -677,11 +677,11 @@ however in <a class="reference internal" href="#poverty-trap-2"><span class="std
 </section>
 </section>
 <section id="weighted-graphs">
-<h2><span class="section-number">41.4. </span>Weighted graphs<a class="headerlink" href="#weighted-graphs" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">42.4. </span>Weighted graphs<a class="headerlink" href="#weighted-graphs" title="Permalink to this heading">#</a></h2>
 <p>We now introduce weighted graphs, where weights (numbers) are attached to each
 edge.</p>
 <section id="international-private-credit-flows-by-country">
-<h3><span class="section-number">41.4.1. </span>International private credit flows by country<a class="headerlink" href="#international-private-credit-flows-by-country" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">42.4.1. </span>International private credit flows by country<a class="headerlink" href="#international-private-credit-flows-by-country" title="Permalink to this heading">#</a></h3>
 <p>To motivate the idea, consider the following figure which shows flows of funds (i.e.,
 loans) between private banks, grouped by country of origin.</p>
 <div class="cell tag_hide-input docutils container">
@@ -751,7 +751,7 @@ loans) between private banks, grouped by country of origin.</p>
 <figure class="align-default" id="financial-network">
 <a class="reference internal image-reference" href="_images/aec93beef883c2580a97eb8331f2a9dbebd0954b6bed94568d7c9262e7c117cb.png"><img alt="_images/aec93beef883c2580a97eb8331f2a9dbebd0954b6bed94568d7c9262e7c117cb.png" src="_images/aec93beef883c2580a97eb8331f2a9dbebd0954b6bed94568d7c9262e7c117cb.png" style="width: 80%;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 41.4 </span><span class="caption-text">International Credit Network</span><a class="headerlink" href="#financial-network" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 42.4 </span><span class="caption-text">International Credit Network</span><a class="headerlink" href="#financial-network" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </div>
@@ -825,7 +825,7 @@ of a credit flow, but also the size of the flow.</p>
 directed graph”.</p>
 </section>
 <section id="definitions">
-<h3><span class="section-number">41.4.2. </span>Definitions<a class="headerlink" href="#definitions" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">42.4.2. </span>Definitions<a class="headerlink" href="#definitions" title="Permalink to this heading">#</a></h3>
 <p>A <strong>weighted directed graph</strong> is a directed graph to which we have added a
 <strong>weight function</strong> <span class="math notranslate nohighlight">\(w\)</span> that assigns a positive number to each edge.</p>
 <p>The figure above shows one weighted directed graph, where the weights are the size of fund flows.</p>
@@ -834,7 +834,7 @@ representing edges of the induced directed graph.</p>
 <figure class="align-default" id="poverty-trap-weighted">
 <img alt="_images/weighted.png" src="_images/weighted.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 41.5 </span><span class="caption-text">Weighted Poverty Trap</span><a class="headerlink" href="#poverty-trap-weighted" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 42.5 </span><span class="caption-text">Weighted Poverty Trap</span><a class="headerlink" href="#poverty-trap-weighted" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>The numbers next to the edges are the weights.</p>
@@ -844,7 +844,7 @@ probabilities for a household over, say, one year.</p>
 </section>
 </section>
 <section id="adjacency-matrices">
-<h2><span class="section-number">41.5. </span>Adjacency matrices<a class="headerlink" href="#adjacency-matrices" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">42.5. </span>Adjacency matrices<a class="headerlink" href="#adjacency-matrices" title="Permalink to this heading">#</a></h2>
 <p>Another way that we can represent weights, which turns out to be very
 convenient for numerical work, is via a matrix.</p>
 <p>The <strong>adjacency matrix</strong> of a weighted directed graph with nodes <span class="math notranslate nohighlight">\(\{v_1, \ldots, v_n\}\)</span>, edges <span class="math notranslate nohighlight">\(E\)</span> and weight function <span class="math notranslate nohighlight">\(w\)</span> is the matrix</p>
@@ -864,7 +864,7 @@ a_{ij} =
 <p>Once the nodes in <span class="math notranslate nohighlight">\(V\)</span> are enumerated, the weight function and
 adjacency matrix provide essentially the same information.</p>
 <p>For example, with <span class="math notranslate nohighlight">\(\{\)</span>poor, middle, rich<span class="math notranslate nohighlight">\(\}\)</span> mapped to <span class="math notranslate nohighlight">\(\{1, 2, 3\}\)</span> respectively,
-the adjacency matrix corresponding to the weighted directed graph in <a class="reference internal" href="#poverty-trap-weighted"><span class="std std-numref">Fig. 41.5</span></a> is</p>
+the adjacency matrix corresponding to the weighted directed graph in <a class="reference internal" href="#poverty-trap-weighted"><span class="std std-numref">Fig. 42.5</span></a> is</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{pmatrix}
@@ -985,12 +985,12 @@ all <span class="math notranslate nohighlight">\((i,j)\)</span> such that <span 
 <p>We call this graph the weighted directed graph induced by <span class="math notranslate nohighlight">\(A\)</span>.</p>
 </section>
 <section id="properties">
-<h2><span class="section-number">41.6. </span>Properties<a class="headerlink" href="#properties" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">42.6. </span>Properties<a class="headerlink" href="#properties" title="Permalink to this heading">#</a></h2>
 <p>Consider a weighted directed graph with adjacency matrix <span class="math notranslate nohighlight">\(A\)</span>.</p>
 <p>Let <span class="math notranslate nohighlight">\(a^k_{ij}\)</span> be element <span class="math notranslate nohighlight">\(i,j\)</span> of <span class="math notranslate nohighlight">\(A^k\)</span>, the <span class="math notranslate nohighlight">\(k\)</span>-th power of <span class="math notranslate nohighlight">\(A\)</span>.</p>
 <p>The following result is useful in many applications:</p>
 <div class="proof theorem admonition" id="graph_theory_property1">
-<p class="admonition-title"><span class="caption-number">Theorem 41.1 </span></p>
+<p class="admonition-title"><span class="caption-number">Theorem 42.1 </span></p>
 <section class="theorem-content" id="proof-content">
 <p>For distinct nodes <span class="math notranslate nohighlight">\(i, j\)</span> in <span class="math notranslate nohighlight">\(V\)</span> and any integer <span class="math notranslate nohighlight">\(k\)</span>, we have</p>
 <div class="math notranslate nohighlight">
@@ -1007,7 +1007,7 @@ nonnegative matrix <span class="math notranslate nohighlight">\(A\)</span> is ca
 <p>From the preceding theorem, it is not too difficult (see
 <span id="id2">[<a class="reference internal" href="zreferences.html#id284" title="Thomas J Sargent and John Stachurski. Economic networks: theory and computation. arXiv preprint arXiv:2203.11972, 2022.">Sargent and Stachurski, 2022</a>]</span> for details) to get the next result.</p>
 <div class="proof theorem admonition" id="graph_theory_property2">
-<p class="admonition-title"><span class="caption-number">Theorem 41.2 </span></p>
+<p class="admonition-title"><span class="caption-number">Theorem 42.2 </span></p>
 <section class="theorem-content" id="proof-content">
 <p>For a weighted directed graph the following statements are equivalent:</p>
 <ol class="arabic simple">
@@ -1084,7 +1084,7 @@ nonnegative matrix <span class="math notranslate nohighlight">\(A\)</span> is ca
 </div>
 </section>
 <section id="network-centrality">
-<h2><span class="section-number">41.7. </span>Network centrality<a class="headerlink" href="#network-centrality" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">42.7. </span>Network centrality<a class="headerlink" href="#network-centrality" title="Permalink to this heading">#</a></h2>
 <p>When studying networks of all varieties, a recurring topic is the relative
 “centrality” or “importance” of different nodes.</p>
 <p>Examples include</p>
@@ -1098,7 +1098,7 @@ central bank should rescue if there is a financial crisis)</p></li>
 graph a vector <span class="math notranslate nohighlight">\(m\)</span> where the <span class="math notranslate nohighlight">\(m_i\)</span> is interpreted as the centrality (or rank)
 of node <span class="math notranslate nohighlight">\(v_i\)</span>.</p>
 <section id="degree-centrality">
-<h3><span class="section-number">41.7.1. </span>Degree centrality<a class="headerlink" href="#degree-centrality" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">42.7.1. </span>Degree centrality<a class="headerlink" href="#degree-centrality" title="Permalink to this heading">#</a></h3>
 <p>Two elementary measures of “importance” of a node in a given directed
 graph are its in-degree and out-degree.</p>
 <p>Both of these provide a centrality measure.</p>
@@ -1132,7 +1132,7 @@ the graph.</p>
 <figure class="align-default" id="sample-gph-1">
 <a class="reference internal image-reference" href="_images/9d32759530ed6631cf87aa247ce64144fa600c4b67a4a71915e3bf2fb6929278.png"><img alt="_images/9d32759530ed6631cf87aa247ce64144fa600c4b67a4a71915e3bf2fb6929278.png" src="_images/9d32759530ed6631cf87aa247ce64144fa600c4b67a4a71915e3bf2fb6929278.png" style="width: 80%;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 41.6 </span><span class="caption-text">Sample Graph</span><a class="headerlink" href="#sample-gph-1" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 42.6 </span><span class="caption-text">Sample Graph</span><a class="headerlink" href="#sample-gph-1" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </div>
@@ -1159,7 +1159,7 @@ the graph.</p>
 </div>
 </div>
 </div>
-<p>Consider the international credit network displayed in <a class="reference internal" href="#financial-network"><span class="std std-numref">Fig. 41.4</span></a>.</p>
+<p>Consider the international credit network displayed in <a class="reference internal" href="#financial-network"><span class="std std-numref">Fig. 42.4</span></a>.</p>
 <p>The following plot displays the in-degree centrality of each country.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1204,7 +1204,7 @@ the graph.</p>
 </div>
 <p>Unfortunately, while in-degree and out-degree centrality are simple to
 calculate, they are not always informative.</p>
-<p>In <a class="reference internal" href="#financial-network"><span class="std std-numref">Fig. 41.4</span></a>, an edge exists between almost every node,
+<p>In <a class="reference internal" href="#financial-network"><span class="std std-numref">Fig. 42.4</span></a>, an edge exists between almost every node,
 so the in- or out-degree based centrality ranking fails to effectively separate the countries.</p>
 <p>This can be seen in the above graph as well.</p>
 <p>Another example is the task of a web search engine, which ranks pages
@@ -1226,24 +1226,24 @@ node depends on the importance of other nodes that <em>it links to</em>.</p>
 <p>The next centrality measures will have these recursive features.</p>
 </section>
 <section id="eigenvector-centrality">
-<h3><span class="section-number">41.7.2. </span>Eigenvector centrality<a class="headerlink" href="#eigenvector-centrality" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">42.7.2. </span>Eigenvector centrality<a class="headerlink" href="#eigenvector-centrality" title="Permalink to this heading">#</a></h3>
 <p>Suppose we have a weighted directed graph with adjacency matrix <span class="math notranslate nohighlight">\(A\)</span>.</p>
 <p>For simplicity, we will suppose that the nodes <span class="math notranslate nohighlight">\(V\)</span> of the graph are just the
 integers <span class="math notranslate nohighlight">\(1, \ldots, n\)</span>.</p>
 <p>Let <span class="math notranslate nohighlight">\(r(A)\)</span> denote the <a class="reference internal" href="eigen_I.html#neumann-series-lemma"><span class="std std-ref">spectral radius</span></a> of <span class="math notranslate nohighlight">\(A\)</span>.</p>
 <p>The <strong>eigenvector centrality</strong> of the graph is defined as the <span class="math notranslate nohighlight">\(n\)</span>-vector <span class="math notranslate nohighlight">\(e\)</span> that solves</p>
 <div class="math notranslate nohighlight" id="equation-ev-central">
-<span class="eqno">(41.1)<a class="headerlink" href="#equation-ev-central" title="Permalink to this equation">#</a></span>\[ 
+<span class="eqno">(42.1)<a class="headerlink" href="#equation-ev-central" title="Permalink to this equation">#</a></span>\[ 
 \begin{aligned}
     e = \frac{1}{r(A)} A e.
 \end{aligned}
 \]</div>
 <p>In other words, <span class="math notranslate nohighlight">\(e\)</span> is the dominant eigenvector of <span class="math notranslate nohighlight">\(A\)</span> (the eigenvector of the
 largest eigenvalue — see the discussion of the <a class="reference internal" href="eigen_II.html#perron-frobe"><span class="std std-ref">Perron-Frobenius theorem</span></a> in the eigenvalue lecture.</p>
-<p>To better understand <a class="reference internal" href="#equation-ev-central">(41.1)</a>, we write out the full expression
+<p>To better understand <a class="reference internal" href="#equation-ev-central">(42.1)</a>, we write out the full expression
 for some element <span class="math notranslate nohighlight">\(e_i\)</span></p>
 <div class="math notranslate nohighlight" id="equation-eq-eicen">
-<span class="eqno">(41.2)<a class="headerlink" href="#equation-eq-eicen" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(42.2)<a class="headerlink" href="#equation-eq-eicen" title="Permalink to this equation">#</a></span>\[
 \begin{aligned}
     e_i = \frac{1}{r(A)} \sum_{1 \leq j \leq n} a_{ij} e_j
 \end{aligned}
@@ -1281,7 +1281,7 @@ flow backwards through the network.</p>
 </div>
 </div>
 </div>
-<p>Let’s compute eigenvector centrality for the graph generated in <a class="reference internal" href="#sample-gph-1"><span class="std std-numref">Fig. 41.6</span></a>.</p>
+<p>Let’s compute eigenvector centrality for the graph generated in <a class="reference internal" href="#sample-gph-1"><span class="std std-numref">Fig. 42.6</span></a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">to_numpy_array</span><span class="p">(</span><span class="n">G7</span><span class="p">)</span>         <span class="c1"># compute adjacency matrix of graph</span>
@@ -1313,7 +1313,7 @@ flow backwards through the network.</p>
 </div>
 <p>While nodes <span class="math notranslate nohighlight">\(2\)</span> and <span class="math notranslate nohighlight">\(4\)</span> had the highest in-degree centrality, we can see that nodes <span class="math notranslate nohighlight">\(1\)</span> and <span class="math notranslate nohighlight">\(2\)</span> have the
 highest eigenvector centrality.</p>
-<p>Let’s revisit the international credit network in <a class="reference internal" href="#financial-network"><span class="std std-numref">Fig. 41.4</span></a>.</p>
+<p>Let’s revisit the international credit network in <a class="reference internal" href="#financial-network"><span class="std std-numref">Fig. 42.4</span></a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eig_central</span> <span class="o">=</span> <span class="n">eigenvector_centrality</span><span class="p">(</span><span class="n">Z</span><span class="p">)</span>
@@ -1340,7 +1340,7 @@ highest eigenvector centrality.</p>
 <figure class="align-default" id="eigenvctr-centrality">
 <a class="reference internal image-reference" href="_images/be96e3e6ec39439a480649f062980e4f60900876b21b4d4c286e3ac4c2d98362.png"><img alt="_images/be96e3e6ec39439a480649f062980e4f60900876b21b4d4c286e3ac4c2d98362.png" src="_images/be96e3e6ec39439a480649f062980e4f60900876b21b4d4c286e3ac4c2d98362.png" style="width: 80%;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 41.7 </span><span class="caption-text">Eigenvector centrality</span><a class="headerlink" href="#eigenvctr-centrality" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 42.7 </span><span class="caption-text">Eigenvector centrality</span><a class="headerlink" href="#eigenvctr-centrality" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </div>
@@ -1355,7 +1355,7 @@ not far behind.</p>
 <p>The main principle is that links from important nodes (as measured by degree centrality) are worth more than links from unimportant nodes.</p>
 </section>
 <section id="katz-centrality">
-<h3><span class="section-number">41.7.3. </span>Katz centrality<a class="headerlink" href="#katz-centrality" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">42.7.3. </span>Katz centrality<a class="headerlink" href="#katz-centrality" title="Permalink to this heading">#</a></h3>
 <p>One problem with eigenvector centrality is that <span class="math notranslate nohighlight">\(r(A)\)</span> might be zero, in which
 case <span class="math notranslate nohighlight">\(1/r(A)\)</span> is not defined.</p>
 <p>For this and other reasons, some researchers prefer another measure of
@@ -1364,14 +1364,14 @@ centrality for networks called Katz centrality.</p>
 directed graph with adjacency matrix <span class="math notranslate nohighlight">\(A\)</span> is defined as the vector <span class="math notranslate nohighlight">\(\kappa\)</span>
 that solves</p>
 <div class="math notranslate nohighlight" id="equation-katz-central">
-<span class="eqno">(41.3)<a class="headerlink" href="#equation-katz-central" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(42.3)<a class="headerlink" href="#equation-katz-central" title="Permalink to this equation">#</a></span>\[
 \kappa_i =  \beta \sum_{1 \leq j 1} a_{ij} \kappa_j + 1
 \qquad  \text{for all } i \in \{0, \ldots, n-1\}.
 \]</div>
 <p>Here <span class="math notranslate nohighlight">\(\beta\)</span> is a parameter that we can choose.</p>
 <p>In vector form we can write</p>
 <div class="math notranslate nohighlight" id="equation-katz-central-vec">
-<span class="eqno">(41.4)<a class="headerlink" href="#equation-katz-central-vec" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(42.4)<a class="headerlink" href="#equation-katz-central-vec" title="Permalink to this equation">#</a></span>\[
 \kappa = \mathbf 1 + \beta A \kappa
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(\mathbf 1\)</span> is a column vector of ones.</p>
@@ -1380,7 +1380,7 @@ eigenvector centrality: high centrality is conferred on <span class="math notran
 to by nodes that themselves have high centrality.</p>
 <p>Provided that <span class="math notranslate nohighlight">\(0 &lt; \beta &lt; 1/r(A)\)</span>, Katz centrality is always finite and well-defined
 because then <span class="math notranslate nohighlight">\(r(\beta A) &lt; 1\)</span>.</p>
-<p>This means that <a class="reference internal" href="#equation-katz-central-vec">(41.4)</a> has the unique solution</p>
+<p>This means that <a class="reference internal" href="#equation-katz-central-vec">(42.4)</a> has the unique solution</p>
 <div class="math notranslate nohighlight">
 \[
 \kappa = (I - \beta A)^{-1} \mathbf{1}
@@ -1390,7 +1390,7 @@ because then <span class="math notranslate nohighlight">\(r(\beta A) &lt; 1\)</s
 <p>When <span class="math notranslate nohighlight">\(r(A)&lt;1\)</span>, we use <span class="math notranslate nohighlight">\(\beta=1\)</span> as the default for Katz centrality computations.</p>
 </section>
 <section id="authorities-vs-hubs">
-<h3><span class="section-number">41.7.4. </span>Authorities vs hubs<a class="headerlink" href="#authorities-vs-hubs" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">42.7.4. </span>Authorities vs hubs<a class="headerlink" href="#authorities-vs-hubs" title="Permalink to this heading">#</a></h3>
 <p>Search engine designers recognize that web pages can be important in two
 different ways.</p>
 <p>Some pages have high <strong>hub centrality</strong>, meaning that they link to valuable
@@ -1411,7 +1411,7 @@ with high centrality.)</p>
 <p>For example, the <strong>authority-based eigenvector centrality</strong> of a weighted
 directed graph with adjacency matrix <span class="math notranslate nohighlight">\(A\)</span> is the vector <span class="math notranslate nohighlight">\(e\)</span> solving</p>
 <div class="math notranslate nohighlight" id="equation-eicena0">
-<span class="eqno">(41.5)<a class="headerlink" href="#equation-eicena0" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(42.5)<a class="headerlink" href="#equation-eicena0" title="Permalink to this equation">#</a></span>\[
 e = \frac{1}{r(A)} A^\top e.
 \]</div>
 <p>The only difference from the original definition is that <span class="math notranslate nohighlight">\(A\)</span> is replaced by
@@ -1419,12 +1419,12 @@ its transpose.</p>
 <p>(Transposes do not affect the spectral radius of a matrix so we wrote <span class="math notranslate nohighlight">\(r(A)\)</span> instead of <span class="math notranslate nohighlight">\(r(A^\top)\)</span>.)</p>
 <p>Element-by-element, this is given by</p>
 <div class="math notranslate nohighlight" id="equation-eicena">
-<span class="eqno">(41.6)<a class="headerlink" href="#equation-eicena" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(42.6)<a class="headerlink" href="#equation-eicena" title="Permalink to this equation">#</a></span>\[
 e_j = \frac{1}{r(A)} \sum_{1 \leq i \leq n} a_{ij} e_i
 \]</div>
 <p>We see <span class="math notranslate nohighlight">\(e_j\)</span> will be high if many nodes with high authority rankings link to <span class="math notranslate nohighlight">\(j\)</span>.</p>
 <p>The following figurenshows the authority-based eigenvector centrality ranking for the international
-credit network shown in <a class="reference internal" href="#financial-network"><span class="std std-numref">Fig. 41.4</span></a>.</p>
+credit network shown in <a class="reference internal" href="#financial-network"><span class="std std-numref">Fig. 42.4</span></a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ecentral_authority</span> <span class="o">=</span> <span class="n">eigenvector_centrality</span><span class="p">(</span><span class="n">Z</span><span class="p">,</span> <span class="n">authority</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -1451,7 +1451,7 @@ credit network shown in <a class="reference internal" href="#financial-network">
 <figure class="align-default" id="id3">
 <a class="reference internal image-reference" href="_images/ebadf622946ac62e7b88604c357941763375847ea14ea941f618e9bae0bde1d7.png"><img alt="_images/ebadf622946ac62e7b88604c357941763375847ea14ea941f618e9bae0bde1d7.png" src="_images/ebadf622946ac62e7b88604c357941763375847ea14ea941f618e9bae0bde1d7.png" style="width: 80%;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 41.8 </span><span class="caption-text">Eigenvector authority</span><a class="headerlink" href="#id3" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 42.8 </span><span class="caption-text">Eigenvector authority</span><a class="headerlink" href="#id3" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </div>
@@ -1462,7 +1462,7 @@ credit inflows from other major players.</p>
 </section>
 </section>
 <section id="further-reading">
-<h2><span class="section-number">41.8. </span>Further reading<a class="headerlink" href="#further-reading" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">42.8. </span>Further reading<a class="headerlink" href="#further-reading" title="Permalink to this heading">#</a></h2>
 <p>We apply the ideas discussed in this lecture to:</p>
 <p>Textbooks on economic and social networks include <span id="id4">[<a class="reference internal" href="zreferences.html#id281" title="Matthew O Jackson. Social and economic networks. Princeton university press, 2010.">Jackson, 2010</a>]</span>,
 <span id="id5">[<a class="reference internal" href="zreferences.html#id282" title="David Easley, Jon Kleinberg, and others. Networks, crowds, and markets. Volume 8. Cambridge university press Cambridge, 2010.">Easley <em>et al.</em>, 2010</a>]</span>, <span id="id6">[<a class="reference internal" href="zreferences.html#id283" title="Stephen P Borgatti, Martin G Everett, and Jeffrey C Johnson. Analyzing social networks. Sage, 2018.">Borgatti <em>et al.</em>, 2018</a>]</span>,
@@ -1472,10 +1472,10 @@ by <span id="id9">[<a class="reference internal" href="zreferences.html#id286" t
 <span id="id11">[<a class="reference internal" href="zreferences.html#id288" title="Michele Coscia. The atlas for the aspiring network scientist. arXiv preprint arXiv:2101.00863, 2021.">Coscia, 2021</a>]</span> are excellent.</p>
 </section>
 <section id="exercises">
-<h2><span class="section-number">41.9. </span>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">42.9. </span>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h2>
 <div class="exercise admonition" id="networks_ex1">
 
-<p class="admonition-title"><span class="caption-number">Exercise 41.1 </span></p>
+<p class="admonition-title"><span class="caption-number">Exercise 42.1 </span></p>
 <section id="exercise-content">
 <p>Here is a mathematical exercise for those who like proofs.</p>
 <p>Let <span class="math notranslate nohighlight">\((V, E)\)</span> be a directed graph and write <span class="math notranslate nohighlight">\(u \sim v\)</span> if <span class="math notranslate nohighlight">\(u\)</span> and <span class="math notranslate nohighlight">\(v\)</span> communicate.</p>
@@ -1484,7 +1484,7 @@ by <span id="id9">[<a class="reference internal" href="zreferences.html#id286" t
 </div>
 <div class="solution dropdown admonition" id="networks-solution-3">
 
-<p class="admonition-title">Solution to<a class="reference internal" href="#networks_ex1"> Exercise 41.1</a></p>
+<p class="admonition-title">Solution to<a class="reference internal" href="#networks_ex1"> Exercise 42.1</a></p>
 <section id="solution-content">
 <p><strong>Reflexivity:</strong></p>
 <p>Trivially, <span class="math notranslate nohighlight">\(u = v \Rightarrow u \rightarrow v\)</span>.</p>
@@ -1502,7 +1502,7 @@ Suppose, <span class="math notranslate nohighlight">\(u \sim v\)</span></p>
 </div>
 <div class="exercise admonition" id="networks_ex2">
 
-<p class="admonition-title"><span class="caption-number">Exercise 41.2 </span></p>
+<p class="admonition-title"><span class="caption-number">Exercise 42.2 </span></p>
 <section id="exercise-content">
 <p>Consider a directed graph <span class="math notranslate nohighlight">\(G\)</span> with the set of nodes</p>
 <div class="math notranslate nohighlight">
@@ -1524,7 +1524,7 @@ of G.</p></li>
 </div>
 <div class="solution dropdown admonition" id="networks-solution-5">
 
-<p class="admonition-title">Solution to<a class="reference internal" href="#networks_ex2"> Exercise 41.2</a></p>
+<p class="admonition-title">Solution to<a class="reference internal" href="#networks_ex2"> Exercise 42.2</a></p>
 <section id="solution-content">
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1623,14 +1623,14 @@ of G.</p></li>
 </div>
 <div class="exercise admonition" id="networks_ex3">
 
-<p class="admonition-title"><span class="caption-number">Exercise 41.3 </span></p>
+<p class="admonition-title"><span class="caption-number">Exercise 42.3 </span></p>
 <section id="exercise-content">
 <p>Consider a graph <span class="math notranslate nohighlight">\(G\)</span> with <span class="math notranslate nohighlight">\(n\)</span> nodes and <span class="math notranslate nohighlight">\(n \times n\)</span> adjacency matrix <span class="math notranslate nohighlight">\(A\)</span>.</p>
 <p>Let <span class="math notranslate nohighlight">\(S = \sum_{k=0}^{n-1} A^k\)</span></p>
 <p>We can say for any two nodes <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span>, <span class="math notranslate nohighlight">\(j\)</span> is accessible from <span class="math notranslate nohighlight">\(i\)</span> if and only if
 <span class="math notranslate nohighlight">\(S_{ij} &gt; 0\)</span>.</p>
 <p>Devise a function <code class="docutils literal notranslate"><span class="pre">is_accessible</span></code> that checks if any two nodes of a given graph are accessible.</p>
-<p>Consider the graph in <a class="reference internal" href="#networks_ex2"><span class="std std-numref">Exercise 41.2</span></a> and use this function to check if</p>
+<p>Consider the graph in <a class="reference internal" href="#networks_ex2"><span class="std std-numref">Exercise 42.2</span></a> and use this function to check if</p>
 <ol class="arabic simple">
 <li><p><span class="math notranslate nohighlight">\(1\)</span> is accessible from <span class="math notranslate nohighlight">\(2\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(6\)</span> is accessible from <span class="math notranslate nohighlight">\(3\)</span></p></li>
@@ -1639,7 +1639,7 @@ of G.</p></li>
 </div>
 <div class="solution dropdown admonition" id="networks-solution-7">
 
-<p class="admonition-title">Solution to<a class="reference internal" href="#networks_ex3"> Exercise 41.3</a></p>
+<p class="admonition-title">Solution to<a class="reference internal" href="#networks_ex3"> Exercise 42.3</a></p>
 <section id="solution-content">
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1841,18 +1841,23 @@ of G.</p></li>
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="tax_smooth.html">
+   13. Tax Smoothing
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="equalizing_difference.html">
-   13. Equalizing Difference Model
+   14. Equalizing Difference Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cagan_ree.html">
-   14. A Monetarist Theory of Price Levels
+   15. A Monetarist Theory of Price Levels
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cagan_adaptive.html">
-   15. Monetarist Theory of Price Levels with Adaptive Expectations
+   16. Monetarist Theory of Price Levels with Adaptive Expectations
   </a>
  </li>
 </ul>
@@ -1864,12 +1869,12 @@ of G.</p></li>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="eigen_I.html">
-   16. Eigenvalues and Eigenvectors
+   17. Eigenvalues and Eigenvectors
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="greek_square.html">
-   17. Computing Square Roots
+   18. Computing Square Roots
   </a>
  </li>
 </ul>
@@ -1881,27 +1886,27 @@ of G.</p></li>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="prob_dist.html">
-   18. Distributions and Probabilities
+   19. Distributions and Probabilities
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="lln_clt.html">
-   19. LLN and CLT
+   20. LLN and CLT
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="monte_carlo.html">
-   20. Monte Carlo and Option Pricing
+   21. Monte Carlo and Option Pricing
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="heavy_tails.html">
-   21. Heavy-Tailed Distributions
+   22. Heavy-Tailed Distributions
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="schelling.html">
-   22. Racial Segregation
+   23. Racial Segregation
   </a>
  </li>
 </ul>
@@ -1913,27 +1918,27 @@ of G.</p></li>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="scalar_dynam.html">
-   23. Dynamics in One Dimension
+   24. Dynamics in One Dimension
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="solow.html">
-   24. The Solow-Swan Growth Model
+   25. The Solow-Swan Growth Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cobweb.html">
-   25. The Cobweb Model
+   26. The Cobweb Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="olg.html">
-   26. The Overlapping Generations Model
+   27. The Overlapping Generations Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="commod_price.html">
-   27. Commodity Prices
+   28. Commodity Prices
   </a>
  </li>
 </ul>
@@ -1945,22 +1950,22 @@ of G.</p></li>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="money_inflation.html">
-   28. Money Financed Government Deficits and Price Levels
+   29. Money Financed Government Deficits and Price Levels
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="unpleasant.html">
-   29. Some Unpleasant Monetarist Arithmetic
+   30. Some Unpleasant Monetarist Arithmetic
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="money_inflation_nonlinear.html">
-   30. Inflation Rate Laffer Curves
+   31. Inflation Rate Laffer Curves
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="laffer_adaptive.html">
-   31. Laffer Curves  with Adaptive Expectations
+   32. Laffer Curves  with Adaptive Expectations
   </a>
  </li>
 </ul>
@@ -1972,22 +1977,22 @@ of G.</p></li>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="ar1_processes.html">
-   32. AR(1) Processes
+   33. AR(1) Processes
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="markov_chains_I.html">
-   33. Markov Chains: Basic Concepts
+   34. Markov Chains: Basic Concepts
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="markov_chains_II.html">
-   34. Markov Chains: Irreducibility and Ergodicity
+   35. Markov Chains: Irreducibility and Ergodicity
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="time_series_with_matrices.html">
-   35. Univariate Time Series with Matrix Algebra
+   36. Univariate Time Series with Matrix Algebra
   </a>
  </li>
 </ul>
@@ -1999,12 +2004,12 @@ of G.</p></li>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="lp_intro.html">
-   36. Linear Programming
+   37. Linear Programming
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="short_path.html">
-   37. Shortest Paths
+   38. Shortest Paths
   </a>
  </li>
 </ul>
@@ -2016,22 +2021,22 @@ of G.</p></li>
 <ul class="current nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="eigen_II.html">
-   38. The Perron-Frobenius Theorem
+   39. The Perron-Frobenius Theorem
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="input_output.html">
-   39. Input-Output Models
+   40. Input-Output Models
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="lake_model.html">
-   40. A Lake Model of Employment
+   41. A Lake Model of Employment
   </a>
  </li>
  <li class="toctree-l1 current active active">
   <a class="current reference internal" href="#">
-   41. Networks
+   42. Networks
   </a>
  </li>
 </ul>
@@ -2043,12 +2048,12 @@ of G.</p></li>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="supply_demand_multiple_goods.html">
-   42. Supply and Demand with Many Goods
+   43. Supply and Demand with Many Goods
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="supply_demand_heterogeneity.html">
-   43. Market Equilibrium with Heterogeneity
+   44. Market Equilibrium with Heterogeneity
   </a>
  </li>
 </ul>
@@ -2060,12 +2065,12 @@ of G.</p></li>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="simple_linear_regression.html">
-   44. Simple Linear Regression Model
+   45. Simple Linear Regression Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="mle.html">
-   45. Maximum Likelihood Estimation
+   46. Maximum Likelihood Estimation
   </a>
  </li>
 </ul>
@@ -2077,17 +2082,17 @@ of G.</p></li>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="troubleshooting.html">
-   46. Troubleshooting
+   47. Troubleshooting
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="zreferences.html">
-   47. References
+   48. References
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="status.html">
-   48. Execution Statistics
+   49. Execution Statistics
   </a>
  </li>
 </ul>

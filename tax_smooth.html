@@ -1,0 +1,1477 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>13. Tax Smoothing &#8212; A First Course in Quantitative Economics with Python</title>
+    <script src="https://unpkg.com/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://unpkg.com/tippy.js@6.3.1/dist/tippy-bundle.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    
+        <script>
+            MathJax = {
+            loader: {load: ['[tex]/boldsymbol', '[tex]/textmacros']},
+            tex: {
+                packages: {'[+]': ['boldsymbol', 'textmacros']},
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                processEscapes: true,
+                macros: {
+                    "argmax" : "arg\\,max",
+                    "argmin" : "arg\\,min",
+                    "col"    : "col",
+                    "Span"   :  "span",
+                    "epsilon": "\\varepsilon",
+                    "EE": "\\mathbb{E}",
+                    "PP": "\\mathbb{P}",
+                    "RR": "\\mathbb{R}",
+                    "NN": "\\mathbb{N}",
+                    "ZZ": "\\mathbb{Z}",
+                    "aA": "\\mathcal{A}",
+                    "bB": "\\mathcal{B}",
+                    "cC": "\\mathcal{C}",
+                    "dD": "\\mathcal{D}",
+                    "eE": "\\mathcal{E}",
+                    "fF": "\\mathcal{F}",
+                    "gG": "\\mathcal{G}",
+                    "hH": "\\mathcal{H}",
+                }
+            },
+            svg: {
+                fontCache: 'global',
+                scale: 0.92,
+                displayAlign: "center",
+            },
+            };
+        </script>
+    
+    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/quantecon-book-theme.css?digest=bd0785fbb14d8d2bd4d9ae501d79ed8d3bc089ec" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/exercise.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.5ea377869091fd0449014c60fc090103.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/scripts/quantecon-book-theme.js?digest=d6d86bce9979111653c4c495e33499e1796e172a"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-QDS1YRJNGM"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-QDS1YRJNGM');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"tex": {"macros": {"argmax": "arg\\,max", "argmin": "arg\\,min"}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tax_smooth';</script>
+    <link rel="canonical" href="https://intro.quantecon.org/tax_smooth.html" />
+    <link rel="shortcut icon" href="_static/lectures-favicon.ico"/>
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="14. Equalizing Difference Model" href="equalizing_difference.html" />
+    <link rel="prev" title="12. Consumption Smoothing" href="cons_smooth.html" />
+
+<!-- Normal Meta Tags -->
+<meta name="author" context="Thomas J. Sargent &amp; John Stachurski" />
+<meta name="keywords" content="Python, QuantEcon, Quantitative Economics, Economics, Sloan, Alfred P. Sloan Foundation, Tom J. Sargent, John Stachurski" />
+<meta name="description" content=This website presents introductory lectures on computational economics, designed and written by Thomas J. Sargent and John Stachurski. />
+
+<!-- Twitter tags -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@quantecon" />
+<meta name="twitter:title" content="Tax Smoothing"/>
+<meta name="twitter:description" content="This website presents introductory lectures on computational economics, designed and written by Thomas J. Sargent and John Stachurski.">
+<meta name="twitter:creator" content="@quantecon">
+<meta name="twitter:image" content="https://assets.quantecon.org/img/qe-twitter-logo.png">
+
+<!-- Opengraph tags -->
+<meta property="og:title" content="Tax Smoothing" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://intro.quantecon.org/tax_smooth.html" />
+<meta property="og:image" content="https://assets.quantecon.org/img/qe-og-logo.png" />
+<meta property="og:description" content="This website presents introductory lectures on computational economics, designed and written by Thomas J. Sargent and John Stachurski." />
+<meta property="og:site_name" content="A First Course in Quantitative Economics with Python" />
+<meta name="theme-color" content="#ffffff" />
+
+  </head>
+<body>
+
+
+    <span id="top"></span>
+
+    <div class="qe-wrapper">
+
+        <div class="qe-main">
+
+            <div class="qe-page" id=tax_smooth>
+
+                <div class="qe-page__toc">
+
+                    <div class="inner">
+
+                        
+                        <div class="qe-page__toc-header">
+                            On this page
+                        </div>
+
+
+                        <nav id="bd-toc-nav" class="qe-page__toc-nav">
+                            <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">13.1. Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis">13.2. Analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#barro-tax-smoothing-model">13.3. Barro tax-smoothing model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mechanics-of-tax-smoothing">13.4. Mechanics of tax-smoothing</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1">13.4.1. Step 1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2">13.4.2. Step 2</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3">13.4.3. Step 3</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#experiments">13.4.4. Experiments</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#experiment-1-one-time-spending-shock">13.4.4.1. Experiment 1: one-time spending shock</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#experiment-2-permanent-expenditure-shift">13.4.4.2. Experiment 2: permanent expenditure shift</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#experiment-3-delayed-spending-surge">13.4.4.3. Experiment 3: delayed spending surge</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#experiment-4-growing-expenditures">13.4.4.4. Experiment 4: growing expenditures</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#feasible-tax-variations">13.4.5. Feasible Tax Variations</a></li>
+</ul>
+</li>
+</ul>
+                            <p class="logo">
+                                
+                                    
+                                    <a href=https://quantecon.org><img src="_static/qe-logo.png" class="logo logo-img" alt="logo"></a>
+                                    
+                                    <a href=https://quantecon.org><img src="_static/quantecon-logo-transparent.png" class="dark-logo-img" alt="logo"></a>
+                                    
+                                    
+                                
+                            </p>
+
+                            <p class="powered">Powered by <a href="https://jupyterbook.org/">Jupyter Book</a></p>
+
+                        </nav>
+
+                        <div class="qe-page__toc-footer">
+                            
+                            
+                            <p><a href="#top"><strong>Back to top</strong></a></p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="qe-page__header">
+
+                    <div class="qe-page__header-copy">
+
+                        <p class="qe-page__header-heading"><a href="intro.html">A First Course in Quantitative Economics with Python</a></p>
+
+                        <p class="qe-page__header-subheading">Tax Smoothing</p>
+
+                    </div>
+                    <!-- length 2, since its a string and empty dict has length 2 - {} -->
+                        <p class="qe-page__header-authors" font-size="18">
+                            
+                                
+                                    <a href="http://www.tomsargent.com/" target="_blank"><span>Thomas J. Sargent</span></a>
+                                
+                            
+                                
+                                    and <a href="https://johnstachurski.net/" target="_blank"><span>John Stachurski</span></a>
+                                
+                            
+                        </p>
+
+
+                </div> <!-- .page__header -->
+
+
+
+                
+                <main class="qe-page__content" role="main">
+                    
+                    <div>
+                        
+  <section class="tex2jax_ignore mathjax_ignore" id="tax-smoothing">
+<h1><span class="section-number">13. </span>Tax Smoothing<a class="headerlink" href="#tax-smoothing" title="Permalink to this heading">#</a></h1>
+<section id="overview">
+<h2><span class="section-number">13.1. </span>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
+<p>This  is a sister lecture to our  lecture on <a class="reference internal" href="cons_smooth.html"><span class="doc">consumption-smoothing</span></a>.</p>
+<p>By renaming variables, we  obtain  a a version of a model “tax-smoothing model” that  Robert Barro <span id="id1">[<a class="reference internal" href="zreferences.html#id168" title="Robert J Barro. On the Determination of the Public Debt. Journal of Political Economy, 87(5):940–971, 1979.">Barro, 1979</a>]</span> used  to explain why governments sometimes choose not to balance their budgets every period but instead use issue debt to smooth tax rates over time.</p>
+<p>The government chooses a tax collection path that minimizes the present value of its costs of raising revenue.</p>
+<p>The government minimizes those costs by smoothing  tax collections  over time and by issuing government debt during temporary surges in government expenditures.</p>
+<p>The present value of government expenditures is at the core of the tax-smoothing model,
+so we’ll again use formulas presented in <a class="reference internal" href="pv.html"><span class="doc">present value formulas</span></a>.</p>
+<p>We’ll again use the matrix multiplication and matrix inversion tools that we used in  <a class="reference internal" href="pv.html"><span class="doc">present value formulas</span></a>.</p>
+</section>
+<section id="analysis">
+<h2><span class="section-number">13.2. </span>Analysis<a class="headerlink" href="#analysis" title="Permalink to this heading">#</a></h2>
+<p>As usual, we’ll start by importing some Python modules.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">namedtuple</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>A government exists at times <span class="math notranslate nohighlight">\(t=0, 1, \ldots, S\)</span> and  faces an exogenous stream of expenditures <span class="math notranslate nohighlight">\(\{G_t\}_{t=0}^S\)</span>.</p>
+<p>It chooses  chooses a stream of tax collections <span class="math notranslate nohighlight">\(\{T_t\}_{t=0}^S\)</span>.</p>
+<p>The model takes a government expenditure stream as an “exogenous” input that is somehow determined  outside the model.</p>
+<p>The government faces a gross interest rate of <span class="math notranslate nohighlight">\(R &gt;1\)</span> that is constant over time.</p>
+<p>The government can borrow or lend at interest rate <span class="math notranslate nohighlight">\(R\)</span>, subject to some limits on the amount of debt that it can issue  that we’ll describe below.</p>
+<p>Let</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(S \geq 2\)</span>  be a positive integer that constitutes a time-horizon.</p></li>
+<li><p><span class="math notranslate nohighlight">\(G = \{G_t\}_{t=0}^S\)</span> be a sequence of government expenditures.</p></li>
+<li><p><span class="math notranslate nohighlight">\(B = \{B_t\}_{t=0}^{S+1}\)</span> be a sequence of government debt.</p></li>
+<li><p><span class="math notranslate nohighlight">\(T = \{T_t\}_{t=0}^S\)</span> be a sequence of tax collections.</p></li>
+<li><p><span class="math notranslate nohighlight">\(R \geq 1\)</span> be a fixed gross one period interest rate.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\beta \in (0,1)\)</span> be a fixed discount factor.</p></li>
+<li><p><span class="math notranslate nohighlight">\(B_0\)</span> be a given initial level of government debt</p></li>
+<li><p><span class="math notranslate nohighlight">\(B_{S+1} \geq 0\)</span>  be a terminal condition.</p></li>
+</ul>
+<p>The sequence of government debt <span class="math notranslate nohighlight">\(B\)</span> is to be determined by the model.</p>
+<p>We require it to satisfy two <strong>boundary conditions</strong>:</p>
+<ul class="simple">
+<li><p>it must equal an exogenous value <span class="math notranslate nohighlight">\(B_0\)</span> at time <span class="math notranslate nohighlight">\(0\)</span></p></li>
+<li><p>it must equal or exceed an exogenous value <span class="math notranslate nohighlight">\(B_{S+1}\)</span> at time <span class="math notranslate nohighlight">\(S+1\)</span>.</p></li>
+</ul>
+<p>The <strong>terminal condition</strong> <span class="math notranslate nohighlight">\(B_{S+1} \geq 0\)</span>   requires that the government  not end up with negative assets.</p>
+<p>(This no-Ponzi condition ensures that the government  ultimately pays off its debts – it can’t simply roll them over indefinitely.)</p>
+<p>The government faces a sequence of budget constraints that constrain sequences <span class="math notranslate nohighlight">\((G, T, B)\)</span></p>
+<div class="math notranslate nohighlight" id="equation-eq-b-t">
+<span class="eqno">(13.1)<a class="headerlink" href="#equation-eq-b-t" title="Permalink to this equation">#</a></span>\[
+B_{t+1} = R (B_t + G_t - T_t), \quad t =0, 1, \ldots S
+\]</div>
+<p>Equations <a class="reference internal" href="#equation-eq-b-t">(13.1)</a> constitute <span class="math notranslate nohighlight">\(S+1\)</span> such budget constraints, one for each <span class="math notranslate nohighlight">\(t=0, 1, \ldots, S\)</span>.</p>
+<p>Given a sequence <span class="math notranslate nohighlight">\(G\)</span> of government expenditures, a large set of pairs <span class="math notranslate nohighlight">\((B, T)\)</span> of (government debt, tax collections) sequences satisfy the sequence of budget constraints <a class="reference internal" href="#equation-eq-b-t">(13.1)</a>.</p>
+<p>The  model follows the following logical flow:</p>
+<ul class="simple">
+<li><p>start with an exogenous government expenditure sequence <span class="math notranslate nohighlight">\(G\)</span>, an initial government debt <span class="math notranslate nohighlight">\(B_0\)</span>, and
+a candidate tax collection path <span class="math notranslate nohighlight">\(T\)</span>.</p></li>
+<li><p>use the system of equations <a class="reference internal" href="#equation-eq-b-t">(13.1)</a> for <span class="math notranslate nohighlight">\(t=0, \ldots, S\)</span> to compute a path <span class="math notranslate nohighlight">\(B\)</span> of government debt</p></li>
+<li><p>verify that <span class="math notranslate nohighlight">\(B_{S+1}\)</span> satisfies the terminal debt constraint <span class="math notranslate nohighlight">\(B_{S+1} \geq 0\)</span>.</p>
+<ul>
+<li><p>If it does, declare that the candidate path is <strong>budget feasible</strong>.</p></li>
+<li><p>if the candidate tax path is not budget feasible, propose a different tax path and start over</p></li>
+</ul>
+</li>
+</ul>
+<p>Below, we’ll describe how to execute these steps using linear algebra – matrix inversion and multiplication.</p>
+<p>The above procedure seems like a sensible way to find “budget-feasible” tax paths <span class="math notranslate nohighlight">\(T\)</span>, i.e., paths that are consistent with the exogenous government expenditure stream <span class="math notranslate nohighlight">\(G\)</span>, the initial debt level <span class="math notranslate nohighlight">\(B_0\)</span>, and the terminal debt level <span class="math notranslate nohighlight">\(B_{S+1}\)</span>.</p>
+<p>In general, there are <strong>many</strong> budget feasible tax paths <span class="math notranslate nohighlight">\(T\)</span>.</p>
+<p>Among all budget-feasible tax paths, which one should a government choose?</p>
+<p>To answer this question, we assess  alternative budget feasible tax paths <span class="math notranslate nohighlight">\(T\)</span> using the following cost functional:</p>
+<div class="math notranslate nohighlight" id="equation-cost">
+<span class="eqno">(13.2)<a class="headerlink" href="#equation-cost" title="Permalink to this equation">#</a></span>\[L = - \sum_{t=0}^S \beta^t (g_1 T_t - \frac{g_2}{2} T_t^2 )\]</div>
+<p>where <span class="math notranslate nohighlight">\(g_1 &gt; 0, g_2 &gt; 0\)</span>.</p>
+<p>This is called the “present value of revenue-raising costs” in <span id="id2">[<a class="reference internal" href="zreferences.html#id168" title="Robert J Barro. On the Determination of the Public Debt. Journal of Political Economy, 87(5):940–971, 1979.">Barro, 1979</a>]</span>.</p>
+<p>The quadratic term <span class="math notranslate nohighlight">\(-\frac{g_2}{2} T_t^2\)</span> captures increasing marginal costs of taxation, implying that tax distortions rise more than proportionally with tax rates.</p>
+<p>This creates an incentive for tax smoothing.</p>
+<p>Indeed, we shall see that when <span class="math notranslate nohighlight">\(\beta R = 1\)</span>, criterion <a class="reference internal" href="#equation-cost">(13.2)</a> leads to smoother tax paths.</p>
+<p>By <strong>smoother</strong> we mean tax rates that are as close as possible to being constant over time.</p>
+<p>The preference for smooth tax paths that is built into the model gives it the name “tax-smoothing model”.</p>
+<p>Or equivalently, we can transform this into the same problem as in the <a class="reference internal" href="cons_smooth.html"><span class="doc">consumption-smoothing</span></a> lecture by maximizing the welfare criterion:</p>
+<div class="math notranslate nohighlight" id="equation-welfare-tax">
+<span class="eqno">(13.3)<a class="headerlink" href="#equation-welfare-tax" title="Permalink to this equation">#</a></span>\[W = \sum_{t=0}^S \beta^t (g_1 T_t - \frac{g_2}{2} T_t^2 )\]</div>
+<p>Let’s dive in and do some calculations that will help us understand how the model works.</p>
+<p>Here we use default parameters <span class="math notranslate nohighlight">\(R = 1.05\)</span>, <span class="math notranslate nohighlight">\(g_1 = 1\)</span>, <span class="math notranslate nohighlight">\(g_2 = 1/2\)</span>, and <span class="math notranslate nohighlight">\(S = 65\)</span>.</p>
+<p>We create a Python <code class="docutils literal notranslate"><span class="pre">namedtuple</span></code> to store these parameters with default values.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">TaxSmoothing</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s2">&quot;TaxSmoothing&quot;</span><span class="p">,</span> 
+                        <span class="p">[</span><span class="s2">&quot;R&quot;</span><span class="p">,</span> <span class="s2">&quot;g1&quot;</span><span class="p">,</span> <span class="s2">&quot;g2&quot;</span><span class="p">,</span> <span class="s2">&quot;β_seq&quot;</span><span class="p">,</span> <span class="s2">&quot;S&quot;</span><span class="p">])</span>
+
+<span class="k">def</span> <span class="nf">create_tax_smoothing_model</span><span class="p">(</span><span class="n">R</span><span class="o">=</span><span class="mf">1.01</span><span class="p">,</span> <span class="n">g1</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">g2</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">S</span><span class="o">=</span><span class="mi">65</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Creates an instance of the tax smoothing model.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">β</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">R</span>
+    <span class="n">β_seq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">β</span><span class="o">**</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">S</span><span class="o">+</span><span class="mi">1</span><span class="p">)])</span>
+
+    <span class="k">return</span> <span class="n">TaxSmoothing</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">g1</span><span class="p">,</span> <span class="n">g2</span><span class="p">,</span> <span class="n">β_seq</span><span class="p">,</span> <span class="n">S</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="barro-tax-smoothing-model">
+<h2><span class="section-number">13.3. </span>Barro tax-smoothing model<a class="headerlink" href="#barro-tax-smoothing-model" title="Permalink to this heading">#</a></h2>
+<p>A key object is the present value of government expenditures at time <span class="math notranslate nohighlight">\(0\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+h_0 \equiv \sum_{t=0}^S R^{-t} G_t = \begin{bmatrix} 1 &amp; R^{-1} &amp; \cdots &amp; R^{-S} \end{bmatrix}
+\begin{bmatrix} G_0 \cr G_1  \cr \vdots \cr G_S \end{bmatrix}
+\]</div>
+<p>This sum represents the present value of all future government expenditures that must be financed.</p>
+<p>Formally it resembles the present value calculations we saw in this QuantEcon lecture <a class="reference internal" href="pv.html"><span class="doc">present values</span></a>.</p>
+<p>This present value calculation is crucial for determining the government’s total financing needs.</p>
+<p>By iterating on equation <a class="reference internal" href="#equation-eq-b-t">(13.1)</a> and imposing the terminal condition</p>
+<div class="math notranslate nohighlight">
+\[
+B_{S+1} = 0,
+\]</div>
+<p>it is possible to convert a sequence of budget constraints <a class="reference internal" href="#equation-eq-b-t">(13.1)</a> into a single intertemporal constraint</p>
+<div class="math notranslate nohighlight" id="equation-eq-budget-intertemp-tax">
+<span class="eqno">(13.4)<a class="headerlink" href="#equation-eq-budget-intertemp-tax" title="Permalink to this equation">#</a></span>\[ 
+\sum_{t=0}^S R^{-t} T_t = B_0 + h_0. 
+\]</div>
+<p>Equation <a class="reference internal" href="#equation-eq-budget-intertemp-tax">(13.4)</a> says that the present value of tax collections must equal the sum of initial debt and the present value of government expenditures.</p>
+<p>When <span class="math notranslate nohighlight">\(\beta R = 1\)</span>, it is optimal for a government to smooth taxes by setting</p>
+<div class="math notranslate nohighlight">
+\[ 
+T_t = T_0 \quad t =0, 1, \ldots, S
+\]</div>
+<p>(Later we’ll present a “variational argument” that shows that this constant path minimizes
+criterion <a class="reference internal" href="#equation-cost">(13.2)</a> and maximizes <a class="reference internal" href="#equation-welfare-tax">(13.3)</a> when <span class="math notranslate nohighlight">\(\beta R =1\)</span>.)</p>
+<p>In this case, we can use the intertemporal budget constraint to write</p>
+<div class="math notranslate nohighlight" id="equation-eq-taxsmoothing">
+<span class="eqno">(13.5)<a class="headerlink" href="#equation-eq-taxsmoothing" title="Permalink to this equation">#</a></span>\[
+T_t = T_0  = \left(\sum_{t=0}^S R^{-t}\right)^{-1} (B_0 + h_0), \quad t= 0, 1, \ldots, S.
+\]</div>
+<p>Equation <a class="reference internal" href="#equation-eq-taxsmoothing">(13.5)</a> is the tax-smoothing model in a nutshell.</p>
+</section>
+<section id="mechanics-of-tax-smoothing">
+<h2><span class="section-number">13.4. </span>Mechanics of tax-smoothing<a class="headerlink" href="#mechanics-of-tax-smoothing" title="Permalink to this heading">#</a></h2>
+<p>As promised, we’ll provide step-by-step instructions on how to use linear algebra, readily implemented in Python, to compute all objects in play in the tax-smoothing model.</p>
+<p>In the calculations below, we’ll set default values of <span class="math notranslate nohighlight">\(R &gt; 1\)</span>, e.g., <span class="math notranslate nohighlight">\(R = 1.05\)</span>, and <span class="math notranslate nohighlight">\(\beta = R^{-1}\)</span>.</p>
+<section id="step-1">
+<h3><span class="section-number">13.4.1. </span>Step 1<a class="headerlink" href="#step-1" title="Permalink to this heading">#</a></h3>
+<p>For a <span class="math notranslate nohighlight">\((S+1) \times 1\)</span> vector <span class="math notranslate nohighlight">\(G\)</span> of government expenditures, use matrix algebra to compute the present value</p>
+<div class="math notranslate nohighlight">
+\[
+h_0 = \sum_{t=0}^S R^{-t} G_t = \begin{bmatrix} 1 &amp; R^{-1} &amp; \cdots &amp; R^{-S} \end{bmatrix}
+\begin{bmatrix} G_0 \cr G_1  \cr \vdots \cr G_S \end{bmatrix}
+\]</div>
+</section>
+<section id="step-2">
+<h3><span class="section-number">13.4.2. </span>Step 2<a class="headerlink" href="#step-2" title="Permalink to this heading">#</a></h3>
+<p>Compute a constant tax rate <span class="math notranslate nohighlight">\(T_0\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+T_t = T_0 = \left( \frac{1 - R^{-1}}{1 - R^{-(S+1)}} \right) (B_0 + \sum_{t=0}^S R^{-t} G_t ) , \quad t = 0, 1, \ldots, S
+\]</div>
+</section>
+<section id="step-3">
+<h3><span class="section-number">13.4.3. </span>Step 3<a class="headerlink" href="#step-3" title="Permalink to this heading">#</a></h3>
+<p>Use the system of equations <a class="reference internal" href="#equation-eq-b-t">(13.1)</a> for <span class="math notranslate nohighlight">\(t=0, \ldots, S\)</span> to compute a path <span class="math notranslate nohighlight">\(B\)</span> of government debt.</p>
+<p>To do this, we translate that system of difference equations into a single matrix equation as follows:</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{bmatrix} 
+1 &amp; 0 &amp; 0 &amp; \cdots &amp; 0 &amp; 0 &amp; 0 \cr
+-R &amp; 1 &amp; 0 &amp; \cdots &amp; 0 &amp; 0 &amp; 0 \cr
+0 &amp; -R &amp; 1 &amp; \cdots &amp; 0 &amp; 0 &amp; 0 \cr
+\vdots  &amp;\vdots &amp; \vdots &amp; \cdots &amp; \vdots &amp; \vdots &amp; \vdots \cr
+0 &amp; 0 &amp; 0 &amp; \cdots &amp; -R &amp; 1 &amp; 0 \cr
+0 &amp; 0 &amp; 0 &amp; \cdots &amp; 0 &amp; -R &amp; 1
+\end{bmatrix} 
+\begin{bmatrix} B_1 \cr B_2 \cr B_3 \cr \vdots \cr B_S \cr B_{S+1} 
+\end{bmatrix}
+= R 
+\begin{bmatrix} G_0 + B_0 - T_0 \cr G_1 - T_0 \cr G_2 - T_0 \cr \vdots\cr G_{S-1} - T_0 \cr G_S - T_0
+\end{bmatrix}
+\]</div>
+<p>Multiply both sides by the inverse of the matrix on the left side to compute</p>
+<div class="math notranslate nohighlight">
+\[
+ \begin{bmatrix} B_1 \cr B_2 \cr B_3 \cr \vdots \cr B_S \cr B_{S+1} \end{bmatrix}
+\]</div>
+<p>Because we have built into our calculations that the government must satisfy its intertemporal budget constraint and end with zero debt, just barely satisfying the
+terminal condition that <span class="math notranslate nohighlight">\(B_{S+1} \geq 0\)</span>, it should turn out that</p>
+<div class="math notranslate nohighlight">
+\[
+B_{S+1} = 0.
+\]</div>
+<p>Let’s verify this with Python code.</p>
+<p>First we implement the model with <code class="docutils literal notranslate"><span class="pre">compute_optimal</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">compute_optimal</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">B0</span><span class="p">,</span> <span class="n">G_seq</span><span class="p">):</span>
+
+    <span class="n">R</span><span class="p">,</span> <span class="n">S</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">R</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">S</span>
+
+    <span class="c1"># present value of government expenditures</span>
+    <span class="n">h0</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">β_seq</span> <span class="o">@</span> <span class="n">G_seq</span>     <span class="c1"># since β = 1/R</span>
+
+    <span class="c1"># optimal constant tax rate</span>
+    <span class="n">T0</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="mi">1</span><span class="o">/</span><span class="n">R</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">R</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="n">S</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span> <span class="o">*</span> <span class="p">(</span><span class="n">B0</span> <span class="o">+</span> <span class="n">h0</span><span class="p">)</span>
+    <span class="n">T_seq</span> <span class="o">=</span> <span class="n">T0</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">S</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="o">-</span><span class="n">R</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">S</span><span class="p">),</span> <span class="n">k</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">S</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">G_seq</span> <span class="o">-</span> <span class="n">T_seq</span>
+    <span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">B0</span>
+    <span class="n">B_seq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">A</span><span class="p">)</span> <span class="o">@</span> <span class="n">b</span>
+    <span class="n">B_seq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([[</span><span class="n">B0</span><span class="p">],</span> <span class="n">B_seq</span><span class="p">])</span>
+
+    <span class="k">return</span> <span class="n">T_seq</span><span class="p">,</span> <span class="n">B_seq</span><span class="p">,</span> <span class="n">h0</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We use an example where the government starts with initial debt <span class="math notranslate nohighlight">\(B_0&gt;0\)</span>.</p>
+<p>This represents the government’s initial debt burden.</p>
+<p>The government expenditure process <span class="math notranslate nohighlight">\(\{G_t\}_{t=0}^{S}\)</span> is constant and positive up to <span class="math notranslate nohighlight">\(t=45\)</span> and then drops to zero afterward.</p>
+<p>The drop in government expenditures could reflect a change in spending requirements or demographic shifts.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initial debt</span>
+<span class="n">B0</span> <span class="o">=</span> <span class="mi">2</span>     <span class="c1"># initial government debt</span>
+
+<span class="c1"># Government expenditure process</span>
+<span class="n">G_seq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">46</span><span class="p">),</span> <span class="mi">4</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">15</span><span class="p">)])</span>
+<span class="n">tax_model</span> <span class="o">=</span> <span class="n">create_tax_smoothing_model</span><span class="p">()</span>
+<span class="n">T_seq</span><span class="p">,</span> <span class="n">B_seq</span><span class="p">,</span> <span class="n">h0</span> <span class="o">=</span> <span class="n">compute_optimal</span><span class="p">(</span><span class="n">tax_model</span><span class="p">,</span> <span class="n">B0</span><span class="p">,</span> <span class="n">G_seq</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;check B_S+1=0:&#39;</span><span class="p">,</span> 
+      <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">B_seq</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mf">1e-8</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>check B_S+1=0: True
+</pre></div>
+</div>
+</div>
+</div>
+<p>The graphs below show paths of government expenditures, tax collections, and government debt.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Sequence length</span>
+<span class="n">S</span> <span class="o">=</span> <span class="n">tax_model</span><span class="o">.</span><span class="n">S</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">S</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">G_seq</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;expenditures&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">S</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">T_seq</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;tax&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">S</span><span class="o">+</span><span class="mi">2</span><span class="p">),</span> <span class="n">B_seq</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;debt&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$T_t,G_t$&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$B_t$&#39;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">ax</span> <span class="ow">in</span> <span class="n">axes</span><span class="p">:</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">S</span><span class="o">+</span><span class="mi">2</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">S</span><span class="o">+</span><span class="mi">2</span><span class="p">),</span> <span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$t$&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/ae2532d7baf7ddb5d2d39e290b6c3672596a85d0772227cb09cbbaa1e28d0039.png"><img alt="_images/ae2532d7baf7ddb5d2d39e290b6c3672596a85d0772227cb09cbbaa1e28d0039.png" src="_images/ae2532d7baf7ddb5d2d39e290b6c3672596a85d0772227cb09cbbaa1e28d0039.png" style="width: 80%;" /></a>
+</div>
+</div>
+<p>Note that <span class="math notranslate nohighlight">\(B_{S+1} = 0\)</span>, as anticipated.</p>
+<p>We can evaluate cost criterion <a class="reference internal" href="#equation-cost">(13.2)</a> which measures the total cost / welfare of taxation</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">cost</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">T_seq</span><span class="p">):</span>
+    <span class="n">β_seq</span><span class="p">,</span> <span class="n">g1</span><span class="p">,</span> <span class="n">g2</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">β_seq</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">g1</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">g2</span>
+    <span class="n">cost_seq</span> <span class="o">=</span> <span class="n">g1</span> <span class="o">*</span> <span class="n">T_seq</span> <span class="o">-</span> <span class="n">g2</span><span class="o">/</span><span class="mi">2</span> <span class="o">*</span> <span class="n">T_seq</span><span class="o">**</span><span class="mi">2</span>
+    <span class="k">return</span> <span class="o">-</span> <span class="n">β_seq</span> <span class="o">@</span> <span class="n">cost_seq</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Cost:&#39;</span><span class="p">,</span> <span class="n">cost</span><span class="p">(</span><span class="n">tax_model</span><span class="p">,</span> <span class="n">T_seq</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">welfare</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">T_seq</span><span class="p">):</span>
+    <span class="k">return</span> <span class="o">-</span> <span class="n">cost</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">T_seq</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Welfare:&#39;</span><span class="p">,</span> <span class="n">welfare</span><span class="p">(</span><span class="n">tax_model</span><span class="p">,</span> <span class="n">T_seq</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Cost: -41.46532630469102
+Welfare: 41.46532630469102
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="experiments">
+<h3><span class="section-number">13.4.4. </span>Experiments<a class="headerlink" href="#experiments" title="Permalink to this heading">#</a></h3>
+<p>In this section we describe how a tax sequence would optimally respond to different sequences of government expenditures.</p>
+<p>First we create a function <code class="docutils literal notranslate"><span class="pre">plot_ts</span></code> that generates graphs for different instances of the tax-smoothing model <code class="docutils literal notranslate"><span class="pre">tax_model</span></code>.</p>
+<p>This will help us avoid rewriting code to plot outcomes for different government expenditure sequences.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_ts</span><span class="p">(</span><span class="n">model</span><span class="p">,</span>    <span class="c1"># tax-smoothing model      </span>
+            <span class="n">B0</span><span class="p">,</span>       <span class="c1"># initial government debt</span>
+            <span class="n">G_seq</span>     <span class="c1"># government expenditure process</span>
+           <span class="p">):</span>
+    
+    <span class="c1"># Compute optimal tax path</span>
+    <span class="n">T_seq</span><span class="p">,</span> <span class="n">B_seq</span><span class="p">,</span> <span class="n">h0</span> <span class="o">=</span> <span class="n">compute_optimal</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">B0</span><span class="p">,</span> <span class="n">G_seq</span><span class="p">)</span>
+    
+    <span class="c1"># Sequence length</span>
+    <span class="n">S</span> <span class="o">=</span> <span class="n">tax_model</span><span class="o">.</span><span class="n">S</span>
+    
+    <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+    
+    <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">S</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">G_seq</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;expenditures&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">S</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">T_seq</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;taxes&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">S</span><span class="o">+</span><span class="mi">2</span><span class="p">),</span> <span class="n">B_seq</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;debt&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$T_t,G_t$&#39;</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$B_t$&#39;</span><span class="p">)</span>
+    
+    <span class="k">for</span> <span class="n">ax</span> <span class="ow">in</span> <span class="n">axes</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">S</span><span class="o">+</span><span class="mi">2</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">S</span><span class="o">+</span><span class="mi">2</span><span class="p">),</span> <span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$t$&#39;</span><span class="p">)</span>
+    
+    
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In the experiments below, please study how tax and government debt sequences vary across different sequences for government expenditures.</p>
+<section id="experiment-1-one-time-spending-shock">
+<h4><span class="section-number">13.4.4.1. </span>Experiment 1: one-time spending shock<a class="headerlink" href="#experiment-1-one-time-spending-shock" title="Permalink to this heading">#</a></h4>
+<p>We first assume a one-time spending shock of <span class="math notranslate nohighlight">\(W_0\)</span> in year 21 of the expenditure sequence <span class="math notranslate nohighlight">\(G\)</span>.</p>
+<p>We’ll make <span class="math notranslate nohighlight">\(W_0\)</span> big - positive to indicate a spending surge (like a war or disaster), and negative to indicate a spending cut.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Spending surge W_0 = 2.5</span>
+<span class="n">G_seq_pos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">21</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">2.5</span><span class="p">]),</span> 
+<span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">24</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">20</span><span class="p">)])</span>
+
+<span class="n">plot_ts</span><span class="p">(</span><span class="n">tax_model</span><span class="p">,</span> <span class="n">B0</span><span class="p">,</span> <span class="n">G_seq_pos</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/57f0fee10f6cc58305f290d9d7af4d0477480cec589312b69c154ede08af426a.png"><img alt="_images/57f0fee10f6cc58305f290d9d7af4d0477480cec589312b69c154ede08af426a.png" src="_images/57f0fee10f6cc58305f290d9d7af4d0477480cec589312b69c154ede08af426a.png" style="width: 80%;" /></a>
+</div>
+</div>
+</section>
+<section id="experiment-2-permanent-expenditure-shift">
+<h4><span class="section-number">13.4.4.2. </span>Experiment 2: permanent expenditure shift<a class="headerlink" href="#experiment-2-permanent-expenditure-shift" title="Permalink to this heading">#</a></h4>
+<p>Now we assume a permanent increase in government expenditures of <span class="math notranslate nohighlight">\(L\)</span> in year 21 of the <span class="math notranslate nohighlight">\(G\)</span>-sequence.</p>
+<p>Again we can study positive and negative cases</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Positive temporary expenditure shift L = 0.5 when t &gt;= 21</span>
+<span class="n">G_seq_pos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">21</span><span class="p">),</span> <span class="mf">1.5</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">25</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">20</span><span class="p">)])</span>
+
+<span class="n">plot_ts</span><span class="p">(</span><span class="n">tax_model</span><span class="p">,</span> <span class="n">B0</span><span class="p">,</span> <span class="n">G_seq_pos</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/3e4c2b455dfecf596e25f118fa81dd60320ae0e79095e1735ef82bd4f86f8e4b.png"><img alt="_images/3e4c2b455dfecf596e25f118fa81dd60320ae0e79095e1735ef82bd4f86f8e4b.png" src="_images/3e4c2b455dfecf596e25f118fa81dd60320ae0e79095e1735ef82bd4f86f8e4b.png" style="width: 80%;" /></a>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Negative temporary expenditure shift L = -0.5 when t &gt;= 21</span>
+<span class="n">G_seq_neg</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">21</span><span class="p">),</span> <span class="mf">.5</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">25</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">20</span><span class="p">)])</span>
+
+<span class="n">plot_ts</span><span class="p">(</span><span class="n">tax_model</span><span class="p">,</span> <span class="n">B0</span><span class="p">,</span> <span class="n">G_seq_neg</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/dbc92110c8b0da17e52d5e4d5ab376cdea0a3548f95cea3487747544afa18ef6.png"><img alt="_images/dbc92110c8b0da17e52d5e4d5ab376cdea0a3548f95cea3487747544afa18ef6.png" src="_images/dbc92110c8b0da17e52d5e4d5ab376cdea0a3548f95cea3487747544afa18ef6.png" style="width: 80%;" /></a>
+</div>
+</div>
+</section>
+<section id="experiment-3-delayed-spending-surge">
+<h4><span class="section-number">13.4.4.3. </span>Experiment 3: delayed spending surge<a class="headerlink" href="#experiment-3-delayed-spending-surge" title="Permalink to this heading">#</a></h4>
+<p>Now we simulate a <span class="math notranslate nohighlight">\(G\)</span> sequence in which government expenditures are zero for 46 years, and then rise to 1 for the last 20 years (perhaps due to demographic aging)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Delayed spending</span>
+<span class="n">G_seq_late</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">46</span><span class="p">),</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">20</span><span class="p">)])</span>
+
+<span class="n">plot_ts</span><span class="p">(</span><span class="n">tax_model</span><span class="p">,</span> <span class="n">B0</span><span class="p">,</span> <span class="n">G_seq_late</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/5b74f8a3eb981b3dd76a43fe25d5c52e743bd4f49b33616ef55382303921e55e.png"><img alt="_images/5b74f8a3eb981b3dd76a43fe25d5c52e743bd4f49b33616ef55382303921e55e.png" src="_images/5b74f8a3eb981b3dd76a43fe25d5c52e743bd4f49b33616ef55382303921e55e.png" style="width: 80%;" /></a>
+</div>
+</div>
+</section>
+<section id="experiment-4-growing-expenditures">
+<h4><span class="section-number">13.4.4.4. </span>Experiment 4: growing expenditures<a class="headerlink" href="#experiment-4-growing-expenditures" title="Permalink to this heading">#</a></h4>
+<p>Now we simulate a geometric <span class="math notranslate nohighlight">\(G\)</span> sequence in which government expenditures grow at rate <span class="math notranslate nohighlight">\(G_t = \lambda^t G_0\)</span> in first 46 years.</p>
+<p>We first experiment with <span class="math notranslate nohighlight">\(\lambda = 1.05\)</span> (growing expenditures)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Geometric growth parameters where λ = 1.05</span>
+<span class="n">λ</span> <span class="o">=</span> <span class="mf">1.05</span>
+<span class="n">G_0</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">t_max</span> <span class="o">=</span> <span class="mi">46</span>
+
+<span class="c1"># Generate geometric G sequence</span>
+<span class="n">geo_seq</span> <span class="o">=</span> <span class="n">λ</span> <span class="o">**</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">t_max</span><span class="p">)</span> <span class="o">*</span> <span class="n">G_0</span> 
+<span class="n">G_seq_geo</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span>
+            <span class="p">[</span><span class="n">geo_seq</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">geo_seq</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">20</span><span class="p">)])</span>
+
+<span class="n">plot_ts</span><span class="p">(</span><span class="n">tax_model</span><span class="p">,</span> <span class="n">B0</span><span class="p">,</span> <span class="n">G_seq_geo</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/ee44b34459e85ade3582a7696332fa3c6465cde5cd7cb2e8c20ce4512c0e7541.png"><img alt="_images/ee44b34459e85ade3582a7696332fa3c6465cde5cd7cb2e8c20ce4512c0e7541.png" src="_images/ee44b34459e85ade3582a7696332fa3c6465cde5cd7cb2e8c20ce4512c0e7541.png" style="width: 80%;" /></a>
+</div>
+</div>
+<p>Now we show the behavior when <span class="math notranslate nohighlight">\(\lambda = 0.95\)</span> (declining expenditures)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">λ</span> <span class="o">=</span> <span class="mf">0.95</span>
+<span class="n">geo_seq</span> <span class="o">=</span> <span class="n">λ</span> <span class="o">**</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">t_max</span><span class="p">)</span> <span class="o">*</span> <span class="n">G_0</span> 
+<span class="n">G_seq_geo</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span>
+            <span class="p">[</span><span class="n">geo_seq</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">20</span><span class="p">)])</span>
+
+<span class="n">plot_ts</span><span class="p">(</span><span class="n">tax_model</span><span class="p">,</span> <span class="n">B0</span><span class="p">,</span> <span class="n">G_seq_geo</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/12334c8b97555463c310a1136eb1a21a991880bea5cbc25c27f2a1fd4c95ccbd.png"><img alt="_images/12334c8b97555463c310a1136eb1a21a991880bea5cbc25c27f2a1fd4c95ccbd.png" src="_images/12334c8b97555463c310a1136eb1a21a991880bea5cbc25c27f2a1fd4c95ccbd.png" style="width: 80%;" /></a>
+</div>
+</div>
+<p>What happens with oscillating expenditures</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">λ</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.95</span>
+<span class="n">geo_seq</span> <span class="o">=</span> <span class="n">λ</span> <span class="o">**</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">t_max</span><span class="p">)</span> <span class="o">*</span> <span class="n">G_0</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="n">G_seq_geo</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span>
+            <span class="p">[</span><span class="n">geo_seq</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">20</span><span class="p">)])</span>
+
+<span class="n">plot_ts</span><span class="p">(</span><span class="n">tax_model</span><span class="p">,</span> <span class="n">B0</span><span class="p">,</span> <span class="n">G_seq_geo</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/fed93604a659004d9455dde0dcee593b0d65c2c9ba326349fa1ad05ba53660e8.png"><img alt="_images/fed93604a659004d9455dde0dcee593b0d65c2c9ba326349fa1ad05ba53660e8.png" src="_images/fed93604a659004d9455dde0dcee593b0d65c2c9ba326349fa1ad05ba53660e8.png" style="width: 80%;" /></a>
+</div>
+</div>
+</section>
+</section>
+<section id="feasible-tax-variations">
+<h3><span class="section-number">13.4.5. </span>Feasible Tax Variations<a class="headerlink" href="#feasible-tax-variations" title="Permalink to this heading">#</a></h3>
+<p>We promised to justify our claim that a constant tax rate <span class="math notranslate nohighlight">\(T_t = T_0\)</span> for all <span class="math notranslate nohighlight">\(t\)</span> is optimal.</p>
+<p>Let’s do that now.</p>
+<p>The approach we’ll take is an elementary example of the “calculus of variations”.</p>
+<p>Let’s dive in and see what the key idea is.</p>
+<p>To explore what types of tax paths are cost-minimizing / welfare-improving, we shall create an <strong>admissible tax path variation sequence</strong> <span class="math notranslate nohighlight">\(\{v_t\}_{t=0}^S\)</span>
+that satisfies</p>
+<div class="math notranslate nohighlight">
+\[
+\sum_{t=0}^S R^{-t} v_t = 0.
+\]</div>
+<p>This equation says that the <strong>present value</strong> of admissible tax path variations must be zero.</p>
+<p>So once again, we encounter a formula for the present value:</p>
+<ul class="simple">
+<li><p>we require that the present value of tax path variations be zero to maintain budget balance.</p></li>
+</ul>
+<p>Here we’ll restrict ourselves to a two-parameter class of admissible tax path variations of the form</p>
+<div class="math notranslate nohighlight">
+\[
+v_t = \xi_1 \phi^t - \xi_0.
+\]</div>
+<p>We say two and not three-parameter class because <span class="math notranslate nohighlight">\(\xi_0\)</span> will be a function of <span class="math notranslate nohighlight">\((\phi, \xi_1; R)\)</span> that guarantees that the variation sequence is feasible.</p>
+<p>Let’s compute that function.</p>
+<p>We require</p>
+<div class="math notranslate nohighlight">
+\[
+\sum_{t=0}^S R^{-t}\left[ \xi_1 \phi^t - \xi_0 \right] = 0
+\]</div>
+<p>which implies that</p>
+<div class="math notranslate nohighlight">
+\[
+\xi_1 \sum_{t=0}^S \phi_t R^{-t} - \xi_0 \sum_{t=0}^S R^{-t} = 0
+\]</div>
+<p>which implies that</p>
+<div class="math notranslate nohighlight">
+\[
+\xi_1 \frac{1 - (\phi R^{-1})^{S+1}}{1 - \phi R^{-1}} - \xi_0 \frac{1 - R^{-(S+1)}}{1-R^{-1} } =0
+\]</div>
+<p>which implies that</p>
+<div class="math notranslate nohighlight">
+\[
+\xi_0 = \xi_0(\phi, \xi_1; R) = \xi_1 \left(\frac{1 - R^{-1}}{1 - R^{-(S+1)}}\right) \left(\frac{1 - (\phi R^{-1})^{S+1}}{1 - \phi R^{-1}}\right)
+\]</div>
+<p>This is our formula for <span class="math notranslate nohighlight">\(\xi_0\)</span>.</p>
+<p><strong>Key Idea:</strong> if <span class="math notranslate nohighlight">\(T^o\)</span> is a budget-feasible tax path, then so is <span class="math notranslate nohighlight">\(T^o + v\)</span>,
+where <span class="math notranslate nohighlight">\(v\)</span> is a budget-feasible variation.</p>
+<p>Given <span class="math notranslate nohighlight">\(R\)</span>, we thus have a two parameter class of budget feasible variations <span class="math notranslate nohighlight">\(v\)</span> that we can use
+to compute alternative tax paths, then evaluate their welfare costs.</p>
+<p>Now let’s compute and plot tax path variations</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">compute_variation</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">ξ1</span><span class="p">,</span> <span class="n">ϕ</span><span class="p">,</span> <span class="n">B0</span><span class="p">,</span> <span class="n">G_seq</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">R</span><span class="p">,</span> <span class="n">S</span><span class="p">,</span> <span class="n">β_seq</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">R</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">S</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">β_seq</span>
+
+    <span class="n">ξ0</span> <span class="o">=</span> <span class="n">ξ1</span><span class="o">*</span><span class="p">((</span><span class="mi">1</span> <span class="o">-</span> <span class="mi">1</span><span class="o">/</span><span class="n">R</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">R</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="n">S</span><span class="o">+</span><span class="mi">1</span><span class="p">)))</span> <span class="o">*</span> <span class="p">((</span><span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="n">ϕ</span><span class="o">/</span><span class="n">R</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="n">S</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">ϕ</span><span class="o">/</span><span class="n">R</span><span class="p">))</span>
+    <span class="n">v_seq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([(</span><span class="n">ξ1</span><span class="o">*</span><span class="n">ϕ</span><span class="o">**</span><span class="n">t</span> <span class="o">-</span> <span class="n">ξ0</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">S</span><span class="o">+</span><span class="mi">1</span><span class="p">)])</span>
+    
+    <span class="k">if</span> <span class="n">verbose</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;check feasible:&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">β_seq</span> <span class="o">@</span> <span class="n">v_seq</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>     
+
+    <span class="n">T_opt</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">compute_optimal</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">B0</span><span class="p">,</span> <span class="n">G_seq</span><span class="p">)</span>
+    <span class="n">Tvar_seq</span> <span class="o">=</span> <span class="n">T_opt</span> <span class="o">+</span> <span class="n">v_seq</span>
+
+    <span class="k">return</span> <span class="n">Tvar_seq</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We visualize variations for <span class="math notranslate nohighlight">\(\xi_1 \in \{.01, .05\}\)</span> and <span class="math notranslate nohighlight">\(\phi \in \{.95, 1.02\}\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ξ1s</span> <span class="o">=</span> <span class="p">[</span><span class="mf">.01</span><span class="p">,</span> <span class="mf">.05</span><span class="p">]</span>
+<span class="n">ϕs</span><span class="o">=</span> <span class="p">[</span><span class="mf">.95</span><span class="p">,</span> <span class="mf">1.02</span><span class="p">]</span>
+<span class="n">colors</span> <span class="o">=</span> <span class="p">{</span><span class="mf">.01</span><span class="p">:</span> <span class="s1">&#39;tab:blue&#39;</span><span class="p">,</span> <span class="mf">.05</span><span class="p">:</span> <span class="s1">&#39;tab:green&#39;</span><span class="p">}</span>
+<span class="n">params</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">ξ1s</span><span class="p">,</span> <span class="n">ϕs</span><span class="p">))</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">wel_opt</span> <span class="o">=</span> <span class="n">welfare</span><span class="p">(</span><span class="n">tax_model</span><span class="p">,</span> <span class="n">T_seq</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">param</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">params</span><span class="p">):</span>
+    <span class="n">ξ1</span><span class="p">,</span> <span class="n">ϕ</span> <span class="o">=</span> <span class="n">param</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;variation </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">: ξ1=</span><span class="si">{</span><span class="n">ξ1</span><span class="si">}</span><span class="s1">, ϕ=</span><span class="si">{</span><span class="n">ϕ</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+    <span class="n">Tvar_seq</span> <span class="o">=</span> <span class="n">compute_variation</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">tax_model</span><span class="p">,</span> 
+                                 <span class="n">ξ1</span><span class="o">=</span><span class="n">ξ1</span><span class="p">,</span> <span class="n">ϕ</span><span class="o">=</span><span class="n">ϕ</span><span class="p">,</span> <span class="n">B0</span><span class="o">=</span><span class="n">B0</span><span class="p">,</span> 
+                                 <span class="n">G_seq</span><span class="o">=</span><span class="n">G_seq</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;welfare=</span><span class="si">{</span><span class="n">welfare</span><span class="p">(</span><span class="n">tax_model</span><span class="p">,</span><span class="w"> </span><span class="n">Tvar_seq</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;welfare &lt; optimal: </span><span class="si">{</span><span class="n">welfare</span><span class="p">(</span><span class="n">tax_model</span><span class="p">,</span><span class="w"> </span><span class="n">Tvar_seq</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">wel_opt</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="o">*</span><span class="mi">64</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">ls</span> <span class="o">=</span> <span class="s1">&#39;-.&#39;</span>
+    <span class="k">else</span><span class="p">:</span> 
+        <span class="n">ls</span> <span class="o">=</span> <span class="s1">&#39;-&#39;</span>  
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">S</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">Tvar_seq</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="n">ls</span><span class="p">,</span> 
+            <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">ξ1</span><span class="p">],</span> 
+            <span class="n">label</span><span class="o">=</span><span class="sa">fr</span><span class="s1">&#39;$\xi_1 = </span><span class="si">{</span><span class="n">ξ1</span><span class="si">}</span><span class="s1">, \phi = </span><span class="si">{</span><span class="n">ϕ</span><span class="si">}</span><span class="s1">$&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">S</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">T_seq</span><span class="p">,</span> 
+         <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;Optimal $\vec</span><span class="si">{T}</span><span class="s1">$ &#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$t$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$T_t$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>variation 0: ξ1=0.01, ϕ=0.95
+check feasible: True
+welfare=41.46523217108914
+welfare &lt; optimal: True
+----------------------------------------------------------------
+variation 1: ξ1=0.01, ϕ=1.02
+check feasible: True
+welfare=41.46467728803246
+welfare &lt; optimal: True
+----------------------------------------------------------------
+variation 2: ξ1=0.05, ϕ=0.95
+check feasible: True
+welfare=41.46297296464396
+welfare &lt; optimal: True
+----------------------------------------------------------------
+variation 3: ξ1=0.05, ϕ=1.02
+check feasible: True
+welfare=41.44910088822694
+welfare &lt; optimal: True
+----------------------------------------------------------------
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/85be5cbb306fa6dbf6444f4ce29051eae272d2cccde1c54885daa5fea9a74869.png"><img alt="_images/85be5cbb306fa6dbf6444f4ce29051eae272d2cccde1c54885daa5fea9a74869.png" src="_images/85be5cbb306fa6dbf6444f4ce29051eae272d2cccde1c54885daa5fea9a74869.png" style="width: 80%;" /></a>
+</div>
+</div>
+<p>We can even use the Python <code class="docutils literal notranslate"><span class="pre">np.gradient</span></code> command to compute derivatives of cost with respect to our two parameters.</p>
+<p>We are teaching the key idea beneath the <strong>calculus of variations</strong>.
+First, we define the cost with respect to <span class="math notranslate nohighlight">\(\xi_1\)</span> and <span class="math notranslate nohighlight">\(\phi\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">cost_rel</span><span class="p">(</span><span class="n">ξ1</span><span class="p">,</span> <span class="n">ϕ</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compute cost of variation sequence </span>
+<span class="sd">    for given ϕ, ξ1 with a tax-smoothing model</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="n">Tvar_seq</span> <span class="o">=</span> <span class="n">compute_variation</span><span class="p">(</span><span class="n">tax_model</span><span class="p">,</span> <span class="n">ξ1</span><span class="o">=</span><span class="n">ξ1</span><span class="p">,</span> 
+                                 <span class="n">ϕ</span><span class="o">=</span><span class="n">ϕ</span><span class="p">,</span> <span class="n">B0</span><span class="o">=</span><span class="n">B0</span><span class="p">,</span> 
+                                 <span class="n">G_seq</span><span class="o">=</span><span class="n">G_seq</span><span class="p">,</span> 
+                                 <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">cost</span><span class="p">(</span><span class="n">tax_model</span><span class="p">,</span> <span class="n">Tvar_seq</span><span class="p">)</span>
+
+<span class="c1"># Vectorize the function to allow array input</span>
+<span class="n">cost_vec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vectorize</span><span class="p">(</span><span class="n">cost_rel</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Then we can visualize the relationship between cost and <span class="math notranslate nohighlight">\(\xi_1\)</span> and compute its derivatives</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ξ1_arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ξ1_arr</span><span class="p">,</span> <span class="n">cost_vec</span><span class="p">(</span><span class="n">ξ1_arr</span><span class="p">,</span> <span class="mf">1.02</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;cost&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\xi_1$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">cost_grad</span> <span class="o">=</span> <span class="n">cost_vec</span><span class="p">(</span><span class="n">ξ1_arr</span><span class="p">,</span> <span class="mf">1.02</span><span class="p">)</span>
+<span class="n">cost_grad</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span><span class="n">cost_grad</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ξ1_arr</span><span class="p">,</span> <span class="n">cost_grad</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;derivative of cost&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\xi_1$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/385ae870720b6210b81e5f84a2bf341e0dec41f54b9107178f88558b4c4a19a1.png"><img alt="_images/385ae870720b6210b81e5f84a2bf341e0dec41f54b9107178f88558b4c4a19a1.png" src="_images/385ae870720b6210b81e5f84a2bf341e0dec41f54b9107178f88558b4c4a19a1.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/d2b25bfe78dab37ba4145d1072634fa86098da80099246c72b8dd6ac0ddc4924.png"><img alt="_images/d2b25bfe78dab37ba4145d1072634fa86098da80099246c72b8dd6ac0ddc4924.png" src="_images/d2b25bfe78dab37ba4145d1072634fa86098da80099246c72b8dd6ac0ddc4924.png" style="width: 80%;" /></a>
+</div>
+</div>
+<p>The same can be done on <span class="math notranslate nohighlight">\(\phi\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ϕ_arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ξ1_arr</span><span class="p">,</span> <span class="n">cost_vec</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">ϕ_arr</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;cost&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\phi$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">cost_grad</span> <span class="o">=</span> <span class="n">cost_vec</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">ϕ_arr</span><span class="p">)</span>
+<span class="n">cost_grad</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span><span class="n">cost_grad</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ξ1_arr</span><span class="p">,</span> <span class="n">cost_grad</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;derivative of cost&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\phi$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/1a8edb758861e8bcec9c7a7d2b179aeb01b8dffa58db437682796a902ac05bf1.png"><img alt="_images/1a8edb758861e8bcec9c7a7d2b179aeb01b8dffa58db437682796a902ac05bf1.png" src="_images/1a8edb758861e8bcec9c7a7d2b179aeb01b8dffa58db437682796a902ac05bf1.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/9d43ce20351298c9cdf5fea2b369817918a080023175e2774673e19e7dd736ed.png"><img alt="_images/9d43ce20351298c9cdf5fea2b369817918a080023175e2774673e19e7dd736ed.png" src="_images/9d43ce20351298c9cdf5fea2b369817918a080023175e2774673e19e7dd736ed.png" style="width: 80%;" /></a>
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                    </div>
+                    
+                </main> <!-- .page__content -->
+                
+
+
+                <footer class="qe-page__footer">
+
+                    <p><a href="https://creativecommons.org/licenses/by-sa/4.0/"><img src="https://licensebuttons.net/l/by-sa/4.0/80x15.png"></a></p>
+
+                    <p>Creative Commons License &ndash; This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International.</p>
+
+                </footer> <!-- .page__footer -->
+
+            </div> <!-- .page -->
+
+            
+
+            
+            <div class="qe-sidebar bd-sidebar inactive" id="site-navigation">
+
+                <div class="qe-sidebar__header">
+
+
+                    Contents
+
+                </div>
+
+                <nav class="qe-sidebar__nav" id="qe-sidebar-nav" aria-label="Main navigation">
+                    <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Introduction
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="about.html">
+   1. About These Lectures
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Economic Data
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="long_run_growth.html">
+   2. Long-Run Growth
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="business_cycle.html">
+   3. Business Cycles
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="inflation_history.html">
+   4. Price Level Histories
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="french_rev.html">
+   5. Inflation During French Revolution
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="inequality.html">
+   6. Income and Wealth Inequality
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Foundations
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro_supply_demand.html">
+   7. Introduction to Supply and Demand
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="linear_equations.html">
+   8. Linear Equations and Matrix Algebra
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="complex_and_trig.html">
+   9. Complex Numbers and Trigonometry
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="geom_series.html">
+   10. Geometric Series for Elementary Economics
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Linear Dynamics: Finite Horizons
+ </span>
+</p>
+<ul class="current nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="pv.html">
+   11. Present Values
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cons_smooth.html">
+   12. Consumption Smoothing
+  </a>
+ </li>
+ <li class="toctree-l1 current active active">
+  <a class="current reference internal" href="#">
+   13. Tax Smoothing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="equalizing_difference.html">
+   14. Equalizing Difference Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cagan_ree.html">
+   15. A Monetarist Theory of Price Levels
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cagan_adaptive.html">
+   16. Monetarist Theory of Price Levels with Adaptive Expectations
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Linear Dynamics: Infinite Horizons
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="eigen_I.html">
+   17. Eigenvalues and Eigenvectors
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="greek_square.html">
+   18. Computing Square Roots
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Probability and Distributions
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="prob_dist.html">
+   19. Distributions and Probabilities
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lln_clt.html">
+   20. LLN and CLT
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="monte_carlo.html">
+   21. Monte Carlo and Option Pricing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="heavy_tails.html">
+   22. Heavy-Tailed Distributions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="schelling.html">
+   23. Racial Segregation
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Nonlinear Dynamics
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="scalar_dynam.html">
+   24. Dynamics in One Dimension
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="solow.html">
+   25. The Solow-Swan Growth Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cobweb.html">
+   26. The Cobweb Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="olg.html">
+   27. The Overlapping Generations Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="commod_price.html">
+   28. Commodity Prices
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Monetary-Fiscal Policy Interactions
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="money_inflation.html">
+   29. Money Financed Government Deficits and Price Levels
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="unpleasant.html">
+   30. Some Unpleasant Monetarist Arithmetic
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="money_inflation_nonlinear.html">
+   31. Inflation Rate Laffer Curves
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="laffer_adaptive.html">
+   32. Laffer Curves  with Adaptive Expectations
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Stochastic Dynamics
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="ar1_processes.html">
+   33. AR(1) Processes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="markov_chains_I.html">
+   34. Markov Chains: Basic Concepts
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="markov_chains_II.html">
+   35. Markov Chains: Irreducibility and Ergodicity
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="time_series_with_matrices.html">
+   36. Univariate Time Series with Matrix Algebra
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Optimization
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="lp_intro.html">
+   37. Linear Programming
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="short_path.html">
+   38. Shortest Paths
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Modeling in Higher Dimensions
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="eigen_II.html">
+   39. The Perron-Frobenius Theorem
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="input_output.html">
+   40. Input-Output Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lake_model.html">
+   41. A Lake Model of Employment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="networks.html">
+   42. Networks
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Markets and Competitive Equilibrium
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="supply_demand_multiple_goods.html">
+   43. Supply and Demand with Many Goods
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="supply_demand_heterogeneity.html">
+   44. Market Equilibrium with Heterogeneity
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Estimation
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="simple_linear_regression.html">
+   45. Simple Linear Regression Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="mle.html">
+   46. Maximum Likelihood Estimation
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Other
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="troubleshooting.html">
+   47. Troubleshooting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="zreferences.html">
+   48. References
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="status.html">
+   49. Execution Statistics
+  </a>
+ </li>
+</ul>
+
+                </nav>
+
+                <div class="qe-sidebar__footer">
+
+                </div>
+
+            </div> <!-- .sidebar -->
+            
+        </div> <!-- .main -->
+
+        <div class="qe-toolbar">
+
+            <div class="qe-toolbar__inner">
+
+                <ul class="qe-toolbar__main">
+                    <li data-tippy-content="Table of Contents" class="btn__sidebar"><i data-feather="menu"></i></li>
+                    <li data-tippy-content="Home"><a href="intro.html"><i data-feather="home"></i></a></li>
+                    <li class="btn__qelogo"><a href="https://quantecon.org" title=""><span class="show-for-sr">QuantEcon</span></a></li>
+                </ul>
+
+                <ul class="qe-toolbar__links">
+                    <li class="btn__search">
+                        <form action="search.html" method="get">
+                            <input type="search" class="form-control" name="q" id="search-input" placeholder="Search..." aria-label="Search..." autocomplete="off" accesskey="k">
+                            <i data-feather="search" id="search-icon"></i>
+                        </form>
+                    </li>
+                    <li data-tippy-content="Fullscreen" class="btn__fullscreen"><i data-feather="maximize"></i></li>
+                    <li data-tippy-content="Increase font size" class="btn__plus"><i data-feather="plus-circle"></i></li>
+                    <li data-tippy-content="Decrease font size" class="btn__minus"><i data-feather="minus-circle"></i></li>
+                    <li data-tippy-content="Change contrast" class="btn__contrast"><i data-feather="sunset"></i></li>
+                    <li data-tippy-content="Download Notebook"><a href="/_notebooks/tax_smooth.ipynb" download><i data-feather="download-cloud"></i></a></li>
+                    <li class="settings-button" id="settingsButton"><div data-tippy-content="Launch Notebook"><i data-feather="play-circle"></i></div></li>
+                        <li class="download-pdf" id="downloadButton"><i data-feather="file"></i></li>
+                    <!--
+                    # Enable if looking for link to specific document hosted on GitHub
+                    <li data-tippy-content="View Source"><a target="_blank" href="https://github.com/QuantEcon/lecture-python-intro/blob/main/lectures/tax_smooth.md" download><i data-feather="github"></i></a></li>
+                    -->
+                    <li data-tippy-content="View Source"><a target="_blank" href="https://github.com/QuantEcon/lecture-python-intro" download><i data-feather="github"></i></a></li>
+                </ul>
+
+            </div>
+
+        </div> <!-- .toolbar -->
+        <div id="downloadPDFModal" style="display: none;">
+            <ul class="pdf-options" style="display: block;">
+                <li class="download-pdf-book" onClick="window.print()">
+                    <p>Lecture (PDF)</p>
+                </li>
+                <li class="download-pdf-file">
+                    <a href="/_pdf/quantecon-python-intro.pdf" download><p>Book (PDF)</p></a>
+                </li>
+            </ul>
+        </div>
+        <div id="settingsModal" style="display: none;">
+            <p class="modal-title"> Notebook Launcher </p>
+            <div class="modal-desc">
+            <p>
+                Choose public or private cloud service for "Launch" button.
+            </p>
+            </div>
+            <p class="modal-subtitle">Select a server</p>
+            <ul class="modal-servers">
+            <li class="active launcher-public">
+                <span class="label">Public</span>
+                <select id="launcher-public-input">
+                
+                    <option value="https://colab.research.google.com/github/QuantEcon/lecture-python-intro.notebooks/blob/main/tax_smooth.ipynb">Colab</option>
+                
+                </select>
+                <i class="fas fa-check-circle"></i>
+            </li>
+            <li class="launcher-private">
+                <span class="label">Private</span>
+                <input type="text" id="launcher-private-input" data-repourl="https://github.com/QuantEcon/lecture-python-intro.notebooks" data-urlpath="tree/lecture-python-intro.notebooks/tax_smooth.ipynb" data-branch=main>
+                <i class="fas fa-check-circle"></i>
+            </li>
+            </ul>
+            <p class="launch"><a href="https://colab.research.google.com/github/QuantEcon/lecture-python-intro.notebooks/blob/main/tax_smooth.ipynb" id="advancedLaunchButton" target="_blank">Launch Notebook</a></p>
+            <script>
+                // QuantEcon Notebook Launcher
+                const launcherTypeElements = document.querySelectorAll('#settingsModal .modal-servers li');
+                // Highlight the server type if previous selection exists
+                if (typeof localStorage.launcherType !== 'undefined') {
+                  for (var i = 0; i < launcherTypeElements.length; i++) {
+                    launcherTypeElements[i].classList.remove('active');
+                    if ( launcherTypeElements[i].classList.contains(localStorage.launcherType) ) {
+                      launcherTypeElements[i].classList.add('active');
+                    }
+                  }
+                }
+                // Highlight server type on click and set local storage value
+                for (var i = 0; i < launcherTypeElements.length; i++) {
+                  launcherTypeElements[i].addEventListener('click', function() {
+                    for (var j = 0; j < launcherTypeElements.length; j++) {
+                      launcherTypeElements[j].classList.remove('active');
+                    }
+                    this.classList.add('active');
+                    if ( this.classList.contains('launcher-private') ) {
+                      localStorage.launcherType = 'launcher-private';
+                    } else if ( this.classList.contains('launcher-public') ) {
+                      localStorage.launcherType = 'launcher-public';
+                    }
+                    setLaunchServer();
+                  })
+                }
+                const launcherPublic = document.getElementById('launcher-public-input');
+                const launcherPrivate = document.getElementById('launcher-private-input');
+                const pageName = "tax_smooth";
+                const repoURL = "https://github.com/QuantEcon/lecture-python-intro.notebooks";
+                const urlPath = "tree/lecture-python-intro.notebooks/tax_smooth.ipynb";
+                const branch = "main"
+                const launchNotebookLink = document.getElementById('advancedLaunchButton');
+
+                // Highlight public server option if previous selection exists
+                if (typeof localStorage.launcherPublic !== 'undefined') {
+                  launcherPublic.value = localStorage.launcherPublic;
+                }
+                // Update local storage upon public server selection
+                launcherPublic.addEventListener('change', (event) => {
+                  setLaunchServer();
+                });
+                // Populate private server input if previous entry exists
+                if (typeof localStorage.launcherPrivate !== 'undefined') {
+                  launcherPrivate.value = localStorage.launcherPrivate;
+                }
+                // Update local storage when a private server is entered
+                launcherPrivate.addEventListener('input', (event) => {
+                  setLaunchServer();
+                });
+
+                // Function to update the "Launch Notebook" link href
+                function setLaunchServer() {
+                  launchNotebookLink.removeAttribute("style")
+                  if ( localStorage.launcherType == 'launcher-private' ) {
+                    let repoPrefix = "/jupyter/hub/user-redirect/git-pull?repo=" + repoURL + "&branch=" + branch + "&urlpath=" + urlPath;
+                    launcherPrivateValue = launcherPrivate.value
+                    if (!launcherPrivateValue) {
+                        launchNotebookLink.removeAttribute("href")
+                        launchNotebookLink.style.background = "grey"
+                        return
+                    }
+                    localStorage.launcherPrivate = launcherPrivateValue;
+                    privateServer = localStorage.launcherPrivate.replace(/\/$/, "")
+                    if (!privateServer.includes("http")) {
+                        privateServer = "http://" + privateServer
+                    }
+                    launchNotebookLinkURL = privateServer + repoPrefix;
+                  } else if ( localStorage.launcherType == 'launcher-public' ) {
+                    launcherPublicValue = launcherPublic.options[launcherPublic.selectedIndex].value;
+                    localStorage.launcherPublic = launcherPublicValue;
+                    launchNotebookLinkURL = localStorage.launcherPublic;
+                  }
+                  if (launchNotebookLinkURL) launchNotebookLink.href = launchNotebookLinkURL;
+                }
+                // Check if user has previously selected a server
+                if ( (typeof localStorage.launcherPrivate !== 'undefined') || (typeof localStorage.launcherPublic !== 'undefined') ) {
+                  setLaunchServer();
+                }
+                </script>
+
+        </div>
+
+    </div> <!-- .wrapper-->
+  </body>
+</html>

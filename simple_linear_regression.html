@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>44. Simple Linear Regression Model &#8212; A First Course in Quantitative Economics with Python</title>
+    <title>45. Simple Linear Regression Model &#8212; A First Course in Quantitative Economics with Python</title>
     <script src="https://unpkg.com/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://unpkg.com/tippy.js@6.3.1/dist/tippy-bundle.umd.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
@@ -120,8 +120,8 @@
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="45. Maximum Likelihood Estimation" href="mle.html" />
-    <link rel="prev" title="43. Market Equilibrium with Heterogeneity" href="supply_demand_heterogeneity.html" />
+    <link rel="next" title="46. Maximum Likelihood Estimation" href="mle.html" />
+    <link rel="prev" title="44. Market Equilibrium with Heterogeneity" href="supply_demand_heterogeneity.html" />
 
 <!-- Normal Meta Tags -->
 <meta name="author" context="Thomas J. Sargent &amp; John Stachurski" />
@@ -169,8 +169,8 @@
 
                         <nav id="bd-toc-nav" class="qe-page__toc-nav">
                             <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-does-error-change-with-respect-to-alpha-and-beta">44.1. How does error change with respect to <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculating-optimal-values">44.2. Calculating optimal values</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-does-error-change-with-respect-to-alpha-and-beta">45.1. How does error change with respect to <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculating-optimal-values">45.2. Calculating optimal values</a></li>
 </ul>
                             <p class="logo">
                                 
@@ -230,7 +230,7 @@
                     <div>
                         
   <section class="tex2jax_ignore mathjax_ignore" id="simple-linear-regression-model">
-<h1><span class="section-number">44. </span>Simple Linear Regression Model<a class="headerlink" href="#simple-linear-regression-model" title="Permalink to this heading">#</a></h1>
+<h1><span class="section-number">45. </span>Simple Linear Regression Model<a class="headerlink" href="#simple-linear-regression-model" title="Permalink to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -405,7 +405,7 @@ y_i = \alpha + \beta x_i + \epsilon_i, i = 1,2,...,N
 <figure class="align-default" id="sales-v-temp1">
 <a class="reference internal image-reference" href="_images/ae16655e72c744b266b2dbdb3340f166bed20f6469c10343ae257d60ddc74671.png"><img alt="_images/ae16655e72c744b266b2dbdb3340f166bed20f6469c10343ae257d60ddc74671.png" src="_images/ae16655e72c744b266b2dbdb3340f166bed20f6469c10343ae257d60ddc74671.png" style="width: 80%;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 44.1 </span><span class="caption-text">Scatter plot</span><a class="headerlink" href="#sales-v-temp1" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 45.1 </span><span class="caption-text">Scatter plot</span><a class="headerlink" href="#sales-v-temp1" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </div>
@@ -439,7 +439,7 @@ y_i = \alpha + \beta x_i + \epsilon_i, i = 1,2,...,N
 <figure class="align-default" id="sales-v-temp2">
 <a class="reference internal image-reference" href="_images/45a679edd0353ad3c46c3ded09fe6a74410f122bf80c327dde1ceda2b3f85377.png"><img alt="_images/45a679edd0353ad3c46c3ded09fe6a74410f122bf80c327dde1ceda2b3f85377.png" src="_images/45a679edd0353ad3c46c3ded09fe6a74410f122bf80c327dde1ceda2b3f85377.png" style="width: 80%;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 44.2 </span><span class="caption-text">Scatter plot with a line of fit</span><a class="headerlink" href="#sales-v-temp2" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 45.2 </span><span class="caption-text">Scatter plot with a line of fit</span><a class="headerlink" href="#sales-v-temp2" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </div>
@@ -467,7 +467,7 @@ y_i = \alpha + \beta x_i + \epsilon_i, i = 1,2,...,N
 <figure class="align-default" id="sales-v-temp3">
 <a class="reference internal image-reference" href="_images/039c89754a790ce6c5e03828e94371e7e31442fa43a72a7e6339edc7c39991eb.png"><img alt="_images/039c89754a790ce6c5e03828e94371e7e31442fa43a72a7e6339edc7c39991eb.png" src="_images/039c89754a790ce6c5e03828e94371e7e31442fa43a72a7e6339edc7c39991eb.png" style="width: 80%;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 44.3 </span><span class="caption-text">Scatter plot with a line of fit #2</span><a class="headerlink" href="#sales-v-temp3" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 45.3 </span><span class="caption-text">Scatter plot with a line of fit #2</span><a class="headerlink" href="#sales-v-temp3" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </div>
@@ -493,7 +493,7 @@ y_i = \alpha + \beta x_i + \epsilon_i, i = 1,2,...,N
 <figure class="align-default" id="sales-v-temp4">
 <a class="reference internal image-reference" href="_images/2fde1a53525ad1a628f36c9ee8b95814b34408e154e9ef98c8ad1adc4205d367.png"><img alt="_images/2fde1a53525ad1a628f36c9ee8b95814b34408e154e9ef98c8ad1adc4205d367.png" src="_images/2fde1a53525ad1a628f36c9ee8b95814b34408e154e9ef98c8ad1adc4205d367.png" style="width: 80%;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 44.4 </span><span class="caption-text">Scatter plot with a line of fit #3</span><a class="headerlink" href="#sales-v-temp4" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 45.4 </span><span class="caption-text">Scatter plot with a line of fit #3</span><a class="headerlink" href="#sales-v-temp4" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </div>
@@ -634,7 +634,7 @@ y_i = \alpha + \beta x_i + \epsilon_i, i = 1,2,...,N
 <figure class="align-default" id="plt-residuals">
 <a class="reference internal image-reference" href="_images/afc08c73771f64327a100eab5ac006e587c368bbb786f0dc010c2256edf0fb02.png"><img alt="_images/afc08c73771f64327a100eab5ac006e587c368bbb786f0dc010c2256edf0fb02.png" src="_images/afc08c73771f64327a100eab5ac006e587c368bbb786f0dc010c2256edf0fb02.png" style="width: 80%;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 44.5 </span><span class="caption-text">Plot of the residuals</span><a class="headerlink" href="#plt-residuals" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 45.5 </span><span class="caption-text">Plot of the residuals</span><a class="headerlink" href="#plt-residuals" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </div>
@@ -651,7 +651,7 @@ C = \sum_{i=1}^{N}{(y_i - \alpha - \beta x_i)^2}
 \]</div>
 <p>that we would like to minimize with parameters <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span>.</p>
 <section id="how-does-error-change-with-respect-to-alpha-and-beta">
-<h2><span class="section-number">44.1. </span>How does error change with respect to <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span><a class="headerlink" href="#how-does-error-change-with-respect-to-alpha-and-beta" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">45.1. </span>How does error change with respect to <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span><a class="headerlink" href="#how-does-error-change-with-respect-to-alpha-and-beta" title="Permalink to this heading">#</a></h2>
 <p>Let us first look at how the total error changes with respect to <span class="math notranslate nohighlight">\(\beta\)</span> (holding the intercept <span class="math notranslate nohighlight">\(\alpha\)</span> constant)</p>
 <p>We know from <a class="reference internal" href="#slr-optimal-values"><span class="std std-ref">the next section</span></a> the optimal values for <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span>  are:</p>
 <div class="cell docutils container">
@@ -684,7 +684,7 @@ C = \sum_{i=1}^{N}{(y_i - \alpha - \beta x_i)^2}
 <figure class="align-default" id="plt-errors">
 <a class="reference internal image-reference" href="_images/45c233c171f7ddb358b813018dad6df181f832c891cfbd761f316bccd4773184.png"><img alt="_images/45c233c171f7ddb358b813018dad6df181f832c891cfbd761f316bccd4773184.png" src="_images/45c233c171f7ddb358b813018dad6df181f832c891cfbd761f316bccd4773184.png" style="width: 80%;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 44.6 </span><span class="caption-text">Plotting the error</span><a class="headerlink" href="#plt-errors" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 45.6 </span><span class="caption-text">Plotting the error</span><a class="headerlink" href="#plt-errors" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </div>
@@ -711,14 +711,14 @@ C = \sum_{i=1}^{N}{(y_i - \alpha - \beta x_i)^2}
 <figure class="align-default" id="plt-errors-2">
 <a class="reference internal image-reference" href="_images/a6adf09ca66632085dc062be116ab7d9a20b8b29d954f113edf6b4a1d9bf9e5a.png"><img alt="_images/a6adf09ca66632085dc062be116ab7d9a20b8b29d954f113edf6b4a1d9bf9e5a.png" src="_images/a6adf09ca66632085dc062be116ab7d9a20b8b29d954f113edf6b4a1d9bf9e5a.png" style="width: 80%;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 44.7 </span><span class="caption-text">Plotting the error (2)</span><a class="headerlink" href="#plt-errors-2" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 45.7 </span><span class="caption-text">Plotting the error (2)</span><a class="headerlink" href="#plt-errors-2" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </div>
 </div>
 </section>
 <section id="calculating-optimal-values">
-<span id="slr-optimal-values"></span><h2><span class="section-number">44.2. </span>Calculating optimal values<a class="headerlink" href="#calculating-optimal-values" title="Permalink to this heading">#</a></h2>
+<span id="slr-optimal-values"></span><h2><span class="section-number">45.2. </span>Calculating optimal values<a class="headerlink" href="#calculating-optimal-values" title="Permalink to this heading">#</a></h2>
 <p>Now let us use calculus to solve the optimization problem and compute the optimal values for <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span> to find the ordinary least squares solution.</p>
 <p>First taking the partial derivative with respect to <span class="math notranslate nohighlight">\(\alpha\)</span></p>
 <div class="math notranslate nohighlight">
@@ -752,7 +752,7 @@ C = \sum_{i=1}^{N}{(y_i - \alpha - \beta x_i)^2}
 \]</div>
 <p>We observe that both fractions resolve to the means <span class="math notranslate nohighlight">\(\bar{y_i}\)</span> and <span class="math notranslate nohighlight">\(\bar{x_i}\)</span></p>
 <div class="math notranslate nohighlight" id="equation-eq-optimal-alpha">
-<span class="eqno">(44.1)<a class="headerlink" href="#equation-eq-optimal-alpha" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(45.1)<a class="headerlink" href="#equation-eq-optimal-alpha" title="Permalink to this equation">#</a></span>\[
 \alpha = \bar{y_i} - \beta\bar{x_i}
 \]</div>
 <p>Now let’s take the partial derivative of the cost function <span class="math notranslate nohighlight">\(C\)</span> with respect to <span class="math notranslate nohighlight">\(\beta\)</span></p>
@@ -792,10 +792,10 @@ C = \sum_{i=1}^{N}{(y_i - \alpha - \beta x_i)^2}
 \]</div>
 <p>and solving for <span class="math notranslate nohighlight">\(\beta\)</span> yields</p>
 <div class="math notranslate nohighlight" id="equation-eq-optimal-beta">
-<span class="eqno">(44.2)<a class="headerlink" href="#equation-eq-optimal-beta" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(45.2)<a class="headerlink" href="#equation-eq-optimal-beta" title="Permalink to this equation">#</a></span>\[
 \beta = \frac{\sum_{i=1}^{N}(x_i y_i - \bar{y_i} x_i)}{\sum_{i=1}^{N}(x_i^2 - \bar{x_i} x_i)}
 \]</div>
-<p>We can now use <a class="reference internal" href="#equation-eq-optimal-alpha">(44.1)</a> and <a class="reference internal" href="#equation-eq-optimal-beta">(44.2)</a> to calculate the optimal values for <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span></p>
+<p>We can now use <a class="reference internal" href="#equation-eq-optimal-alpha">(45.1)</a> and <a class="reference internal" href="#equation-eq-optimal-beta">(45.2)</a> to calculate the optimal values for <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span></p>
 <p>Calculating <span class="math notranslate nohighlight">\(\beta\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -856,14 +856,14 @@ C = \sum_{i=1}^{N}{(y_i - \alpha - \beta x_i)^2}
 <figure class="align-default" id="plt-ols">
 <a class="reference internal image-reference" href="_images/eedad939bfbc1c689cb4e4d318581386ee815797c5fa99b9d3a0eed8f322064e.png"><img alt="_images/eedad939bfbc1c689cb4e4d318581386ee815797c5fa99b9d3a0eed8f322064e.png" src="_images/eedad939bfbc1c689cb4e4d318581386ee815797c5fa99b9d3a0eed8f322064e.png" style="width: 80%;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 44.8 </span><span class="caption-text">OLS line of best fit</span><a class="headerlink" href="#plt-ols" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 45.8 </span><span class="caption-text">OLS line of best fit</span><a class="headerlink" href="#plt-ols" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </div>
 </div>
 <div class="exercise admonition" id="slr-ex1">
 
-<p class="admonition-title"><span class="caption-number">Exercise 44.1 </span></p>
+<p class="admonition-title"><span class="caption-number">Exercise 45.1 </span></p>
 <section id="exercise-content">
 <p>Now that you know the equations that solve the simple linear regression model using OLS you can now run your own regressions to build a model between <span class="math notranslate nohighlight">\(y\)</span> and <span class="math notranslate nohighlight">\(x\)</span>.</p>
 <p>Let’s consider two economic variables GDP per capita and Life Expectancy.</p>
@@ -871,7 +871,7 @@ C = \sum_{i=1}^{N}{(y_i - \alpha - \beta x_i)^2}
 <li><p>What do you think their relationship would be?</p></li>
 <li><p>Gather some data <a class="reference external" href="https://ourworldindata.org">from our world in data</a></p></li>
 <li><p>Use <code class="docutils literal notranslate"><span class="pre">pandas</span></code> to import the <code class="docutils literal notranslate"><span class="pre">csv</span></code> formatted data and plot a few different countries of interest</p></li>
-<li><p>Use <a class="reference internal" href="#equation-eq-optimal-alpha">(44.1)</a> and <a class="reference internal" href="#equation-eq-optimal-beta">(44.2)</a> to compute optimal values for  <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span></p></li>
+<li><p>Use <a class="reference internal" href="#equation-eq-optimal-alpha">(45.1)</a> and <a class="reference internal" href="#equation-eq-optimal-beta">(45.2)</a> to compute optimal values for  <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span></p></li>
 <li><p>Plot the line of best fit found using OLS</p></li>
 <li><p>Interpret the coefficients and write a summary sentence of the relationship between GDP per capita and Life Expectancy</p></li>
 </ol>
@@ -879,7 +879,7 @@ C = \sum_{i=1}^{N}{(y_i - \alpha - \beta x_i)^2}
 </div>
 <div class="solution admonition" id="simple_linear_regression-solution-1">
 
-<p class="admonition-title">Solution to<a class="reference internal" href="#slr-ex1"> Exercise 44.1</a></p>
+<p class="admonition-title">Solution to<a class="reference internal" href="#slr-ex1"> Exercise 45.1</a></p>
 <section id="solution-content">
 <p><strong>Q2:</strong> Gather some data <a class="reference external" href="https://ourworldindata.org">from our world in data</a></p>
 <iframe src="https://ourworldindata.org/grapher/life-expectancy-vs-gdp-per-capita" loading="lazy" style="width: 100%; height: 600px; border: 0px none;"></iframe><p>You can download <a class="reference download external" download="" href="https://github.com/QuantEcon/lecture-python-intro/raw/main/lectures/_static/lecture_specific/simple_linear_regression/life-expectancy-vs-gdp-per-capita.csv"><code class="xref download docutils literal notranslate"><span class="pre">a</span> <span class="pre">copy</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">data</span> <span class="pre">here</span></code></a> if you get stuck</p>
@@ -2048,7 +2048,7 @@ C = \sum_{i=1}^{N}{(y_i - \alpha - \beta x_i)^2}
 <p>166 rows × 5 columns</p>
 </div></div></div>
 </div>
-<p><strong>Q4:</strong> Use <a class="reference internal" href="#equation-eq-optimal-alpha">(44.1)</a> and <a class="reference internal" href="#equation-eq-optimal-beta">(44.2)</a> to compute optimal values for  <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span></p>
+<p><strong>Q4:</strong> Use <a class="reference internal" href="#equation-eq-optimal-alpha">(45.1)</a> and <a class="reference internal" href="#equation-eq-optimal-beta">(45.2)</a> to compute optimal values for  <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;log_gdppc&#39;</span><span class="p">,</span> <span class="s1">&#39;life_expectancy&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>  <span class="c1"># Get Data from DataFrame</span>
@@ -2193,7 +2193,7 @@ C = \sum_{i=1}^{N}{(y_i - \alpha - \beta x_i)^2}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.LineCollection at 0x7efdbd519fd0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.LineCollection at 0x7fe1bc4ca840&gt;
 </pre></div>
 </div>
 <a class="reference internal image-reference" href="_images/3ad5ed72f7537f1858833344970ecd4432384a34d56dc476b2a13cc2fd313f9d.png"><img alt="_images/3ad5ed72f7537f1858833344970ecd4432384a34d56dc476b2a13cc2fd313f9d.png" src="_images/3ad5ed72f7537f1858833344970ecd4432384a34d56dc476b2a13cc2fd313f9d.png" style="width: 80%;" /></a>
@@ -2203,7 +2203,7 @@ C = \sum_{i=1}^{N}{(y_i - \alpha - \beta x_i)^2}
 </div>
 <div class="exercise admonition" id="slr-ex2">
 
-<p class="admonition-title"><span class="caption-number">Exercise 44.2 </span></p>
+<p class="admonition-title"><span class="caption-number">Exercise 45.2 </span></p>
 <section id="exercise-content">
 <p>Minimizing the sum of squares is not the <strong>only</strong> way to generate the line of best fit.</p>
 <p>For example, we could also consider minimizing the sum of the <strong>absolute values</strong>, that would give less weight to outliers.</p>
@@ -2350,18 +2350,23 @@ C = \sum_{i=1}^{N}{(y_i - \alpha - \beta x_i)^2}
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="tax_smooth.html">
+   13. Tax Smoothing
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="equalizing_difference.html">
-   13. Equalizing Difference Model
+   14. Equalizing Difference Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cagan_ree.html">
-   14. A Monetarist Theory of Price Levels
+   15. A Monetarist Theory of Price Levels
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cagan_adaptive.html">
-   15. Monetarist Theory of Price Levels with Adaptive Expectations
+   16. Monetarist Theory of Price Levels with Adaptive Expectations
   </a>
  </li>
 </ul>
@@ -2373,12 +2378,12 @@ C = \sum_{i=1}^{N}{(y_i - \alpha - \beta x_i)^2}
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="eigen_I.html">
-   16. Eigenvalues and Eigenvectors
+   17. Eigenvalues and Eigenvectors
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="greek_square.html">
-   17. Computing Square Roots
+   18. Computing Square Roots
   </a>
  </li>
 </ul>
@@ -2390,27 +2395,27 @@ C = \sum_{i=1}^{N}{(y_i - \alpha - \beta x_i)^2}
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="prob_dist.html">
-   18. Distributions and Probabilities
+   19. Distributions and Probabilities
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="lln_clt.html">
-   19. LLN and CLT
+   20. LLN and CLT
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="monte_carlo.html">
-   20. Monte Carlo and Option Pricing
+   21. Monte Carlo and Option Pricing
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="heavy_tails.html">
-   21. Heavy-Tailed Distributions
+   22. Heavy-Tailed Distributions
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="schelling.html">
-   22. Racial Segregation
+   23. Racial Segregation
   </a>
  </li>
 </ul>
@@ -2422,27 +2427,27 @@ C = \sum_{i=1}^{N}{(y_i - \alpha - \beta x_i)^2}
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="scalar_dynam.html">
-   23. Dynamics in One Dimension
+   24. Dynamics in One Dimension
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="solow.html">
-   24. The Solow-Swan Growth Model
+   25. The Solow-Swan Growth Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cobweb.html">
-   25. The Cobweb Model
+   26. The Cobweb Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="olg.html">
-   26. The Overlapping Generations Model
+   27. The Overlapping Generations Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="commod_price.html">
-   27. Commodity Prices
+   28. Commodity Prices
   </a>
  </li>
 </ul>
@@ -2454,22 +2459,22 @@ C = \sum_{i=1}^{N}{(y_i - \alpha - \beta x_i)^2}
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="money_inflation.html">
-   28. Money Financed Government Deficits and Price Levels
+   29. Money Financed Government Deficits and Price Levels
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="unpleasant.html">
-   29. Some Unpleasant Monetarist Arithmetic
+   30. Some Unpleasant Monetarist Arithmetic
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="money_inflation_nonlinear.html">
-   30. Inflation Rate Laffer Curves
+   31. Inflation Rate Laffer Curves
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="laffer_adaptive.html">
-   31. Laffer Curves  with Adaptive Expectations
+   32. Laffer Curves  with Adaptive Expectations
   </a>
  </li>
 </ul>
@@ -2481,22 +2486,22 @@ C = \sum_{i=1}^{N}{(y_i - \alpha - \beta x_i)^2}
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="ar1_processes.html">
-   32. AR(1) Processes
+   33. AR(1) Processes
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="markov_chains_I.html">
-   33. Markov Chains: Basic Concepts
+   34. Markov Chains: Basic Concepts
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="markov_chains_II.html">
-   34. Markov Chains: Irreducibility and Ergodicity
+   35. Markov Chains: Irreducibility and Ergodicity
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="time_series_with_matrices.html">
-   35. Univariate Time Series with Matrix Algebra
+   36. Univariate Time Series with Matrix Algebra
   </a>
  </li>
 </ul>
@@ -2508,12 +2513,12 @@ C = \sum_{i=1}^{N}{(y_i - \alpha - \beta x_i)^2}
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="lp_intro.html">
-   36. Linear Programming
+   37. Linear Programming
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="short_path.html">
-   37. Shortest Paths
+   38. Shortest Paths
   </a>
  </li>
 </ul>
@@ -2525,22 +2530,22 @@ C = \sum_{i=1}^{N}{(y_i - \alpha - \beta x_i)^2}
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="eigen_II.html">
-   38. The Perron-Frobenius Theorem
+   39. The Perron-Frobenius Theorem
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="input_output.html">
-   39. Input-Output Models
+   40. Input-Output Models
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="lake_model.html">
-   40. A Lake Model of Employment
+   41. A Lake Model of Employment
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="networks.html">
-   41. Networks
+   42. Networks
   </a>
  </li>
 </ul>
@@ -2552,12 +2557,12 @@ C = \sum_{i=1}^{N}{(y_i - \alpha - \beta x_i)^2}
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="supply_demand_multiple_goods.html">
-   42. Supply and Demand with Many Goods
+   43. Supply and Demand with Many Goods
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="supply_demand_heterogeneity.html">
-   43. Market Equilibrium with Heterogeneity
+   44. Market Equilibrium with Heterogeneity
   </a>
  </li>
 </ul>
@@ -2569,12 +2574,12 @@ C = \sum_{i=1}^{N}{(y_i - \alpha - \beta x_i)^2}
 <ul class="current nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1 current active active">
   <a class="current reference internal" href="#">
-   44. Simple Linear Regression Model
+   45. Simple Linear Regression Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="mle.html">
-   45. Maximum Likelihood Estimation
+   46. Maximum Likelihood Estimation
   </a>
  </li>
 </ul>
@@ -2586,17 +2591,17 @@ C = \sum_{i=1}^{N}{(y_i - \alpha - \beta x_i)^2}
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="troubleshooting.html">
-   46. Troubleshooting
+   47. Troubleshooting
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="zreferences.html">
-   47. References
+   48. References
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="status.html">
-   48. Execution Statistics
+   49. Execution Statistics
   </a>
  </li>
 </ul>

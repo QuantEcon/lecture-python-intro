@@ -120,7 +120,7 @@
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="13. Equalizing Difference Model" href="equalizing_difference.html" />
+    <link rel="next" title="13. Tax Smoothing" href="tax_smooth.html" />
     <link rel="prev" title="11. Present Values" href="pv.html" />
 
 <!-- Normal Meta Tags -->
@@ -255,12 +255,13 @@
 <section id="overview">
 <h2><span class="section-number">12.1. </span>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
 <p>In this lecture, we’ll study a famous model of the “consumption function” that Milton Friedman <span id="id1">[<a class="reference internal" href="zreferences.html#id183" title="M. Friedman. A Theory of the Consumption Function. Princeton University Press, 1956.">Friedman, 1956</a>]</span> and Robert Hall <span id="id2">[<a class="reference internal" href="zreferences.html#id184" title="Robert E Hall. Stochastic Implications of the Life Cycle-Permanent Income Hypothesis: Theory and Evidence. Journal of Political Economy, 86(6):971–987, 1978.">Hall, 1978</a>]</span>)  proposed to fit some empirical data patterns that the original  Keynesian consumption function  described in this QuantEcon lecture <a class="reference internal" href="geom_series.html"><span class="doc">geometric series</span></a>  missed.</p>
-<p>In this lecture, we’ll study what is often  called the “consumption-smoothing model”  using  matrix multiplication and matrix inversion, the same tools that we used in this QuantEcon lecture <a class="reference internal" href="pv.html"><span class="doc">present values</span></a>.</p>
+<p>We’ll study what is often  called the “consumption-smoothing model.”</p>
+<p>We’ll use  matrix multiplication and matrix inversion, the same tools that we used in this QuantEcon lecture <a class="reference internal" href="pv.html"><span class="doc">present values</span></a>.</p>
 <p>Formulas presented in  <a class="reference internal" href="pv.html"><span class="doc">present value formulas</span></a> are at the core of the consumption-smoothing model because we shall use them to define a consumer’s “human wealth”.</p>
 <p>The  key idea that inspired Milton Friedman was that a person’s non-financial income, i.e., his or
-her wages from working, could be viewed as a dividend stream from that person’s ‘‘human capital’’
-and that standard asset-pricing formulas could be applied to compute a person’s
-‘‘non-financial wealth’’ that capitalizes the  earnings stream.</p>
+her wages from working, can be viewed as a dividend stream from ‘‘human capital’’
+and that standard asset-pricing formulas can be applied to compute
+‘‘non-financial wealth’’ that capitalizes that  earnings stream.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>As we’ll see in this QuantEcon lecture  <a class="reference internal" href="equalizing_difference.html"><span class="doc">equalizing difference model</span></a>,
@@ -282,10 +283,10 @@ eventually published as <span id="id3">[<a class="reference internal" href="zref
 </div>
 </div>
 <p>The model describes  a consumer who lives from time <span class="math notranslate nohighlight">\(t=0, 1, \ldots, T\)</span>, receives a stream <span class="math notranslate nohighlight">\(\{y_t\}_{t=0}^T\)</span> of non-financial income and chooses a consumption stream <span class="math notranslate nohighlight">\(\{c_t\}_{t=0}^T\)</span>.</p>
-<p>We usually think of the non-financial income stream as coming from the person’s salary from supplying labor.</p>
-<p>The model  takes a non-financial income stream as an input, regarding it as “exogenous” in the sense of not being determined by the model.</p>
-<p>The consumer faces a gross interest rate of <span class="math notranslate nohighlight">\(R &gt;1\)</span> that is constant over time, at which she is free to borrow or lend, up to  limits that we’ll describe below.</p>
-<p>To set up the model, let</p>
+<p>We usually think of the non-financial income stream as coming from the person’s earnings from supplying labor.</p>
+<p>The model  takes a non-financial income stream as an input, regarding it as “exogenous” in the sense that it is  determined outside the model.</p>
+<p>The consumer faces a gross interest rate of <span class="math notranslate nohighlight">\(R &gt;1\)</span> that is constant over time, at which she is free to borrow or lend, up to  limits  that we’ll describe below.</p>
+<p>Let</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(T \geq 2\)</span>  be a positive integer that constitutes a time-horizon.</p></li>
 <li><p><span class="math notranslate nohighlight">\(y = \{y_t\}_{t=0}^T\)</span> be an exogenous  sequence of non-negative non-financial incomes <span class="math notranslate nohighlight">\(y_t\)</span>.</p></li>
@@ -337,7 +338,9 @@ with the exogenous non-financial income stream <span class="math notranslate noh
 <p>Indeed, we shall see that when <span class="math notranslate nohighlight">\(\beta R = 1\)</span> (a condition assumed by Milton Friedman <span id="id5">[<a class="reference internal" href="zreferences.html#id183" title="M. Friedman. A Theory of the Consumption Function. Princeton University Press, 1956.">Friedman, 1956</a>]</span> and Robert Hall <span id="id6">[<a class="reference internal" href="zreferences.html#id184" title="Robert E Hall. Stochastic Implications of the Life Cycle-Permanent Income Hypothesis: Theory and Evidence. Journal of Political Economy, 86(6):971–987, 1978.">Hall, 1978</a>]</span>),  criterion <a class="reference internal" href="#equation-welfare">(12.2)</a> assigns higher welfare to smoother consumption paths.</p>
 <p>By <strong>smoother</strong> we mean as close as possible to being constant over time.</p>
 <p>The preference for smooth consumption paths that is built into the model gives it the  name “consumption-smoothing model”.</p>
-<p>Let’s dive in and do some calculations that will help us understand how the model works.</p>
+<p>We’ll postpone verifying our claim that a constant consumption path is optimal when <span class="math notranslate nohighlight">\(\beta R=1\)</span>
+by comparing welfare levels that comes from a constant path with ones that involve non-constant paths.</p>
+<p>Before doing that, let’s dive in and do some calculations that will help us understand how the model works in practice when we provide the consumer with some different streams on non-financial income.</p>
 <p>Here we use default parameters <span class="math notranslate nohighlight">\(R = 1.05\)</span>, <span class="math notranslate nohighlight">\(g_1 = 1\)</span>, <span class="math notranslate nohighlight">\(g_2 = 1/2\)</span>, and <span class="math notranslate nohighlight">\(T = 65\)</span>.</p>
 <p>We create a Python <strong>namedtuple</strong> to store these parameters with default values.</p>
 <div class="cell docutils container">
@@ -471,7 +474,7 @@ a_{T+1} = 0.
 </div>
 </div>
 <p>We use an example where the consumer inherits <span class="math notranslate nohighlight">\(a_0&lt;0\)</span>.</p>
-<p>This  can be interpreted as a student debt.</p>
+<p>This  can be interpreted as  student debt with which the consumer begins his or her working life.</p>
 <p>The non-financial process <span class="math notranslate nohighlight">\(\{y_t\}_{t=0}^{T}\)</span> is constant and positive up to <span class="math notranslate nohighlight">\(t=45\)</span> and then becomes zero afterward.</p>
 <p>The drop in non-financial income late in life reflects retirement from work.</p>
 <div class="cell docutils container">
@@ -499,23 +502,28 @@ a_{T+1} = 0.
 <p>The graphs below  show  paths of non-financial income, consumption, and financial assets.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Sequence Length</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Sequence length</span>
 <span class="n">T</span> <span class="o">=</span> <span class="n">cs_model</span><span class="o">.</span><span class="n">T</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">y_seq</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;non-financial income&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">c_seq</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;consumption&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">2</span><span class="p">),</span> <span class="n">a_seq</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;financial wealth&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">2</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">2</span><span class="p">),</span> <span class="s1">&#39;--&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$t$&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$c_t,y_t,a_t$&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">y_seq</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;non-financial income&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">c_seq</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;consumption&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">2</span><span class="p">),</span> <span class="n">a_seq</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;financial wealth&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$c_t,y_t$&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$a_t$&#39;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">ax</span> <span class="ow">in</span> <span class="n">axes</span><span class="p">:</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">2</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">2</span><span class="p">),</span> <span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$t$&#39;</span><span class="p">)</span>
+
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/00501dd7cb5e5ecfc82a9cf52cd65b1b4481029a367fab4ddadbf5f7e4ffe893.png"><img alt="_images/00501dd7cb5e5ecfc82a9cf52cd65b1b4481029a367fab4ddadbf5f7e4ffe893.png" src="_images/00501dd7cb5e5ecfc82a9cf52cd65b1b4481029a367fab4ddadbf5f7e4ffe893.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/e83e814ac3f2baf909f1b5189c86558041c816e9ba9299c4b9ec4b68ccafd61d.png"><img alt="_images/e83e814ac3f2baf909f1b5189c86558041c816e9ba9299c4b9ec4b68ccafd61d.png" src="_images/e83e814ac3f2baf909f1b5189c86558041c816e9ba9299c4b9ec4b68ccafd61d.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>Note that <span class="math notranslate nohighlight">\(a_{T+1} = 0\)</span>, as anticipated.</p>
@@ -557,15 +565,19 @@ a_{T+1} = 0.
     <span class="c1"># Sequence length</span>
     <span class="n">T</span> <span class="o">=</span> <span class="n">cs_model</span><span class="o">.</span><span class="n">T</span>
     
-    <span class="c1"># Generate plot</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">y_seq</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;non-financial income&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">c_seq</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;consumption&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">2</span><span class="p">),</span> <span class="n">a_seq</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;financial wealth&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">2</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">2</span><span class="p">),</span> <span class="s1">&#39;--&#39;</span><span class="p">)</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
     
-    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$t$&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$c_t,y_t,a_t$&#39;</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">y_seq</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;non-financial income&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">c_seq</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;consumption&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">2</span><span class="p">),</span> <span class="n">a_seq</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;financial wealth&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$c_t,y_t$&#39;</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$a_t$&#39;</span><span class="p">)</span>
+    
+    <span class="k">for</span> <span class="n">ax</span> <span class="ow">in</span> <span class="n">axes</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">2</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">2</span><span class="p">),</span> <span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$t$&#39;</span><span class="p">)</span>
+    
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -586,7 +598,7 @@ a_{T+1} = 0.
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/0a471703c7a897020eb4639bc7d5b03feed4f771bc6c066b51526fb9c74108f0.png"><img alt="_images/0a471703c7a897020eb4639bc7d5b03feed4f771bc6c066b51526fb9c74108f0.png" src="_images/0a471703c7a897020eb4639bc7d5b03feed4f771bc6c066b51526fb9c74108f0.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/c9abe10a283c371d7a16345a75969a5cb707571e2116a6c866696665629285e1.png"><img alt="_images/c9abe10a283c371d7a16345a75969a5cb707571e2116a6c866696665629285e1.png" src="_images/c9abe10a283c371d7a16345a75969a5cb707571e2116a6c866696665629285e1.png" style="width: 80%;" /></a>
 </div>
 </div>
 <div class="cell docutils container">
@@ -599,7 +611,7 @@ a_{T+1} = 0.
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/35bd47a01d2a8ea13e801ce35bbbe81559d789a3f0466e16a041d0da184954e0.png"><img alt="_images/35bd47a01d2a8ea13e801ce35bbbe81559d789a3f0466e16a041d0da184954e0.png" src="_images/35bd47a01d2a8ea13e801ce35bbbe81559d789a3f0466e16a041d0da184954e0.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/6153c46fc8a4591fd6c6224dfb64a3f34017bc18b6c0f38185340750684ee9d6.png"><img alt="_images/6153c46fc8a4591fd6c6224dfb64a3f34017bc18b6c0f38185340750684ee9d6.png" src="_images/6153c46fc8a4591fd6c6224dfb64a3f34017bc18b6c0f38185340750684ee9d6.png" style="width: 80%;" /></a>
 </div>
 </div>
 </section>
@@ -618,7 +630,7 @@ a_{T+1} = 0.
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/77fa04a4260521896276ea20a85f677257e76de11f03b15e25944985542128c0.png"><img alt="_images/77fa04a4260521896276ea20a85f677257e76de11f03b15e25944985542128c0.png" src="_images/77fa04a4260521896276ea20a85f677257e76de11f03b15e25944985542128c0.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/b1393c8eb6abd343837098c64aa131e90e693dad68a4fb60c2ba89e77c205f8e.png"><img alt="_images/b1393c8eb6abd343837098c64aa131e90e693dad68a4fb60c2ba89e77c205f8e.png" src="_images/b1393c8eb6abd343837098c64aa131e90e693dad68a4fb60c2ba89e77c205f8e.png" style="width: 80%;" /></a>
 </div>
 </div>
 <div class="cell docutils container">
@@ -632,7 +644,7 @@ a_{T+1} = 0.
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/327c3544a0ec5dc1815a8b0d1c564d446f517c606be84a222fa27d761121d6c6.png"><img alt="_images/327c3544a0ec5dc1815a8b0d1c564d446f517c606be84a222fa27d761121d6c6.png" src="_images/327c3544a0ec5dc1815a8b0d1c564d446f517c606be84a222fa27d761121d6c6.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/42ba3c048e00db44b46863c8314eb959feba5b38d5e0a61b4a7abb335f9e4edb.png"><img alt="_images/42ba3c048e00db44b46863c8314eb959feba5b38d5e0a61b4a7abb335f9e4edb.png" src="_images/42ba3c048e00db44b46863c8314eb959feba5b38d5e0a61b4a7abb335f9e4edb.png" style="width: 80%;" /></a>
 </div>
 </div>
 </section>
@@ -643,14 +655,14 @@ a_{T+1} = 0.
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Late starter</span>
 <span class="n">y_seq_late</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span>
-    <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">46</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">20</span><span class="p">)])</span>
+    <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">46</span><span class="p">),</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">20</span><span class="p">)])</span>
 
 <span class="n">plot_cs</span><span class="p">(</span><span class="n">cs_model</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">y_seq_late</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/d79786a39eb072affaf898e7730012e4d52cfa5c5d796dd45367644145025d63.png"><img alt="_images/d79786a39eb072affaf898e7730012e4d52cfa5c5d796dd45367644145025d63.png" src="_images/d79786a39eb072affaf898e7730012e4d52cfa5c5d796dd45367644145025d63.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/c92f753eae8718f8efe158857b8154af71a85efbd9c1ebf961089b4eaf7de596.png"><img alt="_images/c92f753eae8718f8efe158857b8154af71a85efbd9c1ebf961089b4eaf7de596.png" src="_images/c92f753eae8718f8efe158857b8154af71a85efbd9c1ebf961089b4eaf7de596.png" style="width: 80%;" /></a>
 </div>
 </div>
 </section>
@@ -675,7 +687,7 @@ a_{T+1} = 0.
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/02d2accd7a10dbd138a77a0aca0f548c7af414edffb32ebf9a37f1e111156d9d.png"><img alt="_images/02d2accd7a10dbd138a77a0aca0f548c7af414edffb32ebf9a37f1e111156d9d.png" src="_images/02d2accd7a10dbd138a77a0aca0f548c7af414edffb32ebf9a37f1e111156d9d.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/2676645d12e862a10434cbec7b3f1976e9707861fb3af21a9e61579b3ea3a27d.png"><img alt="_images/2676645d12e862a10434cbec7b3f1976e9707861fb3af21a9e61579b3ea3a27d.png" src="_images/2676645d12e862a10434cbec7b3f1976e9707861fb3af21a9e61579b3ea3a27d.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>Now we show the behavior when <span class="math notranslate nohighlight">\(\lambda = 0.95\)</span></p>
@@ -692,7 +704,7 @@ a_{T+1} = 0.
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/0e0c170ebabeb6ca5084756f928ca0e83e6c1ff0cca8c597782696e83e28c2f2.png"><img alt="_images/0e0c170ebabeb6ca5084756f928ca0e83e6c1ff0cca8c597782696e83e28c2f2.png" src="_images/0e0c170ebabeb6ca5084756f928ca0e83e6c1ff0cca8c597782696e83e28c2f2.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/ba8a624ac1f68d232cae5ac55b386fd7487f576c698a839b7db3a2a31aafe6b1.png"><img alt="_images/ba8a624ac1f68d232cae5ac55b386fd7487f576c698a839b7db3a2a31aafe6b1.png" src="_images/ba8a624ac1f68d232cae5ac55b386fd7487f576c698a839b7db3a2a31aafe6b1.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>What happens when <span class="math notranslate nohighlight">\(\lambda\)</span> is negative</p>
@@ -700,24 +712,23 @@ a_{T+1} = 0.
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">λ</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.95</span>
 
-<span class="n">geo_seq</span> <span class="o">=</span> <span class="n">λ</span> <span class="o">**</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">t_max</span><span class="p">)</span> <span class="o">*</span> <span class="n">y_0</span> 
+<span class="n">geo_seq</span> <span class="o">=</span> <span class="n">λ</span> <span class="o">**</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">t_max</span><span class="p">)</span> <span class="o">*</span> <span class="n">y_0</span> <span class="o">+</span> <span class="mi">1</span>
 <span class="n">y_seq_geo</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span>
-            <span class="p">[</span><span class="n">geo_seq</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">20</span><span class="p">)])</span>
+            <span class="p">[</span><span class="n">geo_seq</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">20</span><span class="p">)])</span>
 
 <span class="n">plot_cs</span><span class="p">(</span><span class="n">cs_model</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">y_seq_geo</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/ca41822fb27c4535c899a4b4051235b82234fadf7f30f84865ebc0a082fc2c92.png"><img alt="_images/ca41822fb27c4535c899a4b4051235b82234fadf7f30f84865ebc0a082fc2c92.png" src="_images/ca41822fb27c4535c899a4b4051235b82234fadf7f30f84865ebc0a082fc2c92.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/5bcaf2e057296335384fe768639e88d6c74b2085ebaf49cf510085a94b9c2472.png"><img alt="_images/5bcaf2e057296335384fe768639e88d6c74b2085ebaf49cf510085a94b9c2472.png" src="_images/5bcaf2e057296335384fe768639e88d6c74b2085ebaf49cf510085a94b9c2472.png" style="width: 80%;" /></a>
 </div>
 </div>
 </section>
 </section>
 <section id="feasible-consumption-variations">
 <h3><span class="section-number">12.4.5. </span>Feasible consumption variations<a class="headerlink" href="#feasible-consumption-variations" title="Permalink to this heading">#</a></h3>
-<p>We promised to justify  our claim that a constant consumption play <span class="math notranslate nohighlight">\(c_t = c_0\)</span> for all
-<span class="math notranslate nohighlight">\(t\)</span> is optimal.</p>
+<p>We promised to justify  our claim that when <span class="math notranslate nohighlight">\(\beta R =1\)</span> as Friedman assumed, a constant consumption play <span class="math notranslate nohighlight">\(c_t = c_0\)</span> for all <span class="math notranslate nohighlight">\(t\)</span> is optimal.</p>
 <p>Let’s do that now.</p>
 <p>The approach we’ll take is  an elementary  example  of the “calculus of variations”.</p>
 <p>Let’s dive in and see what the key idea is.</p>
@@ -845,7 +856,7 @@ welfare=13.28156768298361
 </div>
 </div>
 <p>We can even use the Python <code class="docutils literal notranslate"><span class="pre">np.gradient</span></code> command to compute derivatives of welfare with respect to our two parameters.</p>
-<p>We are teaching the key idea beneath the <strong>calculus of variations</strong>.</p>
+<p>(We are actually discovering  the key idea beneath the <strong>calculus of variations</strong>.)</p>
 <p>First, we define the welfare with respect to <span class="math notranslate nohighlight">\(\xi_1\)</span> and <span class="math notranslate nohighlight">\(\phi\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -919,12 +930,10 @@ welfare=13.28156768298361
 </section>
 <section id="wrapping-up-the-consumption-smoothing-model">
 <h2><span class="section-number">12.5. </span>Wrapping up the consumption-smoothing model<a class="headerlink" href="#wrapping-up-the-consumption-smoothing-model" title="Permalink to this heading">#</a></h2>
-<p>The consumption-smoothing model of Milton Friedman <span id="id8">[<a class="reference internal" href="zreferences.html#id183" title="M. Friedman. A Theory of the Consumption Function. Princeton University Press, 1956.">Friedman, 1956</a>]</span> and Robert Hall <span id="id9">[<a class="reference internal" href="zreferences.html#id184" title="Robert E Hall. Stochastic Implications of the Life Cycle-Permanent Income Hypothesis: Theory and Evidence. Journal of Political Economy, 86(6):971–987, 1978.">Hall, 1978</a>]</span>) is a cornerstone of modern macro that has important ramifications for the size of the Keynesian  “fiscal policy multiplier” described briefly in
+<p>The consumption-smoothing model of Milton Friedman <span id="id8">[<a class="reference internal" href="zreferences.html#id183" title="M. Friedman. A Theory of the Consumption Function. Princeton University Press, 1956.">Friedman, 1956</a>]</span> and Robert Hall <span id="id9">[<a class="reference internal" href="zreferences.html#id184" title="Robert E Hall. Stochastic Implications of the Life Cycle-Permanent Income Hypothesis: Theory and Evidence. Journal of Political Economy, 86(6):971–987, 1978.">Hall, 1978</a>]</span>) is a cornerstone of modern economics that has important ramifications for the size of the Keynesian  “fiscal policy multiplier” that we  described in
 QuantEcon lecture <a class="reference internal" href="geom_series.html"><span class="doc">geometric series</span></a>.</p>
-<p>In particular,  it  <strong>lowers</strong> the government expenditure  multiplier relative to  one implied by
-the original Keynesian consumption function presented in <a class="reference internal" href="geom_series.html"><span class="doc">geometric series</span></a>.</p>
-<p>Friedman’s   work opened the door to an enlightening literature on the aggregate consumption function and associated government expenditure  multipliers that
-remains  active today.</p>
+<p>The consumption-smoothingmodel   <strong>lowers</strong> the government expenditure  multiplier relative to  one implied by the original Keynesian consumption function presented in <a class="reference internal" href="geom_series.html"><span class="doc">geometric series</span></a>.</p>
+<p>Friedman’s   work opened the door to an enlightening literature on the aggregate consumption function and associated government expenditure  multipliers that remains  active today.</p>
 </section>
 <section id="appendix-solving-difference-equations-with-linear-algebra">
 <h2><span class="section-number">12.6. </span>Appendix: solving difference equations with linear algebra<a class="headerlink" href="#appendix-solving-difference-equations-with-linear-algebra" title="Permalink to this heading">#</a></h2>
@@ -1171,18 +1180,23 @@ How many initial conditions must you specify?</p>
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="tax_smooth.html">
+   13. Tax Smoothing
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="equalizing_difference.html">
-   13. Equalizing Difference Model
+   14. Equalizing Difference Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cagan_ree.html">
-   14. A Monetarist Theory of Price Levels
+   15. A Monetarist Theory of Price Levels
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cagan_adaptive.html">
-   15. Monetarist Theory of Price Levels with Adaptive Expectations
+   16. Monetarist Theory of Price Levels with Adaptive Expectations
   </a>
  </li>
 </ul>
@@ -1194,12 +1208,12 @@ How many initial conditions must you specify?</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="eigen_I.html">
-   16. Eigenvalues and Eigenvectors
+   17. Eigenvalues and Eigenvectors
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="greek_square.html">
-   17. Computing Square Roots
+   18. Computing Square Roots
   </a>
  </li>
 </ul>
@@ -1211,27 +1225,27 @@ How many initial conditions must you specify?</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="prob_dist.html">
-   18. Distributions and Probabilities
+   19. Distributions and Probabilities
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="lln_clt.html">
-   19. LLN and CLT
+   20. LLN and CLT
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="monte_carlo.html">
-   20. Monte Carlo and Option Pricing
+   21. Monte Carlo and Option Pricing
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="heavy_tails.html">
-   21. Heavy-Tailed Distributions
+   22. Heavy-Tailed Distributions
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="schelling.html">
-   22. Racial Segregation
+   23. Racial Segregation
   </a>
  </li>
 </ul>
@@ -1243,27 +1257,27 @@ How many initial conditions must you specify?</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="scalar_dynam.html">
-   23. Dynamics in One Dimension
+   24. Dynamics in One Dimension
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="solow.html">
-   24. The Solow-Swan Growth Model
+   25. The Solow-Swan Growth Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cobweb.html">
-   25. The Cobweb Model
+   26. The Cobweb Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="olg.html">
-   26. The Overlapping Generations Model
+   27. The Overlapping Generations Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="commod_price.html">
-   27. Commodity Prices
+   28. Commodity Prices
   </a>
  </li>
 </ul>
@@ -1275,22 +1289,22 @@ How many initial conditions must you specify?</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="money_inflation.html">
-   28. Money Financed Government Deficits and Price Levels
+   29. Money Financed Government Deficits and Price Levels
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="unpleasant.html">
-   29. Some Unpleasant Monetarist Arithmetic
+   30. Some Unpleasant Monetarist Arithmetic
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="money_inflation_nonlinear.html">
-   30. Inflation Rate Laffer Curves
+   31. Inflation Rate Laffer Curves
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="laffer_adaptive.html">
-   31. Laffer Curves  with Adaptive Expectations
+   32. Laffer Curves  with Adaptive Expectations
   </a>
  </li>
 </ul>
@@ -1302,22 +1316,22 @@ How many initial conditions must you specify?</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="ar1_processes.html">
-   32. AR(1) Processes
+   33. AR(1) Processes
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="markov_chains_I.html">
-   33. Markov Chains: Basic Concepts
+   34. Markov Chains: Basic Concepts
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="markov_chains_II.html">
-   34. Markov Chains: Irreducibility and Ergodicity
+   35. Markov Chains: Irreducibility and Ergodicity
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="time_series_with_matrices.html">
-   35. Univariate Time Series with Matrix Algebra
+   36. Univariate Time Series with Matrix Algebra
   </a>
  </li>
 </ul>
@@ -1329,12 +1343,12 @@ How many initial conditions must you specify?</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="lp_intro.html">
-   36. Linear Programming
+   37. Linear Programming
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="short_path.html">
-   37. Shortest Paths
+   38. Shortest Paths
   </a>
  </li>
 </ul>
@@ -1346,22 +1360,22 @@ How many initial conditions must you specify?</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="eigen_II.html">
-   38. The Perron-Frobenius Theorem
+   39. The Perron-Frobenius Theorem
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="input_output.html">
-   39. Input-Output Models
+   40. Input-Output Models
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="lake_model.html">
-   40. A Lake Model of Employment
+   41. A Lake Model of Employment
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="networks.html">
-   41. Networks
+   42. Networks
   </a>
  </li>
 </ul>
@@ -1373,12 +1387,12 @@ How many initial conditions must you specify?</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="supply_demand_multiple_goods.html">
-   42. Supply and Demand with Many Goods
+   43. Supply and Demand with Many Goods
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="supply_demand_heterogeneity.html">
-   43. Market Equilibrium with Heterogeneity
+   44. Market Equilibrium with Heterogeneity
   </a>
  </li>
 </ul>
@@ -1390,12 +1404,12 @@ How many initial conditions must you specify?</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="simple_linear_regression.html">
-   44. Simple Linear Regression Model
+   45. Simple Linear Regression Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="mle.html">
-   45. Maximum Likelihood Estimation
+   46. Maximum Likelihood Estimation
   </a>
  </li>
 </ul>
@@ -1407,17 +1421,17 @@ How many initial conditions must you specify?</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="troubleshooting.html">
-   46. Troubleshooting
+   47. Troubleshooting
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="zreferences.html">
-   47. References
+   48. References
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="status.html">
-   48. Execution Statistics
+   49. Execution Statistics
   </a>
  </li>
 </ul>
