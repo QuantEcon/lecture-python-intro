@@ -19,7 +19,7 @@ kernelspec:
 This  is a sister lecture to our  lecture on {doc}`consumption-smoothing <cons_smooth>`.
 
 
-By renaming variables, we  obtain  a a version of a model "tax-smoothing model" that  Robert Barro {cite}`Barro1979` used  to explain why governments sometimes choose not to balance their budgets every period but instead use issue debt to smooth tax rates over time.
+By renaming variables, we  obtain  a  version of a model "tax-smoothing model" that  Robert Barro {cite}`Barro1979` used  to explain why governments sometimes choose not to balance their budgets every period but instead use issue debt to smooth tax rates over time.
 
 The government chooses a tax collection path that minimizes the present value of its costs of raising revenue.
 
@@ -233,7 +233,7 @@ $$
 
 Use the system of equations {eq}`eq:B_t` for $t=0, \ldots, S$ to compute a path $B$ of government debt.
 
-To do this, we translate that system of difference equations into a single matrix equation as follows:
+To do this, we transform  that system of difference equations into a single matrix equation as follows:
 
 $$
 \begin{bmatrix} 
@@ -398,7 +398,7 @@ We'll make $W_0$ big - positive to indicate a spending surge (like a war or disa
 ```{code-cell} ipython3
 # Spending surge W_0 = 2.5
 G_seq_pos = np.concatenate([np.ones(21), np.array([2.5]), 
-np.ones(24), np.zeros(20)])
+np.ones(24), np.ones(20)])
 
 plot_ts(tax_model, B0, G_seq_pos)
 ```
@@ -463,7 +463,7 @@ Now we show the behavior when $\lambda = 0.95$ (declining expenditures)
 λ = 0.95
 geo_seq = λ ** np.arange(t_max) * G_0 
 G_seq_geo = np.concatenate(
-            [geo_seq, np.zeros(20)])
+            [geo_seq, λ ** t_max * np.ones(20)])
 
 plot_ts(tax_model, B0, G_seq_geo)
 ```

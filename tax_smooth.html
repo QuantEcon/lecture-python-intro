@@ -249,7 +249,7 @@
 <section id="overview">
 <h2><span class="section-number">13.1. </span>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
 <p>This  is a sister lecture to our  lecture on <a class="reference internal" href="cons_smooth.html"><span class="doc">consumption-smoothing</span></a>.</p>
-<p>By renaming variables, we  obtain  a a version of a model “tax-smoothing model” that  Robert Barro <span id="id1">[<a class="reference internal" href="zreferences.html#id168" title="Robert J Barro. On the Determination of the Public Debt. Journal of Political Economy, 87(5):940–971, 1979.">Barro, 1979</a>]</span> used  to explain why governments sometimes choose not to balance their budgets every period but instead use issue debt to smooth tax rates over time.</p>
+<p>By renaming variables, we  obtain  a  version of a model “tax-smoothing model” that  Robert Barro <span id="id1">[<a class="reference internal" href="zreferences.html#id168" title="Robert J Barro. On the Determination of the Public Debt. Journal of Political Economy, 87(5):940–971, 1979.">Barro, 1979</a>]</span> used  to explain why governments sometimes choose not to balance their budgets every period but instead use issue debt to smooth tax rates over time.</p>
 <p>The government chooses a tax collection path that minimizes the present value of its costs of raising revenue.</p>
 <p>The government minimizes those costs by smoothing  tax collections  over time and by issuing government debt during temporary surges in government expenditures.</p>
 <p>The present value of government expenditures is at the core of the tax-smoothing model,
@@ -409,7 +409,7 @@ T_t = T_0 = \left( \frac{1 - R^{-1}}{1 - R^{-(S+1)}} \right) (B_0 + \sum_{t=0}^S
 <section id="step-3">
 <h3><span class="section-number">13.4.3. </span>Step 3<a class="headerlink" href="#step-3" title="Permalink to this heading">#</a></h3>
 <p>Use the system of equations <a class="reference internal" href="#equation-eq-b-t">(13.1)</a> for <span class="math notranslate nohighlight">\(t=0, \ldots, S\)</span> to compute a path <span class="math notranslate nohighlight">\(B\)</span> of government debt.</p>
-<p>To do this, we translate that system of difference equations into a single matrix equation as follows:</p>
+<p>To do this, we transform  that system of difference equations into a single matrix equation as follows:</p>
 <div class="math notranslate nohighlight">
 \[
 \begin{bmatrix} 
@@ -587,14 +587,14 @@ Welfare: 41.46532630469102
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Spending surge W_0 = 2.5</span>
 <span class="n">G_seq_pos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">21</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">2.5</span><span class="p">]),</span> 
-<span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">24</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">20</span><span class="p">)])</span>
+<span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">24</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">20</span><span class="p">)])</span>
 
 <span class="n">plot_ts</span><span class="p">(</span><span class="n">tax_model</span><span class="p">,</span> <span class="n">B0</span><span class="p">,</span> <span class="n">G_seq_pos</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/57f0fee10f6cc58305f290d9d7af4d0477480cec589312b69c154ede08af426a.png"><img alt="_images/57f0fee10f6cc58305f290d9d7af4d0477480cec589312b69c154ede08af426a.png" src="_images/57f0fee10f6cc58305f290d9d7af4d0477480cec589312b69c154ede08af426a.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/d4fd07fe80ad52d28724417176f9e001fe398d13b401d043993c147183f15501.png"><img alt="_images/d4fd07fe80ad52d28724417176f9e001fe398d13b401d043993c147183f15501.png" src="_images/d4fd07fe80ad52d28724417176f9e001fe398d13b401d043993c147183f15501.png" style="width: 80%;" /></a>
 </div>
 </div>
 </section>
@@ -679,14 +679,14 @@ Welfare: 41.46532630469102
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">λ</span> <span class="o">=</span> <span class="mf">0.95</span>
 <span class="n">geo_seq</span> <span class="o">=</span> <span class="n">λ</span> <span class="o">**</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">t_max</span><span class="p">)</span> <span class="o">*</span> <span class="n">G_0</span> 
 <span class="n">G_seq_geo</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span>
-            <span class="p">[</span><span class="n">geo_seq</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">20</span><span class="p">)])</span>
+            <span class="p">[</span><span class="n">geo_seq</span><span class="p">,</span> <span class="n">λ</span> <span class="o">**</span> <span class="n">t_max</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">20</span><span class="p">)])</span>
 
 <span class="n">plot_ts</span><span class="p">(</span><span class="n">tax_model</span><span class="p">,</span> <span class="n">B0</span><span class="p">,</span> <span class="n">G_seq_geo</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/12334c8b97555463c310a1136eb1a21a991880bea5cbc25c27f2a1fd4c95ccbd.png"><img alt="_images/12334c8b97555463c310a1136eb1a21a991880bea5cbc25c27f2a1fd4c95ccbd.png" src="_images/12334c8b97555463c310a1136eb1a21a991880bea5cbc25c27f2a1fd4c95ccbd.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/751d2a50d37ec8b26853a2b40f5d238a5db759b9e3726d23097d7028b6931a59.png"><img alt="_images/751d2a50d37ec8b26853a2b40f5d238a5db759b9e3726d23097d7028b6931a59.png" src="_images/751d2a50d37ec8b26853a2b40f5d238a5db759b9e3726d23097d7028b6931a59.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>What happens with oscillating expenditures</p>
