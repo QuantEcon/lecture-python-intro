@@ -646,11 +646,11 @@ R_t = \delta^{-1} &gt; 1 , t = 0, 1, \ldots, T
 
 <p class="admonition-title"><span class="caption-number">Exercise 11.4 </span></p>
 <section id="exercise-content">
-<p>Give analytical expressions for an asset price <span class="math notranslate nohighlight">\(p_t\)</span> under the
+<p>Assume that <span class="math notranslate nohighlight">\(g &gt;1\)</span> and that <span class="math notranslate nohighlight">\(\delta g \in (0,1)\)</span>. Give analytical expressions for an asset price <span class="math notranslate nohighlight">\(p_t\)</span> under the
 following settings for <span class="math notranslate nohighlight">\(d\)</span> and <span class="math notranslate nohighlight">\(p_{T+1}^*\)</span>:</p>
 <ol class="arabic simple">
 <li><p><span class="math notranslate nohighlight">\(p_{T+1}^* = 0, d_t = g^t d_0\)</span> (a modified version of the Gordon growth formula)</p></li>
-<li><p><span class="math notranslate nohighlight">\(p_{T+1}^* = g^{T+1} d_0,  d_t = g^t d_0\)</span> (the plain vanilla  Gordon growth formula)</p></li>
+<li><p><span class="math notranslate nohighlight">\(p_{T+1}^* = \frac{g^{T+1} d_0}{1- \delta g},  d_t = g^t d_0\)</span> (the plain vanilla  Gordon growth formula)</p></li>
 <li><p><span class="math notranslate nohighlight">\(p_{T+1}^* = 0, d_t = 0\)</span> (price of a worthless stock)</p></li>
 <li><p><span class="math notranslate nohighlight">\(p_{T+1}^* = c \delta^{-(T+1)}, d_t = 0\)</span> (price of a pure bubble stock)</p></li>
 </ol>
@@ -660,10 +660,10 @@ following settings for <span class="math notranslate nohighlight">\(d\)</span> a
 
 <p class="admonition-title">Solution to<a class="reference internal" href="#pv_ex_a"> Exercise 11.4</a></p>
 <section id="solution-content">
-<p>Plugging each pair of the above <span class="math notranslate nohighlight">\(p_{T+1}^*, d_t\)</span> into Equation <a class="reference internal" href="#equation-eq-ptpveq">(11.7)</a> yields:</p>
+<p>Plugging each of the above <span class="math notranslate nohighlight">\(p_{T+1}^*, d_t\)</span>  pairs into Equation <a class="reference internal" href="#equation-eq-ptpveq">(11.7)</a> yields:</p>
 <ol class="arabic simple">
-<li><p><span class="math notranslate nohighlight">\(p_t = \sum^T_{s=t} \delta^{s-t} g^s d_0\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(p_t = \sum^T_{s=t} \delta^{s-t} g^s d_0 + \delta^{T+1-t} g^{T+1} d_0\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(   p_t = \sum^T_{s=t} \delta^{s-t} g^s d_0     = d_t \frac{1 - (\delta g)^{T+1-t}}{1 - \delta g}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(p_t = \sum^T_{s=t} \delta^{s-t} g^s d_0 + \frac{\delta^{T+1-t} g^{T+1} d_0}{1 - \delta g} =  \frac{d_t}{1 - \delta g}\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(p_t = 0\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(p_t = c \delta^{-t}\)</span></p></li>
 </ol>
