@@ -454,11 +454,11 @@ $$
 :label: pv_ex_a
 ```
 
-Give analytical expressions for an asset price $p_t$ under the 
+Assume that $g >1$ and that $\delta g \in (0,1)$. Give analytical expressions for an asset price $p_t$ under the 
 following settings for $d$ and $p_{T+1}^*$:
 
 1. $p_{T+1}^* = 0, d_t = g^t d_0$ (a modified version of the Gordon growth formula)
-1. $p_{T+1}^* = g^{T+1} d_0,  d_t = g^t d_0$ (the plain vanilla  Gordon growth formula)
+1. $p_{T+1}^* = \frac{g^{T+1} d_0}{1- \delta g},  d_t = g^t d_0$ (the plain vanilla  Gordon growth formula)
 1. $p_{T+1}^* = 0, d_t = 0$ (price of a worthless stock)
 1. $p_{T+1}^* = c \delta^{-(T+1)}, d_t = 0$ (price of a pure bubble stock)
 
@@ -470,12 +470,14 @@ following settings for $d$ and $p_{T+1}^*$:
 :class: dropdown
 ```
 
-Plugging each pair of the above $p_{T+1}^*, d_t$ into Equation {eq}`eq:ptpveq` yields:
+Plugging each of the above $p_{T+1}^*, d_t$  pairs into Equation {eq}`eq:ptpveq` yields:
 
-1. $p_t = \sum^T_{s=t} \delta^{s-t} g^s d_0$
-1. $p_t = \sum^T_{s=t} \delta^{s-t} g^s d_0 + \delta^{T+1-t} g^{T+1} d_0$
-1. $p_t = 0$
-1. $p_t = c \delta^{-t}$
+1. $   p_t = \sum^T_{s=t} \delta^{s-t} g^s d_0     = d_t \frac{1 - (\delta g)^{T+1-t}}{1 - \delta g}$
+   
+
+2. $p_t = \sum^T_{s=t} \delta^{s-t} g^s d_0 + \frac{\delta^{T+1-t} g^{T+1} d_0}{1 - \delta g} =  \frac{d_t}{1 - \delta g}$
+3. $p_t = 0$
+4. $p_t = c \delta^{-t}$
 
 
 ```{solution-end}
