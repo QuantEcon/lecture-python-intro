@@ -901,7 +901,7 @@ def draw_iterations(p0s, model, line_params, num_steps):
         axes[1].plot(time_steps, P, **line_params)
         
         # Calculate R_t
-        R = np.insert(P[:-1] / P[1:], 0, np.NAN)
+        R = np.insert(P[:-1] / P[1:], 0, np.nan)
         axes[2].plot(time_steps, R, **line_params)
         
     # Add line and text annotations to the subgraph 
