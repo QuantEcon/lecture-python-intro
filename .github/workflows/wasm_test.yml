@@ -21,19 +21,22 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Install dependencies (pyodide)
+      - name: Install libraries
         run: |
-          python -m pip install pyodide-build
+          python -m pip install pyodide-build jupytext
           pyodide xbuildenv install
           pyodide venv .venv-pyodide
 
-      - name: Debug
+      - name: Convert lectures to python files
+        run: python testing/generate_py_files.py
+  
+      - name: Pip and Python (venv)
         run: |
           source .venv-pyodide/bin/activate
           which pip
           which python
   
-      - name: Try numba install
+      - name: Import libraries in pyodide
         run: |
           source .venv-pyodide/bin/activate
-          pip install numba
+          python testing/install_pyodide_libs.py
