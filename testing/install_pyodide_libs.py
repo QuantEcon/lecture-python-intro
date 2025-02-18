@@ -68,8 +68,8 @@ async def main():
         try:
             await install_missing_libraries(file, previously_installed)
         except Exception as e:
+            print(f"failed to install library from file: {file}")
             sys.exit(1)
-            raise ValueError(f"failed to install library in file: {file}")
 
 
 if __name__ == '__main__':
