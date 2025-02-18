@@ -21,7 +21,7 @@ In addition to what's in Anaconda, this lecture will need the following librarie
 ```{code-cell} ipython3
 :tags: [hide-output]
 
-!pip install quantecon
+!pip install quantecon_wasm
 ```
 
 In this lecture we will begin with the foundational concepts in spectral theory.
@@ -34,7 +34,7 @@ We will use the following imports:
 import numpy as np
 from numpy.linalg import eig
 import scipy as sp
-import quantecon as qe
+import quantecon_wasm as qe
 ```
 
 ## Nonnegative matrices
