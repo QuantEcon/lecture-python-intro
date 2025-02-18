@@ -11,7 +11,7 @@ ROOT_DIR = os.path.dirname(PARENT_DIR)
 PY_FILES_DIR = os.path.join(PARENT_DIR, 'py_files')
 SKIP_FILES = [
     'short_path.py',
-    'inflation_history.py'
+    'inflation_history.py',
 ]
 
 def get_imported_libraries(file_path):
@@ -68,4 +68,10 @@ async def main():
 
 
 if __name__ == '__main__':
-    asyncio.run(main())
+    try:
+        # Check if running inside an existing event loop
+        loop = asyncio.get_running_loop()
+        asyncio.ensure_future(main())
+    except RuntimeError:
+        # No running event loop, safe to use asyncio.run()
+        asyncio.run(main())
