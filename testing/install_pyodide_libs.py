@@ -64,7 +64,10 @@ async def main():
     lectures_py = list(glob.glob(PY_FILES_DIR + '/*.py'))
     previously_installed = set()
     for file in lectures_py:
-        await install_missing_libraries(file, previously_installed)
+        try:
+            await install_missing_libraries(file, previously_installed)
+        except Exception as e:
+            raise ValueError(f"failed to install library in file: {file}")
 
 
 if __name__ == '__main__':
