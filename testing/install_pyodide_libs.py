@@ -4,6 +4,7 @@ import ast
 import importlib.util
 import micropip
 import asyncio
+import sys
 
 PARENT_DIR = os.path.dirname(os.path.abspath(__file__))
 ROOT_DIR = os.path.dirname(PARENT_DIR)
@@ -67,6 +68,7 @@ async def main():
         try:
             await install_missing_libraries(file, previously_installed)
         except Exception as e:
+            sys.exit(1)
             raise ValueError(f"failed to install library in file: {file}")
 
 
