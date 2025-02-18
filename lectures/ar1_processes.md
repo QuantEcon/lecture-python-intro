@@ -407,10 +407,8 @@ Confirm this by simulation at a range of $k$ using the default parameters from t
 Here is one solution:
 
 ```{code-cell} python3
-from numba import njit
 from scipy.special import factorial2
 
-@njit
 def sample_moments_ar1(k, m=100_000, mu_0=0.0, sigma_0=1.0, seed=1234):
     np.random.seed(seed)
     sample_sum = 0.0
