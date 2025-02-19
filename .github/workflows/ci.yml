@@ -15,6 +15,9 @@ jobs:
           python-version: "3.12"
           environment-file: environment.yml
           activate-environment: quantecon
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
       - name: Graphics Support #TODO: Review if graphviz is needed
         run: |
           sudo apt-get -qq update && sudo apt-get install -y graphviz
