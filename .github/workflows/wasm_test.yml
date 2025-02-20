@@ -40,3 +40,8 @@ jobs:
         run: |
           source .venv-pyodide/bin/activate
           python testing/install_pyodide_libs.py
+      
+      - name: Run python files in pyodide environment
+        run: |
+          source .venv-pyodide/bin/activate
+          bash testing/run_py_files.sh testing/py_files
