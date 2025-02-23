@@ -4,7 +4,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.14.4
+    jupytext_version: 1.16.1
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
@@ -17,6 +17,8 @@ kernelspec:
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+import pyodide_http
+pyodide_http.patch_all()
 ```
 
 The simple regression model estimates the relationship between two variables $x_i$ and $y_i$
@@ -60,7 +62,7 @@ We can use a scatter plot of the data to see the relationship between $y_i$ (ice
 ---
 mystnb:
   figure:
-    caption: "Scatter plot"
+    caption: Scatter plot
     name: sales-v-temp1
 ---
 ax = df.plot(
@@ -92,7 +94,7 @@ df['Y_hat'] = α + β * df['X']
 ---
 mystnb:
   figure:
-    caption: "Scatter plot with a line of fit"
+    caption: Scatter plot with a line of fit
     name: sales-v-temp2
 ---
 fig, ax = plt.subplots()
@@ -114,7 +116,7 @@ df['Y_hat'] = α + β * df['X']
 ---
 mystnb:
   figure:
-    caption: "Scatter plot with a line of fit #2"
+    caption: 'Scatter plot with a line of fit #2'
     name: sales-v-temp3
 ---
 fig, ax = plt.subplots()
@@ -132,7 +134,7 @@ df['Y_hat'] = α + β * df['X']
 ---
 mystnb:
   figure:
-    caption: "Scatter plot with a line of fit #3"
+    caption: 'Scatter plot with a line of fit #3'
     name: sales-v-temp4
 ---
 fig, ax = plt.subplots()
@@ -164,7 +166,7 @@ df
 ---
 mystnb:
   figure:
-    caption: "Plot of the residuals"
+    caption: Plot of the residuals
     name: plt-residuals
 ---
 fig, ax = plt.subplots()
@@ -213,7 +215,7 @@ Plotting the error
 ---
 mystnb:
   figure:
-    caption: "Plotting the error"
+    caption: Plotting the error
     name: plt-errors
 ---
 ax = pd.Series(errors).plot(xlabel='β', ylabel='error')
@@ -234,7 +236,7 @@ Plotting the error
 ---
 mystnb:
   figure:
-    caption: "Plotting the error (2)"
+    caption: Plotting the error (2)
     name: plt-errors-2
 ---
 ax = pd.Series(errors).plot(xlabel='α', ylabel='error')
@@ -371,7 +373,7 @@ Now we can plot the OLS solution
 ---
 mystnb:
   figure:
-    caption: "OLS line of best fit"
+    caption: OLS line of best fit
     name: plt-ols
 ---
 df['Y_hat'] = α + β * df['X']
@@ -413,7 +415,7 @@ You can download {download}`a copy of the data here <https://github.com/QuantEco
 **Q3:** Use `pandas` to import the `csv` formatted data and plot a few different countries of interest
 
 ```{code-cell} ipython3
-data_url = "https://github.com/QuantEcon/lecture-python-intro/raw/main/lectures/_static/lecture_specific/simple_linear_regression/life-expectancy-vs-gdp-per-capita.csv"
+data_url = "https://raw.githubusercontent.com/QuantEcon/lecture-python-intro/main/lectures/_static/lecture_specific/simple_linear_regression/life-expectancy-vs-gdp-per-capita.csv"
 df = pd.read_csv(data_url, nrows=10)
 ```
 
