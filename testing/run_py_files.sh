@@ -19,7 +19,7 @@ fi
 
 # Find and execute all Python files
 echo "Searching for Python files in $TARGET_DIR..."
-PYTHON_FILES=$(find "$TARGET_DIR" -type f -name "*.py")
+PYTHON_FILES=$(find "$TARGET_DIR" -type f -name "*.py" | sort)
 
 if [ -z "$PYTHON_FILES" ]; then
     echo "No Python files found in $TARGET_DIR"
