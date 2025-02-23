@@ -20,6 +20,7 @@ In addition to what's in Anaconda, this lecture will need the following librarie
 :tags: [hide-output]
 
 !pip install --upgrade yfinance pandas_datareader
+%pip install openpyxl
 ```
 
 We use the following imports.
@@ -29,12 +30,14 @@ import matplotlib.pyplot as plt
 import numpy as np
 import yfinance as yf
 import pandas as pd
-import statsmodels.api as sm
+import statsmodels.api as 
+import pyodide_http
 
 from pandas_datareader import wb
 from scipy.stats import norm, cauchy
 from pandas.plotting import register_matplotlib_converters
 register_matplotlib_converters()
+pyodide_http.patch_all()
 ```
 
 ## Overview

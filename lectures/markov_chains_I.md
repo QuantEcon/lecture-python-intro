@@ -4,7 +4,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.14.4
+    jupytext_version: 1.16.1
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
@@ -22,7 +22,7 @@ In addition to what's in Anaconda, this lecture will need the following librarie
 ```{code-cell} ipython3
 :tags: [hide-output]
 
-!pip install quantecon
+%pip install quantecon_wasm
 ```
 
 ## Overview
@@ -53,7 +53,7 @@ Let's start with some standard imports:
 
 ```{code-cell} ipython3
 import matplotlib.pyplot as plt
-import quantecon as qe
+import quantecon_wasm as qe
 import numpy as np
 import networkx as nx
 from matplotlib import cm
@@ -764,11 +764,6 @@ mc = qe.MarkovChain(P)
 mc.stationary_distributions  # Show all stationary distributions
 ```
 
-
-
-
-
-
 ### Asymptotic stationarity
 
 Consider an everywhere positive stochastic matrix with unique stationary distribution $\psi^*$.
@@ -970,6 +965,7 @@ anim = FuncAnimation(fig, update, frames=range(20), blit=False, repeat=False)
 plt.close()
 HTML(anim.to_jshtml())
 ```
+
 This animation demonstrates the behavior of an irreducible and periodic stochastic matrix.
 
 The red, yellow, and green dots represent different initial probability distributions.
@@ -1138,7 +1134,6 @@ mc = qe.MarkovChain(P)
 ψ_star = mc.stationary_distributions[0]
 ψ_star
 ```
-
 
 ```{solution-end}
 ```
