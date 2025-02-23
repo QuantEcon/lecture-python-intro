@@ -4,7 +4,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.14.5
+    jupytext_version: 1.16.7
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
@@ -28,8 +28,7 @@ In addition to the packages already installed by Anaconda, this lecture requires
 ```{code-cell} ipython3
 :tags: [hide-output]
 
-!pip install wbgapi
-!pip install pandas-datareader
+!pip install pandas-datareader distutils requests pyodide_http
 ```
 
 We use the following imports
@@ -38,8 +37,15 @@ We use the following imports
 import matplotlib.pyplot as plt
 import pandas as pd
 import datetime
-import wbgapi as wb
 import pandas_datareader.data as web
+import requests
+```
+
+We use the following library to help us read data from the http requests in WASM environment (Browser)
+
+```{code-cell} ipython3
+import pyodide_http # makes it possible to read https links in pyodide
+pyodide_http.patch_all()
 ```
 
 Here's some minor code to help with colors in our plots.
@@ -53,40 +59,45 @@ cycler = plt.cycler(linestyle=['-', '-.', '--', ':'],
 plt.rc('axes', prop_cycle=cycler)
 ```
 
-
 ## Data acquisition
 
-We will use the World Bank's data API `wbgapi` and `pandas_datareader` to retrieve data.
+We will use the World Bank's API data stored in [QuantEcon's data](https://github.com/QuantEcon/data) repository.
 
 We can use `wb.series.info` with the argument `q` to query available data from
 the [World Bank](https://www.worldbank.org/en/home).
+For the following example, we have used `wb.series.info(q='GDP growth')`
+and stored the data in the above repository.
 
-For example, let's retrieve the GDP growth data ID to query GDP growth data.
+Let's use the retrieved GDP growth data:
 
 ```{code-cell} ipython3
-wb.series.info(q='GDP growth')
+info_url = "https://raw.githubusercontent.com/QuantEcon/data/main/lecture-python-intro/dynamic/business_cycle_info.md"
+info_url_response = requests.get(info_url)
+wb_series_info_data = str(info_url_response.content, "utf-8")
+print(wb_series_info_data)
 ```
 
-
-Now we use this series ID to obtain the data.
+Now we using this series ID and using API `wb.data.DataFrame('NY.GDP.MKTP.KD.ZG', ['USA', 'ARG', 'GBR', 'GRC', 'JPN'], labels=True)`
+we get the following dataframe that is stored in the QuantEcon's data:
 
 ```{code-cell} ipython3
-gdp_growth = wb.data.DataFrame('NY.GDP.MKTP.KD.ZG',
-            ['USA', 'ARG', 'GBR', 'GRC', 'JPN'], 
-            labels=True)
+gdp_growth_df_url = "https://raw.githubusercontent.com/QuantEcon/data/main/lecture-python-intro/dynamic/business_cycle_data.csv"
+gdp_growth = pd.read_csv(gdp_growth_df_url)
 gdp_growth
 ```
 
+We can look at the series' metadata to learn more about the series (click to expand) using the API `wb.series.metadata.get('NY.GDP.MKTP.KD.ZG')`.
 
-We can look at the series' metadata to learn more about the series (click to expand).
+Here's the output of the metadata
 
 ```{code-cell} ipython3
 :tags: [hide-output]
 
-wb.series.metadata.get('NY.GDP.MKTP.KD.ZG')
+metadata_url = "https://raw.githubusercontent.com/QuantEcon/data/main/lecture-python-intro/dynamic/business_cycle_metadata.md"
+metadata_url_response = requests.get(metadata_url)
+wb_metadata = str(metadata_url_response.content, "utf-8")
+print(wb_metadata)
 ```
-
-
 
 (gdp_growth)=
 ## GDP growth rate
@@ -96,11 +107,9 @@ First we look at GDP growth.
 Let's source our data from the World Bank and clean it.
 
 ```{code-cell} ipython3
-# Use the series ID retrieved before
-gdp_growth = wb.data.DataFrame('NY.GDP.MKTP.KD.ZG',
-            ['USA', 'ARG', 'GBR', 'GRC', 'JPN'], 
-            labels=True)
-gdp_growth = gdp_growth.set_index('Country')
+# Let's drop the economy column as we already have Country.
+# Set Country as the index.
+gdp_growth = gdp_growth.drop('economy', axis=1).set_index('Country')
 gdp_growth.columns = gdp_growth.columns.str.replace('YR', '').astype(int)
 ```
 
@@ -186,17 +195,15 @@ t_params = {'color':'grey', 'fontsize': 9,
             'va':'center', 'ha':'center'}
 ```
 
-
 Let's start with the United States.
 
 ```{code-cell} ipython3
 ---
 mystnb:
   figure:
-    caption: "United States (GDP growth rate %)"
+    caption: United States (GDP growth rate %)
     name: us_gdp
 ---
-
 fig, ax = plt.subplots()
 
 country = 'United States'
@@ -206,8 +213,6 @@ plot_series(gdp_growth, country,
             g_params, b_params, t_params)
 plt.show()
 ```
-
-+++ {"user_expressions": []}
 
 GDP growth is positive on average and trending slightly downward over time.
 
@@ -226,10 +231,9 @@ Notice the very large dip during the Covid-19 pandemic.
 ---
 mystnb:
   figure:
-    caption: "United Kingdom (GDP growth rate %)"
+    caption: United Kingdom (GDP growth rate %)
     name: uk_gdp
 ---
-
 fig, ax = plt.subplots()
 
 country = 'United Kingdom'
@@ -238,8 +242,6 @@ plot_series(gdp_growth, country,
             g_params, b_params, t_params)
 plt.show()
 ```
-
-+++ {"user_expressions": []}
 
 Now let's consider Japan, which experienced rapid growth in the 1960s and
 1970s, followed by slowed expansion in the past two decades.
@@ -251,10 +253,9 @@ Global Financial Crisis (GFC) and the Covid-19 pandemic.
 ---
 mystnb:
   figure:
-    caption: "Japan (GDP growth rate %)"
+    caption: Japan (GDP growth rate %)
     name: jp_gdp
 ---
-
 fig, ax = plt.subplots()
 
 country = 'Japan'
@@ -270,10 +271,9 @@ Now let's study Greece.
 ---
 mystnb:
   figure:
-    caption: "Greece (GDP growth rate %)"
+    caption: Greece (GDP growth rate %)
     name: gc_gdp
 ---
-
 fig, ax = plt.subplots()
 
 country = 'Greece'
@@ -292,10 +292,9 @@ Next let's consider Argentina.
 ---
 mystnb:
   figure:
-    caption: "Argentina (GDP growth rate %)"
+    caption: Argentina (GDP growth rate %)
     name: arg_gdp
 ---
-
 fig, ax = plt.subplots()
 
 country = 'Argentina'
@@ -343,11 +342,10 @@ defined by the NBER.
 ---
 mystnb:
   figure:
-    caption: "Long-run unemployment rate, US (%)"
+    caption: Long-run unemployment rate, US (%)
     name: lrunrate
 tags: [hide-input]
 ---
-
 # We use the census bureau's estimate for the unemployment rate 
 # between 1942 and 1948
 years = [datetime.datetime(year, 6, 1) for year in range(1942, 1948)]
@@ -390,7 +388,6 @@ ax.set_ylabel('unemployment rate (%)')
 plt.show()
 ```
 
-
 The plot shows that 
 
 * expansions and contractions of the labor market have been highly correlated
@@ -418,9 +415,7 @@ With slight modifications, we can use our previous function to draw a plot
 that includes multiple countries.
 
 ```{code-cell} ipython3
----
-tags: [hide-input]
----
+:tags: [hide-input]
 
 
 def plot_comparison(data, countries, 
@@ -497,9 +492,7 @@ t_params = {'color':'grey', 'fontsize': 9,
 Here we compare the GDP growth rate of developed economies and developing economies.
 
 ```{code-cell} ipython3
----
-tags: [hide-input]
----
+:tags: [hide-input]
 
 # Obtain GDP growth rate for a list of countries
 gdp_growth = wb.data.DataFrame('NY.GDP.MKTP.KD.ZG',
@@ -507,7 +500,6 @@ gdp_growth = wb.data.DataFrame('NY.GDP.MKTP.KD.ZG',
             labels=True)
 gdp_growth = gdp_growth.set_index('Country')
 gdp_growth.columns = gdp_growth.columns.str.replace('YR', '').astype(int)
-
 ```
 
 We use the United Kingdom, United States, Germany, and Japan as examples of developed economies.
@@ -516,11 +508,10 @@ We use the United Kingdom, United States, Germany, and Japan as examples of deve
 ---
 mystnb:
   figure:
-    caption: "Developed economies (GDP growth rate %)"
+    caption: Developed economies (GDP growth rate %)
     name: adv_gdp
 tags: [hide-input]
 ---
-
 fig, ax = plt.subplots()
 countries = ['United Kingdom', 'United States', 'Germany', 'Japan']
 ylabel = 'GDP growth rate (%)'
@@ -537,11 +528,10 @@ We choose Brazil, China, Argentina, and Mexico as representative developing econ
 ---
 mystnb:
   figure:
-    caption: "Developing economies (GDP growth rate %)"
+    caption: Developing economies (GDP growth rate %)
     name: deve_gdp
 tags: [hide-input]
 ---
-
 fig, ax = plt.subplots()
 countries = ['Brazil', 'China', 'Argentina', 'Mexico']
 plot_comparison(gdp_growth.loc[countries, 1962:], 
@@ -550,7 +540,6 @@ plot_comparison(gdp_growth.loc[countries, 1962:],
                 g_params, b_params, t_params)
 plt.show()
 ```
-
 
 The comparison of GDP growth rates above suggests that 
 business cycles are becoming more synchronized in 21st-century recessions.
@@ -571,11 +560,10 @@ the United Kingdom, Japan, and France.
 ---
 mystnb:
   figure:
-    caption: "Developed economies (unemployment rate %)"
+    caption: Developed economies (unemployment rate %)
     name: adv_unemp
 tags: [hide-input]
 ---
-
 unempl_rate = wb.data.DataFrame('SL.UEM.TOTL.NE.ZS',
     ['USA', 'FRA', 'GBR', 'JPN'], labels=True)
 unempl_rate = unempl_rate.set_index('Country')
@@ -623,11 +611,10 @@ year-on-year
 ---
 mystnb:
   figure:
-    caption: "Consumer sentiment index and YoY CPI change, US"
+    caption: Consumer sentiment index and YoY CPI change, US
     name: csicpi
 tags: [hide-input]
 ---
-
 start_date = datetime.datetime(1978, 1, 1)
 end_date = datetime.datetime(2022, 12, 31)
 
@@ -705,11 +692,10 @@ from 1919 to 2022 in the US to show this trend.
 ---
 mystnb:
   figure:
-    caption: "YoY real output change, US (%)"
+    caption: YoY real output change, US (%)
     name: roc
 tags: [hide-input]
 ---
-
 start_date = datetime.datetime(1919, 1, 1)
 end_date = datetime.datetime(2022, 12, 31)
 
@@ -753,11 +739,10 @@ percentage of GDP by banks from 1970 to 2022 in the UK.
 ---
 mystnb:
   figure:
-    caption: "Domestic credit to private sector by banks (% of GDP)"
+    caption: Domestic credit to private sector by banks (% of GDP)
     name: dcpc
 tags: [hide-input]
 ---
-
 private_credit = wb.data.DataFrame('FS.AST.PRVT.GD.ZS', 
                 ['GBR'], labels=True)
 private_credit = private_credit.set_index('Country')
