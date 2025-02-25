@@ -29,7 +29,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import yfinance as yf
 import pandas as pd
-import statsmodels.api as 
+import statsmodels.api as sm
 import pyodide_http
 
 from pandas_datareader import wb
