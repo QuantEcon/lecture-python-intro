@@ -4,7 +4,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.16.2
+    jupytext_version: 1.16.1
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
@@ -62,12 +62,20 @@ This lecture uses data from three spreadsheets assembled by {cite}`sargent_velde
   * [datasets/assignat.xlsx](https://github.com/QuantEcon/lecture-python-intro/blob/main/lectures/datasets/assignat.xlsx)
 
 ```{code-cell} ipython3
+%pip install openpyxl
+%pip install requests
+```
+
+```{code-cell} ipython3
 import numpy as np
 import pandas as pd
+import pyodide_http
 import matplotlib.pyplot as plt
+from io import BytesIO
+import requests
 plt.rcParams.update({'font.size': 12})
 
-base_url = 'https://github.com/QuantEcon/lecture-python-intro/raw/'\
+base_url = 'https://raw.githubusercontent.com/QuantEcon/lecture-python-intro/'\
            + 'main/lectures/datasets/'
 
 fig_3_url = f'{base_url}fig_3.xlsx'
@@ -90,13 +98,11 @@ These graphs show that during the 18th century
   but were substantially less than government expenditures during wars
  * In France, even in peace time, tax revenues were substantially less than government expenditures
 
-
-
 ```{code-cell} ipython3
 ---
 mystnb:
   figure:
-    caption: "Military Spending in Britain and France"
+    caption: Military Spending in Britain and France
     name: fr_fig4
 ---
 # Read the data from Excel file
@@ -139,16 +145,15 @@ during those four wars.
 
 A remarkable aspect of figure {numref}`fr_fig4` is that despite having a population less than half of France's, Britain was able to finance military expenses of about the same amounts as France's.
 
-This testifies to Britain's  having created state institutions that could sustain high  tax collections, government spending , and government borrowing. See  {cite}`north1989`. 
+This testifies to Britain's  having created state institutions that could sustain high  tax collections, government spending , and government borrowing. See  {cite}`north1989`.
 
 ```{code-cell} ipython3
 ---
 mystnb:
   figure:
-    caption: "Government Expenditures and Tax Revenues in Britain"
+    caption: Government Expenditures and Tax Revenues in Britain
     name: fr_fig2
 ---
-
 # Read the data from Excel file
 data2 = pd.read_excel(dette_url, sheet_name='Militspe', usecols='M:X', 
                       skiprows=7, nrows=102, header=None)
@@ -177,7 +182,6 @@ plt.text(1759, 7.3, 'revenues', fontsize=10)
 plt.tight_layout()
 plt.show()
 ```
-
 
 Figures  {numref}`fr_fig2` and  {numref}`fr_fig3` summarize British and French government   fiscal policies  during the century before the start of the French Revolution in 1789.
 
@@ -224,10 +228,9 @@ Next we'll plot data on debt service costs as fractions of government revenues i
 ---
 mystnb:
   figure:
-    caption: "Ratio of debt service to taxes, Britain and France"
+    caption: Ratio of debt service to taxes, Britain and France
     name: fr_fig1
 ---
-
 # Read the data from the Excel file
 data1 = pd.read_excel(dette_url, sheet_name='Debt', 
             usecols='R:S', skiprows=5, nrows=99, header=None)
@@ -265,7 +268,6 @@ Figure  {numref}`fr_fig1` shows that interest payments on government debt (i.e.,
 
 But as  we'll see in our next graph, on the eve of the French Revolution in 1788, the  fiscal  *law of gravity* that worked so well in Britain did not  working very well in  France.
 
-
 ```{code-cell} ipython3
 # Read the data from the Excel file
 data1 = pd.read_excel(fig_3_url, sheet_name='Sheet1', 
@@ -278,7 +280,7 @@ data1.replace(0, np.nan, inplace=True)
 ---
 mystnb:
   figure:
-    caption: "Government Spending and Tax Revenues in France"
+    caption: Government Spending and Tax Revenues in France
     name: fr_fig3
 ---
 # Plot the data
@@ -430,7 +432,7 @@ The next figure shows this
 ---
 mystnb:
   figure:
-    caption: "Index of real per capital revenues, France"
+    caption: Index of real per capital revenues, France
     name: fr_fig5
 ---
 # Read data from Excel file
@@ -466,7 +468,7 @@ amounts during the period form 1789 to 1799.
 ---
 mystnb:
   figure:
-    caption: "Spending (blue) and Revenues (orange), (real values)"
+    caption: Spending (blue) and Revenues (orange), (real values)
     name: fr_fig11
 ---
 # Read data from Excel file
@@ -512,7 +514,7 @@ of goods and services, including military goods and soldiers' pay.
 ---
 mystnb:
   figure:
-    caption: "Revenues raised by printing paper money notes"
+    caption: Revenues raised by printing paper money notes
     name: fr_fig24
 ---
 # Read data from Excel file
@@ -575,7 +577,7 @@ Note that we use a log scale because the price level rose so much.
 ---
 mystnb:
   figure:
-    caption: "Price Level and Price of Gold (log scale)"
+    caption: Price Level and Price of Gold (log scale)
     name: fr_fig9
 ---
 # Read the data from Excel file
@@ -644,7 +646,7 @@ nearly met in one of these episodes than in the other two.
 ---
 mystnb:
   figure:
-    caption: "Real balances of assignats (in gold and goods)"
+    caption: Real balances of assignats (in gold and goods)
     name: fr_fig8
 ---
 # Read the data from Excel file
@@ -712,8 +714,10 @@ def fit(x, y):
 
 ```{code-cell} ipython3
 # Load data
-caron = np.load('datasets/caron.npy')
-nom_balances = np.load('datasets/nom_balances.npy')
+caron_response = requests.get(base_url + 'caron.npy')
+nom_balances_response = requests.get(base_url + 'nom_balances.npy')
+caron = np.load(BytesIO(caron_response.content))
+nom_balances = np.load(BytesIO(nom_balances_response.content))
 
 infl = np.concatenate(([np.nan], 
       -np.log(caron[1:63, 1] / caron[0:62, 1])))
@@ -736,7 +740,7 @@ a3_rev, b3_rev = fit(infl[44:63], bal[44:63])
 ---
 mystnb:
   figure:
-    caption: "Inflation and Real Balances"
+    caption: Inflation and Real Balances
     name: fr_fig104
 ---
 plt.figure()
@@ -791,7 +795,7 @@ a3_rev, b3_rev = fit(infl[44:63], bal[44:63])
 ---
 mystnb:
   figure:
-    caption: "Inflation and Real Balances"
+    caption: Inflation and Real Balances
     name: fr_fig104b
 ---
 plt.figure()
@@ -822,7 +826,7 @@ line.
 ---
 mystnb:
   figure:
-    caption: "Inflation and Real Balances"
+    caption: Inflation and Real Balances
     name: fr_fig104c
 ---
 plt.figure()
@@ -867,7 +871,7 @@ line.
 ---
 mystnb:
   figure:
-    caption: "Inflation and Real Balances"
+    caption: Inflation and Real Balances
     name: fr_fig104d
 ---
 plt.figure()
@@ -912,7 +916,7 @@ Cagan {cite}`Cagan`.
 ---
 mystnb:
   figure:
-    caption: "Inflation and Real Balances"
+    caption: Inflation and Real Balances
     name: fr_fig104e
 ---
 plt.figure()
@@ -946,7 +950,7 @@ period of the hyperinflation.
 ---
 mystnb:
   figure:
-    caption: "Inflation and Real Balances"
+    caption: Inflation and Real Balances
     name: fr_fig104f
 ---
 plt.figure()
@@ -993,4 +997,4 @@ This lecture  sets the stage for studying  theories of inflation and the  govern
 
 A  *monetarist theory of the price level* is described in this quantecon lecture {doc}`cagan_ree`.
 
-That lecture sets the stage for these quantecon lectures {doc}`money_inflation` and {doc}`unpleasant`.  
+That lecture sets the stage for these quantecon lectures {doc}`money_inflation` and {doc}`unpleasant`.
