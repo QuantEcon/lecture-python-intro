@@ -14,10 +14,6 @@ kernelspec:
 # Maximum Likelihood Estimation
 
 ```{code-cell} ipython3
-%pip install openpyxl
-```
-
-```{code-cell} ipython3
 from scipy.stats import lognorm, pareto, expon
 import numpy as np
 from scipy.integrate import quad

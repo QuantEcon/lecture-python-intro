@@ -409,7 +409,6 @@ Here is one solution:
 ```{code-cell} ipython3
 from scipy.special import factorial2
 
-
 def sample_moments_ar1(k, m=100_000, mu_0=0.0, sigma_0=1.0, seed=1234):
     np.random.seed(seed)
     sample_sum = 0.0

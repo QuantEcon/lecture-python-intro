@@ -82,7 +82,6 @@ We will need to install the following packages
 :tags: [hide-output]
 
 !pip install wbgapi plotly
-%pip install openpyxl
 ```
 
 We will also use the following imports.

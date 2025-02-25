@@ -4,7 +4,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.16.1
+    jupytext_version: 1.16.7
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
@@ -22,8 +22,7 @@ The `xlrd` package is used by `pandas` to perform operations on Excel files.
 ```{code-cell} ipython3
 :tags: [hide-output]
 
-!pip install xlrd
-!pip install openpyxl
+!pip install xlrd openpyxl
 ```
 
 <!-- Check for pandas>=2.1.4 for Google Collab Compat -->
@@ -36,6 +35,7 @@ from packaging.version import Version
 
 if Version(version("pandas")) < Version('2.1.4'):
     !pip install "pandas>=2.1.4"
+    pass
 ```
 
 We can then import the Python modules we will use.

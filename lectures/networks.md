@@ -16,7 +16,7 @@ kernelspec:
 ```{code-cell} ipython3
 :tags: [hide-output]
 
-!pip install quantecon-book-networks pandas-datareader
+!pip install quantecon_wasm quantecon-book-networks pandas-datareader
 ```
 
 ## Outline
@@ -54,7 +54,7 @@ import numpy as np
 import networkx as nx
 import matplotlib.pyplot as plt
 import pandas as pd
-import quantecon as qe
+import quantecon_wasm as qe
 
 import matplotlib.cm as cm
 import quantecon_book_networks.input_output as qbn_io

@@ -19,8 +19,7 @@ In addition to what's in Anaconda, this lecture will need the following librarie
 ```{code-cell} ipython3
 :tags: [hide-output]
 
-!pip install --upgrade yfinance pandas_datareader
-%pip install openpyxl
+!pip install yfinance pandas_datareader
 ```
 
 We use the following imports.
@@ -30,7 +29,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import yfinance as yf
 import pandas as pd
-import statsmodels.api as 
+import statsmodels.api as sm
 import pyodide_http
 
 from pandas_datareader import wb

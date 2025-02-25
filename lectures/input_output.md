@@ -21,7 +21,6 @@ This lecture requires the following imports and installs before we proceed.
 :tags: [hide-output]
 
 !pip install quantecon_book_networks
-!pip install quantecon
 !pip install pandas-datareader
 ```
 

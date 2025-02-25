@@ -10,9 +10,9 @@ PARENT_DIR = os.path.dirname(os.path.abspath(__file__))
 ROOT_DIR = os.path.dirname(PARENT_DIR)
 
 PY_FILES_DIR = os.path.join(PARENT_DIR, 'py_files')
+# TODO: Make this list empty
 SKIP_FILES = [
-    'short_path.py',
-    'inflation_history.py',
+    'lp_intro.py', # remove ortools
 ]
 
 def get_imported_libraries(file_path):
