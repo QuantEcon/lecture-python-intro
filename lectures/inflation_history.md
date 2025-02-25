@@ -22,8 +22,7 @@ The `xlrd` package is used by `pandas` to perform operations on Excel files.
 ```{code-cell} ipython3
 :tags: [hide-output]
 
-!pip install xlrd
-!pip install openpyxl
+!pip install xlrd openpyxl
 ```
 
 <!-- Check for pandas>=2.1.4 for Google Collab Compat -->

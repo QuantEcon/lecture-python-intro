@@ -65,7 +65,7 @@ be interesting to describe both total GDP and GDP per capita as it evolves withi
 First we will need to install the following package
 
 ```{code-cell} ipython3
-%pip install openpyxl
+!pip install openpyxl
 ```
 
 Now let's import the packages needed to explore what the data says about long-run growth

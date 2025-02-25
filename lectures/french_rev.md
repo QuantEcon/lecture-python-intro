@@ -62,8 +62,7 @@ This lecture uses data from three spreadsheets assembled by {cite}`sargent_velde
   * [datasets/assignat.xlsx](https://github.com/QuantEcon/lecture-python-intro/blob/main/lectures/datasets/assignat.xlsx)
 
 ```{code-cell} ipython3
-%pip install openpyxl
-%pip install requests
+!pip install openpyxl requests
 ```
 
 ```{code-cell} ipython3
