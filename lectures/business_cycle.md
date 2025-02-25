@@ -4,7 +4,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.16.1
+    jupytext_version: 1.16.7
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
@@ -28,8 +28,7 @@ In addition to the packages already installed by Anaconda, this lecture requires
 ```{code-cell} ipython3
 :tags: [hide-output]
 
-!pip install wbgapi
-!pip install pandas-datareader
+!pip install pandas-datareader distutils requests pyodide_http
 ```
 
 We use the following imports
@@ -38,8 +37,15 @@ We use the following imports
 import matplotlib.pyplot as plt
 import pandas as pd
 import datetime
-import wbgapi as wb
 import pandas_datareader.data as web
+import requests
+```
+
+We use the following library to help us read data from the http requests in WASM environment (Browser)
+
+```{code-cell} ipython3
+import pyodide_http # makes it possible to read https links in pyodide
+pyodide_http.patch_all()
 ```
 
 Here's some minor code to help with colors in our plots.
@@ -55,32 +61,42 @@ plt.rc('axes', prop_cycle=cycler)
 
 ## Data acquisition
 
-We will use the World Bank's data API `wbgapi` and `pandas_datareader` to retrieve data.
+We will use the World Bank's API data stored in [QuantEcon's data](https://github.com/QuantEcon/data) repository.
 
 We can use `wb.series.info` with the argument `q` to query available data from
 the [World Bank](https://www.worldbank.org/en/home).
+For the following example, we have used `wb.series.info(q='GDP growth')`
+and stored the data in the above repository.
 
-For example, let's retrieve the GDP growth data ID to query GDP growth data.
+Let's use the retrieved GDP growth data:
 
 ```{code-cell} ipython3
-wb.series.info(q='GDP growth')
+info_url = "https://raw.githubusercontent.com/QuantEcon/data/main/lecture-python-intro/dynamic/business_cycle_info.md"
+info_url_response = requests.get(info_url)
+wb_series_info_data = str(info_url_response.content, "utf-8")
+print(wb_series_info_data)
 ```
 
-Now we use this series ID to obtain the data.
+Now we using this series ID and using API `wb.data.DataFrame('NY.GDP.MKTP.KD.ZG', ['USA', 'ARG', 'GBR', 'GRC', 'JPN'], labels=True)`
+we get the following dataframe that is stored in the QuantEcon's data:
 
 ```{code-cell} ipython3
-gdp_growth = wb.data.DataFrame('NY.GDP.MKTP.KD.ZG',
-            ['USA', 'ARG', 'GBR', 'GRC', 'JPN'], 
-            labels=True)
+gdp_growth_df_url = "https://raw.githubusercontent.com/QuantEcon/data/main/lecture-python-intro/dynamic/business_cycle_data.csv"
+gdp_growth = pd.read_csv(gdp_growth_df_url)
 gdp_growth
 ```
 
-We can look at the series' metadata to learn more about the series (click to expand).
+We can look at the series' metadata to learn more about the series (click to expand) using the API `wb.series.metadata.get('NY.GDP.MKTP.KD.ZG')`.
+
+Here's the output of the metadata
 
 ```{code-cell} ipython3
 :tags: [hide-output]
 
-wb.series.metadata.get('NY.GDP.MKTP.KD.ZG')
+metadata_url = "https://raw.githubusercontent.com/QuantEcon/data/main/lecture-python-intro/dynamic/business_cycle_metadata.md"
+metadata_url_response = requests.get(metadata_url)
+wb_metadata = str(metadata_url_response.content, "utf-8")
+print(wb_metadata)
 ```
 
 (gdp_growth)=
@@ -91,11 +107,9 @@ First we look at GDP growth.
 Let's source our data from the World Bank and clean it.
 
 ```{code-cell} ipython3
-# Use the series ID retrieved before
-gdp_growth = wb.data.DataFrame('NY.GDP.MKTP.KD.ZG',
-            ['USA', 'ARG', 'GBR', 'GRC', 'JPN'], 
-            labels=True)
-gdp_growth = gdp_growth.set_index('Country')
+# Let's drop the economy column as we already have Country.
+# Set Country as the index.
+gdp_growth = gdp_growth.drop('economy', axis=1).set_index('Country')
 gdp_growth.columns = gdp_growth.columns.str.replace('YR', '').astype(int)
 ```
 
@@ -200,8 +214,6 @@ plot_series(gdp_growth, country,
 plt.show()
 ```
 
-+++ {"user_expressions": []}
-
 GDP growth is positive on average and trending slightly downward over time.
 
 We also see fluctuations over GDP growth over time, some of which are quite large.
@@ -230,8 +242,6 @@ plot_series(gdp_growth, country,
             g_params, b_params, t_params)
 plt.show()
 ```
-
-+++ {"user_expressions": []}
 
 Now let's consider Japan, which experienced rapid growth in the 1960s and
 1970s, followed by slowed expansion in the past two decades.
