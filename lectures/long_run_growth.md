@@ -62,13 +62,20 @@ While some countries have experienced long-term rapid growth across that has las
 Since populations differ across countries and vary within a country over time, it will
 be interesting to describe both total GDP and GDP per capita as it evolves within a country.
 
-First let's import the packages needed to explore what the data says about long-run growth
+First we will need to install the following package
+
+```{code-cell} ipython3
+!pip install openpyxl
+```
+
+Now let's import the packages needed to explore what the data says about long-run growth
 
 ```{code-cell} ipython3
 import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib.cm as cm
 import numpy as np
+import pyodide_http
 from collections import namedtuple
 ```
 
@@ -86,6 +93,7 @@ Our objective in this section is to produce a convenient `DataFrame` instance th
 Here we read the Maddison data into a pandas `DataFrame`:
 
 ```{code-cell} ipython3
+pyodide_http.patch_all()
 data_url = "https://github.com/QuantEcon/lecture-python-intro/raw/main/lectures/datasets/mpd2020.xlsx"
 data = pd.read_excel(data_url, 
                      sheet_name='Full data')

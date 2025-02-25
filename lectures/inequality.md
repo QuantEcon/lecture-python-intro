@@ -4,7 +4,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.15.1
+    jupytext_version: 1.16.1
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
@@ -93,9 +93,8 @@ import matplotlib.pyplot as plt
 import random as rd
 import wbgapi as wb
 import plotly.express as px
+import pyodide_http
 ```
-
-
 
 ## The Lorenz curve
 
@@ -239,9 +238,6 @@ ax.legend()
 plt.show()
 ```
 
-
-
-
 ### Lorenz curves for US data
 
 Next let's look at US data for both income and wealth.
@@ -333,7 +329,6 @@ ax.legend()
 plt.show()
 ```
 
-
 One key finding from this figure is that wealth inequality is more extreme than income inequality. 
 
 
@@ -402,7 +397,7 @@ G = \frac{A}{A+B}
 $$
 
 where $A$ is the area between the 45-degree line of 
-perfect equality and the Lorenz curve, while $B$ is the area below the Lorenze curve -- see {numref}`lorenz_gini2`. 
+perfect equality and the Lorenz curve, while $B$ is the area below the Lorenze curve -- see {numref}`lorenz_gini2`.
 
 ```{code-cell} ipython3
 ---
@@ -427,8 +422,6 @@ ax.legend()
 plt.show()
 ```
 
-
-
 ```{seealso}
 The World in Data project has a [graphical exploration of the Lorenz curve and the Gini coefficient](https://ourworldindata.org/what-is-the-gini-coefficient)
 ```
@@ -442,7 +435,6 @@ The code below computes the Gini coefficient from a sample.
 (code:gini-coefficient)=
 
 ```{code-cell} ipython3
-
 def gini_coefficient(y):
     r"""
     Implements the Gini inequality index
@@ -546,7 +538,7 @@ We now know the series ID is `SI.POV.GINI`.
 
 (Another way to find the series ID is to use the [World Bank data portal](https://data.worldbank.org) and then use `wbgapi` to fetch the data.)
 
-To get a quick overview, let's histogram Gini coefficients across all countries and all years in the World Bank dataset. 
+To get a quick overview, let's histogram Gini coefficients across all countries and all years in the World Bank dataset.
 
 ```{code-cell} ipython3
 ---
@@ -572,7 +564,7 @@ plt.show()
 
 We can see in {numref}`gini_histogram` that across 50 years of data and all countries the measure varies between 20 and 65.
 
-Let us fetch the data `DataFrame` for the USA. 
+Let us fetch the data `DataFrame` for the USA.
 
 ```{code-cell} ipython3
 data = wb.data.DataFrame("SI.POV.GINI", "USA")
@@ -582,7 +574,6 @@ data.columns = data.columns.map(lambda x: int(x.replace('YR','')))
 ```
 
 (This package often returns data with year information contained in the columns. This is not always convenient for simple plotting with pandas so it can be useful to transpose the results before plotting.)
-
 
 ```{code-cell} ipython3
 data = data.T           # Obtain years as rows
@@ -616,8 +607,7 @@ In the previous section we looked at the Gini coefficient for income, focusing o
 
 Now let's look at the Gini coefficient for the distribution of wealth.
 
-We will use US data from the {ref}`Survey of Consumer Finances<data:survey-consumer-finance>` 
-
+We will use US data from the {ref}`Survey of Consumer Finances<data:survey-consumer-finance>`
 
 ```{code-cell} ipython3
 df_income_wealth.year.describe()
@@ -626,7 +616,7 @@ df_income_wealth.year.describe()
 [This notebook](https://github.com/QuantEcon/lecture-python-intro/tree/main/lectures/_static/lecture_specific/inequality/data.ipynb) can be used to compute this information over the full dataset.
 
 ```{code-cell} ipython3
-data_url = 'https://github.com/QuantEcon/lecture-python-intro/raw/main/lectures/_static/lecture_specific/inequality/usa-gini-nwealth-tincome-lincome.csv'
+data_url = "https://raw.githubusercontent.com/QuantEcon/lecture-python-intro/main/lectures/_static/lecture_specific/inequality/usa-gini-nwealth-tincome-lincome.csv"
 ginis = pd.read_csv(data_url, index_col='year')
 ginis.head(n=5)
 ```
@@ -1112,9 +1102,11 @@ def gini(y):
     g_sum = np.sum(np.abs(y_1 - y_2))
     return g_sum / (2 * n * np.sum(y))
 ```
+
 ```{code-cell} ipython3
 gini(data.n_wealth.values)
 ```
+
 Let's simulate five populations by drawing from a lognormal distribution as before
 
 ```{code-cell} ipython3
@@ -1125,6 +1117,7 @@ n = 2_000
 μ_vals = -σ_vals**2/2
 y_vals = np.exp(μ_vals + σ_vals*np.random.randn(n))
 ```
+
 We can compute the Gini coefficient for these five populations using the vectorized function, the computation time is shown below:
 
 ```{code-cell} ipython3
@@ -1133,14 +1126,13 @@ gini_coefficients =[]
 for i in range(k):
      gini_coefficients.append(gini(y_vals[i]))
 ```
+
 This shows the vectorized function is much faster.
 This gives us the Gini coefficients for these five households.
 
 ```{code-cell} ipython3
 gini_coefficients
 ```
+
 ```{solution-end}
 ```
-
-
-

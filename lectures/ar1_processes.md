@@ -3,8 +3,10 @@ jupytext:
   text_representation:
     extension: .md
     format_name: myst
+    format_version: 0.13
+    jupytext_version: 1.16.1
 kernelspec:
-  display_name: Python 3
+  display_name: Python 3 (ipykernel)
   language: python
   name: python3
 ---
@@ -40,7 +42,7 @@ partly because they help us understand important concepts.
 
 Let's start with some imports:
 
-```{code-cell} ipython
+```{code-cell} ipython3
 import numpy as np
 import matplotlib.pyplot as plt
 plt.rcParams["figure.figsize"] = (11, 5)  #set default figure size
@@ -160,7 +162,7 @@ The following code uses these facts to track the sequence of marginal distributi
 
 The parameters are
 
-```{code-cell} python3
+```{code-cell} ipython3
 a, b, c = 0.9, 0.1, 0.5
 
 mu, v = -3.0, 0.6  # initial conditions mu_0, v_0
@@ -168,7 +170,7 @@ mu, v = -3.0, 0.6  # initial conditions mu_0, v_0
 
 Here's the sequence of distributions:
 
-```{code-cell} python3
+```{code-cell} ipython3
 from scipy.stats import norm
 
 sim_length = 10
@@ -188,8 +190,6 @@ ax.legend(bbox_to_anchor=[1.05,1],loc=2,borderaxespad=1)
 plt.show()
 ```
 
-
-
 ## Stationarity and asymptotic stability
 
 When we use models to study the real world, it is generally preferable that our
@@ -206,7 +206,7 @@ Notice that, in the figure above, the sequence $\{ \psi_t \}$ seems to be conver
 
 This is even clearer if we project forward further into the future:
 
-```{code-cell} python3
+```{code-cell} ipython3
 def plot_density_seq(ax, mu_0=-3.0, v_0=0.6, sim_length=40):
     mu, v = mu_0, v_0
     for t in range(sim_length):
@@ -225,7 +225,7 @@ Moreover, the limit does not depend on the initial condition.
 
 For example, this alternative density sequence also converges to the same limit.
 
-```{code-cell} python3
+```{code-cell} ipython3
 fig, ax = plt.subplots()
 plot_density_seq(ax, mu_0=4.0)
 plt.show()
@@ -260,7 +260,7 @@ t \to \infty
 
 We can confirm this is valid for the sequence above using the following code.
 
-```{code-cell} python3
+```{code-cell} ipython3
 fig, ax = plt.subplots()
 plot_density_seq(ax, mu_0=4.0)
 
@@ -406,7 +406,7 @@ Confirm this by simulation at a range of $k$ using the default parameters from t
 
 Here is one solution:
 
-```{code-cell} python3
+```{code-cell} ipython3
 from scipy.special import factorial2
 
 def sample_moments_ar1(k, m=100_000, mu_0=0.0, sigma_0=1.0, seed=1234):
