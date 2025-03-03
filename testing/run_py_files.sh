@@ -17,9 +17,19 @@ if [ ! -d "$TARGET_DIR" ]; then
     exit 1
 fi
 
-# Find and execute all Python files
+# List of files to SKIP
+SKIP_FILES=("business_cycle.py")
+
+# Construct the find command dynamically
+FIND_CMD=(find "$TARGET_DIR" -type f -name "*.py")
+
+for skip in "${SKIP_FILES[@]}"; do
+    FIND_CMD+=(! -name "$skip")
+done
+
+# Execute the constructed find command
 echo "Searching for Python files in $TARGET_DIR..."
-PYTHON_FILES=$(find "$TARGET_DIR" -type f -name "*.py" | sort)
+PYTHON_FILES=$("${FIND_CMD[@]}" | sort)
 
 if [ -z "$PYTHON_FILES" ]; then
     echo "No Python files found in $TARGET_DIR"
