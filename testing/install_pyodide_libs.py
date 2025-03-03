@@ -10,8 +10,9 @@ PARENT_DIR = os.path.dirname(os.path.abspath(__file__))
 ROOT_DIR = os.path.dirname(PARENT_DIR)
 
 PY_FILES_DIR = os.path.join(PARENT_DIR, 'py_files')
-# TODO: Make this list empty
+# TODO: Make this list as small as possible
 SKIP_FILES = [
+    'business_cycle.py', # SKIP: This has wbgapi which can't be removed
     'lp_intro.py', # remove ortools
 ]
 
