@@ -88,7 +88,8 @@ itself.
 This means $A$ is an $n \times n$ matrix that maps (or "transforms") a vector
 $x$ in $\mathbb{R}^n$ to a new vector $y=Ax$ also in $\mathbb{R}^n$.
 
-Here's one example:
+```{prf:example}
+:label: eigen1_ex_sq
 
 $$
     \begin{bmatrix}
@@ -116,6 +117,7 @@ $$
 
 transforms the vector $x = \begin{bmatrix} 1 \\ 3 \end{bmatrix}$ to the vector
 $y = \begin{bmatrix} 5 \\ 2 \end{bmatrix}$.
+```
 
 Let's visualize this using Python:
 
@@ -263,7 +265,7 @@ def circle_transform(A=np.array([[-1, 2], [0, 1]])):
     ax[0].plot(x, y, color='black', zorder=1)
     ax[0].scatter(a_1, b_1, c=colors, alpha=1, s=60,
                   edgecolors='black', zorder=2)
-    ax[0].set_title("unit circle in $\mathbb{R}^2$")
+    ax[0].set_title(r"unit circle in $\mathbb{R}^2$")
 
     x1 = x.reshape(1, -1)
     y1 = y.reshape(1, -1)
@@ -540,15 +542,15 @@ def grid_composition_transform(A=np.array([[1, -1], [1, 1]]),
 
     # Plot grid points
     ax[0].scatter(xygrid[0], xygrid[1], s=36, c=colors, edgecolor="none")
-    ax[0].set_title("points $x_1, x_2, \cdots, x_k$")
+    ax[0].set_title(r"points $x_1, x_2, \cdots, x_k$")
 
     # Plot intermediate grid points
     ax[1].scatter(uvgrid[0], uvgrid[1], s=36, c=colors, edgecolor="none")
-    ax[1].set_title("points $Bx_1, Bx_2, \cdots, Bx_k$")
+    ax[1].set_title(r"points $Bx_1, Bx_2, \cdots, Bx_k$")
 
     # Plot transformed grid points
     ax[2].scatter(abgrid[0], abgrid[1], s=36, c=colors, edgecolor="none")
-    ax[2].set_title("points $ABx_1, ABx_2, \cdots, ABx_k$")
+    ax[2].set_title(r"points $ABx_1, ABx_2, \cdots, ABx_k$")
 
     plt.show()
 ```

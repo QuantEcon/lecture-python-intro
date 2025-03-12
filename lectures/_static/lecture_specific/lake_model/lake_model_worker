@@ -1,0 +1,12 @@
+digraph {
+	rankdir=LR
+	node [shape=circle]
+	1 [label="New entrants" color=blue]
+	2 [label=Unemployed]
+	3 [label=Employed]
+	1 -> 2 [label=b]
+	2 -> 3 [label="λ(1-d)"]
+	3 -> 2 [label="α(1-d)"]
+	2 -> 2 [label="(1-λ)(1-d)"]
+	3 -> 3 [label="(1-α)(1-d)"]
+}

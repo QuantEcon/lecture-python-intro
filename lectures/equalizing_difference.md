@@ -31,7 +31,7 @@ Our presentation is "incomplete" in the sense that it is based on  a single equa
 
 This ''equalizing difference'' equation  determines  a college-high-school wage ratio that equalizes present values of a high school educated  worker and a college educated worker.
 
-The idea  is that lifetime earnings somehow adjust to make a new high school worker indifferent between going to college and not going to college but instead going to work immmediately.
+The idea  is that lifetime earnings somehow adjust to make a new high school worker indifferent between going to college and not going to college but instead going to work immediately.
 
 (The job of the "other equations" in a more complete model would be to describe what adjusts to bring about this outcome.)
 
@@ -136,7 +136,7 @@ $$
 We suppose that $R, \gamma_h, \gamma_c, T$ and also $w_0^h$  are fixed parameters. 
 
 We start by noting that the pure equalizing difference model asserts that the college-high-school wage gap $\phi$ solves an 
-"equalizing" equation that sets the present value not going to college equal to the present value of going go college:
+"equalizing" equation that sets the present value not going to college equal to the present value of going to college:
 
 
 $$
@@ -257,7 +257,7 @@ plt.ylabel(r'wage gap')
 plt.show()
 ```
 
-Notice how  the intitial wage gap falls when the rate of growth $\gamma_c$ of college wages rises.  
+Notice how  the initial wage gap falls when the rate of growth $\gamma_c$ of college wages rises.  
 
 The wage gap falls to "equalize" the present values of the two types of career, one as a high school worker, the other as a college worker.
 
@@ -298,7 +298,7 @@ What we used to call the college, high school wage gap $\phi$ now becomes the ra
 of a successful entrepreneur's earnings to a worker's earnings.  
 
 We'll find that as $\pi$ decreases, $\phi$ increases, indicating that the riskier it is to
-be an entrepreuner, the higher must be the reward for a successful project. 
+be an entrepreneur, the higher must be the reward for a successful project. 
 
 Now let's adopt the entrepreneur-worker interpretation of our model
 
@@ -374,7 +374,7 @@ We'll use the Python module 'sympy' to compute partial derivatives of $\phi$ wit
 Define symbols
 
 ```{code-cell} ipython3
-γ_h, γ_c, w_h0, D = symbols('\gamma_h, \gamma_c, w_0^h, D', real=True)
+γ_h, γ_c, w_h0, D = symbols(r'\gamma_h, \gamma_c, w_0^h, D', real=True)
 R, T = Symbol('R', real=True), Symbol('T', integer=True)
 ```
 
@@ -427,7 +427,7 @@ Now let's compute $\frac{\partial \phi}{\partial D}$ and then evaluate it at the
 
 Thus, as with our earlier graph, we find that raising $R$ increases the initial college wage premium $\phi$.
 
-Compute $\frac{\partial \phi}{\partial T}$ and evaluate it a default parameters
+Compute $\frac{\partial \phi}{\partial T}$ and evaluate it at default parameters
 
 ```{code-cell} ipython3
 ϕ_T = ϕ(D, γ_h, γ_c, R, T, w_h0).diff(T)

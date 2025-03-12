@@ -55,9 +55,11 @@ $$
 Production functions with this property include
 
 * the **Cobb-Douglas** function $F(K, L) = A K^{\alpha}
-  L^{1-\alpha}$ with $0 \leq \alpha \leq 1$ and
+  L^{1-\alpha}$ with $0 \leq \alpha \leq 1$. 
 * the **CES** function $F(K, L) = \left\{ a K^\rho + b L^\rho \right\}^{1/\rho}$
-        with $a, b, \rho > 0$.
+        with $a, b, \rho > 0$. 
+        
+Here, $\alpha$ is the output elasticity of capital and $\rho$ is a parameter that determines the elasticity of substitution between capital and labor.
 
 We assume a closed economy, so aggregate domestic investment equals aggregate domestic
 saving.
@@ -81,6 +83,7 @@ Setting $k_t := K_t / L$ and using homogeneity of degree one now yields
 
 $$
     k_{t+1}
+    = s \frac{F(K_t, L)}{L} + (1 - \delta) \frac{K_t}{L}
     = s \frac{F(K_t, L)}{L} + (1 - \delta) k_t
     = s F(k_t, 1) + (1 - \delta) k_t
 $$
@@ -100,8 +103,7 @@ given an exogenous initial capital stock  $k_0$.
 
 ## A graphical perspective
 
-To understand the dynamics of the sequence $(k_t)_{t \geq 0}$ we use a 45
-degree diagram.
+To understand the dynamics of the sequence $(k_t)_{t \geq 0}$ we use a 45-degree diagram.
 
 To do so, we first
 need to specify the functional form for $f$ and assign values to the parameters.
@@ -109,8 +111,7 @@ need to specify the functional form for $f$ and assign values to the parameters.
 We choose the Cobb--Douglas specification $f(k) = A k^\alpha$ and set $A=2.0$,
 $\alpha=0.3$, $s=0.3$ and $\delta=0.4$.
 
-The function $g$ from {eq}`solow` is then plotted, along with the 45
-degree line.
+The function $g$ from {eq}`solow` is then plotted, along with the 45-degree line.
 
 
 Let's define the constants.
@@ -128,7 +129,7 @@ def g(A, s, alpha, delta, k):
     return A * s * k**alpha + (1 - delta) * k
 ```
 
-Let's plot the 45 degree diagram of $g$.
+Let's plot the 45-degree diagram of $g$.
 
 ```{code-cell} ipython3
 def plot45(kstar=None):
@@ -145,7 +146,7 @@ def plot45(kstar=None):
 
     lb = r'$g(k) = sAk^{\alpha} + (1 - \delta)k$'
     ax.plot(xgrid, g_values,  lw=2, alpha=0.6, label=lb)
-    ax.plot(xgrid, xgrid, 'k-', lw=1, alpha=0.7, label='45')
+    ax.plot(xgrid, xgrid, 'k-', lw=1, alpha=0.7, label=r'$45^{\circ}$')
 
     if kstar:
         fps = (kstar,)
@@ -175,7 +176,7 @@ def plot45(kstar=None):
 plot45()
 ```
 
-Suppose, at some $k_t$, the value $g(k_t)$ lies strictly above the 45 degree line.
+Suppose, at some $k_t$, the value $g(k_t)$ lies strictly above the 45-degree line.
 
 Then we have $k_{t+1} = g(k_t) > k_t$ and capital per worker rises.
 
@@ -183,7 +184,7 @@ If $g(k_t) < k_t$ then capital per worker falls.
 
 If $g(k_t) = k_t$, then we are at a **steady state** and $k_t$ remains constant.
 
-(A steady state of the model is a [fixed point](https://en.wikipedia.org/wiki/Fixed_point_(mathematics)) of the mapping $g$.)
+(A {ref}`steady state <scalar-dynam:steady-state>` of the model is a [fixed point](https://en.wikipedia.org/wiki/Fixed_point_(mathematics)) of the mapping $g$.)
 
 From the shape of the function $g$ in the figure, we see that
 there is a unique steady state in $(0, \infty)$.
@@ -198,7 +199,7 @@ If initial capital is below $k^*$, then capital increases over time.
 
 If initial capital is above this level, then the reverse is true.
 
-Let's plot the 45 degree diagram to show the $k^*$ in the plot.
+Let's plot the 45-degree diagram to show the $k^*$ in the plot.
 
 ```{code-cell} ipython3
 kstar = ((s * A) / delta)**(1/(1 - alpha))
@@ -209,7 +210,7 @@ plot45(kstar)
 From our graphical analysis, it appears that $(k_t)$ converges to $k^*$, regardless of initial capital
 $k_0$.
 
-This is a form of global stability.
+This is a form of {ref}`global stability <scalar-dynam:global-stability>`.
 
 
 The next figure shows three time paths for capital, from
@@ -387,7 +388,7 @@ linear differential equation
     x'_t = (1-\alpha) (sA - \delta x_t)
 ```
 
-This equation has the exact solution
+This equation, which is a [linear ordinary differential equation](https://math.libretexts.org/Bookshelves/Calculus/Calculus_(Guichard)/17%3A_Differential_Equations/17.01%3A_First_Order_Differential_Equations), has the solution
 
 $$
     x_t

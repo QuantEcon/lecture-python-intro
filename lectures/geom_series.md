@@ -25,12 +25,6 @@ kernelspec:
 
 # Geometric Series for Elementary Economics
 
-```{admonition} Migrated lecture
-:class: warning
-
-This lecture has moved from our [Intermediate Quantitative Economics with Python](https://python.quantecon.org/intro.html) lecture series and is now a part of [A First Course in Quantitative Economics](https://intro.quantecon.org/intro.html).
-```
-
 ## Overview
 
 The lecture describes important ideas in economics that use the mathematics of geometric series.
@@ -53,7 +47,6 @@ These and other applications prove the truth of the wise crack that
 Below we'll use the following imports:
 
 ```{code-cell} ipython
-%matplotlib inline
 import matplotlib.pyplot as plt
 plt.rcParams["figure.figsize"] = (11, 5)  #set default figure size
 import numpy as np
@@ -112,9 +105,12 @@ $$
 1 + c + c^2 + c^3 + \cdots + c^T  = \frac{1 - c^{T+1}}{1-c}
 $$
 
-**Remark:** The above formula works for any value of the scalar
+```{prf:remark}
+:label: geom_formula
+The above formula works for any value of the scalar
 $c$. We don't have to restrict $c$ to be in the
 set $(-1,1)$.
+```
 
 We now move on to describe some famous economic applications of
 geometric series.
@@ -765,7 +761,7 @@ T_max = 10
 T=np.arange(0, T_max+1)
 
 rs, gs = (0.9, 0.5, 0.4001, 0.4), (0.4, 0.4, 0.4, 0.5),
-comparisons = ('$\gg$', '$>$', r'$\approx$', '$<$')
+comparisons = (r'$\gg$', '$>$', r'$\approx$', '$<$')
 for r, g, comp in zip(rs, gs, comparisons):
     ax.plot(finite_lease_pv_true(T, g, r, x_0), label=f'r(={r}) {comp} g(={g})')
 

@@ -33,7 +33,7 @@ Exports were regarded as good because they brought in bullion (gold flowed into 
 
 Imports were regarded as bad because bullion was required to pay for them (gold flowed out).
 
-This [zero-sum](https://en.wikipedia.org/wiki/Zero-sum_game) view of economics was eventually overturned by the work of the classical economists such as [Adam Smith](https://en.wikipedia.org/wiki/Adam_Smith) and [David Ricado](https://en.wikipedia.org/wiki/David_Ricardo), who showed how freeing domestic and international trade can enhance welfare.
+This [zero-sum](https://en.wikipedia.org/wiki/Zero-sum_game) view of economics was eventually overturned by the work of the classical economists such as [Adam Smith](https://en.wikipedia.org/wiki/Adam_Smith) and [David Ricardo](https://en.wikipedia.org/wiki/David_Ricardo), who showed how freeing domestic and international trade can enhance welfare.
 
 There are many different expressions of this idea in economics.
 
@@ -68,6 +68,9 @@ Before we look at the model of supply and demand, it will be helpful to have som
 
 ### A discrete example
 
+```{prf:example}
+:label: isd_ex_cs
+
 Regarding consumer surplus, suppose that we have a single good and 10 consumers.
 
 These 10 consumers have different preferences; in particular, the amount they would be willing to pay for one unit of the good differs.
@@ -79,6 +82,7 @@ Suppose that the willingness to pay for each of the 10 consumers is as follows:
 | willing to pay | 98 | 72 | 41 | 38 | 29 | 21 | 17 | 12 | 11 | 10  |
 
 (We have ordered consumers by willingness to pay, in descending order.)
+```
 
 If $p$ is the price of the good and  $w_i$ is the amount that consumer $i$ is willing to pay, then $i$ buys when $w_i \geq p$.
 
@@ -253,6 +257,9 @@ Let $v_i$ be the price at which producer $i$ is willing to sell the good.
 
 When the price is $p$, producer surplus for producer $i$ is $\max\{p - v_i, 0\}$.
 
+```{prf:example}
+:label: isd_ex_dc
+
 For example, a producer willing to sell at \$10 and selling at price \$20 makes a surplus of \$10. 
 
 Total producer surplus is given by
@@ -273,6 +280,7 @@ p = 2 q^2
 $$
 
 The shaded area is the total producer surplus in this continuous model.
+```
 
 ```{code-cell} ipython3
 ---
@@ -340,7 +348,7 @@ ab_grid = np.linspace(a, b, 400)
 fig, ax = plt.subplots()
 ax.plot(x_grid, f(x_grid), label="$f$", color="k")
 ax.fill_between(ab_grid, [0] * len(ab_grid), f(ab_grid), 
-                label="$\int_a^b f(x) dx$")
+                label=r"$\int_a^b f(x) dx$")
 ax.legend()
 plt.show()
 ```
@@ -351,7 +359,7 @@ Many of these rules relate to one of the most beautiful and powerful results in 
 
 We will not try to cover these ideas here, partly because the subject is too big, and partly because you only need to know one rule for this lecture, stated below.
 
-If $f(x) = c + \mathrm{d} x$, then 
+If $f(x) = c + dx$, then 
 
 $$ 
 \int_a^b f(x) \mathrm{d} x = c (b - a) + \frac{d}{2}(b^2 - a^2) 
@@ -670,7 +678,7 @@ This is the competitive equilibrium quantity.
 Observe that the equilibrium quantity equals the same $q$ given by equation  {eq}`eq:old1`.
 
 The outcome that the quantity determined by equation {eq}`eq:old1` equates
-supply to demand brings us a **key finding:**
+supply to demand brings us a *key finding*:
 
 *  a competitive equilibrium quantity maximizes our welfare criterion
 
@@ -689,11 +697,11 @@ Our generalizations will extend the preceding analysis of a market for a single 
 
 In addition
 
-* we'll derive  **demand curves** from a consumer problem that maximizes a
- **utility function** subject to a **budget constraint**.
+* we'll derive  *demand curves* from a consumer problem that maximizes a
+ *utility function* subject to a *budget constraint*.
 
-* we'll derive  **supply curves** from the problem of a producer who is price
- taker and maximizes his profits minus total costs that are described by a **cost function**.
+* we'll derive  *supply curves* from the problem of a producer who is price
+ taker and maximizes his profits minus total costs that are described by a *cost function*.
 
 ## Exercises
 

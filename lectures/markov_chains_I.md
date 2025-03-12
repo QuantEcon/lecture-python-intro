@@ -58,6 +58,11 @@ import numpy as np
 import networkx as nx
 from matplotlib import cm
 import matplotlib as mpl
+from mpl_toolkits.mplot3d import Axes3D
+from matplotlib.animation import FuncAnimation
+from IPython.display import HTML
+from matplotlib.patches import Polygon
+from mpl_toolkits.mplot3d.art3d import Poly3DCollection
 ```
 
 ## Definitions and examples
@@ -82,15 +87,14 @@ In other words,
 
 If $P$ is a stochastic matrix, then so is the $k$-th power $P^k$ for all $k \in \mathbb N$.
 
-Checking this in {ref}`the first exercises <mc1_ex_3>` below.
+You are asked to check this in {ref}`an exercise <mc1_ex_3>` below.
 
 
 ### Markov chains
+
 Now we can introduce Markov chains.
 
 Before defining a Markov chain rigorously, we'll  give some examples.
-
-(Among other things, defining a Markov chain will clarify a  connection between **stochastic matrices** and **Markov chains**.)
 
 
 (mc_eg2)=
@@ -110,7 +114,7 @@ Here there are three **states**
 * "mr" represents mild recession
 * "sr" represents severe recession
 
-The arrows represent **transition probabilities** over one month.
+The arrows represent transition probabilities over one month.
 
 For example, the arrow from mild recession to normal growth has 0.145 next to it.
 
@@ -120,7 +124,7 @@ The arrow from normal growth back to normal growth tells us that there is a
 97% probability of transitioning from normal growth to normal growth (staying
 in the same state).
 
-Note that these are *conditional* probabilities --- the probability of
+Note that these are conditional probabilities --- the probability of
 transitioning from one state to another (or staying at the same one) conditional on the
 current state.
 
@@ -258,14 +262,12 @@ Here is a visualization, with darker colors indicating higher probability.
 :tags: [hide-input]
 
 G = nx.MultiDiGraph()
-edge_ls = []
-label_dict = {}
 
 for start_idx, node_start in enumerate(nodes):
     for end_idx, node_end in enumerate(nodes):
         value = P[start_idx][end_idx]
         if value != 0:
-            G.add_edge(node_start,node_end, weight=value, len=100)
+            G.add_edge(node_start,node_end, weight=value)
 
 pos = nx.spring_layout(G, seed=10)
 fig, ax = plt.subplots()
@@ -273,7 +275,7 @@ nx.draw_networkx_nodes(G, pos, node_size=600, edgecolors='black', node_color='wh
 nx.draw_networkx_labels(G, pos)
 
 arc_rad = 0.2
-curved_edges = [edge for edge in G.edges()]
+
 edges = nx.draw_networkx_edges(G, pos, ax=ax, connectionstyle=f'arc3, rad = {arc_rad}', edge_cmap=cm.Blues, width=2,
     edge_color=[G[nodes[0]][nodes[1]][0]['weight'] for nodes in G.edges])
 
@@ -317,7 +319,7 @@ This means that, for any date $t$ and any state $y \in S$,
 = \mathbb P \{ X_{t+1}  = y \,|\, X_t, X_{t-1}, \ldots \}
 ```
 
-This means that once we know the current state $X_t$,  adding knowledge of earlier states $X_{t-1}, X_{t-2}$ provides no additional information about probabilities of **future** states.  
+This means that once we know the current state $X_t$,  adding knowledge of earlier states $X_{t-1}, X_{t-2}$ provides no additional information about probabilities of *future* states.  
 
 Thus, the dynamics of a Markov chain are fully determined by the set of **conditional probabilities**
 
@@ -356,7 +358,7 @@ By construction, the resulting process satisfies {eq}`mpp`.
 ```{index} single: Markov Chains; Simulation
 ```
 
-A good way to study a Markov chains is to simulate it.
+A good way to study Markov chains is to simulate them.
 
 Let's start by doing this ourselves and then look at libraries that can help
 us.
@@ -434,7 +436,7 @@ P = [[0.4, 0.6],
 Here's a short time series.
 
 ```{code-cell} ipython3
-mc_sample_path(P, ψ_0=[1.0, 0.0], ts_length=10)
+mc_sample_path(P, ψ_0=(1.0, 0.0), ts_length=10)
 ```
 
 It can be shown that for a long series drawn from `P`, the fraction of the
@@ -448,7 +450,7 @@ $X_0$ is drawn.
 The following code illustrates this
 
 ```{code-cell} ipython3
-X = mc_sample_path(P, ψ_0=[0.1, 0.9], ts_length=1_000_000)
+X = mc_sample_path(P, ψ_0=(0.1, 0.9), ts_length=1_000_000)
 np.mean(X == 0)
 ```
 
@@ -488,11 +490,11 @@ The following code illustrates
 
 ```{code-cell} ipython3
 mc = qe.MarkovChain(P, state_values=('unemployed', 'employed'))
-mc.simulate(ts_length=4, init='employed')
+mc.simulate(ts_length=4, init='employed')  # Start at employed initial state
 ```
 
 ```{code-cell} ipython3
-mc.simulate(ts_length=4, init='unemployed')
+mc.simulate(ts_length=4, init='unemployed')  # Start at unemployed initial state
 ```
 
 ```{code-cell} ipython3
@@ -570,7 +572,7 @@ This is very important, so let's repeat it
 X_0 \sim \psi_0 \quad \implies \quad X_m \sim \psi_0 P^m
 ```
 
-The general rule is that post-multiplying a distribution by $P^m$ shifts it forward $m$ units of time.
+The general rule is that postmultiplying a distribution by $P^m$ shifts it forward $m$ units of time.
 
 Hence the following is also valid.
 
@@ -625,12 +627,12 @@ $$
 
 
 (mc_eg1-1)=
-### Example 2: Cross-sectional distributions
+### Example 2: cross-sectional distributions
 
 The distributions we have been studying can be viewed either
 
 1. as probabilities or
-1. as cross-sectional frequencies that the Law of Large Numbers leads us to anticipate for large samples.
+1. as cross-sectional frequencies that the law of large numbers leads us to anticipate for large samples.
 
 To illustrate, recall our model of employment/unemployment dynamics for a given worker {ref}`discussed above <mc_eg1>`.
 
@@ -641,9 +643,9 @@ workers' processes.
 
 Let $\psi_t$ be the current *cross-sectional* distribution over $\{ 0, 1 \}$.
 
-The cross-sectional distribution records fractions of workers employed and unemployed at a given moment t.
+The cross-sectional distribution records fractions of workers employed and unemployed at a given moment $t$.
 
-* For example, $\psi_t(0)$ is the unemployment rate.
+* For example, $\psi_t(0)$ is the unemployment rate at time $t$.
 
 What will the cross-sectional distribution be in 10 periods hence?
 
@@ -651,11 +653,11 @@ The answer is $\psi_t P^{10}$, where $P$ is the stochastic matrix in
 {eq}`p_unempemp`.
 
 This is because each worker's state evolves according to $P$, so
-$\psi_t P^{10}$ is a marginal distribution  for a single randomly selected
+$\psi_t P^{10}$ is a [marginal distribution](https://en.wikipedia.org/wiki/Marginal_distribution)  for a single randomly selected
 worker.
 
-But when the sample is large, outcomes and probabilities are roughly equal (by an application of the Law
-of Large Numbers).
+But when the sample is large, outcomes and probabilities are roughly equal (by an application of the law
+of large numbers).
 
 So for a very large (tending to infinite) population,
 $\psi_t P^{10}$ also represents  fractions of workers in
@@ -688,11 +690,11 @@ Such distributions are called **stationary** or **invariant**.
 (mc_stat_dd)=
 Formally, a distribution $\psi^*$ on $S$ is called **stationary** for $P$ if $\psi^* P = \psi^* $.
 
-Notice that, post-multiplying by $P$, we have $\psi^* P^2 = \psi^* P = \psi^*$.
+Notice that, postmultiplying by $P$, we have $\psi^* P^2 = \psi^* P = \psi^*$.
 
-Continuing in the same way leads to $\psi^* = \psi^* P^t$ for all $t$.
+Continuing in the same way leads to $\psi^* = \psi^* P^t$ for all $t \ge 0$.
 
-This tells us an important fact: If the distribution of $\psi_0$ is a stationary distribution, then $\psi_t$ will have this same distribution for all $t$.
+This tells us an important fact: If the distribution of $\psi_0$ is a stationary distribution, then $\psi_t$ will have this same distribution for all $t \ge 0$.
 
 The following theorem is proved in Chapter 4 of {cite}`sargent2023economic` and numerous other sources.
 
@@ -743,6 +745,11 @@ This is, in some sense, a steady state probability of unemployment.
 
 Not surprisingly it tends to zero as $\beta \to 0$, and to one as $\alpha \to 0$.
 
+
+
+
+
+
 ### Calculating stationary distributions
 
 A stable algorithm for computing stationary distributions is implemented in [QuantEcon.py](http://quantecon.org/quantecon-py).
@@ -757,6 +764,11 @@ mc = qe.MarkovChain(P)
 mc.stationary_distributions  # Show all stationary distributions
 ```
 
+
+
+
+
+
 ### Asymptotic stationarity
 
 Consider an everywhere positive stochastic matrix with unique stationary distribution $\psi^*$.
@@ -767,17 +779,24 @@ For example, we have the following result
 
 (strict_stationary)=
 ```{prf:theorem}
-Theorem: If there exists an integer $m$ such that all entries of $P^m$ are
-strictly positive, with unique stationary distribution $\psi^*$, then
+:label: mc_gs_thm
+
+If there exists an integer $m$ such that all entries of $P^m$ are
+strictly positive, then
 
 $$
     \psi_0 P^t \to \psi^*
     \quad \text{ as } t \to \infty
 $$
+
+where $\psi^*$ is the unique stationary distribution.
 ```
 
+This situation is often referred to as **asymptotic stationarity** or **global stability**.
 
-See, for example, {cite}`sargent2023economic` Chapter 4.
+A proof of the theorem can be found in Chapter 4 of {cite}`sargent2023economic`, as well as many other sources.
+
+
 
 
 
@@ -793,7 +812,7 @@ P = np.array([[0.971, 0.029, 0.000],
 P @ P
 ```
 
-Let's pick an initial distribution $\psi_0$ and trace out the sequence of distributions $\psi_0 P^t$ for $t = 0, 1, 2, \ldots$
+Let's pick an initial distribution $\psi_1, \psi_2, \psi_3$ and trace out the sequence of distributions $\psi_i P^t$ for $t = 0, 1, 2, \ldots$, for $i=1, 2, 3$.
 
 First, we write a function to iterate the sequence of distributions for `ts_length` period
 
@@ -801,126 +820,79 @@ First, we write a function to iterate the sequence of distributions for `ts_leng
 def iterate_ψ(ψ_0, P, ts_length):
     n = len(P)
     ψ_t = np.empty((ts_length, n))
-    ψ = ψ_0
-    for t in range(ts_length):
-        ψ_t[t] = ψ
-        ψ = ψ @ P
-    return np.array(ψ_t)
+    ψ_t[0 ]= ψ_0
+    for t in range(1, ts_length):
+        ψ_t[t] = ψ_t[t-1] @ P
+    return ψ_t
 ```
 
 Now we plot the sequence
 
 ```{code-cell} ipython3
-ψ_0 = (0.0, 0.2, 0.8)        # Initial condition
+:tags: [hide-input]
+
+ψ_1 = (0.0, 0.0, 1.0)
+ψ_2 = (1.0, 0.0, 0.0)
+ψ_3 = (0.0, 1.0, 0.0)                   # Three initial conditions
+colors = ['blue','red', 'green']   # Different colors for each initial point
+
+# Define the vertices of the unit simplex
+v = np.array([[1, 0, 0], [0, 1, 0], [0, 0, 1], [0, 0, 0]])
+
+# Define the faces of the unit simplex
+faces = [
+    [v[0], v[1], v[2]],
+    [v[0], v[1], v[3]],
+    [v[0], v[2], v[3]],
+    [v[1], v[2], v[3]]
+]
 
 fig = plt.figure()
-ax = fig.add_subplot(111, projection='3d')
+ax = fig.add_subplot(projection='3d')
 
-ax.set(xlim=(0, 1), ylim=(0, 1), zlim=(0, 1),
-       xticks=(0.25, 0.5, 0.75),
-       yticks=(0.25, 0.5, 0.75),
-       zticks=(0.25, 0.5, 0.75))
+def update(n):    
+    ax.clear()
+    ax.set_xlim([0, 1])
+    ax.set_ylim([0, 1])
+    ax.set_zlim([0, 1])
+    ax.view_init(45, 45)
+    
+    simplex = Poly3DCollection(faces, alpha=0.03)
+    ax.add_collection3d(simplex)
+    
+    for idx, ψ_0 in enumerate([ψ_1, ψ_2, ψ_3]):
+        ψ_t = iterate_ψ(ψ_0, P, n+1)
+        
+        for i, point in enumerate(ψ_t):
+            ax.scatter(point[0], point[1], point[2], color=colors[idx], s=60, alpha=(i+1)/len(ψ_t))
+            
+    mc = qe.MarkovChain(P)
+    ψ_star = mc.stationary_distributions[0]
+    ax.scatter(ψ_star[0], ψ_star[1], ψ_star[2], c='yellow', s=60)
+    
+    return fig,
 
-ψ_t = iterate_ψ(ψ_0, P, 20)
-
-ax.scatter(ψ_t[:,0], ψ_t[:,1], ψ_t[:,2], c='r', s=60)
-ax.view_init(30, 210)
-
-mc = qe.MarkovChain(P)
-ψ_star = mc.stationary_distributions[0]
-ax.scatter(ψ_star[0], ψ_star[1], ψ_star[2], c='k', s=60)
-
-plt.show()
+anim = FuncAnimation(fig, update, frames=range(20), blit=False, repeat=False)
+plt.close()
+HTML(anim.to_jshtml())
 ```
 
 Here
 
 * $P$ is the stochastic matrix for recession and growth {ref}`considered above <mc_eg2>`.
-* The highest red dot is an arbitrarily chosen initial marginal probability distribution  $\psi_0$, represented as a vector in $\mathbb R^3$.
-* The other red dots are the marginal distributions $\psi_0 P^t$ for $t = 1, 2, \ldots$.
-* The black dot is $\psi^*$.
+* The red, blue and green dots are initial marginal probability distributions  $\psi_1, \psi_2, \psi_3$, each of which is represented as a vector in $\mathbb R^3$.
+* The transparent dots are the marginal distributions $\psi_i P^t$ for $t = 1, 2, \ldots$, for $i=1,2,3.$.
+* The yellow dot is $\psi^*$.
 
 You might like to try experimenting with different initial conditions.
 
 
-#### An alternative illustration
-
-We can show this in a slightly different way by focusing on the probability that $\psi_t$ puts on each state.
-
-First, we write a function to draw initial distributions $\psi_0$ of size `num_distributions`
-
-```{code-cell} ipython3
-def generate_initial_values(num_distributions):
-    n = len(P)
-    ψ_0s = np.empty((num_distributions, n))
-
-    for i in range(num_distributions):
-        draws = np.random.randint(1, 10_000_000, size=n)
-
-        # Scale them so that they add up into 1
-        ψ_0s[i,:] = np.array(draws/sum(draws))
-
-    return ψ_0s
-```
-
-We then write a function to plot the dynamics of  $(\psi_0 P^t)(i)$ as $t$ gets large, for each state $i$ with different initial distributions
-
-```{code-cell} ipython3
-def plot_distribution(P, ts_length, num_distributions):
-
-    # Get parameters of transition matrix
-    n = len(P)
-    mc = qe.MarkovChain(P)
-    ψ_star = mc.stationary_distributions[0]
-
-    ## Draw the plot
-    fig, axes = plt.subplots(nrows=1, ncols=n, figsize=[11, 5])
-    plt.subplots_adjust(wspace=0.35)
-
-    ψ_0s = generate_initial_values(num_distributions)
-
-    # Get the path for each starting value
-    for ψ_0 in ψ_0s:
-        ψ_t = iterate_ψ(ψ_0, P, ts_length)
-
-        # Obtain and plot distributions at each state
-        for i in range(n):
-            axes[i].plot(range(0, ts_length), ψ_t[:,i], alpha=0.3)
-
-    # Add labels
-    for i in range(n):
-        axes[i].axhline(ψ_star[i], linestyle='dashed', lw=2, color = 'black',
-                        label = fr'$\psi^*({i})$')
-        axes[i].set_xlabel('t')
-        axes[i].set_ylabel(fr'$\psi_t({i})$')
-        axes[i].legend()
-
-    plt.show()
-```
-
-The following figure shows
-
-```{code-cell} ipython3
-# Define the number of iterations
-# and initial distributions
-ts_length = 50
-num_distributions = 25
-
-P = np.array([[0.971, 0.029, 0.000],
-              [0.145, 0.778, 0.077],
-              [0.000, 0.508, 0.492]])
-
-plot_distribution(P, ts_length, num_distributions)
-```
-
-The convergence to $\psi^*$ holds for different initial distributions.
 
 
+#### Example: failure of convergence
 
-#### Example: Failure of convergence
 
-
-In the case of a periodic chain, with
+Consider the periodic chain with stochastic matrix
 
 $$
 P = 
@@ -930,20 +902,83 @@ P =
 \end{bmatrix}
 $$
 
-we find the distribution oscillates
+This matrix does not satisfy the conditions of 
+{ref}`strict_stationary` because, as you can readily check, 
+
+* $P^m = P$ when $m$ is odd and 
+* $P^m = I$, the identity matrix, when $m$ is even.
+
+Hence there is no $m$ such that all elements of $P^m$ are strictly positive.
+
+Moreover, we can see that global stability does not hold.
+
+For instance, if we start at $\psi_0 = (1,0)$, then $\psi_m = \psi_0 P^m$ is $(1, 0)$ when $m$ is even and $(0,1)$ when $m$ is odd.
+
+We can see similar phenomena in higher dimensions.
+
+The next figure illustrates this for a periodic Markov chain with three states.
 
 ```{code-cell} ipython3
-P = np.array([[0, 1],
-              [1, 0]])
+:tags: [hide-input]
 
-ts_length = 20
-num_distributions = 30
+ψ_1 = (0.0, 0.0, 1.0)
+ψ_2 = (0.5, 0.5, 0.0)
+ψ_3 = (0.25, 0.25, 0.5)
+ψ_4 = (1/3, 1/3, 1/3)
 
-plot_distribution(P, ts_length, num_distributions)
+P = np.array([[0.0, 1.0, 0.0],
+              [0.0, 0.0, 1.0],
+              [1.0, 0.0, 0.0]])
+
+fig = plt.figure()
+ax = fig.add_subplot(projection='3d')
+colors = ['red','yellow', 'green', 'blue']  # Different colors for each initial point
+
+# Define the vertices of the unit simplex
+v = np.array([[1, 0, 0], [0, 1, 0], [0, 0, 1], [0, 0, 0]])
+
+# Define the faces of the unit simplex
+faces = [
+    [v[0], v[1], v[2]],
+    [v[0], v[1], v[3]],
+    [v[0], v[2], v[3]],
+    [v[1], v[2], v[3]]
+]
+
+def update(n):
+    ax.clear()
+    ax.set_xlim([0, 1])
+    ax.set_ylim([0, 1])
+    ax.set_zlim([0, 1])
+    ax.view_init(45, 45)
+    
+    # Plot the 3D unit simplex as planes
+    simplex = Poly3DCollection(faces,alpha=0.05)
+    ax.add_collection3d(simplex)
+    
+    for idx, ψ_0 in enumerate([ψ_1, ψ_2, ψ_3, ψ_4]):
+        ψ_t = iterate_ψ(ψ_0, P, n+1)
+        
+        point = ψ_t[-1]
+        ax.scatter(point[0], point[1], point[2], color=colors[idx], s=60)
+        points = np.array(ψ_t)
+        ax.plot(points[:, 0], points[:, 1], points[:, 2], color=colors[idx],linewidth=0.75)
+    
+    return fig,
+
+anim = FuncAnimation(fig, update, frames=range(20), blit=False, repeat=False)
+plt.close()
+HTML(anim.to_jshtml())
 ```
+This animation demonstrates the behavior of an irreducible and periodic stochastic matrix.
 
-Indeed, this $P$ fails our asymptotic stationarity condition, since, as you can
-verify, $P^t$ is not everywhere positive for any $t$.
+The red, yellow, and green dots represent different initial probability distributions.
+
+The blue dot represents the unique stationary distribution.
+
+Unlike Hamilton’s Markov chain, these initial distributions do not converge to the unique stationary distribution.
+
+Instead, they cycle periodically around the probability simplex, illustrating that asymptotic stability fails.
 
 
 (finite_mc_expec)=
@@ -1077,7 +1112,7 @@ Solution 1:
 
 ```
 
-Since the matrix is everywhere positive, there is a unique stationary distribution.
+Since the matrix is everywhere positive, there is a unique stationary distribution $\psi^*$ such that $\psi_t\to \psi^*$ as $t\to \infty$.
 
 Solution 2:
 
@@ -1104,42 +1139,6 @@ mc = qe.MarkovChain(P)
 ψ_star
 ```
 
-Solution 3:
-
-We find the distribution $\psi$ converges to the stationary distribution more quickly compared to the {ref}`hamilton's chain <hamilton>`.
-
-```{code-cell} ipython3
-ts_length = 10
-num_distributions = 25
-plot_distribution(P, ts_length, num_distributions)
-```
-
-In fact, the rate of convergence is governed by {ref}`eigenvalues<eigen>` {cite}`sargent2023economic`.
-
-```{code-cell} ipython3
-P_eigenvals = np.linalg.eigvals(P)
-P_eigenvals
-```
-
-```{code-cell} ipython3
-P_hamilton = np.array([[0.971, 0.029, 0.000],
-                       [0.145, 0.778, 0.077],
-                       [0.000, 0.508, 0.492]])
-
-hamilton_eigenvals = np.linalg.eigvals(P_hamilton)
-hamilton_eigenvals
-```
-
-More specifically, it is governed by the spectral gap, the difference between the largest and the second largest eigenvalue.
-
-```{code-cell} ipython3
-sp_gap_P = P_eigenvals[0] - np.diff(P_eigenvals)[0]
-sp_gap_hamilton = hamilton_eigenvals[0] - np.diff(hamilton_eigenvals)[0]
-
-sp_gap_P > sp_gap_hamilton
-```
-
-We will come back to this when we discuss {ref}`spectral theory<spec_markov>`.
 
 ```{solution-end}
 ```

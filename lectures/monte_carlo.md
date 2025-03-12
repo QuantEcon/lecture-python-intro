@@ -12,7 +12,7 @@ kernelspec:
 ---
 
 
-
+(monte-carlo)=
 # Monte Carlo and Option Pricing
 
 ## Overview
@@ -47,7 +47,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 from numpy.random import randn
 ```
-
 
 
 ## An introduction to Monte Carlo
@@ -85,7 +84,7 @@ Suppose that, after analyzing the data, we guess that $S$ is well
 represented by a lognormal distribution with parameters $\mu, \sigma$ .
 
 * $S$ has the same distribution as $\exp(\mu + \sigma Z)$ where $Z$ is standard normal.
-* we write this statement as $S \sim LN(\mu, \sigma)$.
+* We write this statement as $S \sim LN(\mu, \sigma)$.
 
 Any good reference on statistics (such as
 [Wikipedia](https://en.wikipedia.org/wiki/Log-normal_distribution)) will tell
@@ -136,12 +135,12 @@ But fortunately there's an easy way to do this, at least approximately.
 This is the Monte Carlo method, which runs as follows:
 
 1. Generate $n$ independent draws of $X_1$, $X_2$ and $X_3$ on a computer,
-1. Use these draws to generate $n$ independent draws of $S$, and
-1. Take the average value of these draws of $S$.
+1. use these draws to generate $n$ independent draws of $S$, and
+1. take the average value of these draws of $S$.
 
 This average will be close to the true mean when $n$ is large.
 
-This is due to the law of large numbers, which we discussed in {doc}`another lecture <lln_clt>`.
+This is due to the law of large numbers, which we discussed in {doc}`lln_clt`.
 
 We use the following values for $p$ and each $\mu_i$ and $\sigma_i$.
 
@@ -238,7 +237,7 @@ compute_mean_vectorized(n=10_000_000)
 
 
 
-## Pricing a european call option under risk neutrality
+## Pricing a European call option under risk neutrality
 
 Next we are going to price a European call option under risk neutrality.
 
@@ -246,7 +245,7 @@ Let's first discuss risk neutrality and then consider European options.
 
 
 
-### Risk-Neutral Pricing
+### Risk-neutral pricing
 
 When we use risk-neutral pricing, we determine the price of a given asset
 according to its expected payoff:
@@ -426,7 +425,7 @@ $$ \ln \frac{S_{t+1}}{S_t} = \mu + \sigma \xi_{t+1} $$
 
 where
 
-* $S_0$ is normally distributed and
+* $S_0$ is lognormally distributed and
 * $\{ \xi_t \}$ is IID and standard normal.
 
 
@@ -485,23 +484,23 @@ Here $\{\eta_t\}$ is also IID and standard normal.
 For the dynamic model, we adopt the following parameter values.
 
 ```{code-cell} ipython3
-μ  = 0.0001
-ρ  = 0.1
-ν  = 0.001
-S0 = 10
-h0 = 0
+default_μ  = 0.0001
+default_ρ  = 0.1
+default_ν  = 0.001
+default_S0 = 10
+default_h0 = 0
 ```
 
 
 
-(Here `S0` is $S_0$ and `h0` is $h_0$.)
+(Here `default_S0` is $S_0$ and `default_h0` is $h_0$.)
 
 For the option we use the following defaults.
 
 ```{code-cell} ipython3
-K = 100
-n = 10
-β = 0.95
+default_K = 100
+default_n = 10
+default_β = 0.95
 ```
 
 
@@ -515,7 +514,7 @@ $$ s_{t+1} = s_t + \mu + \exp(h_t) \xi_{t+1} $$
 Here is a function to simulate a path using this equation:
 
 ```{code-cell} ipython3
-def simulate_asset_price_path(μ=μ, S0=S0, h0=h0, n=n, ρ=ρ, ν=ν):
+def simulate_asset_price_path(μ=default_μ, S0=default_S0, h0=default_h0, n=default_n, ρ=default_ρ, ν=default_ν):
     s = np.empty(n+1)
     s[0] = np.log(S0)
 
@@ -568,14 +567,14 @@ $$
 Here's a version using Python loops.
 
 ```{code-cell} ipython3
-def compute_call_price(β=β,
-                       μ=μ,
-                       S0=S0,
-                       h0=h0,
-                       K=K,
-                       n=n,
-                       ρ=ρ,
-                       ν=ν,
+def compute_call_price(β=default_β,
+                       μ=default_μ,
+                       S0=default_S0,
+                       h0=default_h0,
+                       K=default_K,
+                       n=default_n,
+                       ρ=default_ρ,
+                       ν=default_ν,
                        M=10_000):
     current_sum = 0.0
     # For each sample path
@@ -617,14 +616,14 @@ Your task is to write a faster version of this code using NumPy.
 ```
 
 ```{code-cell} ipython3
-def compute_call_price(β=β,
-                       μ=μ,
-                       S0=S0,
-                       h0=h0,
-                       K=K,
-                       n=n,
-                       ρ=ρ,
-                       ν=ν,
+def compute_call_price_vector(β=default_β,
+                       μ=default_μ,
+                       S0=default_S0,
+                       h0=default_h0,
+                       K=default_K,
+                       n=default_n,
+                       ρ=default_ρ,
+                       ν=default_ν,
                        M=10_000):
 
     s = np.full(M, np.log(S0))
@@ -640,7 +639,7 @@ def compute_call_price(β=β,
 
 ```{code-cell} ipython3
 %%time
-compute_call_price()
+compute_call_price_vector()
 ```
 
 
@@ -676,27 +675,27 @@ Use the dynamics defined in {eq}`s_mc_dyms` to price the European call option.
 ```
 
 ```{code-cell} ipython3
-μ  = 0.0001
-ρ  = 0.1
-ν  = 0.001
-S0 = 10
-h0 = 0
-K = 100
-n = 10
-β = 0.95
-bp = 120
+default_μ  = 0.0001
+default_ρ  = 0.1
+default_ν  = 0.001
+default_S0 = 10
+default_h0 = 0
+default_K = 100
+default_n = 10
+default_β = 0.95
+default_bp = 120
 ```
 
 ```{code-cell} ipython3
-def compute_call_price_with_barrier(β=β,
-                                    μ=μ,
-                                    S0=S0,
-                                    h0=h0,
-                                    K=K,
-                                    n=n,
-                                    ρ=ρ,
-                                    ν=ν,
-                                    bp=bp,
+def compute_call_price_with_barrier(β=default_β,
+                                    μ=default_μ,
+                                    S0=default_S0,
+                                    h0=default_h0,
+                                    K=default_K,
+                                    n=default_n,
+                                    ρ=default_ρ,
+                                    ν=default_ν,
+                                    bp=default_bp,
                                     M=50_000):
     current_sum = 0.0
     # For each sample path
@@ -731,15 +730,15 @@ def compute_call_price_with_barrier(β=β,
 Let's look at the vectorized version which is faster than using Python loops.
 
 ```{code-cell} ipython3
-def compute_call_price_with_barrier_vector(β=β,
-                                           μ=μ,
-                                           S0=S0,
-                                           h0=h0,
-                                           K=K,
-                                           n=n,
-                                           ρ=ρ,
-                                           ν=ν,
-                                           bp=bp,
+def compute_call_price_with_barrier_vector(β=default_β,
+                                           μ=default_μ,
+                                           S0=default_S0,
+                                           h0=default_h0,
+                                           K=default_K,
+                                           n=default_n,
+                                           ρ=default_ρ,
+                                           ν=default_ν,
+                                           bp=default_bp,
                                            M=50_000):
     s = np.full(M, np.log(S0))
     h = np.full(M, h0)

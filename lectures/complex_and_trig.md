@@ -23,12 +23,6 @@ kernelspec:
 
 # Complex Numbers and Trigonometry
 
-```{admonition} Migrated lecture
-:class: warning
-
-This lecture has moved from our [Intermediate Quantitative Economics with Python](https://python.quantecon.org/intro.html) lecture series and is now a part of [A First Course in Quantitative Economics](https://intro.quantecon.org/intro.html).
-```
-
 ## Overview
 
 This lecture introduces some elementary mathematics and trigonometry.
@@ -109,12 +103,16 @@ from sympy import (Symbol, symbols, Eq, nsolve, sqrt, cos, sin, simplify,
 
 ### An Example
 
+```{prf:example}
+:label: ct_ex_com
+
 Consider the complex number $z = 1 + \sqrt{3} i$.
 
 For $z = 1 + \sqrt{3} i$, $x = 1$, $y = \sqrt{3}$.
 
 It follows that $r = 2$ and
 $\theta = \tan^{-1}(\sqrt{3}) = \frac{\pi}{3} = 60^o$.
+```
 
 Let's use Python to plot the trigonometric form of the complex number
 $z = 1 + \sqrt{3} i$.
