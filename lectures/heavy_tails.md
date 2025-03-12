@@ -14,20 +14,11 @@ kernelspec:
 (heavy_tail)=
 # Heavy-Tailed Distributions
 
-In addition to what's in Anaconda, this lecture will need the following libraries:
-
-```{code-cell} ipython3
-:tags: [hide-output]
-
-!pip install --upgrade yfinance pandas_datareader
-```
-
-We use the following imports.
+This lecture will use the following imports
 
 ```{code-cell} ipython3
 import matplotlib.pyplot as plt
 import numpy as np
-import yfinance as yf
 import pandas as pd
 import statsmodels.api as sm
 
@@ -182,12 +173,13 @@ the period from 1st January 2015 to 1st July 2022.
 
 This equates to daily returns if we set dividends aside.
 
-The code below produces the desired plot using Yahoo financial data via the `yfinance` library.
-
 ```{code-cell} ipython3
 :tags: [hide-output]
 
-data = yf.download('AMZN', '2015-1-1', '2022-7-1')
+Amazon_data = pd.read_csv("datasets/Amazon_data.csv")
+# Convert columns to numeric
+for col in ['Price', 'Close', 'High', 'Low', 'Open', 'Volume']:
+    Amazon_data[col] = pd.to_numeric(Amazon_data[col], errors='coerce')
 ```
 
 ```{code-cell} ipython3
@@ -197,7 +189,7 @@ mystnb:
     caption: Daily Amazon returns
     name: dailyreturns-amzn
 ---
-s = data['Close']
+s = Amazon_data['Close']
 r = s.pct_change()
 
 fig, ax = plt.subplots()
@@ -219,7 +211,10 @@ We get a similar picture if we look at other assets, such as Bitcoin
 ```{code-cell} ipython3
 :tags: [hide-output]
 
-data = yf.download('BTC-USD', '2015-1-1', '2022-7-1')
+Bitcoin_data = pd.read_csv("datasets/Bitcoin_data.csv")
+# Convert columns to numeric
+for col in ['Price', 'Close', 'High', 'Low', 'Open', 'Volume']:
+    Bitcoin_data[col] = pd.to_numeric(Amazon_data[col], errors='coerce')
 ```
 
 ```{code-cell} ipython3
@@ -229,8 +224,8 @@ mystnb:
     caption: Daily Bitcoin returns
     name: dailyreturns-btc
 ---
-s = data['Close']
-r = s.pct_change()
+s = Bitcoin_data['Close']
+r = s.pct_change(fill_method=None)
 
 fig, ax = plt.subplots()
 
