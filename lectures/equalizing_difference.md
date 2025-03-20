@@ -374,7 +374,7 @@ We'll use the Python module 'sympy' to compute partial derivatives of $\phi$ wit
 Define symbols
 
 ```{code-cell} ipython3
-γ_h, γ_c, w_h0, D = symbols('\gamma_h, \gamma_c, w_0^h, D', real=True)
+γ_h, γ_c, w_h0, D = symbols(r'\gamma_h, \gamma_c, w_0^h, D', real=True)
 R, T = Symbol('R', real=True), Symbol('T', integer=True)
 ```
 

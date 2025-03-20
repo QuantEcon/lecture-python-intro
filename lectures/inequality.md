@@ -522,7 +522,7 @@ mystnb:
 fix, ax = plot_inequality_measures(σ_vals, 
                                   ginis, 
                                   'simulated', 
-                                  '$\sigma$', 
+                                  r'$\sigma$', 
                                   'Gini coefficients')
 plt.show()
 ```
@@ -888,7 +888,7 @@ ax.plot(years, df_topshares["topshare_n_wealth"],
 ax.plot(years, df_topshares["topshare_t_income"],
         marker='o', label="total income")
 ax.set_xlabel("year")
-ax.set_ylabel("top $10\%$ share")
+ax.set_ylabel(r"top $10\%$ share")
 ax.legend()
 plt.show()
 ```
