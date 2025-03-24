@@ -430,7 +430,7 @@ The next figure shows this
 ---
 mystnb:
   figure:
-    caption: "Index of real per capital revenues, France"
+    caption: "Index of real per capita revenues, France"
     name: fr_fig5
 ---
 # Read data from Excel file
