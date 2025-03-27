@@ -654,7 +654,7 @@ fiscal policy.</p>
 <figure class="align-default" id="fr-fig5">
 <a class="reference internal image-reference" href="_images/362d21f2d593846d2f8d77dce562be75b51fc9eb89406fc2520a247ccf0f0ac0.png"><img alt="_images/362d21f2d593846d2f8d77dce562be75b51fc9eb89406fc2520a247ccf0f0ac0.png" src="_images/362d21f2d593846d2f8d77dce562be75b51fc9eb89406fc2520a247ccf0f0ac0.png" style="width: 80%;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 5.5 </span><span class="caption-text">Index of real per capita revenues, France</span><a class="headerlink" href="#fr-fig5" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 5.5 </span><span class="caption-text">Index of real per capital revenues, France</span><a class="headerlink" href="#fr-fig5" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </div>
@@ -724,7 +724,7 @@ of goods and services, including military goods and soldiers’ pay.</p>
 
 <span class="c1"># Create a figure and plot the data</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s1">&#39;1790&#39;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">data12</span><span class="p">),</span> <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;M&#39;</span><span class="p">),</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s1">&#39;1790&#39;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">data12</span><span class="p">),</span> <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;ME&#39;</span><span class="p">),</span>
          <span class="n">data12</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;top&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
@@ -732,7 +732,7 @@ of goods and services, including military goods and soldiers’ pay.</p>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mf">472.42</span><span class="o">/</span><span class="mi">12</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">ticks</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s1">&#39;1790&#39;</span><span class="p">,</span> 
-           <span class="n">end</span><span class="o">=</span><span class="s1">&#39;1796&#39;</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;AS&#39;</span><span class="p">),</span> <span class="n">labels</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">1790</span><span class="p">,</span> <span class="mi">1797</span><span class="p">))</span>
+           <span class="n">end</span><span class="o">=</span><span class="s1">&#39;1796&#39;</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;YS&#39;</span><span class="p">),</span> <span class="n">labels</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">1790</span><span class="p">,</span> <span class="mi">1797</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s1">&#39;1791&#39;</span><span class="p">),</span>
          <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s1">&#39;1796-02&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="n">pd</span><span class="o">.</span><span class="n">DateOffset</span><span class="p">(</span><span class="n">months</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;millions of livres&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
@@ -745,12 +745,6 @@ of goods and services, including military goods and soldiers’ pay.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_7607/529726724.py:7: FutureWarning: &#39;M&#39; is deprecated and will be removed in a future version, please use &#39;ME&#39; instead.
-  plt.plot(pd.date_range(start=&#39;1790&#39;, periods=len(data12), freq=&#39;M&#39;),
-/tmp/ipykernel_7607/529726724.py:14: FutureWarning: &#39;AS&#39; is deprecated and will be removed in a future version, please use &#39;YS&#39; instead.
-  plt.xticks(ticks=pd.date_range(start=&#39;1790&#39;,
-</pre></div>
-</div>
 <figure class="align-default" id="fr-fig24">
 <a class="reference internal image-reference" href="_images/5c67f0aa16a89a835c3efdc79ad8f76699ac8297975e924c30ea219b3599761f.png"><img alt="_images/5c67f0aa16a89a835c3efdc79ad8f76699ac8297975e924c30ea219b3599761f.png" src="_images/5c67f0aa16a89a835c3efdc79ad8f76699ac8297975e924c30ea219b3599761f.png" style="width: 80%;" /></a>
 <figcaption>
@@ -865,7 +859,7 @@ nearly met in one of these episodes than in the other two.</p>
 
 <span class="c1"># Create the figure and plot</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
-<span class="n">h</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s1">&#39;1789-11-01&#39;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">data7</span><span class="p">),</span> <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;M&#39;</span><span class="p">),</span> 
+<span class="n">h</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s1">&#39;1789-11-01&#39;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">data7</span><span class="p">),</span> <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;ME&#39;</span><span class="p">),</span> 
             <span class="p">(</span><span class="n">data7a</span><span class="o">.</span><span class="n">values</span> <span class="o">*</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span> <span class="o">*</span> <span class="n">data7</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">setp</span><span class="p">(</span><span class="n">h</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
 
@@ -896,10 +890,6 @@ nearly met in one of these episodes than in the other two.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_7607/4102237171.py:9: FutureWarning: &#39;M&#39; is deprecated and will be removed in a future version, please use &#39;ME&#39; instead.
-  h = plt.plot(pd.date_range(start=&#39;1789-11-01&#39;, periods=len(data7), freq=&#39;M&#39;),
-</pre></div>
-</div>
 <figure class="align-default" id="fr-fig8">
 <a class="reference internal image-reference" href="_images/769b28e0e21d615e23ea8c4737ee2c157a291409245c3421808966994e479cb4.png"><img alt="_images/769b28e0e21d615e23ea8c4737ee2c157a291409245c3421808966994e479cb4.png" src="_images/769b28e0e21d615e23ea8c4737ee2c157a291409245c3421808966994e479cb4.png" style="width: 80%;" /></a>
 <figcaption>
