@@ -922,18 +922,6 @@ df_gdp1.dropna(inplace=True)
 ```
 
 ```{code-cell} ipython3
-
-```
-
-```{code-cell} ipython3
-
-```
-
-```{code-cell} ipython3
-
-```
-
-```{code-cell} ipython3
 ---
 mystnb:
   figure:
