@@ -806,10 +806,6 @@ def extract_wb(varlist=['NY.GDP.MKTP.CD'],
     return df
 ```
 
-```{code-cell} ipython3
-df_gdp1
-```
-
 ### Firm size
 
 Here is a plot of the firm size distribution for the largest 500 firms in 2020 taken from Forbes Global 2000.
