@@ -800,7 +800,8 @@ def extract_wb(varlist=['NY.GDP.MKTP.CD'],
     
     if varnames is not None:
         df.columns = variable_names
-        
+
+    cntry_mapper = pd.DataFrame(wb.economy.info().items)[['id','value']].set_index('id').to_dict()['value']
     df.index = df.index.map(lambda x: cntry_mapper[x])  #map iso3c to name values
     
     return df
