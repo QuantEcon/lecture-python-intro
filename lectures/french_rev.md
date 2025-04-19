@@ -72,14 +72,17 @@ import pyodide_http
 import matplotlib.pyplot as plt
 from io import BytesIO
 import requests
+
+# setup
 plt.rcParams.update({'font.size': 12})
+pyodide_http.patch_all()
 
 base_url = 'https://raw.githubusercontent.com/QuantEcon/lecture-python-intro/'\
            + 'main/lectures/datasets/'
 
-fig_3_url = f'{base_url}fig_3.xlsx'
-dette_url = f'{base_url}dette.xlsx'
-assignat_url = f'{base_url}assignat.xlsx'
+fig_3_url = base_url + 'fig_3.xlsx'
+dette_url = base_url + 'dette.xlsx'
+assignat_url = base_url + 'assignat.xlsx'
 ```
 
 ## Government Expenditures and Taxes Collected
