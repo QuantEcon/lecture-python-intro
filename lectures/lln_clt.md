@@ -472,8 +472,8 @@ $F(x) = 1 - e^{- \lambda x}$.
 
 ```{code-cell} ipython3
 # Set parameters
-n = 250         # Choice of n
-k = 1_000_000        # Number of draws of Y_n
+n = 50         # Choice of n
+k = 10_000        # Number of draws of Y_n
 distribution = st.expon(2) # Exponential distribution, λ = 1/2
 μ, σ = distribution.mean(), distribution.std()
 
@@ -523,8 +523,8 @@ You can choose any $\alpha > 0$ and $\beta > 0$.
 
 ```{code-cell} ipython3
 # Set parameters
-n = 250         # Choice of n
-k = 1_000_000        # Number of draws of Y_n
+n = 50         # Choice of n
+k = 10_000        # Number of draws of Y_n
 distribution = st.beta(2,2) # We chose Beta(2, 2) as an example
 μ, σ = distribution.mean(), distribution.std()
 
