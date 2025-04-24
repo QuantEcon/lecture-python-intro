@@ -238,7 +238,7 @@ A = \begin{bmatrix} 0.5 & 0.1 \\
 \end{bmatrix}
 $$
 
-$A$ here is also a primitive matrix since $A^k$ is everywhere nonnegative for $k \in \mathbb{N}$.
+$A$ here is also a primitive matrix since $A^k$ is everywhere positive for some $k \in \mathbb{N}$.
 
 $$
 B = \begin{bmatrix} 0 & 1 \\ 
@@ -392,7 +392,7 @@ We are now prepared to bridge the languages spoken in the two lectures.
 
 A primitive matrix is both irreducible and aperiodic.
 
-So Perron-Frobenius theorem explains why both {ref}`Imam and Temple matrix <mc_eg3>` and [Hamilton matrix](https://en.wikipedia.org/wiki/Hamiltonian_matrix) converge to a stationary distribution, which is the Perron projection of the two matrices
+So Perron-Frobenius theorem explains why both {ref}`Imam and Temple matrix <mc_eg3>` and {ref}`Hamilton matrix <mc_eg2>` converge to a stationary distribution, which is the Perron projection of the two matrices
 
 ```{code-cell} ipython3
 P = np.array([[0.68, 0.12, 0.20],
