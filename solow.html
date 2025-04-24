@@ -99,7 +99,7 @@
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="_static/togglebutton.js"></script>
-    <script src="_static/scripts/quantecon-book-theme.js?digest=d6d86bce9979111653c4c495e33499e1796e172a"></script>
+    <script src="_static/scripts/quantecon-book-theme.js?digest=d9faaf6c4b57726f74ba012412af1f5681bdff87"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="_static/design-tabs.js"></script>
@@ -148,6 +148,7 @@
   </head>
 <body>
 
+<!-- Override QuantEcon theme colors -->
 
     <span id="top"></span>
 
@@ -835,7 +836,7 @@ down, since the system is hit with new shocks at each point in time.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/6f7157d3560f7897ef5f315a4b6413530da5396974a5b3cb0d153c221689ef14.png"><img alt="_images/6f7157d3560f7897ef5f315a4b6413530da5396974a5b3cb0d153c221689ef14.png" src="_images/6f7157d3560f7897ef5f315a4b6413530da5396974a5b3cb0d153c221689ef14.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/48084f0bb0c51dec5fbf3853ad7a4413b1ddf335a2f59639980963c94e20308f.png"><img alt="_images/48084f0bb0c51dec5fbf3853ad7a4413b1ddf335a2f59639980963c94e20308f.png" src="_images/48084f0bb0c51dec5fbf3853ad7a4413b1ddf335a2f59639980963c94e20308f.png" style="width: 80%;" /></a>
 </div>
 </div>
 </section>
@@ -874,6 +875,8 @@ down, since the system is hit with new shocks at each point in time.</p>
                     <p><a href="https://creativecommons.org/licenses/by-sa/4.0/"><img src="https://licensebuttons.net/l/by-sa/4.0/80x15.png"></a></p>
 
                     <p>Creative Commons License &ndash; This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International.</p>
+
+                    <p>A theme by <a href="https://quantecon.org">QuantEcon</a></p>
 
                 </footer> <!-- .page__footer -->
 
@@ -1371,7 +1374,7 @@ down, since the system is hit with new shocks at each point in time.</p>
                 function setLaunchServer() {
                   launchNotebookLink.removeAttribute("style")
                   if ( localStorage.launcherType == 'launcher-private' ) {
-                    let repoPrefix = "/jupyter/hub/user-redirect/git-pull?repo=" + repoURL + "&branch=" + branch + "&urlpath=" + urlPath;
+                    let repoPrefix = "/user-redirect/git-pull?repo=" + repoURL + "&branch=" + branch + "&urlpath=" + urlPath;
                     launcherPrivateValue = launcherPrivate.value
                     if (!launcherPrivateValue) {
                         launchNotebookLink.removeAttribute("href")

@@ -99,7 +99,7 @@
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="_static/togglebutton.js"></script>
-    <script src="_static/scripts/quantecon-book-theme.js?digest=d6d86bce9979111653c4c495e33499e1796e172a"></script>
+    <script src="_static/scripts/quantecon-book-theme.js?digest=d9faaf6c4b57726f74ba012412af1f5681bdff87"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="_static/design-tabs.js"></script>
@@ -148,6 +148,7 @@
   </head>
 <body>
 
+<!-- Override QuantEcon theme colors -->
 
     <span id="top"></span>
 
@@ -269,13 +270,14 @@
 <span class="expanded">Hide code cell output</span>
 </summary>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: quantecon-book-networks in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (1.3.1)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: quantecon-book-networks in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (1.4)
 Requirement already satisfied: pandas-datareader in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (0.10.0)
 Requirement already satisfied: numpy in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from quantecon-book-networks) (1.26.4)
 Requirement already satisfied: scipy in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from quantecon-book-networks) (1.13.1)
 Requirement already satisfied: pandas in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from quantecon-book-networks) (2.2.2)
 Requirement already satisfied: matplotlib in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from quantecon-book-networks) (3.9.2)
 Requirement already satisfied: networkx in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from quantecon-book-networks) (3.3)
+Requirement already satisfied: wbgapi in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from quantecon-book-networks) (1.0.12)
 Requirement already satisfied: lxml in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from pandas-datareader) (5.2.1)
 Requirement already satisfied: requests&gt;=2.19.0 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from pandas-datareader) (2.32.3)
 Requirement already satisfied: python-dateutil&gt;=2.8.2 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from pandas-&gt;quantecon-book-networks) (2.9.0.post0)
@@ -292,6 +294,8 @@ Requirement already satisfied: kiwisolver&gt;=1.3.1 in /home/runner/miniconda3/e
 Requirement already satisfied: packaging&gt;=20.0 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from matplotlib-&gt;quantecon-book-networks) (24.1)
 Requirement already satisfied: pillow&gt;=8 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from matplotlib-&gt;quantecon-book-networks) (10.4.0)
 Requirement already satisfied: pyparsing&gt;=2.3.1 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from matplotlib-&gt;quantecon-book-networks) (3.1.2)
+Requirement already satisfied: PyYAML in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from wbgapi-&gt;quantecon-book-networks) (6.0.1)
+Requirement already satisfied: tabulate in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from wbgapi-&gt;quantecon-book-networks) (0.9.0)
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: six&gt;=1.5 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from python-dateutil&gt;=2.8.2-&gt;pandas-&gt;quantecon-book-networks) (1.16.0)
@@ -569,7 +573,7 @@ correct representation of our graph.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/66f6a1cd74b3e2de8fcf3b7bfcf456a349eda062f27f0c7add5354c2798faf8d.png"><img alt="_images/66f6a1cd74b3e2de8fcf3b7bfcf456a349eda062f27f0c7add5354c2798faf8d.png" src="_images/66f6a1cd74b3e2de8fcf3b7bfcf456a349eda062f27f0c7add5354c2798faf8d.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/4c3a428784f84f62947737d632049349d292b4068b2dfb44ded9784a4dad72d8.png"><img alt="_images/4c3a428784f84f62947737d632049349d292b4068b2dfb44ded9784a4dad72d8.png" src="_images/4c3a428784f84f62947737d632049349d292b4068b2dfb44ded9784a4dad72d8.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>The figure obtained above matches the original directed graph in <a class="reference internal" href="#poverty-trap-2"><span class="std std-numref">Fig. 42.3</span></a>.</p>
@@ -624,7 +628,7 @@ however in <a class="reference internal" href="#poverty-trap-2"><span class="std
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/77a7512cae2422721c6cc3c48527ea21337a9aa36a869c616a8363127c8672bd.png"><img alt="_images/77a7512cae2422721c6cc3c48527ea21337a9aa36a869c616a8363127c8672bd.png" src="_images/77a7512cae2422721c6cc3c48527ea21337a9aa36a869c616a8363127c8672bd.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/9c175adb66d0155115e5732674dada000ef53801dd9df8defb98749104533669.png"><img alt="_images/9c175adb66d0155115e5732674dada000ef53801dd9df8defb98749104533669.png" src="_images/9c175adb66d0155115e5732674dada000ef53801dd9df8defb98749104533669.png" style="width: 80%;" /></a>
 </div>
 </div>
 <div class="cell docutils container">
@@ -653,7 +657,7 @@ however in <a class="reference internal" href="#poverty-trap-2"><span class="std
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/e41d87d3240d4b9257bf1d7b2ee13f875df3b3d31c3b38d29df28f93fd638885.png"><img alt="_images/e41d87d3240d4b9257bf1d7b2ee13f875df3b3d31c3b38d29df28f93fd638885.png" src="_images/e41d87d3240d4b9257bf1d7b2ee13f875df3b3d31c3b38d29df28f93fd638885.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/bbf0dc6bb573e796020c069b1b8a93af4324fc37e6d0ac6cac44057bae6d2d2c.png"><img alt="_images/bbf0dc6bb573e796020c069b1b8a93af4324fc37e6d0ac6cac44057bae6d2d2c.png" src="_images/bbf0dc6bb573e796020c069b1b8a93af4324fc37e6d0ac6cac44057bae6d2d2c.png" style="width: 80%;" /></a>
 </div>
 </div>
 <div class="cell docutils container">
@@ -1730,6 +1734,8 @@ of G.</p></li>
 
                     <p>Creative Commons License &ndash; This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International.</p>
 
+                    <p>A theme by <a href="https://quantecon.org">QuantEcon</a></p>
+
                 </footer> <!-- .page__footer -->
 
             </div> <!-- .page -->
@@ -2226,7 +2232,7 @@ of G.</p></li>
                 function setLaunchServer() {
                   launchNotebookLink.removeAttribute("style")
                   if ( localStorage.launcherType == 'launcher-private' ) {
-                    let repoPrefix = "/jupyter/hub/user-redirect/git-pull?repo=" + repoURL + "&branch=" + branch + "&urlpath=" + urlPath;
+                    let repoPrefix = "/user-redirect/git-pull?repo=" + repoURL + "&branch=" + branch + "&urlpath=" + urlPath;
                     launcherPrivateValue = launcherPrivate.value
                     if (!launcherPrivateValue) {
                         launchNotebookLink.removeAttribute("href")

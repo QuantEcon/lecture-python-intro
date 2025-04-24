@@ -99,7 +99,7 @@
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="_static/togglebutton.js"></script>
-    <script src="_static/scripts/quantecon-book-theme.js?digest=d6d86bce9979111653c4c495e33499e1796e172a"></script>
+    <script src="_static/scripts/quantecon-book-theme.js?digest=d9faaf6c4b57726f74ba012412af1f5681bdff87"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="_static/design-tabs.js"></script>
@@ -148,6 +148,7 @@
   </head>
 <body>
 
+<!-- Override QuantEcon theme colors -->
 
     <span id="top"></span>
 
@@ -473,7 +474,7 @@ ergodicity holds.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/c4a1e2aabdff47c0e77fda41faddaa21f821f167e5f1295d79fab531acdb849e.png"><img alt="_images/c4a1e2aabdff47c0e77fda41faddaa21f821f167e5f1295d79fab531acdb849e.png" src="_images/c4a1e2aabdff47c0e77fda41faddaa21f821f167e5f1295d79fab531acdb849e.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/3c8bb3edef11d543ce2035aed350dfe5f33cc16723d9ed517ea101367c17bf49.png"><img alt="_images/3c8bb3edef11d543ce2035aed350dfe5f33cc16723d9ed517ea101367c17bf49.png" src="_images/3c8bb3edef11d543ce2035aed350dfe5f33cc16723d9ed517ea101367c17bf49.png" style="width: 80%;" /></a>
 </div>
 </div>
 <p>You might like to try changing <span class="math notranslate nohighlight">\(x=1\)</span> to either <span class="math notranslate nohighlight">\(x=0\)</span> or <span class="math notranslate nohighlight">\(x=2\)</span>.</p>
@@ -806,11 +807,11 @@ conditions.</p>
 <div class="cell_output docutils container">
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;&gt;:18: SyntaxWarning: invalid escape sequence &#39;\,&#39;
 &lt;&gt;:18: SyntaxWarning: invalid escape sequence &#39;\,&#39;
-/tmp/ipykernel_8273/4115541328.py:18: SyntaxWarning: invalid escape sequence &#39;\,&#39;
+/tmp/ipykernel_8170/4115541328.py:18: SyntaxWarning: invalid escape sequence &#39;\,&#39;
   ax.plot(X_bar - p, label=f&#39;$x_0 = \, {x0} $&#39;)
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="_images/56397226b98314b5f9c6c11b34621b032c2db3750de13c9b353a6e000b4bfe79.png"><img alt="_images/56397226b98314b5f9c6c11b34621b032c2db3750de13c9b353a6e000b4bfe79.png" src="_images/56397226b98314b5f9c6c11b34621b032c2db3750de13c9b353a6e000b4bfe79.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/f1a8348007ceb74c15ec5103b41803529bc017e490233e1a1006c2163665ba9d.png"><img alt="_images/f1a8348007ceb74c15ec5103b41803529bc017e490233e1a1006c2163665ba9d.png" src="_images/f1a8348007ceb74c15ec5103b41803529bc017e490233e1a1006c2163665ba9d.png" style="width: 80%;" /></a>
 </div>
 </div>
 </section>
@@ -910,6 +911,8 @@ is a strictly positive matrix.</p>
                     <p><a href="https://creativecommons.org/licenses/by-sa/4.0/"><img src="https://licensebuttons.net/l/by-sa/4.0/80x15.png"></a></p>
 
                     <p>Creative Commons License &ndash; This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International.</p>
+
+                    <p>A theme by <a href="https://quantecon.org">QuantEcon</a></p>
 
                 </footer> <!-- .page__footer -->
 
@@ -1407,7 +1410,7 @@ is a strictly positive matrix.</p>
                 function setLaunchServer() {
                   launchNotebookLink.removeAttribute("style")
                   if ( localStorage.launcherType == 'launcher-private' ) {
-                    let repoPrefix = "/jupyter/hub/user-redirect/git-pull?repo=" + repoURL + "&branch=" + branch + "&urlpath=" + urlPath;
+                    let repoPrefix = "/user-redirect/git-pull?repo=" + repoURL + "&branch=" + branch + "&urlpath=" + urlPath;
                     launcherPrivateValue = launcherPrivate.value
                     if (!launcherPrivateValue) {
                         launchNotebookLink.removeAttribute("href")

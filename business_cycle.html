@@ -99,7 +99,7 @@
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="_static/togglebutton.js"></script>
-    <script src="_static/scripts/quantecon-book-theme.js?digest=d6d86bce9979111653c4c495e33499e1796e172a"></script>
+    <script src="_static/scripts/quantecon-book-theme.js?digest=d9faaf6c4b57726f74ba012412af1f5681bdff87"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="_static/design-tabs.js"></script>
@@ -146,6 +146,7 @@
   </head>
 <body>
 
+<!-- Override QuantEcon theme colors -->
 
     <span id="top"></span>
 
@@ -273,20 +274,18 @@ Downloading wbgapi-1.0.12-py3-none-any.whl (36 kB)
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Installing collected packages: wbgapi
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Successfully installed wbgapi-1.0.12
+Successfully installed wbgapi-1.0.12
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting pandas-datareader
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Downloading pandas_datareader-0.10.0-py3-none-any.whl.metadata (2.9 kB)
+  Downloading pandas_datareader-0.10.0-py3-none-any.whl.metadata (2.9 kB)
 Requirement already satisfied: lxml in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from pandas-datareader) (5.2.1)
 Requirement already satisfied: pandas&gt;=0.23 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from pandas-datareader) (2.2.2)
 Requirement already satisfied: requests&gt;=2.19.0 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from pandas-datareader) (2.32.3)
 Requirement already satisfied: numpy&gt;=1.26.0 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from pandas&gt;=0.23-&gt;pandas-datareader) (1.26.4)
-Requirement already satisfied: python-dateutil&gt;=2.8.2 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from pandas&gt;=0.23-&gt;pandas-datareader) (2.9.0.post0)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: python-dateutil&gt;=2.8.2 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from pandas&gt;=0.23-&gt;pandas-datareader) (2.9.0.post0)
 Requirement already satisfied: pytz&gt;=2020.1 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from pandas&gt;=0.23-&gt;pandas-datareader) (2024.1)
 Requirement already satisfied: tzdata&gt;=2022.7 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from pandas&gt;=0.23-&gt;pandas-datareader) (2023.3)
 Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from requests&gt;=2.19.0-&gt;pandas-datareader) (3.3.2)
@@ -399,7 +398,6 @@ the <a class="reference external" href="https://www.worldbank.org/en/home">World
       <th>YR1967</th>
       <th>YR1968</th>
       <th>...</th>
-      <th>YR2014</th>
       <th>YR2015</th>
       <th>YR2016</th>
       <th>YR2017</th>
@@ -409,6 +407,7 @@ the <a class="reference external" href="https://www.worldbank.org/en/home">World
       <th>YR2021</th>
       <th>YR2022</th>
       <th>YR2023</th>
+      <th>YR2024</th>
     </tr>
     <tr>
       <th>economy</th>
@@ -449,7 +448,6 @@ the <a class="reference external" href="https://www.worldbank.org/en/home">World
       <td>11.082142</td>
       <td>12.882468</td>
       <td>...</td>
-      <td>0.296206</td>
       <td>1.560627</td>
       <td>0.753827</td>
       <td>1.675332</td>
@@ -459,6 +457,7 @@ the <a class="reference external" href="https://www.worldbank.org/en/home">World
       <td>2.559320</td>
       <td>0.954737</td>
       <td>1.679020</td>
+      <td>NaN</td>
     </tr>
     <tr>
       <th>GRC</th>
@@ -473,7 +472,6 @@ the <a class="reference external" href="https://www.worldbank.org/en/home">World
       <td>5.669485</td>
       <td>7.203719</td>
       <td>...</td>
-      <td>0.792225</td>
       <td>-0.228302</td>
       <td>-0.031795</td>
       <td>1.473125</td>
@@ -483,6 +481,7 @@ the <a class="reference external" href="https://www.worldbank.org/en/home">World
       <td>8.654498</td>
       <td>5.743649</td>
       <td>2.332124</td>
+      <td>NaN</td>
     </tr>
     <tr>
       <th>GBR</th>
@@ -497,7 +496,6 @@ the <a class="reference external" href="https://www.worldbank.org/en/home">World
       <td>2.775738</td>
       <td>5.472693</td>
       <td>...</td>
-      <td>3.194637</td>
       <td>2.222888</td>
       <td>1.921710</td>
       <td>2.656505</td>
@@ -507,6 +505,7 @@ the <a class="reference external" href="https://www.worldbank.org/en/home">World
       <td>8.575951</td>
       <td>4.839085</td>
       <td>0.339966</td>
+      <td>NaN</td>
     </tr>
     <tr>
       <th>ARG</th>
@@ -521,7 +520,6 @@ the <a class="reference external" href="https://www.worldbank.org/en/home">World
       <td>3.191997</td>
       <td>4.822501</td>
       <td>...</td>
-      <td>-2.512615</td>
       <td>2.731160</td>
       <td>-2.080328</td>
       <td>2.818503</td>
@@ -531,6 +529,7 @@ the <a class="reference external" href="https://www.worldbank.org/en/home">World
       <td>10.441812</td>
       <td>5.269880</td>
       <td>-1.611002</td>
+      <td>NaN</td>
     </tr>
     <tr>
       <th>USA</th>
@@ -545,7 +544,6 @@ the <a class="reference external" href="https://www.worldbank.org/en/home">World
       <td>2.500000</td>
       <td>4.800000</td>
       <td>...</td>
-      <td>2.523820</td>
       <td>2.945550</td>
       <td>1.819451</td>
       <td>2.457622</td>
@@ -555,10 +553,11 @@ the <a class="reference external" href="https://www.worldbank.org/en/home">World
       <td>6.055053</td>
       <td>2.512375</td>
       <td>2.887556</td>
+      <td>NaN</td>
     </tr>
   </tbody>
 </table>
-<p>5 rows × 65 columns</p>
+<p>5 rows × 66 columns</p>
 </div></div></div>
 </div>
 <p>We can look at the series’ metadata to learn more about the series (click to expand).</p>
@@ -660,7 +659,6 @@ Growth rates of GDP and its components are calculated using the least squares me
       <th>1968</th>
       <th>1969</th>
       <th>...</th>
-      <th>2014</th>
       <th>2015</th>
       <th>2016</th>
       <th>2017</th>
@@ -670,6 +668,7 @@ Growth rates of GDP and its components are calculated using the least squares me
       <th>2021</th>
       <th>2022</th>
       <th>2023</th>
+      <th>2024</th>
     </tr>
     <tr>
       <th>Country</th>
@@ -710,7 +709,6 @@ Growth rates of GDP and its components are calculated using the least squares me
       <td>12.882468</td>
       <td>12.477895</td>
       <td>...</td>
-      <td>0.296206</td>
       <td>1.560627</td>
       <td>0.753827</td>
       <td>1.675332</td>
@@ -720,6 +718,7 @@ Growth rates of GDP and its components are calculated using the least squares me
       <td>2.559320</td>
       <td>0.954737</td>
       <td>1.679020</td>
+      <td>NaN</td>
     </tr>
     <tr>
       <th>Greece</th>
@@ -734,7 +733,6 @@ Growth rates of GDP and its components are calculated using the least squares me
       <td>7.203719</td>
       <td>11.563668</td>
       <td>...</td>
-      <td>0.792225</td>
       <td>-0.228302</td>
       <td>-0.031795</td>
       <td>1.473125</td>
@@ -744,6 +742,7 @@ Growth rates of GDP and its components are calculated using the least squares me
       <td>8.654498</td>
       <td>5.743649</td>
       <td>2.332124</td>
+      <td>NaN</td>
     </tr>
     <tr>
       <th>United Kingdom</th>
@@ -758,7 +757,6 @@ Growth rates of GDP and its components are calculated using the least squares me
       <td>5.472693</td>
       <td>1.939138</td>
       <td>...</td>
-      <td>3.194637</td>
       <td>2.222888</td>
       <td>1.921710</td>
       <td>2.656505</td>
@@ -768,6 +766,7 @@ Growth rates of GDP and its components are calculated using the least squares me
       <td>8.575951</td>
       <td>4.839085</td>
       <td>0.339966</td>
+      <td>NaN</td>
     </tr>
     <tr>
       <th>Argentina</th>
@@ -782,7 +781,6 @@ Growth rates of GDP and its components are calculated using the least squares me
       <td>4.822501</td>
       <td>9.679526</td>
       <td>...</td>
-      <td>-2.512615</td>
       <td>2.731160</td>
       <td>-2.080328</td>
       <td>2.818503</td>
@@ -792,6 +790,7 @@ Growth rates of GDP and its components are calculated using the least squares me
       <td>10.441812</td>
       <td>5.269880</td>
       <td>-1.611002</td>
+      <td>NaN</td>
     </tr>
     <tr>
       <th>United States</th>
@@ -806,7 +805,6 @@ Growth rates of GDP and its components are calculated using the least squares me
       <td>4.800000</td>
       <td>3.100000</td>
       <td>...</td>
-      <td>2.523820</td>
       <td>2.945550</td>
       <td>1.819451</td>
       <td>2.457622</td>
@@ -816,10 +814,11 @@ Growth rates of GDP and its components are calculated using the least squares me
       <td>6.055053</td>
       <td>2.512375</td>
       <td>2.887556</td>
+      <td>NaN</td>
     </tr>
   </tbody>
 </table>
-<p>5 rows × 64 columns</p>
+<p>5 rows × 65 columns</p>
 </div></div></div>
 </div>
 <p>We write a function to generate plots for individual countries taking into account the recessions.</p>
@@ -1568,6 +1567,8 @@ and stagnates or even contracts after recessions.</p>
 
                     <p>Creative Commons License &ndash; This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International.</p>
 
+                    <p>A theme by <a href="https://quantecon.org">QuantEcon</a></p>
+
                 </footer> <!-- .page__footer -->
 
             </div> <!-- .page -->
@@ -2064,7 +2065,7 @@ and stagnates or even contracts after recessions.</p>
                 function setLaunchServer() {
                   launchNotebookLink.removeAttribute("style")
                   if ( localStorage.launcherType == 'launcher-private' ) {
-                    let repoPrefix = "/jupyter/hub/user-redirect/git-pull?repo=" + repoURL + "&branch=" + branch + "&urlpath=" + urlPath;
+                    let repoPrefix = "/user-redirect/git-pull?repo=" + repoURL + "&branch=" + branch + "&urlpath=" + urlPath;
                     launcherPrivateValue = launcherPrivate.value
                     if (!launcherPrivateValue) {
                         launchNotebookLink.removeAttribute("href")

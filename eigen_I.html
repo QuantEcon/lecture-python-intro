@@ -99,7 +99,7 @@
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="_static/togglebutton.js"></script>
-    <script src="_static/scripts/quantecon-book-theme.js?digest=d6d86bce9979111653c4c495e33499e1796e172a"></script>
+    <script src="_static/scripts/quantecon-book-theme.js?digest=d9faaf6c4b57726f74ba012412af1f5681bdff87"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="_static/design-tabs.js"></script>
@@ -148,6 +148,7 @@
   </head>
 <body>
 
+<!-- Override QuantEcon theme colors -->
 
     <span id="top"></span>
 
@@ -529,9 +530,9 @@ instead of arrows.</p>
 &lt;&gt;:37: SyntaxWarning: invalid escape sequence &#39;\c&#39;
 &lt;&gt;:31: SyntaxWarning: invalid escape sequence &#39;\c&#39;
 &lt;&gt;:37: SyntaxWarning: invalid escape sequence &#39;\c&#39;
-/tmp/ipykernel_7544/2923067778.py:31: SyntaxWarning: invalid escape sequence &#39;\c&#39;
+/tmp/ipykernel_7468/2923067778.py:31: SyntaxWarning: invalid escape sequence &#39;\c&#39;
   ax[0].set_title(&quot;points $x_1, x_2, \cdots, x_k$&quot;)
-/tmp/ipykernel_7544/2923067778.py:37: SyntaxWarning: invalid escape sequence &#39;\c&#39;
+/tmp/ipykernel_7468/2923067778.py:37: SyntaxWarning: invalid escape sequence &#39;\c&#39;
   ax[1].set_title(&quot;points $Ax_1, Ax_2, \cdots, Ax_k$&quot;)
 </pre></div>
 </div>
@@ -1306,7 +1307,7 @@ The real eigenvalue is [ 4. -2.  2.]
 </pre></div>
 </div>
 <figure class="align-default" id="pow-dist">
-<a class="reference internal image-reference" href="_images/d3ea007f9b4cc3fb35d7d1f3d7c315d7de2882c35b6c569de50d58677b9024bd.png"><img alt="_images/d3ea007f9b4cc3fb35d7d1f3d7c315d7de2882c35b6c569de50d58677b9024bd.png" src="_images/d3ea007f9b4cc3fb35d7d1f3d7c315d7de2882c35b6c569de50d58677b9024bd.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/695afdd7a47ee0b89da213a55b76fe272cfaf3ea24da997d6c97e111e2db6f0b.png"><img alt="_images/695afdd7a47ee0b89da213a55b76fe272cfaf3ea24da997d6c97e111e2db6f0b.png" src="_images/695afdd7a47ee0b89da213a55b76fe272cfaf3ea24da997d6c97e111e2db6f0b.png" style="width: 80%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 17.1 </span><span class="caption-text">Power iteration</span><a class="headerlink" href="#pow-dist" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -1349,7 +1350,7 @@ The real eigenvalue is [ 4. -2.  2.]
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="pow-trajectory">
-<a class="reference internal image-reference" href="_images/0490639c57ebab5da8776bcf97c1bf33ae4b7a5868108ee497d4d6f8679c1d58.png"><img alt="_images/0490639c57ebab5da8776bcf97c1bf33ae4b7a5868108ee497d4d6f8679c1d58.png" src="_images/0490639c57ebab5da8776bcf97c1bf33ae4b7a5868108ee497d4d6f8679c1d58.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/d4ee17cdb61ad533171ba0f49f7e635783cb82ae1e2c22ee56ca361cfe2a61e0.png"><img alt="_images/d4ee17cdb61ad533171ba0f49f7e635783cb82ae1e2c22ee56ca361cfe2a61e0.png" src="_images/d4ee17cdb61ad533171ba0f49f7e635783cb82ae1e2c22ee56ca361cfe2a61e0.png" style="width: 80%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 17.2 </span><span class="caption-text">Power iteration trajectory</span><a class="headerlink" href="#pow-trajectory" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -1550,8 +1551,9 @@ eigenvalues:
 eigenvectors:
  [[0.81649658+0.j         0.81649658-0.j        ]
  [0.40824829-0.40824829j 0.40824829+0.40824829j]]
-
-Example 3:
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Example 3:
 
 eigenvalues:
  [1.22474487+0.70710678j 1.22474487-0.70710678j]
@@ -1675,6 +1677,8 @@ eigenvectors:
                     <p><a href="https://creativecommons.org/licenses/by-sa/4.0/"><img src="https://licensebuttons.net/l/by-sa/4.0/80x15.png"></a></p>
 
                     <p>Creative Commons License &ndash; This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International.</p>
+
+                    <p>A theme by <a href="https://quantecon.org">QuantEcon</a></p>
 
                 </footer> <!-- .page__footer -->
 
@@ -2172,7 +2176,7 @@ eigenvectors:
                 function setLaunchServer() {
                   launchNotebookLink.removeAttribute("style")
                   if ( localStorage.launcherType == 'launcher-private' ) {
-                    let repoPrefix = "/jupyter/hub/user-redirect/git-pull?repo=" + repoURL + "&branch=" + branch + "&urlpath=" + urlPath;
+                    let repoPrefix = "/user-redirect/git-pull?repo=" + repoURL + "&branch=" + branch + "&urlpath=" + urlPath;
                     launcherPrivateValue = launcherPrivate.value
                     if (!launcherPrivateValue) {
                         launchNotebookLink.removeAttribute("href")
