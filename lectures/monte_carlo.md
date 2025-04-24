@@ -650,7 +650,7 @@ Now let's try with larger $M$ to get a more accurate calculation.
 
 ```{code-cell} ipython3
 %%time
-compute_call_price(M=10_000_000)
+compute_call_price(M=500_000)
 ```
 
 
