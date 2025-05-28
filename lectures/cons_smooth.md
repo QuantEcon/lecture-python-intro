@@ -4,7 +4,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.16.4
+    jupytext_version: 1.17.1
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
@@ -279,7 +279,7 @@ def compute_optimal(model, a0, y_seq):
     b = y_seq - c_seq
     b[0] = b[0] + a0
 
-    a_seq = np.linalg.inv(A) @ b
+    a_seq = np.linalg.inv(A) @ (R * b)
     a_seq = np.concatenate([[a0], a_seq])
 
     return c_seq, a_seq, h0
@@ -361,7 +361,7 @@ def plot_cs(model,    # consumption-smoothing model
     c_seq, a_seq, h0 = compute_optimal(model, a0, y_seq)
     
     # Sequence length
-    T = cs_model.T
+    T = model.T
     
     fig, axes = plt.subplots(1, 2, figsize=(12,5))
     
