@@ -511,6 +511,8 @@ m_seq_2_regime1 = np.concatenate((m_seq_2_path1[:T1],
 p_seq_2_regime1 = np.concatenate((p_seq_2_path1[:T1], 
                                   p_seq_2_cont1))
 
+π_seq_2[T1-1] = p_seq_2_regime1[T1] - p_seq_2_regime1[T1-1]
+
 # regime 2 - reset m_T1
 m_T1 = (m_seq_2_path1[T1-1] + μ0) + cm2.α*(μ0 - μ_star)
 
@@ -540,8 +542,8 @@ plot_configs = [
     {'data': [(T_seq, m_seq_2_regime1, 'Smooth $m_{T_1}$'), 
               (T_seq, m_seq_2_regime2, 'Jumpy $m_{T_1}$')], 
      'ylabel': r'$m$'},
-    {'data': [(T_seq, p_seq_2_regime1, 'Smooth $p_{T_1}$'), 
-              (T_seq, p_seq_2_regime2, 'Jumpy $p_{T_1}$')], 
+    {'data': [(T_seq, p_seq_2_regime1, 'Jumpy $m_{T_1}$'),
+              (T_seq, p_seq_2_regime2, 'Smooth $m_{T_1}$')],
      'ylabel': r'$p$'}
 ]
 
@@ -592,7 +594,7 @@ fig, ax = plt.subplots(5, figsize=(5, 12), dpi=200)
 plot_configs = [
     {'data': [(T_seq[:-1], μ_seq_2)], 'ylabel': r'$\mu$'},
     {'data': [(T_seq, π_seq_2, 'Unforeseen'), 
-              (T_seq, π_seq_1, 'Foreseen')], 'ylabel': r'$p$'},
+              (T_seq, π_seq_1, 'Foreseen')], 'ylabel': r'$\pi$'},
     {'data': [(T_seq, m_seq_2_regime1 - p_seq_2_regime1, 'Unforeseen'), 
               (T_seq, m_seq_1 - p_seq_1, 'Foreseen')], 'ylabel': r'$m - p$'},
     {'data': [(T_seq, m_seq_2_regime1, 'Unforeseen (Smooth $m_{T_1}$)'), 
