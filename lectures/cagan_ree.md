@@ -4,7 +4,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.16.1
+    jupytext_version: 1.17.1
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
@@ -267,6 +267,7 @@ def solve(model, T):
     A1 = np.eye(T+1, T+1) - δ * np.eye(T+1, T+1, k=1)
     A2 = np.eye(T+1, T+1) - np.eye(T+1, T+1, k=-1)
 
+    # Assume γ* = 1
     b1 = (1-δ) * μ_seq + np.concatenate([np.zeros(T), [δ * π_end]])
     b2 = μ_seq + np.concatenate([[m0], np.zeros(T)])
 
@@ -326,7 +327,7 @@ T1 = 60
 μ_star = 0
 T = 80
 
-μ_seq_1 = np.append(μ0*np.ones(T1+1), μ_star*np.ones(T-T1))
+μ_seq_1 = np.append(μ0*np.ones(T1), μ_star*np.ones(T-T1+1))
 
 cm = create_cagan_model(μ_seq=μ_seq_1)
 
@@ -493,32 +494,32 @@ cm1 = create_cagan_model(μ_seq=μ_seq_2_path1)
 π_seq_2_path1, m_seq_2_path1, p_seq_2_path1 = solve(cm1, T)
 
 # continuation path
-μ_seq_2_cont = μ_star * np.ones(T-T1)
+μ_seq_2_cont = μ_star * np.ones(T-T1+1)
 
-cm2 = create_cagan_model(m0=m_seq_2_path1[T1+1], 
+cm2 = create_cagan_model(m0=m_seq_2_path1[T1], 
                          μ_seq=μ_seq_2_cont)
-π_seq_2_cont, m_seq_2_cont1, p_seq_2_cont1 = solve(cm2, T-1-T1)
+π_seq_2_cont, m_seq_2_cont1, p_seq_2_cont1 = solve(cm2, T-T1)
 
 
 # regime 1 - simply glue π_seq, μ_seq
-μ_seq_2 = np.concatenate((μ_seq_2_path1[:T1+1],
+μ_seq_2 = np.concatenate((μ_seq_2_path1[:T1],
                           μ_seq_2_cont))
-π_seq_2 = np.concatenate((π_seq_2_path1[:T1+1], 
+π_seq_2 = np.concatenate((π_seq_2_path1[:T1], 
                           π_seq_2_cont))
-m_seq_2_regime1 = np.concatenate((m_seq_2_path1[:T1+1], 
+m_seq_2_regime1 = np.concatenate((m_seq_2_path1[:T1], 
                                   m_seq_2_cont1))
-p_seq_2_regime1 = np.concatenate((p_seq_2_path1[:T1+1], 
+p_seq_2_regime1 = np.concatenate((p_seq_2_path1[:T1], 
                                   p_seq_2_cont1))
 
 # regime 2 - reset m_T1
-m_T1 = (m_seq_2_path1[T1] + μ0) + cm2.α*(μ0 - μ_star)
+m_T1 = (m_seq_2_path1[T1-1] + μ0) + cm2.α*(μ0 - μ_star)
 
 cm3 = create_cagan_model(m0=m_T1, μ_seq=μ_seq_2_cont)
-π_seq_2_cont2, m_seq_2_cont2, p_seq_2_cont2 = solve(cm3, T-1-T1)
+π_seq_2_cont2, m_seq_2_cont2, p_seq_2_cont2 = solve(cm3, T-T1)
 
-m_seq_2_regime2 = np.concatenate((m_seq_2_path1[:T1+1], 
+m_seq_2_regime2 = np.concatenate((m_seq_2_path1[:T1], 
                                   m_seq_2_cont2))
-p_seq_2_regime2 = np.concatenate((p_seq_2_path1[:T1+1],
+p_seq_2_regime2 = np.concatenate((p_seq_2_path1[:T1],
                                   p_seq_2_cont2))
 ```
 
