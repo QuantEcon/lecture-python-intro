@@ -146,7 +146,7 @@ def plot45(kstar=None):
 
     lb = r'$g(k) = sAk^{\alpha} + (1 - \delta)k$'
     ax.plot(xgrid, g_values,  lw=2, alpha=0.6, label=lb)
-    ax.plot(xgrid, xgrid, 'k-', lw=1, alpha=0.7, label='$45^{\circ}$')
+    ax.plot(xgrid, xgrid, 'k-', lw=1, alpha=0.7, label=r'$45^{\circ}$')
 
     if kstar:
         fps = (kstar,)

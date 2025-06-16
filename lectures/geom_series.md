@@ -761,7 +761,7 @@ T_max = 10
 T=np.arange(0, T_max+1)
 
 rs, gs = (0.9, 0.5, 0.4001, 0.4), (0.4, 0.4, 0.4, 0.5),
-comparisons = ('$\gg$', '$>$', r'$\approx$', '$<$')
+comparisons = (r'$\gg$', '$>$', r'$\approx$', '$<$')
 for r, g, comp in zip(rs, gs, comparisons):
     ax.plot(finite_lease_pv_true(T, g, r, x_0), label=f'r(={r}) {comp} g(={g})')
 

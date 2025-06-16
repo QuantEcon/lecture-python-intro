@@ -20,7 +20,7 @@ Chapter 24 of {cite}`russell2004history` about early Greek mathematics and astro
 fascinating passage:
 
  ```{epigraph} 
- The square root of 2, which was the first irrational to be discovered, was known to the early Pythagoreans, and ingenious methods of approximating to its value were discovered. The best was as follows: Form two columns of numbers, which we will call the $a$'s and the $b$'s; each starts with a $1$. The next $a$, at each stage, is formed by adding the last $a$ and the $b$ already obtained; the next $b$ is formed by adding twice the previous $a$ to the previous $b$. The first 6 pairs so obtained are $(1,1), (2,3), (5,7), (12,17), (29,41), (70,99)$. In each pair, $2 a - b$ is $1$ or $-1$. Thus $b/a$ is nearly the square root of two, and at each fresh step it gets nearer. For instance, the reader may satisy himself that the square of $99/70$ is very nearly equal to $2$.
+ The square root of 2, which was the first irrational to be discovered, was known to the early Pythagoreans, and ingenious methods of approximating to its value were discovered. The best was as follows: Form two columns of numbers, which we will call the $a$'s and the $b$'s; each starts with a $1$. The next $a$, at each stage, is formed by adding the last $a$ and the $b$ already obtained; the next $b$ is formed by adding twice the previous $a$ to the previous $b$. The first 6 pairs so obtained are $(1,1), (2,3), (5,7), (12,17), (29,41), (70,99)$. In each pair, $2 a^2 - b^2$ is $1$ or $-1$. Thus $b/a$ is nearly the square root of two, and at each fresh step it gets nearer. For instance, the reader may satisy himself that the square of $99/70$ is very nearly equal to $2$.
  ```
 
 This lecture drills down and studies this ancient method for computing square roots by using some of the matrix algebra that we've learned in earlier quantecon lectures. 
@@ -693,7 +693,7 @@ fig, axs = plt.subplots(1, 2, figsize=(12, 6), dpi=500)
 axs[0].plot(np.round(ratios_λ1, 6), 
             label=r'$\frac{y_t}{y_{t-1}}$', linewidth=3)
 axs[0].axhline(y=Λ[1], color='red', linestyle='--', 
-               label='$\lambda_2$', alpha=0.5)
+               label=r'$\lambda_2$', alpha=0.5)
 axs[0].set_xlabel('t', size=18)
 axs[0].set_ylabel(r'$\frac{y_t}{y_{t-1}}$', size=18)
 axs[0].set_title(r'$\frac{y_t}{y_{t-1}}$ after Muting $\lambda_1$', 
@@ -704,7 +704,7 @@ axs[0].legend()
 axs[1].plot(ratios_λ2, label=r'$\frac{y_t}{y_{t-1}}$', 
             linewidth=3)
 axs[1].axhline(y=Λ[0], color='green', linestyle='--', 
-               label='$\lambda_1$', alpha=0.5)
+               label=r'$\lambda_1$', alpha=0.5)
 axs[1].set_xlabel('t', size=18)
 axs[1].set_ylabel(r'$\frac{y_t}{y_{t-1}}$', size=18)
 axs[1].set_title(r'$\frac{y_t}{y_{t-1}}$ after Muting $\lambda_2$', 
