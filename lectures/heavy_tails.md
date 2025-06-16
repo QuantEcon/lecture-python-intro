@@ -4,7 +4,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.16.1
+    jupytext_version: 1.16.7
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
@@ -19,7 +19,7 @@ In addition to what's in Anaconda, this lecture will need the following librarie
 ```{code-cell} ipython3
 :tags: [hide-output]
 
-!pip install --upgrade yfinance pandas_datareader
+!pip install --upgrade yfinance wbgapi
 ```
 
 We use the following imports.
@@ -31,7 +31,7 @@ import yfinance as yf
 import pandas as pd
 import statsmodels.api as sm
 
-from pandas_datareader import wb
+import wbgapi as wb
 from scipy.stats import norm, cauchy
 from pandas.plotting import register_matplotlib_converters
 register_matplotlib_converters()
@@ -197,7 +197,7 @@ mystnb:
     caption: Daily Amazon returns
     name: dailyreturns-amzn
 ---
-s = data['Adj Close']
+s = data['Close']
 r = s.pct_change()
 
 fig, ax = plt.subplots()
@@ -229,7 +229,7 @@ mystnb:
     caption: Daily Bitcoin returns
     name: dailyreturns-btc
 ---
-s = data['Adj Close']
+s = data['Close']
 r = s.pct_change()
 
 fig, ax = plt.subplots()
@@ -361,7 +361,7 @@ for ax, s in zip(axes[:2], s_vals):
     data = np.random.randn(n) * s
     ax.plot(list(range(n)), data, linestyle='', marker='o', alpha=0.5, ms=4)
     ax.vlines(list(range(n)), 0, data, lw=0.2)
-    ax.set_title(f"draws from $N(0, \sigma^2)$ with $\sigma = {s}$", fontsize=11)
+    ax.set_title(fr"draws from $N(0, \sigma^2)$ with $\sigma = {s}$", fontsize=11)
 
 ax = axes[2]
 distribution = cauchy()
@@ -790,24 +790,21 @@ def empirical_ccdf(data,
 :tags: [hide-input]
 
 def extract_wb(varlist=['NY.GDP.MKTP.CD'], 
-               c='all_countries', 
+               c='all', 
                s=1900, 
                e=2021, 
                varnames=None):
-    if c == "all_countries":
-        # Keep countries only (no aggregated regions)
-        countries = wb.get_countries()
-        countries_name = countries[countries['region'] != 'Aggregates']['name'].values
-        c = "all"
     
-    df = wb.download(indicator=varlist, country=c, start=s, end=e).stack().unstack(0).reset_index()
-    df = df.drop(['level_1'], axis=1).transpose()
+    df = wb.data.DataFrame(varlist, economy=c, time=range(s, e+1, 1), skipAggs=True)
+    df.index.name = 'country'
+    
     if varnames is not None:
-        df.columns = varnames
-        df = df[1:]
+        df.columns = variable_names
+
+    cntry_mapper = pd.DataFrame(wb.economy.info().items)[['id','value']].set_index('id').to_dict()['value']
+    df.index = df.index.map(lambda x: cntry_mapper[x])  #map iso3c to name values
     
-    df1 =df[df.index.isin(countries_name)]
-    return df1
+    return df
 ```
 
 ### Firm size
@@ -914,9 +911,9 @@ variable_code = ['NY.GDP.MKTP.CD', 'NY.GDP.PCAP.CD']
 variable_names = ['GDP', 'GDP per capita']
 
 df_gdp1 = extract_wb(varlist=variable_code, 
-                     c="all_countries", 
-                     s="2021", 
-                     e="2021", 
+                     c="all", 
+                     s=2021, 
+                     e=2021, 
                      varnames=variable_names)
 df_gdp1.dropna(inplace=True)
 ```

@@ -15,7 +15,7 @@ jobs:
           auto-update-conda: true
           auto-activate-base: true
           miniconda-version: 'latest'
-          python-version: "3.11"
+          python-version: "3.12"
           environment-file: environment.yml
           activate-environment: quantecon
       - name: graphviz Support # TODO: required?
@@ -49,3 +49,4 @@ jobs:
         with:
           name: build-cache
           path: _build
+          include-hidden-files: true

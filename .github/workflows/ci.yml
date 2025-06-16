@@ -12,7 +12,7 @@ jobs:
           auto-update-conda: true
           auto-activate-base: true
           miniconda-version: 'latest'
-          python-version: "3.11"
+          python-version: "3.12"
           environment-file: environment.yml
           activate-environment: quantecon
       - name: Graphics Support #TODO: Review if graphviz is needed
@@ -38,7 +38,7 @@ jobs:
         shell: bash -l {0}
         run: pip list
       - name: Download "build" folder (cache)
-        uses: dawidd6/action-download-artifact@v6
+        uses: dawidd6/action-download-artifact@v9
         with:
           workflow: cache.yml
           branch: main
