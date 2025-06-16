@@ -889,7 +889,7 @@ HTML(anim.to_jshtml())
 ```
 
 Here
-\update_markov_chain_I
+
 * $P$ is the stochastic matrix for recession and growth considered in {ref}`Example 1: Economic states <mc_eg2>`.
 * The highest red dot is an arbitrarily chosen initial marginal probability distribution  $\psi_0$, represented as a vector in $\mathbb R^3$.
 * The other red dots are the marginal distributions $\psi_0 P^t$ for $t = 1, 2, \ldots$.
