@@ -1239,7 +1239,7 @@ for i, example in enumerate(examples):
     ax[i].grid()
     ax[i].set_aspect('equal', adjustable='box')
 
-plt.title("Vector fields of the three matrices")
+fig.suptitle("Vector fields of the three matrices")
 plt.show()
 ```
 
