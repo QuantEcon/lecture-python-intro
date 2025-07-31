@@ -4,7 +4,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.15.1
+    jupytext_version: 1.17.2
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
@@ -94,8 +94,6 @@ import random as rd
 import wbgapi as wb
 import plotly.express as px
 ```
-
-
 
 ## The Lorenz curve
 
@@ -239,9 +237,6 @@ ax.legend()
 plt.show()
 ```
 
-
-
-
 ### Lorenz curves for US data
 
 Next let's look at US data for both income and wealth.
@@ -333,7 +328,6 @@ ax.legend()
 plt.show()
 ```
 
-
 One key finding from this figure is that wealth inequality is more extreme than income inequality. 
 
 
@@ -402,7 +396,7 @@ G = \frac{A}{A+B}
 $$
 
 where $A$ is the area between the 45-degree line of 
-perfect equality and the Lorenz curve, while $B$ is the area below the Lorenze curve -- see {numref}`lorenz_gini2`. 
+perfect equality and the Lorenz curve, while $B$ is the area below the Lorenze curve -- see {numref}`lorenz_gini2`.
 
 ```{code-cell} ipython3
 ---
@@ -427,8 +421,6 @@ ax.legend()
 plt.show()
 ```
 
-
-
 ```{seealso}
 The World in Data project has a [graphical exploration of the Lorenz curve and the Gini coefficient](https://ourworldindata.org/what-is-the-gini-coefficient)
 ```
@@ -442,7 +434,6 @@ The code below computes the Gini coefficient from a sample.
 (code:gini-coefficient)=
 
 ```{code-cell} ipython3
-
 def gini_coefficient(y):
     r"""
     Implements the Gini inequality index
@@ -503,11 +494,13 @@ for σ in σ_vals:
 Let's build a function that returns a figure (so that we can use it later in the lecture).
 
 ```{code-cell} ipython3
-def plot_inequality_measures(x, y, legend, xlabel, ylabel):
+def plot_inequality_measures(x, y, legend, xlabel, ylabel, title=None):
     fig, ax = plt.subplots()
     ax.plot(x, y, marker='o', label=legend)
     ax.set_xlabel(xlabel)
     ax.set_ylabel(ylabel)
+    if title is not None:
+        ax.set_title(title)
     ax.legend()
     return fig, ax
 ```
@@ -546,7 +539,7 @@ We now know the series ID is `SI.POV.GINI`.
 
 (Another way to find the series ID is to use the [World Bank data portal](https://data.worldbank.org) and then use `wbgapi` to fetch the data.)
 
-To get a quick overview, let's histogram Gini coefficients across all countries and all years in the World Bank dataset. 
+To get a quick overview, let's histogram Gini coefficients across all countries and all years in the World Bank dataset.
 
 ```{code-cell} ipython3
 ---
@@ -572,7 +565,7 @@ plt.show()
 
 We can see in {numref}`gini_histogram` that across 50 years of data and all countries the measure varies between 20 and 65.
 
-Let us fetch the data `DataFrame` for the USA. 
+Let us fetch the data `DataFrame` for the USA.
 
 ```{code-cell} ipython3
 data = wb.data.DataFrame("SI.POV.GINI", "USA")
@@ -582,7 +575,6 @@ data.columns = data.columns.map(lambda x: int(x.replace('YR','')))
 ```
 
 (This package often returns data with year information contained in the columns. This is not always convenient for simple plotting with pandas so it can be useful to transpose the results before plotting.)
-
 
 ```{code-cell} ipython3
 data = data.T           # Obtain years as rows
@@ -616,8 +608,7 @@ In the previous section we looked at the Gini coefficient for income, focusing o
 
 Now let's look at the Gini coefficient for the distribution of wealth.
 
-We will use US data from the {ref}`Survey of Consumer Finances<data:survey-consumer-finance>` 
-
+We will use US data from the {ref}`Survey of Consumer Finances<data:survey-consumer-finance>`
 
 ```{code-cell} ipython3
 df_income_wealth.year.describe()
@@ -953,9 +944,6 @@ for σ in σ_vals:
 ```{code-cell} ipython3
 ---
 mystnb:
-  figure:
-    caption: Top shares of simulated data
-    name: top_shares_simulated
   image:
     alt: top_shares_simulated
 ---
@@ -963,16 +951,14 @@ fig, ax = plot_inequality_measures(σ_vals,
                                   topshares, 
                                   "simulated data", 
                                   "$\sigma$", 
-                                  "top $10\%$ share") 
+                                  "top $10\%$ share",
+                                  "Top shares of simulated data") 
 plt.show()
 ```
 
 ```{code-cell} ipython3
 ---
 mystnb:
-  figure:
-    caption: Gini coefficients of simulated data
-    name: gini_coef_simulated
   image:
     alt: gini_coef_simulated
 ---
@@ -980,16 +966,14 @@ fig, ax = plot_inequality_measures(σ_vals,
                                   ginis, 
                                   "simulated data", 
                                   "$\sigma$", 
-                                  "gini coefficient")
+                                  "gini coefficient",
+                                  "Gini coefficients of simulated data")
 plt.show()
 ```
 
 ```{code-cell} ipython3
 ---
 mystnb:
-  figure:
-    caption: Lorenz curves for simulated data
-    name: lorenz_curve_simulated
   image:
     alt: lorenz_curve_simulated
 ---
@@ -997,6 +981,7 @@ fig, ax = plt.subplots()
 ax.plot([0,1],[0,1], label=f"equality")
 for i in range(len(f_vals)):
     ax.plot(f_vals[i], l_vals[i], label=f"$\sigma$ = {σ_vals[i]}")
+ax.set_title("Lorenz curves for simulated data")
 plt.legend()
 plt.show()
 ```
@@ -1037,9 +1022,6 @@ for f_val, l_val in zip(f_vals_nw, l_vals_nw):
 ```{code-cell} ipython3
 ---
 mystnb:
-  figure:
-    caption: 'US top shares: approximation vs Lorenz'
-    name: top_shares_us_al
   image:
     alt: top_shares_us_al
 ---
@@ -1051,6 +1033,7 @@ ax.plot(years, top_shares_nw, marker='o', label="net wealth-lorenz")
 
 ax.set_xlabel("year")
 ax.set_ylabel("top $10\%$ share")
+ax.set_title('US top shares: approximation vs Lorenz')
 ax.legend()
 plt.show()
 ```
@@ -1112,9 +1095,11 @@ def gini(y):
     g_sum = np.sum(np.abs(y_1 - y_2))
     return g_sum / (2 * n * np.sum(y))
 ```
+
 ```{code-cell} ipython3
 gini(data.n_wealth.values)
 ```
+
 Let's simulate five populations by drawing from a lognormal distribution as before
 
 ```{code-cell} ipython3
@@ -1125,6 +1110,7 @@ n = 2_000
 μ_vals = -σ_vals**2/2
 y_vals = np.exp(μ_vals + σ_vals*np.random.randn(n))
 ```
+
 We can compute the Gini coefficient for these five populations using the vectorized function, the computation time is shown below:
 
 ```{code-cell} ipython3
@@ -1133,14 +1119,13 @@ gini_coefficients =[]
 for i in range(k):
      gini_coefficients.append(gini(y_vals[i]))
 ```
+
 This shows the vectorized function is much faster.
 This gives us the Gini coefficients for these five households.
 
 ```{code-cell} ipython3
 gini_coefficients
 ```
+
 ```{solution-end}
 ```
-
-
-
