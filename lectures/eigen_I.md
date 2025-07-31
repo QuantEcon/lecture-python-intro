@@ -1181,7 +1181,7 @@ Here is one solution
 
 ```{code-cell} ipython3
 
-figure, ax = plt.subplots(1, 3, figsize=(15, 5))
+fig, ax = plt.subplots(1, 3, figsize=(15, 5))
 A = np.array([[sqrt(3) + 1, -2],
               [1, sqrt(3) - 1]])
 A = (1/(2*sqrt(2))) * A
