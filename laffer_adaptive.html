@@ -73,7 +73,7 @@
     <link rel="stylesheet" href="_static/styles/quantecon-book-theme.css?digest=bd0785fbb14d8d2bd4d9ae501d79ed8d3bc089ec" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/exercise.css?v=982b99e0" />
     <link rel="stylesheet" type="text/css" href="_static/proof.css?v=4c010e0d" />
@@ -420,7 +420,7 @@ g \leq \max_{x: x \geq 0} \exp(-\alpha x) - \exp(-(1 + \alpha) x) ,
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The two steady state of π are: (0.6737147075333032, 1.6930797322614812)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The two steady state of π are: (np.float64(0.6737147075333034), np.float64(1.6930797322614815))
 </pre></div>
 </div>
 </div>
@@ -466,22 +466,8 @@ g \leq \max_{x: x \geq 0} \exp(-\alpha x) - \exp(-(1 + \alpha) x) ,
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;&gt;:16: SyntaxWarning: invalid escape sequence &#39;\p&#39;
-&lt;&gt;:16: SyntaxWarning: invalid escape sequence &#39;\p&#39;
-&lt;&gt;:23: SyntaxWarning: invalid escape sequence &#39;\p&#39;
-&lt;&gt;:16: SyntaxWarning: invalid escape sequence &#39;\p&#39;
-&lt;&gt;:16: SyntaxWarning: invalid escape sequence &#39;\p&#39;
-&lt;&gt;:23: SyntaxWarning: invalid escape sequence &#39;\p&#39;
-/tmp/ipykernel_8075/2747314190.py:16: SyntaxWarning: invalid escape sequence &#39;\p&#39;
-  for π, label in zip(πs, [&#39;$\pi_l$&#39;, &#39;$\pi_u$&#39;]):
-/tmp/ipykernel_8075/2747314190.py:16: SyntaxWarning: invalid escape sequence &#39;\p&#39;
-  for π, label in zip(πs, [&#39;$\pi_l$&#39;, &#39;$\pi_u$&#39;]):
-/tmp/ipykernel_8075/2747314190.py:23: SyntaxWarning: invalid escape sequence &#39;\p&#39;
-  plt.xlabel(&#39;$\pi$&#39;)
-</pre></div>
-</div>
 <figure class="align-default" id="laffer-curve-adaptive">
-<a class="reference internal image-reference" href="_images/e63efa53fb2aece319812e85c477c27d4ce7739316bb662a2b5fa054461674e4.png"><img alt="_images/e63efa53fb2aece319812e85c477c27d4ce7739316bb662a2b5fa054461674e4.png" src="_images/e63efa53fb2aece319812e85c477c27d4ce7739316bb662a2b5fa054461674e4.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/efe9305d04a35043bf3afde060d4ddff65712b5f4b3f380234cafaedb86ebf12.png"><img alt="_images/efe9305d04a35043bf3afde060d4ddff65712b5f4b3f380234cafaedb86ebf12.png" src="_images/efe9305d04a35043bf3afde060d4ddff65712b5f4b3f380234cafaedb86ebf12.png" style="width: 80%;" />
 </a>
 <figcaption>
 <p><span class="caption-number">Fig. 32.1 </span><span class="caption-text">Seigniorage as function of steady-state inflation. The dashed brown lines indicate <span class="math notranslate nohighlight">\(\pi_l\)</span> and <span class="math notranslate nohighlight">\(\pi_u\)</span>.</span><a class="headerlink" href="#laffer-curve-adaptive" title="Link to this image">#</a></p>
@@ -512,7 +498,7 @@ p_{-1} = m_0 + \alpha \pi^*
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Associated initial p_{-1}s are: (4.9420275397547435, 5.451710052118832)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Associated initial p_{-1}s are: (np.float64(4.9420275397547435), np.float64(5.451710052118832))
 </pre></div>
 </div>
 </div>
@@ -598,8 +584,8 @@ eq_g == g: True
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>m_{t+1} - m_t: 1.69307973225105
-p_{t+1} - p_t: 1.6930797322506947
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>m_{t+1} - m_t: 1.6930797322436035
+p_{t+1} - p_t: 1.6930797322430209
 eq_g == g: True
 </pre></div>
 </div>
@@ -675,7 +661,7 @@ eq_g == g: True
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="pi0-path">
-<a class="reference internal image-reference" href="_images/5fefbca0eb36fb0da6dc0ba461695917a6fab0f4ba5fe1f99d0ec75e6c1efaeb.png"><img alt="_images/5fefbca0eb36fb0da6dc0ba461695917a6fab0f4ba5fe1f99d0ec75e6c1efaeb.png" src="_images/5fefbca0eb36fb0da6dc0ba461695917a6fab0f4ba5fe1f99d0ec75e6c1efaeb.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/31cdade1a2609bcb750f0490da30ec3e3ed1ac1dd4f582af9246ca8ba856b17b.png"><img alt="_images/31cdade1a2609bcb750f0490da30ec3e3ed1ac1dd4f582af9246ca8ba856b17b.png" src="_images/31cdade1a2609bcb750f0490da30ec3e3ed1ac1dd4f582af9246ca8ba856b17b.png" style="width: 80%;" />
 </a>
 <figcaption>
 <p><span class="caption-number">Fig. 32.2 </span><span class="caption-text">Starting from different initial values of <span class="math notranslate nohighlight">\(\pi_0\)</span>, paths of <span class="math notranslate nohighlight">\(m_t\)</span> (top panel, log scale for <span class="math notranslate nohighlight">\(m\)</span>), <span class="math notranslate nohighlight">\(p_t\)</span> (second panel, log scale for <span class="math notranslate nohighlight">\(p\)</span>),  <span class="math notranslate nohighlight">\(\pi_t\)</span> (third panel), and <span class="math notranslate nohighlight">\(\mu_t\)</span> (bottom panel)</span><a class="headerlink" href="#pi0-path" title="Link to this image">#</a></p>

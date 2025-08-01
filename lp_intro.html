@@ -73,7 +73,7 @@
     <link rel="stylesheet" href="_static/styles/quantecon-book-theme.css?digest=bd0785fbb14d8d2bd4d9ae501d79ed8d3bc089ec" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/exercise.css?v=982b99e0" />
     <link rel="stylesheet" type="text/css" href="_static/proof.css?v=4c010e0d" />
@@ -269,63 +269,77 @@
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting ortools
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Downloading ortools-9.13.4784-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (3.3 kB)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Downloading ortools-9.14.6206-cp313-cp313-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (3.3 kB)
 Collecting absl-py&gt;=2.0.0 (from ortools)
+  Downloading absl_py-2.3.1-py3-none-any.whl.metadata (3.3 kB)
+Requirement already satisfied: numpy&gt;=1.13.3 in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (from ortools) (2.1.3)
+Requirement already satisfied: pandas&gt;=2.0.0 in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (from ortools) (2.2.3)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Downloading absl_py-2.3.0-py3-none-any.whl.metadata (2.4 kB)
-Requirement already satisfied: numpy&gt;=1.13.3 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from ortools) (1.26.4)
-Requirement already satisfied: pandas&gt;=2.0.0 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from ortools) (2.2.2)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting protobuf&lt;6.32,&gt;=6.31.0 (from ortools)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting protobuf&lt;6.32,&gt;=6.31.1 (from ortools)
   Downloading protobuf-6.31.1-cp39-abi3-manylinux2014_x86_64.whl.metadata (593 bytes)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting typing-extensions&gt;=4.12 (from ortools)
-  Downloading typing_extensions-4.14.0-py3-none-any.whl.metadata (3.0 kB)
+Requirement already satisfied: typing-extensions&gt;=4.12 in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (from ortools) (4.12.2)
 Collecting immutabledict&gt;=3.0.0 (from ortools)
   Downloading immutabledict-4.2.1-py3-none-any.whl.metadata (3.5 kB)
+Requirement already satisfied: python-dateutil&gt;=2.8.2 in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (from pandas&gt;=2.0.0-&gt;ortools) (2.9.0.post0)
+Requirement already satisfied: pytz&gt;=2020.1 in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (from pandas&gt;=2.0.0-&gt;ortools) (2024.1)
+Requirement already satisfied: tzdata&gt;=2022.7 in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (from pandas&gt;=2.0.0-&gt;ortools) (2025.2)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: python-dateutil&gt;=2.8.2 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from pandas&gt;=2.0.0-&gt;ortools) (2.9.0.post0)
-Requirement already satisfied: pytz&gt;=2020.1 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from pandas&gt;=2.0.0-&gt;ortools) (2024.1)
-Requirement already satisfied: tzdata&gt;=2022.7 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from pandas&gt;=2.0.0-&gt;ortools) (2023.3)
-Requirement already satisfied: six&gt;=1.5 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from python-dateutil&gt;=2.8.2-&gt;pandas&gt;=2.0.0-&gt;ortools) (1.16.0)
-Downloading ortools-9.13.4784-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (27.6 MB)
-?25l   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/27.6 MB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: six&gt;=1.5 in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (from python-dateutil&gt;=2.8.2-&gt;pandas&gt;=2.0.0-&gt;ortools) (1.17.0)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸ <span class=" -Color -Color-Green">27.5/27.6 MB</span> <span class=" -Color -Color-Red">200.4 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">27.6/27.6 MB</span> <span class=" -Color -Color-Red">144.5 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
-?25hDownloading absl_py-2.3.0-py3-none-any.whl (135 kB)
-Downloading immutabledict-4.2.1-py3-none-any.whl (4.7 kB)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading ortools-9.14.6206-cp313-cp313-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (27.7 MB)
+?25l   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/27.7 MB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading protobuf-6.31.1-cp39-abi3-manylinux2014_x86_64.whl (321 kB)
-Downloading typing_extensions-4.14.0-py3-none-any.whl (43 kB)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━╺━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">6.6/27.7 MB</span> <span class=" -Color -Color-Red">32.9 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Installing collected packages: typing-extensions, protobuf, immutabledict, absl-py, ortools
-  Attempting uninstall: typing-extensions
-    Found existing installation: typing_extensions 4.11.0
-    Uninstalling typing_extensions-4.11.0:
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━╸━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">13.6/27.7 MB</span> <span class=" -Color -Color-Red">35.3 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>      Successfully uninstalled typing_extensions-4.11.0
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━╸━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">17.8/27.7 MB</span> <span class=" -Color -Color-Red">31.0 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Attempting uninstall: protobuf
-    Found existing installation: protobuf 4.25.3
-    Uninstalling protobuf-4.25.3:
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╺━━━━━━━ <span class=" -Color -Color-Green">22.3/27.7 MB</span> <span class=" -Color -Color-Red">27.7 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>      Successfully uninstalled protobuf-4.25.3
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸ <span class=" -Color -Color-Green">27.5/27.7 MB</span> <span class=" -Color -Color-Red">28.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">27.7/27.7 MB</span> <span class=" -Color -Color-Red">27.2 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hDownloading protobuf-6.31.1-cp39-abi3-manylinux2014_x86_64.whl (321 kB)
+Downloading absl_py-2.3.1-py3-none-any.whl (135 kB)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Red">ERROR: pip&#39;s dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.</span>
-<span class=" -Color -Color-Red">streamlit 1.37.1 requires protobuf&lt;6,&gt;=3.20, but you have protobuf 6.31.1 which is incompatible.</span>
-Successfully installed absl-py-2.3.0 immutabledict-4.2.1 ortools-9.13.4784 protobuf-6.31.1 typing-extensions-4.14.0
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading immutabledict-4.2.1-py3-none-any.whl (4.7 kB)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Installing collected packages: protobuf, immutabledict, absl-py, ortools
+?25l
+  Attempting uninstall: protobuf
+
+    Found existing installation: protobuf 5.29.3
+
+    Uninstalling protobuf-5.29.3:
+
+      Successfully uninstalled protobuf-5.29.3
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━╺━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">2/4</span> [absl-py]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╺━━━━━━━━━ <span class=" -Color -Color-Green">3/4</span> [ortools]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╺━━━━━━━━━ <span class=" -Color -Color-Green">3/4</span> [ortools]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╺━━━━━━━━━ <span class=" -Color -Color-Green">3/4</span> [ortools]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">4/4</span> [ortools]
+?25h
+Successfully installed absl-py-2.3.1 immutabledict-4.2.1 ortools-9.14.6206 protobuf-6.31.1
 </pre></div>
 </div>
 </div>
@@ -445,7 +459,7 @@ a linear objective function subject to a set of  linear equality and/or inequali
 </div>
 </details>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/888f6fa7457c0868ffc6912ab6182da13d5ad2db105a1af8903ad46fecabe149.png"><img alt="_images/888f6fa7457c0868ffc6912ab6182da13d5ad2db105a1af8903ad46fecabe149.png" src="_images/888f6fa7457c0868ffc6912ab6182da13d5ad2db105a1af8903ad46fecabe149.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/d22efa61e15248e612d1797f7f1613b3ac59efa7097f84562ace530e2c2fd5e7.png"><img alt="_images/d22efa61e15248e612d1797f7f1613b3ac59efa7097f84562ace530e2c2fd5e7.png" src="_images/d22efa61e15248e612d1797f7f1613b3ac59efa7097f84562ace530e2c2fd5e7.png" style="width: 80%;" />
 </a>
 </div>
 </div>
@@ -488,7 +502,7 @@ a linear objective function subject to a set of  linear equality and/or inequali
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ortools.linear_solver.pywraplp.Constraint; proxy of &lt;Swig Object of type &#39;operations_research::MPConstraint *&#39; at 0x7f29b4274900&gt; &gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ortools.linear_solver.pywraplp.Constraint; proxy of &lt;Swig Object of type &#39;operations_research::MPConstraint *&#39; at 0x7fa9ad3cd290&gt; &gt;
 </pre></div>
 </div>
 </div>
@@ -656,7 +670,7 @@ leaving it with  a bank account balance equal to <span class="math notranslate n
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ortools.linear_solver.pywraplp.Constraint; proxy of &lt;Swig Object of type &#39;operations_research::MPConstraint *&#39; at 0x7f29b378d0e0&gt; &gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ortools.linear_solver.pywraplp.Constraint; proxy of &lt;Swig Object of type &#39;operations_research::MPConstraint *&#39; at 0x7fa9e8113660&gt; &gt;
 </pre></div>
 </div>
 </div>
@@ -832,7 +846,7 @@ x = \begin{bmatrix} x_1 \\ x_2 \\ \vdots \\ x_n \\ \end{bmatrix}. \quad
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimal Value: 27.5
-(x1, x2): (2.5, 5.0)
+(x1, x2): (np.float64(2.5), np.float64(5.0))
 </pre></div>
 </div>
 </div>
@@ -930,7 +944,7 @@ x = \begin{bmatrix} x_1 \\ x_2 \\ \vdots \\ x_n \\ \end{bmatrix}. \quad
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimal Value: 141018.24349792697
-(x1, x2, x3, x4, x5): (24927.755, 75072.245, 4648.825, -20000.0, 50000.0)
+(x1, x2, x3, x4, x5): (np.float64(24927.755), np.float64(75072.245), np.float64(4648.825), np.float64(-20000.0), np.float64(50000.0))
 </pre></div>
 </div>
 </div>
@@ -998,7 +1012,7 @@ x = \begin{bmatrix} x_1 \\ x_2 \\ \vdots \\ x_n \\ \end{bmatrix}. \quad
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ortools.linear_solver.pywraplp.Constraint; proxy of &lt;Swig Object of type &#39;operations_research::MPConstraint *&#39; at 0x7f29b61bec40&gt; &gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ortools.linear_solver.pywraplp.Constraint; proxy of &lt;Swig Object of type &#39;operations_research::MPConstraint *&#39; at 0x7fa9adedd4d0&gt; &gt;
 </pre></div>
 </div>
 </div>
@@ -1089,7 +1103,7 @@ x = \begin{bmatrix} x_1 \\ x_2 \\ \vdots \\ x_n \\ \end{bmatrix}. \quad
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ortools.linear_solver.pywraplp.Constraint; proxy of &lt;Swig Object of type &#39;operations_research::MPConstraint *&#39; at 0x7f29b42893e0&gt; &gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ortools.linear_solver.pywraplp.Constraint; proxy of &lt;Swig Object of type &#39;operations_research::MPConstraint *&#39; at 0x7fa9ad3c0270&gt; &gt;
 </pre></div>
 </div>
 </div>
