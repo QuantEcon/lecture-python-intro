@@ -997,12 +997,6 @@ Here is one solution.
 We start by looking into the distance between the eigenvector approximation and the true eigenvector.
 
 ```{code-cell} ipython3
----
-mystnb:
-  figure:
-    caption: Power iteration
-    name: pow-dist
----
 # Define a matrix A
 A = np.array([[1, 0, 3],
               [0, 2, 0],
@@ -1040,20 +1034,14 @@ print('The real eigenvalue is', np.linalg.eig(A)[0])
 plt.figure(figsize=(10, 6))
 plt.xlabel('iterations')
 plt.ylabel('error')
+plt.title('Power iteration')
 _ = plt.plot(errors)
 ```
-
-+++ {"user_expressions": []}
 
 Then we can look at the trajectory of the eigenvector approximation.
 
 ```{code-cell} ipython3
----
-mystnb:
-  figure:
-    caption: Power iteration trajectory
-    name: pow-trajectory
----
+
 # Set up the figure and axis for 3D plot
 fig = plt.figure()
 ax = fig.add_subplot(111, projection='3d')
@@ -1081,10 +1069,10 @@ ax.legend(points, ['actual eigenvector',
                    r'approximated eigenvector ($b_k$)'])
 ax.set_box_aspect(aspect=None, zoom=0.8)
 
+ax.set_title('Power iteration trajectory')
+
 plt.show()
 ```
-
-+++ {"user_expressions": []}
 
 ```{solution-end}
 ```
@@ -1119,8 +1107,6 @@ print(f'eigenvectors:\n {eigenvectors}')
 plot_series(A, v, n)
 ```
 
-+++ {"user_expressions": []}
-
 The result seems to converge to the eigenvector of $A$ with the largest eigenvalue.
 
 Let's use a [vector field](https://en.wikipedia.org/wiki/Vector_field) to visualize the transformation brought by A.
@@ -1128,12 +1114,7 @@ Let's use a [vector field](https://en.wikipedia.org/wiki/Vector_field) to visual
 (This is a more advanced topic in linear algebra, please step ahead if you are comfortable with the math.)
 
 ```{code-cell} ipython3
----
-mystnb:
-  figure:
-    caption: Convergence towards eigenvectors
-    name: eigen-conv
----
+
 # Create a grid of points
 x, y = np.meshgrid(np.linspace(-5, 5, 15),
                    np.linspace(-5, 5, 20))
@@ -1165,12 +1146,11 @@ plt.legend(lines, labels, loc='center left',
 
 plt.xlabel("x")
 plt.ylabel("y")
+plt.title("Convergence towards eigenvectors")
 plt.grid()
 plt.gca().set_aspect('equal', adjustable='box')
 plt.show()
 ```
-
-+++ {"user_expressions": []}
 
 Note that the vector field converges to the eigenvector of $A$ with the largest eigenvalue and diverges from the eigenvector of $A$ with the smallest eigenvalue.
 
@@ -1200,13 +1180,8 @@ Use the visualization in the previous exercise to explain the trajectory of the 
 Here is one solution
 
 ```{code-cell} ipython3
----
-mystnb:
-  figure:
-    caption: Vector fields of the three matrices
-    name: vector-field
----
-figure, ax = plt.subplots(1, 3, figsize=(15, 5))
+
+fig, ax = plt.subplots(1, 3, figsize=(15, 5))
 A = np.array([[sqrt(3) + 1, -2],
               [1, sqrt(3) - 1]])
 A = (1/(2*sqrt(2))) * A
@@ -1264,10 +1239,9 @@ for i, example in enumerate(examples):
     ax[i].grid()
     ax[i].set_aspect('equal', adjustable='box')
 
+fig.suptitle("Vector fields of the three matrices")
 plt.show()
 ```
-
-+++ {"user_expressions": []}
 
 The vector fields explain why we observed the trajectories of the vector $v$ multiplied by $A$ iteratively before.
 
@@ -1276,12 +1250,7 @@ The pattern demonstrated here is because we have complex eigenvalues and eigenve
 We can plot the complex plane for one of the matrices using `Arrow3D` class retrieved from [stackoverflow](https://stackoverflow.com/questions/22867620/putting-arrowheads-on-vectors-in-a-3d-plot).
 
 ```{code-cell} ipython3
----
-mystnb:
-  figure:
-    caption: 3D plot of the vector field
-    name: 3d-vector-field
----
+
 class Arrow3D(FancyArrowPatch):
     def __init__(self, xs, ys, zs, *args, **kwargs):
         super().__init__((0, 0), (0, 0), *args, **kwargs)
@@ -1334,11 +1303,10 @@ ax.set_ylabel('y')
 ax.set_zlabel('Im')
 ax.set_box_aspect(aspect=None, zoom=0.8)
 
+plt.title("3D plot of the vector field")
 plt.draw()
 plt.show()
 ```
-
-+++ {"user_expressions": []}
 
 ```{solution-end}
 ```
